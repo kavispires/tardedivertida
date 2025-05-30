@@ -17,7 +17,15 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
   const { session, setSession, updateSession } = useDailySessionState<SessionState>({
     questionIndex: 0,
     testimonies: data.testimonies.filter((t) => (mode !== 'nsfw' ? !t.nsfw : true)),
-    suspectsIds: data.testimonies.map(() => sampleSize(state.suspectsIds, 6)),
+    suspectsIds: data.testimonies.map((t) => {
+      // Get suspects from the testimony
+      const suspects: string[] = t.suspectsIds || [];
+      // If empty or not enough, use suspects from day
+      if (suspects.length < 6) {
+        suspects.push(...sampleSize(data.suspectsIds, 6 - suspects.length));
+      }
+      return suspects;
+    }),
     answers: [
       {
         testimonyId: data.testimonies[0].testimonyId,
@@ -134,9 +142,12 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
     isComplete: state.played,
   });
 
+  const allSuspects = [...(data?.suspectsIds || []), ...data.testimonies.flatMap((t) => t.suspectsIds || [])];
+
   return {
     questionIndex: session.questionIndex,
     questionNumber: session.questionIndex + 1,
+    questionSuspects: session.suspectsIds[session.questionIndex],
     question,
     answer,
     suspects,
@@ -152,5 +163,6 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
     onPrevious,
     onComplete,
     onUpdateAnswer,
+    allSuspects,
   };
 }
