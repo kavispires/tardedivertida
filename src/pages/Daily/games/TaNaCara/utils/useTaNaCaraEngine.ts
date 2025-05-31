@@ -19,7 +19,7 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
     testimonies: data.testimonies.filter((t) => (mode !== 'nsfw' ? !t.nsfw : true)),
     suspectsIds: data.testimonies.map((t) => {
       // Get suspects from the testimony
-      const suspects: string[] = t.suspectsIds || [];
+      const suspects: string[] = sampleSize(t.suspectsIds || [], 6);
       // If empty or not enough, use suspects from day
       if (suspects.length < 6) {
         suspects.push(...sampleSize(data.suspectsIds, 6 - suspects.length));
