@@ -1,1 +1,0 @@
-import{j as a,s as n,e as r,I as i,J as e}from"./index-vxE0u_if.js";import{A as l}from"./AnimatedLoaderIcon-DeRvOoPw.js";function x({message:s,margin:o=!1}){return a.jsxs(n,{className:r("loading",o&&"loading--margin"),children:[a.jsx(i,{icon:a.jsx(l,{}),style:{display:"block"}}),!!s&&a.jsx(e.Text,{children:s})]})}export{x as L};
