@@ -129,7 +129,13 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
         )}
 
         <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
-          <ResultsModalContent challenge={data.number} win={isWin} guesses={guesses} sets={data.sets} />
+          <ResultsModalContent
+            challenge={data.number}
+            win={isWin}
+            guesses={guesses}
+            sets={data.sets}
+            hearts={hearts}
+          />
         </Modal>
       </Layout.Content>
     </Layout>
