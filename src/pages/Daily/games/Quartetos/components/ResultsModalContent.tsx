@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { getDailyName, getSourceName } from 'pages/Daily/utils';
+import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Typography } from 'antd';
@@ -23,9 +23,10 @@ type ResultsModalContentProps = {
   win: boolean;
   sets: DailyQuartetosEntry['sets'];
   guesses: string[];
+  hearts: number;
 };
 
-export function ResultsModalContent({ challenge, win, sets, guesses }: ResultsModalContentProps) {
+export function ResultsModalContent({ challenge, win, sets, guesses, hearts }: ResultsModalContentProps) {
   const { language, dualTranslate } = useLanguage();
 
   const result = useMemo(
@@ -36,9 +37,10 @@ export function ResultsModalContent({ challenge, win, sets, guesses }: ResultsMo
         sets,
         guesses,
         win,
+        hearts,
         language,
       }),
-    [challenge, dualTranslate, guesses, language, win, sets],
+    [challenge, dualTranslate, guesses, language, win, sets, hearts],
   );
 
   return (
@@ -76,6 +78,7 @@ function writeResult({
   guesses,
   sets,
   language,
+  hearts,
 }: {
   game: string;
   challenge: number;
@@ -83,6 +86,7 @@ function writeResult({
   sets: DailyQuartetosEntry['sets'];
   win: boolean;
   language: Language;
+  hearts: number;
 }) {
   const EMOJIS = ['🟩', '🟨', '🟧', '🟪'];
   const EMOJIS_MAP = sets.reduce((acc: StringDictionary, set) => {
@@ -100,7 +104,7 @@ function writeResult({
 
   return [
     `${SETTINGS.EMOJI} ${getDailyName(language)} ${game} #${challenge}`,
-
+    `${writeHeartResultString(hearts, SETTINGS.HEARTS, ' ')}`,
     ...result,
     `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
   ].join('\n');
