@@ -8,11 +8,22 @@ import type { WithRequiredId } from './types';
 /**
  * Returns the current date in the format 'YYYY-MM-DD'.
  *
- * @returns {string} The current date in 'YYYY-MM-DD' format.
+ * @returns The current date in 'YYYY-MM-DD' format.
  */
 export function getToday(): string {
   if (isDevEnv && USE_FIRESTORE_EMULATOR) return '2023-10-31';
   return moment().format('YYYY-MM-DD');
+}
+
+/**
+ * Checks if a given date is a Saturday or Sunday.
+ *
+ * @param dateString - The date in 'YYYY-MM-DD' format.
+ * @returns True if the date is a Saturday or Sunday, false otherwise.
+ */
+export function checkWeekend(dateString: string): boolean {
+  const date = moment(dateString, 'YYYY-MM-DD');
+  return [6, 0].includes(date.day()); // 0 represents Sunday and 6 represents Saturday in moment.js
 }
 
 /**

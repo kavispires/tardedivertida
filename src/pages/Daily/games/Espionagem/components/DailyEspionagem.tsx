@@ -63,7 +63,7 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
           hearts={hearts}
           total={SETTINGS.HEARTS}
           openRules={!isComplete || hearts === SETTINGS.HEARTS}
-          rules={<Rules />}
+          rules={<Rules date={data.id} />}
         />
 
         <Region>

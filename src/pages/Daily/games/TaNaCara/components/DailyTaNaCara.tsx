@@ -80,7 +80,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
       <Layout.Content ref={ref}>
         <ImageCardPreloadHand hand={allSuspects} />
         <div>
-          <Menu hearts={0} total={0} openRules rules={<Rules />} />
+          <Menu hearts={0} total={0} openRules rules={<Rules date={data.id} />} />
           {alreadyPlayed && (
             <Instruction className="info-screen">
               <IconAvatar icon={<ThumbsUpIcon />} />

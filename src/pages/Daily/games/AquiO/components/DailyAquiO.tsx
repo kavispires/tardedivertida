@@ -67,7 +67,7 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
       </Header>
       <Layout.Content ref={contentRef}>
         <div ref={headerRef}>
-          <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules />} />
+          <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules date={data.id} />} />
           <SpaceContainer>
             <Typography.Text strong>
               <DualTranslate>{data.title}</DualTranslate> | <Translate pt="Disco" en="Disc" /> {discIndex}/

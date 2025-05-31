@@ -24,8 +24,8 @@ export function DemoBanner() {
     <Alert
       message={
         <Translate
-          pt="Você jogará uma demonstração. Favor dar feedback."
-          en="You will play a demo game. Please give feedback."
+          pt="Você jogará uma demonstração, jogos aleatórios são usados apenas para testes. Favor dar feedback."
+          en="You will play a demo, random games are used for testing. Please give feedback!"
         />
       }
       type="info"

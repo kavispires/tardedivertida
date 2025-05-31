@@ -65,7 +65,7 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
           hearts={hearts}
           total={SETTINGS.HEARTS}
           openRules={!isComplete || hearts === SETTINGS.HEARTS}
-          rules={<Rules />}
+          rules={<Rules date={data.id} />}
         />
 
         <TextRegion>

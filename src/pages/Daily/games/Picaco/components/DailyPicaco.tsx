@@ -54,7 +54,7 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
       </Header>
       <Layout.Content ref={contentRef}>
         <div ref={headerRef}>
-          <Menu hearts={0} total={0} openRules rules={<Rules />} />
+          <Menu hearts={0} total={0} openRules rules={<Rules date={data.id} />} />
           {alreadyPlayed && (
             <Instruction className="info-screen">
               <IconAvatar icon={<ThumbsUpIcon />} />
