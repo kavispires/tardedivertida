@@ -16,7 +16,6 @@ import { getAnimation } from 'utils/animations';
 import { isDevEnv } from 'utils/helpers';
 // Icons
 import { DailyContributionGame } from 'icons/DailyContributionGame';
-import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
@@ -70,14 +69,14 @@ const CONTRIBUTIONS: Entry[] = [
 ];
 
 const DEMOS: Entry[] = [
-  SETTINGS.ESPIONAGEM,
-  {
-    ...COMING_SOON_ENTRY,
-    HUB_ICON: DailyCrimeGameIcon,
-    HUB_NAME: { pt: 'Criminologia', en: 'Criminology' },
-    COLOR: 'rgba(243, 232, 145, 0.85)',
-    disabled: true,
-  },
+  // SETTINGS.ESPIONAGEM,
+  // {
+  //   ...COMING_SOON_ENTRY,
+  //   HUB_ICON: DailyCrimeGameIcon,
+  //   HUB_NAME: { pt: 'Criminologia', en: 'Criminology' },
+  //   COLOR: 'rgba(243, 232, 145, 0.85)',
+  //   disabled: true,
+  // },
 ];
 
 export function Hub() {
@@ -107,13 +106,15 @@ export function Hub() {
         <HubList list={CONTRIBUTIONS} width={width} startingIndex={GAMES.length} />
       </div>
 
-      <div className="hub">
-        <Typography.Title level={5}>
-          <Translate pt="Demos" en="Demos" />
-        </Typography.Title>
+      {DEMOS.length > 0 && (
+        <div className="hub">
+          <Typography.Title level={5}>
+            <Translate pt="Demos" en="Demos" />
+          </Typography.Title>
 
-        <HubList list={DEMOS} width={width} startingIndex={GAMES.length + CONTRIBUTIONS.length} />
-      </div>
+          <HubList list={DEMOS} width={width} startingIndex={GAMES.length + CONTRIBUTIONS.length} />
+        </div>
+      )}
       {isAdmin && (
         <Alert
           showIcon={false}
