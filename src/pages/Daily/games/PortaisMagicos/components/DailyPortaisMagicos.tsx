@@ -72,7 +72,7 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
           hearts={hearts}
           total={SETTINGS.HEARTS}
           openRules={!isComplete || hearts === SETTINGS.HEARTS}
-          rules={<Rules />}
+          rules={<Rules date={data.id} />}
         />
 
         {currentCorridor && !isComplete && (

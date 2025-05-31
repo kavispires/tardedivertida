@@ -1,15 +1,20 @@
+import { RulesWrapper } from 'pages/Daily/components/RulesWrapper';
 // Ant Design Resources
 import { HeartFilled } from '@ant-design/icons';
-import { Typography } from 'antd';
 // Components
 import { Translate } from 'components/language';
 // Internal
 import { SETTINGS } from '../utils/settings';
 
-export function Rules() {
+type RulesProps = {
+  date: string;
+};
+
+export function Rules({ date }: RulesProps) {
   return (
-    <>
-      <Typography>
+    <RulesWrapper
+      date={date}
+      basicRules={
         <Translate
           pt={
             <>
@@ -46,7 +51,7 @@ export function Rules() {
             </>
           }
         />
-      </Typography>
-    </>
+      }
+    />
   );
 }

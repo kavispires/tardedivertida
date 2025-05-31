@@ -65,7 +65,7 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
         <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content ref={contentRef}>
-        <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules />} />
+        <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules date={data.id} />} />
 
         <PreloadItems goods={data.goods} />
 

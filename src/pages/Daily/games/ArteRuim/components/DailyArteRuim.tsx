@@ -42,7 +42,7 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
           hearts={hearts}
           total={SETTINGS.HEARTS}
           openRules={!isComplete || hearts === SETTINGS.HEARTS}
-          rules={<Rules />}
+          rules={<Rules date={data.id} />}
         />
 
         <DrawingCarousel drawings={data.drawings} />

@@ -72,7 +72,7 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
           hearts={hearts}
           total={SETTINGS.HEARTS + (isWeekend ? 1 : 0)}
           openRules={true}
-          rules={<Rules isWeekend={isWeekend} />}
+          rules={<Rules date={data.id} />}
         />
 
         <Region>

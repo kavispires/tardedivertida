@@ -52,7 +52,12 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <Layout.Content>
-        <Menu hearts={hearts} total={Math.max(SETTINGS.HEARTS, size)} openRules={true} rules={<Rules />} />
+        <Menu
+          hearts={hearts}
+          total={Math.max(SETTINGS.HEARTS, size)}
+          openRules={true}
+          rules={<Rules date={data.id} />}
+        />
 
         <Region>
           <Typography.Text strong className="palavreado-word">

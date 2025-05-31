@@ -46,7 +46,7 @@ export function DailyFilmaco({ data }: DailyFilmacoProps) {
           hearts={hearts}
           total={SETTINGS.HEARTS}
           openRules={!isComplete || hearts === SETTINGS.HEARTS}
-          rules={<Rules />}
+          rules={<Rules date={data.id} />}
         />
 
         <Region>
