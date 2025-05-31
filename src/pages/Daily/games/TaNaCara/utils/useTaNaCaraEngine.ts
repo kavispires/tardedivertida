@@ -19,7 +19,7 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
     testimonies: data.testimonies.filter((t) => (mode !== 'nsfw' ? !t.nsfw : true)),
     suspectsIds: data.testimonies.map((t) => {
       // Get suspects from the testimony
-      const suspects: string[] = sampleSize(t.suspectsIds || [], 6);
+      const suspects: string[] = sampleSize(t.suspectsIds || [], 5);
       // If empty or not enough, use suspects from day
       if (suspects.length < 6) {
         suspects.push(...sampleSize(data.suspectsIds, 6 - suspects.length));
@@ -129,7 +129,14 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
       );
     }
 
-    mutation.mutate(session.answers);
+    // Remove style mid fix
+    const copy = cloneDeep(session.answers);
+    copy.forEach((answer) => {
+      answer.related = answer.related.map(removeStyleMidFix);
+      answer.unrelated = answer.unrelated.map(removeStyleMidFix);
+    });
+
+    mutation.mutate(copy);
   };
 
   const mutation = useDailySaveTestimonies(() => {
@@ -166,3 +173,8 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
     allSuspects,
   };
 }
+
+const removeStyleMidFix = (id: string) => {
+  const parts = id.split('-');
+  return parts.length > 2 ? [parts[0], parts[2]].join('-') : id;
+};
