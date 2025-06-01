@@ -67,8 +67,20 @@ export function DailyOrganiku({ data }: DailyOrganikuProps) {
         <TextRegion>
           <Instruction contained noMargin>
             <Translate
-              en="Find pairs of images to reveal them. There's only one type of symbol per row and column."
-              pt="Ache pares de imagens para revelá-las. Há apenas um tipo de símbolo por linha e coluna."
+              en={
+                <>
+                  Find pairs of images to reveal them.
+                  <br />
+                  There's only one type of symbol per row and column.
+                </>
+              }
+              pt={
+                <>
+                  Ache pares de imagens para revelá-las.
+                  <br />
+                  Há apenas um tipo de símbolo por linha e coluna.
+                </>
+              }
             />
           </Instruction>
         </TextRegion>
