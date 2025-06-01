@@ -22,7 +22,7 @@ export function Rules({ date }: RulesProps) {
               <li>Encontre os pares de coisas na grade.</li>
               <li>Você seleciona uma espaço e deve selecionar outro espaço que você acha que está o par.</li>
               <li>
-                Um item <strong>NÃO</strong> pode aparecer mais de uma vez em nenhuma linha e nenhuma coluna.
+                Um item <strong>NÃO</strong> pode aparecer mais de uma vez em uma mesma linha e coluna.
               </li>
               <li>
                 Quando você não acerta o par você perde um <HeartFilled />
