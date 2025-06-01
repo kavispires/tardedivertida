@@ -1,5 +1,6 @@
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import moment from 'moment';
+import { createContext, type ReactNode, useContext } from 'react';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Services
@@ -9,7 +10,6 @@ import { print } from 'utils/helpers';
 // Internal
 import type { DailyResponse } from '../utils/types';
 import { getSourceName, getToday } from '../utils';
-import { createContext, type ReactNode, useContext } from 'react';
 
 export type DailyContextType = Pick<
   UseQueryResult<DailyResponse, Error>,
@@ -27,6 +27,13 @@ const DailyContext = createContext<DailyContextType>({
 type DailyContextProviderProps = {
   children: ReactNode;
 };
+
+const timeToMidnight = (() => {
+  // Calculate time until midnight
+  const now = moment();
+  const midnight = moment().endOf('day');
+  return midnight.diff(now); // Difference in milliseconds
+})();
 
 export const DailyContextProvider = ({ children }: DailyContextProviderProps) => {
   const { language } = useLanguage();
@@ -47,12 +54,8 @@ export const DailyContextProvider = ({ children }: DailyContextProviderProps) =>
       print({ [collectionName]: responseData }, 'table');
       return responseData;
     },
-    staleTime: () => {
-      // Calculate time until midnight
-      const now = moment();
-      const midnight = moment().endOf('day');
-      return midnight.diff(now); // Difference in milliseconds
-    },
+    staleTime: timeToMidnight,
+    gcTime: timeToMidnight,
     enabled: language === 'pt',
     retry: false,
   });
