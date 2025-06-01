@@ -273,6 +273,39 @@
     transform: translate(-25%, -50%);
     z-index: 20;
   }
+
+  &__demo {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-5deg);
+    z-index: 20;
+    background: get-color("orange");
+    padding: get-unit(0.5 4);
+    border-radius: get-unit(4);
+    text-transform: uppercase;
+    font-size: 0.85em;
+    font-weight: bold;
+    font-family: "Courier New", Courier, monospace;
+    color: get-color("white");
+  }
+
+  &__soon {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-5deg);
+    z-index: 20;
+    background: get-color("gray", 1);
+    padding: get-unit(0.5 4);
+    border-radius: get-unit(4);
+    text-transform: uppercase;
+    font-size: 0.85em;
+    font-weight: bold;
+    font-family: "Courier New", Courier, monospace;
+    color: get-color("gray", 4);
+    white-space: nowrap;
+  }
 }
 
 .hub-time-left {

@@ -5,6 +5,7 @@ import { SETTINGS as COMUNICACAO_ALIENIGENA } from '../games/ComunicacaoAlienige
 import { SETTINGS as CONTROLE_DE_ESTOQUE } from '../games/ControleDeEstoque/utils/settings';
 import { SETTINGS as ESPIONAGEM } from '../games/Espionagem/utils/settings';
 import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
+import { SETTINGS as ORGANIKU } from '../games/Organiku/utils/settings';
 import { SETTINGS as PALAVREADO } from '../games//Palavreado/utils/settings';
 import { SETTINGS as PICACO } from '../games/Picaco/utils/settings';
 import { SETTINGS as PORTAIS_MAGICOS } from '../games/PortaisMagicos/utils/settings';
@@ -19,6 +20,7 @@ export const SETTINGS = {
   CONTROLE_DE_ESTOQUE,
   ESPIONAGEM,
   FILMACO,
+  ORGANIKU,
   PALAVREADO,
   PICACO,
   PORTAIS_MAGICOS,
