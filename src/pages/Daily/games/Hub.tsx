@@ -16,6 +16,7 @@ import { getAnimation } from 'utils/animations';
 import { isDevEnv } from 'utils/helpers';
 // Icons
 import { DailyContributionGame } from 'icons/DailyContributionGame';
+import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
@@ -54,27 +55,25 @@ const GAMES: Entry[] = [
   SETTINGS.PALAVREADO,
   SETTINGS.PORTAIS_MAGICOS,
   SETTINGS.QUARTETOS,
+  SETTINGS.ORGANIKU,
+  SETTINGS.ESPIONAGEM,
+  {
+    ...COMING_SOON_ENTRY,
+    HUB_ICON: DailyCrimeGameIcon,
+    HUB_NAME: { pt: 'Criminologia', en: 'Criminology' },
+    COLOR: 'rgba(243, 232, 145, 0.85)',
+    VERSION: 'disabled',
+  },
 ];
 
 const CONTRIBUTIONS: Entry[] = [
   SETTINGS.PICACO,
   SETTINGS.TA_NA_CARA,
-  {
-    ...COMING_SOON_ENTRY,
-    HUB_ICON: DailyContributionGame,
-    HUB_NAME: { pt: 'Responda', en: 'Answer' },
-    COLOR: 'rgba(240, 240, 228, 0.85)',
-    disabled: true,
-  },
-];
-
-const DEMOS: Entry[] = [
-  // SETTINGS.ESPIONAGEM,
   // {
   //   ...COMING_SOON_ENTRY,
-  //   HUB_ICON: DailyCrimeGameIcon,
-  //   HUB_NAME: { pt: 'Criminologia', en: 'Criminology' },
-  //   COLOR: 'rgba(243, 232, 145, 0.85)',
+  //   HUB_ICON: DailyContributionGame,
+  //   HUB_NAME: { pt: 'Responda', en: 'Answer' },
+  //   COLOR: 'rgba(240, 240, 228, 0.85)',
   //   disabled: true,
   // },
 ];
@@ -106,17 +105,9 @@ export function Hub() {
         <HubList list={CONTRIBUTIONS} width={width} startingIndex={GAMES.length} />
       </div>
 
-      {DEMOS.length > 0 && (
-        <div className="hub">
-          <Typography.Title level={5}>
-            <Translate pt="Demos" en="Demos" />
-          </Typography.Title>
-
-          <HubList list={DEMOS} width={width} startingIndex={GAMES.length + CONTRIBUTIONS.length} />
-        </div>
-      )}
       {isAdmin && (
         <Alert
+          style={{ marginTop: '64px' }}
           showIcon={false}
           message={
             <>
@@ -148,20 +139,25 @@ type HubListProps = {
 function HubList({ list, width, startingIndex }: HubListProps) {
   return (
     <div className="hub-list">
-      {list.map(({ KEY, ROUTE, HUB_ICON, HUB_NAME, COLOR, RELEASE_DATE, disabled }, index) => (
-        <GameButton
-          key={KEY}
-          lsKey={KEY}
-          width={width}
-          href={ROUTE}
-          Icon={HUB_ICON}
-          name={HUB_NAME}
-          color={COLOR}
-          releaseDate={RELEASE_DATE}
-          disabled={disabled || hasBeenReleased(RELEASE_DATE)}
-          index={startingIndex + index}
-        />
-      ))}
+      {list.map(
+        ({ KEY, ROUTE, HUB_ICON, HUB_NAME, COLOR, RELEASE_DATE, VERSION = 'stable', disabled }, index) => (
+          <GameButton
+            key={KEY}
+            lsKey={KEY}
+            width={width}
+            href={ROUTE}
+            Icon={HUB_ICON}
+            name={HUB_NAME}
+            color={COLOR}
+            version={VERSION}
+            releaseDate={RELEASE_DATE}
+            disabled={
+              disabled || ['disabled', 'maintenance'].includes(VERSION) || hasBeenReleased(RELEASE_DATE)
+            }
+            index={startingIndex + index}
+          />
+        ),
+      )}
       {Array.from({ length: (3 - (list.length % 3)) % 3 }).map((_, index) => (
         // biome-ignore lint/suspicious/noArrayIndexKey: non important
         <div key={index} style={{ width }} className="hub-item-placeholder" />
@@ -180,6 +176,7 @@ type GameButtonProps = {
   color: string;
   releaseDate: string;
   index: number;
+  version: GameSettings['VERSION'];
 };
 
 function GameButton({
@@ -192,6 +189,7 @@ function GameButton({
   color,
   releaseDate,
   index,
+  version = 'stable',
 }: GameButtonProps) {
   const wasPlayed = checkWasPlayedToday(lsKey);
 
@@ -206,6 +204,13 @@ function GameButton({
       {wasPlayed && (
         <IconAvatar icon={<SpeechBubbleAcceptedIcon />} size="small" className="played-wrapper__played" />
       )}
+      {version === 'demo' && <div className="played-wrapper__demo">Demo</div>}
+      {version === 'soon' && (
+        <div className="played-wrapper__soon">
+          <DualTranslate>{{ en: 'Soon', pt: 'Em breve' }}</DualTranslate>
+        </div>
+      )}
+
       <motion.div
         className="played-wrapper"
         {...(isNewRelease ? getAnimation('tada', { repeat: 10, delay: 0.1 * index, speed: 'fast' }) : {})}

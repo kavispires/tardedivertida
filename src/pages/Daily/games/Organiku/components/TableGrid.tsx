@@ -1,0 +1,84 @@
+import clsx from 'clsx';
+import { motion } from 'framer-motion';
+import { useMemo } from 'react';
+// Utils
+import { getAnimation } from 'utils/animations';
+// Components
+import { ItemCard } from 'components/cards/ItemCard';
+// Internal
+import type { DailyOrganikuEntry } from '../utils/types';
+import { getRowAndColumnIndexes } from '../utils/helpers';
+
+type TableGridProps = {
+  grid: DailyOrganikuEntry['grid'];
+  revealed: BooleanDictionary;
+  activeTileIndex: number | null;
+  pairActiveTileIndex: number | null;
+  onSelectTile?: (index: number) => void;
+  foundCount: NumberDictionary;
+  itemWidth: number;
+  defaultRevealedIndexes: number[];
+};
+
+export function TableGrid({
+  grid,
+  revealed,
+  activeTileIndex,
+  onSelectTile,
+  foundCount,
+  itemWidth,
+  defaultRevealedIndexes,
+  pairActiveTileIndex,
+}: TableGridProps) {
+  const gridSize = Math.sqrt(grid.length);
+  const unavailableIndexes = useMemo(
+    () => (activeTileIndex !== null ? getRowAndColumnIndexes(activeTileIndex, gridSize) : []),
+    [activeTileIndex, gridSize],
+  );
+  const disableButton = activeTileIndex !== null && pairActiveTileIndex !== null;
+  return (
+    <div className="organiku-table-grid">
+      {grid.map((itemId, index) => {
+        const isVisible = revealed[index] || activeTileIndex === index || pairActiveTileIndex === index;
+        const isClickable = !disableButton && (!revealed[index] || !unavailableIndexes.includes(index));
+        const isBlocked = unavailableIndexes.includes(index);
+        const key = `${itemId}-${index}-${activeTileIndex === index || pairActiveTileIndex === index}`;
+        const isAllRevealed = foundCount[itemId] === gridSize;
+        return (
+          <motion.div
+            key={key}
+            {...getAnimation('flipInY')}
+            className={clsx('organiku-table-grid-item', {
+              'organiku-table-grid-item--initial': defaultRevealedIndexes.includes(index),
+              'organiku-table-grid-item--revealed': isAllRevealed,
+              'organiku-table-grid-item--blocked': isBlocked,
+              'organiku-table-grid-item--active': activeTileIndex === index || pairActiveTileIndex === index,
+              'organiku-table-grid-item--found': foundCount[itemId] === gridSize,
+            })}
+            onClick={isClickable ? () => onSelectTile?.(index) : undefined}
+          >
+            {isVisible ? (
+              <div
+                className="organiku-table-grid-item-content"
+                style={{ width: itemWidth, height: itemWidth }}
+              >
+                <ItemCard id={itemId} width={itemWidth} className="transparent" />
+              </div>
+            ) : (
+              <div
+                className="organiku-table-grid-item-content"
+                style={{ width: itemWidth, height: itemWidth }}
+              >
+                <ItemCard
+                  id="0"
+                  width={itemWidth / 1.75}
+                  className="organiku-table-grid-item-card-placeholder transparent"
+                />
+              </div>
+            )}
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+}

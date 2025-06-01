@@ -5,8 +5,8 @@ import { DailySuspectGameIcon } from 'icons/DailySuspectGameIcon';
 export const SETTINGS: GameSettings = {
   KEY: 'ESPIONAGEM',
   ROUTE: 'espionagem',
-  RELEASE_DATE: '2024-05-30',
-  COLOR: 'rgba(67, 183, 111, 0.85)',
+  RELEASE_DATE: '2025-06-14',
+  COLOR: 'rgba(89, 209, 134, 0.85)',
   EMOJI: '🕵️‍♂️',
   HUB_ICON: DailySuspectGameIcon,
   HUB_NAME: { pt: 'Espionagem', en: 'Espionage' },
@@ -17,4 +17,5 @@ export const SETTINGS: GameSettings = {
   },
   // Custom settings
   HEARTS: 2,
+  VERSION: 'soon',
 };

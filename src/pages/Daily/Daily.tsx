@@ -22,6 +22,7 @@ import { DailyPortaisMagicosGame } from './games/PortaisMagicos/DailyPortaisMagi
 import { DailyQuartetosGame } from './games/Quartetos/DailyQuartetosGame';
 import { DailyTaNaCaraGame } from './games/TaNaCara/DailyTaNaCaraGame';
 import { DailyEspionagemGame } from './games/Espionagem/DailyEspionagemGame';
+import { DailyOrganikuGame } from './games/Organiku/DailyOrganikuGame';
 // Sass
 import './utils/daily.scss';
 
@@ -60,13 +61,13 @@ function DailyPage() {
       'controle-de-estoque': DailyControleDeEstoqueGame,
       espionagem: DailyEspionagemGame,
       filmaco: DailyFilmacoGame,
+      organiku: DailyOrganikuGame,
       palavreado: DailyPalavreadoGame,
+      'portais-magicos': DailyPortaisMagicosGame,
+      quartetos: DailyQuartetosGame,
       'teoria-de-conjuntos': DailyTeoriaDeConjuntosGame,
       // Contribute
       picaco: DailyPicacoGame,
-      // Demos
-      'portais-magicos': DailyPortaisMagicosGame,
-      quartetos: DailyQuartetosGame,
       'ta-na-cara': DailyTaNaCaraGame,
       // Dev
       debug: DebugPage,

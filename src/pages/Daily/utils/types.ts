@@ -80,6 +80,10 @@ export interface GameSettings {
    */
   RELEASE_DATE: DateKey;
   /**
+   * Whether the game is in demo mode
+   */
+  VERSION?: 'stable' | 'beta' | 'demo' | 'maintenance' | 'disabled' | 'soon';
+  /**
    * Other values like hearts, goal, etc
    */
   [key: string]: any;

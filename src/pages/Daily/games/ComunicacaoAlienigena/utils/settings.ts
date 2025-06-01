@@ -12,7 +12,7 @@ export const SETTINGS: GameSettings = {
   HUB_NAME: { pt: 'Alienígena', en: 'Alien' },
   NAME: { pt: 'Comunicação Alienígena', en: 'Alien Communication' },
   TAGLINE: {
-    pt: 'Não sabe se comunicar com seu cônjuge? Fale com alienígenas!',
+    pt: 'Não sabe se comunicar com seu cônjuge?',
     en: 'Communication with the aliens is hard',
   },
   // Custom settings

@@ -1,0 +1,56 @@
+@use "styles/sass" as *;
+
+.organiku-table-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: get-unit(1);
+  padding: get-unit(2);
+  background: get-color("gray", 1, 0.85);
+  border-radius: var(--border-radius);
+}
+
+.organiku-table-grid-item {
+  background: get-color("white", 6);
+  border-radius: var(--border-radius);
+
+  &--blocked {
+    background: get-color("gray", 4);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &--revealed {
+    background: get-color("teal", 3);
+  }
+
+  &--initial {
+    background: get-color("teal");
+  }
+
+  &--active {
+    outline: get-unit(1) solid get-color("teal");
+    outline-offset: 2px;
+    background: get-color("teal", 2);
+    z-index: 3;
+  }
+}
+
+.organiku-table-grid-item-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.organiku-table-grid-item-card-placeholder {
+  filter: grayscale(50%);
+  opacity: 0.5;
+}
+
+.organiku-complete-item {
+  background: get-color("teal", 4);
+}
+
+.organiku-incomplete-item {
+  background: get-color("black");
+}
