@@ -90,7 +90,7 @@ export function DailyOrganiku({ data }: DailyOrganikuProps) {
             grid={data.grid}
             revealed={revealed}
             activeTileIndex={activeTileIndex}
-            onSelectTile={onActivateTile}
+            onSelectTile={isComplete ? () => {} : onActivateTile}
             foundCount={foundCount}
             itemWidth={itemWidth}
             defaultRevealedIndexes={data.defaultRevealedIndexes}
