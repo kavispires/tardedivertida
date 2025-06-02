@@ -40,7 +40,7 @@ export function TableGrid({
     <div className="organiku-table-grid">
       {grid.map((itemId, index) => {
         const isVisible = revealed[index] || activeTileIndex === index || pairActiveTileIndex === index;
-        const isClickable = !disableButton && (!revealed[index] || !unavailableIndexes.includes(index));
+        const isClickable = !revealed[index] && (!disableButton || !unavailableIndexes.includes(index));
         const isBlocked = unavailableIndexes.includes(index);
         const key = `${itemId}-${index}-${activeTileIndex === index || pairActiveTileIndex === index}`;
         const isAllRevealed = foundCount[itemId] === gridSize;
