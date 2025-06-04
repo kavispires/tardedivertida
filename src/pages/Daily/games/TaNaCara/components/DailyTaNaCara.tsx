@@ -93,7 +93,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
         </div>
 
         {isPlaying && question && (
-          <SpaceContainer vertical>
+          <SpaceContainer vertical key={question.testimonyId}>
             <StepDots current={questionIndex} total={totalQuestions} />
             <Card
               hideHeader={!question.nsfw}
