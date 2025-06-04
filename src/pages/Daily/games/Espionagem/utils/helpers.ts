@@ -92,4 +92,5 @@ export const FEATURE_PT_TRANSLATIONS: Dictionary<string> = {
   '60-70': 'é idoso(a)',
   '70-80': 'é idoso(a)',
   '80-90': 'é idoso(a)',
+  noAccessories: 'não está usando acessórios',
 };
