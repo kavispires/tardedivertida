@@ -21,8 +21,9 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
       // Get suspects from the testimony
       const suspects: string[] = sampleSize(t.suspectsIds || [], 5);
       // If empty or not enough, use suspects from day
+      const dataSuspects = data.suspectsIds.filter((id) => !suspects.includes(id));
       if (suspects.length < 6) {
-        suspects.push(...sampleSize(data.suspectsIds, 6 - suspects.length));
+        suspects.push(...sampleSize(dataSuspects, 6 - suspects.length));
       }
       return suspects;
     }),
