@@ -44,7 +44,6 @@ export function hasBeenReleased(releaseDate: string): boolean {
  * @returns The number of days since the release date.
  */
 export function daysSinceRelease(releaseDate: string): number {
-  if (releaseDate === 'DEMO') return 0;
   return moment().diff(moment(releaseDate, 'YYYY-MM-DD'), 'days');
 }
 

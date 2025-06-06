@@ -5,7 +5,7 @@ import { DailyMemoryGridGameIcon } from 'icons/DailyMemoryGridGameIcon';
 export const SETTINGS: GameSettings = {
   KEY: 'ORGANIKU',
   ROUTE: 'organiku',
-  RELEASE_DATE: '2025-06-14',
+  RELEASE_DATE: '2025-06-07',
   COLOR: 'rgba(186, 243, 154, 0.85)',
   EMOJI: '🧸',
   HUB_ICON: DailyMemoryGridGameIcon,
@@ -15,7 +15,7 @@ export const SETTINGS: GameSettings = {
     en: 'Can you organize the table?',
     pt: 'Consegue organizar a mesa?',
   },
-  VERSION: 'soon',
+  VERSION: 'beta',
   // Custom settings
   HEARTS: 5,
 };

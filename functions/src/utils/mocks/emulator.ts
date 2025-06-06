@@ -166,6 +166,9 @@ export const feedEmulatorDaily = async () => {
     'portais-magicos': JSON.parse(
       '{"id":"2025-00-00","setId":"unicórnio-tecnologia-musicalidade","number":0,"type":"portais-magicos","corridors":[{"passcode":"unicórnio","imagesIds":["td-d9-215","td-d6-120","td-d8-96"],"words":["uni","nós","rio","cor","cóu","uro","noi","irm","cão"]},{"passcode":"tecnologia","imagesIds":["td-d4-134","td-d10-105"],"words":["tão","eco","céu","noé","log","lei","toi","gás","iaí","can"]},{"passcode":"musicalidade","imagesIds":["td-d9-241"],"words":["mão","uso","sim","ali","cad","ida","luz","dia","dor","sua","ido","eco"]}]}',
     ),
+    organiku: JSON.parse(
+      '{"id":"2025-10-31","number":0,"setId":"b5300","type":"organiku","title":"Aniversário","grid":["155","185","1187","718","159","185","1187","155","159","718","159","155","718","1187","185","1187","718","159","185","155","718","159","185","155","1187"],"defaultRevealedIndexes":[15,16,14,7,8,2,6],"itemsIds":["1187","718","185","155","159"]}',
+    ),
   };
 
   await utils.firestore.getDailyRef('daily').doc('2023-10-31').set(dailyMock);

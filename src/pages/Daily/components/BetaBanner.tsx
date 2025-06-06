@@ -8,8 +8,8 @@ export function BetaBanner() {
     <Alert
       message={
         <Translate
-          pt="Jogo em fase de testes. Reporte qualquer problema."
-          en="Game in beta mode. Report any bugs!"
+          en="Game in beta mode, bugs may occur. Report any bugs!"
+          pt="Jogo em modo beta, bugs podem ocorrer. Favor reportar qualquer problema!"
         />
       }
       type="warning"

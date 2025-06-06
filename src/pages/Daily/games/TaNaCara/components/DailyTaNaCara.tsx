@@ -105,7 +105,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
             <Flex gap={8} wrap="wrap" justify="center">
               {suspects.map((suspectId, index) => (
                 <MotionFlex
-                  key={`${questionIndex}-${suspectId}`}
+                  key={`q${questionIndex}-${suspectId}`}
                   vertical
                   {...getAnimation('flipInY', { delay: 0.1 * index })}
                   align="center"

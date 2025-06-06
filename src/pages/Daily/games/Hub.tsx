@@ -195,9 +195,9 @@ function GameButton({
 
   const isNewRelease =
     daysSinceRelease(releaseDate) < 15 &&
-    daysSinceRelease(releaseDate) >= 0 &&
+    daysSinceRelease(releaseDate) > 0 &&
     !wasPlayed &&
-    releaseDate !== 'DEMO';
+    ['stable', 'beta'].includes(version);
 
   return (
     <motion.div className="played-wrapper">
