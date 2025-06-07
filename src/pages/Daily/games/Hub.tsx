@@ -22,12 +22,13 @@ import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { DualTranslate, LanguageSwitch, Translate } from 'components/language';
+import { DualTranslate, Translate } from 'components/language';
 // Internal
 import { dailySoundEffects, playSFX, SFXAllNames } from '../utils/soundEffects';
 import type { GameSettings } from '../utils/types';
 import { ALL_SETTINGS } from '../utils/settings';
 import { DailyChrome } from '../components/DailyChrome';
+import { News } from '../components/News';
 import { checkWasPlayedToday, daysSinceRelease, getToday, hasBeenReleased } from '../utils';
 
 type Entry = GameSettings & {
@@ -88,7 +89,7 @@ export function Hub() {
   return (
     <DailyChrome>
       <div className="menu menu--hub">
-        <LanguageSwitch />
+        <News />
         <TimeLeft />
         <SoundFXToggle />
       </div>

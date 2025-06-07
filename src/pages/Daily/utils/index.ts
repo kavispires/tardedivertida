@@ -91,19 +91,6 @@ export function getDailyName(language: Language) {
 }
 
 /**
- * Writes a heart result string based on the number of remaining hearts and total hearts.
- *
- * @param remainHearts - The number of remaining hearts.
- * @param totalHearts - The total number of hearts.
- * @returns The heart result string.
- */
-export function writeHeartResultString(remainHearts: number, totalHearts: number, separator = ''): string {
-  const heartsValue = Math.max(0, remainHearts);
-  const maxHeartsValue = Math.max(heartsValue, totalHearts);
-  return [...Array(heartsValue).fill('❤️'), ...Array(maxHeartsValue - heartsValue).fill('🩶')].join(separator);
-}
-
-/**
  * Pauses the execution for a specified duration.
  * @param duration - The duration to wait in milliseconds. Default is 1000ms.
  */
@@ -175,6 +162,19 @@ export function loadLocalToday<TLocal extends WithRequiredId>({
   }
 
   return previouslyStored;
+}
+
+/**
+ * Writes a heart result string based on the number of remaining hearts and total hearts.
+ *
+ * @param remainHearts - The number of remaining hearts.
+ * @param totalHearts - The total number of hearts.
+ * @returns The heart result string.
+ */
+export function writeHeartResultString(remainHearts: number, totalHearts: number, separator = ''): string {
+  const heartsValue = Math.max(0, remainHearts);
+  const maxHeartsValue = Math.max(heartsValue, totalHearts);
+  return [...Array(heartsValue).fill('❤️'), ...Array(maxHeartsValue - heartsValue).fill('🩶')].join(separator);
 }
 
 export function generateShareableResult(

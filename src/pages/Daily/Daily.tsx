@@ -1,6 +1,7 @@
 import { LoginModal } from 'pages/Me/components/LoginModal';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useEffectOnce, useTitle } from 'react-use';
+import { useTitle } from 'react-use';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useLanguage } from 'hooks/useLanguage';
@@ -31,9 +32,13 @@ function DailyPage() {
   const { pathname } = useLocation();
   const { setLanguage, language } = useLanguage();
 
-  useEffectOnce(() => {
-    setLanguage(pathname.includes('diario') ? 'pt' : 'en');
-  });
+  // biome-ignore lint/correctness/useExhaustiveDependencies: function is not a dependency
+  useEffect(() => {
+    if (language !== 'pt') {
+      // Set the language to Portuguese if it's not
+      setLanguage('pt');
+    }
+  }, [language]);
 
   const subPath = pathname.split('/')?.[2];
 
