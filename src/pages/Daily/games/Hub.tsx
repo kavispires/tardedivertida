@@ -29,6 +29,7 @@ import type { GameSettings } from '../utils/types';
 import { ALL_SETTINGS } from '../utils/settings';
 import { DailyChrome } from '../components/DailyChrome';
 import { News } from '../components/News';
+import { BundleResults } from '../components/BundleResults';
 import { checkWasPlayedToday, daysSinceRelease, getToday, hasBeenReleased } from '../utils';
 
 type Entry = GameSettings & {
@@ -107,6 +108,8 @@ export function Hub() {
 
         <HubList list={CONTRIBUTIONS} width={width} startingIndex={GAMES.length} />
       </div>
+
+      <BundleResults list={GAMES} />
 
       {isAdmin && (
         <Alert
