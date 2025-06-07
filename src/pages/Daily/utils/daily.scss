@@ -311,3 +311,34 @@
 .hub-time-left {
   font-size: 0.85em;
 }
+
+.list-played-games {
+  display: flex;
+  flex-direction: column;
+  gap: get-unit(1);
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: get-unit(1);
+    padding: get-unit(1 2);
+    border: 3px outset get-color("white", 5, 0.3);
+    border-radius: get-unit(2);
+  }
+}
+
+.daily-news-list {
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.daily-news-item {
+  opacity: 0.65;
+
+  &--highlighted {
+    opacity: 1;
+    background: get-color("pink", 2, 0.5);
+    border-radius: get-unit(2);
+    padding: get-unit(1 2);
+  }
+}
