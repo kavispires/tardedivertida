@@ -107,6 +107,7 @@ export function writeResult({
   return generateShareableResult({
     heartsSuffix: ` (${swaps} trocas)`,
     totalHearts: correctTotalHearts,
+    heartsSpacing: ' ',
     additionalLines: cleanUpAttempts.map((row) => row.join(' ').trim()).filter(Boolean),
     ...rest,
   });
@@ -126,7 +127,7 @@ export function getWrittenResult({
 }) {
   const state = getInitialState(data);
   return writeResult({
-    type: 'arte-ruim',
+    type: 'palavreado',
     hideLink: true,
     challengeNumber: state.number,
     language,
