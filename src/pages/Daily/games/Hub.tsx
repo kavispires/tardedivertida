@@ -11,6 +11,8 @@ import { Alert, Button, Divider, Switch, Typography } from 'antd';
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+// Services
+import { getFirestoreConsoleUrl } from 'services/firebase';
 // Utils
 import { getAnimation } from 'utils/animations';
 import { isDevEnv } from 'utils/helpers';
@@ -80,6 +82,7 @@ const CONTRIBUTIONS: Entry[] = [
 
 export function Hub() {
   const { isAdmin } = useCurrentUserContext();
+
   const [width, ref] = useCardWidthByContainerRef(3, { maxWidth: 128, minWidth: 48, gap: 16 });
   const today = getToday();
 
@@ -112,11 +115,7 @@ export function Hub() {
           message={
             <>
               <Link to="debug">Debug</Link> <Divider type="vertical" />{' '}
-              <a
-                href={`${import.meta.env.VITE__FIRESTORE_URL}/${import.meta.env.VITE__FIREBASE_PROJECT_ID}/${import.meta.env.VITE__FIRESTORE_PATH}/~2Fdiario~2F${today}`}
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a href={getFirestoreConsoleUrl(`diario/${today}`)} target="_blank" rel="noreferrer">
                 Firestore
               </a>
             </>
