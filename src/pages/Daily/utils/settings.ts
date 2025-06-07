@@ -28,3 +28,17 @@ export const ALL_SETTINGS = {
   TEORIA_DE_CONJUNTOS,
   TA_NA_CARA,
 };
+
+type GameKey = keyof typeof ALL_SETTINGS;
+
+export const getSettings = (gameKey: string) => {
+  // Convert game key from kebab-case to SNAKE_CASE
+  const formattedGameKey = gameKey.toUpperCase().replace(/-/g, '_');
+  const settings = ALL_SETTINGS[formattedGameKey as GameKey];
+
+  if (!settings) {
+    throw new Error(`Settings for game "${gameKey}" not found.`);
+  }
+
+  return settings;
+};
