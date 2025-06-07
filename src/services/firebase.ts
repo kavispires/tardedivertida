@@ -139,14 +139,38 @@ export function convertGuestoToUser(email: string, password: string): Promise<Us
 }
 
 /**
- * Get the firebase url for a game
- * @param usingEmulators - whether or not to use emulators
- * @param gameCollection - the game collection
- * @param gameId - the game id
- * @returns - the firebase url
+ * Encodes a Firestore document path for use in the Firestore console URL.
+ * It replaces '/' with '~2F' to ensure the path is correctly formatted.
+ * @param documentPath - The Firestore document path to encode.
+ * @returns The encoded Firestore path.
  */
-export const getFirebaseUrl = (usingEmulators: boolean, gameCollection: GameName, gameId: GameId) => {
+function encodeFirestorePath(documentPath: string): string {
+  // Split the path by '/'
+  // Remove any leading/trailing slashes and then split
+  const pathSegments = documentPath.replace(/^\/+|\/+$/g, '').split('/');
+
+  // URL-encode each segment and join with '~2F'
+  // Firestore console uses '~2F' as an encoded '/' for the path part
+  const encodedPath = pathSegments.map((segment) => encodeURIComponent(segment)).join('~2F');
+
+  return encodedPath ? `~2F${encodedPath}` : '';
+}
+
+/**
+ * Generates a Firestore console URL for a given document path.
+ * If using emulators, it returns the local emulator URL.
+ * Otherwise, it constructs the URL based on environment variables.
+ * @param path - The Firestore document path to generate the URL for.
+ * @param usingEmulators - Whether to use the Firestore emulator or not.
+ * @returns The constructed Firestore console URL.
+ */
+export const getFirestoreConsoleUrl = (path: string, usingEmulators = false) => {
+  const firestoreUrl = import.meta.env.VITE__FIRESTORE_URL;
+  const firestoreProjectId = import.meta.env.VITE__FIREBASE_PROJECT_ID;
+  const firestorePath = import.meta.env.VITE__FIRESTORE_PATH;
+  const baseConsoleUrl = `${firestoreUrl}/${firestoreProjectId}/${firestorePath}`;
+
   return usingEmulators
-    ? `http://127.0.0.1:4000/firestore/default/data/games/${gameCollection}/${gameId}/state`
-    : `${import.meta.env.VITE__FIREBASE_URL}/~2Fgames~2F${gameCollection}~2F${gameId}~2Fstate`;
+    ? `http://127.0.0.1:4000/firestore/default/data/${path}`
+    : `${baseConsoleUrl}${encodeFirestorePath(path)}`;
 };

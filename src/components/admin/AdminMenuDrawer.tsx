@@ -13,7 +13,7 @@ import { useHostActionRequest } from 'hooks/useHostActionRequest';
 import { useLoading } from 'hooks/useLoading';
 // Services
 import { HOST_API_ACTIONS } from 'services/adapters';
-import { getFirebaseUrl } from 'services/firebase';
+import { getFirestoreConsoleUrl } from 'services/firebase';
 // Components
 import { FixedMenuButton } from 'components/buttons';
 import { Translate } from 'components/language';
@@ -151,7 +151,10 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
               <h3>Firebase</h3>
               <Button
                 target="_blank"
-                href={getFirebaseUrl(Boolean(usingFirestoreEmulator), meta.gameName, meta.gameId)}
+                href={getFirestoreConsoleUrl(
+                  `games/${meta.gameName}/${meta.gameId}/state`,
+                  !!usingFirestoreEmulator,
+                )}
               >
                 Visit Firebase Collection
               </Button>
