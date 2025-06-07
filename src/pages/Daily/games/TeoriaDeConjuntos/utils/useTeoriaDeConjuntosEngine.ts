@@ -4,6 +4,7 @@ import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyL
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
+import { vibrate } from 'pages/Daily/utils/vibrate';
 import { useEffect } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
@@ -59,6 +60,7 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry, in
     } else {
       isCorrect = false;
       playSFX('wrong');
+      vibrate('wrong');
       message.error({
         content: translate('Incorreto!', 'Incorrect!'),
       });
@@ -99,6 +101,7 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry, in
           }
           if (copy.hearts === 0) {
             playSFX('lose');
+            vibrate('lose');
             copy.status = STATUSES.LOSE;
           }
         }
