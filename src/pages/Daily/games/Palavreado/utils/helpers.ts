@@ -1,6 +1,7 @@
 import { cloneDeep, merge } from 'lodash';
-import { loadLocalToday } from 'pages/Daily/utils';
+import { generateShareableResult, loadLocalToday } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
+import type { BasicResultsOptions } from 'pages/Daily/utils/types';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyPalavreadoEntry, GameState, PalavreadoLetter } from './types';
@@ -72,3 +73,68 @@ export const calculateGuessValue = (word: string, guess: string): number => {
   });
   return value;
 };
+
+/**
+ * Generates a shareable result string for the game.
+ */
+export function writeResult({
+  swaps,
+  guesses,
+  words,
+  totalHearts,
+  ...rest
+}: BasicResultsOptions & {
+  swaps: number;
+  guesses: string[][];
+  words: string[];
+}): string {
+  const size = guesses[0].length;
+  const colors = ['🟥', '🟦', '🟪', '🟫', '🟧'];
+  const cleanUpAttempts = guesses.map((attempt) => {
+    return attempt.map((word, i) => {
+      const wordState = words[i].toLowerCase() === word.toLowerCase() ? colors[i] : '⬜️';
+      return wordState;
+    });
+  });
+  if (cleanUpAttempts.length < size) {
+    while (cleanUpAttempts.length < size) {
+      cleanUpAttempts.push(cleanUpAttempts[cleanUpAttempts.length - 1]);
+    }
+  }
+
+  const correctTotalHearts = Math.max(totalHearts, size);
+
+  return generateShareableResult({
+    heartsSuffix: ` (${swaps} trocas)`,
+    totalHearts: correctTotalHearts,
+    heartsSpacing: ' ',
+    additionalLines: cleanUpAttempts.map((row) => row.join(' ').trim()).filter(Boolean),
+    ...rest,
+  });
+}
+
+/**
+ * Generates the written result for the game with the state
+ * @param data - The DailyPalavreadoEntry data.
+ * @param language - The language for the result.
+ */
+export function getWrittenResult({
+  data,
+  language,
+}: {
+  data: DailyPalavreadoEntry;
+  language: Language;
+}) {
+  const state = getInitialState(data);
+  return writeResult({
+    type: 'palavreado',
+    hideLink: true,
+    challengeNumber: state.number,
+    language,
+    totalHearts: SETTINGS.HEARTS,
+    remainingHearts: state.hearts,
+    swaps: state.swaps,
+    guesses: state.guesses,
+    words: data.words,
+  });
+}

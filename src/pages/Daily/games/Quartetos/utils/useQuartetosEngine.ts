@@ -4,6 +4,7 @@ import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyL
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
+import { vibrate } from 'pages/Daily/utils/vibrate';
 import { useEffect } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
@@ -103,6 +104,7 @@ export function useQuartetosEngine(data: DailyQuartetosEntry, initialState: Game
       }
       if (status === STATUSES.LOSE) {
         playSFX('lose');
+        vibrate('lose');
 
         // Add the left over sets to the matches
         const leftOverSets = data.sets.filter((set) => !matches.find((match) => match.id === set.id));
@@ -124,6 +126,7 @@ export function useQuartetosEngine(data: DailyQuartetosEntry, initialState: Game
       updateSession({ selection: [] });
     } else {
       playSFX('wrong');
+      vibrate('wrong');
       updateSession({ latestAttempt: Date.now() });
     }
   };

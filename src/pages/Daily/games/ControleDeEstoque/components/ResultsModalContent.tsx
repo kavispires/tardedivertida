@@ -1,5 +1,5 @@
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { getSourceName, writeHeartResultString } from 'pages/Daily/utils';
+import { useMemo } from 'react';
 // Ant Design Resources
 import { Typography } from 'antd';
 // Hooks
@@ -13,10 +13,11 @@ import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { SETTINGS } from '../utils/settings';
+import { writeResult } from '../utils/helpers';
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 type ResultsModalContentProps = {
-  challenge: number;
+  challengeNumber: number;
   title: string;
   isWin: boolean;
   hearts: number;
@@ -24,21 +25,27 @@ type ResultsModalContentProps = {
 };
 
 export function ResultsModalContent({
-  challenge,
+  challengeNumber,
   title,
   isWin,
   hearts,
   evaluations,
 }: ResultsModalContentProps) {
-  const { language, dualTranslate } = useLanguage();
+  const { language } = useLanguage();
 
-  const result = writeResult({
-    game: dualTranslate(SETTINGS.NAME),
-    challenge,
-    remainingHearts: hearts,
-    language,
-    evaluations,
-  });
+  const result = useMemo(
+    () =>
+      writeResult({
+        type: 'controle-de-estoque',
+        language,
+        title,
+        challengeNumber,
+        totalHearts: SETTINGS.HEARTS,
+        remainingHearts: hearts,
+        evaluations,
+      }),
+    [challengeNumber, evaluations, hearts, language, title],
+  );
 
   return (
     <SpaceContainer vertical>
@@ -74,34 +81,4 @@ export function ResultsModalContent({
       <NextGameSuggestion />
     </SpaceContainer>
   );
-}
-
-function writeResult({
-  game,
-  challenge,
-  remainingHearts,
-  language,
-  evaluations,
-}: {
-  game: string;
-  challenge: number;
-  remainingHearts: number;
-  language: Language;
-  evaluations: boolean[][];
-}) {
-  const cleanUpAttempts = evaluations.map((row) =>
-    row.map((value) => {
-      return value ? '📫' : '🤬';
-    }),
-  );
-
-  return [
-    `${SETTINGS.EMOJI} TD ${game} #${challenge}`,
-    `${writeHeartResultString(remainingHearts, SETTINGS.HEARTS, ' ')}`,
-    cleanUpAttempts
-      .map((row) => row.join(' ').trim())
-      .filter(Boolean)
-      .join('\n'),
-    `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
-  ].join('\n');
 }

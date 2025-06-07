@@ -13,7 +13,7 @@ import { SETTINGS as QUARTETOS } from '../games/Quartetos/utils/settings';
 import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
 import { SETTINGS as TA_NA_CARA } from '../games/TaNaCara/utils/settings';
 
-export const SETTINGS = {
+export const ALL_SETTINGS = {
   AQUI_O,
   ARTE_RUIM,
   COMUNICACAO_ALIENIGENA,
@@ -27,4 +27,18 @@ export const SETTINGS = {
   QUARTETOS,
   TEORIA_DE_CONJUNTOS,
   TA_NA_CARA,
+};
+
+type GameKey = keyof typeof ALL_SETTINGS;
+
+export const getSettings = (gameKey: string) => {
+  // Convert game key from kebab-case to SNAKE_CASE
+  const formattedGameKey = gameKey.toUpperCase().replace(/-/g, '_');
+  const settings = ALL_SETTINGS[formattedGameKey as GameKey];
+
+  if (!settings) {
+    throw new Error(`Settings for game "${gameKey}" not found.`);
+  }
+
+  return settings;
 };

@@ -4,6 +4,7 @@ import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyL
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
+import { vibrate } from 'pages/Daily/utils/vibrate';
 import { useEffect } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
@@ -133,6 +134,7 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
         duration: 3,
       });
       playSFX('wrong');
+      vibrate('wrong');
     }
 
     setState((prev) => {
@@ -148,6 +150,7 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
         copy.hearts -= 1;
         if (copy.hearts === 0) {
           playSFX('lose');
+          vibrate('lose');
           copy.status = STATUSES.WIN;
         }
       }

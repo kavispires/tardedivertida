@@ -228,9 +228,10 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
 
         <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
           <ResultsModalContent
-            challenge={data.number}
+            challengeNumber={data.number}
             win={isWin}
             guesses={guesses}
+            hearts={hearts}
             attributes={data.attributes}
             requests={data.requests}
             solution={data.solution}

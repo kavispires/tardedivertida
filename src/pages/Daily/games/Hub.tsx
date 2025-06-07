@@ -5,12 +5,14 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTimer } from 'react-timer-hook';
 // Ant Design Resources
-import { MutedOutlined, SoundFilled } from '@ant-design/icons';
-import { Alert, Button, Divider, Switch, Typography } from 'antd';
+import { BugFilled, MutedOutlined, SoundFilled } from '@ant-design/icons';
+import { Alert, Button, Collapse, Divider, Switch, Typography } from 'antd';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+// Services
+import { getFirestoreConsoleUrl } from 'services/firebase';
 // Utils
 import { getAnimation } from 'utils/animations';
 import { isDevEnv } from 'utils/helpers';
@@ -20,12 +22,14 @@ import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { DualTranslate, LanguageSwitch, Translate } from 'components/language';
+import { DualTranslate, Translate } from 'components/language';
 // Internal
 import { dailySoundEffects, playSFX, SFXAllNames } from '../utils/soundEffects';
 import type { GameSettings } from '../utils/types';
-import { SETTINGS } from '../utils/settings';
+import { ALL_SETTINGS } from '../utils/settings';
 import { DailyChrome } from '../components/DailyChrome';
+import { News } from '../components/News';
+import { BundleResults } from '../components/BundleResults';
 import { checkWasPlayedToday, daysSinceRelease, getToday, hasBeenReleased } from '../utils';
 
 type Entry = GameSettings & {
@@ -46,17 +50,17 @@ const COMING_SOON_ENTRY: Entry = {
 };
 
 const GAMES: Entry[] = [
-  SETTINGS.ARTE_RUIM,
-  SETTINGS.COMUNICACAO_ALIENIGENA,
-  SETTINGS.AQUI_O,
-  SETTINGS.TEORIA_DE_CONJUNTOS,
-  SETTINGS.CONTROLE_DE_ESTOQUE,
-  SETTINGS.FILMACO,
-  SETTINGS.PALAVREADO,
-  SETTINGS.PORTAIS_MAGICOS,
-  SETTINGS.QUARTETOS,
-  SETTINGS.ORGANIKU,
-  SETTINGS.ESPIONAGEM,
+  ALL_SETTINGS.ARTE_RUIM,
+  ALL_SETTINGS.COMUNICACAO_ALIENIGENA,
+  ALL_SETTINGS.AQUI_O,
+  ALL_SETTINGS.TEORIA_DE_CONJUNTOS,
+  ALL_SETTINGS.CONTROLE_DE_ESTOQUE,
+  ALL_SETTINGS.FILMACO,
+  ALL_SETTINGS.ORGANIKU,
+  ALL_SETTINGS.PALAVREADO,
+  ALL_SETTINGS.PORTAIS_MAGICOS,
+  ALL_SETTINGS.QUARTETOS,
+  ALL_SETTINGS.ESPIONAGEM,
   {
     ...COMING_SOON_ENTRY,
     HUB_ICON: DailyCrimeGameIcon,
@@ -67,8 +71,8 @@ const GAMES: Entry[] = [
 ];
 
 const CONTRIBUTIONS: Entry[] = [
-  SETTINGS.PICACO,
-  SETTINGS.TA_NA_CARA,
+  ALL_SETTINGS.PICACO,
+  ALL_SETTINGS.TA_NA_CARA,
   // {
   //   ...COMING_SOON_ENTRY,
   //   HUB_ICON: DailyContributionGame,
@@ -86,9 +90,9 @@ export function Hub() {
   return (
     <DailyChrome>
       <div className="menu menu--hub">
-        <LanguageSwitch />
+        <News />
         <TimeLeft />
-        <SoundFX />
+        <SoundFXToggle />
       </div>
       <div className="hub" ref={ref}>
         <Typography.Title level={5}>
@@ -105,6 +109,8 @@ export function Hub() {
         <HubList list={CONTRIBUTIONS} width={width} startingIndex={GAMES.length} />
       </div>
 
+      <BundleResults list={GAMES} />
+
       {isAdmin && (
         <Alert
           style={{ marginTop: '64px' }}
@@ -112,11 +118,7 @@ export function Hub() {
           message={
             <>
               <Link to="debug">Debug</Link> <Divider type="vertical" />{' '}
-              <a
-                href={`${import.meta.env.VITE__FIRESTORE_URL}/${import.meta.env.VITE__FIREBASE_PROJECT_ID}/${import.meta.env.VITE__FIRESTORE_PATH}/~2Fdiario~2F${today}`}
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a href={getFirestoreConsoleUrl(`diario/${today}`)} target="_blank" rel="noreferrer">
                 Firestore
               </a>
             </>
@@ -232,7 +234,7 @@ function GameButton({
   );
 }
 
-function SoundFX() {
+function SoundFXToggle() {
   const [volume, setVolume] = useGlobalLocalStorage('volume');
 
   useEffect(() => {
@@ -276,16 +278,29 @@ function TimeLeft() {
 }
 
 function SFXTest() {
-  if (isDevEnv) {
-    return (
-      <div className="hub-list">
-        {SFXAllNames.map((name) => (
-          <Button key={name} onClick={() => dailySoundEffects.play(name)} block>
-            {name}
-          </Button>
-        ))}
-      </div>
-    );
+  if (!isDevEnv) {
+    return null;
   }
-  return null;
+
+  const items = [
+    {
+      key: 'sounds',
+      label: (
+        <>
+          <BugFilled /> Sound Effects Library
+        </>
+      ),
+      children: (
+        <div className="hub-list">
+          {SFXAllNames.map((name) => (
+            <Button key={name} onClick={() => dailySoundEffects.play(name)} block>
+              {name}
+            </Button>
+          ))}
+        </div>
+      ),
+    },
+  ];
+
+  return <Collapse items={items} />;
 }

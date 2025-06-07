@@ -1,5 +1,5 @@
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
+import { useMemo } from 'react';
 // Ant Design Resources
 import { Divider, Space, Typography } from 'antd';
 // Hooks
@@ -13,10 +13,11 @@ import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { SETTINGS } from '../utils/settings';
+import { writeResult } from '../utils/helpers';
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 type ResultsModalContentProps = {
-  challenge: number;
+  challengeNumber: number;
   words: string[];
   isWin: boolean;
   hearts: number;
@@ -25,24 +26,29 @@ type ResultsModalContentProps = {
 };
 
 export function ResultsModalContent({
-  challenge,
+  challengeNumber,
   words,
   isWin,
   hearts,
   swaps,
   guesses,
 }: ResultsModalContentProps) {
-  const { language, dualTranslate } = useLanguage();
+  const { language } = useLanguage();
 
-  const result = writeResult({
-    game: dualTranslate(SETTINGS.NAME),
-    challenge,
-    remainingHearts: hearts,
-    words,
-    language,
-    swaps,
-    guesses,
-  });
+  const result = useMemo(
+    () =>
+      writeResult({
+        type: 'palavreado',
+        language,
+        challengeNumber,
+        remainingHearts: hearts,
+        words,
+        swaps,
+        guesses,
+        totalHearts: SETTINGS.HEARTS,
+      }),
+    [challengeNumber, hearts, words, language, swaps, guesses],
+  );
 
   return (
     <SpaceContainer vertical>
@@ -76,46 +82,4 @@ export function ResultsModalContent({
       <NextGameSuggestion />
     </SpaceContainer>
   );
-}
-
-function writeResult({
-  game,
-  challenge,
-  remainingHearts,
-  words,
-  language,
-  swaps,
-  guesses,
-}: {
-  game: string;
-  challenge: number;
-  remainingHearts: number;
-  words: string[];
-  language: Language;
-  swaps: number;
-  guesses: string[][];
-}) {
-  const size = guesses[0].length;
-  const colors = ['🟥', '🟦', '🟪', '🟫', '🟧'];
-  const cleanUpAttempts = guesses.map((attempt) => {
-    return attempt.map((word, i) => {
-      const wordState = words[i].toLowerCase() === word.toLowerCase() ? colors[i] : '⬜️';
-      return wordState;
-    });
-  });
-  if (cleanUpAttempts.length < size) {
-    while (cleanUpAttempts.length < size) {
-      cleanUpAttempts.push(cleanUpAttempts[cleanUpAttempts.length - 1]);
-    }
-  }
-
-  return [
-    `${SETTINGS.EMOJI} ${getDailyName(language)} ${game} #${challenge}`,
-    `${writeHeartResultString(remainingHearts, Math.max(SETTINGS.HEARTS, size), ' ')} (${swaps} trocas)`,
-    cleanUpAttempts
-      .map((row) => row.join(' ').trim())
-      .filter(Boolean)
-      .join('\n'),
-    `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
-  ].join('\n');
 }

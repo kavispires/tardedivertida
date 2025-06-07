@@ -1,6 +1,7 @@
 import { cloneDeep, merge } from 'lodash';
-import { loadLocalToday } from 'pages/Daily/utils';
+import { generateShareableResult, loadLocalToday } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
+import type { BasicResultsOptions } from 'pages/Daily/utils/types';
 // Utils
 import { stringRemoveAccents } from 'utils/helpers';
 // Internal
@@ -87,4 +88,47 @@ export function isLetter(char: string, allowNumbers?: boolean): boolean {
     return cleanupLetter(char).match(/[a-zA-Z0-9]/) !== null;
   }
   return cleanupLetter(char).match(/[a-zA-Z]/) !== null;
+}
+
+/**
+ * Generates a shareable result string for the game.
+ */
+export function writeResult({
+  solution,
+  ...rest
+}: BasicResultsOptions & {
+  solution: BooleanDictionary;
+}): string {
+  const totalLetters = Object.keys(solution).length;
+  const guessedLetters = Object.values(solution).filter(Boolean).length;
+
+  return generateShareableResult({
+    heartsSuffix: ` (${Math.round((guessedLetters / totalLetters) * 100)}%)`,
+    additionalLines: [],
+    ...rest,
+  });
+}
+
+/**
+ * Generates the written result for the game with the state
+ * @param data - The DailyFilmacoEntry data.
+ * @param language - The language for the result.
+ */
+export function getWrittenResult({
+  data,
+  language,
+}: {
+  data: DailyFilmacoEntry;
+  language: Language;
+}) {
+  const state = getInitialState(data);
+  return writeResult({
+    type: 'filmaco',
+    hideLink: true,
+    challengeNumber: state.number,
+    language,
+    totalHearts: SETTINGS.HEARTS,
+    remainingHearts: state.hearts,
+    solution: state.solution,
+  });
 }

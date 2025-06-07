@@ -1,6 +1,7 @@
 import { cloneDeep, merge } from 'lodash';
-import { loadLocalToday } from 'pages/Daily/utils';
+import { generateShareableResult, loadLocalToday } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
+import type { BasicResultsOptions } from 'pages/Daily/utils/types';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyTeoriaDeConjuntosEntry, GameState } from './types';
@@ -69,3 +70,58 @@ export const getInitialState = (data: DailyTeoriaDeConjuntosEntry): GameState =>
 
   return state;
 };
+
+/**
+ * Generates a shareable result string for the game.
+ */
+export function writeResult({
+  guesses,
+  isWeekend,
+  totalHearts,
+  ...rest
+}: BasicResultsOptions & {
+  guesses: GameState['guesses'];
+  isWeekend: boolean;
+}) {
+  const cleanUpAttempts = guesses.map((guess) => {
+    return {
+      1: '🟡',
+      2: '🔴',
+      0: '🟠',
+      false: '✖️',
+    }[String(guess.result)];
+  });
+  const correctTotalHearts: number = totalHearts + (isWeekend ? 1 : 0);
+
+  return generateShareableResult({
+    heartsSpacing: ' ',
+    additionalLines: [cleanUpAttempts.join(' ')],
+    totalHearts: correctTotalHearts,
+    ...rest,
+  });
+}
+
+/**
+ * Generates the written result for the game with the state
+ * @param data - The DailyTeoriaDeConjuntosEntry data.
+ * @param language - The language for the result.
+ */
+export function getWrittenResult({
+  data,
+  language,
+}: {
+  data: DailyTeoriaDeConjuntosEntry;
+  language: Language;
+}) {
+  const state = getInitialState(data);
+  return writeResult({
+    type: 'teoria-de-conjuntos',
+    hideLink: true,
+    challengeNumber: state.number,
+    language,
+    totalHearts: SETTINGS.HEARTS,
+    remainingHearts: state.hearts,
+    guesses: state.guesses,
+    isWeekend: state.isWeekend,
+  });
+}

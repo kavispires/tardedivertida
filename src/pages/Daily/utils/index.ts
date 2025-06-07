@@ -3,7 +3,8 @@ import moment from 'moment';
 // Utils
 import { isDevEnv } from 'utils/helpers';
 // Internal
-import type { WithRequiredId } from './types';
+import type { BasicResultsOptions, WithRequiredId } from './types';
+import { getSettings } from './settings';
 
 /**
  * Returns the current date in the format 'YYYY-MM-DD'.
@@ -90,19 +91,6 @@ export function getDailyName(language: Language) {
 }
 
 /**
- * Writes a heart result string based on the number of remaining hearts and total hearts.
- *
- * @param remainHearts - The number of remaining hearts.
- * @param totalHearts - The total number of hearts.
- * @returns The heart result string.
- */
-export function writeHeartResultString(remainHearts: number, totalHearts: number, separator = ''): string {
-  const heartsValue = Math.max(0, remainHearts);
-  const maxHeartsValue = Math.max(heartsValue, totalHearts);
-  return [...Array(heartsValue).fill('❤️'), ...Array(maxHeartsValue - heartsValue).fill('🩶')].join(separator);
-}
-
-/**
  * Pauses the execution for a specified duration.
  * @param duration - The duration to wait in milliseconds. Default is 1000ms.
  */
@@ -174,4 +162,63 @@ export function loadLocalToday<TLocal extends WithRequiredId>({
   }
 
   return previouslyStored;
+}
+
+/**
+ * Writes a heart result string based on the number of remaining hearts and total hearts.
+ *
+ * @param remainHearts - The number of remaining hearts.
+ * @param totalHearts - The total number of hearts.
+ * @returns The heart result string.
+ */
+export function writeHeartResultString(remainHearts: number, totalHearts: number, separator = ''): string {
+  const heartsValue = Math.max(0, remainHearts);
+  const maxHeartsValue = Math.max(heartsValue, totalHearts);
+  return [...Array(heartsValue).fill('❤️'), ...Array(maxHeartsValue - heartsValue).fill('🩶')].join(separator);
+}
+
+export function generateShareableResult(
+  args: Prettify<
+    BasicResultsOptions & {
+      /**
+       * Additional lines to include in the result
+       */
+      additionalLines: string[];
+      /**
+       * Additional content in the same line as the hearts result
+       */
+      heartsSuffix?: string;
+      /**
+       * Spacing between each heart (usually a space)
+       */
+      heartsSpacing?: string;
+    }
+  >,
+) {
+  const {
+    type,
+    language,
+    challengeNumber,
+    remainingHearts,
+    totalHearts,
+    title,
+    heartsSuffix = '',
+    heartsSpacing = '',
+    additionalLines = [],
+    hideLink = false,
+    hideHearts = false,
+  } = args;
+
+  const settings = getSettings(type);
+
+  return [
+    `${settings.EMOJI} ${getDailyName(language)} ${settings.NAME[language]} #${challengeNumber}`,
+    title,
+    !hideHearts && `${writeHeartResultString(remainingHearts, totalHearts, heartsSpacing)} ${heartsSuffix}`,
+    ...additionalLines,
+    !hideLink && `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
+  ]
+    .filter(Boolean)
+    .map((line) => (line as string).trim())
+    .join('\n');
 }

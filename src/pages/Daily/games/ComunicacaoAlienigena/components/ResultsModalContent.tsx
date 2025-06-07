@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { Region } from 'pages/Daily/components/Region';
-import { getDailyName, getSourceName } from 'pages/Daily/utils';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex, Space, Typography } from 'antd';
@@ -21,39 +20,44 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { SETTINGS } from '../utils/settings';
 import type { DailyComunicacaoAlienigenaEntry } from '../utils/types';
+import { writeResult } from '../utils/helpers';
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 type ResultsModalContentProps = {
-  challenge: number;
+  challengeNumber: number;
   guesses: string[];
   attributes: DailyComunicacaoAlienigenaEntry['attributes'];
   requests: DailyComunicacaoAlienigenaEntry['requests'];
   win: boolean;
   solution: string;
   width: number;
+  hearts: number;
 };
 
 export function ResultsModalContent({
   guesses,
   attributes,
   requests,
-  challenge,
+  challengeNumber,
   win,
   solution,
   width,
+  hearts,
 }: ResultsModalContentProps) {
-  const { language, dualTranslate } = useLanguage();
+  const { language } = useLanguage();
 
   const result = useMemo(
     () =>
       writeResult({
-        game: dualTranslate(SETTINGS.NAME),
-        challenge,
+        type: 'comunicacao-alienigena',
+        language,
+        challengeNumber,
+        totalHearts: SETTINGS.HEARTS,
+        remainingHearts: hearts,
         guesses,
         solution,
-        language,
       }),
-    [challenge, dualTranslate, guesses, language, solution],
+    [challengeNumber, guesses, language, solution, hearts],
   );
 
   return (
@@ -109,46 +113,4 @@ export function ResultsModalContent({
       <NextGameSuggestion />
     </SpaceContainer>
   );
-}
-
-function writeResult({
-  game,
-  challenge,
-  guesses,
-  solution,
-  language,
-}: {
-  game: string;
-  challenge: number;
-  guesses: string[];
-  solution: string;
-  language: Language;
-}) {
-  const solutionItems = solution.split('-');
-
-  const indexEmojis = ['🟤', '🟡', '🔵', '🟣'];
-
-  const result = guesses.map((guess) => {
-    const guessItems = guess.split('-');
-    return guessItems
-      .map((item, i) => {
-        // Correct?
-        if (item === solutionItems[i]) {
-          return indexEmojis[i];
-        }
-        // Incorrect?
-        if (solutionItems.includes(item)) {
-          return '❌';
-        }
-        // Missing?
-        return '👽';
-      })
-      .join('');
-  });
-
-  return [
-    `${SETTINGS.EMOJI} ${getDailyName(language)} ${game} #${challenge}`,
-    ...result,
-    `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
-  ].join('\n');
 }

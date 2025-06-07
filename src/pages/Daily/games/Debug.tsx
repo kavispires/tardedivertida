@@ -4,11 +4,11 @@ import { Input, Space, Typography } from 'antd';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Internal
-import { SETTINGS } from '../utils/settings';
+import { ALL_SETTINGS } from '../utils/settings';
 import { DailyChrome } from '../components/DailyChrome';
 import { getToday } from '../utils';
 
-const PRIORITY_LIST = Object.values(SETTINGS);
+const PRIORITY_LIST = Object.values(ALL_SETTINGS);
 
 export function DebugPage() {
   const { isAdmin } = useCurrentUserContext();
