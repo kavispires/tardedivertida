@@ -7,10 +7,10 @@ import { isDevEnv } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
 // Internal
-import { SETTINGS } from '../utils/settings';
+import { ALL_SETTINGS } from '../utils/settings';
 import { composeLocalPlayedKey, composeLocalTodayKey } from '../utils';
 
-const keys = Object.values(SETTINGS);
+const keys = Object.values(ALL_SETTINGS);
 
 type DevResetLocalStorageButtonProps = {
   localStorageKey?: string;
@@ -55,6 +55,7 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
     if (localStorageKey) {
       const value = JSON.parse(localStorage.getItem(composeLocalTodayKey(localStorageKey)) ?? '{}');
       if (isDevEnv) {
+        // biome-ignore lint/suspicious/noConsole: dev only
         console.log(value);
       } else {
         alert(JSON.stringify(value, null, 2));
