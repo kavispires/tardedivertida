@@ -31,7 +31,7 @@ export type DailyComunicacaoAlienigenaEntry = {
   id: DateKey;
   setId: string;
   number: number;
-  type: 'comunicação-alienígena';
+  type: 'comunicacao-alienigena';
   attributes: DailyAlienGameAttribute[];
   requests: DailyAlienGameRequest[];
   solution: string;

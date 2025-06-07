@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex, Typography } from 'antd';
@@ -19,10 +18,11 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { SETTINGS } from '../utils/settings';
 import type { DailyOrganikuEntry } from '../utils/types';
+import { writeResult } from '../utils/helpers';
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 type ResultsModalContentProps = {
-  challenge: number;
+  challengeNumber: number;
   win: boolean;
   hearts: number;
   culpritId?: string;
@@ -34,7 +34,7 @@ type ResultsModalContentProps = {
 };
 
 export function ResultsModalContent({
-  challenge,
+  challengeNumber,
   win,
   hearts,
   itemsIds,
@@ -43,7 +43,7 @@ export function ResultsModalContent({
   gridSize,
   flips,
 }: ResultsModalContentProps) {
-  const { language, dualTranslate } = useLanguage();
+  const { language } = useLanguage();
 
   const correctItems = useMemo(() => {
     return itemsIds.map((itemId) => (foundCount[itemId] === gridSize ? itemId : null));
@@ -52,14 +52,16 @@ export function ResultsModalContent({
   const result = useMemo(
     () =>
       writeResult({
+        type: 'organiku',
         language,
-        game: dualTranslate(SETTINGS.NAME),
-        challenge,
+        challengeNumber,
         remainingHearts: hearts,
-        correctItems,
+        totalHearts: SETTINGS.HEARTS,
+        itemsIds,
+        foundCount,
         flips,
       }),
-    [language, dualTranslate, challenge, hearts, correctItems, flips],
+    [language, challengeNumber, hearts, foundCount, itemsIds, flips],
   );
 
   return (
@@ -107,28 +109,4 @@ export function ResultsModalContent({
       <NextGameSuggestion />
     </SpaceContainer>
   );
-}
-
-function writeResult({
-  game,
-  challenge,
-  remainingHearts,
-  language,
-  correctItems,
-  flips,
-}: {
-  language: Language;
-  game: string;
-  challenge: number;
-  remainingHearts: number;
-  correctItems: (string | null)[];
-  flips: number;
-}) {
-  // Write the result string
-  return [
-    `${SETTINGS.EMOJI} ${getDailyName(language)} ${game} #${!challenge ? 'demo' : challenge}`,
-    `${writeHeartResultString(remainingHearts, SETTINGS.HEARTS)} (${flips} viradas)`,
-    `${correctItems.map((item) => (item ? '🟢' : '◼️')).join('')}`,
-    `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
-  ].join('\n');
 }

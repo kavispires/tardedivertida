@@ -1,5 +1,4 @@
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex, Typography } from 'antd';
@@ -15,10 +14,11 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { SETTINGS } from '../utils/settings';
 import type { DailyPortaisMagicosEntry } from '../utils/types';
+import { writeResult } from '../utils/helpers';
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 type ResultsModalContentProps = {
-  challenge: number;
+  challengeNumber: number;
   win: boolean;
   corridors: DailyPortaisMagicosEntry['corridors'];
   guesses: string[][];
@@ -28,7 +28,7 @@ type ResultsModalContentProps = {
 };
 
 export function ResultsModalContent({
-  challenge,
+  challengeNumber,
   win,
   corridors,
   guesses,
@@ -36,20 +36,21 @@ export function ResultsModalContent({
   moves,
   hearts,
 }: ResultsModalContentProps) {
-  const { language, dualTranslate } = useLanguage();
+  const { language } = useLanguage();
 
   const result = useMemo(
     () =>
       writeResult({
-        game: dualTranslate(SETTINGS.NAME),
-        challenge,
+        type: 'portais-magicos',
+        challengeNumber,
         guesses,
         win,
         language,
         moves,
+        totalHearts: SETTINGS.HEARTS,
         remainingHearts: hearts,
       }),
-    [challenge, dualTranslate, guesses, language, win, moves, hearts],
+    [challengeNumber, guesses, language, win, moves, hearts],
   );
 
   return (
@@ -84,50 +85,4 @@ export function ResultsModalContent({
       <NextGameSuggestion />
     </SpaceContainer>
   );
-}
-
-function writeResult({
-  game,
-  challenge,
-  guesses,
-  win,
-  language,
-  moves,
-  remainingHearts,
-}: {
-  game: string;
-  challenge: number;
-  guesses: string[][];
-  win: boolean;
-  language: Language;
-  moves: number;
-  remainingHearts: number;
-}) {
-  const lastPlayedIndex = guesses.filter((guess) => guess.length > 0).length - 1;
-
-  const result = guesses
-    ?.map((guessBatch, index) => {
-      const isLastGuessingRound = lastPlayedIndex === index;
-
-      const quantity = Math.max(guessBatch?.length ?? 0, 0);
-
-      const lostLives = Math.max(quantity - (isLastGuessingRound ? (win ? 1 : 0) : 1), 0);
-      // Lost lives
-      const lostHearts = Array(lostLives)
-        .fill(0)
-        .map(() => '💥')
-        .join('');
-
-      const correct = quantity - lostLives > 0 ? '🔶' : '';
-
-      return [lostHearts, correct].join('');
-    })
-    .join('');
-
-  return [
-    `${SETTINGS.EMOJI} ${getDailyName(language)} ${game} #${challenge}`,
-    `${writeHeartResultString(remainingHearts, SETTINGS.HEARTS)} (${moves} movimentos)`,
-    result,
-    `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
-  ].join('\n');
 }

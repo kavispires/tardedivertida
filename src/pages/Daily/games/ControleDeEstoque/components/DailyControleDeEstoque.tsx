@@ -113,7 +113,7 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
 
         <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
           <ResultsModalContent
-            challenge={data?.number}
+            challengeNumber={data.number}
             isWin={isWin}
             hearts={hearts}
             evaluations={evaluations}

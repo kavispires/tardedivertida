@@ -1,6 +1,7 @@
 import { cloneDeep, merge } from 'lodash';
-import { loadLocalToday } from 'pages/Daily/utils';
+import { generateShareableResult, loadLocalToday } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
+import type { BasicResultsOptions } from 'pages/Daily/utils/types';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyOrganikuEntry, GameState } from './types';
@@ -68,4 +69,56 @@ export function getRowAndColumnIndexes(index: number, gridSize: number): number[
   }
 
   return indexes;
+}
+
+/**
+ * Generates a shareable result string for the game.
+ */
+export function writeResult({
+  itemsIds,
+  foundCount,
+  flips,
+  ...rest
+}: BasicResultsOptions & {
+  foundCount: NumberDictionary;
+  itemsIds: string[];
+  flips: number;
+}): string {
+  const correctItems = itemsIds.map((itemId) =>
+    foundCount[itemId] === Object.keys(foundCount).length ? itemId : null,
+  );
+
+  const additionalLines = [correctItems.map((item) => (item ? '🟢' : '◼️')).join('')];
+
+  return generateShareableResult({
+    heartsSuffix: ` (${flips} viradas)`,
+    additionalLines,
+    ...rest,
+  });
+}
+
+/**
+ * Generates the written result for the game with the state
+ * @param data - The DailyOrganikuEntry data.
+ * @param language - The language for the result.
+ */
+export function getWrittenResult({
+  data,
+  language,
+}: {
+  data: DailyOrganikuEntry;
+  language: Language;
+}) {
+  const state = getInitialState(data);
+  return writeResult({
+    type: 'organiku',
+    language,
+    hideLink: true,
+    challengeNumber: state.number,
+    totalHearts: SETTINGS.HEARTS,
+    remainingHearts: state.hearts,
+    itemsIds: data.itemsIds,
+    foundCount: state.foundCount,
+    flips: state.flips,
+  });
 }

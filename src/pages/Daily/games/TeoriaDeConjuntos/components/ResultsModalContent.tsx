@@ -1,5 +1,5 @@
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { getSourceName, writeHeartResultString } from 'pages/Daily/utils';
+import { useMemo } from 'react';
 // Ant Design Resources
 import { Typography } from 'antd';
 // Hooks
@@ -16,10 +16,11 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { SETTINGS } from '../utils/settings';
 import type { useTeoriaDeConjuntosEngine } from '../utils/useTeoriaDeConjuntosEngine';
 import type { DailyTeoriaDeConjuntosEntry } from '../utils/types';
+import { writeResult } from '../utils/helpers';
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 type ResultsModalContentProps = {
-  challenge: number;
+  challengeNumber: number;
   isWin: boolean;
   hearts: number;
   guesses: ReturnType<typeof useTeoriaDeConjuntosEngine>['guesses'];
@@ -28,23 +29,28 @@ type ResultsModalContentProps = {
 };
 
 export function ResultsModalContent({
-  challenge,
+  challengeNumber,
   isWin,
   hearts,
   guesses,
   data,
   isWeekend,
 }: ResultsModalContentProps) {
-  const { language, dualTranslate } = useLanguage();
+  const { language } = useLanguage();
 
-  const result = writeResult({
-    game: dualTranslate(SETTINGS.NAME),
-    challenge,
-    remainingHearts: hearts,
-    language,
-    guesses,
-    isWeekend,
-  });
+  const result = useMemo(
+    () =>
+      writeResult({
+        type: 'teoria-de-conjuntos',
+        challengeNumber,
+        remainingHearts: hearts,
+        totalHearts: SETTINGS.HEARTS,
+        language,
+        guesses,
+        isWeekend,
+      }),
+    [challengeNumber, hearts, language, guesses, isWeekend],
+  );
 
   return (
     <SpaceContainer vertical>
@@ -77,37 +83,4 @@ export function ResultsModalContent({
       <NextGameSuggestion />
     </SpaceContainer>
   );
-}
-
-function writeResult({
-  game,
-  challenge,
-  remainingHearts,
-  language,
-  guesses,
-  isWeekend,
-}: {
-  game: string;
-  challenge: number;
-  remainingHearts: number;
-  language: Language;
-  guesses: ReturnType<typeof useTeoriaDeConjuntosEngine>['guesses'];
-  isWeekend: boolean;
-}) {
-  const cleanUpAttempts = guesses.map((guess) => {
-    return {
-      1: '🟡',
-      2: '🔴',
-      0: '🟠',
-      false: '✖️',
-    }[String(guess.result)];
-  });
-  const totalHearts: number = SETTINGS.HEARTS + (isWeekend ? 1 : 0);
-
-  return [
-    `${SETTINGS.EMOJI} TD ${game} #${challenge}`,
-    `${writeHeartResultString(remainingHearts, totalHearts, ' ')}`,
-    cleanUpAttempts.join(' '),
-    `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
-  ].join('\n');
 }
