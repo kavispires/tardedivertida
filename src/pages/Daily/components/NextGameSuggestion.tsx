@@ -8,22 +8,23 @@ import { IconAvatar } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';
 // Internal
 import type { GameSettings } from '../utils/types';
-import { SETTINGS } from '../utils/settings';
+import { ALL_SETTINGS } from '../utils/settings';
 import { checkWasPlayedToday } from '../utils';
 
 const PRIORITY_LIST = orderBy(
   [
-    SETTINGS.QUARTETOS,
-    SETTINGS.ARTE_RUIM,
-    SETTINGS.COMUNICACAO_ALIENIGENA,
-    SETTINGS.TEORIA_DE_CONJUNTOS,
-    SETTINGS.FILMACO,
-    SETTINGS.PALAVREADO,
-    SETTINGS.AQUI_O,
-    SETTINGS.CONTROLE_DE_ESTOQUE,
-    SETTINGS.TA_NA_CARA,
-    SETTINGS.PICACO,
-    SETTINGS.PORTAIS_MAGICOS,
+    ALL_SETTINGS.AQUI_O,
+    ALL_SETTINGS.ARTE_RUIM,
+    ALL_SETTINGS.COMUNICACAO_ALIENIGENA,
+    ALL_SETTINGS.TEORIA_DE_CONJUNTOS,
+    ALL_SETTINGS.FILMACO,
+    ALL_SETTINGS.PALAVREADO,
+    ALL_SETTINGS.CONTROLE_DE_ESTOQUE,
+    ALL_SETTINGS.ORGANIKU,
+    ALL_SETTINGS.TA_NA_CARA,
+    ALL_SETTINGS.PICACO,
+    ALL_SETTINGS.PORTAIS_MAGICOS,
+    ALL_SETTINGS.QUARTETOS,
   ],
   ['name.pt'],
   ['asc'],
@@ -37,7 +38,7 @@ const getUnplayedGames = () => {
 
 function NextSuggestionEntry({ settings }: { settings: GameSettings }) {
   return (
-    <Typography.Paragraph className="center" strong>
+    <Typography.Paragraph className="center" strong key={settings.KEY}>
       <DualTranslate>{settings.TAGLINE}</DualTranslate>
       <br />
       <Link to={`/diario/${settings.ROUTE}`}>
@@ -65,8 +66,8 @@ export const NextGameSuggestion = () => {
   return (
     <div style={{ width: '84vw', maxWidth: 500 }}>
       <Carousel autoplay autoplaySpeed={5000} dots={false}>
-        {unplayedGames.map((entry, index) => (
-          <div key={index}>{entry}</div>
+        {unplayedGames.map((entry) => (
+          <div key={entry.key}>{entry}</div>
         ))}
       </Carousel>
     </div>

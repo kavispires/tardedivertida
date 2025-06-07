@@ -26,7 +26,7 @@ import { DualTranslate, LanguageSwitch, Translate } from 'components/language';
 // Internal
 import { dailySoundEffects, playSFX, SFXAllNames } from '../utils/soundEffects';
 import type { GameSettings } from '../utils/types';
-import { SETTINGS } from '../utils/settings';
+import { ALL_SETTINGS } from '../utils/settings';
 import { DailyChrome } from '../components/DailyChrome';
 import { checkWasPlayedToday, daysSinceRelease, getToday, hasBeenReleased } from '../utils';
 
@@ -48,17 +48,17 @@ const COMING_SOON_ENTRY: Entry = {
 };
 
 const GAMES: Entry[] = [
-  SETTINGS.ARTE_RUIM,
-  SETTINGS.COMUNICACAO_ALIENIGENA,
-  SETTINGS.AQUI_O,
-  SETTINGS.TEORIA_DE_CONJUNTOS,
-  SETTINGS.CONTROLE_DE_ESTOQUE,
-  SETTINGS.FILMACO,
-  SETTINGS.ORGANIKU,
-  SETTINGS.PALAVREADO,
-  SETTINGS.PORTAIS_MAGICOS,
-  SETTINGS.QUARTETOS,
-  SETTINGS.ESPIONAGEM,
+  ALL_SETTINGS.ARTE_RUIM,
+  ALL_SETTINGS.COMUNICACAO_ALIENIGENA,
+  ALL_SETTINGS.AQUI_O,
+  ALL_SETTINGS.TEORIA_DE_CONJUNTOS,
+  ALL_SETTINGS.CONTROLE_DE_ESTOQUE,
+  ALL_SETTINGS.FILMACO,
+  ALL_SETTINGS.ORGANIKU,
+  ALL_SETTINGS.PALAVREADO,
+  ALL_SETTINGS.PORTAIS_MAGICOS,
+  ALL_SETTINGS.QUARTETOS,
+  ALL_SETTINGS.ESPIONAGEM,
   {
     ...COMING_SOON_ENTRY,
     HUB_ICON: DailyCrimeGameIcon,
@@ -69,8 +69,8 @@ const GAMES: Entry[] = [
 ];
 
 const CONTRIBUTIONS: Entry[] = [
-  SETTINGS.PICACO,
-  SETTINGS.TA_NA_CARA,
+  ALL_SETTINGS.PICACO,
+  ALL_SETTINGS.TA_NA_CARA,
   // {
   //   ...COMING_SOON_ENTRY,
   //   HUB_ICON: DailyContributionGame,
@@ -82,7 +82,6 @@ const CONTRIBUTIONS: Entry[] = [
 
 export function Hub() {
   const { isAdmin } = useCurrentUserContext();
-
   const [width, ref] = useCardWidthByContainerRef(3, { maxWidth: 128, minWidth: 48, gap: 16 });
   const today = getToday();
 
@@ -91,7 +90,7 @@ export function Hub() {
       <div className="menu menu--hub">
         <LanguageSwitch />
         <TimeLeft />
-        <SoundFX />
+        <SoundFXToggle />
       </div>
       <div className="hub" ref={ref}>
         <Typography.Title level={5}>
@@ -231,7 +230,7 @@ function GameButton({
   );
 }
 
-function SoundFX() {
+function SoundFXToggle() {
   const [volume, setVolume] = useGlobalLocalStorage('volume');
 
   useEffect(() => {
