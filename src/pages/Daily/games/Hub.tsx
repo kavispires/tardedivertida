@@ -5,8 +5,8 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTimer } from 'react-timer-hook';
 // Ant Design Resources
-import { MutedOutlined, SoundFilled } from '@ant-design/icons';
-import { Alert, Button, Divider, Switch, Typography } from 'antd';
+import { BugFilled, MutedOutlined, SoundFilled } from '@ant-design/icons';
+import { Alert, Button, Collapse, Divider, Switch, Typography } from 'antd';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
@@ -274,16 +274,29 @@ function TimeLeft() {
 }
 
 function SFXTest() {
-  if (isDevEnv) {
-    return (
-      <div className="hub-list">
-        {SFXAllNames.map((name) => (
-          <Button key={name} onClick={() => dailySoundEffects.play(name)} block>
-            {name}
-          </Button>
-        ))}
-      </div>
-    );
+  if (!isDevEnv) {
+    return null;
   }
-  return null;
+
+  const items = [
+    {
+      key: 'sounds',
+      label: (
+        <>
+          <BugFilled /> Sound Effects Library
+        </>
+      ),
+      children: (
+        <div className="hub-list">
+          {SFXAllNames.map((name) => (
+            <Button key={name} onClick={() => dailySoundEffects.play(name)} block>
+              {name}
+            </Button>
+          ))}
+        </div>
+      ),
+    },
+  ];
+
+  return <Collapse items={items} />;
 }
