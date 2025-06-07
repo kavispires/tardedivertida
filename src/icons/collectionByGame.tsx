@@ -11,6 +11,10 @@ export const collectionByCategory: Record<string, string[]> = {
     'UserStatsIcon',
     'UsersStatsIcon',
     'RatingIcon',
+    'IncreaseDifficultyIcon',
+    'BellIcon',
+    'NewFeatureIcon',
+    'WeekendIcon',
   ],
   general: [
     'TDIcon',
