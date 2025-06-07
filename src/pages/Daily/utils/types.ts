@@ -92,3 +92,41 @@ export interface GameSettings {
    */
   [key: string]: any;
 }
+
+/**
+ * Represents the options for the basic results of a daily game.
+ */
+export type BasicResultsOptions = {
+  /**
+   * The game name to be displayed in the result
+   */
+  type: string;
+  /**
+   * The challenge number for the game
+   */
+  challengeNumber: number;
+  /**
+   * The language in which the result is written
+   */
+  language: Language;
+  /**
+   * The total number of hearts available
+   */
+  totalHearts: number;
+  /**
+   * The number of remaining hearts
+   */
+  remainingHearts: number;
+  /**
+   * The title of the game
+   */
+  title?: string;
+  /**
+   * Whether to include the link to the game in the result
+   */
+  hideLink?: boolean;
+  /**
+   * Whether to include the hearts to the game in the result
+   */
+  hideHearts?: boolean;
+};
