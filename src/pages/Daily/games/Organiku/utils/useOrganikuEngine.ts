@@ -3,6 +3,7 @@ import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyL
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
+import { vibrate } from 'pages/Daily/utils/vibrate';
 import { useEffect } from 'react';
 // Internal
 import { SETTINGS } from './settings';
@@ -90,8 +91,10 @@ export function useOrganikuEngine(data: DailyOrganikuEntry, initialState: GameSt
 
       if (isLose) {
         playSFX('lose');
+        vibrate('lose');
       } else {
         playSFX('wrong');
+        vibrate('wrong');
       }
 
       setState((prevState) => ({

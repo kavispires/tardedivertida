@@ -3,6 +3,7 @@ import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyL
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
+import { vibrate } from 'pages/Daily/utils/vibrate';
 import { useEffect } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
@@ -79,6 +80,7 @@ export function useComunicacaoAlienigenaEngine(
       });
 
       playSFX('wrong');
+      vibrate('wrong');
       return updateSession({
         latestAttempt: Date.now(),
       });
@@ -101,6 +103,7 @@ export function useComunicacaoAlienigenaEngine(
       updatedStatus = STATUSES.WIN;
     } else {
       playSFX('alienBoo');
+      vibrate('lose');
     }
 
     if (updatedHearts === 0) {

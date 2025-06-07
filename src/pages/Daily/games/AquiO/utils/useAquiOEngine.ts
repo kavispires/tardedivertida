@@ -4,6 +4,7 @@ import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyL
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
+import { vibrate } from 'pages/Daily/utils/vibrate';
 import { useEffect, useMemo, useState } from 'react';
 import { useLocalStorage } from 'react-use';
 // Hooks
@@ -105,11 +106,13 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
       pause();
       setTimesUp(true);
       playSFX('lose');
+      vibrate('lose');
       return;
     }
 
     setState((prev) => ({ ...prev, hearts: prev.hearts - 1 }));
     playSFX('wrong');
+    vibrate('wrong');
   };
 
   const onModeChange = (newMode: 'normal' | 'challenge') => {
