@@ -130,7 +130,7 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
 
         <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
           <ResultsModalContent
-            challenge={data.number}
+            challengeNumber={data.number}
             win={isWin}
             guesses={guesses}
             sets={data.sets}

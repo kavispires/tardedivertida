@@ -145,7 +145,7 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
 
         <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
           <ResultsModalContent
-            challenge={data.number}
+            challengeNumber={data.number}
             win={isWin}
             corridors={data.corridors}
             guesses={guesses}

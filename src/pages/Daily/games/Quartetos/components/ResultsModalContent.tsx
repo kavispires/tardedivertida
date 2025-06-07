@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Typography } from 'antd';
@@ -16,31 +15,38 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { SETTINGS } from '../utils/settings';
 import type { DailyQuartetosEntry } from '../utils/types';
+import { writeResult } from '../utils/helpers';
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 type ResultsModalContentProps = {
-  challenge: number;
+  challengeNumber: number;
   win: boolean;
   sets: DailyQuartetosEntry['sets'];
   guesses: string[];
   hearts: number;
 };
 
-export function ResultsModalContent({ challenge, win, sets, guesses, hearts }: ResultsModalContentProps) {
-  const { language, dualTranslate } = useLanguage();
+export function ResultsModalContent({
+  challengeNumber,
+  win,
+  sets,
+  guesses,
+  hearts,
+}: ResultsModalContentProps) {
+  const { language } = useLanguage();
 
   const result = useMemo(
     () =>
       writeResult({
-        game: dualTranslate(SETTINGS.NAME),
-        challenge,
+        type: 'quartetos',
+        challengeNumber,
         sets,
         guesses,
-        win,
-        hearts,
+        remainingHearts: hearts,
+        totalHearts: SETTINGS.HEARTS,
         language,
       }),
-    [challenge, dualTranslate, guesses, language, win, sets, hearts],
+    [challengeNumber, guesses, language, sets, hearts],
   );
 
   return (
@@ -70,42 +76,4 @@ export function ResultsModalContent({ challenge, win, sets, guesses, hearts }: R
       <NextGameSuggestion />
     </SpaceContainer>
   );
-}
-
-function writeResult({
-  game,
-  challenge,
-  guesses,
-  sets,
-  language,
-  hearts,
-}: {
-  game: string;
-  challenge: number;
-  guesses: string[];
-  sets: DailyQuartetosEntry['sets'];
-  win: boolean;
-  language: Language;
-  hearts: number;
-}) {
-  const EMOJIS = ['🟩', '🟨', '🟧', '🟪'];
-  const EMOJIS_MAP = sets.reduce((acc: StringDictionary, set) => {
-    set.itemsIds.forEach((itemId) => {
-      acc[itemId] = EMOJIS[set.level];
-    });
-    return acc;
-  }, {});
-
-  const result = guesses.map((guess) => {
-    const guessItems = guess.split('-');
-    const guessResult = guessItems.map((itemId) => EMOJIS_MAP[itemId] || '❓').join(' ');
-    return guessResult;
-  });
-
-  return [
-    `${SETTINGS.EMOJI} ${getDailyName(language)} ${game} #${challenge}`,
-    `${writeHeartResultString(hearts, SETTINGS.HEARTS, ' ')}`,
-    ...result,
-    `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
-  ].join('\n');
 }

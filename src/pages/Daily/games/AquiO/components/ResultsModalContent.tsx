@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
+import { useMemo } from 'react';
 import { Fragment } from 'react/jsx-runtime';
 // Ant Design Resources
 import { Flex, Typography } from 'antd';
@@ -20,6 +20,7 @@ import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { SETTINGS } from '../utils/settings';
+import { writeResult } from '../utils/helpers';
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 const titles = [
@@ -77,18 +78,33 @@ export function ResultsModalContent({
   isLose,
 }: ResultsModalContentProps) {
   const { language, dualTranslate } = useLanguage();
-  const result = writeResult({
-    game: dualTranslate(SETTINGS.NAME),
-    title: dualTranslate(challengeTitle),
-    remainingHearts: hearts,
-    totalHearts: SETTINGS.HEARTS,
-    progress: Math.max(progress, maxProgress),
-    goal: SETTINGS.GOAL,
-    language,
-    hardMode,
-    challengeNumber,
-    attempts,
-  });
+
+  const result = useMemo(
+    () =>
+      writeResult({
+        type: 'aqui-o',
+        title: dualTranslate(challengeTitle),
+        remainingHearts: hearts,
+        totalHearts: SETTINGS.HEARTS,
+        progress: Math.max(progress, maxProgress),
+        goal: SETTINGS.GOAL,
+        language,
+        hardMode,
+        challengeNumber,
+        attempts,
+      }),
+    [
+      challengeTitle,
+      hearts,
+      progress,
+      maxProgress,
+      hardMode,
+      challengeNumber,
+      attempts,
+      dualTranslate,
+      language,
+    ],
+  );
 
   const title = getTitle(progress, hearts);
   const worse = maxProgress > progress;
@@ -152,40 +168,9 @@ export function ResultsModalContent({
             ))}
       </Flex>
 
-      <CopyToClipboardResult result={result} rows={3} />
+      <CopyToClipboardResult result={result} rows={4} />
 
       <NextGameSuggestion />
     </SpaceContainer>
   );
-}
-
-function writeResult({
-  game,
-  title,
-  challengeNumber,
-  remainingHearts,
-  totalHearts,
-  progress,
-  goal,
-  language,
-  hardMode,
-  attempts,
-}: {
-  game: string;
-  title: string;
-  challengeNumber: number;
-  remainingHearts: number;
-  totalHearts: number;
-  progress: number;
-  goal: number;
-  language: Language;
-  hardMode: boolean;
-  attempts: number;
-}): string {
-  return [
-    `${SETTINGS.EMOJI} ${getDailyName(language)} ${game} #${challengeNumber}`,
-    `${title}${hardMode ? '*' : ''}: ${progress}/${goal}  ${writeHeartResultString(remainingHearts, totalHearts)}`,
-    `Tentativas: ${attempts}`,
-    `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
-  ].join('\n');
 }

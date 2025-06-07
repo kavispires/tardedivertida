@@ -1,5 +1,5 @@
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
+import { useMemo } from 'react';
 // Ant Design Resources
 import { Typography } from 'antd';
 // Hooks
@@ -14,26 +14,38 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TextHighlight } from 'components/text';
 // Internal
 import { SETTINGS } from '../utils/settings';
+import { writeResult } from '../utils/helpers';
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 type ResultsModalContentProps = {
-  challenge: number;
+  challengeNumber: number;
   text: string;
   win: boolean;
   hearts: number;
   solution: BooleanDictionary;
 };
 
-export function ResultsModalContent({ text, challenge, win, hearts, solution }: ResultsModalContentProps) {
-  const { language, dualTranslate } = useLanguage();
+export function ResultsModalContent({
+  text,
+  challengeNumber,
+  win,
+  hearts,
+  solution,
+}: ResultsModalContentProps) {
+  const { language } = useLanguage();
 
-  const result = writeResult({
-    game: dualTranslate(SETTINGS.NAME),
-    challenge,
-    remainingHearts: hearts,
-    solution,
-    language,
-  });
+  const result = useMemo(
+    () =>
+      writeResult({
+        type: 'filmaco',
+        language,
+        challengeNumber,
+        totalHearts: SETTINGS.HEARTS,
+        remainingHearts: hearts,
+        solution,
+      }),
+    [language, challengeNumber, hearts, solution],
+  );
 
   return (
     <SpaceContainer vertical>
@@ -65,27 +77,4 @@ export function ResultsModalContent({ text, challenge, win, hearts, solution }: 
       <NextGameSuggestion />
     </SpaceContainer>
   );
-}
-
-function writeResult({
-  game,
-  challenge,
-  remainingHearts,
-  solution,
-  language,
-}: {
-  game: string;
-  challenge: number;
-  remainingHearts: number;
-  solution: BooleanDictionary;
-  language: Language;
-}) {
-  const totalLetters = Object.keys(solution).length;
-  const guessedLetters = Object.values(solution).filter(Boolean).length;
-
-  return [
-    `${SETTINGS.EMOJI} ${getDailyName(language)} ${game} #${challenge}`,
-    `${writeHeartResultString(remainingHearts, SETTINGS.HEARTS)} (${Math.round((guessedLetters / totalLetters) * 100)}%)`,
-    `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
-  ].join('\n');
 }
