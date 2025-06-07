@@ -1,1 +1,0 @@
-import{j as a,e as t,ea as o}from"./index-VyDJmS8H.js";import{D as x,S as c}from"./Sprite-eLxsU8UE.js";function g({id:r,width:s=x,padding:i=o,className:e=""}){const n=i===0?{padding:0}:{};return a.jsx("div",{className:t("sign-card",e),style:{width:`${s}px`,height:`${s}px`,...n},children:a.jsx(c,{source:"alien-signs",id:`sign-${r}`,width:s,padding:i})})}export{g as S};
