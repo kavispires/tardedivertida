@@ -24,7 +24,7 @@ export const NEWS_LIST: NewsItem[] = [
         <strong>
           <DualTranslate>{ALL_SETTINGS.ORGANIKU.HUB_NAME}</DualTranslate>
         </strong>{' '}
-        - descobra onde cada item pertence! Uai, é tipo Sudoku?
+        - descubra onde cada item pertence! Uai, é tipo Sudoku?
       </>
     ),
   },
