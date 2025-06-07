@@ -1,9 +1,11 @@
 import { chain, cloneDeep, merge, orderBy, random, sample, sampleSize, shuffle } from 'lodash';
 import moment from 'moment';
-import { loadLocalToday } from 'pages/Daily/utils';
+import { generateShareableResult, loadLocalToday } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
+import type { BasicResultsOptions } from 'pages/Daily/utils/types';
 // Utils
 import { SEPARATOR } from 'utils/constants';
+import { pluralize } from 'utils/helpers';
 // Internal
 import type { AquiODisc, DailyAquiOEntry, GameState } from './types';
 import { SETTINGS } from './settings';
@@ -143,4 +145,58 @@ function createCards(
 export function checkWeekend(dateString: string): boolean {
   const date = moment(dateString, 'YYYY-MM-DD');
   return [6, 0].includes(date.day()); // 0 represents Sunday and 6 represents Saturday in moment.js
+}
+
+/**
+ * Generates a shareable result for the game with the given options.
+ * @param options - The options for generating the result.
+ */
+export function writeResult({
+  title,
+  progress,
+  goal,
+  hardMode,
+  attempts,
+  ...rest
+}: BasicResultsOptions & {
+  progress: number;
+  goal: number;
+  hardMode: boolean;
+  attempts: number;
+}): string {
+  return generateShareableResult({
+    additionalLines: [
+      `${title}${hardMode ? '*' : ''}`,
+      `${progress}/${goal} discos (${attempts} ${pluralize(attempts, 'tentativa')})`,
+    ],
+    ...rest,
+  });
+}
+
+/**
+ * Generates the written result for the game with the state
+ * @param data - The DailyAquiOEntry data.
+ * @param language - The language for the result.
+ */
+export function getWrittenResult({
+  data,
+  language,
+}: {
+  data: DailyAquiOEntry;
+  language: Language;
+}) {
+  const state = getInitialState(data);
+  return writeResult({
+    type: 'aqui-o',
+    hideLink: true,
+    language,
+    challengeNumber: state.number,
+    totalHearts: SETTINGS.HEARTS,
+    remainingHearts: state.hearts,
+    title: data.title[language],
+    progress: state.maxProgress,
+    goal: state.goal,
+    hardMode: state.hardMode,
+    attempts: state.attempts,
+  });
 }

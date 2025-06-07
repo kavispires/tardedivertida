@@ -1,6 +1,7 @@
 import { cloneDeep, merge } from 'lodash';
-import { loadLocalToday } from 'pages/Daily/utils';
+import { generateShareableResult, loadLocalToday } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
+import type { BasicResultsOptions } from 'pages/Daily/utils/types';
 // Utils
 import { SEPARATOR } from 'utils/constants';
 // Internal
@@ -84,3 +85,50 @@ export const validateAttempts = (
 export const getGuessString = (fulfillments: GameState['fulfillments']) => {
   return fulfillments.map((f) => `${f.order}${SEPARATOR}${f.shelfIndex}`).join(',');
 };
+
+/**
+ * Generates a shareable result for the game with the given options.
+ * @param options - The options for generating the result.
+ */
+export function writeResult({
+  title,
+  evaluations,
+  ...rest
+}: BasicResultsOptions & {
+  evaluations: boolean[][];
+}): string {
+  const cleanUpAttempts = evaluations.map((row) =>
+    row.map((value) => {
+      return value ? '📫' : '🤬';
+    }),
+  );
+
+  return generateShareableResult({
+    additionalLines: cleanUpAttempts.map((row) => row.join(' ').trim()).filter(Boolean),
+    ...rest,
+  });
+}
+
+/**
+ * Generates the written result for the game with the state
+ * @param data - The DailyControleDeEstoqueEntry data.
+ * @param language - The language for the result.
+ */
+export function getWrittenResult({
+  data,
+  language,
+}: {
+  data: DailyControleDeEstoqueEntry;
+  language: Language;
+}) {
+  const state = getInitialState(data);
+  return writeResult({
+    type: 'controle-de-estoque',
+    hideLink: true,
+    language,
+    challengeNumber: state.number,
+    totalHearts: SETTINGS.HEARTS,
+    remainingHearts: state.hearts,
+    evaluations: state.evaluations,
+  });
+}

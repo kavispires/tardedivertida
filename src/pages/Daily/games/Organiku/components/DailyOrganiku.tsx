@@ -108,7 +108,7 @@ export function DailyOrganiku({ data }: DailyOrganikuProps) {
 
         <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
           <ResultsModalContent
-            challenge={data.number}
+            challengeNumber={data.number}
             win={isWin}
             hearts={hearts}
             itemsIds={data.itemsIds}

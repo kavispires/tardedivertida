@@ -140,7 +140,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
 
         <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
           <ResultsModalContent
-            challenge={data?.number}
+            challengeNumber={data?.number}
             isWin={isWin}
             hearts={hearts}
             words={data.words}
