@@ -28,7 +28,6 @@ All file paths here are relative to `/src`.
 ### Constants
 
 - Update `GAME_COLLECTION` in `/utils/constants.ts`.
-- Update `PHASES` in `/utils/phases.ts`.
 
 ### Banner
 

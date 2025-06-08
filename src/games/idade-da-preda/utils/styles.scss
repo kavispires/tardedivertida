@@ -1,0 +1,63 @@
+@use "styles/sass" as *;
+@use "../../../assets/fonts/luckiest-guy.scss" as *;
+
+.idade-items-board {
+  display: grid;
+  // grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: get-unit(1);
+
+  &__item {
+    &--selected {
+      outline: 3px solid get-color("red", 4);
+    }
+
+    &--current-age {
+      background: get-color("blue", 4) !important;
+    }
+  }
+}
+
+.concept-block {
+  &--editing {
+    outline: 3px solid get-color("red", 4);
+  }
+
+  &__sound {
+    display: flex;
+    gap: get-unit(2);
+    align-items: center;
+  }
+
+  &__syllable {
+    font-weight: bold;
+    text-transform: uppercase;
+    @include font-luckiest-guy;
+    font-size: 1.5em;
+
+    &--button {
+      cursor: pointer;
+
+      border-radius: get-unit(1);
+      padding: get-unit(0 2);
+
+      &:hover {
+        background: get-color("gray", 1);
+      }
+    }
+  }
+
+  &__placeholder-item {
+    opacity: 0.15;
+    filter: grayscale(80%);
+  }
+}
+
+.idade-transparent-button {
+  margin: 0;
+  border: 0;
+}
+
+.idp-selected {
+  outline: 3px solid get-color("red", 4);
+  border-radius: var(--border-radius);
+}
