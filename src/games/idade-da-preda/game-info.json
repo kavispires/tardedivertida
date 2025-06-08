@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "idade-da-preda",
-  "version": "0.0.10",
-  "release": "planned",
-  "available": false,
+  "version": "0.0.13",
+  "release": "dev",
+  "available": true,
   "title": {
     "pt": "Idade da Preda",
     "en": "Tongue Age"
@@ -21,9 +21,9 @@
   "appearance": {
     "clouds": "cloud",
     "cloudsAnimationType": "flow",
-    "primaryColor": "",
-    "backgroundColor": "",
-    "colorScheme": "light"
+    "primaryColor": "#c1b629",
+    "backgroundColor": "rgba(78,114,103, 0.85)",
+    "colorScheme": "dark"
   },
   "rules": {
     "pt": ["TBD"],
@@ -31,6 +31,7 @@
   },
   "playerCount": {
     "recommended": [4, 5, 6],
+    "best": 5,
     "min": 2,
     "max": 10
   },
@@ -38,5 +39,23 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive", "cooperative"]
+  "tags": ["cooperative", "competitive", "writing", "guessing"],
+  "options": [
+    {
+      "key": "nsfw",
+      "kind": "switch",
+      "label": "NSFW",
+      "description": "Allow NSFW content",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
+    }
+  ]
 }

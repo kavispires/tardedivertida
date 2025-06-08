@@ -9,7 +9,7 @@ import { buildBooleanDictionary } from './helpers';
 import { updateDataFirebaseDoc } from '../engine/collections';
 
 export const getItems = async (
-  quantity: number,
+  quantity?: number,
   options: {
     allowNSFW: boolean;
     decks?: string[];
@@ -54,6 +54,15 @@ export const getItems = async (
       }
     }
   });
+
+  // If no quantity is provided, return all items that match the options
+  if (!quantity) {
+    if (!options.cleanUp) {
+      return Object.values(itemsObj);
+    }
+    // If cleanUp function is provided, apply it to each item
+    return Object.values(itemsObj).map(options.cleanUp);
+  }
 
   // Get used items deck
   const usedItems: BooleanDictionary = await getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.ITEMS, {});

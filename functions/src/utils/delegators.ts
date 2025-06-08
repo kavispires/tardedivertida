@@ -14,7 +14,7 @@ import * as esquiaresEngine from '../engine/esquiadores';
 import * as fileiraDeFatosEngine from '../engine/fileira-de-fatos';
 import * as fofocaQuenteEngine from '../engine/fofoca-quente';
 import * as galeriaDeSonhosEngine from '../engine/galeria-de-sonhos';
-import * as portadosDesesperadosEngine from '../engine/porta-dos-desesperados';
+import * as idadeDaPreda from '../engine/idade-da-preda';
 import * as labirintoSecretoEngine from '../engine/labirinto-secreto';
 import * as linhasCruzadasEngine from '../engine/linhas-cruzadas';
 import * as megamixEngine from '../engine/megamix';
@@ -26,6 +26,7 @@ import * as naoSouRoboEngine from '../engine/nao-sou-robo';
 import * as ondaTelepaticaEngine from '../engine/onda-telepatica';
 import * as planejamentoUrbanoEngine from '../engine/planejamento-urbano';
 import * as polemicaDaVezEngine from '../engine/polemica-da-vez';
+import * as portadosDesesperadosEngine from '../engine/porta-dos-desesperados';
 import * as retratoFaladoEngine from '../engine/retrato-falado';
 import * as quemNaoMataEngine from '../engine/quem-nao-mata';
 import * as quemSouEuEngine from '../engine/quem-sou-eu';
@@ -58,6 +59,7 @@ const engines = {
   [GAME_NAMES.FOFOCA_QUENTE]: fofocaQuenteEngine,
   [GAME_NAMES.FILEIRA_DE_FATOS]: fileiraDeFatosEngine,
   [GAME_NAMES.GALERIA_DE_SONHOS]: galeriaDeSonhosEngine,
+  [GAME_NAMES.IDADE_DA_PREDA]: idadeDaPreda,
   [GAME_NAMES.LABIRINTO_SECRETO]: labirintoSecretoEngine,
   [GAME_NAMES.LINHAS_CRUZADAS]: linhasCruzadasEngine,
   [GAME_NAMES.MEGAMIX]: megamixEngine,

@@ -86,6 +86,11 @@ const GAMES = [
     key: 'GALERIA_DE_SONHOS',
   },
   {
+    name: 'idade-da-preda',
+    code: 'I',
+    key: 'IDADE_DA_PREDA',
+  },
+  {
     name: 'labirinto-secreto',
     code: 'Z',
     key: 'LABIRINTO_SECRETO',
