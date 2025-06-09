@@ -15,8 +15,8 @@ import { QualitySealIcon } from 'icons/QualitySealIcon';
 import { AvatarName, IconAvatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { Step } from 'components/steps';
 import { StepTitle } from 'components/text';
 // Internal
@@ -89,7 +89,7 @@ export function StepBetsBreakdown({
         ))}
       </div>
 
-      <Container
+      <TitledContainer
         title={
           <Flex>
             <AvatarName player={skier} /> <Translate pt="Apostas do Esquiador" en=" the skier's Bets" />
@@ -113,7 +113,7 @@ export function StepBetsBreakdown({
             </div>
           );
         })}
-      </Container>
+      </TitledContainer>
 
       <SpaceContainer>
         <Button icon={<LeftOutlined />} onClick={goToPreviousStep}>

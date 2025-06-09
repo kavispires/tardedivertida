@@ -11,7 +11,7 @@ import { CheckMarkIcon } from 'icons/CheckMarkIcon';
 import { AvatarName, IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
 import type { DrawingEntry } from '../utils/types';
 import { WarningDrawing } from './WarningDrawing';
@@ -40,7 +40,7 @@ export function EvaluationAllDrawings({
   const [canvasSize] = useGlobalLocalStorage('canvasSize');
 
   return (
-    <Container
+    <TitledContainer
       title={<Translate pt="Desenhos" en="Drawings" />}
       contentProps={{ className: 'div-container' }}
       className="contained"
@@ -78,6 +78,6 @@ export function EvaluationAllDrawings({
           </TransparentButton>
         );
       })}
-    </Container>
+    </TitledContainer>
   );
 }

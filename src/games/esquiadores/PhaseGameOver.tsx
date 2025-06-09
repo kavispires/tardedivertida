@@ -6,7 +6,7 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
 import achievementsReference from './utils/achievements';
 import type { PhaseGameOverState } from './utils/types';
@@ -18,7 +18,7 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
   return (
     <GameOverWrapper state={state} players={players} announcementIcon={<TrophyIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
-      <Container
+      <TitledContainer
         title={<Translate pt="Montanhas Pares" en="Best Pairs" />}
         className="mt-4"
         contentProps={{ direction: 'vertical' }}
@@ -33,7 +33,7 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
             showLevel={10}
           />
         ))}
-      </Container>
+      </TitledContainer>
     </GameOverWrapper>
   );
 }

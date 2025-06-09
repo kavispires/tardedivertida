@@ -15,8 +15,8 @@ import { getAnimationClass } from 'utils/helpers';
 import { SendButton, TransparentButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate, Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
@@ -244,7 +244,7 @@ export function StepPlaceItem({
         </RuleInstruction>
       )}
 
-      <Container
+      <TitledContainer
         contained
         title={
           <>
@@ -275,10 +275,10 @@ export function StepPlaceItem({
             </TransparentButton>
           ))}
         </Flex>
-      </Container>
+      </TitledContainer>
 
       {isJudge && (
-        <Container
+        <TitledContainer
           contained
           title={<Translate pt="As Regras Secretas" en="The Secret Rules" />}
           contentProps={{ direction: 'vertical' }}
@@ -289,7 +289,7 @@ export function StepPlaceItem({
           />
 
           <Solution solutions={solutions} />
-        </Container>
+        </TitledContainer>
       )}
 
       <TurnOrder

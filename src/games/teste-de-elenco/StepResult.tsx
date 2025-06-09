@@ -10,8 +10,8 @@ import { TimedButton } from 'components/buttons';
 import { SuspectCard } from 'components/cards/SuspectCard';
 import { ImageCard } from 'components/image-cards';
 import { DualTranslate, Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, TextHighlight, StepTitle } from 'components/text';
 // Internal
@@ -100,7 +100,7 @@ export function StepResult({ announcement, activeRole, goToNextStep, outcome, pl
         </TimedButton>
       </SpaceContainer>
 
-      <Container
+      <TitledContainer
         title={
           outcome === 'CONTINUE' ? (
             <Translate
@@ -118,7 +118,7 @@ export function StepResult({ announcement, activeRole, goToNextStep, outcome, pl
           players={players}
           playersSelections={playersSelections}
         />
-      </Container>
+      </TitledContainer>
     </Step>
   );
 }

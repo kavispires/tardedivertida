@@ -15,7 +15,7 @@ import { Avatar, IconAvatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { Step, type StepProps } from 'components/steps';
 import { StepTitle } from 'components/text';
 // Internal
@@ -87,9 +87,9 @@ export function StepResult({ user, announcement, goToNextStep, players, result, 
         })}
       </Space>
 
-      <Container title={<Translate pt="Palavra-chave da Rodada" en="Round's keyword" />}>
+      <TitledContainer title={<Translate pt="Palavra-chave da Rodada" en="Round's keyword" />}>
         <CaptchaTopic captcha={result} />
-      </Container>
+      </TitledContainer>
 
       <Summary user={user} robot={robot} />
 

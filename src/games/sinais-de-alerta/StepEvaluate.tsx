@@ -14,8 +14,8 @@ import { useMock } from 'hooks/useMock';
 import { SendButton } from 'components/buttons';
 import { CanvasResizer } from 'components/canvas';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
@@ -92,7 +92,7 @@ export function StepEvaluate({
   }, []);
 
   const descriptors = (
-    <Container title={<Translate pt="Descritores" en="Descriptors" />}>
+    <TitledContainer title={<Translate pt="Descritores" en="Descriptors" />}>
       <EvaluationAllDescriptors
         cards={cards}
         descriptorsIds={descriptorsIds}
@@ -100,11 +100,11 @@ export function StepEvaluate({
         activeItem={activeItem}
         matchedItems={matchedItems}
       />
-    </Container>
+    </TitledContainer>
   );
 
   const subjects = (
-    <Container title={<Translate pt="Sujeitos" en="Subjects" />}>
+    <TitledContainer title={<Translate pt="Sujeitos" en="Subjects" />}>
       <EvaluationAllSubjects
         cards={cards}
         subjectsIds={subjectsIds}
@@ -112,7 +112,7 @@ export function StepEvaluate({
         activeItem={activeItem}
         matchedItems={matchedItems}
       />
-    </Container>
+    </TitledContainer>
   );
 
   return (

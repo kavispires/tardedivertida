@@ -12,7 +12,7 @@ import { Avatar, IconAvatar } from 'components/avatars';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
 import type { GalleryEntry } from './utils/types';
 import achievementsReference from './utils/achievements';
@@ -23,7 +23,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
     <GameOverWrapper state={state} players={players} announcementIcon={<FlagIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
-      <Container title={<Translate pt="Dicas do jogo" en="Game's clues" />}>
+      <TitledContainer title={<Translate pt="Dicas do jogo" en="Game's clues" />}>
         {state.gallery.map((entry: GalleryEntry) => {
           return (
             <div className="u-gallery-entry" key={entry.id}>
@@ -49,7 +49,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
             </div>
           );
         })}
-      </Container>
+      </TitledContainer>
     </GameOverWrapper>
   );
 }

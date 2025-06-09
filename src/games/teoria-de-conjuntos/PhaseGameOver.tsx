@@ -10,7 +10,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
 import { achievementsReference } from './utils/achievements';
 import { DiagramSection } from './components/DiagramSection';
@@ -35,13 +35,13 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
 
       <Divider />
 
-      <Container
+      <TitledContainer
         contained
         title={<Translate pt="As Regras Secretas" en="The Secret Rules" />}
         contentProps={{ direction: 'vertical' }}
       >
         <Solution solutions={state.solutions} />
-      </Container>
+      </TitledContainer>
 
       <DiagramSection width={width} diagrams={state.diagrams} items={state.items} />
 

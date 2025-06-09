@@ -6,7 +6,7 @@ import { CrownIcon } from 'icons/CrownIcon';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
 import type { AdedanhxGalleryEntry } from './utils/types';
 import { achievementsReference } from './utils/achievements';
@@ -17,23 +17,23 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
     <GameOverWrapper state={state} players={players} announcementIcon={<CrownIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
-      <Container
+      <TitledContainer
         title={<Translate pt="Respostas Mais Rápidas" en="Fastest Answers" />}
         contentProps={{ className: 'final-gallery' }}
       >
         {state.topAnswers.map((entry: AdedanhxGalleryEntry) => {
           return <FinalGalleryEntry entry={entry} key={entry.id} />;
         })}
-      </Container>
+      </TitledContainer>
 
-      <Container
+      <TitledContainer
         title={<Translate pt="Sem Respostas" en="No Answers" />}
         contentProps={{ className: 'final-gallery' }}
       >
         {state.noAnswers.map((entry: AdedanhxGalleryEntry) => {
           return <FinalGalleryEntry entry={entry} key={entry.id} />;
         })}
-      </Container>
+      </TitledContainer>
     </GameOverWrapper>
   );
 }

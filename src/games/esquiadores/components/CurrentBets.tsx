@@ -1,12 +1,16 @@
-import type { GamePlayer, GamePlayers } from 'types/player';
-import type { Lodge } from '../utils/types';
-import { LodgeIcon } from 'icons/LodgeIcon';
-import { LODGE_COLORS } from '../utils/constants';
-import { useMemo } from 'react';
 import { orderBy } from 'lodash';
+import { useMemo } from 'react';
+// Types
+import type { GamePlayer, GamePlayers } from 'types/player';
+// Icons
+import { LodgeIcon } from 'icons/LodgeIcon';
+// Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
+// Internal
+import type { Lodge } from '../utils/types';
+import { LODGE_COLORS } from '../utils/constants';
 import { BettingChipValue } from './BettingChipValue';
 
 type CurrentBetsProps = {
@@ -56,7 +60,7 @@ export function CurrentSkierBets({ players, user }: CurrentSkierBetsProps) {
   );
 
   return (
-    <Container title={<Translate pt="Suas apostas" en="Your bets" />}>
+    <TitledContainer title={<Translate pt="Suas apostas" en="Your bets" />}>
       <div className="skier-bets">
         {playersList.map((player) => (
           <div key={player.id} className="lodge">
@@ -85,6 +89,6 @@ export function CurrentSkierBets({ players, user }: CurrentSkierBetsProps) {
           </div>
         ))}
       </div>
-    </Container>
+    </TitledContainer>
   );
 }

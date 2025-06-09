@@ -6,7 +6,7 @@ import type { Item } from 'types/tdr';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { ViewOr } from 'components/views';
 
 type MyThingsProps = {
@@ -17,7 +17,7 @@ type MyThingsProps = {
 
 export function MyThings({ hand = [], items, total }: MyThingsProps) {
   return (
-    <Container
+    <TitledContainer
       contained
       title={
         <>
@@ -51,6 +51,6 @@ export function MyThings({ hand = [], items, total }: MyThingsProps) {
           <Translate en="You don't have any items yet" pt="Você ainda não tem itens." />
         </p>
       </ViewOr>
-    </Container>
+    </TitledContainer>
   );
 }

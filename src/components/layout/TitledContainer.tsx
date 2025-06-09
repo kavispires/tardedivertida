@@ -5,9 +5,9 @@ import { Space, type SpaceProps } from 'antd';
 // Components
 import { Title, type TitleProps } from 'components/text';
 // Sass
-import './Container.scss';
+import './TitledContainer.scss';
 
-type ContainerProps = {
+type TitledContainerProps = {
   title: ReactNode;
   children: ReactNode;
   contained?: boolean;
@@ -19,7 +19,7 @@ type ContainerProps = {
 /**
  * Container component with title and center aligned children
  */
-export function Container({
+export function TitledContainer({
   title,
   children,
   className,
@@ -27,7 +27,7 @@ export function Container({
   titleProps,
   contentProps,
   ...spaceProps
-}: ContainerProps) {
+}: TitledContainerProps) {
   const { level = 4, size = 'xx-small', ...restTitleProps } = titleProps ?? {};
 
   const {

@@ -12,8 +12,8 @@ import { getMeanDuration } from 'utils/helpers';
 // Components
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
@@ -142,13 +142,13 @@ export function StepReveal({
         </TimedButton>
       </SpaceContainer>
 
-      <Container title={<Translate pt="Todas as respostas" en="All Answers" />}>
+      <TitledContainer title={<Translate pt="Todas as respostas" en="All Answers" />}>
         <AnswersTable
           correctCoordinatesPerPlayer={correctCoordinatesPerPlayer}
           players={players}
           grid={grid}
         />
-      </Container>
+      </TitledContainer>
     </Step>
   );
 }

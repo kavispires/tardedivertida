@@ -11,8 +11,8 @@ import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { TextHighlight, Title } from 'components/text';
 // Internal
 import { achievementsReference } from './utils/achievements';
@@ -34,14 +34,14 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
           reference={achievementsReference}
         />
 
-        <Container title={<Translate pt="Filmes" en="Movies" />}>
+        <TitledContainer title={<Translate pt="Filmes" en="Movies" />}>
           {state.finalMovies.map((movie: PlainObject) => (
             <SpaceContainer vertical key={movie.id}>
               <ImageCard id={movie.posterId} cardWidth={posterWidth} preview={false} />
               <TextHighlight>{movie.title}</TextHighlight>
             </SpaceContainer>
           ))}
-        </Container>
+        </TitledContainer>
       </SpaceContainer>
     </GameOverWrapper>
   );

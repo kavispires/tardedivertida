@@ -3,7 +3,7 @@ import type { GamePlayers } from 'types/player';
 // Components
 import { CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
 import type { ArteRuimDrawing } from '../utils/types';
 import { DrawingGrade } from './DrawingGrade';
@@ -15,7 +15,7 @@ type FinalGalleryProps = {
 
 export function FinalGallery({ drawings, players }: FinalGalleryProps) {
   return (
-    <Container title={<Translate pt="Galeria" en="Galeria" />}>
+    <TitledContainer title={<Translate pt="Galeria" en="Galeria" />}>
       <ul className="a-game-over__gallery">
         {drawings.map((entry: ArteRuimDrawing) => {
           const successRate = entry.successRate ?? 0;
@@ -31,6 +31,6 @@ export function FinalGallery({ drawings, players }: FinalGalleryProps) {
           );
         })}
       </ul>
-    </Container>
+    </TitledContainer>
   );
 }

@@ -11,7 +11,7 @@ import { AvatarStrip } from 'components/avatars';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
 import type { MapSegment, Tree } from './utils/types';
 import { achievementsReference } from './utils/achievements';
@@ -24,7 +24,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
   return (
     <GameOverWrapper state={state} players={players} announcementIcon={<FlagIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
-      <Container title={<Translate pt="Mapas dos Jogadores" en="Players' Maps" />}>
+      <TitledContainer title={<Translate pt="Mapas dos Jogadores" en="Players' Maps" />}>
         {sortedPlayers.map((player) => {
           const mapTrees = (player.map ?? []).map((segment: MapSegment) => forest[segment.treeId]);
           return (
@@ -38,7 +38,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
             </Space>
           );
         })}
-      </Container>
+      </TitledContainer>
     </GameOverWrapper>
   );
 }
