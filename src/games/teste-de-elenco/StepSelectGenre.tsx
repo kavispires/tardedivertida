@@ -15,8 +15,8 @@ import { IconAvatar } from 'components/avatars';
 import { SendButton, TransparentButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate, Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -63,7 +63,7 @@ export function StepSelectGenre({
         <MovieGenreRules />
       </RuleInstruction>
 
-      <Container
+      <TitledContainer
         title={<Translate en="Select the genre of te movie" pt="Selecione o gênero do filme" />}
         contentProps={{
           style: { gridTemplateColumns: `repeat(${genres.length}, 1fr)` },
@@ -86,9 +86,9 @@ export function StepSelectGenre({
             </TransparentButton>
           );
         })}
-      </Container>
+      </TitledContainer>
 
-      <Container
+      <TitledContainer
         title={<Translate en="Select the title of te movie" pt="Selecione o título do filme" />}
         contentProps={{
           style: { gridTemplateColumns: `repeat(${moviesTitles.length}, 1fr)` },
@@ -109,9 +109,9 @@ export function StepSelectGenre({
             </TransparentButton>
           );
         })}
-      </Container>
+      </TitledContainer>
 
-      <Container
+      <TitledContainer
         title={
           <Translate
             en="Select a thing important for the plot"
@@ -141,7 +141,7 @@ export function StepSelectGenre({
             </TransparentButton>
           );
         })}
-      </Container>
+      </TitledContainer>
 
       <SpaceContainer>
         <SendButton

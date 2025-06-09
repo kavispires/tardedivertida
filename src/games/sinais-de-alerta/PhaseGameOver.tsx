@@ -8,7 +8,7 @@ import { CrownIcon } from 'icons/CrownIcon';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
 import type { FinalGalleryEntry } from './utils/types';
 import { achievementsReference } from './utils/achievements';
@@ -21,7 +21,10 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
     <GameOverWrapper state={state} players={players} announcementIcon={<CrownIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
-      <Container title={<Translate pt="Sinais" en="Sings" />} contentProps={{ className: 'final-gallery' }}>
+      <TitledContainer
+        title={<Translate pt="Sinais" en="Sings" />}
+        contentProps={{ className: 'final-gallery' }}
+      >
         {state.gallery.map((entry: FinalGalleryEntry) => {
           return (
             <FinalGalleryItem
@@ -32,7 +35,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
             />
           );
         })}
-      </Container>
+      </TitledContainer>
     </GameOverWrapper>
   );
 }

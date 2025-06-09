@@ -11,7 +11,7 @@ import { Avatar } from 'components/avatars';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { DualTranslate, Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { Instruction } from 'components/text';
 // Internal
 import { achievementsReference } from './utils/achievements';
@@ -20,7 +20,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
   return (
     <GameOverWrapper state={state} players={players} announcementIcon={<CrownIcon />}>
       {!isEqual(state.winners, state.fairWinners) && (
-        <Container
+        <TitledContainer
           title={
             <Translate
               pt="Se a vida fosse justa, quem teria ganhado, com mais pontos, seria:"
@@ -43,7 +43,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
               })}
             </ul>
           </Instruction>
-        </Container>
+        </TitledContainer>
       )}
 
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />

@@ -6,7 +6,7 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
 import achievementsReference from './utils/achievements';
 import type { DuetosGalleryEntry } from './utils/types';
@@ -18,7 +18,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
   return (
     <GameOverWrapper state={state} players={players} announcementIcon={<TrophyIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
-      <Container title={<Translate pt="Melhores Pares" en="Best Pairs" />} className="mt-4">
+      <TitledContainer title={<Translate pt="Melhores Pares" en="Best Pairs" />} className="mt-4">
         {gallery.map((pair: DuetosGalleryEntry, index) => (
           <Pair
             key={pair.pairId}
@@ -28,7 +28,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
             placeholder={pair.pair[0]}
           />
         ))}
-      </Container>
+      </TitledContainer>
     </GameOverWrapper>
   );
 }

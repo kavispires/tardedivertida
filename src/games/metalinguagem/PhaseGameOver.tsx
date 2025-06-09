@@ -6,7 +6,7 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { Instruction } from 'components/text';
 // Internal
 import achievementsReference from './utils/achievements';
@@ -24,7 +24,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
         </Instruction>
       )}
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
-      <Container title={<Translate pt="Dicionário" en="Dictionary" />} className="mt-4">
+      <TitledContainer title={<Translate pt="Dicionário" en="Dictionary" />} className="mt-4">
         {gallery.map((word: MetalinguagemGalleryEntry) => (
           <Portmanteau
             key={`${word.itemsIds[0]}-${word.itemsIds[1]}`}
@@ -34,7 +34,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
             correct={word.correct}
           />
         ))}
-      </Container>
+      </TitledContainer>
     </GameOverWrapper>
   );
 }

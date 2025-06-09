@@ -5,7 +5,7 @@ import { FlagIcon } from 'icons/FlagIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
 import { CityMap } from './components/CityMap';
 // import { Achievements } from 'components/general/Achievements';
@@ -22,11 +22,11 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
         reference={achievementsReference}
       /> */}
 
-      <Container title={<Translate pt="Cidade Inaugurada" en="Final City" />}>
+      <TitledContainer title={<Translate pt="Cidade Inaugurada" en="Final City" />}>
         {state.city && state.cityLocationsDict && (
           <CityMap city={state.city} cityLocationsDict={state.cityLocationsDict} />
         )}
-      </Container>
+      </TitledContainer>
     </GameOverWrapper>
   );
 }

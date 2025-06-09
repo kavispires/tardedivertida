@@ -12,7 +12,7 @@ import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Avatar } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { Instruction } from 'components/text';
 // Internal
 import { Medal } from './Medal';
@@ -40,7 +40,7 @@ const unknownText = { pt: 'Desconhecido', en: 'Unknown' };
 
 export function Achievements({ players, achievements, reference, colorScheme }: AchievementsProps) {
   return (
-    <Container
+    <TitledContainer
       title={<Translate pt="Medalhas" en="Achievements" />}
       titleProps={{
         colorScheme,
@@ -109,6 +109,6 @@ export function Achievements({ players, achievements, reference, colorScheme }: 
           );
         })}
       </ul>
-    </Container>
+    </TitledContainer>
   );
 }

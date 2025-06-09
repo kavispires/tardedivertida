@@ -9,8 +9,8 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TurnOrder } from 'components/players';
 import { Step } from 'components/steps';
@@ -78,7 +78,7 @@ export function StepResults({
         />
       </RuleInstruction>
 
-      <Container title={<Translate pt="Projetos Corretos" en="Correct Projects" />}>
+      <TitledContainer title={<Translate pt="Projetos Corretos" en="Correct Projects" />}>
         {correctProjects.map((galleryEntry) => (
           <LocationCard
             key={galleryEntry.locationId}
@@ -95,10 +95,10 @@ export function StepResults({
             </Typography.Text>
           </RuleInstruction>
         )}
-      </Container>
+      </TitledContainer>
 
       {incorrectProjects.length > 0 && (
-        <Container title={<Translate pt="Projetos Incorretos" en="Incorrect Projects" />}>
+        <TitledContainer title={<Translate pt="Projetos Incorretos" en="Incorrect Projects" />}>
           {incorrectProjects.map((galleryEntry) => (
             <LocationCard
               key={galleryEntry.locationId}
@@ -108,7 +108,7 @@ export function StepResults({
               fontSize="small"
             />
           ))}
-        </Container>
+        </TitledContainer>
       )}
 
       {incorrectProjects.length > 0 && (

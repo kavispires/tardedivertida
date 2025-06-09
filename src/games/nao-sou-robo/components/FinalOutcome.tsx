@@ -7,7 +7,7 @@ import { UnderConstructionIcon } from 'icons/UnderConstructionIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { ListOfPlayers } from 'components/players/ListOfPlayers';
 import { Instruction, RuleInstruction, TextHighlight } from 'components/text';
 // Internal
@@ -46,7 +46,7 @@ export function FinalOutcome({ players, outcome, robot }: FinalOutcomeProps) {
 
   if (outcome === OUTCOME.ROBOT_WINS) {
     return (
-      <Container
+      <TitledContainer
         title={
           <>
             <IconAvatar icon={<NuclearExplosionIcon />} />{' '}
@@ -72,13 +72,13 @@ export function FinalOutcome({ players, outcome, robot }: FinalOutcomeProps) {
             }
           />
         </Instruction>
-      </Container>
+      </TitledContainer>
     );
   }
 
   if (outcome === OUTCOME.TOO_SUSPICIOUS) {
     return (
-      <Container
+      <TitledContainer
         title={
           <>
             <IconAvatar icon={<UnderConstructionIcon />} />{' '}
@@ -94,7 +94,7 @@ export function FinalOutcome({ players, outcome, robot }: FinalOutcomeProps) {
           <br />
           <ListOfPlayers list={mostSuspicious} players={players} prefix="sus" />
         </RuleInstruction>
-      </Container>
+      </TitledContainer>
     );
   }
 

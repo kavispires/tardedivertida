@@ -5,7 +5,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
 import type { GalleryEntry } from '../utils/types';
 
@@ -16,7 +16,7 @@ type GameOverGalleryProps = {
 export function GameOverGallery({ gallery }: GameOverGalleryProps) {
   const cardWidth = useCardWidth(6, { gap: 8, minWidth: 60, maxWidth: 200 });
   return (
-    <Container title={<Translate pt="Histórias" en="Stories" />}>
+    <TitledContainer title={<Translate pt="Histórias" en="Stories" />}>
       <Image.PreviewGroup>
         <ul className="c-gallery">
           {gallery.map((entry, index) => {
@@ -36,6 +36,6 @@ export function GameOverGallery({ gallery }: GameOverGalleryProps) {
           })}
         </ul>
       </Image.PreviewGroup>
-    </Container>
+    </TitledContainer>
   );
 }

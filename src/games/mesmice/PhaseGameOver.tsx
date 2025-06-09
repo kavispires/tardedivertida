@@ -6,7 +6,7 @@ import { CrownIcon } from 'icons/CrownIcon';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
 import type { MesmiceGalleryEntry } from './utils/types';
 import { achievementsReference } from './utils/achievements';
@@ -17,7 +17,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
     <GameOverWrapper state={state} players={players} announcementIcon={<CrownIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
-      <Container
+      <TitledContainer
         title={<Translate pt="Objetos, Dicas e Características" en="Objects, Clues and Features" />}
         contentProps={{ className: 'final-gallery' }}
       >
@@ -31,7 +31,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
             />
           );
         })}
-      </Container>
+      </TitledContainer>
     </GameOverWrapper>
   );
 }

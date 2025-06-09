@@ -3,7 +3,7 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 import { Flex, Popover, Tag } from 'antd';
 // Components
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { Instruction } from 'components/text';
 // Internal
 import type { WordLength } from '../utils/types';
@@ -29,7 +29,7 @@ export function WordLengths({ wordLengths, highlightLength, phase }: WordLengthP
 
   return (
     <Instruction contained>
-      <Container
+      <TitledContainer
         title={
           <>
             {phase === 'WORD_CREATION' ? (
@@ -76,7 +76,7 @@ export function WordLengths({ wordLengths, highlightLength, phase }: WordLengthP
             />
           </Instruction>
         )}
-      </Container>
+      </TitledContainer>
     </Instruction>
   );
 }

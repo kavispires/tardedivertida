@@ -7,7 +7,7 @@ import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { StepTitle } from 'components/text';
@@ -77,7 +77,7 @@ export function StepWaitPlaceItem({
       {!isJudge && <MyThings hand={user.hand ?? []} items={items} total={targetItemCount} />}
 
       {isJudge && (
-        <Container
+        <TitledContainer
           contained
           title={<Translate pt="As Regras Secretas" en="The Secret Rules" />}
           contentProps={{ direction: 'vertical' }}
@@ -88,7 +88,7 @@ export function StepWaitPlaceItem({
           />
 
           <Solution solutions={solutions} />
-        </Container>
+        </TitledContainer>
       )}
 
       <TurnOrder

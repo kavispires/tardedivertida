@@ -6,7 +6,7 @@ import { RobotIcon } from 'icons/RobotIcon';
 import { IconAvatar } from 'components/avatars';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { ListOfPlayers } from 'components/players/ListOfPlayers';
 // Internal
 import type { RobotGalleryEntry } from '../utils/types';
@@ -18,7 +18,7 @@ type GameOverGalleryProps = {
 
 export function GameOverGallery({ gallery, players }: GameOverGalleryProps) {
   return (
-    <Container title={<Translate pt="Galeria de Captchas" en="Captcha Gallery" />}>
+    <TitledContainer title={<Translate pt="Galeria de Captchas" en="Captcha Gallery" />}>
       {gallery.map((entry) => (
         <div key={entry.round} className="game-over-captcha">
           <div className="game-over-captcha__squares">
@@ -46,6 +46,6 @@ export function GameOverGallery({ gallery, players }: GameOverGalleryProps) {
           </div>
         </div>
       ))}
-    </Container>
+    </TitledContainer>
   );
 }

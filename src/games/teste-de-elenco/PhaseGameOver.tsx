@@ -14,7 +14,7 @@ import { Achievements } from 'components/general/Achievements';
 import { HostOnlyContainer } from 'components/host';
 import { ImageCard } from 'components/image-cards';
 import { DualTranslate, Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { TextHighlight, Title } from 'components/text';
 // Internal
 import type { FeatureFilm } from './utils/types';
@@ -34,7 +34,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
     <GameOverWrapper state={state} players={players} announcementIcon={<CrownIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
-      <Container
+      <TitledContainer
         title={<Translate pt="O Filme" en="The Movie" />}
         contentProps={{ className: 'final-gallery' }}
       >
@@ -71,10 +71,10 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
             </>
           )}
         </Space>
-      </Container>
+      </TitledContainer>
 
       <HostOnlyContainer>
-        <Container title="Chat GPT Prompt">
+        <TitledContainer title="Chat GPT Prompt">
           <Input.TextArea
             readOnly
             value={chatGPTMoviePrompt(state.movie, language)}
@@ -82,7 +82,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
             cols={20}
             className="chat-gpt"
           />
-        </Container>
+        </TitledContainer>
       </HostOnlyContainer>
     </GameOverWrapper>
   );

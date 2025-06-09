@@ -6,7 +6,7 @@ import type { GamePlayers } from 'types/player';
 // Components
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
 import type { ExtendedObjectFeatureCard } from '../utils/types';
 import { ObjectFeature } from './ObjectFeature';
@@ -19,7 +19,7 @@ type VotesProps = {
 
 export function Votes({ votes, players, features }: VotesProps) {
   return (
-    <Container title={<Translate pt="Votos" en="Votes" />}>
+    <TitledContainer title={<Translate pt="Votos" en="Votes" />}>
       <div className="voting-track" style={{ gridTemplateColumns: `repeat(${votes.length}, 1fr)` }}>
         {votes.map((entry, index) => (
           <div key={index} className="voting-track__item">
@@ -38,6 +38,6 @@ export function Votes({ votes, players, features }: VotesProps) {
           </div>
         ))}
       </div>
-    </Container>
+    </TitledContainer>
   );
 }

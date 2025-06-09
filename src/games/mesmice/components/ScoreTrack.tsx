@@ -6,7 +6,7 @@ import { BoxXIcon } from 'icons/BoxXIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { HistoryEntry } from '../utils/types';
@@ -20,7 +20,7 @@ type ScoreTrackProps = {
 
 export function ScoreTrack({ history, hideInstructions = false }: ScoreTrackProps) {
   return (
-    <Container
+    <TitledContainer
       titleProps={{ size: 'xx-small' }}
       title={<Translate en="Progress" pt="Progresso" />}
       contentProps={{ direction: 'vertical' }}
@@ -74,6 +74,6 @@ export function ScoreTrack({ history, hideInstructions = false }: ScoreTrackProp
           />
         </RuleInstruction>
       )}
-    </Container>
+    </TitledContainer>
   );
 }

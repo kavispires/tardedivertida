@@ -13,8 +13,8 @@ import { IconAvatar } from 'components/avatars';
 import { SendButton, TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
-import { Container } from 'components/layout/Container';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { TextHighlight } from 'components/text';
 // Internal
 import type { ExtendedTextCard, MapSegment, OnSubmitMapFunction, Tree } from '../utils/types';
@@ -172,7 +172,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
         </Space>
       )}
 
-      <Container title={<Translate pt="Cartas" en="Hand" />} contained>
+      <TitledContainer title={<Translate pt="Cartas" en="Hand" />} contained>
         {(user.hand ?? []).map((card: ExtendedTextCard) => (
           <TransparentButton
             onClick={() => onSetCard(card)}
@@ -191,7 +191,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
         >
           <Translate pt="Pular árvore" en="Skip tree" />
         </Button>
-      </Container>
+      </TitledContainer>
 
       <SpaceContainer>
         <SendButton
