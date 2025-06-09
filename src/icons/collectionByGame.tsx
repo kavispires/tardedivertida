@@ -97,6 +97,7 @@ export const collectionByCategory: Record<string, string[]> = {
     'DailySuspectGame',
     'DailyContributionGame',
     'DailyJudgingGameIcon',
+    'DailySuspectGameIcon',
   ],
   testPage: ['EarthIcon', 'HeartIcon'],
 };
@@ -196,6 +197,7 @@ export const collectionByGame: Record<string, string[]> = {
     'ReviewIcon',
     'TrendingIcon',
     'TargetIcon',
+    'TwitterIcon',
   ],
   'portas-dos-desesperados': [
     'MagicBookIcon',
@@ -232,6 +234,7 @@ export const collectionByGame: Record<string, string[]> = {
     'LoveIcon',
     'BrainIcon',
     'SupportIcon',
+    'SpeakerIcon',
   ],
   'testemunha-ocular': [
     'EyeIcon',
@@ -285,6 +288,7 @@ export const collectionByGame: Record<string, string[]> = {
     'MapCityZonesIcon',
     'AngryMayorIcon',
   ],
+  'idade-da-preda': ['PencilIcon', 'DictionaryIcon', 'EvaluateIcon', 'CreateIcon'],
 };
 
 const flatGeneralList = Object.values(collectionByCategory).flat();
