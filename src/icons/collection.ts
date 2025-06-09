@@ -236,7 +236,6 @@ export * from './SnowHillIcon';
 export * from './SocksIcon';
 export * from './SofaIcon';
 export * from './SoundWaveIcon';
-export * from './SpeakerIcon';
 export * from './SpeechBubbleAcceptedIcon';
 export * from './SpeechBubbleAlertIcon';
 export * from './SpeechBubbleDeclinedIcon';

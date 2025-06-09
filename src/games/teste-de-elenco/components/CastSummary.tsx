@@ -3,6 +3,7 @@ import type { ComponentType } from 'react';
 import { CheckOutlined, QuestionOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 // Icons
+import { AudioIcon } from 'icons/AudioIcon';
 import { BrainIcon } from 'icons/BrainIcon';
 import { ComedyIcon } from 'icons/ComedyIcon';
 import { FireIcon } from 'icons/FireIcon';
@@ -11,7 +12,6 @@ import { LoveIcon } from 'icons/LoveIcon';
 import { MovieStarIcon } from 'icons/MovieStarIcon';
 import { PlayerIcon } from 'icons/PlayerIcon';
 import { SkullIcon } from 'icons/SkullIcon';
-import { SpeakerIcon } from 'icons/SpeakerIcon';
 import { StarIcon } from 'icons/StarIcon';
 import { SupportIcon } from 'icons/SupportIcon';
 // Components
@@ -32,7 +32,7 @@ export function CastSummary({ movie }: CastSummaryProps) {
     important: MovieStarIcon,
     love: LoveIcon,
     comic: ComedyIcon,
-    voice: SpeakerIcon,
+    voice: AudioIcon,
     minor: PlayerIcon,
     visual: FireIcon,
     dead: KnifeIcon,
