@@ -1,3 +1,42 @@
+#!/bin/bash
+# filepath: /Users/kavispires/Repositories/tardedivertida/.husky/pre-commit
+
+# Check if commit message starts with "["
+check_commit_message_format() {
+  # Get the commit message from the prepared commit message
+  COMMIT_MSG_FILE=$(git rev-parse --git-dir)/COMMIT_EDITMSG
+
+  # First, detect if this is an amend operation
+  if [ -n "$(git rev-list -n 1 --all 2>/dev/null)" ] && [ -f "$COMMIT_MSG_FILE" ]; then
+    FIRST_LINE=$(head -n 1 "$COMMIT_MSG_FILE")
+    # Check if first line is a comment (indicates an amend operation)
+    if [[ "$FIRST_LINE" =~ ^# ]]; then
+      echo "⏩ Detected amend operation - skipping commit message check"
+      return 0
+    fi
+  fi
+
+  # Also skip if it's a merge
+  if [ -f "$(git rev-parse --git-dir)/MERGE_MSG" ]; then
+    echo "⏩ Skipping commit message format check for merge"
+    return 0
+  fi
+
+  # Check the message content
+  if [ -f "$COMMIT_MSG_FILE" ]; then
+    COMMIT_MSG=$(cat "$COMMIT_MSG_FILE")
+
+    # Check if the message starts with "["
+    if ! [[ "$COMMIT_MSG" =~ ^\[ ]]; then
+      echo "❌ ERROR: Commit message must start with '['"
+      echo "Example: [Game] Fixed bug in game logic"
+      exit 1
+    fi
+  else
+    echo "⚠️  No commit message file found - skipping format check"
+  fi
+}
+
 # Function to increment the patch version in the game-info.json file
 # Accepts one argument: the path to the game-info.json file
 function increment_patch_version {
@@ -114,5 +153,7 @@ sort_imports() {
   echo "✅ Done"
 }
 
+# Run checks in sequence
+check_commit_message_format
 sort_imports
 check_game_versions
