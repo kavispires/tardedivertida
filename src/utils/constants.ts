@@ -274,6 +274,7 @@ export const GAME_COLLECTION = {
   FILEIRA_DE_FATOS: 'fileira-de-fatos',
   FOFOCA_QUENTE: 'fofoca-quente',
   GALERIA_DE_SONHOS: 'galeria-de-sonhos',
+  IDADE_DA_PREDA: 'idade-da-preda',
   INSTRUMENTOS_CODIFICADOS: 'instrumentos-codificados', // upcoming
   LABIRINTO_SECRETO: 'labirinto-secreto',
   LINHAS_CRUZADAS: 'linhas-cruzadas',

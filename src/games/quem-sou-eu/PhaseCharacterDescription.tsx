@@ -49,12 +49,7 @@ export function PhaseCharacterDescription({ players, state }: PhaseProps) {
         }}
       >
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state?.round}
-          onPressButton={goToNextStep}
-          buttonText=" "
-          time={5}
-        ></RoundAnnouncement>
+        <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5} />
 
         {/* Step 0 */}
         <StepSelectGlyphs
