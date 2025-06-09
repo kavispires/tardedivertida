@@ -2,16 +2,16 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "idade-da-preda",
-  "version": "0.0.14",
-  "release": "dev",
+  "version": "0.9.0",
+  "release": "beta",
   "available": true,
   "title": {
     "pt": "Idade da Preda",
     "en": "Tongue Age"
   },
   "popularName": {
-    "pt": "",
-    "en": ""
+    "pt": "O de criar a linguagem",
+    "en": "The one about creating language"
   },
   "basedOn": "aDaDaD",
   "summary": {
