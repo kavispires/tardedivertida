@@ -12,7 +12,7 @@
     }
 
     &--current-age {
-      background: get-color("blue", 4) !important;
+      background: color-mix(in srgb, get-color("brown", 2), get-color("yellow", 4) 20%) !important;
     }
   }
 }
@@ -60,4 +60,102 @@
 .idp-selected {
   outline: 3px solid get-color("red", 4);
   border-radius: var(--border-radius);
+}
+
+.new-concepts-container {
+  border: get-unit(1) dashed get-color("gray", 2);
+  padding: get-unit(4);
+  border-radius: var(--border-radius);
+}
+
+.new-concept-block {
+  outline: 3px solid get-color("yellow", 5);
+}
+
+.idp-item-name {
+  font-weight: bold;
+  text-transform: uppercase;
+  @include font-luckiest-guy;
+  font-size: 1.5em;
+  letter-spacing: 1px;
+}
+
+.idp-item-name-speech {
+  font-weight: bold;
+  text-transform: uppercase;
+  @include font-luckiest-guy;
+  font-size: 1.1em;
+  letter-spacing: 1px;
+}
+
+.idp-gallery {
+  &__left-page {
+    display: flex;
+
+    background-color: get-color("white", 6);
+    background: linear-gradient(
+      to right,
+      get-color("white", 4) 0%,
+      get-color("white", 5) 88%,
+      get-color("white", 8) 96%,
+      get-color("white", 9) 100%
+    );
+    padding: get-unit(2);
+  }
+
+  &__right-page {
+    padding: get-unit(2);
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "credits"
+      "guesses"
+      "result"
+      "controls";
+    background: linear-gradient(
+      to left,
+      get-color("white", 4) 0%,
+      get-color("white", 5) 88%,
+      get-color("white", 8) 96%,
+      get-color("white", 9) 100%
+    );
+  }
+
+  &__definition {
+    width: 100%;
+  }
+
+  &__letter {
+    font-size: 32px;
+    text-transform: uppercase;
+    @include font-luckiest-guy;
+    color: get-color("black", 5, 0.2);
+    margin-right: get-unit(4);
+  }
+
+  &__credits {
+    grid-area: credits;
+
+    border-radius: get-unit(2);
+    padding: get-unit(2 3);
+  }
+
+  &__guesses {
+    grid-area: guesses;
+
+    border-radius: get-unit(2);
+    padding: get-unit(2 3);
+    max-height: 52vh;
+    overflow-y: auto;
+  }
+
+  &__guess {
+    margin-top: get-unit(1);
+  }
+
+  &__result {
+    grid-area: result;
+    border-radius: get-unit(2);
+    padding: get-unit(2 3);
+  }
 }

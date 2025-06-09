@@ -66,6 +66,9 @@ const SessionFofocaQuente = lazy(
 const SessionGaleriaDeSonhos = lazy(
   () => import('games/galeria-de-sonhos/SessionGaleriaDeSonhos' /* webpackChunkName: "galeria-de-sonhos" */),
 );
+const SessionIdadeDaPreda = lazy(
+  () => import('games/idade-da-preda/SessionIdadeDaPreda' /* webpackChunkName: "idade-da-preda" */),
+);
 const SessionLabirintoSecreto = lazy(
   () => import('games/labirinto-secreto/SessionLabirintoSecreto' /* webpackChunkName: "labirinto-secreto" */),
 );
@@ -259,6 +262,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage />}>
             <SessionFofocaQuente />
+          </Suspense>
+        );
+      case GAME_COLLECTION.IDADE_DA_PREDA:
+        return (
+          <Suspense fallback={<LoadingPage />}>
+            <SessionIdadeDaPreda />
           </Suspense>
         );
       case GAME_COLLECTION.GALERIA_DE_SONHOS:
