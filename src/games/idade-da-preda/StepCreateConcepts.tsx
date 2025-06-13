@@ -14,7 +14,7 @@ import { SendButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps';
+import { Step } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { Concept, SubmitConceptsPayload } from './utils/types';
@@ -32,12 +32,12 @@ type StepCreateConceptsProps = {
   round: GameRound;
   items: Dictionary<Item>;
   onSubmitConcepts: (payload: SubmitConceptsPayload) => void;
-} & Pick<StepProps, 'announcement'>;
+};
 
 export function StepCreateConcepts({
   players,
   user,
-  announcement,
+
   items,
   maxProposals,
   round,
@@ -124,7 +124,7 @@ export function StepCreateConcepts({
   };
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step fullWidth>
       <StepTitle>
         <Translate pt={<>Criação de Conceitos</>} en={<>Concept Creation</>} />
       </StepTitle>
