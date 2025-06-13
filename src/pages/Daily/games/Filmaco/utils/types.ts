@@ -16,5 +16,6 @@ export type DailyFilmacoEntry = {
   setId: string;
   title: string;
   itemsIds: string[];
-  year: number;
+  year: number | string;
+  isDoubleFeature?: boolean;
 };
