@@ -1,1 +1,0 @@
-import{fh as n}from"./index-CRRmUWcy.js";var e,t;function p(){if(t)return e;t=1;var i=n(),a=function(){try{var r=i(Object,"defineProperty");return r({},"",{}),r}catch{}}();return e=a,e}export{p as r};
