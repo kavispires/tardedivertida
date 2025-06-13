@@ -1,0 +1,1 @@
+import{j as e}from"./index-Bb2lwD9c.js";import{C as s}from"./CustomAvatarWrapper-Cu8lSTxL.js";const t="/tardedivertida/assets/super-heroes-BoxNuE4M.svg",a=r=>e.jsx(s,{sprite:t,prefix:"super-hero",...r});export{a as S};
