@@ -1,1 +1,0 @@
-import{ce as I,cj as c,gc as g,cg as p}from"./index-BHWKQGUY.js";var a,s;function y(){if(s)return a;s=1;var t=I(),u=c(),n=g(),l=p();function f(q,e,r){if(!l(r))return!1;var i=typeof e;return(i=="number"?u(r)&&n(e,r.length):i=="string"&&e in r)?t(r[e],q):!1}return a=f,a}export{y as r};
