@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "testemunha-ocular",
-  "version": "4.0.25",
+  "version": "4.0.26",
   "release": "stable",
   "available": true,
   "title": {
@@ -94,12 +94,12 @@
       "description": "Choose the suspect type of deck to play with",
       "values": [
         {
-          "label": "Regular (recommended)",
-          "value": "regular"
+          "label": "Ghibli (recommended)",
+          "value": "ghibli"
         },
         {
-          "label": "Ghibli",
-          "value": "ghibli"
+          "label": "Midjourney",
+          "value": "regular"
         },
         {
           "label": "Realistic",

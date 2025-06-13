@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "ta-na-cara",
-  "version": "1.1.69",
+  "version": "1.1.70",
   "release": "deprecated",
   "available": false,
   "title": {
@@ -64,12 +64,12 @@
       "description": "Choose the suspect type of deck to play with",
       "values": [
         {
-          "label": "Regular (recommended)",
-          "value": "regular"
+          "label": "Ghibli (recommended)",
+          "value": "ghibli"
         },
         {
-          "label": "Ghibli",
-          "value": "ghibli"
+          "label": "Midjourney",
+          "value": "regular"
         },
         {
           "label": "Realistic",
