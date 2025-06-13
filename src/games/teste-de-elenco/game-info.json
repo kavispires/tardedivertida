@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "teste-de-elenco",
-  "version": "2.0.43",
+  "version": "2.0.44",
   "release": "stable",
   "available": true,
   "title": {
@@ -76,12 +76,12 @@
       "description": "Choose the suspect type of deck to play with",
       "values": [
         {
-          "label": "Regular (recommended)",
-          "value": "regular"
+          "label": "Ghibli (recommended)",
+          "value": "ghibli"
         },
         {
-          "label": "Ghibli",
-          "value": "ghibli"
+          "label": "Midjourney",
+          "value": "regular"
         },
         {
           "label": "Realistic",
