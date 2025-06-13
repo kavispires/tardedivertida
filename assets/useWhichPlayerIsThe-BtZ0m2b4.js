@@ -1,1 +1,0 @@
-import{aI as f,r as s,dI as E}from"./index-CipYeqhl.js";function d(u="activePlayer",c={},e={}){const[i]=f("userId"),[o,r]=s.useState(E),[n,P]=s.useState(!1);return s.useEffect(()=>{const I=c==null?void 0:c[u];r((e==null?void 0:e[I])??{}),P((c==null?void 0:c[u])===i)},[e,u,c,i]),[o,n]}export{d as u};
