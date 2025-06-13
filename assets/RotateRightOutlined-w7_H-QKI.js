@@ -1,1 +1,0 @@
-import{r as t,aA as n,a4 as r,gb as i,gc as R}from"./index-C5cVNxH1.js";var f=function(e,a){return t.createElement(n,r({},e,{ref:a,icon:i}))},d=t.forwardRef(f),c=function(e,a){return t.createElement(n,r({},e,{ref:a,icon:R}))},s=t.forwardRef(c);export{d as R,s as a};
