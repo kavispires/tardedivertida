@@ -1,0 +1,1 @@
+import{aI as o,r as s,cN as r}from"./index-sFOv56G6.js";import{u as a}from"./toFinite-M68g1Cyo.js";import{m as n}from"./StepSwitcher-OMQUTJcB.js";function l(u,m=[],c){n(),o("userId");const[e,i]=s.useState(!1),t=r([3,4,4,5,6]);return a({duration:t,onExpire:()=>{},disabled:e})}export{l as u};
