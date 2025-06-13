@@ -40,9 +40,7 @@ export function ItemsBoard({ items, selectedItems = [], onSelectItem, currentAge
           <TransparentButton key={item.id} onClick={() => onSelectItem(item.id)}>
             <motion.div
               {...getAnimation(newItem ? 'bounceIn' : 'flipInX', {
-                delay:
-                  (newItem ? 5 : 4) +
-                  (newItem ? 0.1 : 0.05) * (Math.floor(index / columnsCount) + (index % columnsCount)),
+                delay: (newItem ? 1 : 0) + 0.1 * (Math.floor(index / columnsCount) + (index % columnsCount)),
               })}
             >
               <ItemCard
