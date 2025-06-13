@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import moment from 'moment';
 import { useState } from 'react';
 // Ant Design Resources
 import { BellFilled } from '@ant-design/icons';
@@ -13,8 +14,27 @@ import { NEWS_LIST } from './NewsList';
 
 const NEWS_KEY = 'daily-news';
 
+/**
+ * Checks if the news modal should auto-open based on the last seen news date
+ * and whether the latest news is today or after.
+ *
+ * @returns True if the modal should auto-open, false otherwise.
+ */
+const shouldAutoOpenNews = () => {
+  const lastSeenNewsDate = localStorage.getItem(NEWS_KEY);
+
+  // If no last seen date (first visit), should open
+  if (!lastSeenNewsDate) return true;
+
+  // Check if current news is newer than what user has seen
+  const isTodayOrAfter = moment().isSameOrAfter(moment(NEWS_LIST[0].date), 'day');
+  const hasNewContent = moment(NEWS_LIST[0].date).isAfter(moment(lastSeenNewsDate));
+
+  return isTodayOrAfter && hasNewContent;
+};
+
 export function News() {
-  const [open, setOpen] = useState(localStorage.getItem(NEWS_KEY) !== NEWS_LIST[0].date);
+  const [open, setOpen] = useState(shouldAutoOpenNews());
 
   const onDismiss = () => {
     setOpen(false);
