@@ -147,6 +147,9 @@ export const feedEmulatorDaily = async () => {
     filmaco: JSON.parse(
       '{"id":"2023-10-31","number":0,"type":"filmaco","setId":"dms-5-pt","title":"007 - O Espião que era sexy pra cacete","itemsIds":["763","1971","1988"],"year":1977}',
     ),
+    // filmaco: JSON.parse(
+    //   '{"id":"2023-10-31","number":0,"type":"filmaco","setId":"dms-5-pt","title":"007 - O Espião que era sexy pra cacete × Olha quem está olhando","itemsIds":["763","1971","1988", "2", "2187"],"year":"1977 × 2014", "isDoubleFeature": true}',
+    // ),
     'controle-de-estoque': JSON.parse(
       '{"number":0,"goods":["good-1","good-2","good-3","good-4","good-5","good-6","good-7","good-8","good-9","good-10","good-11","good-12","good-13","good-14","good-15","good-16"],"language":"pt","orders":["good-1","good-2","good-3","good-4","good-17"],"id":"2023-10-31","type":"controle-de-estoque","title":"Demo-feira"}',
     ),

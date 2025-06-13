@@ -15,6 +15,18 @@ type NewsItem = {
 
 export const NEWS_LIST: NewsItem[] = [
   {
+    date: '2025-06-14',
+    content: (
+      <>
+        <IconAvatar icon={<WeekendIcon />} size="small" />{' '}
+        <strong>
+          <DualTranslate>{ALL_SETTINGS.FILMACO.NAME}</DualTranslate>
+        </strong>{' '}
+        é mais desafiante nos fins de semana com dois filmes ao mesmo tempo! Sessão dupla!
+      </>
+    ),
+  },
+  {
     date: '2025-06-07',
     content: (
       <>

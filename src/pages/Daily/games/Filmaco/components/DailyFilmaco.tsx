@@ -50,9 +50,15 @@ export function DailyFilmaco({ data }: DailyFilmacoProps) {
         />
 
         <Region>
-          <Typography.Text strong>
-            <Translate pt="Ano de Lançamento" en="Release Year" />: {data.year}
-          </Typography.Text>
+          {data?.isDoubleFeature ? (
+            <Typography.Text strong>
+              <Translate pt="Sessão Dupla" en="Double Feature" /> {data.year}
+            </Typography.Text>
+          ) : (
+            <Typography.Text strong>
+              <Translate pt="Ano de Lançamento" en="Release Year" />: {data.year}
+            </Typography.Text>
+          )}
         </Region>
 
         <SpaceContainer wrap>
