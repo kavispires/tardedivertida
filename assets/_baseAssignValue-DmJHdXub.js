@@ -1,0 +1,1 @@
+import{r as t}from"./_defineProperty-DQGC4r9l.js";var r,u;function f(){if(u)return r;u=1;var a=t();function n(i,e,s){e=="__proto__"&&a?a(i,e,{configurable:!0,enumerable:!0,value:s,writable:!0}):i[e]=s}return r=n,r}export{f as r};
