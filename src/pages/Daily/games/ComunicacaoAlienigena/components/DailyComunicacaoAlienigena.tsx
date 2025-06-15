@@ -97,6 +97,14 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
           </Space>
         </Region>
 
+        {isComplete && (
+          <Region>
+            <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
+              <Translate pt="Ver Resultado" en="Show Results" />
+            </Button>
+          </Region>
+        )}
+
         <Region key={latestAttempt} className={shouldShakeScreen ? getAnimationClass('shakeX') : ''}>
           <Typography.Text strong>
             <Translate pt="Pedidos" en="Requests" />
@@ -154,18 +162,35 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
                     </TransparentButton>
                   )}
 
-                  {isComplete && isLose && (
+                  {isComplete && (
                     <ItemCard
                       id={request.itemId}
                       width={width}
-                      padding={0}
-                      className={clsx('alien-request__answer', getAnimationClass('zoomIn'))}
+                      padding={6}
+                      className={clsx('alien-request__answer mt-2', getAnimationClass('zoomIn'))}
                     />
                   )}
                 </Flex>
               );
             })}
           </Flex>
+          {isComplete && (
+            <SpaceContainer direction="vertical">
+              {previousGuesses.map((guess) => (
+                <Space key={String(guess)}>
+                  {guess.map((itemId) => (
+                    <ItemCard
+                      key={itemId}
+                      id={itemId}
+                      width={Math.max(width / 2, 40)}
+                      padding={3}
+                      className="alien-requests__previous-item mx-2"
+                    />
+                  ))}
+                </Space>
+              ))}
+            </SpaceContainer>
+          )}
 
           {isReady && !isComplete && (
             <Region>
@@ -175,14 +200,6 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
             </Region>
           )}
         </Region>
-
-        {isComplete && (
-          <Space className="results-container" direction="vertical" align="center" size="large">
-            <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
-              <Translate pt="Ver Resultado" en="Show Results" />
-            </Button>
-          </Space>
-        )}
 
         <Region>
           <Typography.Text strong>
@@ -203,7 +220,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
           </SpaceContainer>
         </Region>
 
-        {previousGuesses.length > 0 && (
+        {!isComplete && previousGuesses.length > 0 && (
           <Region>
             <Typography.Text strong>
               <Translate pt="Tentativas anteriores" en="Previous Guesses:" />
