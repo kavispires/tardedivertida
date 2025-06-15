@@ -22,7 +22,7 @@ const getRulesSet = (isWeekend: boolean) => {
         <>
           <li>
             Junto à palavra-chave de {SETTINGS.WORD_LENGTH + value} letras diagonal na grade existem{' '}
-            {SETTINGS.HEARTS + value} palavras embaralhadas.
+            {SETTINGS.HEARTS + value} palavras embaralhadas horizontalmente.
           </li>
           <li>
             Você precisa ordenar as letras para formar as {SETTINGS.HEARTS + value} palavras horizontais.
@@ -30,7 +30,7 @@ const getRulesSet = (isWeekend: boolean) => {
           <li>Selecione uma letra e depois uma outra para que elas troquem de lugar.</li>
           <li>Quando você acha que a grade está certa, aperte "Enviar".</li>
           <li>
-            Todas as letras colocadas na posição corretas serão coloridas da corta da linha. Mas se você não
+            Todas as letras colocadas na posição corretas serão coloridas da cor da linha. Mas se você não
             acertas todas, você perde um <HeartFilled />.
           </li>
           <li>
