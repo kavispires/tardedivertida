@@ -23,6 +23,7 @@ export type DailyEspionagemEntry = {
   setId: string;
   culpritId: string;
   statements: StatementClue[];
+  specialStatements: StatementClue[];
   isNsfw: boolean;
   suspects: SuspectCard[];
   reason: DualLanguageValue;

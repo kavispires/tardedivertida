@@ -2,8 +2,8 @@
 
 .espionagem-suspects-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: get-unit(1);
+  grid-template-columns: repeat(4, 1fr);
+  gap: get-unit(2);
   padding: get-unit(2);
   background: get-color("brown", 8, 0.5);
   border-radius: var(--border-radius);
