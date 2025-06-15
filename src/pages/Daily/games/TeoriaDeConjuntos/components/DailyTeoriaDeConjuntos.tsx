@@ -138,7 +138,7 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
           </Region>
         )}
 
-        <Region className="space-center" direction="horizontal">
+        <Region className="space-center" direction="horizontal" wrap>
           {hand.map((thing) => (
             <TransparentButton
               key={thing.id}

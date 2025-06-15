@@ -33,7 +33,7 @@ export function BundleResults({ list }: BundleResultsProps) {
     () =>
       orderBy(
         list.filter((game) => !game.disabled && checkWasPlayedToday(game.KEY)),
-        [`game.NAME.${language}`],
+        [`game.HUB_NAME.${language}`],
         ['asc'],
       ),
     [list, language],
