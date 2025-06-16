@@ -1,0 +1,1 @@
+import{j as h,e as x}from"./index-V7JfyPYe.js";function r({children:t,className:s,dark:i,...e}){return h.jsx("span",{className:x("text-highlight",i&&"text-highlight--dark",s),...e,children:t})}export{r as T};
