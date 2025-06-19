@@ -10,6 +10,8 @@ import { useEffect } from 'react';
 import { App } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Services
+import { logAnalyticsEvent } from 'services/firebase';
 // Internal
 import { getGuessString, getInitialState, validateAttempts } from './helpers';
 import { PHASES, SETTINGS } from './settings';
@@ -146,12 +148,14 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
       if (isAllCorrect) {
         copy.status = STATUSES.WIN;
         playSFX('win');
+        logAnalyticsEvent(`daily_${SETTINGS.KEY}_win`);
       } else {
         copy.hearts -= 1;
         if (copy.hearts === 0) {
           playSFX('lose');
           vibrate('lose');
-          copy.status = STATUSES.WIN;
+          copy.status = STATUSES.LOSE;
+          logAnalyticsEvent(`daily_${SETTINGS.KEY}_lose`);
         }
       }
       updateSession({ latestAttempt: Date.now() });

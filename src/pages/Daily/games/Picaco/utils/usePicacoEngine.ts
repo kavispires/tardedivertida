@@ -7,6 +7,8 @@ import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { useEffect } from 'react';
 // Types
 import type { Me } from 'types/user';
+// Services
+import { logAnalyticsEvent } from 'services/firebase';
 // Utils
 import { SEPARATOR } from 'utils/constants';
 import { removeDuplicates } from 'utils/helpers';
@@ -69,6 +71,7 @@ export function usePicacoEngine(data: DailyPicacoEntry, currentUser: Me, initial
   const mutation = useDailySaveDrawings(() => {
     updateState({ played: true });
     updateSession({ screen: 'idle' });
+    logAnalyticsEvent(`daily_${SETTINGS.KEY}_played`);
   });
 
   useMarkAsPlayed({

@@ -6,6 +6,8 @@ import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { vibrate } from 'pages/Daily/utils/vibrate';
 import { useEffect } from 'react';
+// Services
+import { logAnalyticsEvent } from 'services/firebase';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyPalavreadoEntry, GameState, PalavreadoLetter, SessionState } from './types';
@@ -116,9 +118,11 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
       let newStatus = prev.status;
       if (isAllCorrect) {
         newStatus = STATUSES.WIN;
+        logAnalyticsEvent(`daily_${SETTINGS.KEY}_win`);
       }
       if (updatedHearts === 0) {
         newStatus = STATUSES.LOSE;
+        logAnalyticsEvent(`daily_${SETTINGS.KEY}_lose`);
       }
 
       updateSession({

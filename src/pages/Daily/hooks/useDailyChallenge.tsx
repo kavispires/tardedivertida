@@ -5,6 +5,7 @@ import { createContext, type ReactNode, useContext } from 'react';
 import { useLanguage } from 'hooks/useLanguage';
 // Services
 import { DAILY_API, DAILY_API_ACTIONS } from 'services/adapters';
+import { logAnalyticsEvent } from 'services/firebase';
 // Utils
 import { print } from 'utils/helpers';
 // Internal
@@ -52,6 +53,7 @@ export const DailyContextProvider = ({ children }: DailyContextProviderProps) =>
       });
       const responseData = response.data as DailyResponse;
       print({ [collectionName]: responseData }, 'table');
+      logAnalyticsEvent('daily_challenges_fetched');
       return responseData;
     },
     staleTime: timeToMidnight,

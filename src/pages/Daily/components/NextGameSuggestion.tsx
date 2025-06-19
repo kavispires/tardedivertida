@@ -3,6 +3,8 @@ import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 // Ant Design Resources
 import { Carousel, Typography } from 'antd';
+// Services
+import { logAnalyticsEvent } from 'services/firebase';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';
@@ -41,7 +43,10 @@ function NextSuggestionEntry({ settings }: { settings: GameSettings }) {
     <Typography.Paragraph className="center" strong key={settings.KEY}>
       <DualTranslate>{settings.TAGLINE}</DualTranslate>
       <br />
-      <Link to={`/diario/${settings.ROUTE}`}>
+      <Link
+        to={`/diario/${settings.ROUTE}`}
+        onClick={() => logAnalyticsEvent(`daily_${settings.KEY}_game_suggestion`)}
+      >
         <IconAvatar icon={<settings.HUB_ICON />} /> <DualTranslate>{settings.NAME}</DualTranslate>!
       </Link>
     </Typography.Paragraph>

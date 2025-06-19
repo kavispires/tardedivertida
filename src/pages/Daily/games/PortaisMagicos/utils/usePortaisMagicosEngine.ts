@@ -9,6 +9,8 @@ import { useEffect } from 'react';
 import { App } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Services
+import { logAnalyticsEvent } from 'services/firebase';
 // Internal
 import type { DailyPortaisMagicosEntry, GameState } from './types';
 import { SETTINGS } from './settings';
@@ -85,11 +87,13 @@ export function usePortaisMagicosEngine(data: DailyPortaisMagicosEntry, initialS
 
       if (isCorrect && copy.currentCorridorIndex === data.corridors.length) {
         copy.status = STATUSES.WIN;
+        logAnalyticsEvent(`daily_${SETTINGS.KEY}_win`);
         copy.currentCorridorIndex = 2;
       }
 
       if (copy.hearts <= 0) {
         copy.status = STATUSES.LOSE;
+        logAnalyticsEvent(`daily_${SETTINGS.KEY}_lose`);
       }
 
       return copy;

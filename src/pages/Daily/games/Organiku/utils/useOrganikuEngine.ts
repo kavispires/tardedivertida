@@ -5,6 +5,8 @@ import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { vibrate } from 'pages/Daily/utils/vibrate';
 import { useEffect } from 'react';
+// Services
+import { logAnalyticsEvent } from 'services/firebase';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyOrganikuEntry, GameState, SessionState } from './types';
@@ -65,6 +67,7 @@ export function useOrganikuEngine(data: DailyOrganikuEntry, initialState: GameSt
 
         if (isWin) {
           playSFX('win');
+          logAnalyticsEvent(`daily_${SETTINGS.KEY}_win`);
         } else {
           playSFX('wee');
         }
@@ -92,6 +95,7 @@ export function useOrganikuEngine(data: DailyOrganikuEntry, initialState: GameSt
       if (isLose) {
         playSFX('lose');
         vibrate('lose');
+        logAnalyticsEvent(`daily_${SETTINGS.KEY}_lose`);
       } else {
         playSFX('wrong');
         vibrate('wrong');

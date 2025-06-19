@@ -10,6 +10,8 @@ import { useEffect } from 'react';
 import { App } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Services
+import { logAnalyticsEvent } from 'services/firebase';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyTeoriaDeConjuntosEntry, GameState, Guess, SessionState, TThing } from './types';
@@ -103,6 +105,7 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry, in
             playSFX('lose');
             vibrate('lose');
             copy.status = STATUSES.LOSE;
+            logAnalyticsEvent(`daily_${SETTINGS.KEY}_lose`);
           }
         }
 
@@ -115,6 +118,7 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry, in
         // Check if all things are placed and update win state
         if (copy.hand.length === 0) {
           copy.status = STATUSES.WIN;
+          logAnalyticsEvent(`daily_${SETTINGS.KEY}_win`);
           playSFX('win');
         }
       }

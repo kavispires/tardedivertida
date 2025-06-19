@@ -9,6 +9,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { useLocalStorage } from 'react-use';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
+// Services
+import { logAnalyticsEvent } from 'services/firebase';
 // Utils
 import { inNSeconds } from 'utils/helpers';
 // Internal
@@ -68,7 +70,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
     }));
     updateSession({ discIndex: 0 });
     playSFX('addCorrect');
-
+    logAnalyticsEvent(`daily_${SETTINGS.KEY}_played`);
     restart(inNSeconds(SETTINGS.DURATION), true);
   };
 
@@ -85,6 +87,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
         pause();
         setTimesUp(true);
         playSFX('win');
+        logAnalyticsEvent(`daily_${SETTINGS.KEY}_win`);
         return;
       }
 
@@ -107,6 +110,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
       setTimesUp(true);
       playSFX('lose');
       vibrate('lose');
+      logAnalyticsEvent(`daily_${SETTINGS.KEY}_lose`);
       return;
     }
 
