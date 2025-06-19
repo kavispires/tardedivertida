@@ -1,11 +1,12 @@
 import clsx from 'clsx';
+import { motion } from 'framer-motion';
 // Types
 import type { GamePlayers } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
+import { getAnimation } from 'utils/animations';
 import { AVATARS } from 'utils/avatars';
-import { getAnimationClass } from 'utils/helpers';
 // Icons
 import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
@@ -51,13 +52,14 @@ export function Table({ table, players }: TableProps) {
                 }
 
                 return (
-                  <ImageBlurButtonContainer
+                  <motion.div
                     key={`${playerEntryKey}${cardId}`}
-                    cardId={cardId}
-                    className={clsx('d-table__card', getAnimationClass('flipInY'))}
+                    {...getAnimation('slideInRight', { delay: 0.5 })}
                   >
-                    <ImageCard id={cardId} cardWidth={cardWidth} />
-                  </ImageBlurButtonContainer>
+                    <ImageBlurButtonContainer cardId={cardId} className="d-table__card">
+                      <ImageCard id={cardId} cardWidth={cardWidth} />
+                    </ImageBlurButtonContainer>
+                  </motion.div>
                 );
               })}
             </div>

@@ -6,7 +6,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 import { Step, type StepProps } from 'components/steps';
 import { ViewOr } from 'components/views';
 // Internal
-import type { CardEntry } from './utils/types';
+import type { CardEntry, SubmitPlayCardPayload } from './utils/types';
 import { StepPlayCardAction } from './StepPlayCardAction';
 import { StepPlayCardWaiting } from './StepPlayCardWaiting';
 
@@ -18,7 +18,7 @@ type StepPlayCardProps = {
   table: CardEntry[];
   players: GamePlayers;
   user: GamePlayer;
-  onPlayCard: GenericFunction;
+  onPlayCard: (payload: SubmitPlayCardPayload) => void;
   isLoading: boolean;
   turnOrder: TurnOrder;
   leaderId: PlayerId;

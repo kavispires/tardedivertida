@@ -32,6 +32,7 @@
   &__cards {
     display: flex;
     flex-wrap: nowrap;
+    transition: 500ms width;
   }
 
   &__player-info {
@@ -90,4 +91,8 @@
   background-color: rgba($color: white, $alpha: 0.8);
   border-radius: var(--border-radius);
   padding: get-unit(1 1 2 1);
+}
+
+.d-secret-clue-announcement {
+  font-size: 1.5em;
 }

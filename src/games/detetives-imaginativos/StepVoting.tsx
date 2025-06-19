@@ -5,7 +5,7 @@ import { Translate } from 'components/language';
 import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 import { ReadyPlayersBar } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, StepTitle } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
 import type { CardEntry } from './utils/types';
@@ -38,8 +38,9 @@ export function StepVoting({
       <StepTitle wait={isLoading}>
         {!isLoading && <Translate pt="Quem é o impostor?" en="Who is the impostor?" />}
       </StepTitle>
-      <Instruction contained>
-        <ViewIf condition={isUserTheLeader}>
+
+      <ViewIf condition={isUserTheLeader}>
+        <RuleInstruction type="wait">
           <Translate
             pt={
               <>
@@ -53,8 +54,11 @@ export function StepVoting({
               </>
             }
           />
-        </ViewIf>
-        <ViewIf condition={!isUserTheLeader && !user.vote}>
+        </RuleInstruction>
+      </ViewIf>
+
+      <ViewIf condition={!isUserTheLeader && !user.vote}>
+        <RuleInstruction type="action">
           <Translate
             pt={
               <>
@@ -69,14 +73,17 @@ export function StepVoting({
               </>
             }
           />
-        </ViewIf>
-        <ViewIf condition={!isUserTheLeader && user.vote}>
+        </RuleInstruction>
+      </ViewIf>
+
+      <ViewIf condition={!isUserTheLeader && user.vote}>
+        <RuleInstruction type="wait">
           <Translate
             pt="Aguarde enquanto os outros jogadores votam..."
             en="Wait while other detectives finish voting..."
           />
-        </ViewIf>
-      </Instruction>
+        </RuleInstruction>
+      </ViewIf>
 
       <VotingOptions
         players={players}

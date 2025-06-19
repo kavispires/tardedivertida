@@ -17,7 +17,7 @@ import { cloneDeep } from 'lodash';
  * @returns
  */
 export const prepareSetupPhase = async (
-  _store: FirebaseStoreData,
+  store: FirebaseStoreData,
   _state: FirebaseStateData,
   players: Players,
   data: ResourceData,
@@ -29,7 +29,16 @@ export const prepareSetupPhase = async (
   const cardsPerPlayer = gameOrder.length * 2 + HAND_LIMIT;
 
   // Split cards equally between players
-  players = utils.game.dealList(data.cards, players, cardsPerPlayer, 'deck');
+  utils.game.dealList(data.cards, players, cardsPerPlayer, 'deck');
+
+  // TODO
+  const achievements = utils.achievements.setup(players, store, {
+    targetedVotes: 0,
+    leader: 0,
+    impostor: 0,
+    votedCorrectly: 0,
+    innocentVotes: 0,
+  });
 
   // Save
   return {
@@ -38,6 +47,7 @@ export const prepareSetupPhase = async (
         turnOrder: playerIds,
         gameOrder,
         usedCards: [],
+        achievements,
       },
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.SETUP,
@@ -65,8 +75,8 @@ export const prepareSecretCluePhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Make sure everybody has 6 cards in hand
-  players = utils.playerHand.dealPlayersCard(players, HAND_LIMIT);
-  players = utils.players.removePropertiesFromPlayers(players, ['vote']);
+  utils.playerHand.dealPlayersCard(players, HAND_LIMIT);
+  utils.players.removePropertiesFromPlayers(players, ['vote']);
 
   // Determine the leader
   const leaderId = store.gameOrder[state.round.current];
@@ -87,6 +97,7 @@ export const prepareSecretCluePhase = async (
         leaderId,
         impostorId,
       },
+      stateCleanup: ['phaseOrder', 'phaseIndex', 'currentPlayerId', 'impostorVotes', 'ranking', 'table'],
     },
   };
 };
@@ -166,14 +177,14 @@ export const prepareVotingPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  const newPlayers = utils.players.unReadyPlayers(players, state.leaderId);
+  utils.players.unReadyPlayers(players, state.leaderId);
 
   // Save
   return {
     update: {
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.VOTING,
-        players: newPlayers,
+        players,
       },
       stateCleanup: ['phaseOrder', 'phaseIndex', 'currentPlayerId'],
     },
@@ -189,6 +200,9 @@ export const prepareRevealPhase = async (
   const impostorVotes = countImpostorVotes(players, state.impostorId);
 
   const ranking = calculateRanking(players, impostorVotes, state.impostorId, state.leaderId);
+
+  // Unready players
+  utils.players.unReadyPlayers(players);
 
   // Save
   return {

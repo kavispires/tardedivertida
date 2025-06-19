@@ -7,11 +7,12 @@ import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TurnOrder } from 'components/players';
-import { Instruction, TextHighlight, StepTitle } from 'components/text';
+import { StepTitle, RuleInstruction } from 'components/text';
 // Internal
 import type { CardEntry } from './utils/types';
 import { TableFocus } from './components/TableFocus';
 import { YourSelectedCards } from './components/YourSelectedCards';
+import { RevealedClueTitle } from './components/Titles';
 
 type StepDefendingWaitingProps = {
   clue: string;
@@ -35,12 +36,15 @@ export function StepDefendingWaiting({
   return (
     <>
       <StepTitle>
-        <Translate pt="Pista Secreta era: " en="The Secret Clue was: " />
-        <TextHighlight>{clue}</TextHighlight>
+        <RevealedClueTitle clue={clue} />
       </StepTitle>
-      <Instruction contained>
+
+      <RuleInstruction type="action">
         <AvatarName key={currentPlayer.id} player={currentPlayer} className={getAnimationClass('tada')} />,{' '}
-        <Translate pt="explique porque você escolheu as cartas." en="explain why you chose your cards." />
+        <Translate
+          pt="deve explicar porque ele(a) escolheu as cartas."
+          en="should explain why they chose your cards."
+        />
         {isUserTheImpostor && (
           <>
             <br />
@@ -50,7 +54,7 @@ export function StepDefendingWaiting({
             />
           </>
         )}
-      </Instruction>
+      </RuleInstruction>
 
       <SpaceContainer align="center" wrap>
         <TableFocus table={table} currentPlayer={currentPlayer} />

@@ -213,7 +213,7 @@ export const dealList = <T>(
   propertyName = 'hand',
   recursive = false,
   includeBots = false,
-): Players => {
+) => {
   const playerIds = getListOfPlayersIds(players, includeBots);
   // Ensure there are enough cards
   const availableList = recursive && playerIds.length * quantity > list.length ? [...list, ...list] : list;
@@ -222,8 +222,6 @@ export const dealList = <T>(
   playerIds.forEach((playerId, index) => {
     players[playerId][propertyName] = hands[index];
   });
-
-  return players;
 };
 
 /**

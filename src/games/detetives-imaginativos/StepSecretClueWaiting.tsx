@@ -7,7 +7,7 @@ import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, StepTitle } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 
 type StepSecretClueWaitingProps = {
   leader: GamePlayer;
@@ -29,7 +29,7 @@ export function StepSecretClueWaiting({
         <Translate pt="Aguarde..." en="Please wait..." />
       </StepTitle>
 
-      <Instruction contained>
+      <RuleInstruction type="wait">
         <AvatarName player={leader} addressUser />{' '}
         <Translate pt="está escrevendo a pista secreta." en="is writing the secret clue." />
         <br />
@@ -37,7 +37,7 @@ export function StepSecretClueWaiting({
           pt="Enquanto isso, examine suas cartas! Você as usará durante esta rodada."
           en="In the meantime, examine your cards. You're gonna use them this turn."
         />
-      </Instruction>
+      </RuleInstruction>
 
       <TurnOrder players={players} activePlayerId={leader.id} order={turnOrder} reorderByUser={leader.id} />
 
