@@ -1,5 +1,5 @@
 import { USE_FIRESTORE_EMULATOR, USE_FUNCTIONS_EMULATOR } from 'dev-configs';
-import { getAnalytics } from 'firebase/analytics';
+import { getAnalytics, logEvent } from 'firebase/analytics';
 import { type FirebaseApp, initializeApp } from 'firebase/app';
 import {
   type Auth,
@@ -20,6 +20,8 @@ import { getFunctions, connectFunctionsEmulator, type Functions } from 'firebase
 import { message, notification } from 'antd';
 // Hooks
 import { setGlobalState } from 'hooks/useGlobalState';
+// Utils
+import { isDevEnv } from 'utils/helpers';
 
 const buildKey = () => {
   return [
@@ -37,6 +39,7 @@ const firebaseConfig = {
   storageBucket: import.meta.env.VITE__FIREBASE_STORAGE_BUCKET,
   messagingSenderId: import.meta.env.VITE__FIREBASE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE__FIREBASE_API_ID,
+  measurementId: import.meta.env.VITE__FIREBASE_MEASUREMENT_ID,
 };
 
 const firebaseApp: FirebaseApp = initializeApp(firebaseConfig);
@@ -173,4 +176,15 @@ export const getFirestoreConsoleUrl = (path: string, usingEmulators = false) => 
   return usingEmulators
     ? `http://127.0.0.1:4000/firestore/default/data/${path}`
     : `${baseConsoleUrl}${encodeFirestorePath(path)}`;
+};
+
+/**
+ * Logs an analytics event using Firebase Analytics.
+ * @param eventName - The name of the event to log.
+ * @param eventParams - Optional parameters for the event.
+ * @returns A promise that resolves when the event is logged.
+ */
+export const logAnalyticsEvent = (eventName: string, eventParams?: Parameters<typeof logEvent>[2]) => {
+  if (isDevEnv) return Promise.resolve();
+  return logEvent(analytics, eventName, eventParams);
 };
