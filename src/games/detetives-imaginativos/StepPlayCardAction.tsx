@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { QuestionCircleFilled } from '@ant-design/icons';
 import { App } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
@@ -11,18 +10,18 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 import { ImageCardsIcon } from 'icons/ImageCardsIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { messageContent } from 'components/pop-up';
-import { Instruction, TextHighlight, StepTitle } from 'components/text';
+import { StepTitle, RuleInstruction } from 'components/text';
 import { TimedTimerClock } from 'components/timers';
 import { ViewOr } from 'components/views';
 // Internal
-import type { CardEntry } from './utils/types';
+import type { CardEntry, SubmitPlayCardPayload } from './utils/types';
 import { isEarliestPlayerWithFewestCards } from './utils/helpers';
 import { Table } from './components/Table';
+import { ImposterTitle, SecretClueTitle } from './components/Titles';
 
 type StepPlayCardActionProps = {
   isUserTheImpostor: boolean;
@@ -31,7 +30,7 @@ type StepPlayCardActionProps = {
   table: CardEntry[];
   players: GamePlayers;
   user: GamePlayer;
-  onPlayCard: GenericFunction;
+  onPlayCard: (payload: SubmitPlayCardPayload) => void;
   isLoading: boolean;
   turnOrder: TurnOrder;
   leaderId: PlayerId;
@@ -87,22 +86,10 @@ export function StepPlayCardAction({
   return (
     <>
       <StepTitle>
-        {isUserTheImpostor ? (
-          <>
-            <Translate pt="A pista secreta é" en="The secret clue is" />{' '}
-            <TextHighlight>
-              <QuestionCircleFilled />
-            </TextHighlight>{' '}
-            <Translate pt="Você é o impostor!" en="You are the impostor!" />
-          </>
-        ) : (
-          <>
-            <Translate pt="A pista secreta é" en="The secret clue is" /> <TextHighlight>{clue}</TextHighlight>
-          </>
-        )}
+        <StepTitle>{isUserTheImpostor ? <ImposterTitle /> : <SecretClueTitle clue={clue} />}</StepTitle>
       </StepTitle>
 
-      <Instruction>
+      <RuleInstruction type="action">
         <ViewOr condition={isUserTheImpostor}>
           <>
             <IconAvatar icon={<ImageCardsIcon />} size="large" shape="square" />{' '}
@@ -122,7 +109,7 @@ export function StepPlayCardAction({
           </>
         </ViewOr>
         <TimedTimerClock duration={75} onExpire={() => onSelectCard('back-default')} />
-      </Instruction>
+      </RuleInstruction>
 
       <Table table={table} players={players} />
 
@@ -133,14 +120,12 @@ export function StepPlayCardAction({
         reorderByUser={leaderId}
       />
 
-      <FloatingHand>
-        <ImageCardHand
-          hand={user.hand}
-          onSelectCard={onSelectCard}
-          disabledSelectButton={isLoading}
-          sizeRatio={user.hand?.length}
-        />
-      </FloatingHand>
+      <ImageCardHand
+        hand={user.hand}
+        onSelectCard={onSelectCard}
+        disabledSelectButton={isLoading}
+        sizeRatio={user.hand?.length}
+      />
     </>
   );
 }

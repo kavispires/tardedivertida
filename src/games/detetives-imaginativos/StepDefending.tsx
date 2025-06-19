@@ -15,7 +15,7 @@ type StepDefendingProps = {
   currentPlayer: GamePlayer;
   isUserTheCurrentPlayer: boolean;
   table: CardEntry[];
-  onFinishDefenseClick: GenericFunction;
+  onFinishDefenseClick: () => void;
   isLoading: boolean;
   isUserTheImpostor: boolean;
   user: GamePlayer;

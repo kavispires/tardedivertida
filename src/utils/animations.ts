@@ -380,10 +380,12 @@ const getAnimation = (type: AnimationType, options: AnimationOptions = {}): Vari
 
     [AnimationTypes.SLIDE_IN_LEFT]: {
       initial: {
+        opacity: 0,
         transform: 'translate3d(-100%, 0, 0)',
         visibility: 'visible',
       },
       animate: {
+        opacity: [0, 1],
         transform: ['translate3d(-100%, 0, 0)', 'translateZ(0)'],
         transition: {
           ease: ease ?? 'easeIn',
@@ -398,8 +400,10 @@ const getAnimation = (type: AnimationType, options: AnimationOptions = {}): Vari
       initial: {
         transform: 'translate3d(100%, 0, 0)',
         visibility: 'visible',
+        opacity: 0,
       },
       animate: {
+        opacity: [0, 1],
         transform: ['translate3d(100%, 0, 0)', 'translateZ(0)'],
         transition: {
           ease: ease ?? 'easeIn',

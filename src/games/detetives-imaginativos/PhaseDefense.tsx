@@ -1,3 +1,5 @@
+// Ant Design Resources
+import { Flex } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -11,13 +13,15 @@ import { DefenseIcon } from 'icons/DefenseIcon';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
-import { Instruction, TextHighlight, Title } from 'components/text';
+import { Instruction } from 'components/text';
 // Internal
 import { useOnFinishDefenseRequest } from './utils/api-requests';
 import { DETETIVES_IMAGINATIVOS_PHASES } from './utils/constants';
+import type { PhaseDefenseState } from './utils/types';
+import { RevealedClueTitle } from './components/Titles';
 import { StepDefending } from './StepDefending';
 
-export function PhaseDefense({ state, players }: PhaseProps) {
+export function PhaseDefense({ state, players }: PhaseProps<PhaseDefenseState>) {
   const { isLoading } = useLoading();
   const { step } = useStep(0);
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
@@ -34,10 +38,10 @@ export function PhaseDefense({ state, players }: PhaseProps) {
       duration={5}
       type="overlay"
     >
-      <Title>
-        <Translate pt="Pista Secreta era: " en="The Secret Clue was: " />
-        <TextHighlight>{state.clue}</TextHighlight>
-      </Title>
+      <Flex className="d-secret-clue-announcement" justify="center" align="center" gap={8}>
+        <RevealedClueTitle clue={state.clue} />
+      </Flex>
+
       <Instruction>
         <Translate
           pt="Agora, cada jogador em ordem deve defender porque escolheu as castas que escolheu."

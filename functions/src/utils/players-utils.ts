@@ -130,13 +130,12 @@ export const addPropertiesToPlayers = (players: Players, properties: PlainObject
  * @param properties array with property names to ne removed
  * @returns
  */
-export const removePropertiesFromPlayers = (players: Players, properties: string[]): Players => {
+export const removePropertiesFromPlayers = (players: Players, properties: string[]) => {
   for (const playerId in players) {
     properties.forEach((property) => {
       delete players[playerId]?.[property];
     });
   }
-  return players;
 };
 
 /**

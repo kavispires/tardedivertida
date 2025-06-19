@@ -13,9 +13,10 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { DETETIVES_IMAGINATIVOS_PHASES } from './utils/constants';
+import type { PhaseRevealState } from './utils/types';
 import { StepReveal } from './StepReveal';
 
-export function PhaseReveal({ state, players }: PhaseProps) {
+export function PhaseReveal({ state, players }: PhaseProps<PhaseRevealState>) {
   const { step } = useStep(0);
   const [impostor] = useWhichPlayerIsThe('impostorId', state, players);
 

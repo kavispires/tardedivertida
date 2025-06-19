@@ -13,18 +13,19 @@ import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TurnOrder } from 'components/players';
 import { messageContent } from 'components/pop-up';
-import { Instruction, TextHighlight, StepTitle } from 'components/text';
+import { StepTitle, RuleInstruction } from 'components/text';
 // Internal
 import type { CardEntry } from './utils/types';
 import { EndDefenseTimedButton } from './components/EndDefenseTimedButton';
 import { TableFocus } from './components/TableFocus';
 import { YourSelectedCards } from './components/YourSelectedCards';
+import { RevealedClueTitle } from './components/Titles';
 
 type StepDefendingActionProps = {
   clue: string;
   currentPlayer: GamePlayer;
   table: CardEntry[];
-  onFinishDefenseClick: GenericFunction;
+  onFinishDefenseClick: () => void;
   isLoading: boolean;
   isUserTheImpostor: boolean;
   user: GamePlayer;
@@ -68,10 +69,10 @@ export function StepDefendingAction({
   return (
     <>
       <StepTitle>
-        <Translate pt="Pista Secreta era: " en="The Secret Clue was: " />
-        <TextHighlight>{clue}</TextHighlight>
+        <RevealedClueTitle clue={clue} />
       </StepTitle>
-      <Instruction contained>
+
+      <RuleInstruction type="action">
         <AvatarName key={currentPlayer.id} player={currentPlayer} className={getAnimationClass('tada')} />,{' '}
         <Translate pt="explique porque você escolheu as cartas." en="explain why you chose your cards." />
         <Translate
@@ -87,7 +88,7 @@ export function StepDefendingAction({
             />
           </>
         )}
-      </Instruction>
+      </RuleInstruction>
 
       <EndDefenseTimedButton onFinishDefenseClick={onFinishDefenseClick} isLoading={isLoading} />
 

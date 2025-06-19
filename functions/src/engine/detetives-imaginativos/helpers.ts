@@ -63,7 +63,7 @@ export const determinePhaseOrder = (
 export const countImpostorVotes = (players: Players, impostorId: PlayerId): number =>
   utils.players.getListOfPlayers(players).reduce((total: number, player: Player) => {
     if (player.vote === impostorId) {
-      total += 1;
+      return total + 1;
     }
     return total;
   }, 0);

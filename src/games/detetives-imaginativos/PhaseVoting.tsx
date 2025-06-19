@@ -16,9 +16,10 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 import { DETETIVES_IMAGINATIVOS_PHASES } from './utils/constants';
+import type { PhaseVotingState } from './utils/types';
 import { StepVoting } from './StepVoting';
 
-export function PhaseVoting({ state, players }: PhaseProps) {
+export function PhaseVoting({ state, players }: PhaseProps<PhaseVotingState>) {
   const { isLoading } = useLoading();
   const { step } = useStep(0);
   const user = useUser(players, state);

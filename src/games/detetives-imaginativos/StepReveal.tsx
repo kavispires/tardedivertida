@@ -10,7 +10,7 @@ import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { StepRankingWrapper } from 'components/ranking';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, RoundsLeftInstruction } from 'components/text';
+import { RoundsLeftInstruction, RuleInstruction } from 'components/text';
 // Internal
 import type { CardEntry } from './utils/types';
 import { TableFocus } from './components/TableFocus';
@@ -63,7 +63,7 @@ export function StepReveal({
         }
         subtitle={
           <>
-            <Instruction contained>
+            <RuleInstruction type="event">
               {impostorVotes > 1 ? (
                 <Translate
                   pt={
@@ -98,13 +98,8 @@ export function StepReveal({
                   }
                 />
               )}
-            </Instruction>
-            <VotingOptions
-              players={players}
-              isAllDisabled={true}
-              leaderId={leaderId}
-              onVote={(...args) => {}}
-            />
+            </RuleInstruction>
+            <VotingOptions players={players} isAllDisabled={true} leaderId={leaderId} onVote={() => {}} />
           </>
         }
       >

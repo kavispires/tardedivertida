@@ -1,11 +1,12 @@
 import clsx from 'clsx';
+import { motion } from 'framer-motion';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
+import { getAnimation } from 'utils/animations';
 import { AVATARS } from 'utils/avatars';
-import { getAnimationClass } from 'utils/helpers';
 // Icons
 import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
@@ -34,7 +35,7 @@ export function TableFocus({ table, currentPlayer }: TableFocusProps) {
   }
 
   return (
-    <div className={clsx(baseClass, `${baseClass}--center`, getAnimationClass('slideInRight'))}>
+    <motion.div className={clsx(baseClass, `${baseClass}--center`)} {...getAnimation('slideInRight')}>
       <div className="d-table__player-entry">
         <div className="d-table__cards">
           {tableEntry?.cards.map((cardId) => {
@@ -58,6 +59,6 @@ export function TableFocus({ table, currentPlayer }: TableFocusProps) {
           <span className="d-table__player-name">{currentPlayer.name}</span>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

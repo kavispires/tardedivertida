@@ -18,10 +18,11 @@ import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitSecretClueAPIRequest } from './utils/api-requests';
 import { DETETIVES_IMAGINATIVOS_PHASES } from './utils/constants';
+import type { PhaseSecretClueState } from './utils/types';
 import { StepSecretClueWrite } from './StepSecretClueWrite';
 import { StepSecretClueWaiting } from './StepSecretClueWaiting';
 
-export function PhaseSecretClue({ state, players }: PhaseProps) {
+export function PhaseSecretClue({ state, players }: PhaseProps<PhaseSecretClueState>) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
 
