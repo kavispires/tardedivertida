@@ -10,6 +10,8 @@ import { useEffect } from 'react';
 import { App } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Services
+import { logAnalyticsEvent } from 'services/firebase';
 // Internal
 import type { DailyQuartetosEntry, GameState, SessionState } from './types';
 import { SETTINGS } from './settings';
@@ -101,9 +103,11 @@ export function useQuartetosEngine(data: DailyQuartetosEntry, initialState: Game
 
       if (status === STATUSES.WIN) {
         playSFX('win');
+        logAnalyticsEvent(`daily_${SETTINGS.KEY}_win`);
       }
       if (status === STATUSES.LOSE) {
         playSFX('lose');
+        logAnalyticsEvent(`daily_${SETTINGS.KEY}_lose`);
         vibrate('lose');
 
         // Add the left over sets to the matches

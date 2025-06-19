@@ -4,6 +4,8 @@ import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { useEffect } from 'react';
+// Services
+import { logAnalyticsEvent } from 'services/firebase';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyFilmacoEntry, GameState } from './types';
@@ -45,6 +47,7 @@ export function useFilmacoEngine(data: DailyFilmacoEntry, initialState: GameStat
       if (win) {
         playSFX('win');
         updatedStatus = STATUSES.WIN;
+        logAnalyticsEvent(`daily_${SETTINGS.KEY}_win`);
       } else {
         playSFX('addCorrect');
       }
@@ -52,6 +55,7 @@ export function useFilmacoEngine(data: DailyFilmacoEntry, initialState: GameStat
       if (state.hearts === 1) {
         playSFX('lose');
         updatedStatus = STATUSES.LOSE;
+        logAnalyticsEvent(`daily_${SETTINGS.KEY}_lose`);
       } else {
         playSFX('addWrong');
       }

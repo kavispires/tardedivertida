@@ -9,6 +9,8 @@ import { useEffect } from 'react';
 import { App } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Services
+import { logAnalyticsEvent } from 'services/firebase';
 // Internal
 import type { DailyComunicacaoAlienigenaEntry, GameState, SessionState } from './types';
 import { SETTINGS } from './settings';
@@ -101,6 +103,7 @@ export function useComunicacaoAlienigenaEngine(
     if (isCorrect) {
       playSFX('alienYay');
       updatedStatus = STATUSES.WIN;
+      logAnalyticsEvent(`daily_${SETTINGS.KEY}_win`);
     } else {
       playSFX('alienBoo');
       vibrate('lose');
@@ -108,6 +111,7 @@ export function useComunicacaoAlienigenaEngine(
 
     if (updatedHearts === 0) {
       updatedStatus = STATUSES.LOSE;
+      logAnalyticsEvent(`daily_${SETTINGS.KEY}_lose`);
     }
 
     updateState({

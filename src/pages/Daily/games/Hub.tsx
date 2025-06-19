@@ -12,7 +12,7 @@ import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Services
-import { getFirestoreConsoleUrl } from 'services/firebase';
+import { getFirestoreConsoleUrl, logAnalyticsEvent } from 'services/firebase';
 // Utils
 import { getAnimation } from 'utils/animations';
 import { isDevEnv } from 'utils/helpers';
@@ -222,7 +222,10 @@ function GameButton({
           style={{ width, height: width, backgroundColor: color }}
           {...getAnimation('bounceIn', { delay: index * 0.05 })}
           disabled={disabled}
-          onClick={() => playSFX('swap')}
+          onClick={() => {
+            playSFX('swap');
+            logAnalyticsEvent(`daily_${lsKey}_hub_click`);
+          }}
         >
           <Link to={`/diario/${href}`} className="hub-link">
             <Icon style={{ width: width / 2 }} />

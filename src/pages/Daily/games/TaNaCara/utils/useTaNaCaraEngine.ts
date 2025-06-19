@@ -5,6 +5,8 @@ import { useDailySaveTestimonies } from 'pages/Daily/hooks/useDailySave';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { useEffect } from 'react';
 import { useLocalStorage } from 'react-use';
+// Services
+import { logAnalyticsEvent } from 'services/firebase';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyTaNaCaraEntry, GameState, SessionState } from './types';
@@ -143,6 +145,7 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
   const mutation = useDailySaveTestimonies(() => {
     updateState({ played: true });
     updateSession({ screen: 'idle' });
+    logAnalyticsEvent(`daily_${SETTINGS.KEY}_played`);
   });
 
   useMarkAsPlayed({
