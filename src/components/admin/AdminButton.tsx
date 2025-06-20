@@ -15,7 +15,7 @@ interface AdminButtonProps extends ButtonProps {
   /**
    * Action triggered when the button is clicked
    */
-  onClick: GenericFunction;
+  onClick: React.MouseEventHandler<HTMLElement>;
 }
 
 export function AdminButton({ onClick, children, ...rest }: AdminButtonProps) {
