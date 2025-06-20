@@ -1,4 +1,4 @@
-import type { DETETIVES_IMAGINATIVOS_ACTIONS } from './constants';
+import type { DETETIVES_IMAGINATIVOS_ACHIEVEMENTS, DETETIVES_IMAGINATIVOS_ACTIONS } from './constants';
 
 export interface ResourceData {
   cards: ImageCardId[];
@@ -30,11 +30,12 @@ export interface DetetivesImaginativosState extends DefaultState {
   phaseIndex?: number;
   currentPlayerId?: PlayerId;
   table?: TableEntry;
-  ranking?: any;
-  impostorVotes?: any;
-  winners?: any;
+  impostorVotes?: number;
+  winners?: Player[];
   [key: string]: any;
 }
+
+export type DetetivesImaginativosAchievement = keyof typeof DETETIVES_IMAGINATIVOS_ACHIEVEMENTS;
 
 export interface DetetivesImaginativosInitialState extends InitialState {
   store: DetetivesImaginativosStore;

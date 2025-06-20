@@ -19,7 +19,7 @@ import { Translate } from 'components/language';
 type GainedPointProps = {
   gainedPoint: number;
   order: number;
-  description?: any;
+  description?: ReactNode;
 };
 
 function GainedPoint({ gainedPoint, order, description }: GainedPointProps) {
@@ -48,7 +48,7 @@ function GainedPoint({ gainedPoint, order, description }: GainedPointProps) {
 type GainedPointsProps = {
   gainedPoints: number[] | number;
   playerId: PlayerId;
-  gainedPointsDescriptions?: any[];
+  gainedPointsDescriptions?: ReactNode[];
 };
 
 function GainedPoints({ gainedPoints, playerId, gainedPointsDescriptions = [] }: GainedPointsProps) {

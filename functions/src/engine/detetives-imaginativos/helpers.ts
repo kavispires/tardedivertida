@@ -1,6 +1,7 @@
 // Constants
 import utils from '../../utils';
-import { DETETIVES_IMAGINATIVOS_PHASES } from './constants';
+import { DETETIVES_IMAGINATIVOS_ACHIEVEMENTS, DETETIVES_IMAGINATIVOS_PHASES } from './constants';
+import type { DetetivesImaginativosAchievement, FirebaseStoreData } from './types';
 
 /**
  * Determine the next phase based on the current one
@@ -8,7 +9,10 @@ import { DETETIVES_IMAGINATIVOS_PHASES } from './constants';
  * @param round
  * @returns
  */
-export const determineNextPhase = (currentPhase: string, round: Round): string => {
+export const determineNextPhase = (
+  currentPhase: (typeof DETETIVES_IMAGINATIVOS_PHASES)[keyof typeof DETETIVES_IMAGINATIVOS_PHASES],
+  round: Round,
+): string => {
   const { LOBBY, SETUP, SECRET_CLUE, CARD_PLAY, DEFENSE, VOTING, REVEAL, GAME_OVER } =
     DETETIVES_IMAGINATIVOS_PHASES;
   const order = [LOBBY, SETUP, SECRET_CLUE, CARD_PLAY, DEFENSE, VOTING, REVEAL, GAME_OVER];
@@ -29,42 +33,29 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
 };
 
 /**
- * Determines the order for the current phase
- * @param leaderId
- * @param gameOrder
- * @param players
- * @param repeat
- * @returns
+ * Count impostor votes and assign achievements accordingly.
  */
-export const determinePhaseOrder = (
-  leaderId: PlayerId,
-  gameOrder: PlayerId[],
+export const countImpostorVotes = (
   players: Players,
-  repeat?: boolean,
-): PlayerId[] => {
-  const result: PlayerId[] = [];
-  const playerIds = utils.players.getListOfPlayers(players);
-  const tempGameOrder = [...gameOrder, ...gameOrder];
-  const leaderIndex = tempGameOrder.indexOf(leaderId);
-
-  for (let i = 0; i < playerIds.length; i++) {
-    result.push(tempGameOrder[leaderIndex + i]);
-  }
-
-  return repeat ? [...result, ...result] : result;
-};
-
-/**
- * Count impostor votes
- * @param players
- * @param impostorId
- * @returns
- */
-export const countImpostorVotes = (players: Players, impostorId: PlayerId): number =>
+  impostorId: PlayerId,
+  store: FirebaseStoreData,
+): number =>
   utils.players.getListOfPlayers(players).reduce((total: number, player: Player) => {
+    if (!player.vote) {
+      return total;
+    }
+    // Achievement: Defense time
+    utils.achievements.increase(store, player.id, 'defenseTime', player.defenseTime || 0);
+
     if (player.vote === impostorId) {
+      // Achievement: 'Vote for the Impostor'
+      utils.achievements.increase(store, player.id, 'votedImpostor', 1);
       return total + 1;
     }
+
+    utils.achievements.increase(store, player.id, 'votedInnocent', 1);
+    utils.achievements.increase(store, player.vote, 'receivedVotes', 1);
+
     return total;
   }, 0);
 
@@ -107,4 +98,96 @@ export const calculateRanking = (
   });
 
   return scores.rank(players);
+};
+
+/**
+ * Get achievements
+ * @param store
+ */
+export const getAchievements = (store: FirebaseStoreData) => {
+  const achievements: Achievement<DetetivesImaginativosAchievement>[] = [];
+
+  const { most: mostLeader } = utils.achievements.getMostAndLeastOf(store, 'artistPoints');
+  if (mostLeader) {
+    achievements.push({
+      type: DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.MOST_LEADER,
+      playerId: mostLeader.playerId,
+      value: mostLeader.value,
+    });
+  }
+  const { most: mostImpostor } = utils.achievements.getMostAndLeastOf(store, 'impostorPoints');
+  if (mostImpostor) {
+    achievements.push({
+      type: DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.MOST_IMPOSTOR,
+      playerId: mostImpostor.playerId,
+      value: mostImpostor.value,
+    });
+  }
+
+  const { most: longestClues, least: shortestClues } = utils.achievements.getMostAndLeastOf(
+    store,
+    'clueLength',
+  );
+  if (longestClues) {
+    achievements.push({
+      type: DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.LONGEST_CLUES,
+      playerId: longestClues.playerId,
+      value: longestClues.value,
+    });
+  }
+  if (shortestClues) {
+    achievements.push({
+      type: DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.SHORTEST_CLUES,
+      playerId: shortestClues.playerId,
+      value: shortestClues.value,
+    });
+  }
+
+  const { most: longestDefense, least: shortestDefense } = utils.achievements.getMostAndLeastOf(
+    store,
+    'defenseTime',
+  );
+  if (longestDefense) {
+    achievements.push({
+      type: DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.LONGEST_DEFENSE,
+      playerId: longestDefense.playerId,
+      value: longestDefense.value,
+    });
+  }
+  if (shortestDefense) {
+    achievements.push({
+      type: DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.SHORTEST_DEFENSE,
+      playerId: shortestDefense.playerId,
+      value: shortestDefense.value,
+    });
+  }
+
+  const { most: votedForImpostor } = utils.achievements.getMostAndLeastOf(store, 'votedImpostor');
+  if (votedForImpostor) {
+    achievements.push({
+      type: DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.VOTED_FOR_IMPOSTOR,
+      playerId: votedForImpostor.playerId,
+      value: votedForImpostor.value,
+    });
+  }
+
+  const { most: votedForInnocent } = utils.achievements.getMostAndLeastOf(store, 'votedInnocent');
+  if (votedForInnocent) {
+    achievements.push({
+      type: DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.VOTED_FOR_INNOCENT,
+      playerId: votedForInnocent.playerId,
+      value: votedForInnocent.value,
+    });
+  }
+
+  const { most: receivedVotes } = utils.achievements.getMostAndLeastOf(store, 'receivedVotes');
+  if (receivedVotes) {
+    achievements.push({
+      type: DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.RECEIVED_VOTES,
+      playerId: receivedVotes.playerId,
+      value: receivedVotes.value,
+    });
+  }
+
+  return achievements;
 };

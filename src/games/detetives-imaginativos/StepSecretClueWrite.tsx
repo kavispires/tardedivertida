@@ -1,3 +1,4 @@
+import { mockClue } from 'mock/clues';
 import { useState } from 'react';
 // Ant Design Resources
 import { Button, Input } from 'antd';
@@ -6,6 +7,7 @@ import type { GamePlayer } from 'types/player';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
 // Components
 import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
@@ -25,6 +27,8 @@ export function StepSecretClueWrite({ user, onSubmitClue, announcement }: Secret
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const [clue, setClue] = useState('');
+
+  useMock(() => onSubmitClue({ clue: mockClue('high') }));
 
   const onButtonClick = () => {
     onSubmitClue({

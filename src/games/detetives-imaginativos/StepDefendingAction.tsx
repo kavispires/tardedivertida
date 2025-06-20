@@ -5,8 +5,9 @@ import { App } from 'antd';
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+import { useMock } from 'hooks/useMock';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass, getRandomItem } from 'utils/helpers';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
@@ -15,7 +16,7 @@ import { TurnOrder } from 'components/players';
 import { messageContent } from 'components/pop-up';
 import { StepTitle, RuleInstruction } from 'components/text';
 // Internal
-import type { CardEntry } from './utils/types';
+import type { CardEntry, SubmitDefensePayload } from './utils/types';
 import { EndDefenseTimedButton } from './components/EndDefenseTimedButton';
 import { TableFocus } from './components/TableFocus';
 import { YourSelectedCards } from './components/YourSelectedCards';
@@ -25,7 +26,7 @@ type StepDefendingActionProps = {
   clue: string;
   currentPlayer: GamePlayer;
   table: CardEntry[];
-  onFinishDefenseClick: () => void;
+  onFinishDefenseClick: (payload: SubmitDefensePayload) => void;
   isLoading: boolean;
   isUserTheImpostor: boolean;
   user: GamePlayer;
@@ -47,6 +48,10 @@ export function StepDefendingAction({
   const { message } = App.useApp();
   const { translate } = useLanguage();
   const [wasMessageDisplayed, setWasMessageDisplayed] = useState(false);
+
+  useMock(() => {
+    onFinishDefenseClick({ defenseTime: getRandomItem([7, 11, 13]) });
+  });
 
   useEffect(() => {
     if (!wasMessageDisplayed && !isLoading && Date.now() - user.updatedAt > 3000000) {

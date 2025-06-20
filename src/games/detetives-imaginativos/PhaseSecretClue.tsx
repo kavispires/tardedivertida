@@ -63,7 +63,13 @@ export function PhaseSecretClue({ state, players }: PhaseProps<PhaseSecretClueSt
     >
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} buttonText=" " onPressButton={goToNextStep} time={5} />
+        <RoundAnnouncement
+          round={state.round}
+          buttonText=" "
+          onPressButton={goToNextStep}
+          time={5}
+          unskippable
+        />
 
         {/* Step 1 */}
         <ViewOr condition={isUserTheLeader}>

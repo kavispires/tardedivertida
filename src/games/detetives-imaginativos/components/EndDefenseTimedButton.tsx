@@ -2,9 +2,11 @@
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+// Internal
+import type { SubmitDefensePayload } from '../utils/types';
 
 type EndDefenseTimedButtonProps = {
-  onFinishDefenseClick: GenericFunction;
+  onFinishDefenseClick: (payload: SubmitDefensePayload) => void;
   isLoading?: boolean;
 };
 
@@ -14,8 +16,8 @@ export function EndDefenseTimedButton({ onFinishDefenseClick, isLoading }: EndDe
       <TimedButton
         duration={40}
         type="primary"
-        onClick={onFinishDefenseClick}
-        onExpire={onFinishDefenseClick}
+        onClick={(timeLeft) => onFinishDefenseClick({ defenseTime: timeLeft })}
+        onExpire={() => onFinishDefenseClick({ defenseTime: 0 })}
         disabled={isLoading}
         size="large"
         loading={isLoading}

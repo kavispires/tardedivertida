@@ -6,6 +6,32 @@ import { getNextPhase } from './index';
 import type { FirebaseStateData } from './types';
 
 /**
+ *  Submit a clue for the current player.
+ * @param gameName
+ * @param gameId
+ * @param playerId
+ * @param clue
+ * @returns
+ */
+export const handleSubmitClue = async (
+  gameName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  clue: string,
+) => {
+  return await utils.firestore.updatePlayer({
+    gameName,
+    gameId,
+    playerId,
+    actionText: 'submit clue',
+    change: { clue },
+    shouldReady: true,
+    shouldGoToNextPhase: true,
+    nextPhaseFunction: getNextPhase,
+  });
+};
+
+/**
  *
  * @param gameName
  * @param gameId
@@ -79,14 +105,12 @@ export const handlePlayCard = async (
   return true;
 };
 
-/**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @returns
- */
-export const handleDefend = async (gameName: GameName, gameId: GameId, playerId: PlayerId) => {
+export const handleDefend = async (
+  gameName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  defenseTime: number,
+) => {
   const actionText = 'defend';
 
   const { sessionRef, state } = await utils.firestore.getStateReferences<FirebaseStateData>(
@@ -103,12 +127,14 @@ export const handleDefend = async (gameName: GameName, gameId: GameId, playerId:
   try {
     const newPhaseIndex = state.phaseIndex + 1;
     // If it is the last player to play, go to the next phase
-    if (newPhaseIndex === state.phaseOrder.length) {
+    if (newPhaseIndex === state.turnOrder.length) {
+      state.players[playerId].defenseTime = defenseTime;
       getNextPhase(gameName, gameId, state);
     } else {
       await sessionRef.doc('state').update({
         phaseIndex: newPhaseIndex,
-        currentPlayerId: state.phaseOrder[newPhaseIndex],
+        currentPlayerId: state.turnOrder[newPhaseIndex],
+        [`players.${playerId}.defenseTime`]: defenseTime,
       });
     }
   } catch (error) {
@@ -118,14 +144,6 @@ export const handleDefend = async (gameName: GameName, gameId: GameId, playerId:
   return true;
 };
 
-/**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param vote
- * @returns
- */
 export const handleSubmitVote = async (
   gameName: GameName,
   gameId: GameId,
@@ -139,32 +157,6 @@ export const handleSubmitVote = async (
     actionText: 'submit vote',
     shouldReady: true,
     change: { vote },
-    nextPhaseFunction: getNextPhase,
-  });
-};
-
-/**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param clue
- * @returns
- */
-export const handleSubmitClue = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  clue: string,
-) => {
-  return await utils.firestore.updateStore({
-    gameName,
-    gameId,
-    playerId,
-    actionText: 'submit clue',
-    change: {
-      clue,
-    },
     nextPhaseFunction: getNextPhase,
   });
 };

@@ -3,7 +3,12 @@ import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 import type { UseStep } from 'hooks/useStep';
 // Internal
-import type { SubmitPlayCardPayload, SubmitSecretCluePayload, SubmitVotePayload } from './types';
+import type {
+  SubmitDefensePayload,
+  SubmitPlayCardPayload,
+  SubmitSecretCluePayload,
+  SubmitVotePayload,
+} from './types';
 import { DETETIVES_IMAGINATIVOS_ACTIONS } from './constants';
 
 export function useOnSubmitSecretClueAPIRequest(setStep: UseStep['setStep']) {
@@ -60,9 +65,10 @@ export function useOnFinishDefenseRequest() {
     ),
   });
 
-  return () => {
+  return (payload: SubmitDefensePayload) => {
     request({
       action: DETETIVES_IMAGINATIVOS_ACTIONS.DEFEND,
+      ...payload,
     });
   };
 }

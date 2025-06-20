@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "detetives-imaginativos",
-  "version": "3.0.73",
+  "version": "4.0.1",
   "release": "stable",
   "available": true,
   "title": {
@@ -47,8 +47,8 @@
       "All players then select one more card following the same criteria",
       "After two cards per player have been played, the secret word is revealed then starting with the Lead Detective, players have to explain their choices. The Impostor must bs their way out",
       "When all explanations are complete, everybody but the Lead Detective vote for who they think the Impostor is",
-      "If more than one player choses the Imposter, the Detectives get 3 points. If the Impostor gets less than 2 votes, he gets 5 points and the Lead Detective 4.",
-      "The game continues until all players have been the Lead Detective once (or twice)"
+      "If more than one player choses the Impostor, the Detectives get 3 points. If the Impostor gets less than 2 votes, he gets 5 points and the Lead Detective 4.",
+      "The last impostor becomes the leader and the game continues for 6 rounds"
     ]
   },
   "playerCount": {
@@ -61,6 +61,15 @@
     "base": 5,
     "perPlayer": 6
   },
-  "tags": ["competitive", "turn-based", "traitor", "discussion", "images", "writing", "voting"],
+  "tags": [
+    "competitive",
+    "turn-based",
+    "traitor",
+    "discussion",
+    "images",
+    "writing",
+    "voting",
+    "achievements"
+  ],
   "options": []
 }

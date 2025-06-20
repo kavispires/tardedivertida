@@ -1,4 +1,5 @@
 // Types
+import type { Achievement } from 'types/achievements';
 import type { GameRanking } from 'types/game';
 
 export type CardEntry = {
@@ -6,12 +7,12 @@ export type CardEntry = {
   cards: string[];
 };
 
-export interface GalleryEntry {
+export type FinalGalleryEntry = {
   cards: ImageCardId[];
   clue: string;
   playerId: PlayerId;
   isLeader: boolean;
-}
+};
 
 export type SubmitSecretCluePayload = {
   clue: string;
@@ -19,6 +20,10 @@ export type SubmitSecretCluePayload = {
 
 export type SubmitPlayCardPayload = {
   cardId: string;
+};
+
+export type SubmitDefensePayload = {
+  defenseTime: number;
 };
 
 export type SubmitVotePayload = {
@@ -48,7 +53,6 @@ export type PhaseDefenseState = {
   impostorId: PlayerId;
   leaderId: PlayerId;
   phaseIndex: number;
-  phaseOrder: GameOrder;
   table: CardEntry[];
   turnOrder: GameOrder;
 };
@@ -72,5 +76,6 @@ export type PhaseRevealState = {
 };
 
 export type PhaseGameOverState = {
-  gallery: GalleryEntry[];
+  achievements: Achievement[];
+  gallery: FinalGalleryEntry[];
 };

@@ -47,6 +47,10 @@ type StepRankingWrapperProps = {
    * Index of the ranking that should be highlighted with a crown
    */
   victoryIndex?: number;
+  /**
+   * How long the ranking board should be delayed before showing
+   */
+  delay?: number;
 };
 
 export function StepRankingWrapper({
@@ -58,6 +62,7 @@ export function StepRankingWrapper({
   subtitle,
   colorScheme,
   victoryIndex = 0,
+  delay = 0,
 }: StepRankingWrapperProps) {
   useTemporarilyHidePlayersBar();
   const appearance = useGameAppearance();
@@ -75,6 +80,7 @@ export function StepRankingWrapper({
         ranking={ranking}
         gainedPointsDescriptions={gainedPointsDescriptions}
         victoryIndex={victoryIndex}
+        delay={delay}
       />
       <Instruction className="step-ranking-wrapper-gained-points-instruction" colorScheme={scheme}>
         <CaretUpOutlined />

@@ -1,10 +1,13 @@
 import clsx from 'clsx';
+// Ant Design Resources
 import { Button, type ButtonProps } from 'antd';
+// Hooks
 import { useCountdown } from 'hooks/useCountdown';
+// Sass
 import './TimedButton.scss';
 // Hook and Utils
 
-interface TimedButtonProps extends ButtonProps {
+interface TimedButtonProps extends Omit<ButtonProps, 'onClick'> {
   /**
    * Duration to call onExpire in seconds
    */
@@ -12,7 +15,11 @@ interface TimedButtonProps extends ButtonProps {
   /**
    * Function to be called when the time expires
    */
-  onExpire?: () => void;
+  onExpire?: (timeLeft: number) => void;
+  /**
+   * The onclick function that will be called when the button is clicked
+   */
+  onClick?: (timeLeft: number) => void;
   /**
    * Flag indicating if the timer should be hidden (this cancels the onExpire function)
    */
@@ -35,14 +42,19 @@ export function TimedButton({
   const { timeLeft } = useCountdown({
     duration,
     autoStart: true,
-    onExpire,
+    onExpire: () => onExpire?.(0),
     disabled: hideTimer,
   });
 
   const timeClass = 'timed-button__time';
 
   return (
-    <Button className={clsx('timed-button', className)} {...rest} type={type} onClick={onClick ?? onExpire}>
+    <Button
+      className={clsx('timed-button', className)}
+      {...rest}
+      type={type}
+      onClick={() => onClick?.(timeLeft) ?? onExpire?.(timeLeft)}
+    >
       {children}
       {!hideTimer && <span className={clsx(timeClass, `${timeClass}--${type}`)}>{timeLeft}</span>}
     </Button>
