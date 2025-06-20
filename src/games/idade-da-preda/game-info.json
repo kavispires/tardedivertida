@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "idade-da-preda",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "release": "beta",
   "available": true,
   "title": {
@@ -26,8 +26,20 @@
     "colorScheme": "dark"
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "Somos homens (e mulheres) das cavernas que precisam criar uma nova língua",
+      "No início de cada rodada, os jogadores criam conceitos a partir de coisas disponíveis na tela, por exemplo: 'bola' + 'elefante' + 'melancia' dão a ideia de redondo. Para cada conceito será atribuído uma sílaba/som",
+      "Depois, os jogadores devem nomear uma dos seus três objetos usando as sílabas/sons/conceitos disponíveis, usando pelo menos duas sílabas",
+      "E por último, é hora de adivinhar o que os jogadores nomearam. Você ganha 2 pontos por cada acerto, e 1 ponto pra cada jogador que acertar o seu",
+      "O jogo dura 5 rodadas, indo da época da pedra, ao mundo medieval, tempos modernos e até um futuro próximo."
+    ],
+    "en": [
+      "We are cavemen who need to create a new language",
+      "At the beginning of each round, players create concepts from things available on the screen, for example: 'ball' + 'elephant' + 'watermelon' gives the idea of round. Each concept will be assigned a syllable/sound",
+      "Then, players must name one of their three objects using the available syllables/sounds/concepts, using at least two syllables",
+      "Finally, it's time to guess what players named. You earn 2 points for each correct guess, and 1 point for each player who guesses yours",
+      "The game lasts 5 rounds, going from the Stone Age to the medieval world, modern times, and even a near future."
+    ]
   },
   "playerCount": {
     "recommended": [4, 5, 6],
