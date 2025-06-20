@@ -5,6 +5,7 @@ import COMUNICACAO_DUO from 'games/comunicacao-duo/utils/achievements';
 import CONTADORES_HISTORIAS from 'games/contadores-historias/utils/achievements';
 import CRIMES_HEDIONDOS from 'games/crimes-hediondos/utils/achievements';
 import CRUZA_PALAVRAS from 'games/cruza-palavras/utils/achievements';
+import DETETIVES_IMAGINATIVOS from 'games/detetives-imaginativos/utils/achievements';
 import DUETOS from 'games/duetos/utils/achievements';
 import ESQUIADORES from 'games/esquiadores/utils/achievements';
 import FILEIRA_DE_FATOS from 'games/fileira-de-fatos/utils/achievements';
@@ -31,7 +32,6 @@ import VICE_CAMPEAO from 'games/vice-campeao/utils/achievements';
 import type { AchievementReference } from 'types/achievements';
 // import BOMBA_RELOGIO from 'games/bomba-relogio/utils/achievements';
 // import CINEGRAFISTAS_AMADORES from 'games/cinegrafistas-amadores/utils/achievements';
-// import DETETIVES_IMAGINATIVOS from 'games/detetives-imaginativos/utils/achievements';
 // import ESPIAO_ENTRE_NOS from 'games/espiao-entre-nos/utils/achievements';
 // import INSTRUMENTOS_CODIFICADOS from 'games/instrumentos-codificados/utils/achievements';
 // import LABIRINTO_SECRETO from 'games/labirinto-secreto/utils/achievements';
@@ -53,7 +53,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'contadores-historias': CONTADORES_HISTORIAS,
   'crimes-hediondos': CRIMES_HEDIONDOS,
   'cruza-palavras': CRUZA_PALAVRAS,
-  'detetives-imaginativos': null,
+  'detetives-imaginativos': DETETIVES_IMAGINATIVOS,
   esquiadores: ESQUIADORES,
   duetos: DUETOS,
   'espiao-entre-nos': null,

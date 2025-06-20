@@ -58,6 +58,9 @@ export const getInitialState = (
  */
 export const getPlayerCounts = () => PLAYER_COUNTS;
 
+/**
+ * Get next phase of the game
+ */
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
@@ -142,7 +145,8 @@ export const submitAction = async (data: DetetivesImaginativosSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['cardId'], 'play card');
       return handlePlayCard(gameName, gameId, playerId, data.cardId);
     case DETETIVES_IMAGINATIVOS_ACTIONS.DEFEND:
-      return handleDefend(gameName, gameId, playerId);
+      utils.firebase.validateSubmitActionProperties(data, ['defenseTime'], 'defend');
+      return handleDefend(gameName, gameId, playerId, data.defenseTime);
     case DETETIVES_IMAGINATIVOS_ACTIONS.SUBMIT_VOTE:
       utils.firebase.validateSubmitActionProperties(data, ['vote'], 'submit vote');
       return handleSubmitVote(gameName, gameId, playerId, data.vote);

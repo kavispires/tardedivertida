@@ -20,21 +20,21 @@ describe('clube-detetives', () => {
         mockPlayer({ name, additionalInfo: { vote: index % 2 === 0 ? '_bob' : '_cam' } })
       );
 
-      result = helpers.countImpostorVotes(sample, '_bob');
+      result = helpers.countImpostorVotes(sample, '_bob', {});
       expect(result).toEqual(2);
 
       sample = Array.from(['Abe', 'Bob', 'Cam', 'Dan'], (name) =>
         mockPlayer({ name, additionalInfo: { vote: name === 'Bob' ? '_cam' : '_bob' } })
       );
 
-      result = helpers.countImpostorVotes(sample, '_bob');
+      result = helpers.countImpostorVotes(sample, '_bob', {});
       expect(result).toEqual(3);
 
       sample = Array.from(['Abe', 'Bob', 'Cam', 'Dan'], (name) =>
         mockPlayer({ name, additionalInfo: { vote: '_cam' } })
       );
 
-      result = helpers.countImpostorVotes(sample, '_bob');
+      result = helpers.countImpostorVotes(sample, '_bob', {});
       expect(result).toEqual(0);
     });
   });

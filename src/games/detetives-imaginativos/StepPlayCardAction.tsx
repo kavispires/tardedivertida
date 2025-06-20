@@ -4,8 +4,12 @@ import { App } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
+import { useCountdown } from 'hooks/useCountdown';
 import { useLanguage } from 'hooks/useLanguage';
+import { useMock } from 'hooks/useMock';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+// Utils
+import { getRandomItem } from 'utils/helpers';
 // Icons
 import { ImageCardsIcon } from 'icons/ImageCardsIcon';
 // Components
@@ -15,13 +19,15 @@ import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { messageContent } from 'components/pop-up';
 import { StepTitle, RuleInstruction } from 'components/text';
-import { TimedTimerClock } from 'components/timers';
+import { TimedTimerClock, WaitingTime } from 'components/timers';
 import { ViewOr } from 'components/views';
 // Internal
 import type { CardEntry, SubmitPlayCardPayload } from './utils/types';
 import { isEarliestPlayerWithFewestCards } from './utils/helpers';
 import { Table } from './components/Table';
 import { ImposterTitle, SecretClueTitle } from './components/Titles';
+
+const PREVENT_USER_FROM_CLICKING_TIME = 10;
 
 type StepPlayCardActionProps = {
   isUserTheImpostor: boolean;
@@ -54,9 +60,23 @@ export function StepPlayCardAction({
   const onSelectCard = (cardId: string) => onPlayCard({ cardId });
   const [wasMessageDisplayed, setWasMessageDisplayed] = useState(false);
 
+  useMock(
+    () => {
+      onPlayCard({ cardId: getRandomItem(user.hand) });
+    },
+    [],
+    8,
+  );
+
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    if (!wasMessageDisplayed && !isLoading && isEarliestPlayerWithFewestCards(table, user.id, turnOrder)) {
+    if (
+      table.length !== 0 &&
+      currentPlayer.id === user.id &&
+      !wasMessageDisplayed &&
+      !isLoading &&
+      isEarliestPlayerWithFewestCards(table, user.id, turnOrder)
+    ) {
       message.info(
         messageContent(
           translate('Escolha uma carta!', 'Choose a card to play'),
@@ -82,6 +102,8 @@ export function StepPlayCardAction({
     turnOrder,
     message,
   ]);
+
+  const { timeLeft } = useCountdown({ duration: PREVENT_USER_FROM_CLICKING_TIME });
 
   return (
     <>
@@ -120,10 +142,12 @@ export function StepPlayCardAction({
         reorderByUser={leaderId}
       />
 
+      <WaitingTime timeLeft={timeLeft} duration={PREVENT_USER_FROM_CLICKING_TIME} />
+
       <ImageCardHand
         hand={user.hand}
         onSelectCard={onSelectCard}
-        disabledSelectButton={isLoading}
+        disabledSelectButton={timeLeft > 0 || isLoading}
         sizeRatio={user.hand?.length}
       />
     </>

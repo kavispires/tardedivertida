@@ -41,6 +41,7 @@ export function StepReveal({
   return (
     <Step announcement={announcement}>
       <StepRankingWrapper
+        delay={5}
         players={players}
         ranking={ranking}
         gainedPointsDescriptions={[

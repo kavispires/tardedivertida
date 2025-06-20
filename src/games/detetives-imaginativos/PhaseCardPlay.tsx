@@ -64,7 +64,6 @@ export function PhaseCardPlay({ state, players }: PhaseProps<PhaseCardPlayState>
     >
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-
         <StepPlayCard
           clue={state.clue}
           currentPlayer={currentPlayer}

@@ -6,7 +6,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 import { Step, type StepProps } from 'components/steps';
 import { ViewOr } from 'components/views';
 // Internal
-import type { CardEntry } from './utils/types';
+import type { CardEntry, SubmitDefensePayload } from './utils/types';
 import { StepDefendingAction } from './StepDefendingAction';
 import { StepDefendingWaiting } from './StepDefendingWaiting';
 
@@ -15,7 +15,7 @@ type StepDefendingProps = {
   currentPlayer: GamePlayer;
   isUserTheCurrentPlayer: boolean;
   table: CardEntry[];
-  onFinishDefenseClick: () => void;
+  onFinishDefenseClick: (payload: SubmitDefensePayload) => void;
   isLoading: boolean;
   isUserTheImpostor: boolean;
   user: GamePlayer;
