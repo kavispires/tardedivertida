@@ -16,7 +16,6 @@ import { Translate } from 'components/language';
 // Internal
 import { playableGames } from '../utils';
 import { AchievementCard } from './AchievementCard';
-// Icons
 
 type AchievementEntry = {
   gameName: string;

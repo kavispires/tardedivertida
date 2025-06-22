@@ -11,7 +11,7 @@ import type { FirebaseUserDB } from '../utils/user';
  * @returns - A promise that resolves to the user data.
  * @throws - Throws an exception if the user is not authenticated.
  */
-const getUser = async (auth: FirebaseAuth) => {
+const getUser = async (_: unknown, auth: FirebaseAuth) => {
   const uid = auth?.uid;
 
   if (!uid) {
@@ -45,7 +45,7 @@ const getUserById = async (userUid: string, auth: FirebaseAuth) => {
   const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firebase.throwException('You are not authenticated', 'get user');
+    return utils.firebase.throwException('You are not authenticated', 'getUserById');
   }
 
   const userRef = utils.firestore.getUserRef();
@@ -53,7 +53,7 @@ const getUserById = async (userUid: string, auth: FirebaseAuth) => {
 
   // If the user object doesn't exist, just create one
   if (!user.exists) {
-    return utils.firebase.throwException('User does not exist', 'get user');
+    return utils.firebase.throwException('User does not exist', 'getUserById');
   }
 
   const userData = user.data();
@@ -71,7 +71,7 @@ const getUsers = async (_: unknown, auth: FirebaseAuth) => {
   const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firebase.throwException('You are not authenticated', 'get user');
+    return utils.firebase.throwException('You are not authenticated', 'getUsers');
   }
 
   const usersRef = utils.firestore.getUserRef();
@@ -89,11 +89,11 @@ const updateUserDB = async (data: FirebaseUserDB, auth: FirebaseAuth) => {
   const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firebase.throwException('You are not authenticated', 'get user');
+    return utils.firebase.throwException('You are not authenticated', 'updateUserDB');
   }
 
   if (!data.id || !data.preferredLanguage) {
-    return utils.firebase.throwException('Payload is missing data', 'get user');
+    return utils.firebase.throwException('Payload is missing data', 'updateUserDB');
   }
 
   const userRef = utils.firestore.getUserRef();
