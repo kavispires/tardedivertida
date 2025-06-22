@@ -10,6 +10,7 @@ import DUETOS from 'games/duetos/utils/achievements';
 import ESQUIADORES from 'games/esquiadores/utils/achievements';
 import FILEIRA_DE_FATOS from 'games/fileira-de-fatos/utils/achievements';
 import GALERIA_DE_SONHOS from 'games/galeria-de-sonhos/utils/achievements';
+import LABIRINTO_SECRETO from 'games/labirinto-secreto/utils/achievements';
 import LINHAS_CRUZADAS from 'games/linhas-cruzadas/utils/achievements';
 import MEGAMIX from 'games/megamix/utils/achievements';
 import MENTE_COLETIVA from 'games/mente-coletiva/utils/achievements';
@@ -34,7 +35,6 @@ import type { AchievementReference } from 'types/achievements';
 // import CINEGRAFISTAS_AMADORES from 'games/cinegrafistas-amadores/utils/achievements';
 // import ESPIAO_ENTRE_NOS from 'games/espiao-entre-nos/utils/achievements';
 // import INSTRUMENTOS_CODIFICADOS from 'games/instrumentos-codificados/utils/achievements';
-// import LABIRINTO_SECRETO from 'games/labirinto-secreto/utils/achievements';
 // import NAUFRAGOS from 'games/naufragos/utils/achievements';
 // import PALHETA_DE_CORES from 'games/palheta-de-cores/utils/achievements';
 // import QUEM_NAO_MATA from 'games/quem-nao-mata/utils/achievements';
@@ -60,7 +60,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'fileira-de-fatos': FILEIRA_DE_FATOS,
   'galeria-de-sonhos': GALERIA_DE_SONHOS,
   'instrumentos-codificados': null,
-  'labirinto-secreto': null,
+  'labirinto-secreto': LABIRINTO_SECRETO,
   'linhas-cruzadas': LINHAS_CRUZADAS,
   megamix: MEGAMIX,
   'mente-coletiva': MENTE_COLETIVA,

@@ -3,10 +3,6 @@ import type { CallableRequest, FirebaseAuth } from '../types/reference';
 import utils from '../utils';
 import type { FirebaseUserDB } from '../utils/user';
 
-type OptionalDailyGetterPayload = {
-  date?: string; // Format YYYY-MM-DD
-};
-
 /**
  * Retrieves the user data based on the provided parameters.
  *
@@ -15,7 +11,7 @@ type OptionalDailyGetterPayload = {
  * @returns - A promise that resolves to the user data.
  * @throws - Throws an exception if the user is not authenticated.
  */
-const getUser = async ({ date }: OptionalDailyGetterPayload, auth: FirebaseAuth) => {
+const getUser = async (auth: FirebaseAuth) => {
   const uid = auth?.uid;
 
   if (!uid) {
@@ -34,7 +30,7 @@ const getUser = async ({ date }: OptionalDailyGetterPayload, auth: FirebaseAuth)
   }
 
   const userData = user.data();
-  return utils.user.serializeUser(utils.user.mergeUserData(uid, userData), date);
+  return utils.user.serializeUser(utils.user.mergeUserData(uid, userData));
 };
 
 /**

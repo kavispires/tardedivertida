@@ -30,14 +30,10 @@ interface GameUserStatistics {
   totalPlayDuration: number;
   // The latest game played
   latestPlay: GameUserEntry;
-  // The game with the shortest duration
-  shortestPlay: GameUserEntry;
-  // The game with the longest duration
-  longestPlay: GameUserEntry;
   // The first game played with the earliest startedAt
   firstPlay: GameUserEntry;
   // The game rating
-  rating: number;
+  rating: number | null;
   // Comments
   comments?: string;
   // Average player count
@@ -69,7 +65,7 @@ export interface FirebaseUserDB {
   ratings: Record<GameName, number>;
   games: Record<GameName, Record<GameId, GameUserEntry>>;
   blurredImages: Record<ImageCardId, true>;
-  daily: Dictionary<DailyEntry>;
+  daily?: Dictionary<DailyEntry>;
 }
 
 interface FirebaseUIStatistics {
@@ -89,10 +85,6 @@ interface FirebaseUIStatistics {
   totalPlayDuration: number;
   // The latest game played
   latestPlay: GameUserEntry;
-  // The game with the shortest duration
-  shortestPlay: GameUserEntry;
-  // The game with the longest duration
-  longestPlay: GameUserEntry;
   // The first game played with the earliest startedAt
   firstPlay: GameUserEntry;
   // game with the most entries
@@ -125,20 +117,6 @@ interface FirebaseUserUI {
   statistics: FirebaseUIStatistics;
   games: Record<GameName, GameUserStatistics>;
   blurredImages?: Record<ImageCardId, true>;
-  today: {
-    plays: number;
-    win: number;
-    last: number;
-    achievements: number;
-    duration: number;
-    games: GameUserEntry[];
-  };
-  daily: {
-    total: number;
-    longestStreak: number;
-    streak: number;
-    todaysChallenge?: DailyEntry;
-  };
 }
 
 const DEFAULT_FIREBASE_USER_DB: FirebaseUserDB = {
@@ -150,7 +128,6 @@ const DEFAULT_FIREBASE_USER_DB: FirebaseUserDB = {
   gender: 'unknown',
   ratings: {},
   blurredImages: {},
-  daily: {},
 };
 
 const PLACEHOLDER_GAME_USER_ENTRY: GameUserEntry = {
@@ -184,7 +161,7 @@ const isWinnableGame = (gameName: GameName): boolean => {
  * @param dailyDate - format YYYY-MM-DD
  * @returns
  */
-export const serializeUser = (dbUser: FirebaseUserDB, dailyDate?: string): FirebaseUserUI => {
+export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
   // Get top avatars
   const topAvatars = Object.keys(dbUser.avatars)
     .sort((a, b) => dbUser.avatars[b] - dbUser.avatars[a])
@@ -199,8 +176,6 @@ export const serializeUser = (dbUser: FirebaseUserDB, dailyDate?: string): Fireb
   Object.entries(dbUser.games).forEach(([gameName, gameEntries]) => {
     const isWinnable = isWinnableGame(gameName);
     const gameAchievements: Record<AchievementKey, number> = {};
-    let shortestDuration = 0;
-    let longestDuration = 0;
     let earliestPlaySession = 0;
     let latestPlaySession = 0;
     let playersCounts = 0;
@@ -215,8 +190,6 @@ export const serializeUser = (dbUser: FirebaseUserDB, dailyDate?: string): Fireb
         achievements: {},
         totalPlayDuration: 0,
         latestPlay: PLACEHOLDER_GAME_USER_ENTRY,
-        shortestPlay: PLACEHOLDER_GAME_USER_ENTRY,
-        longestPlay: PLACEHOLDER_GAME_USER_ENTRY,
         firstPlay: PLACEHOLDER_GAME_USER_ENTRY,
         rating: 0,
         averagePlayerCount: 0,
@@ -240,15 +213,6 @@ export const serializeUser = (dbUser: FirebaseUserDB, dailyDate?: string): Fireb
 
       const duration = gameEntry.endedAt - gameEntry.startedAt;
       entry.totalPlayDuration += duration;
-      if (!shortestDuration || shortestDuration > duration) {
-        shortestDuration = duration;
-        entry.shortestPlay = gameEntry;
-      }
-
-      if (longestDuration < duration) {
-        longestDuration = duration;
-        entry.longestPlay = gameEntry;
-      }
 
       if (!earliestPlaySession || earliestPlaySession > gameEntry.startedAt) {
         earliestPlaySession = gameEntry.startedAt;
@@ -296,8 +260,6 @@ export const serializeUser = (dbUser: FirebaseUserDB, dailyDate?: string): Fireb
     achievements: 0,
     totalPlayDuration: 0,
     latestPlay: PLACEHOLDER_GAME_USER_ENTRY,
-    shortestPlay: PLACEHOLDER_GAME_USER_ENTRY,
-    longestPlay: PLACEHOLDER_GAME_USER_ENTRY,
     firstPlay: PLACEHOLDER_GAME_USER_ENTRY,
     mostPlayedGame: '',
     leastPlayedGame: '',
@@ -310,8 +272,6 @@ export const serializeUser = (dbUser: FirebaseUserDB, dailyDate?: string): Fireb
 
   let earliestPlay = 0;
   let latestPlay = 0;
-  let shortestPlay = 0;
-  let longestPlay = 0;
   let mostPlaysCount = 0;
   let fewestPlaysCount = 0;
   let highestRating = 0;
@@ -341,16 +301,6 @@ export const serializeUser = (dbUser: FirebaseUserDB, dailyDate?: string): Fireb
       globalStatistics.latestPlay = play.latestPlay;
     }
 
-    if (!shortestPlay || shortestPlay > play.shortestPlay.endedAt - play.shortestPlay.startedAt) {
-      shortestPlay = play.shortestPlay.endedAt - play.shortestPlay.startedAt;
-      globalStatistics.shortestPlay = play.shortestPlay;
-    }
-
-    if (longestPlay < play.longestPlay.endedAt - play.longestPlay.startedAt) {
-      longestPlay = play.longestPlay.endedAt - play.longestPlay.startedAt;
-      globalStatistics.longestPlay = play.longestPlay;
-    }
-
     if (!fewestPlaysCount || fewestPlaysCount > play.plays) {
       fewestPlaysCount = play.plays;
       globalStatistics.leastPlayedGame = play.gameName;
@@ -361,13 +311,13 @@ export const serializeUser = (dbUser: FirebaseUserDB, dailyDate?: string): Fireb
       globalStatistics.mostPlayedGame = play.gameName;
     }
 
-    if (!lowestRating || lowestRating > play.rating) {
-      lowestRating = play.rating;
+    if (!lowestRating || lowestRating > (play?.rating ?? 0)) {
+      lowestRating = play?.rating ?? 0;
       globalStatistics.leastFavoriteGame = play.gameName;
     }
 
-    if (!highestRating || highestRating < play.rating) {
-      highestRating = play.rating;
+    if (!highestRating || highestRating < (play?.rating ?? 0)) {
+      highestRating = play?.rating ?? 0;
       globalStatistics.favoriteGame = play.gameName;
     }
 
@@ -386,28 +336,7 @@ export const serializeUser = (dbUser: FirebaseUserDB, dailyDate?: string): Fireb
   globalStatistics.averagePlayerCount =
     playerCounts > 0 ? playerCounts / Object.values(playsStatistics).length : 0;
 
-  //
-  const todaySummary = {
-    plays: todaysGames.length,
-    win: todaysGames.filter((game) => game.win).length,
-    last: todaysGames.filter((game) => game.last).length,
-    achievements: todaysGames.reduce((acc, game) => acc + game.achievements.length, 0),
-    duration: todaysGames.reduce((acc, game) => acc + (game.endedAt - game.startedAt), 0),
-    games: todaysGames,
-  };
-
   // Daily
-  const orderedDaily = Object.values(dbUser.daily ?? {}).sort((a, b) => b.number - a.number);
-  const daily: FirebaseUserUI['daily'] = {
-    longestStreak: calculateLongestStreak(orderedDaily),
-    total: orderedDaily.length,
-    streak: calculateCurrentStreak(orderedDaily),
-  };
-
-  if (dailyDate && dbUser.daily[dailyDate]) {
-    daily.todaysChallenge = dbUser.daily[dailyDate];
-  }
-
   return {
     id: dbUser.id,
     names: dbUser?.names ?? [],
@@ -416,8 +345,6 @@ export const serializeUser = (dbUser: FirebaseUserDB, dailyDate?: string): Fireb
     avatars: topAvatars,
     statistics: globalStatistics,
     games: playsStatistics,
-    today: todaySummary,
-    daily,
   };
 };
 
@@ -545,40 +472,4 @@ async function fetchUser(id: string) {
 async function saveNewUserData(id: string, data: FirebaseUserDB) {
   const userRef = getUserRef().doc(id);
   await userRef.update({ ...data });
-}
-
-function calculateCurrentStreak(dailyPlays: DailyEntry[]): number {
-  if (dailyPlays.length === 0) {
-    return 0;
-  }
-
-  let streak = 0;
-  for (let i = 0; i < dailyPlays.length; i++) {
-    if (dailyPlays[i].victory) {
-      streak += 1;
-    } else {
-      break;
-    }
-  }
-  return streak;
-}
-
-function calculateLongestStreak(dailyPlays: DailyEntry[]): number {
-  if (dailyPlays.length === 0) {
-    return 0;
-  }
-
-  let longestStreak = 0;
-  let currentStreak = 0;
-  for (let i = 0; i < dailyPlays.length; i++) {
-    if (dailyPlays[i].victory) {
-      currentStreak += 1;
-    } else {
-      if (currentStreak > longestStreak) {
-        longestStreak = currentStreak;
-      }
-      currentStreak = 0;
-    }
-  }
-  return longestStreak;
 }

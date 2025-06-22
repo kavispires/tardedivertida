@@ -24,6 +24,7 @@ const PLACEHOLDER_GAME_USER_ENTRY = {
   playerCount: 0,
   placement: 0,
   achievements: [],
+  rating: null,
 };
 
 const DEFAULT_ME_DATA: Me = {
@@ -41,8 +42,6 @@ const DEFAULT_ME_DATA: Me = {
     achievements: 0,
     totalPlayDuration: 0,
     latestPlay: PLACEHOLDER_GAME_USER_ENTRY,
-    shortestPlay: PLACEHOLDER_GAME_USER_ENTRY,
-    longestPlay: PLACEHOLDER_GAME_USER_ENTRY,
     firstPlay: PLACEHOLDER_GAME_USER_ENTRY,
     mostPlayedGame: '',
     leastPlayedGame: '',
@@ -60,11 +59,6 @@ const DEFAULT_ME_DATA: Me = {
     achievements: 0,
     duration: 0,
     games: [],
-  },
-  daily: {
-    total: 0,
-    longestStreak: 0,
-    streak: 0,
   },
 };
 

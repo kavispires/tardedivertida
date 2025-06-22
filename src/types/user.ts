@@ -3,10 +3,12 @@ import type { AchievementKey } from './achievements';
 
 interface GameUserEntry {
   gameId: GameId;
+  gameName?: GameName;
   startedAt: number;
   endedAt: number;
   playerCount: number;
   placement: number;
+  rating?: number | null;
   win?: boolean;
   last?: boolean;
   achievements: AchievementKey[];
@@ -65,10 +67,6 @@ export interface Me {
     totalPlayDuration: number;
     // The latest game played
     latestPlay: GameUserEntry;
-    // The game with the shortest duration
-    shortestPlay: GameUserEntry;
-    // The game with the longest duration
-    longestPlay: GameUserEntry;
     // The first game played with the earliest startedAt
     firstPlay: GameUserEntry;
     // game with the most entries
@@ -96,17 +94,5 @@ export interface Me {
     achievements: number;
     duration: number;
     games: GameUserEntry[];
-  };
-  daily: {
-    total: number;
-    longestStreak: number;
-    streak: number;
-    todaysChallenge?: {
-      id: string; // Format YYYY-MM-DD
-      number: number;
-      victory: boolean;
-      hearts: number;
-      letters: string[];
-    };
   };
 }
