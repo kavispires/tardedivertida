@@ -40,7 +40,7 @@ export function durationToHours(duration: number): number {
 
 export const playableGames = Object.entries(GAME_LIST).reduce(
   (acc: Record<GameName, GameInfo>, [gameName, info]) => {
-    if (info.release === 'stable') {
+    if (['stable', 'beta'].includes(info.release)) {
       acc[gameName] = info;
     }
     return acc;
