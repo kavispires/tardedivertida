@@ -83,7 +83,10 @@ export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
               <GameBanner
                 title={gameInfo.title}
                 gameName={gameInfo.gameName}
-                className={clsx('me__game-bingo-banner', 'me__game-bingo-banner--played')}
+                className={clsx('me__game-bingo-banner', {
+                  'me__game-bingo-banner--played': games[gameInfo.gameName],
+                  'me__game-bingo-banner--beta': gameInfo.release === 'beta',
+                })}
                 static
                 width={cardWidth}
               />
