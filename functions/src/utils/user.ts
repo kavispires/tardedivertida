@@ -117,6 +117,14 @@ interface FirebaseUserUI {
   statistics: FirebaseUIStatistics;
   games: Record<GameName, GameUserStatistics>;
   blurredImages?: Record<ImageCardId, true>;
+  today: {
+    plays: number;
+    win: number;
+    last: number;
+    achievements: number;
+    duration: number;
+    games: GameUserEntry[];
+  };
 }
 
 const DEFAULT_FIREBASE_USER_DB: FirebaseUserDB = {
@@ -336,7 +344,16 @@ export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
   globalStatistics.averagePlayerCount =
     playerCounts > 0 ? playerCounts / Object.values(playsStatistics).length : 0;
 
-  // Daily
+  // Today
+  const todaySummary = {
+    plays: todaysGames.length,
+    win: todaysGames.filter((game) => game.win).length,
+    last: todaysGames.filter((game) => game.last).length,
+    achievements: todaysGames.reduce((acc, game) => acc + game.achievements.length, 0),
+    duration: todaysGames.reduce((acc, game) => acc + (game.endedAt - game.startedAt), 0),
+    games: todaysGames,
+  };
+
   return {
     id: dbUser.id,
     names: dbUser?.names ?? [],
@@ -345,6 +362,7 @@ export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
     avatars: topAvatars,
     statistics: globalStatistics,
     games: playsStatistics,
+    today: todaySummary,
   };
 };
 

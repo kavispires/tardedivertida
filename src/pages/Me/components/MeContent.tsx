@@ -114,7 +114,7 @@ function Summary({ user }: Pick<MeContentProps, 'user'>) {
     <>
       <Title size="x-small" level={1} align="left">
         <Translate pt="Sumário" en="Summary" />{' '}
-        {user.today.plays > 0 && (
+        {user?.today?.plays > 0 && (
           <Switch
             checkedChildren={<Translate pt="Mostrar Todas" en="Show All" />}
             unCheckedChildren={<Translate pt="Mostrar Hoje" en="Show Today" />}
