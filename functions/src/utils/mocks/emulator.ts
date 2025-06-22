@@ -3,6 +3,7 @@ import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, USED_GAME_IDS } from '../constan
 // Utils
 import utils from '..';
 import aliemItemsMock from './alien-items.json';
+import type { FirebaseUserDB } from '../user';
 
 /**
  * Feeds basic data to the emulator DB
@@ -60,12 +61,11 @@ export const feedEmulatorUser = async () => {
   // USERS
   const emulateUid = process.env.EMULATOR_ADMIN_UID ?? 'emulate-uid';
 
-  const emulateUser = {
+  const emulateUser: FirebaseUserDB = {
     avatars: {
       0: 43,
     },
     blurredImages: {},
-    daily: {},
     games: {},
     gender: 'unknown',
     id: emulateUid,

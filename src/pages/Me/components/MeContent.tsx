@@ -1,7 +1,7 @@
 import { orderBy } from 'lodash';
 import { type ReactNode, useMemo, useState } from 'react';
 // Ant Design Resources
-import { Layout, Row, Divider, Space, Switch } from 'antd';
+import { Layout, Row, Divider, Space, Switch, type TabsProps, Tabs } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
@@ -30,6 +30,7 @@ import { UserName } from './UserName';
 import { StatisticCard } from './StatisticCard';
 import { InfoCard } from './InfoCard';
 import { GameCheckCard } from './GameCheckCard';
+import { AchievementsCompleteList } from './AchievementsCompleteList';
 // Sass
 import '../Me.scss';
 
@@ -46,9 +47,24 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
     [language],
   );
 
+  const items: TabsProps['items'] = [
+    {
+      key: '1',
+      icon: <IconAvatar icon={<CatalogIcon />} size="small" />,
+      label: <Translate pt="Jogos" en="Games" />,
+      children: <GameCheckCard info={alphabetizedPlayableGames} games={user.games} />,
+    },
+    {
+      key: '2',
+      icon: <IconAvatar icon={<SealOfApprovalIcon />} size="small" />,
+      label: <Translate pt="Medalhas" en="Achievements" />,
+      children: <AchievementsCompleteList playedGames={user.games} />,
+    },
+  ];
+
   return (
     <PageLayout className="me__container">
-      <Layout.Content className="container me__content">
+      <Layout.Content className="me__content">
         {additionalContent}
 
         <header className="me__header">
@@ -70,23 +86,13 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
               <Avatar key={avatarId} id={avatarId} shape="square" size="small" />
             ))}
           </InfoCard>
-
-          {/* {Boolean(user?.daily) && (
-            <InfoCard title={<Translate pt="TD Diários" en="Daily TD" />}>
-              <Translate pt="Vitórias" en="Streak" />: {user.daily?.streak} / Total: {user.daily?.total}
-            </InfoCard>
-          )} */}
         </Row>
 
         <Divider />
 
         <Summary user={user} />
 
-        <Title size="x-small" level={2} align="left">
-          <Translate pt="Jogos" en="Games" /> ({alphabetizedPlayableGames.length})
-        </Title>
-
-        <GameCheckCard info={alphabetizedPlayableGames} games={user.games} />
+        <Tabs defaultActiveKey="1" items={items} size="large" type="card" />
       </Layout.Content>
     </PageLayout>
   );
