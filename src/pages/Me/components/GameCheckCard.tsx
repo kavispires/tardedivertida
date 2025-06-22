@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useWindowSize } from 'react-use';
 // Ant Design Resources
 import { Badge, Col, Modal, Row } from 'antd';
@@ -28,39 +28,22 @@ type GameUserStatisticsProps = {
 };
 
 export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
-  const [open, setOpen] = useState(false);
-  const [activeGameName, setActiveGame] = useState<GameName | null>(null);
   const { width } = useWindowSize();
   const cardWidth = useCardWidth(8, { maxWidth: 256, minWidth: 128 });
 
-  const qp = useQueryParams();
+  const { queryParams, addParam, removeParam } = useQueryParams();
+  const activeGameId = queryParams.get('game');
 
   const activeGame: GameInfo | null = useMemo(() => {
-    return info.find((g) => g.gameName === activeGameName) ?? null;
-  }, [activeGameName, info]);
-
-  const activateGameCard = (gameName: GameName) => {
-    setOpen(true);
-    setActiveGame(gameName);
-  };
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: the functions are not important
-  useEffect(() => {
-    if (qp.queryParams.game && qp.queryParams.game !== activeGameName) {
-      activateGameCard(qp.queryParams.game);
-    }
-    if (!qp.queryParams.game) {
-      setOpen(false);
-      setActiveGame('');
-    }
-  }, [qp.queryParams.game]);
+    return info.find((g) => g.gameName === activeGameId) ?? null;
+  }, [activeGameId, info]);
 
   const modal = (
     <Modal
-      open={open}
+      open={!!activeGameId}
       title={<DualTranslate>{activeGame ? activeGame.title : { pt: '?', en: '?' }}</DualTranslate>}
       cancelText={<Translate pt="Fechar" en="Close" />}
-      onCancel={() => qp.remove('game')}
+      onCancel={() => removeParam('game')}
       okButtonProps={{
         hidden: true,
       }}
@@ -68,11 +51,11 @@ export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
       className="me-modal"
       width={width}
     >
-      {activeGame && activeGameName ? (
+      {activeGame && activeGameId ? (
         <GameStatistics
-          game={games[activeGameName]}
+          game={games[activeGameId]}
           info={activeGame}
-          achievements={ACHIEVEMENTS_DICT?.[activeGameName]}
+          achievements={ACHIEVEMENTS_DICT?.[activeGameId] ?? {}}
         />
       ) : (
         <div className="me-modal__content">
@@ -87,7 +70,7 @@ export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
       {modal}
       {info.map((gameInfo) => (
         <Col xs={12} sm={6} md={6} lg={3} key={`info-${gameInfo.gameName}`}>
-          <TransparentButton onClick={() => qp.add('game', gameInfo.gameName)}>
+          <TransparentButton onClick={() => addParam('game', gameInfo.gameName)}>
             <Badge
               count={
                 games[gameInfo.gameName] ? <IconAvatar icon={<SpeechBubbleAcceptedIcon />} /> : undefined

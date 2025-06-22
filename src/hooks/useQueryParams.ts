@@ -4,13 +4,8 @@ import { useEffectOnce } from 'react-use';
 export function useQueryParams(defaultParams: Record<string, string | number> = {}) {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  /**
-   * Adds a query param
-   * @param key - the key of the query param to add
-   * @param value - the value of the query param to add
-   */
-  const add = (key: string, value: unknown) => {
-    if (value === undefined) {
+  const addParam = (key: string, value: unknown, defaultValue?: unknown) => {
+    if (value === undefined || value === '' || value === defaultValue) {
       searchParams.delete(key);
     } else {
       searchParams.set(key, String(value));
@@ -19,37 +14,37 @@ export function useQueryParams(defaultParams: Record<string, string | number> = 
     setSearchParams(searchParams);
   };
 
-  /**
-   * Removes a query param
-   * @param key - the key of the query param to remove
-   */
-  const remove = (key: string) => {
+  const addParams = (params: Record<string, unknown>, defaultValues: Record<string, unknown> = {}) => {
+    Object.entries(params).forEach(([key, value]) => {
+      if (defaultValues[key] === value) {
+        searchParams.delete(key);
+      } else {
+        searchParams.set(key, String(value));
+      }
+    });
+    setSearchParams(searchParams);
+  };
+
+  const removeParam = (key: string) => {
     searchParams.delete(key);
     setSearchParams(searchParams);
   };
 
+  const is = (key: string, value = 'true') => searchParams.get(key) === String(value);
+
   useEffectOnce(() => {
     Object.entries(defaultParams).forEach(([key, value]) => {
       if (!searchParams.has(key)) {
-        add(key, value);
+        addParam(key, value);
       }
     });
   });
 
-  const queryParams = searchParams
-    .toString()
-    .split('&')
-    .reduce((qp: Record<string, string>, entry) => {
-      const [key, value] = entry.split('=');
-      if (key && value !== undefined) {
-        qp[key] = value;
-      }
-      return qp;
-    }, {});
-
   return {
-    add,
-    remove,
-    queryParams,
+    addParam,
+    addParams,
+    removeParam,
+    queryParams: searchParams,
+    is,
   };
 }

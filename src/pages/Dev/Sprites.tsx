@@ -97,11 +97,12 @@ const optionsList = orderBy(Object.values(options), ['label'], ['asc']);
 function SpritesPage() {
   const [active, setActive] = useState(options.avatars);
   useTitle(`${active.label} Sprites | Dev | Tarde Divertida`);
-  const qp = useQueryParams({ active: 'avatars' });
+  const { queryParams, addParam } = useQueryParams({ active: 'avatars' });
+  const activeType = queryParams.get('active') || 'avatars';
 
   useEffect(() => {
-    setActive(options[qp.queryParams.active] ?? options.avatars);
-  }, [qp.queryParams.active]);
+    setActive(options[activeType] ?? options.avatars);
+  }, [activeType]);
 
   const activeContent = {
     avatars: <AvatarsContent />,
@@ -115,8 +116,8 @@ function SpritesPage() {
       <DevHeader
         title={
           <Select
-            onChange={(e) => qp.add('active', e)}
-            value={qp.queryParams.active}
+            onChange={(e) => addParam('active', e)}
+            value={activeType}
             size="small"
             style={{ minWidth: '15ch' }}
           >
