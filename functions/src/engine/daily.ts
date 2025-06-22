@@ -102,22 +102,6 @@ const saveDaily = async (data: DailySetterPayload, auth: FirebaseAuth) => {
     }
   }
 
-  // Error: possibly because the user does not exist
-  if (isError) {
-    const userRef = utils.firestore.getUserRef();
-    const user = await userRef.doc(uid).get();
-
-    // If the user object doesn't exist, just create one
-    if (!user.exists) {
-      const newUser = utils.user.generateNewUser(uid, auth?.token?.provider_id === 'anonymous');
-      await userRef.doc(uid).set(newUser);
-
-      // Add daily
-      newUser.daily = { [id]: { id, number, victory, hearts, letters } };
-      return utils.user.serializeUser(newUser, id);
-    }
-  }
-
   return true;
 };
 

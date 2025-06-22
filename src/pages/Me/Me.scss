@@ -6,7 +6,8 @@
   }
 
   &__content {
-    padding: 1rem;
+    background: get-color("white", 5, 0.85);
+    padding: get-unit(8);
   }
 
   &__header {
@@ -34,12 +35,15 @@
 
   &__game-bingo-banner {
     border-radius: var(--border-radius);
-    filter: grayscale(100);
-    opacity: 0.5;
+    outline: 3px solid get-color("gray", 3);
+    filter: grayscale(0.25);
+
+    &--beta {
+      outline: 3px solid get-color("orange", 3);
+    }
 
     &--played {
       filter: none;
-      opacity: 1;
       outline: 3px solid get-color("green", 3);
     }
   }
@@ -67,5 +71,65 @@
     flex-direction: column;
     font-size: 1.15rem;
     padding: get-unit(4);
+  }
+}
+
+.achievement-card {
+  background-color: get-color("white", 5);
+  border: get-color("gray", 2) 5px solid;
+  display: flex;
+  border-radius: get-unit(2);
+  flex-direction: column;
+  align-items: center;
+  margin: get-unit(2 3);
+  padding: get-unit(2);
+  min-width: 120px;
+  position: relative;
+
+  &--achieved {
+    background-color: get-color("yellow", 2);
+    border: get-color("yellow") 5px solid;
+  }
+
+  &__disabled-icon {
+    filter: grayscale(1);
+  }
+
+  &__banner {
+    position: absolute !important;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 20%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 20%, transparent 100%);
+    top: 0;
+  }
+
+  &__content {
+    z-index: 5;
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 42px auto 42px 16px;
+  }
+
+  &__game-title {
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    min-height: 42px; /* Approximately two lines of text */
+    display: flex;
+    align-items: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  &__title {
+    text-align: center;
+    min-height: 42px;
+  }
+
+  &__medal {
+    z-index: 5;
   }
 }

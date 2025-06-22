@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "idade-da-preda",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "release": "beta",
   "available": true,
   "title": {
@@ -29,8 +29,8 @@
     "pt": [
       "Somos homens (e mulheres) das cavernas que precisam criar uma nova língua",
       "No início de cada rodada, os jogadores criam conceitos a partir de coisas disponíveis na tela, por exemplo: 'bola' + 'elefante' + 'melancia' dão a ideia de redondo. Para cada conceito será atribuído uma sílaba/som",
-      "Depois, os jogadores devem nomear uma dos seus três objetos usando as sílabas/sons/conceitos disponíveis, usando pelo menos duas sílabas",
-      "E por último, é hora de adivinhar o que os jogadores nomearam. Você ganha 2 pontos por cada acerto, e 1 ponto pra cada jogador que acertar o seu",
+      "Depois, os jogadores devem criar um nome para um de seus três objetos secretos usando pelo menos duas sílabas/sons/conceitos disponíveis",
+      "E finalmente, é hora de adivinhar o que os jogadores nomearam fazendo pares entre coisas e nomes. Você ganha 2 pontos por cada acerto, e 1 ponto pra cada jogador que acertar o seu",
       "O jogo dura 5 rodadas, indo da época da pedra, ao mundo medieval, tempos modernos e até um futuro próximo."
     ],
     "en": [
