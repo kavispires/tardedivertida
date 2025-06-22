@@ -53,7 +53,7 @@ export function TimedButton({
       className={clsx('timed-button', className)}
       {...rest}
       type={type}
-      onClick={() => onClick?.(timeLeft) ?? onExpire?.(timeLeft)}
+      onClick={() => (onClick ? onClick?.(timeLeft) : onExpire?.(timeLeft))}
     >
       {children}
       {!hideTimer && <span className={clsx(timeClass, `${timeClass}--${type}`)}>{timeLeft}</span>}
