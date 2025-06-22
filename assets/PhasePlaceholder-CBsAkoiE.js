@@ -1,0 +1,1 @@
+import{j as a}from"./index-B3jx_1KS.js";import{d as o}from"./StepSwitcher-Mz3SE9v6.js";function h({state:e}){return a.jsx(o,{phase:"ANY",allowedPhase:"ANY",className:"phase-placeholder",children:(e==null?void 0:e.phase)??"Unknown Phase"})}export{h as P};
