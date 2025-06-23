@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "testemunha-ocular",
-  "version": "4.0.26",
+  "version": "4.0.27",
   "release": "stable",
   "available": true,
   "title": {
@@ -98,20 +98,12 @@
           "value": "ghibli"
         },
         {
-          "label": "Midjourney",
-          "value": "regular"
-        },
-        {
           "label": "Realistic",
           "value": "realistic"
         },
         {
-          "label": "Models",
-          "value": "models"
-        },
-        {
-          "label": "Wacky",
-          "value": "wacky"
+          "label": "Pixar",
+          "value": "pixar"
         }
       ]
     }

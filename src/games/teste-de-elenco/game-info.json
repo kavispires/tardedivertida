@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "teste-de-elenco",
-  "version": "2.0.44",
+  "version": "2.0.45",
   "release": "stable",
   "available": true,
   "title": {
@@ -80,20 +80,12 @@
           "value": "ghibli"
         },
         {
-          "label": "Midjourney",
-          "value": "regular"
-        },
-        {
           "label": "Realistic",
           "value": "realistic"
         },
         {
-          "label": "Models",
-          "value": "models"
-        },
-        {
-          "label": "Wacky",
-          "value": "wacky"
+          "label": "Pixar",
+          "value": "pixar"
         }
       ]
     }
