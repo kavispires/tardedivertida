@@ -318,7 +318,7 @@ type SuspectCardsOptions = {
   /**
    * Determines the images used in the suspect cards
    */
-  deckType: 'regular' | 'ghibli' | 'realistic' | 'models' | 'wacky';
+  deckType: 'ghibli' | 'realistic' | 'pixar';
 };
 
 type ContendersDecksOptions = {

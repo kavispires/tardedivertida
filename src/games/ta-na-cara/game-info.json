@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "ta-na-cara",
-  "version": "1.1.70",
+  "version": "1.1.71",
   "release": "deprecated",
   "available": false,
   "title": {
@@ -68,20 +68,12 @@
           "value": "ghibli"
         },
         {
-          "label": "Midjourney",
-          "value": "regular"
-        },
-        {
           "label": "Realistic",
           "value": "realistic"
         },
         {
-          "label": "Models",
-          "value": "models"
-        },
-        {
-          "label": "Wacky",
-          "value": "wacky"
+          "label": "Pixar",
+          "value": "pixar"
         }
       ]
     }
