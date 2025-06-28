@@ -1,0 +1,1 @@
+import{r as t,aB as n,a5 as r,ge as i,gf as R}from"./index-Dm_UHQ4O.js";var f=function(e,a){return t.createElement(n,r({},e,{ref:a,icon:i}))},d=t.forwardRef(f),c=function(e,a){return t.createElement(n,r({},e,{ref:a,icon:R}))},s=t.forwardRef(c);export{d as R,s as a};
