@@ -1,1 +1,0 @@
-import{j as t}from"./index-Dm_UHQ4O.js";import{C as r}from"./CustomAvatarWrapper-dm6OVnk2.js";const e="/tardedivertida/assets/costumes-DHJSY3rV.svg",m=s=>t.jsx(r,{sprite:e,prefix:"costume",viewBox:"0 0 100 155",...s});export{m as C};
