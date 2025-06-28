@@ -243,18 +243,20 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
           </Region>
         )}
 
-        <Region className="my-12">
-          <Typography.Text strong>
-            <Translate pt="Experimente em outros estilos:" en="Try in other styles:" />
-          </Typography.Text>
+        {!alreadyPlayed && (
+          <Region className="my-12">
+            <Typography.Text strong>
+              <Translate pt="Experimente em outros estilos:" en="Try in other styles:" />
+            </Typography.Text>
 
-          <Segmented<string>
-            value={variant.toUpperCase()}
-            options={['GB', 'RL', 'PX', 'FX']}
-            onChange={(value) => onChangeVariant(value.toLowerCase())}
-            size="small"
-          />
-        </Region>
+            <Segmented<string>
+              value={variant.toUpperCase()}
+              options={['GB', 'RL', 'PX', 'FX']}
+              onChange={(value) => onChangeVariant(value.toLowerCase())}
+              size="small"
+            />
+          </Region>
+        )}
       </Layout.Content>
     </Layout>
   );
