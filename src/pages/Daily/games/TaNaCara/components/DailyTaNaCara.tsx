@@ -125,6 +125,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                       height: '',
                       features: [],
                     }}
+                    variant={data.variant}
                     width={width}
                   />
                   <Switch
