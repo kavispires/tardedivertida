@@ -15,6 +15,18 @@ type NewsItem = {
 
 export const NEWS_LIST: NewsItem[] = [
   {
+    date: '2025-06-28',
+    content: (
+      <>
+        <IconAvatar icon={<NewFeatureIcon />} size="small" />{' '}
+        <strong>
+          <DualTranslate>{ALL_SETTINGS.TA_NA_CARA.NAME}</DualTranslate>
+        </strong>{' '}
+        - agora você pode mudar o estilo dos suspeitos!
+      </>
+    ),
+  },
+  {
     date: '2025-06-14',
     content: (
       <>
