@@ -73,7 +73,10 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
 
         <Region>
           <Typography.Text strong>
-            <Translate pt="Atributos" en="Attributes" />
+            <Translate
+              pt="O alienígena entende que isso é aquilo:"
+              en="The alien understands that this is that:"
+            />
           </Typography.Text>
 
           <Space direction="vertical" className="alien-attributes">
@@ -107,7 +110,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
 
         <Region key={latestAttempt} className={shouldShakeScreen ? getAnimationClass('shakeX') : ''}>
           <Typography.Text strong>
-            <Translate pt="Pedidos" en="Requests" />
+            <Translate pt="O alienígena quer isso:" en="The alien wants these:" />
           </Typography.Text>
 
           <Flex className="alien-requests" gap={8}>
@@ -203,7 +206,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
 
         <Region>
           <Typography.Text strong>
-            <Translate pt="Entregue as coisas corretas:" en="Deliver the correct things:" />
+            <Translate pt="E essas são as coisas disponíveis:" en="And these are the available things:" />
           </Typography.Text>
 
           <SpaceContainer wrap>
