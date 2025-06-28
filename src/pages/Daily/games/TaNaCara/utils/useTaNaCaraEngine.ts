@@ -39,6 +39,7 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
     selections: [],
     mode: 'nsfw',
     screen: 'idle',
+    variant: data.variant || 'gb', // Default to 'gb' if not provided
   });
 
   const { updateLocalStorage } = useDailyLocalToday<GameState>({
@@ -155,6 +156,8 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
 
   const allSuspects = [...(data?.suspectsIds || []), ...data.testimonies.flatMap((t) => t.suspectsIds || [])];
 
+  const onChangeVariant = (variant: string) => updateSession({ variant });
+
   return {
     questionIndex: session.questionIndex,
     questionNumber: session.questionIndex + 1,
@@ -167,6 +170,7 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
     isIdle: session.screen === 'idle',
     isSaving: session.screen === 'saving' || mutation.isPending,
     alreadyPlayed: state.played,
+    variant: session.variant,
     mode,
     onToggleAllowNSFW,
     onStart,
@@ -174,6 +178,7 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
     onPrevious,
     onComplete,
     onUpdateAnswer,
+    onChangeVariant,
     allSuspects,
   };
 }

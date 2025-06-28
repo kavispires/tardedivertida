@@ -11,7 +11,7 @@ import {
   LikeFilled,
   SaveFilled,
 } from '@ant-design/icons';
-import { Button, Divider, Flex, Layout, Space, Switch } from 'antd';
+import { Button, Divider, Flex, Layout, Segmented, Space, Switch, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
@@ -67,6 +67,8 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
     onUpdateAnswer,
     mode,
     allSuspects,
+    onChangeVariant,
+    variant,
   } = useTaNaCaraEngine(data, initialState);
 
   const [width, ref] = useCardWidthByContainerRef(3, { margin: 24, gap: 12, maxWidth: 256, minWidth: 55 });
@@ -91,7 +93,6 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
             </Instruction>
           )}
         </div>
-
         {isPlaying && question && (
           <SpaceContainer vertical key={question.testimonyId}>
             <StepDots current={questionIndex} total={totalQuestions} />
@@ -125,7 +126,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                       height: '',
                       features: [],
                     }}
-                    variant={data.variant}
+                    variant={variant}
                     width={width}
                   />
                   <Switch
@@ -197,14 +198,12 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
             )}
           </SpaceContainer>
         )}
-
         {isSaving && (
           <Instruction className="info-screen">
             <IconAvatar icon={<AnimatedProcessingIcon />} />
             <Translate pt="Salvando" en="Saving" />
           </Instruction>
         )}
-
         {isIdle && !alreadyPlayed && (
           <Region>
             <Instruction contained>
@@ -243,6 +242,19 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
             </Button>
           </Region>
         )}
+
+        <Region className="my-12">
+          <Typography.Text strong>
+            <Translate pt="Experimente em outros estilos:" en="Try in other styles:" />
+          </Typography.Text>
+
+          <Segmented<string>
+            value={variant.toUpperCase()}
+            options={['GB', 'RL', 'PX', 'FX']}
+            onChange={(value) => onChangeVariant(value.toLowerCase())}
+            size="small"
+          />
+        </Region>
       </Layout.Content>
     </Layout>
   );
