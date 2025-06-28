@@ -223,7 +223,7 @@ export type CrimesHediondosCard = {
   /**
    * The type of the card
    */
-  type: 'weapon' | 'evidence' | string;
+  type: 'weapon' | 'evidence' | 'location' | 'victim' | (string & NonNullable<unknown>);
   /**
    * The name of the card
    */
@@ -576,28 +576,60 @@ export type SuspectCard = {
   /**
    * The gender of the suspect
    */
-  gender: string;
+  gender: 'male' | 'female' | (string & NonNullable<unknown>);
   /**
    * The ethnicity of the suspect
    */
-  ethnicity: string;
+  ethnicity:
+    | 'caucasian'
+    | 'black'
+    | 'asian'
+    | 'latino'
+    | 'indian'
+    | 'middle-eastern'
+    | 'mixed'
+    | 'indigenous'
+    | (string & NonNullable<unknown>);
   /**
    * The age range of the suspect
    */
-  age: string;
+  age:
+    | '18-21'
+    | '21-30'
+    | '30-40'
+    | '40-50'
+    | '50-60'
+    | '60-70'
+    | '70-80'
+    | '80-90'
+    | (string & NonNullable<unknown>);
   /**
    * The build of the suspect
    */
-  build: 'S' | 'M' | 'L' | string;
+  build: 'thin' | 'average' | 'large' | 'muscular' | (string & NonNullable<unknown>);
   /**
    * The height of the suspect
    */
-  height: 'S' | 'M' | 'L' | string;
+  height: 'short' | 'medium' | 'tall' | (string & NonNullable<unknown>);
   /**
    * List of features in the suspect image (gb style as reference)
    */
   features: string[];
+  /**
+   * Flag indicating if the suspect is exclusive to the gb style
+   */
+  gbExclusive?: boolean;
+  /**
+   * Short description note of the suspect
+   */
+  note?: string;
+  /**
+   * AI prompt descritor
+   */
+  prompt?: string;
 };
+
+export type SuspectStyleVariant = 'gb' | 'rl' | 'px' | 'fx' | (string & NonNullable<unknown>);
 
 /**
  * Testimony Question Card
@@ -730,7 +762,7 @@ export type ItemAttributesValues = {
   /**
    * The dictionary of ItemAttribute id and their values
    */
-  attributes: Record<string, -10 | -3 | -1 | 5 | 10 | number>;
+  attributes: Record<string, -10 | -3 | -1 | 5 | 10 | (number & NonNullable<unknown>)>;
   /**
    * Indicates if all attributes have been assigned numbers
    */
