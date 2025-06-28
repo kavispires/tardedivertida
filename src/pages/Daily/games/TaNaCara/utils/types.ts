@@ -30,6 +30,7 @@ export type DailyTaNaCaraEntry = {
   type: 'ta-na-cara';
   testimonies: TaNaCaraQuestion[];
   suspectsIds: string[];
+  variant?: 'gb' | 'rl' | 'px' | 'fx' | (string & NonNullable<unknown>);
 };
 
 export type AnswerToSave = {
