@@ -4,7 +4,7 @@ import { Space, type SpaceProps } from 'antd';
 // Components
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 
-export function Region({ className, align, direction, children, ...props }: SpaceProps) {
+export function Region({ align, direction, children, ...props }: SpaceProps) {
   return (
     <SpaceContainer direction={direction ?? 'vertical'} align={align ?? 'center'} {...props}>
       {children}

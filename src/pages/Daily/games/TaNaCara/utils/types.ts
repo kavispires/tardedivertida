@@ -1,4 +1,6 @@
 import type { DateKey } from 'pages/Daily/utils/types';
+// Types
+import type { SuspectStyleVariant } from 'types/tdr';
 
 export type TaNaCaraQuestion = {
   testimonyId: string;
@@ -22,6 +24,7 @@ export type SessionState = {
   questionIndex: number;
   mode: 'normal' | 'nsfw';
   screen: 'idle' | 'playing' | 'saving';
+  variant: SuspectStyleVariant;
 };
 
 export type DailyTaNaCaraEntry = {
@@ -30,7 +33,7 @@ export type DailyTaNaCaraEntry = {
   type: 'ta-na-cara';
   testimonies: TaNaCaraQuestion[];
   suspectsIds: string[];
-  variant?: 'gb' | 'rl' | 'px' | 'fx' | (string & NonNullable<unknown>);
+  variant?: SuspectStyleVariant;
 };
 
 export type AnswerToSave = {
