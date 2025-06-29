@@ -61,7 +61,9 @@ export function ReleaseModal({
           cardWidth={width}
           className="espionagem-suspect-card"
         />
-        <Typography.Paragraph italic>{gatherSuspectInfo(suspect.features)}</Typography.Paragraph>
+        <Typography.Paragraph italic>
+          {gatherSuspectInfo(suspect.features, suspect.gender)}
+        </Typography.Paragraph>
       </Flex>
 
       <Region>
@@ -79,11 +81,7 @@ export function ReleaseModal({
   );
 }
 
-const gatherSuspectInfo = (features: string[]) => {
-  const isMale = features.includes('male');
-  const isFemale = features.includes('female');
-  const gender = isMale ? 'male' : isFemale ? 'female' : 'non-binary';
-
+const gatherSuspectInfo = (features: string[], gender: string) => {
   return features
     .map(
       (feature) =>

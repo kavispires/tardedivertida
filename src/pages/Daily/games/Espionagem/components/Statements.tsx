@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useMemo } from 'react';
 // Ant Design Resources
-import { HeartFilled } from '@ant-design/icons';
+import { AppstoreFilled, AudioFilled, HeartFilled, SkinFilled } from '@ant-design/icons';
 import { Alert, Flex } from 'antd';
 // Utils
 import { getAnimation } from 'utils/animations';
@@ -43,6 +43,7 @@ export function Statements({
         <motion.div {...(animate ? getAnimation('fadeIn', { delay: 0.1 * index }) : {})} key={statement.key}>
           <MotionAlert
             banner
+            icon={getStatementIcon(statement.type)}
             message={statement.text}
             type={isStatementComplete(statement.excludes, released) ? 'success' : 'info'}
           />
@@ -64,4 +65,17 @@ export function Statements({
 
 const isStatementComplete = (excludes: string[], released: string[]) => {
   return excludes.every((id) => released.includes(id));
+};
+
+const getStatementIcon = (type: DailyEspionagemEntry['statements'][number]['type']) => {
+  switch (type) {
+    case 'testimony':
+      return <AudioFilled />;
+    case 'feature':
+      return <SkinFilled />;
+    case 'grid':
+      return <AppstoreFilled />;
+    default:
+      return null;
+  }
 };
