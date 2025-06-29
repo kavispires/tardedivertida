@@ -4,7 +4,7 @@ import { Region } from 'pages/Daily/components/Region';
 import { useState } from 'react';
 // Ant Design Resources
 import { BarChartOutlined, BulbOutlined, CheckCircleOutlined } from '@ant-design/icons';
-import { Button, Flex, Image, Layout, Modal, Space, Typography } from 'antd';
+import { Button, Flex, Image, Layout, Modal, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
@@ -14,6 +14,7 @@ import { getAnimation } from 'utils/animations';
 // Icons
 import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
 // Components
+import { getSuspectImageId } from 'components/cards/SuspectCard';
 import { ImageCard } from 'components/image-cards';
 import { DualTranslate, Translate } from 'components/language';
 // Internal
@@ -43,13 +44,13 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
     showResultModal,
     setShowResultModal,
     isWin,
+    isLose,
     isComplete,
     onRelease,
     onSelectSuspect,
     onDeselectSuspect,
     onNeedClue,
     activeSuspectId,
-    statementsCutoffLength,
   } = useEspionagemEngine(data, initialState);
   const width = useCardWidth(4, { margin: 32, maxWidth: 256, minWidth: 64 });
 
@@ -66,18 +67,38 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
           rules={<Rules date={data.id} />}
         />
 
-        <Region>
-          <Typography.Text strong>
-            <Translate pt="Quem é o culpado?" en="Who is the culprit?" />
-          </Typography.Text>
-        </Region>
-
-        {isComplete && (
-          <Space className="results-container" direction="vertical" align="center">
+        {!isComplete ? (
+          <Region>
+            <Typography.Text strong>
+              <Translate
+                pt={
+                  <>
+                    Libere alguém que <strong>não</strong> se encaixe nas declarações.
+                  </>
+                }
+                en={
+                  <>
+                    Release someone who <strong>does not</strong> fit the statements.
+                  </>
+                }
+              />
+            </Typography.Text>
+          </Region>
+        ) : (
+          <Region>
+            <Typography.Text>
+              {isWin && <Translate pt="Você achou o culpado!" en="You found the culprit!" />}
+              {isLose && (
+                <Translate
+                  pt="Você liberou o culpado! Agora crimes continuarão acontecendo."
+                  en="You released the culprit! Now crimes will keep happening."
+                />
+              )}
+            </Typography.Text>
             <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
               <Translate pt="Ver Resultado" en="Show Results" />
             </Button>
-          </Space>
+          </Region>
         )}
 
         <Region>
@@ -91,20 +112,22 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
                     key={suspect.id}
                     align="center"
                     {...getAnimation('flipInY', { delay: 0.1 * index })}
+                    onClick={() => !isReleased && !isComplete && onSelectSuspect(suspect.id)}
                   >
                     <ImageCard
-                      id={suspect.id}
+                      id={getSuspectImageId(suspect.id, 'gb')}
                       cardWidth={width}
                       className={clsx('espionagem-suspect-card', {
                         'espionagem-released-suspect': isReleased,
                         'espionagem-culprit-suspect': isComplete && data.culpritId === suspect.id,
                       })}
+                      preview={false}
                     />
                     <Button
                       size="small"
                       shape="round"
                       block
-                      onClick={() => onSelectSuspect(suspect.id)}
+                      // onClick={() => onSelectSuspect(suspect.id)}
                       disabled={isReleased || isComplete}
                     >
                       {isReleased ? <CheckCircleOutlined /> : <Translate pt="Liberar" en="Release" />}
@@ -122,28 +145,14 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
           </Typography.Text>
           <Statements
             statements={data.statements}
-            statementsCutoffLength={statementsCutoffLength}
+            additionalStatements={data.additionalStatements}
+            hearts={hearts}
             released={released}
             isComplete={isComplete}
             animate
           />
 
-          <Typography.Paragraph className="text-center">
-            <Translate
-              pt={
-                <>
-                  Libere alguém que <strong>não</strong> se encaixe nas declarações.
-                </>
-              }
-              en={
-                <>
-                  Release someone who <strong>does not</strong> fit the statements.
-                </>
-              }
-            />
-          </Typography.Paragraph>
-
-          {hearts > 0 && (
+          {!isComplete && hearts > 0 && (
             <Button
               icon={<BulbOutlined />}
               onClick={() => onNeedClue()}
@@ -161,8 +170,9 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
             onRelease={onRelease}
             onDeselectSuspect={onDeselectSuspect}
             activeSuspectId={activeSuspectId}
-            statementsCutoffLength={statementsCutoffLength}
+            hearts={hearts}
             statements={data.statements}
+            additionalStatements={data.additionalStatements}
             suspects={data.suspects}
             released={released}
           />

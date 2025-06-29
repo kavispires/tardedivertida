@@ -1,6 +1,4 @@
 import type { DateKey } from 'pages/Daily/utils/types';
-// Types
-import type { SuspectCard } from 'types/tdr';
 
 export type GameState = {
   id: DateKey;
@@ -10,10 +8,17 @@ export type GameState = {
   released: string[];
 };
 
-export type StatementClue = {
+type StatementClue = {
   key: string;
   text: string;
   excludes: string[];
+  type: 'testimony' | 'feature' | 'grid';
+};
+
+export type SuspectEntry = {
+  id: string;
+  name: DualLanguageValue;
+  features: string[];
 };
 
 export type DailyEspionagemEntry = {
@@ -23,9 +28,9 @@ export type DailyEspionagemEntry = {
   setId: string;
   culpritId: string;
   statements: StatementClue[];
-  specialStatements: StatementClue[];
+  additionalStatements: StatementClue[];
   isNsfw: boolean;
-  suspects: SuspectCard[];
+  suspects: SuspectEntry[];
   reason: DualLanguageValue;
   level: number;
 };

@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
+import { useMemo } from 'react';
 // Ant Design Resources
+import { HeartFilled } from '@ant-design/icons';
 import { Alert, Flex } from 'antd';
 // Utils
 import { getAnimation } from 'utils/animations';
@@ -10,7 +12,8 @@ const MotionAlert = motion(Alert);
 
 type StatementsProps = {
   statements: DailyEspionagemEntry['statements'];
-  statementsCutoffLength: number;
+  additionalStatements: DailyEspionagemEntry['additionalStatements'];
+  hearts: number;
   released: string[];
   isComplete?: boolean;
   animate?: boolean;
@@ -18,12 +21,22 @@ type StatementsProps = {
 
 export function Statements({
   statements,
-  statementsCutoffLength,
+  additionalStatements,
+  hearts,
   released,
   isComplete,
   animate,
 }: StatementsProps) {
-  const slicedStatements = isComplete ? statements : statements.slice(0, statementsCutoffLength);
+  const { slicedStatements, slicedAdditionalStatements } = useMemo(() => {
+    return {
+      slicedStatements: [
+        ...(isComplete ? statements : statements.slice(0, Math.floor(released.length / 2) + 1)),
+      ].reverse(),
+      slicedAdditionalStatements: [
+        ...(isComplete ? additionalStatements : additionalStatements.slice(0, 2 - hearts)),
+      ].reverse(),
+    };
+  }, [statements, additionalStatements, hearts, released, isComplete]);
   return (
     <Flex vertical gap={4} className="espionagem-statements">
       {slicedStatements.map((statement, index) => (
@@ -32,6 +45,16 @@ export function Statements({
             banner
             message={statement.text}
             type={isStatementComplete(statement.excludes, released) ? 'success' : 'info'}
+          />
+        </motion.div>
+      ))}
+      {slicedAdditionalStatements.map((statement, index) => (
+        <motion.div {...(animate ? getAnimation('fadeIn', { delay: 0.1 * index }) : {})} key={statement.key}>
+          <MotionAlert
+            icon={<HeartFilled />}
+            banner
+            message={statement.text}
+            type={isStatementComplete(statement.excludes, released) ? 'success' : 'warning'}
           />
         </motion.div>
       ))}

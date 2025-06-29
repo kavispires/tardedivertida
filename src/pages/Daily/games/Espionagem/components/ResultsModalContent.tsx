@@ -9,7 +9,8 @@ import { BoxXIcon } from 'icons/BoxXIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { SuspectCard } from 'components/cards/SuspectCard';
+import { getSuspectImageId } from 'components/cards/SuspectCard';
+import { ImageCard } from 'components/image-cards';
 import { DualTranslate, Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TextHighlight } from 'components/text';
@@ -64,7 +65,7 @@ export function ResultsModalContent({
       </Typography.Title>
 
       <Flex align="center">
-        {culprit && <SuspectCard suspect={culprit} width={96} />}
+        {culprit && <ImageCard id={getSuspectImageId(culprit.id, 'gb')} cardWidth={96} />}
         <Flex vertical>
           <Typography.Paragraph className="center">
             {win ? (

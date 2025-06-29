@@ -1,11 +1,10 @@
 import { Region } from 'pages/Daily/components/Region';
 // Ant Design Resources
 import { Flex, Modal, Typography } from 'antd';
-// Types
-import type { SuspectCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
+import { getSuspectImageId } from 'components/cards/SuspectCard';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 // Internal
@@ -16,20 +15,21 @@ import { Statements } from './Statements';
 
 type ReleaseModalProps = Pick<
   ReturnType<typeof useEspionagemEngine>,
-  'onRelease' | 'onDeselectSuspect' | 'activeSuspectId' | 'statementsCutoffLength' | 'released'
+  'onRelease' | 'onDeselectSuspect' | 'activeSuspectId' | 'hearts' | 'released'
 > &
-  Pick<DailyEspionagemEntry, 'statements' | 'suspects'>;
+  Pick<DailyEspionagemEntry, 'statements' | 'suspects' | 'additionalStatements'>;
 
 export function ReleaseModal({
   onRelease,
   onDeselectSuspect,
   activeSuspectId,
-  statementsCutoffLength,
+  hearts,
   statements,
+  additionalStatements,
   released,
   suspects,
 }: ReleaseModalProps) {
-  const width = useCardWidth(3, { margin: 32, maxWidth: 256, minWidth: 64 });
+  const width = useCardWidth(2, { margin: 32, maxWidth: 256, minWidth: 64 });
 
   if (!activeSuspectId) {
     return null; // If no suspect is selected, do not render the modal
@@ -56,8 +56,12 @@ export function ReleaseModal({
       okText={<Translate pt="Sim" en="Yes" />}
     >
       <Flex align="center" gap={12}>
-        <ImageCard id={activeSuspectId} cardWidth={width} className="espionagem-suspect-card" />
-        <Typography.Paragraph italic>{gatherSuspectInfo(suspect)}</Typography.Paragraph>
+        <ImageCard
+          id={getSuspectImageId(activeSuspectId, 'gb')}
+          cardWidth={width}
+          className="espionagem-suspect-card"
+        />
+        <Typography.Paragraph italic>{gatherSuspectInfo(suspect.features)}</Typography.Paragraph>
       </Flex>
 
       <Region>
@@ -66,7 +70,8 @@ export function ReleaseModal({
         </Typography.Text>
         <Statements
           statements={statements}
-          statementsCutoffLength={statementsCutoffLength}
+          additionalStatements={additionalStatements}
+          hearts={hearts}
           released={released}
         />
       </Region>
@@ -74,18 +79,15 @@ export function ReleaseModal({
   );
 }
 
-const gatherSuspectInfo = (suspect: SuspectCard) => {
-  const allFeatures = [
-    suspect.gender,
-    suspect.age,
-    suspect.ethnicity,
-    suspect.height,
-    suspect.build,
-    ...suspect.features,
-  ];
+const gatherSuspectInfo = (features: string[]) => {
+  const isMale = features.includes('male');
+  const isFemale = features.includes('female');
+  const gender = isMale ? 'male' : isFemale ? 'female' : 'non-binary';
 
-  return allFeatures
-    .filter(Boolean)
-    .map((feature) => FEATURE_PT_TRANSLATIONS[feature] || feature)
+  return features
+    .map(
+      (feature) =>
+        FEATURE_PT_TRANSLATIONS[`${feature}.${gender}`] || FEATURE_PT_TRANSLATIONS[feature] || feature,
+    )
     .join(', ');
 };

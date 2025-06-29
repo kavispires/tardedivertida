@@ -5,7 +5,7 @@ import { DailySuspectGameIcon } from 'icons/DailySuspectGameIcon';
 export const SETTINGS: GameSettings = {
   KEY: 'ESPIONAGEM',
   ROUTE: 'espionagem',
-  RELEASE_DATE: '2026-01-01',
+  RELEASE_DATE: '2025-07-05',
   COLOR: 'rgba(89, 209, 134, 0.85)',
   EMOJI: '🕵️‍♂️',
   HUB_ICON: DailySuspectGameIcon,

@@ -57,7 +57,7 @@ export function SuspectCard({ suspect, width, hideName, variant }: SuspectCardPr
  * Returns "us-123" if no variant is provided
  * getSuspectImageId("us-123");
  */
-const getSuspectImageId = (() => {
+export const getSuspectImageId = (() => {
   const cache = new Map<string, string>();
 
   return (id: string, variant?: SuspectStyleVariant): string => {
