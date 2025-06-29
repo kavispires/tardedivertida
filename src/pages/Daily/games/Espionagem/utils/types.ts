@@ -15,9 +15,10 @@ type StatementClue = {
   type: 'testimony' | 'feature' | 'grid';
 };
 
-export type SuspectEntry = {
+type SuspectEntry = {
   id: string;
   name: DualLanguageValue;
+  gender: string;
   features: string[];
 };
 
