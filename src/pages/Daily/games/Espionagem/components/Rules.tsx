@@ -19,8 +19,8 @@ export function Rules({ date }: RulesProps) {
             <>
               <li>You are a spy in a event and needs to find out who the culprit is.</li>
               <li>
-                Your intel has statements to help identify the culprit, and you see a statement every time you
-                release a suspect.
+                Your intel has statements to help identify the culprit, and you see a new statement every time
+                you release two suspects.
               </li>
               <li>
                 You must release all innocent people so <strong>the culprit is the last person left</strong>.
@@ -28,7 +28,6 @@ export function Rules({ date }: RulesProps) {
               <li>
                 You can use a <HeartFilled /> to see special statements that help with more suspects.
               </li>
-              <li>You lose immediately if you release the culprit.</li>
               <li>
                 <strong>WARNING: You lose immediately if you release the culprit. Good luck!</strong>
               </li>
@@ -38,8 +37,8 @@ export function Rules({ date }: RulesProps) {
             <>
               <li>Você é um espião em um evento e precisa descobrir quem é o culpado.</li>
               <li>
-                Você começa com uma declaração de seus informantes para ajudar a identificar o culpado e
-                libera uma declaração adicional ao liberar um suspeito.
+                Você começa com uma declaração de seus informantes para ajudar a identificar o culpado e a
+                cada dois suspeitos que você libera uma nova declaração será revelada.
               </li>
               <li>
                 Você deve liberar todas as pessoas inocentes para que{' '}

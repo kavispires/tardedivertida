@@ -3,7 +3,7 @@ import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyL
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyEspionagemEntry, GameState, SessionState } from './types';
@@ -87,14 +87,6 @@ export function useEspionagemEngine(data: DailyEspionagemEntry, initialState: Ga
     updateSession({ activeSuspectId: null });
   };
 
-  const statementsCutoffLength = useMemo(() => {
-    const livesUsed = SETTINGS.HEARTS - state.hearts;
-    const initialLength = 1;
-    const releasedBonus = Math.min(state.released.length, 2);
-
-    return initialLength + livesUsed + releasedBonus;
-  }, [state.hearts, state.released.length]);
-
   // CONDITIONS
   const isWin = state.status === STATUSES.WIN;
   const isLose = state.status === STATUSES.LOSE;
@@ -120,7 +112,6 @@ export function useEspionagemEngine(data: DailyEspionagemEntry, initialState: Ga
     onSelectSuspect,
     onDeselectSuspect,
     activeSuspectId: session.activeSuspectId,
-    statementsCutoffLength,
     onNeedClue,
   };
 }
