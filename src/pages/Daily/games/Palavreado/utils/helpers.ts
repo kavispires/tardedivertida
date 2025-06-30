@@ -118,13 +118,7 @@ export function writeResult({
  * @param data - The DailyPalavreadoEntry data.
  * @param language - The language for the result.
  */
-export function getWrittenResult({
-  data,
-  language,
-}: {
-  data: DailyPalavreadoEntry;
-  language: Language;
-}) {
+export function getWrittenResult({ data, language }: { data: DailyPalavreadoEntry; language: Language }) {
   const state = getInitialState(data);
   return writeResult({
     type: 'palavreado',

@@ -178,13 +178,7 @@ export function writeResult({
  * @param data - The DailyAquiOEntry data.
  * @param language - The language for the result.
  */
-export function getWrittenResult({
-  data,
-  language,
-}: {
-  data: DailyAquiOEntry;
-  language: Language;
-}) {
+export function getWrittenResult({ data, language }: { data: DailyAquiOEntry; language: Language }) {
   const state = getInitialState(data);
   return writeResult({
     type: 'aqui-o',
