@@ -87,11 +87,7 @@ export function ComparisonDetailedRules() {
     </Instruction>
   );
 }
-export function ComparisonPhaseRules({
-  controller,
-}: {
-  controller: GamePlayer;
-}) {
+export function ComparisonPhaseRules({ controller }: { controller: GamePlayer }) {
   return (
     <RuleInstruction type="event">
       <Translate
@@ -121,11 +117,7 @@ export function ComparisonPhaseRules({
   );
 }
 
-export function GuessingRules({
-  guesser,
-}: {
-  guesser: GamePlayer;
-}) {
+export function GuessingRules({ guesser }: { guesser: GamePlayer }) {
   return (
     <RuleInstruction type="rule">
       <Translate

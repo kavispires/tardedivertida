@@ -102,13 +102,7 @@ export function writeResult({
  * @param data - The DailyOrganikuEntry data.
  * @param language - The language for the result.
  */
-export function getWrittenResult({
-  data,
-  language,
-}: {
-  data: DailyOrganikuEntry;
-  language: Language;
-}) {
+export function getWrittenResult({ data, language }: { data: DailyOrganikuEntry; language: Language }) {
   const state = getInitialState(data);
   return writeResult({
     type: 'organiku',

@@ -106,13 +106,7 @@ export function writeResult({
  * @param data - The DailyArteRuimEntry data.
  * @param language - The language for the result.
  */
-export function getWrittenResult({
-  data,
-  language,
-}: {
-  data: DailyArteRuimEntry;
-  language: Language;
-}) {
+export function getWrittenResult({ data, language }: { data: DailyArteRuimEntry; language: Language }) {
   const state = getInitialState(data);
   return writeResult({
     type: 'arte-ruim',

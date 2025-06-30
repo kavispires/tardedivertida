@@ -89,13 +89,7 @@ export function writeResult({
  * @param data - The DailyPortaisMagicosEntry data.
  * @param language - The language for the result.
  */
-export function getWrittenResult({
-  data,
-  language,
-}: {
-  data: DailyPortaisMagicosEntry;
-  language: Language;
-}) {
+export function getWrittenResult({ data, language }: { data: DailyPortaisMagicosEntry; language: Language }) {
   const state = getInitialState(data);
   return writeResult({
     type: 'portais-magicos',

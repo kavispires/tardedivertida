@@ -99,7 +99,7 @@ export const buildGrid = (
   // Distribute topics
   const topics: TopicCard[] = utils.game.makeArray(topicsQuantity * roundsCount).map((_, index: number) => {
     const position = index % topicsQuantity;
-    let topic: TopicCard | undefined = undefined;
+    let topic: TopicCard | undefined;
     if (position === 0 || position === 1) {
       topic = easyTopics.pop();
     }
@@ -157,7 +157,7 @@ export const buildGrid = (
     .makeArray(lettersQuantity * roundsCount)
     .map((_, index: number) => {
       const position = index % lettersQuantity;
-      let letter: LetterEntry | undefined = undefined;
+      let letter: LetterEntry | undefined;
       if (position === 0 || position === 1) {
         letter = easyLetters.pop();
       }

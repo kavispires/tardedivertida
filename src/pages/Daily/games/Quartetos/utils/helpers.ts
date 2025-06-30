@@ -79,13 +79,7 @@ export function writeResult({
  * @param data - The DailyQuartetosEntry data.
  * @param language - The language for the result.
  */
-export function getWrittenResult({
-  data,
-  language,
-}: {
-  data: DailyQuartetosEntry;
-  language: Language;
-}) {
+export function getWrittenResult({ data, language }: { data: DailyQuartetosEntry; language: Language }) {
   const state = getInitialState(data);
   return writeResult({
     type: 'quartetos',
