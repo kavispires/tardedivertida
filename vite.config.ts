@@ -19,7 +19,7 @@ export default defineConfig({
     }),
     checker({
       typescript: {
-        tsconfigPath: 'tsconfig.json', // adjust if needed
+        tsconfigPath: 'tsconfig.json',
         buildMode: false,
       },
     }),

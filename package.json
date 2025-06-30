@@ -1,84 +1,84 @@
 {
-  "name": "tardedivertida",
-  "homepage": "http://www.kavispires.com/tardedivertida/",
-  "version": "49.5.16",
-  "private": true,
-  "type": "module",
-  "dependencies": {
-    "@ant-design/icons": "^5.6.1",
-    "@tanstack/react-query": "^5.76.1",
-    "@tanstack/react-query-devtools": "^5.76.1",
-    "@tanstack/react-store": "^0.7.0",
-    "@types/jest": "^29.5.14",
-    "@types/lodash": "^4.17.16",
-    "@types/node": "^22.15.18",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "@types/react-router-dom": "^5.3.3",
-    "@vitejs/plugin-react": "^4.4.1",
-    "animate.css": "^4.1.1",
-    "antd": "^5.24.6",
-    "clsx": "^2.1.1",
-    "firebase": "^11.7.3",
-    "howler": "^2.2.4",
-    "konva": "^9.3.20",
-    "lodash": "^4.17.21",
-    "moment": "^2.30.1",
-    "motion": "^12.12.1",
-    "react": "^18.3.1",
-    "react-device-detect": "^2.2.3",
-    "react-dom": "^18.3.1",
-    "react-konva": "^18.2.10",
-    "react-markdown": "^10.1.0",
-    "react-router-dom": "6.28.0",
-    "react-timer-hook": "^4.0.5",
-    "react-use": "^17.6.0",
-    "react-zoom-pan-pinch": "^3.7.0",
-    "sass": "^1.89.0",
-    "typescript": "^5.8.3",
-    "vite": "^6.3.5",
-    "vite-plugin-commonjs": "^0.10.4",
-    "vite-plugin-svgr": "^4.3.0",
-    "vite-tsconfig-paths": "^5.1.4",
-    "web-vitals": "^4.2.4"
-  },
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "prepare": "husky",
-    "update-commit": "bash scripts/update_commit.sh",
-    "sort-imports": "node scripts/sort-imports-in-folder.cjs",
-    "clean": "rm -rf node_modules"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.2.0",
-    "@testing-library/user-event": "^14.6.1",
-    "@types/howler": "^2.2.12",
-    "gh-pages": "^6.3.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^15.5.1",
-    "vite-plugin-checker": "^0.9.3"
-  }
+	"name": "tardedivertida",
+	"homepage": "http://www.kavispires.com/tardedivertida/",
+	"version": "49.5.17",
+	"private": true,
+	"type": "module",
+	"dependencies": {
+		"@ant-design/icons": "^5.6.1",
+		"@tanstack/react-query": "^5.76.1",
+		"@tanstack/react-query-devtools": "^5.76.1",
+		"@tanstack/react-store": "^0.7.0",
+		"@types/jest": "^29.5.14",
+		"@types/lodash": "^4.17.16",
+		"@types/node": "^22.15.18",
+		"@types/react": "^18.3.12",
+		"@types/react-dom": "^18.3.1",
+		"@types/react-router-dom": "^5.3.3",
+		"@vitejs/plugin-react": "^4.4.1",
+		"animate.css": "^4.1.1",
+		"antd": "^5.24.6",
+		"clsx": "^2.1.1",
+		"firebase": "^11.7.3",
+		"howler": "^2.2.4",
+		"konva": "^9.3.20",
+		"lodash": "^4.17.21",
+		"moment": "^2.30.1",
+		"motion": "^12.12.1",
+		"react": "^18.3.1",
+		"react-device-detect": "^2.2.3",
+		"react-dom": "^18.3.1",
+		"react-konva": "^18.2.10",
+		"react-markdown": "^10.1.0",
+		"react-router-dom": "6.28.0",
+		"react-timer-hook": "^4.0.5",
+		"react-use": "^17.6.0",
+		"react-zoom-pan-pinch": "^3.7.0",
+		"sass": "^1.89.0",
+		"typescript": "^5.8.3",
+		"vite": "^6.3.5",
+		"vite-plugin-commonjs": "^0.10.4",
+		"vite-plugin-svgr": "^4.3.0",
+		"vite-tsconfig-paths": "^5.1.4",
+		"web-vitals": "^4.2.4"
+	},
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"serve": "vite preview",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build",
+		"prepare": "husky",
+		"update-commit": "bash scripts/update_commit.sh",
+		"sort-imports": "node scripts/sort-imports-in-folder.cjs",
+		"clean": "rm -rf node_modules"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.0.6",
+		"@testing-library/jest-dom": "^6.6.3",
+		"@testing-library/react": "^16.2.0",
+		"@testing-library/user-event": "^14.6.1",
+		"@types/howler": "^2.2.12",
+		"gh-pages": "^6.3.0",
+		"husky": "^9.1.7",
+		"lint-staged": "^15.5.1",
+		"vite-plugin-checker": "^0.9.3"
+	}
 }
