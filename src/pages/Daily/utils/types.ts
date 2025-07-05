@@ -12,6 +12,7 @@ import type { DailyQuartetosEntry } from '../games/Quartetos/utils/types';
 import type { DailyTaNaCaraEntry } from '../games/TaNaCara/utils/types';
 import type { DailyPortaisMagicosEntry } from '../games/PortaisMagicos/utils/types';
 import type { DailyOrganikuEntry } from '../games/Organiku/utils/types';
+import type { DailyEspionagemEntry } from '../games/Espionagem/utils/types';
 
 export type DateKey = string; // Format YYYY-MM-DD
 
@@ -21,6 +22,7 @@ export type DailyResponse = {
   'aqui-o': DailyAquiOEntry;
   'comunicacao-alienigena': DailyComunicacaoAlienigenaEntry;
   'controle-de-estoque': DailyControleDeEstoqueEntry;
+  espionagem: DailyEspionagemEntry;
   filmaco: DailyFilmacoEntry;
   organiku?: DailyOrganikuEntry;
   palavreado: DailyPalavreadoEntry;
