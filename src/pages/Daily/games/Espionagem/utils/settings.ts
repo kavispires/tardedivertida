@@ -17,5 +17,5 @@ export const SETTINGS: GameSettings = {
   },
   // Custom settings
   HEARTS: 2,
-  VERSION: 'soon',
+  VERSION: 'stable',
 };
