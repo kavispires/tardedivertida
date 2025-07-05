@@ -14,6 +14,9 @@ import { NEWS_LIST } from './NewsList';
 
 const NEWS_KEY = 'daily-news';
 
+// Only use news that are today or earlier
+const AVAILABLE_NEWS_LIST = NEWS_LIST.filter((item) => moment(item.date).isSameOrBefore(moment(), 'day'));
+
 /**
  * Checks if the news modal should auto-open based on the last seen news date
  * and whether the latest news is today or after.
@@ -27,8 +30,8 @@ const shouldAutoOpenNews = () => {
   if (!lastSeenNewsDate) return true;
 
   // Check if current news is newer than what user has seen
-  const isTodayOrAfter = moment().isSameOrAfter(moment(NEWS_LIST[0].date), 'day');
-  const hasNewContent = moment(NEWS_LIST[0].date).isAfter(moment(lastSeenNewsDate));
+  const isTodayOrAfter = moment().isSameOrAfter(moment(AVAILABLE_NEWS_LIST[0].date), 'day');
+  const hasNewContent = moment(AVAILABLE_NEWS_LIST[0].date).isAfter(moment(lastSeenNewsDate));
 
   return isTodayOrAfter && hasNewContent;
 };
@@ -38,7 +41,7 @@ export function News() {
 
   const onDismiss = () => {
     setOpen(false);
-    localStorage.setItem(NEWS_KEY, NEWS_LIST[0].date);
+    localStorage.setItem(NEWS_KEY, AVAILABLE_NEWS_LIST[0].date);
   };
 
   return (
@@ -60,7 +63,7 @@ export function News() {
         }
       >
         <div className="daily-news-list">
-          {NEWS_LIST.map((item, index) => (
+          {AVAILABLE_NEWS_LIST.map((item, index) => (
             <div key={item.date}>
               <div className={clsx('daily-news-item', { 'daily-news-item--highlighted': index === 0 })}>
                 <Typography.Text type="secondary">{item.date}</Typography.Text>
