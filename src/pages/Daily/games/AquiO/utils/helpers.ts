@@ -1,5 +1,4 @@
 import { chain, cloneDeep, merge, orderBy, random, sample, sampleSize, shuffle } from 'lodash';
-import moment from 'moment';
 import { generateShareableResult, loadLocalToday } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import type { BasicResultsOptions } from 'pages/Daily/utils/types';
@@ -140,11 +139,6 @@ function createCards(
     items,
     match: matchingItem,
   };
-}
-
-export function checkWeekend(dateString: string): boolean {
-  const date = moment(dateString, 'YYYY-MM-DD');
-  return [6, 0].includes(date.day()); // 0 represents Sunday and 6 represents Saturday in moment.js
 }
 
 /**

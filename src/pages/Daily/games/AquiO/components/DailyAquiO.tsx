@@ -71,11 +71,7 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
           <SpaceContainer>
             <Typography.Text strong>
               <DualTranslate>{data.title}</DualTranslate> | <Translate pt="Disco" en="Disc" /> {discIndex}/
-              {SETTINGS.GOAL}
-              <>
-                {' '}
-                | <Translate pt="Tentativa" en="Attempt" /> {attempts}
-              </>
+              {SETTINGS.GOAL} | <Translate pt="Tentativa" en="Attempt" /> {attempts}
             </Typography.Text>
           </SpaceContainer>
 
@@ -83,6 +79,14 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
             <TimerBar value={timeLeft} total={60} />
           </div>
         </div>
+
+        {isComplete && (
+          <Space className="results-container" align="center" direction="vertical">
+            <Button onClick={() => setShowResultModal(true)}>
+              <Translate pt="Ver Resultado" en="Show Results" />
+            </Button>
+          </Space>
+        )}
 
         <SpaceContainer direction="vertical">
           {!isPlaying && (
@@ -102,14 +106,6 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
 
               <PreloadItems items={data.itemsIds} />
             </>
-          )}
-
-          {isComplete && (
-            <Space className="results-container" align="center" direction="vertical">
-              <Button onClick={() => setShowResultModal(true)}>
-                <Translate pt="Ver Resultado" en="Show Results" />
-              </Button>
-            </Space>
           )}
 
           {isPlaying && (

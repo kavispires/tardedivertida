@@ -1,6 +1,7 @@
 import { cloneDeep, merge } from 'lodash';
-import { loadLocalToday } from 'pages/Daily/utils';
+import { generateShareableResult, loadLocalToday, writeHeartResultString } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
+import type { BasicResultsOptions } from 'pages/Daily/utils/types';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyEspionagemEntry, GameState } from './types';
@@ -143,3 +144,47 @@ export const FEATURE_PT_TRANSLATIONS: Dictionary<string> = {
   showTeeth: 'está mostrando os dentes',
   hairTie: 'está usando um xuxinha ou fita no cabelo',
 };
+
+/**
+ * Generates a shareable result for the game with the given options.
+ * @param options - The options for generating the result.
+ */
+export function writeResult({
+  released,
+  remainingHearts,
+  totalHearts,
+  ...rest
+}: BasicResultsOptions & {
+  released: string[];
+}): string {
+  const winIcon = released.length === 11 ? '🏆' : '☠️';
+
+  // Calculate percentage based on how many suspects were released (0-11)
+  const progress = released ? Math.round((released.length / 11) * 100) : 0;
+
+  return generateShareableResult({
+    additionalLines: [`${winIcon} ${writeHeartResultString(remainingHearts, totalHearts)} (${progress}%)`],
+    hideHearts: true,
+    remainingHearts,
+    totalHearts,
+    ...rest,
+  });
+}
+
+/**
+ * Generates the written result for the game with the state
+ * @param data - The DailyEspionagemEntry data.
+ * @param language - The language for the result.
+ */
+export function getWrittenResult({ data, language }: { data: DailyEspionagemEntry; language: Language }) {
+  const state = getInitialState(data);
+  return writeResult({
+    type: 'espionagem',
+    hideLink: true,
+    language,
+    challengeNumber: state.number,
+    totalHearts: SETTINGS.HEARTS,
+    remainingHearts: state.hearts,
+    released: state.released,
+  });
+}
