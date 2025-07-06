@@ -1,11 +1,10 @@
 import { cloneDeep, merge } from 'lodash';
-import { generateShareableResult, loadLocalToday } from 'pages/Daily/utils';
+import { checkWeekend, generateShareableResult, loadLocalToday } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import type { BasicResultsOptions } from 'pages/Daily/utils/types';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyTeoriaDeConjuntosEntry, GameState } from './types';
-import { checkWeekend } from '../../AquiO/utils/helpers';
 
 const DEFAULT_LOCAL_TODAY: GameState = {
   id: '',

@@ -85,13 +85,25 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
             </Typography.Text>
           </Region>
         ) : (
-          <Region>
+          <Region className="center">
             <Typography.Text>
               {isWin && <Translate pt="Você achou o culpado!" en="You found the culprit!" />}
               {isLose && (
                 <Translate
-                  pt="Você liberou o culpado! Agora crimes continuarão acontecendo."
-                  en="You released the culprit! Now crimes will keep happening."
+                  pt={
+                    <>
+                      <strong>Você liberou o culpado!</strong>
+                      <br />
+                      Agora crimes continuarão acontecendo.
+                      <br />
+                      <em>
+                        Se você discorda das respostas e está revoltado, ajude a melhorar o jogo participando
+                        do
+                        <strong> Tá Na Cara</strong> na seção Contribua do TD!
+                      </em>
+                    </>
+                  }
+                  en={<>You released the culprit! Now crimes will keep happening.</>}
                 />
               )}
             </Typography.Text>
@@ -180,7 +192,7 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
 
         <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
           <ResultsModalContent
-            challenge={data.number}
+            challengeNumber={data.number}
             win={isWin}
             hearts={hearts}
             suspects={data.suspects}

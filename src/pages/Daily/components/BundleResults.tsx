@@ -138,6 +138,12 @@ function getResultForGame(data: DailyResponse[keyof DailyResponse], language: La
         language,
       });
     }
+    case 'espionagem': {
+      return ALL_HELPERS.ESPIONAGEM.getWrittenResult({
+        data,
+        language,
+      });
+    }
     case 'filmaco': {
       return ALL_HELPERS.FILMACO.getWrittenResult({
         data,

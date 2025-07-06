@@ -1,5 +1,5 @@
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { getDailyName, getSourceName, writeHeartResultString } from 'pages/Daily/utils';
+import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex, Typography } from 'antd';
 // Hooks
@@ -16,11 +16,12 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TextHighlight } from 'components/text';
 // Internal
 import { SETTINGS } from '../utils/settings';
+import { writeResult } from '../utils/helpers';
 import type { DailyEspionagemEntry } from '../utils/types';
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 type ResultsModalContentProps = {
-  challenge: number;
+  challengeNumber: number;
   win: boolean;
   hearts: number;
   culpritId?: string;
@@ -30,7 +31,7 @@ type ResultsModalContentProps = {
 };
 
 export function ResultsModalContent({
-  challenge,
+  challengeNumber,
   win,
   hearts,
   suspects,
@@ -38,17 +39,21 @@ export function ResultsModalContent({
   released,
   culpritId,
 }: ResultsModalContentProps) {
-  const { language, dualTranslate } = useLanguage();
+  const { language } = useLanguage();
   const culprit = suspects.find((s) => s.id === culpritId);
 
-  const result = writeResult({
-    language,
-    game: dualTranslate(SETTINGS.NAME),
-    challenge,
-    remainingHearts: hearts,
-    win,
-    released,
-  });
+  const result = useMemo(
+    () =>
+      writeResult({
+        type: 'espionagem',
+        language,
+        challengeNumber: challengeNumber,
+        remainingHearts: hearts,
+        totalHearts: SETTINGS.HEARTS,
+        released,
+      }),
+    [language, challengeNumber, hearts, released],
+  );
 
   return (
     <SpaceContainer vertical>
@@ -90,32 +95,4 @@ export function ResultsModalContent({
       <NextGameSuggestion />
     </SpaceContainer>
   );
-}
-
-function writeResult({
-  game,
-  challenge,
-  remainingHearts,
-  language,
-  win,
-  released,
-}: {
-  language: Language;
-  game: string;
-  challenge: number;
-  remainingHearts: number;
-  win: boolean;
-  released: string[];
-}) {
-  const winIcon = win ? '🏆' : '☠️';
-
-  // Calculate percentage based on how many suspects were released (0-8)
-  const progress = released ? Math.round((released.length / 8) * 100) : 0;
-
-  // Write the result string
-  return [
-    `${SETTINGS.EMOJI} ${getDailyName(language)} ${game} #${!challenge ? 'demo' : challenge}`,
-    `${winIcon} ${writeHeartResultString(remainingHearts, SETTINGS.HEARTS)} (${progress}%)`,
-    `https://www.kavispires.com/tardedivertida/#/${getSourceName(language)}`,
-  ].join('\n');
 }

@@ -2,6 +2,7 @@ import { intersectionBy } from 'lodash';
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { checkWeekend } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { vibrate } from 'pages/Daily/utils/vibrate';
@@ -14,7 +15,7 @@ import { logAnalyticsEvent } from 'services/firebase';
 // Utils
 import { inNSeconds } from 'utils/helpers';
 // Internal
-import { checkWeekend, getDiscs } from './helpers';
+import { getDiscs } from './helpers';
 import { SETTINGS } from './settings';
 import type { DailyAquiOEntry, GameState, SessionState } from './types';
 

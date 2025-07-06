@@ -1,5 +1,6 @@
 import { Region } from 'pages/Daily/components/Region';
 // Ant Design Resources
+import { SkinFilled } from '@ant-design/icons';
 import { Flex, Modal, Typography } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
@@ -61,9 +62,14 @@ export function ReleaseModal({
           cardWidth={width}
           className="espionagem-suspect-card"
         />
-        <Typography.Paragraph italic>
-          {gatherSuspectInfo(suspect.features, suspect.gender)}
-        </Typography.Paragraph>
+        <Flex vertical gap={6}>
+          <Typography.Text>
+            Confira as declarações do tipo <SkinFilled />:
+          </Typography.Text>
+          <Typography.Paragraph italic>
+            {gatherSuspectInfo(suspect.features, suspect.gender)}
+          </Typography.Paragraph>
+        </Flex>
       </Flex>
 
       <Region>

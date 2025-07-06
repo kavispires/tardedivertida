@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useMemo } from 'react';
 // Ant Design Resources
-import { AppstoreFilled, AudioFilled, HeartFilled, SkinFilled } from '@ant-design/icons';
+import { AppstoreOutlined, AudioFilled, HeartFilled, SkinFilled } from '@ant-design/icons';
 import { Alert, Flex } from 'antd';
 // Utils
 import { getAnimation } from 'utils/animations';
@@ -74,7 +74,7 @@ const getStatementIcon = (type: DailyEspionagemEntry['statements'][number]['type
     case 'feature':
       return <SkinFilled />;
     case 'grid':
-      return <AppstoreFilled />;
+      return <AppstoreOutlined />;
     default:
       return null;
   }

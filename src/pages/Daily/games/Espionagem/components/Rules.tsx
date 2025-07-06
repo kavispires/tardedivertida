@@ -1,6 +1,6 @@
 import { RulesWrapper } from 'pages/Daily/components/RulesWrapper';
 // Ant Design Resources
-import { HeartFilled } from '@ant-design/icons';
+import { AppstoreOutlined, AudioFilled, HeartFilled, SkinFilled } from '@ant-design/icons';
 // Components
 import { Translate } from 'components/language';
 
@@ -26,6 +26,11 @@ export function Rules({ date }: RulesProps) {
                 You must release all innocent people so <strong>the culprit is the last person left</strong>.
               </li>
               <li>
+                There are statements about the physical appearance of the suspect <SkinFilled />, about their
+                position in the grid <AppstoreOutlined />, and some hearsay about who they are as a person{' '}
+                <AudioFilled />.
+              </li>
+              <li>
                 You can use a <HeartFilled /> to see special statements that help with more suspects.
               </li>
               <li>
@@ -40,9 +45,15 @@ export function Rules({ date }: RulesProps) {
                 Você começa com uma declaração de seus informantes para ajudar a identificar o culpado e a
                 cada dois suspeitos que você libera uma nova declaração será revelada.
               </li>
+
               <li>
                 Você deve liberar todas as pessoas inocentes para que{' '}
                 <strong>o culpado seja a última pessoa restante</strong>.
+              </li>
+              <li>
+                Existem declarações sobre a aparência física do suspeito <SkinFilled />, sobre sua posição na
+                grade <AppstoreOutlined />, e algumas fofocas sobre quem eles são como pessoa <AudioFilled />{' '}
+                que podem não ser tão confiáveis.
               </li>
               <li>
                 Você pode usar um <HeartFilled /> para ver declarações especiais que ajudam com mais
