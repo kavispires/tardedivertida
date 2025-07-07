@@ -17,6 +17,7 @@ import * as galeriaDeSonhosEngine from '../engine/galeria-de-sonhos';
 import * as idadeDaPreda from '../engine/idade-da-preda';
 import * as labirintoSecretoEngine from '../engine/labirinto-secreto';
 import * as linhasCruzadasEngine from '../engine/linhas-cruzadas';
+import * as medidasNaoExatasEngine from '../engine/medidas-nao-exatas';
 import * as megamixEngine from '../engine/megamix';
 import * as menteColetivaEngine from '../engine/mente-coletiva';
 import * as mesmiceEngine from '../engine/mesmice';
@@ -62,6 +63,7 @@ const engines = {
   [GAME_NAMES.IDADE_DA_PREDA]: idadeDaPreda,
   [GAME_NAMES.LABIRINTO_SECRETO]: labirintoSecretoEngine,
   [GAME_NAMES.LINHAS_CRUZADAS]: linhasCruzadasEngine,
+  [GAME_NAMES.MEDIDAS_NAO_EXATAS]: medidasNaoExatasEngine,
   [GAME_NAMES.MEGAMIX]: megamixEngine,
   [GAME_NAMES.MENTE_COLETIVA]: menteColetivaEngine,
   [GAME_NAMES.MESMICE]: mesmiceEngine,
@@ -102,5 +104,5 @@ export const getEngine = (gameName: string): Engine => {
     return engine;
   }
 
-  throw new Error(`Dictionary '${gameName}' initial state does not exist`);
+  throw new Error(`Engine for '${gameName}' does not exist`);
 };

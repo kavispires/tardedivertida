@@ -1,0 +1,26 @@
+export const MEDIDAS_NAO_EXATAS_PHASES = {
+  LOBBY: 'LOBBY',
+  SETUP: 'SETUP',
+  METRICS_BUILDING: 'METRICS_BUILDING',
+  GUESSING: 'GUESSING',
+  RESULTS: 'RESULTS',
+  GAME_OVER: 'GAME_OVER',
+} as const;
+
+export const MEDIDAS_NAO_EXATAS_ACTIONS = {
+  SUBMIT_POOL: 'SUBMIT_POOL',
+  SUBMIT_METRICS: 'SUBMIT_METRICS',
+  SUBMIT_GUESS: 'SUBMIT_GUESS',
+} as const;
+
+export const MEDIDAS_NAO_EXATAS_ACHIEVEMENTS = {};
+
+export const PLAYER_COUNTS = {
+  MIN: 2,
+  MAX: 10,
+} as const;
+
+export const TOTAL_ROUNDS = 5;
+
+export const WORDS_PER_PLAYER = 8;
+export const DESCRIPTORS_PER_PLAYER = 10;
