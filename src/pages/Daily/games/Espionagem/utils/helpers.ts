@@ -123,7 +123,7 @@ export const FEATURE_PT_TRANSLATIONS: Dictionary<string> = {
   'indian.female': 'é indiana',
   'indian.non-binary': 'é indiane',
   'native-american': 'é nativo-americano(a)',
-  noAccessories: 'sem nenhum acessório',
+  noAccessories: 'está sem nenhum acessório',
   avoidingCamera: 'está evitando olhar para a câmera',
   wearingStripes: 'tem listras na roupa',
   blackClothes: 'está vestindo roupas pretas',
