@@ -16,8 +16,8 @@ import { buildClovers, buildGuesses, buildLeaves, buildRanking } from './helpers
  * @returns
  */
 export const prepareSetupPhase = async (
-  store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _store: FirebaseStoreData,
+  _state: FirebaseStateData,
   players: Players,
   allWords: TextCard[],
 ): Promise<SaveGamePayload> => {
@@ -46,12 +46,12 @@ export const prepareSetupPhase = async (
 
 export const prepareWordSelectionPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
   // Deal cards to players
-  utils.game.dealList(store.deck, players, CARDS_PER_PLAYER, 'hand');
+  utils.playerHand.dealDeck(players, store.deck, CARDS_PER_PLAYER, 'hand');
 
   // Save
   return {
@@ -66,7 +66,7 @@ export const prepareWordSelectionPhase = async (
 
 export const prepareCloverWritingPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
@@ -91,7 +91,7 @@ export const prepareCloverWritingPhase = async (
 };
 
 export const prepareCloverGuessingPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
