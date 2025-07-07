@@ -3,167 +3,167 @@
 .color-background {
   $self: &;
   &--red {
-    background-color: get-color("red");
+    background-color: get-color("red") !important;
   }
 
   &--blue {
-    background-color: get-color("blue");
+    background-color: get-color("blue") !important;
   }
 
   &--green {
-    background-color: get-color("green");
+    background-color: get-color("green") !important;
   }
 
   &--yellow {
-    background-color: get-color("yellow");
+    background-color: get-color("yellow") !important;
   }
 
   &--pink {
-    background-color: get-color("pink");
+    background-color: get-color("pink") !important;
   }
 
   &--purple {
-    background-color: get-color("purple");
+    background-color: get-color("purple") !important;
   }
 
   &--teal {
-    background-color: get-color("teal");
+    background-color: get-color("teal") !important;
   }
 
   &--orange {
-    background-color: get-color("orange");
+    background-color: get-color("orange") !important;
   }
 
   &--fur {
-    background-color: get-color("red", 4);
+    background-color: get-color("red", 4) !important;
   }
 
   &--navy {
-    background-color: get-color("blue", 8);
+    background-color: get-color("blue", 8) !important;
   }
 
   &--light-green {
-    background-color: get-color("green", 4);
+    background-color: get-color("green", 4) !important;
   }
 
   &--hot-pink {
-    background-color: get-color("pink", 6);
+    background-color: get-color("pink", 6) !important;
   }
 
   &--brown {
-    background-color: get-color("orange", 7);
+    background-color: get-color("orange", 7) !important;
   }
 
   &--forest {
-    background-color: get-color("teal", 6);
+    background-color: get-color("teal", 6) !important;
   }
 
   &--violet {
-    background-color: get-color("purple", 7);
+    background-color: get-color("purple", 7) !important;
   }
 
   &--cream {
-    background-color: get-color("orange", 4);
+    background-color: get-color("orange", 4) !important;
   }
 
   &--none,
   &--grey {
-    background-color: get-color("gray");
+    background-color: get-color("gray") !important;
   }
 
   &--lime {
-    background-color: get-color("lime");
+    background-color: get-color("lime") !important;
   }
 
   &--black {
-    background-color: get-color("black", 4);
+    background-color: get-color("black", 4) !important;
   }
 
   &--white {
-    background-color: get-color("white");
+    background-color: get-color("white") !important;
   }
 }
 
 .color-border {
   $self: &;
   &--red {
-    border-color: get-color("red");
+    border-color: get-color("red") !important;
   }
 
   &--blue {
-    border-color: get-color("blue");
+    border-color: get-color("blue") !important;
   }
 
   &--green {
-    border-color: get-color("green");
+    border-color: get-color("green") !important;
   }
 
   &--yellow {
-    border-color: get-color("yellow");
+    border-color: get-color("yellow") !important;
   }
 
   &--pink {
-    border-color: get-color("pink");
+    border-color: get-color("pink") !important;
   }
 
   &--purple {
-    border-color: get-color("purple");
+    border-color: get-color("purple") !important;
   }
 
   &--teal {
-    border-color: get-color("teal");
+    border-color: get-color("teal") !important;
   }
 
   &--orange {
-    border-color: get-color("orange");
+    border-color: get-color("orange") !important;
   }
 
   &--fur {
-    border-color: get-color("red", 4);
+    border-color: get-color("red", 4) !important;
   }
 
   &--navy {
-    border-color: get-color("blue", 8);
+    border-color: get-color("blue", 8) !important;
   }
 
   &--light-green {
-    border-color: get-color("green", 4);
+    border-color: get-color("green", 4) !important;
   }
 
   &--hot-pink {
-    border-color: get-color("pink", 6);
+    border-color: get-color("pink", 6) !important;
   }
 
   &--brown {
-    border-color: get-color("orange", 7);
+    border-color: get-color("orange", 7) !important;
   }
 
   &--forest {
-    border-color: get-color("teal", 6);
+    border-color: get-color("teal", 6) !important;
   }
 
   &--violet {
-    border-color: get-color("purple", 6);
+    border-color: get-color("purple", 6) !important;
   }
 
   &--cream {
-    border-color: get-color("orange", 4);
+    border-color: get-color("orange", 4) !important;
   }
 
   &--none,
   &--grey {
-    border-color: get-color("gray");
+    border-color: get-color("gray") !important;
   }
 
   &--lime {
-    border-color: get-color("lime");
+    border-color: get-color("lime") !important;
   }
 
   &--black {
-    border-color: get-color("black", 4);
+    border-color: get-color("black", 4) !important;
   }
 
   &--white {
-    border-color: get-color("white");
+    border-color: get-color("white") !important;
   }
 }
