@@ -101,6 +101,11 @@ const GAMES = [
     key: 'LINHAS_CRUZADAS',
   },
   {
+    name: 'medidas-nao-exatas',
+    code: 'M',
+    key: 'MEDIDAS_NAO_EXATAS',
+  },
+  {
     name: 'megamix',
     code: 'Z',
     key: 'MEGAMIX',
@@ -159,6 +164,11 @@ const GAMES = [
     name: 'porta-dos-desesperados',
     code: 'I',
     key: 'PORTA_DOS_DESESPERADOS',
+  },
+  {
+    name: 'qual-quesito',
+    code: 'Q',
+    key: 'QUAL_QUESITO',
   },
   {
     name: 'quem-nao-mata',
@@ -316,6 +326,7 @@ export const TDR_RESOURCES = {
   DATING_CANDIDATE: 'dating-candidate',
   DATING_CANDIDATE_BODIES: 'dating-candidate-bodies', // dual-language
   DATING_CANDIDATE_HEADS: 'dating-candidate-heads', // dual-language
+  DESCRIPTORS: 'descriptors',
   DIAGRAM_TOPICS: 'diagram-topics',
   DILEMMAS: 'dilemmas',
   DRAWING_WORDS: 'drawing-words',
