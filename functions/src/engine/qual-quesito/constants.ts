@@ -1,0 +1,34 @@
+export const QUAL_QUESITO_PHASES = {
+  LOBBY: 'LOBBY',
+  SETUP: 'SETUP',
+  CATEGORY_CREATION: 'CATEGORY_CREATION',
+  CARD_PLAY: 'CARD_PLAY',
+  VERIFICATION: 'VERIFICATION',
+  RESULTS: 'RESULTS',
+  GAME_OVER: 'GAME_OVER',
+} as const;
+
+export const QUAL_QUESITO_ACTIONS = {
+  SUBMIT_CATEGORY: 'SUBMIT_CATEGORY',
+  SKIP_TURN: 'SKIP_TURN',
+  SUBMIT_CARDS: 'SUBMIT_CARDS',
+  REJECT_CARDS: 'REJECT_CARDS',
+} as const;
+
+export const QUAL_QUESITO_ACHIEVEMENTS = {};
+
+export const PLAYER_COUNTS = {
+  MIN: 2,
+  MAX: 10,
+} as const;
+
+export const TOTAL_ROUNDS = 15;
+
+export const CARDS_PER_PLAYER = 7;
+export const DECK_PER_PLAYER = 10;
+
+export const OUTCOMES = {
+  SKIP: 'SKIP',
+  REJECTED: 'REJECTED',
+  ACCEPTED: 'ACCEPTED',
+} as const;

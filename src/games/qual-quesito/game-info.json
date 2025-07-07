@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "qual-quesito",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "release": "planned",
   "available": false,
   "title": {
