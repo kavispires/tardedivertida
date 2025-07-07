@@ -98,7 +98,7 @@ export function StepSelectTargetAndCard({
                     icon={cardId === selectedCardId ? <CheckCircleFilled /> : <ArrowUpOutlined />}
                     type={cardId === selectedCardId ? 'primary' : 'default'}
                   >
-                    essa
+                    <Translate pt="essa" en="this" />
                   </Button>
                 </div>
               </Flex>
