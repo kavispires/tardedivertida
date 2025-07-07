@@ -1,5 +1,4 @@
 import { buildBooleanDictionary } from './helpers';
-import { getListOfPlayersIds } from './players-utils';
 
 // Shuffling
 
@@ -195,33 +194,6 @@ export const sliceInParts = <T>(list: T[], numParts = 1): T[][] => {
   }
 
   return res;
-};
-
-/**
- * Deal list items between players
- * @param list a list of items, usually cards ids
- * @param players players object
- * @param [quantity] how many items each player should get
- * @param [propertyName] what property should the items be attributed to
- * @param [recursive] if not enough items, restart from the beginning
- * @returns
- */
-export const dealList = <T>(
-  list: T[],
-  players: Players,
-  quantity = 1,
-  propertyName = 'hand',
-  recursive = false,
-  includeBots = false,
-) => {
-  const playerIds = getListOfPlayersIds(players, includeBots);
-  // Ensure there are enough cards
-  const availableList = recursive && playerIds.length * quantity > list.length ? [...list, ...list] : list;
-  const hands = sliceIntoChunks(availableList, quantity);
-
-  playerIds.forEach((playerId, index) => {
-    players[playerId][propertyName] = hands[index];
-  });
 };
 
 /**

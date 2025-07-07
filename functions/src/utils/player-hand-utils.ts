@@ -1,6 +1,36 @@
 // Helpers
-import { removeItem } from './game-utils';
+import { removeItem, sliceIntoChunks } from './game-utils';
 import { getListOfPlayersIds } from './players-utils';
+
+/**
+ * Deal list items between players
+ * @param list a list of items, usually cards ids
+ * @param players players object
+ * @param [quantity] how many items each player should get
+ * @param [propertyName] what property should the items be attributed to
+ * @param [recursive] if not enough items, restart from the beginning
+ * @returns the unused items
+ */
+export const dealDeck = <T>(
+  players: Players,
+  list: T[],
+  quantity = 1,
+  propertyName = 'hand',
+  recursive = false,
+  includeBots = false,
+) => {
+  const playerIds = getListOfPlayersIds(players, includeBots);
+  // Ensure there are enough cards
+  const availableList = recursive && playerIds.length * quantity > list.length ? [...list, ...list] : list;
+  const hands = sliceIntoChunks(availableList, quantity);
+
+  playerIds.forEach((playerId, index) => {
+    players[playerId][propertyName] = hands[index];
+  });
+
+  // Return unused items
+  return availableList.slice(playerIds.length * quantity);
+};
 
 /**
  * Deal cards to players from their own deck

@@ -29,7 +29,7 @@ export const prepareSetupPhase = async (
   const cardsPerPlayer = TOTAL_ROUNDS * 2 + HAND_LIMIT;
 
   // Split cards equally between players
-  utils.game.dealList(data.cards, players, cardsPerPlayer, 'deck');
+  utils.playerHand.dealDeck(players, data.cards, cardsPerPlayer, 'deck');
 
   const achievements = utils.achievements.setup(players, store, {
     leader: 0,

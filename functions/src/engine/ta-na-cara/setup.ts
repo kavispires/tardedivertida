@@ -47,7 +47,7 @@ export const prepareSetupPhase = async (
   const questionsDict = utils.helpers.buildDictionaryFromList(gameQuestions, 'id');
 
   // Deal questions to players
-  utils.game.dealList(Object.keys(questionsDict), players, QUESTIONS_PER_PLAYER, 'questions');
+  utils.playerHand.dealDeck(players, Object.keys(questionsDict), QUESTIONS_PER_PLAYER, 'questions');
 
   // Assign a random character to each player
   let charactersIds = utils.game.shuffle(Object.keys(charactersDict));
