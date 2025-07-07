@@ -21,6 +21,7 @@ import IDADE_DA_PREDA from 'games/idade-da-preda/game-info.json';
 import INSTRUMENTOS_CODIFICADOS from 'games/instrumentos-codificados/game-info.json';
 import LABIRINTO_SECRETO from 'games/labirinto-secreto/game-info.json';
 import LINHAS_CRUZADAS from 'games/linhas-cruzadas/game-info.json';
+import MEDIDAS_NAO_EXATAS from 'games/medidas-nao-exatas/game-info.json';
 import MEGAMIX from 'games/megamix/game-info.json';
 import MENTE_COLETIVA from 'games/mente-coletiva/game-info.json';
 import MESMICE from 'games/mesmice/game-info.json';
@@ -33,6 +34,7 @@ import PALHETA_DE_CORES from 'games/palheta-de-cores/game-info.json';
 import PLANEJAMENTO_URBANO from 'games/planejamento-urbano/game-info.json';
 import POLEMICA_DA_VEZ from 'games/polemica-da-vez/game-info.json';
 import PORTA_DOS_DESESPERADOS from 'games/porta-dos-desesperados/game-info.json';
+import QUAL_QUESITO from 'games/qual-quesito/game-info.json';
 import QUEM_NAO_MATA from 'games/quem-nao-mata/game-info.json';
 import QUEM_SOU_EU from 'games/quem-sou-eu/game-info.json';
 import RETRATO_FALADO from 'games/retrato-falado/game-info.json';
@@ -78,6 +80,7 @@ export const GAME_LIST: Record<GameName, GameInfo> = {
   'instrumentos-codificados': INSTRUMENTOS_CODIFICADOS,
   'labirinto-secreto': LABIRINTO_SECRETO,
   'linhas-cruzadas': LINHAS_CRUZADAS,
+  'medidas-nao-exatas': MEDIDAS_NAO_EXATAS,
   megamix: MEGAMIX,
   'mente-coletiva': MENTE_COLETIVA,
   mesmice: MESMICE,
@@ -90,6 +93,7 @@ export const GAME_LIST: Record<GameName, GameInfo> = {
   'planejamento-urbano': PLANEJAMENTO_URBANO,
   'polemica-da-vez': POLEMICA_DA_VEZ,
   'porta-dos-desesperados': PORTA_DOS_DESESPERADOS,
+  'qual-quesito': QUAL_QUESITO,
   'quem-nao-mata': QUEM_NAO_MATA,
   'quem-sou-eu': QUEM_SOU_EU,
   'retrato-falado': RETRATO_FALADO,
