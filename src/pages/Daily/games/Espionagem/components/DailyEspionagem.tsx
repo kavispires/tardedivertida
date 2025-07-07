@@ -52,7 +52,7 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
     onNeedClue,
     activeSuspectId,
   } = useEspionagemEngine(data, initialState);
-  const width = useCardWidth(4, { margin: 32, maxWidth: 256, minWidth: 64 });
+  const width = useCardWidth(4, { margin: 32, maxWidth: 128, minWidth: 64 });
 
   return (
     <Layout className="app">
