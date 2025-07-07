@@ -1,0 +1,42 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "M",
+  "gameName": "medidas-nao-exatas",
+  "version": "0.0.1",
+  "release": "planned",
+  "available": false,
+  "title": {
+    "pt": "Medidas Não Exatas",
+    "en": "Creative Metrics"
+  },
+  "popularName": {
+    "pt": "",
+    "en": ""
+  },
+  "basedOn": "hctamsiM tcefreP",
+  "summary": {
+    "en": "Evaluate your secret word with crazy metrics and see if other players can guess it.",
+    "pt": "Avalie sua palavra secreta com métricas malucas e veja se outros jogadores conseguem adivinhá-la."
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "cloudsAnimationType": "flow",
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 10
+  },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
+  "tags": ["competitive"]
+}

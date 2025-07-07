@@ -1,0 +1,42 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "Q",
+  "gameName": "qual-quesito",
+  "version": "0.0.1",
+  "release": "planned",
+  "available": false,
+  "title": {
+    "pt": "Qual Quesito",
+    "en": "And The Category Is"
+  },
+  "popularName": {
+    "pt": "",
+    "en": ""
+  },
+  "basedOn": "gnihT gnihT",
+  "summary": {
+    "en": "Make up a category and see how many things are thrown at it.",
+    "pt": "Crie uma categoria e veja quantas coisas são jogadas nela."
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "cloudsAnimationType": "flow",
+    "primaryColor": "",
+    "backgroundColor": "",
+    "colorScheme": "light"
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 10
+  },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
+  "tags": ["competitive"]
+}
