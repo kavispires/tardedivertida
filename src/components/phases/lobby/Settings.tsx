@@ -67,12 +67,12 @@ export function Settings({ hasImages }: SettingsProps) {
 
       <div className="lobby-step__settings-entry">
         <div className="lobby-step__switch-label">
-          <Translate pt="Credo" en="Blur Button" />
+          <Translate pt="Credo" en="Blur" />
           <Tooltip
             title={
               <Translate
                 pt="Adiciona um botão em todas Cartas-imagem para embaça-las caso você tenha alguma fobia. Você pode mudar essa configuração durante o jogo"
-                en="Adds a button to every Image Card to blur them in case you have any phobia. You may change this setting during the game"
+                en="Adds a button to every Image Card to blur them in case you are sensitive to their content. You may change this setting during the game"
               />
             }
           >
