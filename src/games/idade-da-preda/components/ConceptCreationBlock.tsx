@@ -13,6 +13,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { SpeakButton } from 'components/audio/SpeakButton';
 import { Avatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
+import { DivButton } from 'components/buttons/DivButton';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate } from 'components/language';
 // Internal
@@ -78,14 +79,14 @@ export function ConceptCreationBlock({
       <Flex className="concept-block__header" justify="space-between" align="center">
         <div className="concept-block__sound">
           <SpeakButton text={concept.syllable} />
-          <div
+          <DivButton
             className={clsx('concept-block__syllable', {
               'concept-block__syllable--button': !!onSelect,
             })}
             onClick={() => onSelect?.(concept.id)}
           >
             <DualTranslate>{concept.syllable}</DualTranslate>
-          </div>
+          </DivButton>
         </div>
         <Tooltip
           title={dualTranslate({

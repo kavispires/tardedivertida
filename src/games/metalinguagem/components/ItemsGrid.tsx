@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import type { GamePlayers } from 'types/player';
 // Components
 import { AvatarGroup } from 'components/avatars/AvatarGroup';
+import { DivButton } from 'components/buttons/DivButton';
 import { ItemCard } from 'components/cards/ItemCard';
 
 type ItemsGridProps = {
@@ -24,7 +25,7 @@ export function ItemsGrid({ items, targets, onItemSelect, selectedItems, results
         const isTarget = targets?.includes(itemId);
 
         return (
-          <div
+          <DivButton
             key={itemId}
             className={clsx('items-grid__item', {
               'items-grid__item-selected': isSelected,
@@ -42,7 +43,7 @@ export function ItemsGrid({ items, targets, onItemSelect, selectedItems, results
                 />
               </div>
             )}
-          </div>
+          </DivButton>
         );
       })}
     </div>

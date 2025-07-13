@@ -5,6 +5,7 @@ import { Card, Flex, Input } from 'antd';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { SpeakButton } from 'components/audio/SpeakButton';
+import { DivButton } from 'components/buttons/DivButton';
 import { DualTranslate } from 'components/language';
 // Internal
 import type { Concept } from '../utils/types';
@@ -29,14 +30,14 @@ export function BasicConceptBlock({
       <Flex className="concept-block__header" justify="space-between" align="center">
         <div className="concept-block__sound">
           <SpeakButton text={concept.syllable} />
-          <div
+          <DivButton
             className={clsx('concept-block__syllable', {
               'concept-block__syllable--button': !!onSelect,
             })}
             onClick={() => onSelect?.(concept.id)}
           >
             <DualTranslate>{concept.syllable}</DualTranslate>
-          </div>
+          </DivButton>
         </div>
       </Flex>
 

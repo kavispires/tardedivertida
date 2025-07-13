@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/a11y/noStaticElementInteractions: interactive svg */
 import clsx from 'clsx';
 import { getColorModifier } from 'games/onda-telepatica/utils/helpers';
 import { useState } from 'react';
@@ -27,7 +28,7 @@ export const TrackOndaTelepatica = ({ track, onSubmitAnswer, user }: TrackProps)
     }
   };
 
-  // // DEV Mock
+  // DEV Mock
   useMock(() => {
     onSelect(mockSelection(['left', 'center', 'right']));
   });

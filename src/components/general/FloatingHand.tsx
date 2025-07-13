@@ -9,6 +9,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { HandOfCardsIcon } from 'icons/HandOfCardsIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
+import { DivButton } from 'components/buttons/DivButton';
 import { Translate } from 'components/language';
 // Sass
 import './FloatingHand.scss';
@@ -35,7 +36,7 @@ export function FloatingHand({ children, icon, title }: FloatingHandProps) {
   return (
     <>
       <div className="floating-hand-added-white-space"></div>
-      <div
+      <DivButton
         className={clsx('floating-hand', isExpanded && 'floating-hand--expanded')}
         onMouseOver={() => setIsExpanded(true)}
         onMouseLeave={() => setIsExpanded(false)}
@@ -57,7 +58,7 @@ export function FloatingHand({ children, icon, title }: FloatingHandProps) {
           </span>
         </h3>
         <div className="floating-hand__children">{children}</div>
-      </div>
+      </DivButton>
     </>
   );
 }
@@ -93,7 +94,7 @@ export function FloatingHandDrawer({ children, icon, title }: FloatingHandProps)
       </button>
       <Drawer
         title={
-          <span
+          <DivButton
             className="floating-hand-drawer__label floating-hand-drawer__label-open"
             onClick={() => toggleDrawer(false)}
             onKeyDown={(e) => e.key === 'Enter' && toggleDrawer(false)}
@@ -109,7 +110,7 @@ export function FloatingHandDrawer({ children, icon, title }: FloatingHandProps)
                 (<Translate pt="Clique aqui para fechar" en="Click here to close" />)
               </span>
             </span>
-          </span>
+          </DivButton>
         }
         placement="bottom"
         onClose={toggleDrawer}

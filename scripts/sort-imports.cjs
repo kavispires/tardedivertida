@@ -161,9 +161,18 @@ const processFile = (filePath) => {
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const lines = fileContents.split('\n');
 
+  // Extract biome-ignore-all directives at the beginning of the file
+  const biomeIgnoreLines = [];
+  let startIndex = 0;
+
+  while (startIndex < lines.length && lines[startIndex].trim().startsWith('/** biome-ignore-all')) {
+    biomeIgnoreLines.push(lines[startIndex]);
+    startIndex++;
+  }
+
   // Remove all import comments that precede a import line
-  const filteredLines = lines.filter((line, index) => {
-    if (IMPORT_COMMENTS.includes(line.trim()) && lines[index + 1]?.startsWith('import ')) {
+  const filteredLines = lines.slice(startIndex).filter((line, index) => {
+    if (IMPORT_COMMENTS.includes(line.trim()) && lines[startIndex + index + 1]?.startsWith('import ')) {
       return false;
     }
     return true;
@@ -201,8 +210,8 @@ const processFile = (filePath) => {
   const sortedImports = sortImports(importLines);
 
   // Replace original imports with sorted imports
-
-  const newFileContents = sortedImports + nonImportLines.join('\n');
+  const biomeIgnoreContent = biomeIgnoreLines.length > 0 ? biomeIgnoreLines.join('\n') + '\n' : '';
+  const newFileContents = biomeIgnoreContent + sortedImports + nonImportLines.join('\n');
 
   // Write the changes back to the file
   fs.writeFileSync(filePath, newFileContents, 'utf8');
