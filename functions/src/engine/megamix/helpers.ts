@@ -307,7 +307,6 @@ export const handleSeedingData = (
 
       case GAME_NAMES.CONTADORES_HISTORIAS:
         track.data.prompt = buildContadoresHistoriasOptions(players);
-        // biome-ignore lint/performance/noDelete: firebase does not accept undefined values
         delete track.data.prompts;
         break;
 

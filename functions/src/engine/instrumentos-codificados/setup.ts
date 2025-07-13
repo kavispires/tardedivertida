@@ -21,8 +21,8 @@ import { buildCode, buildCodeFragment, buildTable } from './helpers';
  * @returns
  */
 export const prepareSetupPhase = async (
-  store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _store: FirebaseStoreData,
+  _state: FirebaseStateData,
   players: Players,
   cards: PlainObject,
 ): Promise<SaveGamePayload> => {
@@ -87,8 +87,8 @@ export const prepareHintGivingPhase = async (
 };
 
 export const prepareHintReceivingPhase = async (
-  store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _store: FirebaseStoreData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
@@ -106,8 +106,8 @@ export const prepareHintReceivingPhase = async (
 };
 
 export const prepareGuessTheCodePhase = async (
-  store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _store: FirebaseStoreData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
@@ -125,8 +125,8 @@ export const prepareGuessTheCodePhase = async (
 };
 
 export const prepareSolutionPhase = async (
-  store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _store: FirebaseStoreData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players

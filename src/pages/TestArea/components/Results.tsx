@@ -33,7 +33,7 @@ export function Results({ steps, results, activeStep }: ResultsProps) {
         const ActiveIcon = getActiveIcon(results[index], activeStep === index);
         return (
           <IconAvatar
-            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+            // biome-ignore lint/suspicious/noArrayIndexKey: no unique key for icons
             key={index}
             icon={<ActiveIcon />}
             {...getActiveClass(results[index], activeStep === index)}

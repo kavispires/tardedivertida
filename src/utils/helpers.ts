@@ -83,9 +83,13 @@ export const isDevMocking = isDevEnv && USE_MOCKS;
 // export const isDevEnv = false;
 
 const methods = {
+  // biome-ignore lint/suspicious/noConsole: on purpose
   count: console.count.bind(console),
+  // biome-ignore lint/suspicious/noConsole: on purpose
   log: console.log.bind(console),
+  // biome-ignore lint/suspicious/noConsole: on purpose
   table: console.table.bind(console),
+  // biome-ignore lint/suspicious/noConsole: on purpose
   warn: console.warn.bind(console),
 };
 
@@ -597,6 +601,5 @@ export const formatTime = (seconds: number): string => {
  * @returns The string without accents.
  */
 export function stringRemoveAccents(str: string): string {
-  // biome-ignore lint/suspicious/noMisleadingCharacterClass: IDK why this is being flagged
   return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }

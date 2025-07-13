@@ -40,7 +40,7 @@ export const prepareSetupPhase = async (
   const { MAX_ROUNDS, LEVELS } = getGameSettings(options);
 
   // Build deck
-  const deck = buildDeck(resourceData, playerCount, store.options as ArteRuimGameOptions, LEVELS);
+  const deck = buildDeck(resourceData, playerCount, LEVELS);
 
   const achievements = utils.achievements.setup(players, store, {
     solitaryFail: 0,

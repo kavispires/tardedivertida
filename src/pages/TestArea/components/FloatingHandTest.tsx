@@ -11,7 +11,7 @@ import type { TestStepProps } from '../TestArea';
 
 const hand = Array(8)
   .fill(0)
-  .map((_, i) => `td-d${random(1, 10)}-${random(1, 168)}`);
+  .map((_) => `td-d${random(1, 10)}-${random(1, 168)}`);
 
 export function FloatingHandTest({ onResult, step }: TestStepProps) {
   return (

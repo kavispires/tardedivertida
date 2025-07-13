@@ -22,7 +22,7 @@ import {
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
@@ -191,7 +191,7 @@ export const prepareGoodPlacementPhase = async (
 };
 
 export const preparePlacementConfirmationPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
@@ -210,7 +210,7 @@ export const preparePlacementConfirmationPhase = async (
 };
 
 export const prepareFulfillmentPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {

@@ -202,7 +202,6 @@ export const getEnoughUnusedLevel4Cards = (
 export const buildDeck = (
   resourceData: ResourceData,
   playerCount: number,
-  options: ArteRuimGameOptions,
   levels: number[],
 ): ArteRuimCard[] => {
   const cardsPerRound = determineNumberOfCards(playerCount);

@@ -21,8 +21,8 @@ import {
  * @returns
  */
 export const prepareSetupPhase = async (
-  store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _store: FirebaseStoreData,
+  _state: FirebaseStateData,
   players: Players,
   data: ResourceData,
 ): Promise<SaveGamePayload> => {
@@ -84,8 +84,8 @@ export const prepareDreamTellingPhase = async (
 };
 
 export const prepareMatchingPhase = async (
-  store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _store: FirebaseStoreData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
@@ -109,7 +109,7 @@ export const prepareMatchingPhase = async (
 };
 
 export const prepareResolutionPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
