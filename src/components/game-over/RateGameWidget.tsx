@@ -30,7 +30,7 @@ export function RateGameWidget({ customText }: RateGameWidgetProps) {
   const [hideWidget, setHideWidget] = useState(false);
 
   if (hideWidget) {
-    return <></>;
+    return null;
   }
 
   return (
@@ -94,7 +94,7 @@ function RateGameWidgetContent({ customText, hideWidget, setHideWidget }: RateGa
     });
   };
 
-  if (isAdmin && !isAdminEnabled) return <></>;
+  if (isAdmin && !isAdminEnabled) return null;
 
   return (
     <div

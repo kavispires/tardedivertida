@@ -118,5 +118,5 @@ function DevMock({ onSubmitData, seeds }: DevMockProps) {
     onSubmitData({ data: mockSeeding(seeds) });
   });
 
-  return <></>;
+  return null;
 }

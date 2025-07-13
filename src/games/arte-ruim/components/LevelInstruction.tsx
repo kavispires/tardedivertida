@@ -9,7 +9,7 @@ type LevelInstructionProps = {
 
 export function LevelInstruction({ level, levelType }: LevelInstructionProps) {
   if (level < 4) {
-    return <></>;
+    return null;
   }
 
   if (level === 4) {

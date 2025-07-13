@@ -16,7 +16,7 @@ export function PlayerRecentClue({ user, grid }: PlayerRecentClueProps) {
   const cell = grid[user.coordinate];
 
   if (!user.clue || !cell) {
-    return <></>;
+    return null;
   }
 
   return (

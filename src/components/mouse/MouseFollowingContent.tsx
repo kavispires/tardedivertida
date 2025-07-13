@@ -34,7 +34,7 @@ export function MouseFollowingContent({
   active,
 }: MouseTrackedContentProps) {
   if (!active) {
-    return <></>;
+    return null;
   }
 
   return (

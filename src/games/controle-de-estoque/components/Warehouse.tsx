@@ -54,7 +54,7 @@ export function Warehouse({
         }
 
         if (slot.amenityId) {
-          return <></>;
+          return null;
         }
 
         if (slot.goodId) {

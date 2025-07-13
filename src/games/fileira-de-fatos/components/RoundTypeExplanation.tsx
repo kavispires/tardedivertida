@@ -69,5 +69,5 @@ export function RoundTypeExplanation({ roundType }: RoundTypeProps) {
     );
   }
 
-  return <></>;
+  return null;
 }

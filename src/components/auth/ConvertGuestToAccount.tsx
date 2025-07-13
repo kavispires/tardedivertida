@@ -54,7 +54,7 @@ export function ConvertGuestToAccountModal() {
   const { isGuest } = useCurrentUserContext();
   const queryClient = useQueryClient();
 
-  if (!isGuest) return <></>;
+  if (!isGuest) return null;
 
   const invalidateUser = () => queryClient.invalidateQueries({ queryKey: ['user'] });
 

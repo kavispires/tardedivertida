@@ -29,7 +29,7 @@ export function RequestHistory({
   isAlienBot,
   showIntention,
 }: RequestHistoryProps) {
-  if (requestHistory.length < 1) return <></>;
+  if (requestHistory.length < 1) return null;
 
   const columns: ColumnsType<RequestHistoryEntry> = [
     {

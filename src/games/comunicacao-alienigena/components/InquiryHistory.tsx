@@ -28,7 +28,7 @@ export function InquiryHistory({
   showIntention,
   debugMode,
 }: InquiryHistoryProps) {
-  if (inquiryHistory.length < 1) return <></>;
+  if (inquiryHistory.length < 1) return null;
 
   const columns: ColumnsType<InquiryHistoryEntry> = [
     {

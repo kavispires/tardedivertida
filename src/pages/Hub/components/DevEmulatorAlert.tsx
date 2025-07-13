@@ -40,7 +40,7 @@ export function DevEmulatorAlert() {
     }
   });
 
-  if (!isDevEnv) return <></>;
+  if (!isDevEnv) return null;
 
   return (
     <>

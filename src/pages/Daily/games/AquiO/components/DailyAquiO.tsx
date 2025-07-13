@@ -150,7 +150,7 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
 }
 
 function DevResult({ result }: { result: string }) {
-  if (!isDevEnv) return <></>;
+  if (!isDevEnv) return null;
 
   return (
     <FloatButton shape="square" icon={<ItemCard id={result} width={50} padding={0} className="raw-item" />} />

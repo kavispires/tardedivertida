@@ -18,7 +18,7 @@ export function AlienContent({ user, children }: ContainerProps) {
     return <>{children}</>;
   }
 
-  return <></>;
+  return null;
 }
 
 /**
@@ -32,5 +32,5 @@ export function HumanContent({ user, children }: ContainerProps) {
     return <>{children}</>;
   }
 
-  return <></>;
+  return null;
 }

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "F",
   "gameName": "fileira-de-fatos",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "release": "stable",
   "available": true,
   "title": {

@@ -139,7 +139,7 @@ export function PhaseAnnouncement({
   });
 
   if (isRemoved) {
-    return <></>;
+    return null;
   }
 
   return (

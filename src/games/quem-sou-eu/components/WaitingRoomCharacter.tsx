@@ -13,7 +13,7 @@ type WaitingRoomCharacterProps = {
 
 export function WaitingRoomCharacter({ user }: WaitingRoomCharacterProps) {
   if (!user.selectedGlyphs) {
-    return <></>;
+    return null;
   }
 
   return (

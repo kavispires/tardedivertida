@@ -140,7 +140,7 @@ function OutcomeInstruction({ outcome }: OutcomeProps) {
 
 function OutcomeAlert({ outcome }: OutcomeProps) {
   if (outcome === OUTCOME.SUCCESS || outcome === OUTCOME.WIN) {
-    return <></>;
+    return null;
   }
 
   return (

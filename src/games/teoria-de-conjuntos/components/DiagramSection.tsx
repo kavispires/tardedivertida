@@ -130,7 +130,7 @@ function CurrentItem({
   const helpers = doubleDiagram ? doubleHelpers : tripleHelpers;
   const floatingItemSizes = helpers.calculateProportionalValues(width, 410, doubleDiagram ? 324 : 360);
 
-  if (!currentItem) return <></>;
+  if (!currentItem) return null;
 
   return (
     <div
@@ -224,7 +224,7 @@ function SelectedAreaItems({
   displayEmptyMessage,
   reevaluation,
 }: SelectedAreaItemsProps) {
-  if (itemsIds.length === 0 && !displayEmptyMessage) return <></>;
+  if (itemsIds.length === 0 && !displayEmptyMessage) return null;
 
   return (
     <>

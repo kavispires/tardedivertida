@@ -32,7 +32,7 @@ export function RedirectSession({ state }: RedirectSessionProps) {
     const currentMilliseconds = Date.now();
 
     if (redirect.redirectAt - currentMilliseconds > twoHoursInMilliseconds) {
-      return <></>;
+      return null;
     }
 
     const gameInfo = GAME_LIST[redirect.gameName];
@@ -70,5 +70,5 @@ export function RedirectSession({ state }: RedirectSessionProps) {
     );
   }
 
-  return <></>;
+  return null;
 }

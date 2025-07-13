@@ -34,5 +34,5 @@ export function DebugOnly({ children, div = false, dev = false, devOnly = false 
     }
     return <>{children}</>;
   }
-  return <></>;
+  return null;
 }

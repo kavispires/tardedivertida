@@ -130,5 +130,5 @@ function NegativeStarPoints({ roundType, position }: NegativeStarPointsProps) {
     return <IconAvatar icon={<BoxXIcon />} size="small" />;
   }
 
-  return <></>;
+  return null;
 }

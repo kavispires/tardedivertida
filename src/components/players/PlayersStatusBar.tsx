@@ -21,7 +21,7 @@ export function PlayersStatusBar({ players }: PlayersStatusBarProps) {
   const [showPlayersBar] = useGlobalState('showPlayersBar');
 
   if (!showPlayersBar) {
-    return <></>;
+    return null;
   }
 
   return (
