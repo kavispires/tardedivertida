@@ -93,9 +93,10 @@ export const modifySuspectIdsByOptions = (
   const deckType =
     {
       ghibli: 'gb',
-      // pixar: 'px',
+      pixar: 'px',
       realistic: 'rl',
-    }[options?.deckType ?? 'gb'] ?? 'gb';
+      fox: 'fx',
+    }[options?.deckType ?? 'ghibli'] ?? 'gb';
 
   return suspects.map((suspect) => ({
     ...suspect,

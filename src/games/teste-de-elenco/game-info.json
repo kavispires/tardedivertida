@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "teste-de-elenco",
-  "version": "2.0.46",
+  "version": "2.0.47",
   "release": "stable",
   "available": true,
   "title": {
@@ -86,6 +86,10 @@
         {
           "label": "Pixar",
           "value": "pixar"
+        },
+        {
+          "label": "Fox Animation",
+          "value": "fox"
         }
       ]
     }

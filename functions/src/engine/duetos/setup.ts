@@ -27,10 +27,10 @@ export const prepareSetupPhase = async (
    * 2 hard with 9 cards each
    * 1 final with 12 cards mixing 3 of each previous type
    */
-  const round1: any[] = [];
-  const round2: any[] = [];
-  const round3: any[] = [];
-  const round4: any[] = [];
+  const round1: unknown[] = [];
+  const round2: unknown[] = [];
+  const round3: unknown[] = [];
+  const round4: unknown[] = [];
 
   const { items, decks } = resourceData;
 
