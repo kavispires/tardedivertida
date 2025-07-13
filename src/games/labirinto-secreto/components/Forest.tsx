@@ -19,6 +19,7 @@ import { ArrowIcon } from 'icons/ArrowIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { AvatarGroup } from 'components/avatars/AvatarGroup';
+import { DivButton } from 'components/buttons/DivButton';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { ViewIf } from 'components/views';
 // Internal
@@ -123,7 +124,7 @@ export function Forest({
                       const selectionIndex = selection.indexOf(tree.id);
 
                       return (
-                        <div
+                        <DivButton
                           key={`tree-${tree.id}`}
                           className={clsx(
                             'forest__tree-container forest__tree-button',
@@ -198,7 +199,7 @@ export function Forest({
                               )}
                             </div>
                           </ViewIf>
-                        </div>
+                        </DivButton>
                       );
                     }
                   }

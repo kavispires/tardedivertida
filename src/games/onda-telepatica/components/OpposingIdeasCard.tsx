@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { ArrowLeftOutlined, ArrowRightOutlined, MinusOutlined } from '@ant-design/icons';
+// Components
+import { DivButton } from 'components/buttons/DivButton';
 // Internal
 import { getColorModifier } from '../utils/helpers';
 
@@ -32,7 +34,7 @@ export function OpposingIdeasCard({ left, right, className = '', setNeedle }: Op
 
   return (
     <div className={clsx('o-card', className)}>
-      <div
+      <DivButton
         className={clsx(
           cardSideClass,
           `${cardSideClass}--left`,
@@ -45,8 +47,8 @@ export function OpposingIdeasCard({ left, right, className = '', setNeedle }: Op
           <ArrowLeftOutlined /> <MinusOutlined /> <MinusOutlined />
         </span>
         <span className="o-card__text">{left}</span>
-      </div>
-      <div
+      </DivButton>
+      <DivButton
         className={clsx(
           cardSideClass,
           `${cardSideClass}--right`,
@@ -59,7 +61,7 @@ export function OpposingIdeasCard({ left, right, className = '', setNeedle }: Op
           <MinusOutlined /> <MinusOutlined /> <ArrowRightOutlined />
         </span>
         <span className="o-card__text">{right}</span>
-      </div>
+      </DivButton>
     </div>
   );
 }

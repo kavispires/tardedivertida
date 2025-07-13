@@ -13,6 +13,7 @@ import { AlienStarEyesIcon } from 'icons/AlienStarEyesIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
+import { DivButton } from 'components/buttons/DivButton';
 import { Translate } from 'components/language';
 // Internal
 import type { DeckEntry } from '../utils/types';
@@ -162,7 +163,7 @@ function CoverAlienCard({ side, children }: CoverAlienCardProps) {
   const [open, setOpen] = useToggle(false);
 
   return (
-    <div className="cd-board-entry-cover" onClick={setOpen}>
+    <DivButton className="cd-board-entry-cover" onClick={setOpen}>
       <div
         className={clsx(
           'cd-board-entry-cover__alien',
@@ -177,7 +178,7 @@ function CoverAlienCard({ side, children }: CoverAlienCardProps) {
         )}
       </div>
       {children}
-    </div>
+    </DivButton>
   );
 }
 

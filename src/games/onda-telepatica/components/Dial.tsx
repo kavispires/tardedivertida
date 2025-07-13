@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/a11y/noStaticElementInteractions: interactive svg */
 import clsx from 'clsx';
 // Types
 import type { SpectrumCard } from 'types/tdr';
