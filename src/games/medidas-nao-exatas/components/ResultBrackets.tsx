@@ -1,8 +1,11 @@
+import { motion } from 'framer-motion';
 // Ant Design Resources
 import { Avatar as AntAvatar, Divider, Flex } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 import type { TextCard } from 'types/tdr';
+// Utils
+import { getAnimation } from 'utils/animations';
 // Icons
 import { BoxXIcon } from 'icons/collection';
 import { XIcon } from 'icons/XIcon';
@@ -30,11 +33,14 @@ export function ResultBrackets({ brackets, players, cards }: ResultBracketsProps
           </BracketPointsBox>
           <div className="m-guessing-board__points-bracket-value">
             <AntAvatar.Group>
-              {bracket.playersIds.map((playerId) => {
+              {bracket.playersIds.map((playerId, i) => {
                 return (
-                  <span key={playerId}>
+                  <motion.div
+                    key={playerId}
+                    {...getAnimation('tada', { repeat: 10, delay: 2 + index * i * 0.25 })}
+                  >
                     <AvatarTooltip player={players[playerId]} />
-                  </span>
+                  </motion.div>
                 );
               })}
               {bracket.playersIds.length === 0 && <IconAvatar icon={<BoxXIcon />} />}

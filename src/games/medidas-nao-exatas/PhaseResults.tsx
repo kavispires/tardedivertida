@@ -26,6 +26,7 @@ export function PhaseResults({ players, state }: PhaseProps) {
       title={<Translate pt="Resultado" en="Results" />}
       currentRound={state?.round?.current}
       type="overlay"
+      duration={4}
     >
       <Instruction>
         <Translate pt={<>Quantos pontos você ganhou?</>} en={<>How many points did you get?</>} />

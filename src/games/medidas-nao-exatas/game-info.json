@@ -2,8 +2,8 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "M",
   "gameName": "medidas-nao-exatas",
-  "version": "0.0.5",
-  "release": "dev",
+  "version": "1.0.1",
+  "release": "beta",
   "available": true,
   "title": {
     "pt": "Medidas Não Exatas",
@@ -26,8 +26,22 @@
     "colorScheme": "light"
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "Em Medidas Não Exatas, cada rodada o(a) apresentador(a) avalia uma palavra secreta com métricas criativas enquanto os outros jogadores tentam adivinhar qual ela é.",
+      "O apresentador primeiro seleciona a palavra secreta e as outras palavras disponíveis.",
+      "Depois, ele(a) avalia a palavra secreta em 5 métricas usando 6 bolinhas de medida.",
+      "Daí, os outros jogadores tem que correr para adivinhar qual a palavra secreta, quanto mais rápido, mais pontos você ganha.",
+      "Se você quiser mudar sua escolha, você pode fazer uma vez por rodada, mas você perde um ponto e esse será seu novo palpite, mesmo que o anterior esteja correto.",
+      "Os jogadores ganham pontos de acordo com quão rápidos eles adivinharem a palavra secreta e o(a) apresentador(a) ganha 2 pontos para cada pessoa que acertou."
+    ],
+    "en": [
+      "In Creative Metrics, each round the presenter evaluates a secret word with creative metrics while the other players try to guess it.",
+      "The presenter first selects the secret word and the other available words.",
+      "Then, they evaluates the secret word on 5 metrics using 6 measuring balls.",
+      "Then, other players rush to guess the secret word; the faster you guess, the more points you earn.",
+      "If you want to change your guess, you can do so once per round, but you lose one point, and this will be your new guess, even if the previous one was correct.",
+      "Players earn points based on how quickly they guess the secret word, and the presenter earns 2 points for each person who guesses correctly."
+    ]
   },
   "playerCount": {
     "recommended": [4, 5, 6],
@@ -38,5 +52,5 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive"]
+  "tags": ["competitive", "guessing", "timed", "achievements", "turn-based"]
 }
