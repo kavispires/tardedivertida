@@ -135,7 +135,6 @@ export const prepareCharacterDescriptionPhase = async (
         player.availableCharacters.filter((c: Character) => player.selectedCharacters.includes(c.id)),
       );
 
-      // biome-ignore lint/performance/noDelete: <explanation>
       delete player.selectedCharacters;
     }
 

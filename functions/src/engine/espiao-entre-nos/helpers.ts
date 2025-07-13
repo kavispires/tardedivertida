@@ -61,7 +61,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
 export const createRolesPool = (roles: string[], playerCount: number): string[] => {
   const shuffledRoles = utils.game.shuffle(roles);
 
-  const sessionRoles = new Array(playerCount).fill('').map((newRole, index) => {
+  const sessionRoles = new Array(playerCount).fill('').map((_, index) => {
     if (index === 0) return SPY;
 
     if (index - 1 >= shuffledRoles.length) return roles[0];

@@ -7,8 +7,8 @@ import type { FirebaseStateData, FirebaseStoreData } from './types';
 import utils from '../../utils';
 
 export const prepareSetupPhase = async (
-  store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _store: FirebaseStoreData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.removePropertiesFromPlayers(players, ['vote']);
@@ -29,7 +29,7 @@ export const prepareSetupPhase = async (
   };
 };
 export const prepareTargetingPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
@@ -56,8 +56,8 @@ export const prepareTargetingPhase = async (
   };
 };
 export const prepareStandoffPhase = async (
-  store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _store: FirebaseStoreData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   // TODO: Resolve votes
@@ -73,8 +73,8 @@ export const prepareStandoffPhase = async (
   };
 };
 export const prepareDuelPhase = async (
-  store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _store: FirebaseStoreData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Save
@@ -88,8 +88,8 @@ export const prepareDuelPhase = async (
   };
 };
 export const prepareResolutionPhase = async (
-  store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _store: FirebaseStoreData,
+  _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Save

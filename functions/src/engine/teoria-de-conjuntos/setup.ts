@@ -67,10 +67,7 @@ export const prepareSetupPhase = async (
   const diagrams = createVennDiagram(isTripleDiagram);
 
   if (!isTripleDiagram) {
-    // biome-ignore lint/performance/noDelete: firebase doesn't handle undefined
     delete additionalData.diagrams.context;
-
-    // biome-ignore lint/performance/noDelete: firebase doesn't handle undefined
     delete additionalData.examples.context;
   }
 
