@@ -26,7 +26,7 @@ interface HostOnlyContainerProps extends SpaceProps {
 export const HostOnlyContainer = ({ children, label, className = '', ...rest }: HostOnlyContainerProps) => {
   const isHost = useHost();
 
-  if (!isHost) return <></>;
+  if (!isHost) return null;
 
   return (
     <fieldset className={clsx('host-only-container', className)}>

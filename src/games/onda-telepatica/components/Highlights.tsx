@@ -26,7 +26,7 @@ type TargetSideHighlightProps = {
 export function TargetSideHighlight({ target, card }: TargetSideHighlightProps) {
   const { language } = useLanguage();
   if (!card) {
-    return <></>;
+    return null;
   }
   if (target === 0) {
     return language === 'pt' ? (

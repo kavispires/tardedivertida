@@ -87,13 +87,13 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
       <SpaceContainer className="map-builder" wrap>
         {map.map((segment, index) => {
           if (segment.passed) {
-            return <></>;
+            return null;
           }
 
           const tree = forest[segment.treeId];
 
           if (!tree) {
-            return <></>;
+            return null;
           }
 
           return (

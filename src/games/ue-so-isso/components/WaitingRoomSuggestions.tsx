@@ -10,7 +10,7 @@ type WaitingRoomSuggestionsProps = {
 
 export function WaitingRoomSuggestions({ user }: WaitingRoomSuggestionsProps) {
   if (!user.suggestions) {
-    return <></>;
+    return null;
   }
 
   return (

@@ -228,7 +228,7 @@ export function RowSwapInstruction({ round }: DreamSelectionRulesProps) {
   };
 
   if (round.current > 3) {
-    return <></>;
+    return null;
   }
 
   return (

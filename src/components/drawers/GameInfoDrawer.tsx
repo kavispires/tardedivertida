@@ -37,7 +37,7 @@ export function GameInfoDrawer({ players, state, userId }: GameInfoDrawerProps) 
   const { isAdmin, isAuthenticated, isGuest } = useCurrentUserContext();
 
   if (state.phase === 'LOBBY') {
-    return <></>;
+    return null;
   }
 
   return (

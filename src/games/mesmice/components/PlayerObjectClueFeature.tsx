@@ -24,7 +24,7 @@ export function PlayerObjectClueFeature({ user, features }: PlayerObjectClueFeat
     [user],
   );
 
-  if (!selectedObject || !user.target) return <></>;
+  if (!selectedObject || !user.target) return null;
 
   return (
     <SpaceContainer>

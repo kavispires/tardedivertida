@@ -7,7 +7,7 @@ type UserNameProps = {
 
 export function UserName({ names }: UserNameProps) {
   if (!names || names.length === 0) {
-    return <></>;
+    return null;
   }
 
   return (

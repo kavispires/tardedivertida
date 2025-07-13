@@ -39,7 +39,7 @@ export function Summary({ user, robot }: SummaryProps) {
     [user, robot],
   );
 
-  if (!user || !robot) return <></>;
+  if (!user || !robot) return null;
 
   return <StatusBar entries={entries} />;
 }

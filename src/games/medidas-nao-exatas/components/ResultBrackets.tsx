@@ -7,7 +7,7 @@ import type { TextCard } from 'types/tdr';
 import { BoxXIcon } from 'icons/collection';
 import { XIcon } from 'icons/XIcon';
 // Components
-import { Avatar, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { AvatarTooltip } from 'components/avatars/AvatarTooltip';
 import { Card } from 'components/cards';
 // Internal

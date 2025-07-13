@@ -19,5 +19,5 @@ export function Speak({ text }: SpeakProps) {
     speak(text, language, volume);
   }, [volume]);
 
-  return <></>;
+  return null;
 }

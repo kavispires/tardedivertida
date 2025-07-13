@@ -17,7 +17,7 @@ type AutoNextPhaseProps = {
  * Add this component to a game if you want the game to automatically go to the next phase when all players are ready.
  */
 export function AutoNextPhase({ players }: AutoNextPhaseProps) {
-  if (!isEverybodyReady(players)) return <></>;
+  if (!isEverybodyReady(players)) return null;
 
   return (
     <HostNextPhaseButton round={{ current: -1, total: 10, forceLastRound: false }} autoTriggerTime={20}>

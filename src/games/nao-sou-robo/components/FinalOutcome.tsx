@@ -41,7 +41,7 @@ export function FinalOutcome({ players, outcome, robot }: FinalOutcomeProps) {
   }, [players]);
 
   if (outcome === OUTCOME.HUMANS_WIN) {
-    return <></>;
+    return null;
   }
 
   if (outcome === OUTCOME.ROBOT_WINS) {
@@ -98,5 +98,5 @@ export function FinalOutcome({ players, outcome, robot }: FinalOutcomeProps) {
     );
   }
 
-  return <></>;
+  return null;
 }

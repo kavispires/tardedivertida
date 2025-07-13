@@ -38,5 +38,5 @@ export function WritingCell({ onSubmitClue, cell, user, disabled }: WritingCellP
     return <PreviousClue clue={cell.text} />;
   }
 
-  return <></>;
+  return null;
 }

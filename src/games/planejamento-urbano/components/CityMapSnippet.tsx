@@ -49,5 +49,5 @@ function ZoomToLocation({ focusedCellId }: Pick<CityMapSnippetProps, 'focusedCel
     }
   }, [focusedCellId]);
 
-  return <></>;
+  return null;
 }

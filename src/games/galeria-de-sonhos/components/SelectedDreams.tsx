@@ -9,7 +9,7 @@ type SelectedDreamsProps = {
 
 export function SelectedDreams({ user }: SelectedDreamsProps) {
   if (!user.cards) {
-    return <></>;
+    return null;
   }
 
   const cards = Object.values<PlainObject>(user.cards ?? {}).map((card) => card.cardId);

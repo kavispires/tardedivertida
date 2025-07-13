@@ -21,5 +21,5 @@ export function SpacePlayerCheckWrapper({ playersList, paths, children }: SpaceP
     return <SpaceContainer wrap>{children}</SpaceContainer>;
   }
 
-  return <></>;
+  return null;
 }

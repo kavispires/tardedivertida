@@ -27,7 +27,7 @@ export function ReleasedActors({ actors, players, selection, playersSelections }
   }, [actors, selection]);
 
   if (nonSelectedActors.length === 0) {
-    return <></>;
+    return null;
   }
 
   return (

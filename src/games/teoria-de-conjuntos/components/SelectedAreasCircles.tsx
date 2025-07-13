@@ -12,7 +12,7 @@ type SelectedAreasCirclesProps = {
 
 export function SelectedAreasCircles({ selectedArea, size = 'small' }: SelectedAreasCirclesProps) {
   if (selectedArea === null) {
-    return <></>;
+    return null;
   }
 
   const areas = selectedArea.split('');

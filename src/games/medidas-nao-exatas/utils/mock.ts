@@ -8,7 +8,6 @@ export const mockPool = (
   secretCardsOptionsIds: CardId[],
   availablePoolCardsIds: CardId[],
 ): SubmitPoolPayload => {
-  console.log('Mocking pool');
   const secretWordId = getRandomItem(secretCardsOptionsIds);
   return {
     secretWordId,
@@ -17,7 +16,6 @@ export const mockPool = (
 };
 
 export const mockMetrics = (): SubmitMetricsPayload => {
-  console.log('Mocking metrics');
   return {
     metrics: {
       1: random(0, 6),

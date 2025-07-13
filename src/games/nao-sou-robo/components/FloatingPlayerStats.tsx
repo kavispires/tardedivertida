@@ -17,7 +17,7 @@ type FloatingPlayerStatsProps = {
 };
 
 export function FloatingPlayerStats({ user, robot }: FloatingPlayerStatsProps) {
-  if (!user || !robot) return <></>;
+  if (!user || !robot) return null;
 
   const correctCaptcha = (user.beat ?? []).filter(Boolean).length;
   const suspicion = (user.suspicion ?? []).filter(Boolean).length;

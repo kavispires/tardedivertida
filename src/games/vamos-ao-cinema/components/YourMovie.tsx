@@ -24,5 +24,5 @@ export function YourMovie({ movies, movieId }: YourMovieProps) {
       </Instruction>
     );
   }
-  return <></>;
+  return null;
 }

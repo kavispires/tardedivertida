@@ -282,12 +282,12 @@ function PlayersSelections({
   mistakes,
   showAll,
 }: PlayersSelectionsProps) {
-  if (index > 4) return <></>;
+  if (index > 4) return null;
 
   const dict = side === 'left' ? ['A', 'B', 'C', 'D', 'E'] : ['F', 'G', 'H', 'I', 'J'];
   const movieId = dict[index];
 
-  if (!showAll && !mistakes.includes(movieId)) return <></>;
+  if (!showAll && !mistakes.includes(movieId)) return null;
 
   const moviePlayers = moviePlayerDict[movieId] ?? [];
 

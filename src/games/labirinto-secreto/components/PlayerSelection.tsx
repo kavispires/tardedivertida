@@ -15,7 +15,7 @@ type PlayerSelectionMapProps = {
 
 export function PlayerSelectionMap({ forest, map, newMap }: PlayerSelectionMapProps) {
   if (!newMap || !map) {
-    return <></>;
+    return null;
   }
 
   const userMap: MapSegment[] = (map ?? []).filter((segment: MapSegment) => !segment.passed);

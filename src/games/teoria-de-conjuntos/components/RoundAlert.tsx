@@ -10,7 +10,7 @@ import { RuleInstruction } from 'components/text';
 export function RoundAlert({ round }: { round: GameRound }) {
   const roundsLeft = round.total - round.current + 1;
   if (roundsLeft > 5) {
-    return <></>;
+    return null;
   }
 
   return (

@@ -17,5 +17,5 @@ export function SpaceResultCheckWrapper({ task, paths, children }: SpaceResultCh
     return <SpaceContainer wrap>{children}</SpaceContainer>;
   }
 
-  return <></>;
+  return null;
 }

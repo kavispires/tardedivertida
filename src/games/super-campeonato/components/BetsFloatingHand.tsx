@@ -27,7 +27,7 @@ export function BetsFloatingHand({ bets, brackets, selectedContenderId = '' }: B
     [bets?.final, bets?.quarter, bets?.semi],
   );
 
-  if (!quarterCard || !semiCard || !finalCard) return <></>;
+  if (!quarterCard || !semiCard || !finalCard) return null;
 
   return (
     <FloatingHand title={<Translate pt="Suas Apostas" en="Your Bets" />} icon={<GamblingChipIcon />}>
