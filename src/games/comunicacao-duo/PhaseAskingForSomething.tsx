@@ -19,8 +19,11 @@ import { StepAsk } from './StepAsk';
 export function PhaseAskingForSomething({ players, state }: PhaseProps) {
   const user = useUser(players, state);
   const { step } = useStep();
-  const [requester, isTheRequester] =
-    state.status === STATUS.IDLE ? [user, true] : useWhichPlayerIsThe('requesterId', state, players);
+  let [requester, isTheRequester] = useWhichPlayerIsThe('requesterId', state, players);
+  if (state.status === STATUS.IDLE) {
+    requester = user;
+    isTheRequester = true;
+  }
 
   const onSubmitRequest = useOnSubmitRequestAPIRequest();
 
