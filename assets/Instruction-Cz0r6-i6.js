@@ -1,1 +1,0 @@
-import{j as c,M as d,e as l}from"./index-CzFdHk0q.js";const x=({children:t,white:a,className:n,contained:r,fullWidth:i,noMargin:o=!1,colorScheme:e})=>{const s="instruction";return c.jsx(d.Text,{className:l(s,r&&`${s}--contained`,e==="dark"&&`${s}--dark`,a&&`${s}--white`,i&&`${s}--full-width`,o&&`${s}--no-margin`,n),"data-testid":"instruction",children:t})};export{x as I};
