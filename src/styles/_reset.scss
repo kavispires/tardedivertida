@@ -3,3 +3,20 @@ ul {
   padding: 0;
   list-style: none;
 }
+
+.button-reset {
+  all: unset;
+  display: block; /* or inline-block if needed */
+  width: 100%; /* optional: set size like a div */
+  height: auto;
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
