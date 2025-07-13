@@ -278,6 +278,7 @@ export const GAME_COLLECTION = {
   INSTRUMENTOS_CODIFICADOS: 'instrumentos-codificados', // upcoming
   LABIRINTO_SECRETO: 'labirinto-secreto',
   LINHAS_CRUZADAS: 'linhas-cruzadas',
+  MEDIDAS_NAO_EXATAS: 'medidas-nao-exatas',
   MEGAMIX: 'megamix',
   MENTE_COLETIVA: 'mente-coletiva',
   MESMICE: 'mesmice',

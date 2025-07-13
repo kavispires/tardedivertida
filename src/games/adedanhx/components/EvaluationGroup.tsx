@@ -43,7 +43,7 @@ export function EvaluationGroup({
   const [groupId, setGroupId] = useState<string>('');
   const [rejections, setRejections] = useState<BooleanDictionary>({});
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies:
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (groupId !== answersGroup.id) {
       setRejections({});

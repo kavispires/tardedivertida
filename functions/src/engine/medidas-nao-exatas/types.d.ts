@@ -9,13 +9,28 @@ export type ResourceData = {
 export type Guess = {
   cardId: CardId;
   level: number;
+  timestamp: number;
+  playerId?: PlayerId;
+  used?: boolean;
+  retry?: boolean;
+};
+
+export type GalleryBracket = {
+  score: number;
+  playersIds: PlayerId[];
+  wrongGuesses: {
+    playerId: PlayerId;
+    cardId: CardId;
+    invalid?: boolean;
+  }[];
 };
 
 export type GalleryEntry = {
   secretWordId: CardId;
-  cards: Record<CardId, TextCard & { playersIds?: PlayerId[] }>;
-  metricsDescriptors: Dictionary<TextCard>;
+  cards: Record<CardId, TextCard>;
+  metricsDescriptors: Record<string, TextCard[]>;
   metrics: Record<CardId, number>;
+  brackets: GalleryBracket[];
 };
 
 export type MedidasNaoExatasAchievement = keyof typeof MEDIDAS_NAO_EXATAS_ACHIEVEMENTS;

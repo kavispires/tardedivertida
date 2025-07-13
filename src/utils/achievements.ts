@@ -12,6 +12,7 @@ import FILEIRA_DE_FATOS from 'games/fileira-de-fatos/utils/achievements';
 import GALERIA_DE_SONHOS from 'games/galeria-de-sonhos/utils/achievements';
 import LABIRINTO_SECRETO from 'games/labirinto-secreto/utils/achievements';
 import LINHAS_CRUZADAS from 'games/linhas-cruzadas/utils/achievements';
+import MEDIDAS_NAO_EXATAS from 'games/medidas-nao-exatas/utils/achievements';
 import MEGAMIX from 'games/megamix/utils/achievements';
 import MENTE_COLETIVA from 'games/mente-coletiva/utils/achievements';
 import METALINGUAGEM from 'games/metalinguagem/utils/achievements';
@@ -62,6 +63,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'instrumentos-codificados': null,
   'labirinto-secreto': LABIRINTO_SECRETO,
   'linhas-cruzadas': LINHAS_CRUZADAS,
+  'medidas-nao-exatas': MEDIDAS_NAO_EXATAS,
   megamix: MEGAMIX,
   'mente-coletiva': MENTE_COLETIVA,
   metalinguagem: METALINGUAGEM,

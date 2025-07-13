@@ -1,0 +1,98 @@
+@use "styles/sass" as *;
+
+.metrics-board {
+  // background: red;
+  display: flex;
+  flex-direction: column;
+  gap: get-unit(2);
+
+  &__metric {
+    display: grid;
+    place-items: center;
+    gap: get-unit(4);
+    grid-template-columns: 1fr 15rem 1fr;
+    background: get-color("white", 5, 0.9);
+    border: get-unit(1) outset get-color("white", 5, 0.9);
+    border-radius: get-unit(8);
+    padding: get-unit(4);
+  }
+
+  &__evaluation {
+    height: 1.5rem;
+    width: 15rem;
+    border-radius: 1rem;
+    background: get-color("gray", 3, 0.5);
+    // display: flex;
+    border: none;
+    display: flex;
+    position: relative;
+  }
+
+  &__evaluation-pip {
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 1rem;
+    background: get-color("blue", 4, 0.9);
+    border: get-unit(1) outset get-color("blue", 5, 0.9);
+    position: absolute;
+  }
+
+  &__card {
+    font-family: "Ubuntu Mono", monospace;
+    text-align: center;
+    font-weight: bold;
+    padding: get-unit(2);
+    border-radius: get-unit(6);
+    background: get-color("white", 5, 0.9);
+    width: 100%;
+    text-transform: uppercase;
+  }
+}
+
+.pool-card {
+  font-family: "Ubuntu Mono", monospace;
+  text-transform: uppercase;
+  padding: get-unit(2 6);
+  border-radius: get-unit(2);
+  background: get-color("white", 5);
+  margin: get-unit(1);
+}
+
+.m-guessing-board {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: get-unit(4);
+
+  &__points-brackets {
+    display: flex;
+    flex-direction: column;
+    gap: get-unit(2);
+    padding: get-unit(2);
+    background: get-color("white", 5, 0.9);
+    border-radius: get-unit(2);
+  }
+
+  &__points-bracket {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: get-unit(2);
+    align-items: center;
+  }
+
+  &__points-bracket-label {
+    // inside svg foreign object
+    font-size: 16em;
+    font-weight: bold;
+    font-family: "Ubuntu Mono", monospace;
+    display: grid;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+  }
+
+  &__points-bracket-value {
+    display: flex;
+    align-items: center;
+    min-width: 96px;
+  }
+}

@@ -109,7 +109,7 @@ export function useOrganikuEngine(data: DailyOrganikuEntry, initialState: GameSt
         },
         hearts: prevState.hearts - 1,
       }));
-    }, 750); // Show both tiles for 1000ms before resolving
+    }, 750); // Show both tiles for 750ms before resolving
   };
 
   // CONDITIONS

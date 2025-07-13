@@ -48,7 +48,7 @@ export const handleSubmitGuess = async (
     playerId,
     actionText: 'submit your guess',
     change: { guesses },
-    shouldReady: true,
+    shouldReady: guesses.length > 1, // If more than one guess, player is ready
     nextPhaseFunction: getNextPhase,
   });
 };

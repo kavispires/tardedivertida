@@ -72,7 +72,7 @@ type PhaseAnnouncementBlock = {
   /**
    * The function called when the close button is clicked
    */
-  onClose: GenericFunction;
+  onClose: () => void;
 } & PhaseAnnouncementBasicProps;
 
 type PhaseAnnouncementOverlay = {
@@ -83,7 +83,7 @@ type PhaseAnnouncementOverlay = {
   /**
    * The function called when the close button is clicked
    */
-  onClose?: GenericFunction;
+  onClose?: () => void;
 } & PhaseAnnouncementBasicProps;
 
 type PhaseAnnouncementProps = PhaseAnnouncementBlock | PhaseAnnouncementOverlay;
