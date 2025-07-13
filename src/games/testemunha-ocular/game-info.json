@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "testemunha-ocular",
-  "version": "4.0.27",
+  "version": "4.0.28",
   "release": "stable",
   "available": true,
   "title": {
@@ -104,6 +104,10 @@
         {
           "label": "Pixar",
           "value": "pixar"
+        },
+        {
+          "label": "Fox Animation",
+          "value": "fox"
         }
       ]
     }
