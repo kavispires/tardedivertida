@@ -30,7 +30,7 @@ export function StepWordSelection({
   players,
   turnOrder,
 }: StepWordSelectionProps) {
-  const [selectedWords, setSelectedWords] = useState<PlainObject>({});
+  const [selectedWords, setSelectedWords] = useState<BooleanDictionary>({});
 
   const selectedWordsArray = Object.keys(selectedWords);
   const noSelection = selectedWordsArray.length === 0;
@@ -41,7 +41,7 @@ export function StepWordSelection({
   };
 
   const onSelectWord = (wordId: string) => {
-    setSelectedWords((s: PlainObject) => {
+    setSelectedWords((s: BooleanDictionary) => {
       const newState = { ...s };
       if (newState[wordId]) {
         delete newState[wordId];

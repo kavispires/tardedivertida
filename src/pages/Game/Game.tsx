@@ -75,6 +75,10 @@ const SessionLabirintoSecreto = lazy(
 const SessionLinhasCruzadas = lazy(
   () => import('games/linhas-cruzadas/SessionLinhasCruzadas' /* webpackChunkName: "linhas-cruzadas" */),
 );
+const SessionMedidasNaoExatas = lazy(
+  () =>
+    import('games/medidas-nao-exatas/SessionMedidasNaoExatas' /* webpackChunkName: "medidas-nao-exatas" */),
+);
 const SessionMegamix = lazy(() => import('games/megamix/SessionMegamix' /* webpackChunkName: "megamix" */));
 const SessionMenteColetiva = lazy(
   () => import('games/mente-coletiva/SessionMenteColetiva' /* webpackChunkName: "mente-coletiva" */),
@@ -292,6 +296,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage />}>
             <SessionLinhasCruzadas />
+          </Suspense>
+        );
+      case GAME_COLLECTION.MEDIDAS_NAO_EXATAS:
+        return (
+          <Suspense fallback={<LoadingPage />}>
+            <SessionMedidasNaoExatas />
           </Suspense>
         );
       case GAME_COLLECTION.MEGAMIX:

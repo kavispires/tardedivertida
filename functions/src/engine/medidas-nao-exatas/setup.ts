@@ -6,8 +6,9 @@ import type { FirebaseStateData, FirebaseStoreData, GalleryEntry, ResourceData }
 import utils from '../../utils';
 import type { TextCard } from '../../types/tdr';
 import { GAME_NAMES } from '../../utils/constants';
-import { determineResults } from './helpers';
+import { determineResults, getAchievements } from './helpers';
 import { keyBy } from 'lodash';
+import { makeArray } from '../../utils/game-utils';
 
 /**
  * Setup
@@ -22,12 +23,13 @@ export const prepareSetupPhase = async (
 ): Promise<SaveGamePayload> => {
   const achievements = utils.achievements.setup(players, store, {
     doubleGuesses: 0,
-    level0: 0,
     level1: 0,
     level2: 0,
     level3: 0,
     level4: 0,
     level5: 0,
+    badMetrics: 0,
+    bestMetrics: 0,
   });
 
   const { playerIds: turnOrder, gameOrder } = utils.players.buildGameOrder(players, 4);
@@ -37,6 +39,11 @@ export const prepareSetupPhase = async (
     additionalData.allDescriptors,
     DESCRIPTORS_PER_PLAYER * gameOrder.length,
   );
+
+  const pointsBrackets = makeArray(Math.min(Math.floor(turnOrder.length * 1.5), 10), 2).reverse();
+  if (pointsBrackets.length < 5) {
+    pointsBrackets.push(...makeArray(5 - pointsBrackets.length, 2));
+  }
 
   // Save
   return {
@@ -54,6 +61,7 @@ export const prepareSetupPhase = async (
           total: gameOrder.length,
         },
         turnOrder,
+        pointsBrackets,
       },
     },
   };
@@ -108,7 +116,7 @@ export const prepareMetricsBuildingPhase = async (
         availablePoolCardsIds,
         metricsDescriptors,
       },
-      stateCleanup: ['result', 'ranking'], // TODO
+      stateCleanup: ['result', 'ranking'],
     },
   };
 };
@@ -161,6 +169,7 @@ export const prepareResultsPhase = async (
     store,
     state.metricsDescriptors,
     state.metrics,
+    state.pointsBrackets,
   );
 
   const gallery: GalleryEntry[] = store.gallery || [];
@@ -179,7 +188,7 @@ export const prepareResultsPhase = async (
         result,
         ranking,
       },
-      stateCleanup: [], // TODO
+      stateCleanup: ['metricsDescriptors', 'metrics', 'wordsDict', 'poolIds', 'secretWordId'],
     },
   };
 };
@@ -195,8 +204,7 @@ export const prepareGameOverPhase = async (
 
   const winners = utils.players.determineWinners(players);
 
-  // const achievements = getAchievements(store);
-  const achievements = [];
+  const achievements = getAchievements(store);
 
   await utils.firestore.markGameAsComplete(gameId);
 
