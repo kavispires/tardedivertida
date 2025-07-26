@@ -148,9 +148,7 @@ export function StepPlaceGood({
 
       <Instruction contained>
         {bossIdea.id === BOSS_IDEAS_IDS.CONFIDENTIAL ? (
-          <>
-            <MysteryBoxIcon width={cardWidth} />
-          </>
+          <MysteryBoxIcon width={cardWidth} />
         ) : (
           <WarehouseGoodCard
             id={currentGood.id}

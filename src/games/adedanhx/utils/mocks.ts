@@ -6,7 +6,7 @@ import type { TopicCard } from 'types/tdr';
 import { ANSWERING_TIME } from './constants';
 import type { Answer, LetterEntry } from './types';
 
-const mockAnswer = (id: string, topic: TopicCard, letter: LetterEntry, correct?: boolean): Answer => {
+const mockAnswer = (id: string, _topic: TopicCard, letter: LetterEntry, correct?: boolean): Answer => {
   // 50% chance of answering
   const answerChance = correct || Math.random() > 0.5;
 

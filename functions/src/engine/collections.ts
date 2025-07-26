@@ -18,6 +18,7 @@ export const getDataFirebaseDocData = async (documentName: string, fallback: any
   try {
     response = (await utils.firestore.getDataRef().doc(documentName)?.get())?.data() ?? fallback;
   } catch (e) {
+    // biome-ignore lint/suspicious/noConsole: Log error but don't error for the user
     console.error(e);
     response = fallback;
   }
@@ -91,6 +92,7 @@ export const updateDataCollectionRecursively = async (
       return true;
     } catch (error) {
       tries++;
+      // biome-ignore lint/suspicious/noConsole: Log error but don't error for the user
       console.error(`Error updating document '${prefix}' (attempt ${tries}): ${error}`);
     }
   }

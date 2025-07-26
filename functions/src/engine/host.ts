@@ -92,7 +92,7 @@ const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
   try {
     // Update global ids. This is in a different block just for dev purposes
     await globalRef.doc(USED_GAME_IDS).update({ [gameId]: Date.now() });
-  } catch (e) {
+  } catch (_e) {
     // Do nothing
   }
 

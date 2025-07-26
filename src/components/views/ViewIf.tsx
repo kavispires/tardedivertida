@@ -15,5 +15,5 @@ type ViewIfProps = {
  * Wrapper component that only renders the children if the condition is truthy
  */
 export function ViewIf({ condition = false, children }: ViewIfProps) {
-  return condition ? <>{children}</> : <></>;
+  return condition ? children : null;
 }

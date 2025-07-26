@@ -1,3 +1,4 @@
+/** biome-ignore-all check: playground */
 import { type CSSProperties, useState } from 'react';
 import { useTitle } from 'react-use';
 // Ant Design Resources

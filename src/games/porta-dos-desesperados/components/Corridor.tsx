@@ -156,16 +156,14 @@ export function Corridor({
 
                 <AntAvatar.Group max={{ count: 7 }} size="small" className="i-door__votes">
                   {voteMap[doorId] && !hideVotes ? (
-                    <>
-                      {voteMap[doorId].map((playerId) => (
-                        <Avatar
-                          key={`vote-${playerId}`}
-                          id={players[playerId].avatarId}
-                          alt={players[playerId].name}
-                          className={getAnimationClass('slideInUp')}
-                        />
-                      ))}
-                    </>
+                    voteMap[doorId].map((playerId) => (
+                      <Avatar
+                        key={`vote-${playerId}`}
+                        id={players[playerId].avatarId}
+                        alt={players[playerId].name}
+                        className={getAnimationClass('slideInUp')}
+                      />
+                    ))
                   ) : (
                     <AntAvatar
                       size="small"

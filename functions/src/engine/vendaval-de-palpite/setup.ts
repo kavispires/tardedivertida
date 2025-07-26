@@ -15,8 +15,8 @@ import { gatherClues, verifyGuesses } from './helpers';
  * @returns
  */
 export const prepareSetupPhase = async (
-  store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _store: FirebaseStoreData,
+  _state: FirebaseStateData,
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
@@ -79,7 +79,7 @@ export const prepareSecretWordSelection = async (
 };
 
 export const preparePlayersClues = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {

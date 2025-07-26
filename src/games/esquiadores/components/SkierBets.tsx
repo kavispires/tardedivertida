@@ -1,15 +1,19 @@
-import type { GamePlayer, GamePlayers } from 'types/player';
-import type { SubmitBetsPayload } from '../utils/types';
+import { orderBy } from 'lodash';
 import { useMemo, useState } from 'react';
-import { AvatarName } from 'components/avatars';
+// Ant Design Resources
 import { InputNumber } from 'antd';
+// Types
+import type { GamePlayer, GamePlayers } from 'types/player';
+// Components
+import { AvatarName } from 'components/avatars';
+import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { SendButton } from 'components/buttons';
-import { ChipsHighlight } from './Highlights';
-import { orderBy } from 'lodash';
-import { BettingChipValue } from './BettingChipValue';
+// Internal
+import type { SubmitBetsPayload } from '../utils/types';
 import { SKIER_BET_TYPES } from '../utils/constants';
+import { ChipsHighlight } from './Highlights';
+import { BettingChipValue } from './BettingChipValue';
 
 type SkierBetsProps = {
   players: GamePlayers;
@@ -30,7 +34,10 @@ export function SkierBets({ players, user, onSubmitBets, betType }: SkierBetsPro
   );
 
   const [bets, setBets] = useState(
-    playersList.reduce((acc: NumberDictionary, player) => Object.assign(acc, { [player.id]: 0 }), {}),
+    playersList.reduce((acc: NumberDictionary, player) => {
+      acc[player.id] = 0;
+      return acc;
+    }, {}),
   );
   const [chipsLeft, setChipsLeft] = useState(user.chips ?? 0);
 

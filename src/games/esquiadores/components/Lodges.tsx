@@ -1,17 +1,23 @@
-import type { GamePlayer, GamePlayers } from 'types/player';
-import type { Lodge, SubmitBetsPayload } from '../utils/types';
-import { useCardWidth } from 'hooks/useCardWidth';
-import { LodgeIcon } from 'icons/LodgeIcon';
-import { LODGE_COLORS } from '../utils/constants';
 import { useState } from 'react';
-import { IconAvatar } from 'components/avatars';
-import { GamblingChipIcon } from 'icons/GamblingChipIcon';
+// Ant Design Resources
 import { InputNumber, Tooltip } from 'antd';
+// Types
+import type { GamePlayer, GamePlayers } from 'types/player';
+// Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
+// Icons
+import { GamblingChipIcon } from 'icons/GamblingChipIcon';
+import { LodgeIcon } from 'icons/LodgeIcon';
+// Components
+import { IconAvatar } from 'components/avatars';
+import { AvatarGroup } from 'components/avatars/AvatarGroup';
+import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { SendButton } from 'components/buttons';
+// Internal
+import type { Lodge, SubmitBetsPayload } from '../utils/types';
+import { LODGE_COLORS } from '../utils/constants';
 import { ChipsHighlight } from './Highlights';
-import { AvatarGroup } from 'components/avatars/AvatarGroup';
 import { BettingChipValue } from './BettingChipValue';
 
 type LodgesProps = {
@@ -25,7 +31,10 @@ type LodgesProps = {
 export function Lodges({ lodges, players, user, onSubmitBets, betType }: LodgesProps) {
   const lodgeWidth = useCardWidth(6, { gap: 32, margin: 64, maxWidth: 175 });
   const [bets, setBets] = useState(
-    lodges.reduce((acc: NumberDictionary, lodge) => Object.assign(acc, { [lodge.id]: 0 }), {}),
+    lodges.reduce((acc: NumberDictionary, lodge) => {
+      acc[lodge.id] = 0;
+      return acc;
+    }, {}),
   );
   const [chipsLeft, setChipsLeft] = useState(user.chips ?? 0);
 

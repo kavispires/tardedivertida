@@ -24,7 +24,5 @@ export function BracketContenderVotes({ bracket, players }: BracketContenderVote
         />
       ))}
     </AntAvatar.Group>
-  ) : (
-    <></>
-  );
+  ) : null;
 }

@@ -12,7 +12,7 @@ type StepTemplateProps = {
   user: GamePlayer;
 } & Pick<StepProps, 'announcement'>;
 
-export function StepTemplate({ players, user, announcement }: StepTemplateProps) {
+export function StepTemplate({ announcement }: StepTemplateProps) {
   const { isLoading } = useLoading();
 
   return (

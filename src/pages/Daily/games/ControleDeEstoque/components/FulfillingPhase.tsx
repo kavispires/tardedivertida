@@ -180,9 +180,7 @@ export function FulfillingPhase({
                         está na prateleira!!!
                       </span>
                     </>
-                  ) : (
-                    <></>
-                  )}
+                  ) : null}
                   <br />
                   Se tudo estiver nos confirmes, aperte o botão de enviar.
                   <br />

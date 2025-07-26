@@ -37,36 +37,34 @@ export function RedirectSession({ state }: RedirectSessionProps) {
 
     const gameInfo = GAME_LIST[redirect.gameName];
     return (
-      <>
-        <Modal
-          title={
-            <Translate
-              pt="Você está convidado para uma nova partida"
-              en="You've been invited to a new session"
-            />
-          }
-          open={open ?? true}
-          onCancel={hideModal}
-          onOk={() => {
-            setLoading(true);
-            navigate(`/${redirect.gameId}`);
-          }}
-          okButtonProps={{ loading: isLoading }}
-          okText={<Translate pt="Quero participar!" en="Take me there!" />}
-          cancelText={<Translate pt="Cancelar" en="Cancel" />}
-        >
-          <Flex align="center" justify="center">
-            <GameStrip
-              width={340}
-              title={gameInfo.title}
-              gameName={gameInfo.gameName}
-              className="lobby-step__banner"
-            />
-          </Flex>
+      <Modal
+        title={
+          <Translate
+            pt="Você está convidado para uma nova partida"
+            en="You've been invited to a new session"
+          />
+        }
+        open={open ?? true}
+        onCancel={hideModal}
+        onOk={() => {
+          setLoading(true);
+          navigate(`/${redirect.gameId}`);
+        }}
+        okButtonProps={{ loading: isLoading }}
+        okText={<Translate pt="Quero participar!" en="Take me there!" />}
+        cancelText={<Translate pt="Cancelar" en="Cancel" />}
+      >
+        <Flex align="center" justify="center">
+          <GameStrip
+            width={340}
+            title={gameInfo.title}
+            gameName={gameInfo.gameName}
+            className="lobby-step__banner"
+          />
+        </Flex>
 
-          <Title>{redirect.gameId}</Title>
-        </Modal>
-      </>
+        <Title>{redirect.gameId}</Title>
+      </Modal>
     );
   }
 

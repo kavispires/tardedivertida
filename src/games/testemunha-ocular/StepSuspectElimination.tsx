@@ -63,13 +63,7 @@ export function StepSuspectElimination({
         <span>
           <AvatarName player={witness} addressUser />
           <Translate en="answered" pt="respondeu" />{' '}
-          {testimony ? (
-            <Translate en="YES" pt="SIM" />
-          ) : (
-            <>
-              <Translate en="NO" pt="NÃO" />
-            </>
-          )}{' '}
+          {testimony ? <Translate en="YES" pt="SIM" /> : <Translate en="NO" pt="NÃO" />}{' '}
           <IconAvatar
             size="large"
             icon={testimony ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}

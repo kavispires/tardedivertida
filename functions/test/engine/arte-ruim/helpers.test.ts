@@ -27,13 +27,6 @@ describe('arte-ruim/helpers', () => {
       result = helpers.buildDeck(
         cards,
         7,
-        {
-          useAllCards: false,
-          forPoints: false,
-          randomize: false,
-          specialLevels: false,
-          basicLevelsOnly: false,
-        },
         [0, 1, 1]
       );
 

@@ -57,6 +57,7 @@ export function StepGallery({ gallery, players, cards, slideShowConfig, gameLang
           <WarningDrawing drawing={galleryEntry.drawing} width={canvasWidth} />
         </div>
 
+        {/** biome-ignore lint/complexity/noUselessFragments: Represents the left page of the slide show */}
         <>
           <GalleryWindowCredits artist={playerArtist} />
 

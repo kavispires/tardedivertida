@@ -127,13 +127,11 @@ export function StepPlayerClue({
         }}
         submitButtonLabel={
           guessesIds.length > 0 ? (
-            <>
-              {cluesPerPlayer > 1 ? (
-                <Translate pt="Enviar dicas e respostas" en="Send clues and guesses" />
-              ) : (
-                <Translate pt="Enviar resposta" en="Send guess" />
-              )}
-            </>
+            cluesPerPlayer > 1 ? (
+              <Translate pt="Enviar dicas e respostas" en="Send clues and guesses" />
+            ) : (
+              <Translate pt="Enviar resposta" en="Send guess" />
+            )
           ) : (
             <>
               <Translate pt="Enviar dica" en="Send clue" />

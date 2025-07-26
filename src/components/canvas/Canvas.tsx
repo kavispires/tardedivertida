@@ -24,6 +24,7 @@ export const Canvas = ({ drawing = '[]', className = '' }: CanvasProps) => {
       <Layer>
         {lines.map((line: CanvasLine, i: number) => (
           <Line
+            // biome-ignore lint/suspicious/noArrayIndexKey: there's no other unique key
             key={i}
             points={line}
             stroke="#222222"

@@ -36,7 +36,6 @@ type StepConfirmGoodProps = {
 };
 
 export function StepConfirmGood({
-  players,
   user,
   bossIdea,
   roundGoods,
