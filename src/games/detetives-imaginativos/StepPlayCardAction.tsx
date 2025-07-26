@@ -113,6 +113,7 @@ export function StepPlayCardAction({
 
       <RuleInstruction type="action">
         <ViewOr condition={isUserTheImpostor}>
+          {/** biome-ignore lint/complexity/noUselessFragments: View Container TODO: could it be a div? */}
           <>
             <IconAvatar icon={<ImageCardsIcon />} size="large" shape="square" />{' '}
             <Translate
@@ -122,6 +123,7 @@ export function StepPlayCardAction({
             />
           </>
 
+          {/** biome-ignore lint/complexity/noUselessFragments: View Container TODO: could it be a div? */}
           <>
             <IconAvatar icon={<ImageCardsIcon />} size="large" shape="square" />{' '}
             <Translate

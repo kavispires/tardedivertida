@@ -68,7 +68,6 @@ export const generateGameId = (
  * @returns
  */
 export function stringRemoveAccents(str: string): string {
-  // biome-ignore lint/suspicious/noMisleadingCharacterClass: <explanation>
   return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 

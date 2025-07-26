@@ -94,7 +94,7 @@ function AdminProtectedRoute({ children }: { children: ReactNode }) {
     return <LoadingPage />;
   }
 
-  return isAdmin ? <>{children}</> : <Navigate to="/login" />;
+  return isAdmin ? children : <Navigate to="/login" />;
 }
 
 export const AnimatedRoutes = () => {

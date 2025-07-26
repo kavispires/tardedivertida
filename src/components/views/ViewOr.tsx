@@ -15,5 +15,5 @@ type ViewOrProps = {
  * View wrapper that renders one of two children depending on a condition
  */
 export function ViewOr({ condition = false, children }: ViewOrProps) {
-  return condition ? <>{children[0]}</> : <>{children[1]}</>;
+  return condition ? children[0] : children[1];
 }

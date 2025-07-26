@@ -25,7 +25,7 @@ export function DebugOnly({ children, div = false, dev = false, devOnly = false 
       return <div>{children}</div>;
     }
 
-    return isDevEnv ? <> {children}</> : <></>;
+    return isDevEnv ? children : null;
   }
 
   if ((dev && isDevEnv) || isDebugEnabled) {

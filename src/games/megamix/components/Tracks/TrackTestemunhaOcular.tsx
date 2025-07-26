@@ -58,13 +58,7 @@ export const TrackTestemunhaOcular = ({ track, onSubmitAnswer, user }: TrackProp
         <SpaceContainer>
           <Avatar id="A" size="large" />{' '}
           <SpeechBubble shadow size="small">
-            {track.data.answer ? (
-              <Translate en="YES" pt="SIM" />
-            ) : (
-              <>
-                <Translate en="NO" pt="NÃO" />
-              </>
-            )}{' '}
+            {track.data.answer ? <Translate en="YES" pt="SIM" /> : <Translate en="NO" pt="NÃO" />}{' '}
             <IconAvatar
               size="large"
               icon={track.data.answer ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}

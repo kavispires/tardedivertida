@@ -13,7 +13,6 @@ import { getRandomUniqueItem, shuffle } from './game-utils';
 export function generatePlayerId(playerName: PlayerName): PlayerId {
   return `_${playerName
     .normalize('NFD')
-    // biome-ignore lint/suspicious/noMisleadingCharacterClass: <explanation>
     .replace(/[\u0300-\u036f]/g, '') // Replace characters with accents
     .toLowerCase()}`;
 }

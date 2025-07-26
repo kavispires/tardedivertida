@@ -85,47 +85,43 @@ export function StepHumanAsks({
 
       <RuleInstruction type={isUserTheCurrentHuman ? 'action' : 'wait'}>
         {isUserTheCurrentHuman ? (
-          <>
-            <Translate
-              pt={
-                <>
-                  Escolha um dos atributos que você deseja desvendar, então, selecione{' '}
-                  <ItemsHighlight>1-5 itens</ItemsHighlight>
-                  relacionados a esse atributo para que o alienígena diga qual é o símbolo correspondente.
-                  <InquirySuggestions
-                    items={items}
-                    attributes={attributes}
-                    startingAttributesIds={startingAttributesIds}
-                  />
-                </>
-              }
-              en={
-                <>
-                  Choose one of the atributes you want to unveil, then select{' '}
-                  <ItemsHighlight>1-5 items</ItemsHighlight> below to ask the alien what its symbol.
-                </>
-              }
-            />
-          </>
+          <Translate
+            pt={
+              <>
+                Escolha um dos atributos que você deseja desvendar, então, selecione{' '}
+                <ItemsHighlight>1-5 itens</ItemsHighlight>
+                relacionados a esse atributo para que o alienígena diga qual é o símbolo correspondente.
+                <InquirySuggestions
+                  items={items}
+                  attributes={attributes}
+                  startingAttributesIds={startingAttributesIds}
+                />
+              </>
+            }
+            en={
+              <>
+                Choose one of the atributes you want to unveil, then select{' '}
+                <ItemsHighlight>1-5 items</ItemsHighlight> below to ask the alien what its symbol.
+              </>
+            }
+          />
         ) : (
-          <>
-            <Translate
-              pt={
-                <>
-                  Aguarde enquanto <AvatarName player={currentHuman} /> seleciona{' '}
-                  <ItemsHighlight>1-5 itens</ItemsHighlight> para perguntar ao alienígena{' '}
-                  <AvatarName player={alien} /> qual o símbolo relacionado a eles.
-                </>
-              }
-              en={
-                <>
-                  Please wait wile <AvatarName player={currentHuman} /> selects{' '}
-                  <ItemsHighlight>1-5 items</ItemsHighlight> to ask the alien <AvatarName player={alien} />{' '}
-                  what symbol is related to them.
-                </>
-              }
-            />
-          </>
+          <Translate
+            pt={
+              <>
+                Aguarde enquanto <AvatarName player={currentHuman} /> seleciona{' '}
+                <ItemsHighlight>1-5 itens</ItemsHighlight> para perguntar ao alienígena{' '}
+                <AvatarName player={alien} /> qual o símbolo relacionado a eles.
+              </>
+            }
+            en={
+              <>
+                Please wait wile <AvatarName player={currentHuman} /> selects{' '}
+                <ItemsHighlight>1-5 items</ItemsHighlight> to ask the alien <AvatarName player={alien} /> what
+                symbol is related to them.
+              </>
+            }
+          />
         )}
       </RuleInstruction>
 

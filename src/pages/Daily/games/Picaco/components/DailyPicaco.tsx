@@ -73,14 +73,9 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
                 color="gold"
                 className={!isPlaying ? 'invisible' : getAnimationClass('tada')}
               >
-                {!isPlaying ? (
-                  <>
-                    Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut
-                    labore et dolore.
-                  </>
-                ) : (
-                  card.text
-                )}
+                {!isPlaying
+                  ? 'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore.'
+                  : card.text}
               </Card>
             </SpaceContainer>
           )}

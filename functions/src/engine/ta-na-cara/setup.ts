@@ -102,7 +102,6 @@ export const preparePromptPhase = async (
   utils.players.getListOfPlayers(players).forEach((player) => {
     if (player.currentAnswer !== undefined) {
       player.answers.unshift({ [store.currentQuestionId]: player.currentAnswer });
-      // biome-ignore lint/performance/noDelete: firebase does not accept undefined values
       delete player.currentAnswer;
     }
   });

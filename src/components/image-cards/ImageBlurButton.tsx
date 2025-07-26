@@ -44,7 +44,5 @@ export function ImageBlurButton({ cardId, ghost = true }: ImageBlurButtonProps) 
         )}
       </Button>
     </Tooltip>
-  ) : (
-    <></>
-  );
+  ) : null;
 }

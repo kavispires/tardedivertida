@@ -262,7 +262,7 @@ function ButtonLabel({ isEliminated, isLoading, letter, isPlayerMovie, isWrong }
     return <IconAvatar icon={<StarIcon />} size="small" />;
   }
 
-  return isLoading ? <Spin /> : <>{letter}</>;
+  return isLoading ? <Spin /> : letter;
 }
 
 type PlayersSelectionsProps = {

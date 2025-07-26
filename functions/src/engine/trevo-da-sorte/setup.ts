@@ -124,7 +124,7 @@ export const prepareCloverGuessingPhase = async (
 };
 
 export const prepareResultsPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {

@@ -60,108 +60,102 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
   if (!isAdmin || !isAdminEnabled || !state.phase) return <span></span>;
 
   return (
-    <>
-      <div className="admin-menu-drawer">
-        <FixedMenuButton
-          position={-1}
-          icon={<FireFilled />}
-          type="button"
-          label={<Translate pt=" Admin" en=" Admin" />}
-          onClick={showDrawer}
-          buttonProps={{
-            type: 'default',
-          }}
-        />
+    <div className="admin-menu-drawer">
+      <FixedMenuButton
+        position={-1}
+        icon={<FireFilled />}
+        type="button"
+        label={<Translate pt=" Admin" en=" Admin" />}
+        onClick={showDrawer}
+        buttonProps={{
+          type: 'default',
+        }}
+      />
 
-        <Drawer title="Admin Menu" placement="left" closable={false} open={visible} onClose={onClose}>
-          <ul>
-            <PlayersReadyState players={players} />
-            <li>
-              <hr />
-            </li>
-            <li className="admin-menu-drawer__buttons">
-              <h3>Actions</h3>
-              <Popconfirm
-                placement="right"
-                title="Are you sure you want to go to the next phase?"
-                onConfirm={() => onPerformAdminAction({ action: HOST_API_ACTIONS.GO_TO_NEXT_PHASE })}
-              >
-                <AdminPerformActionButton
-                  disabled={isLoading || state.phase === 'GAME_OVER'}
-                  label="Force Next Phase"
-                  className="admin-menu-drawer__button"
-                />
-              </Popconfirm>
-              <Popconfirm
-                placement="right"
-                title="Are you sure you want to go to play again?"
-                onConfirm={() => onPerformAdminAction({ action: HOST_API_ACTIONS.PLAY_AGAIN })}
-              >
-                <AdminPerformActionButton
-                  // Not every game is currently working with this feature
-                  // disabled={isLoading || !(state.phase === 'GAME_OVER')}
-                  disabled
-                  label="Play Again"
-                  className="admin-menu-drawer__button"
-                />
-              </Popconfirm>
-              <Popconfirm
-                placement="right"
-                title="Are you sure you want to go to end the game by the end of this round?"
-                onConfirm={() => onPerformAdminAction({ action: HOST_API_ACTIONS.FORCE_END_GAME })}
-              >
-                <AdminPerformActionButton
-                  disabled={
-                    state?.round?.forceLastRound || isLoading || ['LOBBY', 'GAME_OVER'].includes(state.phase)
-                  }
-                  label={
-                    state?.round.forceLastRound
-                      ? 'This is already set as the last round'
-                      : 'Make this the last round'
-                  }
-                  className="admin-menu-drawer__button"
-                />
-              </Popconfirm>
-              <Popconfirm
-                placement="right"
-                title="Are you sure you want to go to the lobby and unlock the game?"
-                onConfirm={() => onPerformAdminAction({ action: HOST_API_ACTIONS.RESET_GAME })}
-              >
-                <AdminPerformActionButton
-                  disabled={state?.phase === 'LOBBY'}
-                  label="Reset and restart"
-                  className="admin-menu-drawer__button"
-                />
-              </Popconfirm>
-            </li>
-            <li>
-              <hr />
-            </li>
-            <li>
-              <ForceStateForm
-                isLoading={isLoading}
-                onPerformAdminAction={onPerformAdminAction}
-                state={state}
+      <Drawer title="Admin Menu" placement="left" closable={false} open={visible} onClose={onClose}>
+        <ul>
+          <PlayersReadyState players={players} />
+          <li>
+            <hr />
+          </li>
+          <li className="admin-menu-drawer__buttons">
+            <h3>Actions</h3>
+            <Popconfirm
+              placement="right"
+              title="Are you sure you want to go to the next phase?"
+              onConfirm={() => onPerformAdminAction({ action: HOST_API_ACTIONS.GO_TO_NEXT_PHASE })}
+            >
+              <AdminPerformActionButton
+                disabled={isLoading || state.phase === 'GAME_OVER'}
+                label="Force Next Phase"
+                className="admin-menu-drawer__button"
               />
-            </li>
-            <li>
-              <hr />
-            </li>
-            <li>
-              <h3>Firebase</h3>
-              <Button
-                target="_blank"
-                href={getFirestoreConsoleUrl(
-                  `games/${meta.gameName}/${meta.gameId}/state`,
-                  !!usingFirestoreEmulator,
-                )}
-              >
-                Visit Firebase Collection
-              </Button>
-            </li>
-          </ul>
-        </Drawer>
-      </div>
-    </>
+            </Popconfirm>
+            <Popconfirm
+              placement="right"
+              title="Are you sure you want to go to play again?"
+              onConfirm={() => onPerformAdminAction({ action: HOST_API_ACTIONS.PLAY_AGAIN })}
+            >
+              <AdminPerformActionButton
+                // Not every game is currently working with this feature
+                // disabled={isLoading || !(state.phase === 'GAME_OVER')}
+                disabled
+                label="Play Again"
+                className="admin-menu-drawer__button"
+              />
+            </Popconfirm>
+            <Popconfirm
+              placement="right"
+              title="Are you sure you want to go to end the game by the end of this round?"
+              onConfirm={() => onPerformAdminAction({ action: HOST_API_ACTIONS.FORCE_END_GAME })}
+            >
+              <AdminPerformActionButton
+                disabled={
+                  state?.round?.forceLastRound || isLoading || ['LOBBY', 'GAME_OVER'].includes(state.phase)
+                }
+                label={
+                  state?.round.forceLastRound
+                    ? 'This is already set as the last round'
+                    : 'Make this the last round'
+                }
+                className="admin-menu-drawer__button"
+              />
+            </Popconfirm>
+            <Popconfirm
+              placement="right"
+              title="Are you sure you want to go to the lobby and unlock the game?"
+              onConfirm={() => onPerformAdminAction({ action: HOST_API_ACTIONS.RESET_GAME })}
+            >
+              <AdminPerformActionButton
+                disabled={state?.phase === 'LOBBY'}
+                label="Reset and restart"
+                className="admin-menu-drawer__button"
+              />
+            </Popconfirm>
+          </li>
+          <li>
+            <hr />
+          </li>
+          <li>
+            <ForceStateForm isLoading={isLoading} onPerformAdminAction={onPerformAdminAction} state={state} />
+          </li>
+          <li>
+            <hr />
+          </li>
+          <li>
+            <h3>Firebase</h3>
+            <Button
+              target="_blank"
+              href={getFirestoreConsoleUrl(
+                `games/${meta.gameName}/${meta.gameId}/state`,
+                !!usingFirestoreEmulator,
+              )}
+            >
+              Visit Firebase Collection
+            </Button>
+          </li>
+        </ul>
+      </Drawer>
+    </div>
   );
 };

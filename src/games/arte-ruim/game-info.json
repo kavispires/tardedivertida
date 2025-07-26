@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "A",
   "gameName": "arte-ruim",
-  "version": "6.0.46",
+  "version": "6.0.47",
   "release": "stable",
   "available": true,
   "title": {

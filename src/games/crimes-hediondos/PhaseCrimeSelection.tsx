@@ -162,7 +162,7 @@ export function PhaseCrimeSelection({ players, state }: PhaseProps<PhaseCrimeSel
         <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5} />
 
         {/* Step 1 */}
-        <>
+        <div>
           <StepItemsSelection
             user={user}
             groupedItems={state.groupedItems}
@@ -177,7 +177,7 @@ export function PhaseCrimeSelection({ players, state }: PhaseProps<PhaseCrimeSel
           <DevButton onClick={onMockCrime} size="large">
             Random Crime
           </DevButton>
-        </>
+        </div>
 
         {/* Step 2 */}
         <StepCauseOfDeathSelection

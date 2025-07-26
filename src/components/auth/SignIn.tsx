@@ -59,29 +59,27 @@ export function SignInWithGoogle({ onSuccess, ...buttonProps }: SignInProps & Bu
 
   return (
     <Space className="div-container" direction="vertical" align="center" classNames={{ item: 'full-width' }}>
-      <>
-        {isError && (
-          <Alert
-            description={
-              <Translate pt="Algo deu errado, tente novamente" en="Something went wrong. Please try again" />
-            }
-            type="error"
-            showIcon
-            className="sign-in__error-alert"
-          />
-        )}
-        <Button
-          type="primary"
-          size="large"
-          onClick={onFinish}
-          loading={isPending}
-          block
-          icon={<IconAvatar icon={<GoogleIcon />} size="small" />}
-          {...buttonProps}
-        >
-          <Translate pt="Entrar com Google" en="Sign in with Google" />
-        </Button>
-      </>
+      {isError && (
+        <Alert
+          description={
+            <Translate pt="Algo deu errado, tente novamente" en="Something went wrong. Please try again" />
+          }
+          type="error"
+          showIcon
+          className="sign-in__error-alert"
+        />
+      )}
+      <Button
+        type="primary"
+        size="large"
+        onClick={onFinish}
+        loading={isPending}
+        block
+        icon={<IconAvatar icon={<GoogleIcon />} size="small" />}
+        {...buttonProps}
+      >
+        <Translate pt="Entrar com Google" en="Sign in with Google" />
+      </Button>
     </Space>
   );
 }

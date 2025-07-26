@@ -54,6 +54,7 @@ export function StepGallery({ gallery, players, cards, slideShowConfig }: StepGa
       >
         <CanvasSVG drawing={drawing} width={canvasWidth} className="a-gallery__drawing" />
 
+        {/** biome-ignore lint/complexity/noUselessFragments: I think it's needed */}
         <>
           <GalleryWindowCredits artist={playerArtist} />
 

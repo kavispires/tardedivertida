@@ -98,9 +98,7 @@ export function ImageCardButton({
         {buttonText ?? <Translate pt="Selecionar" en="Select" />}
         {iconComponent}
       </Button>
-    ) : (
-      <></>
-    );
+    ) : null;
 
   return (
     <div className={clsx('image-card-button', className)}>

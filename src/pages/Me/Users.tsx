@@ -138,8 +138,6 @@ function Users() {
     [selectedUserO, selectedUserD],
   );
 
-  console.log(data);
-
   return (
     <PageLayout>
       <Typography.Title>Users</Typography.Title>

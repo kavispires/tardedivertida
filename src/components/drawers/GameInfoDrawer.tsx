@@ -41,71 +41,69 @@ export function GameInfoDrawer({ players, state, userId }: GameInfoDrawerProps) 
   }
 
   return (
-    <>
-      <div className="game-info-drawer-container">
-        <button type="button" className="game-info-drawer-button" onClick={toggleDrawer}>
-          <span className="game-info-drawer-button__game-title">
-            {info.title?.[language] ?? '?'}
-            <DebugOnly devOnly>({players?.[userId]?.name})</DebugOnly>
-          </span>
-          <AntAvatar icon={<SettingOutlined />} size="small" />
-          <div className="game-info-drawer-button__player-status-bar">
-            <PlayersStatusBar players={players} />
-          </div>
-        </button>
+    <div className="game-info-drawer-container">
+      <button type="button" className="game-info-drawer-button" onClick={toggleDrawer}>
+        <span className="game-info-drawer-button__game-title">
+          {info.title?.[language] ?? '?'}
+          <DebugOnly devOnly>({players?.[userId]?.name})</DebugOnly>
+        </span>
+        <AntAvatar icon={<SettingOutlined />} size="small" />
+        <div className="game-info-drawer-button__player-status-bar">
+          <PlayersStatusBar players={players} />
+        </div>
+      </button>
 
-        <Drawer
-          title={
-            <GameStrip
-              title={info?.title}
-              gameName={info.gameName}
-              className="round-corners"
-              width={256}
-              static
-            />
-          }
-          placement="right"
-          closable={false}
-          onClose={toggleDrawer}
-          open={isDrawerOpen}
-        >
-          {isAuthenticated && !isGuest && (
-            <p>
-              <Badge size="default" dot color="green">
-                <Avatar id={players?.[userId]?.avatarId} shape="square" size="small" />
-              </Badge>{' '}
-              <Translate pt="Você está logado!" en="You are logged in!" />
-            </p>
-          )}
+      <Drawer
+        title={
+          <GameStrip
+            title={info?.title}
+            gameName={info.gameName}
+            className="round-corners"
+            width={256}
+            static
+          />
+        }
+        placement="right"
+        closable={false}
+        onClose={toggleDrawer}
+        open={isDrawerOpen}
+      >
+        {isAuthenticated && !isGuest && (
+          <p>
+            <Badge size="default" dot color="green">
+              <Avatar id={players?.[userId]?.avatarId} shape="square" size="small" />
+            </Badge>{' '}
+            <Translate pt="Você está logado!" en="You are logged in!" />
+          </p>
+        )}
 
-          <Space>
-            <Button type="default" onClick={() => toggleSettingsDrawer(true)} icon={<SettingOutlined />}>
-              <Translate pt="Configurações" en="Settings" />
+        <Space>
+          <Button type="default" onClick={() => toggleSettingsDrawer(true)} icon={<SettingOutlined />}>
+            <Translate pt="Configurações" en="Settings" />
+          </Button>
+          <RulesModal gameInfo={info} />
+          <Drawer
+            title={<Translate pt="Configurações" en="Settings" />}
+            width={200}
+            closable={false}
+            onClose={toggleSettingsDrawer}
+            open={isSettingsOpen}
+          >
+            <SectionSettings />
+          </Drawer>
+          {isAdmin && (
+            <Button type="default" danger onClick={() => navigate('/hub')} icon={<FireOutlined />}>
+              Hub
             </Button>
-            <RulesModal gameInfo={info} />
-            <Drawer
-              title={<Translate pt="Configurações" en="Settings" />}
-              width={200}
-              closable={false}
-              onClose={toggleSettingsDrawer}
-              open={isSettingsOpen}
-            >
-              <SectionSettings />
-            </Drawer>
-            {isAdmin && (
-              <Button type="default" danger onClick={() => navigate('/hub')} icon={<FireOutlined />}>
-                Hub
-              </Button>
-            )}
-          </Space>
+          )}
+        </Space>
 
-          <Divider />
+        <Divider />
 
-          <SectionMeta round={state?.round || 0} groupScore={state?.groupScore} />
+        <SectionMeta round={state?.round || 0} groupScore={state?.groupScore} />
 
-          <SectionRankedPlayers players={players} />
-        </Drawer>
-      </div>
-    </>
+        <SectionRankedPlayers players={players} />
+      </Drawer>
+    </div>
   );
 }

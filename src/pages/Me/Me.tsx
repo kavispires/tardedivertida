@@ -14,7 +14,7 @@ function Me() {
   const { isAuthenticated, currentUser } = useCurrentUserContext();
   const [, setLanguage] = useGlobalLocalStorage('language');
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Force user language
   useEffect(() => {
     if (currentUser.language) {
       setLanguage(currentUser.language);

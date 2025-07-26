@@ -37,7 +37,7 @@ type GridProps = {
 
 export function Grid({ grid, answers, updateAnswer, toggleLock }: GridProps) {
   const gridMap = useMemo(() => {
-    const m = new Array((grid.xHeaders.length + 1) * (grid.yHeaders.length + 1)).fill(0).map((e, i) => {
+    const m = new Array((grid.xHeaders.length + 1) * (grid.yHeaders.length + 1)).fill(0).map((_e, i) => {
       const x = i % (grid.xHeaders.length + 1);
       const y = Math.floor(i / (grid.xHeaders.length + 1));
       if (x === 0 && y === 0) return { type: 'corner' };
@@ -86,7 +86,7 @@ type AnswersGridProps = {
 };
 export function AnswersGrid({ grid, players, answersGrid, answersGroups }: AnswersGridProps) {
   const gridMap = useMemo(() => {
-    const m = new Array((grid.xHeaders.length + 1) * (grid.yHeaders.length + 1)).fill(0).map((e, i) => {
+    const m = new Array((grid.xHeaders.length + 1) * (grid.yHeaders.length + 1)).fill(0).map((_e, i) => {
       const x = i % (grid.xHeaders.length + 1);
       const y = Math.floor(i / (grid.xHeaders.length + 1));
       if (x === 0 && y === 0) return { type: 'corner' };
