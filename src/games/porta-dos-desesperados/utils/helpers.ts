@@ -154,7 +154,7 @@ export function getTrapDetails(trap: string) {
           en: 'The Ancient Pages',
         },
         description: {
-          pt: 'As páginas do livro estão desbotadas e sem cor.',
+          pt: 'As páginas do livro estão desfocadas e desbotadas.',
           en: 'The Book Pages are old and do not have color.',
         },
       };
