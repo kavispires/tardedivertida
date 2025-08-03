@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 // Components
+import { DivButton } from 'components/buttons/DivButton';
 import { ItemCard } from 'components/cards/ItemCard';
 // Internal
 import type { AquiODisc } from '../utils/types';
@@ -14,18 +15,17 @@ export function Disc({ disc, onSelect, width, className }: DiscProps) {
   return (
     <div className={clsx('aqui-o-disc', className)} style={{ width: width, height: width }}>
       {disc.items.map((item) => (
-        <div
+        <DivButton
           key={item.itemId}
           className={clsx('aqui-o-disc-item', `aqui-o-disc-item--pos-${item.position}`)}
           style={{
             transform: `rotate(${item.rotation}deg) scale(${item.size / 100})`,
             zIndex: item.zIndex,
           }}
-          role="button"
           onClick={() => onSelect(item.itemId)}
         >
           <ItemCard id={item.itemId} className="aqui-o-disc-sprite" width={width / 4} padding={9} />
-        </div>
+        </DivButton>
       ))}
     </div>
   );

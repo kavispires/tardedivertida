@@ -15,7 +15,7 @@ export function StepDots({ current, total, color = 'gold', displayNumbers = fals
       <Badge
         status="default"
         color={isActive ? color : 'rgba(0, 0, 0, 0.25)'}
-        // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+        // biome-ignore lint/suspicious/noArrayIndexKey: Using index as key is acceptable here since the array is static
         key={i}
         count={displayNumbers ? i + 1 : undefined}
       />
