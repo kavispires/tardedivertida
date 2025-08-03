@@ -23,6 +23,6 @@ export function useDailyChallengeMutation() {
         queryKey: ['user'],
       });
     },
-    onError: (e: any) => {},
+    onError: (_e) => {},
   });
 }

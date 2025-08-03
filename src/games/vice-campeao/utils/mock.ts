@@ -8,11 +8,9 @@ export function mockCardPlay(
   players: GamePlayers,
   cardsDict: Dictionary<RunnerCard>,
 ): { targetId: string; cardId: string } {
-  const userPosition = user.positions.at(-1) ?? 0;
   const hand: string[] = user.hand;
   const positiveMovement = hand.filter((cardId) => cardsDict[cardId].type === 'movement-positive');
   const negativeMovement = hand.filter((cardId) => cardsDict[cardId].type === 'movement-negative');
-  const neutralMovement = hand.filter((cardId) => cardsDict[cardId].type === 'movement-neutral');
   const effects = hand.filter((cardId) => !cardsDict[cardId].type.startsWith('movement-'));
 
   const sortedPlayers = Object.values(players)

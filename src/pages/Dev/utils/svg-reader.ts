@@ -3,10 +3,9 @@ const svg = '';
 export function extractIdsFromString(htmlString: string): string[] {
   const regex = /id="([\w-]+)"/g;
   const ids: string[] = [];
-  // biome-ignore lint/suspicious/noImplicitAnyLet: <explanation>
-  let match;
+  let match: RegExpExecArray | null;
 
-  // biome-ignore lint/suspicious/noAssignInExpressions: <explanation>
+  // biome-ignore lint/suspicious/noAssignInExpressions: idk
   while ((match = regex.exec(htmlString))) {
     ids.push(match[1]);
   }
