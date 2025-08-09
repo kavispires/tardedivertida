@@ -130,15 +130,16 @@ export const checkWasPlayedToday = (key: string): boolean => {
   const localKey = composeLocalTodayKey(key);
   const session = JSON.parse(localStorage.getItem(localKey) || '{}');
   const playedKey = composeLocalPlayedKey(key);
-  const played = JSON.parse(localStorage.getItem(playedKey) || 'false');
+  const playedOn = JSON.parse(localStorage.getItem(playedKey) || 'false');
   const today = getToday();
   const isToday = session?.id === today;
+
   if (!isToday) {
-    localStorage.setItem(playedKey, JSON.stringify(false));
+    localStorage.setItem(playedKey, JSON.stringify('unplayed'));
     return false;
   }
 
-  return session?.id === today && played;
+  return playedOn === today;
 };
 
 /**

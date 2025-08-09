@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLocalStorage } from 'react-use';
 // Internal
 import type { WithRequiredId } from '../utils/types';
-import { composeLocalPlayedKey, composeLocalTodayKey } from '../utils';
+import { composeLocalPlayedKey, composeLocalTodayKey, getToday } from '../utils';
 
 type UseDailyLocalTodayProps<TLocal> = {
   key: string;
@@ -47,11 +47,11 @@ export function useDailyLocalToday<TLocal extends WithRequiredId>({
  */
 export function useMarkAsPlayed({ key, isComplete }: { key: string; isComplete: boolean }) {
   const localPlayedKey = composeLocalPlayedKey(key);
-  const [played, setPlayed] = useLocalStorage<boolean>(localPlayedKey, false);
+  const [played, setPlayed] = useLocalStorage<string>(localPlayedKey, 'unplayed');
 
   useEffect(() => {
-    if (!played && isComplete) {
-      setPlayed(true);
+    if (played !== getToday() && isComplete) {
+      setPlayed(getToday());
     }
   }, [isComplete, played, setPlayed]);
 }
