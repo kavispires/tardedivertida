@@ -1,0 +1,1 @@
+import{j as a}from"./index-CdRPejj5.js";import{d as o}from"./StepSwitcher-DlAD-hMG.js";function h({state:e}){return a.jsx(o,{phase:"ANY",allowedPhase:"ANY",className:"phase-placeholder",children:(e==null?void 0:e.phase)??"Unknown Phase"})}export{h as P};
