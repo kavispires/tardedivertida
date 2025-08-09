@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion';
+import { DailyItem } from 'pages/Daily/components/DailyItem';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { getAnimation } from 'utils/animations';
-// Components
-import { ItemCard } from 'components/cards/ItemCard';
 
 type PreloadItemsProps = {
   items: string[];
@@ -23,13 +22,13 @@ export function PreloadItems({ items }: PreloadItemsProps) {
       <span />
       <span />
       <motion.div className="preload-items__first" {...getAnimation('fadeIn')}>
-        <ItemCard id={items[0]} width={itemWidth} />
+        <DailyItem id={items[0]} width={itemWidth} />
       </motion.div>
       <span />
       <span />
       {items.slice(1).map((itemId, index) => (
         <motion.div key={itemId} {...getAnimation('fadeIn', { delay: index * 0.25 })}>
-          <ItemCard id={itemId} width={itemWidth} />
+          <DailyItem id={itemId} width={itemWidth} />
         </motion.div>
       ))}
     </motion.div>

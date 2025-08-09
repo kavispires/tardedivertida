@@ -1,3 +1,4 @@
+import { DailyItem } from 'pages/Daily/components/DailyItem';
 import { Keyboard } from 'pages/Daily/components/Keyboard';
 import { Region } from 'pages/Daily/components/Region';
 import { useState } from 'react';
@@ -11,7 +12,6 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Icons
 import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
 // Components
-import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate, Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
@@ -63,7 +63,7 @@ export function DailyFilmaco({ data }: DailyFilmacoProps) {
 
         <SpaceContainer wrap>
           {data.itemsIds.map((itemId, index) => (
-            <ItemCard key={`${itemId}-${index}`} id={itemId} width={width} />
+            <DailyItem key={`${itemId}-${index}`} id={itemId} width={width} />
           ))}
         </SpaceContainer>
 

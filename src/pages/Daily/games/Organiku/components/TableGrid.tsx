@@ -1,10 +1,9 @@
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
+import { DailyItem } from 'pages/Daily/components/DailyItem';
 import { useMemo } from 'react';
 // Utils
 import { getAnimation } from 'utils/animations';
-// Components
-import { ItemCard } from 'components/cards/ItemCard';
 // Internal
 import type { DailyOrganikuEntry } from '../utils/types';
 import { getRowAndColumnIndexes } from '../utils/helpers';
@@ -62,14 +61,14 @@ export function TableGrid({
                 className="organiku-table-grid-item-content"
                 style={{ width: itemWidth, height: itemWidth }}
               >
-                <ItemCard id={itemId} width={itemWidth} className="transparent" />
+                <DailyItem id={itemId} width={itemWidth} className="transparent" />
               </div>
             ) : (
               <div
                 className="organiku-table-grid-item-content"
                 style={{ width: itemWidth, height: itemWidth }}
               >
-                <ItemCard
+                <DailyItem
                   id="0"
                   width={itemWidth / 1.75}
                   className="organiku-table-grid-item-card-placeholder transparent"

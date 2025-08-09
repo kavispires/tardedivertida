@@ -17,6 +17,7 @@ import type { DailyEspionagemEntry } from '../games/Espionagem/utils/types';
 export type DateKey = string; // Format YYYY-MM-DD
 
 export type DailyResponse = {
+  id: string;
   // Games
   'arte-ruim': DailyArteRuimEntry;
   'aqui-o': DailyAquiOEntry;
@@ -32,6 +33,8 @@ export type DailyResponse = {
   // Contributions
   artista: DailyPicacoEntry;
   'ta-na-cara': DailyTaNaCaraEntry;
+  // Other
+  dictionary?: Dictionary<string>;
 };
 
 export type LetterState = 'correct' | 'incorrect' | 'intermediate' | 'used' | 'idle';

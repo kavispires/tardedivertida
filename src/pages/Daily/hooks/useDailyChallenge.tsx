@@ -15,7 +15,9 @@ import { getSourceName, getToday } from '../utils';
 export type DailyContextType = Pick<
   UseQueryResult<DailyResponse, Error>,
   'isLoading' | 'data' | 'error' | 'isError' | 'isRefetching'
->;
+> & {
+  itemsDictionary: Dictionary<string>;
+};
 
 const DailyContext = createContext<DailyContextType>({
   isLoading: false,
@@ -23,6 +25,7 @@ const DailyContext = createContext<DailyContextType>({
   error: null,
   isError: false,
   isRefetching: false,
+  itemsDictionary: {},
 });
 
 type DailyContextProviderProps = {
@@ -70,6 +73,7 @@ export const DailyContextProvider = ({ children }: DailyContextProviderProps) =>
         error: query.error,
         isError: query.isError,
         isRefetching: query.isRefetching,
+        itemsDictionary: query.data?.dictionary ?? {},
       }}
     >
       {children}

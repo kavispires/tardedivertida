@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { DailyItem } from 'pages/Daily/components/DailyItem';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { Region } from 'pages/Daily/components/Region';
 import { useMemo } from 'react';
@@ -13,7 +14,6 @@ import { BoxXIcon } from 'icons/BoxXIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { ItemCard } from 'components/cards/ItemCard';
 import { SignCard } from 'components/cards/SignCard';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -89,7 +89,7 @@ export function ResultsModalContent({
           {requests.map((request, index) => {
             return (
               <motion.div key={request.itemId} {...getAnimation('fadeIn', { delay: index * 0.2 })}>
-                <ItemCard id={request.itemId} width={width} padding={0} className="transparent" />
+                <DailyItem id={request.itemId} width={width} padding={0} className="transparent" />
               </motion.div>
             );
           })}

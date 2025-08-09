@@ -1,8 +1,7 @@
 import clsx from 'clsx';
+import { DailyItem } from 'pages/Daily/components/DailyItem';
 // Ant Design Resources
 import { Flex, Typography } from 'antd';
-// Components
-import { ItemCard } from 'components/cards/ItemCard';
 
 type ThingProps = {
   itemId: string;
@@ -16,7 +15,7 @@ export function Thing({ itemId, name, width = 50, className, minimize }: ThingPr
   return (
     <Flex vertical align="center" className={clsx('thing', className)}>
       {!minimize && (
-        <ItemCard
+        <DailyItem
           id={itemId}
           width={Math.max(Math.min(width, 100), 35)}
           padding={0}

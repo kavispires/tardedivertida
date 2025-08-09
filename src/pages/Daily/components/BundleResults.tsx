@@ -109,7 +109,7 @@ export function BundleResults({ list }: BundleResultsProps) {
 }
 
 function getResultForGame(data: DailyResponse[keyof DailyResponse], language: Language) {
-  if (!data) {
+  if (!data || typeof data !== 'object' || !data.type) {
     return '';
   }
 
