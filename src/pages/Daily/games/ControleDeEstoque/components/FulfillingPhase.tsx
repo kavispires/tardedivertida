@@ -1,4 +1,4 @@
-import { Region, TextRegion } from 'pages/Daily/components/Region';
+import { Region, RegionText } from 'pages/Daily/components/Region';
 // Ant Design Resources
 import { BarChartOutlined, WarningFilled } from '@ant-design/icons';
 import { Button } from 'antd';
@@ -6,7 +6,6 @@ import { Button } from 'antd';
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
 // Internal
 import { PHASES } from '../utils/settings';
 import type { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
@@ -69,30 +68,28 @@ export function FulfillingPhase({
       <>
         {board}
 
-        <TextRegion>
-          <Instruction contained noMargin>
-            <Translate
-              pt={
-                <>
-                  Recebemos 5 pedidos e 4 deles estão em estoque!
-                  <br />
-                  Selecione os pedidos um a um e coloque-nos na prateleira correta.
-                  <br />
-                  <strong>Pedidos Posicionados ({fulfillments.length}/4).</strong>
-                </>
-              }
-              en={
-                <>
-                  We have received 5 orders and 4 of them are in stock!
-                  <br />
-                  Select the orders one by one and place them on the correct shelf.
-                  <br />
-                  <strong>Orders Placed ({fulfillments.length}/4).</strong>
-                </>
-              }
-            />
-          </Instruction>
-        </TextRegion>
+        <RegionText>
+          <Translate
+            pt={
+              <>
+                Recebemos 5 pedidos e 4 deles estão em estoque!
+                <br />
+                Selecione os pedidos um a um e coloque-nos na prateleira correta.
+                <br />
+                <strong>Pedidos Posicionados ({fulfillments.length}/4).</strong>
+              </>
+            }
+            en={
+              <>
+                We have received 5 orders and 4 of them are in stock!
+                <br />
+                Select the orders one by one and place them on the correct shelf.
+                <br />
+                <strong>Orders Placed ({fulfillments.length}/4).</strong>
+              </>
+            }
+          />
+        </RegionText>
 
         <Orders
           orders={orders}
@@ -103,14 +100,12 @@ export function FulfillingPhase({
         />
 
         {!isComplete && (
-          <TextRegion>
-            <Instruction contained noMargin>
-              <Translate
-                pt={<>Para desfazer um pedido, é só clicar nele na prateleira.</>}
-                en={<>To undo an order, just click on it on the shelf.</>}
-              />
-            </Instruction>
-          </TextRegion>
+          <RegionText>
+            <Translate
+              pt={<>Para desfazer um pedido, é só clicar nele na prateleira.</>}
+              en={<>To undo an order, just click on it on the shelf.</>}
+            />
+          </RegionText>
         )}
 
         {fulfillments.length === 4 && !isComplete && (
@@ -121,26 +116,24 @@ export function FulfillingPhase({
               </Button>
             </Region>
 
-            <TextRegion>
-              <Instruction contained noMargin>
-                <Translate
-                  pt={
-                    <>
-                      Se tudo estiver nos confirmes, aperte o botão de enviar.
-                      <br />
-                      Você perde um coração se qualquer um deles estiver errado.
-                    </>
-                  }
-                  en={
-                    <>
-                      If everything is in order, press the delivery button.
-                      <br />
-                      You lose a heart if any of them are wrong
-                    </>
-                  }
-                />
-              </Instruction>
-            </TextRegion>
+            <RegionText>
+              <Translate
+                pt={
+                  <>
+                    Se tudo estiver nos confirmes, aperte o botão de enviar.
+                    <br />
+                    Você perde um coração se qualquer um deles estiver errado.
+                  </>
+                }
+                en={
+                  <>
+                    If everything is in order, press the delivery button.
+                    <br />
+                    You lose a heart if any of them are wrong
+                  </>
+                }
+              />
+            </RegionText>
           </>
         )}
       </>
@@ -154,11 +147,9 @@ export function FulfillingPhase({
       <>
         {board}
 
-        <TextRegion>
-          <Instruction contained noMargin>
-            <Translate pt="Tudo pronto, hora de entregar!" en="All set, time to deliver!" />
-          </Instruction>
-        </TextRegion>
+        <RegionText>
+          <Translate pt="Tudo pronto, hora de entregar!" en="All set, time to deliver!" />
+        </RegionText>
 
         <Region>
           <Button size="large" type="primary" onClick={onSubmit}>
@@ -166,39 +157,37 @@ export function FulfillingPhase({
           </Button>
         </Region>
 
-        <TextRegion>
-          <Instruction contained noMargin>
-            <Translate
-              pt={
-                <>
-                  <strong>Pedidos Assinalados</strong>
-                  {isMissingOutOfStock ? (
-                    <>
-                      <br />
-                      <span style={{ color: 'red' }}>
-                        <WarningFilled /> Você não colocou nenhum pedido na lata de lixo! Um dos produtos NÃO
-                        está na prateleira!!!
-                      </span>
-                    </>
-                  ) : null}
-                  <br />
-                  Se tudo estiver nos confirmes, aperte o botão de enviar.
-                  <br />
-                  Você perde um coração se qualquer um deles estiver errado.
-                </>
-              }
-              en={
-                <>
-                  <strong>All Orders have been assigned</strong>
-                  <br />
-                  If everything is in order, press the delivery button.
-                  <br />
-                  You lose a heart if any of them are wrong
-                </>
-              }
-            />
-          </Instruction>
-        </TextRegion>
+        <RegionText>
+          <Translate
+            pt={
+              <>
+                <strong>Pedidos Assinalados</strong>
+                {isMissingOutOfStock ? (
+                  <>
+                    <br />
+                    <span style={{ color: 'red' }}>
+                      <WarningFilled /> Você não colocou nenhum pedido na lata de lixo! Um dos produtos NÃO
+                      está na prateleira!!!
+                    </span>
+                  </>
+                ) : null}
+                <br />
+                Se tudo estiver nos confirmes, aperte o botão de enviar.
+                <br />
+                Você perde um coração se qualquer um deles estiver errado.
+              </>
+            }
+            en={
+              <>
+                <strong>All Orders have been assigned</strong>
+                <br />
+                If everything is in order, press the delivery button.
+                <br />
+                You lose a heart if any of them are wrong
+              </>
+            }
+          />
+        </RegionText>
       </>
     );
   }
@@ -207,11 +196,9 @@ export function FulfillingPhase({
     <>
       {board}
 
-      <TextRegion>
-        <Instruction contained noMargin>
-          <Translate pt="Você completou todos os pedidos!" en="You have completed all orders!" />
-        </Instruction>
-      </TextRegion>
+      <RegionText>
+        <Translate pt="Você completou todos os pedidos!" en="You have completed all orders!" />
+      </RegionText>
 
       <Region>
         <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>

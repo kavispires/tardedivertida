@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Region, TextRegion } from 'pages/Daily/components/Region';
+import { Region, RegionText } from 'pages/Daily/components/Region';
 import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
@@ -118,16 +118,16 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
         </Region>
 
         {isComplete ? (
-          <TextRegion>
+          <RegionText>
             <Translate pt="Você já completou o desafio!" en="You have already completed the challenge!" />
-          </TextRegion>
+          </RegionText>
         ) : (
-          <TextRegion>
+          <RegionText>
             <Translate
               pt="Selecione uma coisa e coloque na área correta:"
               en="Select a thing and place it in the correct area:"
             />
-          </TextRegion>
+          </RegionText>
         )}
 
         {isComplete && (

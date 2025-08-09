@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Region, TextRegion } from 'pages/Daily/components/Region';
+import { Region } from 'pages/Daily/components/Region';
 import { useState } from 'react';
 // Ant Design Resources
 import { BarChartOutlined } from '@ant-design/icons';
@@ -85,7 +85,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
           )}
         </Region>
 
-        <TextRegion direction="vertical" size="small">
+        <Region direction="vertical" size="small">
           {guesses.map((attempt, index) => (
             <Space
               key={`${attempt}-${index}`}
@@ -106,10 +106,10 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
               ))}
             </Space>
           ))}
-        </TextRegion>
+        </Region>
 
         {guesses.length > 0 && (
-          <TextRegion>
+          <Region>
             <Flex className="contained" gap={12} align="center">
               <div className="palavreado-board__tile palavreado-board__tile--place-guessed palavreado-board__tile--sample">
                 ?
@@ -135,7 +135,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
                 />
               </Typography.Text>
             </Flex>
-          </TextRegion>
+          </Region>
         )}
 
         <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>

@@ -1,4 +1,4 @@
-import { Region, TextRegion } from 'pages/Daily/components/Region';
+import { Region, RegionText } from 'pages/Daily/components/Region';
 import { useState } from 'react';
 // Ant Design Resources
 import { BarChartOutlined } from '@ant-design/icons';
@@ -11,7 +11,6 @@ import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { DailyMemoryGridGameIcon } from 'icons/DailyMemoryGridGameIcon';
 // Components
 import { DualTranslate, Translate } from 'components/language';
-import { Instruction } from 'components/text';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
@@ -64,26 +63,24 @@ export function DailyOrganiku({ data }: DailyOrganikuProps) {
           </Typography.Text>
         </Region>
 
-        <TextRegion>
-          <Instruction contained noMargin>
-            <Translate
-              en={
-                <>
-                  Find pairs of images to reveal them.
-                  <br />
-                  There's only one type of symbol per row and column.
-                </>
-              }
-              pt={
-                <>
-                  Ache pares de imagens para revelá-las.
-                  <br />
-                  Há apenas um tipo de símbolo por linha e coluna.
-                </>
-              }
-            />
-          </Instruction>
-        </TextRegion>
+        <RegionText>
+          <Translate
+            en={
+              <>
+                Find pairs of images to reveal them.
+                <br />
+                There's only one type of symbol per row and column.
+              </>
+            }
+            pt={
+              <>
+                Ache pares de imagens para revelá-las.
+                <br />
+                Há apenas um tipo de símbolo por linha e coluna.
+              </>
+            }
+          />
+        </RegionText>
 
         <Region>
           <TableGrid
