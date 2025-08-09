@@ -15,6 +15,17 @@ type NewsItem = {
 
 export const NEWS_LIST: NewsItem[] = [
   {
+    date: '2025-08-09',
+    content: (
+      <>
+        <IconAvatar icon={<NewFeatureIcon />} size="small" /> <strong>Em jogos com ícones</strong>, ao clicar
+        e segurar um ícone, aparecerá um nome como sugestão para ajudar a identificá-lo. Esse nome pode não
+        ser o mesmo usado pelo jogo em si. Por exemplo, o nome “fatia de bolo” pode estar sendo usado como
+        “torta” ou apenas “bolo” em alguns jogos, mas a sugestão vai aparecer como "fatia de bolo".
+      </>
+    ),
+  },
+  {
     date: '2025-07-05',
     content: (
       <>
