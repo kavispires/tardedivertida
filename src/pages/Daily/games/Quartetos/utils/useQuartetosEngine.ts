@@ -2,6 +2,7 @@ import { cloneDeep, difference, shuffle } from 'lodash';
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { getAnalyticsEventName } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { vibrate } from 'pages/Daily/utils/vibrate';
@@ -103,11 +104,11 @@ export function useQuartetosEngine(data: DailyQuartetosEntry, initialState: Game
 
       if (status === STATUSES.WIN) {
         playSFX('win');
-        logAnalyticsEvent(`daily_${SETTINGS.KEY}_win`);
+        logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'win'));
       }
       if (status === STATUSES.LOSE) {
         playSFX('lose');
-        logAnalyticsEvent(`daily_${SETTINGS.KEY}_lose`);
+        logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'lose'));
         vibrate('lose');
 
         // Add the left over sets to the matches

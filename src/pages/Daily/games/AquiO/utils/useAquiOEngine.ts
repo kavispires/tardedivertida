@@ -2,7 +2,7 @@ import { intersectionBy } from 'lodash';
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
-import { checkWeekend } from 'pages/Daily/utils';
+import { checkWeekend, getAnalyticsEventName } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { vibrate } from 'pages/Daily/utils/vibrate';
@@ -71,7 +71,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
     }));
     updateSession({ discIndex: 0 });
     playSFX('addCorrect');
-    logAnalyticsEvent(`daily_${SETTINGS.KEY}_played`);
+    logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'played'));
     restart(inNSeconds(SETTINGS.DURATION), true);
   };
 
@@ -88,7 +88,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
         pause();
         setTimesUp(true);
         playSFX('win');
-        logAnalyticsEvent(`daily_${SETTINGS.KEY}_win`);
+        logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'win'));
         return;
       }
 
@@ -111,7 +111,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
       setTimesUp(true);
       playSFX('lose');
       vibrate('lose');
-      logAnalyticsEvent(`daily_${SETTINGS.KEY}_lose`);
+      logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'lose'));
       return;
     }
 

@@ -2,6 +2,7 @@ import { cloneDeep } from 'lodash';
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { getAnalyticsEventName } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { useEffect } from 'react';
@@ -87,13 +88,13 @@ export function usePortaisMagicosEngine(data: DailyPortaisMagicosEntry, initialS
 
       if (isCorrect && copy.currentCorridorIndex === data.corridors.length) {
         copy.status = STATUSES.WIN;
-        logAnalyticsEvent(`daily_${SETTINGS.KEY}_win`);
+        logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'win'));
         copy.currentCorridorIndex = 2;
       }
 
       if (copy.hearts <= 0) {
         copy.status = STATUSES.LOSE;
-        logAnalyticsEvent(`daily_${SETTINGS.KEY}_lose`);
+        logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'lose'));
       }
 
       return copy;

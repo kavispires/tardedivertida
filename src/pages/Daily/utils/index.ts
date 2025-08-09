@@ -113,6 +113,15 @@ export const composeLocalTodayKey = (key: string) => `TD_DAILY_${key}_LOCAL_TODA
 export const composeLocalPlayedKey = (key: string) => `TD_DAILY_${key}_LOCAL_PLAYED`;
 
 /**
+ * Composes the analytics event name for a specific key and action.
+ * @param key - The key to compose the analytics event name for.
+ * @param action - The action to include in the event name ('win' or 'lose' or 'played').
+ * @returns The composed analytics event name.
+ */
+export const getAnalyticsEventName = (key: string, action: 'win' | 'lose' | 'played' | 'game_suggestion') =>
+  `daily_${key}_${action}`;
+
+/**
  * Checks if a specific key was played today.
  * @param key - The key to check.
  * @returns A boolean indicating whether the key was played today.

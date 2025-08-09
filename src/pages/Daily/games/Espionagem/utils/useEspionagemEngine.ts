@@ -1,9 +1,12 @@
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { getAnalyticsEventName } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { useEffect } from 'react';
+// Services
+import { logAnalyticsEvent } from 'services/firebase';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyEspionagemEntry, GameState, SessionState } from './types';
@@ -61,6 +64,7 @@ export function useEspionagemEngine(data: DailyEspionagemEntry, initialState: Ga
         hearts: 0,
       }));
       playSFX('drama');
+      logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'lose'));
       updateSession({ activeSuspectId: null });
       return;
     }
@@ -71,6 +75,7 @@ export function useEspionagemEngine(data: DailyEspionagemEntry, initialState: Ga
       if (newReleased.length === data.suspects.length - 1) {
         // If all suspects except the culprit are released, player wins
         playSFX('win');
+        logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'win'));
         return {
           ...prev,
           status: STATUSES.WIN,
