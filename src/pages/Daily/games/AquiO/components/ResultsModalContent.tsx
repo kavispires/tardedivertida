@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { DailyItem } from 'pages/Daily/components/DailyItem';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { useMemo } from 'react';
 import { Fragment } from 'react/jsx-runtime';
@@ -15,7 +16,6 @@ import { SkullIcon } from 'icons/SkullIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
@@ -145,7 +145,7 @@ export function ResultsModalContent({
 
       <Flex gap={6}>
         {!!lastMatch && (
-          <ItemCard
+          <DailyItem
             id={lastMatch}
             width={45}
             className={clsx(getAnimationClass('pulse', { speed: 'fast' }), 'item-match-outline')}
@@ -156,7 +156,7 @@ export function ResultsModalContent({
             .filter((id) => id !== lastMatch)
             .slice(0, Math.floor((progress - 1) / 3))
             .map((id, index) => (
-              <ItemCard
+              <DailyItem
                 key={id}
                 id={id}
                 width={45}

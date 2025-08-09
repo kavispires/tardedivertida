@@ -26,7 +26,7 @@ export function DailyGame({ gameName, GameComponent }: DailyGameProps) {
 
   const dailyData = challengeQuery?.data?.[gameName];
 
-  if (challengeQuery.isError || !dailyData) {
+  if (challengeQuery.isError || !dailyData || typeof dailyData !== 'object') {
     return <DailyError />;
   }
 
@@ -56,7 +56,7 @@ export function DemoGame({ GameComponent, useDemoHook, lsKey }: DemoGameProps) {
 
   const demoData = demo?.data;
 
-  if (demo.isError || !demoData) {
+  if (demo.isError || !demoData || typeof demoData !== 'object') {
     return <DailyError />;
   }
 
@@ -83,7 +83,7 @@ export function DailyGameBetaRelease({
 
   const dailyData = challengeQuery?.data?.[gameName];
 
-  if (challengeQuery.isError) {
+  if (challengeQuery.isError || typeof dailyData !== 'object') {
     return <DailyError />;
   }
 

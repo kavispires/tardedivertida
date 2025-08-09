@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { DailyItem } from 'pages/Daily/components/DailyItem';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { useMemo } from 'react';
 // Ant Design Resources
@@ -12,7 +13,6 @@ import { BoxXIcon } from 'icons/BoxXIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
@@ -85,7 +85,7 @@ export function ResultsModalContent({
       <Flex align="center" gap={3}>
         {correctItems.map((itemId, index) =>
           itemId ? (
-            <ItemCard
+            <DailyItem
               key={itemId}
               id={itemId}
               width={45}
@@ -99,7 +99,7 @@ export function ResultsModalContent({
               )}
             />
           ) : (
-            <ItemCard key={`empty-${index}`} id="0" width={45} className="organiku-incomplete-item" />
+            <DailyItem key={`empty-${index}`} id="0" width={45} className="organiku-incomplete-item" />
           ),
         )}
       </Flex>

@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { DailyItem } from 'pages/Daily/components/DailyItem';
 import { Region, TextRegion } from 'pages/Daily/components/Region';
 import { useState } from 'react';
 // Ant Design Resources
@@ -14,7 +15,6 @@ import { getAnimationClass } from 'utils/helpers';
 import { DailyGroupingGameIcon } from 'icons/DailyGroupingGameIcon';
 // Components
 import { TransparentButton } from 'components/buttons';
-import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate, Translate } from 'components/language';
 import { Instruction } from 'components/text';
 // Internal
@@ -82,7 +82,7 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
                 <div className={clsx('grid')}>
                   {match.itemsIds.map((itemId) => (
                     <div key={itemId} className="set-match-item">
-                      <ItemCard key={itemId} id={itemId} className="transparent" width={width} />
+                      <DailyItem key={itemId} id={itemId} className="transparent" width={width} />
                     </div>
                   ))}
                 </div>
@@ -100,7 +100,7 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
                 onClick={() => onSelectItem(itemId)}
                 className={clsx('grid-item', { 'grid-item--selected': selection.includes(itemId) })}
               >
-                <ItemCard id={itemId} className="transparent" width={width} />
+                <DailyItem id={itemId} className="transparent" width={width} />
               </TransparentButton>
             ))}
           </div>

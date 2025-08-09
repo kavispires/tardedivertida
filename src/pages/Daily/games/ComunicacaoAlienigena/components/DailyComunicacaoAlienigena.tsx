@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { DailyItem } from 'pages/Daily/components/DailyItem';
 import { Region } from 'pages/Daily/components/Region';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
@@ -14,7 +15,6 @@ import { getAnimationClass } from 'utils/helpers';
 import { DailyAlienGameIcon } from 'icons/DailyAlienGameIcon';
 // Components
 import { TransparentButton } from 'components/buttons';
-import { ItemCard } from 'components/cards/ItemCard';
 import { SignCard } from 'components/cards/SignCard';
 import { DualTranslate, Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -86,7 +86,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
                 <ArrowRightOutlined />
                 <Flex className="alien-attributes__items">
                   {attribute.itemsIds.map((itemId) => (
-                    <ItemCard
+                    <DailyItem
                       key={itemId}
                       id={itemId}
                       width={width - 12}
@@ -149,7 +149,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
                       className="mt-1"
                       disabled={isComplete}
                     >
-                      <ItemCard id={selected} width={isLose ? width / 2 : width} padding={0} />
+                      <DailyItem id={selected} width={isLose ? width / 2 : width} padding={0} />
                     </TransparentButton>
                   ) : (
                     <TransparentButton
@@ -166,7 +166,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
                   )}
 
                   {isComplete && (
-                    <ItemCard
+                    <DailyItem
                       id={request.itemId}
                       width={width}
                       padding={6}
@@ -182,7 +182,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
               {previousGuesses.map((guess) => (
                 <Space key={String(guess)}>
                   {guess.map((itemId) => (
-                    <ItemCard
+                    <DailyItem
                       key={itemId}
                       id={itemId}
                       width={Math.max(width / 2, 40)}
@@ -217,7 +217,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
                 disabled={isComplete || isReady || selection.includes(itemId)}
                 className="alien-items__item-button"
               >
-                <ItemCard id={itemId} width={width} padding={0} />
+                <DailyItem id={itemId} width={width} padding={0} />
               </TransparentButton>
             ))}
           </SpaceContainer>
@@ -232,7 +232,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
               {previousGuesses.map((guess) => (
                 <Space key={String(guess)}>
                   {guess.map((itemId) => (
-                    <ItemCard
+                    <DailyItem
                       key={itemId}
                       id={itemId}
                       width={Math.max(width / 2, 40)}
