@@ -15,6 +15,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { DailyAlienGameIcon } from 'icons/DailyAlienGameIcon';
 // Components
 import { TransparentButton } from 'components/buttons';
+import { DivButton } from 'components/buttons/DivButton';
 import { SignCard } from 'components/cards/SignCard';
 import { DualTranslate, Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -86,13 +87,14 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
                 <ArrowRightOutlined />
                 <Flex className="alien-attributes__items">
                   {attribute.itemsIds.map((itemId) => (
-                    <DailyItem
-                      key={itemId}
-                      id={itemId}
-                      width={width - 12}
-                      className="alien-attributes__item"
-                      padding={0}
-                    />
+                    <DivButton key={itemId}>
+                      <DailyItem
+                        id={itemId}
+                        width={width - 12}
+                        className="alien-attributes__item"
+                        padding={0}
+                      />
+                    </DivButton>
                   ))}
                 </Flex>
               </Flex>
