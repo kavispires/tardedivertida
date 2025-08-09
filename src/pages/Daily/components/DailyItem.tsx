@@ -63,6 +63,7 @@ export function DailyItem({
       title={tooltipTitle}
       placement="top"
       open={open}
+      trigger={['hover']}
       onOpenChange={(visible) => {
         if (!visible) {
           setOpen(false);
