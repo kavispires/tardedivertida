@@ -1,4 +1,5 @@
 import { Keyboard } from 'pages/Daily/components/Keyboard';
+import { RegionText } from 'pages/Daily/components/Region';
 import { useState } from 'react';
 // Ant Design Resources
 import { BarChartOutlined } from '@ant-design/icons';
@@ -44,6 +45,9 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
           openRules={!isComplete || hearts === SETTINGS.HEARTS}
           rules={<Rules date={data.id} />}
         />
+        <RegionText>
+          <Translate pt="Adivinhe a expressão, letra por letra" en="Guess the expression, letter by letter" />
+        </RegionText>
 
         <DrawingCarousel drawings={data.drawings} />
 

@@ -255,12 +255,24 @@
   }
 }
 
-.text-region {
-  margin: get-unit(2 auto);
-  width: calc(100% - get-unit(4));
-  max-width: 720px;
-  display: flex;
-  justify-content: center;
+.region {
+  max-width: 98vw;
+  margin-left: get-unit(2);
+  margin-right: get-unit(2);
+}
+
+.region-text {
+  text-align: center;
+  display: block;
+  text-wrap: wrap;
+}
+
+.region-hint {
+  border: 1px solid get-color("white");
+  padding: get-unit(1 3);
+  border-radius: var(--border-radius);
+  color: get-color("white");
+  opacity: 0.85;
 }
 
 .played-wrapper {

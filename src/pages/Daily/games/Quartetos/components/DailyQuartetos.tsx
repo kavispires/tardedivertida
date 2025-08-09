@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { DailyItem } from 'pages/Daily/components/DailyItem';
-import { Region, TextRegion } from 'pages/Daily/components/Region';
+import { Region, RegionHint, RegionText } from 'pages/Daily/components/Region';
 import { useState } from 'react';
 // Ant Design Resources
 import { BarChartOutlined } from '@ant-design/icons';
@@ -16,7 +16,6 @@ import { DailyGroupingGameIcon } from 'icons/DailyGroupingGameIcon';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { DualTranslate, Translate } from 'components/language';
-import { Instruction } from 'components/text';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
@@ -68,11 +67,9 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
           rules={<Rules date={data.id} />}
         />
 
-        <TextRegion>
-          <Instruction contained noMargin>
-            <Translate pt="Faça quatro grupos de quatro" en="Connect four groups of four" />
-          </Instruction>
-        </TextRegion>
+        <RegionText>
+          <Translate pt="Faça quatro grupos de quatro" en="Connect four groups of four" />
+        </RegionText>
 
         <Region>
           {matches.map((match) => {
@@ -127,6 +124,23 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
             </Flex>
           </Region>
         )}
+
+        <RegionHint>
+          <Translate
+            pt={
+              <>
+                Você pode segurar o dedo no ícone para ver ter uma ideia do que o ícone é, mas nem sempre o
+                nome dado é o que exatamente foi usado para o tema do quarteto.
+              </>
+            }
+            en={
+              <>
+                You can press and hold the icon to get an idea of what the icon is, but the given name is not
+                always exactly what was used for the quartet theme.
+              </>
+            }
+          />
+        </RegionHint>
 
         <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
           <ResultsModalContent

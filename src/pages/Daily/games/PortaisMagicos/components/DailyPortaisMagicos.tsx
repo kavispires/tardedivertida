@@ -1,4 +1,4 @@
-import { Region, TextRegion } from 'pages/Daily/components/Region';
+import { Region, RegionText } from 'pages/Daily/components/Region';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { BarChartOutlined, SendOutlined } from '@ant-design/icons';
@@ -11,7 +11,6 @@ import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { DailyImagesGameIcon } from 'icons/DailyImagesGameIcon';
 // Components
 import { DualTranslate, Translate } from 'components/language';
-import { Instruction } from 'components/text';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
@@ -86,14 +85,12 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
               />
             </Region>
 
-            <TextRegion>
-              <Instruction contained noMargin>
-                <Translate
-                  en="Arrange the words vertically to form the passcode"
-                  pt="Organize as palavras verticalmente para formar a palavra-chave"
-                />
-              </Instruction>
-            </TextRegion>
+            <RegionText>
+              <Translate
+                en="Arrange the words vertically to form the passcode"
+                pt="Organize as palavras verticalmente para formar a palavra-chave"
+              />
+            </RegionText>
 
             <Region key={`passcode-${currentCorridor?.passcode}`}>
               <Passcode

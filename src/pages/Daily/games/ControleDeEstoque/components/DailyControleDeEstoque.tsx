@@ -1,4 +1,4 @@
-import { Region, TextRegion } from 'pages/Daily/components/Region';
+import { Region } from 'pages/Daily/components/Region';
 import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
@@ -103,13 +103,13 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
           />
         )}
 
-        <TextRegion direction="horizontal" split={<Divider type="vertical" />}>
+        <Region direction="horizontal" split={<Divider type="vertical" />}>
           {evaluations.map((attempt, index) => (
             <Tooltip key={`${attempt}-${index}`} title={<Translate pt="Acertos" en="Correct" />}>
               <span>{attempt.filter(Boolean).length} 📫</span>
             </Tooltip>
           ))}
-        </TextRegion>
+        </Region>
 
         <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
           <ResultsModalContent

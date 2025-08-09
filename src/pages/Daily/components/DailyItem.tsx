@@ -49,7 +49,7 @@ export function DailyItem({
 
     timerRef.current = setTimeout(() => {
       setOpen(true);
-    }, 1000);
+    }, 500);
   }, [tooltipTitle]);
 
   // Handle events on the document level
