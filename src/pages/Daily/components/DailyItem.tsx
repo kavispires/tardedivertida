@@ -1,6 +1,5 @@
 import clsx from 'clsx';
-import { useState, useEffect } from 'react';
-import { useLongPress } from 'react-use';
+import { useState, useEffect, useRef, useCallback } from 'react';
 // Ant Design Resources
 import { Tooltip } from 'antd';
 // Utils
@@ -10,11 +9,6 @@ import { getSource, type ItemCardProps } from 'components/cards/ItemCard';
 import { DEFAULT_SPRITE_SIZE, Sprite } from 'components/sprites';
 // Internal
 import { useDailyChallenge } from '../hooks/useDailyChallenge';
-
-const defaultOptions = {
-  isPreventDefault: false,
-  delay: 1000,
-};
 
 /**
  * An item entry component.
@@ -31,51 +25,84 @@ export function DailyItem({
   const { itemsDictionary } = useDailyChallenge();
   const [source, itemId] = getSource(id);
   const [open, setOpen] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const tooltipTitle = title ?? itemsDictionary[id];
 
-  // Handle touch events for mobile
+  // Reset timer and close tooltip on unmount
   useEffect(() => {
-    const handleTouchEnd = () => {
-      if (open) {
-        setOpen(false);
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, []);
+
+  // Handle press events
+  const startTimer = useCallback(() => {
+    // Don't start the timer if there's no tooltip title to display
+    if (!tooltipTitle) return;
+
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+
+    timerRef.current = setTimeout(() => {
+      setOpen(true);
+    }, 1000);
+  }, [tooltipTitle]);
+
+  // Handle events on the document level
+  useEffect(() => {
+    // If there's no tooltip title, don't set up any listeners
+    if (!tooltipTitle) return;
+
+    const handleStart = (e: TouchEvent | MouseEvent) => {
+      if (containerRef.current?.contains(e.target as Node)) {
+        startTimer();
       }
     };
 
-    // Add event listeners when tooltip is open
-    if (open) {
-      document.addEventListener('touchend', handleTouchEnd, { passive: true });
-      document.addEventListener('mouseup', handleTouchEnd, { passive: true });
-    }
+    const handleEnd = () => {
+      // Only clear the timer if we haven't shown the tooltip yet
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
 
-    // Cleanup function to remove the event listeners
-    return () => {
-      document.removeEventListener('touchend', handleTouchEnd);
-      document.removeEventListener('mouseup', handleTouchEnd);
+      // If we were pressing our element and the tooltip is open, close it
+      setOpen(false);
     };
-  }, [open]);
+
+    // Add listeners to handle press and release events
+    document.addEventListener('touchstart', handleStart, { passive: true });
+    document.addEventListener('touchend', handleEnd, { passive: true });
+    document.addEventListener('touchcancel', handleEnd, { passive: true });
+    document.addEventListener('mousedown', handleStart, { passive: true });
+    document.addEventListener('mouseup', handleEnd, { passive: true });
+    document.addEventListener('mouseleave', handleEnd, { passive: true });
+
+    return () => {
+      // Clean up listeners
+      document.removeEventListener('touchstart', handleStart);
+      document.removeEventListener('touchend', handleEnd);
+      document.removeEventListener('touchcancel', handleEnd);
+      document.removeEventListener('mousedown', handleStart);
+      document.removeEventListener('mouseup', handleEnd);
+      document.removeEventListener('mouseleave', handleEnd);
+    };
+  }, [startTimer, tooltipTitle]);
 
   const height = `${width}px`;
   const divPadding = padding === 0 ? { padding: 0 } : {};
 
-  const tooltipTitle = title ?? itemsDictionary[id];
-
-  // Start showing tooltip on long press, and hide when released
-  const longPressEvent = useLongPress(() => tooltipTitle && setOpen(true), defaultOptions);
-
   return (
-    <Tooltip
-      title={tooltipTitle}
-      placement="top"
-      open={open}
-      trigger={[]}
-      destroyTooltipOnHide={true}
-      styles={{
-        root: {
-          pointerEvents: 'none',
-        },
-      }}
-      {...longPressEvent}
-    >
-      <div className={clsx('item-card', className)} style={{ width: `${width}px`, height, ...divPadding }}>
+    <Tooltip title={tooltipTitle} placement="top" open={tooltipTitle ? open : false} trigger={[]}>
+      <div
+        className={clsx('item-card', className)}
+        style={{ width: `${width}px`, height, ...divPadding }}
+        ref={containerRef}
+      >
         <Sprite source={source} id={itemId} width={width} title={title} padding={padding} />
       </div>
     </Tooltip>
