@@ -1,6 +1,7 @@
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { getAnalyticsEventName } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { useEffect } from 'react';
@@ -47,7 +48,7 @@ export function useArteRuimEngine(data: DailyArteRuimEntry, initialState: GameSt
       if (win) {
         playSFX('win');
         updatedStatus = STATUSES.WIN;
-        logAnalyticsEvent(`daily_${SETTINGS.KEY}_win`);
+        logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'win'));
       } else {
         playSFX('addCorrect');
       }
@@ -55,7 +56,7 @@ export function useArteRuimEngine(data: DailyArteRuimEntry, initialState: GameSt
       if (state.hearts === 1) {
         playSFX('lose');
         updatedStatus = STATUSES.LOSE;
-        logAnalyticsEvent(`daily_${SETTINGS.KEY}_lose`);
+        logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'lose'));
       } else {
         playSFX('addWrong');
       }

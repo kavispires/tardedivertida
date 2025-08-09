@@ -1,6 +1,7 @@
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { getAnalyticsEventName } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { vibrate } from 'pages/Daily/utils/vibrate';
@@ -67,7 +68,7 @@ export function useOrganikuEngine(data: DailyOrganikuEntry, initialState: GameSt
 
         if (isWin) {
           playSFX('win');
-          logAnalyticsEvent(`daily_${SETTINGS.KEY}_win`);
+          logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'win'));
         } else {
           playSFX('wee');
         }
@@ -95,7 +96,7 @@ export function useOrganikuEngine(data: DailyOrganikuEntry, initialState: GameSt
       if (isLose) {
         playSFX('lose');
         vibrate('lose');
-        logAnalyticsEvent(`daily_${SETTINGS.KEY}_lose`);
+        logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'lose'));
       } else {
         playSFX('wrong');
         vibrate('wrong');

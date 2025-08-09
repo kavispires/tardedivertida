@@ -2,6 +2,7 @@ import { chunk, cloneDeep } from 'lodash';
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { getAnalyticsEventName } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { vibrate } from 'pages/Daily/utils/vibrate';
@@ -118,11 +119,11 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
       let newStatus = prev.status;
       if (isAllCorrect) {
         newStatus = STATUSES.WIN;
-        logAnalyticsEvent(`daily_${SETTINGS.KEY}_win`);
+        logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'win'));
       }
       if (updatedHearts === 0) {
         newStatus = STATUSES.LOSE;
-        logAnalyticsEvent(`daily_${SETTINGS.KEY}_lose`);
+        logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'lose'));
       }
 
       updateSession({

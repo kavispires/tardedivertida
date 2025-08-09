@@ -11,7 +11,7 @@ import { DualTranslate, Translate } from 'components/language';
 // Internal
 import type { GameSettings } from '../utils/types';
 import { ALL_SETTINGS } from '../utils/settings';
-import { checkWasPlayedToday } from '../utils';
+import { checkWasPlayedToday, getAnalyticsEventName } from '../utils';
 
 const PRIORITY_LIST = orderBy(
   [
@@ -46,7 +46,7 @@ function NextSuggestionEntry({ settings }: { settings: GameSettings }) {
       <br />
       <Link
         to={`/diario/${settings.ROUTE}`}
-        onClick={() => logAnalyticsEvent(`daily_${settings.KEY}_game_suggestion`)}
+        onClick={() => logAnalyticsEvent(getAnalyticsEventName(settings.KEY, 'game_suggestion'))}
       >
         <IconAvatar icon={<settings.HUB_ICON />} /> <DualTranslate>{settings.NAME}</DualTranslate>!
       </Link>

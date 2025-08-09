@@ -2,6 +2,7 @@ import { cloneDeep } from 'lodash';
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { getAnalyticsEventName } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { vibrate } from 'pages/Daily/utils/vibrate';
@@ -148,14 +149,14 @@ export function useControleDeEstoqueEngine(data: DailyControleDeEstoqueEntry, in
       if (isAllCorrect) {
         copy.status = STATUSES.WIN;
         playSFX('win');
-        logAnalyticsEvent(`daily_${SETTINGS.KEY}_win`);
+        logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'win'));
       } else {
         copy.hearts -= 1;
         if (copy.hearts === 0) {
           playSFX('lose');
           vibrate('lose');
           copy.status = STATUSES.LOSE;
-          logAnalyticsEvent(`daily_${SETTINGS.KEY}_lose`);
+          logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'lose'));
         }
       }
       updateSession({ latestAttempt: Date.now() });

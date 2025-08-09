@@ -2,6 +2,7 @@ import { cloneDeep, sampleSize } from 'lodash';
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useDailySaveTestimonies } from 'pages/Daily/hooks/useDailySave';
+import { getAnalyticsEventName } from 'pages/Daily/utils';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { useEffect } from 'react';
 import { useLocalStorage } from 'react-use';
@@ -146,7 +147,7 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
   const mutation = useDailySaveTestimonies(() => {
     updateState({ played: true });
     updateSession({ screen: 'idle' });
-    logAnalyticsEvent(`daily_${SETTINGS.KEY}_played`);
+    logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'played'));
   });
 
   useMarkAsPlayed({

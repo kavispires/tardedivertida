@@ -2,7 +2,7 @@ import { sampleSize } from 'lodash';
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useDailySaveDrawings } from 'pages/Daily/hooks/useDailySave';
-import { wait } from 'pages/Daily/utils';
+import { getAnalyticsEventName, wait } from 'pages/Daily/utils';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { useEffect } from 'react';
 // Types
@@ -71,7 +71,7 @@ export function usePicacoEngine(data: DailyPicacoEntry, currentUser: Me, initial
   const mutation = useDailySaveDrawings(() => {
     updateState({ played: true });
     updateSession({ screen: 'idle' });
-    logAnalyticsEvent(`daily_${SETTINGS.KEY}_played`);
+    logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'played'));
   });
 
   useMarkAsPlayed({

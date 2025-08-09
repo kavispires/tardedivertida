@@ -2,6 +2,7 @@ import { cloneDeep } from 'lodash';
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { getAnalyticsEventName } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { vibrate } from 'pages/Daily/utils/vibrate';
@@ -105,7 +106,7 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry, in
             playSFX('lose');
             vibrate('lose');
             copy.status = STATUSES.LOSE;
-            logAnalyticsEvent(`daily_${SETTINGS.KEY}_lose`);
+            logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'lose'));
           }
         }
 
@@ -118,7 +119,7 @@ export function useTeoriaDeConjuntosEngine(data: DailyTeoriaDeConjuntosEntry, in
         // Check if all things are placed and update win state
         if (copy.hand.length === 0) {
           copy.status = STATUSES.WIN;
-          logAnalyticsEvent(`daily_${SETTINGS.KEY}_win`);
+          logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'win'));
           playSFX('win');
         }
       }
