@@ -1,0 +1,1 @@
+import{r as a}from"./index-ON3rR3I_.js";function l(o,n){const[t,e]=a.useState(o),u=c=>{const p=!n||n(t);if(!t[c]&&p)e(s=>({...s,[c]:!0}));else{const s={...t};delete s[c],e(s)}},i=()=>e(o),r=Object.keys(t);return{dict:t,setDict:e,updateDict:u,reset:i,keys:r,length:r.length}}export{l as u};
