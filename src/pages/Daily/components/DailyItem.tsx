@@ -13,12 +13,12 @@ import { useDailyChallenge } from '../hooks/useDailyChallenge';
 
 const defaultOptions = {
   isPreventDefault: false,
-  delay: 750,
+  delay: 1250,
 };
 
 /**
  * An item entry component.
- * On a long press, it displays the name of the item in a tooltip.
+ * On a long press (1.25s), it displays the name of the item in a tooltip, if available.
  */
 export function DailyItem({
   id,
