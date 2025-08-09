@@ -13,12 +13,13 @@ import { useDailyChallenge } from '../hooks/useDailyChallenge';
 
 const defaultOptions = {
   isPreventDefault: false,
-  delay: 1250,
+  delay: 1000,
 };
 
 /**
  * An item entry component.
- * On a long press (1.25s), it displays the name of the item in a tooltip, if available.
+ * On a long press (1s), it displays the name of the item in a tooltip, if available.
+ * The tooltip is shown while pressing and hidden when released.
  */
 export function DailyItem({
   id,
@@ -31,24 +32,24 @@ export function DailyItem({
   const [source, itemId] = getSource(id);
   const [open, setOpen] = useState(false);
 
-  // Add event listeners to close tooltip on mouseDown or touchStart
+  // Handle touch events for mobile
   useEffect(() => {
-    const handleInteraction = () => {
+    const handleTouchEnd = () => {
       if (open) {
         setOpen(false);
       }
     };
 
-    // Add the event listeners when tooltip is open
+    // Add event listeners when tooltip is open
     if (open) {
-      document.addEventListener('mousedown', handleInteraction);
-      document.addEventListener('touchstart', handleInteraction);
+      document.addEventListener('touchend', handleTouchEnd, { passive: true });
+      document.addEventListener('mouseup', handleTouchEnd, { passive: true });
     }
 
     // Cleanup function to remove the event listeners
     return () => {
-      document.removeEventListener('mousedown', handleInteraction);
-      document.removeEventListener('touchstart', handleInteraction);
+      document.removeEventListener('touchend', handleTouchEnd);
+      document.removeEventListener('mouseup', handleTouchEnd);
     };
   }, [open]);
 
@@ -56,6 +57,8 @@ export function DailyItem({
   const divPadding = padding === 0 ? { padding: 0 } : {};
 
   const tooltipTitle = title ?? itemsDictionary[id];
+
+  // Start showing tooltip on long press, and hide when released
   const longPressEvent = useLongPress(() => tooltipTitle && setOpen(true), defaultOptions);
 
   return (
@@ -63,11 +66,12 @@ export function DailyItem({
       title={tooltipTitle}
       placement="top"
       open={open}
-      trigger={['hover']}
-      onOpenChange={(visible) => {
-        if (!visible) {
-          setOpen(false);
-        }
+      trigger={[]}
+      destroyTooltipOnHide={true}
+      styles={{
+        root: {
+          pointerEvents: 'none',
+        },
       }}
       {...longPressEvent}
     >
