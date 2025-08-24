@@ -1,0 +1,1 @@
+import{aK as s,r,ci as a}from"./index-B59rn_-v.js";import{u as n}from"./useBlurCards-Bry5ukOR.js";import{l as u}from"./StepSwitcher-B8uYiUwn.js";function l(i,m=[],e){u(),s("userId");const[t,c]=r.useState(!1),o=e??a([3,4,4,5,6]);return n({duration:o,onExpire:()=>{},disabled:t})}export{l as u};
