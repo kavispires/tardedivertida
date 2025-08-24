@@ -39,6 +39,7 @@ export function SelectTable({ table, onSelectCard, selectedCards }: SelectTableP
                 <ImageCardButton
                   id={card.id}
                   onClick={() => onSelectCard(card.id)}
+                  throttle
                   over
                   buttonPosition="bottom"
                   icon={isSelected ? <CloseCircleOutlined /> : undefined}

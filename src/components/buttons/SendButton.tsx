@@ -8,13 +8,13 @@ import { useLoading } from 'hooks/useLoading';
 
 type SendButtonProps = ButtonProps & {
   /**
-   * Override default 1500 ms throttle time
+   * Override default 750 ms throttle time
    */
   throttleTime?: number;
 };
 
 export const SendButton = forwardRef<HTMLButtonElement, SendButtonProps>(
-  ({ onClick, throttleTime = 1500, icon, loading, type = 'primary', ...props }, ref) => {
+  ({ onClick, throttleTime = 750, icon, loading, type = 'primary', ...props }, ref) => {
     const { isLoading } = useLoading();
 
     // Use useCallback to memoize the throttled function
