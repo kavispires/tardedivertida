@@ -8,7 +8,7 @@ import { useLoading } from './useLoading';
 import { useGlobalState } from './useGlobalState';
 import { useGameMeta } from './useGameMeta';
 
-const debounce = (func: any, timeout = 1500): ((...args: any[]) => any) => {
+const debounce = (func: any, timeout = 750): ((...args: any[]) => any) => {
   let timer: ReturnType<typeof setTimeout>;
   return (...args: any[]) => {
     clearTimeout(timer);

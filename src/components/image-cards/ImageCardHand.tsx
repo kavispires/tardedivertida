@@ -19,7 +19,7 @@ type ImageCardHandProps = {
   /**
    * Function to trigger when clicking on the select button
    */
-  onSelectCard?: GenericFunction;
+  onSelectCard?: (cardId: ImageCardId) => void;
   /**
    * Select button custom label
    */
@@ -108,6 +108,7 @@ export function ImageCardHand({
                 icon={selectButtonIcon}
                 buttonText={selectButtonText}
                 disabled={disabledSelectButton}
+                throttle={!!onSelectCard}
               >
                 <ImageCard
                   id={cardId}

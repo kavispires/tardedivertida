@@ -1,5 +1,6 @@
 import clsx from 'clsx';
-import type { ReactNode } from 'react';
+import { throttle as throttleFunc } from 'lodash';
+import { useEffect, useMemo, useRef, type ReactNode } from 'react';
 // Ant Design Resources
 import { DownCircleOutlined, UpCircleOutlined } from '@ant-design/icons';
 import { Button, type ButtonProps } from 'antd';
@@ -57,6 +58,10 @@ type ImageCardButtonProps = {
    * Hides button
    */
   hideButton?: boolean;
+  /**
+   * Whether to enable throttling for the button click (use when the click performs an API call)
+   */
+  throttle?: boolean;
 };
 
 export function ImageCardButton({
@@ -71,12 +76,36 @@ export function ImageCardButton({
   buttonText,
   buttonProps = {},
   hideButton = false,
+  throttle = false,
 }: ImageCardButtonProps) {
   const isTop = buttonPosition === 'top';
 
   const iconComponent = icon ?? (isTop ? <DownCircleOutlined /> : <UpCircleOutlined />);
 
   const { className: buttonClassName, ...restButtonProps } = buttonProps;
+
+  const latest = useRef({ id, onClick });
+  latest.current = { id, onClick };
+
+  const throttled = useMemo(() => {
+    if (!throttle) return null;
+
+    // leading true + trailing false avoids the "double fire" at the end
+    const fn = throttleFunc(() => latest.current.onClick?.(latest.current.id), 750, {
+      leading: true,
+      trailing: false,
+    });
+
+    return fn;
+    // depend ONLY on `throttle` so we don't recreate across renders
+  }, [throttle]);
+
+  useEffect(() => {
+    // cancel pending trailing calls on unmount
+    return () => throttled?.cancel();
+  }, [throttled]);
+
+  const handleClick = throttle ? () => throttled?.() : () => onClick?.(id);
 
   const button =
     !hideButton && onClick ? (
@@ -90,7 +119,7 @@ export function ImageCardButton({
           over && `image-card-button__button--over-${buttonPosition}`,
           buttonClassName,
         )}
-        onClick={() => onClick(id)}
+        onClick={handleClick}
         disabled={disabled}
         {...restButtonProps}
       >

@@ -93,6 +93,7 @@ export function StepVoting({
                 buttonText={
                   isUserCard ? <Translate pt="Sua" en="Yours" /> : <Translate pt="Votar" en="Vote" />
                 }
+                throttle
               >
                 <ImageCard
                   id={cardEntry.cardId}
