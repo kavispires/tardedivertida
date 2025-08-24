@@ -14,7 +14,7 @@ type SendButtonProps = ButtonProps & {
 };
 
 export const SendButton = forwardRef<HTMLButtonElement, SendButtonProps>(
-  ({ onClick, debounceTime = 500, icon, loading, type = 'primary', ...props }, ref) => {
+  ({ onClick, debounceTime = 1500, icon, loading, type = 'primary', ...props }, ref) => {
     const { isLoading } = useLoading();
 
     // Use useCallback to memoize the debounced function
