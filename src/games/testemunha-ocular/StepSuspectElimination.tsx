@@ -1,6 +1,7 @@
+import { useMemo } from 'react';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { SuspectCard } from 'types/tdr';
+import type { SuspectCard, TestimonyQuestionCard } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Icons
@@ -30,7 +31,7 @@ type StepSuspectEliminationProps = {
   witness: GamePlayer;
   questioner: GamePlayer;
   onEliminate: (payload: EliminatePayload) => void;
-  question: GamePlayer;
+  question: TestimonyQuestionCard;
   testimony: boolean;
   history: THistoryEntry[];
   status: Status;
@@ -52,10 +53,16 @@ export function StepSuspectElimination({
   announcement,
   status,
 }: StepSuspectEliminationProps) {
-  const { translate } = useLanguage();
+  const { translate, language } = useLanguage();
 
   const onEliminateSuspect = (suspectId: string) => onEliminate({ suspectId, pass: false });
   const onPass = () => onEliminate({ suspectId: '', pass: true });
+
+  const { answer, oppositeAction } = useMemo(() => {
+    const answer = buildAnswer(question, testimony, language);
+    const oppositeAction = buildAnswer(question, !testimony, language);
+    return { answer, oppositeAction };
+  }, [question, testimony, language]);
 
   return (
     <Step announcement={announcement}>
@@ -79,8 +86,7 @@ export function StepSuspectElimination({
           className="t-card"
           size="large"
         >
-          {testimony ? '' : translate('não ', 'does not ')}
-          {question.answer}
+          {answer}
         </Card>
       </SpaceContainer>
 
@@ -114,9 +120,7 @@ export function StepSuspectElimination({
           />
           <br />
           <Translate pt="E deve ser alguém que" en="It must someone that " />{' '}
-          <TextHighlight>
-            {testimony ? translate('NÃO ', 'DOES NOT ') : ''} {question.answer}
-          </TextHighlight>
+          <TextHighlight>{oppositeAction}</TextHighlight>
         </RuleInstruction>
       )}
 
@@ -133,3 +137,27 @@ export function StepSuspectElimination({
     </Step>
   );
 }
+
+const buildAnswer = (question: TestimonyQuestionCard, testimony: boolean, language: string) => {
+  if (language === 'pt') {
+    if (testimony) {
+      return question.answer;
+    }
+    if (question.answer.startsWith('Já')) {
+      return `nunca ${question.answer.slice(3)}`;
+    }
+    return `não ${question.answer}`;
+  }
+
+  if (language === 'en') {
+    if (testimony) {
+      return question.answer;
+    }
+    if (question.question.includes('ever')) {
+      return `haver never ${question.answer.slice(5)}`;
+    }
+    return `does not ${question.answer}`;
+  }
+
+  return '';
+};
