@@ -19,30 +19,15 @@ export const getQuestionsAndSuspects = async (
   language: string,
   options: TestemunhaOcularOptions,
 ): Promise<ResourceData> => {
-  // Get full deck
-  const allCards = await resourceUtils.fetchResource<Dictionary<TestimonyQuestionCard>>(
+  const availableCards = await utils.tdr.getUnusedResources<TestimonyQuestionCard>(
     TDR_RESOURCES.TESTIMONY_QUESTIONS,
-    language,
+    GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS,
+    language as Language,
+    options.nsfw,
+    QUESTION_COUNT,
   );
-  // Get used deck
-  const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS, {});
-  // Get images info
+
   const allSuspects = await resourceUtils.fetchResource<Dictionary<SuspectCard>>(TDR_RESOURCES.SUSPECTS);
-
-  // Filter out used cards
-  // Filter out used cards
-  const availableCards = Object.values(utils.game.filterOutByIds(allCards, usedCards)).filter((card) =>
-    options.nsfw ? card : !card.nsfw,
-  );
-
-  // If not the minimum cards needed, reset and use all
-  if (Object.keys(availableCards).length < QUESTION_COUNT) {
-    await utils.firestore.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS);
-    return {
-      allCards: options.nsfw ? Object.values(allCards) : Object.values(allCards).filter((card) => !card.nsfw),
-      allSuspects: Object.values(allSuspects),
-    };
-  }
 
   return {
     allCards: availableCards,

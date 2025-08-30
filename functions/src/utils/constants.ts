@@ -285,7 +285,7 @@ export const GLOBAL_USED_DOCUMENTS = {
   SINGLE_WORDS: 'usedSingleWords',
   SUSPECTS: 'usedSuspects',
   TESTIMONY_QUESTIONS: 'usedTestimonyQuestions',
-};
+} as const;
 
 export const DATA_DOCUMENTS = {
   CONTENDERS_GLYPHS: 'contendersGlyphs',
@@ -302,7 +302,7 @@ export const DATA_DOCUMENTS = {
   MONSTER_DRAWINGS: 'monsterDrawings',
   PAIRS: 'pairs',
   SIGNS: 'signs', // requires language suffix
-};
+} as const;
 
 export const TDR_RESOURCES = {
   ADJECTIVES: 'adjectives',
@@ -361,7 +361,7 @@ export const TDR_RESOURCES = {
   WAREHOUSE_BOSS_IDEAS: 'warehouse-boss-ideas',
   WARNING_SIGNS_DESCRIPTORS: 'warning-signs-descriptors',
   WARNING_SIGNS_SUBJECTS: 'warning-signs-subjects',
-};
+} as const;
 
 export const SEPARATOR = ';;';
 
