@@ -324,3 +324,5 @@ type SuspectCardsOptions = {
 type ContendersDecksOptions = {
   contenderDecks: string[];
 };
+
+type ValueOf<T> = T[keyof T];

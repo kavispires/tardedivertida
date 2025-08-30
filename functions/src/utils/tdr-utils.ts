@@ -152,31 +152,18 @@ export const saveUsedAlienItems = async (items: Item[]) => {
 
 /**
  * Get single words for given quantity or all of them
- * @param language
- * @param quantity
- * @returns
+ * @param language The language to fetch words for
+ * @param quantity Number of words to return, or all if undefined
+ * @returns Array of text cards
  */
 export const getSingleWords = async (language: Language, quantity?: number): Promise<TextCard[]> => {
-  // Get full deck
-  const allWords: Dictionary<TextCard> = await fetchResource(TDR_RESOURCES.SINGLE_WORDS, language);
-
-  if (!quantity) {
-    return Object.values(allWords);
-  }
-
-  // Get used WORDS deck
-  const usedWords: BooleanDictionary = await getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.SINGLE_WORDS, {});
-
-  // Filter out used WORDS
-  let availableWords = gameUtils.filterOutByIds(allWords, usedWords);
-
-  // If not the minimum items needed, reset and use all
-  if (Object.keys(availableWords).length < quantity) {
-    await firestoreUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.SINGLE_WORDS);
-    availableWords = allWords;
-  }
-
-  return gameUtils.getRandomItems(Object.values(availableWords), quantity);
+  return getUnusedResources<TextCard>(
+    TDR_RESOURCES.SINGLE_WORDS,
+    GLOBAL_USED_DOCUMENTS.SINGLE_WORDS,
+    language,
+    true,
+    quantity,
+  );
 };
 
 /**
@@ -275,34 +262,64 @@ export const getContenders = async (
 
 /**
  * Get adjectives for given quantity or all of them
- * @param language
- * @param quantity
- * @returns
+ * @param language The language to fetch adjectives for
+ * @param quantity Number of adjectives to return, or all if undefined
+ * @returns Array of adjective cards
  */
 export const getAdjectives = async (language: Language, quantity?: number): Promise<TextCard[]> => {
+  return getUnusedResources<TextCard>(
+    TDR_RESOURCES.ADJECTIVES,
+    GLOBAL_USED_DOCUMENTS.ADJECTIVES,
+    language,
+    true,
+    quantity,
+  );
+};
+
+/**
+ * Generic function to get resources with NSFW filtering and used tracking
+ * @param resourceKey The key in TDR_RESOURCES to fetch
+ * @param usedDocKey The key in GLOBAL_USED_DOCUMENTS to track used resources
+ * @param language The language to fetch resources for
+ * @param allowNSFW Whether to include NSFW content
+ * @param quantity Number of resources to return, or all if undefined
+ * @returns Array of resources
+ */
+export const getUnusedResources = async <T extends { id: string; nsfw?: boolean }>(
+  resourceKey: ValueOf<typeof TDR_RESOURCES>,
+  usedDocKey: ValueOf<typeof GLOBAL_USED_DOCUMENTS>,
+  language?: Language,
+  allowNSFW = false,
+  quantity?: number,
+): Promise<T[]> => {
   // Get full deck
-  const allAdjectives: Dictionary<TextCard> = await fetchResource(TDR_RESOURCES.ADJECTIVES, language);
+  const allResources: Dictionary<T> = await fetchResource(resourceKey, language);
+
+  // Filter out NSFW resources if not allowed
+  const safeResources = Object.values(allResources).reduce((acc: Dictionary<T>, resource) => {
+    if (allowNSFW || !resource.nsfw) {
+      acc[resource.id] = resource;
+    }
+    return acc;
+  }, {});
 
   if (!quantity) {
-    return gameUtils.shuffle(Object.values(allAdjectives));
+    return gameUtils.shuffle(Object.values(safeResources));
   }
 
-  // Get used WORDS deck
-  const usedAdjectives: BooleanDictionary = await getGlobalFirebaseDocData(
-    GLOBAL_USED_DOCUMENTS.ADJECTIVES,
-    {},
-  );
+  // Get used resources
+  const usedResources: BooleanDictionary = await getGlobalFirebaseDocData(usedDocKey, {});
 
-  // Filter out used WORDS
-  let availableAdjectives = gameUtils.filterOutByIds(allAdjectives, usedAdjectives);
+  // Filter out used resources
+  let availableResources = gameUtils.filterOutByIds(safeResources, usedResources);
 
-  // If not the minimum items needed, reset and use all
-  if (Object.keys(availableAdjectives).length < quantity) {
-    await firestoreUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ADJECTIVES);
-    availableAdjectives = allAdjectives;
+  // If not the minimum resources needed, reset and use all
+  if (Object.keys(availableResources).length < quantity) {
+    await firestoreUtils.resetGlobalUsedDocument(usedDocKey);
+    availableResources = safeResources;
   }
 
-  return gameUtils.getRandomItems(Object.values(availableAdjectives), quantity);
+  return gameUtils.getRandomItems(Object.values(availableResources), quantity);
 };
 
 /**
