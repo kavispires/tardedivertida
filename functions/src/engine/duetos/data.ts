@@ -101,9 +101,13 @@ export const getResourceData = async (language: Language, options?: DuetosOption
   if (specialDeckTypes.includes('suspects')) {
     const allSuspects = await resourceUtils.fetchResource<Dictionary<SuspectCard>>(TDR_RESOURCES.SUSPECTS);
     suspects = utils.game.getRandomItems(
-      utils.imageCards.modifySuspectIdsByOptions(Object.values(allSuspects), {
-        deckType: utils.game.getRandomItem(['ghibli', 'realistic', 'pixar', 'fox']),
-      }),
+      utils.tdr.modifySuspectIdsByOptions(
+        Object.values(allSuspects),
+        {
+          deckType: utils.game.getRandomItem(['ghibli', 'realistic', 'pixar', 'fox']),
+        },
+        true,
+      ),
       quantityNeeded,
     );
   }

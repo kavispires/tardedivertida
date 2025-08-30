@@ -43,9 +43,13 @@ export const getDeck = async (language: Language, options: ComunicacaoDuoOptions
   if (deckType === 'suspects') {
     const allSuspects = await resourceUtils.fetchResource<Dictionary<SuspectCard>>(TDR_RESOURCES.SUSPECTS);
     const suspects = orderBy(
-      utils.imageCards.modifySuspectIdsByOptions(Object.values(allSuspects), {
-        deckType: utils.game.getRandomItem(['ghibli', 'realistic', 'pixar', 'fox']),
-      }),
+      utils.tdr.modifySuspectIdsByOptions(
+        Object.values(allSuspects),
+        {
+          deckType: utils.game.getRandomItem(['ghibli', 'realistic', 'pixar', 'fox']),
+        },
+        true,
+      ),
       [`name.${language}`],
       ['asc'],
     );

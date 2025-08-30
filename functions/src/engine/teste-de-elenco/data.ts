@@ -39,6 +39,6 @@ export const getData = async (language: string, options: TesteDeElencoOptions): 
     moviesSamples: sampleSize(allMovies, 6),
     itemsSamples: items,
     allCards: availableCards,
-    allActors: utils.imageCards.modifySuspectIdsByOptions(Object.values(allSuspects), options),
+    allActors: utils.tdr.modifySuspectIdsByOptions(Object.values(allSuspects), options, true),
   };
 };

@@ -41,6 +41,6 @@ export const getResourceData = async (language: string, options: TaNaCaraOptions
 
   return {
     allCards: availableCards,
-    allSuspects: utils.imageCards.modifySuspectIdsByOptions(Object.values(allSuspects), options),
+    allSuspects: utils.tdr.modifySuspectIdsByOptions(Object.values(allSuspects), options, true),
   };
 };

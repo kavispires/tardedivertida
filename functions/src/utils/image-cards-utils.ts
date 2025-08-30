@@ -1,6 +1,5 @@
 import { throwException } from './firebase';
 import { shuffle } from './game-utils';
-import type { SuspectCard } from '../types/tdr';
 import { fetchResource } from '../engine/resource';
 
 const deckCache = {};
@@ -84,22 +83,4 @@ export const getImageCardsDecks = async (quantity: number): Promise<ImageCardId[
   });
 
   return shuffle(cards);
-};
-
-export const modifySuspectIdsByOptions = (
-  suspects: SuspectCard[],
-  options?: SuspectCardsOptions,
-): SuspectCard[] => {
-  const deckType =
-    {
-      ghibli: 'gb',
-      pixar: 'px',
-      realistic: 'rl',
-      fox: 'fx',
-    }[options?.deckType ?? 'ghibli'] ?? 'gb';
-
-  return suspects.map((suspect) => ({
-    ...suspect,
-    id: `us-${deckType}-${suspect.id.split('-')[1]}`,
-  }));
 };
