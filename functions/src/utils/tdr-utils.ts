@@ -1,7 +1,7 @@
 import { every, some } from 'lodash';
 import { getGlobalFirebaseDocData, updateGlobalFirebaseDoc } from '../engine/global';
 import { fetchResource } from '../engine/resource';
-import type { ContenderCard, Item, TextCard } from '../types/tdr';
+import type { ContenderCard, Item, SuspectCard, TextCard } from '../types/tdr';
 import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from './constants';
 import * as firestoreUtils from './firestore';
 import * as gameUtils from './game-utils';
@@ -303,6 +303,51 @@ export const getAdjectives = async (language: Language, quantity?: number): Prom
   }
 
   return gameUtils.getRandomItems(Object.values(availableAdjectives), quantity);
+};
+
+/**
+ * Modifies the IDs of suspect cards based on the given options.
+ *
+ * @param suspects - An array of suspect cards to modify
+ * @param options - Optional configuration options for suspect cards
+ * @param cleanup - If true, only essential properties of suspects will be included in the result
+ * @returns An array of suspect cards with modified IDs
+ *
+ * The function transforms suspect IDs to follow the format `us-[deckType]-[originalId]`, where:
+ * - `us` is a fixed prefix
+ * - `deckType` is a two-letter code (gb: ghibli, px: pixar, rl: realistic, fx: fox)
+ * - `originalId` is the original ID number extracted from the suspect's ID
+ *
+ * When cleanup is true, only the following properties are included in each suspect:
+ * name, gender, age, ethnicity, build, height, and an empty features array.
+ */
+export const modifySuspectIdsByOptions = (
+  suspects: SuspectCard[],
+  options?: SuspectCardsOptions,
+  cleanup?: boolean,
+): SuspectCard[] => {
+  const deckType =
+    {
+      ghibli: 'gb',
+      pixar: 'px',
+      realistic: 'rl',
+      fox: 'fx',
+    }[options?.deckType ?? 'ghibli'] ?? 'gb';
+
+  return suspects.map((suspect) => ({
+    ...(cleanup
+      ? {
+          name: suspect.name,
+          gender: suspect.gender,
+          age: suspect.age,
+          ethnicity: suspect.ethnicity,
+          build: suspect.build,
+          height: suspect.height,
+          features: [],
+        }
+      : suspect),
+    id: `us-${deckType}-${suspect.id.split('-')[1]}`,
+  }));
 };
 
 /**
