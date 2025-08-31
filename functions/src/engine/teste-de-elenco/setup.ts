@@ -26,7 +26,7 @@ export const prepareSetupPhase = async (
     .getRandomItems(additionalData.allCards, TOTAL_TRAITS)
     .map((trait) => trait.answer);
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     alone: 0,
     together: 0,
     cast: 0,

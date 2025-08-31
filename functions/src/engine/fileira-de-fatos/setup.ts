@@ -26,7 +26,7 @@ export const prepareSetupPhase = async (
   // Build deck
   const deck = utils.game.getRandomItems(resourceData.scenarios, gameOrder.length * SCENARIOS_PER_ROUND);
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     first: 0,
     second: 0,
     third: 0,

@@ -43,7 +43,7 @@ export const prepareSetupPhase = async (
 
   utils.players.distributeNumberIds(players, 0, AVATAR_SPRITE_LIBRARIES.COSTUMES - 1, 'costumeId');
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     facingMonsters: 0,
     lostCandy: 0,
     houses: 0,

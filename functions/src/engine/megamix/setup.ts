@@ -25,7 +25,7 @@ export const prepareSetupPhase = async (
 ): Promise<SaveGamePayload> => {
   utils.players.addPropertiesToPlayers(players, { team: [SIDES.LOSER] });
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     solitaryLoser: 0,
     solitaryWinner: 0,
     longestVIP: 0,

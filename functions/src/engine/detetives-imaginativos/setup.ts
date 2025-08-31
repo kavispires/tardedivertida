@@ -31,7 +31,7 @@ export const prepareSetupPhase = async (
   // Split cards equally between players
   utils.playerHand.dealDeck(players, data.cards, cardsPerPlayer, 'deck');
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     leader: 0,
     impostor: 0,
     defenseTime: 0,

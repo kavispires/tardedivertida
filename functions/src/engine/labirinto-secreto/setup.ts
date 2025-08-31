@@ -48,7 +48,7 @@ export const prepareSetupPhase = async (
 
   const { gameOrder } = utils.players.buildGameOrder(players);
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     adjectives: 0, // card quantity
     negatives: 0, // card quantity but negated
 

@@ -101,7 +101,7 @@ export const prepareJudgeSelectionPhase = async (
   _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     attributeCircle: 0,
     wordCircle: 0,
     contextCircle: 0,

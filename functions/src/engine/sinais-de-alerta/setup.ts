@@ -37,7 +37,7 @@ export const prepareSetupPhase = async (
   const subjectsDeck = utils.game.getRandomItems(allSubjects, cardsNeeded);
   const descriptorsDeck = utils.game.getRandomItems(allDescriptors, cardsNeeded);
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     subjectGuesses: 0,
     descriptorGuesses: 0,
     subjectDrawings: 0,

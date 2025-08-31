@@ -52,7 +52,7 @@ export const prepareSetupPhase = async (
     store.options.fewerCards ? WORDS_PER_CARD - 2 : WORDS_PER_CARD,
   );
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     eliminatedClues: 0,
     clueLength: 0,
     passes: 0,

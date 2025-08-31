@@ -51,7 +51,7 @@ export const prepareSetupPhase = async (
   // Build deck
   const deck = utils.game.getRandomItems(shuffledAvailableCards, QUESTION_COUNT);
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     witness: 0,
     releases: [],
   });

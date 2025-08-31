@@ -59,7 +59,7 @@ export const prepareSetupPhase = async (
       return acc;
     }, {});
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     group: 0,
     solo: 0,
     couple: 0,

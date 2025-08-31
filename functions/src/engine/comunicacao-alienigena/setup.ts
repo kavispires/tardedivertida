@@ -50,7 +50,7 @@ export const prepareSetupPhase = async (
     extraInfo.debugMode = true;
   }
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     objectInquiries: 0,
     singleInquiry: 0,
     correct: 0,

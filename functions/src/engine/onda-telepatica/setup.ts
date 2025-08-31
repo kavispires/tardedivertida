@@ -31,7 +31,7 @@ export const prepareSetupPhase = async (
   const deck = buildDeck(additionalData);
 
   // Setup achievements
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     exact: 0,
     accuracy: 0,
     zero: 0,

@@ -20,17 +20,16 @@ type AchievementResult = {
 /**
  * Sets up achievements in the store by created an achievements object with every player in it with given starting properties
  * @param players
- * @param store
  * @param properties
  * @return the achievements
  */
-export const setup = (players: Players, store: PlainObject, properties: PlainObject) => {
-  store.achievements = {};
+export const setup = (players: Players, properties: PlainObject) => {
+  const achievements = {};
   getListOfPlayers(players).forEach((player) => {
-    store.achievements[player.id] = { ...cloneDeep(properties), playerId: player.id };
+    achievements[player.id] = { ...cloneDeep(properties), playerId: player.id };
   });
 
-  return store.achievements;
+  return achievements;
 };
 
 /**

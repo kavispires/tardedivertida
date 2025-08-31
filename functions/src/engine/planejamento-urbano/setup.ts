@@ -62,7 +62,7 @@ export const prepareSetupPhase = async (
     usedCityLocations[locationId] = allCityLocations[locationId];
   });
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     // TODO
   });
 

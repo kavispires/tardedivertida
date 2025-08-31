@@ -58,7 +58,7 @@ export const prepareSetupPhase = async (
   utils.players.distributeNumberIds(players, 0, AVATAR_SPRITE_LIBRARIES.SHEEP - 1, 'sheepId');
 
   // Setup achievements
-  const achievements = utils.achievements.setup(players, store, { secretScore: 0, distance: 0 });
+  const achievements = utils.achievements.setup(players, { secretScore: 0, distance: 0 });
 
   // Save
   return {

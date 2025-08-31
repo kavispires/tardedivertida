@@ -38,7 +38,7 @@ export const prepareSetupPhase = async (
     resourceData.allScenes,
   );
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     wrongGroups: 0,
     wrong: 0,
     one: 0,

@@ -41,7 +41,7 @@ export const prepareSetupPhase = async (
   // Get word deck
   const wordsDeck = buildDeck(resourceData.allWords);
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     matches: 0,
     fullMatches: 0,
     dreamCount: 0,
