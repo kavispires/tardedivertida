@@ -19,7 +19,7 @@ export const prepareSetupPhase = async (
   players: Players,
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     skipTurn: 0,
     skipPlays: 0,
     plays: [],

@@ -37,7 +37,7 @@ export const prepareSetupPhase = async (
     playerCount * (store.options.singleWordOnly ? 4 : 2),
   );
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     drawingDuration: 0,
     writingDuration: 0,
     randomPromptSelection: 0,

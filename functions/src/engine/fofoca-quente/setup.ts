@@ -24,7 +24,7 @@ export const prepareSetupPhase = async (
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   const options: FofocaQuenteOptions = store.options;
-  const achievements = utils.achievements.setup(players, store, {});
+  const achievements = utils.achievements.setup(players, {});
 
   // Build school board
   const schoolBoard: SchoolLocation[] = resourceData.locations.map((location) => ({

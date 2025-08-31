@@ -56,7 +56,7 @@ export const prepareSetupPhase = async (
     }
   });
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     glyphs: 0,
     positive: 0,
     negative: 0,

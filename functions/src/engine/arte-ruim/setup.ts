@@ -42,7 +42,7 @@ export const prepareSetupPhase = async (
   // Build deck
   const deck = buildDeck(resourceData, playerCount, LEVELS);
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     solitaryFail: 0,
     artistPoints: 0,
     solitaryWin: 0,

@@ -67,7 +67,7 @@ export const prepareSetupPhase = async (
     ...utils.game.getRandomItems(round4, 3),
   ];
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     alone: 0,
     duos: 0,
     groups: 0,

@@ -26,7 +26,7 @@ export const prepareSetupPhase = async (
   // Build deck
   const deck = buildDeck(additionalData.allMonsters, playerCount);
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     votes: 0,
     groupVote: 0,
     witnessPick: 0,

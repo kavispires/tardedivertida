@@ -42,7 +42,7 @@ export const prepareSetupPhase = async (
   const playerCount = store.options?.withBots ? pC + 2 : pC;
 
   // Setup achievements
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     possessions: 0,
     possessionWins: 0,
     possessionLosses: 0,

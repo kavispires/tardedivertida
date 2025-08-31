@@ -27,7 +27,7 @@ export const prepareSetupPhase = async (
   // Build table and distribute cards to players
   const items = utils.game.shuffle([...additionalData['0']]);
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     concepts: 0,
     conceptItems: 0,
     nameLength: 0,

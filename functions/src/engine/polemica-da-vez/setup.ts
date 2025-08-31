@@ -30,7 +30,7 @@ export const prepareSetupPhase = async (
   // Build deck
   const { deck, customDeck } = buildDeck(allTweets);
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     likes: 0,
     exactGuesses: 0,
     almostGuesses: 0,

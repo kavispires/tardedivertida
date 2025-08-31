@@ -61,7 +61,7 @@ export const prepareSetupPhase = async (
   // Get extra contenders to the table in cases there are less than 8 players
   const tableContenders = getTableContenders(contendersDeck, players);
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     quarterBets: 0,
     semiBets: 0,
     finalBets: 0,

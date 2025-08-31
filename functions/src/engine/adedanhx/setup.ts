@@ -47,7 +47,7 @@ export const prepareSetupPhase = async (
     !!options.nsfw,
   );
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     stop: 0,
     first: 0,
     cells: 0,

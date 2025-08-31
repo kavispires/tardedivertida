@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "J",
   "gameName": "mesmice",
-  "version": "1.0.45",
+  "version": "1.0.46",
   "release": "stable",
   "available": true,
   "title": {

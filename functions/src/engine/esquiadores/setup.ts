@@ -35,7 +35,7 @@ export const prepareSetupPhase = async (
   // Build deck
   const deck = utils.game.getRandomItems(resourceData.dilemmas, gameOrder.length * DILEMMAS_PER_ROUND);
 
-  const achievements = utils.achievements.setup(players, store, {
+  const achievements = utils.achievements.setup(players, {
     lodges: 0,
     bets: 0,
     initial: 0,
