@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
+import { throttle } from 'lodash';
 // Ant Design Resources
 import { App } from 'antd';
 // Services
@@ -7,16 +8,6 @@ import { GAME_API, type GAME_API_COMMON_ACTIONS } from 'services/adapters';
 import { useLoading } from './useLoading';
 import { useGlobalState } from './useGlobalState';
 import { useGameMeta } from './useGameMeta';
-
-const debounce = (func: any, timeout = 750): ((...args: any[]) => any) => {
-  let timer: ReturnType<typeof setTimeout>;
-  return (...args: any[]) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      func.apply(this, args);
-    }, timeout);
-  };
-};
 
 export type UseGameActionRequestArgs = {
   actionName: string;
@@ -93,5 +84,5 @@ export function useGameActionRequest({
     },
   });
 
-  return debounce(query.mutate);
+  return throttle(query.mutate, 1000, { leading: true, trailing: false });
 }
