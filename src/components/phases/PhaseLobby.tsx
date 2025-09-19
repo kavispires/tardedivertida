@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import { useEffect } from 'react';
 import { useLocalStorage } from 'react-use';
 // Ant Design Resources
@@ -27,7 +27,7 @@ import { LobbyRules } from './lobby/LobbyRules';
 // Sass
 import './PhaseLobby.scss';
 
-const Paragraph = motion(Typography.Paragraph);
+const Paragraph = motion.create(Typography.Paragraph);
 
 export function PhaseLobby({ players, meta }: PhaseProps) {
   const { step, setStep } = useStep();

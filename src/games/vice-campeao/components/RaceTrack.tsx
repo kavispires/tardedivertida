@@ -1,5 +1,5 @@
-import { motion, AnimatePresence } from 'framer-motion';
 import { orderBy } from 'lodash';
+import { motion, AnimatePresence } from 'motion/react';
 // Ant Design Resources
 import { Avatar, Tooltip } from 'antd';
 // Types

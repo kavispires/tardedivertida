@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 // Ant Design Resources
 import { Flex, Image, Space, Typography } from 'antd';
 // Types

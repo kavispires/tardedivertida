@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { motion, useAnimation, useAnimate } from 'framer-motion';
+import { motion, useAnimation, useAnimate } from 'motion/react';
 import { forwardRef, useEffect, useRef } from 'react';
 // Types
 import type { GamePlayer } from 'types/player';

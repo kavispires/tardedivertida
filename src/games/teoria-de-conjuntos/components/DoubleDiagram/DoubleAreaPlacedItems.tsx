@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
 import type { DiagramArea } from 'games/teoria-de-conjuntos/utils/types';
+import { motion } from 'motion/react';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Avatar } from 'antd';

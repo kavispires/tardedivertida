@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 // Ant Design Resources
 import { Avatar as AntAvatar, Divider, Flex } from 'antd';
 // Types

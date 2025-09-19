@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { DailyItem } from 'pages/Daily/components/DailyItem';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { Region } from 'pages/Daily/components/Region';

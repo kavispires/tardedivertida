@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import { motion } from 'framer-motion';
 import { orderBy } from 'lodash';
+import { motion } from 'motion/react';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Divider } from 'antd';

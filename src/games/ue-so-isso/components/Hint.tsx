@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 // Types
 import type { GamePlayer } from 'types/player';
 // Utils

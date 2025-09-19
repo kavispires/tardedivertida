@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { AppstoreOutlined, AudioFilled, HeartFilled, SkinFilled } from '@ant-design/icons';
@@ -8,7 +8,7 @@ import { getAnimation } from 'utils/animations';
 // Internal
 import type { DailyEspionagemEntry } from '../utils/types';
 
-const MotionAlert = motion(Alert);
+const MotionAlert = motion.create(Alert);
 
 type StatementsProps = {
   statements: DailyEspionagemEntry['statements'];

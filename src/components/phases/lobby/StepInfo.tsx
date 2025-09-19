@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
 import { mockPlayerName } from 'mock/players';
+import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { useLocalStorage } from 'react-use';
 // Ant Design Resources
@@ -22,7 +22,7 @@ import { AvatarSelection } from './AvatarSelection';
 import { Settings } from './Settings';
 import { UsualAvatarsSelection } from './UsualAvatarsSelection';
 
-const Title = motion(Typography.Title);
+const Title = motion.create(Typography.Title);
 
 const randomName = isDevEnv ? mockPlayerName() : undefined;
 

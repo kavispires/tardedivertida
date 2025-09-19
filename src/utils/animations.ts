@@ -1,4 +1,4 @@
-import type { Easing, Variants } from 'framer-motion';
+import type { Easing, Variants } from 'motion/react';
 
 const AnimationTypes = {
   // Attention Seekers
