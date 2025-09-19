@@ -23,7 +23,7 @@ type ResultsModalContentProps = {
   corridors: DailyPortaisMagicosEntry['corridors'];
   guesses: string[][];
   currentCorridorIndex: number;
-  moves: number;
+  moves: number[];
   hearts: number;
 };
 

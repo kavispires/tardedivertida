@@ -49,7 +49,7 @@ export function usePortaisMagicosEngine(data: DailyPortaisMagicosEntry, initialS
       const targetPosition =
         copy.currentCorridorIndexes[index] >= wordsLength - 1 ? 0 : copy.currentCorridorIndexes[index] + 1;
       copy.currentCorridorIndexes[index] = targetPosition;
-      copy.moves += 1;
+      copy.moves[copy.currentCorridorIndex] += 1;
 
       return copy;
     });

@@ -2,7 +2,7 @@ import { Region, RegionText } from 'pages/Daily/components/Region';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { BarChartOutlined, SendOutlined } from '@ant-design/icons';
-import { Button, Layout, Modal, Space } from 'antd';
+import { Button, Flex, Layout, Modal, Space, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
@@ -53,8 +53,6 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
   const currentGuess = useMemo(() => {
     // TODO: Adding the ? in line 61 solved the problem but I don't know why.
     const wordsLength = data.corridors[currentCorridorIndex].words[0].length;
-    // console.log(data.corridors[currentCorridorIndex]);
-    // console.log(currentCorridorIndexes);
 
     return currentCorridorIndexes
       .map((pos, index) => data.corridors[currentCorridorIndex].words[index]?.[wordsLength - 1 - pos])
@@ -81,7 +79,7 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
                 number={currentCorridorIndex + 1}
                 imagesIds={currentCorridor.imagesIds}
                 width={width}
-                moves={moves}
+                moves={moves[currentCorridorIndex]}
               />
             </Region>
 
@@ -114,6 +112,16 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
                 <Translate pt="Enviar palavra-chave" en="Send passcode" />
               </Button>
             </Region>
+
+            <Region>
+              <Flex justify="center" vertical>
+                {guesses[currentCorridorIndex]?.map((guess, index) => (
+                  <Typography.Text type="secondary" key={`${guess}-${index}`} keyboard className="uppercase">
+                    {guess}
+                  </Typography.Text>
+                ))}
+              </Flex>
+            </Region>
           </>
         )}
 
@@ -126,7 +134,7 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
                   imagesIds={corridor.imagesIds}
                   width={width * 0.75}
                   passcode={corridor.passcode}
-                  moves={moves}
+                  moves={moves[index]}
                 />
               </Region>
             );
