@@ -1,7 +1,7 @@
 {
 	"name": "tardedivertida",
 	"homepage": "http://www.kavispires.com/tardedivertida/",
-	"version": "49.10.0",
+	"version": "49.2.0",
 	"private": true,
 	"type": "module",
 	"dependencies": {
@@ -14,7 +14,6 @@
 		"@types/node": "^22.15.18",
 		"@types/react": "^18.3.12",
 		"@types/react-dom": "^18.3.1",
-		"@types/react-router-dom": "^5.3.3",
 		"@vitejs/plugin-react": "^5.0.3",
 		"animate.css": "^4.1.1",
 		"antd": "^5.24.6",
@@ -29,7 +28,7 @@
 		"react-device-detect": "^2.2.3",
 		"react-dom": "^18.3.1",
 		"react-konva": "^18.2.10",
-		"react-router-dom": "6.28.0",
+		"react-router-dom": "^7.9.1",
 		"react-timer-hook": "^4.0.5",
 		"react-use": "^17.6.0",
 		"react-zoom-pan-pinch": "^3.7.0",
