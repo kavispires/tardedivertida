@@ -36,7 +36,10 @@ export function TableGrid({
   );
   const disableButton = activeTileIndex !== null && pairActiveTileIndex !== null;
   return (
-    <div className="organiku-table-grid">
+    <div
+      className="organiku-table-grid"
+      style={{ gridTemplateColumns: `repeat(${gridSize}, ${itemWidth}px)` }}
+    >
       {grid.map((itemId, index) => {
         const isVisible = revealed[index] || activeTileIndex === index || pairActiveTileIndex === index;
         const isClickable = !revealed[index] && (!disableButton || !unavailableIndexes.includes(index));

@@ -2,7 +2,6 @@
 
 .organiku-table-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
   gap: get-unit(1);
   padding: get-unit(2);
   background: get-color("gray", 1, 0.85);
