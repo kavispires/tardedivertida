@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash';
+import { cloneDeep, sum } from 'lodash';
 import { generateShareableResult, loadLocalToday } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import type { BasicResultsOptions } from 'pages/Daily/utils/types';
@@ -16,7 +16,7 @@ const DEFAULT_LOCAL_TODAY: GameState = {
   currentCorridorIndex: 0,
   guesses: [[], [], []],
   currentCorridorIndexes: [],
-  moves: 0,
+  moves: [0, 0, 0],
 };
 
 export const getInitialState = (data: DailyPortaisMagicosEntry): GameState => {
@@ -54,7 +54,7 @@ export function writeResult({
 }: BasicResultsOptions & {
   guesses: string[][];
   win: boolean;
-  moves: number;
+  moves: number[];
 }): string {
   const lastPlayedIndex = guesses.filter((guess) => guess.length > 0).length - 1;
 
@@ -78,7 +78,7 @@ export function writeResult({
     .join('');
 
   return generateShareableResult({
-    heartsSuffix: `(${moves} movimentos)`,
+    heartsSuffix: `(${sum(moves)} movimentos)`,
     additionalLines: [result],
     ...rest,
   });

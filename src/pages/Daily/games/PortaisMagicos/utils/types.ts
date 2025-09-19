@@ -8,7 +8,7 @@ export type GameState = {
   guesses: string[][];
   currentCorridorIndex: number;
   currentCorridorIndexes: number[];
-  moves: number;
+  moves: number[];
 };
 
 export type DailyPortaisMagicosEntry = {
@@ -16,9 +16,11 @@ export type DailyPortaisMagicosEntry = {
   setId: string;
   number: number;
   type: 'portais-magicos';
+  goal: number;
   corridors: {
     passcode: string;
     imagesIds: string[];
     words: string[];
+    goal: number;
   }[];
 };
