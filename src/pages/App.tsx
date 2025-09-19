@@ -1,20 +1,15 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { HashRouter } from 'react-router-dom';
-import { useLocation } from 'react-use';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 // Ant Design Resources
-import { ConfigProvider, Layout, App as AntApp } from 'antd';
+import { ConfigProvider, App as AntApp } from 'antd';
 // Hooks
 import { useAppSetup } from 'hooks/useAppSetup';
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import { useError } from 'hooks/useError';
 // Services
 import { AuthProvider } from 'services/AuthProvider';
 // Components
-import { PageError } from 'components/errors';
 import ErrorBoundary from 'components/errors/ErrorBoundary';
-import { LoadingBar, LoadingPage } from 'components/loaders';
 // Internal
-import { AnimatedRoutes } from './Routes';
+import { AnimatedRoutes, routes } from './Routes';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,6 +20,15 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+// Create the router with our routes
+const router = createHashRouter([
+  {
+    path: '/',
+    element: <AnimatedRoutes />,
+    children: routes,
+  },
+]);
 
 function App() {
   // Set up default like username, avatar, canvasSize
@@ -41,33 +45,12 @@ function App() {
         >
           <AntApp>
             <AuthProvider>
-              <AppLayout />
+              <RouterProvider router={router} />
             </AuthProvider>
           </AntApp>
         </ConfigProvider>
       </QueryClientProvider>
     </ErrorBoundary>
-  );
-}
-
-function AppLayout() {
-  useAppSetup();
-  const { isLoading: isUserLoading, isAuthenticating } = useCurrentUserContext();
-  const { isError, errors } = useError();
-  // Use location from react-use to bypass the need of the router context
-  const location = useLocation();
-  // Daily games shouldn't be held hostage of the user loading state
-  const isLoading = isAuthenticating || (!location?.hash?.includes('diario') && isUserLoading);
-
-  return (
-    <Layout className="app background" id="app">
-      <LoadingBar />
-      <HashRouter>
-        {isError && <PageError description={Object.values(errors).join(', ')} />}
-        {isLoading && <LoadingPage />}
-        {!isError && !isLoading && <AnimatedRoutes />}
-      </HashRouter>
-    </Layout>
   );
 }
 

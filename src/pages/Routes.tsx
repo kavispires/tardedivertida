@@ -1,10 +1,12 @@
 import { AnimatePresence } from 'motion/react';
 import { lazy, Suspense, type ReactNode } from 'react';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Outlet, useLocation, type RouteObject } from 'react-router-dom';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+import { useError } from 'hooks/useError';
 // Components
-import { LoadingPage } from 'components/loaders';
+import { PageError } from 'components/errors';
+import { LoadingBar, LoadingPage } from 'components/loaders';
 // Internal
 import Home from './Home/Home';
 import Login from './Login/Login';
@@ -97,75 +99,119 @@ function AdminProtectedRoute({ children }: { children: ReactNode }) {
   return isAdmin ? children : <Navigate to="/login" />;
 }
 
+// Layout component for the admin routes
+function AdminLayout() {
+  return (
+    <AdminProtectedRoute>
+      <Outlet />
+    </AdminProtectedRoute>
+  );
+}
+
+// Main routes configuration using the new RouteObject structure
+export const routes: RouteObject[] = [
+  {
+    path: '/',
+    element: <Home />,
+  },
+  {
+    path: '/login',
+    element: <Login />,
+  },
+  {
+    path: '/me',
+    element: <LazyMe />,
+  },
+  {
+    path: '/eu',
+    element: <LazyMe />,
+  },
+  {
+    path: '/diario/*',
+    element: <LazyDiario />,
+  },
+  {
+    path: '/daily/*',
+    element: <LazyDaily />,
+  },
+  {
+    path: '/hub',
+    element: <AdminLayout />,
+    children: [
+      {
+        index: true,
+        element: <LazyHub />,
+      },
+    ],
+  },
+  {
+    path: '/dev',
+    element: <AdminLayout />,
+    children: [
+      {
+        path: 'icons',
+        element: <LazyDevIcons />,
+      },
+      {
+        path: 'colors',
+        element: <LazyDevColors />,
+      },
+      {
+        path: 'sprites',
+        element: <LazyDevSprites />,
+      },
+      {
+        path: 'playground',
+        element: <LazyDevPlayground />,
+      },
+      {
+        path: 'users',
+        element: <LazyUsers />,
+      },
+    ],
+  },
+  {
+    path: '/test',
+    element: <LazyTestArea />,
+  },
+  {
+    path: '/teste',
+    element: <LazyTestArea />,
+  },
+  {
+    path: '/showcase',
+    element: <LazyShowcase />,
+  },
+  {
+    path: '/vitrine',
+    element: <LazyShowcase />,
+  },
+  {
+    path: '*',
+    element: <LazyGame />,
+  },
+];
+
+// AnimatedRoutes is still used for the animation wrapper
 export const AnimatedRoutes = () => {
   const location = useLocation();
+  const { isLoading: isUserLoading, isAuthenticating } = useCurrentUserContext();
+  const { isError, errors } = useError();
+
+  // Daily games shouldn't be held hostage of the user loading state
+  const shouldSkipLoading = location.pathname.includes('/diario') || location.pathname.includes('/daily');
+  const isLoading = isAuthenticating || (!shouldSkipLoading && isUserLoading);
+
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/me" element={<LazyMe />} />
-        <Route path="/eu" element={<LazyMe />} />
-        <Route path="/diario/*" element={<LazyDiario />} />
-        <Route path="/daily/*" element={<LazyDaily />} />
-
-        <Route
-          path="/hub"
-          element={
-            <AdminProtectedRoute>
-              <LazyHub />
-            </AdminProtectedRoute>
-          }
-        />
-        <Route
-          path="/dev/icons"
-          element={
-            <AdminProtectedRoute>
-              <LazyDevIcons />
-            </AdminProtectedRoute>
-          }
-        />
-        <Route
-          path="/dev/colors"
-          element={
-            <AdminProtectedRoute>
-              <LazyDevColors />
-            </AdminProtectedRoute>
-          }
-        />
-        <Route
-          path="/dev/sprites"
-          element={
-            <AdminProtectedRoute>
-              <LazyDevSprites />
-            </AdminProtectedRoute>
-          }
-        />
-        <Route
-          path="/dev/playground"
-          element={
-            <AdminProtectedRoute>
-              <LazyDevPlayground />
-            </AdminProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/dev/users"
-          element={
-            <AdminProtectedRoute>
-              <LazyUsers />
-            </AdminProtectedRoute>
-          }
-        />
-
-        <Route path="/test" element={<LazyTestArea />} />
-        <Route path="/teste" element={<LazyTestArea />} />
-        <Route path="/showcase" element={<LazyShowcase />} />
-        <Route path="/vitrine" element={<LazyShowcase />} />
-
-        <Route path="*" element={<LazyGame />} />
-      </Routes>
-    </AnimatePresence>
+    <div className="app background" id="app">
+      <LoadingBar />
+      {isError && <PageError description={Object.values(errors).join(', ')} />}
+      {isLoading && <LoadingPage />}
+      {!isError && !isLoading && (
+        <AnimatePresence mode="wait">
+          <Outlet key={location.pathname} />
+        </AnimatePresence>
+      )}
+    </div>
   );
 };
