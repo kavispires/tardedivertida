@@ -200,7 +200,9 @@ export const validateSuggestions = (currentSuggestions: CurrentSuggestions): Pla
         };
       });
 
-      res.forEach((item) => acc.push(item));
+      res.forEach((item) => {
+        acc.push(item);
+      });
       return acc;
     }
 

@@ -291,6 +291,7 @@ export const buildRanking = (players: Players, clues: ClueEntry[], store: Fireba
     if (gotPassivePoints[playerId].length === 1) {
       utils.achievements.increase(store, gotPassivePoints[playerId][0], 'savior', 1);
     }
+    return false;
   });
 
   whoGotNoPoints.forEach((playerId) => {

@@ -79,6 +79,7 @@ export const buildRun = (
     },
   ];
 
+  // biome-ignore lint/suspicious/useIterableCallbackReturn: return to make it easier to stop the blocks
   allPlays.forEach((play, index) => {
     const startingPositions = cloneDeep(race.at(-1)?.endingPositions || initialPositions);
     const endingPositions = cloneDeep(startingPositions);

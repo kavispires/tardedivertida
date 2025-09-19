@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "X",
   "gameName": "cruza-palavras",
-  "version": "6.0.41",
+  "version": "6.0.42",
   "release": "stable",
   "available": true,
   "title": {

@@ -180,7 +180,9 @@ export const getEnoughUnusedLevel4Cards = (
       const cards = Object.keys(selected.cards);
       // Check if any has been used
       if (cards.some((cardId) => usedCards[cardId]) && cards.some((cardId) => reserved[cardId])) {
-        cards.forEach((cardId) => discarded.push(cardId));
+        cards.forEach((cardId) => {
+          discarded.push(cardId);
+        });
       } else {
         cards.forEach((cardId) => {
           reserved[cardId] = true;

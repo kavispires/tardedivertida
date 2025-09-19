@@ -99,7 +99,7 @@ export const buildGallery = (store: PlainObject, players: Players, currentRound:
       playersSay[characterId] = [];
     }
 
-    listOfPlayers.map((opponent) => {
+    listOfPlayers.forEach((opponent) => {
       if (player.id !== opponent.id) {
         const guessId = opponent.guesses[player.id];
 

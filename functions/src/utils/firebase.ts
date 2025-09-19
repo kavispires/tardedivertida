@@ -99,5 +99,7 @@ export function validateSubmitActionPayload(
  * @param action
  */
 export function validateSubmitActionProperties(data: PlainObject, properties: string[], action: string) {
-  properties.forEach((propertyName) => verifyPayload(data[propertyName], propertyName, action));
+  properties.forEach((propertyName) => {
+    verifyPayload(data[propertyName], propertyName, action);
+  });
 }

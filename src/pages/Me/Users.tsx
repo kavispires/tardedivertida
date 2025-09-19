@@ -81,7 +81,9 @@ function Users() {
         query(collection(firestore, 'users'), where('isGuest', '!=', true)),
       );
       const result: any[] = [];
-      querySnapshot.forEach((doc) => result.push(doc.data()));
+      querySnapshot.forEach((doc) => {
+        result.push(doc.data());
+      });
       return result;
     },
   });

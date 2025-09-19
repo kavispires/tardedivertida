@@ -63,7 +63,7 @@ export const getResourceData = async (
       return ITEM_TYPES.BLANK;
     }),
   ]);
-  items.map((item, index) => {
+  items.forEach((item, index) => {
     item.type = sortedTypes[index] as AlienItem['type'];
   });
 

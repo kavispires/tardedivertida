@@ -44,7 +44,9 @@ export const buildCode = (players: Players, playerCount: number): string[] => {
 
   return arrayOrder.reduce((acc, item) => {
     if (item) {
-      item.forEach((digit) => acc.push(digit));
+      item.forEach((digit) => {
+        acc.push(digit);
+      });
     }
 
     return acc;
