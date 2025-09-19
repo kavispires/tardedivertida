@@ -135,14 +135,15 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
                       })}
                       preview={false}
                     />
-                    <Button
-                      size="small"
-                      shape="round"
-                      block
-                      // onClick={() => onSelectSuspect(suspect.id)}
-                      disabled={isReleased || isComplete}
-                    >
-                      {isReleased ? <CheckCircleOutlined /> : <Translate pt="Liberar" en="Release" />}
+                    <Button size="small" shape="round" block disabled={isReleased || isComplete}>
+                      {isReleased ? (
+                        <>
+                          <CheckCircleOutlined />
+                          {released.indexOf(suspect.id) + 1}
+                        </>
+                      ) : (
+                        <Translate pt="Liberar" en="Release" />
+                      )}
                     </Button>
                   </MotionFlex>
                 );
