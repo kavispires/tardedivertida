@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Region } from 'pages/Daily/components/Region';
 import { useState } from 'react';
 // Ant Design Resources
@@ -29,7 +29,7 @@ import { Rules } from './Rules';
 import { ReleaseModal } from './ReleaseModal';
 import { Statements } from './Statements';
 
-const MotionFlex = motion(Flex);
+const MotionFlex = motion.create(Flex);
 
 type DailyEspionagemProps = {
   data: DailyEspionagemEntry;

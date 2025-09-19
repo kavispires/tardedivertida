@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Types

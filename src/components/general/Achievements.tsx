@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 // Ant Design Resources
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Button, Popover } from 'antd';

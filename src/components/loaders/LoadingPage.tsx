@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 // Ant Design Resources
 import { Typography } from 'antd';
 // Utils
@@ -9,7 +9,7 @@ import { AnimatedVideoConferenceIcon } from 'icons/AnimatedVideoConferenceIcon';
 import { DualTranslate } from 'components/language';
 import { LoadingPageLayout } from 'components/layout/PageLayout';
 
-const Text = motion(Typography.Text);
+const Text = motion.create(Typography.Text);
 
 type LoadingPageProps = {
   /**

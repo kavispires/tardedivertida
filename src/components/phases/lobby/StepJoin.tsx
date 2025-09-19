@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Alert, Button, Divider, Modal, Typography } from 'antd';
@@ -13,7 +13,7 @@ import { SignIn, SignInWithGoogle } from 'components/auth/SignIn';
 import { SignUp } from 'components/auth/SignUp';
 import { Translate } from 'components/language';
 
-const Title = motion(Typography.Title);
+const Title = motion.create(Typography.Title);
 
 type StepJoinProps = {
   setStep: UseStep['setStep'];

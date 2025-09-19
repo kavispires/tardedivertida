@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { Region } from 'pages/Daily/components/Region';
 import { StepDots } from 'pages/Daily/components/StepDots';
@@ -45,7 +45,7 @@ type DailyTaNaCaraProps = {
   currentUser: Me;
 };
 
-const MotionFlex = motion(Flex);
+const MotionFlex = motion.create(Flex);
 
 export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
   const [initialState] = useState(getInitialState(data));

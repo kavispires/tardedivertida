@@ -1,6 +1,6 @@
 import { ImageCard, ImageCardButton } from '.';
 import clsx from 'clsx';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import type { ReactNode, Ref } from 'react';
 // Ant Design Resources
 import { type GetProps, Image, Space } from 'antd';

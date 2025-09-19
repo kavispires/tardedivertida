@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import { motion } from 'framer-motion';
 import moment from 'moment';
+import { motion } from 'motion/react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTimer } from 'react-timer-hook';

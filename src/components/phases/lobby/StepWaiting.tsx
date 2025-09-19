@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useEffect } from 'react';
 // Ant Design Resources
 import { App, Tag, Typography } from 'antd';
@@ -24,8 +24,8 @@ import { Settings } from './Settings';
 // Images
 import avatars from 'assets/images/avatars.svg?url';
 
-const Title = motion(Typography.Title);
-const Paragraph = motion(Typography.Paragraph);
+const Title = motion.create(Typography.Title);
+const Paragraph = motion.create(Typography.Paragraph);
 
 type StepWaitingProps = {
   players: GamePlayers;

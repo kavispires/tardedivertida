@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { isIOS, isSafari } from 'react-device-detect';
 // Ant Design Resources
 import { Avatar, Flex, Image, Tag, Typography } from 'antd';

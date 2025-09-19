@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import { motion, type MotionProps } from 'framer-motion';
 import { sampleSize } from 'lodash';
+import { motion, type MotionProps } from 'motion/react';
 import { useMemo } from 'react';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
