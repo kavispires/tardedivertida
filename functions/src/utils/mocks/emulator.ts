@@ -94,44 +94,14 @@ export const feedEmulatorDaily = async () => {
     'aqui-o': JSON.parse(
       '{"id":"2023-10-31","type":"aqui-o","number":0,"setId":"special","title":{"pt":"Especial","en":"Special"},"itemsIds":["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"]}',
     ),
+    // 4 letters
     palavreado: JSON.parse(
       '{"id":"2023-10-31","number":0,"type":"palavreado","language":"pt","keyword":"cuba","letters":["c","i","b","m","l","u","e","a","h","r","b","l","ê","o","o","a"],"words":["calo","muro","bebê","ilha"]}',
     ),
-    // palavreado: {
-    //   id: '2023-10-31',
-    //   number: 0,
-    //   type: 'palavreado',
-    //   language: 'pt',
-    //   keyword: 'cinco',
-    //   letters: [
-    //     'c',
-    //     'v',
-    //     'b',
-    //     'c',
-    //     'p',
-    //     'a',
-    //     'i',
-    //     'a',
-    //     'e',
-    //     'r',
-    //     'n',
-    //     's',
-    //     'n',
-    //     'r',
-    //     'e',
-    //     'i',
-    //     't',
-    //     'd',
-    //     'c',
-    //     'ç',
-    //     'l',
-    //     'o',
-    //     'o',
-    //     'a',
-    //     'o',
-    //   ],
-    //   words: ['canil', 'visto', 'bando', 'cerca', 'preço'],
-    // },
+    /// 5 letters
+    // palavreado: JSON.parse(
+    //   '{"id":"2025-09-20","type":"palavreado","number":498,"keyword":"praça","words":["pente","úrico","adaga","suíço","malha"],"letters":["p","o","l","a","m","s","r","n","u","h","a","e","a","c","í","t","a","i","ç","d","e","o","ú","g","a"]}',
+    // ),
     artista: {
       id: '2023-10-31',
       type: 'artista',
@@ -163,7 +133,7 @@ export const feedEmulatorDaily = async () => {
       '{"id":"2023-10-31","type":"espionagem","number":1,"isNsfw":false,"culpritId":"us-03","statements":[{"key":"testimony.t-12-pt","text":"O(a) suspeito(a) nunca foi no parque Guanabara (parque de diversões local)","excludes":["us-17"],"type":"testimony"},{"key":"not.feature.orangeClothes","text":"O(a) suspeito(a) não está vestindo roupas laranjas","excludes":["us-11","us-16","us-17","us-26"],"type":"feature"},{"key":"testimony.t-24-pt","text":"O(a) suspeito(a) não faz trabalho voluntário","excludes":["us-06","us-21","us-20","us-108","us-11","us-16","us-05","us-90","us-10","us-26"],"type":"testimony"},{"key":"not.feature.showTeeth","text":"O(a) suspeito(a) não está mostrando os dentes","excludes":["us-06","us-21","us-108","us-05","us-90","us-26"],"type":"feature"},{"key":"not.grid.column3","text":"O(a) suspeito(a) não está na terceira coluna","excludes":["us-17","us-05","us-10"],"type":"grid"},{"key":"not.feature.large","text":"O(a) suspeito(a) não é gordo(a)","excludes":["us-21","us-20","us-17","us-26"],"type":"feature"}],"additionalStatements":[{"key":"not.feature.brownHair","text":"O(a) suspeito(a) não tem cabelo castanho","excludes":["us-108","us-11","us-10","us-17"],"type":"feature"},{"key":"not.grid.row3","text":"O(a) suspeito(a) não está na terceira linha","excludes":["us-21","us-11","us-10","us-26"],"type":"grid"}],"suspects":[{"id":"us-03","name":{"en":"Cameron","pt":"Conrado"},"gender":"male","features":["male","adult","caucasian","medium","average"]},{"id":"us-06","name":{"en":"Fredrick","pt":"Frederico"},"gender":"male","features":["male","adult","caucasian","tall","muscular","showTeeth"]},{"id":"us-17","name":{"en":"Flick","pt":"Fagner"},"gender":"male","features":["male","adult","latino","medium","large","brownHair","orangeClothes"]},{"id":"us-20","name":{"en":"Tonya","pt":"Tânia"},"gender":"female","features":["female","senior","caucasian","short","large"]},{"id":"us-16","name":{"en":"Prisca","pt":"Priscila"},"gender":"female","features":["female","adult","indian","short","thin","orangeClothes"]},{"id":"us-90","name":{"en":"Kathleen","pt":"Kelly"},"gender":"female","features":["female","adult","caucasian","tall","average","showTeeth"]},{"id":"us-05","name":{"en":"Jesse","pt":"Jéferson"},"gender":"male","features":["male","young","caucasian","medium","average","showTeeth"]},{"id":"us-108","name":{"en":"Clayton","pt":"Cleiton"},"gender":"male","features":["male","adult","latino","tall","average","brownHair","showTeeth"]},{"id":"us-21","name":{"en":"Una","pt":"Úrsula"},"gender":"female","features":["female","adult","middle-eastern","short","large","showTeeth"]},{"id":"us-11","name":{"en":"Norton","pt":"Nelson"},"gender":"male","features":["male","adult","caucasian","tall","average","brownHair","orangeClothes"]},{"id":"us-10","name":{"en":"Levi","pt":"Levi"},"gender":"male","features":["male","senior","caucasian","tall","average","brownHair"]},{"id":"us-26","name":{"en":"Coach","pt":"Adamastor"},"gender":"male","features":["male","senior","caucasian","medium","large","showTeeth","orangeClothes"]}],"reason":{"en":"Sold haunted house tours in places that weren\'t haunted... until now.","pt":"Vendeu passeios por casas assombradas que não eram assombradas... até agora."},"setId":"us-03::cr-115::testimony.t-12-pt","level":3}',
     ),
     'ta-na-cara': JSON.parse(
-      `{"id":"2023-10-31","number":0,"type":"ta-na-cara","testimonies":[{"testimonyId":"t-1-pt","question":"Ele(a) já foi para um jogo em um estádio?","nsfw":false,"suspectsIds":["us-gb-31","us-gb-32","us-gb-33","us-gb-34","us-gb-35","us-gb-36"]},{"testimonyId":"t-2-pt","question":"Ele(a) gosta de música clássica?","nsfw":false,"suspectsIds":["us-gb-51","us-gb-52","us-gb-53","us-gb-54","us-gb-55","us-gb-56"]},{"testimonyId":"t-3-pt","question":"Ele(a) acredita em alienígenas?","nsfw":true,"suspectsIds":["us-gb-101","us-gb-102","us-gb-103","us-gb-104","us-gb-105","us-gb-106"]}],"variant":"rl","suspectsIds":["us-gb-01","us-gb-02","us-gb-03","us-gb-04","us-gb-05","us-gb-06","us-gb-07"]}
+      `"id":"2023-10-31","number":0,"type":"ta-na-cara","testimonies":["testimonyId":"t-1-pt","question":"Ele(a) já foi para um jogo em um estádio?","nsfw":false,"suspectsIds":["us-gb-31","us-gb-32","us-gb-33","us-gb-34","us-gb-35","us-gb-36"],"testimonyId":"t-2-pt","question":"Ele(a) gosta de música clássica?","nsfw":false,"suspectsIds":["us-gb-51","us-gb-52","us-gb-53","us-gb-54","us-gb-55","us-gb-56"],"testimonyId":"t-3-pt","question":"Ele(a) acredita em alienígenas?","nsfw":true,"suspectsIds":["us-gb-101","us-gb-102","us-gb-103","us-gb-104","us-gb-105","us-gb-106"]],"variant":"rl","suspectsIds":["us-gb-01","us-gb-02","us-gb-03","us-gb-04","us-gb-05","us-gb-06","us-gb-07"]
       `,
     ),
     quartetos: JSON.parse(
@@ -172,8 +142,13 @@ export const feedEmulatorDaily = async () => {
     'portais-magicos': JSON.parse(
       '{"id":"2023-10-31","setId":"unicórnio-tecnologia-musicalidade","number":0,"type":"portais-magicos","corridors":[{"passcode":"unicórnio","imagesIds":["td-d9-215","td-d6-120","td-d8-96"],"words":["uni","nós","rio","cor","cóu","uro","noi","irm","cão"]},{"passcode":"tecnologia","imagesIds":["td-d4-134","td-d10-105"],"words":["tão","eco","céu","noé","log","lei","toi","gás","iaí","can"]},{"passcode":"musicalidade","imagesIds":["td-d9-241"],"words":["mão","uso","sim","ali","cad","ida","luz","dia","dor","sua","ido","eco"]}]}',
     ),
+    // 5 grid
+    // organiku: JSON.parse(
+    //   '{"id":"2023-10-31","number":0,"setId":"b5300","type":"organiku","title":"Aniversário","grid":["155","185","1187","718","159","185","1187","155","159","718","159","155","718","1187","185","1187","718","159","185","155","718","159","185","155","1187"],"defaultRevealedIndexes":[15,16,14,7,8,2,6],"itemsIds":["1187","718","185","155","159"]}',
+    // ),
+    // 6 grid
     organiku: JSON.parse(
-      '{"id":"2023-10-31","number":0,"setId":"b5300","type":"organiku","title":"Aniversário","grid":["155","185","1187","718","159","185","1187","155","159","718","159","155","718","1187","185","1187","718","159","185","155","718","159","185","155","1187"],"defaultRevealedIndexes":[15,16,14,7,8,2,6],"itemsIds":["1187","718","185","155","159"]}',
+      '{"id":"2023-10-31","number":0,"setId":"50896","type":"organiku","title":"Banheiro","grid":["3142","2107","289","2197","1784","602","289","3142","2197","1784","602","2107","2107","602","1784","289","3142","2197","1784","2197","2107","602","289","3142","2197","289","602","3142","2107","1784","602","1784","3142","2107","2197","289"],"defaultRevealedIndexes":[30,5,18,29,35,22,19,24,23,16,11,33,10,13],"itemsIds":["602","1784","289","2197","3142","2107"]}',
     ),
   };
 

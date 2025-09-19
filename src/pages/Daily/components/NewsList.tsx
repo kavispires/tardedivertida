@@ -15,6 +15,18 @@ type NewsItem = {
 
 export const NEWS_LIST: NewsItem[] = [
   {
+    date: '2025-09-20',
+    content: (
+      <>
+        <IconAvatar icon={<WeekendIcon />} size="small" />{' '}
+        <strong>
+          <DualTranslate>{ALL_SETTINGS.ORGANIKU.NAME}</DualTranslate>
+        </strong>{' '}
+        é mais desafiante nos fins de semana com 6 tipos de itens!
+      </>
+    ),
+  },
+  {
     date: '2025-08-09',
     content: (
       <>
