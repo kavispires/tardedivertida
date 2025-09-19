@@ -64,7 +64,7 @@ function ColorsPage() {
       <DevHeader title="Colors" subTitle={`(${iconEntries.length})`} />
       <Layout.Content className="dev-content">
         <ul style={styles}>
-          {COLOR_NAMES.map((colorName, index) => (
+          {COLOR_NAMES.map((colorName) => (
             <li key={colorName} style={stylesLi}>
               <ul>
                 {COLOR_SHADES.map((colorShade) => (

@@ -128,7 +128,7 @@ export const prepareRunPhase = async (
 
   // Update positions
   const finalPositions = race.at(-1)?.endingPositions ?? {};
-  Object.keys(finalPositions).map((playerId) => {
+  Object.keys(finalPositions).forEach((playerId) => {
     players[playerId].positions.push(finalPositions[playerId]);
   });
 

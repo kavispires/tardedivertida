@@ -43,7 +43,7 @@ export function mockSeeding(seeds: SeedEntry[]) {
         data.clubberId = seed.outfits[0];
         break;
       default:
-        return {};
+      // return {};
     }
   });
 

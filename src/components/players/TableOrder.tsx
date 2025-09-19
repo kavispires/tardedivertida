@@ -77,7 +77,7 @@ export function TableOrder({
           return (
             <Fragment key={`table-order-${playerId}`}>
               <li
-                // @ts-ignore
+                // @ts-expect-error
                 style={{ '--t': doublePlayerCount, '--i': index * 2 }}
                 className={clsx('table-order__player', isActive && 'table-order__player--active')}
               >
@@ -86,7 +86,7 @@ export function TableOrder({
                 </span>
               </li>
               <li
-                // @ts-ignore
+                // @ts-expect-error
                 style={{ '--t': doublePlayerCount, '--i': index * 2 + 1 }}
                 className="table-order__chevron"
               >

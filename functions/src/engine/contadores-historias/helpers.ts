@@ -161,9 +161,11 @@ export const getRanking = (
   // Achievement: tableVotes
   table
     .filter((tableEntry) => tableEntry.playerId === NPC)
-    .forEach((tableEntry) =>
-      tableEntry.votes.forEach((playerId) => utils.achievements.increase(store, playerId, 'tableVotes', 1)),
-    );
+    .forEach((tableEntry) => {
+      tableEntry.votes.forEach((playerId) => {
+        utils.achievements.increase(store, playerId, 'tableVotes', 1);
+      });
+    });
 
   return scores.rank(players);
 };

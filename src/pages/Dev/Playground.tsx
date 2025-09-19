@@ -1,4 +1,4 @@
-/** biome-ignore-all check: playground */
+/** biome-ignore-all lint/correctness/noUnusedVariables: Playground */
 import { type CSSProperties, useState } from 'react';
 import { useTitle } from 'react-use';
 // Ant Design Resources

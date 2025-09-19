@@ -25,7 +25,7 @@ import { makeArray } from '../../utils/game-utils';
  * @returns
  */
 export const prepareSetupPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
   resourceData: ResourceData,
@@ -110,7 +110,7 @@ export const prepareBetsPhase = async (
   const catchUp: PlayerId[] = [];
   // Catch up mechanism: give last player(s) extra chips
   if (round.current > 1) {
-    utils.players.determineLosers(players).map((player) => {
+    utils.players.determineLosers(players).forEach((player) => {
       player.chips += CATCH_UP_BONUS;
       catchUp.push(player.id);
     });

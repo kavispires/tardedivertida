@@ -41,7 +41,6 @@ export function Filters({ availabilityCount, setTagFilters, setNumberFilters }: 
       <div className="hub-filters__entry">
         <label htmlFor="players-input">Players</label>
         <InputNumber
-          id="players-input"
           min={2}
           max={12}
           size="small"
@@ -52,7 +51,6 @@ export function Filters({ availabilityCount, setTagFilters, setNumberFilters }: 
       <div className="hub-filters__entry">
         <label htmlFor="duration">Duration</label>
         <InputNumber
-          id="duration"
           min={15}
           step={15}
           size="small"

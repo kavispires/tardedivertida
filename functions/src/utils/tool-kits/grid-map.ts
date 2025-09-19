@@ -518,7 +518,9 @@ function _updateSurroundingCells<TCellData>(grid: GridMapType<TCellData>, x: num
   };
 
   const offsets = OFFSETS[adjacency];
-  offsets.forEach(({ dx, dy }) => updateIfEmpty(x + dx, y + dy));
+  offsets.forEach(({ dx, dy }) => {
+    updateIfEmpty(x + dx, y + dy);
+  });
 }
 
 /**
