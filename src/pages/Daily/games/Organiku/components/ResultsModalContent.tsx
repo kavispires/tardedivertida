@@ -31,6 +31,7 @@ type ResultsModalContentProps = {
   foundCount: Record<string, number>;
   gridSize: number;
   flips: number;
+  swapLimit: number;
 };
 
 export function ResultsModalContent({
@@ -42,6 +43,7 @@ export function ResultsModalContent({
   foundCount,
   gridSize,
   flips,
+  swapLimit,
 }: ResultsModalContentProps) {
   const { language } = useLanguage();
 
@@ -60,8 +62,9 @@ export function ResultsModalContent({
         itemsIds,
         foundCount,
         flips,
+        swapLimit,
       }),
-    [language, challengeNumber, hearts, foundCount, itemsIds, flips],
+    [language, challengeNumber, hearts, foundCount, itemsIds, flips, swapLimit],
   );
 
   return (

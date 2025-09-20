@@ -78,11 +78,13 @@ export function writeResult({
   itemsIds,
   foundCount,
   flips,
+  swapLimit,
   ...rest
 }: BasicResultsOptions & {
   foundCount: NumberDictionary;
   itemsIds: string[];
   flips: number;
+  swapLimit: number;
 }): string {
   const correctItems = itemsIds.map((itemId) =>
     foundCount[itemId] === Object.keys(foundCount).length ? itemId : null,
@@ -91,7 +93,7 @@ export function writeResult({
   const additionalLines = [correctItems.map((item) => (item ? '🟢' : '◼️')).join('')];
 
   return generateShareableResult({
-    heartsSuffix: ` (${flips} viradas)`,
+    heartsSuffix: ` (${flips}/${swapLimit} viradas)`,
     additionalLines,
     ...rest,
   });
@@ -114,5 +116,6 @@ export function getWrittenResult({ data, language }: { data: DailyOrganikuEntry;
     itemsIds: data.itemsIds,
     foundCount: state.foundCount,
     flips: state.flips,
+    swapLimit: data.grid.length - data.defaultRevealedIndexes.length,
   });
 }

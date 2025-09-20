@@ -44,6 +44,8 @@ export function DailyOrganiku({ data }: DailyOrganikuProps) {
   } = useOrganikuEngine(data, initialState);
   const [itemWidth, ref] = useCardWidthByContainerRef(5, { margin: 48, gap: 12, maxWidth: 96, minWidth: 55 });
 
+  const swapLimit = data.grid.length - data.defaultRevealedIndexes.length;
+
   return (
     <Layout className="app">
       <Header icon={<DailyMemoryGridGameIcon />} localStorageKey={SETTINGS.KEY}>
@@ -59,7 +61,7 @@ export function DailyOrganiku({ data }: DailyOrganikuProps) {
 
         <Region>
           <Typography.Text>
-            <strong>{data.title}</strong> ({flips} <Translate pt="viradas" en="flips" />)
+            <strong>{data.title}</strong> ({flips} de {swapLimit} <Translate pt="viradas" en="flips" />)
           </Typography.Text>
         </Region>
 
@@ -112,6 +114,7 @@ export function DailyOrganiku({ data }: DailyOrganikuProps) {
             title={data.title}
             foundCount={foundCount}
             gridSize={Math.sqrt(data.grid.length)}
+            swapLimit={swapLimit}
             flips={flips}
           />
         </Modal>
