@@ -1,9 +1,10 @@
-import { type ReactNode, useState } from 'react';
+import type { ReactNode } from 'react';
 // Ant Design Resources
 import { Layout } from 'antd';
 // Icons
 import { CalendarIcon } from 'icons/CalendarIcon';
 // Components
+import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
 import { PageLayout } from 'components/layout/PageLayout';
 // Internal
@@ -19,26 +20,19 @@ type DailyChromeProps = {
 
 export function DailyChrome({ children }: DailyChromeProps) {
   const challengeQuery = useDailyChallenge();
-  const [count, setCount] = useState(0);
 
   return (
     <PageLayout className="app">
       <Header icon={<CalendarIcon />} localStorageKey="">
-        <button
-          type="button"
-          onClick={() => setCount((prev) => prev + 1)}
-          className="invisible-secret-button"
-        >
-          <Translate pt="TD Diário" en="TD Daily" />
-        </button>
+        <Translate pt="TD Diário" en="TD Daily" />
       </Header>
       {challengeQuery.isLoading && <div className="loading-bar"></div>}
       <Content>{children}</Content>
-      {count >= 5 && (
+      <DebugOnly devOnly>
         <Footer>
           <DevResetLocalStorageButton />
         </Footer>
-      )}
+      </DebugOnly>
     </PageLayout>
   );
 }
