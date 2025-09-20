@@ -28,16 +28,33 @@ export function Filters({ availabilityCount, setTagFilters, setNumberFilters }: 
     onNumberFiltersUpdate('bestWith', Number(value === 'best'));
   };
 
+  const playingOptions = [
+    {
+      label: 'Playing with',
+      value: '',
+    },
+    {
+      label: 'Recommended with',
+      value: 'recommended',
+    },
+    {
+      label: 'Best with',
+      value: 'best',
+    },
+  ];
+
   return (
     <Space className="hub-filters" wrap size="middle">
       <span>
         <FilterOutlined /> ({availabilityCount})
       </span>
-      <Select defaultValue="" style={{ minWidth: '20ch' }} size="small" onChange={onPlayingSelectChange}>
-        <Select.Option value="">Playing with</Select.Option>
-        <Select.Option value="recommended">Recommended with</Select.Option>
-        <Select.Option value="best">Best with</Select.Option>
-      </Select>
+      <Select
+        defaultValue=""
+        style={{ minWidth: '20ch' }}
+        size="small"
+        onChange={onPlayingSelectChange}
+        options={playingOptions}
+      />
       <div className="hub-filters__entry">
         <label htmlFor="players-input">Players</label>
         <InputNumber
