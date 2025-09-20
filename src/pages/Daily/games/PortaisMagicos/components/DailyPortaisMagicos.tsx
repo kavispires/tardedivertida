@@ -157,6 +157,7 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
             currentCorridorIndex={currentCorridorIndex}
             moves={moves}
             hearts={hearts}
+            goal={data.goal ?? 0}
           />
         </Modal>
       </Layout.Content>
