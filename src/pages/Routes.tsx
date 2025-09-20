@@ -1,9 +1,12 @@
 import { AnimatePresence } from 'motion/react';
-import { lazy, Suspense, type ReactNode } from 'react';
+import { lazy, Suspense, useEffect, type ReactNode } from 'react';
 import { Navigate, Outlet, useLocation, type RouteObject } from 'react-router-dom';
+// Ant Design Resources
+import { App as AntApp } from 'antd';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useError } from 'hooks/useError';
+import { useGlobalState } from 'hooks/useGlobalState';
 // Components
 import { PageError } from 'components/errors';
 import { LoadingBar, LoadingPage } from 'components/loaders';
@@ -194,9 +197,32 @@ export const routes: RouteObject[] = [
 
 // AnimatedRoutes is still used for the animation wrapper
 export const AnimatedRoutes = () => {
+  const { notification } = AntApp.useApp();
   const location = useLocation();
   const { isLoading: isUserLoading, isAuthenticating } = useCurrentUserContext();
   const { isError, errors } = useError();
+  const [usingFirestoreEmulator] = useGlobalState('usingFirestoreEmulator');
+  const [usingFunctionsEmulator] = useGlobalState('usingFunctionsEmulator');
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Not the function, just the value
+  useEffect(() => {
+    if (usingFirestoreEmulator) {
+      notification.warning({
+        message: `Emulando Firestore para ${usingFirestoreEmulator}`,
+        placement: 'topLeft',
+      });
+    }
+  }, [usingFirestoreEmulator]);
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Not the function, just the value
+  useEffect(() => {
+    if (usingFunctionsEmulator) {
+      notification.warning({
+        message: `Emulando Functions para ${usingFunctionsEmulator}`,
+        placement: 'topLeft',
+      });
+    }
+  }, [usingFunctionsEmulator]);
 
   // Daily games shouldn't be held hostage of the user loading state
   const shouldSkipLoading = location.pathname.includes('/diario') || location.pathname.includes('/daily');
