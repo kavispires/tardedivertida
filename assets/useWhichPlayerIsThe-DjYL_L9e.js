@@ -1,0 +1,1 @@
+import{aN as n,r as t,e1 as P}from"./index-DMpRviFJ.js";function E(e="activePlayer",s={},a={}){const[c]=n("userId"),[r,u]=t.useState(P),[i,o]=t.useState(!1);return t.useEffect(()=>{const l=s?.[e];u(a?.[l]??{}),o(s?.[e]===c)},[a,e,s,c]),[r,i]}export{E as u};
