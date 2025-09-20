@@ -50,11 +50,13 @@ export function writeResult({
   guesses,
   win,
   moves,
+  goal,
   ...rest
 }: BasicResultsOptions & {
   guesses: string[][];
   win: boolean;
   moves: number[];
+  goal: number;
 }): string {
   const lastPlayedIndex = guesses.filter((guess) => guess.length > 0).length - 1;
 
@@ -78,7 +80,7 @@ export function writeResult({
     .join('');
 
   return generateShareableResult({
-    heartsSuffix: `(${sum(moves)} movimentos)`,
+    heartsSuffix: `(${sum(moves)}/${goal} movimentos)`,
     additionalLines: [result],
     ...rest,
   });
@@ -101,5 +103,6 @@ export function getWrittenResult({ data, language }: { data: DailyPortaisMagicos
     guesses: state.guesses,
     win: state.status === STATUSES.WIN,
     moves: state.moves,
+    goal: data.goal ?? 0,
   });
 }

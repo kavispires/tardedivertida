@@ -25,6 +25,7 @@ type ResultsModalContentProps = {
   currentCorridorIndex: number;
   moves: number[];
   hearts: number;
+  goal: number;
 };
 
 export function ResultsModalContent({
@@ -35,6 +36,7 @@ export function ResultsModalContent({
   currentCorridorIndex,
   moves,
   hearts,
+  goal,
 }: ResultsModalContentProps) {
   const { language } = useLanguage();
 
@@ -49,8 +51,9 @@ export function ResultsModalContent({
         moves,
         totalHearts: SETTINGS.HEARTS,
         remainingHearts: hearts,
+        goal,
       }),
-    [challengeNumber, guesses, language, win, moves, hearts],
+    [challengeNumber, guesses, language, win, moves, hearts, goal],
   );
 
   return (
