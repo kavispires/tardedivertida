@@ -3,7 +3,10 @@ import { type CSSProperties, useState } from 'react';
 import { useTitle } from 'react-use';
 // Ant Design Resources
 import { Layout } from 'antd';
+// Types
+import type { GamePlayer } from 'types/player';
 // Components
+import { Avatar, AvatarCard, AvatarName, AvatarStrip } from 'components/avatars';
 import { PageLayout } from 'components/layout/PageLayout';
 // Internal
 import { DevHeader } from './DevHeader';
@@ -35,11 +38,24 @@ function Playground() {
 
   const [lines, setLines] = useState<any>([]);
 
+  const player: GamePlayer = {
+    id: '_player1',
+    name: 'Robert',
+    avatarId: '1',
+    ready: true,
+    updatedAt: Date.now(),
+  };
+
   return (
     <PageLayout>
       <DevHeader title="Playground" />
       <Layout.Content className="dev-content">
-        <div>playground content</div>
+        <div>
+          <Avatar id="1" />
+          <AvatarCard player={player} size="small" withName />
+          <AvatarName player={player} />
+          <AvatarStrip player={player} withName />
+        </div>
       </Layout.Content>
     </PageLayout>
   );

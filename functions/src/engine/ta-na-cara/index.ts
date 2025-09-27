@@ -8,7 +8,6 @@ import type {
   TaNaCaraInitialState,
   TaNaCaraOptions,
   TaNaCaraState,
-  TaNaCaraStore,
   TaNaCaraSubmitAction,
 } from './types';
 // Utils
@@ -16,14 +15,15 @@ import utils from '../../utils';
 // Internal Functions
 import { determineNextPhase } from './helpers';
 import { getResourceData } from './data';
-import { handleSubmitAnswer, handleSubmitGuess, handleSubmitPrompt, handleSubmitTarget } from './actions';
+import { handleSubmitAnswer, handleSubmitGuesses, handleSubmitPrompt, handleSubmitIdentity } from './actions';
 import {
   prepareSetupPhase,
   prepareGameOverPhase,
-  preparePromptPhase,
   prepareAnsweringPhase,
   prepareGuessingPhase,
   prepareRevealPhase,
+  prepareIdentitySelectionPhase,
+  preparePromptingPhase,
 } from './setup';
 
 /**
@@ -68,9 +68,10 @@ export const getNextPhase = async (
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
+  const playerCount = utils.players.getPlayerCount(players);
 
   // Determine next phase
-  const nextPhase = determineNextPhase(state as TaNaCaraState, store as TaNaCaraStore);
+  const nextPhase = determineNextPhase(state as TaNaCaraState, playerCount);
 
   // LOBBY -> SETUP
   if (nextPhase === TA_NA_CARA_PHASES.SETUP) {
@@ -78,31 +79,37 @@ export const getNextPhase = async (
     await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
-    const additionalData = await getResourceData(store.language, store.options);
+    const additionalData = await getResourceData(store.language, playerCount, store.options);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firestore.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
-  // * -> PROMPT
-  if (nextPhase === TA_NA_CARA_PHASES.PROMPT) {
-    const newPhase = await preparePromptPhase(store, state, players);
+  // * -> IDENTITY_SELECTION
+  if (nextPhase === TA_NA_CARA_PHASES.IDENTITY_SELECTION) {
+    const newPhase = await prepareIdentitySelectionPhase(store, state, players);
     return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
-  // PROMPT -> ANSWERING
+  // IDENTITY_SELECTION/ANSWERING/REVEAL -> PROMPTING
+  if (nextPhase === TA_NA_CARA_PHASES.PROMPTING) {
+    const newPhase = await preparePromptingPhase(store, state, players);
+    return utils.firestore.saveGame(sessionRef, newPhase);
+  }
+
+  // PROMPTING -> ANSWERING
   if (nextPhase === TA_NA_CARA_PHASES.ANSWERING) {
     const newPhase = await prepareAnsweringPhase(store, state, players);
     return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
-  // PROMPT -> GUESSING
+  // ANSWERING -> GUESSING
   if (nextPhase === TA_NA_CARA_PHASES.GUESSING) {
     const newPhase = await prepareGuessingPhase(store, state, players);
     return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
-  // PROMPT/ANSWERING -> REVEAL
+  // GUESSING -> REVEAL
   if (nextPhase === TA_NA_CARA_PHASES.REVEAL) {
     const newPhase = await prepareRevealPhase(store, state, players);
     return utils.firestore.saveGame(sessionRef, newPhase);
@@ -128,18 +135,29 @@ export const submitAction = async (data: TaNaCaraSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
+    case TA_NA_CARA_ACTIONS.SUBMIT_IDENTITY:
+      utils.firebase.validateSubmitActionProperties(data, ['identityId'], 'submit identity');
+      return handleSubmitIdentity(gameName, gameId, playerId, data.identityId);
     case TA_NA_CARA_ACTIONS.SUBMIT_PROMPT:
-      utils.firebase.validateSubmitActionProperties(data, ['questionId'], 'submit prompt');
-      return handleSubmitPrompt(gameName, gameId, playerId, data.questionId);
-    case TA_NA_CARA_ACTIONS.SUBMIT_TARGET:
-      utils.firebase.validateSubmitActionProperties(data, ['targetId'], 'submit target');
-      return handleSubmitTarget(gameName, gameId, playerId, data.targetId);
-    case TA_NA_CARA_ACTIONS.SUBMIT_GUESS:
-      utils.firebase.validateSubmitActionProperties(data, ['characterId'], 'submit character');
-      return handleSubmitGuess(gameName, gameId, playerId, data.characterId);
+      utils.firebase.validateSubmitActionProperties(
+        data,
+        ['questionId', 'customQuestion', 'customAnswer'],
+        'submit prompt',
+      );
+      return handleSubmitPrompt(
+        gameName,
+        gameId,
+        playerId,
+        data.questionId,
+        data.customQuestion,
+        data.customAnswer,
+      );
     case TA_NA_CARA_ACTIONS.SUBMIT_ANSWER:
-      utils.firebase.validateSubmitActionProperties(data, ['answer'], 'submit answer');
-      return handleSubmitAnswer(gameName, gameId, playerId, data.answer);
+      utils.firebase.validateSubmitActionProperties(data, ['questionId', 'answer'], 'submit answer');
+      return handleSubmitAnswer(gameName, gameId, playerId, data.questionId, data.answer);
+    case TA_NA_CARA_ACTIONS.SUBMIT_GUESSES:
+      utils.firebase.validateSubmitActionProperties(data, ['guesses'], 'submit guesses');
+      return handleSubmitGuesses(gameName, gameId, playerId, data.guesses);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }

@@ -14,23 +14,23 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
-import { useOnSubmitPromptAPIRequest, useOnSubmitTargetAPIRequest } from './utils/api-requests';
+import { useOnSubmitPromptAPIRequest } from './utils/api-requests';
 import { TA_NA_CARA_PHASES } from './utils/constants';
+import type { PhasePromptingState } from './utils/types';
 import { StepSelectPrompt } from './StepSelectPrompt';
-import { StepWaitingForPrompt } from './StepWaitingForPrompt';
+import { StepWaitForPrompt } from './StepWaitForPrompt';
 
-export function PhasePrompt({ players, state }: PhaseProps) {
+export function PhasePrompting({ meta, players, state }: PhaseProps<PhasePromptingState>) {
   const user = useUser(players, state);
   const { step, setStep } = useStep();
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
   const onSubmitPrompt = useOnSubmitPromptAPIRequest(setStep);
-  const onSubmitTarget = useOnSubmitTargetAPIRequest(setStep);
 
   const announcement = (
     <PhaseAnnouncement
       icon={<ChoiceIcon />}
-      title={<Translate pt="Pergunta" en="Question" />}
+      title={<Translate pt="Pergunta da Vez" en="Question" />}
       currentRound={state?.round?.current}
       type="overlay"
       duration={4}
@@ -57,33 +57,34 @@ export function PhasePrompt({ players, state }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={TA_NA_CARA_PHASES.PROMPT}>
+    <PhaseContainer phase={state?.phase} allowedPhase={TA_NA_CARA_PHASES.PROMPTING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <ViewOr condition={isUserTheActivePlayer}>
+        <ViewOr condition={!isUserTheActivePlayer}>
+          <StepWaitForPrompt
+            gameId={meta.gameId}
+            players={players}
+            user={user}
+            announcement={announcement}
+            activePlayer={activePlayer}
+            identitiesDict={state.identitiesDict}
+            grid={state.grid}
+            turnOrder={state.turnOrder}
+            questionCount={state.questionCount}
+            questionsDict={state.questionsDict}
+          />
+
           <StepSelectPrompt
             announcement={announcement}
             players={players}
             user={user}
             turnOrder={state.turnOrder}
-            charactersDict={state.charactersDict}
-            charactersIds={state.charactersIds}
-            questionsDict={state.questionsDict}
+            grid={state.grid}
+            identitiesDict={state.identitiesDict}
+            turnQuestions={state.turnQuestions}
+            vibesMode={state.vibesMode}
+            questionCount={state.questionCount}
             onSubmitPrompt={onSubmitPrompt}
-            onSubmitTarget={onSubmitTarget}
-            activePlayerId={state.activePlayerId}
-          />
-
-          <StepWaitingForPrompt
-            announcement={announcement}
-            players={players}
-            user={user}
-            turnOrder={state.turnOrder}
-            charactersDict={state.charactersDict}
-            charactersIds={state.charactersIds}
-            questionsDict={state.questionsDict}
-            activePlayer={activePlayer}
-            activePlayerId={state.activePlayerId}
           />
         </ViewOr>
       </StepSwitcher>

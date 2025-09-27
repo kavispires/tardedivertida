@@ -11,7 +11,7 @@ type CardProps = {
    */
   children: ReactNode;
   header?: string;
-  footer?: string;
+  footer?: ReactNode;
   color?: string;
   size?: 'small' | 'medium' | 'large';
   randomColor?: boolean;

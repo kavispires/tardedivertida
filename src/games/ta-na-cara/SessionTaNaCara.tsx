@@ -8,26 +8,29 @@ import { PhaseError } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
 import { TA_NA_CARA_PHASES } from './utils/constants';
-import { PhasePrompt } from './PhasePrompt';
-import { PhaseAnswer } from './PhaseAnswering';
+import { PhaseIdentitySelection } from './PhaseIdentitySelection';
+import { PhasePrompting } from './PhasePrompting';
+import { PhaseAnswering } from './PhaseAnswering';
 import { PhaseGuessing } from './PhaseGuessing';
 import { PhaseReveal } from './PhaseReveal';
-import { PhaseGameOver } from './PhaseGameOver';
 // Sass
 import './utils/styles.scss';
+// import { PhaseGameOver } from './PhaseGameOver';
 
 function getActiveComponent(state: GameState) {
   switch (state.phase) {
-    case TA_NA_CARA_PHASES.PROMPT:
-      return PhasePrompt;
+    case TA_NA_CARA_PHASES.IDENTITY_SELECTION:
+      return PhaseIdentitySelection;
+    case TA_NA_CARA_PHASES.PROMPTING:
+      return PhasePrompting;
     case TA_NA_CARA_PHASES.ANSWERING:
-      return PhaseAnswer;
+      return PhaseAnswering;
     case TA_NA_CARA_PHASES.GUESSING:
       return PhaseGuessing;
     case TA_NA_CARA_PHASES.REVEAL:
       return PhaseReveal;
     case PHASES.DEFAULT.GAME_OVER:
-      return PhaseGameOver;
+    //   return PhaseGameOver;
     default:
       return PhaseError;
   }

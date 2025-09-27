@@ -1,17 +1,12 @@
 // Constants
-import {
-  BASE_POINTS,
-  MINIMUM_POINTS,
-  MINIMUM_SUSPECTS,
-  QUESTIONS_PER_PLAYER,
-  TA_NA_CARA_PHASES,
-} from './constants';
-import { GAME_NAMES } from '../../utils/constants';
+import { MAX_ROUNDS, GRID_SIZE, TA_NA_CARA_PHASES, CUSTOM_QUESTION_ID } from './constants';
 // Types
-import type { CharacterFace, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import type { FirebaseStateData, FirebaseStoreData, GalleryEntry, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
-import { buildRankingAndOutcome } from './helpers';
+import type { TestimonyQuestionCard } from '../../types/tdr';
+import { keyBy } from 'lodash';
+import { addQuestionToDictionary, buildGalleryAndRanking } from './helpers';
 
 /**
  * Setup
@@ -19,7 +14,7 @@ import { buildRankingAndOutcome } from './helpers';
  * @returns
  */
 export const prepareSetupPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   _state: FirebaseStateData,
   players: Players,
   additionalData: ResourceData,
@@ -27,97 +22,152 @@ export const prepareSetupPhase = async (
   // Determine player order
   const { gameOrder: turnOrder, playerCount } = utils.players.buildGameOrder(players);
 
-  // Build characters list
-  const charactersCount = Math.max(playerCount * 2, MINIMUM_SUSPECTS);
-
-  const selectedCharacters: CharacterFace[] = utils.game
-    .getRandomItems(additionalData.allSuspects, charactersCount)
-    .map((character) => ({
-      ...character,
-      revealed: false,
-    }));
-
-  const charactersDict = utils.helpers.buildDictionaryFromList(selectedCharacters, 'id');
-
-  const gameQuestions = utils.game.getRandomItems(
-    additionalData.allCards,
-    playerCount * QUESTIONS_PER_PLAYER,
+  const characters = utils.game.getRandomItems(
+    additionalData.allSuspects,
+    playerCount * MAX_ROUNDS * 2 + GRID_SIZE,
   );
 
-  const questionsDict = utils.helpers.buildDictionaryFromList(gameQuestions, 'id');
+  // Make activePlayer the last in the turn order so we can always use the next player function
+  const activePlayerId = turnOrder.at(-1);
 
-  // Deal questions to players
-  utils.playerHand.dealDeck(players, Object.keys(questionsDict), QUESTIONS_PER_PLAYER, 'questions');
-
-  // Assign a random character to each player
-  let charactersIds = utils.game.shuffle(Object.keys(charactersDict));
-
-  utils.players.getListOfPlayers(players).forEach((player, index) => {
-    const cardId = charactersIds[index];
-    charactersDict[cardId].playerId = player.id;
-    player.characterId = cardId;
+  const achievements = utils.achievements.setup(players, {
+    true: 0,
+    false: 0,
+    voteInOthers: 0,
+    tableVotes: 0,
+    senior: 0,
+    young: 0,
+    // auto-adds: gender, build, height, ethnicity
   });
 
-  // Order characters by name for easy UI
-  charactersIds = charactersIds.sort((a, b) => {
-    const nameA = charactersDict[a].name[store.language].toLowerCase();
-    const nameB = charactersDict[b].name[store.language].toLowerCase();
-    return nameA.localeCompare(nameB);
-  });
+  const identitiesDict = keyBy(characters, 'id');
+  const unusedIdentityIds = Object.keys(identitiesDict);
 
-  utils.players.addPropertiesToPlayers(players, { answers: [], history: {} });
+  // To start add one character from the unused to each player
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    player.availableIdentities = [unusedIdentityIds.pop() as string];
+  });
 
   // Save
   return {
     update: {
       store: {
         usedCharacters: [],
+        questions: additionalData.allCards,
+        unusedIdentityIds,
+        achievements,
       },
       state: {
         phase: TA_NA_CARA_PHASES.SETUP,
         players,
         round: {
           current: 0,
-          total: playerCount * QUESTIONS_PER_PLAYER + charactersCount - playerCount,
+          total: MAX_ROUNDS,
         },
         turnOrder,
-        charactersDict,
-        questionsDict,
-        charactersIds,
+        identitiesDict,
+        activePlayerId,
+        grid: [],
       },
     },
   };
 };
 
-export const preparePromptPhase = async (
+export const prepareIdentitySelectionPhase = async (
+  store: FirebaseStoreData,
+  _state: FirebaseStateData,
+  players: Players,
+): Promise<SaveGamePayload> => {
+  utils.players.unReadyPlayers(players);
+
+  const unusedIdentityIds: CardId[] = store.unusedIdentityIds;
+  let grid: CardId[] = [];
+
+  // Give 1 additional character to each player
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    player.availableIdentities.push(unusedIdentityIds.pop() as string);
+  });
+
+  // TODO: Removed used identities from grid first
+
+  // Add new identities the grid, remove duplicates and shuffle
+  grid.push(...utils.players.getListOfPlayers(players).flatMap((player) => player.availableIdentities));
+
+  grid = utils.game.shuffle(utils.game.removeDuplicates(grid));
+
+  // Fill the rest of the grid with random identities until the grid is full
+  while (grid.length < GRID_SIZE && unusedIdentityIds.length > 0) {
+    grid.push(unusedIdentityIds.pop() as string);
+  }
+
+  return {
+    update: {
+      store: {
+        unusedIdentityIds,
+      },
+      state: {
+        phase: TA_NA_CARA_PHASES.IDENTITY_SELECTION,
+        players,
+        grid,
+        // Indicate that a new round needs to start
+        newRound: true,
+      },
+      stateCleanup: ['gallery', 'ranking'],
+    },
+  };
+};
+
+export const preparePromptingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const activePlayerId = utils.players.getNextPlayer(state.turnOrder, state.activePlayerId);
+  const round = state.newRound ? utils.helpers.increaseRound(state.round) : state.round;
+  const questionCount = state.newRound ? 0 : state.questionCount || 0;
+  const listOfPlayers = utils.players.getListOfPlayers(players);
+  // If players have new identities, apply them
+  if (listOfPlayers.some((p) => p.newIdentityId)) {
+    listOfPlayers.forEach((player) => {
+      if (player.newIdentityId) {
+        player.identity = {
+          identityId: player.newIdentityId,
+          answers: {},
+          votes: [], // TODO: verify if needed
+        };
+      }
+      player.availableIdentities = player.availableIdentities.filter(
+        (id: string) => id !== player.newIdentityId,
+      );
+    });
 
+    utils.players.removePropertiesFromPlayers(players, ['newIdentityId']);
+  }
+
+  const activePlayerId = utils.players.getNextPlayer(state.turnOrder, state.activePlayerId);
   utils.players.readyPlayers(players, activePlayerId);
 
-  // Gather answers if any
-  utils.players.getListOfPlayers(players).forEach((player) => {
-    if (player.currentAnswer !== undefined) {
-      player.answers.unshift({ [store.currentQuestionId]: player.currentAnswer });
-      delete player.currentAnswer;
-    }
-  });
+  // Get two questions
+  const vibesRound = store.options.vibesMode || round.current === MAX_ROUNDS;
+  const questions: TestimonyQuestionCard[] = store.questions;
+  // In a vibes round, always have 1 question for the non-creative people
+  const turnQuestions = utils.game.getRandomItems(questions, vibesRound ? 1 : 2);
+  const questionsDict = keyBy(turnQuestions, 'id');
 
-  utils.players.removePropertiesFromPlayers(players, ['guess', 'currentAnswer']);
-
-  // Save
   return {
     update: {
-      state: {
-        phase: TA_NA_CARA_PHASES.PROMPT,
-        players,
-        activePlayerId,
-        round: activePlayerId === state.turnOrder[0] ? utils.helpers.increaseRound(state.round) : state.round,
+      store: {
+        questions: questions.filter((q) => !questionsDict[q.id]),
       },
-      stateCleanup: ['targetId', 'correct', 'ranking', 'result'],
+      state: {
+        phase: TA_NA_CARA_PHASES.PROMPTING,
+        players,
+        round,
+        activePlayerId,
+        turnQuestions,
+        questionCount,
+        vibesRound,
+      },
+      stateCleanup: ['currentQuestionId'],
     },
   };
 };
@@ -127,22 +177,53 @@ export const prepareAnsweringPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  // Mark question as used for the current player
-  players[state.activePlayerId].questions = players[state.activePlayerId].questions.filter(
-    (cardId: CardId) => cardId !== store.currentQuestionId,
-  );
-
-  // Unready players
   utils.players.unReadyPlayers(players);
+  const questionsDict: Dictionary<TestimonyQuestionCard> = state.questionsDict ?? {};
+  const activePlayerId: PlayerId = state.activePlayerId;
 
-  // Save
+  // Get the chosen song by the active player
+  const turnQuestions: TestimonyQuestionCard[] = state.turnQuestions;
+  const currentQuestionId: string = store.currentQuestionId;
+
+  let currentQuestion: TestimonyQuestionCard | undefined;
+
+  if (currentQuestionId.startsWith(CUSTOM_QUESTION_ID)) {
+    currentQuestion = {
+      id: CUSTOM_QUESTION_ID,
+      question: store.customQuestion,
+      answer: store.customAnswer || store.currentQuestion,
+    };
+    // Add question to questions dict
+    const newId = addQuestionToDictionary(
+      questionsDict,
+      activePlayerId,
+      state.round.current,
+      currentQuestion,
+    );
+    currentQuestion.id = newId;
+  } else {
+    currentQuestion = turnQuestions.find((q) => q.id === currentQuestionId);
+  }
+
+  // If everything fails
+  if (!currentQuestion) {
+    currentQuestion = utils.game.getRandomItem(turnQuestions);
+  }
+
+  questionsDict[currentQuestion.id] = currentQuestion;
+  const questionCount = (state.questionCount || 0) + 1;
+
   return {
     update: {
       state: {
         phase: TA_NA_CARA_PHASES.ANSWERING,
         players,
-        currentQuestionId: store.currentQuestionId,
+        currentQuestionId,
+        questionsDict,
+        questionCount,
       },
+      stateCleanup: ['turnQuestions', 'newRound'],
+      storeCleanup: ['currentQuestionId'],
     },
   };
 };
@@ -152,22 +233,26 @@ export const prepareGuessingPhase = async (
   _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  // Unready players
-  utils.players.unReadyPlayers(players, store.currentTargetId);
+  utils.players.unReadyPlayers(players);
 
-  // Possible points: 15 - number of questions answered) with the minimum of 1 point
-  const possiblePoints = BASE_POINTS - (players?.[store.currentTargetId]?.answers.length ?? 0);
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    const answers = player.identity?.answers || {};
+    const trueCount = Object.values(answers).filter((a) => a === true).length;
+    const falseCount = Object.values(answers).filter((a) => a === false).length;
+    utils.achievements.increase(store, player.id, 'true', trueCount);
+    utils.achievements.increase(store, player.id, 'false', falseCount);
+  });
 
-  // Save
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       state: {
         phase: TA_NA_CARA_PHASES.GUESSING,
         players,
-        targetId: store.currentTargetId,
-        points: Math.max(possiblePoints, MINIMUM_POINTS),
       },
-      storeCleanup: ['currentTargetId', 'currentQuestionId'],
+      stateCleanup: ['turnQuestion'],
     },
   };
 };
@@ -177,109 +262,43 @@ export const prepareRevealPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const charactersDict = state.charactersDict;
-  // Calculate scores and correct guesses and assign, build ranking
-  const { correct, ranking, result } = buildRankingAndOutcome(
-    players,
-    state.targetId,
-    state.points,
-    state.charactersDict,
-  );
+  utils.players.unReadyPlayers(players);
 
-  // If a player can't have a character, trigger game over
-  const forceLastRound =
-    state.forceLastRound ||
-    utils.players.getListOfPlayers(players).some((player) => player.characterId === null);
+  const { gallery, ranking } = buildGalleryAndRanking(players, state.identitiesDict, store);
 
-  if (result) {
-    const res = result as Partial<Player>;
-    store.usedCharacters.push({
-      id: res.playerId,
-      avatarId: res.avatarId,
-      name: res.name,
-      characterId: res.characterId,
-      answers: res.answers,
-    });
-  }
-
-  // Save
   return {
     update: {
-      store,
+      store: {
+        achievements: store.achievements,
+        gallery: [...((store.gallery as GalleryEntry[]) || []), ...gallery],
+      },
       state: {
         phase: TA_NA_CARA_PHASES.REVEAL,
         players,
-        correct,
+        questionCount: 0,
+        gallery,
         ranking,
-        charactersDict,
-        result,
-        round: { ...state.round, forceLastRound },
       },
+      stateCleanup: ['currentQuestionId'],
     },
   };
 };
-
 export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  // TODO: Implement game over phase
 
-  // Get current characters to the usedCharacters list to make the final gallery
-  utils.players.getListOfPlayers(players).forEach((player) => {
-    if (
-      player.characterId &&
-      store.usedCharacters.some((c: Partial<Player>) => c.characterId !== player.characterId)
-    ) {
-      store.usedCharacters.push({
-        id: player.id,
-        avatarId: player.avatarId,
-        name: player.name,
-        characterId: player.characterId,
-        answers: player.answers,
-      });
-    }
-  });
-
-  utils.players.removePropertiesFromPlayers(players, [
-    'answers',
-    'history',
-    'characterId',
-    'guess',
-    'questions',
-  ]);
-
-  const gallery = store.usedCharacters.reverse();
-
-  await utils.firestore.markGameAsComplete(gameId);
-
-  await utils.user.saveGameToUsers({
-    gameName: GAME_NAMES.TA_NA_CARA,
-    gameId,
-    startedAt: store.createdAt,
-    players,
-    winners,
-    achievements: [],
-    language: store.language,
-  });
+  // TODO: Save data based on gallery
 
   return {
     update: {
-      store: {
-        usedCharacters: gallery,
-      },
-    },
-    set: {
+      store: {},
       state: {
         phase: TA_NA_CARA_PHASES.GAME_OVER,
         players,
-        round: state.round,
-        gameEndedAt: Date.now(),
-        winners,
-        gallery,
-        questionsDict: state.questionsDict,
       },
     },
   };
