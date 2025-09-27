@@ -66,9 +66,8 @@ export function ReleaseModal({
           <Typography.Text>
             Confira as declarações do tipo <SkinFilled />:
           </Typography.Text>
-          <Typography.Paragraph italic>
-            {gatherSuspectInfo(suspect.features, suspect.gender)}
-          </Typography.Paragraph>
+
+          <SuspectInfo features={suspect.features} gender={suspect.gender} variant="release" />
         </Flex>
       </Flex>
 
@@ -87,11 +86,26 @@ export function ReleaseModal({
   );
 }
 
-const gatherSuspectInfo = (features: string[], gender: string) => {
-  return features
-    .map(
-      (feature) =>
-        FEATURE_PT_TRANSLATIONS[`${feature}.${gender}`] || FEATURE_PT_TRANSLATIONS[feature] || feature,
-    )
-    .join(', ');
+type SuspectInfoProps = {
+  features: string[];
+  gender: string;
+  variant: 'release' | 'result';
 };
+
+export function SuspectInfo({ features, gender, variant }: SuspectInfoProps) {
+  const values = features.map(
+    (feature) =>
+      FEATURE_PT_TRANSLATIONS[`${feature}.${gender}`] || FEATURE_PT_TRANSLATIONS[feature] || feature,
+  );
+
+  return (
+    <Flex gap={6} wrap justify={variant === 'result' ? 'center' : 'start'}>
+      {values.map((value, index, array) => (
+        <Typography.Text key={value} code={variant === 'release'} italic>
+          {value}
+          {variant === 'result' && values.length > 1 && index < array.length - 1 ? ',' : ''}
+        </Typography.Text>
+      ))}
+    </Flex>
+  );
+}

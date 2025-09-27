@@ -19,6 +19,7 @@ import { SETTINGS } from '../utils/settings';
 import { writeResult } from '../utils/helpers';
 import type { DailyEspionagemEntry } from '../utils/types';
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
+import { SuspectInfo } from './ReleaseModal';
 
 type ResultsModalContentProps = {
   challengeNumber: number;
@@ -89,6 +90,8 @@ export function ResultsModalContent({
           </TextHighlight>
         </Flex>
       </Flex>
+
+      {culprit && <SuspectInfo features={culprit.features} gender={culprit.gender} variant="result" />}
 
       <CopyToClipboardResult result={result} rows={3} />
 
