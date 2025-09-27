@@ -1,0 +1,1 @@
+import{aN as s,r,cl as a}from"./index-BVZg1iGU.js";import{u as n}from"./DebugOnly-CSQ_ofDC.js";import{l as u}from"./StepSwitcher-DDMh8FT_.js";function f(m,c=[],e){u(),s("userId");const[t,i]=r.useState(!1),o=e??a([3,4,4,5,6]);return n({duration:o,onExpire:()=>{},disabled:t})}export{f as u};
