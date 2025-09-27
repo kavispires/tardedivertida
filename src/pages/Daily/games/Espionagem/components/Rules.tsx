@@ -11,7 +11,6 @@ type RulesProps = {
 export function Rules({ date }: RulesProps) {
   return (
     <RulesWrapper
-      betaVersion
       date={date}
       basicRules={
         <Translate
