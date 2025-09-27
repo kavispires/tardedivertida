@@ -39,6 +39,10 @@ export function useGameMeta(): GameMeta {
       });
       const data = response.data as GameMeta;
 
+      if (data.gameName) {
+        localStorage.setItem('TD_gameName', data.gameName);
+      }
+
       print({ meta: data });
       setLanguage(data?.language ?? 'pt');
       setLoader('load', false);

@@ -1,113 +1,120 @@
 import clsx from 'clsx';
-// Ant Design Resources
-import { Image, Popconfirm } from 'antd';
+// Types
+import type { GamePlayer } from 'types/player';
+import type { SuspectCard as Suspect } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
+// Utils
+import { getAvatarColorById } from 'utils/helpers';
+// Icons
+import { XIcon } from 'icons/XIcon';
 // Components
+import { Avatar, IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
-import { ImageCard } from 'components/image-cards';
-import { DualTranslate } from 'components/language';
-// Internal
-import type { CharactersDictionary } from '../utils/types';
+import { SuspectCard } from 'components/cards/SuspectCard';
+import { Translate } from 'components/language';
+import { TitledContainer } from 'components/layout/TitledContainer';
 
 type CharactersBoardProps = {
-  charactersIds: CardId[];
-  charactersDict: CharactersDictionary;
-  userCharacterId: CardId;
-  onCardClick?: GenericFunction;
-  historyEntry?: PlayerId[];
+  grid: string[];
+  identitiesDict: Dictionary<Suspect>;
+  onSelectSuspect?: (suspect: CardId) => void;
+  playerSuspectId: string;
+  selectedSuspectId?: string | null;
+  interactive?: boolean;
+  disabledList?: CardId[];
+  tags?: CardId[];
+  selectedPlayer?: GamePlayer;
 };
 
 export function CharactersBoard({
-  charactersDict,
-  charactersIds,
-  userCharacterId,
-  onCardClick,
-  historyEntry = [],
+  grid,
+  identitiesDict,
+  onSelectSuspect,
+  selectedSuspectId,
+  playerSuspectId,
+  interactive,
+  disabledList,
+  selectedPlayer,
+  tags,
 }: CharactersBoardProps) {
-  const { language, translate } = useLanguage();
-  const { isLoading } = useLoading();
-  const cardWidth = useCardWidth(10, {
-    gap: 16,
-    minWidth: 80,
-    maxWidth: 100,
-    margin: 16,
-  });
-
-  if (onCardClick) {
-    return (
-      <div className="characters-table" style={{ width: `${cardWidth * 6}px` }}>
-        {charactersIds.map((characterId) => {
-          const character = charactersDict[characterId];
-          const name = character.name[language];
-
-          const unavailable = historyEntry.includes(character.id);
-          const revealed = character?.revealed;
-          const ownCharacter = userCharacterId === character.id;
-
-          return (
-            <Popconfirm
-              key={character.id}
-              title={translate(
-                `Tem certeza que quer escolher ${name}?`,
-                `Are you sure you want to choose ${name}?`,
-              )}
-              onConfirm={() => onCardClick({ characterId: character.id })}
-              okText={translate('Sim', 'Yes')}
-              cancelText={translate('Não', 'No')}
-              disabled={unavailable || revealed || ownCharacter || isLoading}
-            >
-              <TransparentButton
-                className="characters-table__character characters-table__character-button"
-                disabled={unavailable || revealed || ownCharacter || isLoading}
-              >
-                <ImageCard
-                  id={revealed ? 'us-00' : character.id}
-                  className={clsx(
-                    'characters-table__character-image',
-                    userCharacterId === character.id && 'characters-table__character-image--active',
-                    (unavailable || revealed || ownCharacter) &&
-                      'characters-table__character-image--disabled',
-                  )}
-                  cardWidth={cardWidth - 16}
-                  preview={false}
-                />
-                {!unavailable && <div className="characters-table__character-name">{name}</div>}
-              </TransparentButton>
-            </Popconfirm>
-          );
-        })}
-      </div>
-    );
-  }
+  const columns = getBoardSplit(grid);
+  const cardWidth = useCardWidth(columns, { minWidth: 75, maxWidth: 125, gap: 16 });
 
   return (
-    <div className="characters-table" style={{ width: `${(cardWidth + 16) * 6}px` }}>
-      <Image.PreviewGroup>
-        {charactersIds.map((characterId) => {
-          const character = charactersDict[characterId];
-          return (
-            <div className="characters-table__character" key={character.id}>
-              <ImageCard
-                id={character?.revealed ? 'us-00' : character.id}
-                previewImageId={character.id}
-                className={clsx(
-                  'characters-table__character-image',
-                  userCharacterId === character.id && 'characters-table__character-image--active',
+    <TitledContainer title={<Translate pt="Personagens" en="Characters" />}>
+      <div
+        className={clsx('ta-na-cara-characters-board', `ta-na-cara-characters-board--${columns}`)}
+        style={{ backgroundColor: selectedPlayer ? getAvatarColorById(selectedPlayer?.avatarId) : undefined }}
+      >
+        {selectedPlayer && (
+          <div
+            className="ta-na-cara-characters-board-avatar"
+            style={{
+              backgroundColor: selectedPlayer ? getAvatarColorById(selectedPlayer?.avatarId) : undefined,
+            }}
+          >
+            <Avatar id={selectedPlayer?.avatarId} />
+          </div>
+        )}
+        {grid.map((cellId) => {
+          const suspect = identitiesDict[cellId];
+          const isPlayerCharacter = playerSuspectId === cellId;
+          const isDisabled = disabledList?.includes(cellId);
+          const isTagged = tags?.includes(cellId);
+
+          if (onSelectSuspect && interactive && !isPlayerCharacter && !isDisabled) {
+            return (
+              <TransparentButton
+                key={cellId}
+                className="ta-na-cara-suspect"
+                onClick={() => onSelectSuspect?.(suspect.id)}
+                activeClass="ta-na-cara-suspect--is-active"
+                active={selectedSuspectId === cellId}
+                hoverType="tint"
+              >
+                {isTagged && (
+                  <span className="ta-na-cara-suspect--tagged">
+                    <IconAvatar icon={<XIcon />} size="large" />
+                  </span>
                 )}
-                cardWidth={cardWidth}
-              />
-              {!character?.revealed && (
-                <div className="characters-table__character-name">
-                  <DualTranslate>{character.name}</DualTranslate>
-                </div>
+                <SuspectCard
+                  width={cardWidth}
+                  suspect={suspect}
+                  preview={false}
+                  className={clsx({ 'ta-na-cara-suspect--is-tagged': isTagged })}
+                />
+              </TransparentButton>
+            );
+          }
+
+          return (
+            <div key={cellId} className="ta-na-cara-suspect ta-na-cara-suspect--non-button">
+              {isPlayerCharacter && (
+                <span className="ta-na-cara-suspect--is-player">
+                  <Translate pt="Você" en="You" />
+                </span>
               )}
+              {isTagged && (
+                <span className="ta-na-cara-suspect--tagged">
+                  <IconAvatar icon={<XIcon />} size="large" />
+                </span>
+              )}
+              <SuspectCard
+                width={cardWidth}
+                suspect={suspect}
+                className={clsx({ 'ta-na-cara-suspect--is-tagged': isTagged })}
+              />
             </div>
           );
         })}
-      </Image.PreviewGroup>
-    </div>
+      </div>
+    </TitledContainer>
   );
 }
+
+const getBoardSplit = (grid: string[]) => {
+  const { length } = grid;
+  if (length === 25) return 5;
+  return 6;
+};

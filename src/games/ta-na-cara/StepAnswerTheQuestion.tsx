@@ -1,107 +1,127 @@
+import { useState } from 'react';
 // Ant Design Resources
-import { Space } from 'antd';
+import { Flex, Radio } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/player';
+import type { SuspectCard as Suspect } from 'types/tdr';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Icons
-import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
-import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
+import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
+import { BoxXIcon } from 'icons/BoxXIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
+import { SendButton, TransparentButton } from 'components/buttons';
+import { AnswerNoButton, AnswerYesButton } from 'components/buttons/AnswerButtons';
+import { DivButton } from 'components/buttons/DivButton';
+import { SuspectCard } from 'components/cards/SuspectCard';
+import { ImageCardSelectButton } from 'components/image-cards/ImageCardSelectButton';
 import { Translate } from 'components/language';
-import { TurnOrder } from 'components/players';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
-import { StepTitle, Title } from 'components/text';
-import { ViewIf } from 'components/views';
+import { RuleInstruction, StepTitle } from 'components/text';
+import { ViewOr } from 'components/views';
 // Internal
-import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
-import { mockAnswer } from './utils/mock';
+import type {
+  PhaseAnsweringState,
+  PhaseIdentitySelectionState,
+  PhasePromptingState,
+  SubmitAnswerPayload,
+  SubmitIdentityPayload,
+  SubmitPromptPayload,
+} from './utils/types';
+import { mockAnswer, mockCharacterSelection } from './utils/mock';
+import { Prompt } from './components/Prompt';
 import { CharactersBoard } from './components/CharactersBoard';
-import { PlayerBoard } from './components/PlayersBoards';
 
 type StepAnswerTheQuestionProps = {
   players: GamePlayers;
   user: GamePlayer;
-  turnOrder: TurnOrder;
-  charactersIds: CardId[];
-  charactersDict: CharactersDictionary;
-  questionId: CardId;
-  questionsDict: QuestionsDictionary;
-  onSubmitAnswer: GenericFunction;
-  activePlayerId: PlayerId;
-} & Pick<StepProps, 'announcement'>;
+  onSubmitAnswer: (payload: SubmitAnswerPayload) => void;
+} & Pick<
+  PhaseAnsweringState,
+  'grid' | 'identitiesDict' | 'currentQuestionId' | 'questionsDict' | 'vibesMode' | 'questionCount'
+> &
+  Pick<StepProps, 'announcement'>;
 
 export function StepAnswerTheQuestion({
   players,
   user,
   announcement,
-  turnOrder,
-  charactersDict,
-  charactersIds,
-  questionId,
-  questionsDict,
   onSubmitAnswer,
-  activePlayerId,
+  identitiesDict,
+  grid,
+  currentQuestionId,
+  questionsDict,
+  vibesMode,
+  questionCount,
 }: StepAnswerTheQuestionProps) {
-  const { isLoading } = useLoading();
+  const userIdentityId = user?.identity?.identityId;
+  const suspect = identitiesDict[userIdentityId];
+  const question = questionsDict[currentQuestionId];
 
-  // Dev Mock
   useMock(() => {
-    onSubmitAnswer({ answer: mockAnswer() });
+    onSubmitAnswer({
+      questionId: currentQuestionId,
+      answer: mockAnswer(),
+    });
   });
 
   return (
     <Step fullWidth announcement={announcement}>
       <StepTitle>
-        <Translate pt="Responda:" en="Please answer:" />
+        <Translate pt="Responda" en="Answer the Question" />
       </StepTitle>
 
-      <div className="answer-board">
-        <PlayerBoard
-          player={user}
-          cardWidth={100}
-          userCharacterId={user.characterId}
-          questionsDict={questionsDict}
+      <RuleInstruction type="action">
+        <Translate
+          pt={
+            <>
+              Olhe para a cara do seu personagem e responsa com sinceridade. <br />
+              Lembre-se que você ganha pontos se os outros jogadores acertarem o seu personagem
+            </>
+          }
+          en={
+            <>
+              Look at your character's face and answer honestly.
+              <br />
+              Remember that you earn points if the other players guess your character correctly.
+            </>
+          }
         />
-        <div className="answer-board__text">
-          <Title size="x-small" level={3} className="answer-board__question">
-            {questionsDict[questionId].question}
-          </Title>
+      </RuleInstruction>
 
-          <Space>
-            <ViewIf condition={user.currentAnswer === undefined || user.currentAnswer === true}>
-              <TransparentButton
-                className="answer-board__button answer-board__button--yes"
-                disabled={user.ready || isLoading}
-                onClick={() => onSubmitAnswer({ answer: true })}
-              >
-                <IconAvatar icon={<SpeechBubbleAcceptedIcon />} size="large" />
-                <Translate pt="Sim" en="Yes" />
-              </TransparentButton>
-            </ViewIf>
-            <ViewIf condition={user.currentAnswer === undefined || user.currentAnswer === false}>
-              <TransparentButton
-                className="answer-board__button answer-board__button--no"
-                disabled={user.ready || isLoading}
-                onClick={() => onSubmitAnswer({ answer: false })}
-              >
-                <IconAvatar icon={<SpeechBubbleDeclinedIcon />} size="large" /> <Translate pt="Não" en="No" />
-              </TransparentButton>
-            </ViewIf>
-          </Space>
-        </div>
-      </div>
+      {question && suspect && (
+        <>
+          <Prompt question={question} />
 
-      <CharactersBoard
-        charactersDict={charactersDict}
-        charactersIds={charactersIds}
-        userCharacterId={user.cardId}
-      />
+          <Flex justify="center" align="center" gap={6} wrap>
+            <div>
+              <AnswerNoButton
+                onClick={() =>
+                  onSubmitAnswer({
+                    questionId: currentQuestionId,
+                    answer: false,
+                  })
+                }
+              />
+            </div>
 
-      <TurnOrder players={players} order={turnOrder} activePlayerId={activePlayerId} />
+            <SuspectCard suspect={suspect} width={125} />
+
+            <div>
+              <AnswerYesButton
+                onClick={() =>
+                  onSubmitAnswer({
+                    questionId: currentQuestionId,
+                    answer: true,
+                  })
+                }
+              />
+            </div>
+          </Flex>
+        </>
+      )}
     </Step>
   );
 }

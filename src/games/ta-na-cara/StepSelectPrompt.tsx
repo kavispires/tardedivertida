@@ -1,79 +1,124 @@
+import { useState } from 'react';
+// Ant Design Resources
+import { Radio } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Components
+import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, StepTitle } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
+import { ViewOr } from 'components/views';
 // Internal
-import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
-import { mockPromptDecision } from './utils/mock';
+import type { PhasePromptingState, SubmitPromptPayload } from './utils/types';
+import { Prompt } from './components/Prompt';
 import { CharactersBoard } from './components/CharactersBoard';
-import { PlayersBoards } from './components/PlayersBoards';
-import { PlayerChoices } from './components/PlayerChoices';
-// Mocks
+import { QuestionsHighlight } from './components/Highlights';
+// Hooks
 
 type StepSelectPromptProps = {
   players: GamePlayers;
   user: GamePlayer;
-  turnOrder: TurnOrder;
-  charactersIds: CardId[];
-  charactersDict: CharactersDictionary;
-  questionsDict: QuestionsDictionary;
-  onSubmitPrompt: GenericFunction;
-  onSubmitTarget: GenericFunction;
-  activePlayerId: PlayerId;
-} & Pick<StepProps, 'announcement'>;
+  onSubmitPrompt: (payload: SubmitPromptPayload) => void;
+} & Pick<
+  PhasePromptingState,
+  'turnOrder' | 'grid' | 'identitiesDict' | 'turnQuestions' | 'vibesMode' | 'questionCount'
+> &
+  Pick<StepProps, 'announcement'>;
 
 export function StepSelectPrompt({
   players,
   user,
   announcement,
-  turnOrder,
-  charactersDict,
-  charactersIds,
-  questionsDict,
   onSubmitPrompt,
-  onSubmitTarget,
-  activePlayerId,
+  identitiesDict,
+  grid,
+  turnOrder,
+  turnQuestions,
+  vibesMode,
+  questionCount,
 }: StepSelectPromptProps) {
-  // DEV: Auto decision
   useMock(() => {
-    mockPromptDecision(user, players, onSubmitPrompt, onSubmitTarget);
+    if (!vibesMode) {
+      onSubmitPrompt({
+        questionId: turnQuestions[0]?.id,
+        customQuestion: '',
+        customAnswer: '',
+      });
+    }
   });
 
   return (
     <Step fullWidth announcement={announcement}>
       <StepTitle>
-        <Translate pt={<>Selecione uma das opções</>} en={<>Select one of the options</>} />
+        <Translate pt="A Pergunta da Vez" en="The Question for the Turn" />
       </StepTitle>
 
-      <Instruction contained>
-        <Translate
-          pt="Escolha uma das opções abaixo lembrando que todos responderam à pergunta que você escolher ou todos tentaram adivinhar quem um jogador é."
-          en="Choose one of the options below, remember that everybody will answer the question you choose or everybody will attempt to guess the targeted player."
+      <ViewOr condition={vibesMode}>
+        <RuleInstruction type="action">TODO</RuleInstruction>
+
+        <QuestionSelection
+          onSubmitPrompt={onSubmitPrompt}
+          turnQuestions={turnQuestions}
+          questionCount={questionCount}
+          players={players}
         />
-      </Instruction>
-
-      <PlayerChoices
-        players={players}
-        user={user}
-        questionsDict={questionsDict}
-        onSubmitPrompt={onSubmitPrompt}
-        onSubmitTarget={onSubmitTarget}
-      />
-
-      <PlayersBoards players={players} user={user} questionsDict={questionsDict} />
+      </ViewOr>
 
       <CharactersBoard
-        charactersDict={charactersDict}
-        charactersIds={charactersIds}
-        userCharacterId={user.cardId}
+        grid={grid}
+        identitiesDict={identitiesDict}
+        playerSuspectId={user?.identity?.identityId}
       />
 
-      <TurnOrder players={players} order={turnOrder} activePlayerId={activePlayerId} />
+      <TurnOrder players={players} order={turnOrder} activePlayerId={user.id} />
     </Step>
+  );
+}
+
+function QuestionSelection({
+  onSubmitPrompt,
+  turnQuestions,
+  questionCount,
+  players,
+}: Pick<StepSelectPromptProps, 'onSubmitPrompt' | 'turnQuestions' | 'questionCount' | 'players'>) {
+  const [selectionId, setSelectionId] = useState<string | null>(null);
+  const playerCount = Object.keys(players).length;
+
+  return (
+    <SpaceContainer direction="vertical">
+      <RuleInstruction type="action">
+        <Translate
+          pt="Selecione um das perguntas abaixo que você acha que ajudará a identificar as identidades dos outros jogadores"
+          en="Select one of the questions below that you think will help identify the identities of the other players"
+        />
+        <br />
+        <Translate pt="Perguntas até a adivinhação" en="Questions until guessing" />:{' '}
+        <QuestionsHighlight>
+          {questionCount}/{Math.max(5, playerCount)}
+        </QuestionsHighlight>
+      </RuleInstruction>
+
+      <Radio.Group
+        onChange={(e) => setSelectionId(e.target.value)}
+        value={selectionId}
+        options={turnQuestions.map((q) => ({ label: <Prompt question={q} />, value: q.id }))}
+      />
+
+      <SendButton
+        onClick={() => {
+          if (selectionId) {
+            onSubmitPrompt({ questionId: selectionId, customQuestion: '', customAnswer: '' });
+          }
+        }}
+        disabled={!selectionId}
+      >
+        <Translate pt="Enviar Pergunta" en="Send Question" />
+      </SendButton>
+    </SpaceContainer>
   );
 }

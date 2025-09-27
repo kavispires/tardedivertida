@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "testemunha-ocular",
-  "version": "4.0.33",
+  "version": "4.0.35",
   "release": "stable",
   "available": true,
   "title": {
@@ -50,8 +50,8 @@
     "max": 10
   },
   "duration": {
-    "base": 0,
-    "perPlayer": 0
+    "base": 20,
+    "perPlayer": 1
   },
   "tags": ["cooperative", "turn-based", "guessing", "discussion", "achievements"],
   "options": [

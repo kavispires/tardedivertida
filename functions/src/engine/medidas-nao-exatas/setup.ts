@@ -16,7 +16,7 @@ import { makeArray } from '../../utils/game-utils';
  * @returns
  */
 export const prepareSetupPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   _state: FirebaseStateData,
   players: Players,
   additionalData: ResourceData,

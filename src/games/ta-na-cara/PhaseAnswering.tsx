@@ -12,13 +12,15 @@ import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnSubmitAnswerAPIRequest } from './utils/api-requests';
 import { TA_NA_CARA_PHASES } from './utils/constants';
+import type { PhaseAnsweringState } from './utils/types';
 import { StepAnswerTheQuestion } from './StepAnswerTheQuestion';
+import { StepWaitOnAnswers } from './StepWaitOnAnswers';
 
-export function PhaseAnswer({ players, state }: PhaseProps) {
+export function PhaseAnswering({ meta, players, state }: PhaseProps<PhaseAnsweringState>) {
   const user = useUser(players, state);
-  const { step } = useStep();
+  const { step, setStep } = useStep();
 
-  const onSubmitAnswer = useOnSubmitAnswerAPIRequest();
+  const onSubmitAnswer = useOnSubmitAnswerAPIRequest(setStep);
 
   const announcement = (
     <PhaseAnnouncement
@@ -27,7 +29,7 @@ export function PhaseAnswer({ players, state }: PhaseProps) {
       currentRound={state?.round?.current}
       type="overlay"
       duration={4}
-    ></PhaseAnnouncement>
+    />
   );
 
   return (
@@ -38,13 +40,24 @@ export function PhaseAnswer({ players, state }: PhaseProps) {
           announcement={announcement}
           players={players}
           user={user}
-          turnOrder={state.turnOrder}
-          charactersDict={state.charactersDict}
-          charactersIds={state.charactersIds}
-          questionId={state.currentQuestionId}
+          grid={state.grid}
+          identitiesDict={state.identitiesDict}
+          currentQuestionId={state.currentQuestionId}
           questionsDict={state.questionsDict}
+          vibesMode={state.vibesMode}
+          questionCount={state.questionCount}
           onSubmitAnswer={onSubmitAnswer}
-          activePlayerId={state.activePlayerId}
+        />
+
+        <StepWaitOnAnswers
+          gameId={meta.gameId}
+          players={players}
+          user={user}
+          grid={state.grid}
+          identitiesDict={state.identitiesDict}
+          currentQuestionId={state.currentQuestionId}
+          questionsDict={state.questionsDict}
+          questionCount={state.questionCount}
         />
       </StepSwitcher>
     </PhaseContainer>

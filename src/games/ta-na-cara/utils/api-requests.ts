@@ -6,10 +6,31 @@ import type { UseStep } from 'hooks/useStep';
 import { TA_NA_CARA_ACTIONS } from './constants';
 import type {
   SubmitAnswerPayload,
-  SubmitGuessPayload,
+  SubmitGuessesPayload,
+  SubmitIdentityPayload,
   SubmitPromptPayload,
-  SubmitTargetPayload,
 } from './types';
+
+export function useOnSubmitIdentityAPIRequest(setStep: UseStep['setStep']) {
+  const { translate } = useLanguage();
+
+  const request = useGameActionRequest({
+    actionName: 'submit-identity',
+    onSuccess: () => setStep(2),
+    successMessage: translate('Identidade submetida com sucesso', 'Identity submitted successfully'),
+    errorMessage: translate(
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua identidade',
+      'Oops, the application found an error while trying to submit your identity',
+    ),
+  });
+
+  return (payload: SubmitIdentityPayload) => {
+    request({
+      action: TA_NA_CARA_ACTIONS.SUBMIT_IDENTITY,
+      ...payload,
+    });
+  };
+}
 
 export function useOnSubmitPromptAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
@@ -32,31 +53,11 @@ export function useOnSubmitPromptAPIRequest(setStep: UseStep['setStep']) {
   };
 }
 
-export function useOnSubmitTargetAPIRequest(setStep: UseStep['setStep']) {
+export function useOnSubmitAnswerAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
-    actionName: 'submit-target',
-    onSuccess: () => setStep(2),
-    successMessage: translate('Alvo submetida com sucesso', 'Target submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu alvo',
-      'Oops, the application found an error while trying to submit your target',
-    ),
-  });
-
-  return (payload: SubmitTargetPayload) => {
-    request({
-      action: TA_NA_CARA_ACTIONS.SUBMIT_TARGET,
-      ...payload,
-    });
-  };
-}
-
-export function useOnSubmitAnswerAPIRequest() {
-  const { translate } = useLanguage();
-
-  const request = useGameActionRequest({
+    onSuccess: () => setStep(1),
     actionName: 'submit-answer',
     successMessage: translate('Resposta submetida com sucesso', 'Answer submitted successfully'),
     errorMessage: translate(
@@ -73,22 +74,22 @@ export function useOnSubmitAnswerAPIRequest() {
   };
 }
 
-export function useOnSubmitGuessAPIRequest(setStep: UseStep['setStep']) {
+export function useOnSubmitGuessesAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
     onSuccess: () => setStep(2),
-    actionName: 'submit-guess',
-    successMessage: translate('Palpite submetido com sucesso', 'Guess submitted successfully'),
+    actionName: 'submit-guesses',
+    successMessage: translate('Palpites submetidos com sucesso', 'Guesses submitted successfully'),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu palpite',
-      'Oops, the application found an error while trying to submit your guess',
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu palpites',
+      'Oops, the application found an error while trying to submit your guesses',
     ),
   });
 
-  return (payload: SubmitGuessPayload) => {
+  return (payload: SubmitGuessesPayload) => {
     request({
-      action: TA_NA_CARA_ACTIONS.SUBMIT_GUESS,
+      action: TA_NA_CARA_ACTIONS.SUBMIT_GUESSES,
       ...payload,
     });
   };
