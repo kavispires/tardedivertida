@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "idade-da-preda",
-  "version": "0.9.7",
+  "version": "0.9.8",
   "release": "beta",
   "available": true,
   "title": {
@@ -19,7 +19,7 @@
     "en": "Cavemen must create a new language. Let's name objects?"
   },
   "appearance": {
-    "clouds": "cloud",
+    "clouds": "cave-painting-cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "#c1b629",
     "backgroundColor": "rgba(78,114,103, 0.85)",

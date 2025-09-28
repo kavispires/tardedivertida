@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "metalinguagem",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "release": "stable",
   "available": true,
   "title": {
@@ -19,7 +19,7 @@
     "en": "Create a new dictionary for the new world."
   },
   "appearance": {
-    "clouds": "cloud",
+    "clouds": "constellations-clouds",
     "cloudsAnimationType": "flow",
     "primaryColor": "",
     "backgroundColor": "rgba(236, 244, 213, 0.85)",
