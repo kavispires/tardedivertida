@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "M",
   "gameName": "medidas-nao-exatas",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "release": "beta",
   "available": true,
   "title": {
@@ -19,7 +19,7 @@
     "pt": "Avalie sua palavra secreta com métricas malucas e veja se outros jogadores conseguem adivinhá-la."
   },
   "appearance": {
-    "clouds": "cloud",
+    "clouds": "metrics-cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "",
     "backgroundColor": "",
