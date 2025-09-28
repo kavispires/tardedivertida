@@ -110,7 +110,7 @@
     display: grid;
     place-items: center;
     grid-template-columns: 1fr;
-    grid-template-rows: 42px auto 42px 16px;
+    grid-template-rows: 42px auto 72px 16px;
   }
 
   &__game-title {
@@ -121,12 +121,17 @@
     min-height: 42px; /* Approximately two lines of text */
     display: flex;
     align-items: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
   }
 
   &__title {
     text-align: center;
-    min-height: 42px;
+    min-height: 72px; /* Approximately three lines of text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: cursive;
+    font-size: 1.1em;
   }
 
   &__medal {
