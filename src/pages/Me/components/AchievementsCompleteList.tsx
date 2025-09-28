@@ -94,8 +94,8 @@ export function AchievementsCompleteList({ playedGames }: AchievementsCompleteLi
         <Switch
           checked={orderDirection === 'asc'}
           onChange={(checked) => setOrderDirection(checked ? 'asc' : 'desc')}
-          checkedChildren={<Translate pt="Crescente" en="Ascending" />}
-          unCheckedChildren={<Translate pt="Decrescente" en="Descending" />}
+          checkedChildren="A-Z"
+          unCheckedChildren="Z-A"
         />
       </Flex>
       <Row gutter={8}>
