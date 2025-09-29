@@ -1,0 +1,1 @@
+import{r as n}from"./index-CCRvlv43.js";var f=function(t){t===void 0&&(t={});var r=n.useState(t),o=r[0],u=r[1],a=n.useCallback(function(e){u(function(s){return Object.assign({},s,e instanceof Function?e(s):e)})},[]);return[o,a]};export{f as u};
