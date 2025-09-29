@@ -67,6 +67,10 @@ export function PlacementModal({
           {things.map((thing) => (
             <Thing key={thing.id} itemId={thing.id} name={thing.name} width={50} />
           ))}
+          {(activeArea === 1 || activeArea === 2) &&
+            intersectingThings.map((thing) => (
+              <Thing key={thing.id} itemId={thing.id} name={thing.name} width={50} />
+            ))}
         </Flex>
       </Region>
     </Modal>
