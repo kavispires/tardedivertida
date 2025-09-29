@@ -69,8 +69,9 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
           gameName={info.gameName}
           width={400}
           title={info.title}
-          stripWidth={window.innerWidth - 16}
+          stripWidth={window.innerWidth + 64}
           showLogo={hideGameOver}
+          className="game-over__strip"
         >
           {!hideGameOver && (
             <motion.img
