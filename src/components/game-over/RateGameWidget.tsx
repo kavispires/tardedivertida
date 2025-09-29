@@ -45,7 +45,7 @@ export function RateGameWidget({ customText }: RateGameWidgetProps) {
       type="popover"
       icon={<StarFilled />}
       position={3}
-      open={true}
+      open
     />
   );
 }

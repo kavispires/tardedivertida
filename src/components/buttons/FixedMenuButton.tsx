@@ -1,7 +1,8 @@
 import clsx from 'clsx';
-import { type ReactNode, useState } from 'react';
-import { useEffectOnce } from 'react-use';
+import { type ReactNode, useState, useEffect } from 'react';
+// Ant Design Resources
 import { Button, type ButtonProps, Popover } from 'antd';
+// Sass
 import './FixedMenuButton.scss';
 
 type FixedMenuButtonDefaultProps = {
@@ -63,7 +64,7 @@ interface FixedMenuButtonButtonOnlyProps extends FixedMenuButtonDefaultProps {
   /**
    * The click function for the button
    */
-  onClick: GenericFunction;
+  onClick: ButtonProps['onClick'];
   /**
    * Guard content from popover
    */
@@ -80,11 +81,20 @@ type FixedMenuButtonProps = FixedMenuButtonPopoverProps | FixedMenuButtonButtonO
  * Button position on the top left of the screen to display rules, admin button and other features
  */
 export function FixedMenuButton({ type, position, content, className, open, ...rest }: FixedMenuButtonProps) {
+  // In React 19, the positioning container is critical for Popover
   return (
     <div className={clsx('fixed-menu-button', `fixed-menu-button--${position}`, className)}>
       {type === 'popover' ? (
-        <Popover placement="bottomLeft" content={content} trigger="click" open={open}>
-          <FixedMenuButtonContent {...rest} />
+        <Popover
+          placement="bottomLeft"
+          content={content}
+          trigger="click"
+          open={open}
+          getPopupContainer={(triggerNode) => triggerNode.parentNode as HTMLElement}
+        >
+          <div className="fixed-menu-button__trigger">
+            <FixedMenuButtonContent {...rest} />
+          </div>
         </Popover>
       ) : (
         <FixedMenuButtonContent {...rest} />
@@ -96,16 +106,17 @@ export function FixedMenuButton({ type, position, content, className, open, ...r
 function FixedMenuButtonContent({
   icon,
   label,
-  showLabel,
+  showLabel = false,
   onClick,
   buttonProps,
 }: Partial<FixedMenuButtonProps>) {
   const [isActive, setActive] = useState(showLabel);
   const hasLabel = Boolean(label);
 
-  useEffectOnce(() => {
+  // Replace useEffectOnce with useEffect and dependency array
+  useEffect(() => {
     setActive(showLabel);
-  });
+  }, [showLabel]);
 
   return (
     <Button
