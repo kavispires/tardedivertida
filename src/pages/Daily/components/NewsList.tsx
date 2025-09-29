@@ -15,6 +15,18 @@ type NewsItem = {
 
 export const NEWS_LIST: NewsItem[] = [
   {
+    date: '2025-09-29',
+    content: (
+      <>
+        <IconAvatar icon={<NewFeatureIcon />} size="small" /> Se você clicar e segurar um ícone do{' '}
+        <strong>
+          <DualTranslate>{ALL_SETTINGS.TEORIA_DE_CONJUNTOS.NAME}</DualTranslate>, o jogo te mostrará quantas
+          letras, vogais e consoantes tem o nome do item! Que prático!
+        </strong>
+      </>
+    ),
+  },
+  {
     date: '2025-09-20',
     content: (
       <>
