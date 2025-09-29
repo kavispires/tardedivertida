@@ -1,0 +1,1 @@
+import{j as t}from"./index-BB0h2P2H.js";import{S as m}from"./StarIcon-DADqSOdv.js";import{M as n}from"./MetricHighlight-DRq2uIec.js";function c({children:i,type:o,iconSize:r,className:s}){return t.jsx(n,{icon:t.jsx(m,{}),type:o,iconSize:r,className:s,children:i})}export{c as P};
