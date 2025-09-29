@@ -9,16 +9,23 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
 import { ImageCard } from 'components/image-cards';
-import { DualTranslate } from 'components/language';
+import { DualTranslate, Translate } from 'components/language';
 
 type SuspectsProps = {
-  suspects: SuspectCard[];
-  perpetrator?: SuspectCard;
+  suspectsDict: Dictionary<SuspectCard>;
+  suspectsIds: CardId[];
+  perpetratorId?: CardId;
   onCardClick?: (suspectId: string) => void;
   eliminatedSuspects?: string[];
 };
 
-export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspects = [] }: SuspectsProps) {
+export function Suspects({
+  suspectsDict,
+  suspectsIds,
+  perpetratorId,
+  onCardClick,
+  eliminatedSuspects = [],
+}: SuspectsProps) {
   const { language, translate } = useLanguage();
   const { isLoading } = useLoading();
   const cardWidth = useCardWidth(7, { maxWidth: 128 });
@@ -26,7 +33,8 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
   if (onCardClick) {
     return (
       <div className="t-suspects-table">
-        {suspects.map((suspect) => {
+        {suspectsIds.map((suspectId) => {
+          const suspect = suspectsDict[suspectId];
           const wasEliminated = eliminatedSuspects.includes(suspect.id);
           const name = suspect.name[language];
 
@@ -51,7 +59,6 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
                   id={wasEliminated ? 'us-00' : suspect.id}
                   className={clsx(
                     't-suspects-table__suspect-image',
-                    perpetrator?.id === suspect.id && 't-suspects-table__suspect-image--active',
                     wasEliminated && 't-suspects-table__suspect-image--disabled',
                   )}
                   cardWidth={cardWidth}
@@ -69,8 +76,10 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
   return (
     <div className="t-suspects-table">
       <Image.PreviewGroup>
-        {suspects.map((suspect) => {
+        {suspectsIds.map((suspectId) => {
+          const suspect = suspectsDict[suspectId];
           const wasEliminated = eliminatedSuspects.includes(suspect.id);
+          const isThePerpetrator = perpetratorId === suspect.id;
           return (
             <div className="t-suspects-table__suspect" key={suspect.id}>
               <ImageCard
@@ -78,10 +87,15 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
                 previewImageId={suspect.id}
                 className={clsx(
                   't-suspects-table__suspect-image',
-                  perpetrator?.id === suspect.id && 't-suspects-table__suspect-image--active',
+                  isThePerpetrator && 't-suspects-table__suspect-image--active',
                 )}
                 cardWidth={cardWidth}
               />
+              {isThePerpetrator && (
+                <span className="t-suspects-table__culprit-badge">
+                  <Translate pt="Culpado" en="Culprit" />
+                </span>
+              )}
               {!wasEliminated && (
                 <div className="t-suspects-table__suspect-name">
                   <DualTranslate>{suspect.name}</DualTranslate>

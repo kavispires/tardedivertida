@@ -15,9 +15,10 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitTestimonyAPIRequest } from './utils/api-requests';
 import { TESTEMUNHA_OCULAR_PHASES } from './utils/constants';
+import type { PhaseQuestioningState } from './utils/types';
 import { StepQuestioning } from './StepQuestioning';
 
-function PhaseQuestioning({ state, players }: PhaseProps) {
+function PhaseQuestioning({ state, players }: PhaseProps<PhaseQuestioningState>) {
   const { isLoading } = useLoading();
   const { step } = useStep(0);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
@@ -60,9 +61,10 @@ function PhaseQuestioning({ state, players }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepQuestioning
-          suspects={state.suspects}
+          suspectsDict={state.suspectsDict}
+          suspectsIds={state.suspectsIds}
           previouslyEliminatedSuspects={state.previouslyEliminatedSuspects}
-          perpetrator={state.perpetrator}
+          perpetratorId={state.perpetratorId}
           isUserTheWitness={isUserTheWitness}
           witness={witness}
           isLoading={isLoading}

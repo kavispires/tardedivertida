@@ -17,10 +17,11 @@ import { ViewOr } from 'components/views';
 // Internal
 import { useOnSelectQuestionAPIRequest } from './utils/api-requests';
 import { TESTEMUNHA_OCULAR_PHASES } from './utils/constants';
+import type { PhaseQuestionSelectionState } from './utils/types';
 import { StepQuestionWaiting } from './StepQuestionWaiting';
 import { StepSelectQuestion } from './StepSelectQuestion';
 
-function PhaseQuestionSelection({ state, players }: PhaseProps) {
+function PhaseQuestionSelection({ state, players }: PhaseProps<PhaseQuestionSelectionState>) {
   const { isLoading } = useLoading();
   const { step } = useStep(0);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
@@ -74,7 +75,8 @@ function PhaseQuestionSelection({ state, players }: PhaseProps) {
             onSelectQuestion={onSelectQuestion}
             previouslyEliminatedSuspects={state.previouslyEliminatedSuspects}
             questions={state.questions}
-            suspects={state.suspects}
+            suspectsDict={state.suspectsDict}
+            suspectsIds={state.suspectsIds}
             history={state.history}
             announcement={announcement}
             status={state.status}
@@ -82,10 +84,11 @@ function PhaseQuestionSelection({ state, players }: PhaseProps) {
 
           <StepQuestionWaiting
             isUserTheWitness={isUserTheWitness}
-            perpetrator={state.perpetrator}
+            perpetratorId={state.perpetratorId}
             previouslyEliminatedSuspects={state.previouslyEliminatedSuspects}
             questioner={questioner}
-            suspects={state.suspects}
+            suspectsDict={state.suspectsDict}
+            suspectsIds={state.suspectsIds}
             history={state.history}
             announcement={announcement}
             status={state.status}

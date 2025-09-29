@@ -8,7 +8,7 @@ import { getRandomItem } from 'utils/helpers';
  * Random names used during Dev
  */
 const DEV_NAMES: string[] =
-  'Abe,Bob,Cam,Dan,Eva,Fin,Gus,Hal,Ian,Jan,Kim,Leo,Max,Nic,Oli,Pat,Quinn,Roy,Sam,Tim,Una,Vic,Will,Xavier,Yara,Zoe'.split(
+  'Abigail,Bob,Cameron,Daniel,Eva,Finley,Gus,Helen,Ian,Jennifer,Kim,Laura,Max,Nicky,Oliver,Patrick,Quinn,Roy,Samuel,Tim,Una,Victor,Will,Xavier,Yara,Zoe'.split(
     ',',
   );
 

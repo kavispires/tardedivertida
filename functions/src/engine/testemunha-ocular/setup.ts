@@ -1,6 +1,11 @@
 // Types
 import type { TestimonyQuestionCard } from '../../types/tdr';
-import type { FirebaseStateData, FirebaseStoreData, ResourceData, TestemunhaOcularEntry } from './types';
+import type {
+  FirebaseStateData,
+  FirebaseStoreData,
+  ResourceData,
+  TestemunhaOcularHistoryEntry,
+} from './types';
 // Constants
 import {
   HARD_MODE_EXTRA_SUSPECT_COUNT,
@@ -19,8 +24,8 @@ import {
   getQuestions,
 } from './helpers';
 import { GAME_NAMES } from '../../utils/constants';
+import { difference, keyBy, orderBy } from 'lodash';
 import { saveData } from './data';
-import { orderBy } from 'lodash';
 
 /**
  * Setup
@@ -44,7 +49,10 @@ export const prepareSetupPhase = async (
     ['asc'],
   );
 
-  const perpetrator = utils.game.getRandomItem(suspects);
+  const suspectsIds = suspects.map((s) => s.id);
+  const suspectsDict = keyBy(suspects, 'id');
+
+  const perpetratorId = utils.game.getRandomItem(suspects).id;
 
   const shuffledAvailableCards = utils.game.shuffle(additionalData.allCards);
 
@@ -63,7 +71,6 @@ export const prepareSetupPhase = async (
         deck,
         questionIndex: -2,
         questionerIndex: -1,
-        pastQuestions: [],
         turnOrder: [],
         gameOrder: [],
         achievements,
@@ -74,12 +81,13 @@ export const prepareSetupPhase = async (
           current: 0,
           total: MAX_ROUNDS,
         },
-        suspects,
-        perpetrator,
+        suspectsDict,
+        suspectsIds,
+        perpetratorId,
         status: {
           questions: 0,
           totalTime: MAX_ROUNDS,
-          suspects: suspects.length,
+          suspects: suspectsIds.length,
           released: 0,
           score: 0,
         },
@@ -115,7 +123,7 @@ export const prepareQuestionSelectionPhase = async (
 
   const turnOrder = store.turnOrder.length > 0 ? store.turnOrder : determineTurnOrder(players, witnessId);
 
-  const eliminatedSuspects = state?.eliminatedSuspects ?? [];
+  const eliminatedSuspects: CardId[] = state?.eliminatedSuspects ?? [];
 
   if (state.questionerId) {
     utils.achievements.push(store, state.questionerId, 'releases', eliminatedSuspects.length);
@@ -129,25 +137,23 @@ export const prepareQuestionSelectionPhase = async (
   const questions = getQuestions(store.deck, questionIndex);
 
   // Calculate score and move eliminated suspects
-  const previouslyEliminatedSuspects = [
+  const previouslyEliminatedSuspects: CardId[] = [
     ...(state?.previouslyEliminatedSuspects ?? []),
     ...(state?.eliminatedSuspects ?? []),
   ];
+  const suspectsIds: CardId[] = state.suspectsIds ?? [];
 
   // Calculate score
   const score = calculateScore(state.status.score ?? 0, state.round.current, eliminatedSuspects.length);
 
-  // Add entry to store
-  let testimonyEntry: TestemunhaOcularEntry | PlainObject = {};
-  if (state.question) {
-    testimonyEntry = {
-      id: state.question.id,
-      question: state.question.question,
-      unfit: eliminatedSuspects,
-    };
+  // Add previously eliminated suspects to the testimony history
+  const history: TestemunhaOcularHistoryEntry[] = state.history ?? [];
+  if (state.question && history[0]) {
+    const eliminatedSuspects = state.eliminatedSuspects ?? [];
+    const remainingSuspects = difference(suspectsIds, previouslyEliminatedSuspects);
+    history[0].eliminated = eliminatedSuspects;
+    history[0].remaining = remainingSuspects;
   }
-
-  const pastQuestions = testimonyEntry?.id ? [...store.pastQuestions, testimonyEntry] : store.pastQuestions;
 
   utils.players.readyPlayers(players, questionerId);
 
@@ -159,7 +165,6 @@ export const prepareQuestionSelectionPhase = async (
         gameOrder: turnOrder,
         questionerIndex,
         questionIndex,
-        pastQuestions,
         achievements: store.achievements,
       },
       state: {
@@ -176,6 +181,7 @@ export const prepareQuestionSelectionPhase = async (
           questions: state.status.questions + 1,
           released: previouslyEliminatedSuspects.length,
         },
+        history,
       },
       stateCleanup: ['question', 'testimony', 'eliminatedSuspects'],
     },
@@ -213,10 +219,16 @@ export const prepareTrialPhase = async (
 ): Promise<SaveGamePayload> => {
   const testimony = additionalPayload?.testimony ?? state.testimony;
 
-  const history = [...state.history];
-  history.push({
+  const history: TestemunhaOcularHistoryEntry[] = state.history ?? [];
+  history.unshift({
+    id: '',
+    question: '',
+    answer: '',
+    statement: false,
+    eliminated: [],
+    remaining: [],
     ...state.question,
-    statement: testimony,
+    ...testimony,
   });
 
   utils.players.readyPlayers(players, state.questionerId);
@@ -243,6 +255,21 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   await utils.firestore.markGameAsComplete(gameId);
 
+  const isWin = additionalPayload?.win ?? false;
+
+  const previouslyEliminatedSuspects: CardId[] = [
+    ...(state?.previouslyEliminatedSuspects ?? []),
+    ...(state?.eliminatedSuspects ?? []),
+  ];
+
+  const history: TestemunhaOcularHistoryEntry[] = state.history ?? [];
+  if (isWin && state.question && history[0]) {
+    const eliminatedSuspects = state.eliminatedSuspects ?? [];
+    const remainingSuspects = difference(state.suspectsIds, previouslyEliminatedSuspects);
+    history[0].eliminated = eliminatedSuspects;
+    history[0].remaining = remainingSuspects;
+  }
+
   const winners = additionalPayload?.win ? utils.players.getListOfPlayers(players) : [];
 
   const achievements = getAchievements(store, state.witnessId ?? '');
@@ -257,8 +284,10 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
+  const perpetratorId = state.perpetratorId ?? '';
+
   // Save Data (usedSuspects, usedQuestions, relationships)
-  await saveData(store.pastQuestions);
+  await saveData(gameId, history, isWin, perpetratorId, utils.players.getPlayerCount(players));
 
   utils.players.cleanup(players, []);
 
@@ -272,11 +301,15 @@ export const prepareGameOverPhase = async (
         round: state.round,
         players,
         gameEndedAt: Date.now(),
-        perpetrator: state.perpetrator,
         status: state.status,
-        outcome: additionalPayload?.win ? 'WIN' : 'LOSE',
-        history: state.history,
+        outcome: isWin ? 'WIN' : 'LOSE',
+        history,
+        suspectsDict: state.suspectsDict,
+        suspectsIds: state.suspectsIds,
+        perpetratorId: state.perpetratorId,
         achievements,
+        witnessId: state.witnessId,
+        previouslyEliminatedSuspects: previouslyEliminatedSuspects,
       },
     },
   };
