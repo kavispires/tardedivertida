@@ -2,6 +2,8 @@ import { cloneDeep, merge } from 'lodash';
 import { checkWeekend, generateShareableResult, loadLocalToday } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import type { BasicResultsOptions } from 'pages/Daily/utils/types';
+// Utils
+import { stringRemoveAccents } from 'utils/helpers';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyTeoriaDeConjuntosEntry, GameState } from './types';
@@ -124,3 +126,14 @@ export function getWrittenResult({
     isWeekend: state.isWeekend,
   });
 }
+
+export const countThing = (word: string) => {
+  // count letters (not counting spaces or hyphens), vowels, consonants
+  const letters = word.replace(/[\s-]/g, '').length;
+  const vowels = stringRemoveAccents(word.toLowerCase())
+    .split('')
+    .filter((l) => 'aeiou'.includes(l)).length;
+  const consonants = letters - vowels;
+
+  return `${letters} letras, ${vowels} vogais, ${consonants} consoantes`;
+};
