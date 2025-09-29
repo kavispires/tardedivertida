@@ -1,9 +1,12 @@
+import clsx from 'clsx';
 import { motion } from 'motion/react';
 import type { ReactNode } from 'react';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
+// Sass
+import './GameBanner.scss';
 
 type BannerProps = {
   /**
@@ -51,15 +54,12 @@ export function GameBanner({
 
   return (
     <figure
+      className={clsx('game-banner', className)}
       style={{
         width,
         minWidth: `${width}px`,
         height: `${backgroundHeight}px`,
-        position: 'relative',
-        overflow: 'hidden',
-        backgroundColor: 'hotPink',
       }}
-      className={className}
     >
       <img
         src={`${PUBLIC_URL.BANNERS}${gameName}.jpg`}
@@ -67,14 +67,7 @@ export function GameBanner({
         onError={(e) => {
           (e.target as HTMLImageElement).src = `${PUBLIC_URL.BANNERS}/em-breve.jpg`;
         }}
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-        }}
+        className="game-banner__image"
       />
 
       <motion.img
@@ -83,22 +76,19 @@ export function GameBanner({
           (e.target as HTMLImageElement).src = `${PUBLIC_URL.LOGOS}/logo-em-breve-${language}.svg`;
         }}
         alt={`${dualTranslate(title ?? { en: '', pt: '' })} logo`}
+        className={clsx('game-banner__logo', !showLogo && 'game-banner__logo--hidden')}
         style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
           width: `${width}px`,
           height: `${logoHeight}px`,
-          opacity: showLogo ? 1 : 0,
-          transition: 'opacity 0.5s',
         }}
-        animate={{
-          transform: isStatic
-            ? []
-            : ['translate(-50%, -50%)', 'translate(-50%, -45%)', 'translate(-50%, -50%)'],
-          transition: { duration: 7, repeat: Number.POSITIVE_INFINITY },
-        }}
+        animate={
+          isStatic
+            ? undefined
+            : {
+                transform: ['translate(-50%, -50%)', 'translate(-50%, -45%)', 'translate(-50%, -50%)'],
+                transition: { duration: 7, repeat: Number.POSITIVE_INFINITY },
+              }
+        }
       />
       {children}
     </figure>
@@ -157,14 +147,12 @@ export function GameStrip({
 
   return (
     <figure
+      className={clsx('game-strip', className)}
       style={{
         width: typeof stripWidth === 'number' ? `${stripWidth}px` : stripWidth,
         minWidth: `${width}px`,
         height: `${backgroundHeight}px`,
-        position: 'relative',
-        overflow: 'hidden',
       }}
-      className={className}
     >
       <img
         src={`${PUBLIC_URL.STRIPS}strip-${gameName}.jpg`}
@@ -172,14 +160,7 @@ export function GameStrip({
           (e.target as HTMLImageElement).src = `${PUBLIC_URL.STRIPS}/strip-em-breve.jpg`;
         }}
         alt={`${dualTranslate(title)} background`}
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-        }}
+        className="game-strip__image"
       />
       <motion.img
         src={`${PUBLIC_URL.LOGOS}logo-${gameName}-${language}.svg`}
@@ -187,22 +168,19 @@ export function GameStrip({
           (e.target as HTMLImageElement).src = `${PUBLIC_URL.LOGOS}/logo-em-breve-${language}.svg`;
         }}
         alt={`${dualTranslate(title)} logo`}
+        className={clsx('game-strip__logo', !showLogo && 'game-strip__logo--hidden')}
         style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
           width: `${width}px`,
           height: `${logoHeight}px`,
-          opacity: showLogo ? 1 : 0,
-          transition: 'opacity 0.5s',
         }}
-        animate={{
-          transform: isStatic
-            ? []
-            : ['translate(-50%, -50%)', 'translate(-50%, -45%)', 'translate(-50%, -50%)'],
-          transition: { duration: 7, repeat: Number.POSITIVE_INFINITY },
-        }}
+        animate={
+          isStatic
+            ? undefined
+            : {
+                transform: ['translate(-50%, -50%)', 'translate(-50%, -45%)', 'translate(-50%, -50%)'],
+                transition: { duration: 7, repeat: Number.POSITIVE_INFINITY },
+              }
+        }
       />
       {children}
     </figure>

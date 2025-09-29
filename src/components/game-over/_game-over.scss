@@ -12,6 +12,14 @@
 
   &__banner {
     margin-top: get-unit(-17);
+    margin-left: get-unit(-18);
+    margin-right: get-unit(-18);
+    width: 100vw;
+  }
+
+  &__strip {
+    margin-top: get-unit(-8);
+    width: 100vw;
   }
 
   &__title {
