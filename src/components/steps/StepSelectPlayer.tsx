@@ -1,3 +1,4 @@
+import { sample, shuffle } from 'lodash';
 import type { ComponentProps } from 'react';
 // Ant Design Resources
 import { Flex } from 'antd';
@@ -10,8 +11,9 @@ import { useLoading } from 'hooks/useLoading';
 import { sortPlayers } from 'utils/helpers';
 // Components
 import { AvatarCard } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
+import { SendButton, TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, StepTitle, type RuleInstructionProps } from 'components/text';
 
@@ -72,8 +74,21 @@ export function StepSelectPlayer({
         </Flex>
       </Instruction>
 
+      {isHost && (
+        <SpaceContainer>
+          <SendButton
+            size="large"
+            type="dashed"
+            onClick={() => onSubmitPlayer(sample(Object.keys(players)) ?? shuffle(Object.keys(players))[0])}
+            disabled={isLoading}
+          >
+            <Translate pt="Qualquer um" en="Any player" />
+          </SendButton>
+        </SpaceContainer>
+      )}
+
       <RuleInstruction type="event">
-        <Translate pt="O Anfitrião selecionará o jogador" en="The Host will select the player" />
+        <Translate pt="O anfitrião selecionará o jogador" en="The host will select the player" />
       </RuleInstruction>
     </Step>
   );

@@ -14,13 +14,16 @@ import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { Instruction } from 'components/text';
 // Internal
 import achievementsReference from './utils/achievements';
+import type { PhaseGameOverState } from './utils/types';
 import { AnnouncementContent } from './components/TextBlobs';
 import { QuestionsHistory } from './components/QuestionsHistory';
+import { Suspects } from './components/Suspects';
 
-function PhaseGameOver({ state, players }: PhaseProps) {
+function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   const { language } = useLanguage();
 
   const didUserWin = state.outcome === 'WIN';
+  const perpetrator = state.suspectsDict[state.perpetratorId];
 
   return (
     <GameOverWrapper
@@ -54,14 +57,16 @@ function PhaseGameOver({ state, players }: PhaseProps) {
         <Translate pt="O criminoso era:" en="The perpetrator was:" />
 
         <div className="t-suspects-table__suspect">
-          <ImageCard id={state.perpetrator.id} className="t-suspects-table__suspect-image" cardWidth={150} />
-          <div className="t-suspects-table__suspect-name">{state.perpetrator.name[language]}</div>
+          <ImageCard id={perpetrator.id} className="t-suspects-table__suspect-image" cardWidth={150} />
+          <div className="t-suspects-table__suspect-name">{perpetrator.name[language]}</div>
         </div>
       </Instruction>
 
       <Achievements achievements={state.achievements} players={players} reference={achievementsReference} />
 
-      <QuestionsHistory history={state.history} />
+      <QuestionsHistory history={state.history} suspectsDict={state.suspectsDict} />
+
+      <Suspects suspectsIds={state.suspectsIds} suspectsDict={state.suspectsDict} />
     </GameOverWrapper>
   );
 }

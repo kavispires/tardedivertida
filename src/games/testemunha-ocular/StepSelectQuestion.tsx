@@ -19,7 +19,8 @@ type StepSelectQuestionProps = {
   questions: Question[];
   onSelectQuestion: (payload: SelectQuestionPayload) => void;
   isLoading: boolean;
-  suspects: SuspectCard[];
+  suspectsDict: Dictionary<SuspectCard>;
+  suspectsIds: CardId[];
   previouslyEliminatedSuspects: string[];
   history: THistoryEntry[];
   status: Status;
@@ -29,7 +30,8 @@ export function StepSelectQuestion({
   questions,
   onSelectQuestion,
   isLoading,
-  suspects,
+  suspectsDict,
+  suspectsIds,
   previouslyEliminatedSuspects,
   history,
   announcement,
@@ -64,9 +66,13 @@ export function StepSelectQuestion({
         })}
       </SpaceContainer>
 
-      <Suspects suspects={suspects} eliminatedSuspects={previouslyEliminatedSuspects} />
+      <Suspects
+        suspectsDict={suspectsDict}
+        suspectsIds={suspectsIds}
+        eliminatedSuspects={previouslyEliminatedSuspects}
+      />
 
-      {history.length > 0 && <QuestionsHistory history={history} />}
+      {history.length > 0 && <QuestionsHistory history={history} suspectsDict={suspectsDict} />}
 
       {status && <Summary status={status} />}
     </Step>

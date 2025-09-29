@@ -22,10 +22,11 @@ import { QuestionsHistory } from './components/QuestionsHistory';
 import { Summary } from './components/Summary';
 
 type StepSuspectEliminationProps = {
-  suspects: SuspectCard[];
+  suspectsDict: Dictionary<SuspectCard>;
+  suspectsIds: CardId[];
   previouslyEliminatedSuspects: string[];
   eliminatedSuspects: string[];
-  perpetrator: SuspectCard;
+  perpetratorId: CardId;
   isUserTheWitness: boolean;
   isUserTheQuestioner: boolean;
   witness: GamePlayer;
@@ -38,10 +39,11 @@ type StepSuspectEliminationProps = {
 } & Pick<StepProps, 'announcement'>;
 
 export function StepSuspectElimination({
-  suspects,
+  suspectsDict,
+  suspectsIds,
   previouslyEliminatedSuspects,
   eliminatedSuspects,
-  perpetrator,
+  perpetratorId,
   isUserTheWitness,
   isUserTheQuestioner,
   witness,
@@ -125,13 +127,14 @@ export function StepSuspectElimination({
       )}
 
       <Suspects
-        suspects={suspects}
-        perpetrator={isUserTheWitness ? perpetrator : undefined}
+        suspectsDict={suspectsDict}
+        suspectsIds={suspectsIds}
+        perpetratorId={isUserTheWitness ? perpetratorId : undefined}
         onCardClick={isUserTheQuestioner ? onEliminateSuspect : undefined}
         eliminatedSuspects={[...(eliminatedSuspects ?? []), ...(previouslyEliminatedSuspects ?? [])]}
       />
 
-      {history.length > 0 && <QuestionsHistory history={history} />}
+      {history.length > 0 && <QuestionsHistory history={history} suspectsDict={suspectsDict} />}
 
       {status && <Summary status={status} />}
     </Step>

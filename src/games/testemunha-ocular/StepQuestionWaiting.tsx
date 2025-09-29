@@ -11,12 +11,12 @@ import type { Status, THistoryEntry } from './utils/types';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Suspects } from './components/Suspects';
 import { Summary } from './components/Summary';
-// Icons
 
 type StepQuestionWaitingProps = {
-  suspects: SuspectCard[];
+  suspectsDict: Dictionary<SuspectCard>;
+  suspectsIds: CardId[];
   previouslyEliminatedSuspects: string[];
-  perpetrator: SuspectCard;
+  perpetratorId: CardId;
   questioner: GamePlayer;
   isUserTheWitness: boolean;
   history: THistoryEntry[];
@@ -24,9 +24,10 @@ type StepQuestionWaitingProps = {
 } & Pick<StepProps, 'announcement'>;
 
 export function StepQuestionWaiting({
-  suspects,
+  suspectsDict,
+  suspectsIds,
   previouslyEliminatedSuspects,
-  perpetrator,
+  perpetratorId,
   questioner,
   isUserTheWitness,
   history,
@@ -51,21 +52,16 @@ export function StepQuestionWaiting({
             </>
           }
         />{' '}
-        {isUserTheWitness && (
-          <Translate
-            pt="O criminoso que você viu está marcado com borda amarela"
-            en="The criminal you saw is highlighted in yellow"
-          />
-        )}
       </RuleInstruction>
 
       <Suspects
-        suspects={suspects}
-        perpetrator={isUserTheWitness ? perpetrator : undefined}
+        suspectsDict={suspectsDict}
+        suspectsIds={suspectsIds}
+        perpetratorId={isUserTheWitness ? perpetratorId : undefined}
         eliminatedSuspects={previouslyEliminatedSuspects}
       />
 
-      {history.length > 0 && <QuestionsHistory history={history} />}
+      {history.length > 0 && <QuestionsHistory history={history} suspectsDict={suspectsDict} />}
 
       {status && <Summary status={status} />}
     </Step>

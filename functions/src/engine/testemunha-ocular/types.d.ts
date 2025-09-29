@@ -14,11 +14,20 @@ export type TestemunhaOcularOptions = {
 
 export type SuspectId = CardId;
 
-export interface TestemunhaOcularEntry {
-  id: string;
+// export interface TestemunhaOcularEntry {
+//   id: string;
+//   question: string;
+//   unfit?: SuspectId[];
+// }
+
+export type TestemunhaOcularHistoryEntry = {
+  id: CardId;
   question: string;
-  unfit?: SuspectId[];
-}
+  answer: string;
+  statement: boolean;
+  eliminated: CardId[];
+  remaining: CardId[];
+};
 
 export interface ResourceData {
   allCards: TestimonyQuestionCard[];
@@ -34,7 +43,6 @@ export type Status = {
 };
 
 export interface TestemunhaOcularStore extends DefaultStore<TestemunhaOcularOptions> {
-  pastQuestions: TestemunhaOcularEntry[];
   gameOrder: PlayerId[];
   turnOrder: PlayerId[];
   questionIndex?: number;
@@ -42,7 +50,9 @@ export interface TestemunhaOcularStore extends DefaultStore<TestemunhaOcularOpti
 }
 
 export interface TestemunhaOcularState extends DefaultState {
-  suspects?: SuspectCard[];
+  suspectsDict?: Dictionary<SuspectCard>;
+  suspectsIds?: CardId[];
+  perpetratorId?: CardId;
 }
 
 export interface TestemunhaOcularInitialState extends InitialState {

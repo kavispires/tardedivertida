@@ -14,9 +14,10 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnEliminateSuspectAPIRequest } from './utils/api-requests';
 import { TESTEMUNHA_OCULAR_PHASES } from './utils/constants';
+import type { PhaseTrialState } from './utils/types';
 import { StepSuspectElimination } from './StepSuspectElimination';
 
-function PhaseTrial({ state, players }: PhaseProps) {
+function PhaseTrial({ state, players }: PhaseProps<PhaseTrialState>) {
   const { step } = useStep(0);
 
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
@@ -61,9 +62,10 @@ function PhaseTrial({ state, players }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <StepSuspectElimination
-          suspects={state.suspects}
+          suspectsDict={state.suspectsDict}
+          suspectsIds={state.suspectsIds}
           previouslyEliminatedSuspects={state.previouslyEliminatedSuspects}
-          perpetrator={state.perpetrator}
+          perpetratorId={state.perpetratorId}
           isUserTheWitness={isUserTheWitness}
           witness={witness}
           onEliminate={onEliminate}

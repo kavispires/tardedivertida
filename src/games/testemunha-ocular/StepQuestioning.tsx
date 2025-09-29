@@ -2,7 +2,7 @@
 import { Avatar, Button, Flex } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
-import type { SuspectCard } from 'types/tdr';
+import type { SuspectCard, TestimonyQuestionCard } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Icons
@@ -23,22 +23,24 @@ import { QuestionsHistory } from './components/QuestionsHistory';
 import { Summary } from './components/Summary';
 
 type StepQuestioningProps = {
-  suspects: SuspectCard[];
+  suspectsDict: Dictionary<SuspectCard>;
+  suspectsIds: CardId[];
   previouslyEliminatedSuspects: string[];
-  perpetrator: SuspectCard;
+  perpetratorId: CardId;
   isUserTheWitness: boolean;
   witness: GamePlayer;
   isLoading: boolean;
   onAnswer: (payload: SubmitTestimonyPayload) => void;
-  question: GamePlayer;
+  question: TestimonyQuestionCard;
   history: THistoryEntry[];
   status: Status;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepQuestioning({
-  suspects,
+  suspectsDict,
+  suspectsIds,
   previouslyEliminatedSuspects,
-  perpetrator,
+  perpetratorId,
   isUserTheWitness,
   witness,
   isLoading,
@@ -138,12 +140,13 @@ export function StepQuestioning({
       </ViewIf>
 
       <Suspects
-        suspects={suspects}
-        perpetrator={isUserTheWitness ? perpetrator : undefined}
+        suspectsDict={suspectsDict}
+        suspectsIds={suspectsIds}
+        perpetratorId={isUserTheWitness ? perpetratorId : undefined}
         eliminatedSuspects={previouslyEliminatedSuspects}
       />
 
-      {history.length > 0 && <QuestionsHistory history={history} />}
+      {history.length > 0 && <QuestionsHistory history={history} suspectsDict={suspectsDict} />}
 
       {status && <Summary status={status} />}
     </Step>

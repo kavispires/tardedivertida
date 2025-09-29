@@ -75,7 +75,7 @@ export const handleElimination = async (
   const suspectId = additionalPayload?.suspectId;
   // Check if suspect is innocent
   if (suspectId) {
-    if (suspectId === state.perpetrator.id) {
+    if (suspectId === state.perpetratorId) {
       shouldGoToNextPhase = true;
       lose = true;
     } else {
@@ -94,10 +94,10 @@ export const handleElimination = async (
       });
 
       // If it was actually the final innocent person
-      const suspects = state.suspects;
+      const suspectsIds: CardId[] = state.suspectsIds ?? [];
       if (
-        suspects &&
-        suspects.length - (state.previouslyEliminatedSuspects.length + eliminatedSuspects.length) === 1
+        suspectsIds &&
+        suspectsIds.length - (state.previouslyEliminatedSuspects.length + eliminatedSuspects.length) === 1
       ) {
         shouldGoToNextPhase = true;
         win = true;

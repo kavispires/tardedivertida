@@ -46,8 +46,24 @@
   &__suspect-button {
     cursor: pointer !important;
     border: none;
-    background-color: rgba(orange, 0.6);
+    background-color: transparent;
     padding: 0;
+  }
+
+  &__culprit-badge {
+    position: absolute;
+    z-index: 15;
+    rotate: -10deg;
+    padding: get-unit(1 2);
+    background: get-color("yellow");
+    border-radius: get-unit(1);
+    box-shadow: 0 0 get-unit(2) rgba(0, 0, 0, 0.65);
+
+    text-transform: uppercase;
+    font-weight: bold;
+
+    top: get-unit(1);
+    left: get-unit(1);
   }
 }
 
