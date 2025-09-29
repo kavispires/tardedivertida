@@ -20,9 +20,9 @@ export const NEWS_LIST: NewsItem[] = [
       <>
         <IconAvatar icon={<NewFeatureIcon />} size="small" /> Se você clicar e segurar um ícone do{' '}
         <strong>
-          <DualTranslate>{ALL_SETTINGS.TEORIA_DE_CONJUNTOS.NAME}</DualTranslate>, o jogo te mostrará quantas
-          letras, vogais e consoantes tem o nome do item! Que prático!
+          <DualTranslate>{ALL_SETTINGS.TEORIA_DE_CONJUNTOS.NAME}</DualTranslate>
         </strong>
+        , o jogo te mostrará quantas letras, vogais e consoantes tem o nome do item! Que prático!
       </>
     ),
   },
