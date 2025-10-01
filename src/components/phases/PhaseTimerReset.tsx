@@ -1,4 +1,4 @@
-import { useEffectOnce } from 'react-use';
+import { useEffect, useRef } from 'react';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 
@@ -7,12 +7,16 @@ type PhaseTimerResetProps = {
 };
 
 /**
- * Component to be place in between sequential PhaseAnnouncement to reset the automatic timer
- * @param props
- * @returns
+ * Component to be placed in between sequential PhaseAnnouncement
+ * to reset the automatic timer.
  */
 export function PhaseTimerReset({ goToNextStep }: PhaseTimerResetProps) {
-  useEffectOnce(() => {
+  const calledRef = useRef(false);
+
+  useEffect(() => {
+    if (calledRef.current) return; // prevent second call (StrictMode remount)
+    calledRef.current = true;
+
     const delay = () => new Promise((res) => setTimeout(res, 100));
     const next = async () => {
       await delay();
@@ -20,7 +24,7 @@ export function PhaseTimerReset({ goToNextStep }: PhaseTimerResetProps) {
     };
 
     next();
-  });
+  }, [goToNextStep]);
 
   return <div></div>;
 }
