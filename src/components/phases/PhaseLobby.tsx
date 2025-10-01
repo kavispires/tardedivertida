@@ -114,16 +114,16 @@ export function PhaseLobby({ players, meta }: PhaseProps) {
 
             <JoinedPlayers players={players} orientation={step === 1 ? 'vertical' : 'horizontal'} />
           </div>
-        </motion.div>
 
-        <AdminMenuDrawer
-          state={{
-            phase: 'LOBBY',
-            round: { current: 0, total: 0, forceLastRound: false },
-            players: {},
-          }}
-          players={players}
-        />
+          <AdminMenuDrawer
+            state={{
+              phase: 'LOBBY',
+              round: { current: 0, total: 0, forceLastRound: false },
+              players: {},
+            }}
+            players={players}
+          />
+        </motion.div>
       </AnimatePresence>
       <ImageBackground />
       <CloudBackground />
