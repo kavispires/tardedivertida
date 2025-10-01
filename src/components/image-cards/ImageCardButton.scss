@@ -1,14 +1,14 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 .image-card-button {
   isolation: isolate;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   &__container {
-    display: flex;
-    flex-direction: column;
     position: relative;
-    align-items: center;
   }
 
   &__button {
@@ -21,7 +21,7 @@
       position: absolute;
 
       &:hover.ant-btn {
-        background-color: get-color('white');
+        background-color: get-color("white");
       }
     }
 

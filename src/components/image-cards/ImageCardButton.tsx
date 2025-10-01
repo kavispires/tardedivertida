@@ -3,7 +3,7 @@ import { throttle as throttleFunc } from 'lodash';
 import { useEffect, useMemo, useRef, type ReactNode } from 'react';
 // Ant Design Resources
 import { DownCircleOutlined, UpCircleOutlined } from '@ant-design/icons';
-import { Button, type ButtonProps } from 'antd';
+import { Button, Typography, type ButtonProps } from 'antd';
 // Components
 import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
@@ -11,7 +11,6 @@ import { Translate } from 'components/language';
 import { ImageBlurButtonContainer } from './ImageBlurButtonContainer';
 // Sass
 import './ImageCardButton.scss';
-//  Components
 
 type ImageCardButtonProps = {
   /**
@@ -131,14 +130,14 @@ export function ImageCardButton({
 
   return (
     <div className={clsx('image-card-button', className)}>
+      {isTop && button}
       <ImageBlurButtonContainer cardId={id} position={buttonPosition === 'bottom' ? 'top' : 'bottom'}>
-        <DebugOnly>{id}</DebugOnly>
-        <div className="image-card-button__container">
-          {isTop && button}
-          {children}
-          {!isTop && button}
-        </div>
+        <DebugOnly>
+          <Typography.Text code>{id}</Typography.Text>
+        </DebugOnly>
+        <div className="image-card-button__container">{children}</div>
       </ImageBlurButtonContainer>
+      {!isTop && button}
     </div>
   );
 }
