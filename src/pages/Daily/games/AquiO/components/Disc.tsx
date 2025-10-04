@@ -1,19 +1,31 @@
 import clsx from 'clsx';
+import { motion } from 'framer-motion';
+import type { ComponentProps } from 'react';
 // Components
 import { DivButton } from 'components/buttons/DivButton';
 import { ItemCard } from 'components/cards/ItemCard';
 // Internal
 import type { AquiODisc } from '../utils/types';
 
+const MotionDiv = motion('div');
+
 type DiscProps = {
   disc: AquiODisc;
   onSelect: (itemId: string) => void;
   width: number;
-  className: string;
+  discProps: ComponentProps<typeof MotionDiv>;
 };
-export function Disc({ disc, onSelect, width, className }: DiscProps) {
+
+/**
+ * The disc component that displays items in a circular layout.
+ */
+export function Disc({ disc, onSelect, width, discProps }: DiscProps) {
   return (
-    <div className={clsx('aqui-o-disc', className)} style={{ width: width, height: width }}>
+    <MotionDiv
+      {...discProps}
+      className={clsx('aqui-o-disc', discProps.className)}
+      style={{ width: width, height: width }}
+    >
       {disc.items.map((item) => (
         <DivButton
           key={item.itemId}
@@ -27,6 +39,6 @@ export function Disc({ disc, onSelect, width, className }: DiscProps) {
           <ItemCard id={item.itemId} className="aqui-o-disc-sprite" width={width / 4} padding={9} />
         </DivButton>
       ))}
-    </div>
+    </MotionDiv>
   );
 }

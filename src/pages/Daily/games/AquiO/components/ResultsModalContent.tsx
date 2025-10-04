@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { motion } from 'framer-motion';
 import { DailyItem } from 'pages/Daily/components/DailyItem';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { useMemo } from 'react';
@@ -8,7 +8,7 @@ import { Flex, Typography } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimation } from 'utils/animations';
 // Icons
 import { ApplauseIcon } from 'icons/ApplauseIcon';
 import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
@@ -145,26 +145,18 @@ export function ResultsModalContent({
 
       <Flex gap={6}>
         {!!lastMatch && (
-          <DailyItem
-            id={lastMatch}
-            width={45}
-            className={clsx(getAnimationClass('pulse', { speed: 'fast' }), 'item-match-outline')}
-          />
+          <motion.div {...getAnimation('pulse', { infinite: true })}>
+            <DailyItem id={lastMatch} width={45} className="item-match-outline" />
+          </motion.div>
         )}
         {progress > 0 &&
           itemsIds
             .filter((id) => id !== lastMatch)
             .slice(0, Math.floor((progress - 1) / 3))
             .map((id, index) => (
-              <DailyItem
-                key={id}
-                id={id}
-                width={45}
-                className={getAnimationClass('pulse', {
-                  speed: 'fast',
-                  delay: index * 0.5,
-                })}
-              />
+              <motion.div key={id} {...getAnimation('pulse', { delay: index * 0.5, infinite: true })}>
+                <DailyItem id={id} width={45} />
+              </motion.div>
             ))}
       </Flex>
 
