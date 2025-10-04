@@ -453,26 +453,31 @@ export const cleanupStore = (store: PlainObject, keepKeys: string[]): string[] =
   return Object.keys(store).filter((key) => !keys.includes(key));
 };
 
-type UndefinedParts<T> = {
-  [K in keyof T]?: T[K] extends object ? UndefinedParts<T[K]> : T[K];
-};
+/**
+ * Recursively inspects an object for undefined values and returns an array of paths to these values.
+ *
+ * @template T - The type of the object to inspect.
+ * @param obj - The object to inspect for undefined values.
+ * @param [parentKey=''] - The parent key path (used for recursive calls).
+ * @returns - An array of string paths to undefined values, or null if no undefined values found.
+ *
+ * @example
+ * const obj = { a: 1, b: undefined, c: { d: undefined, e: 2 } };
+ * verifyUndefinedValues(obj); // Returns ["b", "c.d"]
+ */
+export function verifyUndefinedValues<T extends object>(obj: T, parentKey = ''): string[] | null {
+  const result: string[] = [];
 
-function verifyUndefinedValues<T extends object>(obj: T) {
-  let hasUndefined = false;
-  const result: UndefinedParts<T> = {};
+  for (const [key, value] of Object.entries(obj) as [keyof T, T[keyof T]][]) {
+    const fullKey = parentKey ? `${parentKey}.${String(key)}` : String(key);
 
-  for (const key in obj) {
-    if (obj[key] === undefined) {
-      result[key] = undefined;
-      hasUndefined = true;
-    } else if (typeof obj[key] === 'object' && obj[key] !== null) {
-      const nestedResult = verifyUndefinedValues(obj[key] as object);
-      if (nestedResult !== null) {
-        result[key] = nestedResult as T[typeof key];
-        hasUndefined = true;
-      }
+    if (value === undefined) {
+      result.push(fullKey);
+    } else if (value !== null && typeof value === 'object') {
+      const nested = verifyUndefinedValues(value as object, fullKey);
+      if (nested) result.push(...nested);
     }
   }
 
-  return hasUndefined ? result : null;
+  return result.length > 0 ? result : null;
 }

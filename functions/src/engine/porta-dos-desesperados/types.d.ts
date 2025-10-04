@@ -5,15 +5,30 @@ export type PortaDosDesesperadosOptions = {
    * Add bots to the game to go was players
    */
   withBots?: boolean;
-  /**
-   * Only use new traps
-   */
-  newTraps?: boolean;
 };
 
+export type Trap = keyof typeof TRAPS;
 export interface ResourceData {
   cards: ImageCardId[];
 }
+
+export type TrapEntry = {
+  id: string;
+  setup: 'backend' | 'frontend' | 'fullstack';
+  level: number;
+  target: 'clue' | 'guess' | 'all';
+  note: string;
+  icon:
+    | 'dreamCatcher'
+    | 'magicCandles'
+    | 'magicDivination'
+    | 'magicHamsa'
+    | 'magicRunes'
+    | 'magicTarotCards'
+    | 'magicVoodooDoll';
+  title: DualLanguageValue;
+  description: DualLanguageValue;
+};
 
 export interface PortaDosDesesperadosStore extends DefaultStore {
   relationships?: ImageCardRelationship;
@@ -38,8 +53,6 @@ export interface PortaDosDesesperadosInitialState extends InitialState {
 export interface PortaDosDesesperadosSubmitAction extends Payload {
   action: keyof typeof PORTA_DOS_DESESPERADOS_ACTIONS;
 }
-
-export type Trap = keyof typeof TRAPS;
 
 export type PortaDosDesesperadosAchievement = keyof typeof PORTA_DOS_DESESPERADOS_ACHIEVEMENTS;
 

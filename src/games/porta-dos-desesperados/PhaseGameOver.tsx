@@ -19,10 +19,11 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction, RuleInstruction, Title } from 'components/text';
 // Internal
 import { achievementsReference } from './utils/achievements';
+import type { PhaseGameOverState } from './utils/types';
 import { LoseGameText } from './components/RulesBlobs';
 import { DoorFrame } from '../../components/game/DoorFrame';
 
-export function PhaseGameOver({ players, state }: PhaseProps) {
+export function PhaseGameOver({ players, state }: PhaseProps<PhaseGameOverState>) {
   const isVictory = state.winCondition === 'WIN';
   const doorWidth = useCardWidth(10, {
     gap: 8,
@@ -72,24 +73,21 @@ export function PhaseGameOver({ players, state }: PhaseProps) {
 
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
-      <>
-        <Divider />
-        <Title size="x-small">
-          <Translate pt="O corredor" en="The Corridor" />
-        </Title>
-        {
-          <SpaceContainer wrap>
-            {doors.map((doorId: ImageCardId, index, arr) => (
-              <Fragment key={doorId || index}>
-                <DoorFrame width={doorWidth}>
-                  <ImageCard id={doorId || 'back-lockedDoor'} cardWidth={150} />
-                </DoorFrame>
-                {index < arr.length - 1 && <CaretRightOutlined />}
-              </Fragment>
-            ))}
-          </SpaceContainer>
-        }
-      </>
+      <Divider />
+      <Title size="x-small">
+        <Translate pt="O corredor" en="The Corridor" />
+      </Title>
+
+      <SpaceContainer wrap>
+        {doors.map((doorId: ImageCardId, index, arr) => (
+          <Fragment key={doorId || index}>
+            <DoorFrame width={doorWidth}>
+              <ImageCard id={doorId || 'back-lockedDoor'} cardWidth={150} />
+            </DoorFrame>
+            {index < arr.length - 1 && <CaretRightOutlined />}
+          </Fragment>
+        ))}
+      </SpaceContainer>
     </GameOverWrapper>
   );
 }

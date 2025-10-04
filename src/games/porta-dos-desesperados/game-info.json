@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "porta-dos-desesperados",
-  "version": "4.0.54",
+  "version": "4.0.57",
   "release": "stable",
   "available": true,
   "title": {
@@ -53,22 +53,6 @@
   },
   "tags": ["cooperative", "guessing", "puzzle", "images", "turn-based", "discussion", "bots", "achievements"],
   "options": [
-    {
-      "key": "newTraps",
-      "kind": "switch",
-      "label": "New Traps",
-      "description": "Only uses the new traps from v4",
-      "values": [
-        {
-          "label": "All Traps",
-          "value": false
-        },
-        {
-          "label": "Only New",
-          "value": true
-        }
-      ]
-    },
     {
       "key": "withBots",
       "kind": "switch",

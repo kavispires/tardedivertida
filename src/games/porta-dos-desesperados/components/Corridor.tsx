@@ -69,13 +69,16 @@ export function Corridor({
 
   // Trap: Blind Door
   const blindDoor = useMemo(
-    () => (trap === TRAPS.BLIND_DOOR && !disableTrap ? random(0, doors.length - 1) : undefined),
-    [trap, doors.length, disableTrap],
+    () =>
+      trap === TRAPS.BLIND_DOOR && !disableTrap && user?.blindDoorId
+        ? (doors.indexOf(user?.blindDoorId) ?? random(0, doors.length - 1))
+        : undefined,
+    [trap, doors, disableTrap, user?.blindDoorId],
   );
 
-  // Trap: Vanishing doors OR Delaying Doors
+  // Trap: Vanishing doors OR Ordered Doors
   const hiddenDoorsIndexes = useMemo(() => {
-    if ([TRAPS.VANISHING_DOORS, TRAPS.DELAYING_DOORS].includes(trap) && !disableTrap) {
+    if ([TRAPS.VANISHING_DOORS, TRAPS.ORDERED_DOORS].includes(trap) && !disableTrap) {
       return cache?.doors || [];
     }
   }, [cache, trap, disableTrap]);
@@ -83,16 +86,26 @@ export function Corridor({
   return (
     <Image.PreviewGroup
       preview={{
-        className: clsx(trap === TRAPS.FADED_DOORS && 'image-preview-fading'),
+        className: clsx({
+          'image-preview-fading': trap === TRAPS.FADED_DOORS,
+          'image-preview-dancing': trap === TRAPS.DANCING_DOORS,
+        }),
       }}
     >
       <div className="i-corridor">
         {doors.map((doorId, index) => {
           const animationDelayIndex = index < 3 ? index : doors.length - 1 - index;
-          const isConcealed = trap === TRAPS.CONCEALED_DOOR && index === 2;
+          const isConcealed = !disableTrap && trap === TRAPS.CONCEALED_DOOR && index === 2;
           const isVanished = trap === TRAPS.VANISHING_DOORS && hiddenDoorsIndexes?.includes(index);
-          const isDelayed =
-            trap === TRAPS.DELAYING_DOORS && !disableTrap && !hiddenDoorsIndexes?.includes(index);
+          const isUnrevealed =
+            trap === TRAPS.ORDERED_DOORS && !disableTrap && !hiddenDoorsIndexes?.includes(index);
+          // For ORDERED_DOORS, disable the button for previous doors when next door is visible
+          const isButtonDisabledByOrder =
+            trap === TRAPS.ORDERED_DOORS &&
+            !disableTrap &&
+            !isUnrevealed &&
+            hiddenDoorsIndexes?.some((hiddenIndex: number) => hiddenIndex > index);
+
           return (
             <div
               key={doorId}
@@ -111,8 +124,8 @@ export function Corridor({
                       ? getAnimationClass('fadeOut', { speed: 'slower' })
                       : ''
                     : '',
-                  trap === TRAPS.DELAYING_DOORS
-                    ? isDelayed
+                  trap === TRAPS.ORDERED_DOORS
+                    ? isUnrevealed
                       ? 'invisible'
                       : getAnimationClass('fadeIn', { speed: 'slower' })
                     : '',
@@ -132,7 +145,7 @@ export function Corridor({
                     cardWidth={150}
                     className={clsx(trap === TRAPS.FADED_DOORS && 'i-faded-card')}
                     preview={trap !== TRAPS.NO_PREVIEW ? true : undefined}
-                    previewImageId={isDelayed || isVanished ? 'back-lockedDoor' : undefined}
+                    previewImageId={isUnrevealed || isVanished ? 'back-lockedDoor' : undefined}
                   />
                 )}
               </DoorFrame>
@@ -145,7 +158,7 @@ export function Corridor({
                     onClick={() => onSubmitDoor({ doorId })}
                     size="small"
                     type="default"
-                    disabled={disabled || user?.ready || user?.doorId === doorId}
+                    disabled={disabled || user?.ready || user?.doorId === doorId || isButtonDisabledByOrder}
                     shape="round"
                     ghost
                     icon={''}

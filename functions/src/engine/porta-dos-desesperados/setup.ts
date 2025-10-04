@@ -8,6 +8,7 @@ import {
   PAGES_PER_ROUND,
   PORTA_DOS_DESESPERADOS_PHASES,
   TRAPS,
+  TRAPS_ENTRIES,
   WIN_CONDITION,
 } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
@@ -17,6 +18,7 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData, Trap } from '.
 import utils from '../../utils';
 import {
   botDoorSelection,
+  calculateDifficulty,
   createTrapOrder,
   getAchievements,
   getBookPages,
@@ -69,7 +71,7 @@ export const prepareSetupPhase = async (
 
   const magic = MAGIC_UNITS_PER_PLAYER_COUNT[playerCount];
 
-  const traps = createTrapOrder(!!store.options?.newTraps);
+  const traps = createTrapOrder();
 
   // Save
   return {
@@ -88,6 +90,7 @@ export const prepareSetupPhase = async (
         gameOrder,
         magic,
         currentCorridor: 0,
+        difficulty: calculateDifficulty(traps),
       },
     },
   };
@@ -109,6 +112,8 @@ export const prepareBookPossessionPhase = async (
   const currentCorridor = isCorrect ? state.currentCorridor + 1 : state.currentCorridor;
 
   const trap = isCorrect ? store.traps[(currentCorridor - 1) % store.traps.length] : state.trap;
+
+  const trapEntry = currentCorridor > 1 ? TRAPS_ENTRIES[trap as Trap] : null;
 
   // Setup door (if new game or outcome is SUCCESS)
   const doors = isCorrect
@@ -142,8 +147,11 @@ export const prepareBookPossessionPhase = async (
         currentCorridor,
         trap,
         pages: pages.pages,
-        doors: doors.doors.filter((doorId: ImageCardId) => doorId !== state.answerDoorId),
+        doors: isCorrect
+          ? doors.doors
+          : state.doors.filter((doorId: ImageCardId) => doorId !== state.answerDoorId),
         answerDoorId: doors.answerDoorId,
+        trapEntry,
       },
       stateCleanup: ['outcome', 'currentPageIds'],
     },
@@ -178,6 +186,21 @@ export const prepareDoorChoicePhase = async (
   // Bot choices
   if (store.options?.withBots) {
     botDoorSelection(players, state.doors, state.answerDoorId);
+  }
+
+  utils.players.removePropertiesFromPlayers(players, ['blindDoorId', 'shuffledDoorOrder']);
+
+  if (state.trap === TRAPS.SHUFFLED_DOORS) {
+    utils.players.getListOfPlayers(players).forEach((player) => {
+      player.shuffledDoorOrder = utils.game.shuffle(state.doors);
+    });
+  }
+
+  if (state.trap === TRAPS.BLIND_DOOR) {
+    const blindDoorsOrder = utils.game.shuffle(state.doors);
+    utils.players.getListOfPlayers(players).forEach((player, index) => {
+      player.blindDoorId = blindDoorsOrder[index % blindDoorsOrder.length];
+    });
   }
 
   // Save
