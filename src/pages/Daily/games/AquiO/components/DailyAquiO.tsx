@@ -3,7 +3,8 @@ import { useMeasure } from 'react-use';
 // Ant Design Resources
 import { Button, FloatButton, Layout, Modal, Space, Switch, Typography } from 'antd';
 // Utils
-import { getAnimationClass, isDevEnv } from 'utils/helpers';
+import { getAnimation } from 'utils/animations';
+import { isDevEnv } from 'utils/helpers';
 // Icons
 import { DailyFindingGameIcon } from 'icons/DailyFindingGameIcon';
 // Components
@@ -115,18 +116,24 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
                 onSelect={onSelect}
                 key={discA.id}
                 width={discWidth}
-                className={getAnimationClass('slideInUp', { speed: 'fast' })}
+                discProps={{
+                  animate: 'animate',
+                  variants: getAnimation('slideInUp', { speed: 'normal', ease: 'anticipate' }),
+                }}
               />
               <Disc
                 disc={discB}
                 onSelect={onSelect}
                 key={discB.id}
                 width={discWidth}
-                className={getAnimationClass('zoomIn', { speed: 'fast' })}
+                discProps={{
+                  animate: 'animate',
+                  variants: getAnimation('zoomIn', { speed: 'fast', delay: 0.2 }),
+                }}
               />
-              <DevResult result={result} />
             </SpaceContainer>
           )}
+          {isPlaying && <DevResult result={result} />}
 
           <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
             <ResultsModalContent
