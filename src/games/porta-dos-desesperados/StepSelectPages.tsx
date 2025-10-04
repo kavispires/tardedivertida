@@ -1,7 +1,8 @@
 import clsx from 'clsx';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { CloseCircleFilled } from '@ant-design/icons';
+import { Button, Flex, Typography } from 'antd';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useLoading } from 'hooks/useLoading';
@@ -20,7 +21,7 @@ import { Instruction, RuleInstruction, StepTitle, Title } from 'components/text'
 import { PORTA_DOS_DESESPERADOS_PHASES, TRAPS } from './utils/constants';
 import { shouldAnnounceTrap } from './utils/helpers';
 import { mockPageSelection } from './utils/mock';
-import type { SubmitPagesPayload } from './utils/types';
+import type { SubmitPagesPayload, TrapEntry } from './utils/types';
 import { TrapPopupRule } from './components/RulesBlobs';
 import { BookHighlight, DoorHighlight } from './components/Highlights';
 import { DoorFrame } from '../../components/game/DoorFrame';
@@ -30,6 +31,7 @@ type StepSelectPagesProps = {
   currentCorridor: number;
   answerDoorId: CardId;
   trap: string;
+  trapEntry: TrapEntry | null;
   onSubmitPages: (payload: SubmitPagesPayload) => void;
 };
 
@@ -38,6 +40,7 @@ export function StepSelectPages({
   currentCorridor,
   answerDoorId,
   trap,
+  trapEntry,
   onSubmitPages,
 }: StepSelectPagesProps) {
   const { isLoading } = useLoading();
@@ -50,6 +53,8 @@ export function StepSelectPages({
     () => shouldAnnounceTrap(trap, PORTA_DOS_DESESPERADOS_PHASES.BOOK_POSSESSION),
     [trap],
   );
+
+  const selectedIds = Object.keys(selections);
 
   // DEV Only
   useMock(() => {
@@ -73,7 +78,7 @@ export function StepSelectPages({
         />
       </StepTitle>
 
-      {showTrap && <TrapPopupRule trap={trap} />}
+      {showTrap && <TrapPopupRule trapEntry={trapEntry} />}
 
       <SpaceContainer>
         <DoorFrame width={200}>
@@ -82,7 +87,7 @@ export function StepSelectPages({
             cardWidth={150}
             className={clsx(trap === TRAPS.FADED_DOORS && 'i-faded-card')}
             preview={{
-              className: clsx(trap === TRAPS.FADED_DOORS && 'image-preview-faded'),
+              className: clsx(trap === TRAPS.FADED_DOORS && 'image-preview-fading'),
             }}
           />
         </DoorFrame>
@@ -95,8 +100,8 @@ export function StepSelectPages({
           pt={
             <>
               Acima está a porta que você deve ajudar os outros jogadores a selecionar. <br />
-              Consulte as páginas do livro (cartas) e <strong>selecione</strong> as que você acha que mais vão
-              ajudar!
+              Consulte as páginas do livro (cartas) abaixo e <strong>selecione</strong> as que você acha que
+              mais vão ajudar!
             </>
           }
           en={
@@ -136,7 +141,7 @@ export function StepSelectPages({
           size="large"
           loading={isLoading}
           disabled={!isSelectionComplete}
-          onClick={() => onSubmitPages({ pageIds: Object.keys(selections) })}
+          onClick={() => onSubmitPages({ pageIds: selectedIds })}
           className={getAnimationClass('tada')}
         >
           <Translate pt="Enviar Páginas" en="Submit Pages" />
@@ -148,41 +153,39 @@ export function StepSelectPages({
           <Translate pt="Páginas selecionadas" en="Selected Pages" />
         </Title>
 
-        {Object.keys(selections).length < 2 && (
-          <p>
-            {trap === TRAPS.MORE_CLUES ? (
-              <Translate
-                pt={
-                  <>
-                    Selecione exatamente <BookHighlight>3</BookHighlight> páginas do livro
-                  </>
-                }
-                en={
-                  <>
-                    Select exactly <BookHighlight>3</BookHighlight> book pages
-                  </>
-                }
-              />
-            ) : (
-              <Translate
-                pt={
-                  <>
-                    Selecione <BookHighlight>1</BookHighlight> ou <BookHighlight>2</BookHighlight> páginas do
-                    livro
-                  </>
-                }
-                en={
-                  <>
-                    Select <BookHighlight>1</BookHighlight> or <BookHighlight>2</BookHighlight> book pages
-                  </>
-                }
-              />
-            )}
-          </p>
-        )}
+        <div>
+          {trap === TRAPS.MORE_CLUES ? (
+            <Translate
+              pt={
+                <>
+                  Selecione exatamente <BookHighlight>3</BookHighlight> páginas do livro
+                </>
+              }
+              en={
+                <>
+                  Select exactly <BookHighlight>3</BookHighlight> book pages
+                </>
+              }
+            />
+          ) : (
+            <Translate
+              pt={
+                <>
+                  Selecione <BookHighlight>1</BookHighlight> ou <BookHighlight>2</BookHighlight> páginas do
+                  livro
+                </>
+              }
+              en={
+                <>
+                  Select <BookHighlight>1</BookHighlight> or <BookHighlight>2</BookHighlight> book pages
+                </>
+              }
+            />
+          )}
+        </div>
 
         <ImageCardHand
-          hand={Object.keys(selections)}
+          hand={selectedIds}
           cardSize={100}
           selectButtonIcon={<CloseCircleFilled />}
           selectButtonText={<Translate pt="Remover" en="Remove" />}
@@ -195,18 +198,80 @@ export function StepSelectPages({
       </Instruction>
 
       <FloatingHand title={<Translate pt="Páginas do Livro" en="Book Pages" />}>
-        <ImageCardHand
-          hand={pages}
-          onSelectCard={select}
-          disabledSelectButton={isLoading}
-          sizeRatio={8}
-          selectedCards={selections}
-          cardClassName={clsx(trap === TRAPS.SEPIA && 'i-sepia-card')}
-          imageGroupPreview={{
-            className: clsx(trap === TRAPS.SEPIA && 'image-preview-sepia'),
-          }}
-        />
+        {trap === TRAPS.FLIP_BOOK ? (
+          <FlipBookHand
+            pages={pages}
+            onSelectPage={select}
+            disabledSelectButton={selectedIds.length === 4 || isLoading}
+            selectedCards={selections}
+          />
+        ) : (
+          <Flex>
+            <ImageCardHand
+              hand={pages}
+              onSelectCard={select}
+              disabledSelectButton={selectedIds.length === 4 || isLoading}
+              sizeRatio={8}
+              preview={trap !== TRAPS.NO_PREVIEW}
+              selectedCards={selections}
+              cardClassName={clsx({ 'i-sepia-card': trap === TRAPS.SEPIA })}
+              imageGroupPreview={{
+                className: clsx({ 'image-preview-sepia': trap === TRAPS.SEPIA }),
+              }}
+            />
+          </Flex>
+        )}
       </FloatingHand>
     </Step>
+  );
+}
+
+type FlipBookHandProps = {
+  pages: CardId[];
+  onSelectPage: (pageId: CardId) => void;
+  disabledSelectButton?: boolean;
+  selectedCards: BooleanDictionary;
+};
+
+function FlipBookHand({ pages, onSelectPage, disabledSelectButton, selectedCards }: FlipBookHandProps) {
+  const [spread, setSpread] = useState(0);
+
+  // Every spread should show 2 pages and the user must decide to select them or now and the only option to go forward until the final spread
+  const currentPages = pages.slice(spread * 2, spread * 2 + 2);
+
+  const isFinalPage = (spread + 1) * 2 >= pages.length;
+
+  return (
+    <Flex align="center" justify="center" gap={16}>
+      <div className="i-flip-book-hand">
+        <ImageCardHand
+          hand={currentPages}
+          onSelectCard={onSelectPage}
+          disabledSelectButton={disabledSelectButton}
+          sizeRatio={8}
+          selectedCards={selectedCards}
+        />
+      </div>
+      {!isFinalPage && (
+        <Flex vertical align="center" gap={8}>
+          <Typography.Text style={{ maxWidth: 256 }} className="i-text-center">
+            <Translate
+              pt="Você deve decidir se quer alguma dessas páginas ou não antes de prosseguir. Você pode selecionar até 4 páginas no total, antes de finalizar as (no máximo) 2 escolhas finais."
+              en="You must decide whether you want any of these pages or not before proceeding. You can select up to 4 pages in total, before finalizing the (at most) 2 final choices."
+            />
+          </Typography.Text>
+          <Button
+            size="large"
+            disabled={(spread + 1) * 2 >= pages.length}
+            onClick={() => setSpread((s) => s + 1)}
+          >
+            <Translate
+              pt={<>Próxima Página Para Sempre ({pages.length - (spread + 1) * 2} restantes)</>}
+              en={`Next Page Forever (${pages.length - (spread + 1) * 2} left)`}
+            />
+          </Button>
+        </Flex>
+      )}
+    </Flex>
   );
 }

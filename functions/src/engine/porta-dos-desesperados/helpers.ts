@@ -1,6 +1,5 @@
 // Constants
 import {
-  NEW_TRAPS,
   DOOR_LEVELS,
   DOOR_OPTIONS_PER_ROUND,
   OUTCOME,
@@ -8,6 +7,7 @@ import {
   PORTA_DOS_DESESPERADOS_ACHIEVEMENTS,
   PORTA_DOS_DESESPERADOS_PHASES,
   TRAPS,
+  TRAPS_ENTRIES,
   WIN_CONDITION,
 } from './constants';
 // Utils
@@ -41,12 +41,13 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
 
 /**
  * Determine if game should game over
- * @param currentPhase
- * @param round
- * @param outcome
- * @param winCondition
- * @param currentCorridor
- * @returns
+ * @param currentPhase - current phase of the game
+ * @param round - current round information
+ * @param outcome - result of the current round
+ * @param winCondition - result of the game (have they won?)
+ * @param currentCorridor - current door level
+ * @param magic - current magic crystals
+ * @returns - true if game should end, false otherwise
  */
 export const determineGameOver = (
   currentPhase: string,
@@ -78,10 +79,45 @@ export const determineGameOver = (
  * Randomly choose order of traps, always starting with NONE
  * @returns
  */
-export const createTrapOrder = (useNewTraps?: boolean): string[] => {
-  const trapKeys = Object.keys(useNewTraps ? NEW_TRAPS : TRAPS);
+export const createTrapOrder = (): string[] => {
+  const trapKeys = Object.keys(TRAPS);
 
-  return ['NONE', ...utils.game.shuffle(trapKeys), ...utils.game.shuffle(trapKeys)].slice(0, DOOR_LEVELS);
+  // The first trap should always be NONE, then shuffle the rest, but the level of the next trap should never be equal to the previous one
+  const shuffledTraps = utils.game.shuffle(trapKeys);
+  const orderedTraps = ['NONE'];
+  for (let i = 0; i < shuffledTraps.length; i++) {
+    const currentTrap = shuffledTraps[i];
+    const previousTrap = orderedTraps[orderedTraps.length - 1];
+
+    // If the current trap has the same level as the previous one, reshuffle
+    if (TRAPS_ENTRIES?.[currentTrap]?.level === TRAPS_ENTRIES?.[previousTrap]?.level) {
+      shuffledTraps.splice(i, 1);
+      i--;
+      continue;
+    }
+
+    orderedTraps.push(currentTrap);
+  }
+
+  return orderedTraps.slice(0, DOOR_LEVELS + 1); // There are 7 doors, so we need 6 traps + NONE
+};
+
+export const calculateDifficulty = (trapsKeys: string[]) => {
+  // There a 7 traps from levels 1 to 3, and the same level cannot be repeated twice in a row.
+  // Calculate the difficulty of the dungeon from 1 - 5 based on the traps levels in the game, the minimum sum is 9 (since the first is NONE) and the maximum is 15.
+  const levels = trapsKeys.map((key) => TRAPS_ENTRIES?.[key]?.level ?? 0);
+  const total = levels.reduce((acc, level) => acc + level, 0);
+
+  // 9
+  if (total === 9) return 1;
+  // 10, 11
+  if (total < 12) return 2;
+  // 12
+  if (total < 13) return 3;
+  // 13, 14
+  if (total < 15) return 4;
+  // 15
+  return 5;
 };
 
 export const getDoorSet = (doorDeck: ImageCardId[], doorDeckIndex: number, trap: Trap) => {
@@ -98,7 +134,11 @@ export const getDoorSet = (doorDeck: ImageCardId[], doorDeckIndex: number, trap:
 };
 
 export const getBookPages = (pagesDeck: ImageCardId[], pagesDeckIndex: number, trap: Trap) => {
-  const quantity = trap === TRAPS.FEWER_PAGES ? PAGES_PER_ROUND / 2 : PAGES_PER_ROUND;
+  let quantity = trap === TRAPS.FEWER_PAGES ? PAGES_PER_ROUND / 2 : PAGES_PER_ROUND;
+
+  if (trap === TRAPS.FLIP_BOOK) {
+    quantity = 10; // Flip Book trap gives 10 pages
+  }
 
   const selectedPages = pagesDeck.slice(pagesDeckIndex, pagesDeckIndex + quantity);
 
@@ -108,6 +148,21 @@ export const getBookPages = (pagesDeck: ImageCardId[], pagesDeckIndex: number, t
   };
 };
 
+/**
+ * Assigns random door selections to bot players, ensuring they choose from a limited pool of options.
+ *
+ * This function gives bots a biased selection of doors that includes the correct door, creating
+ * more challenging gameplay by making bots more likely to select the correct answer.
+ *
+ * @param players - Object containing all player data
+ * @param doors - Array of available door IDs that can be selected
+ * @param doorAnswerId - The ID of the correct door (answer)
+ *
+ * @remarks
+ * - Bots are limited to choosing from a subset of doors (4 random doors + the answer)
+ * - Each bot is marked as ready after door selection
+ * - This creates a more competitive experience as bots have a higher chance of selecting the correct door
+ */
 export const botDoorSelection = (players: Players, doors: ImageCardId[], doorAnswerId: ImageCardId) => {
   // The bot pool is only half of the doors, but always has the answer
   const options = [...utils.game.getRandomItems(doors, 4), doorAnswerId];
@@ -282,6 +337,18 @@ export const getAchievements = (store: FirebaseStoreData) => {
   return achievements;
 };
 
+/**
+ * Merges visited doors relationships with book pages.
+ *
+ * @param relationships - The existing relationships between image cards
+ * @param visitedDoors - Array of door image card IDs that have been visited
+ * @param bookPages - Array of book page image card IDs
+ * @returns The updated relationships object with new connections between book pages and visited doors
+ *
+ * This function associates each book page with all visited doors by adding the door IDs
+ * to each page's relationship array. If a book page doesn't have an entry in the relationships
+ * object yet, it creates an empty array first.
+ */
 export function mergeVisitedDoorsRelationships(
   relationships: ImageCardRelationship,
   visitedDoors: ImageCardId[],

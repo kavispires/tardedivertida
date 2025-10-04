@@ -7,24 +7,27 @@ import { sortPlayers } from 'utils/helpers';
 // Components
 import { AvatarName } from 'components/avatars';
 import { FixedMenuButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { DualTranslate, Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 // Internal
-import { getTrapDetails } from '../utils/helpers';
 import { TOTAL_DOORS } from '../utils/constants';
+import { getTrapIcon } from '../utils/helpers';
+import type { TrapEntry } from '../utils/types';
 import { CrystalHighlight, DoorHighlight } from './Highlights';
+import { TrapLevel } from './TrapLevel';
 
 type RoundOneRuleProps = {
   magic: number;
+  difficulty: number;
 };
 
-export function RoundOneRule({ magic }: RoundOneRuleProps) {
+export function RoundOneRule({ magic, difficulty }: RoundOneRuleProps) {
   return (
     <Instruction contained>
       <Translate
         pt={
           <>
-            Somos estudantes de feitiçaria presos num corredor de portas tentando voltar pra casa.
+            Somos estudantes presos num corredor de portas tentando voltar pra casa.
             <br />
             Devemos que passar por <DoorHighlight>{TOTAL_DOORS}</DoorHighlight> portas.
             <br />
@@ -36,7 +39,7 @@ export function RoundOneRule({ magic }: RoundOneRuleProps) {
         }
         en={
           <>
-            We are witchcraft students trapped in a corridor of doors trying to get back home.
+            We are students trapped in a corridor of doors trying to get back home.
             <br />
             We must go through <DoorHighlight>{TOTAL_DOORS}</DoorHighlight>
             doors.
@@ -48,6 +51,13 @@ export function RoundOneRule({ magic }: RoundOneRuleProps) {
           </>
         }
       />
+
+      <br />
+      <strong>
+        <Translate pt="Dificuldade: " en="Difficulty: " />
+      </strong>
+      <br />
+      <TrapLevel level={difficulty} count={5} />
     </Instruction>
   );
 }
@@ -93,30 +103,39 @@ export function RoundRule({ magic, currentCorridor }: RoundRuleProps) {
 }
 
 type TrapRuleProps = {
-  trap: string;
+  trapEntry: TrapEntry | null;
   showTitle?: boolean;
 };
 
-export function TrapRule({ trap, showTitle = false }: TrapRuleProps) {
-  const { title, description, TrapIcon } = getTrapDetails(trap);
+export function TrapRule({ trapEntry, showTitle = false }: TrapRuleProps) {
+  if (!trapEntry) return null;
+
+  const TrapIcon = getTrapIcon(trapEntry?.icon);
+
   return (
-    <Instruction contained>
+    <Instruction contained style={{ maxWidth: 512 }}>
       <TrapIcon style={{ width: '3rem' }} />
       {showTitle && (
         <Title size="xx-small" level={3}>
-          <Translate pt={title.pt} en={title.en} />
+          <DualTranslate>{trapEntry.title}</DualTranslate>
         </Title>
       )}
-      <Translate pt={description.pt} en={description.en} />
+      <DualTranslate>{trapEntry.description}</DualTranslate>
+      <br />
+      <div className="mt-4">
+        <Translate pt="Dificuldade: " en="Difficulty: " />
+        <br />
+        <TrapLevel level={trapEntry.level} count={3} />
+      </div>
     </Instruction>
   );
 }
 
-export function TrapPopupRule({ trap }: Pick<TrapRuleProps, 'trap'>) {
+export function TrapPopupRule({ trapEntry }: Pick<TrapRuleProps, 'trapEntry'>) {
   return (
     <FixedMenuButton
       type="popover"
-      content={<TrapRule trap={trap} showTitle />}
+      content={<TrapRule trapEntry={trapEntry} showTitle />}
       position={1}
       icon={<RadarChartOutlined />}
     />

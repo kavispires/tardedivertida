@@ -1,4 +1,4 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
 
 $door-base-color: #3d1931;
 
@@ -21,7 +21,7 @@ $door-base-color: #3d1931;
   border: 3px solid transparent;
 
   &--answer {
-    border: 3px dashed get-color('yellow', 5);
+    border: 3px dashed get-color("yellow", 5);
   }
 
   &__options {
@@ -115,7 +115,7 @@ $door-base-color: #3d1931;
 }
 
 .i-trap-description {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   font-size: 1.5rem;
 }
 
@@ -126,7 +126,7 @@ $door-base-color: #3d1931;
 .i-sand-timer {
   width: 8ch;
   font-size: 1.5rem;
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   position: absolute;
   right: get-unit(-2);
   top: 50%;
@@ -139,8 +139,8 @@ $door-base-color: #3d1931;
   padding-right: get-unit(4);
 
   &--negative {
-    border: get-color('red', 7, 0.8) 1px solid;
-    background-color: get-color('red', 2, 0.6);
+    border: get-color("red", 7, 0.8) 1px solid;
+    background-color: get-color("red", 2, 0.6);
   }
 }
 
@@ -217,4 +217,9 @@ $door-base-color: #3d1931;
 
   // width: 100px;
   // height: 100px;
+}
+
+.i-trap-level-opacity {
+  opacity: 0.25;
+  filter: grayscale(1);
 }

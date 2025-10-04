@@ -15,17 +15,19 @@ import { Step } from 'components/steps';
 // Internal
 import { shouldAnnounceTrap } from './utils/helpers';
 import { PORTA_DOS_DESESPERADOS_PHASES } from './utils/constants';
+import type { TrapEntry } from './utils/types';
 import { BookHighlight } from './components/Highlights';
 import { TrapPopupRule } from './components/RulesBlobs';
 
 type StepSelectPagesProps = {
   currentCorridor: number;
   trap: string;
+  trapEntry: TrapEntry | null;
   players: GamePlayers;
   possessed: GamePlayer;
 };
 
-export function StepWaitPageSelection({ possessed, players, trap }: StepSelectPagesProps) {
+export function StepWaitPageSelection({ possessed, players, trap, trapEntry }: StepSelectPagesProps) {
   const showTrap = useMemo(
     () => shouldAnnounceTrap(trap, PORTA_DOS_DESESPERADOS_PHASES.BOOK_POSSESSION),
     [trap],
@@ -62,7 +64,7 @@ export function StepWaitPageSelection({ possessed, players, trap }: StepSelectPa
         }
       />
 
-      {showTrap && <TrapPopupRule trap={trap} />}
+      {showTrap && <TrapPopupRule trapEntry={trapEntry} />}
     </Step>
   );
 }
