@@ -46,10 +46,10 @@ export function SandTimer({
     onExpire: handleExpire,
   });
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: setCache shouldn't trigger the use effect
   useEffect(() => {
     if ((timeLeft - TIMER_LEAD) % 30 === 0) {
-      if (trap === TRAPS.DELAYING_DOORS) {
+      if (trap === TRAPS.ORDERED_DOORS) {
         setCache((prevState) => {
           const prevDoors = prevState.doors || [];
           prevDoors.push(prevDoors.length - 1 + 1);

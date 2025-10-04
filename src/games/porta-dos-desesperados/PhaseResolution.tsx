@@ -10,9 +10,10 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import { PORTA_DOS_DESESPERADOS_PHASES } from './utils/constants';
+import type { PhaseResolutionState } from './utils/types';
 import { StepResults } from './StepResults';
 
-export function PhaseResolution({ players, state }: PhaseProps) {
+export function PhaseResolution({ players, state }: PhaseProps<PhaseResolutionState>) {
   const { step, goToNextStep } = useStep();
 
   return (
@@ -35,6 +36,7 @@ export function PhaseResolution({ players, state }: PhaseProps) {
           pages={state.selectedPagesIds}
           currentCorridor={state.currentCorridor}
           trap={state.trap}
+          trapEntry={state.trapEntry}
           players={players}
           round={state.round}
           outcome={state.outcome}

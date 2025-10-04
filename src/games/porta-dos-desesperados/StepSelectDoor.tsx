@@ -18,11 +18,10 @@ import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import { useDancingDoors } from './utils/useTrapHooks';
 import { PORTA_DOS_DESESPERADOS_PHASES, ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
 import { shouldAnnounceTrap } from './utils/helpers';
 import { mockDoorSelection } from './utils/mock';
-import type { SubmitDoorPayload } from './utils/types';
+import type { SubmitDoorPayload, TrapEntry } from './utils/types';
 import { Book } from './components/Book';
 import { Corridor } from './components/Corridor';
 import { CrystalHighlight, DoorHighlight, TimeHighlight } from './components/Highlights';
@@ -34,6 +33,7 @@ type StepSelectPagesProps = {
   pages: CardId[];
   currentCorridor: number;
   trap: string;
+  trapEntry: TrapEntry | null;
   onSubmitDoor: (payload: SubmitDoorPayload) => void;
   onConfirmDoor: () => void;
   players: GamePlayers;
@@ -49,6 +49,7 @@ export function StepSelectDoor({
   pages,
   currentCorridor,
   trap,
+  trapEntry,
   onSubmitDoor,
   onConfirmDoor,
   players,
@@ -64,8 +65,6 @@ export function StepSelectDoor({
   const showTrap = useMemo(() => shouldAnnounceTrap(trap, PORTA_DOS_DESESPERADOS_PHASES.DOOR_CHOICE), [trap]);
 
   const bookCardClass = trap === TRAPS.SEPIA ? 'i-sepia-card' : '';
-
-  useDancingDoors(trap === TRAPS.DANCING_DOORS);
 
   // DEV Only
   useMock(() => {
@@ -100,7 +99,7 @@ export function StepSelectDoor({
         <Translate pt="Selecione a porta correta" en="Select the correct door" />
       </StepTitle>
 
-      {showTrap && <TrapPopupRule trap={trap} />}
+      {showTrap && <TrapPopupRule trapEntry={trapEntry} />}
 
       {botEnabled && <BotPopupRule />}
 
@@ -151,7 +150,7 @@ export function StepSelectDoor({
         />
       </RuleInstruction>
 
-      {trap === TRAPS.NO_COMMUNICATION && (
+      {trap === TRAPS.SECRET_CHOICE && (
         <Instruction
           contained
           className={getAnimationClass('pulse', {
@@ -199,7 +198,7 @@ export function StepSelectDoor({
       )}
 
       <Corridor
-        doors={doors}
+        doors={trap === TRAPS.SHUFFLED_DOORS ? user.shuffledDoorOrder : doors}
         trap={trap}
         onSubmitDoor={onSubmitDoor}
         players={players}
@@ -211,7 +210,7 @@ export function StepSelectDoor({
       <Space className="i-book-container">
         <Image.PreviewGroup
           preview={{
-            className: clsx(trap === TRAPS.SEPIA && 'image-preview-sepia'),
+            className: clsx({ 'image-preview-sepia': trap === TRAPS.SEPIA }),
           }}
         >
           <Book>

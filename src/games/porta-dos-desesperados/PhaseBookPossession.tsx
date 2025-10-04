@@ -20,25 +20,28 @@ import { ViewOr } from 'components/views';
 import { useOnSubmitPagesAPIRequest } from './utils/api-requests';
 import { PORTA_DOS_DESESPERADOS_PHASES, TRAPS } from './utils/constants';
 import { shouldAnnounceTrap } from './utils/helpers';
+import type { PhaseBookPossessionState } from './utils/types';
 import { TrapAnnouncement } from './components/TrapAnnouncement';
 import { RoundOneRule, RoundRule } from './components/RulesBlobs';
 import { BookHighlight } from './components/Highlights';
 import { StepSelectPages } from './StepSelectPages';
 import { StepWaitPageSelection } from './StepWaitPageSelection';
 
-export function PhaseBookPossession({ players, state }: PhaseProps) {
+export function PhaseBookPossession({ players, state }: PhaseProps<PhaseBookPossessionState>) {
   const { step, goToNextStep, setStep } = useStep();
   const [possessed, isPossessed] = useWhichPlayerIsThe('possessedId', state, players);
   const { setCache } = useCache({ defaultValue: { doors: [] } });
 
   const onSubmitPages = useOnSubmitPagesAPIRequest(setStep);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Update cache for some traps
   useEffect(() => {
-    if (state.trap === TRAPS.DELAYING_DOORS || state.trap === TRAPS.VANISHING_DOORS) {
+    if (state.trap === TRAPS.ORDERED_DOORS || state.trap === TRAPS.VANISHING_DOORS) {
       setCache({ doors: [] });
     }
   }, [state.trap]);
+
+  const announceTrap = shouldAnnounceTrap(state.trap, PORTA_DOS_DESESPERADOS_PHASES.BOOK_POSSESSION);
 
   return (
     <PhaseContainer phase={state?.phase} allowedPhase={PORTA_DOS_DESESPERADOS_PHASES.BOOK_POSSESSION}>
@@ -52,7 +55,7 @@ export function PhaseBookPossession({ players, state }: PhaseProps) {
           unskippable
         >
           {state.round.current === 1 ? (
-            <RoundOneRule magic={state.magic} />
+            <RoundOneRule magic={state.magic} difficulty={state.difficulty} />
           ) : (
             <RoundRule magic={state.magic} currentCorridor={state.currentCorridor} />
           )}
@@ -62,11 +65,7 @@ export function PhaseBookPossession({ players, state }: PhaseProps) {
         <PhaseAnnouncement
           icon={<MagicBookIcon />}
           title={<Translate pt="O Livro possui um jogador" en="The Book possesses a player" />}
-          onClose={
-            shouldAnnounceTrap(state.trap, PORTA_DOS_DESESPERADOS_PHASES.BOOK_POSSESSION)
-              ? goToNextStep
-              : () => setStep(4)
-          }
+          onClose={announceTrap ? goToNextStep : () => setStep(4)}
           currentRound={state?.round?.current}
           type="block"
         >
@@ -105,7 +104,7 @@ export function PhaseBookPossession({ players, state }: PhaseProps) {
         <PhaseTimerReset goToNextStep={goToNextStep} />
 
         {/* Step 3 */}
-        <TrapAnnouncement trap={state.trap} goToNextStep={goToNextStep} />
+        <TrapAnnouncement trapEntry={state.trapEntry} goToNextStep={goToNextStep} />
 
         {/* Step 4 */}
         <ViewOr condition={isPossessed}>
@@ -114,6 +113,7 @@ export function PhaseBookPossession({ players, state }: PhaseProps) {
             currentCorridor={state.currentCorridor}
             answerDoorId={state.answerDoorId}
             trap={state.trap}
+            trapEntry={state.trapEntry}
             onSubmitPages={onSubmitPages}
           />
 
@@ -121,6 +121,7 @@ export function PhaseBookPossession({ players, state }: PhaseProps) {
             players={players}
             currentCorridor={state.currentCorridor}
             trap={state.trap}
+            trapEntry={state.trapEntry}
             possessed={possessed}
           />
         </ViewOr>

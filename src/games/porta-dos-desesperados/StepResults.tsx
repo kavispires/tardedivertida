@@ -4,6 +4,7 @@ import { Space } from 'antd';
 import type { GameRound } from 'types/game';
 import type { GamePlayers } from 'types/player';
 // Utils
+import { LETTERS } from 'utils/constants';
 import { pluralize } from 'utils/helpers';
 // Components
 import { HostNextPhaseButton } from 'components/host';
@@ -13,6 +14,7 @@ import { Step } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import { OUTCOME, TOTAL_DOORS, TRAPS } from './utils/constants';
+import type { TrapEntry } from './utils/types';
 import { Book } from './components/Book';
 import { Corridor } from './components/Corridor';
 import { CrystalHighlight, DoorHighlight } from './components/Highlights';
@@ -23,6 +25,7 @@ type StepResultsProps = {
   pages: CardId[];
   currentCorridor: number;
   trap: string;
+  trapEntry: TrapEntry | null;
   players: GamePlayers;
   round: GameRound;
   outcome: string;
@@ -36,6 +39,7 @@ export function StepResults({
   pages,
   currentCorridor,
   trap,
+  trapEntry,
   players,
   round,
   answerDoorId,
@@ -92,7 +96,7 @@ export function StepResults({
         />
       </RuleInstruction>
 
-      <OutcomeAlert outcome={outcome} />
+      <OutcomeAlert outcome={outcome} doorIndex={doors.indexOf(answerDoorId)} />
 
       <Corridor doors={doors} trap={trap} players={players} answerDoorId={answerDoorId} disableTrap />
 
@@ -104,7 +108,7 @@ export function StepResults({
         </Book>
       </Space>
 
-      <TrapPopupRule trap={trap} />
+      <TrapPopupRule trapEntry={trapEntry} />
 
       <HostNextPhaseButton round={round} />
     </Step>
@@ -113,6 +117,7 @@ export function StepResults({
 
 type OutcomeProps = {
   outcome: string;
+  doorIndex?: number;
 };
 
 function OutcomeTitle({ outcome }: OutcomeProps) {
@@ -138,7 +143,7 @@ function OutcomeInstruction({ outcome }: OutcomeProps) {
   );
 }
 
-function OutcomeAlert({ outcome }: OutcomeProps) {
+function OutcomeAlert({ outcome, doorIndex = 0 }: OutcomeProps) {
   if (outcome === OUTCOME.SUCCESS || outcome === OUTCOME.WIN) {
     return null;
   }
@@ -146,8 +151,20 @@ function OutcomeAlert({ outcome }: OutcomeProps) {
   return (
     <RuleInstruction type="alert">
       <Translate
-        pt="Para a próxima rodada, as portas e armadilha continuarão as mesmas, mas a 'porta resposta' será aleatória."
-        en="For the next round, the doors and trap will remain the same, but the 'door answer' will be randomized again."
+        pt={
+          <>
+            Para a próxima rodada, a <DoorHighlight>porta {LETTERS[doorIndex]}</DoorHighlight> será removida,
+            as outras portas e a armadilha continuam as mesmas, mas uma nova <strong>resposta</strong> será
+            sorteada aleatoriamente.
+          </>
+        }
+        en={
+          <>
+            For the next round, <DoorHighlight>door {LETTERS[doorIndex]}</DoorHighlight> will be removed, the
+            other doors and the trap remain the same, but a new <strong>answer</strong> will be randomly
+            drawn.
+          </>
+        }
       />
     </RuleInstruction>
   );

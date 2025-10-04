@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import type { ReactNode } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 // Ant Design Resources
 import { Typography } from 'antd';
 // Sass
@@ -35,7 +35,7 @@ type InstructionsProps = {
    * Color scheme
    */
   colorScheme?: ColorScheme;
-};
+} & ComponentProps<typeof Typography.Text>;
 
 /**
  * Typography container for instructions
@@ -48,6 +48,7 @@ export const Instruction = ({
   fullWidth,
   noMargin = false,
   colorScheme,
+  ...rest
 }: InstructionsProps) => {
   const baseClass = 'instruction';
 
@@ -63,6 +64,7 @@ export const Instruction = ({
         className,
       )}
       data-testid="instruction"
+      {...rest}
     >
       {children}
     </Typography.Text>

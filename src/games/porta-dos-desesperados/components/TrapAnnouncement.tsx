@@ -1,31 +1,41 @@
+// Ant Design Resources
+import { Flex } from 'antd';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { Translate } from 'components/language';
+import { DualTranslate } from 'components/language';
 import { PhaseAnnouncement } from 'components/phases';
 import { Instruction } from 'components/text';
 // Internal
-import { getTrapDetails } from '../utils/helpers';
+import type { TrapEntry } from '../utils/types';
+import { getTrapIcon } from '../utils/helpers';
+import { TrapLevel } from './TrapLevel';
 
 type TrapAnnouncementProps = {
-  trap: string;
+  trapEntry: TrapEntry | null;
   goToNextStep: UseStep['goToNextStep'];
 };
 
-export function TrapAnnouncement({ trap, goToNextStep }: TrapAnnouncementProps) {
-  const { title, description, TrapIcon } = getTrapDetails(trap);
+export function TrapAnnouncement({ trapEntry, goToNextStep }: TrapAnnouncementProps) {
+  if (!trapEntry) return null;
+
+  const Icon = getTrapIcon(trapEntry.icon);
+
   return (
     <PhaseAnnouncement
-      icon={<TrapIcon />}
-      title={<Translate pt={title.pt} en={title.en} />}
+      icon={<Icon />}
+      title={<DualTranslate>{trapEntry.title}</DualTranslate>}
       onClose={goToNextStep}
       duration={10}
       unskippable
       type="block"
     >
       <Instruction className="i-trap-description">
-        <Translate pt={description.pt} en={description.en} />
+        <DualTranslate>{trapEntry.description}</DualTranslate>
       </Instruction>
+      <Flex justify="center">
+        <TrapLevel level={trapEntry.level} count={3} />
+      </Flex>
     </PhaseAnnouncement>
   );
 }

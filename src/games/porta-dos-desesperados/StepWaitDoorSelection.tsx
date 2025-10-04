@@ -1,6 +1,7 @@
+import clsx from 'clsx';
 import { useMemo } from 'react';
 // Ant Design Resources
-import { Space } from 'antd';
+import { Image, Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Utils
@@ -13,6 +14,7 @@ import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import { shouldAnnounceTrap } from './utils/helpers';
 import { PORTA_DOS_DESESPERADOS_PHASES, ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
+import type { TrapEntry } from './utils/types';
 import { Book } from './components/Book';
 import { Corridor } from './components/Corridor';
 import { CrystalHighlight, DoorHighlight, TimeHighlight } from './components/Highlights';
@@ -24,6 +26,7 @@ type StepWaitDoorSelectionProps = {
   pages: CardId[];
   currentCorridor: number;
   trap: string;
+  trapEntry: TrapEntry | null;
   players: GamePlayers;
   answerDoorId: CardId;
   magic: number;
@@ -35,6 +38,7 @@ export function StepWaitDoorSelection({
   pages,
   currentCorridor,
   trap,
+  trapEntry,
   players,
   answerDoorId,
   magic,
@@ -42,16 +46,18 @@ export function StepWaitDoorSelection({
 }: StepWaitDoorSelectionProps) {
   const showTrap = useMemo(() => shouldAnnounceTrap(trap, PORTA_DOS_DESESPERADOS_PHASES.DOOR_CHOICE), [trap]);
 
+  const bookCardClass = trap === TRAPS.SEPIA ? 'i-sepia-card' : '';
+
   return (
     <Step fullWidth>
-      <StepTitle>
+      <StepTitle wait>
         <Translate
           pt="Aguarde enquanto os outros jogadores selecionam as portas"
           en="Wait while the players select doors"
         />
       </StepTitle>
 
-      {showTrap && <TrapPopupRule trap={trap} />}
+      {showTrap && <TrapPopupRule trapEntry={trapEntry} />}
 
       {botEnabled && <BotPopupRule />}
 
@@ -104,23 +110,44 @@ export function StepWaitDoorSelection({
       <Corridor doors={doors} trap={trap} players={players} answerDoorId={answerDoorId} />
 
       <Space className="i-book-container">
-        <Book>
-          {Boolean(pages[0]) && (
-            <ImageBlurButtonContainer cardId={pages[0]} ghost={false}>
-              <ImageCard id={pages[0]} cardWidth={120} />
-            </ImageBlurButtonContainer>
-          )}
-          {Boolean(pages[1]) && (
-            <ImageBlurButtonContainer cardId={pages[1]} ghost={false}>
-              <ImageCard id={pages[1]} cardWidth={120} />
-            </ImageBlurButtonContainer>
-          )}
-          {Boolean(pages[2]) && (
-            <ImageBlurButtonContainer cardId={pages[2]} ghost={false}>
-              <ImageCard id={pages[2]} cardWidth={120} />
-            </ImageBlurButtonContainer>
-          )}
-        </Book>
+        <Image.PreviewGroup
+          preview={{
+            className: clsx(trap === TRAPS.SEPIA && 'image-preview-sepia'),
+          }}
+        >
+          <Book>
+            {Boolean(pages[0]) && (
+              <ImageBlurButtonContainer cardId={pages[0]} ghost={false}>
+                <ImageCard
+                  id={pages[0]}
+                  cardWidth={140}
+                  className={bookCardClass}
+                  preview={trap !== TRAPS.NO_PREVIEW}
+                />
+              </ImageBlurButtonContainer>
+            )}
+            {Boolean(pages[1]) && (
+              <ImageBlurButtonContainer cardId={pages[1]} ghost={false}>
+                <ImageCard
+                  id={pages[1]}
+                  cardWidth={140}
+                  className={bookCardClass}
+                  preview={trap !== TRAPS.NO_PREVIEW}
+                />
+              </ImageBlurButtonContainer>
+            )}
+            {Boolean(pages[2]) && (
+              <ImageBlurButtonContainer cardId={pages[2]} ghost={false}>
+                <ImageCard
+                  id={pages[2]}
+                  cardWidth={140}
+                  className={bookCardClass}
+                  preview={trap !== TRAPS.NO_PREVIEW}
+                />
+              </ImageBlurButtonContainer>
+            )}
+          </Book>
+        </Image.PreviewGroup>
       </Space>
     </Step>
   );

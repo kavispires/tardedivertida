@@ -17,11 +17,12 @@ import { ViewOr } from 'components/views';
 import { shouldAnnounceTrap } from './utils/helpers';
 import { useOnMakeReady, useOnSubmitDoorAPIRequest } from './utils/api-requests';
 import { PORTA_DOS_DESESPERADOS_PHASES } from './utils/constants';
+import type { PhaseDoorChoiceState } from './utils/types';
 import { TrapAnnouncement } from './components/TrapAnnouncement';
 import { StepSelectDoor } from './StepSelectDoor';
 import { StepWaitDoorSelection } from './StepWaitDoorSelection';
 
-export function PhaseDoorChoice({ players, state, meta }: PhaseProps) {
+export function PhaseDoorChoice({ players, state, meta }: PhaseProps<PhaseDoorChoiceState>) {
   const user = useUser(players, state);
   const { step, goToNextStep, setStep } = useStep();
   const [possessed, isPossessed] = useWhichPlayerIsThe('possessedId', state, players);
@@ -60,7 +61,7 @@ export function PhaseDoorChoice({ players, state, meta }: PhaseProps) {
         <PhaseTimerReset goToNextStep={goToNextStep} />
 
         {/* Step 2 */}
-        <TrapAnnouncement trap={state.trap} goToNextStep={goToNextStep} />
+        <TrapAnnouncement trapEntry={state.trapEntry} goToNextStep={goToNextStep} />
 
         {/* Step 3 */}
         <ViewOr condition={isPossessed}>
@@ -69,6 +70,7 @@ export function PhaseDoorChoice({ players, state, meta }: PhaseProps) {
             pages={state.selectedPagesIds}
             currentCorridor={state.currentCorridor}
             trap={state.trap}
+            trapEntry={state.trapEntry}
             players={players}
             magic={state.magic}
             answerDoorId={state.answerDoorId}
@@ -80,6 +82,7 @@ export function PhaseDoorChoice({ players, state, meta }: PhaseProps) {
             pages={state.selectedPagesIds}
             currentCorridor={state.currentCorridor}
             trap={state.trap}
+            trapEntry={state.trapEntry}
             onSubmitDoor={onSubmitDoor}
             players={players}
             user={user}
