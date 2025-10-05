@@ -62,7 +62,7 @@ export function ResultCell({
         {cellPlayers.length ? (
           <PlayersInCell cellPlayers={cellPlayers} players={players} />
         ) : (
-          <CloseSquareOutlined />
+          <CloseSquareOutlined style={{ color: 'white' }} />
         )}
       </div>
     );

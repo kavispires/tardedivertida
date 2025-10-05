@@ -5,40 +5,6 @@
   background-size: 1000% 1000%;
 }
 
-.x-grid {
-  display: grid;
-  gap: 0.25rem;
-  margin-bottom: get-unit(4);
-}
-
-.x-grid-cell {
-  border: 1px solid white;
-  min-width: 80px;
-  min-height: 4rem;
-  border-radius: var(--border-radius);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: get-unit(0.5);
-
-  &--header {
-    background-color: black;
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: get-unit(1);
-    border: 1px solid transparent;
-  }
-
-  &--x {
-    border: 1px solid transparent;
-  }
-}
-
-.x-grid-cell-target {
-  color: get-color("yellow");
-}
-
 .x-clue-cards {
   display: flex;
   flex-wrap: wrap;
