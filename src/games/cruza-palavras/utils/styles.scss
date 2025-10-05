@@ -1,5 +1,10 @@
 @use "styles/sass" as *;
 
+.background {
+  background: linear-gradient(-45deg, #526257, #4a472f, #46321a);
+  background-size: 1000% 1000%;
+}
+
 .x-grid {
   display: grid;
   gap: 0.25rem;

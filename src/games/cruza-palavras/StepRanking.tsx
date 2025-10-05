@@ -11,6 +11,7 @@ import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { StepRankingWrapper } from 'components/ranking';
 import { PopoverRule } from 'components/rules';
+import { RuleInstruction } from 'components/text';
 // Internal
 import { ScoringRule } from './components/RulesBlobs';
 
@@ -49,7 +50,13 @@ export function StepRanking({ players, playerCount, ranking, goToPreviousStep, r
           <Translate pt="Ver resultado novamente" en="See results again" />
         </Button>
       </SpaceContainer>
-      <HostNextPhaseButton round={round} />
+      <HostNextPhaseButton round={round} withWaitingTimeBar />
+
+      {round.current === 3 && (
+        <RuleInstruction type="event">
+          <Translate pt="Está pronto para uma reviravolta?" en="Ready for a twist?" />
+        </RuleInstruction>
+      )}
     </StepRankingWrapper>
   );
 }
