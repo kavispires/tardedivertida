@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "barrados-na-alfandega",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "release": "planned",
   "available": false,
   "title": {
@@ -34,6 +34,10 @@
     "min": 3,
     "max": 6,
     "best": 0
+  },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
   },
   "tags": ["competitive"]
 }
