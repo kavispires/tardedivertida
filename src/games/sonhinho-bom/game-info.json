@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sonhinho-bom",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "release": "planned",
   "available": false,
   "title": {
@@ -34,6 +34,10 @@
     "min": 4,
     "max": 10,
     "best": 5
+  },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
   },
   "tags": ["cooperative"]
 }
