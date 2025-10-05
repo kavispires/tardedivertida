@@ -96,7 +96,9 @@ export const prepareClueWritingPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const gridSize = state.gridSize ?? 15;
+  const gridSize: number = state.gridSize ?? 15;
+
+  const storeUpdate: PlainObject = {};
 
   // If coming from the word selection, create the deck of selections
   if (state.phase === CRUZA_PALAVRAS_PHASES.WORDS_SELECTION) {
@@ -123,6 +125,7 @@ export const prepareClueWritingPhase = async (
     }, []);
 
     store.deck = newDeck;
+    storeUpdate.deck = newDeck;
 
     utils.players.removePropertiesFromPlayers(players, ['selectedWordsIds']);
   }
@@ -140,6 +143,11 @@ export const prepareClueWritingPhase = async (
     grid = buildGrid(store.deck, store.playersClues, gridSize, round.current === 4);
     utils.players.addPropertiesToPlayers(players, { coordinates: [] });
     gridType = round.current === 4 ? 'words' : gridType;
+
+    // Reset playersClues for round 4 here instead of later
+    if (round.current === 4) {
+      storeUpdate.playersClues = [];
+    }
   }
 
   const updatedGrid = distributeCoordinates(players, grid);
@@ -150,7 +158,7 @@ export const prepareClueWritingPhase = async (
   return {
     update: {
       store: {
-        playersClues: round.current === 4 ? [] : store.playersClues,
+        ...storeUpdate,
       },
       state: {
         phase: CRUZA_PALAVRAS_PHASES.CLUE_WRITING,

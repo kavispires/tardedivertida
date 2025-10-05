@@ -27,18 +27,16 @@ export const CRUZA_PALAVRAS_ACHIEVEMENTS = {
 
 export const PLAYER_COUNTS = {
   MIN: 3,
-  MAX: 10,
+  MAX: 8,
 };
 
-export const TOTAL_ROUNDS = 5;
+export const TOTAL_ROUNDS = 6;
 
 export const WORDS_PER_COORDINATE = {
   3: 4,
   4: 4,
-  5: 4,
+  5: 5,
   6: 5,
-  7: 5,
-  8: 5,
-  9: 6,
-  10: 6,
+  7: 6,
+  8: 6,
 };

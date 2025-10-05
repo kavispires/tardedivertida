@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "X",
   "gameName": "cruza-palavras",
-  "version": "6.0.44",
+  "version": "6.0.45",
   "release": "stable",
   "available": true,
   "title": {
@@ -23,7 +23,7 @@
     "cloudsAnimationType": "rising",
     "primaryColor": "#227168",
     "surfaceColor": "#E7E3DA",
-    "colorScheme": "light",
+    "colorScheme": "dark",
     "videoBackground": true
   },
   "rules": {
@@ -41,14 +41,14 @@
       "Getting the exact clue coordinate gets you 2 points, and also 1 point for each player that got your clue correctly",
       "Watch out, if nobody gets your clue, you lose points equal to the number of players, ouch",
       "After the third round, a new grid will appear with new coordinates and... will use the clues written by the players as coordinates",
-      "The game ends after 5 rounds"
+      "The game ends after 6 rounds"
     ]
   },
   "playerCount": {
     "best": 4,
     "recommended": [4, 5, 6],
     "min": 3,
-    "max": 10
+    "max": 8
   },
   "duration": {
     "base": 10,
