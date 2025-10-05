@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "contadores-historias",
-  "version": "4.1.13",
+  "version": "4.1.14",
   "release": "stable",
   "available": true,
   "title": {
@@ -22,7 +22,6 @@
     "clouds": "book-clouds",
     "cloudsAnimationType": "flow",
     "primaryColor": "#1890ff",
-    "backgroundColor": "rgba(140, 225, 225, 0.7)",
     "colorScheme": "light"
   },
   "rules": {

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "bomba-relogio",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "release": "planned",
   "available": false,
   "title": {
@@ -22,7 +22,6 @@
     "clouds": "cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "",
-    "backgroundColor": "",
     "colorScheme": "light"
   },
   "rules": {

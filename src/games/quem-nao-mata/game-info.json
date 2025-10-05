@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "quem-nao-mata",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "release": "planned",
   "available": false,
   "title": {
@@ -20,8 +20,8 @@
   },
   "appearance": {
     "clouds": "cloud",
+    "cloudsAnimationType": "flow",
     "primaryColor": "",
-    "backgroundColor": "",
     "colorScheme": "light"
   },
   "rules": {

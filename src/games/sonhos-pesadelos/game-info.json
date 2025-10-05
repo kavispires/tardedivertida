@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sonhos-pesadelos",
-  "version": "0.11.60",
+  "version": "0.11.61",
   "release": "deprecated",
   "available": false,
   "title": {
@@ -21,7 +21,7 @@
   "appearance": {
     "clouds": "sky-clouds",
     "primaryColor": "",
-    "backgroundColor": "rgba(0, 4, 31, 0.75)",
+    "cloudsAnimationType": "flow",
     "colorScheme": "light"
   },
   "rules": {

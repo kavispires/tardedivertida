@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "ue-so-isso",
-  "version": "4.0.13",
+  "version": "4.0.14",
   "release": "stable",
   "available": true,
   "title": {
@@ -22,7 +22,6 @@
     "clouds": "one-clouds",
     "cloudsAnimationType": "flow",
     "primaryColor": "#1B264F",
-    "backgroundColor": "rgba(233, 185, 81, 0.5)",
     "colorScheme": "light"
   },
   "rules": {

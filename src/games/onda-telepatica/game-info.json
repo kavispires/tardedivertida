@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "O",
   "gameName": "onda-telepatica",
-  "version": "4.0.69",
+  "version": "4.0.70",
   "release": "stable",
   "available": true,
   "title": {
@@ -22,7 +22,6 @@
     "clouds": "retro-cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "#E1146D",
-    "backgroundColor": "rgba(96, 82, 168, 0.75)",
     "colorScheme": "dark"
   },
   "rules": {

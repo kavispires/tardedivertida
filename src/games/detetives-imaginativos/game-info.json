@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "detetives-imaginativos",
-  "version": "4.0.5",
+  "version": "4.0.6",
   "release": "stable",
   "available": true,
   "title": {
@@ -22,7 +22,6 @@
     "clouds": "crime-clouds",
     "cloudsAnimationType": "falling",
     "primaryColor": "#4B2142",
-    "backgroundColor": "rgba(35, 35, 35, 0.8)",
     "colorScheme": "dark"
   },
   "rules": {

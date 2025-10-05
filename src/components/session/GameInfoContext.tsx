@@ -20,7 +20,6 @@ const PLACEHOLDER_GAME_INFO: GameInfo = {
   appearance: {
     clouds: 'cloud',
     primaryColor: '',
-    backgroundColor: 'rgba(0,0,0,0)',
     colorScheme: 'light',
   },
   rules: {
@@ -77,7 +76,7 @@ export const useGameInfoContext = () => {
   const context = useContext(GameInfoContext);
 
   if (!context) {
-    // biome-ignore lint/suspicious/noConsole: <explanation>
+    // biome-ignore lint/suspicious/noConsole: on purpose
     console.warn('useGameInfoContext should be used within a GameInfoProvider, defaulting to placeholder');
   }
 

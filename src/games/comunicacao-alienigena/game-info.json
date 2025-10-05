@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "comunicacao-alienigena",
-  "version": "5.0.13",
+  "version": "5.0.14",
   "release": "stable",
   "available": true,
   "title": {
@@ -23,7 +23,6 @@
     "cloudsAnimationType": "rising",
     "primaryColor": "#566E21",
     "surfaceColor": "#EADEDA",
-    "backgroundColor": "rgba(53, 32, 48, 0.75)",
     "colorScheme": "dark"
   },
   "rules": {

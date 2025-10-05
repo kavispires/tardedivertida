@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vice-campeao",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "release": "stable",
   "available": true,
   "title": {
@@ -22,7 +22,6 @@
     "clouds": "marathon-clouds",
     "cloudsAnimationType": "flow",
     "primaryColor": "rgb(255,114,199)",
-    "backgroundColor": "rgba(110,96,184,0.7)",
     "colorScheme": "light"
   },
   "rules": {

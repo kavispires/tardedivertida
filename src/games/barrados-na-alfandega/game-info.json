@@ -1,28 +1,28 @@
 {
   "$schema": "../../utils/game-info.schema.json",
-  "gameCode": "Q",
-  "gameName": "qual-quesito",
-  "version": "0.0.4",
+  "gameCode": "B",
+  "gameName": "barrados-na-alfandega",
+  "version": "0.0.1",
   "release": "planned",
   "available": false,
   "title": {
-    "pt": "Qual Quesito",
-    "en": "And The Category Is"
+    "pt": "Barrados Na Alfândega",
+    "en": "Stuck On Customs"
   },
   "popularName": {
     "pt": "",
     "en": ""
   },
-  "basedOn": "gnihT gnihT",
-  "summary": {
-    "en": "Make up a category and see how many things are thrown at it.",
-    "pt": "Crie uma categoria e veja quantas coisas são jogadas nela."
-  },
+  "basedOn": "?????",
   "appearance": {
     "clouds": "cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "",
     "colorScheme": "light"
+  },
+  "summary": {
+    "pt": "???",
+    "en": "???"
   },
   "rules": {
     "pt": ["TBD"],
@@ -30,12 +30,8 @@
   },
   "playerCount": {
     "recommended": [4, 5, 6],
-    "min": 2,
-    "max": 10
-  },
-  "duration": {
-    "base": 0,
-    "perPlayer": 0
+    "min": 3,
+    "max": 6
   },
   "tags": ["competitive"]
 }

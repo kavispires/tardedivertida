@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "espiao-entre-nos",
-  "version": "0.10.60",
+  "version": "0.10.61",
   "release": "paused",
   "available": false,
   "title": {
@@ -22,7 +22,6 @@
     "clouds": "cyber-cloud",
     "cloudsAnimationType": "falling",
     "primaryColor": "#1CC41C",
-    "backgroundColor": "rgba(37, 37, 37, 0.95)",
     "colorScheme": "light"
   },
   "rules": {

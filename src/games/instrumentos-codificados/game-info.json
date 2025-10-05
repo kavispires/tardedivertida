@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "instrumentos-codificados",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "release": "cancelled",
   "available": false,
   "title": {
@@ -22,7 +22,6 @@
     "clouds": "cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "",
-    "backgroundColor": "",
     "colorScheme": "light"
   },
   "rules": {

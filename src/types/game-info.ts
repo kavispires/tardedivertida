@@ -17,7 +17,6 @@ export type GameInfo = {
     colorScheme: ColorScheme;
     primaryColor: string;
     surfaceColor?: string;
-    backgroundColor?: string;
   };
   rules: {
     pt: string[];
