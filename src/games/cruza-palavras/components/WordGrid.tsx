@@ -1,7 +1,8 @@
-import clsx from 'clsx';
 import type { ElementType } from 'react';
 // Types
 import type { GamePlayer } from 'types/player';
+// Components
+import { SpreadsheetCell, SpreadsheetGrid } from 'components/general/SpreadsheetGrid';
 // Internal
 import type { Grid, GridType } from '../utils/types';
 import { WordGridHeader } from './WordGridHeader';
@@ -17,20 +18,15 @@ type WordGridProps = {
 export function WordGrid({ grid, user, CellComponent, gridType, cellComponentProps = {} }: WordGridProps) {
   const length = Math.sqrt(grid.length);
 
-  const gridStyle = {
-    gridTemplateColumns: `repeat(${length}, 1fr)`,
-    gridTemplateRows: `repeat(${length}, auto)`,
-  };
-
   return (
-    <div className="x-grid" style={gridStyle}>
+    <SpreadsheetGrid columns={length} rows={length}>
       {grid.map((cell) => (
-        <div className={clsx('x-grid-cell', `x-grid-cell--${cell.kind}`)} key={`${cell.index}-${cell.kind}`}>
+        <SpreadsheetCell key={`${cell.index}-${cell.kind}`} header={cell.kind === 'header'}>
           {cell.kind === 'header' && <WordGridHeader cell={cell} gridType={gridType} />}
 
           {cell.kind === 'cell' && <CellComponent {...cellComponentProps} cell={cell} user={user} />}
-        </div>
+        </SpreadsheetCell>
       ))}
-    </div>
+    </SpreadsheetGrid>
   );
 }
