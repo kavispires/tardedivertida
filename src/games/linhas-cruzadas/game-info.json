@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "linhas-cruzadas",
-  "version": "1.2.69",
+  "version": "1.2.70",
   "release": "stable",
   "available": true,
   "title": {
@@ -23,7 +23,8 @@
     "cloudsAnimationType": "flow",
     "primaryColor": "#D36135",
     "surfaceColor": "#FAE3C6",
-    "colorScheme": "light"
+    "colorScheme": "light",
+    "videoBackground": false
   },
   "rules": {
     "pt": [
@@ -36,7 +37,8 @@
   "playerCount": {
     "recommended": [6, 7, 8, 9, 10],
     "min": 4,
-    "max": 10
+    "max": 10,
+    "best": 7
   },
   "duration": {
     "base": 0,
@@ -48,6 +50,7 @@
       "key": "singleWordOnly",
       "kind": "switch",
       "label": "Cards Type",
+      "description": "Determines what deck to use",
       "values": [
         {
           "label": "Words and Expressions",
@@ -63,6 +66,7 @@
       "key": "evenDistribution",
       "kind": "switch",
       "label": "Card Distribution",
+      "description": "Determines how cards are distributed among players",
       "values": [
         {
           "label": "Random",

@@ -21,6 +21,7 @@ export const PUBLIC_URL = {
   RESOURCES: 'resources/',
   LOGOS: 'images/logos/',
   STRIPS: 'images/strips/',
+  VIDEOS: 'videos/',
 };
 
 /**
@@ -267,7 +268,6 @@ export const GAME_COLLECTION = {
   CINEGRAFISTAS_AMADORES: 'cinegrafistas-amadores', // upcoming
   CRIMES_HEDIONDOS: 'crimes-hediondos',
   CRUZA_PALAVRAS: 'cruza-palavras',
-  DESENHO_RAPIDAO: 'desenho-rapidao', // upcoming
   DETETIVES_IMAGINATIVOS: 'detetives-imaginativos',
   DUETOS: 'duetos',
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',

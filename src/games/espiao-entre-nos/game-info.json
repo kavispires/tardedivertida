@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "espiao-entre-nos",
-  "version": "0.10.61",
+  "version": "0.10.62",
   "release": "paused",
   "available": false,
   "title": {
@@ -22,7 +22,8 @@
     "clouds": "cyber-cloud",
     "cloudsAnimationType": "falling",
     "primaryColor": "#1CC41C",
-    "colorScheme": "light"
+    "colorScheme": "light",
+    "videoBackground": true
   },
   "rules": {
     "pt": [
@@ -37,9 +38,10 @@
     "en": ["TBD"]
   },
   "playerCount": {
-    "recommended": [6],
+    "recommended": [5, 6, 7],
     "min": 4,
-    "max": 10
+    "max": 10,
+    "best": 6
   },
   "duration": {
     "base": 0,

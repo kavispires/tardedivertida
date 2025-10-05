@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "X",
   "gameName": "cruza-palavras",
-  "version": "6.0.43",
+  "version": "6.0.44",
   "release": "stable",
   "available": true,
   "title": {
@@ -23,7 +23,8 @@
     "cloudsAnimationType": "rising",
     "primaryColor": "#227168",
     "surfaceColor": "#E7E3DA",
-    "colorScheme": "light"
+    "colorScheme": "light",
+    "videoBackground": true
   },
   "rules": {
     "pt": [

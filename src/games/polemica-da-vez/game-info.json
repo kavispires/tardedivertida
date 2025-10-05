@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "P",
   "gameName": "polemica-da-vez",
-  "version": "3.0.39",
+  "version": "3.0.40",
   "release": "stable",
   "available": true,
   "title": {
@@ -22,7 +22,8 @@
     "clouds": "speech-cloud",
     "cloudsAnimationType": "rising",
     "primaryColor": "#05668D",
-    "colorScheme": "light"
+    "colorScheme": "light",
+    "videoBackground": true
   },
   "rules": {
     "pt": [
@@ -43,7 +44,8 @@
   "playerCount": {
     "recommended": [5, 6, 7, 8],
     "min": 3,
-    "max": 10
+    "max": 10,
+    "best": 6
   },
   "duration": {
     "base": 0,
@@ -55,6 +57,7 @@
       "key": "fixedRounds",
       "kind": "switch",
       "label": "End Game",
+      "description": "Determines how the game ends",
       "values": [
         {
           "label": "10 points (10 rounds max)",

@@ -25,6 +25,7 @@ import { StepWaiting } from './lobby/StepWaiting';
 import { JoinedPlayers } from './lobby/JoinedPlayers';
 import { LobbyRules } from './lobby/LobbyRules';
 import { ImageBackground } from './lobby/ImageBackground';
+import { VideoBackground } from './lobby/VideoBackground';
 // Sass
 import './PhaseLobby.scss';
 
@@ -125,8 +126,9 @@ export function PhaseLobby({ players, meta }: PhaseProps) {
           />
         </motion.div>
       </AnimatePresence>
-      <ImageBackground />
+      <VideoBackground />
       <CloudBackground />
+      <ImageBackground />
     </PhaseContainer>
   );
 }

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "J",
   "gameName": "naufragos",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "release": "planned",
   "available": false,
   "title": {
@@ -22,7 +22,8 @@
     "clouds": "cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "",
-    "colorScheme": "light"
+    "colorScheme": "light",
+    "videoBackground": false
   },
   "rules": {
     "pt": ["TBD"],

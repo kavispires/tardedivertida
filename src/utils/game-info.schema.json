@@ -48,9 +48,10 @@
         "cloudsAnimationType": {
           "type": "string",
           "enum": ["flow", "rising", "falling"]
-        }
+        },
+        "videoBackground": { "type": "boolean" }
       },
-      "required": ["primaryColor", "clouds", "cloudsAnimationType", "colorScheme"]
+      "required": ["primaryColor", "clouds", "cloudsAnimationType", "colorScheme", "videoBackground"]
     },
     "rules": {
       "type": "object",
@@ -77,7 +78,7 @@
         "min": { "type": "integer" },
         "max": { "type": "integer" }
       },
-      "required": ["recommended", "min", "max"]
+      "required": ["recommended", "min", "max", "best"]
     },
     "duration": {
       "type": "object",
@@ -143,7 +144,7 @@
             "minItems": 1
           }
         },
-        "required": ["key", "label", "kind"]
+        "required": ["key", "label", "kind", "description"]
       }
     }
   },

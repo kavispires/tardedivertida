@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "N",
   "gameName": "na-rua-do-medo",
-  "version": "3.1.66",
+  "version": "3.1.67",
   "release": "stable",
   "available": true,
   "title": {
@@ -22,7 +22,8 @@
     "clouds": "halloween-clouds",
     "cloudsAnimationType": "flow",
     "primaryColor": "#ea7702",
-    "colorScheme": "dark"
+    "colorScheme": "dark",
+    "videoBackground": true
   },
   "rules": {
     "pt": [
@@ -58,6 +59,7 @@
       "key": "shortGame",
       "kind": "switch",
       "label": "Game Length",
+      "description": "Determines the number of streets (rounds) in a game",
       "values": [
         {
           "label": "5 streets",

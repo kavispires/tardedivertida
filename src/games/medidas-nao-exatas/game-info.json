@@ -2,8 +2,8 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "M",
   "gameName": "medidas-nao-exatas",
-  "version": "1.0.6",
-  "release": "beta",
+  "version": "1.0.7",
+  "release": "stable",
   "available": true,
   "title": {
     "pt": "Medidas Não Exatas",
@@ -22,7 +22,8 @@
     "clouds": "metrics-cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "",
-    "colorScheme": "light"
+    "colorScheme": "light",
+    "videoBackground": true
   },
   "rules": {
     "pt": [
@@ -45,7 +46,8 @@
   "playerCount": {
     "recommended": [4, 5, 6],
     "min": 2,
-    "max": 10
+    "max": 10,
+    "best": 5
   },
   "duration": {
     "base": 0,

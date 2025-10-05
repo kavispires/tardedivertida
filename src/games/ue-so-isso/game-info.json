@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "ue-so-isso",
-  "version": "4.0.14",
+  "version": "4.0.15",
   "release": "stable",
   "available": true,
   "title": {
@@ -22,7 +22,8 @@
     "clouds": "one-clouds",
     "cloudsAnimationType": "flow",
     "primaryColor": "#1B264F",
-    "colorScheme": "light"
+    "colorScheme": "light",
+    "videoBackground": true
   },
   "rules": {
     "pt": [
@@ -47,7 +48,8 @@
   "playerCount": {
     "recommended": [5, 6, 7],
     "min": 4,
-    "max": 10
+    "max": 10,
+    "best": 6
   },
   "duration": {
     "base": 15,

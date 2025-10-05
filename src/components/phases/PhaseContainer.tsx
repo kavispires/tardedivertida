@@ -5,7 +5,6 @@ import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
-import { useGameAppearance } from 'components/session/GameInfoContext';
 // Sass
 import './PhaseContainer.scss';
 
@@ -44,7 +43,6 @@ export function PhaseContainer({
   className = '',
   fullScreen = false,
 }: PhaseContainerProps) {
-  const appearance = useGameAppearance();
   const { translate } = useLanguage();
   const screenRef = useRef<HTMLScriptElement>(null);
 
@@ -59,14 +57,12 @@ export function PhaseContainer({
   }
 
   const baseClass = 'phase-container';
-  const backgroundColorOverlay = appearance?.backgroundColor;
 
   return (
     <main
       className={clsx(baseClass, fullScreen && `${baseClass}--full-screen`, className)}
       id="screen"
       ref={screenRef}
-      style={backgroundColorOverlay ? { backgroundColor: backgroundColorOverlay } : {}}
     >
       {children}
     </main>

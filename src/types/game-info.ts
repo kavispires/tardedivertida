@@ -13,10 +13,11 @@ export type GameInfo = {
   summary: DualLanguageValue;
   appearance: {
     clouds: string;
-    cloudsAnimationType?: string;
+    cloudsAnimationType: string;
     colorScheme: ColorScheme;
     primaryColor: string;
     surfaceColor?: string;
+    videoBackground: boolean;
   };
   rules: {
     pt: string[];

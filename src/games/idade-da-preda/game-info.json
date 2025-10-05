@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "idade-da-preda",
-  "version": "0.9.9",
+  "version": "0.9.10",
   "release": "beta",
   "available": true,
   "title": {
@@ -22,7 +22,8 @@
     "clouds": "cave-painting-cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "#c1b629",
-    "colorScheme": "dark"
+    "colorScheme": "dark",
+    "videoBackground": false
   },
   "rules": {
     "pt": [

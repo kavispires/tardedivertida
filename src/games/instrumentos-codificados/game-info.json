@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "instrumentos-codificados",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "release": "cancelled",
   "available": false,
   "title": {
@@ -22,7 +22,8 @@
     "clouds": "cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "",
-    "colorScheme": "light"
+    "colorScheme": "light",
+    "videoBackground": false
   },
   "rules": {
     "pt": ["TBD"],
@@ -31,7 +32,8 @@
   "playerCount": {
     "recommended": [4, 5, 6],
     "min": 2,
-    "max": 8
+    "max": 8,
+    "best": 0
   },
   "duration": {
     "base": 0,

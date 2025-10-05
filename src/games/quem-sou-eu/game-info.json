@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "quem-sou-eu",
-  "version": "2.0.43",
+  "version": "2.0.44",
   "release": "stable",
   "available": true,
   "title": {
@@ -18,7 +18,8 @@
     "clouds": "mirrors-clouds",
     "cloudsAnimationType": "rising",
     "primaryColor": "#0f4364",
-    "colorScheme": "dark"
+    "colorScheme": "dark",
+    "videoBackground": true
   },
   "summary": {
     "pt": "Cada jogador é uma celebridade ou personagem e deve comunicar aos outros jogadores apenas através de ícones",

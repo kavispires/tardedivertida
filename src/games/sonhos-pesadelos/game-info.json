@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sonhos-pesadelos",
-  "version": "0.11.61",
+  "version": "0.11.62",
   "release": "deprecated",
   "available": false,
   "title": {
@@ -22,7 +22,8 @@
     "clouds": "sky-clouds",
     "primaryColor": "",
     "cloudsAnimationType": "flow",
-    "colorScheme": "light"
+    "colorScheme": "light",
+    "videoBackground": false
   },
   "rules": {
     "pt": [
@@ -38,7 +39,8 @@
   "playerCount": {
     "recommended": [4, 5, 6],
     "min": 2,
-    "max": 10
+    "max": 10,
+    "best": 5
   },
   "duration": {
     "base": 0,
