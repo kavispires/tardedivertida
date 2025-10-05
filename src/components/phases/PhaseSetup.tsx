@@ -14,6 +14,8 @@ import { Instruction } from 'components/text';
 import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import { PhaseContainer } from './PhaseContainer';
+import { VideoBackground } from './lobby/VideoBackground';
+import { ImageBackground } from './lobby/ImageBackground';
 
 export function PhaseSetup({ state }: PhaseProps) {
   const gameId = useGameId();
@@ -26,17 +28,20 @@ export function PhaseSetup({ state }: PhaseProps) {
 
   return (
     <PhaseContainer phase={state?.phase} allowedPhase={PHASES.DEFAULT.SETUP} className="setup">
-      <div className="phase-announcement">
-        <StepTitle colorScheme="light">
+      <div className="phase-announcement" style={{ zIndex: 3, background: 'transparent' }}>
+        <StepTitle colorScheme="dark">
           <Translate pt="Preparando o jogo..." en="Setting up..." />
         </StepTitle>
 
         <AnimatedGearIcon className="phase-announcement__icon" />
 
-        <Instruction>
-          <Translate pt="Aguarde um momento" en="Just a moment" />
+        <Instruction style={{ color: 'white' }}>
+          <Translate pt="Aguarde um momento" en="In just a moment" />
         </Instruction>
       </div>
+      <VideoBackground />
+
+      <ImageBackground />
     </PhaseContainer>
   );
 }
