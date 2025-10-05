@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "F",
   "gameName": "fofoca-quente",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "release": "dev",
   "available": false,
   "title": {
@@ -22,7 +22,8 @@
     "clouds": "cloud",
     "cloudsAnimationType": "flow",
     "colorScheme": "light",
-    "primaryColor": ""
+    "primaryColor": "",
+    "videoBackground": true
   },
   "rules": {
     "pt": ["TBD"],

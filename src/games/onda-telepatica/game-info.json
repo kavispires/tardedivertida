@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "O",
   "gameName": "onda-telepatica",
-  "version": "4.0.70",
+  "version": "4.0.71",
   "release": "stable",
   "available": true,
   "title": {
@@ -22,7 +22,8 @@
     "clouds": "retro-cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "#E1146D",
-    "colorScheme": "dark"
+    "colorScheme": "dark",
+    "videoBackground": true
   },
   "rules": {
     "pt": [
@@ -60,6 +61,7 @@
       "key": "fixedRounds",
       "kind": "switch",
       "label": "End Game",
+      "description": "Determines how the game ends",
       "values": [
         {
           "label": "10 points (10 rounds max)",

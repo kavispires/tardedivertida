@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "controle-de-estoque",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "release": "dev",
   "available": false,
   "title": {
@@ -18,7 +18,8 @@
     "clouds": "package-cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "",
-    "colorScheme": "light"
+    "colorScheme": "light",
+    "videoBackground": false
   },
   "summary": {
     "pt": "Vocês são trabalhadores que devem colocar produtos no armazém e atender todos os pedidos até o final do dia.",

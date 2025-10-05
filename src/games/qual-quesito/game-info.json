@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "qual-quesito",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "release": "planned",
   "available": false,
   "title": {
@@ -22,7 +22,8 @@
     "clouds": "cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "",
-    "colorScheme": "light"
+    "colorScheme": "light",
+    "videoBackground": true
   },
   "rules": {
     "pt": ["TBD"],
@@ -31,7 +32,8 @@
   "playerCount": {
     "recommended": [4, 5, 6],
     "min": 2,
-    "max": 10
+    "max": 10,
+    "best": 5
   },
   "duration": {
     "base": 0,

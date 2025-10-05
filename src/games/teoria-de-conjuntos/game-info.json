@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "teoria-de-conjuntos",
-  "version": "4.0.12",
+  "version": "4.0.13",
   "release": "stable",
   "available": true,
   "title": {
@@ -22,7 +22,8 @@
     "clouds": "diagram-clouds",
     "cloudsAnimationType": "falling",
     "primaryColor": "#ba3f1d",
-    "colorScheme": "light"
+    "colorScheme": "light",
+    "videoBackground": true
   },
   "rules": {
     "en": [

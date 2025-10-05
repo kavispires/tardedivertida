@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "nao-sou-robo",
-  "version": "2.0.40",
+  "version": "2.0.41",
   "release": "stable",
   "available": true,
   "title": {
@@ -22,7 +22,8 @@
     "clouds": "captcha-clouds",
     "cloudsAnimationType": "falling",
     "primaryColor": "#313457",
-    "colorScheme": "light"
+    "colorScheme": "light",
+    "videoBackground": true
   },
   "rules": {
     "pt": [
@@ -47,7 +48,8 @@
   "playerCount": {
     "recommended": [4, 5, 6],
     "min": 2,
-    "max": 10
+    "max": 10,
+    "best": 5
   },
   "duration": {
     "base": 5,

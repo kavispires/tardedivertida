@@ -1,29 +1,29 @@
 {
   "$schema": "../../utils/game-info.schema.json",
-  "gameCode": "?",
-  "gameName": "template",
-  "version": "0.0.12",
+  "gameCode": "S",
+  "gameName": "colegas-de-quarto",
+  "version": "0.0.2",
   "release": "planned",
   "available": false,
   "title": {
-    "pt": "Template",
-    "en": "Template"
+    "pt": "Colegas de Quarto",
+    "en": "Roommates"
   },
   "popularName": {
     "pt": "",
     "en": ""
   },
-  "basedOn": "Template",
-  "summary": {
-    "pt": "TBD",
-    "en": "TBD"
-  },
+  "basedOn": "sibilA",
   "appearance": {
     "clouds": "cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "",
     "colorScheme": "light",
-    "videoBackground": false
+    "videoBackground": true
+  },
+  "summary": {
+    "pt": "Um jogo sobre a vida em comunidade e as interações entre colegas de quarto.",
+    "en": "A game about communal living and the interactions between roommates."
   },
   "rules": {
     "pt": ["TBD"],
@@ -31,13 +31,9 @@
   },
   "playerCount": {
     "recommended": [4, 5, 6],
-    "min": 2,
+    "min": 4,
     "max": 10,
-    "best": 5
+    "best": 4
   },
-  "duration": {
-    "base": 0,
-    "perPlayer": 0
-  },
-  "tags": ["competitive"]
+  "tags": ["cooperative"]
 }

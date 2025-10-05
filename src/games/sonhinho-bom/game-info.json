@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sonhinho-bom",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "release": "planned",
   "available": false,
   "title": {
@@ -18,7 +18,8 @@
     "clouds": "cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "",
-    "colorScheme": "light"
+    "colorScheme": "light",
+    "videoBackground": false
   },
   "summary": {
     "pt": "???",
@@ -31,7 +32,8 @@
   "playerCount": {
     "recommended": [4, 5, 6],
     "min": 4,
-    "max": 10
+    "max": 10,
+    "best": 5
   },
   "tags": ["cooperative"]
 }

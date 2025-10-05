@@ -1,12 +1,17 @@
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
 // Components
-import { useGameInfoContext } from 'components/session/GameInfoContext';
+import { useGameAppearance, useGameInfoContext } from 'components/session/GameInfoContext';
 // Sass
 import './ImageBackground.scss';
 
 export function ImageBackground() {
   const info = useGameInfoContext();
+  const gameAppearance = useGameAppearance();
+
+  if (gameAppearance?.videoBackground) {
+    return null;
+  }
 
   return (
     <div

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "ta-na-cara",
-  "version": "1.1.76",
+  "version": "1.1.77",
   "release": "deprecated",
   "available": false,
   "title": {
@@ -18,7 +18,8 @@
     "clouds": "face-id-cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "",
-    "colorScheme": "light"
+    "colorScheme": "light",
+    "videoBackground": true
   },
   "summary": {
     "pt": "Você consegue descobrir quem é quem somente com perguntas subjetivas?",

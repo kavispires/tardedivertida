@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vamos-ao-cinema",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "release": "stable",
   "available": true,
   "title": {
@@ -22,7 +22,8 @@
     "clouds": "movies-clouds",
     "cloudsAnimationType": "flow",
     "primaryColor": "#0C7489",
-    "colorScheme": "dark"
+    "colorScheme": "dark",
+    "videoBackground": true
   },
   "rules": {
     "pt": [

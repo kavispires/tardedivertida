@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "H",
   "gameName": "crimes-hediondos",
-  "version": "3.0.9",
+  "version": "3.0.10",
   "release": "stable",
   "available": true,
   "title": {
@@ -22,7 +22,8 @@
     "clouds": "crime-clouds",
     "cloudsAnimationType": "flow",
     "primaryColor": "#ab0d17",
-    "colorScheme": "dark"
+    "colorScheme": "dark",
+    "videoBackground": true
   },
   "rules": {
     "en": [

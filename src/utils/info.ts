@@ -3,6 +3,7 @@ import ARTE_RUIM from 'games/arte-ruim/game-info.json';
 import BARRADOS_NA_ALFANDEGA from 'games/barrados-na-alfandega/game-info.json';
 import BOMBA_RELOGIO from 'games/bomba-relogio/game-info.json';
 import CINEGRAFISTAS_AMADORES from 'games/cinegrafistas-amadores/game-info.json';
+import COLEGAS_DE_QUARTO from 'games/colegas-de-quarto/game-info.json';
 import COMUNICACAO_ALIENIGENA from 'games/comunicacao-alienigena/game-info.json';
 import COMUNICACAO_DUO from 'games/comunicacao-duo/game-info.json';
 import CONTADORES_HISTORIAS from 'games/contadores-historias/game-info.json';
@@ -61,6 +62,7 @@ export const GAME_LIST: Record<GameName, GameInfo> = {
   'barrados-na-alfandega': BARRADOS_NA_ALFANDEGA,
   'bomba-relogio': BOMBA_RELOGIO,
   'cinegrafistas-amadores': CINEGRAFISTAS_AMADORES,
+  'colegas-de-quarto': COLEGAS_DE_QUARTO,
   'comunicacao-alienigena': COMUNICACAO_ALIENIGENA,
   'comunicacao-duo': COMUNICACAO_DUO,
   'contadores-historias': CONTADORES_HISTORIAS,

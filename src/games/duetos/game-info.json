@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "duetos",
-  "version": "1.1.71",
+  "version": "1.1.72",
   "release": "stable",
   "available": true,
   "title": {
@@ -22,7 +22,8 @@
     "clouds": "socks-clouds",
     "cloudsAnimationType": "falling",
     "primaryColor": "#5891e0",
-    "colorScheme": "light"
+    "colorScheme": "light",
+    "videoBackground": true
   },
   "rules": {
     "en": [

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "R",
   "gameName": "retrato-falado",
-  "version": "2.1.43",
+  "version": "2.1.44",
   "release": "stable",
   "available": true,
   "title": {
@@ -22,7 +22,8 @@
     "clouds": "monster-eye-cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "#828830",
-    "colorScheme": "dark"
+    "colorScheme": "dark",
+    "videoBackground": true
   },
   "rules": {
     "en": [
@@ -43,7 +44,8 @@
   "playerCount": {
     "recommended": [5, 6],
     "min": 4,
-    "max": 10
+    "max": 10,
+    "best": 6
   },
   "duration": {
     "base": 4,

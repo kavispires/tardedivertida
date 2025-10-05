@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "comunicacao-duo",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "release": "stable",
   "available": true,
   "title": {
@@ -18,7 +18,8 @@
     "clouds": "alien-communication-cloud",
     "cloudsAnimationType": "rising",
     "primaryColor": "",
-    "colorScheme": "dark"
+    "colorScheme": "dark",
+    "videoBackground": true
   },
   "summary": {
     "en": "Attempt to communicate with another alien using their language.",

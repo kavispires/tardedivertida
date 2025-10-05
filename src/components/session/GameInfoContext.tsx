@@ -19,8 +19,10 @@ const PLACEHOLDER_GAME_INFO: GameInfo = {
   summary: { en: '', pt: '' },
   appearance: {
     clouds: 'cloud',
+    cloudsAnimationType: 'flow',
     primaryColor: '',
     colorScheme: 'light',
+    videoBackground: false,
   },
   rules: {
     pt: [''],

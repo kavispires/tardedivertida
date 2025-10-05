@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "K",
   "gameName": "adedanhx",
-  "version": "2.0.39",
+  "version": "2.0.40",
   "release": "stable",
   "available": true,
   "title": {
@@ -23,7 +23,8 @@
     "cloudsAnimationType": "flow",
     "primaryColor": "#3653ad",
     "surfaceColor": "#fafaff",
-    "colorScheme": "light"
+    "colorScheme": "light",
+    "videoBackground": true
   },
   "rules": {
     "en": [

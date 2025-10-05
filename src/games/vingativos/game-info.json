@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vingativos",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "release": "planned",
   "available": false,
   "title": {
@@ -18,7 +18,8 @@
     "clouds": "cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "",
-    "colorScheme": "light"
+    "colorScheme": "light",
+    "videoBackground": false
   },
   "summary": {
     "pt": "Jogadores são super-heróis tentando descobrir os planos secretos de super vilões",

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vendaval-de-palpite",
-  "version": "0.9.53",
+  "version": "0.9.54",
   "release": "paused",
   "available": true,
   "title": {
@@ -22,7 +22,8 @@
     "clouds": "brainstorm-clouds",
     "cloudsAnimationType": "flow",
     "primaryColor": "",
-    "colorScheme": "light"
+    "colorScheme": "light",
+    "videoBackground": false
   },
   "rules": {
     "pt": ["TBD"],
@@ -31,7 +32,8 @@
   "playerCount": {
     "recommended": [4, 5, 6],
     "min": 2,
-    "max": 10
+    "max": 10,
+    "best": 0
   },
   "duration": {
     "base": 0,

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "J",
   "gameName": "mesmice",
-  "version": "1.0.48",
+  "version": "1.0.49",
   "release": "stable",
   "available": true,
   "title": {
@@ -23,7 +23,8 @@
     "cloudsAnimationType": "flow",
     "primaryColor": "#2ba19b",
     "surfaceColor": "#f5fcfc",
-    "colorScheme": "light"
+    "colorScheme": "light",
+    "videoBackground": false
   },
   "rules": {
     "pt": [

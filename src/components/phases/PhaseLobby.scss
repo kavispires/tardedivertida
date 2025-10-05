@@ -8,6 +8,7 @@
 
 .lobby-step {
   display: grid;
+  width: 90vw;
   grid-template-columns: 360px minmax(0, 720px);
   gap: get-unit(2);
   margin: get-unit(0);
