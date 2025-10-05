@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "F",
   "gameName": "fileira-de-fatos",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "release": "stable",
   "available": true,
   "title": {
@@ -22,7 +22,6 @@
     "clouds": "line-cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "#ab0d17",
-    "backgroundColor": "rgba(74, 57, 49, 0.85)",
     "colorScheme": "dark"
   },
   "rules": {

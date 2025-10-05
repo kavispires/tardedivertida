@@ -83,7 +83,6 @@ export function CloudBackground() {
   const gameAppearance = useGameAppearance();
   const cloudType = gameAppearance.clouds ?? 'cloud';
   const cloudAnimationType = gameAppearance.cloudsAnimationType ?? 'flow';
-  const backgroundColor = gameAppearance.backgroundColor;
 
   const CloudTypeComponent = getCloudComponent(cloudType);
 
@@ -98,10 +97,7 @@ export function CloudBackground() {
   }, []);
 
   return (
-    <div
-      className={clsx('cloud-background', `cloud-background--${cloudType}`)}
-      style={backgroundColor ? { backgroundColor } : {}}
-    >
+    <div className={clsx('cloud-background', `cloud-background--${cloudType}`)}>
       {CLOUDS.map((id) => {
         return (
           <motion.div key={id} {...getAnimationProps(cloudAnimationType, id, config)}>

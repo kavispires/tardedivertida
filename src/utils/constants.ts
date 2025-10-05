@@ -258,6 +258,7 @@ export const GAME_COLLECTION = {
   _TEMPLATE: 'template',
   ADEDANHX: 'adedanhx',
   ARTE_RUIM: 'arte-ruim',
+  BARRADOS_NA_ALFANDEGA: 'barrados-na-alfandega', // upcoming
   BOMBA_RELOGIO: 'bomba-relogio', // upcoming
   COMUNICACAO_ALIENIGENA: 'comunicacao-alienigena',
   COMUNICACAO_DUO: 'comunicacao-duo',
@@ -295,6 +296,7 @@ export const GAME_COLLECTION = {
   QUEM_SOU_EU: 'quem-sou-eu',
   RETRATO_FALADO: 'retrato-falado',
   SINAIS_DE_ALERTA: 'sinais-de-alerta',
+  SONHINHO_BOM: 'sonhinho-bom', // upcoming
   SONHOS_PESADELOS: 'sonhos-pesadelos',
   SUPER_CAMPEONATO: 'super-campeonato',
   TA_NA_CARA: 'ta-na-cara',

@@ -40,7 +40,6 @@
       "properties": {
         "primaryColor": { "type": "string" },
         "surfaceColor": { "type": "string" },
-        "backgroundColor": { "type": "string" },
         "colorScheme": {
           "type": "string",
           "enum": ["light", "dark"]
@@ -48,10 +47,10 @@
         "clouds": { "type": "string" },
         "cloudsAnimationType": {
           "type": "string",
-          "enum": ["flow", "rising", "falling", "orbit"]
+          "enum": ["flow", "rising", "falling"]
         }
       },
-      "required": ["primaryColor", "clouds", "cloudsAnimationType", "backgroundColor", "colorScheme"]
+      "required": ["primaryColor", "clouds", "cloudsAnimationType", "colorScheme"]
     },
     "rules": {
       "type": "object",

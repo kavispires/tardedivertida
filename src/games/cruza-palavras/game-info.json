@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "X",
   "gameName": "cruza-palavras",
-  "version": "6.0.42",
+  "version": "6.0.43",
   "release": "stable",
   "available": true,
   "title": {
@@ -23,7 +23,6 @@
     "cloudsAnimationType": "rising",
     "primaryColor": "#227168",
     "surfaceColor": "#E7E3DA",
-    "backgroundColor": "rgba(180,173,163,0.85)",
     "colorScheme": "light"
   },
   "rules": {
@@ -57,38 +56,6 @@
   "tags": ["competitive", "same-time", "writing", "pairing", "brain-burner", "achievements"],
   "options": [
     {
-      "key": "nsfw",
-      "kind": "switch",
-      "label": "NSFW Items",
-      "description": "Allow NSFW items",
-      "values": [
-        {
-          "label": "Off",
-          "value": false
-        },
-        {
-          "label": "On",
-          "value": true
-        }
-      ]
-    },
-    {
-      "key": "largerGrid",
-      "kind": "switch",
-      "label": "Grid Size",
-      "description": "The word grid will have one more column and row making it more difficult",
-      "values": [
-        {
-          "label": "Regular",
-          "value": false
-        },
-        {
-          "label": "Large",
-          "value": true
-        }
-      ]
-    },
-    {
       "key": "gridType",
       "label": "Grid Type",
       "description": "Determines the headers for columns and rows on the first iteration of the grid.",
@@ -114,6 +81,38 @@
         {
           "label": "Items",
           "value": "items"
+        }
+      ]
+    },
+    {
+      "key": "largerGrid",
+      "kind": "switch",
+      "label": "Grid Size",
+      "description": "The word grid will have one more column and row making it more difficult",
+      "values": [
+        {
+          "label": "Regular",
+          "value": false
+        },
+        {
+          "label": "Large",
+          "value": true
+        }
+      ]
+    },
+    {
+      "key": "nsfw",
+      "kind": "switch",
+      "label": "NSFW Items",
+      "description": "Allow NSFW items (only if playing with Items)",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
         }
       ]
     }

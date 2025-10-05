@@ -1,4 +1,8 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
+
+.background {
+  background: rgba(8, 60, 3, 0.5);
+}
 
 .r-view {
   display: flex;
@@ -7,7 +11,7 @@
 }
 
 .r-sketch {
-  background-color: get-color('white');
+  background-color: get-color("white");
   @include box-shadow;
 }
 

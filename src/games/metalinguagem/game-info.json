@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "metalinguagem",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "release": "stable",
   "available": true,
   "title": {
@@ -22,7 +22,6 @@
     "clouds": "constellations-clouds",
     "cloudsAnimationType": "flow",
     "primaryColor": "",
-    "backgroundColor": "rgba(236, 244, 213, 0.85)",
     "colorScheme": "light"
   },
   "rules": {

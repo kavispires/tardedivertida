@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "nao-sou-robo",
-  "version": "2.0.39",
+  "version": "2.0.40",
   "release": "stable",
   "available": true,
   "title": {
@@ -22,7 +22,6 @@
     "clouds": "captcha-clouds",
     "cloudsAnimationType": "falling",
     "primaryColor": "#313457",
-    "backgroundColor": "rgba(138, 140, 158, 0.85)",
     "colorScheme": "light"
   },
   "rules": {

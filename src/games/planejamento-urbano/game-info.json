@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "planejamento-urbano",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "release": "beta",
   "available": false,
   "title": {
@@ -22,7 +22,6 @@
     "clouds": "construction-clouds",
     "cloudsAnimationType": "flow",
     "primaryColor": "#65a1c9",
-    "backgroundColor": "rgba(10, 75, 118, 0.85)",
     "colorScheme": "dark"
   },
   "rules": {

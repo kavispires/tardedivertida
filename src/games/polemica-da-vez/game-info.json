@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "P",
   "gameName": "polemica-da-vez",
-  "version": "3.0.38",
+  "version": "3.0.39",
   "release": "stable",
   "available": true,
   "title": {
@@ -22,7 +22,6 @@
     "clouds": "speech-cloud",
     "cloudsAnimationType": "rising",
     "primaryColor": "#05668D",
-    "backgroundColor": "rgba(136, 211, 201, 0.85)",
     "colorScheme": "light"
   },
   "rules": {

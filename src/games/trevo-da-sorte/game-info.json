@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Y",
   "gameName": "trevo-da-sorte",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "release": "paused",
   "available": false,
   "title": {
@@ -22,7 +22,6 @@
     "clouds": "clover-cloud",
     "cloudsAnimationType": "falling",
     "primaryColor": "",
-    "backgroundColor": "",
     "colorScheme": "light"
   },
   "rules": {
