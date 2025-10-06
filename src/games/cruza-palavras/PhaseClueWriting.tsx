@@ -13,11 +13,12 @@ import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnSubmitClueAPIRequest } from './utils/api-requests';
 import { CRUZA_PALAVRAS_PHASES } from './utils/constants';
+import type { PhaseClueWritingState } from './utils/types';
 import { WritingCluesRule } from './components/RulesBlobs';
 import { PlayerRecentClue } from './components/PlayerRecentClue';
 import { StepClueWriting } from './StepClueWriting';
 
-export function PhaseClueWriting({ players, state }: PhaseProps) {
+export function PhaseClueWriting({ players, state }: PhaseProps<PhaseClueWritingState>) {
   const { step, goToNextStep, setStep } = useStep(0);
 
   const user = useUser(players, state);

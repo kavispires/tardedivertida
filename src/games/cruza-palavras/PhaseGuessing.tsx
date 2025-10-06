@@ -13,9 +13,10 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
 import { CRUZA_PALAVRAS_PHASES } from './utils/constants';
+import type { PhaseGuessingState } from './utils/types';
 import { StepGuessing } from './StepGuessing';
 
-export function PhaseGuessing({ players, state }: PhaseProps) {
+export function PhaseGuessing({ players, state }: PhaseProps<PhaseGuessingState>) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
 

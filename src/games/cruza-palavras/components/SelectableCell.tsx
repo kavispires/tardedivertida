@@ -1,6 +1,6 @@
 // Ant Design Resources
 import { MinusSquareOutlined, PlusCircleFilled } from '@ant-design/icons';
-import { Button, Tooltip } from 'antd';
+import { Button, Flex, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
@@ -10,24 +10,26 @@ import type { Clue, GridCell } from '../utils/types';
 import { getClueFromKey } from '../utils/helpers';
 import { ClueCard } from './ClueCard';
 import { PreviousClue } from './PreviousClue';
+import { DroppableArea } from '../../../components/drag-and-drop/DragAndDrop';
+import { DraggableClue } from './DraggableClue';
 
 type SelectableCellProps = {
-  onSelectCell: (cellCoordinate: number) => void;
-  onClearCell: (clueKey: string) => void;
+  onActivateClue: (clue: Clue) => void;
   cell: GridCell;
   active: Clue | number | null;
   guesses: NumberDictionary;
   clues: Clue[];
+  clueColors: Dictionary<string>;
   user: GamePlayer;
 };
 
 export function SelectableCell({
-  onSelectCell,
-  onClearCell,
+  onActivateClue,
   cell,
   active,
   guesses,
   clues,
+  clueColors,
   user,
 }: SelectableCellProps) {
   const isSelected = cell.index === active;
@@ -37,16 +39,22 @@ export function SelectableCell({
 
   const isMatched = coordinate === cell.index;
 
-  if (isMatched) {
-    const clueIndexColor = clues.findIndex((c) => c.clue === clue && c.playerId === playerId);
+  // Check if this is the player's own clue cell
+  const isPlayerOwnClueCell = isMatched && playerId === user.id;
+
+  // Determine if the cell can be a drop target
+  const isDropDisabled = Boolean(cell.text) || cell.playerId === user.id || isMatched;
+
+  if (isMatched && isPlayerOwnClueCell) {
     return (
-      <Button
-        onClick={user.id !== playerId && clueKey ? () => onClearCell(clueKey) : () => {}}
-        type="text"
-        style={{ height: 'auto' }}
-      >
-        <ClueCard isMatched={isMatched} isSelected={isSelected} clue={clue} indexColor={clueIndexColor} />
-      </Button>
+      <Tooltip title={<Translate pt="Essa é a sua própria dica!" en="This is your own clue!" />}>
+        <ClueCard
+          isMatched={isMatched}
+          isSelected={isSelected}
+          clue={clue || clues.find((c) => c.playerId === user.id)?.clue}
+          color={clueColors[clue]}
+        />
+      </Tooltip>
     );
   }
 
@@ -71,9 +79,49 @@ export function SelectableCell({
     );
   }
 
+  if (isMatched) {
+    const clueObj = clues.find((c) => c.clue === clue && c.playerId === playerId);
+
+    if (!clueObj) return;
+
+    return (
+      <DraggableClue
+        clue={clueObj}
+        isSelected={isSelected}
+        isMatched={false}
+        onActivateClue={onActivateClue}
+        color={clueColors[clue]}
+        // Disable dragging for player's own clue
+        disabled={playerId === user.id}
+      />
+    );
+  }
+
   return (
-    <Button onClick={() => onSelectCell(cell.index)} shape="circle">
-      <PlusCircleFilled style={isSelected ? { color: 'gold' } : {}} />
-    </Button>
+    <DroppableArea
+      id={cell.index}
+      disabled={isDropDisabled}
+      style={{
+        width: '100%',
+        height: '100%',
+        minHeight: '4rem', // Match the spreadsheet cell min-height
+      }}
+    >
+      <Flex
+        style={{
+          outline: isSelected ? '2px solid gold' : 'none',
+          width: '100%',
+          height: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: 'inherit', // Inherit from parent
+        }}
+        align="center"
+        justify="center"
+        vertical={false}
+      >
+        <PlusCircleFilled style={{ color: 'white' }} />
+      </Flex>
+    </DroppableArea>
   );
 }

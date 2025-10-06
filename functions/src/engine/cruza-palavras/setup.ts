@@ -136,13 +136,13 @@ export const prepareClueWritingPhase = async (
 
   const round = utils.helpers.increaseRound(state.round);
 
-  let gridType: string = state.gameType;
+  let gameType: string = state.gameType;
   let grid: GridCell[] = state.grid ?? buildGrid(store.deck, store.playersClues, gridSize, false);
   // Build/Rebuild grid on round 1 and 4
   if (round.current === 1 || round.current === 4) {
     grid = buildGrid(store.deck, store.playersClues, gridSize, round.current === 4);
     utils.players.addPropertiesToPlayers(players, { coordinates: [] });
-    gridType = round.current === 4 ? 'words' : gridType;
+    gameType = round.current === 4 ? 'words' : gameType;
 
     // Reset playersClues for round 4 here instead of later
     if (round.current === 4) {
@@ -164,7 +164,7 @@ export const prepareClueWritingPhase = async (
         phase: CRUZA_PALAVRAS_PHASES.CLUE_WRITING,
         round,
         grid: updatedGrid,
-        gridType,
+        gameType,
         players,
       },
       stateCleanup: ['clues', 'ranking', 'whoGotNoPoints', 'deck'],
@@ -272,6 +272,9 @@ export const prepareGameOverPhase = async (
         winners,
         players,
         achievements,
+        grid: state.grid,
+        gridSize: state.gridSize,
+        gameType: state.gameType,
       },
     },
   };

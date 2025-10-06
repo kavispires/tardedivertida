@@ -31,12 +31,7 @@ export const getWords = async (language: Language, options?: CruzaPalavrasOption
   }
 
   if (options?.gridType === 'contenders') {
-    const contenders = await utils.tdr.getContenders(
-      language,
-      allowNSFW,
-      options.contenderDecks,
-      quantityNeeded,
-    );
+    const contenders = await utils.tdr.getContenders(language, allowNSFW, [], quantityNeeded);
 
     const deck = contenders.map((entry) => {
       return {

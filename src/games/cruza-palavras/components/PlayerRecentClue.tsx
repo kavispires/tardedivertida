@@ -13,14 +13,14 @@ type PlayerRecentClueProps = {
 };
 
 export function PlayerRecentClue({ user, grid }: PlayerRecentClueProps) {
-  const cell = grid[user.coordinate];
+  const cell = grid[user.currentClueCoordinate];
 
   if (!user.clue || !cell) {
     return null;
   }
 
   return (
-    <SpaceContainer direction="vertical">
+    <SpaceContainer direction="vertical" className="mb-10">
       <Title size="xx-small">
         <Translate pt="Sua dica" en="Your clue" />
       </Title>
