@@ -1,6 +1,6 @@
 import { type ChangeEvent, useEffect, useRef, useState } from 'react';
 // Ant Design Resources
-import { Input, type InputRef, Space } from 'antd';
+import { Flex, Input, type InputRef, Space } from 'antd';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Components
@@ -43,12 +43,14 @@ export function WordForm({ x, y, onSubmit, disabled, index }: WordFormProps) {
         onChange={onChange}
         onPressEnter={() => onSubmit({ clue, currentClueCoordinate: index })}
       />
-      <SendButton
-        onClick={() => onSubmit({ clue, currentClueCoordinate: index })}
-        disabled={disabled || !clue.length}
-      >
-        <Translate pt="Enviar" en="Submit" />
-      </SendButton>
+      <Flex justify="flex-end">
+        <SendButton
+          onClick={() => onSubmit({ clue, currentClueCoordinate: index })}
+          disabled={disabled || !clue.length}
+        >
+          <Translate pt="Enviar" en="Submit" />
+        </SendButton>
+      </Flex>
     </Space>
   );
 }

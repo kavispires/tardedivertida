@@ -11,11 +11,12 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import { CRUZA_PALAVRAS_PHASES } from './utils/constants';
+import type { PhaseRevealState } from './utils/types';
 import { ScoringRule } from './components/RulesBlobs';
 import { StepReveal } from './StepReveal';
 import { StepRanking } from './StepRanking';
 
-export function PhaseReveal({ players, state }: PhaseProps) {
+export function PhaseReveal({ players, state }: PhaseProps<PhaseRevealState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const user = useUser(players, state);
 

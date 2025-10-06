@@ -6,17 +6,17 @@ import utils from '../utils';
 
 export const isEmulatingFunctions = () => !!process.env.FUNCTIONS_EMULATOR;
 export const isEmulatingFirestore = () => !!process.env.FIRESTORE_EMULATOR_HOST;
-export const isEmulatingEnvironment = () => isEmulatingFunctions() && isEmulatingFirestore();
+export const isEmulatingEnvironment = () => isEmulatingFunctions() || isEmulatingFirestore();
 
 /**
  * CLOUD FUNCTIONS V2 MIGRATION
  */
 
-export const throwException = (error: any, action: string) => {
-  // TODO: Verify
-  // if (isEmulatingFirestore()) {
-  //   console.error(`Failed to ${action}`, error);
-  // }
+export const throwException = (error: unknown, action: string) => {
+  if (isEmulatingEnvironment()) {
+    // biome-ignore lint/suspicious/noConsole: Only for debugging purposes on dev
+    console.error(`Failed to ${action}`, error);
+  }
   throw new functions.https.HttpsError('internal', `Failed to ${action}: ${String(error)}`);
 };
 

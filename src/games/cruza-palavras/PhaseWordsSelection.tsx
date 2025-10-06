@@ -12,9 +12,10 @@ import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnSubmitWordsAPIRequest } from './utils/api-requests';
 import { CRUZA_PALAVRAS_PHASES } from './utils/constants';
+import type { PhaseWordsSelectionState } from './utils/types';
 import { StepSelectWords } from './StepSelectWords';
 
-export function PhaseWordsSelection({ players, state }: PhaseProps) {
+export function PhaseWordsSelection({ players, state }: PhaseProps<PhaseWordsSelectionState>) {
   const { step, setStep } = useStep(0);
 
   const user = useUser(players, state);

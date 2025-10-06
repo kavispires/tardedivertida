@@ -23,6 +23,18 @@
   cursor: pointer;
 }
 
+.x-clue-card-draggable {
+  cursor: grab;
+  padding: 0;
+  background: 0;
+  border: none;
+
+  &:active {
+    cursor: grabbing;
+    z-index: 15;
+  }
+}
+
 .x-clue-card {
   height: 3rem;
   border: get-color("black") 2px solid;

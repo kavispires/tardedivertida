@@ -1,0 +1,91 @@
+@use "styles/sass" as *;
+
+// Draggable Item Styles
+.draggable-item {
+  cursor: grab;
+  user-select: none;
+  border-radius: get-unit(1);
+  padding: get-unit(1 2);
+  background-color: get-color("white");
+  border: 1px solid get-color("gray", 2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  box-shadow: 0 get-unit(0.5) get-unit(1) rgba(0, 0, 0, 0.1);
+  width: 100%;
+
+  &:hover:not(:disabled) {
+    border-color: get-color("blue", 4);
+    transform: translateY(get-unit(-0.25));
+  }
+
+  &:active:not(:disabled) {
+    cursor: grabbing;
+    box-shadow: 0 get-unit(0.25) get-unit(0.5) rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    background-color: get-color("gray", 1);
+  }
+
+  &--dragging {
+    cursor: grabbing;
+    box-shadow: 0 get-unit(0.75) get-unit(1.5) rgba(0, 0, 0, 0.15);
+    border-color: get-color("blue", 5);
+    background-color: get-color("blue", 1);
+    z-index: 999;
+  }
+
+  &-wrapper {
+    display: inline-block;
+    margin: get-unit(0.5);
+    width: 100%;
+  }
+
+  &-handle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: get-unit(1);
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  &-content {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+// Droppable Area Styles
+.droppable-area {
+  border-radius: get-unit(1);
+  border: 2px dashed get-color("gray", 3);
+  min-height: get-unit(6);
+  min-width: get-unit(6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: get-color("white", 1);
+  padding: get-unit(1);
+
+  &--active {
+    background-color: get-color("blue", 1);
+    border-color: get-color("blue", 5);
+    border-style: solid;
+  }
+
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: get-color("gray", 1);
+    border-color: get-color("gray", 3);
+  }
+}

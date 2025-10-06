@@ -3,8 +3,6 @@ import clsx from 'clsx';
 import { CheckCircleFilled, PlusCircleFilled } from '@ant-design/icons';
 // Types
 import type { GamePlayer } from 'types/player';
-// Utils
-import { getColorFromIndex } from 'utils/helpers';
 // Components
 import { Avatar } from 'components/avatars';
 
@@ -12,8 +10,7 @@ type ClueCardProps = {
   isMatched?: boolean;
   isSelected?: boolean;
   clue?: string;
-  indexColor?: number;
-  color?: string;
+  color: string;
   player?: GamePlayer;
   strikeMatches?: boolean;
 };
@@ -22,25 +19,19 @@ export function ClueCard({
   isMatched,
   isSelected,
   clue,
-  indexColor = 0,
   color,
   player,
   strikeMatches = false,
 }: ClueCardProps) {
-  const colorClass = getColorFromIndex(indexColor);
   return (
     <div
       className={clsx(
         'x-clue-card',
         isSelected && 'x-clue-card--selected',
-        !color && `color-border--${colorClass}`,
+        color && `color-border--${color}`,
       )}
-      style={{ borderColor: color }}
     >
-      <span
-        className={clsx('x-clue-card__icon', !color && `color-background--${colorClass}`)}
-        style={{ backgroundColor: color }}
-      >
+      <span className={clsx('x-clue-card__icon', color && `color-background--${color}`)}>
         {isMatched ? (
           player ? (
             <Avatar id={player?.avatarId} />
