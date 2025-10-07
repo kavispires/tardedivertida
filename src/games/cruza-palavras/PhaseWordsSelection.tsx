@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { VerifyListIcon } from 'icons/VerifyListIcon';
 // Components
@@ -15,10 +14,8 @@ import { CRUZA_PALAVRAS_PHASES } from './utils/constants';
 import type { PhaseWordsSelectionState } from './utils/types';
 import { StepSelectWords } from './StepSelectWords';
 
-export function PhaseWordsSelection({ players, state }: PhaseProps<PhaseWordsSelectionState>) {
+export function PhaseWordsSelection({ players, state, user }: PhaseProps<PhaseWordsSelectionState>) {
   const { step, setStep } = useStep(0);
-
-  const user = useUser(players, state);
 
   const onSubmitWords = useOnSubmitWordsAPIRequest(setStep);
 

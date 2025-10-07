@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { EvaluateIcon } from 'icons/EvaluateIcon';
 // Components
@@ -16,9 +15,8 @@ import { SINAIS_DE_ALERTA_PHASES } from './utils/constants';
 import { EvaluationRules } from './components/RulesBlobs';
 import { StepEvaluate } from './StepEvaluate';
 
-export function PhaseEvaluation({ players, state, meta }: PhaseProps) {
+export function PhaseEvaluation({ state, players, meta, user }: PhaseProps) {
   const { step, setStep } = useStep(0);
-  const user = useUser(players, state);
 
   const onSubmitGuesses = useOnSubmitGuessesAPIRequest(setStep);
 

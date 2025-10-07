@@ -15,7 +15,7 @@ import { FILEIRA_DE_FATOS_PHASES } from './utils/constants';
 import { StepRanking } from './StepRanking';
 import { StepReveal } from './StepReveal';
 
-export function PhaseResults({ players, state }: PhaseProps) {
+export function PhaseResults({ state, players }: PhaseProps) {
   const { step, goToPreviousStep, goToNextStep } = useStep();
   const [activePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 

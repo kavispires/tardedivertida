@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { MapIcon } from 'icons/MapIcon';
 // Components
@@ -19,8 +18,7 @@ import { PlayerSelectionMap } from './components/PlayerSelection';
 import { StepBuildMap } from './StepBuildMap';
 import { StepBuildWait } from './StepBuildWait';
 
-export function PhaseMapBuilding({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseMapBuilding({ state, players, user }: PhaseProps) {
   const { step, setStep } = useStep();
 
   const onSubmitMap = useOnSubmitMapAPIRequest(setStep);

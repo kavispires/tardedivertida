@@ -4,7 +4,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { DoorSignIcon } from 'icons/DoorSignIcon';
@@ -29,10 +28,9 @@ import { CardPlayRules } from './components/RulesBlobs';
 import { StepPlayDream } from './StepPlayDream';
 import { StepAnnounceDream } from './StepAnnounceDream';
 
-export function PhaseCardPlay({ players, state, meta }: PhaseProps) {
+export function PhaseCardPlay({ state, players, meta, user }: PhaseProps) {
   const { isLoading } = useLoading();
   const { step, goToNextStep, setStep } = useStep();
-  const user = useUser(players, state);
 
   const [activePlayer, isActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
   const [lastActivePlayer] = useWhichPlayerIsThe('lastActivePlayerId', state, players);

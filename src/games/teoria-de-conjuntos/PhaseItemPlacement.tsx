@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Components
 import { PhaseContainer } from 'components/phases';
@@ -17,9 +16,9 @@ import { StepPlaceItem } from './StepPlaceItem';
 import { StepWaitPlaceItem } from './StepWaitPlaceItem';
 // Icons
 
-export function PhaseItemPlacement({ players, state }: PhaseProps) {
+export function PhaseItemPlacement({ state, players, user }: PhaseProps) {
   const { step, setStep } = useStep();
-  const user = useUser(players, state);
+
   const [, isTheJudge] = useWhichPlayerIsThe('judgeId', state, players);
   const [activePlayer, isTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
   const [previousActivePlayer] = useWhichPlayerIsThe('previousActivePlayerId', state, players);

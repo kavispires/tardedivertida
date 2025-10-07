@@ -21,7 +21,7 @@ import { StepPlanLocations } from './StepPlanLocations';
 import { StepWaitForPlanning } from './StepWaitForPlanning';
 // Icons
 
-export function PhasePlanning({ players, state }: PhaseProps) {
+export function PhasePlanning({ state, players }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep();
   const [activePlayer, isTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
   const onSubmitPlanning = useOnSubmitPlanningAPIRequest(setStep);

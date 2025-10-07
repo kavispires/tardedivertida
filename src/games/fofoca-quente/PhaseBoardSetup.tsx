@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { LocationIcon } from 'icons/LocationIcon';
@@ -23,8 +22,7 @@ import { FOFOCA_QUENTE_PHASES } from './utils/constants';
 import { StepSetupGossiper } from './StepSetupGossiper';
 import { StepSetupDetective } from './StepSetupDetective';
 
-export function PhaseBoardSetup({ players, state }: PhaseProps<PhaseBoardSetupState>) {
-  const user = useUser(players, state);
+export function PhaseBoardSetup({ players, state, user }: PhaseProps<PhaseBoardSetupState>) {
   const { step } = useStep();
   const [, isTheGossiperPlayer] = useWhichPlayerIsThe('gossiperPlayerId', state, players);
   // const [, isTheDetectivePlayer] = useWhichPlayerIsThe('detectivePlayerId', state, players);

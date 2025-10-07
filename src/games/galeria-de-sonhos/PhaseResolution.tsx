@@ -15,7 +15,7 @@ import { Instruction, RoundsLeftInstruction } from 'components/text';
 import { GALERIA_DE_SONHOS_PHASES } from './utils/constants';
 import { RowSwapInstruction } from './components/RulesBlobs';
 
-export function PhaseResolution({ players, state }: PhaseProps) {
+export function PhaseResolution({ state, players }: PhaseProps) {
   const { step, goToNextStep } = useStep();
 
   return (

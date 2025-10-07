@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { SocksIcon } from 'icons/SocksIcon';
 // Components
@@ -17,8 +16,7 @@ import { DUETOS_PHASES } from './utils/constants';
 import { MadePairs } from './components/MadePairs';
 import { StepMakePairs } from './StepMakePairs';
 
-export function PhasePairing({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhasePairing({ players, state, user }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep();
 
   const onSubmitPairs = useOnSubmitPairsAPIRequest(setStep);

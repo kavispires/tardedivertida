@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { TournamentIcon } from 'icons/TournamentIcon';
 // Components
@@ -16,10 +15,9 @@ import { SUPER_CAMPEONATO_PHASES } from './utils/constants';
 import { StepRanking } from './StepRanking';
 import { StepWinner } from './StepWinner';
 
-export function PhaseResults({ state, players }: PhaseProps) {
+export function PhaseResults({ state, players, user }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const [previousTier, setPreviousTier] = useState<string>('');
-  const user = useUser(players, state);
 
   useEffect(() => {
     if (state.tier !== previousTier) {

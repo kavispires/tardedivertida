@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { WritingIcon } from 'icons/WritingIcon';
@@ -20,8 +19,7 @@ import { MESMICE_PHASES } from './utils/constants';
 import { WaitingRoomFeature } from './components/WaitingRoomFeature';
 import { StepSelectFeature } from './StepSelectFeature';
 
-export function PhaseObjectFeatureElimination({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseObjectFeatureElimination({ state, players, user }: PhaseProps) {
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
   const initialStep = state.outcome === 'NEW' ? 0 : 1;
   const { step, setStep, goToNextStep } = useStep(initialStep);

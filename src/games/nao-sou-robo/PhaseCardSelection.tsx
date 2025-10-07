@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { TicketsIcon } from 'icons/TicketsIcon';
 // Components
@@ -16,8 +15,7 @@ import { useOnSubmitCardAPIRequest } from './utils/api-requests';
 import { NAO_SOU_ROBO_PHASES } from './utils/constants';
 import { StepSelectCard } from './StepSelectCard';
 
-export function PhaseCardSelection({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseCardSelection({ state, players, user }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep();
 
   const onSubmitCard = useOnSubmitCardAPIRequest(setStep);

@@ -19,7 +19,7 @@ import type { Item } from '../../types/tdr';
  * Setup
  */
 export const prepareSetupPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   _state: FirebaseStateData,
   players: Players,
   additionalData: ResourceData,

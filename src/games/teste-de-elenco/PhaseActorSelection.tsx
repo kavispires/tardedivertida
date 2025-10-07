@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { SofaIcon } from 'icons/SofaIcon';
 // Components
@@ -15,8 +14,7 @@ import { useOnSubmitMovieActorAPIRequest } from './utils/api-requests';
 import { TESTE_DE_ELENCO_PHASES } from './utils/constants';
 import { StepSelectActor } from './StepSelectActor';
 
-export function PhaseActorSelection({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseActorSelection({ state, players, user }: PhaseProps) {
   const { step, setStep } = useStep();
 
   const onSubmitActor = useOnSubmitMovieActorAPIRequest(setStep);

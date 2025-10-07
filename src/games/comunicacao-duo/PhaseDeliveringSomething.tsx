@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { MysteryBoxIcon } from 'icons/MysteryBoxIcon';
@@ -18,8 +17,7 @@ import { useOnStopDeliveryAPIRequest, useOnSubmitDeliveryAPIRequest } from './ut
 import { COMUNICACAO_DUO_PHASES } from './utils/constants';
 import { StepDeliver } from './StepDeliver';
 
-export function PhaseDeliveringSomething({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseDeliveringSomething({ players, state, user }: PhaseProps) {
   const { step } = useStep();
   const [requester, isTheRequester] = useWhichPlayerIsThe('requesterId', state, players);
 

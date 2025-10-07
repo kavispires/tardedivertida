@@ -15,7 +15,7 @@ import type { PhaseResultsState } from './utils/types';
 import { METALINGUAGEM_PHASES } from './utils/constants';
 import { StepResults } from './StepResults';
 
-export function PhaseResults({ players, state }: PhaseProps<PhaseResultsState>) {
+export function PhaseResults({ state, players }: PhaseProps<PhaseResultsState>) {
   const { step } = useStep();
   const [creator] = useWhichPlayerIsThe('creatorId', state, players);
 

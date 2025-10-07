@@ -16,7 +16,7 @@ import { ScoringRules } from './components/RulesBlobs';
 import { StepGallery } from './StepGallery';
 import { StepRanking } from './StepRanking';
 
-export function PhaseResults({ players, state }: PhaseProps<PhaseResultsState>) {
+export function PhaseResults({ state, players }: PhaseProps<PhaseResultsState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const slideShowConfig = useSlideShow({
     length: state.gallery.length,

@@ -14,7 +14,7 @@ import { DUETOS_PHASES } from './utils/constants';
 import { StepResult } from './StepResults';
 import { StepRanking } from './StepRanking';
 
-export function PhaseResults({ players, state }: PhaseProps) {
+export function PhaseResults({ state, players }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep();
 
   const announcement = (

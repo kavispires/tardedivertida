@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { FilterIcon } from 'icons/FilterIcon';
 // Components
@@ -15,8 +14,7 @@ import { useOnSubmitCharactersAPIRequest } from './utils/api-requests';
 import { QUEM_SOU_EU_PHASES } from './utils/constants';
 import { StepSelectCharacters } from './StepSelectCharacters';
 
-export function PhaseCharacterFiltering({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseCharacterFiltering({ state, players, user }: PhaseProps) {
   const { step, setStep } = useStep();
 
   const onSelectCharacters = useOnSubmitCharactersAPIRequest(setStep);

@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { PencilIcon } from 'icons/PencilIcon';
 // Components
@@ -16,8 +15,11 @@ import { IDADE_DA_PREDA_PHASES } from './utils/constants';
 import { useOnSubmitNameAPIRequest } from './utils/api-requests';
 import { StepNameAThing } from './StepNameAThing';
 
-export function PhaseCommunicatingThings({ players, state }: PhaseProps<PhaseCommunicatingThingsState>) {
-  const user = useUser(players, state);
+export function PhaseCommunicatingThings({
+  state,
+  players,
+  user,
+}: PhaseProps<PhaseCommunicatingThingsState>) {
   const { step, setStep } = useStep();
   const onSubmitName = useOnSubmitNameAPIRequest(setStep);
 

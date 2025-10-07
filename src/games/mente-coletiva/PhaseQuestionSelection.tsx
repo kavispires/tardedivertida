@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { SheepIcon } from 'icons/SheepIcon';
@@ -20,9 +19,9 @@ import { GamePremiseRules } from './components/RulesBlobs';
 import { StepQuestionSelection } from './StepQuestionSelection';
 import { StepQuestionSelectionWaiting } from './StepQuestionSelectionWaiting';
 
-export function PhaseQuestionSelection({ state, players }: PhaseProps) {
+export function PhaseQuestionSelection({ state, players, user }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
-  const user = useUser(players, state);
+
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
   const onSubmitQuestion = useOnSubmitQuestionAPIRequest(setStep);

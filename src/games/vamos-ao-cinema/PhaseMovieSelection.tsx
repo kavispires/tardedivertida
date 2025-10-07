@@ -3,7 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { ReviewIcon } from 'icons/ReviewIcon';
 // Components
@@ -19,8 +18,7 @@ import { VAMOS_AO_CINEMA_PHASES } from './utils/constants';
 import { YourMovie } from './components/YourMovie';
 import { StepSelectMovie } from './StepSelectMovie';
 
-export function PhaseMovieSelection({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseMovieSelection({ state, players, user }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep();
 
   const onSelectMovie = useOnSubmitMovieSelectionAPIRequest(setStep);

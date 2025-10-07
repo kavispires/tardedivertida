@@ -3,7 +3,6 @@ import type { PhaseProps } from 'types/game';
 import type { TopicCard } from 'types/tdr';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { LockIcon } from 'icons/LockIcon';
 import { TimeWritingIcon } from 'icons/TimedWritingIcon';
@@ -20,8 +19,7 @@ import { useOnSubmitAnswersAPIRequest } from './utils/api-requests';
 import { ADEDANHX_PHASES, ANSWERING_TIME_IN_MINUTES } from './utils/constants';
 import { StepAnswerGrid } from './StepAnswerGrid';
 
-export function PhaseAnswering({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseAnswering({ players, state, user }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep();
 
   const onSubmitAnswers = useOnSubmitAnswersAPIRequest(setStep);

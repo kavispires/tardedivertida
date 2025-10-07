@@ -5,7 +5,6 @@ import type { PhaseProps } from 'types/game';
 import type { BossIdeaCard } from 'types/tdr';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Components
 import { PhaseContainer } from 'components/phases';
@@ -15,8 +14,7 @@ import { useOnConfirmGoodPlacementAPIRequest, useOnPlaceGoodAPIRequest } from '.
 import { CONTROLE_DE_ESTOQUE_PHASES } from './utils/constants';
 import { StepConfirmGood } from './StepConfirmGood';
 
-export function PhasePlacementConfirmation({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhasePlacementConfirmation({ players, state, user }: PhaseProps) {
   const [supervisor, isUserTheSupervisor] = useWhichPlayerIsThe('supervisorId', state, players);
 
   const onPlaceGood = useOnPlaceGoodAPIRequest();

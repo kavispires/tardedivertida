@@ -3,7 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { LoupeIcon } from 'icons/LoupeIcon';
 // Components
@@ -20,8 +19,7 @@ import { useGameTypes } from './utils/useGameTypes';
 import { CRIMES_HEDIONDOS_PHASES } from './utils/constants';
 import { StepNewScene } from './StepNewScene';
 
-export function PhaseSceneMarking({ players, state }: PhaseProps<PhaseSceneMarkingState>) {
-  const user = useUser(players, state);
+export function PhaseSceneMarking({ players, state, user }: PhaseProps<PhaseSceneMarkingState>) {
   const { step, setStep, goToNextStep } = useStep(0);
 
   const onSubmitMark = useOnSubmitMarkAPIRequest(setStep);

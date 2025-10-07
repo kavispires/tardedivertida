@@ -14,7 +14,7 @@ import { buildCardsDictFromPlayersHands } from './helpers';
  * @returns
  */
 export const prepareSetupPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   _state: FirebaseStateData,
   players: Players,
   additionalData: ResourceData,

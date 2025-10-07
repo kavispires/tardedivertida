@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { DreamIcon } from 'icons/DreamIcon';
 // Components
@@ -18,9 +17,8 @@ import { SONHOS_PESADELOS_PHASES } from './utils/constants';
 import { DreamTellingRules } from './components/RulesBlobs';
 import { StepTellDream } from './StepTellDream';
 
-export function PhaseDreamTelling({ state, players }: PhaseProps) {
+export function PhaseDreamTelling({ state, players, user }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
-  const user = useUser(players, state);
 
   const onSubmitDream = useOnSubmitDreamAPIRequest(setStep);
 
