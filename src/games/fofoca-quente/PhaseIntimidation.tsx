@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { TDIcon } from 'icons/TDIcon';
@@ -18,8 +17,7 @@ import { FOFOCA_QUENTE_PHASES } from './utils/constants';
 import { StepIntimidation } from './StepIntimidation';
 // Icons
 
-export function PhaseIntimidation({ players, state }: PhaseProps<PhaseIntimidationState>) {
-  const user = useUser(players, state);
+export function PhaseIntimidation({ state, players, user }: PhaseProps<PhaseIntimidationState>) {
   const { step } = useStep();
   const [, isTheGossiperPlayer] = useWhichPlayerIsThe('gossiperPlayerId', state, players);
   const [, isTheDetectivePlayer] = useWhichPlayerIsThe('detectivePlayerId', state, players);

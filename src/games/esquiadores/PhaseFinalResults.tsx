@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { LodgeIcon } from 'icons/LodgeIcon';
@@ -20,8 +19,7 @@ import { StepRanking } from './StepRanking';
 import { StepBetsBreakdown } from './StepBetsBreakdown';
 // Icons
 
-export function PhaseFinalResults({ players, state }: PhaseProps<PhaseFinalResultsState>) {
-  const user = useUser(players, state);
+export function PhaseFinalResults({ players, state, user }: PhaseProps<PhaseFinalResultsState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep();
   const [skier] = useWhichPlayerIsThe('activeSkierId', state, players);
 

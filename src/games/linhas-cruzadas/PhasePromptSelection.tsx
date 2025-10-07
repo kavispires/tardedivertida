@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { ListIcon } from 'icons/ListIcon';
 // Components
@@ -15,9 +14,8 @@ import { useOnSubmitPromptAPIRequest } from './utils/api-requests';
 import { LINHAS_CRUZADAS_PHASES } from './utils/constants';
 import { StepSelectPrompt } from './StepSelectPrompt';
 
-export function PhasePromptSelection({ players, state }: PhaseProps) {
+export function PhasePromptSelection({ state, players, user }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
-  const user = useUser(players, state);
 
   const onSubmitPrompt = useOnSubmitPromptAPIRequest(setStep);
 

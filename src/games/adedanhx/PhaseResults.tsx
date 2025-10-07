@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { RankIcon } from 'icons/RankIcon';
 // Components
@@ -17,8 +16,7 @@ import { ScoringRule } from './components/RulesBlobs';
 import { StepRanking } from './StepRanking';
 import { StepResultGrid } from './StepResultGrid';
 
-export function PhaseResults({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseResults({ players, state, user }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const [isFirstRunThrough, setIsFirstRunThrough] = useState(true);
 

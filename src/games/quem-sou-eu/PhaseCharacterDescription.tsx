@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { PlayerIconsIcon } from 'icons/PlayerIconsIcon';
 // Components
@@ -17,8 +16,7 @@ import { QUEM_SOU_EU_PHASES } from './utils/constants';
 import { WaitingRoomCharacter } from './components/WaitingRoomCharacter';
 import { StepSelectGlyphs } from './StepSelectGlyphs';
 
-export function PhaseCharacterDescription({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseCharacterDescription({ state, players, user }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep();
 
   const onSelectGlyphs = useOnSubmitGlyphsAPIRequest(setStep);

@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { ChatIcon } from 'icons/ChatIcon';
 // Components
@@ -14,8 +13,7 @@ import { useOnSubmitAnswerAPIRequest } from './utils/api-requests';
 import { TA_NA_CARA_PHASES } from './utils/constants';
 import { StepAnswerTheQuestion } from './StepAnswerTheQuestion';
 
-export function PhaseAnswer({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseAnswer({ state, players, user }: PhaseProps) {
   const { step } = useStep();
 
   const onSubmitAnswer = useOnSubmitAnswerAPIRequest();

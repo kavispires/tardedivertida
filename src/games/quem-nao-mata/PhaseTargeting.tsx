@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { TDIcon } from 'icons/TDIcon';
 // Components
@@ -15,8 +14,7 @@ import { useOnSubmitMessageAPIRequest, useOnSubmitTargetAPIRequest } from './uti
 import { QUEM_NAO_MATA_PHASES } from './utils/constants';
 import { StepTargeting } from './StepTargeting';
 
-export function PhaseTargeting({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseTargeting({ state, players, user }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);
 
   const onSubmitTarget = useOnSubmitTargetAPIRequest();

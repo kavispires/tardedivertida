@@ -13,7 +13,7 @@ import { Instruction } from 'components/text';
 import { TREVO_DA_SORTE_PHASES } from './utils/constants';
 import { StepRanking } from './StepRanking';
 
-export function PhaseResults({ players, state }: PhaseProps) {
+export function PhaseResults({ state, players }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);
 
   return (

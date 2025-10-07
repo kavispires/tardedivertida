@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { SecretIcon } from 'icons/SecretIcon';
@@ -22,9 +21,8 @@ import type { PhaseSecretClueState } from './utils/types';
 import { StepSecretClueWrite } from './StepSecretClueWrite';
 import { StepSecretClueWaiting } from './StepSecretClueWaiting';
 
-export function PhaseSecretClue({ state, players }: PhaseProps<PhaseSecretClueState>) {
+export function PhaseSecretClue({ state, players, user }: PhaseProps<PhaseSecretClueState>) {
   const { step, goToNextStep, setStep } = useStep(0);
-  const user = useUser(players, state);
 
   const [leader, isUserTheLeader] = useWhichPlayerIsThe('leaderId', state, players);
 

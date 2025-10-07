@@ -2,8 +2,6 @@ import { orderBy } from 'lodash';
 import { useMemo } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
-// Hooks
-import { useUser } from 'hooks/useUser';
 // Icons
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
@@ -14,10 +12,10 @@ import type { Crime, PhaseGameOverState } from './utils/types';
 import achievementsReference from './utils/achievements';
 import { useGameTypes } from './utils/useGameTypes';
 import { CrimeSummary } from './components/CrimeSummary';
+// Hooks
 
-export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
+export function PhaseGameOver({ state, players, user }: PhaseProps<PhaseGameOverState>) {
   const crimes: Crime[] = useMemo(() => orderBy(state.crimes ?? [], ['playerId']), [state.crimes]);
-  const user = useUser(players, state);
 
   const { isLocationGame, isVictimGame } = useGameTypes(state.items);
 

@@ -3,7 +3,6 @@ import { useMemo } from 'react';
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { AlienAngry2Icon } from 'icons/AlienAngry2Icon';
@@ -19,8 +18,7 @@ import type { PhaseRevealState, RequestHistoryEntry } from './utils/types';
 import { COMUNICACAO_ALIENIGENA_PHASES, ITEM_TYPES } from './utils/constants';
 import { StepReveal } from './StepReveal';
 
-export function PhaseReveal({ players, state }: PhaseProps<PhaseRevealState>) {
-  const user = useUser(players, state);
+export function PhaseReveal({ players, state, user }: PhaseProps<PhaseRevealState>) {
   const [alien, isUserAlien] = useWhichPlayerIsThe('alienId', state, players);
 
   const { step } = useStep();

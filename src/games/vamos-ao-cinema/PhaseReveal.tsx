@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { MovieTheaterIcon } from 'icons/MovieTheaterIcon';
@@ -20,8 +19,7 @@ import { VAMOS_AO_CINEMA_PHASES } from './utils/constants';
 import { MovieHighlight } from './components/MovieHighlight';
 import { StepReveal } from './StepReveal';
 
-export function PhaseReveal({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseReveal({ state, players, user }: PhaseProps) {
   const { step, setStep } = useStep();
   const [activePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 

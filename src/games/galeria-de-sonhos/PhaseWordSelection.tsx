@@ -20,7 +20,7 @@ import { GALERIA_DE_SONHOS_PHASES } from './utils/constants';
 import { GeneralRules, WordSelectionRules } from './components/RulesBlobs';
 import { StepWordSelection } from './StepWordSelection';
 
-export function PhaseWordSelection({ players, state }: PhaseProps) {
+export function PhaseWordSelection({ state, players }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep();
 
   const [scout, isUserTheScout] = useWhichPlayerIsThe('scoutId', state, players);

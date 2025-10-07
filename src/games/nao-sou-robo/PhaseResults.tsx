@@ -3,7 +3,6 @@ import { StepRanking } from 'games/adedanhx/StepRanking';
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { RobotIcon } from 'icons/RobotIcon';
 // Components
@@ -15,8 +14,7 @@ import { Instruction } from 'components/text';
 import { NAO_SOU_ROBO_PHASES } from './utils/constants';
 import { StepResult } from './StepResults';
 
-export function PhaseResults({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseResults({ state, players, user }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep();
 
   const announcement = (

@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { CreateIcon } from 'icons/CreateIcon';
@@ -21,8 +20,7 @@ import { METALINGUAGEM_PHASES } from './utils/constants';
 import { StepCreateWord } from './StepCreateWord';
 import { StepWaitWordCreation } from './StepWaitWordCreation';
 
-export function PhaseWordCreation({ players, state }: PhaseProps<PhaseWordCreationState>) {
-  const user = useUser(players, state);
+export function PhaseWordCreation({ state, players, user }: PhaseProps<PhaseWordCreationState>) {
   const { step } = useStep();
   const [creator, isTheCreator] = useWhichPlayerIsThe('creatorId', state, players);
 

@@ -3,7 +3,6 @@ import { useState } from 'react';
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { PaintingIcon } from 'icons/PaintingIcon';
 // Components
@@ -19,9 +18,8 @@ import { DrawInstruction } from './components/TextBlobs';
 import { LevelInstruction } from './components/LevelInstruction';
 import { StepDraw } from './StepDraw';
 
-function PhaseDraw({ players, state }: PhaseProps) {
+function PhaseDraw({ players, state, user }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
-  const user = useUser(players, state);
   const [startDrawingTimer, setStartDrawingTimer] = useState(false);
 
   const onSubmitDrawing = useOnSubmitDrawingAPIRequest(setStep);

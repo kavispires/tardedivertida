@@ -3,7 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { PopcornIcon } from 'icons/PopcornIcon';
@@ -20,8 +19,7 @@ import { VAMOS_AO_CINEMA_PHASES } from './utils/constants';
 import { MistakeCountHighlight } from './components/MistakeCountHighlight';
 import { StepEliminateMovie } from './StepEliminateMovie';
 
-export function PhaseMovieElimination({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseMovieElimination({ state, players, user }: PhaseProps) {
   const { step, setStep } = useStep();
   const [activePlayer, isActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 

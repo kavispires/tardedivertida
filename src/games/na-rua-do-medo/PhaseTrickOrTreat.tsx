@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { StreetIcon } from 'icons/StreetIcon';
 // Components
@@ -18,9 +17,7 @@ import { NA_RUA_DO_MEDO_PHASES } from './utils/constants';
 import { PlayerStats } from './components/PlayerStats';
 import { StepMakeDecision } from './StepMakeDecision';
 
-export function PhaseTrickOrTreat({ state, players }: PhaseProps) {
-  const user = useUser(players, state);
-
+export function PhaseTrickOrTreat({ state, players, user }: PhaseProps) {
   const isNewStreet = state.street.length === 0;
   const { step, goToNextStep } = useStep(isNewStreet ? 0 : 2);
 

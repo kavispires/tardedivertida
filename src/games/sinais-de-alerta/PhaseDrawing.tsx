@@ -3,7 +3,6 @@ import { useState } from 'react';
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { DrawingIcon } from 'icons/DrawingIcon';
 // Components
@@ -17,9 +16,9 @@ import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
 import { SINAIS_DE_ALERTA_PHASES } from './utils/constants';
 import { StepDraw } from './StepDraw';
 
-export function PhaseDrawing({ players, state, meta }: PhaseProps) {
+export function PhaseDrawing({ state, players, meta, user }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
-  const user = useUser(players, state);
+
   const [startDrawingTimer, setStartDrawingTimer] = useState(false);
   const timeLimit: number = state.timeLimit ?? 30;
 

@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { PassportIcon } from 'icons/PassportIcon';
@@ -18,9 +17,8 @@ import { Instruction } from 'components/text';
 import { ESPIAO_ENTRE_NOS_PHASES } from './utils/constants';
 import { StepAssignment } from './StepAssignment';
 
-export function PhaseAssignment({ state, players }: PhaseProps) {
+export function PhaseAssignment({ state, players, user }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);
-  const user = useUser(players, state);
 
   const [, isUserTheSpy] = useWhichPlayerIsThe('currentSpyId', state, players);
 

@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { VerifyListIcon } from 'icons/VerifyListIcon';
 // Components
@@ -16,8 +15,7 @@ import { ADEDANHX_PHASES } from './utils/constants';
 import { ScoringRule } from './components/RulesBlobs';
 import { StepEvaluateGroup } from './StepEvaluateGroup';
 
-export function PhaseEvaluation({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseEvaluation({ players, state, user }: PhaseProps) {
   const { step } = useStep();
 
   const onNextGroup = useOnNextEvaluationGroupAPIRequest();

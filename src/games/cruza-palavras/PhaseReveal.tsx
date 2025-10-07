@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { RankIcon } from 'icons/RankIcon';
 // Components
@@ -16,9 +15,8 @@ import { ScoringRule } from './components/RulesBlobs';
 import { StepReveal } from './StepReveal';
 import { StepRanking } from './StepRanking';
 
-export function PhaseReveal({ players, state }: PhaseProps<PhaseRevealState>) {
+export function PhaseReveal({ state, players, user }: PhaseProps<PhaseRevealState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
-  const user = useUser(players, state);
 
   const playerCount = Object.keys(players).length;
 

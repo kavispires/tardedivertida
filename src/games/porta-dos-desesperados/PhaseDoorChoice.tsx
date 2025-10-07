@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { MagicDoorIcon } from 'icons/MagicDoorIcon';
@@ -22,8 +21,7 @@ import { TrapAnnouncement } from './components/TrapAnnouncement';
 import { StepSelectDoor } from './StepSelectDoor';
 import { StepWaitDoorSelection } from './StepWaitDoorSelection';
 
-export function PhaseDoorChoice({ players, state, meta }: PhaseProps<PhaseDoorChoiceState>) {
-  const user = useUser(players, state);
+export function PhaseDoorChoice({ state, players, meta, user }: PhaseProps<PhaseDoorChoiceState>) {
   const { step, goToNextStep, setStep } = useStep();
   const [possessed, isPossessed] = useWhichPlayerIsThe('possessedId', state, players);
 

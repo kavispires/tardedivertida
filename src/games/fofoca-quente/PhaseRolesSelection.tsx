@@ -13,7 +13,7 @@ import { StepSelectPlayer } from 'components/steps/StepSelectPlayer';
 import { useOnSubmitPlayersRolesAPIRequest } from './utils/api-requests';
 import { FOFOCA_QUENTE_PHASES } from './utils/constants';
 
-export function PhaseRolesSelection({ players, state }: PhaseProps) {
+export function PhaseRolesSelection({ state, players }: PhaseProps) {
   const { step, setStep } = useStep();
 
   const onSubmitPlayersRoles = useOnSubmitPlayersRolesAPIRequest(setStep);

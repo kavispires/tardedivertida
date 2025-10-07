@@ -18,7 +18,7 @@ import { useOnSubmitOrientationAPIRequest, useOnSubmitSketchAPIRequest } from '.
 import { RETRATO_FALADO_PHASES, TIMES } from './utils/constants';
 import { StepTestimonial } from './StepTestimonial';
 
-export function PhaseCompositeSketch({ players, state }: PhaseProps) {
+export function PhaseCompositeSketch({ state, players }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
 
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);

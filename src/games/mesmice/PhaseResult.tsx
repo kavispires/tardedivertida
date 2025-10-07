@@ -3,7 +3,6 @@ import type { ReactNode } from 'react';
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { ApplauseIcon } from 'icons/ApplauseIcon';
@@ -17,8 +16,7 @@ import { StepSwitcher } from 'components/steps';
 import { MESMICE_PHASES } from './utils/constants';
 import { StepResult } from './StepResult';
 
-export function PhaseResult({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseResult({ state, players, user }: PhaseProps) {
   const { step } = useStep();
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 

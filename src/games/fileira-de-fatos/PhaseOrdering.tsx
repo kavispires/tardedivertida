@@ -20,7 +20,7 @@ import { FirstRoundIntroduction } from './components/RulesExplanation';
 import { StepOrderScenarios } from './StepOrderScenarios';
 import { StepJudgeScenarios } from './StepJudgeScenarios';
 
-export function PhaseOrdering({ players, state }: PhaseProps) {
+export function PhaseOrdering({ state, players }: PhaseProps) {
   const { step, setStep } = useStep();
   const [activePlayer, isTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 

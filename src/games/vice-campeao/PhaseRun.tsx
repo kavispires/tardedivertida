@@ -18,7 +18,7 @@ import { StepRace } from './StepRace';
 import { StepRanking } from './StepRanking';
 // Icons
 
-export function PhaseRun({ players, state }: PhaseProps<PhaseRunState>) {
+export function PhaseRun({ state, players }: PhaseProps<PhaseRunState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep();
 
   const imagesIds = useMemo(() => {

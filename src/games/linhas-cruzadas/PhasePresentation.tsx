@@ -14,7 +14,7 @@ import { Instruction } from 'components/text';
 import { LINHAS_CRUZADAS_PHASES } from './utils/constants';
 import { StepAlbum } from './StepAlbum';
 
-export function PhasePresentation({ players, state }: PhaseProps) {
+export function PhasePresentation({ state, players }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);
 
   return (

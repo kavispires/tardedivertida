@@ -2,8 +2,6 @@
 import { Flex } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
-// Hooks
-import { useUser } from 'hooks/useUser';
 // Icons
 import { TheEndIcon } from 'icons/TheEndIcon';
 // Components
@@ -18,11 +16,8 @@ import achievementsReference from './utils/achievements';
 import { Board } from './components/Board';
 import { SummaryBox } from './components/SummaryBox';
 import { History } from './components/History';
-// Internal;
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
-  const user = useUser(players, state);
-
+export function PhaseGameOver({ state, players, user }: PhaseProps) {
   return (
     <GameOverWrapper state={state} players={players} announcementIcon={<TheEndIcon />}>
       <SpaceContainer vertical>
