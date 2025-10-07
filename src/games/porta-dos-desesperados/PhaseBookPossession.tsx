@@ -27,7 +27,7 @@ import { BookHighlight } from './components/Highlights';
 import { StepSelectPages } from './StepSelectPages';
 import { StepWaitPageSelection } from './StepWaitPageSelection';
 
-export function PhaseBookPossession({ players, state }: PhaseProps<PhaseBookPossessionState>) {
+export function PhaseBookPossession({ state, players }: PhaseProps<PhaseBookPossessionState>) {
   const { step, goToNextStep, setStep } = useStep();
   const [possessed, isPossessed] = useWhichPlayerIsThe('possessedId', state, players);
   const { setCache } = useCache({ defaultValue: { doors: [] } });

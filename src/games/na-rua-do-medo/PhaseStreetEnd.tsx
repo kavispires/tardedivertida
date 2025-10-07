@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { HouseIcon } from 'icons/HouseIcon';
 import { ScaredIcon } from 'icons/ScaredIcon';
@@ -15,9 +14,8 @@ import { Instruction } from 'components/text';
 import { NA_RUA_DO_MEDO_PHASES } from './utils/constants';
 import { StepStreetEnd } from './StepStreetEnd';
 
-export function PhaseStreetEnd({ state, players }: PhaseProps) {
+export function PhaseStreetEnd({ state, players, user }: PhaseProps) {
   const { step } = useStep(0);
-  const user = useUser(players, state);
 
   const announcement = (
     <PhaseAnnouncement

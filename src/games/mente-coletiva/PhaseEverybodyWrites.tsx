@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { WritingIcon } from 'icons/WritingIcon';
 // Components
@@ -16,9 +15,8 @@ import { MENTE_COLETIVA_PHASES } from './utils/constants';
 import { AnsweringRules } from './components/RulesBlobs';
 import { StepAnswering } from './StepAnswering';
 
-export function PhaseEverybodyWrites({ state, players, meta }: PhaseProps) {
+export function PhaseEverybodyWrites({ state, players, meta, user }: PhaseProps) {
   const { step, setStep } = useStep(0);
-  const user = useUser(players, state);
 
   const onSubmitAnswers = useOnSubmitAnswersAPIRequest(setStep);
 

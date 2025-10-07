@@ -18,7 +18,7 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types
  * @returns
  */
 export const prepareSetupPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   _state: FirebaseStateData,
   players: Players,
   resourceData: ResourceData,

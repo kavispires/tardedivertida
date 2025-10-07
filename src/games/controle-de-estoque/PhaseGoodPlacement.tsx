@@ -5,7 +5,6 @@ import type { PhaseProps } from 'types/game';
 import type { BossIdeaCard } from 'types/tdr';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { BossIdeaIcon } from 'icons/BossIdeaIcon';
@@ -21,8 +20,7 @@ import { CONTROLE_DE_ESTOQUE_PHASES, DAYS_OF_THE_WEEK } from './utils/constants'
 import { useOnPlaceGoodAPIRequest } from './utils/api-requests';
 import { StepPlaceGood } from './StepPlaceGood';
 
-export function PhaseGoodPlacement({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseGoodPlacement({ players, state, user }: PhaseProps) {
   const [supervisor, isUserTheSupervisor] = useWhichPlayerIsThe('supervisorId', state, players);
 
   const onPlaceGood = useOnPlaceGoodAPIRequest();

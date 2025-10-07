@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { GuessIcon } from 'icons/GuessIcon';
 // Components
@@ -16,9 +15,8 @@ import { CRUZA_PALAVRAS_PHASES } from './utils/constants';
 import type { PhaseGuessingState } from './utils/types';
 import { StepGuessing } from './StepGuessing';
 
-export function PhaseGuessing({ players, state }: PhaseProps<PhaseGuessingState>) {
+export function PhaseGuessing({ players, state, user }: PhaseProps<PhaseGuessingState>) {
   const { step, setStep } = useStep(0);
-  const user = useUser(players, state);
 
   const onSubmitGuesses = useOnSubmitGuessesAPIRequest(setStep);
 

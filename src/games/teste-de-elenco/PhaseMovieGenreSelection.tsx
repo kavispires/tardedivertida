@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { MovieGenreIcon } from 'icons/MovieGenreIcon';
 // Components
@@ -16,8 +15,7 @@ import { TESTE_DE_ELENCO_PHASES } from './utils/constants';
 import { MovieGenreRules } from './components/RulesBlobs';
 import { StepSelectGenre } from './StepSelectGenre';
 
-export function PhaseMovieGenreSelection({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseMovieGenreSelection({ state, players, user }: PhaseProps) {
   const { step, setStep } = useStep();
 
   const onSubmitGenre = useOnSubmitMovieGenreAPIRequest(setStep);

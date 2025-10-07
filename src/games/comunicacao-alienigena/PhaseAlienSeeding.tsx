@@ -3,7 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useCache, useCacheAlternative } from 'hooks/useCache';
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { BooksIcon } from 'icons/BooksIcon';
 // Components
@@ -16,8 +15,7 @@ import type { PhaseAlienSeedingState } from './utils/types';
 import { COMUNICACAO_ALIENIGENA_PHASES } from './utils/constants';
 import { StepSeedAlien } from './StepSeedAlien';
 
-export function PhaseAlienSeeding({ players, state }: PhaseProps<PhaseAlienSeedingState>) {
-  const user = useUser(players, state);
+export function PhaseAlienSeeding({ players, state, user }: PhaseProps<PhaseAlienSeedingState>) {
   const { step, setStep } = useStep();
 
   const onSubmitSeeds = useOnSubmitSeedingAPIRequest(setStep);

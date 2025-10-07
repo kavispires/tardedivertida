@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { GuessIcon } from 'icons/GuessIcon';
 // Components
@@ -17,9 +16,8 @@ import { CRIMES_HEDIONDOS_PHASES } from './utils/constants';
 import { GuessMessage } from './components/RulesBlobs';
 import { StepGuessing } from './StepGuessing';
 
-export function PhaseGuessing({ players, state }: PhaseProps<PhaseGuessingState>) {
+export function PhaseGuessing({ players, state, user }: PhaseProps<PhaseGuessingState>) {
   const { step, setStep } = useStep(0);
-  const user = useUser(players, state);
 
   const onSubmitGuesses = useOnSubmitGuessesAPIRequest(setStep);
 

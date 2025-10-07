@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { OpinionsIcon } from 'icons/OpinionsIcon';
 import { PeopleAssessmentIcon } from 'icons/PeopleAssessmentIcon';
@@ -16,10 +15,8 @@ import { useOnMakeAccusationAPIRequest } from './utils/api-requests';
 import { ESPIAO_ENTRE_NOS_PHASES } from './utils/constants';
 import { StepFinalAssessment } from './StepFinalAssessment';
 
-export function PhaseFinalAssessment({ state, players }: PhaseProps) {
+export function PhaseFinalAssessment({ state, players, user }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
-
-  const user = useUser(players, state);
 
   const onMakeAccusation = useOnMakeAccusationAPIRequest(setStep);
 

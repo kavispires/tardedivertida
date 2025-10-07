@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { CaptchaIcon } from 'icons/CaptchaIcon';
 // Components
@@ -15,8 +14,7 @@ import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 import { NAO_SOU_ROBO_PHASES } from './utils/constants';
 import { StepSelectAll } from './StepSelectAll';
 
-export function PhaseAreYouARobot({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseAreYouARobot({ state, players, user }: PhaseProps) {
   const { step, setStep } = useStep();
 
   const onSubmitCaptcha = useOnSubmitGuessAPIRequest(setStep);

@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { WriteIdeaIcon } from 'icons/WriteIdeaIcon';
 // Components
@@ -16,9 +15,8 @@ import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 import { LINHAS_CRUZADAS_PHASES } from './utils/constants';
 import { StepNameDrawing } from './StepNameDrawing';
 
-export function PhaseNaming({ players, state }: PhaseProps) {
+export function PhaseNaming({ state, players, user }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
-  const user = useUser(players, state);
 
   const onSubmitGuess = useOnSubmitGuessAPIRequest(setStep);
 

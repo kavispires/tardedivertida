@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { HandOfCardsIcon } from 'icons/HandOfCardsIcon';
 // Components
@@ -17,8 +16,7 @@ import { VICE_CAMPEAO_PHASES } from './utils/constants';
 import { useOnSubmitCardAPIRequest } from './utils/api-requests';
 import { StepSelectTargetAndCard } from './StepSelectTargetAndCard';
 
-export function PhaseCardSelection({ players, state }: PhaseProps<PhaseCardSelectionState>) {
-  const user = useUser(players, state);
+export function PhaseCardSelection({ state, players, user }: PhaseProps<PhaseCardSelectionState>) {
   const { step, setStep, goToNextStep } = useStep();
 
   const onSubmitCard = useOnSubmitCardAPIRequest(setStep);

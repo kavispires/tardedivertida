@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { PuzzleIcon } from 'icons/PuzzleIcon';
 // Components
@@ -15,8 +14,7 @@ import { IDADE_DA_PREDA_PHASES } from './utils/constants';
 import { useOnMakeReady } from './utils/api-requests';
 import { StepNewConcepts } from './StepNewConcepts';
 
-export function PhaseConceptsReveal({ players, state }: PhaseProps<PhaseConceptsRevealState>) {
-  const user = useUser(players, state);
+export function PhaseConceptsReveal({ state, players, user }: PhaseProps<PhaseConceptsRevealState>) {
   const { step, setStep } = useStep();
   const onMakeMeReady = useOnMakeReady(setStep);
 

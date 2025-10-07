@@ -16,7 +16,7 @@ import { calculateFinalGroupScore, determineOutcome, getAchievements } from './h
  * @returns
  */
 export const prepareSetupPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
   resourceData: ResourceData,

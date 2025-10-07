@@ -4,7 +4,6 @@ import { Avatar } from 'antd';
 import type { PhaseProps, GameRound } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { DJIcon } from 'icons/DJIcon';
 // Components
@@ -24,8 +23,7 @@ import { TrackTitle } from './components/TrackTitle';
 import { DJInstructions } from './components/RulesBlobs';
 import { StepTrack } from './StepTrack';
 
-export function PhaseTrack({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseTrack({ state, players, user }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep(showDJPruPruPruStep(state.round));
 
   // Dynamic background

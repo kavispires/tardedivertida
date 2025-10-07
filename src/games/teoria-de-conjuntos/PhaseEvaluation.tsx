@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Components
 import { PhaseContainer } from 'components/phases';
@@ -13,9 +12,9 @@ import type { Guess } from './utils/types';
 import { TEORIA_DE_CONJUNTOS_PHASES } from './utils/constants';
 import { StepEvaluate } from './StepEvaluate';
 
-export function PhaseEvaluation({ players, state }: PhaseProps) {
+export function PhaseEvaluation({ state, players, user }: PhaseProps) {
   const { step, setStep } = useStep();
-  const user = useUser(players, state);
+
   const [judge, isTheJudge] = useWhichPlayerIsThe('judgeId', state, players);
   const [activePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 

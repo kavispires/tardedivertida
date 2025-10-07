@@ -20,7 +20,7 @@ import { useOnSubmitMetricsAPIRequest, useOnSubmitPoolAPIRequest } from './utils
 import { StepWaitForPresenter } from './StepWaitForPresenter';
 import { StepBuildMetrics } from './StepBuildMetrics';
 
-export function PhaseMetricsBuilding({ players, state }: PhaseProps<PhaseMetricsBuildingState>) {
+export function PhaseMetricsBuilding({ state, players }: PhaseProps<PhaseMetricsBuildingState>) {
   const { step, setStep, goToNextStep } = useStep();
   const [presenter, isThePresenter] = useWhichPlayerIsThe('presenterId', state, players);
 

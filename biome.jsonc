@@ -44,8 +44,7 @@
       },
       "correctness": {
         "noUnusedImports": "warn",
-        "noUnusedVariables": "warn",
-        "useUniqueElementIds": "off"
+        "noUnusedVariables": "warn"
       },
       "security": {
         "noDangerouslySetInnerHtml": "warn"

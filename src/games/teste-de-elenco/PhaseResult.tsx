@@ -15,7 +15,7 @@ import { TESTE_DE_ELENCO_PHASES } from './utils/constants';
 import { StepRanking } from './StepRanking';
 import { StepResult } from './StepResult';
 
-export function PhaseResult({ players, state }: PhaseProps) {
+export function PhaseResult({ state, players }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
 
   const activeRole = state.movie.roles[state.activeRoleId];

@@ -97,7 +97,7 @@ export const prepareSetupPhase = async (
 };
 
 export const prepareJudgeSelectionPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {

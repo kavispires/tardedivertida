@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { SmsIcon } from 'icons/SmsIcon';
 // Components
@@ -15,8 +14,7 @@ import { useOnSubmitSeedAPIRequest } from './utils/api-requests';
 import { MEGAMIX_PHASES } from './utils/constants';
 import { StepSeeding } from './StepSeeding';
 
-export function PhaseSeeding({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseSeeding({ state, players, user }: PhaseProps) {
   const { step, setStep } = useStep();
 
   const onSubmitData = useOnSubmitSeedAPIRequest(setStep);

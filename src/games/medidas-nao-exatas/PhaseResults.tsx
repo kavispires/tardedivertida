@@ -16,7 +16,7 @@ import { StepResults } from './StepResults';
 import { StepRanking } from './StepRanking';
 // Icons
 
-export function PhaseResults({ players, state }: PhaseProps) {
+export function PhaseResults({ state, players }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep();
   const [presenter] = useWhichPlayerIsThe('presenterId', state, players);
 

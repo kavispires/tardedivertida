@@ -17,7 +17,7 @@ import { StepGallery } from './StepGallery';
 import { StepResults } from './StepResults';
 // Icons
 
-export function PhaseResolution({ players, state }: PhaseProps) {
+export function PhaseResolution({ state, players }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const slideShowConfig = useSlideShow({
     length: state.gallery.length,

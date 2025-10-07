@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { DreamIcon } from 'icons/DreamIcon';
 // Components
@@ -18,8 +17,7 @@ import { DreamSelectionRules } from './components/RulesBlobs';
 import { SelectedDreams } from './components/SelectedDreams';
 import { StepDreamsSelection } from './StepDreamsSelection';
 
-export function PhaseDreamsSelections({ players, state, meta }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseDreamsSelections({ state, players, meta, user }: PhaseProps) {
   const { step, setStep } = useStep();
 
   const onSubmitCards = useOnSubmitCardsAPIRequest(setStep);

@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { DirectionsIcon } from 'icons/DirectionsIcon';
@@ -19,8 +18,7 @@ import { LABIRINTO_SECRETO_PHASES } from './utils/constants';
 import { StepFollowPath } from './StepFollowPath';
 import { StepPathWaiting } from './StepPathWaiting';
 
-export function PhasePathFollowing({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhasePathFollowing({ state, players, user }: PhaseProps) {
   const { step, setStep } = useStep();
   const [activePlayer, isTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 

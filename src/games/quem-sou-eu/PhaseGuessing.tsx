@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { EvaluateIcon } from 'icons/EvaluateIcon';
 // Components
@@ -16,8 +15,7 @@ import { QUEM_SOU_EU_PHASES } from './utils/constants';
 import { ScoringRules } from './components/RulesBlobs';
 import { StepGuessing } from './StepGuessing';
 
-export function PhaseGuessing({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseGuessing({ state, players, user }: PhaseProps) {
   const { step, setStep } = useStep();
 
   const onSubmitGuesses = useOnSubmitGuessesAPIRequest(setStep);

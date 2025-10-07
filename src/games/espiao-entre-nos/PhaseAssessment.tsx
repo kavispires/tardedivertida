@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { AlertIcon } from 'icons/AlertIcon';
@@ -16,9 +15,8 @@ import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 import { ESPIAO_ENTRE_NOS_PHASES } from './utils/constants';
 import { StepVoting } from './StepVoting';
 
-export function PhaseAssessment({ state, players }: PhaseProps) {
+export function PhaseAssessment({ state, players, user }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
-  const user = useUser(players, state);
 
   const [accuser, isUserTheAccuser] = useWhichPlayerIsThe('accuserId', state, players);
   const [target, isUserTheTarget] = useWhichPlayerIsThe('targetId', state, players);

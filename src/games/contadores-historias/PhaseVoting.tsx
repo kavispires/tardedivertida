@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { VoteIcon } from 'icons/VoteIcon';
@@ -17,9 +16,8 @@ import { CONTADORES_HISTORIAS_PHASES } from './utils/constants';
 import { VotingRules } from './components/RulesBlobs';
 import { StepVoting } from './StepVoting';
 
-export function PhaseVoting({ state, players }: PhaseProps) {
+export function PhaseVoting({ state, players, user }: PhaseProps) {
   const { step, setStep } = useStep(0);
-  const user = useUser(players, state);
   const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
 
   const onSubmitVote = useOnSubmitVoteAPIRequest(setStep);

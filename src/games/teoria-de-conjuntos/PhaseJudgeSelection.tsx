@@ -13,7 +13,7 @@ import { StepSelectPlayer } from 'components/steps/StepSelectPlayer';
 import { useOnSubmitJudgeAPIRequest } from './utils/api-requests';
 import { TEORIA_DE_CONJUNTOS_PHASES } from './utils/constants';
 
-export function PhaseJudgeSelection({ players, state }: PhaseProps) {
+export function PhaseJudgeSelection({ state, players }: PhaseProps) {
   const { step, setStep } = useStep();
 
   const onSubmitJudge = useOnSubmitJudgeAPIRequest(setStep);

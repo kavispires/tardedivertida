@@ -3,7 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { VoteIcon } from 'icons/VoteIcon';
@@ -19,10 +18,10 @@ import { DETETIVES_IMAGINATIVOS_PHASES } from './utils/constants';
 import type { PhaseVotingState } from './utils/types';
 import { StepVoting } from './StepVoting';
 
-export function PhaseVoting({ state, players }: PhaseProps<PhaseVotingState>) {
+export function PhaseVoting({ state, players, user }: PhaseProps<PhaseVotingState>) {
   const { isLoading } = useLoading();
   const { step } = useStep(0);
-  const user = useUser(players, state);
+
   const [, isUserTheLeader] = useWhichPlayerIsThe('leaderId', state, players);
 
   const onSubmitVote = useOnSubmitVoteAPIRequest();

@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { SkiingIcon } from 'icons/SkiingIcon';
@@ -18,8 +17,7 @@ import { SnowEffect } from './components/SnowEffect';
 import { StepResults } from './StepResults';
 // Icons
 
-export function PhasePreliminaryResults({ players, state }: PhaseProps<PhasePreliminaryResultsState>) {
-  const user = useUser(players, state);
+export function PhasePreliminaryResults({ players, state, user }: PhaseProps<PhasePreliminaryResultsState>) {
   const { step } = useStep();
   const [skier] = useWhichPlayerIsThe('activeSkierId', state, players);
 

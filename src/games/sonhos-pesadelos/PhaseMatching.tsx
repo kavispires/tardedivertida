@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { EvaluateIcon } from 'icons/EvaluateIcon';
 // Components
@@ -15,9 +14,8 @@ import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
 import { SONHOS_PESADELOS_PHASES } from './utils/constants';
 import { StepMatchDreams } from './StepMatchDreams';
 
-export function PhaseMatching({ state, players }: PhaseProps) {
+export function PhaseMatching({ state, players, user }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
-  const user = useUser(players, state);
 
   const onSubmitVotes = useOnSubmitVotesAPIRequest(setStep);
 

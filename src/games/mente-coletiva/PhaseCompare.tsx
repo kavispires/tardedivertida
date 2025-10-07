@@ -3,7 +3,6 @@ import { useState } from 'react';
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { DiscussionIcon } from 'icons/DiscussionIcon';
 // Components
@@ -16,9 +15,9 @@ import { MENTE_COLETIVA_PHASES } from './utils/constants';
 import { ComparingRules } from './components/RulesBlobs';
 import { StepCompare } from './StepCompare';
 
-export function PhaseCompare({ state, players }: PhaseProps) {
+export function PhaseCompare({ state, players, user }: PhaseProps) {
   const { step } = useStep(0);
-  const user = useUser(players, state);
+
   const [allowedList, setAllowedList] = useState({});
 
   const onAddAnswer = useOnAddAnswerAPIRequest();

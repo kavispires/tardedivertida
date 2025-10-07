@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { EvaluateIcon } from 'icons/EvaluateIcon';
 // Components
@@ -15,8 +14,7 @@ import { IDADE_DA_PREDA_PHASES } from './utils/constants';
 import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
 import { StepGuess } from './StepGuess';
 
-export function PhaseGuessing({ players, state }: PhaseProps<PhaseGuessingState>) {
-  const user = useUser(players, state);
+export function PhaseGuessing({ state, players, user }: PhaseProps<PhaseGuessingState>) {
   const { step, setStep } = useStep();
   const onSubmitGuesses = useOnSubmitGuessesAPIRequest(setStep);
 

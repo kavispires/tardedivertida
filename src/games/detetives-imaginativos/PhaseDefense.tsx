@@ -5,7 +5,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { DefenseIcon } from 'icons/DefenseIcon';
@@ -21,12 +20,11 @@ import type { PhaseDefenseState } from './utils/types';
 import { RevealedClueTitle } from './components/Titles';
 import { StepDefending } from './StepDefending';
 
-export function PhaseDefense({ state, players }: PhaseProps<PhaseDefenseState>) {
+export function PhaseDefense({ state, players, user }: PhaseProps<PhaseDefenseState>) {
   const { isLoading } = useLoading();
   const { step } = useStep(0);
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
   const [, isUserTheImpostor] = useWhichPlayerIsThe('impostorId', state, players);
-  const user = useUser(players, state);
 
   const onFinishDefense = useOnFinishDefenseRequest();
 

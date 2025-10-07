@@ -11,6 +11,7 @@ import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useIdleRedirect } from 'hooks/useIdleRedirect';
 import { useLanguage } from 'hooks/useLanguage';
+import { useUser } from 'hooks/useUser';
 // Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -40,6 +41,7 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
   const state = useGameState(gameMeta.gameId, gameCollection);
   const [userId] = useGlobalState('userId');
   const [, setLanguage] = useGlobalLocalStorage('language');
+  const user = useUser(state?.players, state);
 
   const players = state.players ?? {};
 
@@ -58,7 +60,7 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
       <GameInfoProvider gameCollection={gameCollection}>
         <SessionConfigWrapper>
           <RedirectSession state={state} />
-          <PhaseLobby state={state} players={players} meta={gameMeta} />
+          <PhaseLobby state={state} players={players} meta={gameMeta} user={user} />
         </SessionConfigWrapper>
       </GameInfoProvider>
     );
@@ -89,7 +91,7 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
         <SessionConfigWrapper>
           <GameInfoDrawer players={players} state={state} userId={userId} />
           <RedirectSession state={state} />
-          <ActiveComponent players={players} state={state} meta={gameMeta} />
+          <ActiveComponent players={players} state={state} meta={gameMeta} user={user} />
           <AutoNextPhase players={players} />
           <AdminMenuDrawer state={state} players={players} />
         </SessionConfigWrapper>

@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { NuclearExplosionIcon } from 'icons/NuclearExplosionIcon';
 // Components
@@ -13,8 +12,7 @@ import { StepSwitcher } from 'components/steps';
 import { COMUNICACAO_DUO_PHASES, STATUS } from './utils/constants';
 import { StepVerification } from './StepVerification';
 
-export function PhaseVerification({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseVerification({ players, state, user }: PhaseProps) {
   const { step } = useStep();
 
   const announcement =

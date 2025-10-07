@@ -4,7 +4,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useSlideShow } from 'hooks/useSlideShow';
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Icons
@@ -20,8 +19,7 @@ import { LABIRINTO_SECRETO_PHASES, SLIDE_DURATION } from './utils/constants';
 import { StepRanking } from './StepRanking';
 import { StepGallery } from './StepGallery';
 
-export function PhaseResults({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseResults({ state, players, user }: PhaseProps) {
   const { step, goToPreviousStep, goToNextStep } = useStep();
   const gallery = useMemo(
     () => sortPlayers(players).filter((player) => player.map.some((segment: MapSegment) => segment.active)),

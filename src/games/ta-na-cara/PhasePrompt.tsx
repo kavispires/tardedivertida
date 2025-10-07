@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { ChoiceIcon } from 'icons/ChoiceIcon';
@@ -19,8 +18,7 @@ import { TA_NA_CARA_PHASES } from './utils/constants';
 import { StepSelectPrompt } from './StepSelectPrompt';
 import { StepWaitingForPrompt } from './StepWaitingForPrompt';
 
-export function PhasePrompt({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhasePrompt({ state, players, user }: PhaseProps) {
   const { step, setStep } = useStep();
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 

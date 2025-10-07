@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { SoundWaveIcon } from 'icons/SoundWaveIcon';
@@ -19,9 +18,9 @@ import { NeedleChoice } from './components/NeedleChoice';
 import { StepGuess } from './StepGuess';
 import { StepPsychicGuess } from './StepPsychicGuess';
 
-export function PhaseGuess({ players, state }: PhaseProps) {
+export function PhaseGuess({ state, players, user }: PhaseProps) {
   const { step, setStep } = useStep(0);
-  const user = useUser(players, state);
+
   const [, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
 
   const onSendGuess = useOnSubmitGuessAPIRequest(setStep);

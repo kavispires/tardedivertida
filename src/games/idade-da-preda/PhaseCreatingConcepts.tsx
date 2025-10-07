@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { CreateIcon } from 'icons/CreateIcon';
 // Components
@@ -17,8 +16,7 @@ import { IDADE_DA_PREDA_PHASES } from './utils/constants';
 import { useOnSubmitConceptsAPIRequest } from './utils/api-requests';
 import { StepCreateConcepts } from './StepCreateConcepts';
 
-export function PhaseCreatingConcepts({ players, state }: PhaseProps<PhaseCreatingConceptsState>) {
-  const user = useUser(players, state);
+export function PhaseCreatingConcepts({ state, players, user }: PhaseProps<PhaseCreatingConceptsState>) {
   const { step, goToNextStep, setStep } = useStep();
   const onSubmitConcepts = useOnSubmitConceptsAPIRequest(setStep);
 

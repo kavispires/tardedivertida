@@ -23,7 +23,7 @@ import type { PhaseGameOverState } from './utils/types';
 import { LoseGameText } from './components/RulesBlobs';
 import { DoorFrame } from '../../components/game/DoorFrame';
 
-export function PhaseGameOver({ players, state }: PhaseProps<PhaseGameOverState>) {
+export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   const isVictory = state.winCondition === 'WIN';
   const doorWidth = useCardWidth(10, {
     gap: 8,

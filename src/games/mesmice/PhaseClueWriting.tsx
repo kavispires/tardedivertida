@@ -3,7 +3,6 @@ import { useState } from 'react';
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { WritingIcon } from 'icons/WritingIcon';
 // Components
@@ -18,8 +17,7 @@ import { PlayerObjectClueFeature } from './components/PlayerObjectClueFeature';
 import { StepSelectObject } from './StepObjectSelection';
 import { StepWriteClue } from './StepWriteClue';
 
-export function PhaseClueWriting({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseClueWriting({ state, players, user }: PhaseProps) {
   const { step, setStep, goToNextStep, goToPreviousStep } = useStep();
   const [objectId, setObjectId] = useState<string>('');
 

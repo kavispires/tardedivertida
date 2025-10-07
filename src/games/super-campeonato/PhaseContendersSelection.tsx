@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { AnonymousIcon } from 'icons/AnonymousIcon';
 // Components
@@ -17,9 +16,8 @@ import { SUPER_CAMPEONATO_PHASES } from './utils/constants';
 import { ContendersHand } from './components/ContendersHand';
 import { StepSelectContenders } from './StepSelectContenders';
 
-export function PhaseContenderSelection({ state, players }: PhaseProps<PhaseContendersSelectionState>) {
+export function PhaseContenderSelection({ state, players, user }: PhaseProps<PhaseContendersSelectionState>) {
   const { step, setStep } = useStep(0);
-  const user = useUser(players, state);
 
   const onSubmitContender = useOnSubmitContenderAPIRequest(setStep);
 

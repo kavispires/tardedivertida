@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { GamblingChipIcon } from 'icons/GamblingChipIcon';
 // Components
@@ -17,9 +16,8 @@ import { SUPER_CAMPEONATO_PHASES } from './utils/constants';
 import { BetsFloatingHand } from './components/BetsFloatingHand';
 import { StepMakeYourBets } from './StepMakeYourBets';
 
-export function PhaseBets({ state, players }: PhaseProps<PhaseBetsState>) {
+export function PhaseBets({ state, players, user }: PhaseProps<PhaseBetsState>) {
   const { step, setStep } = useStep(0);
-  const user = useUser(players, state);
 
   const onSubmitBets = useOnSubmitBetsAPIRequest(setStep);
 

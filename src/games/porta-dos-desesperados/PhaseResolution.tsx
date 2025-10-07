@@ -13,7 +13,7 @@ import { PORTA_DOS_DESESPERADOS_PHASES } from './utils/constants';
 import type { PhaseResolutionState } from './utils/types';
 import { StepResults } from './StepResults';
 
-export function PhaseResolution({ players, state }: PhaseProps<PhaseResolutionState>) {
+export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionState>) {
   const { step, goToNextStep } = useStep();
 
   return (

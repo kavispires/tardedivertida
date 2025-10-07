@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { VerifyListIcon } from 'icons/VerifyListIcon';
 // Components
@@ -16,8 +15,7 @@ import { useOnSubmitBadWordsAPIRequest } from './utils/api-requests';
 import { TREVO_DA_SORTE_PHASES, WORST_TO_REMOVE } from './utils/constants';
 import { StepSelectWords } from './StepSelectWords';
 
-export function PhaseWordSelection({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseWordSelection({ state, players, user }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
 
   const onSubmitBadWords = useOnSubmitBadWordsAPIRequest(setStep);

@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { GamblingChipIcon } from 'icons/GamblingChipIcon';
@@ -22,8 +21,7 @@ import { StepMakeBets } from './StepMakeBets';
 import { StepChoosePlayers } from './StepChoosePlayers';
 // Icons
 
-export function PhaseLastChance({ players, state }: PhaseProps<PhaseBetsState>) {
-  const user = useUser(players, state);
+export function PhaseLastChance({ players, state, user }: PhaseProps<PhaseBetsState>) {
   const { step, setStep } = useStep();
   const [skier, isUserSkier] = useWhichPlayerIsThe('activeSkierId', state, players);
 

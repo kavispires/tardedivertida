@@ -4,7 +4,6 @@ import { Divider } from 'antd';
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Components
 import { GameOverWrapper } from 'components/game-over';
@@ -19,8 +18,7 @@ import { MyThings } from './components/MyThings';
 import { GameOverIcon } from './components/Announcement';
 // import type { MesmiceGalleryEntry } from './utils/types';
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseGameOver({ state, players, user }: PhaseProps) {
   const [, isTheJudge] = useWhichPlayerIsThe('judgeId', state, players);
   const [width, ref] = useCardWidthByContainerRef(2, { maxWidth: 1000 });
 

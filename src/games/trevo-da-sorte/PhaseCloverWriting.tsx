@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { WritingIcon } from 'icons/WritingIcon';
 // Components
@@ -15,8 +14,7 @@ import { useOnSubmitCluesAPIRequest } from './utils/api-requests';
 import { TREVO_DA_SORTE_PHASES } from './utils/constants';
 import { StepWriteClues } from './StepWriteClues';
 
-export function PhaseCloverWriting({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseCloverWriting({ state, players, user }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
 
   const onSubmitClues = useOnSubmitCluesAPIRequest(setStep);

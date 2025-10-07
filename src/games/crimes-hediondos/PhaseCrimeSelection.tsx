@@ -4,7 +4,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { AnonymousIcon } from 'icons/AnonymousIcon';
 import { CrimeSceneIcon } from 'icons/CrimeSceneIcon';
@@ -34,9 +33,8 @@ import { StepReviewCrime } from './StepReviewCrime';
 import { StepReasonForEvidence } from './StepReasonForEvidence';
 import { StepAboutTheVictim } from './StepAboutTheVictim';
 
-export function PhaseCrimeSelection({ players, state }: PhaseProps<PhaseCrimeSelectionState>) {
+export function PhaseCrimeSelection({ players, state, user }: PhaseProps<PhaseCrimeSelectionState>) {
   const { step, setStep, goToNextStep } = useStep(0);
-  const user = useUser(players, state);
 
   const [selections, setSelections] = useState<SubmitCrimePayload>({});
 

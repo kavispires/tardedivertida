@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { BoxingGlovesIcon } from 'icons/BoxingGlovesIcon';
 // Components
@@ -17,10 +16,9 @@ import type { PhaseBattleState } from './utils/type';
 import { SUPER_CAMPEONATO_PHASES } from './utils/constants';
 import { StepBattle } from './StepBattle';
 
-export function PhaseBattle({ state, players }: PhaseProps<PhaseBattleState>) {
+export function PhaseBattle({ state, players, user }: PhaseProps<PhaseBattleState>) {
   const { step, setStep } = useStep(0);
   const [previousTier, setPreviousTier] = useState<string>('');
-  const user = useUser(players, state);
 
   const onSubmitVotes = useOnSubmitVotesAPIRequest(setStep);
 

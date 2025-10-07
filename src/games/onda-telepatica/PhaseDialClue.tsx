@@ -21,7 +21,7 @@ import { StepClueWriting } from './StepClueWriting';
 import { StepClueWaiting } from './StepClueWaiting';
 import { StepCategorySelection } from './StepCategorySelection';
 
-export function PhaseDialClue({ players, state }: PhaseProps) {
+export function PhaseDialClue({ state, players }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);
   const [psychic, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
 

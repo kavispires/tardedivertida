@@ -16,7 +16,7 @@ import { useOnSubmitAlienAPIRequest } from './utils/api-requests';
 import { COMUNICACAO_ALIENIGENA_PHASES } from './utils/constants';
 import { CurseItemHighlight, HieroglyphHighlight, ItemsHighlight } from './components/Highlights';
 
-export function PhaseAlienSelection({ players, state }: PhaseProps) {
+export function PhaseAlienSelection({ state, players }: PhaseProps) {
   const { step, setStep } = useStep();
 
   // Clear cache from previous games

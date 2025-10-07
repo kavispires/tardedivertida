@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { WritingIcon } from 'icons/WritingIcon';
@@ -19,8 +18,7 @@ import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
 import { WaitingRoomSuggestions } from './components/WaitingRoomSuggestions';
 import { StepSuggestion } from './StepSuggestion';
 
-export function PhaseSuggest({ state, players }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseSuggest({ state, players, user }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
 

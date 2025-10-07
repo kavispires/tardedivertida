@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { EvaluateIcon } from 'icons/EvaluateIcon';
 // Components
@@ -17,9 +16,8 @@ import { EvaluationRules } from './components/TextBlobs';
 import { EvaluatedDrawings } from './components/EvaluatedDrawings';
 import { StepEvaluation } from './StepEvaluation';
 
-function EvaluationPhase({ players, state }: PhaseProps) {
+function EvaluationPhase({ players, state, user }: PhaseProps) {
   const { step, setStep } = useStep(0);
-  const user = useUser(players, state);
 
   const onSubmitVoting = useOnSubmitVotingAPIRequest(setStep);
 

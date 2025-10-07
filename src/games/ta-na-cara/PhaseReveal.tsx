@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { SpotlightIcon } from 'icons/SpotlightIcon';
@@ -17,8 +16,7 @@ import { StepReveal } from './StepReveal';
 import { StepRanking } from './StepRanking';
 // Icons
 
-export function PhaseReveal({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseReveal({ state, players, user }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep();
   const [targetedPlayer] = useWhichPlayerIsThe('targetId', state, players);
 

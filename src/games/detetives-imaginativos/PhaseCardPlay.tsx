@@ -3,7 +3,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { HangingPhotographIcon } from 'icons/HangingPhotographIcon';
@@ -19,10 +18,9 @@ import { DETETIVES_IMAGINATIVOS_PHASES } from './utils/constants';
 import type { PhaseCardPlayState } from './utils/types';
 import { StepPlayCard } from './StepPlayCard';
 
-export function PhaseCardPlay({ state, players }: PhaseProps<PhaseCardPlayState>) {
+export function PhaseCardPlay({ state, players, user }: PhaseProps<PhaseCardPlayState>) {
   const { isLoading } = useLoading();
   const { step } = useStep(0);
-  const user = useUser(players, state);
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
   const [, isUserTheImpostor] = useWhichPlayerIsThe('impostorId', state, players);
 

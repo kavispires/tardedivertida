@@ -15,7 +15,7 @@ import { ONDA_TELEPATICA_PHASES } from './utils/constants';
 import { StepReveal } from './StepReveal';
 import { StepRanking } from './StepRanking';
 
-export function PhaseReveal({ players, state }: PhaseProps) {
+export function PhaseReveal({ state, players }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const [psychic] = useWhichPlayerIsThe('psychicId', state, players);
 

@@ -74,7 +74,7 @@ function AllIconsView({ iconEntries, copyToClipboard }: AllIconsViewProps) {
   );
 }
 
-function IconsByCategoryView({ iconEntries, copyToClipboard }: AllIconsViewProps) {
+function IconsByCategoryView({ copyToClipboard }: AllIconsViewProps) {
   const sortedCollectionByGameKeys = sortBy(Object.keys(collectionByGame));
 
   return (

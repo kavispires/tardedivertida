@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { ImageCardsIcon } from 'icons/ImageCardsIcon';
@@ -17,9 +16,8 @@ import { useOnPlayCardAPIRequest } from './utils/api-requests';
 import { CONTADORES_HISTORIAS_PHASES } from './utils/constants';
 import { StepPlayCard } from './StepPlayCard';
 
-export function PhaseCardPlay({ state, players }: PhaseProps) {
+export function PhaseCardPlay({ state, players, user }: PhaseProps) {
   const { step, setStep } = useStep(0);
-  const user = useUser(players, state);
   const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
 
   const onPlayCard = useOnPlayCardAPIRequest(setStep);

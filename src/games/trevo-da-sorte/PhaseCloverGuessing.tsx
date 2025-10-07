@@ -18,7 +18,7 @@ import { TREVO_DA_SORTE_PHASES } from './utils/constants';
 import { StepGuessClover } from './StepGuessClover';
 import { StepWaitClover } from './StepWaitClover';
 
-export function PhaseCloverGuessing({ players, state }: PhaseProps) {
+export function PhaseCloverGuessing({ state, players }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const [activeCloverPlayer, isUserTheCloverPlayer] = useWhichPlayerIsThe('activeCloverId', state, players);
 

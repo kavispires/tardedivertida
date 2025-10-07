@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { BouncerIcon } from 'icons/BouncerIcon';
 // Components
@@ -16,8 +15,7 @@ import { MEGAMIX_PHASES } from './utils/constants';
 import { StepResult } from './StepResult';
 import { StepRanking } from './StepRanking';
 
-export function PhaseResult({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseResult({ state, players, user }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const [isFirstRunThrough, setIsFirstRunThrough] = useState(true);
 

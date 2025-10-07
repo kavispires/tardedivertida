@@ -17,7 +17,7 @@ import { PLANEJAMENTO_URBANO_PHASES } from './utils/constants';
 import { StepPlaceLocations } from './StepPlaceLocations';
 // Icons
 
-export function PhasePlacing({ players, state }: PhaseProps) {
+export function PhasePlacing({ state, players }: PhaseProps) {
   const { step, setStep } = useStep();
   const [activePlayer, isTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
   const [controller, isTheController] = useWhichPlayerIsThe('controllerId', state, players);

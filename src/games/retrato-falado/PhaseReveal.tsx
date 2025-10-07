@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { QualitySealIcon } from 'icons/QualitySealIcon';
@@ -16,9 +15,8 @@ import { RETRATO_FALADO_PHASES } from './utils/constants';
 import { StepResults } from './StepResults';
 import { StepRanking } from './StepRanking';
 
-export function PhaseReveal({ players, state }: PhaseProps) {
+export function PhaseReveal({ state, players, user }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
-  const user = useUser(players, state);
 
   const [witness] = useWhichPlayerIsThe('witnessId', state, players);
 

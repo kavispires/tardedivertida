@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { TDIcon } from 'icons/TDIcon';
 // Components
@@ -13,8 +12,7 @@ import { Instruction } from 'components/text';
 // Internal
 import { QUEM_NAO_MATA_PHASES } from './utils/constants';
 
-export function PhaseResolution({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseResolution({ state, players, user }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);
 
   return (

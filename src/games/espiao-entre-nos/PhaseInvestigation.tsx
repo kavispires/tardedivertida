@@ -6,7 +6,6 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { LoupeIcon } from 'icons/LoupeIcon';
@@ -27,10 +26,10 @@ import { ESPIAO_ENTRE_NOS_PHASES } from './utils/constants';
 import { FinalAssessmentPreparationModal } from './components/FinalAssessmentPreparationModal';
 import { StepInvestigation } from './StepInvestigation';
 
-export function PhaseInvestigation({ state, players }: PhaseProps) {
+export function PhaseInvestigation({ state, players, user }: PhaseProps) {
   const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
-  const user = useUser(players, state);
+
   const { notification } = App.useApp();
 
   const [, isUserTheSpy] = useWhichPlayerIsThe('currentSpyId', state, players);

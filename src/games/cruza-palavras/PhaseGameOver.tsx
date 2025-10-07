@@ -2,8 +2,6 @@
 import { Divider } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
-// Hooks
-import { useUser } from 'hooks/useUser';
 // Icons
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
@@ -17,8 +15,7 @@ import type { PhaseGameOverState } from './utils/types';
 import { ResultCell } from './components/ResultCell';
 import { WordGrid } from './components/WordGrid';
 
-export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
-  const user = useUser(players, state);
+export function PhaseGameOver({ state, players, user }: PhaseProps<PhaseGameOverState>) {
   return (
     <GameOverWrapper state={state} players={players} announcementIcon={<TrophyIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />

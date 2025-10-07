@@ -102,7 +102,7 @@ export function useOnSendLastQuestionerAPIRequest(setStep: UseStep['setStep']) {
 }
 
 // TODO: Fix this
-export function useOnProgressGameAPIRequest(setStep: UseStep['setStep']) {
+export function useOnProgressGameAPIRequest(_setStep: UseStep['setStep']) {
   // const { translate } = useLanguage();
 
   // const request = useGameActionRequest({

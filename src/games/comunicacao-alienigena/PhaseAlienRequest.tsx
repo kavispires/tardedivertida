@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { AlienCommunicationIcon } from 'icons/AlienCommunicationIcon';
@@ -15,8 +14,7 @@ import { useOnSubmitAlienRequestAPIRequest } from './utils/api-requests';
 import { COMUNICACAO_ALIENIGENA_PHASES } from './utils/constants';
 import { StepAlienRequests } from './StepAlienRequests';
 
-export function PhaseAlienRequest({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
+export function PhaseAlienRequest({ players, state, user }: PhaseProps) {
   const [alien, isUserAlien] = useWhichPlayerIsThe('alienId', state, players);
 
   const { step, setStep } = useStep();

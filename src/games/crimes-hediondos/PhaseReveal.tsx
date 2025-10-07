@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { RankIcon } from 'icons/RankIcon';
 // Components
@@ -19,9 +18,8 @@ import { ScoringMessage } from './components/RulesBlobs';
 import { StepReveal } from './StepReveal';
 import { StepRanking } from './StepRanking';
 
-export function PhaseReveal({ players, state }: PhaseProps<PhaseRevealState>) {
+export function PhaseReveal({ players, state, user }: PhaseProps<PhaseRevealState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
-  const user = useUser(players, state);
 
   const [isFirstRunThrough, setIsFirstRunThrough] = useState(true);
   const { isLocationGame, isVictimGame } = useGameTypes(state.items);

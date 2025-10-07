@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { ChoiceIcon } from 'icons/ChoiceIcon';
@@ -16,9 +15,7 @@ import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 import { RETRATO_FALADO_PHASES } from './utils/constants';
 import { StepVote } from './StepVote';
 
-export function PhaseEvaluation({ players, state }: PhaseProps) {
-  const user = useUser(players, state);
-
+export function PhaseEvaluation({ state, players, user }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const [, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
 

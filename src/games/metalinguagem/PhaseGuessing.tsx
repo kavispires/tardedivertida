@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { GuessLanguageIcon } from 'icons/GuessLanguageIcon';
@@ -20,8 +19,7 @@ import { Portmanteau } from './components/Portmanteau';
 import { StepGuessItems } from './StepGuessItems';
 import { StepWaitGuessing } from './StepWaitGuessing';
 
-export function PhaseGuessing({ players, state }: PhaseProps<PhaseGuessingState>) {
-  const user = useUser(players, state);
+export function PhaseGuessing({ state, players, user }: PhaseProps<PhaseGuessingState>) {
   const { step, setStep } = useStep();
   const [creator, isTheCreator] = useWhichPlayerIsThe('creatorId', state, players);
 

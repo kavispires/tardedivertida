@@ -4,7 +4,6 @@ import type { PhaseProps } from 'types/game';
 import type { GamePlayer } from 'types/player';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-import { useUser } from 'hooks/useUser';
 // Utils
 import { AVATARS } from 'utils/avatars';
 // Icons
@@ -21,9 +20,8 @@ import { GRID_REPEAT } from './utils/constants';
 import { CandyCount } from './components/CandyCount';
 import { PlayerStats } from './components/PlayerStats';
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
+export function PhaseGameOver({ state, players, user }: PhaseProps) {
   const { language } = useLanguage();
-  const user = useUser(players, state);
 
   const winningPlayersIds = state.winners.map((player: GamePlayer) => player.id);
   const nonWinningPlayers = orderBy(

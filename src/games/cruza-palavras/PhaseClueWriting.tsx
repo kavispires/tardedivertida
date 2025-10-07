@@ -2,7 +2,6 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Icons
 import { GridIcon } from 'icons/GridIcon';
 // Components
@@ -18,10 +17,8 @@ import { WritingCluesRule } from './components/RulesBlobs';
 import { PlayerRecentClue } from './components/PlayerRecentClue';
 import { StepClueWriting } from './StepClueWriting';
 
-export function PhaseClueWriting({ players, state }: PhaseProps<PhaseClueWritingState>) {
+export function PhaseClueWriting({ players, state, user }: PhaseProps<PhaseClueWritingState>) {
   const { step, goToNextStep, setStep } = useStep(0);
-
-  const user = useUser(players, state);
 
   const onSubmitClue = useOnSubmitClueAPIRequest(setStep);
 
