@@ -1,8 +1,9 @@
+import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useId, useState } from 'react';
 import { isMobile, isMobileOnly } from 'react-device-detect';
 import { useNavigate } from 'react-router-dom';
-import { useTitle } from 'react-use';
+import { useIdle, useTitle } from 'react-use';
 // Ant Design Resources
 import { CalendarOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Flex, Image, Input, Space } from 'antd';
@@ -22,12 +23,11 @@ import { HomeVideoBackground } from './HomeVideoBackground';
 import logo from 'assets/images/tarde-divertida-logo.svg?url';
 // Sass
 import './Home.scss';
-import clsx from 'clsx';
-// Animation
 
 const MotionImage = motion.create(Image);
 const MotionSpace = motion.create(Space);
 const MotionButton = motion.create(Button);
+const MotionDiv = motion.div;
 
 function Home() {
   useTitle('Tarde Divertida');
@@ -38,6 +38,8 @@ function Home() {
   const [gameId, setGameId] = useState('');
   const [isHovering, setIsHovering] = useState(false);
   const [initialAnimationComplete, setInitialAnimationComplete] = useState(false);
+
+  const isIdle = useIdle(5e5); // 5 minutes (300,000 milliseconds)
 
   // Apply hover effect after a slight delay from the initial render
   useEffect(() => {
@@ -67,7 +69,19 @@ function Home() {
 
   return (
     <PageLayout className="home">
-      {!isMobileOnly && <HomeVideoBackground />}
+      <AnimatePresence>
+        {!isMobileOnly && !isIdle && (
+          <MotionDiv
+            key="video-background"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2 }}
+          >
+            <HomeVideoBackground />
+          </MotionDiv>
+        )}
+      </AnimatePresence>
       <div className="home__logo-container">
         <AnimatePresence>
           {!showInput && (
