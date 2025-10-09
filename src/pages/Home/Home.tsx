@@ -1,25 +1,33 @@
-import clsx from 'clsx';
-import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useId, useState } from 'react';
+import { isMobile, isMobileOnly } from 'react-device-detect';
 import { useNavigate } from 'react-router-dom';
 import { useTitle } from 'react-use';
 // Ant Design Resources
+import { CalendarOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Flex, Image, Input, Space } from 'antd';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { resetGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
-// Utils
-import { getAnimationClass } from 'utils/helpers';
 // Components
 import { AdminButton } from 'components/admin';
 import { LanguageSwitch, Translate } from 'components/language';
 import { PageLayout } from 'components/layout/PageLayout';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Title } from 'components/text';
+// Internal
+import { HomeVideoBackground } from './HomeVideoBackground';
 // Images
 import logo from 'assets/images/tarde-divertida-logo.svg?url';
 // Sass
 import './Home.scss';
+import clsx from 'clsx';
+// Animation
+
+const MotionImage = motion.create(Image);
+const MotionSpace = motion.create(Space);
+const MotionButton = motion.create(Button);
 
 function Home() {
   useTitle('Tarde Divertida');
@@ -28,6 +36,23 @@ function Home() {
 
   const [showInput, setShowInput] = useState(isAuthenticated);
   const [gameId, setGameId] = useState('');
+  const [isHovering, setIsHovering] = useState(false);
+  const [initialAnimationComplete, setInitialAnimationComplete] = useState(false);
+
+  // Apply hover effect after a slight delay from the initial render
+  useEffect(() => {
+    if (showInput && !isMobile) {
+      // Reset the state when showInput changes
+      setInitialAnimationComplete(false);
+
+      const timer = setTimeout(() => {
+        setInitialAnimationComplete(true);
+      }, 800); // Wait longer than the animation duration to ensure it completes
+      return () => clearTimeout(timer);
+    }
+    return undefined;
+  }, [showInput]);
+  const homeInputId = useId();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,83 +67,102 @@ function Home() {
 
   return (
     <PageLayout className="home">
+      {!isMobileOnly && <HomeVideoBackground />}
       <div className="home__logo-container">
-        <Image
-          src={logo}
-          className="home__logo"
-          preview={false}
-          alt="Tarde Divertida logo"
-          onClick={() => setShowInput(!showInput)}
-        />
-
-        <Space className={clsx('home__input', showInput && getAnimationClass('fadeIn'))} direction="vertical">
-          <SpaceContainer>
-            <LanguageSwitch />
-          </SpaceContainer>
-
-          <Title level={2} size="xx-small" colorScheme="dark">
-            <Translate pt="Digite o código do jogo" en="Enter the game code" />
-          </Title>
-
-          <SpaceContainer>
-            <Input.OTP
-              length={4}
-              formatter={(str) => str.toUpperCase()}
-              onChange={(e) => setGameId(e)}
-              size="large"
+        <AnimatePresence>
+          {!showInput && (
+            <MotionImage
+              src={logo}
+              className="home__logo"
+              preview={false}
+              alt="Tarde Divertida logo"
+              onClick={() => setShowInput(!showInput)}
+              initial={{ opacity: isMobile ? 1 : 0.05, scale: 1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.5 }}
+              transition={{ duration: 0.4, ease: 'anticipate' }}
             />
-          </SpaceContainer>
-          {gameId.length === 4 && (
-            <Button
-              size="large"
-              type="primary"
-              onClick={goToGameId}
-              block
-              className={getAnimationClass('fadeIn')}
+          )}
+
+          {showInput && (
+            <MotionSpace
+              id={homeInputId}
+              className={clsx('home__input', {
+                'home__input--hovered': isHovering && initialAnimationComplete,
+                'home__input--not-hovered': !isHovering,
+              })}
+              align="center"
+              direction="vertical"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.5 }}
+              transition={{ duration: 0.4, ease: 'anticipate' }}
+              onMouseEnter={() => {
+                if (!isMobile) setIsHovering(true);
+              }}
+              onMouseLeave={() => {
+                if (isMobile) return;
+                // Only remove hover effect if gameId is empty
+                if (!gameId || gameId.length === 0) setIsHovering(false);
+              }}
             >
-              <Translate pt="Entrar" en="Enter" />
-            </Button>
-          )}
+              <SpaceContainer>
+                <LanguageSwitch />
+              </SpaceContainer>
 
-          {isAuthenticated && (
-            <Flex gap={8} className="home__buttons">
-              <Space.Compact>
-                <Button ghost onClick={() => navigate(language === 'pt' ? '/eu' : '/me')}>
-                  <Translate pt="Página de Usuário" en="User page" />
-                </Button>
-                <Button ghost onClick={() => navigate(language === 'pt' ? '/diario' : '/daily')}>
-                  <Translate pt="Desafio Diário" en="Daily Challenge" />
-                </Button>
-              </Space.Compact>
+              <Title level={2} size="xx-small">
+                <Translate pt="Digite o código do jogo" en="Enter the game code" />
+              </Title>
 
-              <AdminButton ghost onClick={() => navigate('/hub')}>
-                Hub
-              </AdminButton>
-            </Flex>
+              <SpaceContainer>
+                <Input.OTP
+                  length={4}
+                  formatter={(str) => str.toUpperCase()}
+                  onInput={(e) => setGameId(e.join(''))}
+                  value={gameId}
+                  size="large"
+                />
+              </SpaceContainer>
+
+              <AnimatePresence>
+                {gameId.length === 4 && (
+                  <MotionButton
+                    key="enter-button"
+                    size="large"
+                    type="primary"
+                    onClick={goToGameId}
+                    block
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Translate pt="Entrar" en="Enter" />
+                  </MotionButton>
+                )}
+              </AnimatePresence>
+
+              <Flex gap={8} className="home__buttons" justify="center">
+                {isAuthenticated && (
+                  <Button onClick={() => navigate(language === 'pt' ? '/eu' : '/me')} icon={<UserOutlined />}>
+                    <Translate pt="Página de Usuário" en="User page" />
+                  </Button>
+                )}
+
+                {language === 'pt' && (
+                  <Button
+                    onClick={() => navigate(language === 'pt' ? '/diario' : '/daily')}
+                    icon={<CalendarOutlined />}
+                  >
+                    <Translate pt="Desafio Diário" en="Daily Challenge" />
+                  </Button>
+                )}
+
+                {isAuthenticated && <AdminButton onClick={() => navigate('/hub')}>Hub</AdminButton>}
+              </Flex>
+            </MotionSpace>
           )}
-        </Space>
-      </div>
-      <div className="home__background">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+        </AnimatePresence>
       </div>
     </PageLayout>
   );
