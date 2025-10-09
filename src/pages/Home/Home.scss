@@ -1,11 +1,4 @@
-@use "sass:list";
-@use "sass:math";
 @use "styles/sass" as *;
-
-$particleSize: 20vmin;
-$animationDuration: 6s;
-$amount: 20;
-$colors: (#44bba4, #3a7ca5, #f2e863, #f45b69);
 
 .home {
   width: 100vw;
@@ -16,19 +9,21 @@ $colors: (#44bba4, #3a7ca5, #f2e863, #f45b69);
 
   &__logo-container {
     width: 100vw;
-    height: 100vh;
-    height: 100dvh;
+    height: 90vh;
+    height: 90dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 2;
+    position: relative;
   }
 
   &__logo {
     max-width: 75vw;
     min-width: 300px;
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.7));
+    opacity: 1;
 
     @include lg {
       width: 40vw;
@@ -36,63 +31,45 @@ $colors: (#44bba4, #3a7ca5, #f2e863, #f45b69);
   }
 
   &__input {
+    min-width: 320px;
+    max-width: 80vw;
     opacity: 0;
-    transition: opacity 1s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
     margin-top: get-unit(4);
+    padding: get-unit(3);
+    border-radius: get-unit(2);
+    background-color: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 
     input {
       text-align: center;
       text-transform: uppercase;
     }
 
-    &--visible {
-      opacity: 1;
+    &--hovered {
+      outline: 3px solid get-color("pink");
+    }
+
+    &--not-hovered {
+      outline: 3px solid get-color("blue");
+      opacity: 0 !important;
+      transition: opacity 0.3s ease-in-out !important;
+    }
+
+    &--hover-effect {
+      opacity: 0 !important;
+      transition: opacity 0.3s ease-in-out !important;
+    }
+
+    &--has-input,
+    &:hover,
+    &[data-hover-state="active"] {
+      opacity: 1 !important;
     }
   }
 
   &__buttons {
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
-
-  &__background {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    height: 100dvh;
-    overflow: hidden;
-    background-color: #3e1e68;
-
-    & span {
-      width: $particleSize;
-      height: $particleSize;
-      border-radius: $particleSize;
-      backface-visibility: hidden;
-      position: absolute;
-      animation-name: move;
-      animation-duration: $animationDuration;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-
-      @for $i from 1 through $amount {
-        &:nth-child(#{$i}) {
-          color: list.nth($colors, math.random(list.length($colors)));
-          top: math.random(100) * 1%;
-          left: math.random(100) * 1%;
-          animation-duration: calc(math.random(math.div($animationDuration * 10, 1s)) * 1s) + 10s;
-          animation-delay: calc(math.random(math.div(($animationDuration + 10s) * 10, 1s)) * -1s);
-          transform-origin: (math.random(50) - 25) * 1vw (math.random(50) - 25) * 1vh;
-          $blurRadius: (math.random() + 0.5) * $particleSize * 0.5;
-          $x: if(math.random() > 0.5, -1, 1);
-          box-shadow: ($particleSize * 2 * $x) 0 $blurRadius currentColor;
-        }
-      }
-    }
-  }
-
-  @keyframes move {
-    100% {
-      transform: translate3d(0, 0, 1px) rotate(360deg);
-    }
+    margin-top: get-unit(4);
+    // margin-bottom: 30px;
   }
 }
