@@ -39,7 +39,7 @@ export function PlayerMapResultsSummary({ players, forest, currentPlayer }: Play
               {tree ? (
                 <TreeImage id={tree.treeType} text={tree.card.text} className="player-map__tree" width={75} />
               ) : (
-                <TreeCard id="1" className="player-map__tree-invisible" text="" width={75} />
+                <TreeCard treeId="1" className="player-map__tree-invisible" text="" width={75} />
               )}
 
               <IconAvatar icon={<MapIcon />} size="large" className="player-map__icon" />
