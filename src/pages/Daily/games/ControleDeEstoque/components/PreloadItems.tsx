@@ -9,7 +9,7 @@ export function PreloadItems({ goods }: PreloadItemsProps) {
   return (
     <div style={{ display: 'none' }}>
       {goods.map((itemId) => (
-        <WarehouseGoodCard key={itemId} id={itemId} className="transparent" width={1} />
+        <WarehouseGoodCard key={itemId} goodId={itemId} className="transparent" width={1} />
       ))}
     </div>
   );

@@ -44,7 +44,7 @@ export function StockingPhase({
       <Region>
         {currentGood && (
           <WarehouseGoodCard
-            id={currentGood}
+            goodId={currentGood}
             width={shelfWidth}
             key={currentGood}
             className={getAnimationClass('lightSpeedInLeft')}
