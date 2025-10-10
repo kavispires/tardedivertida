@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
@@ -30,7 +30,7 @@ export function StepQuestionSelectionWaiting({
       </StepTitle>
 
       <RuleInstruction type="wait">
-        <AvatarName player={activePlayer} addressUser />{' '}
+        <PlayerAvatarName player={activePlayer} addressUser />{' '}
         <Translate pt="está escolhendo a pergunta da rodada." en="is choosing the question for the round." />
         <br />
       </RuleInstruction>

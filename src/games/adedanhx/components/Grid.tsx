@@ -15,7 +15,7 @@ import { NoIcon } from 'icons/NoIcon';
 import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
 import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 // Components
-import { Avatar, AvatarName, IconAvatar } from 'components/avatars';
+import { PlayerAvatar, PlayerAvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 // Internal
@@ -227,7 +227,7 @@ function ResultCell({ data, players }: CellProps) {
     <Popover content={<PopoverResult groupAnswer={groupAnswer} players={players} />}>
       <div className={clsx('adedanhx-grid-cell adedanhx-grid-cell__results')}>
         <span className="adedanhx-grid-cell__results-player">
-          <AvatarName player={players[result.main.playerId]} />
+          <PlayerAvatarName player={players[result.main.playerId]} />
         </span>
         <span className="adedanhx-grid-cell__results-answer">"{result.main.answer}"</span>
         <span className="adedanhx-grid-cell__results-score">
@@ -241,9 +241,9 @@ function ResultCell({ data, players }: CellProps) {
           </div>
 
           {result.playerIds.map((playerId) => (
-            <Avatar
+            <PlayerAvatar
               key={`${result.id}-${playerId}`}
-              id={players[playerId].avatarId}
+              avatarId={players[playerId].avatarId}
               alt={players[playerId].name}
               size="small"
             />
@@ -264,7 +264,7 @@ function PopoverResult({ groupAnswer, players }: PopoverResultProps) {
     <ul className="popover-results">
       {groupAnswer.answers.map((answer) => (
         <Fragment key={answer.id}>
-          <AvatarName player={players[answer.playerId]} />
+          <PlayerAvatarName player={players[answer.playerId]} />
           <span>{answer.answer}</span>
           {answer.autoRejected && <IconAvatar icon={<NoIcon />} size="small" />}
           {answer.rejected && <IconAvatar icon={<SpeechBubbleThumbsDownIcon />} size="small" />}

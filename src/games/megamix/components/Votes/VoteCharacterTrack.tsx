@@ -1,7 +1,7 @@
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { ImageBlurButtonContainer } from 'components/image-cards';
 // Internal
@@ -20,7 +20,7 @@ export function VoteCharacterTrack({ playersList }: VoteComponentProps) {
     <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
       {playersList.map((player) => (
         <div key={`vote-${player.id}`} className="player-vote">
-          <Avatar id={player.avatarId} />
+          <PlayerAvatar avatarId={player.avatarId} />
           <div className="player-vote__name">{player.name}</div>
           <ImageBlurButtonContainer cardId={player.data.value}>
             <CharacterCard

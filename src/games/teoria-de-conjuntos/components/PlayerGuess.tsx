@@ -6,7 +6,7 @@ import type { Item } from 'types/tdr';
 // Icons
 import { ArrowIcon } from 'icons/ArrowIcon';
 // Components
-import { AvatarCard, IconAvatar } from 'components/avatars';
+import { PlayerAvatarCard, IconAvatar } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
 import { SpeechBubble } from 'components/text/SpeechBubble';
 // Internal
@@ -22,7 +22,7 @@ type PlayerGuessProps = {
 export function PlayerGuess({ item, currentGuess, activePlayer }: PlayerGuessProps) {
   return (
     <Flex justify="center">
-      <AvatarCard player={activePlayer} withName addressUser withRoundCorners />
+      <PlayerAvatarCard player={activePlayer} withName addressUser withRoundCorners />
       <SpeechBubble shadow size="medium">
         <Flex gap={6} justify="center" align="center" style={{ height: '100%' }} className="contained">
           <ItemCard itemId={item.id} text={item.name} width={100} className="q-player-guess-bubble" />{' '}

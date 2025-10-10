@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Types
 import type { GamePlayers } from 'types/player';
 // Components
-import { AvatarGroup } from 'components/avatars/AvatarGroup';
+import { AvatarGroup } from 'components/avatars/PlayerAvatarGroup';
 import { DivButton } from 'components/buttons/DivButton';
 import { ItemCard } from 'components/cards/ItemCard';
 

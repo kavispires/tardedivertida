@@ -6,7 +6,7 @@ import type { TextCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { AvatarStrip } from 'components/avatars';
+import { PlayerAvatarStrip } from 'components/avatars';
 import { EmojiCard } from 'components/cards/EmojiCard';
 import { DualTranslate } from 'components/language';
 // Internal
@@ -28,7 +28,7 @@ export function FinalScenarios({ scenarios, reference, player }: ScenarioCardPro
 
   return (
     <Space className="final-scenarios">
-      <AvatarStrip player={player} withName />
+      <PlayerAvatarStrip player={player} withName />
       {scenarios.map((entry, index) => (
         <div
           key={`${player.id}-position-${index}-${entry?.id}`}

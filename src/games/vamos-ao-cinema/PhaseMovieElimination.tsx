@@ -7,7 +7,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { PopcornIcon } from 'icons/PopcornIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -49,7 +49,7 @@ export function PhaseMovieElimination({ state, players, user }: PhaseProps) {
                 Se cometermos <MistakeCountHighlight>1 erro</MistakeCountHighlight>, tudo bem, mas se um
                 segundo filme escolhido por outro jogador for eliminado, a rodada acaba.
                 <br />
-                <AvatarName player={activePlayer} addressUser /> começa escolhendo o primeiro filme.
+                <PlayerAvatarName player={activePlayer} addressUser /> começa escolhendo o primeiro filme.
               </>
             }
             en={
@@ -59,7 +59,7 @@ export function PhaseMovieElimination({ state, players, user }: PhaseProps) {
                 If we make <MistakeCountHighlight>1 mistake</MistakeCountHighlight>, it's okay, but if a
                 second movie chosen by another player is eliminated, the round is over.
                 <br />
-                <AvatarName player={activePlayer} addressUser /> begins by choosing the first movie.
+                <PlayerAvatarName player={activePlayer} addressUser /> begins by choosing the first movie.
               </>
             }
           />

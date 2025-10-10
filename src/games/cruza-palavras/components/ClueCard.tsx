@@ -4,7 +4,7 @@ import { CheckCircleFilled, PlusCircleFilled } from '@ant-design/icons';
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 
 type ClueCardProps = {
   isMatched?: boolean;
@@ -34,7 +34,7 @@ export function ClueCard({
       <span className={clsx('x-clue-card__icon', color && `color-background--${color}`)}>
         {isMatched ? (
           player ? (
-            <Avatar id={player?.avatarId} />
+            <PlayerAvatar avatarId={player?.avatarId} />
           ) : (
             <CheckCircleFilled />
           )

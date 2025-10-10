@@ -8,7 +8,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { ArrowIcon } from 'icons/ArrowIcon';
 import { NoIcon } from 'icons/NoIcon';
 // Components
-import { AvatarCard, IconAvatar } from 'components/avatars';
+import { PlayerAvatarCard, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { RuleInstruction } from 'components/text';
 // Internal
@@ -39,7 +39,7 @@ export function CardPlay({
   return (
     <RuleInstruction type="event" key={runActivity.id} className={getAnimationClass('tada')}>
       <Flex align="center" gap={6}>
-        <AvatarCard player={players[runActivity.playerId]} withName withRoundCorners size="small" />
+        <PlayerAvatarCard player={players[runActivity.playerId]} withName withRoundCorners size="small" />
 
         <Flex vertical gap={6} align="center">
           <IconAvatar icon={<ArrowIcon />} />
@@ -58,7 +58,7 @@ export function CardPlay({
             </Flex>
 
             {lockedPlayersIds.includes(runActivity.targetId) && <IconAvatar icon={<NoIcon />} />}
-            <AvatarCard player={players[runActivity.targetId]} withName withRoundCorners size="small" />
+            <PlayerAvatarCard player={players[runActivity.targetId]} withName withRoundCorners size="small" />
             {ongoingPlusOnePlayersIds.includes(runActivity.targetId) && <PositiveValue value={1} />}
             {ongoingMinusOnePlayersIds.includes(runActivity.targetId) && <NegativeValue value={-1} />}
           </>

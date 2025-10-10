@@ -6,7 +6,7 @@ import { Avatar as AntAvatar } from 'antd';
 import { LETTERS } from 'utils/constants';
 import { getColorFromIndex } from 'utils/helpers';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { Card } from 'components/cards';
 
 type SuggestionCardProps = {
@@ -30,7 +30,7 @@ export function SuggestionCard({ avatarId, playerName, index, invalid, suggestio
           <CloseOutlined />
         </AntAvatar>
       ) : (
-        <Avatar id={avatarId} size="small" className="u-suggestion-card__suggestion-avatar" />
+        <PlayerAvatar avatarId={avatarId} size="small" className="u-suggestion-card__suggestion-avatar" />
       )}
       {suggestion}
     </Card>

@@ -9,7 +9,7 @@ import { getAvatarColorById } from 'utils/helpers';
 // Icons
 import { TableIcon } from 'icons/TableIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 // Internal
 import { reorder } from './reorder';
@@ -82,7 +82,7 @@ export function TableOrder({
                 className={clsx('table-order__player', isActive && 'table-order__player--active')}
               >
                 <span className="table-order__icon" style={isActive ? { backgroundColor: color } : undefined}>
-                  <AvatarName player={player} upright />
+                  <PlayerAvatarName player={player} upright />
                 </span>
               </li>
               <li

@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
@@ -40,12 +40,12 @@ export function StepWaitingForPrompt({
         <Translate
           pt={
             <>
-              Aguarde enquanto <AvatarName player={activePlayer} /> decide o que fazer
+              Aguarde enquanto <PlayerAvatarName player={activePlayer} /> decide o que fazer
             </>
           }
           en={
             <>
-              Please wait while <AvatarName player={activePlayer} /> takes an action
+              Please wait while <PlayerAvatarName player={activePlayer} /> takes an action
             </>
           }
         />

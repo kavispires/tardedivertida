@@ -10,7 +10,7 @@ import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
 import { HostOnlyContainer } from 'components/host';
 import { Translate } from 'components/language';
@@ -64,7 +64,7 @@ export function StepGuessVerification({
   return (
     <Step fullWidth announcement={announcement}>
       <StepTitle className={getAnimationClass('heartBeat')}>
-        <AvatarName player={guesser} addressUser /> <Translate pt="disse" en="said" />{' '}
+        <PlayerAvatarName player={guesser} addressUser /> <Translate pt="disse" en="said" />{' '}
         <TextHighlight>{guess}</TextHighlight>
       </StepTitle>
 
@@ -76,14 +76,14 @@ export function StepGuessVerification({
             <>
               O sistema não pode verificar se a resposta está correta.
               <br />
-              Por favor, confirme se <AvatarName player={guesser} /> acertou ou não.
+              Por favor, confirme se <PlayerAvatarName player={guesser} /> acertou ou não.
             </>
           }
           en={
             <>
               The system wasn't able to verify the guess.
               <br />
-              Please confirm if <AvatarName player={guesser} /> got it right or not.
+              Please confirm if <PlayerAvatarName player={guesser} /> got it right or not.
             </>
           }
         />

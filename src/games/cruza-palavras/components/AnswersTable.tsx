@@ -8,7 +8,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 // Internal
 import type { Grid } from '../utils/types';
 
@@ -33,7 +33,7 @@ export function AnswersTable({ players, grid, correctCoordinatesPerPlayer }: Ans
       title: translate('Jogador', 'Player'),
       dataIndex: 'player',
       key: 'player',
-      render: (data) => <AvatarName player={data} />,
+      render: (data) => <PlayerAvatarName player={data} />,
       sorter: (a, b) => a.playerName.localeCompare(b.playerName),
     },
     {

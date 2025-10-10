@@ -1,8 +1,11 @@
-import type { GamePlayers } from 'types/player';
-import type { Summary } from '../utils/types';
-import { Translate } from 'components/language';
-import { AvatarName } from 'components/avatars';
+// Types
 import type { GameRound } from 'types/game';
+import type { GamePlayers } from 'types/player';
+// Components
+import { PlayerAvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+// Internal
+import type { Summary } from '../utils/types';
 
 type SummaryBoxProps = {
   summary: Summary;
@@ -35,14 +38,14 @@ export function SummaryBox({ summary, players, round }: SummaryBoxProps) {
       <div className="cd-summary__entry">
         <div className="cd-summary__number cd-summary__number--A">{summary.deliverablesLeftForA}</div>
         <div className="cd-summary__entry-label">
-          <AvatarName player={playerA} />
+          <PlayerAvatarName player={playerA} />
         </div>
       </div>
 
       <div className="cd-summary__entry">
         <div className="cd-summary__number cd-summary__number--B">{summary.deliverablesLeftForB}</div>
         <div className="cd-summary__entry-label">
-          <AvatarName player={playerB} />
+          <PlayerAvatarName player={playerB} />
         </div>
       </div>
     </div>

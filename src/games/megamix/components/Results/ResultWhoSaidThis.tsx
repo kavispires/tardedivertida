@@ -1,5 +1,5 @@
 // Components
-import { AvatarCard } from 'components/avatars';
+import { PlayerAvatarCard } from 'components/avatars';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
@@ -21,7 +21,7 @@ export function ResultWhoSaidThis({ track, winningValues, players }: ResultCompo
       <div className="track-result-values__cards">
         {winningValues.map((value) => (
           <div key={value}>
-            <AvatarCard player={players[value]} withName size="small" />
+            <PlayerAvatarCard player={players[value]} withName size="small" />
           </div>
         ))}
       </div>

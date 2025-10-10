@@ -5,7 +5,7 @@ import type { GamePlayers, GamePlayer } from 'types/player';
 // Utils
 import { getAvatarColorById, sortPlayers } from 'utils/helpers';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language';
 // Internal
@@ -24,7 +24,7 @@ export function PlayersBets({ players, brackets }: PlayersBetsProps) {
     <ul className="w-players-bets" style={{ gridTemplateColumns: `repeat(${playersList.length + 1}, auto)` }}>
       <li className="w-players-bets__player w-players-bets__player--header">
         <div className="w-players-bets__square">
-          <Avatar shape="square" size="large" className="w-players-bets__avatar" id="N" />
+          <PlayerAvatar shape="square" size="large" className="w-players-bets__avatar" avatarId="N" />
         </div>
         <div className="w-players-bets__square">
           <Translate pt="Final" en="Final" />
@@ -74,7 +74,12 @@ function PlayersBetEntry({ player, brackets, contendersByTiers }: PlayersBetEntr
       style={{ backgroundColor: getAvatarColorById(player.avatarId) }}
     >
       <div className="w-players-bets__square">
-        <Avatar shape="square" size="large" className="w-players-bets__avatar" id={player.avatarId} />
+        <PlayerAvatar
+          shape="square"
+          size="large"
+          className="w-players-bets__avatar"
+          avatarId={player.avatarId}
+        />
       </div>
 
       <div

@@ -5,7 +5,7 @@ import type { SlideShowConfig } from 'hooks/useSlideShow';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { SlideShowControls } from 'components/slide-show/SlideShowControls';
@@ -39,12 +39,12 @@ export function StepGallery({ players, gallery, user, forest, slideShowConfig }:
         <Translate
           pt={
             <>
-              Mapa do(a) <AvatarName player={currentPlayer} />
+              Mapa do(a) <PlayerAvatarName player={currentPlayer} />
             </>
           }
           en={
             <>
-              <AvatarName player={currentPlayer} />
+              <PlayerAvatarName player={currentPlayer} />
               's map
             </>
           }

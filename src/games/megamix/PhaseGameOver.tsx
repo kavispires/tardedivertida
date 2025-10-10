@@ -7,7 +7,7 @@ import { AVATARS } from 'utils/avatars';
 // Icons
 import { CrownIcon } from 'icons/CrownIcon';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { DualTranslate, Translate } from 'components/language';
@@ -33,7 +33,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
               {state.fairWinners.map((winner: GamePlayer) => {
                 return (
                   <li className="game-over__winner" key={`winner-${winner.name}`}>
-                    <Avatar className="game-over__avatar" id={winner.avatarId ?? 25} />
+                    <PlayerAvatar className="game-over__avatar" avatarId={winner.avatarId ?? 25} />
                     <div className="game-over__winner-name">
                       <strong>{winner.name ?? '?'}</strong>,{' '}
                       <DualTranslate>{AVATARS[winner.avatarId].description}</DualTranslate>

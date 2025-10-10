@@ -7,7 +7,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { InvestigationIcon } from 'icons/InvestigationIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
@@ -41,19 +41,20 @@ function PhaseQuestionSelection({ state, players }: PhaseProps<PhaseQuestionSele
         <Translate
           pt={
             <>
-              Agora que encontramos nossa testemunha (<AvatarName player={witness} />) é hora de questioná-la.
+              Agora que encontramos nossa testemunha (<PlayerAvatarName player={witness} />) é hora de
+              questioná-la.
               <br />
               Só temos tempo para <TimeHighlight>{roundsLeft}</TimeHighlight> perguntas. Portanto,{' '}
-              <AvatarName player={questioner} />, escolha a pergunta certa.
+              <PlayerAvatarName player={questioner} />, escolha a pergunta certa.
             </>
           }
           en={
             <>
-              Now that we have a Witness (<AvatarName player={witness} />
+              Now that we have a Witness (<PlayerAvatarName player={witness} />
               ), it's time to choose the question to ask them.
               <br />
               We can only have time for <TimeHighlight>{roundsLeft}</TimeHighlight> questions. So{' '}
-              <AvatarName player={questioner} />, choose a question
+              <PlayerAvatarName player={questioner} />, choose a question
             </>
           }
         />

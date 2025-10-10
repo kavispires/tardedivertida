@@ -2,7 +2,7 @@
 import type { GameRound } from 'types/game';
 import type { GamePlayer } from 'types/player';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';
 import { BotHighlight } from 'components/metrics/BotHighlight';
 import { CardHighlight } from 'components/metrics/CardHighlight';
@@ -23,7 +23,7 @@ export function WordSelectionRules({ scout }: WordSelectionRulesProps) {
           <>
             Cada rodada tem seu tema... uma palavra.
             <br />
-            Para essa rodada, <AvatarName player={scout} addressUser size="small" /> escolherá o tema.
+            Para essa rodada, <PlayerAvatarName player={scout} addressUser size="small" /> escolherá o tema.
           </>
         }
         en={
@@ -31,7 +31,7 @@ export function WordSelectionRules({ scout }: WordSelectionRulesProps) {
             Every round has a theme... a word.
             <br />
             For this round,
-            <AvatarName player={scout} addressUser size="small" /> will choose the theme.
+            <PlayerAvatarName player={scout} addressUser size="small" /> will choose the theme.
           </>
         }
       />

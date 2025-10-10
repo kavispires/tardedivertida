@@ -11,7 +11,7 @@ import { useVotingMatch } from 'hooks/useVotingMatch';
 // Utils
 import { getEntryId, parseEntryId } from 'utils/helpers';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { SendButton, TransparentButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DevButton } from 'components/debug';
@@ -115,7 +115,7 @@ export function StepGuess({
               >
                 <Flex vertical align="center" gap={6}>
                   <Flex align="center" gap={6}>
-                    <Avatar id={players[entry.playerId].avatarId} />
+                    <PlayerAvatar avatarId={players[entry.playerId].avatarId} />
                     <SpeechBubble>
                       <TextHighlight className="idp-item-name-speech">{entry.name}</TextHighlight>
                     </SpeechBubble>

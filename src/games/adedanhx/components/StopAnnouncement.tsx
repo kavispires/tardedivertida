@@ -3,7 +3,7 @@ import type { GamePlayer } from 'types/player';
 // Icons
 import { StopIcon } from 'icons/StopIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { PhaseAnnouncement } from 'components/phases';
@@ -23,14 +23,14 @@ export function StopAnnouncement({ stopper, onSubmit }: StopAnnouncementProps) {
           <Translate
             pt={
               <>
-                <AvatarName player={stopper} /> parou o jogo!
+                <PlayerAvatarName player={stopper} /> parou o jogo!
                 <br />
                 Você tem <TimeHighlight>5 segundos</TimeHighlight> pra terminar o que tava escrevendo!
               </>
             }
             en={
               <>
-                <AvatarName player={stopper} /> stopped the game!
+                <PlayerAvatarName player={stopper} /> stopped the game!
                 <br />
                 You have <TimeHighlight>5 seconds</TimeHighlight> to finish what you were writing!
               </>

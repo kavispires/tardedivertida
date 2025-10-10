@@ -11,7 +11,7 @@ import { BoxThreeIcon } from 'icons/BoxThreeIcon';
 import { BoxTwoIcon } from 'icons/BoxTwoIcon';
 import { BoxXIcon } from 'icons/BoxXIcon';
 // Components
-import { AvatarName, Avatar, IconAvatar } from 'components/avatars';
+import { PlayerAvatarName, PlayerAvatar, IconAvatar } from 'components/avatars';
 // Internal
 import type { Results } from '../utils/types';
 import { GUESS_STATUS } from '../utils/constants';
@@ -27,10 +27,10 @@ export function ResultsTable({ players, results }: ResultsTableProps) {
     {
       title: '',
       dataIndex: 'playerId',
-      render: (playerId: string) => <AvatarName player={players[playerId]} size="small" addressUser />,
+      render: (playerId: string) => <PlayerAvatarName player={players[playerId]} size="small" addressUser />,
     },
     ...orderBy(Object.keys(results)).map((playerId) => ({
-      title: <Avatar id={players[playerId].avatarId} size="small" />,
+      title: <PlayerAvatar avatarId={players[playerId].avatarId} size="small" />,
       dataIndex: playerId,
       render: (status: string) => <ResultsTableCell status={status} />,
     })),

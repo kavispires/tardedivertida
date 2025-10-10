@@ -11,7 +11,7 @@ import { useCache } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { SpeakButton } from 'components/audio/SpeakButton';
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { DivButton } from 'components/buttons/DivButton';
 import { ItemCard } from 'components/cards/ItemCard';
@@ -94,7 +94,7 @@ export function ConceptCreationBlock({
             pt: `Criado por ${players[concept.playerId].name}`,
           })}
         >
-          <Avatar id={players[concept.playerId].avatarId} size="small" />
+          <PlayerAvatar avatarId={players[concept.playerId].avatarId} size="small" />
         </Tooltip>
       </Flex>
       {showMeaning && (
@@ -143,13 +143,11 @@ export function ConceptCreationBlock({
               </Button>
             </>
           ) : (
-            <>
-              <Tooltip title={dualTranslate({ en: 'Edit Concept', pt: 'Editar Conceito' })}>
-                <Button type="dashed" size="small" onClick={() => toggleEditing?.(concept.id)}>
-                  <EditOutlined />
-                </Button>
-              </Tooltip>
-            </>
+            <Tooltip title={dualTranslate({ en: 'Edit Concept', pt: 'Editar Conceito' })}>
+              <Button type="dashed" size="small" onClick={() => toggleEditing?.(concept.id)}>
+                <EditOutlined />
+              </Button>
+            </Tooltip>
           )}
         </Flex>
       )}

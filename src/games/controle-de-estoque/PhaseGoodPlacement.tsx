@@ -9,7 +9,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { BossIdeaIcon } from 'icons/BossIdeaIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { RoundAnnouncement } from 'components/round';
@@ -39,7 +39,7 @@ export function PhaseGoodPlacement({ players, state, user }: PhaseProps) {
     >
       <Instruction>
         "<Translate en="The floor supervisor for the day will be" pt="O supervisor do dia será" />{' '}
-        <AvatarName player={supervisor} addressUser />
+        <PlayerAvatarName player={supervisor} addressUser />
         ."
       </Instruction>
     </PhaseAnnouncement>

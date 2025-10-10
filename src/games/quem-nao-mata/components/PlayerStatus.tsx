@@ -7,7 +7,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { RevolverIcon } from 'icons/RevolverIcon';
 import { ThinkingIcon } from 'icons/ThinkingIcon';
 // Components
-import { AvatarCard, IconAvatar } from 'components/avatars';
+import { PlayerAvatarCard, IconAvatar } from 'components/avatars';
 
 type PlayerStatusProps = {
   player: GamePlayer;
@@ -17,7 +17,7 @@ type PlayerStatusProps = {
 export function PlayerStatus({ player, side }: PlayerStatusProps) {
   return (
     <div className={clsx('q-player-status', `q-player-status--${side}`)}>
-      <AvatarCard player={player} withName size="small" />
+      <PlayerAvatarCard player={player} withName size="small" />
       <div className={clsx('q-player-status__icon', `q-player-status__icon--${side}`)}>
         <IconAvatar
           icon={

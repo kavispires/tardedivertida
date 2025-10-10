@@ -11,7 +11,7 @@ import type { UseStep } from 'hooks/useStep';
 import { RobotIcon } from 'icons/RobotIcon';
 import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 // Components
-import { Avatar, IconAvatar } from 'components/avatars';
+import { PlayerAvatar, IconAvatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
@@ -75,12 +75,12 @@ export function StepResult({ user, announcement, goToNextStep, players, result, 
 
               <AntAvatar.Group max={{ count: 7 }}>
                 {option.players.map((playerId) => (
-                  <Avatar
-                    id={players[playerId].avatarId}
+                  <PlayerAvatar
+                    avatarId={players[playerId].avatarId}
                     key={`votes-${option.id}-${players[playerId].avatarId}`}
                   />
                 ))}
-                {option.players.length === 0 && <Avatar />}
+                {option.players.length === 0 && <PlayerAvatar avatarId="N" />}
               </AntAvatar.Group>
             </Flex>
           );

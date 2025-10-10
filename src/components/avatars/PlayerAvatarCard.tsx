@@ -1,13 +1,18 @@
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
+// Types
 import type { GamePlayer } from 'types/player';
+// Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
+// Utils
 import { AVATARS } from 'utils/avatars';
-import { Avatar } from './Avatar';
-import './AvatarCard.scss';
+// Internal
+import { PlayerAvatar } from './PlayerAvatar';
+// Sass
+import './PlayerAvatarCard.scss';
 
-type AvatarCardProps = {
+type PlayerAvatarCardProps = {
   /**
    * A player instance
    */
@@ -44,9 +49,12 @@ type AvatarCardProps = {
    * Rounds the corners of the card
    */
   withRoundCorners?: boolean;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
-export const AvatarCard = ({
+/**
+ *  Displays a player avatar with optional name and description in a card layout
+ */
+export const PlayerAvatarCard = ({
   player,
   addressUser = false,
   className = '',
@@ -56,7 +64,7 @@ export const AvatarCard = ({
   withName = false,
   withDescription = false,
   withRoundCorners = false,
-}: AvatarCardProps) => {
+}: PlayerAvatarCardProps) => {
   const [userId] = useGlobalState('userId');
   const { language, translate } = useLanguage();
 
@@ -83,8 +91,8 @@ export const AvatarCard = ({
       {replacementAvatar ? (
         replacementAvatar
       ) : (
-        <Avatar
-          id={player.avatarId}
+        <PlayerAvatar
+          avatarId={player.avatarId}
           className="avatar-card__avatar"
           shape="square"
           style={{ width: sizes.avatarSize, height: sizes.avatarSize }}

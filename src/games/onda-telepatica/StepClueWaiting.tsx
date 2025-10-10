@@ -2,7 +2,7 @@
 import type { GamePlayer, GamePlayers } from 'types/player';
 import type { SpectrumCard } from 'types/tdr';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { WaitingRoom } from 'components/players';
@@ -40,16 +40,16 @@ export function StepClueWaiting({
               <Translate
                 pt={
                   <>
-                    <AvatarName player={psychic} /> escolherá uma carta com duas ideias opostas, e então terá
-                    que escrever uma dica que ajude você e os outros jogadores a escolher a posição correta do
-                    ponteiro no medidor de ondas telepáticas.
+                    <PlayerAvatarName player={psychic} /> escolherá uma carta com duas ideias opostas, e então
+                    terá que escrever uma dica que ajude você e os outros jogadores a escolher a posição
+                    correta do ponteiro no medidor de ondas telepáticas.
                   </>
                 }
                 en={
                   <>
-                    <AvatarName player={psychic} /> is choosing a card with two opposing ideas, then they will
-                    write a clue that will help you and the other players to find the correct position of the
-                    needle in the Wavelength measuring device.
+                    <PlayerAvatarName player={psychic} /> is choosing a card with two opposing ideas, then
+                    they will write a clue that will help you and the other players to find the correct
+                    position of the needle in the Wavelength measuring device.
                   </>
                 }
               />
@@ -57,7 +57,7 @@ export function StepClueWaiting({
           ) : (
             <>
               <p>
-                <AvatarName player={psychic} />
+                <PlayerAvatarName player={psychic} />
                 <Translate pt={'escolheu:'} en={'chose:'} />
               </p>
               <SpaceContainer align="center">

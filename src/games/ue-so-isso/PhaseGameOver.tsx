@@ -8,7 +8,7 @@ import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { FlagIcon } from 'icons/FlagIcon';
 // Components
-import { Avatar, IconAvatar } from 'components/avatars';
+import { PlayerAvatar, IconAvatar } from 'components/avatars';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
@@ -36,11 +36,12 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
                     suggestion.invalid && 'u-gallery-entry__suggestion--invalid',
                   )}
                 >
-                  <Avatar id={players[suggestion.playerId].avatarId} size="small" /> {suggestion.suggestion}
+                  <PlayerAvatar avatarId={players[suggestion.playerId].avatarId} size="small" />{' '}
+                  {suggestion.suggestion}
                 </div>
               ))}
               <div className="u-gallery-entry__outcome">
-                <Avatar id={players[entry.guesserId].avatarId} size="small" />
+                <PlayerAvatar avatarId={players[entry.guesserId].avatarId} size="small" />
 
                 {entry.outcome === 'CORRECT' && <IconAvatar icon={<BoxCheckMarkIcon />} />}
                 {entry.outcome === 'WRONG' && <IconAvatar icon={<BoxXIcon />} />}

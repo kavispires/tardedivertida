@@ -8,7 +8,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
-import { AvatarName, IconAvatar } from 'components/avatars';
+import { PlayerAvatarName, IconAvatar } from 'components/avatars';
 import { SendButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
@@ -70,7 +70,7 @@ export function StepSuspectElimination({
     <Step announcement={announcement}>
       <StepTitle>
         <span>
-          <AvatarName player={witness} addressUser />
+          <PlayerAvatarName player={witness} addressUser />
           <Translate en="answered" pt="respondeu" />{' '}
           {testimony ? <Translate en="YES" pt="SIM" /> : <Translate en="NO" pt="NÃO" />}{' '}
           <IconAvatar
@@ -115,7 +115,7 @@ export function StepSuspectElimination({
         </RuleInstruction>
       ) : (
         <RuleInstruction type="wait">
-          <AvatarName player={questioner} />{' '}
+          <PlayerAvatarName player={questioner} />{' '}
           <Translate
             pt="é quem libera os suspeitos e ele(a) precisa liberar pelo menos um."
             en="is the one who is releasing the suspects and they must release at least one."

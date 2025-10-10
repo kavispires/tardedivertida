@@ -13,7 +13,7 @@ import { DiagramIcon } from 'icons/DiagramIcon';
 import { GarbageIcon } from 'icons/GarbageIcon';
 import { SkullIcon } from 'icons/SkullIcon';
 // Components
-import { AvatarName, IconAvatar } from 'components/avatars';
+import { PlayerAvatarName, IconAvatar } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement } from 'components/phases';
@@ -64,7 +64,7 @@ export function Announcement({
                 <br />
                 The themes of each area are secret and it's up to you to figure out the logic!
                 <br />
-                Let's start with <AvatarName player={activePlayer} addressUser />.
+                Let's start with <PlayerAvatarName player={activePlayer} addressUser />.
               </>
             }
             pt={
@@ -77,7 +77,7 @@ export function Announcement({
                 <br />
                 Os temas de cada área são secretos e cabe a você descobrir a lógica!
                 <br />
-                Vamos começar com <AvatarName player={activePlayer} addressUser />.
+                Vamos começar com <PlayerAvatarName player={activePlayer} addressUser />.
               </>
             }
           />
@@ -131,13 +131,13 @@ export function Announcement({
           <Translate
             en={
               <>
-                <AvatarName player={activePlayer} addressUser /> got it right!{' '}
+                <PlayerAvatarName player={activePlayer} addressUser /> got it right!{' '}
                 {isTheActivePlayer ? 'You' : 'They'} may place another thing.
               </>
             }
             pt={
               <>
-                <AvatarName player={activePlayer} addressUser /> acertou!{' '}
+                <PlayerAvatarName player={activePlayer} addressUser /> acertou!{' '}
                 {isTheActivePlayer ? 'Você' : 'Ele(a)'} pode colocar outra coisa.
               </>
             }
@@ -169,12 +169,12 @@ export function Announcement({
         <Translate
           pt={
             <>
-              <AvatarName player={previousActivePlayer} /> errou... Próximo jogador!
+              <PlayerAvatarName player={previousActivePlayer} /> errou... Próximo jogador!
             </>
           }
           en={
             <>
-              <AvatarName player={previousActivePlayer} /> got it wrong... Next player!
+              <PlayerAvatarName player={previousActivePlayer} /> got it wrong... Next player!
             </>
           }
         />
@@ -187,13 +187,13 @@ export function Announcement({
         <Translate
           en={
             <>
-              It's <AvatarName player={activePlayer} />
+              It's <PlayerAvatarName player={activePlayer} />
               's turn.
             </>
           }
           pt={
             <>
-              É a vez do(a) <AvatarName player={activePlayer} />.
+              É a vez do(a) <PlayerAvatarName player={activePlayer} />.
             </>
           }
         />

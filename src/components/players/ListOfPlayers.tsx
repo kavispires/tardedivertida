@@ -4,7 +4,7 @@ import { Tooltip } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Components
-import { Avatar, AvatarName } from 'components/avatars';
+import { PlayerAvatar, PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 
 type ListOfPlayersProps = {
@@ -56,7 +56,7 @@ export function ListOfPlayers({
       <span className={className}>
         {list.map((playerId) => (
           <Tooltip key={playerId} title={players[playerId].name}>
-            <Avatar id={players[playerId].avatarId} />
+            <PlayerAvatar avatarId={players[playerId].avatarId} />
           </Tooltip>
         ))}
       </span>
@@ -67,7 +67,7 @@ export function ListOfPlayers({
     <span className={className}>
       {list.map((playerId, index) => (
         <Fragment key={`${prefix}-${playerId}`}>
-          <AvatarName player={players[playerId]} />
+          <PlayerAvatarName player={players[playerId]} />
           {index < list.length - 2 && ','}
           {index === list.length - 2 && <Translate pt="e" en="and" />}
         </Fragment>

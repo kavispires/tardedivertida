@@ -10,7 +10,7 @@ import { useLoading } from 'hooks/useLoading';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Components
-import { AvatarCard } from 'components/avatars';
+import { PlayerAvatarCard } from 'components/avatars';
 import { SendButton, TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -50,7 +50,7 @@ export function StepSelectPlayer({
                   disabled={isLoading}
                   onClick={() => onSubmitPlayer(player.id)}
                 >
-                  <AvatarCard
+                  <PlayerAvatarCard
                     key={`p-a-${player.id}`}
                     player={player}
                     withName
@@ -62,7 +62,7 @@ export function StepSelectPlayer({
             }
 
             return (
-              <AvatarCard
+              <PlayerAvatarCard
                 key={`p-a-${player.id}`}
                 player={player}
                 withName

@@ -6,7 +6,7 @@ import type { GamePlayer } from 'types/player';
 // Utils
 import { getAnimationClass, getAvatarColorById } from 'utils/helpers';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 
 type RibbonProps = {
   player: GamePlayer;
@@ -21,7 +21,7 @@ export function PlayerRibbon({ player, position = 'absolute' }: RibbonProps) {
         style={{ backgroundColor: getAvatarColorById(player.avatarId) }}
       >
         <Tooltip title={player.name}>
-          <Avatar id={player.avatarId} size="small" />
+          <PlayerAvatar avatarId={player.avatarId} size="small" />
         </Tooltip>
       </div>
     </div>

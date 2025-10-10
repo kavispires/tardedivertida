@@ -6,7 +6,7 @@ import type { GamePlayers } from 'types/player';
 // Icons
 import { QuestionIcon } from 'icons/QuestionIcon';
 // Components
-import { AvatarName, IconAvatar } from 'components/avatars';
+import { PlayerAvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 // Internal
 import type { BoardObject, Clue, Clues } from '../utils/types';
@@ -65,7 +65,7 @@ function ClueEntry({ clue, players }: ClueProps) {
         <div className="v-clue__text-inner">{clue.clue}</div>
       </div>
       <div className="v-clue__player">
-        <AvatarName player={players[clue.playerId]} />
+        <PlayerAvatarName player={players[clue.playerId]} />
       </div>
     </li>
   );

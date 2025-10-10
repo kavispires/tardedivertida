@@ -7,7 +7,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 // Internal
 import { reorder } from './reorder';
@@ -74,7 +74,7 @@ export function TurnOrder({
                 className={clsx('turn-order__player', isActive && 'turn-order__player--active')}
                 style={isActive ? { backgroundColor: getAvatarColorById(player.avatarId) } : undefined}
               >
-                <AvatarName player={player} />
+                <PlayerAvatarName player={player} />
                 {!!additionalInfoParser && additionalInfoParser(player)}
               </span>
               {index < order.length - 1 && (

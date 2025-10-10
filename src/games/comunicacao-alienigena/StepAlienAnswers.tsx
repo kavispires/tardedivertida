@@ -8,7 +8,7 @@ import { useLoading } from 'hooks/useLoading';
 // Utils
 import { getAnimationClass, pluralize } from 'utils/helpers';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { SendButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DebugOnly } from 'components/debug';
@@ -91,12 +91,12 @@ export function StepAlienAnswers({
         <Translate
           pt={
             <>
-              Alienígena <AvatarName player={alien} /> responde
+              Alienígena <PlayerAvatarName player={alien} /> responde
             </>
           }
           en={
             <>
-              Alien <AvatarName player={alien} /> answers
+              Alien <PlayerAvatarName player={alien} /> answers
             </>
           }
         />
@@ -110,13 +110,13 @@ export function StepAlienAnswers({
         <Translate
           pt={
             <>
-              <AvatarName player={currentHuman} /> quer saber qual símbolo representa{' '}
+              <PlayerAvatarName player={currentHuman} /> quer saber qual símbolo representa{' '}
               {pluralize(currentInquiry.length, 'o objeto', 'os objetos')} abaixo:
             </>
           }
           en={
             <>
-              <AvatarName player={currentHuman} /> wants to know what symbol best represents the{' '}
+              <PlayerAvatarName player={currentHuman} /> wants to know what symbol best represents the{' '}
               {pluralize(currentInquiry.length, 'object')} below:
             </>
           }

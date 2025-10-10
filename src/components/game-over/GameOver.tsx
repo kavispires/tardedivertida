@@ -14,7 +14,7 @@ import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { AVATARS } from 'utils/avatars';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { GameStrip } from 'components/general/GameBanner';
 import { HostOnlyButton } from 'components/host';
 import { Translate } from 'components/language';
@@ -105,7 +105,7 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
                 {state.winners.map((winner: GamePlayer) => {
                   return (
                     <li className="game-over__winner" key={`winner-${winner.name}`}>
-                      <Avatar className="game-over__avatar" id={winner.avatarId ?? 25} />
+                      <PlayerAvatar className="game-over__avatar" avatarId={winner.avatarId ?? 25} />
                       <div className="game-over__winner-name">
                         <strong>{winner.name ?? '?'}</strong>,{' '}
                         {AVATARS[winner.avatarId].description[language]}

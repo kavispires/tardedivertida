@@ -8,7 +8,7 @@ import { useLoading } from 'hooks/useLoading';
 // Utils
 import { getAnimationClass, pluralize } from 'utils/helpers';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { HostNextPhaseButton } from 'components/host';
 import { ImageCard } from 'components/image-cards';
@@ -84,12 +84,12 @@ export function StepReveal({
         <Translate
           pt={
             <>
-              <AvatarName player={activePlayer} addressUser /> eliminou
+              <PlayerAvatarName player={activePlayer} addressUser /> eliminou
             </>
           }
           en={
             <>
-              <AvatarName player={activePlayer} addressUser /> eliminated
+              <PlayerAvatarName player={activePlayer} addressUser /> eliminated
             </>
           }
         />

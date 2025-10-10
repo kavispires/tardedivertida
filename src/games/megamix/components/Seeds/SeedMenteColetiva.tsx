@@ -7,7 +7,7 @@ import { useLanguage } from 'hooks/useLanguage';
 // Icons
 import { SixPackIcon } from 'icons/SixPackIcon';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -45,7 +45,7 @@ export function SeedMenteColetiva({ seed, updateData }: SeedMenteColetivaProps) 
             </div>
 
             <div className="tt-phone__icons">
-              <Avatar id="D" size="large" />
+              <PlayerAvatar avatarId="D" size="large" />
               <MessageFilled />
               <HeartFilled />
               <FlagFilled />

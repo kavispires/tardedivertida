@@ -6,7 +6,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { TurbanIcon } from 'icons/TurbanIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { TurnOrder } from 'components/players';
@@ -41,12 +41,12 @@ export function PhaseDialClue({ state, players }: PhaseProps) {
         <Translate
           pt={
             <>
-              Para essa rodada, <AvatarName player={psychic} addressUser /> será o(a) Medium.
+              Para essa rodada, <PlayerAvatarName player={psychic} addressUser /> será o(a) Medium.
             </>
           }
           en={
             <>
-              For this round, <AvatarName player={psychic} addressUser /> will be the Psychic.
+              For this round, <PlayerAvatarName player={psychic} addressUser /> will be the Psychic.
             </>
           }
         />

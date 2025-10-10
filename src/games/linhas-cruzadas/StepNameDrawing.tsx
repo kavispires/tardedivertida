@@ -8,7 +8,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { SendButton } from 'components/buttons';
 import { CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';
@@ -55,12 +55,12 @@ export function StepNameDrawing({
         <Translate
           pt={
             <>
-              <AvatarName player={author} /> desenhou isso.
+              <PlayerAvatarName player={author} /> desenhou isso.
             </>
           }
           en={
             <>
-              <AvatarName player={author} /> drew this.
+              <PlayerAvatarName player={author} /> drew this.
             </>
           }
         />

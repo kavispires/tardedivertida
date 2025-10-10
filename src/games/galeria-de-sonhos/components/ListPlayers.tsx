@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 
 type ListPlayersProps = {
   listPlayers: GamePlayer[];
@@ -13,7 +13,7 @@ export function ListPlayers({ listPlayers, className }: ListPlayersProps) {
     <ul className={className}>
       {listPlayers.map((player) => (
         <li key={`${className}-${player.id}`}>
-          <AvatarName player={player} addressUser />
+          <PlayerAvatarName player={player} addressUser />
         </li>
       ))}
     </ul>

@@ -5,7 +5,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
@@ -64,12 +64,12 @@ export function StepResults({
           <Translate
             pt={
               <>
-                E <AvatarName player={skier} /> desceu a primeira descida...
+                E <PlayerAvatarName player={skier} /> desceu a primeira descida...
               </>
             }
             en={
               <>
-                And <AvatarName player={skier} /> finished the first slope...
+                And <PlayerAvatarName player={skier} /> finished the first slope...
               </>
             }
           />
@@ -78,12 +78,12 @@ export function StepResults({
           <Translate
             pt={
               <>
-                E lá vai <AvatarName player={skier} /> de novo...
+                E lá vai <PlayerAvatarName player={skier} /> de novo...
               </>
             }
             en={
               <>
-                And there goes <AvatarName player={skier} /> again...
+                And there goes <PlayerAvatarName player={skier} /> again...
               </>
             }
           />
@@ -92,12 +92,12 @@ export function StepResults({
           <Translate
             pt={
               <>
-                <AvatarName player={skier} /> finalizou a descida e foi para uma cabana.
+                <PlayerAvatarName player={skier} /> finalizou a descida e foi para uma cabana.
               </>
             }
             en={
               <>
-                <AvatarName player={skier} /> finished the slope and went to a lodge.
+                <PlayerAvatarName player={skier} /> finished the slope and went to a lodge.
               </>
             }
           />

@@ -8,7 +8,7 @@ import type { GamePlayer } from 'types/player';
 import { useCountdown } from 'hooks/useCountdown';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { SendButton } from 'components/buttons';
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
 import { Translate } from 'components/language';
@@ -61,7 +61,7 @@ export function StepGuessing({
   return (
     <Step fullWidth announcement={announcement}>
       <StepTitle>
-        <Translate pt="Hora de brilhar" en="Time to shine" />, <AvatarName player={guesser} />!
+        <Translate pt="Hora de brilhar" en="Time to shine" />, <PlayerAvatarName player={guesser} />!
       </StepTitle>
       {timerEnabled && (
         <TimerBar

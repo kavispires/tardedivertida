@@ -6,7 +6,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { WritingIcon } from 'icons/WritingIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { TurnOrder } from 'components/players';
@@ -73,12 +73,12 @@ export function PhaseObjectFeatureElimination({ state, players, user }: PhasePro
           <Translate
             pt={
               <>
-                Vamos analisar os objetos de <AvatarName player={activePlayer} />.
+                Vamos analisar os objetos de <PlayerAvatarName player={activePlayer} />.
               </>
             }
             en={
               <>
-                Let's analyze <AvatarName player={activePlayer} />
+                Let's analyze <PlayerAvatarName player={activePlayer} />
                 's objects.
               </>
             }

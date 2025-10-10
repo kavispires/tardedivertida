@@ -8,7 +8,7 @@ import { useLoading } from 'hooks/useLoading';
 import { LETTERS } from 'utils/constants';
 import { getColorFromLetter, sortPlayers } from 'utils/helpers';
 // Components
-import { AvatarCard } from 'components/avatars';
+import { PlayerAvatarCard } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
@@ -92,7 +92,7 @@ export function PlayerChoices({
                 onClick={() => onSubmitTarget({ targetId: player.id })}
                 disabled={isLoading || user.ready}
               >
-                <AvatarCard player={player} size="small" withName withRoundCorners />
+                <PlayerAvatarCard player={player} size="small" withName withRoundCorners />
               </TransparentButton>
             );
           })}

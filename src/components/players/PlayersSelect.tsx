@@ -4,7 +4,7 @@ import { Select, type SelectProps } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 
 type PlayersSelectProps = {
@@ -17,7 +17,7 @@ export function PlayersSelect({ players, style, ...props }: PlayersSelectProps) 
     value: player.id,
     label: (
       <>
-        <Avatar id={player.avatarId} size="small" /> {player.name}
+        <PlayerAvatar avatarId={player.avatarId} size="small" /> {player.name}
       </>
     ),
     // label: player.name,

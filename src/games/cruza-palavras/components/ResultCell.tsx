@@ -4,7 +4,7 @@ import { CloseSquareOutlined } from '@ant-design/icons';
 // Types
 import type { GamePlayers } from 'types/player';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 // Internal
 import type { Clue, GridCell, ResultPlayerCell } from '../utils/types';
 import { ClueCard } from './ClueCard';
@@ -24,7 +24,7 @@ function PlayersInCell({ cellPlayers, players }: PlayersInCellProps) {
             key={`players-in-cell-${playerId}`}
             className={clsx(isCorrect && 'x-players-in-cell-player--correct')}
           >
-            <AvatarName player={players[playerId]} size="small" />
+            <PlayerAvatarName player={players[playerId]} size="small" />
           </li>
         ) : undefined,
       )}

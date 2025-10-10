@@ -13,7 +13,7 @@ import { ScaredIcon } from 'icons/ScaredIcon';
 import { StarIcon } from 'icons/StarIcon';
 import { TomatoIcon } from 'icons/TomatoIcon';
 // Components
-import { Avatar, IconAvatar } from 'components/avatars';
+import { PlayerAvatar, IconAvatar } from 'components/avatars';
 import { MovieCard } from 'components/cards/MovieCard';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 
@@ -295,7 +295,7 @@ function PlayersSelections({
     <span className={clsx('movie-players', side === 'right' && 'movie-players--right')}>
       <AntAvatar.Group max={{ count: 5 }}>
         {moviePlayers.map((playerId) => (
-          <Avatar id={players[playerId].avatarId} key={playerId} />
+          <PlayerAvatar avatarId={players[playerId].avatarId} key={playerId} />
         ))}
       </AntAvatar.Group>
     </span>

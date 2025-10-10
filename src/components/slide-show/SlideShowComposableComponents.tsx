@@ -11,7 +11,7 @@ import { getContrastColor, getPlayerNamesFromIds } from 'utils/helpers';
 // Icons
 import { GarbageIcon } from 'icons/GarbageIcon';
 // Components
-import { Avatar, IconAvatar } from 'components/avatars';
+import { PlayerAvatar, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 
 /**
@@ -105,7 +105,7 @@ export function SlideShowPlayersList({
     <div className={clsx('slide-show-composable__players', className)} {...props}>
       <AntAvatar.Group>
         {playersIds.map((playerId) => (
-          <Avatar id={players[playerId].avatarId} key={`slide-show-player-${playerId}`} />
+          <PlayerAvatar avatarId={players[playerId].avatarId} key={`slide-show-player-${playerId}`} />
         ))}
       </AntAvatar.Group>
       {children}

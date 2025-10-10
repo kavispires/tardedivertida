@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "labirinto-secreto",
-  "version": "2.2.51",
+  "version": "2.2.53",
   "release": "stable",
   "available": true,
   "title": {
