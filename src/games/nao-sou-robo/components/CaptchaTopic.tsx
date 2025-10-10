@@ -36,7 +36,7 @@ export function CaptchaTopic({ captcha }: CaptchaTopicProps) {
     return (
       <Space>
         {values.map((id) => (
-          <WarehouseGoodCard key={id} id={id} />
+          <WarehouseGoodCard key={id} goodId={id} />
         ))}
       </Space>
     );
