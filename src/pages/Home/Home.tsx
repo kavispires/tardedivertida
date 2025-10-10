@@ -19,6 +19,7 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Title } from 'components/text';
 // Internal
 import { HomeVideoBackground } from './HomeVideoBackground';
+import { AnimatedBackground } from './AnimatedBackground';
 // Images
 import logo from 'assets/images/tarde-divertida-logo.svg?url';
 // Sass
@@ -79,6 +80,17 @@ function Home() {
             transition={{ duration: 1.2 }}
           >
             <HomeVideoBackground />
+          </MotionDiv>
+        )}
+        {(isIdle || isMobileOnly) && (
+          <MotionDiv
+            key="animated-background"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2 }}
+          >
+            <AnimatedBackground />
           </MotionDiv>
         )}
       </AnimatePresence>
@@ -156,7 +168,7 @@ function Home() {
                 )}
               </AnimatePresence>
 
-              <Flex gap={8} className="home__buttons" justify="center">
+              <Flex gap={8} className="home__buttons" justify="center" wrap="wrap">
                 {isAuthenticated && (
                   <Button onClick={() => navigate(language === 'pt' ? '/eu' : '/me')} icon={<UserOutlined />}>
                     <Translate pt="Página de Usuário" en="User page" />
