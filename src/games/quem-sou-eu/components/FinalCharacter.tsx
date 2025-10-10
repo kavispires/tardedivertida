@@ -5,7 +5,7 @@ import type { GamePlayers } from 'types/player';
 import { NoIcon } from 'icons/NoIcon';
 import { YesIcon } from 'icons/YesIcon';
 // Components
-import { AvatarStrip, IconAvatar } from 'components/avatars';
+import { PlayerAvatarStrip, IconAvatar } from 'components/avatars';
 import { GlyphCard } from 'components/cards/GlyphCard';
 // Internal
 import type { FinalCharacterEntry } from '../utils/types';
@@ -24,7 +24,7 @@ export function FinalCharacter({ players, character, glyphWidth, imageCardsMode 
 
   return (
     <div className="q-player-glyphs q-final-character">
-      <AvatarStrip player={players[character.playerId]} withName className="q-player-glyphs__strip" />
+      <PlayerAvatarStrip player={players[character.playerId]} withName className="q-player-glyphs__strip" />
       <Card width={100} character={character} imageCardMode={imageCardsMode} />
 
       {positive.map((id, index) => {

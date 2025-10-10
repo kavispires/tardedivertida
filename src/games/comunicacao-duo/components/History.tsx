@@ -6,7 +6,7 @@ import { Collapse, Table, type TableProps, type CollapseProps, Flex } from 'antd
 import type { GamePlayers } from 'types/player';
 // Components
 import { AlienText } from 'components/alien/AlienText';
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 // Internal
@@ -30,7 +30,7 @@ export function History({ history, players, deck, deckType, clueInputType, userS
       key: 'player',
       title: <Translate pt="Jogador" en="Player" />,
       dataIndex: 'requesterId',
-      render: (requesterId) => <AvatarName player={players[requesterId]} />,
+      render: (requesterId) => <PlayerAvatarName player={players[requesterId]} />,
     },
     {
       key: 'clue',

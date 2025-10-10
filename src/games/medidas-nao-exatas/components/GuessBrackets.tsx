@@ -4,7 +4,7 @@ import type { GamePlayers } from 'types/player';
 // Utils
 import { removeDuplicates } from 'utils/helpers';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 // Internal
 import type { Guess } from '../utils/types';
 import { BracketPointsBox } from './BracketPointsBox';
@@ -28,7 +28,7 @@ export function GuessBrackets({ players, pointsBrackets }: GuessBracketsProps) {
           <div className="m-guessing-board__points-bracket-value">
             {guessesByTimestamp?.[index]?.map((guessObj) => (
               <span key={guessObj?.playerId}>
-                <Avatar key={guessObj.playerId} id={players[guessObj.playerId ?? ''].avatarId} />
+                <PlayerAvatar key={guessObj.playerId} avatarId={players[guessObj.playerId ?? ''].avatarId} />
               </span>
             ))}
           </div>

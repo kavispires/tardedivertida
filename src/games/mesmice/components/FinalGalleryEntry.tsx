@@ -4,7 +4,7 @@ import type { GamePlayers } from 'types/player';
 import { BoxEqualIcon } from 'icons/BoxEqualIcon';
 import { BoxPlusIcon } from 'icons/BoxPlusIcon';
 // Components
-import { AvatarStrip, IconAvatar } from 'components/avatars';
+import { PlayerAvatarStrip, IconAvatar } from 'components/avatars';
 import { Card } from 'components/cards';
 // Internal
 import type { ExtendedObjectFeatureCard, MesmiceGalleryEntry } from '../utils/types';
@@ -21,7 +21,7 @@ type FinalGalleryEntryProps = {
 export function FinalGalleryEntry({ entry, features, players }: FinalGalleryEntryProps) {
   return (
     <div className="selections-container__active-player">
-      <AvatarStrip player={players[entry.playerId]} withName />
+      <PlayerAvatarStrip player={players[entry.playerId]} withName />
       <div className="selections-container__object selections-container__content">
         <ObjectCard item={entry.item} />
         <div>

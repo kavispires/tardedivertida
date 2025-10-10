@@ -7,7 +7,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { StarIcon } from 'icons/StarIcon';
 import { TomatoIcon } from 'icons/TomatoIcon';
 // Components
-import { AvatarName, IconAvatar } from 'components/avatars';
+import { PlayerAvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
@@ -58,12 +58,12 @@ export function StepEliminateMovie({
           <Translate
             pt={
               <>
-                <AvatarName player={activePlayer} /> selecionará um filme que ninguém escolheu
+                <PlayerAvatarName player={activePlayer} /> selecionará um filme que ninguém escolheu
               </>
             }
             en={
               <>
-                <AvatarName player={activePlayer} /> will select a movie that nobody has chosen
+                <PlayerAvatarName player={activePlayer} /> will select a movie that nobody has chosen
               </>
             }
           />

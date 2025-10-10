@@ -2,7 +2,7 @@ import moment from 'moment';
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 // Internal
 import { CommentText } from './CommentText';
 
@@ -19,7 +19,7 @@ export function TweetComment({ player, totalLikes }: TweetCommentProps) {
   return (
     <div className="p-tweet-comment">
       <div className="p-tweet-comment__avatar">
-        <Avatar id={player.avatarId} />
+        <PlayerAvatar avatarId={player.avatarId} />
       </div>
       <div className="p-tweet-comment__content">
         <div className="p-tweet-comment__author">

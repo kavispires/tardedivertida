@@ -12,7 +12,7 @@ import type { UseStep } from 'hooks/useStep';
 import { LodgeIcon } from 'icons/LodgeIcon';
 import { QualitySealIcon } from 'icons/QualitySealIcon';
 // Components
-import { AvatarName, IconAvatar } from 'components/avatars';
+import { PlayerAvatarName, IconAvatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -80,7 +80,7 @@ export function StepBetsBreakdown({
                 return (
                   <div key={playerId}>
                     <BettingChipValue value={player.bets?.[lodge.id] ?? 0} />
-                    <AvatarName player={player} />
+                    <PlayerAvatarName player={player} />
                   </div>
                 );
               })}
@@ -92,7 +92,7 @@ export function StepBetsBreakdown({
       <TitledContainer
         title={
           <Flex>
-            <AvatarName player={skier} /> <Translate pt="Apostas do Esquiador" en=" the skier's Bets" />
+            <PlayerAvatarName player={skier} /> <Translate pt="Apostas do Esquiador" en=" the skier's Bets" />
           </Flex>
         }
         contentProps={{ className: 'contained' }}
@@ -102,7 +102,7 @@ export function StepBetsBreakdown({
           return (
             <div key={player.id} className="lodge">
               <div className="lodge__icon">
-                <AvatarName player={player} />
+                <PlayerAvatarName player={player} />
               </div>
 
               <div className="lodge__bets">

@@ -6,7 +6,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { SpeechBubbleIcon } from 'icons/SpeechBubbleIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -29,12 +29,12 @@ export function PhaseResult({ state, players }: PhaseProps) {
           <Translate
             pt={
               <>
-                E <AvatarName player={guesser} addressUser size="large" /> passou...
+                E <PlayerAvatarName player={guesser} addressUser size="large" /> passou...
               </>
             }
             en={
               <>
-                And <AvatarName player={guesser} addressUser size="large" /> passed...
+                And <PlayerAvatarName player={guesser} addressUser size="large" /> passed...
               </>
             }
           />
@@ -42,12 +42,12 @@ export function PhaseResult({ state, players }: PhaseProps) {
           <Translate
             pt={
               <>
-                E <AvatarName player={guesser} addressUser size="large" /> disse...
+                E <PlayerAvatarName player={guesser} addressUser size="large" /> disse...
               </>
             }
             en={
               <>
-                And <AvatarName player={guesser} addressUser size="large" /> said...
+                And <PlayerAvatarName player={guesser} addressUser size="large" /> said...
               </>
             }
           />

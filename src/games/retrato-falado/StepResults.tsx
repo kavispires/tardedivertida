@@ -9,7 +9,7 @@ import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import type { UseStep } from 'hooks/useStep';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { MonsterCard } from 'components/cards/MonsterCard';
 import { Translate } from 'components/language';
@@ -151,13 +151,14 @@ export function StepResults({
           <Translate
             pt={
               <>
-                A testemunha <AvatarName player={witness} /> votou no mais votado, logo, é uma testemunha
-                confiável e ganha <PointsHighlight type="positive">2</PointsHighlight> pontos também.
+                A testemunha <PlayerAvatarName player={witness} /> votou no mais votado, logo, é uma
+                testemunha confiável e ganha <PointsHighlight type="positive">2</PointsHighlight> pontos
+                também.
               </>
             }
             en={
               <>
-                The witness <AvatarName player={witness} /> voted with the group which means they are a
+                The witness <PlayerAvatarName player={witness} /> voted with the group which means they are a
                 credible witness and get <PointsHighlight type="positive">2</PointsHighlight> points as well.
               </>
             }
@@ -166,13 +167,13 @@ export function StepResults({
           <Translate
             pt={
               <>
-                A testemunha achou que o desenho de <AvatarName player={players[witnessVote]} /> foi o melhor,
-                não votou com a maioria, portanto, não ganha pontos.
+                A testemunha achou que o desenho de <PlayerAvatarName player={players[witnessVote]} /> foi o
+                melhor, não votou com a maioria, portanto, não ganha pontos.
               </>
             }
             en={
               <>
-                The witness thought that <AvatarName player={players[witnessVote]} />
+                The witness thought that <PlayerAvatarName player={players[witnessVote]} />
                 's sketch was the best. They didn't vote with the majority, so they don't get any points.
               </>
             }

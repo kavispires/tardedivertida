@@ -1,15 +1,21 @@
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
+// Ant Design Resources
 import { Tooltip } from 'antd';
+// Types
 import type { GamePlayer } from 'types/player';
+// Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
+// Utils
 import { getAvatarColorById } from 'utils/helpers';
-import { Avatar } from './Avatar';
+// Internal
+import { PlayerAvatar } from './PlayerAvatar';
 import { IconAvatar } from './IconAvatar';
-import './AvatarStrip.scss';
+// Sass
+import './PlayerAvatarStrip.scss';
 
-type AvatarStripProps = {
+type PlayerAvatarStripProps = {
   /**
    * A player instance
    */
@@ -38,9 +44,12 @@ type AvatarStripProps = {
    * The icon to replace the player's avatar
    */
   icon?: ReactNode;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
-export const AvatarStrip = ({
+/**
+ *  Displays a player avatar with optional name in a strip layout
+ */
+export const PlayerAvatarStrip = ({
   player,
   size = 'default',
   className = '',
@@ -48,7 +57,8 @@ export const AvatarStrip = ({
   uppercase = false,
   addressUser = false,
   icon,
-}: AvatarStripProps) => {
+  ...rest
+}: PlayerAvatarStripProps) => {
   const [userId] = useGlobalState('userId');
   const { translate } = useLanguage();
 
@@ -62,6 +72,7 @@ export const AvatarStrip = ({
   return (
     <Tooltip title={player.name} placement="right">
       <div
+        {...rest}
         className={clsx(
           baseClass,
           uppercase && `${baseClass}--uppercase`,
@@ -71,13 +82,14 @@ export const AvatarStrip = ({
         style={{
           backgroundColor: getAvatarColorById(player.avatarId),
           width: sizes.width,
+          ...(rest.style ?? {}),
         }}
       >
         {icon ? (
           <IconAvatar style={{ width: sizes.avatarSize, height: sizes.avatarSize }} icon={icon} />
         ) : (
-          <Avatar
-            id={player.avatarId}
+          <PlayerAvatar
+            avatarId={player.avatarId}
             className="avatar-strip__avatar"
             shape="square"
             style={{ width: sizes.avatarSize, height: sizes.avatarSize }}

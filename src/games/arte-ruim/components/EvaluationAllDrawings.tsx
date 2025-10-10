@@ -4,7 +4,7 @@ import type { GamePlayers } from 'types/player';
 // Utils
 import { getEntryId } from 'utils/helpers';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { CanvasSVG } from 'components/canvas';
 import { Ribbon } from 'components/ribbons';
 // Internal
@@ -50,7 +50,7 @@ export function EvaluationAllDrawings({
             />
 
             <span className="a-evaluation-all-drawings__artist">
-              <AvatarName player={players[drawingEntry.playerId]} />
+              <PlayerAvatarName player={players[drawingEntry.playerId]} />
             </span>
           </li>
         );

@@ -7,7 +7,7 @@ import type { GamePlayers } from 'types/player';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -69,8 +69,8 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
               <SpaceContainer>
                 <AntAvatar.Group max={{ count: 7 }}>
                   {entry.players.map((playerId) => (
-                    <Avatar
-                      id={players[playerId].avatarId}
+                    <PlayerAvatar
+                      avatarId={players[playerId].avatarId}
                       key={`${entry.pairId}-${playerId}`}
                       size="small"
                     />
@@ -118,8 +118,8 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
                   <SpaceContainer>
                     <AntAvatar.Group max={{ count: 7 }}>
                       {entry.players.map((playerId) => (
-                        <Avatar
-                          id={players[playerId].avatarId}
+                        <PlayerAvatar
+                          avatarId={players[playerId].avatarId}
                           key={`${entry.id}-${playerId}`}
                           size="small"
                         />
@@ -152,8 +152,8 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
                   <SpaceContainer>
                     <AntAvatar.Group max={{ count: 7 }}>
                       {entry.players.map((playerId) => (
-                        <Avatar
-                          id={players[playerId].avatarId}
+                        <PlayerAvatar
+                          avatarId={players[playerId].avatarId}
                           key={`${entry.pairId}-${playerId}`}
                           size="small"
                         />

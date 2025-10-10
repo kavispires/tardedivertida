@@ -6,7 +6,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { ChoiceIcon } from 'icons/ChoiceIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -40,12 +40,12 @@ export function PhasePrompt({ state, players, user }: PhaseProps) {
           <Translate
             pt={
               <>
-                É a vez do(a) <AvatarName player={activePlayer} />
+                É a vez do(a) <PlayerAvatarName player={activePlayer} />
               </>
             }
             en={
               <>
-                It's <AvatarName player={activePlayer} /> turn!
+                It's <PlayerAvatarName player={activePlayer} /> turn!
               </>
             }
           />

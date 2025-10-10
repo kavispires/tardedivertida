@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
-import { AvatarEntry } from 'components/avatars';
+import { PlayerAvatarEntry } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SlideShowLabel } from 'components/slide-show';
 
@@ -16,7 +16,7 @@ export function GalleryWindowCredits({ artist }: GalleryWindowCreditsProps) {
         <Translate pt="Criador" en="Creator" />
       </SlideShowLabel>
       <span className="uppercase">
-        <AvatarEntry player={artist} />
+        <PlayerAvatarEntry player={artist} />
       </span>
     </div>
   );

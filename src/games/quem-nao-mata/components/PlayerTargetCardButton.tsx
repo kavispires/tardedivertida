@@ -5,7 +5,7 @@ import { getAvatarColorById } from 'utils/helpers';
 // Icons
 import { KnifeIcon } from 'icons/KnifeIcon';
 // Components
-import { AvatarCard, IconAvatar } from 'components/avatars';
+import { PlayerAvatarCard, IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 
@@ -36,13 +36,17 @@ export function PlayerTargetCardButton({
     >
       {isAmbush ? (
         <div className="q-ambush-card">
-          <AvatarCard player={player} replacementAvatar={<IconAvatar icon={<KnifeIcon />} />} size="small" />
+          <PlayerAvatarCard
+            player={player}
+            replacementAvatar={<IconAvatar icon={<KnifeIcon />} />}
+            size="small"
+          />
           <div className="a">
             <Translate pt="Emboscar!" en="Ambush!" />
           </div>
         </div>
       ) : (
-        <AvatarCard player={player} withName addressUser size="small" />
+        <PlayerAvatarCard player={player} withName addressUser size="small" />
       )}
     </TransparentButton>
   );

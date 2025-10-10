@@ -7,7 +7,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import type { UseStep } from 'hooks/useStep';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
-import { Avatar, AvatarName, AvatarNPC } from 'components/avatars';
+import { PlayerAvatar, PlayerAvatarName, NPCPlayerAvatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { ImageBlurButton, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
@@ -77,7 +77,7 @@ export function StepResolution({
                     .map((playerId) => {
                       return (
                         <li key={`correct-vote-player-${playerId}`}>
-                          <AvatarName player={players[playerId]} size="small" />
+                          <PlayerAvatarName player={players[playerId]} size="small" />
                         </li>
                       );
                     })}
@@ -98,9 +98,9 @@ export function StepResolution({
             <li className="c-other-cards__entry" key={`other-card-votes-${cardEntry.playerId}-${index}`}>
               <div className="c-other-cards__player">
                 {cardEntry.playerId === 'NPC' ? (
-                  <AvatarNPC size="small" />
+                  <NPCPlayerAvatar size="small" />
                 ) : (
-                  <AvatarName player={players[cardEntry.playerId]} size="small" />
+                  <PlayerAvatarName player={players[cardEntry.playerId]} size="small" />
                 )}
               </div>
 
@@ -111,8 +111,8 @@ export function StepResolution({
                 <AntAvatar.Group size="small">
                   {(cardEntry?.votes ?? []).map((votePlayerId) => {
                     return (
-                      <Avatar
-                        id={players[votePlayerId].avatarId}
+                      <PlayerAvatar
+                        avatarId={players[votePlayerId].avatarId}
                         key={`incorrect-vote-player-${votePlayerId}`}
                       />
                     );

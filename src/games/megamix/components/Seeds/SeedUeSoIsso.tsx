@@ -8,7 +8,7 @@ import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Title } from 'components/text';
@@ -40,7 +40,7 @@ export function SeedUeSoIsso({ seed, updateData }: SeedUeSoIssoProps) {
         <SVGPhone>
           <div className="ff-phone">
             <div className="ff-phone__contact">
-              <Avatar id="B" size="large" />
+              <PlayerAvatar avatarId="B" size="large" />
               <div className="ff-phone__name">Bob {'>'}</div>
             </div>
             <div className="ff-phone__thread">

@@ -1,7 +1,7 @@
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { CanvasSVG } from 'components/canvas';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
@@ -23,7 +23,7 @@ export function VoteArteRuim({ track, playersList }: VoteComponentProps) {
           );
           return (
             <div key={`vote-${player.id}`} className="player-vote">
-              <Avatar id={player.avatarId} />
+              <PlayerAvatar avatarId={player.avatarId} />
               <div>{player.name}</div>
               {Boolean(drawing) && (
                 <CanvasSVG drawing={drawing.drawing} width={width} className="a-drawing" />
@@ -41,7 +41,7 @@ export function VoteArteRuim({ track, playersList }: VoteComponentProps) {
         const card = track.data.cards.find((entry: PlainObject) => entry.id === player.data.value);
         return (
           <div key={`vote-${player.id}`} className="player-vote">
-            <Avatar id={player.avatarId} />
+            <PlayerAvatar avatarId={player.avatarId} />
             <div className="player-vote__name">{player.name}</div>
             <div className="player-vote__value">{Boolean(card) && card.text}</div>
           </div>

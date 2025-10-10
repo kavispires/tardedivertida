@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
@@ -34,12 +34,12 @@ export function StepWaitForPlanning({
         <Translate
           pt={
             <>
-              <AvatarName player={activePlayer} /> está planejando a cidade.
+              <PlayerAvatarName player={activePlayer} /> está planejando a cidade.
             </>
           }
           en={
             <>
-              <AvatarName player={activePlayer} /> is planning the city.
+              <PlayerAvatarName player={activePlayer} /> is planning the city.
             </>
           }
         />

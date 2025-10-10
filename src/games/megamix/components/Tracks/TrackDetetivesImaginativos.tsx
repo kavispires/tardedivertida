@@ -9,7 +9,7 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { AVATARS, BOTS_LIST } from 'utils/avatars';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -74,7 +74,7 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
                   </ImageBlurButtonContainer>
 
                   <div className="d-table__player-info">
-                    <Avatar id={bot.avatarId} className="d-table__player-avatar" size="default" />
+                    <PlayerAvatar avatarId={bot.avatarId} className="d-table__player-avatar" size="default" />
                     <span
                       className="d-table__player-bar"
                       style={{ backgroundColor: AVATARS[bot.avatarId].color }}
@@ -181,7 +181,7 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
                 </ImageBlurButtonContainer>
 
                 <div className="d-table__player-info">
-                  <Avatar id={bot.avatarId} className="d-table__player-avatar" size="default" />
+                  <PlayerAvatar avatarId={bot.avatarId} className="d-table__player-avatar" size="default" />
                   <span
                     className="d-table__player-bar"
                     style={{ backgroundColor: AVATARS[bot.avatarId].color }}

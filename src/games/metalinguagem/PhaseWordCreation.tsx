@@ -6,7 +6,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { CreateIcon } from 'icons/CreateIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { TurnOrder } from 'components/players';
@@ -37,12 +37,12 @@ export function PhaseWordCreation({ state, players, user }: PhaseProps<PhaseWord
         <Translate
           pt={
             <>
-              Hora de <AvatarName player={creator} addressUser /> criar a nova palavra!
+              Hora de <PlayerAvatarName player={creator} addressUser /> criar a nova palavra!
             </>
           }
           en={
             <>
-              Time for <AvatarName player={creator} addressUser /> to create the new word!
+              Time for <PlayerAvatarName player={creator} addressUser /> to create the new word!
             </>
           }
         />

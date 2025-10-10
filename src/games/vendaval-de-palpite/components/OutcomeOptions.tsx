@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Alert, Button, Divider } from 'antd';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 
@@ -23,7 +23,7 @@ export function OutcomeOptions({ outcome, onSubmitOutcome, finalAnswersLeft }: O
             showIcon
             message={
               <>
-                <Avatar id="A" size="small" />{' '}
+                <PlayerAvatar avatarId="A" size="small" />{' '}
                 <Translate
                   pt="Meu algorítimo me diz que um dos casos abaixo aconteceu, selecione o apropriado:"
                   en="According to my calculations, one of the cases below happened, select the appropriate case:"

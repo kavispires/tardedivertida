@@ -8,7 +8,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PopoverRule } from 'components/rules';
@@ -72,7 +72,7 @@ export function StepGallery({
       >
         <div className="q-gallery__result-container">
           <div className="q-gallery__player" style={{ backgroundColor: currentColor }}>
-            <AvatarName player={currentPlayer} size="large" />
+            <PlayerAvatarName player={currentPlayer} size="large" />
           </div>
           <SpaceContainer vertical>
             <Card character={characters[characterId]} width={characterWidth} imageCardMode={imageCardMode} />

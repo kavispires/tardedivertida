@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
@@ -30,7 +30,7 @@ export function StepSecretClueWaiting({
       </StepTitle>
 
       <RuleInstruction type="wait">
-        <AvatarName player={leader} addressUser />{' '}
+        <PlayerAvatarName player={leader} addressUser />{' '}
         <Translate pt="está escrevendo a pista secreta." en="is writing the secret clue." />
         <br />
         <Translate

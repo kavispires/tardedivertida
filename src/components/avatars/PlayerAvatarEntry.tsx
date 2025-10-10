@@ -4,11 +4,11 @@ import type { GamePlayer } from 'types/player';
 // Components
 import { Translate } from 'components/language';
 // Internal
-import { Avatar } from './Avatar';
+import { PlayerAvatar } from './PlayerAvatar';
 // Sass
-import './AvatarEntry.scss';
+import './PlayerAvatarEntry.scss';
 
-type AvatarEntryProps = {
+type PlayerAvatarEntryProps = {
   /**
    * A player instance
    */
@@ -21,12 +21,17 @@ type AvatarEntryProps = {
    * Optional custom class name
    */
   className?: string;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
-export const AvatarEntry = ({ player, animate = false, className = '' }: AvatarEntryProps) => {
+export const PlayerAvatarEntry = ({
+  player,
+  animate = false,
+  className = '',
+  ...rest
+}: PlayerAvatarEntryProps) => {
   return (
-    <div className={clsx('avatar-entry', animate && 'avatar-entry--floating', className)}>
-      <Avatar id={player?.avatarId} className="avatar-entry__avatar" size="large" />
+    <div className={clsx('avatar-entry', animate && 'avatar-entry--floating', className)} {...rest}>
+      <PlayerAvatar avatarId={player?.avatarId} className="avatar-entry__avatar" size="large" />
 
       <div className="avatar-entry__name">
         <Translate pt="Fulano" en="John Doe" custom={player?.name} />

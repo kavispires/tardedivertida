@@ -3,7 +3,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
@@ -48,12 +48,12 @@ export function StepPlayCardWaiting({
         <Translate
           pt={
             <>
-              Aguarde enquanto <AvatarName player={currentPlayer} addressUser /> escolhe uma carta.
+              Aguarde enquanto <PlayerAvatarName player={currentPlayer} addressUser /> escolhe uma carta.
             </>
           }
           en={
             <>
-              Wait while <AvatarName player={currentPlayer} /> picks a card.
+              Wait while <PlayerAvatarName player={currentPlayer} /> picks a card.
             </>
           }
         />

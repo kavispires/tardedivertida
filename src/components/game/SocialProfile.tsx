@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 import { CheckCircleFilled, DislikeFilled, LikeFilled } from '@ant-design/icons';
 import { Button } from 'antd';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 // Sass
 import './SocialProfile.scss';
@@ -38,7 +38,7 @@ type SocialProfileProps = {
 export function SocialProfile({ avatarId, name, handle, verified, className }: SocialProfileProps) {
   return (
     <div className={clsx('profile', className)}>
-      <Avatar id={avatarId} size="large" className="profile__avatar" />
+      <PlayerAvatar avatarId={avatarId} size="large" className="profile__avatar" />
       <span className="profile__name">
         {name} {verified && <CheckCircleFilled style={{ color: 'dodgerBlue' }} />}
       </span>

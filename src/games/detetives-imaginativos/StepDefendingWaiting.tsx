@@ -3,7 +3,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TurnOrder } from 'components/players';
@@ -40,7 +40,12 @@ export function StepDefendingWaiting({
       </StepTitle>
 
       <RuleInstruction type="action">
-        <AvatarName key={currentPlayer.id} player={currentPlayer} className={getAnimationClass('tada')} />,{' '}
+        <PlayerAvatarName
+          key={currentPlayer.id}
+          player={currentPlayer}
+          className={getAnimationClass('tada')}
+        />
+        ,{' '}
         <Translate
           pt="deve explicar porque ele(a) escolheu as cartas."
           en="should explain why they chose your cards."

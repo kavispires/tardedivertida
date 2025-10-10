@@ -2,7 +2,7 @@
 import type { GamePlayer } from 'types/player';
 import type { SuspectCard } from 'types/tdr';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
@@ -43,12 +43,12 @@ export function StepQuestionWaiting({
         <Translate
           pt={
             <>
-              <AvatarName player={questioner} /> está escolhendo uma pergunta para essa rodada.
+              <PlayerAvatarName player={questioner} /> está escolhendo uma pergunta para essa rodada.
             </>
           }
           en={
             <>
-              <AvatarName player={questioner} /> is picking a question for this round.
+              <PlayerAvatarName player={questioner} /> is picking a question for this round.
             </>
           }
         />{' '}

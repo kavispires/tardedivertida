@@ -12,7 +12,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { SendButton } from 'components/buttons';
 import { DoorFrame } from 'components/game/DoorFrame';
 import { ImageBlurButton, ImageCard, ImageCardBack } from 'components/image-cards';
@@ -170,9 +170,9 @@ export function Corridor({
                 <AntAvatar.Group max={{ count: 7 }} size="small" className="i-door__votes">
                   {voteMap[doorId] && !hideVotes ? (
                     voteMap[doorId].map((playerId) => (
-                      <Avatar
+                      <PlayerAvatar
                         key={`vote-${playerId}`}
-                        id={players[playerId].avatarId}
+                        avatarId={players[playerId].avatarId}
                         alt={players[playerId].name}
                         className={getAnimationClass('slideInUp')}
                       />

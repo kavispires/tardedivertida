@@ -11,7 +11,7 @@ import { BoxXIcon } from 'icons/collection';
 import { XIcon } from 'icons/XIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { AvatarTooltip } from 'components/avatars/AvatarTooltip';
+import { PlayerAvatarTooltip } from 'components/avatars/PlayerAvatarTooltip';
 import { Card } from 'components/cards';
 // Internal
 import type { GalleryBracket } from '../utils/types';
@@ -39,7 +39,7 @@ export function ResultBrackets({ brackets, players, cards }: ResultBracketsProps
                     key={playerId}
                     {...getAnimation('tada', { repeat: 10, delay: 2 + index * i * 0.25 })}
                   >
-                    <AvatarTooltip player={players[playerId]} />
+                    <PlayerAvatarTooltip player={players[playerId]} />
                   </motion.div>
                 );
               })}
@@ -51,7 +51,7 @@ export function ResultBrackets({ brackets, players, cards }: ResultBracketsProps
                 return (
                   <Flex key={guess.playerId} align="center">
                     <IconAvatar icon={<XIcon />} size={16} />{' '}
-                    <AvatarTooltip player={players[guess.playerId]} />
+                    <PlayerAvatarTooltip player={players[guess.playerId]} />
                     <Card hideHeader size="small">
                       {cards[guess.cardId]?.text || '???'}
                     </Card>

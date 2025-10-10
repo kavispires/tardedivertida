@@ -4,7 +4,7 @@ import { Space, Table } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 // Internal
@@ -81,7 +81,7 @@ function Offerings({ offers, players, items }: OfferingsProps) {
       {offers.map((offer) => (
         <Space direction="vertical" align="center" key={`offer-${offer.objectId}-${offer.playerId}`}>
           <ItemCard itemId={`${offer.objectId}`} className={'objects-grid__item-offered'} width={48} />
-          <AvatarName size="small" player={players[offer.playerId]} />
+          <PlayerAvatarName size="small" player={players[offer.playerId]} />
           <ItemResolution itemId={offer.objectId} items={items} />
         </Space>
       ))}

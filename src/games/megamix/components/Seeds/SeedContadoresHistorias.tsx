@@ -2,7 +2,7 @@ import moment from 'moment';
 // Ant Design Resources
 import { Button } from 'antd';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -33,7 +33,7 @@ export function SeedContadoresHistorias({ seed, updateData }: SeedContadoresHist
         <SVGPhone>
           <div className="ff-phone">
             <div className="ff-phone__contact">
-              <Avatar id={avatar} />
+              <PlayerAvatar avatarId={avatar} />
               <div className="ff-phone__name">
                 <Translate pt="Mamãe" en="Mommy" /> {'>'}
               </div>

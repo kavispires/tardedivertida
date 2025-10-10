@@ -8,7 +8,7 @@ import type { GamePlayers } from 'types/player';
 import { useDevFeatures } from 'hooks/useDevFeatures';
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { HostOnlyContainer } from 'components/host';
 import { Translate } from 'components/language';
@@ -107,7 +107,7 @@ export function AdminAnswerControl({
               key={`admin-${answer.id}`}
               onClick={() => onAddAnswer({ answer: { ...answer } })}
             >
-              <Avatar id={players[answer.playerId].avatarId} /> {answer.answer}
+              <PlayerAvatar avatarId={players[answer.playerId].avatarId} /> {answer.answer}
             </Button>
           );
         })}

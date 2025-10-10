@@ -9,7 +9,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { DoorSignIcon } from 'icons/DoorSignIcon';
 import { NightmareIcon } from 'icons/NightmareIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { CardHighlight } from 'components/metrics/CardHighlight';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
@@ -85,12 +85,13 @@ export function PhaseCardPlay({ state, players, meta, user }: PhaseProps) {
             <Translate
               pt={
                 <>
-                  <AvatarName player={playerInNightmare} size="large" addressUser /> entrou em um pesadelo!
+                  <PlayerAvatarName player={playerInNightmare} size="large" addressUser /> entrou em um
+                  pesadelo!
                 </>
               }
               en={
                 <>
-                  <AvatarName player={playerInNightmare} size="large" addressUser />{' '}
+                  <PlayerAvatarName player={playerInNightmare} size="large" addressUser />{' '}
                   {isThePlayerInNightmare ? 'are' : 'is'} in a nightmare!
                 </>
               }
@@ -106,7 +107,7 @@ export function PhaseCardPlay({ state, players, meta, user }: PhaseProps) {
             <Translate
               pt={
                 <>
-                  <AvatarName player={playerInNightmare} addressUser /> selecionou{' '}
+                  <PlayerAvatarName player={playerInNightmare} addressUser /> selecionou{' '}
                   <CardHighlight>{Object.keys(playerInNightmare?.cards ?? {}).length} cartas</CardHighlight>,
                   o maior número de cartas da rodada!
                   <br />
@@ -118,7 +119,7 @@ export function PhaseCardPlay({ state, players, meta, user }: PhaseProps) {
               }
               en={
                 <>
-                  <AvatarName player={playerInNightmare} addressUser /> selected{' '}
+                  <PlayerAvatarName player={playerInNightmare} addressUser /> selected{' '}
                   <CardHighlight>{Object.keys(playerInNightmare?.cards ?? {}).length} cards</CardHighlight>,
                   the largest number of cards for this round!
                   <br />

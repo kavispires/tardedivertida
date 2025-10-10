@@ -1,5 +1,5 @@
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
@@ -12,7 +12,7 @@ export function VoteNamoroOuAmizade({ track, playersList }: VoteComponentProps) 
         const index = track.data.heads.findIndex((head: PlainObject) => head.id === player.data.value);
         return (
           <div key={`vote-${player.id}`} className="player-vote">
-            <Avatar id={player.avatarId} />
+            <PlayerAvatar avatarId={player.avatarId} />
             <div>{player.name}</div>
             {index > -1 && (
               <Candidate

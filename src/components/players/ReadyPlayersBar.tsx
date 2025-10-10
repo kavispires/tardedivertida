@@ -4,7 +4,7 @@ import { Avatar as AntAvatar, Typography } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 // Sass
 import './ReadyPlayersBar.scss';
@@ -47,7 +47,7 @@ export function ReadyPlayersBar({
       <div className="ready-player-bar__bar">
         <AntAvatar.Group size="small">
           {readyPlayers.map((player) => (
-            <Avatar key={player.name} id={player.avatarId} />
+            <PlayerAvatar key={player.name} avatarId={player.avatarId} />
           ))}
         </AntAvatar.Group>
         <span className="ready-player-bar__speech-bubble">

@@ -5,7 +5,7 @@ import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
 import type { GamePlayers, GamePlayer } from 'types/player';
 import type { TextCard } from 'types/tdr';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
@@ -58,12 +58,12 @@ export function StepWordSelection({
         <Translate
           pt={
             <>
-              Selecione a Palavra Secreta para <AvatarName player={guesser} />
+              Selecione a Palavra Secreta para <PlayerAvatarName player={guesser} />
             </>
           }
           en={
             <>
-              Select a Secret Word for <AvatarName player={guesser} />
+              Select a Secret Word for <PlayerAvatarName player={guesser} />
             </>
           }
         />

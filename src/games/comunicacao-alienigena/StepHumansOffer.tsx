@@ -5,7 +5,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
@@ -77,8 +77,8 @@ export function StepHumansOffer({
           <Translate
             pt={
               <>
-                O(A) alienígena <AvatarName player={alien} /> fez esse pedido. Você consegue decifrar qual
-                objeto ele(a) quer?
+                O(A) alienígena <PlayerAvatarName player={alien} /> fez esse pedido. Você consegue decifrar
+                qual objeto ele(a) quer?
                 <br />
                 Um símbolo sublinhado significa "muito" e um símbolo sobrelinhado significa "não".
                 <br />
@@ -89,8 +89,8 @@ export function StepHumansOffer({
             }
             en={
               <>
-                The alien <AvatarName player={alien} /> made this request. Can you decipher what object they
-                want?
+                The alien <PlayerAvatarName player={alien} /> made this request. Can you decipher what object
+                they want?
                 <br />
                 An underlined symbol means "very" and an overscore symbol means "not".
                 <br />

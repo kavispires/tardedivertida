@@ -12,7 +12,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 // Utils
 import { getMeanDuration } from 'utils/helpers';
 // Components
-import { Avatar, AvatarName } from 'components/avatars';
+import { PlayerAvatar, PlayerAvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -84,13 +84,14 @@ export function StepReveal({
         <Translate
           pt={
             <>
-              Vocês estão sincronizados? <AvatarName player={psychic} /> acha que{' '}
+              Vocês estão sincronizados? <PlayerAvatarName player={psychic} /> acha que{' '}
               {psychic.guess ? 'sim' : 'não'}
             </>
           }
           en={
             <>
-              Are you in sync? <AvatarName player={psychic} /> {psychic.guess ? 'does' : "doesn't"} think so
+              Are you in sync? <PlayerAvatarName player={psychic} /> {psychic.guess ? 'does' : "doesn't"}{' '}
+              think so
             </>
           }
         />
@@ -109,7 +110,7 @@ export function StepReveal({
                 {Math.abs(player.guess)}
                 {player.guess > 0 && '»'}
               </span>
-              <Avatar id={player.avatarId} className="o-player-guess__avatar" />
+              <PlayerAvatar avatarId={player.avatarId} className="o-player-guess__avatar" />
               <span className="o-player-guess__name">{player.name}</span>
               <StarPoints
                 quantity={getPoints(player.guess, currentCategory.target ?? 0)}

@@ -14,7 +14,7 @@ import { getAnimationClass } from 'utils/helpers';
 // Icons
 import { NoIcon } from 'icons/NoIcon';
 // Components
-import { AvatarName, IconAvatar } from 'components/avatars';
+import { PlayerAvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
@@ -83,7 +83,7 @@ export function EvaluationGroup({
             return (
               <div className="evaluation-entry__player" key={answer.playerId}>
                 <TimeHighlight>{ANSWERING_TIME - answer.timestamp}"</TimeHighlight>{' '}
-                <AvatarName player={players[answer.playerId]} />{' '}
+                <PlayerAvatarName player={players[answer.playerId]} />{' '}
                 <span
                   className={clsx(
                     'evaluation-entry__answer-text',

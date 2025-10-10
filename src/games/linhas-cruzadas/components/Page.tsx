@@ -7,7 +7,7 @@ import type { GamePlayers } from 'types/player';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Avatar, AvatarName } from 'components/avatars';
+import { PlayerAvatar, PlayerAvatarName } from 'components/avatars';
 import { CanvasSVG } from 'components/canvas';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
@@ -38,7 +38,7 @@ export function Page({ slide, players, albumColor, currentPage, totalSlides }: P
 
       {slide.type === 'cover' && (
         <div className={clsx('l-page__container', animationClass)} style={{ backgroundColor: albumColor }}>
-          <Avatar id={author.avatarId} size={96} />
+          <PlayerAvatar avatarId={author.avatarId} size={96} />
         </div>
       )}
 
@@ -62,7 +62,7 @@ export function Page({ slide, players, albumColor, currentPage, totalSlides }: P
       {slide.type !== 'cover' && (
         <div className="l-page__author">
           <Translate pt="por " en="by " />
-          <AvatarName player={author} addressUser />
+          <PlayerAvatarName player={author} addressUser />
         </div>
       )}
     </div>

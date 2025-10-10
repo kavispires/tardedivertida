@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Instruction, RuleInstruction } from 'components/text';
 
@@ -93,7 +93,7 @@ export function ComparisonPhaseRules({ controller }: { controller: GamePlayer })
       <Translate
         pt={
           <>
-            Para não virar bagunça, somente <AvatarName player={controller} addressUser />
+            Para não virar bagunça, somente <PlayerAvatarName player={controller} addressUser />
             pode clicar nas palavras para eliminá-las ou ativá-las, mas todos podem discutir.
             <br />
             <strong>Uma dica ser muito ruim não significa que ela seja inválida.</strong>
@@ -103,7 +103,7 @@ export function ComparisonPhaseRules({ controller }: { controller: GamePlayer })
         }
         en={
           <>
-            <AvatarName player={controller} />
+            <PlayerAvatarName player={controller} />
             is in charge of clicking on the clues to disable or enable them as valid but everybody (but the
             guesser) should discuss.
             <br />
@@ -123,7 +123,7 @@ export function GuessingRules({ guesser }: { guesser: GamePlayer }) {
       <Translate
         pt={
           <>
-            Hora de <AvatarName player={guesser} /> brilhar!
+            Hora de <PlayerAvatarName player={guesser} /> brilhar!
             <br />
             Você tem uma única change de adivinhar a palavra secreta!
             <br />
@@ -132,7 +132,7 @@ export function GuessingRules({ guesser }: { guesser: GamePlayer }) {
         }
         en={
           <>
-            It's time to shine, <AvatarName player={guesser} />!
+            It's time to shine, <PlayerAvatarName player={guesser} />!
             <br />
             You have a single chance to guess the secret word!
             <br />

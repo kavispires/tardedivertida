@@ -3,7 +3,7 @@ import type { CrimesHediondosCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
@@ -28,7 +28,7 @@ export function VoteCrimesHediondos({ playersList, track }: VoteComponentProps) 
 
         return (
           <div key={`vote-${player.id}`} className="player-vote">
-            <Avatar id={player.avatarId} />
+            <PlayerAvatar avatarId={player.avatarId} />
             <div className="player-vote__name">{player.name}</div>
 
             <CrimeItemCard item={item} cardWidth={width} className="d-table__image-card" />

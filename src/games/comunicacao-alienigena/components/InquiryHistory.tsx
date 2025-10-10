@@ -4,7 +4,7 @@ import { Space, Table } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate, Translate } from 'components/language';
 // Internal
@@ -35,7 +35,7 @@ export function InquiryHistory({
       key: 'player',
       title: <Translate pt="Jogador" en="Player" />,
       dataIndex: 'playerId',
-      render: (playerId) => <AvatarName size="small" player={players[playerId]} />,
+      render: (playerId) => <PlayerAvatarName size="small" player={players[playerId]} />,
     },
     {
       key: 'items',

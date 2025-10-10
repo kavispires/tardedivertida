@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
@@ -33,12 +33,12 @@ export function StepWaitWordCreation({
         <Translate
           pt={
             <>
-              Aguarde enquanto <AvatarName player={creator} /> cria a palavra-valise
+              Aguarde enquanto <PlayerAvatarName player={creator} /> cria a palavra-valise
             </>
           }
           en={
             <>
-              Wait while <AvatarName player={creator} /> creates the new portmanteau
+              Wait while <PlayerAvatarName player={creator} /> creates the new portmanteau
             </>
           }
         />

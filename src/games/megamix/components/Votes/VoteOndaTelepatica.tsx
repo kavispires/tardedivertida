@@ -1,5 +1,5 @@
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
@@ -10,7 +10,7 @@ export function VoteOndaTelepatica({ playersList }: VoteComponentProps) {
     <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
       {playersList.map((player) => (
         <div key={`vote-${player.id}`} className="player-vote">
-          <Avatar id={player.avatarId} />
+          <PlayerAvatar avatarId={player.avatarId} />
           <div className="player-vote__name">{player.name}</div>
           <div className="player-vote__value">
             {player.data?.value === 'center' && <Translate pt="Centro" en="Center" />}

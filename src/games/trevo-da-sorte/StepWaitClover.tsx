@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, StepTitle } from 'components/text';
@@ -30,12 +30,12 @@ export function StepWaitClover({ activeCloverPlayer, clover, leaves }: StepWaitC
         <Translate
           pt={
             <>
-              Adivinhação do trevo do(a) <AvatarName player={activeCloverPlayer} />
+              Adivinhação do trevo do(a) <PlayerAvatarName player={activeCloverPlayer} />
             </>
           }
           en={
             <>
-              Guessing <AvatarName player={activeCloverPlayer} />
+              Guessing <PlayerAvatarName player={activeCloverPlayer} />
               's clover
             </>
           }

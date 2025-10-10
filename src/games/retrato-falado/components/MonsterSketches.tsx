@@ -3,7 +3,7 @@ import { Space, Avatar as AntAvatar } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';
 // Internal
@@ -42,14 +42,14 @@ export function MonsterSketches({
               className="r-sketch"
             />
             <div>
-              <Avatar id={player.avatarId} size="small" /> {player.name}
+              <PlayerAvatar avatarId={player.avatarId} size="small" /> {player.name}
             </div>
             {(votes?.[player.id] ?? []).length > 0 && (
               <Space align="center">
                 <Translate pt="Votos:" en="Votes:" />
                 <AntAvatar.Group max={{ count: 5 }}>
                   {(votes?.[player.id] ?? []).map((vote) => (
-                    <Avatar key={`vote-${vote}`} id={players[vote].avatarId} size="small" />
+                    <PlayerAvatar key={`vote-${vote}`} avatarId={players[vote].avatarId} size="small" />
                   ))}
                 </AntAvatar.Group>
               </Space>

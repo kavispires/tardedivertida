@@ -7,7 +7,7 @@ import { getAvatarColorById } from 'utils/helpers';
 // Icons
 import { TheEndIcon } from 'icons/TheEndIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { CanvasSVG } from 'components/canvas';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
@@ -30,7 +30,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
               className="l-album-strip-entry__author"
               style={{ backgroundColor: getAvatarColorById(players[albumEntry.id].avatarId) }}
             >
-              <AvatarName player={players[albumEntry.id]} />
+              <PlayerAvatarName player={players[albumEntry.id]} />
             </div>
             <ul
               className="l-album-strip"

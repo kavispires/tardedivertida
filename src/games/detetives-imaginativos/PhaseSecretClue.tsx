@@ -6,7 +6,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { SecretIcon } from 'icons/SecretIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { ImageCardPreloadHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
@@ -39,12 +39,12 @@ export function PhaseSecretClue({ state, players, user }: PhaseProps<PhaseSecret
         <Translate
           pt={
             <>
-              Para essa rodada, <AvatarName player={leader} addressUser /> será o(a) Detetive Líder.
+              Para essa rodada, <PlayerAvatarName player={leader} addressUser /> será o(a) Detetive Líder.
             </>
           }
           en={
             <>
-              For this round, <AvatarName player={leader} addressUser /> will be the Lead Detective.
+              For this round, <PlayerAvatarName player={leader} addressUser /> will be the Lead Detective.
             </>
           }
         />

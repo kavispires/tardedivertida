@@ -22,7 +22,7 @@ import { getAvatarColorById } from 'utils/helpers';
 // Icons
 import { BoxBlankIcon } from 'icons/BoxBlankIcon';
 // Components
-import { Avatar, IconAvatar } from 'components/avatars';
+import { PlayerAvatar, IconAvatar } from 'components/avatars';
 import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 import { Translate } from 'components/language';
 // Internal
@@ -88,7 +88,7 @@ export function CrimeSummary({
     <div className="h-crime">
       <div className="h-crime__player" style={{ backgroundColor: color }}>
         <span className="h-crime__player-avatar">
-          <Avatar id={player.avatarId} />
+          <PlayerAvatar avatarId={player.avatarId} />
         </span>
         <span className="h-crime__player-name">{player.name}</span>
       </div>

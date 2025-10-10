@@ -5,7 +5,7 @@ import type { Item } from 'types/tdr';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
 import { TurnOrder } from 'components/players';
@@ -57,12 +57,12 @@ export function StepWaitPlaceItem({
         <Translate
           pt={
             <>
-              <AvatarName player={activePlayer} /> vai posicionar uma coisa
+              <PlayerAvatarName player={activePlayer} /> vai posicionar uma coisa
             </>
           }
           en={
             <>
-              <AvatarName player={activePlayer} /> will place an item
+              <PlayerAvatarName player={activePlayer} /> will place an item
             </>
           }
         />{' '}

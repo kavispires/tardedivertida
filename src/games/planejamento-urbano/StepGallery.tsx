@@ -13,7 +13,7 @@ import { AngryMayorIcon } from 'icons/AngryMayorIcon';
 import { ConeIcon } from 'icons/ConeIcon';
 import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 // Components
-import { AvatarName, IconAvatar } from 'components/avatars';
+import { PlayerAvatarName, IconAvatar } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';
 import { SlideShow } from 'components/slide-show';
 import { Step } from 'components/steps';
@@ -88,7 +88,7 @@ export function StepGallery({
 
           <div className="pu-gallery__label">
             <Translate pt="Plano do Engenheiro Chefe" en="Chief Engineer's Plan" />{' '}
-            <AvatarName player={activePlayer} />
+            <PlayerAvatarName player={activePlayer} />
           </div>
 
           <Cone

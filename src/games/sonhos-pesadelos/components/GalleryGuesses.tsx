@@ -5,7 +5,7 @@ import type { GamePlayers } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { StarPoints } from 'components/points';
 // Internal
 import type { GalleryEntry } from '../utils/types';
@@ -41,7 +41,9 @@ export function GalleryGuesses({ entry, players, correctGuessPoints }: GalleryGu
               <AntAvatar.Group>
                 {cardEntry.votes.map((playerId) => {
                   const player = players[playerId];
-                  return <Avatar key={playerId} id={player.avatarId} alt={player.name} size="small" />;
+                  return (
+                    <PlayerAvatar key={playerId} avatarId={player.avatarId} alt={player.name} size="small" />
+                  );
                 })}
               </AntAvatar.Group>
               {cardEntry.votes.length > 0 && cardEntry.isDream && (

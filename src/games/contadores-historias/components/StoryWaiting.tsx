@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
@@ -24,7 +24,7 @@ export function StoryWaiting({ storyteller, user, players, gameOrder, announceme
         <Translate pt="Aguarde..." en="Please wait..." />
       </StepTitle>
       <RuleInstruction type="wait">
-        <AvatarName player={storyteller} />{' '}
+        <PlayerAvatarName player={storyteller} />{' '}
         <Translate
           pt="está escrevendo uma história para essa rodada."
           en="is writing a story for this round."

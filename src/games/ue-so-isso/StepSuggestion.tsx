@@ -5,7 +5,7 @@ import type { GamePlayer } from 'types/player';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { DevButton } from 'components/debug';
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
 import { ControlledInputWriting } from 'components/input';
@@ -47,12 +47,12 @@ export function StepSuggestion({
         <Translate
           pt={
             <>
-              Escreva uma dica para <AvatarName player={guesser} />
+              Escreva uma dica para <PlayerAvatarName player={guesser} />
             </>
           }
           en={
             <>
-              Write a clue for <AvatarName player={guesser} />
+              Write a clue for <PlayerAvatarName player={guesser} />
             </>
           }
         />

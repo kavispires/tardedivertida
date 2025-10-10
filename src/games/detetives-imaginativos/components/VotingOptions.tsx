@@ -5,7 +5,7 @@ import { Button } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Components
-import { Avatar, AvatarName } from 'components/avatars';
+import { PlayerAvatar, PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 
@@ -48,15 +48,15 @@ export function VotingOptions({
               size="large"
               disabled={isAllDisabled || user?.vote || isLoading || user?.name === playerOption.name}
             >
-              <AvatarName player={playerOption} uppercase />
+              <PlayerAvatarName player={playerOption} uppercase />
             </Button>
             <div className="d-voting-options__vote-container">
               <Translate pt="Votos" en="Votes" />: {votedForPlayer.length}
               <ul className="d-voting-options__votes">
                 {votedForPlayer.map((vPlayer) => (
-                  <Avatar
+                  <PlayerAvatar
                     key={`voted-for-player-${vPlayer.id}`}
-                    id={vPlayer.avatarId}
+                    avatarId={vPlayer.avatarId}
                     size="small"
                     alt={vPlayer.name}
                   />

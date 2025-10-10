@@ -11,7 +11,7 @@ import { useLoading } from 'hooks/useLoading';
 import { BossIdeaIcon } from 'icons/BossIdeaIcon';
 import { MysteryBoxIcon } from 'icons/MysteryBoxIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
 import { DualTranslate, Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
@@ -124,14 +124,14 @@ export function StepPlaceGood({
           <Translate
             pt={
               <>
-                <AvatarName player={supervisor} size="small" /> é o(a) supervisor(a) do dia e colocará a
+                <PlayerAvatarName player={supervisor} size="small" /> é o(a) supervisor(a) do dia e colocará a
                 mercadoria no galpão.
               </>
             }
             en={
               <>
-                <AvatarName player={supervisor} /> is the supervisor of the day and will place the good in the
-                warehouse.
+                <PlayerAvatarName player={supervisor} /> is the supervisor of the day and will place the good
+                in the warehouse.
               </>
             }
           />

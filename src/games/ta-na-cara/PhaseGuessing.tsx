@@ -6,7 +6,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { AnonymousIcon } from 'icons/AnonymousIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -38,12 +38,12 @@ export function PhaseGuessing({ state, players, user }: PhaseProps) {
           <Translate
             pt={
               <>
-                O alvo é o(a) <AvatarName player={targetedPlayer} />!
+                O alvo é o(a) <PlayerAvatarName player={targetedPlayer} />!
               </>
             }
             en={
               <>
-                The target is <AvatarName player={targetedPlayer} />!
+                The target is <PlayerAvatarName player={targetedPlayer} />!
               </>
             }
           />

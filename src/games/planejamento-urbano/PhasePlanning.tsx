@@ -6,7 +6,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { MapBlueprintIcon } from 'icons/MapBlueprintIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { RoundAnnouncement } from 'components/round';
@@ -39,12 +39,12 @@ export function PhasePlanning({ state, players }: PhaseProps) {
         <Translate
           pt={
             <>
-              Para essa rodada, <AvatarName player={activePlayer} addressUser /> é o engenheiro chefe.
+              Para essa rodada, <PlayerAvatarName player={activePlayer} addressUser /> é o engenheiro chefe.
             </>
           }
           en={
             <>
-              In this round, <AvatarName player={activePlayer} addressUser /> is the chief engineer.
+              In this round, <PlayerAvatarName player={activePlayer} addressUser /> is the chief engineer.
             </>
           }
         />

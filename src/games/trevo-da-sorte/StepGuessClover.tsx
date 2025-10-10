@@ -5,7 +5,7 @@ import type { GamePlayer } from 'types/player';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -60,12 +60,12 @@ export function StepGuessClover({ clover, leaves, onSubmitGuess, activeCloverPla
         <Translate
           pt={
             <>
-              Adivinhação do trevo do(a) <AvatarName player={activeCloverPlayer} />
+              Adivinhação do trevo do(a) <PlayerAvatarName player={activeCloverPlayer} />
             </>
           }
           en={
             <>
-              Guessing <AvatarName player={activeCloverPlayer} />
+              Guessing <PlayerAvatarName player={activeCloverPlayer} />
               's clover
             </>
           }

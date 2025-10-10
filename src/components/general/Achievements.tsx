@@ -10,7 +10,7 @@ import type { GamePlayers } from 'types/player';
 import { getAnimation } from 'utils/animations';
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
 import { Instruction } from 'components/text';
@@ -88,7 +88,7 @@ export function Achievements({ players, achievements, reference, colorScheme }: 
                 <DualTranslate>{achievementObj.title ?? unknownText}</DualTranslate>
               </h4>
               <div className="achievement__avatar">
-                <Avatar id={player.avatarId} />
+                <PlayerAvatar avatarId={player.avatarId} />
               </div>
               <div className="achievement__name">{player.name}</div>
               {Boolean(achievementObj.description) && (

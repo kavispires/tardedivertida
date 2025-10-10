@@ -4,7 +4,7 @@ import { Space } from 'antd';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { AvatarCard } from 'components/avatars';
+import { PlayerAvatarCard } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
@@ -50,7 +50,7 @@ export const TrackMegamixWhoSaidThis = ({ track, onSubmitAnswer, user, players }
                 onClick={() => onSelect(playerId)}
                 disabled={isLoading || user.ready}
               >
-                <AvatarCard player={player} withName />
+                <PlayerAvatarCard player={player} withName />
               </TransparentButton>
             );
           })}

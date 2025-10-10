@@ -5,7 +5,7 @@ import type { Item } from 'types/tdr';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
@@ -65,12 +65,12 @@ export function StepEvaluate({
         <Translate
           pt={
             <>
-              <AvatarName player={judge} /> está avaliando a posição da coisa
+              <PlayerAvatarName player={judge} /> está avaliando a posição da coisa
             </>
           }
           en={
             <>
-              <AvatarName player={judge} /> is evaluating the thing's position
+              <PlayerAvatarName player={judge} /> is evaluating the thing's position
             </>
           }
         />

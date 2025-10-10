@@ -9,7 +9,7 @@ import { sortPlayers } from 'utils/helpers';
 // Icons
 import { ShooterIcon } from 'icons/ShooterIcon';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -59,7 +59,7 @@ export const TrackQuemNaoMata = ({ onSubmitAnswer, user, players }: TrackProps) 
                   className={clsx(index >= arr.length / 2 && 'qnm-shooter__reverse')}
                 />
                 <Button
-                  icon={<Avatar id={player.avatarId} size="small" />}
+                  icon={<PlayerAvatar avatarId={player.avatarId} size="small" />}
                   onClick={() => onSelect(player.id)}
                   type="primary"
                   loading={isLoading}

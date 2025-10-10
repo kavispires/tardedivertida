@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 
 type BadCluesPlayersListProps = {
   badCluesPlayersList: GamePlayer[];
@@ -12,7 +12,7 @@ export function BadCluesPlayersList({ badCluesPlayersList }: BadCluesPlayersList
     <span>
       {badCluesPlayersList.map((player, index) => (
         <span key={`bad-clue-${player.id}-${index}`}>
-          <AvatarName player={player} key={`bad-clue-${player.id}`} size="small" />
+          <PlayerAvatarName player={player} key={`bad-clue-${player.id}`} size="small" />
           {badCluesPlayersList.length > 0 && index < badCluesPlayersList.length - 1 ? ', ' : ''}
         </span>
       ))}

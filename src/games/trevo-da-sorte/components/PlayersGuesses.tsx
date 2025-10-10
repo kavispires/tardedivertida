@@ -6,7 +6,7 @@ import type { GamePlayers } from 'types/player';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Instruction } from 'components/text';
 // Internal
 import type { CloverObject, Leaves } from '../utils/types';
@@ -34,7 +34,7 @@ export function PlayersGuesses({
   const items = sortedPlayers.map((player) => {
     return {
       key: `${player.id}::tab`,
-      label: <AvatarName player={player} />,
+      label: <PlayerAvatarName player={player} />,
       children: (
         <Clover
           mode="result"

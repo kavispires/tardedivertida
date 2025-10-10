@@ -5,7 +5,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Icons
 import { LodgeIcon } from 'icons/LodgeIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
@@ -65,7 +65,7 @@ export function CurrentSkierBets({ players, user }: CurrentSkierBetsProps) {
         {playersList.map((player) => (
           <div key={player.id} className="lodge">
             <div className="lodge__icon">
-              <AvatarName player={player} />
+              <PlayerAvatarName player={player} />
             </div>
 
             <div className="lodge__bets">

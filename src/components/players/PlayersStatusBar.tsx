@@ -8,7 +8,7 @@ import { useGlobalState } from 'hooks/useGlobalState';
 // Utils
 import { getAnimationClass, sortPlayers } from 'utils/helpers';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 // Sass
 import './PlayersStatusBar.scss';
@@ -32,8 +32,8 @@ export function PlayersStatusBar({ players }: PlayersStatusBarProps) {
             <li className="players-status-bar__player" key={`players-status-bar-${player.id}`}>
               <Tooltip title={player.name} placement="left" trigger="hover">
                 <Badge dot color={player.ready ? 'green' : 'gray'}>
-                  <Avatar
-                    id={player.avatarId}
+                  <PlayerAvatar
+                    avatarId={player.avatarId}
                     alt={player.name}
                     size="small"
                     className={clsx(!player.ready && 'players-status-bar__avatar-not-ready')}

@@ -6,7 +6,7 @@ import type { GamePlayers } from 'types/player';
 import { useHost } from 'hooks/useHost';
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { AvatarCard } from 'components/avatars';
+import { PlayerAvatarCard } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
@@ -37,12 +37,12 @@ export function StepBossPlayerSelection({ players, onBossPlayerClick }: StepBoss
                   disabled={isLoading}
                   onClick={() => onBossPlayerClick({ bossId: player.id })}
                 >
-                  <AvatarCard key={`p-a-${player.id}`} player={player} withName addressUser />
+                  <PlayerAvatarCard key={`p-a-${player.id}`} player={player} withName addressUser />
                 </TransparentButton>
               );
             }
 
-            return <AvatarCard key={`p-a-${player.id}`} player={player} withName addressUser />;
+            return <PlayerAvatarCard key={`p-a-${player.id}`} player={player} withName addressUser />;
           })}
         </Space>
       </Instruction>

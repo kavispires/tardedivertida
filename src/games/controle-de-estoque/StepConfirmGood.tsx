@@ -9,7 +9,7 @@ import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { DualTranslate, Translate } from 'components/language';
 import { Step } from 'components/steps';
@@ -126,14 +126,14 @@ export function StepConfirmGood({
           <Translate
             pt={
               <>
-                <AvatarName player={supervisor} size="small" /> é o(a) supervisor(a) do dia e colocou a
+                <PlayerAvatarName player={supervisor} size="small" /> é o(a) supervisor(a) do dia e colocou a
                 mercadoria no galpão.
               </>
             }
             en={
               <>
-                <AvatarName player={supervisor} /> is the supervisor of the day and placed the good in the
-                warehouse.
+                <PlayerAvatarName player={supervisor} /> is the supervisor of the day and placed the good in
+                the warehouse.
               </>
             }
           />

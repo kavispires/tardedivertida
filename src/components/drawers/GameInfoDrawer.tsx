@@ -10,7 +10,7 @@ import type { GamePlayers } from 'types/player';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { DebugOnly } from 'components/debug';
 import { GameStrip } from 'components/general/GameBanner';
 import { Translate } from 'components/language';
@@ -71,7 +71,7 @@ export function GameInfoDrawer({ players, state, userId }: GameInfoDrawerProps) 
         {isAuthenticated && !isGuest && (
           <p>
             <Badge size="default" dot color="green">
-              <Avatar id={players?.[userId]?.avatarId} shape="square" size="small" />
+              <PlayerAvatar avatarId={players?.[userId]?.avatarId} shape="square" size="small" />
             </Badge>{' '}
             <Translate pt="Você está logado!" en="You are logged in!" />
           </p>

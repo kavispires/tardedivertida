@@ -7,7 +7,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 import { useLanguage } from 'hooks/useLanguage';
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -69,13 +69,14 @@ export function StepRanking({
             <Translate
               pt={
                 <>
-                  Todo mundo acertou! <AvatarName player={storyteller} />, da próxima vez, seja menos
+                  Todo mundo acertou! <PlayerAvatarName player={storyteller} />, da próxima vez, seja menos
                   óbvio(a).
                 </>
               }
               en={
                 <>
-                  Everybody guessed it right! <AvatarName player={storyteller} />, be less obvious next time.
+                  Everybody guessed it right! <PlayerAvatarName player={storyteller} />, be less obvious next
+                  time.
                 </>
               }
             />
@@ -84,12 +85,14 @@ export function StepRanking({
             <Translate
               pt={
                 <>
-                  Ninguém acertou! <AvatarName player={storyteller} />, da próxima vez, seja menos obscuro.
+                  Ninguém acertou! <PlayerAvatarName player={storyteller} />, da próxima vez, seja menos
+                  obscuro.
                 </>
               }
               en={
                 <>
-                  Nobody guessed it right! <AvatarName player={storyteller} />, next time be less obscure.
+                  Nobody guessed it right! <PlayerAvatarName player={storyteller} />, next time be less
+                  obscure.
                 </>
               }
             />
@@ -100,13 +103,13 @@ export function StepRanking({
               pt={
                 <>
                   Quem acertou ganha <PointsHighlight type="positive">3</PointsHighlight> pontos! Bom
-                  trabalho, <AvatarName player={storyteller} />.
+                  trabalho, <PlayerAvatarName player={storyteller} />.
                 </>
               }
               en={
                 <>
                   Whoever guessed it right got <PointsHighlight type="positive">3</PointsHighlight> points!
-                  Good job, <AvatarName player={storyteller} />
+                  Good job, <PlayerAvatarName player={storyteller} />
                 </>
               }
             />

@@ -11,7 +11,7 @@ import { useQueryParams } from 'hooks/useQueryParams';
 import { AVAILABLE_AVATAR_IDS, AVATARS } from 'utils/avatars';
 import { makeArray } from 'utils/helpers';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { ClubberAvatar } from 'components/avatars/ClubberAvatar';
 import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
 import { SuperHeroAvatar } from 'components/avatars/SuperHeroAvatar';
@@ -154,7 +154,7 @@ function AvatarsContent() {
               style={{ backgroundColor: avatar.color }}
             >
               <div style={{ overflow: 'hidden', textAlign: 'center' }}>[{avatar.id}]</div>
-              <Avatar id={avatar.id} size={64} />
+              <PlayerAvatar avatarId={avatar.id} size={64} />
               <div style={{ overflow: 'hidden', textAlign: 'center' }}>
                 <p>
                   {avatar.description.en}
@@ -176,7 +176,7 @@ function AvatarsContent() {
               className="sprites__avatar-grid-item"
               style={{ backgroundColor: avatar.color }}
             >
-              <Avatar id={avatar.id} size={64} />
+              <PlayerAvatar avatarId={avatar.id} size={64} />
               <div style={{ overflow: 'hidden', textAlign: 'center' }}>
                 <p>
                   {avatar.description.en}

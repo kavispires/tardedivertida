@@ -7,7 +7,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Icons
 import { StarIcon } from 'icons/StarIcon';
 // Components
-import { AvatarEntry, IconAvatar } from 'components/avatars';
+import { PlayerAvatarEntry, IconAvatar } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 import {
@@ -63,7 +63,7 @@ export function CreditsPage({
           <Translate pt="Criador" en="Creator" />
         </SlideShowLabel>
         <span className="uppercase">
-          <AvatarEntry player={creator} />
+          <PlayerAvatarEntry player={creator} />
         </span>
       </div>
 

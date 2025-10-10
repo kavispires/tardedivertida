@@ -6,7 +6,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
@@ -39,12 +39,12 @@ export function StepResults({ players, presenter, result, goToNextStep, announce
         <Translate
           pt={
             <>
-              Resultados para apresentador(a) <AvatarName player={presenter} />
+              Resultados para apresentador(a) <PlayerAvatarName player={presenter} />
             </>
           }
           en={
             <>
-              Results for presenter <AvatarName player={presenter} />
+              Results for presenter <PlayerAvatarName player={presenter} />
             </>
           }
         />

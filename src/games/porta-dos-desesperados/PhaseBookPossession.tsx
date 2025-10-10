@@ -8,7 +8,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { MagicBookIcon } from 'icons/MagicBookIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
 import { TurnOrder } from 'components/players';
@@ -75,9 +75,9 @@ export function PhaseBookPossession({ state, players }: PhaseProps<PhaseBookPoss
                 <>
                   Cada rodada um jogador é possuído pelo <BookHighlight>Livro que Tudo Sabe</BookHighlight>.
                   <br />
-                  <AvatarName player={possessed} addressUser /> vai escolher cartas que representam as páginas
-                  do livro para ajudar os outros jogadores a escolherem a porta correta pra ir para o próximo
-                  corredor.
+                  <PlayerAvatarName player={possessed} addressUser /> vai escolher cartas que representam as
+                  páginas do livro para ajudar os outros jogadores a escolherem a porta correta pra ir para o
+                  próximo corredor.
                 </>
               }
               en={
@@ -85,8 +85,9 @@ export function PhaseBookPossession({ state, players }: PhaseProps<PhaseBookPoss
                   Each round a player is possessed by{' '}
                   <BookHighlight>The Book That Knows It All</BookHighlight>.
                   <br />
-                  <AvatarName player={possessed} addressUser /> will choose cards representing the pages in
-                  the book to try to help the other players choose the correct door to move to the next level.
+                  <PlayerAvatarName player={possessed} addressUser /> will choose cards representing the pages
+                  in the book to try to help the other players choose the correct door to move to the next
+                  level.
                 </>
               }
             />

@@ -6,7 +6,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { BarChartIcon } from 'icons/BarChartIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { TurnOrder } from 'components/players';
@@ -40,12 +40,12 @@ export function PhaseOrdering({ state, players }: PhaseProps) {
         <Translate
           pt={
             <>
-              O juiz da rodada é <AvatarName player={activePlayer} addressUser />
+              O juiz da rodada é <PlayerAvatarName player={activePlayer} addressUser />
             </>
           }
           en={
             <>
-              The judge for the round is <AvatarName player={activePlayer} addressUser />
+              The judge for the round is <PlayerAvatarName player={activePlayer} addressUser />
             </>
           }
         />

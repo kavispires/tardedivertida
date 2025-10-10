@@ -6,7 +6,7 @@ import { QuestionIcon } from 'icons/QuestionIcon';
 import { TrickOrTreatIcon } from 'icons/TrickOrTreatIcon';
 import { WalkIcon } from 'icons/WalkIcon';
 // Components
-import { AvatarStrip, IconAvatar } from 'components/avatars';
+import { PlayerAvatarStrip, IconAvatar } from 'components/avatars';
 import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
@@ -22,7 +22,7 @@ export function PlayerStats({ user, omitDecision = false }: PlayerStatsProps) {
   return (
     <FloatingHand title={<Translate pt="Informações" en="Stats" />} icon={<TrickOrTreatIcon />}>
       <div className="n-player-stats">
-        <AvatarStrip player={user} withName size="small" />
+        <PlayerAvatarStrip player={user} withName size="small" />
         <div className="n-player-stats__decision">
           <DecisionIcon decision={user.decision} omitDecision={omitDecision} />
         </div>

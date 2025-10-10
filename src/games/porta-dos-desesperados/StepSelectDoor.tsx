@@ -11,7 +11,7 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { getAnimationClass, removeDuplicates } from 'utils/helpers';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { SendButton } from 'components/buttons';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
@@ -107,8 +107,8 @@ export function StepSelectDoor({
         <Translate
           pt={
             <>
-              O livro contém dicas dadas por <AvatarName player={possessed} /> que ainda está possuído pelo
-              livro e não pode falar.
+              O livro contém dicas dadas por <PlayerAvatarName player={possessed} /> que ainda está possuído
+              pelo livro e não pode falar.
               <br />
               Vocês tem{' '}
               <TimeHighlight>{trap === TRAPS.HALF_TIME ? ROUND_DURATION / 2 : ROUND_DURATION}</TimeHighlight>{' '}
@@ -124,8 +124,8 @@ export function StepSelectDoor({
           }
           en={
             <>
-              The book contains hints given by <AvatarName player={possessed} /> who is still possessed by the
-              book and can't speak.
+              The book contains hints given by <PlayerAvatarName player={possessed} /> who is still possessed
+              by the book and can't speak.
               <br />
               You have{' '}
               <TimeHighlight>{trap === TRAPS.HALF_TIME ? ROUND_DURATION / 2 : ROUND_DURATION}</TimeHighlight>{' '}

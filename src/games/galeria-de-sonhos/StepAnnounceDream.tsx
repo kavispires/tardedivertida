@@ -12,7 +12,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 import { getAnimation } from 'utils/animations';
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { HostNextPhaseButton } from 'components/host';
 import { ImageCard } from 'components/image-cards';
@@ -82,7 +82,7 @@ export function StepAnnounceDream({
             backgroundColor: getAvatarColorById(lastActivePlayer.avatarId),
           }}
         >
-          <AvatarName player={lastActivePlayer} size="large" />
+          <PlayerAvatarName player={lastActivePlayer} size="large" />
           <Translate pt="escolheu visitar o sonho" en="chose to visit the dream" />:
         </header>
         <div className="g-dream-result__card">
@@ -141,14 +141,14 @@ export function StepAnnounceDream({
                       <Translate
                         pt={
                           <>
-                            <AvatarName player={playerInNightmare} /> foi ganancioso(a) não conseguiu usar
-                            todos os sonhos.
+                            <PlayerAvatarName player={playerInNightmare} /> foi ganancioso(a) não conseguiu
+                            usar todos os sonhos.
                           </>
                         }
                         en={
                           <>
-                            <AvatarName player={playerInNightmare} /> was too greedy and wasn't able to use of
-                            all their dreams.
+                            <PlayerAvatarName player={playerInNightmare} /> was too greedy and wasn't able to
+                            use of all their dreams.
                           </>
                         }
                       />
@@ -157,13 +157,13 @@ export function StepAnnounceDream({
                         pt={
                           <>
                             Não há mais jogadores pra dar match com{' '}
-                            <AvatarName player={players[gameOrder[0]]} />
+                            <PlayerAvatarName player={players[gameOrder[0]]} />
                           </>
                         }
                         en={
                           <>
                             There are no players to match anymore with{' '}
-                            <AvatarName player={players[gameOrder[0]]} />
+                            <PlayerAvatarName player={players[gameOrder[0]]} />
                           </>
                         }
                       />
@@ -176,7 +176,7 @@ export function StepAnnounceDream({
             <Space align="center" className="full-width padding" direction="vertical">
               <p className="center">
                 <Translate pt="Próximo jogador:" en="Next player:" />
-                <AvatarName player={activePlayer} addressUser />
+                <PlayerAvatarName player={activePlayer} addressUser />
               </p>
 
               <TimedButton

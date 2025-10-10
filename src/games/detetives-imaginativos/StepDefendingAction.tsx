@@ -9,7 +9,7 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { getAnimationClass, getRandomItem } from 'utils/helpers';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TurnOrder } from 'components/players';
@@ -78,8 +78,12 @@ export function StepDefendingAction({
       </StepTitle>
 
       <RuleInstruction type="action">
-        <AvatarName key={currentPlayer.id} player={currentPlayer} className={getAnimationClass('tada')} />,{' '}
-        <Translate pt="explique porque você escolheu as cartas." en="explain why you chose your cards." />
+        <PlayerAvatarName
+          key={currentPlayer.id}
+          player={currentPlayer}
+          className={getAnimationClass('tada')}
+        />
+        , <Translate pt="explique porque você escolheu as cartas." en="explain why you chose your cards." />
         <Translate
           pt=" Quando terminar sua defesa, aperte concluir."
           en=" When you're done, press 'End Defense'."

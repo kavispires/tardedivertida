@@ -7,7 +7,7 @@ import type { UseStep } from 'hooks/useStep';
 // Utils
 import { pluralize } from 'utils/helpers';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -61,12 +61,12 @@ export function StepReveal({
           <Translate
             pt={
               <>
-                <AvatarName player={targetedPlayer} /> foi revelado!
+                <PlayerAvatarName player={targetedPlayer} /> foi revelado!
               </>
             }
             en={
               <>
-                <AvatarName player={targetedPlayer} /> was revealed!
+                <PlayerAvatarName player={targetedPlayer} /> was revealed!
               </>
             }
           />
@@ -103,14 +103,14 @@ export function StepReveal({
           <Translate
             pt={
               <>
-                A identidade de <AvatarName player={targetedPlayer} /> permanecerá desconhecida. Jogadores
-                podem tentar adivinhar novamente na próxima rodada.
+                A identidade de <PlayerAvatarName player={targetedPlayer} /> permanecerá desconhecida.
+                Jogadores podem tentar adivinhar novamente na próxima rodada.
               </>
             }
             en={
               <>
-                The identity remains unknown for <AvatarName player={targetedPlayer} />. Players may try again
-                next round.
+                The identity remains unknown for <PlayerAvatarName player={targetedPlayer} />. Players may try
+                again next round.
               </>
             }
           />

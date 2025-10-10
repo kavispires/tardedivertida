@@ -7,7 +7,7 @@ import type { TextCard } from 'types/tdr';
 // Utils
 import { getAnimation } from 'utils/animations';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TurnOrder, WaitingRoom } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
@@ -36,12 +36,12 @@ export function StepWaitForPresenter({
           <Translate
             pt={
               <>
-                Aguarde enquanto <AvatarName player={presenter} /> cria as métricas.
+                Aguarde enquanto <PlayerAvatarName player={presenter} /> cria as métricas.
               </>
             }
             en={
               <>
-                Wait while <AvatarName player={presenter} /> creates the metrics.
+                Wait while <PlayerAvatarName player={presenter} /> creates the metrics.
               </>
             }
           />

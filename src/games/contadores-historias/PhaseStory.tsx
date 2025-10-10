@@ -6,7 +6,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { FairyTaleIcon } from 'icons/FairyTaleIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { ImageCardPreloadHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
@@ -39,13 +39,13 @@ export function PhaseStory({ state, players, user }: PhaseProps) {
         <Translate
           pt={
             <>
-              Para essa rodada, <AvatarName player={storyteller} addressUser size="small" /> será o(a)
+              Para essa rodada, <PlayerAvatarName player={storyteller} addressUser size="small" /> será o(a)
               Contador(a) de Histórias.
             </>
           }
           en={
             <>
-              For this round, <AvatarName player={storyteller} addressUser /> will be the Storyteller.
+              For this round, <PlayerAvatarName player={storyteller} addressUser /> will be the Storyteller.
             </>
           }
         />

@@ -1,10 +1,11 @@
 import { orderBy } from 'lodash';
+import { useMemo } from 'react';
 // Ant Design Resources
-import { Avatar as AntAvatar, type AvatarProps, Tooltip } from 'antd';
+import { Avatar, type AvatarProps, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Internal
-import { Avatar } from './Avatar';
+import { PlayerAvatar } from './PlayerAvatar';
 
 type AvatarGroupProps = {
   list: GamePlayer[];
@@ -24,15 +25,18 @@ export function AvatarGroup({
   tooltipPrefix = '',
   ...avatarProps
 }: AvatarGroupProps) {
-  const players = orderBy(list, [(v) => v.id === user?.id, 'name'], ['desc', 'asc']);
+  const players = useMemo(
+    () => orderBy(list, [(v) => v.id === user?.id, 'name'], ['desc', 'asc']),
+    [list, user],
+  );
 
   return (
-    <AntAvatar.Group max={{ count: maxCount }} size={size}>
+    <Avatar.Group max={{ count: maxCount }} size={size}>
       {players.map((player) => (
         <Tooltip key={`avatar-group-${player.id}`} title={`${tooltipPrefix}${player.name}`} trigger="hover">
-          <Avatar id={player.avatarId} alt={player.name} size={size} {...avatarProps} />
+          <PlayerAvatar avatarId={player.avatarId} alt={player.name} size={size} {...avatarProps} />
         </Tooltip>
       ))}
-    </AntAvatar.Group>
+    </Avatar.Group>
   );
 }

@@ -6,7 +6,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { SleepIcon } from 'icons/SleepIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { WaitingRoom } from 'components/players';
@@ -62,12 +62,12 @@ export function PhaseWordSelection({ state, players }: PhaseProps) {
               <Translate
                 pt={
                   <>
-                    <AvatarName player={scout} /> está escolhendo o tema.
+                    <PlayerAvatarName player={scout} /> está escolhendo o tema.
                   </>
                 }
                 en={
                   <>
-                    <AvatarName player={scout} /> is choosing the theme.
+                    <PlayerAvatarName player={scout} /> is choosing the theme.
                   </>
                 }
               />

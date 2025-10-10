@@ -3,7 +3,7 @@ import { random } from 'lodash';
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
-import { AvatarCard, AvatarName, AvatarStrip } from 'components/avatars';
+import { PlayerAvatarCard, PlayerAvatarName, PlayerAvatarStrip } from 'components/avatars';
 import { ClubberAvatar } from 'components/avatars/ClubberAvatar';
 import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
 import { SuperHeroAvatar } from 'components/avatars/SuperHeroAvatar';
@@ -39,9 +39,9 @@ export function AvatarsTest({ onResult, step }: TestStepProps) {
       </Instruction>
 
       <SpaceContainer wrap className="full-width" vertical>
-        <AvatarCard player={player} />
-        <AvatarStrip player={player} />
-        <AvatarName player={player} />
+        <PlayerAvatarCard player={player} />
+        <PlayerAvatarStrip player={player} />
+        <PlayerAvatarName player={player} />
       </SpaceContainer>
 
       <SpaceContainer wrap className="full-width" vertical>

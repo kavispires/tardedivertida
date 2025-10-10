@@ -7,7 +7,7 @@ import type { TextCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { AvatarStrip } from 'components/avatars';
+import { PlayerAvatarStrip } from 'components/avatars';
 import { EmojiCard } from 'components/cards/EmojiCard';
 import { DualTranslate } from 'components/language';
 // Internal
@@ -29,7 +29,7 @@ export function Scenarios({ scenarios, reference, player }: ScenarioCardProps) {
 
   return (
     <Space className={clsx(player ? 'scenarios-results' : 'scenarios')}>
-      {!!player && <AvatarStrip player={player} />}
+      {!!player && <PlayerAvatarStrip player={player} />}
       {scenarios.map((entry, index) => (
         <div key={`position-${index}`} className="scenario" style={{ width: `${width}px` }}>
           <Avatar>{index + 1}</Avatar>
@@ -40,7 +40,7 @@ export function Scenarios({ scenarios, reference, player }: ScenarioCardProps) {
           {entry && <div className="scenario__card">{entry.text}</div>}
         </div>
       ))}
-      {!!player && <AvatarStrip player={player} />}
+      {!!player && <PlayerAvatarStrip player={player} />}
     </Space>
   );
 }
