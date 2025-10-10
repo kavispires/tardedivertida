@@ -1,66 +1,80 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
+import { useSlideShow } from 'hooks/useSlideShow';
 import { useStep } from 'hooks/useStep';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
-import { SpotlightIcon } from 'icons/SpotlightIcon';
+import { MirrorIcon } from 'icons/MirrorIcon';
 // Components
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
-import { TA_NA_CARA_PHASES } from './utils/constants';
-import { StepReveal } from './StepReveal';
+import { SLIDE_DURATION, TA_NA_CARA_PHASES } from './utils/constants';
+import type { PhaseRevealState } from './utils/types';
 import { StepRanking } from './StepRanking';
-// Icons
+import { StepGallery } from './StepGallery';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
-export function PhaseReveal({ state, players, user }: PhaseProps) {
-  const { step, goToNextStep, goToPreviousStep } = useStep();
-  const [targetedPlayer] = useWhichPlayerIsThe('targetId', state, players);
+export function PhaseReveal({ players, state, user }: PhaseProps<PhaseRevealState>) {
+  const { step, goToPreviousStep, goToNextStep } = useStep(0);
 
-  const announcement = (
-    <PhaseAnnouncement
-      icon={<SpotlightIcon />}
-      title={<Translate pt="E a pessoa foi descoberta?" en="Was the person revealed?" />}
-      currentRound={state?.round?.current}
-      type="overlay"
-      duration={4}
-    >
-      <Instruction>
-        <Translate pt="Quem? O que? Esse?" en="Who? What? That?" />
-      </Instruction>
-    </PhaseAnnouncement>
-  );
+  const slideShowConfig = useSlideShow({
+    length: state.gallery.length,
+    slideDuration: SLIDE_DURATION,
+    onExpire: goToNextStep,
+  });
+
+  const onGoBack = () => {
+    slideShowConfig.reset();
+    goToPreviousStep();
+  };
 
   return (
     <PhaseContainer phase={state?.phase} allowedPhase={TA_NA_CARA_PHASES.REVEAL}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <StepReveal
-          announcement={announcement}
-          players={players}
-          user={user}
-          turnOrder={state.turnOrder}
-          charactersDict={state.charactersDict}
-          charactersIds={state.charactersIds}
-          questionsDict={state.questionsDict}
-          activePlayerId={state.activePlayerId}
-          targetedPlayer={targetedPlayer}
-          points={state.points ?? 1}
-          correct={state.correct}
-          goToNextStep={goToNextStep}
-          result={state.result}
-        />
+        <PhaseAnnouncement
+          icon={<MirrorIcon />}
+          title={<Translate pt="Resultados" en="Results" />}
+          currentRound={state?.round?.current}
+          type="block"
+          unskippable
+          duration={state.round.current === 1 ? 7 : 3}
+          onClose={goToNextStep}
+        >
+          <Instruction>
+            <Translate
+              pt={
+                <>
+                  São <PointsHighlight>5 pontos</PointsHighlight> por identidades corretas e{' '}
+                  <PointsHighlight>2 pontos</PointsHighlight> por jogadores que identificaram você
+                  corretamente
+                </>
+              }
+              en={
+                <>
+                  It's <PointsHighlight>5 points</PointsHighlight> for correct identities and{' '}
+                  <PointsHighlight>2 points</PointsHighlight> for players who identified you correctly
+                </>
+              }
+            />
+          </Instruction>
+        </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <StepRanking
+        <StepGallery
           players={players}
-          round={state.round}
-          ranking={state.ranking}
-          goToPreviousStep={goToPreviousStep}
+          user={user}
+          identitiesDict={state.identitiesDict}
+          questionsDict={state.questionsDict}
+          gallery={state.gallery}
+          slideShowConfig={slideShowConfig}
         />
+
+        {/* Step 2 */}
+        <StepRanking players={players} ranking={state.ranking} round={state.round} onGoBack={onGoBack} />
       </StepSwitcher>
     </PhaseContainer>
   );

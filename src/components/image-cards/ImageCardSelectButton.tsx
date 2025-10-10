@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 // Ant Design Resources
 import { UpCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
@@ -5,15 +6,35 @@ import { Button } from 'antd';
 import { Translate } from 'components/language';
 
 type ImageCardSelectButtonProps = {
-  isSelected?: boolean;
+  /**
+   * The ID of the card
+   */
   cardId: ImageCardId;
-  onClick: GenericFunction;
+  /**
+   * Callback function to handle card selection
+   * @param cardId The ID of the card
+   */
+  onClick: (cardId: ImageCardId) => void;
+  /**
+   * Flag indicating whether the card is selected
+   */
+  isSelected?: boolean;
   /**
    * Optional custom class name
    */
   className?: string;
+  /**
+   * Label for the select button
+   */
   selectLabel?: string;
+  /**
+   * Label for the deselect button
+   */
   deselectLabel?: string;
+  /**
+   * Flag indicating whether the button is standalone (not part of a ImageCardButton container)
+   */
+  standalone?: boolean;
 };
 
 export function ImageCardSelectButton({
@@ -22,13 +43,14 @@ export function ImageCardSelectButton({
   selectLabel,
   deselectLabel,
   isSelected = false,
+  standalone = false,
 }: ImageCardSelectButtonProps) {
   return (
     <Button
       shape="round"
       size="small"
       ghost={!isSelected}
-      className="image-card-select-button"
+      className={clsx('image-card-select-button', { standalone })}
       onClick={() => onClick(cardId)}
     >
       <UpCircleOutlined />

@@ -50,8 +50,8 @@
     "max": 10
   },
   "duration": {
-    "base": 0,
-    "perPlayer": 0
+    "base": 20,
+    "perPlayer": 1
   },
   "tags": ["cooperative", "turn-based", "guessing", "discussion", "achievements"],
   "options": [

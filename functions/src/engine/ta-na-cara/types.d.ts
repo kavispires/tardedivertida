@@ -5,7 +5,11 @@ export type TaNaCaraOptions = {
   /**
    * Allow nsfw traits
    */
-  nsfw?: boolean;
+  nsfw: boolean;
+  /**
+   * Vibes mode
+   */
+  vibesMode: boolean;
 } & SuspectCardsOptions;
 
 export interface CharacterFace extends SuspectCard {
@@ -18,6 +22,16 @@ export interface ResourceData {
   allSuspects: SuspectCard[];
 }
 
+export type GalleryEntry = {
+  playerId: PlayerId;
+  identityId: CardId;
+  answers: BooleanDictionary;
+  correctPlayersIds: PlayerId[];
+  wrongVotes: {
+    identityId: CardId;
+    playerIds: PlayerId[];
+  }[];
+};
 export interface TaNaCaraStore extends DefaultStore<TaNaCaraOptions> {
   [key: string]: any;
 }

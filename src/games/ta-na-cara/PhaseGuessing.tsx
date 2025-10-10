@@ -2,86 +2,47 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
-import { AnonymousIcon } from 'icons/AnonymousIcon';
+import { GuessIcon } from 'icons/GuessIcon';
 // Components
-import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
 // Internal
-import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
+import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
 import { TA_NA_CARA_PHASES } from './utils/constants';
-import { StepGuessPlayer } from './StepGuessPlayer';
-import { StepWaitingForGuesses } from './StepWaitingForGuesses';
+import type { PhaseGuessingState } from './utils/types';
+import { StepMakeYourGuesses } from './StepMakeYourGuesses';
 
-export function PhaseGuessing({ state, players, user }: PhaseProps) {
+export function PhaseGuessing({ state, players, user, meta }: PhaseProps<PhaseGuessingState>) {
   const { step, setStep } = useStep();
-  const [targetedPlayer, isUserTheTargetedPlayer] = useWhichPlayerIsThe('targetId', state, players);
-  const onSubmitGuess = useOnSubmitGuessAPIRequest(setStep);
+
+  const onSubmitGuesses = useOnSubmitGuessesAPIRequest(setStep);
 
   const announcement = (
     <PhaseAnnouncement
-      icon={<AnonymousIcon />}
-      title={<Translate pt="Quem é essa pessoa?" en="Who's that?" />}
+      icon={<GuessIcon />}
+      title={<Translate pt="Quem é quem?" en="Who is who?" />}
       currentRound={state?.round?.current}
       type="overlay"
       duration={4}
-    >
-      <Instruction>
-        {isUserTheTargetedPlayer ? (
-          <Translate pt="Você está na berlinda!" en="You are the target!" />
-        ) : (
-          <Translate
-            pt={
-              <>
-                O alvo é o(a) <AvatarName player={targetedPlayer} />!
-              </>
-            }
-            en={
-              <>
-                The target is <AvatarName player={targetedPlayer} />!
-              </>
-            }
-          />
-        )}
-      </Instruction>
-    </PhaseAnnouncement>
+    />
   );
 
   return (
     <PhaseContainer phase={state?.phase} allowedPhase={TA_NA_CARA_PHASES.GUESSING}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <ViewOr condition={!isUserTheTargetedPlayer}>
-          <StepGuessPlayer
-            announcement={announcement}
-            players={players}
-            user={user}
-            turnOrder={state.turnOrder}
-            charactersDict={state.charactersDict}
-            charactersIds={state.charactersIds}
-            questionsDict={state.questionsDict}
-            onSubmitGuess={onSubmitGuess}
-            activePlayerId={state.activePlayerId}
-            targetedPlayer={targetedPlayer}
-            points={state.points ?? 1}
-          />
-
-          <StepWaitingForGuesses
-            announcement={announcement}
-            players={players}
-            user={user}
-            turnOrder={state.turnOrder}
-            charactersDict={state.charactersDict}
-            charactersIds={state.charactersIds}
-            questionsDict={state.questionsDict}
-            activePlayerId={state.activePlayerId}
-          />
-        </ViewOr>
+        <StepMakeYourGuesses
+          gameId={meta.gameId}
+          players={players}
+          user={user}
+          grid={state.grid}
+          identitiesDict={state.identitiesDict}
+          questionsDict={state.questionsDict}
+          announcement={announcement}
+          onSubmitGuesses={onSubmitGuesses}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );
