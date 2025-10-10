@@ -19,7 +19,7 @@ export function TreeImage({ id, text, width = 100, className }: TreeImageProps) 
 
     return (
       <div className={clsx('tree-card', className)} style={{ width: `${width}px` }}>
-        <Sprite source={source} id={itemId} width={width} title={text} />
+        <Sprite source={source} spriteId={itemId} width={width} title={text} />
         <Tooltip title={text}>
           <div className="tree-card__text">{text}</div>
         </Tooltip>

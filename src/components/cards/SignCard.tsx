@@ -41,7 +41,7 @@ export function SignCard({
       className={clsx('sign-card', className)}
       style={{ width: `${width}px`, height: `${width}px`, ...divPadding }}
     >
-      <Sprite source="alien-signs" id={`sign-${id}`} width={width} padding={padding} />
+      <Sprite source="alien-signs" spriteId={`sign-${id}`} width={width} padding={padding} />
     </div>
   );
 }
@@ -55,5 +55,5 @@ export function SignSprite({
   ...props
 }: Pick<SignCardProps, 'id' | 'width'> & ElementProps) {
   const signId = id.startsWith('sign') ? id : `sign-${id}`;
-  return <Sprite source="alien-signs" id={signId} width={width} padding={0} {...props} />;
+  return <Sprite source="alien-signs" spriteId={signId} width={width} padding={0} {...props} />;
 }
