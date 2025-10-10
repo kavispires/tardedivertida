@@ -12,7 +12,7 @@ export function VoteComunicacaoAlienigena({ playersList }: VoteComponentProps) {
         <div key={`vote-${player.id}`} className="player-vote">
           <Avatar id={player.avatarId} />
           <div className="player-vote__name">{player.name}</div>
-          <ItemCard id={String(player.data.value)} width={80} className="d-table__image-card" />
+          <ItemCard itemId={String(player.data.value)} width={80} className="d-table__image-card" />
         </div>
       ))}
     </SpacePlayerCheckWrapper>

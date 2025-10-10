@@ -25,7 +25,7 @@ export function PlayerGuess({ item, currentGuess, activePlayer }: PlayerGuessPro
       <AvatarCard player={activePlayer} withName addressUser withRoundCorners />
       <SpeechBubble shadow size="medium">
         <Flex gap={6} justify="center" align="center" style={{ height: '100%' }} className="contained">
-          <ItemCard id={item.id} text={item.name} width={100} className="q-player-guess-bubble" />{' '}
+          <ItemCard itemId={item.id} text={item.name} width={100} className="q-player-guess-bubble" />{' '}
           <IconAvatar icon={<ArrowIcon />} size="small" />
           <SelectedAreasCircles selectedArea={currentGuess.suggestedArea} size={50} />
         </Flex>

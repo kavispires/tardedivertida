@@ -59,7 +59,7 @@ export function SelectableObjectsGrid({
             >
               <Badge count={item.inquiries} color="orange" title={dualTranslate(BADGE_INSTRUCTION)}>
                 <ItemCard
-                  id={`${item.id}`}
+                  itemId={`${item.id}`}
                   className={clsx(item.offerings.length && 'objects-grid__item-offered')}
                   title={item.name ? dualTranslate(item.name) : undefined}
                   width={width}
@@ -82,7 +82,7 @@ export function SelectableObjectsGrid({
             >
               <Badge count={item.inquiries} color="orange" title={dualTranslate(BADGE_INSTRUCTION)}>
                 <ItemCard
-                  id={`${item.id}`}
+                  itemId={`${item.id}`}
                   className={clsx(item.offerings.length && 'objects-grid__item-offered')}
                   title={item.name ? dualTranslate(item.name) : undefined}
                   width={width}

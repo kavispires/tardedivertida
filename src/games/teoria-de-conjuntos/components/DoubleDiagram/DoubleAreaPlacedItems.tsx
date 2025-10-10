@@ -173,7 +173,7 @@ export function DoubleAreaPlacedItems({ areaKey, diagramArea, containerWidth }: 
             style={{ left: `${left}px`, top: `${top}px` }}
             {...getAnimation('bounceIn', { delay: index * 0.1 })}
           >
-            <ItemCard id={itemId} width={itemWidth} className="bare-item" padding={0} />
+            <ItemCard itemId={itemId} width={itemWidth} className="bare-item" padding={0} />
           </motion.span>
         );
       })

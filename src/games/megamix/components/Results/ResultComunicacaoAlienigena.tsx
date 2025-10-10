@@ -19,7 +19,7 @@ export function ResultComunicacaoAlienigena({ winningValues }: ResultComponentPr
       <div className="track-result-values__cards">
         {winningValues.map((cardId) => (
           <ItemCard
-            id={String(cardId)}
+            itemId={String(cardId)}
             key={`table-focus-${cardId}`}
             width={80}
             className="d-table__image-card"

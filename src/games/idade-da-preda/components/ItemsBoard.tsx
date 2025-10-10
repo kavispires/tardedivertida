@@ -45,7 +45,7 @@ export function ItemsBoard({ items, selectedItems = [], onSelectItem, currentAge
             >
               <ItemCard
                 key={item.id}
-                id={item.id}
+                itemId={item.id}
                 title={dualTranslate(item.name)}
                 width={itemWidth}
                 className={clsx({

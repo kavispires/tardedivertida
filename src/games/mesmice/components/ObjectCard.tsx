@@ -11,7 +11,7 @@ type ObjectCardProps = {
 export function ObjectCard({ item }: ObjectCardProps) {
   return (
     <div className="object-card">
-      <ItemCard id={item.id} />
+      <ItemCard itemId={item.id} />
       <span className="object-card__name">
         <DualTranslate>{item.name}</DualTranslate>
       </span>

@@ -89,7 +89,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
                   {attribute.itemsIds.map((itemId) => (
                     <DivButton key={itemId}>
                       <DailyItem
-                        id={itemId}
+                        itemId={itemId}
                         width={width - 12}
                         className="alien-attributes__item"
                         padding={0}
@@ -151,7 +151,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
                       className="mt-1"
                       disabled={isComplete}
                     >
-                      <DailyItem id={selected} width={isLose ? width / 2 : width} padding={0} />
+                      <DailyItem itemId={selected} width={isLose ? width / 2 : width} padding={0} />
                     </TransparentButton>
                   ) : (
                     <TransparentButton
@@ -169,7 +169,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
 
                   {isComplete && (
                     <DailyItem
-                      id={request.itemId}
+                      itemId={request.itemId}
                       width={width}
                       padding={6}
                       className={clsx('alien-request__answer mt-2', getAnimationClass('zoomIn'))}
@@ -186,7 +186,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
                   {guess.map((itemId) => (
                     <DailyItem
                       key={itemId}
-                      id={itemId}
+                      itemId={itemId}
                       width={Math.max(width / 2, 40)}
                       padding={3}
                       className="alien-requests__previous-item mx-2"
@@ -219,7 +219,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
                 disabled={isComplete || isReady || selection.includes(itemId)}
                 className="alien-items__item-button"
               >
-                <DailyItem id={itemId} width={width} padding={0} />
+                <DailyItem itemId={itemId} width={width} padding={0} />
               </TransparentButton>
             ))}
           </SpaceContainer>
@@ -236,7 +236,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
                   {guess.map((itemId) => (
                     <DailyItem
                       key={itemId}
-                      id={itemId}
+                      itemId={itemId}
                       width={Math.max(width / 2, 40)}
                       padding={0}
                       className="alien-requests__previous-item"

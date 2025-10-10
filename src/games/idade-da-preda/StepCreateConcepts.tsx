@@ -208,7 +208,7 @@ export function StepCreateConcepts({
         />
         <Flex justify="center" align="center" className="mt-2" gap={12}>
           {user.hand.map((item: Item) => (
-            <ItemCard key={item.id} id={item.id} title={dualTranslate(item.name)} width={48} />
+            <ItemCard key={item.id} itemId={item.id} title={dualTranslate(item.name)} width={48} />
           ))}
         </Flex>
         <Translate

@@ -44,7 +44,7 @@ export function EvaluationModal({ item, onSubmitEvaluation, solutions, onCancel 
       </Typography.Paragraph>
 
       <Flex justify="center">
-        <ItemCard id={item.id} text={item.name} width={120} />
+        <ItemCard itemId={item.id} text={item.name} width={120} />
       </Flex>
 
       <Divider />

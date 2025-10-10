@@ -89,7 +89,7 @@ export function ResultsModalContent({
           {requests.map((request, index) => {
             return (
               <motion.div key={request.itemId} {...getAnimation('fadeIn', { delay: index * 0.2 })}>
-                <DailyItem id={request.itemId} width={width} padding={0} className="transparent" />
+                <DailyItem itemId={request.itemId} width={width} padding={0} className="transparent" />
               </motion.div>
             );
           })}

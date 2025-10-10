@@ -109,7 +109,7 @@ export function StepNameAThing({
               activeClass="idp-selected"
               active={selectedItem?.id === item.id}
             >
-              <ItemCard key={item.id} id={item.id} width={itemWidth} title={dualTranslate(item.name)} />
+              <ItemCard key={item.id} itemId={item.id} width={itemWidth} title={dualTranslate(item.name)} />
             </TransparentButton>
           ))}
         </Flex>

@@ -23,7 +23,7 @@ type EmojiCardProps = {
    * Optional class name
    */
   className?: string;
-};
+} & ElementProps;
 
 /**
  * An emoji card component.
@@ -33,6 +33,7 @@ export function EmojiCard({
   width = DEFAULT_SPRITE_SIZE,
   padding = DEFAULT_PADDING,
   className,
+  ...rest
 }: EmojiCardProps) {
   const id = emojiId.startsWith('emoji') ? emojiId : `emoji-${emojiId}`;
 
@@ -40,8 +41,9 @@ export function EmojiCard({
 
   return (
     <div
+      {...rest}
       className={clsx('emoji-card', className)}
-      style={{ width: `${width}px`, height: `${width}px`, ...divPadding }}
+      style={{ ...rest.style, width: `${width}px`, height: `${width}px`, ...divPadding }}
     >
       <Sprite source="emojis" spriteId={id} width={width} padding={padding} />
     </div>

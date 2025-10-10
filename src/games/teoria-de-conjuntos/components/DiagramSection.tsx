@@ -142,7 +142,7 @@ function CurrentItem({
       }
     >
       <ItemCard
-        id={currentItem.id}
+        itemId={currentItem.id}
         width={100}
         className={clsx(
           'floating-item__item',
@@ -242,7 +242,7 @@ function SelectedAreaItems({
             onConfirm={() => reevaluation?.onOpenFixModal(itemId, areaKey)}
           >
             <div>
-              <ItemCard key={itemId} id={itemId} width={84} text={items[itemId].name} />
+              <ItemCard key={itemId} itemId={itemId} width={84} text={items[itemId].name} />
             </div>
           </Popconfirm>
         ))}

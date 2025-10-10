@@ -164,7 +164,7 @@ export function StepPlaceItem({
         contained
       >
         <ItemCard
-          id={selectedItemId ?? ''}
+          itemId={selectedItemId ?? ''}
           width={100}
           text={items[selectedItemId ?? '']?.name}
           className={getAnimationClass('pulse', {
@@ -271,7 +271,7 @@ export function StepPlaceItem({
               }}
               active={itemId === selectedItem.id}
             >
-              <ItemCard id={itemId} width={100} text={items[itemId]?.name} />
+              <ItemCard itemId={itemId} width={100} text={items[itemId]?.name} />
             </TransparentButton>
           ))}
         </Flex>
