@@ -196,16 +196,16 @@ function Content({ type }: { type: string }) {
   const { quantity, startAt } = options[type];
 
   const ids = makeArray(quantity, startAt);
-
+  const placeholder = 'A';
   return (
     <ul className="sprites__flex">
       {ids.map((id) => {
         return (
           <li key={`content-${id}`} className="sprites__flex-item">
-            {type === 'sheep' && <SheepAvatar sheepId={String(id)} id="A" />}
-            {type === 'costumes' && <CostumeAvatar id={String(id)} avatarId="A" />}
-            {type === 'clubbers' && <ClubberAvatar id={String(id)} avatarId="A" />}
-            {type === 'super-heroes' && <SuperHeroAvatar id={String(id)} avatarId="A" />}
+            {type === 'sheep' && <SheepAvatar sheepId={String(id)} id={placeholder} />}
+            {type === 'costumes' && <CostumeAvatar id={String(id)} avatarId={placeholder} />}
+            {type === 'clubbers' && <ClubberAvatar id={String(id)} avatarId={placeholder} />}
+            {type === 'super-heroes' && <SuperHeroAvatar id={String(id)} avatarId={placeholder} />}
           </li>
         );
       })}
@@ -257,7 +257,7 @@ function TreeContent() {
       {ids.map((id) => {
         return (
           <li key={`tree-${id}`} className="sprites__flex-item">
-            <TreeCard id={String(id)} />
+            <TreeCard treeId={id} />
             {id}
           </li>
         );

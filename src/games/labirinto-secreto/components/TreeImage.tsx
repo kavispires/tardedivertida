@@ -27,5 +27,5 @@ export function TreeImage({ id, text, width = 100, className }: TreeImageProps) 
     );
   }
 
-  return <TreeCard id={String(id)} text={text} width={width} className={className} />;
+  return <TreeCard treeId={id} text={text} width={width} className={className} />;
 }
