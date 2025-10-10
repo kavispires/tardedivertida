@@ -52,7 +52,7 @@ export function StoryWriting({ user, onSubmitStory, announcement }: StoryWriting
         <BookPages
           leftPage={
             <div className="c-story-book__selected-card">
-              {cardId && <ImageCard id={cardId} cardWidth={175} />}
+              {cardId && <ImageCard cardId={cardId} cardWidth={175} />}
             </div>
           }
           rightPage={

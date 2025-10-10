@@ -83,7 +83,7 @@ export function StepSelectPages({
       <SpaceContainer>
         <DoorFrame width={200}>
           <ImageCard
-            id={answerDoorId}
+            cardId={answerDoorId}
             cardWidth={150}
             className={clsx(trap === TRAPS.FADED_DOORS && 'i-faded-card')}
             preview={{

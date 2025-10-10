@@ -64,7 +64,7 @@ export function PlayerBoard({
     >
       <div className="player-board__image">
         <ImageCard
-          id={userCharacterId ?? 'us-unknown'}
+          cardId={userCharacterId ?? 'us-unknown'}
           cardWidth={cardWidth}
           className="player-board__unknown-character"
         />
@@ -94,7 +94,7 @@ export function PlayerBoard({
           history?.map((characterId) => {
             return (
               <li key={`${player.id}-${characterId}`} className="player-board__history-previous-guess">
-                <ImageCard id={characterId} cardWidth={cardWidth / 3} />
+                <ImageCard cardId={characterId} cardWidth={cardWidth / 3} />
                 <IconAvatar icon={<SpeechBubbleDeclinedIcon />} size="small" />
               </li>
             );

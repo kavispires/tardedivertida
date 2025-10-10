@@ -62,7 +62,7 @@ export const TrackGaleriaDeSonhos = ({ track, onSubmitAnswer, user }: TrackProps
             return (
               <SpaceContainer key={cardId} vertical>
                 <ImageBlurButtonContainer cardId={cardId}>
-                  <ImageCard id={cardId} cardWidth={cardWidth} />
+                  <ImageCard cardId={cardId} cardWidth={cardWidth} />
                 </ImageBlurButtonContainer>
                 <Button
                   shape="round"

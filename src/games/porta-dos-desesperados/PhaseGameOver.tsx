@@ -82,7 +82,7 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
         {doors.map((doorId: ImageCardId, index, arr) => (
           <Fragment key={doorId || index}>
             <DoorFrame width={doorWidth}>
-              <ImageCard id={doorId || 'back-lockedDoor'} cardWidth={150} />
+              <ImageCard cardId={doorId || 'back-lockedDoor'} cardWidth={150} />
             </DoorFrame>
             {index < arr.length - 1 && <CaretRightOutlined />}
           </Fragment>

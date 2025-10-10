@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "N",
   "gameName": "na-rua-do-medo",
-  "version": "3.1.68",
+  "version": "3.1.69",
   "release": "stable",
   "available": true,
   "title": {

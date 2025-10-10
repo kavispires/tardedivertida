@@ -67,7 +67,7 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
                   >
                     <ImageCard
                       key={`table-focus-${cardId}`}
-                      id={cardId}
+                      cardId={cardId}
                       cardWidth={cardWidth * 0.6}
                       className="d-table__image-card"
                     />
@@ -110,7 +110,7 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
                   >
                     <ImageCard
                       key={`table-focus-${cardId}`}
-                      id={cardId}
+                      cardId={cardId}
                       cardWidth={cardWidth * 0.75}
                       className="d-table__image-card"
                     />
@@ -174,7 +174,7 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
                 >
                   <ImageCard
                     key={`table-focus-${cardId}`}
-                    id={cardId}
+                    cardId={cardId}
                     cardWidth={cardWidth}
                     className="d-table__image-card"
                   />

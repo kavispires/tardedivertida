@@ -71,7 +71,7 @@ export function ResultsModalContent({
       </Typography.Title>
 
       <Flex align="center">
-        {culprit && <ImageCard id={getSuspectImageId(culprit.id, 'gb')} cardWidth={96} />}
+        {culprit && <ImageCard cardId={getSuspectImageId(culprit.id, 'gb')} cardWidth={96} />}
         <Flex vertical>
           <Typography.Paragraph className="center">
             {win ? (

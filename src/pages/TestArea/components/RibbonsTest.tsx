@@ -38,7 +38,7 @@ export function RibbonsTest({ onResult, step }: TestStepProps) {
       <SpaceContainer wrap className="full-width" vertical>
         <TransparentButton onClick={onAddRibbon} style={{ position: 'relative' }}>
           <RibbonGroup labels={ribbons} />
-          <ImageCard id={imageId} preview={false} />
+          <ImageCard cardId={imageId} preview={false} />
         </TransparentButton>
       </SpaceContainer>
 

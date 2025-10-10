@@ -54,7 +54,7 @@ export function Table({ table, players }: TableProps) {
                 return (
                   <motion.div key={`${playerEntryKey}${cardId}`} {...getAnimation('flipInY', { delay: 0.5 })}>
                     <ImageBlurButtonContainer cardId={cardId} className="d-table__card">
-                      <ImageCard id={cardId} cardWidth={cardWidth} />
+                      <ImageCard cardId={cardId} cardWidth={cardWidth} />
                     </ImageBlurButtonContainer>
                   </motion.div>
                 );
