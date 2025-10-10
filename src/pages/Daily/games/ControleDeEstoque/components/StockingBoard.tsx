@@ -49,7 +49,7 @@ export function StockingBoard({ warehouse, onPlaceGood, width, lastPlacedGoodId 
 
         return (
           <div key={index} className={clsx('shelves-board__shelf')} style={size}>
-            <WarehouseGoodCard id={goodId} width={width - 12} className={getAnimationClass('bounce')} />
+            <WarehouseGoodCard goodId={goodId} width={width - 12} className={getAnimationClass('bounce')} />
           </div>
         );
       })}

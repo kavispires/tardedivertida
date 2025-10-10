@@ -46,7 +46,7 @@ export function Orders({ fulfillments, orders, onSelectOrder, shelfWidth, active
               )}
               <WarehouseGoodCard
                 key={order}
-                id={order}
+                goodId={order}
                 width={shelfWidth * 0.85}
                 className={clsx(
                   'order',

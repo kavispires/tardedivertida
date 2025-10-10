@@ -11,7 +11,7 @@ export type WarehouseGoodCardProps = {
   /**
    * The id of the warehouse good
    */
-  id: string;
+  goodId: string;
   /**
    * The width of the warehouse good
    */
@@ -55,14 +55,14 @@ export const getSource = (str: string) => {
  * An good card component.
  */
 export function WarehouseGoodCard({
-  id,
+  goodId,
   width = DEFAULT_SPRITE_SIZE,
   className,
   title,
   text,
   padding = DEFAULT_PADDING,
 }: WarehouseGoodCardProps) {
-  const [source, goodId] = getSource(id);
+  const [source, id] = getSource(goodId);
 
   const height = text ? 'auto' : `${width}px`;
   const divPadding = padding === 0 ? { padding: 0 } : {};
@@ -72,7 +72,7 @@ export function WarehouseGoodCard({
       className={clsx('warehouse-good-card', className)}
       style={{ width: `${width}px`, height, ...divPadding }}
     >
-      <Sprite source={source} spriteId={goodId} width={width} title={title} padding={padding} />
+      <Sprite source={source} spriteId={id} width={width} title={title} padding={padding} />
       {!!text && (
         <span className="warehouse-good-card__text">
           <DualTranslate>{text}</DualTranslate>
@@ -83,10 +83,10 @@ export function WarehouseGoodCard({
 }
 
 export function WarehouseGoodSprite({
-  id,
+  goodId,
   width = DEFAULT_SPRITE_SIZE,
   ...props
-}: Pick<WarehouseGoodCardProps, 'id' | 'width'> & ElementProps) {
-  const [source, glyphId] = getSource(id);
-  return <Sprite source={source} spriteId={glyphId} width={width} padding={0} {...props} />;
+}: Pick<WarehouseGoodCardProps, 'goodId' | 'width'> & ElementProps) {
+  const [source, id] = getSource(goodId);
+  return <Sprite source={source} spriteId={id} width={width} padding={0} {...props} />;
 }

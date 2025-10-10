@@ -48,21 +48,21 @@ export function FulfillmentBoard({
             >
               {reveal ? (
                 <WarehouseGoodCard
-                  id={isFulfilled.order}
+                  goodId={isFulfilled.order}
                   width={width - 24}
                   className="shelves-board__placed-order"
                 />
               ) : (
                 <TransparentButton onClick={() => onTakeBack(isFulfilled.order)} hoverType="none">
                   <WarehouseGoodCard
-                    id={isFulfilled.order}
+                    goodId={isFulfilled.order}
                     width={width - 24}
                     className="shelves-board__placed-order"
                   />
                 </TransparentButton>
               )}
               {reveal ? (
-                <WarehouseGoodCard id={goodId} width={width - 12} />
+                <WarehouseGoodCard goodId={goodId} width={width - 12} />
               ) : (
                 <ShippingBoxIcon width={width - 12} />
               )}
@@ -73,7 +73,7 @@ export function FulfillmentBoard({
         return (
           <div key={index} className={clsx('shelves-board__shelf')} style={size}>
             {reveal ? (
-              <WarehouseGoodCard id={goodId} width={width - 12} />
+              <WarehouseGoodCard goodId={goodId} width={width - 12} />
             ) : (
               <TransparentButton onClick={activeOrder ? () => onFulfill(index) : undefined}>
                 <ShippingBoxIcon width={width - 12} className={getAnimationClass('bounce')} />

@@ -68,7 +68,7 @@ export function Warehouse({
             return (
               <div key={index} className={clsx('warehouse__shelf', 'warehouse__shelf-active')} style={size}>
                 <WarehouseGoodCard
-                  id={good.id}
+                  goodId={good.id}
                   width={width - 12}
                   className={clsx(getAnimationClass('bounce'), goodClassName)}
                 />
