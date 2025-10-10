@@ -36,7 +36,7 @@ export function NewHouseCard({ card }: NewHouseCardProps) {
       )}
     >
       <div className={clsx(`${baseClass}--container`, `${baseClass}--${card.type}`)}>
-        <ImageCard id={card.key} cardWidth={200} className={clsx(cardBaseClass)} />
+        <ImageCard cardId={card.key} cardWidth={200} className={clsx(cardBaseClass)} />
 
         <h3 className={`${baseClass}__name`}>{dualTranslate(card.name)}</h3>
       </div>

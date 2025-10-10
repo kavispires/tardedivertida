@@ -66,7 +66,7 @@ function WordGridHeaderImage({ cell }: WordGridHeaderProps) {
   return (
     <div className="w-contender" style={{ width: `${cardWidth}px` }}>
       <ImageBlurButtonContainer cardId={cell.id ?? ''}>
-        <ImageCard id={cell.id ?? ''} cardWidth={cardWidth} />
+        <ImageCard cardId={cell.id ?? ''} cardWidth={cardWidth} />
       </ImageBlurButtonContainer>
     </div>
   );

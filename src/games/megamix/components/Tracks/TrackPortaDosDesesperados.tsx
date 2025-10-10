@@ -57,10 +57,10 @@ export const TrackPortaDosDesesperados = ({ track, onSubmitAnswer, user }: Track
         <Image.PreviewGroup>
           <Book>
             <ImageBlurButtonContainer cardId={track.data.book}>
-              <ImageCard id={track.data.book[0]} cardWidth={140} />
+              <ImageCard cardId={track.data.book[0]} cardWidth={140} />
             </ImageBlurButtonContainer>
             <ImageBlurButtonContainer cardId={track.data.book}>
-              <ImageCard id={track.data.book?.[1] || track.data.book[0]} cardWidth={140} />
+              <ImageCard cardId={track.data.book?.[1] || track.data.book[0]} cardWidth={140} />
             </ImageBlurButtonContainer>
           </Book>
         </Image.PreviewGroup>
@@ -72,7 +72,7 @@ export const TrackPortaDosDesesperados = ({ track, onSubmitAnswer, user }: Track
               <SpaceContainer vertical key={cardId}>
                 <ImageBlurButtonContainer cardId={cardId}>
                   <DoorFrame width={doorWidth}>
-                    <ImageCard id={cardId} cardWidth={150} />
+                    <ImageCard cardId={cardId} cardWidth={150} />
                   </DoorFrame>
                 </ImageBlurButtonContainer>
                 <Button

@@ -43,7 +43,7 @@ function StaffMemberModal({ staffMember, open, onClose }: StaffMemberModalProps)
     <ModalOverlay onClose={onClose} open={open}>
       <Card>
         <div className="student-details">
-          <ImageCard id={staffMember.id} />
+          <ImageCard cardId={staffMember.id} />
           <div>
             <div className="student-details__name">
               <StudentIcon iconId={staffMember.type} /> <DualTranslate>{staffMember.name}</DualTranslate>

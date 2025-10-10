@@ -19,8 +19,8 @@ export const Candidate = ({ head, body, interest, need, funFact }: CandidateProp
         <div className="noa-candidate__text">
           <DualTranslate>{head.name}</DualTranslate>
         </div>
-        <ImageCard classic cardWidth={100} id={head.id} preview={false} />
-        <ImageCard classic cardWidth={100} id={body.id} preview={false} />
+        <ImageCard classic cardWidth={100} cardId={head.id} preview={false} />
+        <ImageCard classic cardWidth={100} cardId={body.id} preview={false} />
         <div className="noa-candidate__text">
           <DualTranslate>{body.name}</DualTranslate>
         </div>

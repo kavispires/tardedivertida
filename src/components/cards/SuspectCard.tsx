@@ -30,7 +30,7 @@ export function SuspectCard({ suspect, width, hideName, variant }: SuspectCardPr
   const imageId = getSuspectImageId(suspect.id, variant);
   return (
     <div className="suspect-card" style={{ width: `${width}px` }}>
-      <ImageCard id={imageId} className="suspect-card__image" cardWidth={width} preview={false} />
+      <ImageCard cardId={imageId} className="suspect-card__image" cardWidth={width} preview={false} />
       {!hideName && (
         <div className="suspect-card__name">
           <DualTranslate>{suspect.name}</DualTranslate>

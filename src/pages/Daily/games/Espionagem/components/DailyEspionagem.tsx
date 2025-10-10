@@ -127,7 +127,7 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
                     onClick={() => !isReleased && !isComplete && onSelectSuspect(suspect.id)}
                   >
                     <ImageCard
-                      id={getSuspectImageId(suspect.id, 'gb')}
+                      cardId={getSuspectImageId(suspect.id, 'gb')}
                       cardWidth={width}
                       className={clsx('espionagem-suspect-card', {
                         'espionagem-released-suspect': isReleased,
