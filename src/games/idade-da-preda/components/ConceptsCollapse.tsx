@@ -76,7 +76,7 @@ export function ConceptsCollapse({
         children: (
           <Flex justify="center" align="center" wrap="wrap" gap={6} className="my-2">
             {pool?.map((item) => (
-              <ItemCard key={item.id} id={item.id} width={itemWidth} />
+              <ItemCard key={item.id} itemId={item.id} width={itemWidth} />
             ))}
           </Flex>
         ),

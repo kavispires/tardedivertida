@@ -18,7 +18,7 @@ export function Thing({ itemId, name, width = 50, className, minimize }: ThingPr
     <Flex vertical align="center" className={clsx('thing', className)}>
       {!minimize && (
         <DailyItem
-          id={itemId}
+          itemId={itemId}
           width={Math.max(Math.min(width, 100), 35)}
           padding={0}
           className="thing__sprite"

@@ -35,7 +35,7 @@ export function DefinitionPage({ entry, basicConcepts, concepts }: DefinitionPag
           <span className="idp-gallery__letter">{entry.name[0]}</span>
         </div>
 
-        <ItemCard id={entry.itemId} width={64} />
+        <ItemCard itemId={entry.itemId} width={64} />
 
         <div>
           <SlideShowLabel>
@@ -80,7 +80,7 @@ function SimplifiedConcept({ concept }: SimplifiedConceptProps) {
             </Typography.Text>
           )}
           {concept.itemsIds.slice(-3).map((itemId) => (
-            <ItemCard key={`${concept.id}-${itemId}`} width={itemWidth / 2} id={itemId} />
+            <ItemCard key={`${concept.id}-${itemId}`} width={itemWidth / 2} itemId={itemId} />
           ))}
         </Flex>
       </div>

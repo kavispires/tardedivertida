@@ -78,7 +78,7 @@ function WordGridHeaderItem({ cell }: WordGridHeaderProps) {
     <div className="w-contender" style={{ width: `${cardWidth}px` }}>
       <ImageBlurButtonContainer cardId={cell.id ?? ''}>
         <ItemCard
-          id={cell.id ?? ''}
+          itemId={cell.id ?? ''}
           text={{ pt: cell.text, en: cell.text }}
           width={cardWidth}
           className="transparent-gradient"

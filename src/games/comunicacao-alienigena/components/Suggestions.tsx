@@ -37,7 +37,7 @@ export function InquirySuggestions({ items, attributes, startingAttributesIds }:
               <DualTranslate>{suggestion.attribute.name}</DualTranslate>
             </TextHighlight>
             {suggestion.items.map((item) => (
-              <ItemCard key={item.id} id={item.id} width={36} padding={2} />
+              <ItemCard key={item.id} itemId={item.id} width={36} padding={2} />
             ))}
           </Flex>
         </li>

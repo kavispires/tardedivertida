@@ -120,7 +120,7 @@ export function StepGuess({
                       <TextHighlight className="idp-item-name-speech">{entry.name}</TextHighlight>
                     </SpeechBubble>
                   </Flex>
-                  {votes[entryId] && <ItemCard id={votes[entryId]} width={itemWidth} />}
+                  {votes[entryId] && <ItemCard itemId={votes[entryId]} width={itemWidth} />}
                 </Flex>
               </TransparentButton>
             );
@@ -137,7 +137,7 @@ export function StepGuess({
               active={isItemActive(item.id)}
               className="idp-pool-item"
             >
-              <ItemCard id={item.id} width={itemWidth} title={dualTranslate(item.name)} />
+              <ItemCard itemId={item.id} width={itemWidth} title={dualTranslate(item.name)} />
             </TransparentButton>
           ))}
         </Flex>

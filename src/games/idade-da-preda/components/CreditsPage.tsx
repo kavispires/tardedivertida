@@ -85,7 +85,7 @@ export function CreditsPage({
                     </Flex>
                   }
                 >
-                  <ItemCard id={vote.itemId} width={itemWidth / 2} />
+                  <ItemCard itemId={vote.itemId} width={itemWidth / 2} />
                 </SlideShowBubbleValue>
 
                 <SlideShowPlayersList playersIds={vote.playersIds} players={players} />

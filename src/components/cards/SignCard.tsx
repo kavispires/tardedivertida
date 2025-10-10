@@ -23,7 +23,7 @@ type SignCardProps = {
    * Optional padding
    */
   padding?: number;
-};
+} & ElementProps;
 
 /**
  * An alien sign card component.
@@ -33,13 +33,15 @@ export function SignCard({
   width = DEFAULT_SPRITE_SIZE,
   padding = DEFAULT_PADDING,
   className = '',
+  ...rest
 }: SignCardProps) {
   const divPadding = padding === 0 ? { padding: 0 } : {};
 
   return (
     <div
+      {...rest}
       className={clsx('sign-card', className)}
-      style={{ width: `${width}px`, height: `${width}px`, ...divPadding }}
+      style={{ ...rest.style, width: `${width}px`, height: `${width}px`, ...divPadding }}
     >
       <Sprite source="alien-signs" spriteId={`sign-${signId}`} width={width} padding={padding} />
     </div>

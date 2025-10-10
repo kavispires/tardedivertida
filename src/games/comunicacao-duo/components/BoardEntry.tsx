@@ -30,7 +30,7 @@ export function BoardEntry({ entry, deckType, userSide }: BoardEntryProps) {
         className={clsx('cd-board-entry', `cd-board-entry--${entry.affiliation[sideIndex]}`)}
       >
         <ItemCard
-          id={`${entry.data.id}`}
+          itemId={`${entry.data.id}`}
           title={entry.data.name ? dualTranslate(entry.data.name) : undefined}
         />
       </div>

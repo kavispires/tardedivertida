@@ -23,7 +23,7 @@ type GlyphCardProps = {
    * Optional padding
    */
   padding?: number;
-};
+} & ElementProps;
 
 const BASE = 128;
 
@@ -48,6 +48,7 @@ export function GlyphCard({
   width = DEFAULT_SPRITE_SIZE,
   padding = DEFAULT_PADDING,
   className,
+  ...rest
 }: GlyphCardProps) {
   const [source, id] = getSource(+glyphId);
 
@@ -55,8 +56,9 @@ export function GlyphCard({
 
   return (
     <div
+      {...rest}
       className={clsx('glyph-card', className)}
-      style={{ width: `${width}px`, height: `${width}px`, ...divPadding }}
+      style={{ ...rest.style, width: `${width}px`, height: `${width}px`, ...divPadding }}
     >
       <Sprite source={source} spriteId={id} width={width} padding={padding} />
     </div>

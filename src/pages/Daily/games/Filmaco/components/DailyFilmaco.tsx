@@ -63,7 +63,7 @@ export function DailyFilmaco({ data }: DailyFilmacoProps) {
 
         <SpaceContainer wrap>
           {data.itemsIds.map((itemId, index) => (
-            <DailyItem key={`${itemId}-${index}`} id={itemId} width={width} />
+            <DailyItem key={`${itemId}-${index}`} itemId={itemId} width={width} />
           ))}
         </SpaceContainer>
 

@@ -146,7 +146,7 @@ export function ResultsModalContent({
       <Flex gap={6}>
         {!!lastMatch && (
           <motion.div {...getAnimation('pulse', { infinite: true })}>
-            <DailyItem id={lastMatch} width={45} className="item-match-outline" />
+            <DailyItem itemId={lastMatch} width={45} className="item-match-outline" />
           </motion.div>
         )}
         {progress > 0 &&
@@ -155,7 +155,7 @@ export function ResultsModalContent({
             .slice(0, Math.floor((progress - 1) / 3))
             .map((id, index) => (
               <motion.div key={id} {...getAnimation('pulse', { delay: index * 0.5, infinite: true })}>
-                <DailyItem id={id} width={45} />
+                <DailyItem itemId={id} width={45} />
               </motion.div>
             ))}
       </Flex>

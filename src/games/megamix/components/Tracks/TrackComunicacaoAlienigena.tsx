@@ -89,7 +89,7 @@ export const TrackComunicacaoAlienigena = ({ track, onSubmitAnswer }: TrackProps
                 onClick={() => onSelect(item.id)}
                 disabled={isLoading}
               >
-                <ItemCard id={item.id} width={80} />
+                <ItemCard itemId={item.id} width={80} />
               </TransparentButton>
             );
           })}

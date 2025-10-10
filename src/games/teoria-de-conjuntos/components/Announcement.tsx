@@ -93,7 +93,7 @@ export function Announcement({
       <PhaseAnnouncement
         icon={
           <Flex gap={6} justify="center" align="center" style={{ height: '100%' }}>
-            <ItemCard id={item.id} width={84} /> <IconAvatar icon={<ArrowIcon />} size="large" />{' '}
+            <ItemCard itemId={item.id} width={84} /> <IconAvatar icon={<ArrowIcon />} size="large" />{' '}
             <SelectedAreasCircles selectedArea={previousGuess.correctArea} size={75} />
           </Flex>
         }
@@ -116,7 +116,7 @@ export function Announcement({
       <PhaseAnnouncement
         icon={
           <Flex gap={6} justify="center" align="center" style={{ height: '100%' }}>
-            <ItemCard id={item.id} width={84} /> <IconAvatar icon={<ArrowIcon />} size="large" />{' '}
+            <ItemCard itemId={item.id} width={84} /> <IconAvatar icon={<ArrowIcon />} size="large" />{' '}
             <SelectedAreasCircles selectedArea={previousGuess.correctArea} size={75} />
             <IconAvatar icon={<BoxEqualIcon />} size="large" />
             <IconAvatar icon={<ApplauseIcon />} size={75} />
@@ -152,13 +152,13 @@ export function Announcement({
       icon={
         <>
           <Flex gap={6} justify="center" align="center" style={{ height: '100%' }}>
-            <ItemCard id={item.id} width={84} /> <IconAvatar icon={<ArrowIcon />} size="small" />{' '}
+            <ItemCard itemId={item.id} width={84} /> <IconAvatar icon={<ArrowIcon />} size="small" />{' '}
             <SelectedAreasCircles selectedArea={previousGuess.suggestedArea} size={50} />
             <IconAvatar icon={<BoxEqualIcon />} size="small" />
             <IconAvatar icon={<SkullIcon />} size={50} />
           </Flex>
           <Flex gap={6} justify="center" align="center" style={{ height: '100%', marginTop: 16 }}>
-            <ItemCard id={item.id} width={84} /> <IconAvatar icon={<ArrowIcon />} size="small" />{' '}
+            <ItemCard itemId={item.id} width={84} /> <IconAvatar icon={<ArrowIcon />} size="small" />{' '}
             <SelectedAreasCircles selectedArea={previousGuess.correctArea} size={50} />
             <IconAvatar icon={<BoxEqualIcon />} size="small" />
             <IconAvatar icon={<CheckMarkIcon />} size={50} />
@@ -212,7 +212,8 @@ export const GameOverIcon = ({ items, lastGuess }: GameOverIconProps) => {
   const isWin = lastGuess.outcome === OUTCOME.WIN;
   return (
     <Flex gap={6} justify="center" align="center" style={{ height: '100%' }}>
-      <ItemCard id={item.id} text={item.name} width={100} /> <IconAvatar icon={<ArrowIcon />} size="large" />{' '}
+      <ItemCard itemId={item.id} text={item.name} width={100} />{' '}
+      <IconAvatar icon={<ArrowIcon />} size="large" />{' '}
       <SelectedAreasCircles selectedArea={lastGuess.correctArea} size={75} />
       <IconAvatar icon={<BoxEqualIcon />} size="large" />
       <IconAvatar icon={isWin ? <CrownIcon /> : <GarbageIcon />} size={125} />

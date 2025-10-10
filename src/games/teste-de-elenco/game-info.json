@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "teste-de-elenco",
-  "version": "2.0.52",
+  "version": "2.0.53",
   "release": "stable",
   "available": true,
   "title": {

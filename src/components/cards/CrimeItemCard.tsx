@@ -74,7 +74,11 @@ export function CrimeItemCard({
         <div
           className={clsx('crime-item-card__item-container', `crime-item-card__item-container--${item.type}`)}
         >
-          <ItemSprite id={item.itemId ?? '0'} width={cardWidth * 0.75} className="crime-item-card__item" />
+          <ItemSprite
+            itemId={item.itemId ?? '0'}
+            width={cardWidth * 0.75}
+            className="crime-item-card__item"
+          />
         </div>
       </div>
     </ImageBlurButtonContainer>
