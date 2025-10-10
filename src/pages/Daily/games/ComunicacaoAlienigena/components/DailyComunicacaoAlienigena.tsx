@@ -83,7 +83,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
           <Space direction="vertical" className="alien-attributes">
             {data.attributes.map((attribute) => (
               <Flex className="alien-attributes__attribute" key={attribute.id} gap={8}>
-                <SignCard id={attribute.spriteId} width={width} className="alien-attributes__sign" />
+                <SignCard signId={attribute.spriteId} width={width} className="alien-attributes__sign" />
                 <ArrowRightOutlined />
                 <Flex className="alien-attributes__items">
                   {attribute.itemsIds.map((itemId) => (
@@ -129,17 +129,17 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
                   <Avatar className="mb-2">{index + 1}</Avatar>
                   <Flex vertical className="alien-requests__attributes" align="center">
                     <SignCard
-                      id={request.spritesIds[2]}
+                      signId={request.spritesIds[2]}
                       width={width - 12}
                       className="alien-requests__sign"
                     />
                     <SignCard
-                      id={request.spritesIds[1]}
+                      signId={request.spritesIds[1]}
                       width={width - 12}
                       className="alien-requests__sign"
                     />
                     <SignCard
-                      id={request.spritesIds[0]}
+                      signId={request.spritesIds[0]}
                       width={width - 12}
                       className="alien-requests__sign"
                     />

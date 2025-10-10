@@ -65,7 +65,7 @@ export const TrackComunicacaoAlienigena = ({ track, onSubmitAnswer }: TrackProps
               {track.data.attributes.map((attribute: AlienSign, index: number) => {
                 return (
                   <span key={attribute.id}>
-                    <SignCard id={String(track.data.signs[index])} />
+                    <SignCard signId={String(track.data.signs[index])} />
                     <DualTranslate>{attribute.name}</DualTranslate>
                   </span>
                 );

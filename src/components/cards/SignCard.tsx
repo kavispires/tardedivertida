@@ -10,7 +10,7 @@ type SignCardProps = {
   /**
    * The id of the sign (do not prefix with sign)
    */
-  id: string | number;
+  signId: string | number;
   /**
    * The width of the sign (default: 72)
    */
@@ -29,7 +29,7 @@ type SignCardProps = {
  * An alien sign card component.
  */
 export function SignCard({
-  id,
+  signId,
   width = DEFAULT_SPRITE_SIZE,
   padding = DEFAULT_PADDING,
   className = '',
@@ -41,7 +41,7 @@ export function SignCard({
       className={clsx('sign-card', className)}
       style={{ width: `${width}px`, height: `${width}px`, ...divPadding }}
     >
-      <Sprite source="alien-signs" spriteId={`sign-${id}`} width={width} padding={padding} />
+      <Sprite source="alien-signs" spriteId={`sign-${signId}`} width={width} padding={padding} />
     </div>
   );
 }
@@ -50,10 +50,10 @@ export function SignCard({
  * An alien sign sprite component.
  */
 export function SignSprite({
-  id,
+  signId,
   width = DEFAULT_SPRITE_SIZE,
   ...props
-}: Pick<SignCardProps, 'id' | 'width'> & ElementProps) {
-  const signId = id.startsWith('sign') ? id : `sign-${id}`;
-  return <Sprite source="alien-signs" spriteId={signId} width={width} padding={0} {...props} />;
+}: Pick<SignCardProps, 'signId' | 'width'> & ElementProps) {
+  const id = String(signId).startsWith('sign') ? String(signId) : `sign-${signId}`;
+  return <Sprite source="alien-signs" spriteId={id} width={width} padding={0} {...props} />;
 }

@@ -67,7 +67,7 @@ export function AnswerSuggestions({ suggestions }: AnswerSuggestionsProps) {
             <TextHighlight>
               <DualTranslate>{suggestion.name}</DualTranslate>
             </TextHighlight>
-            <SignCard id={`${suggestion.spriteId}`} className="transparent" width={36} />
+            <SignCard signId={`${suggestion.spriteId}`} className="transparent" width={36} />
           </Flex>
         </li>
       ))}
