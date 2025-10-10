@@ -131,7 +131,11 @@ export function AlienKeyboard({ value, onChange, availableAttributeKeys, disable
                   onClick={() => onTap(attribute.id, 'attribute')}
                   disabled={disabled}
                 >
-                  <SignCard width={32} id={`${attribute.spriteId.split('-')[1]}`} className="transparent" />
+                  <SignCard
+                    width={32}
+                    signId={`${attribute.spriteId.split('-')[1]}`}
+                    className="transparent"
+                  />
 
                   <small>
                     <DualTranslate>{attribute.name}</DualTranslate>
