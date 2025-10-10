@@ -56,7 +56,7 @@ export function Suspects({
                 disabled={wasEliminated || isLoading}
               >
                 <ImageCard
-                  id={wasEliminated ? 'us-00' : suspect.id}
+                  cardId={wasEliminated ? 'us-00' : suspect.id}
                   className={clsx(
                     't-suspects-table__suspect-image',
                     wasEliminated && 't-suspects-table__suspect-image--disabled',
@@ -83,7 +83,7 @@ export function Suspects({
           return (
             <div className="t-suspects-table__suspect" key={suspect.id}>
               <ImageCard
-                id={wasEliminated ? 'us-00' : suspect.id}
+                cardId={wasEliminated ? 'us-00' : suspect.id}
                 previewImageId={suspect.id}
                 className={clsx(
                   't-suspects-table__suspect-image',

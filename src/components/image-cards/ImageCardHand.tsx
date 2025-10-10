@@ -103,7 +103,7 @@ export function ImageCardHand({
             >
               <ImageCardButton
                 onClick={onSelectCard}
-                id={cardId}
+                cardId={cardId}
                 buttonProps={{ className: selectButtonClass }}
                 icon={selectButtonIcon}
                 buttonText={selectButtonText}
@@ -111,7 +111,7 @@ export function ImageCardHand({
                 throttle={!!onSelectCard}
               >
                 <ImageCard
-                  id={cardId}
+                  cardId={cardId}
                   cardWidth={cardSize || cardWidth}
                   className={clsx(selectedCards[cardId] && 'image-card-hand__selected', cardClassName)}
                   preview={preview}

@@ -46,7 +46,7 @@ export function GalleryEntry({ entry, players }: GalleryEntryProps) {
                 className="d-table__card"
                 key={`table-focus-${cardId}`}
               >
-                <ImageCard key={`table-focus-${cardId}`} id={cardId} cardWidth={cardWidth} />
+                <ImageCard key={`table-focus-${cardId}`} cardId={cardId} cardWidth={cardWidth} />
               </ImageBlurButtonContainer>
             );
           })}

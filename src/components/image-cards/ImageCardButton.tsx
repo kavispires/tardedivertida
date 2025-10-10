@@ -16,7 +16,7 @@ type ImageCardButtonProps = {
   /**
    * The id of the image
    */
-  id: string;
+  cardId: string;
   /**
    * The content, usually a ImageCard component
    */
@@ -64,7 +64,7 @@ type ImageCardButtonProps = {
 };
 
 export function ImageCardButton({
-  id,
+  cardId,
   children,
   className = '',
   buttonPosition = 'top',
@@ -83,14 +83,14 @@ export function ImageCardButton({
 
   const { className: buttonClassName, ...restButtonProps } = buttonProps;
 
-  const latest = useRef({ id, onClick });
-  latest.current = { id, onClick };
+  const latest = useRef({ cardId, onClick });
+  latest.current = { cardId, onClick };
 
   const throttled = useMemo(() => {
     if (!throttle) return null;
 
     // leading true + trailing false avoids the "double fire" at the end
-    const fn = throttleFunc(() => latest.current.onClick?.(latest.current.id), 750, {
+    const fn = throttleFunc(() => latest.current.onClick?.(latest.current.cardId), 750, {
       leading: true,
       trailing: false,
     });
@@ -104,7 +104,7 @@ export function ImageCardButton({
     return () => throttled?.cancel();
   }, [throttled]);
 
-  const handleClick = throttle ? () => throttled?.() : () => onClick?.(id);
+  const handleClick = throttle ? () => throttled?.() : () => onClick?.(cardId);
 
   const button =
     !hideButton && onClick ? (
@@ -131,9 +131,9 @@ export function ImageCardButton({
   return (
     <div className={clsx('image-card-button', className)}>
       {isTop && button}
-      <ImageBlurButtonContainer cardId={id} position={buttonPosition === 'bottom' ? 'top' : 'bottom'}>
+      <ImageBlurButtonContainer cardId={cardId} position={buttonPosition === 'bottom' ? 'top' : 'bottom'}>
         <DebugOnly>
-          <Typography.Text code>{id}</Typography.Text>
+          <Typography.Text code>{cardId}</Typography.Text>
         </DebugOnly>
         <div className="image-card-button__container">{children}</div>
       </ImageBlurButtonContainer>

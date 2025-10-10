@@ -37,7 +37,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
         <TitledContainer title={<Translate pt="Filmes" en="Movies" />}>
           {state.finalMovies.map((movie: PlainObject) => (
             <SpaceContainer vertical key={movie.id}>
-              <ImageCard id={movie.posterId} cardWidth={posterWidth} preview={false} />
+              <ImageCard cardId={movie.posterId} cardWidth={posterWidth} preview={false} />
               <TextHighlight>{movie.title}</TextHighlight>
             </SpaceContainer>
           ))}

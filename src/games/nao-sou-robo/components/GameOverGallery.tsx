@@ -25,7 +25,7 @@ export function GameOverGallery({ gallery, players }: GameOverGalleryProps) {
             {entry.options.map((option) => (
               <ImageCard
                 key={option.id}
-                id={option.id}
+                cardId={option.id}
                 className="game-over-captcha__image"
                 cardWidth={64}
                 square

@@ -30,7 +30,7 @@ export function ResultImage({ winningValues, containerWidth }: ResultComponentPr
         {winningValues.map((cardId) => (
           <ImageBlurButtonContainer cardId={cardId} key={cardId}>
             <DoorFrame width={width}>
-              <ImageCard id={cardId} cardWidth={150} />
+              <ImageCard cardId={cardId} cardWidth={150} />
             </DoorFrame>
           </ImageBlurButtonContainer>
         ))}

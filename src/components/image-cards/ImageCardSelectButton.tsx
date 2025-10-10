@@ -5,14 +5,30 @@ import { Button } from 'antd';
 import { Translate } from 'components/language';
 
 type ImageCardSelectButtonProps = {
-  isSelected?: boolean;
+  /**
+   * The id of the image
+   */
   cardId: ImageCardId;
-  onClick: GenericFunction;
+  /**
+   * Function to call when the button is clicked
+   * @param id The id of the image
+   */
+  onClick: (id: ImageCardId) => void;
+  /**
+   * If the card is currently selected
+   */
+  isSelected?: boolean;
   /**
    * Optional custom class name
    */
   className?: string;
+  /**
+   * Select button custom label
+   */
   selectLabel?: string;
+  /**
+   * Deselect button custom label
+   */
   deselectLabel?: string;
 };
 

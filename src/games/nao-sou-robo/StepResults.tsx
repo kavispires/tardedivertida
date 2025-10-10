@@ -70,7 +70,7 @@ export function StepResult({ user, announcement, goToNextStep, players, result, 
               </Flex>
 
               <ImageBlurButtonContainer cardId={option.id}>
-                <ImageCard id={option.id} cardWidth={cardWidth} />
+                <ImageCard cardId={option.id} cardWidth={cardWidth} />
               </ImageBlurButtonContainer>
 
               <AntAvatar.Group max={{ count: 7 }}>

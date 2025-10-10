@@ -138,10 +138,10 @@ export function Corridor({
                 )}
               >
                 {isConcealed || blindDoor === index ? (
-                  <ImageCardBack cardWidth={150} id="back-lockedDoor" />
+                  <ImageCardBack cardWidth={150} cardId="back-lockedDoor" />
                 ) : (
                   <ImageCard
-                    id={doorId}
+                    cardId={doorId}
                     cardWidth={150}
                     className={clsx(trap === TRAPS.FADED_DOORS && 'i-faded-card')}
                     preview={trap !== TRAPS.NO_PREVIEW ? true : undefined}

@@ -28,7 +28,7 @@ export function ResultImage({ winningValues, containerWidth }: ResultComponentPr
       <div className="track-result-values__cards">
         {winningValues.map((cardId) => (
           <ImageBlurButtonContainer cardId={cardId} key={`table-focus-${cardId}`} className="margin">
-            <ImageCard id={cardId} cardWidth={width} className="d-table__image-card" />
+            <ImageCard cardId={cardId} cardWidth={width} className="d-table__image-card" />
           </ImageBlurButtonContainer>
         ))}
       </div>

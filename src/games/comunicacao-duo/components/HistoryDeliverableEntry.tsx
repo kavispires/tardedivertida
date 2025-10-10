@@ -45,7 +45,7 @@ export function HistoryDeliverableEntry({ deliverable, deckType, userSide }: His
         key={`cd-history-entry-${deliverable.data.id}`}
         className={clsx('cd-history-entry', `cd-history-entry--${deliverable.affiliation[sideIndex]}`)}
       >
-        <ImageCard id={deliverable.data.id} cardWidth={48} className="history-entry-image-card" />
+        <ImageCard cardId={deliverable.data.id} cardWidth={48} className="history-entry-image-card" />
       </div>
     );
   }

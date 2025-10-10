@@ -43,12 +43,12 @@ export function Corridor({ number, imagesIds, width, passcode, moves }: Corridor
             <>
               {isIOS || isSafari ? (
                 <motion.div key={cardId} {...getAnimation('zoomIn', { delay: index * 0.1, speed: 'fast' })}>
-                  <ImageCard id={cardId} cardWidth={width} />
+                  <ImageCard cardId={cardId} cardWidth={width} />
                 </motion.div>
               ) : (
                 <DoorFrame key={cardId} width={width}>
                   <motion.div {...getAnimation('zoomIn', { delay: index * 0.1, speed: 'fast' })}>
-                    <ImageCard id={cardId} cardWidth={150} />
+                    <ImageCard cardId={cardId} cardWidth={150} />
                   </motion.div>
                 </DoorFrame>
               )}

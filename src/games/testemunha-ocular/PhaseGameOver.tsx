@@ -57,7 +57,7 @@ function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
         <Translate pt="O criminoso era:" en="The perpetrator was:" />
 
         <div className="t-suspects-table__suspect">
-          <ImageCard id={perpetrator.id} className="t-suspects-table__suspect-image" cardWidth={150} />
+          <ImageCard cardId={perpetrator.id} className="t-suspects-table__suspect-image" cardWidth={150} />
           <div className="t-suspects-table__suspect-name">{perpetrator.name[language]}</div>
         </div>
       </Instruction>

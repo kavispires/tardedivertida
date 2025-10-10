@@ -132,7 +132,7 @@ export function StepSelectAll({
                   <TransparentButton onClick={() => toggleCard(cardId)} hoverType="sepia">
                     <ImageBlurButtonContainer cardId={cardId}>
                       <ImageCard
-                        id={cardId}
+                        cardId={cardId}
                         cardWidth={cardWidth - 6} // 6 is the border total size
                         square
                         className={clsx('n-table-image', isSelected && 'n-table-image--selected')}

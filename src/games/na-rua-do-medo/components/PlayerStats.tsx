@@ -54,7 +54,7 @@ export function PlayerStats({ user, omitDecision = false }: PlayerStatsProps) {
               {user.jackpots.map((jackpot: StreetCard) => (
                 <ImageCard
                   key={jackpot.id}
-                  id={jackpot.key}
+                  cardId={jackpot.key}
                   cardWidth={60}
                   className="n-player-stats__jackpot"
                 />

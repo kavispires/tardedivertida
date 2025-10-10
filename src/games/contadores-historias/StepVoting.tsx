@@ -87,7 +87,7 @@ export function StepVoting({
           return (
             <div key={`hand-${cardEntry.cardId}`} className="c-game-table__card-container">
               <ImageCardButton
-                id={cardEntry.cardId}
+                cardId={cardEntry.cardId}
                 onClick={!isUserTheStoryTeller ? onSelectCard : undefined}
                 disabled={isLoading || isUserCard}
                 buttonText={
@@ -96,7 +96,7 @@ export function StepVoting({
                 throttle
               >
                 <ImageCard
-                  id={cardEntry.cardId}
+                  cardId={cardEntry.cardId}
                   cardWidth={cardWidth}
                   className={clsx(isUserVote ? 'c-game-table--vote' : 'c-game-table--idle')}
                 />

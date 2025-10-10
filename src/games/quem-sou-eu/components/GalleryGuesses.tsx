@@ -66,7 +66,7 @@ export function GalleryGuesses({
             <div key={`guess-${entry.cardId}-${index}`} className="q-gallery__guess">
               <SlideShowBubbleValue winner={entry.isCorrect} backgroundColor={currentColor}>
                 {imageCardMode ? (
-                  <ImageCard id={entry.character.id} cardWidth={35} className="inline" />
+                  <ImageCard cardId={entry.character.id} cardWidth={35} className="inline" />
                 ) : (
                   <DualTranslate>{entry.character.name}</DualTranslate>
                 )}

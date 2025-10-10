@@ -43,7 +43,7 @@ export function BoardEntry({ entry, deckType, userSide }: BoardEntryProps) {
         key={`cd-board-entry-${entry.data.id}`}
         className={clsx('cd-board-entry', `cd-board-entry--${entry.affiliation[sideIndex]}`)}
       >
-        <ImageCard id={entry.data.id} cardWidth={72} className="board-entry-image-card" />
+        <ImageCard cardId={entry.data.id} cardWidth={72} className="board-entry-image-card" />
       </div>
     );
   }

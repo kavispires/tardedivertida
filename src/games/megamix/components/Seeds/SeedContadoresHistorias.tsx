@@ -19,6 +19,7 @@ type SeedContadoresHistoriasProps = {
 };
 
 export function SeedContadoresHistorias({ seed, updateData }: SeedContadoresHistoriasProps) {
+  const avatar = 'B';
   return (
     <div className="seed-container">
       <Title size="xx-small" colorScheme="light">
@@ -32,7 +33,7 @@ export function SeedContadoresHistorias({ seed, updateData }: SeedContadoresHist
         <SVGPhone>
           <div className="ff-phone">
             <div className="ff-phone__contact">
-              <Avatar id="B" />
+              <Avatar id={avatar} />
               <div className="ff-phone__name">
                 <Translate pt="Mamãe" en="Mommy" /> {'>'}
               </div>
@@ -48,7 +49,7 @@ export function SeedContadoresHistorias({ seed, updateData }: SeedContadoresHist
                 <Translate pt="Recebido" en="Received" /> {now}
               </div>
               <div className="ff-phone__message">
-                <ImageCard id={seed.card} cardWidth={100} />
+                <ImageCard cardId={seed.card} cardWidth={100} />
               </div>
             </div>
           </div>

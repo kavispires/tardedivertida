@@ -17,7 +17,7 @@ export type ImageCardProps = {
   /**
    * The id of the image
    */
-  id: string;
+  cardId: string;
   /**
    * The width of the card (Default: 200px)
    */
@@ -46,13 +46,13 @@ export type ImageCardProps = {
    * Use classic image library
    */
   classic?: boolean;
-};
+} & ElementProps;
 
 /**
  * Renders an Image Card on tdi
  */
 export const ImageCard = ({
-  id,
+  cardId,
   cardWidth = 200,
   className = '',
   preview = true,
@@ -60,6 +60,7 @@ export const ImageCard = ({
   fileExtension = 'jpg',
   square = false,
   classic = false,
+  ...rest
 }: ImageCardProps) => {
   const { shouldBeBlurred } = useBlurCards();
   const baseUrl = useTDBaseUrl(classic ? 'classic' : 'images');
@@ -67,29 +68,30 @@ export const ImageCard = ({
   const baseClass = 'image-card';
 
   const { imageURL, fallbackName } = useMemo(() => {
-    const imageURL = id.replace(/-/g, '/');
-    const numId = Number(imageURL?.split('/')?.at(-1) ?? id[id.length - 1]) % 12;
+    const imageURL = cardId.replace(/-/g, '/');
+    const numId = Number(imageURL?.split('/')?.at(-1) ?? cardId[cardId.length - 1]) % 12;
 
     const fallbackName = `placeholder-${numId}`;
     return {
       imageURL,
       fallbackName,
     };
-  }, [id]);
+  }, [cardId]);
 
-  const isBlurred = shouldBeBlurred(id);
+  const isBlurred = shouldBeBlurred(cardId);
 
   const previewConfig = typeof preview === 'boolean' ? {} : preview;
 
   return (
     <div
+      {...rest}
       className={clsx(
         baseClass,
         isBlurred && `${baseClass}--blur`,
         square && `${baseClass}--square`,
         className,
       )}
-      style={{ height: square ? `${cardWidth}px` : undefined }}
+      style={{ ...rest.style, height: square ? `${cardWidth}px` : rest.style?.height }}
     >
       <Image
         width={cardWidth}

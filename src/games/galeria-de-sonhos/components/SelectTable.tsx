@@ -37,7 +37,7 @@ export function SelectTable({ table, onSelectCard, selectedCards }: SelectTableP
                 {...getAnimation('flipInY', { delay: index * 0.25 })}
               >
                 <ImageCardButton
-                  id={card.id}
+                  cardId={card.id}
                   onClick={() => onSelectCard(card.id)}
                   throttle
                   over
@@ -52,7 +52,7 @@ export function SelectTable({ table, onSelectCard, selectedCards }: SelectTableP
                   }
                 >
                   <ImageCard
-                    id={card.id}
+                    cardId={card.id}
                     cardWidth={cardWidth - BORDER_TOTAL_SIZE} // 6 is the border total size
                     className={clsx('g-table-image', isSelected && 'g-table-image--selected')}
                   />

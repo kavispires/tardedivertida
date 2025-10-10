@@ -27,7 +27,7 @@ export function GameOverGallery({ gallery }: GameOverGalleryProps) {
                 </div>
                 <ImageBlurButtonContainer cardId={entry.cardId}>
                   <ImageCard
-                    id={entry.cardId}
+                    cardId={entry.cardId}
                     cardWidth={cardWidth - 6} // 6 is the border total size
                   />
                 </ImageBlurButtonContainer>

@@ -64,7 +64,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
                 }
                 return (
                   <RoleBoard activeRole={role} instruction="CAST" key={roleId}>
-                    <ImageCard id="us-unknown" cardWidth={120} preview={false} />
+                    <ImageCard cardId="us-unknown" cardWidth={120} preview={false} />
                   </RoleBoard>
                 );
               })}

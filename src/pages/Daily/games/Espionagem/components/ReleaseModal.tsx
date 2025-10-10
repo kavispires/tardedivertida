@@ -58,7 +58,7 @@ export function ReleaseModal({
     >
       <Flex align="center" gap={12}>
         <ImageCard
-          id={getSuspectImageId(activeSuspectId, 'gb')}
+          cardId={getSuspectImageId(activeSuspectId, 'gb')}
           cardWidth={width}
           className="espionagem-suspect-card"
         />

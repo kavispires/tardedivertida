@@ -42,7 +42,7 @@ export function ItemEntry({ itemEntry, className, size, looseItem }: ItemEntryPr
     return (
       <ImageBlurButtonContainer cardId={itemEntry.value}>
         <ImageCard
-          id={itemEntry.value}
+          cardId={itemEntry.value}
           cardWidth={(looseItem ? 1.5 : 1) * 100 * sizeMultiplier}
           className={className}
           preview={false}

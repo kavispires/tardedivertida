@@ -44,7 +44,7 @@ export function PlayTable({ table, onPlayCard, userCards, isPlayAvailable }: Pla
                   {...getAnimation('fadeIn', { delay: index * 0.1 })}
                 >
                   <ImageCardButton
-                    id={card.id}
+                    cardId={card.id}
                     onClick={() => onPlayCard(card.id)}
                     over
                     buttonPosition="bottom"
@@ -85,7 +85,7 @@ export function PlayTable({ table, onPlayCard, userCards, isPlayAvailable }: Pla
                 {...getAnimation('fadeIn', { delay: index * 0.1 })}
               >
                 <ImageCardButton
-                  id={card.id}
+                  cardId={card.id}
                   onClick={() => onPlayCard(card.id)}
                   over
                   buttonPosition="bottom"
@@ -95,7 +95,7 @@ export function PlayTable({ table, onPlayCard, userCards, isPlayAvailable }: Pla
                   throttle
                 >
                   <ImageCard
-                    id={card.id}
+                    cardId={card.id}
                     cardWidth={cardWidth - BORDER_TOTAL_SIZE} // 6 is the border total size
                     className={clsx('g-table-image', isSelected && 'g-table-image--selected')}
                   />
