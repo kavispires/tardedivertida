@@ -83,7 +83,7 @@ export function ItemEntry({ itemEntry, className, size, looseItem }: ItemEntryPr
   }
 
   if (itemEntry.type === 'glyphs') {
-    return <GlyphCard id={itemEntry.value} width={75 * sizeMultiplier} className={className} />;
+    return <GlyphCard glyphId={itemEntry.value} width={75 * sizeMultiplier} className={className} />;
   }
 
   if (itemEntry.type === 'clubbers') {

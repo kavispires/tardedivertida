@@ -39,7 +39,7 @@ export function PlayerGlyphs({ player, glyphWidth, done }: PlayerGlyphsProps) {
           >
             <IconAvatar icon={<YesIcon />} size="small" />
             {id ? (
-              <GlyphCard width={glyphWidth} id={id} />
+              <GlyphCard width={glyphWidth} glyphId={id} />
             ) : (
               <div
                 className="q-selections__no-glyph"
@@ -57,7 +57,7 @@ export function PlayerGlyphs({ player, glyphWidth, done }: PlayerGlyphsProps) {
           >
             <IconAvatar icon={<NoIcon />} size="small" />
             {id ? (
-              <GlyphCard width={glyphWidth} id={id} />
+              <GlyphCard width={glyphWidth} glyphId={id} />
             ) : (
               <div
                 className="q-selections__no-glyph"

@@ -20,7 +20,7 @@ export function CaptchaTopic({ captcha }: CaptchaTopicProps) {
     return (
       <Space>
         {values.map((glyph) => (
-          <GlyphCard key={glyph} id={String(glyph)} />
+          <GlyphCard key={glyph} glyphId={String(glyph)} />
         ))}
       </Space>
     );
