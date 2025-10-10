@@ -86,15 +86,15 @@ export function StepResults({
           <Tooltip title={<Translate pt="Mais votado" en="Most voted" />}>
             <Badge count={<IconAvatar icon={<SpeechBubbleThumbsDownIcon />} size="small" />}>
               <span>
-                <ItemCard id={firstGuess} width={64} className="results-wrong-guess" />
+                <ItemCard itemId={firstGuess} width={64} className="results-wrong-guess" />
               </span>
             </Badge>
           </Tooltip>
         ) : (
-          <ItemCard id="0" width={64} className="invisible" />
+          <ItemCard itemId="0" width={64} className="invisible" />
         )}
         <Flex vertical align="center">
-          <ItemCard id={beginsWith} />
+          <ItemCard itemId={beginsWith} />
           <TextHighlight className="center">{names[0]}</TextHighlight>
         </Flex>
         <Card size="large" hideHeader>
@@ -102,19 +102,19 @@ export function StepResults({
           <span className="created-word-end">{newWord.slice(namesIndexes[0] + 1)}</span>
         </Card>
         <Flex vertical align="center">
-          <ItemCard id={endsWith} />
+          <ItemCard itemId={endsWith} />
           <TextHighlight className="center">{names[1]}</TextHighlight>
         </Flex>
         {secondGuess ? (
           <Tooltip title={<Translate pt="Mais votado" en="Most voted" />}>
             <Badge count={<IconAvatar icon={<SpeechBubbleThumbsDownIcon />} size="small" />}>
               <span>
-                <ItemCard id={secondGuess} width={64} className="results-wrong-guess" />
+                <ItemCard itemId={secondGuess} width={64} className="results-wrong-guess" />
               </span>
             </Badge>
           </Tooltip>
         ) : (
-          <ItemCard id="0" width={64} className="invisible" />
+          <ItemCard itemId="0" width={64} className="invisible" />
         )}
       </SpaceContainer>
 

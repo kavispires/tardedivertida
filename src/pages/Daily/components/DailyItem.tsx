@@ -16,18 +16,18 @@ import { useDailyChallenge } from '../hooks/useDailyChallenge';
  * The tooltip is shown while pressing and hidden when released.
  */
 export function DailyItem({
-  id,
+  itemId,
   width = DEFAULT_SPRITE_SIZE,
   className,
   title,
   padding = DEFAULT_PADDING,
 }: Omit<ItemCardProps, 'text'>) {
   const { itemsDictionary } = useDailyChallenge();
-  const [source, itemId] = getSource(id);
+  const [source, id] = getSource(itemId);
   const [open, setOpen] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const tooltipTitle = title ?? itemsDictionary[id];
+  const tooltipTitle = title ?? itemsDictionary[itemId];
 
   // Reset timer and close tooltip on unmount
   useEffect(() => {
@@ -103,7 +103,7 @@ export function DailyItem({
         style={{ width: `${width}px`, height, ...divPadding }}
         ref={containerRef}
       >
-        <Sprite source={source} spriteId={itemId} width={width} title={title} padding={padding} />
+        <Sprite source={source} spriteId={id} width={width} title={title} padding={padding} />
       </div>
     </Tooltip>
   );

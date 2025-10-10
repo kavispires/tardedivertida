@@ -31,7 +31,7 @@ export function HistoryDeliverableEntry({ deliverable, deckType, userSide }: His
         className={clsx('cd-history-entry', `cd-history-entry--${deliverable.affiliation[sideIndex]}`)}
       >
         <ItemCard
-          id={`${deliverable.data.id}`}
+          itemId={`${deliverable.data.id}`}
           title={deliverable.data.name ? dualTranslate(deliverable.data.name) : undefined}
           width={64}
         />

@@ -113,13 +113,13 @@ export function ConceptCreationBlock({
             onClick={isEditing ? () => onRemoveItem(itemId) : undefined}
             className="idade-transparent-button"
           >
-            <ItemCard width={itemWidth / 2} id={itemId} />
+            <ItemCard width={itemWidth / 2} itemId={itemId} />
           </TransparentButton>
         ))}
         {!!toggleEditing &&
           placeholderItems.map((item) => (
             <div key={item.id} className="concept-block__placeholder-item">
-              <ItemCard width={itemWidth / 2} id="0" />
+              <ItemCard width={itemWidth / 2} itemId="0" />
             </div>
           ))}
       </Flex>

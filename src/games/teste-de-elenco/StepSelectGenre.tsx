@@ -134,7 +134,7 @@ export function StepSelectGenre({
               activeClass="movie-personalization-selection__button--selected"
             >
               <ItemCard
-                id={item.id}
+                itemId={item.id}
                 text={item.name}
                 className="movie-personalization-selection__item-card"
               />

@@ -102,7 +102,7 @@ export function StepCreateWord({
 
           <div className="new-word-items-grid contained">
             <Flex vertical gap={4} align="center">
-              <ItemCard id={beginsWith} className="item-forced-outline" width={100} />
+              <ItemCard itemId={beginsWith} className="item-forced-outline" width={100} />
               <Input
                 autoComplete="off"
                 value={beginsWithName}
@@ -113,7 +113,7 @@ export function StepCreateWord({
             </Flex>
 
             <Flex vertical gap={4} align="center">
-              <ItemCard id={endsWith} className="item-forced-outline" width={100} />
+              <ItemCard itemId={endsWith} className="item-forced-outline" width={100} />
               <Input
                 autoComplete="off"
                 value={endsWithName}

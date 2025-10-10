@@ -30,7 +30,7 @@ export function ItemEntry({ itemEntry, className, size, looseItem }: ItemEntryPr
   if (itemEntry.type === 'alien-item') {
     return (
       <ItemCard
-        id={itemEntry.value.id}
+        itemId={itemEntry.value.id}
         width={75 * sizeMultiplier}
         className={className}
         title={dualTranslate(itemEntry.value.name)}

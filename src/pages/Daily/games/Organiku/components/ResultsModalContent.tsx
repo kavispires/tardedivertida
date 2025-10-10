@@ -90,7 +90,7 @@ export function ResultsModalContent({
           itemId ? (
             <DailyItem
               key={itemId}
-              id={itemId}
+              itemId={itemId}
               width={45}
               className={clsx(
                 getAnimationClass('pulse', {
@@ -102,7 +102,7 @@ export function ResultsModalContent({
               )}
             />
           ) : (
-            <DailyItem key={`empty-${index}`} id="0" width={45} className="organiku-incomplete-item" />
+            <DailyItem key={`empty-${index}`} itemId="0" width={45} className="organiku-incomplete-item" />
           ),
         )}
       </Flex>

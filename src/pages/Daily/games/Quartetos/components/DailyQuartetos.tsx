@@ -79,7 +79,7 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
                 <div className={clsx('grid')}>
                   {match.itemsIds.map((itemId) => (
                     <div key={itemId} className="set-match-item">
-                      <DailyItem key={itemId} id={itemId} className="transparent" width={width} />
+                      <DailyItem key={itemId} itemId={itemId} className="transparent" width={width} />
                     </div>
                   ))}
                 </div>
@@ -97,7 +97,7 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
                 onClick={() => onSelectItem(itemId)}
                 className={clsx('grid-item', { 'grid-item--selected': selection.includes(itemId) })}
               >
-                <DailyItem id={itemId} className="transparent" width={width} />
+                <DailyItem itemId={itemId} className="transparent" width={width} />
               </TransparentButton>
             ))}
           </div>

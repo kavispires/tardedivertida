@@ -33,7 +33,7 @@ export function ItemsGrid({ items, targets, onItemSelect, selectedItems, results
             })}
             onClick={() => onItemSelect?.(itemId)}
           >
-            <ItemCard id={itemId} className="item-forced-outline" width={100} />
+            <ItemCard itemId={itemId} className="item-forced-outline" width={100} />
             {results?.guessPlayersPerItem[itemId] && (
               <div className="items-grid__players-guesses">
                 <AvatarGroup

@@ -160,6 +160,9 @@ function DevResult({ result }: { result: string }) {
   if (!isDevEnv) return null;
 
   return (
-    <FloatButton shape="square" icon={<ItemCard id={result} width={50} padding={0} className="raw-item" />} />
+    <FloatButton
+      shape="square"
+      icon={<ItemCard itemId={result} width={50} padding={0} className="raw-item" />}
+    />
   );
 }

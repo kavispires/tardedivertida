@@ -12,7 +12,7 @@ export type ItemCardProps = {
   /**
    * The id of the item
    */
-  id: string;
+  itemId: string;
   /**
    * The width of the item
    */
@@ -33,7 +33,7 @@ export type ItemCardProps = {
    * Optional padding
    */
   padding?: number;
-};
+} & ElementProps;
 
 const BASE = 64;
 
@@ -56,21 +56,26 @@ export const getSource = memoize((str: string) => {
  * An item card component.
  */
 export function ItemCard({
-  id,
+  itemId,
   width = DEFAULT_SPRITE_SIZE,
   className,
   title,
   text,
   padding = DEFAULT_PADDING,
+  ...rest
 }: ItemCardProps) {
-  const [source, itemId] = getSource(id);
+  const [source, id] = getSource(itemId);
 
   const height = text ? 'auto' : `${width}px`;
   const divPadding = padding === 0 ? { padding: 0 } : {};
 
   return (
-    <div className={clsx('item-card', className)} style={{ width: `${width}px`, height, ...divPadding }}>
-      <Sprite source={source} spriteId={itemId} width={width} title={title} padding={padding} />
+    <div
+      {...rest}
+      className={clsx('item-card', className)}
+      style={{ ...rest.style, width: `${width}px`, height, ...divPadding }}
+    >
+      <Sprite source={source} spriteId={id} width={width} title={title} padding={padding} />
       {!!text && (
         <span className="item-card__text">
           <DualTranslate>{text}</DualTranslate>
@@ -84,10 +89,10 @@ export function ItemCard({
  * An item sprite component.
  */
 export function ItemSprite({
-  id,
+  itemId,
   width = DEFAULT_SPRITE_SIZE,
   ...props
-}: Pick<ItemCardProps, 'id' | 'width'> & ElementProps) {
-  const [source, itemId] = getSource(id);
-  return <Sprite source={source} spriteId={itemId} width={width} padding={0} {...props} />;
+}: Pick<ItemCardProps, 'itemId' | 'width'> & ElementProps) {
+  const [source, id] = getSource(itemId);
+  return <Sprite source={source} spriteId={id} width={width} padding={0} {...props} />;
 }
