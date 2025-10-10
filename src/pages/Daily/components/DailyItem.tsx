@@ -103,7 +103,7 @@ export function DailyItem({
         style={{ width: `${width}px`, height, ...divPadding }}
         ref={containerRef}
       >
-        <Sprite source={source} id={itemId} width={width} title={title} padding={padding} />
+        <Sprite source={source} spriteId={itemId} width={width} title={title} padding={padding} />
       </div>
     </Tooltip>
   );
