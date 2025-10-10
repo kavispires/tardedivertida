@@ -155,7 +155,7 @@ export function StepSelectGlyphs({
                       title={translate('Remover', 'Remove')}
                     >
                       <Tooltip title={<Translate pt="Remover" en="Remove" />}>
-                        <GlyphCard width={selectedWidth} id={id} />
+                        <GlyphCard width={selectedWidth} glyphId={id} />
                       </Tooltip>
                     </TransparentButton>
                   ) : (
@@ -179,7 +179,7 @@ export function StepSelectGlyphs({
                   {id !== undefined ? (
                     <TransparentButton onClick={() => updateNegative(id)}>
                       <Tooltip title={<Translate pt="Remover" en="Remove" />} trigger="hover">
-                        <GlyphCard width={selectedWidth} id={id} />
+                        <GlyphCard width={selectedWidth} glyphId={id} />
                       </Tooltip>
                     </TransparentButton>
                   ) : (
@@ -212,7 +212,7 @@ export function StepSelectGlyphs({
             trigger="click"
           >
             <TransparentButton>
-              <GlyphCard width={glyphWidth} id={glyphId} />
+              <GlyphCard width={glyphWidth} glyphId={glyphId} />
             </TransparentButton>
           </Popover>
         ))}

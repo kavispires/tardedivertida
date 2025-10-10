@@ -35,7 +35,7 @@ export function FinalCharacter({ players, character, glyphWidth, imageCardsMode 
           >
             <IconAvatar icon={<YesIcon />} size="small" />
             {id ? (
-              <GlyphCard width={glyphWidth} id={id} />
+              <GlyphCard width={glyphWidth} glyphId={id} />
             ) : (
               <div
                 className="q-selections__no-glyph"
@@ -53,7 +53,7 @@ export function FinalCharacter({ players, character, glyphWidth, imageCardsMode 
           >
             <IconAvatar icon={<NoIcon />} size="small" />
             {id ? (
-              <GlyphCard width={glyphWidth} id={id} />
+              <GlyphCard width={glyphWidth} glyphId={id} />
             ) : (
               <div
                 className="q-selections__no-glyph"
