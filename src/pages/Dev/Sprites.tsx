@@ -223,7 +223,7 @@ function EmojisContent() {
       {ids.map((id) => {
         return (
           <li key={`items-${id}`} className="sprites__flex-item">
-            <EmojiCard id={String(id)} />
+            <EmojiCard emojiId={String(id)} />
             {id}
           </li>
         );

@@ -10,7 +10,7 @@ type EmojiCardProps = {
   /**
    * The id of the emoji
    */
-  id: string;
+  emojiId: string;
   /**
    * The width of the emoji (default: 72)
    */
@@ -29,12 +29,12 @@ type EmojiCardProps = {
  * An emoji card component.
  */
 export function EmojiCard({
-  id,
+  emojiId,
   width = DEFAULT_SPRITE_SIZE,
   padding = DEFAULT_PADDING,
   className,
 }: EmojiCardProps) {
-  const emojiId = id.startsWith('emoji') ? id : `emoji-${id}`;
+  const id = emojiId.startsWith('emoji') ? emojiId : `emoji-${emojiId}`;
 
   const divPadding = padding === 0 ? { padding: 0 } : {};
 
@@ -43,7 +43,7 @@ export function EmojiCard({
       className={clsx('emoji-card', className)}
       style={{ width: `${width}px`, height: `${width}px`, ...divPadding }}
     >
-      <Sprite source="emojis" spriteId={emojiId} width={width} padding={padding} />
+      <Sprite source="emojis" spriteId={id} width={width} padding={padding} />
     </div>
   );
 }
@@ -52,10 +52,10 @@ export function EmojiCard({
  * An emoji sprite component.
  */
 export function EmojiSprite({
-  id,
+  emojiId,
   width = DEFAULT_SPRITE_SIZE,
   ...props
-}: Pick<EmojiCardProps, 'id' | 'width'> & ElementProps) {
-  const emojiId = id.startsWith('emoji') ? id : `emoji-${id}`;
-  return <Sprite source="emojis" spriteId={emojiId} width={width} padding={0} {...props} />;
+}: Pick<EmojiCardProps, 'emojiId' | 'width'> & ElementProps) {
+  const id = emojiId.startsWith('emoji') ? emojiId : `emoji-${emojiId}`;
+  return <Sprite source="emojis" spriteId={id} width={width} padding={0} {...props} />;
 }

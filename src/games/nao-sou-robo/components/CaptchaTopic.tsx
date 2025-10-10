@@ -28,7 +28,7 @@ export function CaptchaTopic({ captcha }: CaptchaTopicProps) {
 
   if (captcha.roundType === 'emojis') {
     const values = captcha.values as number;
-    return <EmojiCard key={values} id={String(values)} />;
+    return <EmojiCard key={values} emojiId={String(values)} />;
   }
 
   if (captcha.roundType === 'warehouse-goods') {
