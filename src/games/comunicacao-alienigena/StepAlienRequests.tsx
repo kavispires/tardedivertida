@@ -7,7 +7,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
@@ -69,12 +69,12 @@ export function StepAlienRequests({
         <Translate
           pt={
             <>
-              Alienígena <AvatarName player={alien} /> pede um item
+              Alienígena <PlayerAvatarName player={alien} /> pede um item
             </>
           }
           en={
             <>
-              Alien <AvatarName player={alien} /> requests an item
+              Alien <PlayerAvatarName player={alien} /> requests an item
             </>
           }
         />
@@ -87,12 +87,12 @@ export function StepAlienRequests({
           <Translate
             pt={
               <>
-                Aguarde enquanto <AvatarName player={alien} /> escreve o objeto que ele(a) quer.
+                Aguarde enquanto <PlayerAvatarName player={alien} /> escreve o objeto que ele(a) quer.
               </>
             }
             en={
               <>
-                Wait while <AvatarName player={alien} /> describes a desired object.
+                Wait while <PlayerAvatarName player={alien} /> describes a desired object.
               </>
             }
           />

@@ -10,7 +10,7 @@ import { AVATARS } from 'utils/avatars';
 // Icons
 import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
-import { Avatar, IconAvatar } from 'components/avatars';
+import { PlayerAvatar, IconAvatar } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 // Internal
 import type { CardEntry } from '../utils/types';
@@ -61,7 +61,11 @@ export function Table({ table, players }: TableProps) {
               })}
             </div>
             <div className="d-table__player-info">
-              <Avatar id={players[playerId].avatarId} className="d-table__player-avatar" size="default" />
+              <PlayerAvatar
+                avatarId={players[playerId].avatarId}
+                className="d-table__player-avatar"
+                size="default"
+              />
               <span
                 className="d-table__player-bar"
                 style={{ backgroundColor: AVATARS[players[playerId].avatarId].color }}

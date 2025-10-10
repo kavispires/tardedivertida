@@ -2,7 +2,7 @@
 import type { GamePlayer } from 'types/player';
 import type { MonsterImage } from 'types/tdr';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { DrawingCanvas } from 'components/canvas';
 import { MonsterCard } from 'components/cards/MonsterCard';
 import { Translate } from 'components/language';
@@ -47,12 +47,13 @@ export function ViewWitnessing({
           <Translate
             pt={
               <>
-                A testemunha <AvatarName player={witness} /> está tendo um flashback do monstro.
+                A testemunha <PlayerAvatarName player={witness} /> está tendo um flashback do monstro.
               </>
             }
             en={
               <>
-                The witness <AvatarName player={witness} /> is having a flashback of the monster event now.
+                The witness <PlayerAvatarName player={witness} /> is having a flashback of the monster event
+                now.
               </>
             }
           />

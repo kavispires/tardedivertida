@@ -4,7 +4,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
@@ -59,7 +59,7 @@ export function StepReveal({
         title={
           <>
             <Translate pt="O impostor era " en="The impostor was " />
-            <AvatarName player={impostor} />
+            <PlayerAvatarName player={impostor} />
           </>
         }
         subtitle={

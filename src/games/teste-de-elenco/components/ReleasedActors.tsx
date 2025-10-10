@@ -6,7 +6,7 @@ import type { GamePlayers } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { SuspectCard } from 'components/cards/SuspectCard';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
@@ -39,8 +39,8 @@ export function ReleasedActors({ actors, players, selection, playersSelections }
             <SpaceContainer>
               <AntAvatar.Group max={{ count: 5 }}>
                 {(playersSelections[actor.id] ?? []).map((playerId) => (
-                  <Avatar
-                    id={players[playerId].avatarId}
+                  <PlayerAvatar
+                    avatarId={players[playerId].avatarId}
                     key={`actor-avatar-${players[playerId].avatarId}`}
                   />
                 ))}

@@ -5,7 +5,7 @@ import { InputNumber } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -47,7 +47,7 @@ export function SkierBets({ players, user, onSubmitBets, betType }: SkierBetsPro
         {playersList.map((player) => (
           <div key={player.id} className="lodge">
             <div className="lodge__icon">
-              <AvatarName player={player} />
+              <PlayerAvatarName player={player} />
             </div>
 
             <div className="lodge__bets">

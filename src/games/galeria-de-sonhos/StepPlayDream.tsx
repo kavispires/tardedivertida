@@ -11,7 +11,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { FixedMenuButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
@@ -131,14 +131,14 @@ export function StepPlayDream({
           <Translate
             pt={
               <>
-                <AvatarName player={activePlayer} className={getAnimationClass('flash')} /> está selecionando
-                um sonho.
+                <PlayerAvatarName player={activePlayer} className={getAnimationClass('flash')} /> está
+                selecionando um sonho.
               </>
             }
             en={
               <>
-                <AvatarName player={activePlayer} className={getAnimationClass('flash')} /> is selecting a
-                dream.
+                <PlayerAvatarName player={activePlayer} className={getAnimationClass('flash')} /> is selecting
+                a dream.
               </>
             }
           />

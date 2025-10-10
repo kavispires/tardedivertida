@@ -7,7 +7,7 @@ import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { PLACEHOLDER_PLAYER } from 'utils/constants';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 // Internal
 import type { Message } from '../utils/types';
@@ -70,7 +70,7 @@ function PopOverMessageForm({ onSubmitMessage, players }: PopOverMessageFormProp
           {Object.values(players).map((player) => {
             return (
               <Select.Option key={player.id} value={player.id}>
-                <AvatarName player={player} />
+                <PlayerAvatarName player={player} />
               </Select.Option>
             );
           })}
@@ -79,7 +79,7 @@ function PopOverMessageForm({ onSubmitMessage, players }: PopOverMessageFormProp
       <Form.Item label={<Translate pt="Enviar para" en="Send to" />} name="recipientId" required>
         <Select placeholder={<Translate pt="Selecione alguém" en="Select someone" />}>
           <Select.Option value="ALL">
-            <AvatarName
+            <PlayerAvatarName
               player={{
                 ...PLACEHOLDER_PLAYER,
                 id: 'unknown',
@@ -91,7 +91,7 @@ function PopOverMessageForm({ onSubmitMessage, players }: PopOverMessageFormProp
           {Object.values(players).map((player) => {
             return (
               <Select.Option key={player.id} value={player.id}>
-                <AvatarName player={player} />
+                <PlayerAvatarName player={player} />
               </Select.Option>
             );
           })}

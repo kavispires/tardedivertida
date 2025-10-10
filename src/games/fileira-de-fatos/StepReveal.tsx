@@ -7,7 +7,7 @@ import type { TextCard } from 'types/tdr';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -55,12 +55,12 @@ export function StepReveal({
         <Translate
           pt={
             <>
-              Resultado para <AvatarName player={activePlayer} />
+              Resultado para <PlayerAvatarName player={activePlayer} />
             </>
           }
           en={
             <>
-              Results for <AvatarName player={activePlayer} />
+              Results for <PlayerAvatarName player={activePlayer} />
             </>
           }
         />

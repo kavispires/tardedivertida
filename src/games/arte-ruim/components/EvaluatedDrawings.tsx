@@ -6,7 +6,7 @@ import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Icons
 import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { CanvasSVG } from 'components/canvas';
 // Internal
@@ -65,7 +65,7 @@ export function EvaluatedDrawings({ votes, cards, drawings, players }: Evaluated
           return (
             <li className="a-evaluated-drawings__item" key={`${drawing.id}-${card.id}-${card.playerId}`}>
               <div className="a-evaluated-drawings__card" style={{ maxWidth: `${cSize}px` }}>
-                <AvatarName player={players[drawing.playerId]} size="small" />
+                <PlayerAvatarName player={players[drawing.playerId]} size="small" />
               </div>
               <CanvasSVG
                 drawing={drawing.drawing}

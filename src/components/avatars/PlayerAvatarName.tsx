@@ -7,12 +7,11 @@ import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { AVATARS } from 'utils/avatars';
 // Internal
-import { Avatar } from './Avatar';
+import { PlayerAvatar } from './PlayerAvatar';
 // Sass
-import './AvatarName.scss';
-// Resources
+import './PlayerAvatarName.scss';
 
-type AvatarNameProps = {
+export type PlayerAvatarNameProps = {
   /**
    * A player instance
    */
@@ -41,9 +40,9 @@ type AvatarNameProps = {
    * Change the name direction to upright
    */
   upright?: boolean;
-};
+} & React.HTMLAttributes<HTMLSpanElement>;
 
-export const AvatarName = ({
+export const PlayerAvatarName = ({
   player,
   size = 'small',
   className = '',
@@ -51,7 +50,8 @@ export const AvatarName = ({
   uppercase = false,
   addressUser = false,
   upright = false,
-}: AvatarNameProps) => {
+  ...rest
+}: PlayerAvatarNameProps) => {
   const [userId] = useGlobalState('userId');
   const { language, translate } = useLanguage();
 
@@ -62,6 +62,7 @@ export const AvatarName = ({
 
   return (
     <span
+      {...rest}
       className={clsx(
         baseClass,
         uppercase && `${baseClass}--uppercase`,
@@ -69,7 +70,7 @@ export const AvatarName = ({
         className,
       )}
     >
-      <Avatar id={player.avatarId} className="avatar-name__avatar" size={size} />
+      <PlayerAvatar avatarId={player.avatarId} className="avatar-name__avatar" size={size} />
       <span className="avatar-name__name">{addressUser && isUser ? addressedUser : player.name}</span>
       {withDescription && (
         <span className="avatar-name__name">, {AVATARS[player.avatarId].description[language]}</span>

@@ -6,7 +6,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { MonsterIcon } from 'icons/MonsterIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
@@ -42,14 +42,14 @@ export function PhaseCompositeSketch({ state, players }: PhaseProps) {
               pt={
                 <>
                   Um meliante monstruoso está a solta!
-                  <br />A testemunha <AvatarName player={witness} /> tentará relembrar o incidente!
+                  <br />A testemunha <PlayerAvatarName player={witness} /> tentará relembrar o incidente!
                 </>
               }
               en={
                 <>
                   A monstrous miscreant is on the loose!
                   <br />
-                  The witness <AvatarName player={witness} /> must recall all of its features!
+                  The witness <PlayerAvatarName player={witness} /> must recall all of its features!
                 </>
               }
             />
@@ -96,7 +96,7 @@ export function PhaseCompositeSketch({ state, players }: PhaseProps) {
               <Translate
                 pt={
                   <>
-                    A testemunha <AvatarName player={witness} /> terá{' '}
+                    A testemunha <PlayerAvatarName player={witness} /> terá{' '}
                     <TimeHighlight>{TIMES.MEMORY}</TimeHighlight> segundos para memorizar as características
                     do monstro.
                     <br />
@@ -108,7 +108,7 @@ export function PhaseCompositeSketch({ state, players }: PhaseProps) {
                 }
                 en={
                   <>
-                    The witness <AvatarName player={witness} /> will have{' '}
+                    The witness <PlayerAvatarName player={witness} /> will have{' '}
                     <TimeHighlight>{TIMES.MEMORY}</TimeHighlight> seconds to memorize the monster's features.
                     <br />
                     When the time is up, you will have <TimeHighlight>{TIMES.SKETCH / 60}</TimeHighlight>{' '}

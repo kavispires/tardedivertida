@@ -3,7 +3,7 @@ import type { GamePlayer } from 'types/player';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
@@ -43,12 +43,12 @@ export function StepResult({
           <Translate
             pt={
               <>
-                <AvatarName player={guesser} addressUser size="large" /> passou...
+                <PlayerAvatarName player={guesser} addressUser size="large" /> passou...
               </>
             }
             en={
               <>
-                <AvatarName player={guesser} addressUser size="large" /> passed...
+                <PlayerAvatarName player={guesser} addressUser size="large" /> passed...
               </>
             }
           />
@@ -56,13 +56,13 @@ export function StepResult({
           <Translate
             pt={
               <>
-                <AvatarName player={guesser} addressUser size="large" /> disse{' '}
+                <PlayerAvatarName player={guesser} addressUser size="large" /> disse{' '}
                 <TextHighlight>{guess}</TextHighlight>
               </>
             }
             en={
               <>
-                <AvatarName player={guesser} addressUser size="large" /> said{' '}
+                <PlayerAvatarName player={guesser} addressUser size="large" /> said{' '}
                 <TextHighlight>{guess}</TextHighlight>
               </>
             }

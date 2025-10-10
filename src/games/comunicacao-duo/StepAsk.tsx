@@ -10,7 +10,7 @@ import { useLoading } from 'hooks/useLoading';
 // Components
 import { AlienKeyboard } from 'components/alien/AlienKeyboard';
 import { AlienText } from 'components/alien/AlienText';
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -72,12 +72,12 @@ export function StepAsk({
           <Translate
             pt={
               <>
-                Aguarde <AvatarName player={requester} /> pedir algo
+                Aguarde <PlayerAvatarName player={requester} /> pedir algo
               </>
             }
             en={
               <>
-                Wait for <AvatarName player={requester} /> to ask for something
+                Wait for <PlayerAvatarName player={requester} /> to ask for something
               </>
             }
           />

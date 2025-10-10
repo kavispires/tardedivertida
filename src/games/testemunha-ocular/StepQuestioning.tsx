@@ -9,7 +9,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -58,12 +58,12 @@ export function StepQuestioning({
         <Translate
           pt={
             <>
-              Testemunha <AvatarName player={witness} />, responda:
+              Testemunha <PlayerAvatarName player={witness} />, responda:
             </>
           }
           en={
             <>
-              Witness <AvatarName player={witness} />, please answer:
+              Witness <PlayerAvatarName player={witness} />, please answer:
             </>
           }
         />

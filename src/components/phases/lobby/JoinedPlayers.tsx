@@ -7,7 +7,7 @@ import { Badge } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 
 type JoinedPlayersProps = {
@@ -48,7 +48,7 @@ export function JoinedPlayers({ players, orientation }: JoinedPlayersProps) {
             }}
           >
             <Badge dot={player?.ready} color="green">
-              <Avatar id={player?.avatarId} size="large" />
+              <PlayerAvatar avatarId={player?.avatarId} size="large" />
             </Badge>
             <div className="joined-players__avatar-name">
               <Translate pt="Fulano" en="John Doe" custom={player?.name} />

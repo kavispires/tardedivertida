@@ -10,7 +10,7 @@ import { getAvatarColorById } from 'utils/helpers';
 // Icons
 import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
-import { Avatar, IconAvatar } from 'components/avatars';
+import { PlayerAvatar, IconAvatar } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 // Internal
 import type { FinalGalleryEntry } from '../utils/types';
@@ -52,7 +52,7 @@ export function GalleryEntry({ entry, players }: GalleryEntryProps) {
           })}
         </div>
         <div className="d-table__player-info">
-          <Avatar id={player.avatarId} className="d-table__player-avatar" size="default" />
+          <PlayerAvatar avatarId={player.avatarId} className="d-table__player-avatar" size="default" />
           <span
             className="d-table__player-bar"
             style={{ backgroundColor: getAvatarColorById(player.avatarId) }}

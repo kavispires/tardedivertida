@@ -7,7 +7,7 @@ import { sortPlayers } from 'utils/helpers';
 import { KnifeIcon } from 'icons/KnifeIcon';
 import { LockIcon } from 'icons/LockIcon';
 // Components
-import { AvatarCard, IconAvatar } from 'components/avatars';
+import { PlayerAvatarCard, IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 // Internal
 import type { History } from '../utils/types';
@@ -45,7 +45,7 @@ export function PlayersCards({
                 hoverType="tint"
                 className="h-players-cards__button"
               >
-                <AvatarCard
+                <PlayerAvatarCard
                   size="small"
                   player={player}
                   withName

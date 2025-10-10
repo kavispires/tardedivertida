@@ -2,7 +2,7 @@
 import type { GameRound } from 'types/game';
 import type { GamePlayer } from 'types/player';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TargetHighlight } from 'components/metrics/TargetHighlight';
@@ -37,7 +37,7 @@ export function ScoringRules({ round, activePlayer, isFixedRounds }: ScoringRule
           <br />
           {!!activePlayer && (
             <Instruction contained>
-              <AvatarName player={activePlayer} addressUser /> escolherá o assunto para essa rodada.
+              <PlayerAvatarName player={activePlayer} addressUser /> escolherá o assunto para essa rodada.
             </Instruction>
           )}
         </>
@@ -63,7 +63,7 @@ export function ScoringRules({ round, activePlayer, isFixedRounds }: ScoringRule
           <br />
           {!!activePlayer && (
             <Instruction contained>
-              <AvatarName player={activePlayer} addressUser /> will choose the tweet for this round.
+              <PlayerAvatarName player={activePlayer} addressUser /> will choose the tweet for this round.
             </Instruction>
           )}
         </>

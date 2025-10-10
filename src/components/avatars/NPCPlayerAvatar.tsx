@@ -4,7 +4,7 @@ import { Avatar } from 'antd';
 // Components
 import { Translate } from 'components/language';
 // Sass
-import './AvatarName.scss';
+import './PLayerAvatarName.scss';
 
 type AvatarNPCProps = {
   /**
@@ -25,7 +25,7 @@ type AvatarNPCProps = {
   uppercase?: boolean;
 };
 
-export const AvatarNPC = ({
+export const NPCPlayerAvatar = ({
   size = 'small',
   className = '',
   withDescription = false,

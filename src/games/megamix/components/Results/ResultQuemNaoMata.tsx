@@ -1,5 +1,5 @@
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 // Internal
@@ -19,7 +19,7 @@ export function ResultQuemNaoMata({ winningValues, players }: ResultComponentPro
       <div className="track-result-values__cards">
         {winningValues.map((value) => (
           <div key={value} className="track-result-values__text-value">
-            <AvatarName player={players[value]} />
+            <PlayerAvatarName player={players[value]} />
           </div>
         ))}
       </div>

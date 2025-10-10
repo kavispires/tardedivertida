@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "quem-nao-mata",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "release": "planned",
   "available": false,
   "title": {

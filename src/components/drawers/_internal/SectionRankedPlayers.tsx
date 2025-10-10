@@ -10,7 +10,7 @@ import { useUser } from 'hooks/useUser';
 // Utils
 import { AVATARS } from 'utils/avatars';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 
 type SectionRankedPlayersProps = {
@@ -32,7 +32,7 @@ export function SectionRankedPlayers({ players }: SectionRankedPlayersProps) {
           <div className="game-info-drawer__ranked-player" key={`ranked-${player.name}`}>
             {index + 1}.{' '}
             <Badge count={player.score} className="game-info-drawer__avatar-with-badge">
-              <Avatar id={player.avatarId} shape="square" />
+              <PlayerAvatar avatarId={player.avatarId} shape="square" />
             </Badge>
             {player.name}, {AVATARS[player.avatarId].description[language]}
             {player.id === user.id && (

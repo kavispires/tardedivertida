@@ -14,7 +14,7 @@ import { LETTERS } from 'utils/constants';
 import { BrickWallIcon } from 'icons/BrickWallIcon';
 import { ConeIcon } from 'icons/ConeIcon';
 // Components
-import { AvatarName, IconAvatar } from 'components/avatars';
+import { PlayerAvatarName, IconAvatar } from 'components/avatars';
 import { FloatingHandDrawer } from 'components/general/FloatingHand';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -135,9 +135,10 @@ export function StepPlaceLocations({
               No mapa, existem <ConeHighlight>{placements} cones</ConeHighlight> representando onde as
               terrenos onde os projetos podem ser feitos. <br />O objetivo é fazer as construções de acordo
               com o que
-              <AvatarName player={activePlayer} /> planejou.
+              <PlayerAvatarName player={activePlayer} /> planejou.
               <br />
-              <AvatarName player={controller} addressUser /> é o pedreiro e controlará as decisões do grupo.
+              <PlayerAvatarName player={controller} addressUser /> é o pedreiro e controlará as decisões do
+              grupo.
             </>
           }
           en={
@@ -145,8 +146,8 @@ export function StepPlaceLocations({
               On the map, there are <ConeHighlight>{placements} cones</ConeHighlight> representing the land
               where the projects can be built. <br />
               <br />
-              <AvatarName player={controller} addressUser /> {isTheController ? 'are' : 'is'} the bricklayer
-              and will control the group's decisions.
+              <PlayerAvatarName player={controller} addressUser /> {isTheController ? 'are' : 'is'} the
+              bricklayer and will control the group's decisions.
             </>
           }
         />

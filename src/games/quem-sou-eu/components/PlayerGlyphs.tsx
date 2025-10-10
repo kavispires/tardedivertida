@@ -6,7 +6,7 @@ import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
 import { NoIcon } from 'icons/NoIcon';
 import { YesIcon } from 'icons/YesIcon';
 // Components
-import { AvatarStrip, IconAvatar } from 'components/avatars';
+import { PlayerAvatarStrip, IconAvatar } from 'components/avatars';
 import { GlyphCard } from 'components/cards/GlyphCard';
 // Internal
 import { parseSelectedGlyphs } from '../utils/helpers';
@@ -25,7 +25,7 @@ export function PlayerGlyphs({ player, glyphWidth, done }: PlayerGlyphsProps) {
 
   return (
     <div className="q-player-glyphs">
-      <AvatarStrip
+      <PlayerAvatarStrip
         player={player}
         withName
         className="q-player-glyphs__strip"

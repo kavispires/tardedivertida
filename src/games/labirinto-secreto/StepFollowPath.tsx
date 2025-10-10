@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
@@ -36,12 +36,12 @@ export function StepFollowPath({
         <Translate
           pt={
             <>
-              Siga o mapa de <AvatarName player={activePlayer} />
+              Siga o mapa de <PlayerAvatarName player={activePlayer} />
             </>
           }
           en={
             <>
-              Follow <AvatarName player={activePlayer} />
+              Follow <PlayerAvatarName player={activePlayer} />
               's map
             </>
           }

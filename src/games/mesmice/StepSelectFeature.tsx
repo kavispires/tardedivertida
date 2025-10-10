@@ -12,7 +12,7 @@ import { useMock } from 'hooks/useMock';
 // Icons
 import { XIcon } from 'icons/XIcon';
 // Components
-import { AvatarName, IconAvatar } from 'components/avatars';
+import { PlayerAvatarName, IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
@@ -108,7 +108,7 @@ export function StepSelectFeature({
             pt={
               <>
                 Das características abaixo, <strong>selecione</strong> a que menos combina com os dois objetos
-                que <AvatarName player={activePlayer} /> escolheu e que escreveu.
+                que <PlayerAvatarName player={activePlayer} /> escolheu e que escreveu.
                 <br />O objetivo é eliminar as características até que apenas a que tem mais a ver permaneça.
                 <br />
                 Discuta com os outros jogadores para chegar a um consenso, mas a decisão final é sua.
@@ -118,7 +118,7 @@ export function StepSelectFeature({
             en={
               <>
                 From the features below, <strong>select</strong> the one that least connects the two objects
-                that <AvatarName player={activePlayer} /> chose and wrote.
+                that <PlayerAvatarName player={activePlayer} /> chose and wrote.
                 <br />
                 The goal is to eliminate the remaining features until only the one that has the most related
                 remains.

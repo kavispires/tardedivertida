@@ -7,7 +7,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { OpinionsIcon } from 'icons/OpinionsIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { RoundAnnouncement } from 'components/round';
@@ -32,12 +32,12 @@ function RoundAnnouncementText({ guesser, group }: RoundAnnouncementTextProps) {
       <Translate
         pt={
           <>
-            Para essa rodada, <AvatarName player={guesser} addressUser /> será o(a) adivinhador(a).
+            Para essa rodada, <PlayerAvatarName player={guesser} addressUser /> será o(a) adivinhador(a).
           </>
         }
         en={
           <>
-            For this round, <AvatarName player={guesser} addressUser /> will be the guesser.
+            For this round, <PlayerAvatarName player={guesser} addressUser /> will be the guesser.
           </>
         }
       />

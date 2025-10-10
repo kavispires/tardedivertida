@@ -5,7 +5,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
@@ -109,16 +109,16 @@ export function StepHumanAsks({
           <Translate
             pt={
               <>
-                Aguarde enquanto <AvatarName player={currentHuman} /> seleciona{' '}
+                Aguarde enquanto <PlayerAvatarName player={currentHuman} /> seleciona{' '}
                 <ItemsHighlight>1-5 itens</ItemsHighlight> para perguntar ao alienígena{' '}
-                <AvatarName player={alien} /> qual o símbolo relacionado a eles.
+                <PlayerAvatarName player={alien} /> qual o símbolo relacionado a eles.
               </>
             }
             en={
               <>
-                Please wait wile <AvatarName player={currentHuman} /> selects{' '}
-                <ItemsHighlight>1-5 items</ItemsHighlight> to ask the alien <AvatarName player={alien} /> what
-                symbol is related to them.
+                Please wait wile <PlayerAvatarName player={currentHuman} /> selects{' '}
+                <ItemsHighlight>1-5 items</ItemsHighlight> to ask the alien{' '}
+                <PlayerAvatarName player={alien} /> what symbol is related to them.
               </>
             }
           />

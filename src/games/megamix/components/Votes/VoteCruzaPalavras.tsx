@@ -1,5 +1,5 @@
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
@@ -16,7 +16,7 @@ export function VoteCruzaPalavras({ track, playersList }: VoteComponentProps) {
     <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
       {playersList.map((player) => (
         <div key={`vote-${player.id}`} className="player-vote">
-          <Avatar id={player.avatarId} />
+          <PlayerAvatar avatarId={player.avatarId} />
           <div>{player.name}</div>
           <div key={player.data.value} className="track-result-values__text-value">
             {cheatSheet[player.data.value][0]} {'+'} {cheatSheet[player.data.value][1]}

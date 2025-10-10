@@ -4,7 +4,7 @@ import { Avatar as AntAvatar } from 'antd';
 import type { MostVotesResult } from 'types/game';
 import type { GamePlayers } from 'types/player';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
@@ -27,9 +27,9 @@ export function Votes({ votes, players, features }: VotesProps) {
 
             <AntAvatar.Group max={{ count: 5 }}>
               {entry.votes.map((playerId) => (
-                <Avatar
+                <PlayerAvatar
                   key={playerId}
-                  id={players[playerId].avatarId}
+                  avatarId={players[playerId].avatarId}
                   alt={players[playerId].name}
                   size="small"
                 />

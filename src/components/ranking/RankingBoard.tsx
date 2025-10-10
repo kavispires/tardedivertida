@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { orderBy } from 'lodash';
-import { type LegacyRef, type ReactNode, useEffect, useMemo, useState } from 'react';
+import { type Ref, type ReactNode, useEffect, useMemo, useState, useId } from 'react';
 import { useEffectOnce, useMeasure } from 'react-use';
 // Ant Design Resources
 import { CrownFilled } from '@ant-design/icons';
@@ -13,7 +13,7 @@ import { useCountdown } from 'hooks/useCountdown';
 // Utils
 import { getAnimationClass, removeDuplicates } from 'utils/helpers';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 
 type GainedPointProps = {
@@ -88,6 +88,7 @@ export function RankingBoard({
   const [sortedRanking, setSortedRanking] = useState<GameRanking>([]);
   const [reRank, setReRank] = useState(0);
   const [ref, { height }] = useMeasure();
+  const id = useId();
 
   const orderedPoints = useMemo(
     () => removeDuplicates(ranking.map((scores) => scores.newScore).sort((a, b) => b - a)),
@@ -168,9 +169,9 @@ export function RankingBoard({
     >
       <div
         className="ranking-board__row"
-        id="ranking-row-placeholder"
+        id={`ranking-row-${id}-placeholder`}
         style={{ opacity: 0 }}
-        ref={ref as LegacyRef<HTMLDivElement>}
+        ref={ref as Ref<HTMLDivElement>}
       >
         <div className="ranking-board__cell-crown">
           <CrownFilled className="ranking-board__crown-icon" />
@@ -178,7 +179,7 @@ export function RankingBoard({
         <div className="ranking-board__cell-position">#0</div>
         <div className="ranking-board__cell-player">
           <div className="ranking-board__avatar">
-            <Avatar id="A" />
+            <PlayerAvatar avatarId="A" />
           </div>
           <div className="ranking-board__name">Placeholder</div>
         </div>
@@ -212,7 +213,7 @@ export function RankingBoard({
             <div className="ranking-board__cell-position">#{position[reRank] ?? ''}</div>
             <div className="ranking-board__cell-player">
               <div className="ranking-board__avatar">
-                <Avatar id={players[playerId].avatarId} />
+                <PlayerAvatar avatarId={players[playerId].avatarId} />
               </div>
               <div className="ranking-board__name">{players[playerId].name}</div>
             </div>

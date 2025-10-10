@@ -5,7 +5,7 @@ import type { GamePlayers } from 'types/player';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { FixedMenuButton } from 'components/buttons';
 import { DualTranslate, Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
@@ -150,14 +150,15 @@ export function LoseGameText({ players }: { players: GamePlayers }) {
       pt={
         <>
           A comida acabou após alguns dias e fomos obrigados a dar uma chance ao canibalismo.{' '}
-          <AvatarName player={sortedPlayers[1]} /> foi o primeiro a partir e servir de alimento aos outros.
-          Diz a lenda que a batata da perna estava muito saborosa. No final das contas, todo mundo morreu...
+          <PlayerAvatarName player={sortedPlayers[1]} /> foi o primeiro a partir e servir de alimento aos
+          outros. Diz a lenda que a batata da perna estava muito saborosa. No final das contas, todo mundo
+          morreu...
         </>
       }
       en={
         <>
           The food soon was gone, we had to give in and try cannibalism.{' '}
-          <AvatarName player={sortedPlayers[1]} /> was the first to go and served as food to others. The
+          <PlayerAvatarName player={sortedPlayers[1]} /> was the first to go and served as food to others. The
           legend says its calf was very tasty and bough the rest of the group some extra days of live. In the
           end, we all died...
         </>

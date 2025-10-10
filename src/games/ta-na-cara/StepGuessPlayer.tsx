@@ -5,7 +5,7 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { pluralize } from 'utils/helpers';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
@@ -59,7 +59,7 @@ export function StepGuessPlayer({
           pt={
             <>
               Analise as respostas e selecione a pessoa que você acha que é{' '}
-              <AvatarName player={targetedPlayer} />. Se você acertar, você ganha{' '}
+              <PlayerAvatarName player={targetedPlayer} />. Se você acertar, você ganha{' '}
               <PointsHighlight>
                 {points} {pluralize(points, 'ponto')}
               </PointsHighlight>
@@ -68,8 +68,8 @@ export function StepGuessPlayer({
           }
           en={
             <>
-              Analyze the answer and select the character you think <AvatarName player={targetedPlayer} /> is.
-              If you're correct you get{' '}
+              Analyze the answer and select the character you think{' '}
+              <PlayerAvatarName player={targetedPlayer} /> is. If you're correct you get{' '}
               <PointsHighlight>
                 {points} {pluralize(points, 'point')}
               </PointsHighlight>

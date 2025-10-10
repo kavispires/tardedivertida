@@ -8,7 +8,7 @@ import { FlagIcon } from 'icons/FlagIcon';
 import { MapIcon } from 'icons/MapIcon';
 import { NoIcon } from 'icons/NoIcon';
 // Components
-import { Avatar, IconAvatar } from 'components/avatars';
+import { PlayerAvatar, IconAvatar } from 'components/avatars';
 import { TreeCard } from 'components/cards/TreeCard';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
@@ -73,7 +73,7 @@ export function PlayerMapResultsSummary({ players, forest, currentPlayer }: Play
                     const player = players[playerId];
                     return (
                       <Tooltip title={player.name} key={`player-${playerId}`}>
-                        <Avatar size="small" id={player.avatarId} />
+                        <PlayerAvatar size="small" avatarId={player.avatarId} />
                       </Tooltip>
                     );
                   })}

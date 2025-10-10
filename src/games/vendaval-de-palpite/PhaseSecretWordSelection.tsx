@@ -6,7 +6,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { KnowledgeIcon } from 'icons/KnowledgeIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -40,12 +40,12 @@ export function PhaseSecretWordSelection({ state, players }: PhaseProps) {
             <Translate
               pt={
                 <>
-                  O chefe <AvatarName player={boss} /> escolherá a palavra-secreta e sua categoria.
+                  O chefe <PlayerAvatarName player={boss} /> escolherá a palavra-secreta e sua categoria.
                 </>
               }
               en={
                 <>
-                  The boss <AvatarName player={boss} /> will choose the secret clue and its category.
+                  The boss <PlayerAvatarName player={boss} /> will choose the secret clue and its category.
                 </>
               }
             />
@@ -66,12 +66,13 @@ export function PhaseSecretWordSelection({ state, players }: PhaseProps) {
               <Translate
                 pt={
                   <>
-                    O mestre <AvatarName player={boss} /> está escolhendo a palavra-secreta e sua categoria.
+                    O mestre <PlayerAvatarName player={boss} /> está escolhendo a palavra-secreta e sua
+                    categoria.
                   </>
                 }
                 en={
                   <>
-                    The boss <AvatarName player={boss} /> is choosing the secret clue and its category.
+                    The boss <PlayerAvatarName player={boss} /> is choosing the secret clue and its category.
                   </>
                 }
               />

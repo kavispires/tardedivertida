@@ -3,7 +3,7 @@ import type { GamePlayers } from 'types/player';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 // Internal
 import type { AlbumEntry } from '../utils/types';
@@ -22,7 +22,7 @@ export function Album({ albumEntry, currentPage, players }: AlbumProps) {
   return (
     <div className="l-album">
       <h2 className="l-album__owner" style={{ backgroundColor: albumColor }}>
-        <Avatar id={albumOwner.avatarId} size="large" />{' '}
+        <PlayerAvatar avatarId={albumOwner.avatarId} size="large" />{' '}
         <Translate pt={<>Álbum de {albumOwner.name}</>} en={<>{albumOwner.name}'s Album</>} />
       </h2>
 

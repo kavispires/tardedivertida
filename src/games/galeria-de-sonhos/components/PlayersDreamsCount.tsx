@@ -7,7 +7,7 @@ import type { GamePlayers } from 'types/player';
 // Utils
 import { getAnimationClass, getAvatarColorById, sortPlayers } from 'utils/helpers';
 // Components
-import { Avatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 // Internal
 import type { CardInHand } from '../utils/types';
@@ -63,7 +63,7 @@ export function PlayersDreamsCount({ players, playerInNightmareId }: PlayersDrea
                 placement="bottom"
                 open={showTooltip}
               >
-                <Avatar shape="square" id={player.avatarId} alt={player.name} />
+                <PlayerAvatar shape="square" avatarId={player.avatarId} alt={player.name} />
 
                 <div
                   className={clsx(

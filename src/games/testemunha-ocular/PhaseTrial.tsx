@@ -6,7 +6,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { LawIcon } from 'icons/LawIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -40,7 +40,8 @@ function PhaseTrial({ state, players }: PhaseProps<PhaseTrialState>) {
               Lembre-se que estamos tentando liberar testemunhas. Desvendamos o caso se o último suspeito for
               o criminoso!
               <br />
-              <AvatarName player={questioner} addressUser /> está encarregado(a) de selecionar os inocentes.
+              <PlayerAvatarName player={questioner} addressUser /> está encarregado(a) de selecionar os
+              inocentes.
             </>
           }
           en={
@@ -49,7 +50,7 @@ function PhaseTrial({ state, players }: PhaseProps<PhaseTrialState>) {
               Remember we are trying to release witnesses. We solve the case if the last man (or woman)
               standing is the perpetrator!
               <br />
-              <AvatarName player={questioner} /> is in charge of selecting the innocent people.
+              <PlayerAvatarName player={questioner} /> is in charge of selecting the innocent people.
             </>
           }
         />

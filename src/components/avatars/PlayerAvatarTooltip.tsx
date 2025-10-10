@@ -3,17 +3,17 @@ import { type AvatarProps, Tooltip, type TooltipProps } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Internal
-import { Avatar } from './Avatar';
+import { PlayerAvatar } from './PlayerAvatar';
 
-type AvatarTooltipProps = {
+type PlayerAvatarTooltipProps = {
   player: GamePlayer;
   tooltipProps?: TooltipProps;
 } & AvatarProps;
 
-export function AvatarTooltip({ player, tooltipProps, ...avatarProps }: AvatarTooltipProps) {
+export function PlayerAvatarTooltip({ player, tooltipProps, ...avatarProps }: PlayerAvatarTooltipProps) {
   return (
     <Tooltip title={player.name} {...tooltipProps}>
-      <Avatar id={player.avatarId} {...avatarProps} />
+      <PlayerAvatar avatarId={player.avatarId} {...avatarProps} />
     </Tooltip>
   );
 }

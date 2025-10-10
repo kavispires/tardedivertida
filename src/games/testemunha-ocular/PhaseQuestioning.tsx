@@ -7,7 +7,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { EyeIcon } from 'icons/EyeIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -38,14 +38,14 @@ function PhaseQuestioning({ state, players }: PhaseProps<PhaseQuestioningState>)
             <>
               Nossa testemunha só sabe julgar por aparência.
               <br />
-              <AvatarName player={witness} />, é hora de nos ajudar a pegar esse criminoso hediondo.
+              <PlayerAvatarName player={witness} />, é hora de nos ajudar a pegar esse criminoso hediondo.
             </>
           }
           en={
             <>
               Our witness loves to judge the book by its cover.
               <br />
-              <AvatarName player={witness} />, it's time to help us find this heinous perpetrator!
+              <PlayerAvatarName player={witness} />, it's time to help us find this heinous perpetrator!
             </>
           }
         />

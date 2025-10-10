@@ -8,7 +8,7 @@ import { getAvatarColorById, sortPlayers } from 'utils/helpers';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
-import { AvatarCard, IconAvatar } from 'components/avatars';
+import { PlayerAvatarCard, IconAvatar } from 'components/avatars';
 import { ImageCard } from 'components/image-cards';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
@@ -73,7 +73,7 @@ export function PlayerBoard({
         <PointsHighlight>{Math.max(10 - (player?.answers?.length ?? 0), 1)}</PointsHighlight>
       </div>
       <div className="player-board__avatar">
-        <AvatarCard player={player} size="small" withName withRoundCorners addressUser />
+        <PlayerAvatarCard player={player} size="small" withName withRoundCorners addressUser />
       </div>
       <ul className="player-board__history">
         {Boolean(player?.answers?.length) &&

@@ -6,7 +6,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { BarChartIcon } from 'icons/BarChartIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { RoundAnnouncement } from 'components/round';
@@ -38,12 +38,13 @@ export function PhaseMetricsBuilding({ state, players }: PhaseProps<PhaseMetrics
         <Translate
           pt={
             <>
-              O apresentador <AvatarName player={presenter} /> vai construir as métricas para essa rodada.
+              O apresentador <PlayerAvatarName player={presenter} /> vai construir as métricas para essa
+              rodada.
             </>
           }
           en={
             <>
-              The presenter <AvatarName player={presenter} /> will build the metrics for this round.
+              The presenter <PlayerAvatarName player={presenter} /> will build the metrics for this round.
             </>
           }
         />

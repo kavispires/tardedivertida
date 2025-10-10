@@ -12,7 +12,7 @@ import { getAvatarColorById, sortPlayers } from 'utils/helpers';
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { StarIcon } from 'icons/StarIcon';
 // Components
-import { Avatar, AvatarName, AvatarStrip, IconAvatar } from 'components/avatars';
+import { PlayerAvatar, PlayerAvatarName, PlayerAvatarStrip, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 
@@ -38,7 +38,7 @@ export function Results({ players, activePlayerId, correctOrder, roundType }: Re
     <SpaceContainer vertical>
       {listOfPLayers.map((player) => (
         <Space className="scenarios-results" key={player.id}>
-          <AvatarStrip player={player} />
+          <PlayerAvatarStrip player={player} />
           {player.currentOrder.map((cardId: CardId, index: number) => {
             const isCorrect = correctOrder[index] === cardId;
             const backgroundColor = isCorrect ? { backgroundColor: getAvatarColorById(player.avatarId) } : {};
@@ -50,7 +50,7 @@ export function Results({ players, activePlayerId, correctOrder, roundType }: Re
               >
                 {isCorrect ? (
                   <span>
-                    <Avatar id={player.avatarId} alt={player.name} size="small" />{' '}
+                    <PlayerAvatar avatarId={player.avatarId} alt={player.name} size="small" />{' '}
                     <PositiveStarPoints roundType={roundType} position={index + 1} />
                   </span>
                 ) : (
@@ -60,14 +60,14 @@ export function Results({ players, activePlayerId, correctOrder, roundType }: Re
                         <Translate
                           pt={
                             <>
-                              <AvatarName player={player} addressUser size="small" /> achou que esse cenário
-                              era na posição #{correctOrder.indexOf(cardId) + 1}
+                              <PlayerAvatarName player={player} addressUser size="small" /> achou que esse
+                              cenário era na posição #{correctOrder.indexOf(cardId) + 1}
                             </>
                           }
                           en={
                             <>
-                              <AvatarName player={player} addressUser size="small" /> thought this scenario
-                              would go in position #{correctOrder.indexOf(cardId) + 1}
+                              <PlayerAvatarName player={player} addressUser size="small" /> thought this
+                              scenario would go in position #{correctOrder.indexOf(cardId) + 1}
                             </>
                           }
                         />
@@ -81,7 +81,7 @@ export function Results({ players, activePlayerId, correctOrder, roundType }: Re
               </div>
             );
           })}
-          <AvatarStrip player={player} />
+          <PlayerAvatarStrip player={player} />
         </Space>
       ))}
     </SpaceContainer>

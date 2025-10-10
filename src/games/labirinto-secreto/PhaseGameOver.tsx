@@ -7,7 +7,7 @@ import { getAvatarColorById, sortPlayers } from 'utils/helpers';
 // Icons
 import { FlagIcon } from 'icons/FlagIcon';
 // Components
-import { AvatarStrip } from 'components/avatars';
+import { PlayerAvatarStrip } from 'components/avatars';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
@@ -33,7 +33,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
               className="game-over-strip"
               style={{ borderColor: getAvatarColorById(player.avatarId) }}
             >
-              <AvatarStrip player={player} withName className="game-over-avatar-strip" />
+              <PlayerAvatarStrip player={player} withName className="game-over-avatar-strip" />
               <PlayerMap map={player.map} fullMap selectedTrees={mapTrees} />
             </Space>
           );

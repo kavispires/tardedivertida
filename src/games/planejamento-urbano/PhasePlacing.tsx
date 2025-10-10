@@ -6,7 +6,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { MapCityZonesIcon } from 'icons/MapCityZonesIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -37,14 +37,14 @@ export function PhasePlacing({ state, players }: PhaseProps) {
             <>
               Agora, é hora de colocar as construções de acordo com o planejamento do engenheiro chefe.
               <br />
-              <AvatarName player={controller} addressUser /> é o responsável por essa etapa.
+              <PlayerAvatarName player={controller} addressUser /> é o responsável por essa etapa.
             </>
           }
           en={
             <>
               Now, it's time to place the buildings according to the chief engineer's planning.
               <br />
-              <AvatarName player={controller} addressUser /> is responsible for this step.
+              <PlayerAvatarName player={controller} addressUser /> is responsible for this step.
             </>
           }
         />

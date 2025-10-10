@@ -10,7 +10,7 @@ import { GamblingChipIcon } from 'icons/GamblingChipIcon';
 import { LodgeIcon } from 'icons/LodgeIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { AvatarGroup } from 'components/avatars/AvatarGroup';
+import { AvatarGroup } from 'components/avatars/PlayerAvatarGroup';
 import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';

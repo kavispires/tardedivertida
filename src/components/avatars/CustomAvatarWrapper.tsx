@@ -44,6 +44,9 @@ type CustomAvatarWrapperProps = {
   viewBox?: string;
 } & CustomAvatarProps;
 
+/**
+ * Displays a custom avatar with optional game avatar on top
+ */
 export const CustomAvatarWrapper = ({
   sprite,
   prefix,

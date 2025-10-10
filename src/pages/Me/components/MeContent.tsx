@@ -20,7 +20,7 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 import { UserStatsIcon } from 'icons/UserStatsIcon';
 // Components
 import { LogoutButton } from 'components/auth/LogoutButton';
-import { Avatar, IconAvatar } from 'components/avatars';
+import { PlayerAvatar, IconAvatar } from 'components/avatars';
 import { LanguageSwitch, Translate } from 'components/language';
 import { PageLayout } from 'components/layout/PageLayout';
 import { Title } from 'components/text';
@@ -83,7 +83,7 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
 
           <InfoCard title={<Translate pt="Avatares preferidos" en="Favorite Avatars" />}>
             {user.avatars.map((avatarId) => (
-              <Avatar key={avatarId} id={avatarId} shape="square" size="small" />
+              <PlayerAvatar key={avatarId} avatarId={avatarId} shape="square" size="small" />
             ))}
           </InfoCard>
         </Row>

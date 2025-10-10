@@ -9,7 +9,7 @@ import { useGlobalState } from 'hooks/useGlobalState';
 import { ClockIcon } from 'icons/ClockIcon';
 import { PlayerIconsIcon } from 'icons/PlayerIconsIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DebugOnly } from 'components/debug';
 import { HostNextPhaseButton } from 'components/host';
@@ -122,7 +122,7 @@ export function StepReveal({
               return (
                 <SpaceContainer key={`offer-${entry.playerId}-${entry.objectId}`} vertical>
                   <ItemCard itemId={`${entry.objectId}`} className={''} width={48} />
-                  <AvatarName player={players[entry.playerId]} />
+                  <PlayerAvatarName player={players[entry.playerId]} />
                   <ItemResolution itemId={entry.objectId} items={items} />
                 </SpaceContainer>
               );

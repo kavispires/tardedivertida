@@ -5,7 +5,7 @@ import type { GamePlayers } from 'types/player';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { AvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/avatars';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import type { FinalGalleryEntry } from '../utils/types';
@@ -23,7 +23,7 @@ export function FinalGalleryItem({ entry, players, width }: FinalGalleryItemProp
 
   return (
     <SpaceContainer vertical contained>
-      <AvatarName player={player} />
+      <PlayerAvatarName player={player} />
       <WarningDrawing drawing={entry.drawing} width={width} />
       <Typography.Text code className="uppercase">
         {entry.title}
