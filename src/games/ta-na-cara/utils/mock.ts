@@ -1,44 +1,23 @@
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers } from 'types/player';
 // Utils
 import { getRandomItem } from 'utils/helpers';
-// Internal
-import type { CharactersDictionary } from './types';
 
-export function mockPromptDecision(
-  user: GamePlayer,
-  players: GamePlayers,
-  onSubmitPrompt: GenericFunction,
-  onSubmitTarget: GenericFunction,
-) {
-  const options = [
-    ...user.questions,
-    // ...user.questions,
-    ...Object.keys(players).filter((pId) => pId !== user.id),
-  ];
+export function mockCharacterSelection(options: string[]) {
+  return getRandomItem(options);
+}
 
-  const choice = getRandomItem(options);
+export function mockGuesses(userId: PlayerId, players: GamePlayers, grid: string[]) {
+  // For each player it should have a 70% of getting it right
+  return Object.keys(players).reduce((acc: Dictionary<string>, playerId) => {
+    if (userId === playerId) return acc;
 
-  if (choice.startsWith('t-')) {
-    onSubmitPrompt({ questionId: choice });
-  } else {
-    onSubmitTarget({ targetId: choice });
-  }
+    acc[playerId] = Math.random() < 0.7 ? getRandomItem(grid) : players[playerId].identity.identityId;
+
+    return acc;
+  }, {});
 }
 
 export function mockAnswer() {
-  return getRandomItem([true, false]);
-}
-
-export function mockGuess(charactersDict: CharactersDictionary, user: GamePlayer, targetId: PlayerId) {
-  return getRandomItem(
-    Object.values(charactersDict)
-      .filter(
-        (character) =>
-          character.id !== user.characterId &&
-          !character.revealed &&
-          !(user.history?.[targetId] ?? []).includes(character.id),
-      )
-      .map((character) => character.id),
-  );
+  return getRandomItem([-3, -3 - 1, 1, 3, 3]);
 }

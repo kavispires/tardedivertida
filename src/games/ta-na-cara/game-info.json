@@ -2,16 +2,16 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "ta-na-cara",
-  "version": "1.1.78",
-  "release": "deprecated",
-  "available": false,
+  "version": "1.1.83",
+  "release": "dev",
+  "available": true,
   "title": {
     "pt": "Tá Na Cara",
     "en": "Guess Who What?"
   },
   "popularName": {
-    "pt": "Jogo do preconceito competitivo",
-    "en": "Competitive NSFW game"
+    "pt": "Preconceito competitivo",
+    "en": "Competitive Prejudice"
   },
   "basedOn": "ohW sseuG",
   "appearance": {
@@ -26,20 +26,32 @@
     "en": "Can you guess who is who based on subjective questions?"
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "en": [
+      "In Guess Who What?, players take the identity of different characters and must guess each other's identities through questions.",
+      "Each turn one player ask a subjective question that every player including themselves must answer",
+      "After one question per player, but at least 5 questions have been answer, all players must guess each other",
+      "You get 5 points for guessing an identity correctly, and get 2 points for getting your identity guessed correctly, so answer them honestly!",
+      "Every round your identity is guessed, you get a new character and the game goes for 3 rounds. Good luck!"
+    ],
+    "pt": [
+      "No jogo Tá Na Cara, os jogadores assumem a identidade de diferentes personagens e devem adivinhar as identidades uns dos outros por meio de perguntas.",
+      "A cada turno, um jogador faz uma pergunta subjetiva que todos os jogadores, incluindo ele mesmo, devem responder.",
+      "Após uma pergunta por jogador, mas com pelo menos 5 perguntas respondidas, todos os jogadores devem adivinhar uns aos outros.",
+      "Você ganha 5 pontos por adivinhar uma identidade corretamente e 2 pontos por ter sua identidade adivinhada corretamente, então responda honestamente!",
+      "A cada rodada em que sua identidade é adivinhada, você recebe um novo personagem e o jogo continua por 3 rodadas. Boa sorte!"
+    ]
   },
   "playerCount": {
     "recommended": [4, 5, 6],
     "best": 5,
-    "min": 4,
-    "max": 10
+    "min": 2,
+    "max": 9
   },
   "duration": {
-    "base": 0,
-    "perPlayer": 0
+    "base": 20,
+    "perPlayer": 1
   },
-  "tags": ["competitive", "turn-based", "guessing"],
+  "tags": ["competitive", "same-time", "guessing"],
   "options": [
     {
       "key": "nsfw",
@@ -58,13 +70,33 @@
       ]
     },
     {
+      "key": "vibesMode",
+      "kind": "switch",
+      "label": "Vibe Mode",
+      "description": "Players write the questions (3rd round is always vibe)",
+      "values": [
+        {
+          "label": "No",
+          "value": false
+        },
+        {
+          "label": "Yes",
+          "value": true
+        }
+      ]
+    },
+    {
       "key": "deckType",
       "label": "Deck",
       "kind": "radio",
       "description": "Choose the suspect type of deck to play with",
       "values": [
         {
-          "label": "Ghibli (recommended)",
+          "label": "Fox Animation  (recommended)",
+          "value": "fox"
+        },
+        {
+          "label": "Ghibli",
           "value": "ghibli"
         },
         {
@@ -74,10 +106,6 @@
         {
           "label": "Pixar",
           "value": "pixar"
-        },
-        {
-          "label": "Fox Animation",
-          "value": "fox"
         }
       ]
     }

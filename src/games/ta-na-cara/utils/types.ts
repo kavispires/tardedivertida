@@ -1,34 +1,89 @@
 // Types
-import type { SuspectCard } from 'types/tdr';
+import type { GameRanking } from 'types/game';
+import type { SuspectCard, TestimonyQuestionCard } from 'types/tdr';
+
+export type SubmitIdentityPayload = {
+  identityId: CardId;
+};
 
 export type SubmitPromptPayload = {
   questionId: CardId;
-};
-
-export type SubmitTargetPayload = {
-  targetId: PlayerId;
+  customQuestion: string;
+  customAnswer: string;
 };
 
 export type SubmitAnswerPayload = {
-  targetId: PlayerId;
+  questionId: CardId;
+  answer: number;
 };
 
-export type SubmitGuessPayload = {
-  targetId: PlayerId;
+export type SubmitGuessesPayload = {
+  guesses: Dictionary<CardId>;
 };
 
-export type CharacterFace = {
-  revealed: boolean;
-  playerId?: PlayerId;
-} & SuspectCard;
-
-export type Question = {
-  id: CardId;
-  question: string;
-  used: boolean;
-  yes: PlayerId[];
+export type PhaseIdentitySelectionState = {
+  grid: CardId[];
+  identitiesDict: Dictionary<SuspectCard>;
+  newRound: boolean;
 };
 
-export type CharactersDictionary = Dictionary<CharacterFace>;
-export type QuestionsDictionary = Dictionary<Question>;
-export type GuessHistory = Record<PlayerId, CardId[]>;
+export type PhasePromptingState = {
+  turnOrder: GameOrder;
+  grid: CardId[];
+  identitiesDict: Dictionary<SuspectCard>;
+  newRound?: boolean;
+  activePlayerId: string;
+  turnQuestions: TestimonyQuestionCard[];
+  questionCount: number;
+  vibesMode: boolean;
+  questionsDict: Dictionary<TestimonyQuestionCard>;
+};
+
+export type PhaseAnsweringState = {
+  turnOrder: GameOrder;
+  grid: CardId[];
+  identitiesDict: Dictionary<SuspectCard>;
+  activePlayerId: string;
+  questionCount: number;
+  vibesMode: boolean;
+  currentQuestionId: CardId;
+  questionsDict: Dictionary<TestimonyQuestionCard>;
+};
+
+export type PhaseGuessingState = {
+  turnOrder: GameOrder;
+  grid: CardId[];
+  identitiesDict: Dictionary<SuspectCard>;
+  activePlayerId: string;
+  questionCount: number;
+  questionsDict: Dictionary<TestimonyQuestionCard>;
+};
+
+export type PhaseRevealState = {
+  turnOrder: GameOrder;
+  grid: CardId[];
+  identitiesDict: Dictionary<SuspectCard>;
+  questionsDict: Dictionary<TestimonyQuestionCard>;
+  questionCount: number;
+  ranking: GameRanking;
+  gallery: GalleryEntry[];
+};
+
+export type Votes = Record<
+  string,
+  {
+    identityId: string;
+    eliminated: BooleanDictionary;
+  }
+>;
+
+export type GalleryEntry = {
+  playerId: PlayerId;
+  identityId: CardId;
+  answers: NumberDictionary;
+  correctPlayersIds: PlayerId[];
+  wrongVotes: {
+    identityId: CardId;
+    playerIds: PlayerId[];
+  }[];
+};

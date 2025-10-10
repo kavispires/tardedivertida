@@ -11,12 +11,14 @@ import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnSubmitAnswerAPIRequest } from './utils/api-requests';
 import { TA_NA_CARA_PHASES } from './utils/constants';
+import type { PhaseAnsweringState } from './utils/types';
 import { StepAnswerTheQuestion } from './StepAnswerTheQuestion';
+import { StepWaitOnAnswers } from './StepWaitOnAnswers';
 
-export function PhaseAnswer({ state, players, user }: PhaseProps) {
-  const { step } = useStep();
+export function PhaseAnswering({ state, players, user, meta }: PhaseProps<PhaseAnsweringState>) {
+  const { step, setStep } = useStep();
 
-  const onSubmitAnswer = useOnSubmitAnswerAPIRequest();
+  const onSubmitAnswer = useOnSubmitAnswerAPIRequest(setStep);
 
   const announcement = (
     <PhaseAnnouncement
@@ -25,7 +27,7 @@ export function PhaseAnswer({ state, players, user }: PhaseProps) {
       currentRound={state?.round?.current}
       type="overlay"
       duration={4}
-    ></PhaseAnnouncement>
+    />
   );
 
   return (
@@ -36,13 +38,24 @@ export function PhaseAnswer({ state, players, user }: PhaseProps) {
           announcement={announcement}
           players={players}
           user={user}
-          turnOrder={state.turnOrder}
-          charactersDict={state.charactersDict}
-          charactersIds={state.charactersIds}
-          questionId={state.currentQuestionId}
+          grid={state.grid}
+          identitiesDict={state.identitiesDict}
+          currentQuestionId={state.currentQuestionId}
           questionsDict={state.questionsDict}
+          vibesMode={state.vibesMode}
+          questionCount={state.questionCount}
           onSubmitAnswer={onSubmitAnswer}
-          activePlayerId={state.activePlayerId}
+        />
+
+        <StepWaitOnAnswers
+          gameId={meta.gameId}
+          players={players}
+          user={user}
+          grid={state.grid}
+          identitiesDict={state.identitiesDict}
+          currentQuestionId={state.currentQuestionId}
+          questionsDict={state.questionsDict}
+          questionCount={state.questionCount}
         />
       </StepSwitcher>
     </PhaseContainer>

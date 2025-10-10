@@ -1,7 +1,8 @@
 export const TA_NA_CARA_PHASES = {
   LOBBY: 'LOBBY',
   SETUP: 'SETUP',
-  PROMPT: 'PROMPT',
+  IDENTITY_SELECTION: 'IDENTITY_SELECTION',
+  PROMPTING: 'PROMPTING',
   ANSWERING: 'ANSWERING',
   GUESSING: 'GUESSING',
   REVEAL: 'REVEAL',
@@ -9,25 +10,24 @@ export const TA_NA_CARA_PHASES = {
 };
 
 export const TA_NA_CARA_ACTIONS = {
+  SUBMIT_IDENTITY: 'SUBMIT_IDENTITY',
   SUBMIT_PROMPT: 'SUBMIT_PROMPT',
-  SUBMIT_TARGET: 'SUBMIT_TARGET',
-  SUBMIT_GUESS: 'SUBMIT_GUESS',
   SUBMIT_ANSWER: 'SUBMIT_ANSWER',
+  SUBMIT_GUESSES: 'SUBMIT_GUESSES',
 };
 
 export const PLAYER_COUNTS = {
   MIN: 2,
-  MAX: 10,
+  MAX: 9,
 };
 
-export const MAX_ROUNDS = 15;
+export const MAX_ROUNDS = 3;
 
-export const MINIMUM_SUSPECTS = 12;
+export const MIN_QUESTIONS_PER_ROUND = 5;
 
-export const QUESTIONS_PER_PLAYER = 6;
+export const GRID_SIZE = 18;
 
-export const DUMMY_ID = '__result';
+export const CORRECT_POINTS = 5;
+export const GUESSED_POINTS = 2;
 
-export const BASE_POINTS = 10;
-
-export const MINIMUM_POINTS = 1;
+export const CUSTOM_QUESTION_ID = 'CUSTOM';

@@ -1,20 +1,29 @@
-export function BoxPlusIcon(props: React.SVGProps<SVGSVGElement>) {
+type BoxPlusIconProps = React.SVGProps<SVGSVGElement> & {
+  /** Main color of the icon. Defaults to blue */
+  color?: string;
+};
+
+export function BoxPlusIcon({ color, ...props }: BoxPlusIconProps) {
+  // Default colors
+  const mainColor = color || '#0593fc';
+  const darkColor = color || '#0181fa';
+
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path
-        fill="#0593fc"
+        fill={mainColor}
         d="M473.16 492.81H38.84A31.34 31.34 0 017.5 461.47V56.87a37.68 37.68 0 0137.68-37.68h421.64a37.68 37.68 0 0137.68 37.68v404.6a31.34 31.34 0 01-31.34 31.34z"
       ></path>
       <path
-        fill="#0181fa"
+        fill={darkColor}
         d="M504.5 56.87v404.6a31.34 31.34 0 01-31.34 31.34h-21.12a31.34 31.34 0 0031.34-31.34V56.87a37.68 37.68 0 00-37.68-37.68h21.12a37.68 37.68 0 0137.68 37.68z"
       ></path>
       <path
-        fill="#0593fc"
+        fill={mainColor}
         d="M434.7 448.24H77.3a25.6 25.6 0 01-25.61-25.6V94.53c0-17 13.78-30.78 30.78-30.78h347.06c17 0 30.78 13.79 30.78 30.79v328.08a25.6 25.6 0 01-25.6 25.6z"
       ></path>
       <path
-        fill="#0181fa"
+        fill={darkColor}
         d="M429.53 63.76h-27.44c17 0 30.78 13.79 30.78 30.79v328.08a25.6 25.6 0 01-25.6 25.6h27.44a25.6 25.6 0 0025.6-25.6V94.55c0-17-13.78-30.79-30.78-30.79z"
       ></path>
       <path

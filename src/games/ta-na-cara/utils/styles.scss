@@ -1,141 +1,112 @@
 @use "styles/sass" as *;
 
-.characters-table {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.ta-na-cara-characters-board {
+  display: grid;
+  gap: get-unit(1);
+  background: get-color("black", 5, 0.25);
+  padding: get-unit(1);
+  border-radius: get-unit(3);
+  position: relative;
 
-  &__character {
-    position: relative;
+  &--5 {
+    grid-template-columns: repeat(5, 1fr);
   }
 
-  &__character-name {
+  &--6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.ta-na-cara-characters-board-avatar {
+  position: absolute;
+  top: 0;
+  left: get-unit(2);
+  z-index: 10;
+  transform: translateY(-100%);
+  border-radius: get-unit(3 3 0 0);
+}
+
+.ta-na-cara-prompt.ta-na-cara-prompt {
+  max-width: 256px;
+}
+
+.ta-na-cara-prompt__footer {
+  font-size: 0.75rem;
+}
+
+.ta-na-cara-suspect {
+  position: relative;
+
+  &--non-button {
+    border: get-unit(1) solid transparent;
+  }
+
+  &--is-player {
     position: absolute;
-    bottom: get-unit(2);
-    left: 50%;
-    white-space: nowrap;
-    padding: get-unit(1 3);
-    border-radius: var(--border-radius);
-    background: get-color("black", 5, 0.85);
-    transform: translateX(-50%);
-    color: get-color("white");
+    z-index: 15;
+    rotate: -10deg;
+    padding: get-unit(1 2);
+    background: get-color("yellow");
+    border-radius: get-unit(1);
+    box-shadow: 0 0 get-unit(2) rgba(0, 0, 0, 0.65);
+
+    text-transform: uppercase;
+    font-weight: bold;
   }
 
-  &__character-image {
-    &--active {
-      outline: 2px solid get-color("yellow");
-    }
-  }
-}
-.players-boards {
-  align-items: start;
-}
-
-.player-board {
-  display: grid;
-  background: get-color("gray", 4, 0.85);
-  border-radius: var(--border-radius);
-  margin: get-unit(2 1);
-  grid-template-columns: repeat(2, auto);
-  grid-template-rows: repeat(3, auto);
-  grid-template-areas:
-    "image history"
-    "points history"
-    "avatar history";
-
-  &__image {
-    grid-area: image;
-    margin: 0;
-    border-radius: 0;
+  &--is-active {
+    border-radius: get-unit(3);
+    border-width: get-width(1);
+    border-style: dashed;
+    animation: borderBlink 500ms infinite;
   }
 
-  &__unknown-character {
-    display: grid;
-    place-items: center;
+  &--is-tagged {
+    position: relative;
+    filter: grayscale(0.5);
 
-    & .ant-image-img {
-      border-radius: var(--border-radius);
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 0, 0, 0.3);
+      pointer-events: none;
+      border-radius: inherit;
     }
   }
 
-  &__avatar {
-    grid-area: avatar;
-    justify-self: center;
-  }
+  &--tagged {
+    position: absolute;
+    top: get-unit(1);
+    right: get-unit(1);
 
-  &__points {
-    grid-area: points;
-    justify-self: center;
-  }
-
-  &__history {
-    grid-area: history;
-    background: get-color("white", 5, 0.55);
-    margin: get-unit(1);
-    border-radius: var(--border-radius);
-    height: clamp(300px, 40vh, 500px);
-    width: clamp(150px, 10vw, 160px);
-    overflow-y: auto;
-
-    li {
-      padding: get-unit(1);
-      margin: get-unit(1);
-    }
-
-    li:nth-child(even) {
-      background: get-color("white", 5, 0.55);
-    }
-  }
-
-  &__history-previous-guess {
+    border-radius: 50%;
+    padding: get-unit(0.5);
     display: flex;
     align-items: center;
-  }
-}
-
-.questions-container-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-content: stretch;
-  align-items: stretch;
-
-  &__button {
-    width: 100%;
-  }
-
-  &__card {
-    width: 100%;
-  }
-}
-
-.answer-board {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  background: get-color("white");
-  border-radius: var(--border-radius);
-  padding: get-unit(1 2);
-  margin: get-unit(5);
-
-  &__text {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    padding: get-unit(2);
+    z-index: 20;
   }
+}
 
-  &__button {
-    padding: get-unit(2 3);
-    border-radius: var(--border-radius);
-
-    &--yes {
-      background: get-color("green", 3);
-      border: get-unit(1) solid get-color("green", 5);
-    }
-
-    &--no {
-      background: get-color("red", 3);
-      border: get-unit(1) solid get-color("red", 5);
-    }
+@keyframes borderBlink {
+  0% {
+    border-color: get-color("red");
   }
+  33% {
+    border-color: get-color("white");
+  }
+  66% {
+    border-color: get-color("blue");
+  }
+  100% {
+    border-color: get-color("red");
+  }
+}
+
+.ta-na-cara-grouped-answers {
+  min-width: 68px;
 }
