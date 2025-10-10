@@ -70,7 +70,7 @@ export function ItemCard({
 
   return (
     <div className={clsx('item-card', className)} style={{ width: `${width}px`, height, ...divPadding }}>
-      <Sprite source={source} id={itemId} width={width} title={title} padding={padding} />
+      <Sprite source={source} spriteId={itemId} width={width} title={title} padding={padding} />
       {!!text && (
         <span className="item-card__text">
           <DualTranslate>{text}</DualTranslate>
@@ -89,5 +89,5 @@ export function ItemSprite({
   ...props
 }: Pick<ItemCardProps, 'id' | 'width'> & ElementProps) {
   const [source, itemId] = getSource(id);
-  return <Sprite source={source} id={itemId} width={width} padding={0} {...props} />;
+  return <Sprite source={source} spriteId={itemId} width={width} padding={0} {...props} />;
 }

@@ -15,7 +15,7 @@ type SpriteProps = {
   /**
    * The id of the item
    */
-  id: string;
+  spriteId: string;
   /**
    * The width of the item
    */
@@ -40,7 +40,7 @@ type SpriteProps = {
  * @returns a single sprite item
  */
 export function Sprite({
-  id,
+  spriteId,
   source,
   width = DEFAULT_SPRITE_SIZE,
   padding = 0,
@@ -57,7 +57,7 @@ export function Sprite({
       const response = await fetch(`${baseUrl}/sprites/${source}.svg`);
       return await response.text();
     },
-    enabled: !!id && !!source,
+    enabled: !!spriteId && !!source,
   });
 
   const paddedWidth = width - padding * 2;
@@ -116,7 +116,7 @@ export function Sprite({
       {...props}
     >
       <svg viewBox="0 0 512 512" style={{ width: `${paddedWidth}px`, height: `${paddedWidth}px` }}>
-        <use xlinkHref={`#${id}`} dangerouslySetInnerHTML={{ __html: svgContent }} />
+        <use href={`#${spriteId}`} dangerouslySetInnerHTML={{ __html: svgContent }} />
         <foreignObject x="0" y="0" width="100%" height="100%">
           {title && (
             <Tooltip title={title}>

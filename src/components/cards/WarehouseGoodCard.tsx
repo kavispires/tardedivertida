@@ -72,7 +72,7 @@ export function WarehouseGoodCard({
       className={clsx('warehouse-good-card', className)}
       style={{ width: `${width}px`, height, ...divPadding }}
     >
-      <Sprite source={source} id={goodId} width={width} title={title} padding={padding} />
+      <Sprite source={source} spriteId={goodId} width={width} title={title} padding={padding} />
       {!!text && (
         <span className="warehouse-good-card__text">
           <DualTranslate>{text}</DualTranslate>
@@ -88,5 +88,5 @@ export function WarehouseGoodSprite({
   ...props
 }: Pick<WarehouseGoodCardProps, 'id' | 'width'> & ElementProps) {
   const [source, glyphId] = getSource(id);
-  return <Sprite source={source} id={glyphId} width={width} padding={0} {...props} />;
+  return <Sprite source={source} spriteId={glyphId} width={width} padding={0} {...props} />;
 }
