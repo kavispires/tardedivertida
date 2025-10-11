@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Avatar as AntAvatar, Space } from 'antd';
+import { Avatar, Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Hooks
@@ -29,14 +29,14 @@ export function ActorsSelections({ actors, players, selection, playersSelections
         return (
           <Space key={actor.id} className="actors-board__actor" direction="vertical">
             <SpaceContainer>
-              <AntAvatar.Group max={{ count: 7 }}>
+              <Avatar.Group max={{ count: 7 }}>
                 {playersSelections[actorId].map((playerId) => (
                   <PlayerAvatar
                     avatarId={players[playerId].avatarId}
                     key={`actor-avatar-${players[playerId].avatarId}`}
                   />
                 ))}
-              </AntAvatar.Group>
+              </Avatar.Group>
             </SpaceContainer>
 
             <SuspectCard suspect={actor} width={cardWidth} />

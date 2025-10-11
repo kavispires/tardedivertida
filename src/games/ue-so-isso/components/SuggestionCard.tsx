@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { CloseOutlined } from '@ant-design/icons';
-import { Avatar as AntAvatar } from 'antd';
+import { Avatar } from 'antd';
 // Utils
 import { LETTERS } from 'utils/constants';
 import { getColorFromIndex } from 'utils/helpers';
@@ -26,9 +26,9 @@ export function SuggestionCard({ avatarId, playerName, index, invalid, suggestio
       header={playerName ? `${LETTERS[index]} (${playerName})` : LETTERS[index]}
     >
       {invalid ? (
-        <AntAvatar size="small" className="u-suggestion-card__suggestion-avatar">
+        <Avatar size="small" className="u-suggestion-card__suggestion-avatar">
           <CloseOutlined />
-        </AntAvatar>
+        </Avatar>
       ) : (
         <PlayerAvatar avatarId={avatarId} size="small" className="u-suggestion-card__suggestion-avatar" />
       )}

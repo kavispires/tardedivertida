@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Avatar as AntAvatar } from 'antd';
+import { Avatar } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Hooks
@@ -38,14 +38,14 @@ export function GalleryGuesses({ entry, players, correctGuessPoints }: GalleryGu
               />
             </div>
             <div className="s-gallery-guesses__votes">
-              <AntAvatar.Group>
+              <Avatar.Group>
                 {cardEntry.votes.map((playerId) => {
                   const player = players[playerId];
                   return (
                     <PlayerAvatar key={playerId} avatarId={player.avatarId} alt={player.name} size="small" />
                   );
                 })}
-              </AntAvatar.Group>
+              </Avatar.Group>
               {cardEntry.votes.length > 0 && cardEntry.isDream && (
                 <StarPoints quantity={correctGuessPoints} keyPrefix={'dream-correct'} hideText />
               )}

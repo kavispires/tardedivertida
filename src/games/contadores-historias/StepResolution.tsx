@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Avatar as AntAvatar } from 'antd';
+import { Avatar } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Hooks
@@ -108,7 +108,7 @@ export function StepResolution({
               <ImageBlurButton cardId={cardEntry.cardId} />
 
               <div className="c-other-cards__votes">
-                <AntAvatar.Group size="small">
+                <Avatar.Group size="small">
                   {(cardEntry?.votes ?? []).map((votePlayerId) => {
                     return (
                       <PlayerAvatar
@@ -117,7 +117,7 @@ export function StepResolution({
                       />
                     );
                   })}
-                </AntAvatar.Group>
+                </Avatar.Group>
               </div>
             </li>
           );
