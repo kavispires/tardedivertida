@@ -10,19 +10,46 @@ type CardProps = {
    * The content of the component
    */
   children: ReactNode;
-  header?: string;
-  footer?: string;
+  /**
+   * Optional header (defaults to "C")
+   */
+  header?: string | ReactNode;
+  /**
+   * Optional footer
+   */
+  footer?: ReactNode;
+  /**
+   * Background color of the header
+   * It can be a predefined color or a hex code (e.g. #ff0000)
+   */
   color?: string;
+  /**
+   * Size of the card
+   */
   size?: 'small' | 'medium' | 'large';
+  /**
+   * If true, the header color will be defined by the first letter of the children
+   * (overrides the color prop)
+   */
   randomColor?: boolean;
   /**
    * Optional custom class name
    */
   className?: string;
+  /**
+   * Optional custom class name for the header
+   */
   headerClassName?: string;
+  /**
+   * Optional custom class name for the footer
+   */
   footerClassName?: string;
+  /**
+   * If true, the header will be hidden
+   */
   hideHeader?: boolean;
 };
+
 export const Card = ({
   children,
   header = 'Carta',
@@ -41,7 +68,7 @@ export const Card = ({
     ? getColorFromLetter(
         typeof children === 'string'
           ? children[0].toUpperCase()
-          : header !== 'Carta'
+          : header !== 'C' && typeof header === 'string'
             ? header[0].toUpperCase()
             : 'X',
       )
