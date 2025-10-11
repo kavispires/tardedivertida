@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { type ReactNode, useMemo } from 'react';
 // Ant Design Resources
 import { CrownFilled, MessageFilled } from '@ant-design/icons';
-import { Avatar as AntAvatar, Typography } from 'antd';
+import { Avatar, Typography } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Utils
@@ -103,11 +103,11 @@ export function SlideShowPlayersList({
 
   return (
     <div className={clsx('slide-show-composable__players', className)} {...props}>
-      <AntAvatar.Group>
+      <Avatar.Group>
         {playersIds.map((playerId) => (
           <PlayerAvatar avatarId={players[playerId].avatarId} key={`slide-show-player-${playerId}`} />
         ))}
-      </AntAvatar.Group>
+      </Avatar.Group>
       {children}
       <span className="slide-show-composable__players-names">{selectedPlayersNames}</span>
     </div>

@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Avatar as AntAvatar } from 'antd';
+import { Avatar } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Components
@@ -14,7 +14,7 @@ type BracketContenderVotesProps = {
 
 export function BracketContenderVotes({ bracket, players }: BracketContenderVotesProps) {
   return (bracket.votes ?? []).length > 0 ? (
-    <AntAvatar.Group className="w-contender-votes" max={{ count: 3 }} size="small">
+    <Avatar.Group className="w-contender-votes" max={{ count: 3 }} size="small">
       {bracket.votes?.map((vote) => (
         <PlayerAvatar
           size="small"
@@ -23,6 +23,6 @@ export function BracketContenderVotes({ bracket, players }: BracketContenderVote
           key={`${bracket.id}-${bracket.votes}`}
         />
       ))}
-    </AntAvatar.Group>
+    </Avatar.Group>
   ) : null;
 }

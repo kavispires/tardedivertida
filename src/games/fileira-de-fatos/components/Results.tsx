@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Ant Design Resources
-import { Space, Avatar as AntAvatar, Tooltip } from 'antd';
+import { Space, Avatar, Tooltip } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 import type { TextCard } from 'types/tdr';
@@ -73,7 +73,7 @@ export function Results({ players, activePlayerId, correctOrder, roundType }: Re
                         />
                       }
                     >
-                      <AntAvatar size="small">{correctOrder.indexOf(cardId) + 1}</AntAvatar>
+                      <Avatar size="small">{correctOrder.indexOf(cardId) + 1}</Avatar>
                     </Tooltip>
                     <NegativeStarPoints roundType={roundType} position={index + 1} />
                   </span>

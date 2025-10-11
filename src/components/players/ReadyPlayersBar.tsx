@@ -1,6 +1,6 @@
 // Ant Design Resources
 import { LikeFilled } from '@ant-design/icons';
-import { Avatar as AntAvatar, Typography } from 'antd';
+import { Avatar, Typography } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Components
@@ -45,11 +45,11 @@ export function ReadyPlayersBar({
   return (
     <div className="ready-player-bar">
       <div className="ready-player-bar__bar">
-        <AntAvatar.Group size="small">
+        <Avatar.Group size="small">
           {readyPlayers.map((player) => (
             <PlayerAvatar key={player.name} avatarId={player.avatarId} />
           ))}
-        </AntAvatar.Group>
+        </Avatar.Group>
         <span className="ready-player-bar__speech-bubble">
           <Typography.Text>
             {readyPlayers.length > 1 ? (

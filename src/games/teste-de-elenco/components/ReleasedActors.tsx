@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 // Ant Design Resources
-import { Avatar as AntAvatar, Space } from 'antd';
+import { Avatar, Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Hooks
@@ -37,14 +37,14 @@ export function ReleasedActors({ actors, players, selection, playersSelections }
           <Space key={actor.id} className="actors-board__actor" direction="vertical">
             <SuspectCard suspect={actor} width={cardWidth} />
             <SpaceContainer>
-              <AntAvatar.Group max={{ count: 5 }}>
+              <Avatar.Group max={{ count: 5 }}>
                 {(playersSelections[actor.id] ?? []).map((playerId) => (
                   <PlayerAvatar
                     avatarId={players[playerId].avatarId}
                     key={`actor-avatar-${players[playerId].avatarId}`}
                   />
                 ))}
-              </AntAvatar.Group>
+              </Avatar.Group>
             </SpaceContainer>
           </Space>
         );

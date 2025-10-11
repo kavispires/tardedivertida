@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 // Ant Design Resources
-import { Avatar as AntAvatar, Divider, Flex } from 'antd';
+import { Avatar, Divider, Flex } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 import type { TextCard } from 'types/tdr';
@@ -32,7 +32,7 @@ export function ResultBrackets({ brackets, players, cards }: ResultBracketsProps
             <span className="m-guessing-board__points-bracket-label">{bracket.score}</span>
           </BracketPointsBox>
           <div className="m-guessing-board__points-bracket-value">
-            <AntAvatar.Group>
+            <Avatar.Group>
               {bracket.playersIds.map((playerId, i) => {
                 return (
                   <motion.div
@@ -44,7 +44,7 @@ export function ResultBrackets({ brackets, players, cards }: ResultBracketsProps
                 );
               })}
               {bracket.playersIds.length === 0 && <IconAvatar icon={<BoxXIcon />} />}
-            </AntAvatar.Group>
+            </Avatar.Group>
             <Divider type="vertical" />
             <Flex vertical>
               {bracket.wrongGuesses.map((guess) => {

@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { TrophyOutlined } from '@ant-design/icons';
-import { Avatar as AntAvatar, Flex, Space } from 'antd';
+import { Avatar, Flex, Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
@@ -73,7 +73,7 @@ export function StepResult({ user, announcement, goToNextStep, players, result, 
                 <ImageCard cardId={option.id} cardWidth={cardWidth} />
               </ImageBlurButtonContainer>
 
-              <AntAvatar.Group max={{ count: 7 }}>
+              <Avatar.Group max={{ count: 7 }}>
                 {option.players.map((playerId) => (
                   <PlayerAvatar
                     avatarId={players[playerId].avatarId}
@@ -81,7 +81,7 @@ export function StepResult({ user, announcement, goToNextStep, players, result, 
                   />
                 ))}
                 {option.players.length === 0 && <PlayerAvatar avatarId="N" />}
-              </AntAvatar.Group>
+              </Avatar.Group>
             </Flex>
           );
         })}

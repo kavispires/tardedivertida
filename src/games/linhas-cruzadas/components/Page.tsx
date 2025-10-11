@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useMemo } from 'react';
 // Ant Design Resources
-import { Avatar as AntAvatar } from 'antd';
+import { Avatar } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Utils
@@ -29,11 +29,11 @@ export function Page({ slide, players, albumColor, currentPage, totalSlides }: P
   return (
     <div className="l-page" style={{ background: slide.type === 'cover' ? albumColor : 0 }}>
       <div className="l-page__pagination">
-        <AntAvatar style={{ backgroundColor: albumColor }}>{currentPage + 1}</AntAvatar>
+        <Avatar style={{ backgroundColor: albumColor }}>{currentPage + 1}</Avatar>
         <span className="l-page__pagination-of">
           <Translate pt="de" en="of" />
         </span>
-        <AntAvatar style={{ backgroundColor: albumColor }}>{totalSlides}</AntAvatar>
+        <Avatar style={{ backgroundColor: albumColor }}>{totalSlides}</Avatar>
       </div>
 
       {slide.type === 'cover' && (

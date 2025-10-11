@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useToggle } from 'react-use';
 // Ant Design Resources
 import { FireOutlined, SettingOutlined } from '@ant-design/icons';
-import { Avatar as AntAvatar, Badge, Button, Divider, Drawer, Space } from 'antd';
+import { Avatar, Badge, Button, Divider, Drawer, Space } from 'antd';
 // Types
 import type { GameState } from 'types/game';
 import type { GamePlayers } from 'types/player';
@@ -47,7 +47,7 @@ export function GameInfoDrawer({ players, state, userId }: GameInfoDrawerProps) 
           {info.title?.[language] ?? '?'}
           <DebugOnly devOnly>({players?.[userId]?.name})</DebugOnly>
         </span>
-        <AntAvatar icon={<SettingOutlined />} size="small" />
+        <Avatar icon={<SettingOutlined />} size="small" />
         <div className="game-info-drawer-button__player-status-bar">
           <PlayersStatusBar players={players} />
         </div>

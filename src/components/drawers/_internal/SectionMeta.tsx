@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Avatar as AntAvatar } from 'antd';
+import { Avatar } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 // Components
@@ -17,15 +17,15 @@ export function SectionMeta({ round, groupScore }: SectionMetaProps) {
         <div className="game-info-drawer__label-inline">
           <Translate pt="Rodada:" en="Round:" />
         </div>
-        <AntAvatar className="game-info-drawer__round" size="small">
+        <Avatar className="game-info-drawer__round" size="small">
           {round.current}
-        </AntAvatar>
+        </Avatar>
         <span className="game-info-drawer__inline-separator">
           <Translate pt="de" en="out of" />
         </span>
-        <AntAvatar className="game-info-drawer__round" size="small">
+        <Avatar className="game-info-drawer__round" size="small">
           {round.total}
-        </AntAvatar>
+        </Avatar>
       </li>
 
       {Boolean(groupScore) && (
@@ -33,13 +33,13 @@ export function SectionMeta({ round, groupScore }: SectionMetaProps) {
           <div className="game-info-drawer__label-inline">
             <Translate pt="Pontos:" en="Points:" />
           </div>
-          <AntAvatar
+          <Avatar
             className="game-info-drawer__round"
             size="default"
             style={{ backgroundColor: 'gold', color: 'black' }}
           >
             {groupScore}
-          </AntAvatar>
+          </Avatar>
         </li>
       )}
     </ul>

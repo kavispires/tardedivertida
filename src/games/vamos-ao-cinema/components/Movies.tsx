@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Ant Design Resources
-import { Avatar as AntAvatar, Button, Space, Spin } from 'antd';
+import { Avatar, Button, Space, Spin } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 import type { MovieCard as MovieCardType } from 'types/tdr';
@@ -293,11 +293,11 @@ function PlayersSelections({
 
   return (
     <span className={clsx('movie-players', side === 'right' && 'movie-players--right')}>
-      <AntAvatar.Group max={{ count: 5 }}>
+      <Avatar.Group max={{ count: 5 }}>
         {moviePlayers.map((playerId) => (
           <PlayerAvatar avatarId={players[playerId].avatarId} key={playerId} />
         ))}
-      </AntAvatar.Group>
+      </Avatar.Group>
     </span>
   );
 }

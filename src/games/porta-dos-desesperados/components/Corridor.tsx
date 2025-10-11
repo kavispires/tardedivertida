@@ -3,7 +3,7 @@ import { random, sample } from 'lodash';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { RadarChartOutlined } from '@ant-design/icons';
-import { Avatar as AntAvatar, Image } from 'antd';
+import { Avatar, Image } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
@@ -167,7 +167,7 @@ export function Corridor({
                   </SendButton>
                 )}
 
-                <AntAvatar.Group max={{ count: 7 }} size="small" className="i-door__votes">
+                <Avatar.Group max={{ count: 7 }} size="small" className="i-door__votes">
                   {voteMap[doorId] && !hideVotes ? (
                     voteMap[doorId].map((playerId) => (
                       <PlayerAvatar
@@ -178,14 +178,14 @@ export function Corridor({
                       />
                     ))
                   ) : (
-                    <AntAvatar
+                    <Avatar
                       size="small"
                       className={clsx(!hideVotes && 'invisible')}
                       icon={<RadarChartOutlined />}
                       style={{ backgroundColor: '#000' }}
                     />
                   )}
-                </AntAvatar.Group>
+                </Avatar.Group>
               </div>
             </div>
           );
