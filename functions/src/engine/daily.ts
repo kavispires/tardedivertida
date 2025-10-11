@@ -181,7 +181,7 @@ const saveTestimonies = async (data: DailySaveTestimoniesPayload, auth: Firebase
         if (!parsedData[testimonyId][suspectId]) {
           parsedData[testimonyId][suspectId] = [];
         }
-        parsedData[testimonyId][suspectId].push(0);
+        parsedData[testimonyId][suspectId].push(-1);
       });
     });
 
