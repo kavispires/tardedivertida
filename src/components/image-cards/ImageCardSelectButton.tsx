@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 // Ant Design Resources
 import { UpCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
@@ -30,6 +31,10 @@ type ImageCardSelectButtonProps = {
    * Deselect button custom label
    */
   deselectLabel?: string;
+  /**
+   * Flag indicating whether the button is standalone (not part of a ImageCardButton container)
+   */
+  standalone?: boolean;
 };
 
 export function ImageCardSelectButton({
@@ -38,13 +43,14 @@ export function ImageCardSelectButton({
   selectLabel,
   deselectLabel,
   isSelected = false,
+  standalone = false,
 }: ImageCardSelectButtonProps) {
   return (
     <Button
       shape="round"
       size="small"
       ghost={!isSelected}
-      className="image-card-select-button"
+      className={clsx('image-card-select-button', { standalone })}
       onClick={() => onClick(cardId)}
     >
       <UpCircleOutlined />

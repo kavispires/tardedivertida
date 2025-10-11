@@ -1,3 +1,4 @@
+import { clsx } from 'clsx';
 // Types
 import type { SuspectCard as SuspectCardType, SuspectStyleVariant } from 'types/tdr';
 // Components
@@ -5,7 +6,6 @@ import { ImageCard } from 'components/image-cards';
 import { DualTranslate } from 'components/language';
 // Sass
 import './SuspectCard.scss';
-// Type
 
 type SuspectCardProps = {
   /**
@@ -24,13 +24,33 @@ type SuspectCardProps = {
    * Style variant of the card (it will modify the id)
    */
   variant?: SuspectStyleVariant;
+  /**
+   * Preview mode for the card (defaults to false)
+   */
+  preview?: boolean;
+  /**
+   * Additional class names for the card
+   */
+  className?: string;
+  /**
+   * Inline styles for the card
+   */
+  style?: Omit<React.CSSProperties, 'width'>;
 };
 
-export function SuspectCard({ suspect, width, hideName, variant }: SuspectCardProps) {
+export function SuspectCard({
+  suspect,
+  width,
+  hideName,
+  variant,
+  preview = false,
+  className,
+  style,
+}: SuspectCardProps) {
   const imageId = getSuspectImageId(suspect.id, variant);
   return (
-    <div className="suspect-card" style={{ width: `${width}px` }}>
-      <ImageCard cardId={imageId} className="suspect-card__image" cardWidth={width} preview={false} />
+    <div className={clsx('suspect-card', className)} style={{ width: `${width}px`, ...style }}>
+      <ImageCard cardId={imageId} className="suspect-card__image" cardWidth={width} preview={preview} />
       {!hideName && (
         <div className="suspect-card__name">
           <DualTranslate>{suspect.name}</DualTranslate>
