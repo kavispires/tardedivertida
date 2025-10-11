@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Avatar as AntAvatar } from 'antd';
+import { Avatar } from 'antd';
 // Types
 import type { MostVotesResult } from 'types/game';
 import type { GamePlayers } from 'types/player';
@@ -25,7 +25,7 @@ export function Votes({ votes, players, features }: VotesProps) {
           <div key={index} className="voting-track__item">
             <ObjectFeature feature={features[entry.value]} width={32} />
 
-            <AntAvatar.Group max={{ count: 5 }}>
+            <Avatar.Group max={{ count: 5 }}>
               {entry.votes.map((playerId) => (
                 <PlayerAvatar
                   key={playerId}
@@ -34,7 +34,7 @@ export function Votes({ votes, players, features }: VotesProps) {
                   size="small"
                 />
               ))}
-            </AntAvatar.Group>
+            </Avatar.Group>
           </div>
         ))}
       </div>

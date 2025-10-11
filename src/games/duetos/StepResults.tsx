@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 // Ant Design Resources
 import { TrophyOutlined } from '@ant-design/icons';
-import { Avatar as AntAvatar, Space } from 'antd';
+import { Avatar, Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Hooks
@@ -67,7 +67,7 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
           return (
             <SpaceContainer key={entry.pairId} className="pairs-grid__pair" vertical>
               <SpaceContainer>
-                <AntAvatar.Group max={{ count: 7 }}>
+                <Avatar.Group max={{ count: 7 }}>
                   {entry.players.map((playerId) => (
                     <PlayerAvatar
                       avatarId={players[playerId].avatarId}
@@ -75,7 +75,7 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
                       size="small"
                     />
                   ))}
-                </AntAvatar.Group>
+                </Avatar.Group>
               </SpaceContainer>
 
               <Pair
@@ -116,7 +116,7 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
               return (
                 <Space key={entry.id} className="results" direction="vertical">
                   <SpaceContainer>
-                    <AntAvatar.Group max={{ count: 7 }}>
+                    <Avatar.Group max={{ count: 7 }}>
                       {entry.players.map((playerId) => (
                         <PlayerAvatar
                           avatarId={players[playerId].avatarId}
@@ -124,7 +124,7 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
                           size="small"
                         />
                       ))}
-                    </AntAvatar.Group>
+                    </Avatar.Group>
                   </SpaceContainer>
 
                   <Pair index={index % 6} placeholder={pool[0]} firstItem={entry.item} />
@@ -150,7 +150,7 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
               return (
                 <SpaceContainer key={entry.pairId} className="pairs-grid__pair" vertical>
                   <SpaceContainer>
-                    <AntAvatar.Group max={{ count: 7 }}>
+                    <Avatar.Group max={{ count: 7 }}>
                       {entry.players.map((playerId) => (
                         <PlayerAvatar
                           avatarId={players[playerId].avatarId}
@@ -158,7 +158,7 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
                           size="small"
                         />
                       ))}
-                    </AntAvatar.Group>
+                    </Avatar.Group>
                   </SpaceContainer>
 
                   <Pair

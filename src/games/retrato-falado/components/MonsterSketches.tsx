@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Space, Avatar as AntAvatar } from 'antd';
+import { Space, Avatar } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Components
@@ -47,11 +47,11 @@ export function MonsterSketches({
             {(votes?.[player.id] ?? []).length > 0 && (
               <Space align="center">
                 <Translate pt="Votos:" en="Votes:" />
-                <AntAvatar.Group max={{ count: 5 }}>
+                <Avatar.Group max={{ count: 5 }}>
                   {(votes?.[player.id] ?? []).map((vote) => (
                     <PlayerAvatar key={`vote-${vote}`} avatarId={players[vote].avatarId} size="small" />
                   ))}
-                </AntAvatar.Group>
+                </Avatar.Group>
               </Space>
             )}
           </Space>

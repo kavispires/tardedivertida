@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 // Ant Design Resources
-import { Space, Avatar as AntAvatar } from 'antd';
+import { Space, Avatar } from 'antd';
 // Utils
 import { pluralize } from 'utils/helpers';
 // Icons
@@ -48,9 +48,9 @@ export function RoleBoard({ activeRole, instruction, movie, children, outcome }:
       <Space className="role" direction="vertical">
         {instruction !== 'CAST' && (
           <div className="role__round">
-            <AntAvatar size="large" style={{ backgroundColor: 'orange' }}>
+            <Avatar size="large" style={{ backgroundColor: 'orange' }}>
               {instruction === 'SELECT' || outcome === 'CAST' ? activeRole.round : activeRole.round - 1}
-            </AntAvatar>
+            </Avatar>
           </div>
         )}
         <Title size="small" className="role__title">

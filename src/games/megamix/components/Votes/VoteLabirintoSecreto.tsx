@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Avatar as AntAvatar } from 'antd';
+import { Avatar } from 'antd';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
@@ -17,7 +17,7 @@ export function VoteLabirintoSecreto({ playersList }: VoteComponentProps) {
           <div className="player-vote__name">{player.name}</div>
 
           <div className="player-vote__value">
-            <AntAvatar>{LETTERS[Number(player.data.value)]}</AntAvatar>
+            <Avatar>{LETTERS[Number(player.data.value)]}</Avatar>
           </div>
         </div>
       ))}
