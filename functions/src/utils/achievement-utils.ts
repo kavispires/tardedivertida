@@ -43,7 +43,7 @@ export const setup = (players: Players, properties: PlainObject) => {
  */
 export const increase = (store: PlainObject, playerId: PlayerId, property: string, value: number) => {
   if (store.achievements[playerId] !== undefined) {
-    store.achievements[playerId][property] += value;
+    store.achievements[playerId][property] = (store.achievements[playerId][property] || 0) + value;
   }
   return store.achievements;
 };
