@@ -1,0 +1,39 @@
+@use "styles/sass" as *;
+
+.answer-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: get-unit(1);
+
+  padding: get-unit(1);
+  border-radius: get-unit(2);
+
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+
+  &__label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 64px;
+  }
+
+  &--yes {
+    background: get-color("green", 5, 0.85);
+  }
+
+  &--maybe-yes {
+    background: get-color("green", 3, 0.85);
+  }
+
+  &--kinda-no {
+    background: get-color("red", 3, 0.85);
+  }
+
+  &--no {
+    background: get-color("red", 5, 0.85);
+  }
+}
