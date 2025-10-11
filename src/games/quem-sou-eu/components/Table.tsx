@@ -6,7 +6,7 @@ import { CharacterCard } from 'components/cards/CharacterCard';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import type { Characters } from '../utils/types';
-import { Card } from './Card';
+import { QSECard } from './QSECard';
 
 type TableProps = {
   characters: Characters;
@@ -48,7 +48,7 @@ export function Table({
     <SpaceContainer className="q-table" wrap>
       <SpaceContainer wrap>
         {topKeys.map((key) => (
-          <Card
+          <QSECard
             character={characters[key]}
             key={key}
             width={width}
@@ -59,7 +59,7 @@ export function Table({
       </SpaceContainer>
       <SpaceContainer wrap>
         {bottomKeys.map((key) => (
-          <Card
+          <QSECard
             character={characters[key]}
             key={key}
             width={width}
