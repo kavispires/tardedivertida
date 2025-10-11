@@ -26,7 +26,7 @@ import type { Characters, SubmitGuessesPayload } from './utils/types';
 import { getRibbons, prepareGuesses } from './utils/helpers';
 import { ScoringRules } from './components/RulesBlobs';
 import { PlayerGlyphs } from './components/PlayerGlyphs';
-import { Card } from './components/Card';
+import { QSECard } from './components/QSECard';
 
 type StepGuessingProps = {
   user: GamePlayer;
@@ -159,7 +159,7 @@ export function StepGuessing({
                 className="q-voting-characters__button"
               >
                 <RibbonGroup labels={labels} />
-                <Card
+                <QSECard
                   character={characters[cardId]}
                   width={characterWidth}
                   className={clsx(cardId === 'a' && 'q-character-player')}

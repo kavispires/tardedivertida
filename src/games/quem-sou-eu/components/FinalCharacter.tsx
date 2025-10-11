@@ -10,7 +10,7 @@ import { GlyphCard } from 'components/cards/GlyphCard';
 // Internal
 import type { FinalCharacterEntry } from '../utils/types';
 import { parseSelectedGlyphs } from '../utils/helpers';
-import { Card } from './Card';
+import { QSECard } from './QSECard';
 
 type FinalCharacterProps = {
   players: GamePlayers;
@@ -25,7 +25,7 @@ export function FinalCharacter({ players, character, glyphWidth, imageCardsMode 
   return (
     <div className="q-player-glyphs q-final-character">
       <PlayerAvatarStrip player={players[character.playerId]} withName className="q-player-glyphs__strip" />
-      <Card width={100} character={character} imageCardMode={imageCardsMode} />
+      <QSECard width={100} character={character} imageCardMode={imageCardsMode} />
 
       {positive.map((id, index) => {
         return (

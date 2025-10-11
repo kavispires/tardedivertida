@@ -20,7 +20,7 @@ import type { Characters, GalleryEntry } from './utils/types';
 import { ScoringRules } from './components/RulesBlobs';
 import { PlayerGlyphs } from './components/PlayerGlyphs';
 import { GalleryGuesses } from './components/GalleryGuesses';
-import { Card } from './components/Card';
+import { QSECard } from './components/QSECard';
 
 type StepGalleryProps = {
   players: GamePlayers;
@@ -75,7 +75,11 @@ export function StepGallery({
             <PlayerAvatarName player={currentPlayer} size="large" />
           </div>
           <SpaceContainer vertical>
-            <Card character={characters[characterId]} width={characterWidth} imageCardMode={imageCardMode} />
+            <QSECard
+              character={characters[characterId]}
+              width={characterWidth}
+              imageCardMode={imageCardMode}
+            />
             <PlayerGlyphs player={currentPlayer} glyphWidth={glyphWidth} />
           </SpaceContainer>
         </div>
