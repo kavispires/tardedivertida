@@ -16,7 +16,6 @@ import {
 } from 'components/slide-show';
 // Internal
 import type { Characters } from '../utils/types';
-// Icons
 
 type GalleryGuessesProps = {
   players: GamePlayers;
