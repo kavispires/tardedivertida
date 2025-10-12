@@ -270,6 +270,7 @@ export const GAME_COLLECTION = {
   CRUZA_PALAVRAS: 'cruza-palavras',
   DETETIVES_IMAGINATIVOS: 'detetives-imaginativos',
   DUETOS: 'duetos',
+  ESCAPE_ROOM: 'escape-room',
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
   ESQUIADORES: 'esquiadores',
   FILEIRA_DE_FATOS: 'fileira-de-fatos',

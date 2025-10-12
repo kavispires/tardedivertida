@@ -28,6 +28,7 @@ export const gameSessions: GameSessionMap = {
     () => import('games/detetives-imaginativos/SessionDetetivesImaginativos'),
   ),
   [GAME_COLLECTION.DUETOS]: lazy(() => import('games/duetos/SessionDuetos')),
+  [GAME_COLLECTION.ESCAPE_ROOM]: lazy(() => import('games/escape-room/SessionEscapeRoom')),
   [GAME_COLLECTION.ESQUIADORES]: lazy(() => import('games/esquiadores/SessionEsquiadores')),
   [GAME_COLLECTION.FILEIRA_DE_FATOS]: lazy(() => import('games/fileira-de-fatos/SessionFileiraDeFatos')),
   [GAME_COLLECTION.GALERIA_DE_SONHOS]: lazy(() => import('games/galeria-de-sonhos/SessionGaleriaDeSonhos')),

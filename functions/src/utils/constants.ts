@@ -61,6 +61,11 @@ const GAMES = [
     key: 'DUETOS',
   },
   {
+    name: 'escape-room',
+    code: 'E',
+    key: 'ESCAPE_ROOM',
+  },
+  {
     name: 'espiao-entre-nos',
     code: 'E',
     key: 'ESPIAO_ENTRE_NOS',
@@ -330,6 +335,7 @@ export const TDR_RESOURCES = {
   DIAGRAM_TOPICS: 'diagram-topics',
   DILEMMAS: 'dilemmas',
   DRAWING_WORDS: 'drawing-words',
+  ESCAPE_ROOM_EPISODES: 'escape-room-episodes',
   EMOTIONS: 'emotions',
   GROUP_QUESTIONS: 'group-questions',
   ITEMS: 'items', // dual-language
