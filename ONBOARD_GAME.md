@@ -41,7 +41,7 @@ All file paths here are relative to `/src`.
 - Create a api file `utils/api-requests.ts` for api calls for the game.
 - Create a `utils/types.ts` for game specific types.
 - Create a `game-info.json` for game info object.
-- Update `pages/Game.tsx` to include the new Game Session.
+- Update `src/games/gameLoader.ts` to include the new Game Session.
 
 # Add game to the list
 
