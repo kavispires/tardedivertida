@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useId, useState } from 'react';
 import { isMobile, isMobileOnly } from 'react-device-detect';
 import { useNavigate } from 'react-router-dom';
