@@ -1,6 +1,8 @@
 import App from 'pages/App';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
+// Components
+import ErrorBoundary from 'components/errors/ErrorBoundary';
 // Internal
 import reportWebVitals from './reportWebVitals';
 // Sass
@@ -9,7 +11,9 @@ import 'styles/index.scss';
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <StrictMode>
-    <App />
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
   </StrictMode>,
 );
 

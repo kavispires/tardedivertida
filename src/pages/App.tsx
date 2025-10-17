@@ -7,7 +7,7 @@ import { useAppSetup } from 'hooks/useAppSetup';
 // Services
 import { AuthProvider } from 'services/AuthProvider';
 // Components
-import ErrorBoundary from 'components/errors/ErrorBoundary';
+import { RouteError } from 'components/errors';
 // Internal
 import { AnimatedRoutes, routes } from './Routes';
 
@@ -26,6 +26,7 @@ const router = createHashRouter([
   {
     path: '/',
     element: <AnimatedRoutes />,
+    errorElement: <RouteError />,
     children: routes,
   },
 ]);
@@ -34,23 +35,21 @@ function App() {
   // Set up default like username, avatar, canvasSize
   useAppSetup();
   return (
-    <ErrorBoundary>
-      <QueryClientProvider client={queryClient}>
-        <ConfigProvider
-          theme={{
-            token: {
-              fontFamily: "'Lato', sans-serif",
-            },
-          }}
-        >
-          <AntApp>
-            <AuthProvider>
-              <RouterProvider router={router} />
-            </AuthProvider>
-          </AntApp>
-        </ConfigProvider>
-      </QueryClientProvider>
-    </ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <ConfigProvider
+        theme={{
+          token: {
+            fontFamily: "'Lato', sans-serif",
+          },
+        }}
+      >
+        <AntApp>
+          <AuthProvider>
+            <RouterProvider router={router} />
+          </AuthProvider>
+        </AntApp>
+      </ConfigProvider>
+    </QueryClientProvider>
   );
 }
 
