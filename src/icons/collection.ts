@@ -136,6 +136,7 @@ export * from './IdCardIcon';
 export * from './ImageCardsIcon';
 export * from './IncreaseDifficultyIcon';
 export * from './InvestigationIcon';
+export * from './KeyholeIcon';
 export * from './KnifeIcon';
 export * from './KnowledgeIcon';
 export * from './LadderIcon';
