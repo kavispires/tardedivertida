@@ -33,6 +33,7 @@ export type DailyTaNaCaraEntry = {
   type: 'ta-na-cara';
   testimonies: TaNaCaraQuestion[];
   suspectsIds: string[];
+  names?: Dictionary<string>;
   variant?: SuspectStyleVariant;
 };
 

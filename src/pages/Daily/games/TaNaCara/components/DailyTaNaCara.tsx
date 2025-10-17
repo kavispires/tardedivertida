@@ -11,7 +11,7 @@ import {
   LikeFilled,
   SaveFilled,
 } from '@ant-design/icons';
-import { Button, Divider, Flex, Layout, Segmented, Space, Switch, Typography } from 'antd';
+import { Badge, Button, Divider, Flex, Layout, Segmented, Space, Switch, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
@@ -111,24 +111,28 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                   {...getAnimation('flipInY', { delay: 0.1 * index })}
                   align="center"
                   justify="center"
+                  gap={6}
                 >
-                  <SuspectCard
-                    suspect={{
-                      id: suspectId,
-                      name: {
-                        en: '',
-                        pt: '',
-                      },
-                      gender: '',
-                      ethnicity: '',
-                      age: '',
-                      build: '',
-                      height: '',
-                      features: [],
-                    }}
-                    variant={variant}
-                    width={width}
-                  />
+                  <Badge.Ribbon text={data?.names?.[suspectId] ?? null} color="orange">
+                    <SuspectCard
+                      suspect={{
+                        id: suspectId,
+                        name: {
+                          en: '',
+                          pt: '',
+                        },
+                        gender: '',
+                        ethnicity: '',
+                        age: '',
+                        build: '',
+                        height: '',
+                        features: [],
+                      }}
+                      variant={variant}
+                      width={width}
+                    />
+                  </Badge.Ribbon>
+
                   <Switch
                     loading={isSaving}
                     checked={answer.related.includes(suspectId)}
