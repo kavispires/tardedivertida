@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import type { ComponentProps } from 'react';
 // Components
 import { DivButton } from 'components/buttons/DivButton';
@@ -7,7 +7,7 @@ import { ItemCard } from 'components/cards/ItemCard';
 // Internal
 import type { AquiODisc } from '../utils/types';
 
-const MotionDiv = motion('div');
+const MotionDiv = motion.create('div');
 
 type DiscProps = {
   disc: AquiODisc;
