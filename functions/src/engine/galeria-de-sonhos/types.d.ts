@@ -7,9 +7,9 @@ export type GaleriaDeSonhosOptions = {
    */
   withBots?: boolean;
   /**
-   * UI will required minimum of 4 cards selected
+   * UI will required minimum of 4-7 cards selected
    */
-  hardMode: boolean;
+  surpriseMode: boolean;
 };
 
 export type AllWords = {
