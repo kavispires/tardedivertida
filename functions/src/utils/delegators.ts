@@ -9,7 +9,7 @@ import * as crimesHediondosEngine from '../engine/crimes-hediondos';
 import * as cruzaPalavrasEngine from '../engine/cruza-palavras';
 import * as detetivesImaginativosEngine from '../engine/detetives-imaginativos';
 import * as duetosEngine from '../engine/duetos';
-import * as escapeRoomEngine from '../engine/escape-room';
+// import * as escapeRoomEngine from '../engine/escape-room';
 import * as espiaoEntreNosEngine from '../engine/espiao-entre-nos';
 import * as esquiaresEngine from '../engine/esquiadores';
 import * as fileiraDeFatosEngine from '../engine/fileira-de-fatos';
@@ -56,7 +56,7 @@ const engines = {
   [GAME_NAMES.CRUZA_PALAVRAS]: cruzaPalavrasEngine,
   [GAME_NAMES.DETETIVES_IMAGINATIVOS]: detetivesImaginativosEngine,
   [GAME_NAMES.DUETOS]: duetosEngine,
-  [GAME_NAMES.ESCAPE_ROOM]: escapeRoomEngine,
+  // [GAME_NAMES.ESCAPE_ROOM]: escapeRoomEngine,
   [GAME_NAMES.ESPIAO_ENTRE_NOS]: espiaoEntreNosEngine,
   [GAME_NAMES.ESQUIADORES]: esquiaresEngine,
   [GAME_NAMES.FOFOCA_QUENTE]: fofocaQuenteEngine,
