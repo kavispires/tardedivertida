@@ -14,6 +14,7 @@ const GOAL_TREE: Tree = {
   id: 0,
   treeType: 0,
   card: { id: '', text: '' },
+  point: [0, 0],
 };
 
 export function PlayerMap({ map = [], selectedTrees = [], fullMap = false }: PlayerMapProps) {
