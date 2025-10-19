@@ -27,6 +27,7 @@ export const getData = async (
     const items = await utils.tdr.getItems(FOREST_HEIGHT * FOREST_WIDTH, {
       allowNSFW: !!options.nsfw,
       decks: ['alien', 'dream', 'manufactured'],
+      deckFiltering: 'OR',
       cleanUp: utils.tdr.itemUtils.cleanupDecks,
     });
 

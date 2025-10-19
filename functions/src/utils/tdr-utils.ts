@@ -18,7 +18,7 @@ export const getItems = async (
     cleanUp?: (item: Item) => Item;
   } = {
     allowNSFW: false,
-    deckFiltering: 'AND',
+    deckFiltering: 'OR',
     decks: [],
     filters: [],
   },
@@ -96,17 +96,13 @@ export const itemUtils = {
    */
   onlySafeForWork: (item: Item) => !item.nsfw,
   /**
-   * Filter alien items by deck
-   * @param deck
-   * @returns boolean
+   * Get alien items that are within all of the given decks (intersection)
    */
   onlyItemsWithinDecks: (decks: string[]) => (item: Item) => {
     return every(decks, (deck) => (item.decks ?? []).includes(deck));
   },
   /**
-   *
-   * @param decks
-   * @returns
+   * Get alien items that are within any of the given decks (union)
    */
   onlyItemsWithinEitherDecks: (decks: string[]) => (item: Item) => {
     return some(decks, (deck) => (item.decks ?? []).includes(deck));

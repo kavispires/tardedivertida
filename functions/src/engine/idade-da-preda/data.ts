@@ -14,6 +14,7 @@ export const getResourceData = async (options: IdadeDaPredaOptions): Promise<Res
   const allItems = await utils.tdr.getItems(undefined, {
     allowNSFW,
     decks: ['age1', 'age2', 'age3', 'age4', 'age5'],
+
     // cleanUp: utils.tdr.itemUtils.cleanupDecks,
   });
 

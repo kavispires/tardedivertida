@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "idade-da-preda",
-  "version": "0.9.13",
+  "version": "0.9.14",
   "release": "beta",
   "available": true,
   "title": {
