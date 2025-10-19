@@ -29,7 +29,6 @@ export const getResourceData = async (
   const items = await utils.tdr.getItems(itemsNeeded, {
     allowNSFW,
     decks: ['thing', 'manufactured', 'alien'],
-    deckFiltering: 'OR',
     filters: [
       (item: Item) => {
         if (item.decks?.includes('thing')) {

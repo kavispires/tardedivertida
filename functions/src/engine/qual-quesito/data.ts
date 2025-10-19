@@ -20,7 +20,6 @@ export const getResourceData = async (
   const items = await utils.tdr.getItems(itemsNeeded, {
     allowNSFW,
     decks: ['alien', 'dream', 'evidence'],
-    deckFiltering: 'OR',
     cleanUp: (item) => {
       return {
         id: item.id,
