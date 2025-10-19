@@ -78,6 +78,14 @@ export function DreamSelectionRules({ contained = false, minimumSelection = 1 })
       pt={
         <>
           Selecione sonhos (cartas) que você acha que se relacionam com a palavra-tema da rodada.
+          {minimumSelection > 1 && (
+            <>
+              <br />
+              <span style={{ fontWeight: 'bold', color: '#6052a8' }}>
+                Uau! No modo surpresa, o mínimo de cartas é bem maior!
+              </span>
+            </>
+          )}
           <br />
           Você deve selecionar pelo menos <CardHighlight>{minimumSelection}</CardHighlight> e no máximo{' '}
           <CardHighlight>10</CardHighlight>.
@@ -86,6 +94,15 @@ export function DreamSelectionRules({ contained = false, minimumSelection = 1 })
       en={
         <>
           Now select dreams (cards) that you think match the round's theme.
+          <br />
+          {minimumSelection > 1 && (
+            <>
+              <br />
+              <span style={{ fontWeight: 'bold', color: '#6052a8' }}>
+                Wow! In the surprise mode, the minimum selection is much higher!
+              </span>
+            </>
+          )}
           <br />
           You must select at least <CardHighlight>{minimumSelection}</CardHighlight> card and a maximum of{' '}
           <CardHighlight>10</CardHighlight>.

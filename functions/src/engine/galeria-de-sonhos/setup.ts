@@ -26,7 +26,7 @@ import { saveData } from './data';
  * @returns
  */
 export const prepareSetupPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   _state: FirebaseStateData,
   players: Players,
   resourceData: ResourceData,
@@ -52,8 +52,6 @@ export const prepareSetupPhase = async (
     falls: 0,
   });
 
-  const minimumSelection = store.options?.hardMode ? 4 : 1;
-
   const round: Round = {
     current: 0,
     total: TOTAL_ROUNDS,
@@ -75,7 +73,7 @@ export const prepareSetupPhase = async (
         phase: GALERIA_DE_SONHOS_PHASES.SETUP,
         players,
         gameOrder,
-        minimumSelection,
+        minimumSelection: 1,
         round,
       },
     },
@@ -109,6 +107,11 @@ export const prepareWordSelectionPhase = async (
   // Get current words options
   const [wordsDeck, words] = getRoundWords(store.wordsDeck);
 
+  let minimumSelection = store.options?.surpriseMode ? utils.game.getRandomItem([5, 6, 7]) : 1;
+  if (round.current === 1 && store.options?.surpriseMode) {
+    minimumSelection = 4;
+  }
+
   // Save
   return {
     update: {
@@ -123,6 +126,7 @@ export const prepareWordSelectionPhase = async (
         table,
         scoutId,
         words,
+        minimumSelection,
       },
     },
   };

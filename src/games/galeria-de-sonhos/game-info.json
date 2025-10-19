@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "G",
   "gameName": "galeria-de-sonhos",
-  "version": "4.1.92",
+  "version": "4.2.0",
   "release": "stable",
   "available": true,
   "title": {
@@ -58,9 +58,9 @@
   },
   "options": [
     {
-      "key": "hardMode",
+      "key": "surpriseMode",
       "kind": "switch",
-      "label": "Hard Mode",
+      "label": "Surprise Mode",
       "description": "Number of cards to be selected during Dream Selection phase",
       "values": [
         {
@@ -68,7 +68,7 @@
           "value": false
         },
         {
-          "label": "4-10 cards",
+          "label": "?-10 cards",
           "value": true
         }
       ]
