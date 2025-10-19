@@ -92,17 +92,17 @@ export function StepBuildMap({
         <Translate
           pt={
             <>
-              Clique nas cartas em sequência para definir seu mapa, uma carta por árvore.
+              1. Clique nas cartas em sequência para definir seu mapa, uma carta por árvore.
               <br />
-              Você pode fazer quantos segmentos quiser desde que pelo menos uma carta esteja em cada árvore
+              2. Você pode fazer quantos segmentos quiser desde que pelo menos uma carta esteja em cada árvore
               (dessa rodada ou de uma rodada anterior já que as cartas são cumulativas).
               <br />
-              Na barra abaixo, se quiser negar <IconAvatar icon={<NoIcon />} size="small" /> um adjectivo
+              3. Na barra abaixo, se quiser negar <IconAvatar icon={<NoIcon />} size="small" /> um adjectivo
               selecionado, clique nele acima da árvore para trocar.
               <br />
-              Se quiser refazer uma árvore <IconAvatar icon={<TreeIcon />} size="small" />, clique nela.
+              4. Se quiser refazer uma árvore <IconAvatar icon={<TreeIcon />} size="small" />, clique nela.
               <br />
-              Quando você estiver pronto, aperte Enviar Mapa.
+              5. Quando você estiver pronto, aperte Enviar Mapa.
             </>
           }
           en={

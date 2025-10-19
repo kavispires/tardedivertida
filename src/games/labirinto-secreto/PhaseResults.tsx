@@ -14,12 +14,12 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
-import type { MapSegment } from './utils/types';
+import type { MapSegment, PhaseResultsState } from './utils/types';
 import { LABIRINTO_SECRETO_PHASES, SLIDE_DURATION } from './utils/constants';
 import { StepRanking } from './StepRanking';
 import { StepGallery } from './StepGallery';
 
-export function PhaseResults({ state, players, user }: PhaseProps) {
+export function PhaseResults({ state, players, user }: PhaseProps<PhaseResultsState>) {
   const { step, goToPreviousStep, goToNextStep } = useStep();
   const gallery = useMemo(
     () => sortPlayers(players).filter((player) => player.map.some((segment: MapSegment) => segment.active)),

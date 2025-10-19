@@ -11,14 +11,14 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
-import type { MapSegment } from './utils/types';
+import type { MapSegment, PhaseMapBuildingState } from './utils/types';
 import { useOnSubmitMapAPIRequest } from './utils/api-requests';
 import { LABIRINTO_SECRETO_PHASES } from './utils/constants';
 import { PlayerSelectionMap } from './components/PlayerSelection';
 import { StepBuildMap } from './StepBuildMap';
 import { StepBuildWait } from './StepBuildWait';
 
-export function PhaseMapBuilding({ state, players, user }: PhaseProps) {
+export function PhaseMapBuilding({ state, players, user }: PhaseProps<PhaseMapBuildingState>) {
   const { step, setStep } = useStep();
 
   const onSubmitMap = useOnSubmitMapAPIRequest(setStep);

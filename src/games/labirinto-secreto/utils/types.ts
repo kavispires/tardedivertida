@@ -1,4 +1,5 @@
 // Types
+import type { GameRanking } from 'types/game';
 import type { TextCard } from 'types/tdr';
 
 export type SubmitMapPayload = {
@@ -36,6 +37,10 @@ export interface Tree {
    * Text card
    */
   card: TextCard;
+  /**
+   * Position in the forest
+   */
+  point: Point;
 }
 
 export type Direction =
@@ -96,3 +101,18 @@ export interface MapSegment {
 }
 
 export type PlayerMapping = Record<TreeId, PlayerId[]>;
+
+export type PhaseMapBuildingState = {
+  forest: Tree[];
+};
+
+export type PhasePathFollowingState = {
+  activePlayerId: PlayerId;
+  forest: Tree[];
+  turnOrder: TurnOrder;
+};
+
+export type PhaseResultsState = {
+  forest: Tree[];
+  ranking: GameRanking;
+};

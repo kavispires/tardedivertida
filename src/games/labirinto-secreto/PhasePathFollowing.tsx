@@ -15,10 +15,11 @@ import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitPathAPIRequest } from './utils/api-requests';
 import { LABIRINTO_SECRETO_PHASES } from './utils/constants';
+import type { PhasePathFollowingState } from './utils/types';
 import { StepFollowPath } from './StepFollowPath';
 import { StepPathWaiting } from './StepPathWaiting';
 
-export function PhasePathFollowing({ state, players, user }: PhaseProps) {
+export function PhasePathFollowing({ state, players, user }: PhaseProps<PhasePathFollowingState>) {
   const { step, setStep } = useStep();
   const [activePlayer, isTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 

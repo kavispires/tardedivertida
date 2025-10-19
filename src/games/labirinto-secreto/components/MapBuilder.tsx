@@ -1,10 +1,11 @@
+import { motion } from 'motion/react';
 import { useState } from 'react';
 // Ant Design Resources
 import { Button, Space, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimation } from 'utils/animations';
 // Icons
 import { LocationIcon } from 'icons/LocationIcon';
 import { NoIcon } from 'icons/NoIcon';
@@ -20,6 +21,11 @@ import { TextHighlight } from 'components/text';
 import type { ExtendedTextCard, MapSegment, OnSubmitMapFunction, Tree } from '../utils/types';
 import { getPossibleTreeIds } from '../utils/helpers';
 import { TreeImage } from './TreeImage';
+// Utils
+// import { getAnimationClass } from 'utils/helpers';
+
+const MotionIconAvatar = motion.create(IconAvatar);
+const MotionTextHighlight = motion.create(TextHighlight);
 
 type MapBuilderProps = {
   forest: Tree[];
@@ -100,13 +106,14 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
             <div className="map-builder__segment" key={`map-segment-${segment.index}`}>
               {currentIndex === index && (
                 <div className="map-builder__caret">
-                  <IconAvatar
+                  <MotionIconAvatar
                     icon={<LocationIcon />}
-                    className={getAnimationClass('bounce', {
-                      speed: 'slow',
-                      infinite: true,
-                    })}
+                    // className={getAnimationClass('bounce', {
+                    //   speed: 'slow',
+                    //   infinite: true,
+                    // })}
                     size="small"
+                    {...getAnimation('bounce', { speed: 'slow', infinite: true })}
                   />
                 </div>
               )}
@@ -162,12 +169,12 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
             :
           </strong>
           {possibleTreeIds.map((treeId, index) => (
-            <TextHighlight
+            <MotionTextHighlight
               key={`highlighted-possibility-${treeId}`}
-              className={getAnimationClass('tada', { delay: index })}
+              {...getAnimation('tada', { delay: 3 + 0.5 * index })}
             >
               {forest?.[treeId]?.card?.text}
-            </TextHighlight>
+            </MotionTextHighlight>
           ))}
         </Space>
       )}
