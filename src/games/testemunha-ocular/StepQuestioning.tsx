@@ -1,26 +1,25 @@
 // Ant Design Resources
-import { Avatar, Button, Flex } from 'antd';
+import { Flex } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 import type { SuspectCard, TestimonyQuestionCard } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-// Icons
-import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
-import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
 import { PlayerAvatarName } from 'components/avatars';
+import { AnswerNoButton, AnswerYesButton } from 'components/buttons/AnswerButtons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, StepTitle } from 'components/text';
+import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
 import type { Status, SubmitTestimonyPayload, THistoryEntry } from './utils/types';
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Summary } from './components/Summary';
+// Icons
 
 type StepQuestioningProps = {
   suspectsDict: Dictionary<SuspectCard>;
@@ -54,79 +53,63 @@ export function StepQuestioning({
 
   return (
     <Step announcement={announcement}>
-      <StepTitle>
-        <Translate
-          pt={
-            <>
-              Testemunha <PlayerAvatarName player={witness} />, responda:
-            </>
-          }
-          en={
-            <>
-              Witness <PlayerAvatarName player={witness} />, please answer:
-            </>
-          }
-        />
-      </StepTitle>
-
       <ViewIf condition={isUserTheWitness}>
-        <Flex align="center" className="margin">
-          <Instruction contained>
-            <Button
-              type="text"
-              size="large"
-              onClick={() => onAnswer({ testimony: false })}
-              className="t-questioning-answer-grid__button t-questioning-answer-grid__button--no"
-              disabled={!isUserTheWitness || isLoading}
-            >
-              <span className="t-questioning-answer-grid__answer">
-                <Translate pt="Não" en="No" />
-              </span>
-              <Avatar
-                size="large"
-                icon={<SpeechBubbleDeclinedIcon />}
-                style={{ backgroundColor: 'transparent' }}
-                shape="square"
-              />
-            </Button>
-          </Instruction>
+        <StepTitle>
+          <Translate
+            pt={
+              <>
+                Testemunha <PlayerAvatarName player={witness} />, responda:
+              </>
+            }
+            en={
+              <>
+                Witness <PlayerAvatarName player={witness} />, please answer:
+              </>
+            }
+          />
+        </StepTitle>
+        <Flex align="center" className="margin" gap={12}>
+          <AnswerNoButton
+            onClick={() => onAnswer({ testimony: false })}
+            disabled={!isUserTheWitness || isLoading}
+          />
 
           <Card
             header={translate('O suspeito...', 'The perpetrator...')}
-            randomColor
+            color="blue"
             className="t-card"
             size="large"
           >
             {question.question}
           </Card>
 
-          <Instruction contained>
-            <Button
-              type="text"
-              size="large"
-              onClick={() => onAnswer({ testimony: true })}
-              className="t-questioning-answer-grid__button t-questioning-answer-grid__button--no"
-              disabled={!isUserTheWitness || isLoading}
-            >
-              <Avatar
-                size="large"
-                icon={<SpeechBubbleAcceptedIcon />}
-                style={{ backgroundColor: 'transparent' }}
-                shape="square"
-              />
-              <span className="t-questioning-answer-grid__answer">
-                <Translate pt="Sim" en="Yes" />
-              </span>
-            </Button>
-          </Instruction>
+          <AnswerYesButton
+            onClick={() => onAnswer({ testimony: true })}
+            disabled={!isUserTheWitness || isLoading}
+          />
         </Flex>
       </ViewIf>
 
       <ViewIf condition={!isUserTheWitness}>
+        <StepTitle>
+          <Translate
+            pt={
+              <>
+                A Testemunha <PlayerAvatarName player={witness} /> está analisando a pergunta.
+              </>
+            }
+            en={
+              <>
+                The witness <PlayerAvatarName player={witness} /> is analyzing the question.
+              </>
+            }
+          />
+        </StepTitle>
+
         <SpaceContainer align="center" direction="vertical">
           <Card
             header={translate('O suspeito...', 'The perpetrator...')}
-            randomColor
+            color="blue"
             className="t-card"
             size="large"
           >
