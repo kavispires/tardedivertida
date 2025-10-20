@@ -7,24 +7,12 @@ import type {
   TestemunhaOcularHistoryEntry,
 } from './types';
 // Constants
-import {
-  HARD_MODE_EXTRA_SUSPECT_COUNT,
-  MAX_ROUNDS,
-  QUESTION_COUNT,
-  SUSPECT_COUNT,
-  TESTEMUNHA_OCULAR_PHASES,
-} from './constants';
+import { MAX_ROUNDS, QUESTION_COUNT, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Helpers
 import utils from '../../utils';
-import {
-  calculateScore,
-  determineTurnOrder,
-  getAchievements,
-  getQuestionerId,
-  getQuestions,
-} from './helpers';
+import { calculateScore, getAchievements, getPoolOfSuspects, getQuestions } from './helpers';
 import { GAME_NAMES } from '../../utils/constants';
-import { difference, keyBy, orderBy } from 'lodash';
+import { difference, keyBy } from 'lodash';
 import { saveData } from './data';
 
 /**
@@ -39,15 +27,9 @@ export const prepareSetupPhase = async (
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Build suspects grid
-  const isHarderGame = store.options?.harderGame ?? false;
-  const suspects = orderBy(
-    utils.game.getRandomItems(
-      additionalData.allSuspects,
-      SUSPECT_COUNT + (isHarderGame ? HARD_MODE_EXTRA_SUSPECT_COUNT : 0),
-    ),
-    [`name.${store.language}`],
-    ['asc'],
-  );
+  const isLargePool = store.options?.largePool ?? false;
+  const isTargetedPool = store.options?.targetedPool ?? false;
+  const suspects = getPoolOfSuspects(additionalData.allSuspects, store.language, isLargePool, isTargetedPool);
 
   const suspectsIds = suspects.map((s) => s.id);
   const suspectsDict = keyBy(suspects, 'id');
@@ -121,7 +103,9 @@ export const prepareQuestionSelectionPhase = async (
 
   utils.achievements.increase(store, witnessId, 'witness', 1);
 
-  const turnOrder = store.turnOrder.length > 0 ? store.turnOrder : determineTurnOrder(players, witnessId);
+  const newTurnOrder = utils.players.buildGameOrder(players).gameOrder.filter((id) => id !== witnessId);
+
+  const turnOrder = store.turnOrder.length > 0 ? store.turnOrder : newTurnOrder;
 
   const eliminatedSuspects: CardId[] = state?.eliminatedSuspects ?? [];
 
@@ -131,7 +115,7 @@ export const prepareQuestionSelectionPhase = async (
 
   // Determine questioner player
   const questionerIndex = (store.questionerIndex ?? -1) + 1;
-  const questionerId = getQuestionerId(turnOrder, questionerIndex);
+  const questionerId = turnOrder[questionerIndex % turnOrder.length];
   // Determine questions
   const questionIndex = (store.questionIndex ?? -2) + 2;
   const questions = getQuestions(store.deck, questionIndex);

@@ -7,9 +7,13 @@ export type TestemunhaOcularOptions = {
    */
   nsfw?: boolean;
   /**
-   * Harder game (more suspects)
+   * Larger pool of suspects
    */
-  harderGame?: boolean;
+  largePool?: boolean;
+  /**
+   *
+   */
+  targetedPool?: boolean;
 } & SuspectCardsOptions;
 
 export type SuspectId = CardId;

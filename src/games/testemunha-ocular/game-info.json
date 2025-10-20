@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "testemunha-ocular",
-  "version": "4.1.7",
+  "version": "5.0.0",
   "release": "stable",
   "available": true,
   "title": {
@@ -56,17 +56,33 @@
   "tags": ["cooperative", "turn-based", "guessing", "discussion", "achievements"],
   "options": [
     {
-      "key": "harderGame",
+      "key": "largePool",
       "kind": "switch",
-      "label": "Difficulty",
-      "description": "Choose the difficulty of the game",
+      "label": "Pool Size",
+      "description": "Choose the number of suspects",
       "values": [
         {
           "label": "Normal",
           "value": false
         },
         {
-          "label": "Hard",
+          "label": "Large",
+          "value": true
+        }
+      ]
+    },
+    {
+      "key": "targetedPool",
+      "kind": "switch",
+      "label": "Targeted Pool",
+      "description": "Makes the pool of suspects more similar than random",
+      "values": [
+        {
+          "label": "Random",
+          "value": false
+        },
+        {
+          "label": "Similar",
           "value": true
         }
       ]
