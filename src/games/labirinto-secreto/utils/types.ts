@@ -41,6 +41,10 @@ export interface Tree {
    * Position in the forest
    */
   point: Point;
+  /**
+   * Whether the tree is blocked
+   */
+  blocked?: true;
 }
 
 export type Direction =
