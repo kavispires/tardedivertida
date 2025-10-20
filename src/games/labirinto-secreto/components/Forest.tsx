@@ -113,7 +113,7 @@ export function Forest({
                 {forest.map((tree) => {
                   const segment = treeMap?.[tree.id];
 
-                  if (actions) {
+                  if (actions && !tree.blocked) {
                     const { selection = [], clickableTrees, onSelectTree, activeTree, disabled } = actions;
                     const isPathForward = clickableTrees.includes(tree.id);
                     const isClickable = isPathForward || selection.includes(tree.id);

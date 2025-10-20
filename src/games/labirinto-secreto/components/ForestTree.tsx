@@ -36,7 +36,7 @@ export function ForestTree({
   showArrow = false,
   className = '',
   hidePassedTreeNames = false,
-  width = 75,
+  width = 72,
 }: ForestTreeProps) {
   const isSegment = Boolean(segment);
   const isStartingPoint = startingTeeId === tree.id;
@@ -50,17 +50,21 @@ export function ForestTree({
       className={clsx(
         'forest__tree',
         isStartingPoint && `forest__tree--${originDirection}`,
-        isFinalPoint && showPath && 'forest__tree--goal',
-        isSegment && showPath && 'forest__tree--segment',
-        isPassed && 'forest__tree--passed',
-        isCurrentTree && 'forest__tree--current',
+        {
+          'forest__tree--blocked': tree.blocked,
+          'forest__tree--goal': isFinalPoint && showPath,
+          'forest__tree--segment': isSegment && showPath,
+          'forest__tree--passed': isPassed,
+          'forest__tree--current': isCurrentTree,
+        },
+
         className,
       )}
     >
       <TreeImage
         id={tree.treeType}
         text={segment?.passed && hidePassedTreeNames ? '' : tree.card.text}
-        width={width}
+        width={width * (tree.blocked ? 0.5 : 0.8)}
       />
       {showPath && isFinalPoint && (
         <IconAvatar

@@ -12,6 +12,8 @@ import {
   CARDS_PER_PLAYER,
   DEFAULT_PATHS,
   DIRECTIONS,
+  FORBIDDEN_TREES,
+  FORBIDDEN_CELLS,
   FOREST_HEIGHT,
   FOREST_WIDTH,
   LABIRINTO_SECRETO_ACHIEVEMENTS,
@@ -111,67 +113,151 @@ const getPoint = (index: number): Point => {
  */
 const getEntryPoints = () => {
   const entryPoints: Point[] = [];
+  const maxX = FOREST_WIDTH - 1;
+  const maxY = FOREST_HEIGHT - 1;
+
+  // Define forbidden corners: corner itself and adjacent cells on x and y axes
+  const forbiddenCorners: Point[] = [
+    // Top-left corner and adjacent cells
+    [0, 0],
+    [1, 0],
+    [0, 1],
+    // Top-right corner and adjacent cells
+    [maxX, 0],
+    [maxX - 1, 0],
+    [maxX, 1],
+    // Bottom-left corner and adjacent cells
+    [0, maxY],
+    [0, maxY - 1],
+    [1, maxY],
+    // Bottom-right corner and adjacent cells
+    [maxX, maxY],
+    [maxX - 1, maxY],
+    [maxX, maxY - 1],
+  ];
+
   for (let x = 0; x < FOREST_WIDTH; x++) {
     for (let y = 0; y < FOREST_HEIGHT; y++) {
-      const isEdge = checkEdge([x, y]);
-      const index = getIndex([x, y]);
-      if (isEdge && index % 2 === 1) {
-        entryPoints.push([x, y]);
+      const point: Point = [x, y];
+      const isEdge = checkEdge(point);
+      const index = getIndex(point);
+      const isForbidden = forbiddenCorners.some(([fx, fy]) => fx === x && fy === y);
+
+      if (isEdge && index % 2 === 1 && !isForbidden) {
+        entryPoints.push(point);
       }
     }
   }
   return entryPoints;
 };
 
-const getAvailableNextStep = (point: Point, usedIndexes: number[]): Point => {
+/**
+ * Check if a point is in the forbidden cells list
+ * @param point - point to check
+ * @returns - true if point is forbidden
+ */
+const isForbiddenCell = (point: Point): boolean => {
+  return FORBIDDEN_CELLS.some(([fx, fy]) => fx === point[0] && fy === point[1]);
+};
+
+const getAvailableNextStep = (
+  point: Point,
+  usedIndexes: number[],
+  startingPoints: Point[],
+  isLastStep: boolean,
+): Point => {
   const [x, y] = point;
   const available: Point[] = [];
   // Top
   const top: Point = [x, y - 1];
   const topIndex = getIndex(top);
-  if (top[1] >= 0 && !usedIndexes.includes(topIndex)) {
+  if (
+    top[1] >= 0 &&
+    !usedIndexes.includes(topIndex) &&
+    !isForbiddenCell(top) &&
+    (!isLastStep || !startingPoints.some(([sx, sy]) => sx === top[0] && sy === top[1]))
+  ) {
     available.push(top);
   }
   // Right
   const right: Point = [x + 1, y];
   const rightIndex = getIndex(right);
-  if (right[0] < FOREST_WIDTH && !usedIndexes.includes(rightIndex)) {
+  if (
+    right[0] < FOREST_WIDTH &&
+    !usedIndexes.includes(rightIndex) &&
+    !isForbiddenCell(right) &&
+    (!isLastStep || !startingPoints.some(([sx, sy]) => sx === right[0] && sy === right[1]))
+  ) {
     available.push(right);
   }
   // Down
   const down: Point = [x, y + 1];
   const downIndex = getIndex(down);
-  if (down[1] < FOREST_HEIGHT && !usedIndexes.includes(downIndex)) {
+  if (
+    down[1] < FOREST_HEIGHT &&
+    !usedIndexes.includes(downIndex) &&
+    !isForbiddenCell(down) &&
+    (!isLastStep || !startingPoints.some(([sx, sy]) => sx === down[0] && sy === down[1]))
+  ) {
     available.push(down);
   }
   // Left
   const left: Point = [x - 1, y];
   const leftIndex = getIndex(left);
-  if (left[0] >= 0 && !usedIndexes.includes(leftIndex)) {
+  if (
+    left[0] >= 0 &&
+    !usedIndexes.includes(leftIndex) &&
+    !isForbiddenCell(left) &&
+    (!isLastStep || !startingPoints.some(([sx, sy]) => sx === left[0] && sy === left[1]))
+  ) {
     available.push(left);
   }
   // Top-Left
   const topLeft: Point = [x - 1, y - 1];
   const topLeftIndex = getIndex(topLeft);
-  if (topLeft[0] >= 0 && topLeft[1] >= 0 && !usedIndexes.includes(topLeftIndex)) {
+  if (
+    topLeft[0] >= 0 &&
+    topLeft[1] >= 0 &&
+    !usedIndexes.includes(topLeftIndex) &&
+    !isForbiddenCell(topLeft) &&
+    (!isLastStep || !startingPoints.some(([sx, sy]) => sx === topLeft[0] && sy === topLeft[1]))
+  ) {
     available.push(topLeft);
   }
   // Top-Right
   const topRight: Point = [x + 1, y - 1];
   const topRightIndex = getIndex(topRight);
-  if (topRight[0] < FOREST_WIDTH && topRight[1] >= 0 && !usedIndexes.includes(topRightIndex)) {
+  if (
+    topRight[0] < FOREST_WIDTH &&
+    topRight[1] >= 0 &&
+    !usedIndexes.includes(topRightIndex) &&
+    !isForbiddenCell(topRight) &&
+    (!isLastStep || !startingPoints.some(([sx, sy]) => sx === topRight[0] && sy === topRight[1]))
+  ) {
     available.push(topRight);
   }
   // Down-Left
   const downLeft: Point = [x - 1, y + 1];
   const downLeftIndex = getIndex(downLeft);
-  if (downLeft[0] >= 0 && downLeft[1] < FOREST_HEIGHT && !usedIndexes.includes(downLeftIndex)) {
+  if (
+    downLeft[0] >= 0 &&
+    downLeft[1] < FOREST_HEIGHT &&
+    !usedIndexes.includes(downLeftIndex) &&
+    !isForbiddenCell(downLeft) &&
+    (!isLastStep || !startingPoints.some(([sx, sy]) => sx === downLeft[0] && sy === downLeft[1]))
+  ) {
     available.push(downLeft);
   }
   // Down-Right
   const downRight: Point = [x + 1, y + 1];
   const downRightIndex = getIndex(downRight);
-  if (downRight[0] < FOREST_WIDTH && downRight[1] < FOREST_HEIGHT && !usedIndexes.includes(downRightIndex)) {
+  if (
+    downRight[0] < FOREST_WIDTH &&
+    downRight[1] < FOREST_HEIGHT &&
+    !usedIndexes.includes(downRightIndex) &&
+    !isForbiddenCell(downRight) &&
+    (!isLastStep || !startingPoints.some(([sx, sy]) => sx === downRight[0] && sy === downRight[1]))
+  ) {
     available.push(downRight);
   }
 
@@ -183,17 +269,19 @@ const WHILE_THRESHOLD = 150;
 /**
  * Build a path through the forest. The path never loops back on itself.
  * @param startingPoint - point to start the path from
+ * @param startingPoints - all possible starting points
  * @param length - length of the path
  * @returns - array of points representing the path
  */
-const buildPath = (startingPoint: Point, length = PATH_DISTANCE): Point[] => {
+const buildPath = (startingPoint: Point, startingPoints: Point[], length = PATH_DISTANCE): Point[] => {
   let segments: Point[] = [startingPoint];
   let usedIndexes: number[] = [getIndex(startingPoint)];
   let limit = 0;
 
   while (segments.length < length && limit < WHILE_THRESHOLD) {
     for (let s = 0; s < length; s++) {
-      const availableSegment = getAvailableNextStep(segments[s], usedIndexes);
+      const isLastStep = segments.length === length - 1;
+      const availableSegment = getAvailableNextStep(segments[s], usedIndexes, startingPoints, isLastStep);
       if (availableSegment) {
         segments.push(availableSegment);
         usedIndexes.push(getIndex(availableSegment));
@@ -225,6 +313,16 @@ export const buildForest = (cards: TextCard[], isItemsForest: boolean): Tree[] =
     .map(() => utils.game.getRandomNumber(1, 15));
 
   return utils.game.makeArray(FOREST_WIDTH * FOREST_HEIGHT, 0).map((el: number, index) => {
+    if (FORBIDDEN_TREES.includes(index)) {
+      return {
+        id: el,
+        treeType: 0,
+        card: { id: 'forbidden', text: '' },
+        point: getPoint(index),
+        blocked: true,
+      };
+    }
+
     return {
       id: el,
       treeType: isItemsForest ? cards[index].id : trees[TREE_TYPE_BY_ID[index]],
@@ -242,7 +340,7 @@ export const buildPaths = (players: Players) => {
   // Get entry points
   const entryPoints = getEntryPoints();
   // For each point, build a full path of 10 segments
-  const paths = entryPoints.map((entryPoint) => buildPath(entryPoint));
+  const paths = entryPoints.map((entryPoint) => buildPath(entryPoint, entryPoints));
 
   const shuffledPaths = utils.game.shuffle(paths);
 
@@ -392,7 +490,7 @@ export const updateMaps = (players: Players) => {
     const furthestPlayerIndex = activePlayer.map.reduce(
       (lastIndex: number, segment: MapSegment, index: number) => {
         if (segment.playersIds.length > 0) {
-          lastIndex = index;
+          return index;
         }
         return lastIndex;
       },

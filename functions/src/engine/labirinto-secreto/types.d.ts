@@ -41,6 +41,10 @@ export interface Tree {
    * Text card
    */
   card: TextCard;
+  /**
+   * Is the tree blocked (cannot be passed)
+   */
+  blocked?: true;
 }
 
 export type Direction = keyof typeof DIRECTIONS;
