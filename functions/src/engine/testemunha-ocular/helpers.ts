@@ -1,9 +1,16 @@
-import type { TestimonyQuestionCard } from '../../types/tdr';
+import type { SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
 // Constants
-import { MAX_ROUNDS, TESTEMUNHA_OCULAR_ACHIEVEMENTS, TESTEMUNHA_OCULAR_PHASES } from './constants';
+import {
+  HARD_MODE_EXTRA_SUSPECT_COUNT,
+  MAX_ROUNDS,
+  SUSPECT_COUNT,
+  TESTEMUNHA_OCULAR_ACHIEVEMENTS,
+  TESTEMUNHA_OCULAR_PHASES,
+} from './constants';
 // Utils
 import utils from '../../utils';
 import type { FirebaseStoreData, TestemunhaOcularAchievement } from './types';
+import { orderBy, random } from 'lodash';
 
 /**
  * Determine the next phase based on the current one
@@ -41,25 +48,29 @@ export const determineNextPhase = (
   return QUESTION_SELECTION;
 };
 
-/**
- * Determine turn order by shuffling players, excluding the witness
- * @param players
- * @param witnessId
- * @returns
- */
-export const determineTurnOrder = (players: Players, witnessId: PlayerId): PlayerId[] => {
-  const availablePlayers = utils.players.getListOfPlayersIds(players).filter((id) => id !== witnessId);
-  return utils.game.shuffle(availablePlayers);
-};
+export const getPoolOfSuspects = (
+  allSuspects: SuspectCard[],
+  language: string,
+  largerPool: boolean,
+  targetedPool: boolean,
+) => {
+  const poolSize = largerPool ? SUSPECT_COUNT + HARD_MODE_EXTRA_SUSPECT_COUNT : SUSPECT_COUNT;
 
-/**
- * Gets the round questioner
- * @param turnOrder
- * @param questionerIndex
- * @returns
- */
-export const getQuestionerId = (turnOrder: PlayerId[], questionerIndex: number): PlayerId => {
-  return turnOrder[questionerIndex % turnOrder.length];
+  if (!targetedPool) {
+    return orderBy(utils.game.getRandomItems(allSuspects, poolSize), [`name.${language}`], ['asc']);
+  }
+
+  const attributeKeys = utils.game.shuffle(['age', 'build', 'ethnicity', 'gender']);
+  const startIndex = random(1, poolSize);
+  const ordering = utils.game.shuffle(['asc', 'desc', 'asc', 'desc']);
+
+  const orderedPool = orderBy(
+    allSuspects,
+    [`${attributeKeys[0]}`, `${attributeKeys[1]}`, `${attributeKeys[2]}`, `${attributeKeys[3]}`],
+    ordering as ('asc' | 'desc')[],
+  );
+
+  return orderBy(orderedPool.slice(startIndex, startIndex + poolSize), [`name.${language}`], ['asc']);
 };
 
 /**
