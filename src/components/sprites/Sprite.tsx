@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useRef } from 'react';
 // Ant Design Resources
 import { WarningOutlined } from '@ant-design/icons';
 import { Spin, Tooltip } from 'antd';
@@ -35,9 +34,6 @@ type SpriteProps = {
   padding?: number;
 } & ElementProps;
 
-// Global cache to track which sprite sheets have been loaded into the DOM
-const loadedSpriteSheets = new Set<string>();
-
 /**
  * Loads a sprite from the Tarde Divertida sprites
  * @param {SpriteProps} props
@@ -54,7 +50,6 @@ export function Sprite({
   ...props
 }: SpriteProps) {
   const baseUrl = useTDBaseUrl('sprites');
-  const spriteContainerRef = useRef<HTMLDivElement>(null);
 
   const { isLoading, data, isError } = useQuery({
     queryKey: ['sprite', source],
@@ -66,32 +61,6 @@ export function Sprite({
   });
 
   const paddedWidth = width - padding * 2;
-
-  // Insert the sprite sheet into the DOM once per source
-  useEffect(() => {
-    if (data && !loadedSpriteSheets.has(source)) {
-      // Create a hidden container for the sprite sheet if it doesn't exist
-      let spriteSheetContainer = document.getElementById(`sprite-sheet-${source}`);
-
-      if (!spriteSheetContainer) {
-        spriteSheetContainer = document.createElement('div');
-        spriteSheetContainer.id = `sprite-sheet-${source}`;
-        spriteSheetContainer.style.display = 'none';
-        spriteSheetContainer.setAttribute('aria-hidden', 'true');
-        document.body.appendChild(spriteSheetContainer);
-
-        // Parse and insert the SVG content safely
-        const parser = new DOMParser();
-        const svgDoc = parser.parseFromString(data, 'image/svg+xml');
-        const svgElement = svgDoc.documentElement;
-
-        if (svgElement.nodeName === 'svg') {
-          spriteSheetContainer.appendChild(svgElement);
-          loadedSpriteSheets.add(source);
-        }
-      }
-    }
-  }, [data, source]);
 
   if (isLoading) {
     return (
@@ -135,7 +104,6 @@ export function Sprite({
 
   return (
     <span
-      ref={spriteContainerRef}
       style={{
         width: `${paddedWidth}px`,
         height: `${paddedWidth}px`,
@@ -147,23 +115,12 @@ export function Sprite({
       className={className}
       {...props}
     >
-      <svg
-        viewBox="0 0 512 512"
-        style={{ width: `${paddedWidth}px`, height: `${paddedWidth}px` }}
-        role="img"
-        aria-label={title || spriteId}
-      >
-        <use href={`#${spriteId}`} />
+      <svg viewBox="0 0 512 512" style={{ width: `${paddedWidth}px`, height: `${paddedWidth}px` }}>
+        <use href={`#${spriteId}`} dangerouslySetInnerHTML={{ __html: svgContent }} />
         <foreignObject x="0" y="0" width="100%" height="100%">
           {title && (
             <Tooltip title={title}>
-              <div
-                style={{
-                  background: 'transparent',
-                  width: '100%',
-                  height: '100vh',
-                }}
-              />
+              <div style={{ background: 'transparent', width: '100%', height: '100vh' }}></div>
             </Tooltip>
           )}
         </foreignObject>
