@@ -58,7 +58,7 @@ export function StepSelectQuestion({
               onClick={() => onSelectQuestion({ questionId: id })}
               disabled={isLoading}
             >
-              <Card header={LETTERS[index]} randomColor className="t-card">
+              <Card header={LETTERS[index]} color="blue" className="t-card">
                 {question}
               </Card>
             </TransparentButton>
