@@ -100,9 +100,7 @@ export function StepSuspectElimination({
           />
           <br />
           <Translate pt="Selecione alguém que" en="Select someone that " />{' '}
-          <TextHighlight>
-            {testimony ? translate('NÃO ', 'DOES NOT ') : ''} {question.answer}
-          </TextHighlight>
+          <TextHighlight>{oppositeAction}</TextHighlight>
           <br />
           {Boolean(eliminatedSuspects?.length && isUserTheQuestioner) && (
             <SendButton onClick={onPass}>

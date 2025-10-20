@@ -224,11 +224,10 @@ export const prepareTrialPhase = async (
     id: '',
     question: '',
     answer: '',
-    statement: false,
+    statement: testimony,
     eliminated: [],
     remaining: [],
     ...state.question,
-    ...testimony,
   });
 
   utils.players.readyPlayers(players, state.questionerId);
