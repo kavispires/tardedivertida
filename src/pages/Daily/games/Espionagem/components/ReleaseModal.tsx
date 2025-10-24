@@ -7,7 +7,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { getSuspectImageId } from 'components/cards/SuspectCard';
 import { ImageCard } from 'components/image-cards';
-import { Translate } from 'components/language';
+import { DualTranslate, Translate } from 'components/language';
 // Internal
 import type { DailyEspionagemEntry } from '../utils/types';
 import type { useEspionagemEngine } from '../utils/useEspionagemEngine';
@@ -67,7 +67,12 @@ export function ReleaseModal({
             Confira as declarações do tipo <SkinFilled />:
           </Typography.Text>
 
-          <SuspectInfo features={suspect.features} gender={suspect.gender} variant="release" />
+          <SuspectInfo
+            name={suspect.name}
+            features={suspect.features}
+            gender={suspect.gender}
+            variant="release"
+          />
         </Flex>
       </Flex>
 
@@ -87,12 +92,13 @@ export function ReleaseModal({
 }
 
 type SuspectInfoProps = {
+  name: DualLanguageValue;
   features: string[];
   gender: string;
   variant: 'release' | 'result';
 };
 
-export function SuspectInfo({ features, gender, variant }: SuspectInfoProps) {
+export function SuspectInfo({ name, features, gender, variant }: SuspectInfoProps) {
   const values = features.map(
     (feature) =>
       FEATURE_PT_TRANSLATIONS[`${feature}.${gender}`] || FEATURE_PT_TRANSLATIONS[feature] || feature,
@@ -100,6 +106,9 @@ export function SuspectInfo({ features, gender, variant }: SuspectInfoProps) {
 
   return (
     <Flex gap={6} wrap justify={variant === 'result' ? 'center' : 'start'}>
+      <strong>
+        <DualTranslate>{name}</DualTranslate>
+      </strong>
       {values.map((value, index, array) => (
         <Typography.Text key={value} code={variant === 'release'} italic>
           {value}

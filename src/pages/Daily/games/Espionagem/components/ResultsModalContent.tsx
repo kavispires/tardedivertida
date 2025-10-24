@@ -91,7 +91,14 @@ export function ResultsModalContent({
         </Flex>
       </Flex>
 
-      {culprit && <SuspectInfo features={culprit.features} gender={culprit.gender} variant="result" />}
+      {culprit && (
+        <SuspectInfo
+          name={culprit.name}
+          features={culprit.features}
+          gender={culprit.gender}
+          variant="result"
+        />
+      )}
 
       <CopyToClipboardResult result={result} rows={3} />
 
