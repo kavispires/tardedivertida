@@ -618,15 +618,19 @@ export type SuspectCard = {
   /**
    * Flag indicating if the suspect is exclusive to the gb style
    */
-  gbExclusive?: boolean;
+  gbExclusive?: true;
   /**
-   * Short description note of the suspect
+   * Short description label of the suspect
    */
-  note?: string;
+  persona?: DualLanguageValue;
   /**
    * AI prompt descritor
    */
   prompt?: string;
+  /**
+   * Animal for zootopia style
+   */
+  animal?: string;
 };
 
 export type SuspectStyleVariant = 'gb' | 'rl' | 'px' | 'fx' | (string & NonNullable<unknown>);

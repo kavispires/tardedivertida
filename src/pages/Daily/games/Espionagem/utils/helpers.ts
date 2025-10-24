@@ -143,6 +143,8 @@ export const FEATURE_PT_TRANSLATIONS: Dictionary<string> = {
   wearingFlowers: 'está usando flores',
   showTeeth: 'está mostrando os dentes',
   hairTie: 'está usando um xuxinha ou fita no cabelo',
+  shirtless: 'está provavelmente sem camisa',
+  noHairInfo: 'não dá pra saber direito sobre o cabelo',
 };
 
 /**
