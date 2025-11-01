@@ -32,6 +32,10 @@
     background: get-color("teal", 2);
     z-index: 3;
   }
+
+  &--completed {
+    background: get-color("yellow", 4);
+  }
 }
 
 .organiku-table-grid-item-content {
@@ -52,4 +56,12 @@
 
 .organiku-incomplete-item {
   background: get-color("black");
+}
+
+.organiku-tracker-item {
+  background: get-color("teal", 2);
+
+  &--completed {
+    background: get-color("yellow", 4);
+  }
 }

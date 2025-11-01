@@ -21,6 +21,7 @@ import { Menu } from '../../../components/Menu';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
 import { TableGrid } from './TableGrid';
+import { CompletionTracker } from './CompletionTracker';
 
 type DailyOrganikuProps = {
   data: DailyOrganikuEntry;
@@ -41,6 +42,7 @@ export function DailyOrganiku({ data }: DailyOrganikuProps) {
     foundCount,
     onActivateTile,
     flips,
+    tracker,
   } = useOrganikuEngine(data, initialState);
   const [itemWidth, ref] = useCardWidthByContainerRef(5, { margin: 48, gap: 12, maxWidth: 96, minWidth: 55 });
 
@@ -94,7 +96,10 @@ export function DailyOrganiku({ data }: DailyOrganikuProps) {
             itemWidth={itemWidth}
             defaultRevealedIndexes={data.defaultRevealedIndexes}
             pairActiveTileIndex={pairActiveTileIndex}
+            tracker={tracker}
           />
+
+          <CompletionTracker itemsIds={data.itemsIds} tracker={tracker} itemWidth={itemWidth} />
         </Region>
 
         {isComplete && (

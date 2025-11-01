@@ -10,7 +10,7 @@ export const SETTINGS: GameSettings = {
   EMOJI: '🧸',
   HUB_ICON: DailyMemoryGridGameIcon,
   HUB_NAME: { pt: 'Organiku', en: 'Organiku' },
-  NAME: { pt: 'Organização Sudoku', en: 'Sudoku Organization' },
+  NAME: { pt: 'Organiku', en: 'Organiku' },
   TAGLINE: {
     en: 'Can you organize the table?',
     pt: 'Consegue organizar a mesa?',
