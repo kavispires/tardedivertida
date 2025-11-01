@@ -15,6 +15,19 @@ type NewsItem = {
 
 export const NEWS_LIST: NewsItem[] = [
   {
+    date: '2025-11-01',
+    content: (
+      <>
+        <IconAvatar icon={<NewFeatureIcon />} size="small" /> Para ficar mais fácil de identificar os itens do{' '}
+        <strong>
+          <DualTranslate>{ALL_SETTINGS.ORGANIKU.NAME}</DualTranslate>
+        </strong>
+        , agora o jogo conta quantos items estão faltando e os colore de amarelo quando você completar todos
+        os de um tipo!
+      </>
+    ),
+  },
+  {
     date: '2025-09-29',
     content: (
       <>

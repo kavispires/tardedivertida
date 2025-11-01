@@ -5,7 +5,7 @@ import { getAnalyticsEventName } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { vibrate } from 'pages/Daily/utils/vibrate';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 // Services
 import { logAnalyticsEvent } from 'services/firebase';
 // Internal
@@ -113,6 +113,34 @@ export function useOrganikuEngine(data: DailyOrganikuEntry, initialState: GameSt
     }, 750); // Show both tiles for 750ms before resolving
   };
 
+  const tracker = useMemo(() => {
+    const completionGoal = data.itemsIds.length;
+    const completedItems: BooleanDictionary = {};
+    const remainingCounts: NumberDictionary = {};
+    data.itemsIds.forEach((itemId) => {
+      completedItems[itemId] = false;
+      remainingCounts[itemId] = completionGoal;
+    });
+
+    Object.keys(state.revealed).forEach((gridIndex) => {
+      const itemId = data.grid[+gridIndex];
+      if (itemId) {
+        remainingCounts[itemId] -= 1;
+      }
+    });
+
+    Object.entries(remainingCounts).forEach(([itemId, count]) => {
+      if (count === 0) {
+        completedItems[itemId] = true;
+      }
+    });
+
+    return {
+      remainingCounts,
+      completedItems,
+    };
+  }, [data, state.revealed]);
+
   // CONDITIONS
   const isWin = state.status === STATUSES.WIN;
   const isLose = state.status === STATUSES.LOSE;
@@ -139,5 +167,6 @@ export function useOrganikuEngine(data: DailyOrganikuEntry, initialState: GameSt
     isLose,
     isComplete,
     onActivateTile,
+    tracker,
   };
 }

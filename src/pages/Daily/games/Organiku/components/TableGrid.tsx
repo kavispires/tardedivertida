@@ -7,6 +7,7 @@ import { getAnimation } from 'utils/animations';
 // Internal
 import type { DailyOrganikuEntry } from '../utils/types';
 import { getRowAndColumnIndexes } from '../utils/helpers';
+import type { useOrganikuEngine } from '../utils/useOrganikuEngine';
 
 type TableGridProps = {
   grid: DailyOrganikuEntry['grid'];
@@ -17,6 +18,7 @@ type TableGridProps = {
   foundCount: NumberDictionary;
   itemWidth: number;
   defaultRevealedIndexes: number[];
+  tracker: ReturnType<typeof useOrganikuEngine>['tracker'];
 };
 
 export function TableGrid({
@@ -28,6 +30,7 @@ export function TableGrid({
   itemWidth,
   defaultRevealedIndexes,
   pairActiveTileIndex,
+  tracker,
 }: TableGridProps) {
   const gridSize = Math.sqrt(grid.length);
   const unavailableIndexes = useMemo(
@@ -56,6 +59,7 @@ export function TableGrid({
               'organiku-table-grid-item--blocked': isBlocked,
               'organiku-table-grid-item--active': activeTileIndex === index || pairActiveTileIndex === index,
               'organiku-table-grid-item--found': foundCount[itemId] === gridSize,
+              'organiku-table-grid-item--completed': tracker.completedItems[itemId],
             })}
             onClick={isClickable ? () => onSelectTile?.(index) : undefined}
           >
