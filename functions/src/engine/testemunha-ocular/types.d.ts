@@ -11,9 +11,13 @@ export type TestemunhaOcularOptions = {
    */
   largePool?: boolean;
   /**
-   *
+   * Targeted pool of suspects
    */
   targetedPool?: boolean;
+  /**
+   * Exclusive use of the new batch of suspects
+   */
+  gbExclusive?: boolean;
 } & SuspectCardsOptions;
 
 export type SuspectId = CardId;

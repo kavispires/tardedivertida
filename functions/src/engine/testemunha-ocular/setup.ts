@@ -29,7 +29,14 @@ export const prepareSetupPhase = async (
   // Build suspects grid
   const isLargePool = store.options?.largePool ?? false;
   const isTargetedPool = store.options?.targetedPool ?? false;
-  const suspects = getPoolOfSuspects(additionalData.allSuspects, store.language, isLargePool, isTargetedPool);
+  const isGbExclusive = store.options?.gbExclusive ?? false;
+  const suspects = getPoolOfSuspects(
+    additionalData.allSuspects,
+    store.language,
+    isLargePool,
+    isTargetedPool,
+    isGbExclusive,
+  );
 
   const suspectsIds = suspects.map((s) => s.id);
   const suspectsDict = keyBy(suspects, 'id');
