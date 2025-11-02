@@ -53,8 +53,20 @@ export const getPoolOfSuspects = (
   language: string,
   largerPool: boolean,
   targetedPool: boolean,
+  isGbExclusive: boolean,
 ) => {
   const poolSize = largerPool ? SUSPECT_COUNT + HARD_MODE_EXTRA_SUSPECT_COUNT : SUSPECT_COUNT;
+
+  if (isGbExclusive) {
+    return orderBy(
+      utils.game.getRandomItems(
+        allSuspects.filter((s) => s.gbExclusive),
+        poolSize,
+      ),
+      [`name.${language}`],
+      ['asc'],
+    );
+  }
 
   if (!targetedPool) {
     return orderBy(utils.game.getRandomItems(allSuspects, poolSize), [`name.${language}`], ['asc']);

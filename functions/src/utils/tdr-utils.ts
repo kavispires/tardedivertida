@@ -357,6 +357,7 @@ export const modifySuspectIdsByOptions = (
           build: suspect.build,
           height: suspect.height,
           features: [],
+          gbExclusive: suspect.gbExclusive,
         }
       : suspect),
     id: `us-${deckType}-${suspect.id.split('-')[1]}`,
