@@ -37,7 +37,7 @@
 		"react-zoom-pan-pinch": "^3.7.0",
 		"sass": "^1.93.2",
 		"typescript": "^5.9.3",
-		"vite": "^7.1.10",
+		"vite": "^7.1.11",
 		"vite-plugin-commonjs": "^0.10.4",
 		"vite-plugin-svgr": "^4.5.0",
 		"vite-tsconfig-paths": "^5.1.4",
