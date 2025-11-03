@@ -1,0 +1,1 @@
+import{aN as s,r,cl as a}from"./index-OIjP5zjb.js";import{u as n}from"./DebugOnly-DR7pFWkk.js";import{g as u}from"./Session-C_a63xpB.js";function l(m,c=[],e){u(),s("userId");const[t,i]=r.useState(!1),o=e??a([3,4,4,5,6]);return n({duration:o,onExpire:()=>{},disabled:t})}export{l as u};
