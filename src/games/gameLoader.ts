@@ -30,6 +30,7 @@ export const gameSessions: GameSessionMap = {
   [GAME_COLLECTION.DUETOS]: lazy(() => import('games/duetos/SessionDuetos')),
   [GAME_COLLECTION.ESCAPE_ROOM]: lazy(() => import('games/escape-room/SessionEscapeRoom')),
   [GAME_COLLECTION.ESQUIADORES]: lazy(() => import('games/esquiadores/SessionEsquiadores')),
+  [GAME_COLLECTION.FOFOCA_QUENTE]: lazy(() => import('games/fofoca-quente/SessionFofocaQuente')),
   [GAME_COLLECTION.FILEIRA_DE_FATOS]: lazy(() => import('games/fileira-de-fatos/SessionFileiraDeFatos')),
   [GAME_COLLECTION.GALERIA_DE_SONHOS]: lazy(() => import('games/galeria-de-sonhos/SessionGaleriaDeSonhos')),
   [GAME_COLLECTION.IDADE_DA_PREDA]: lazy(() => import('games/idade-da-preda/SessionIdadeDaPreda')),

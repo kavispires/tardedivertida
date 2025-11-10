@@ -99,7 +99,7 @@ export function BoardSummary({ students, socialGroups }: BoardSummaryProps) {
 
         <Flex vertical gap={6}>
           <div className="board-summary__label">
-            <Translate en="Builds" pt="Corpos" />
+            <Translate en="Builds" pt="Tamanhos" />
           </div>
           <Flex vertical gap={3}>
             {summaryLists.builds.map(({ id, count }) => (
@@ -110,7 +110,7 @@ export function BoardSummary({ students, socialGroups }: BoardSummaryProps) {
           </Flex>
 
           <div className="board-summary__label">
-            <Translate en="Alturas" pt="Heights" />
+            <Translate en="Heights" pt="Alturas" />
           </div>
           <Flex vertical gap={3}>
             {summaryLists.heights.map(({ id, count }) => (
