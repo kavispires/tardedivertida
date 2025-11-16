@@ -1,22 +1,22 @@
 {
   "$schema": "../../utils/game-info.schema.json",
-  "gameCode": "K",
-  "gameName": "palheta-de-cores",
+  "gameCode": "R",
+  "gameName": "megarobos",
   "version": "0.0.1",
-  "release": "planned",
+  "release": "cancelled",
   "available": false,
   "title": {
-    "pt": "Palheta de Cores",
-    "en": "Color Palette"
+    "pt": "Megarobos",
+    "en": "Megabots"
   },
   "popularName": {
-    "pt": "O das cores",
-    "en": "The color one"
+    "pt": "",
+    "en": ""
   },
-  "basedOn": "enotnaP",
+  "basedOn": "kaertS toH",
   "summary": {
-    "pt": "Crie palhetas para outros jogadores adivinharem",
-    "en": "Create beautiful palettes so other players can guess"
+    "pt": "TBD",
+    "en": "TBD"
   },
   "appearance": {
     "clouds": "cloud",
@@ -32,12 +32,12 @@
   "playerCount": {
     "recommended": [4, 5, 6],
     "min": 2,
-    "max": 10,
-    "best": 5
+    "max": 8,
+    "best": 0
   },
   "duration": {
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["cooperative", "same-time", "pairing"]
+  "tags": ["cooperative", "competitive", "guessing", "images"]
 }

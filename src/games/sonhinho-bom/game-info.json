@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sonhinho-bom",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "release": "planned",
   "available": false,
   "title": {
@@ -19,7 +19,7 @@
     "cloudsAnimationType": "flow",
     "primaryColor": "",
     "colorScheme": "light",
-    "videoBackground": false
+    "videoBackground": true
   },
   "summary": {
     "pt": "???",

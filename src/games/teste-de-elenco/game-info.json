@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "teste-de-elenco",
-  "version": "2.0.56",
+  "version": "2.0.57",
   "release": "stable",
   "available": true,
   "title": {
@@ -23,7 +23,7 @@
     "cloudsAnimationType": "flow",
     "primaryColor": "#4F1271",
     "colorScheme": "light",
-    "videoBackground": false
+    "videoBackground": true
   },
   "rules": {
     "en": [

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "linhas-cruzadas",
-  "version": "1.2.73",
+  "version": "1.2.74",
   "release": "stable",
   "available": true,
   "title": {
@@ -24,7 +24,7 @@
     "primaryColor": "#D36135",
     "surfaceColor": "#FAE3C6",
     "colorScheme": "light",
-    "videoBackground": false
+    "videoBackground": true
   },
   "rules": {
     "pt": [

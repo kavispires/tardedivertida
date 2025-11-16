@@ -24,10 +24,12 @@ import LABIRINTO_SECRETO from 'games/labirinto-secreto/game-info.json';
 import LINHAS_CRUZADAS from 'games/linhas-cruzadas/game-info.json';
 import MEDIDAS_NAO_EXATAS from 'games/medidas-nao-exatas/game-info.json';
 import MEGAMIX from 'games/megamix/game-info.json';
+import MEGAROBOS from 'games/megarobos/game-info.json';
 import MENTE_COLETIVA from 'games/mente-coletiva/game-info.json';
 import MESMICE from 'games/mesmice/game-info.json';
 import METALINGUAGEM from 'games/metalinguagem/game-info.json';
 import NA_RUA_DO_MEDO from 'games/na-rua-do-medo/game-info.json';
+import NAMORO_OU_AMIZADE from 'games/namoro-ou-amizade/game-info.json';
 import NAO_SOU_ROBO from 'games/nao-sou-robo/game-info.json';
 import NAUFRAGOS from 'games/naufragos/game-info.json';
 import ONDA_TELEPATICA from 'games/onda-telepatica/game-info.json';
@@ -83,10 +85,12 @@ export const GAME_LIST: Record<GameName, GameInfo> = {
   'linhas-cruzadas': LINHAS_CRUZADAS,
   'medidas-nao-exatas': MEDIDAS_NAO_EXATAS,
   megamix: MEGAMIX,
+  megarobos: MEGAROBOS,
   'mente-coletiva': MENTE_COLETIVA,
   mesmice: MESMICE,
   metalinguagem: METALINGUAGEM,
   'na-rua-do-medo': NA_RUA_DO_MEDO,
+  'namoro-ou-amizade': NAMORO_OU_AMIZADE,
   'nao-sou-robo': NAO_SOU_ROBO,
   naufragos: NAUFRAGOS,
   'onda-telepatica': ONDA_TELEPATICA,
