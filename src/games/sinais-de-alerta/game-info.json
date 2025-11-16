@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sinais-de-alerta",
-  "version": "1.0.40",
+  "version": "1.0.41",
   "release": "stable",
   "available": true,
   "title": {
@@ -23,7 +23,7 @@
     "cloudsAnimationType": "flow",
     "primaryColor": "#005377",
     "colorScheme": "light",
-    "videoBackground": false
+    "videoBackground": true
   },
   "duration": {
     "base": 10,

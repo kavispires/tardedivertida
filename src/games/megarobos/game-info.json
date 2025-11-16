@@ -1,0 +1,43 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "R",
+  "gameName": "namoro-ou-amizade",
+  "version": "0.0.1",
+  "release": "cancelled",
+  "available": false,
+  "title": {
+    "pt": "Namoro ou Amizade",
+    "en": "Megabots"
+  },
+  "popularName": {
+    "pt": "",
+    "en": ""
+  },
+  "basedOn": "retaD retsaM",
+  "summary": {
+    "pt": "TBD",
+    "en": "TBD"
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "cloudsAnimationType": "flow",
+    "primaryColor": "",
+    "colorScheme": "light",
+    "videoBackground": true
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 8,
+    "best": 0
+  },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
+  "tags": ["cooperative", "competitive", "guessing", "images"]
+}

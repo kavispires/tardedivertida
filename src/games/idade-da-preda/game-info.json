@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "idade-da-preda",
-  "version": "0.9.14",
+  "version": "0.9.15",
   "release": "beta",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Idade da Preda",
     "en": "Tongue Age"
@@ -23,7 +23,7 @@
     "cloudsAnimationType": "flow",
     "primaryColor": "#c1b629",
     "colorScheme": "dark",
-    "videoBackground": false
+    "videoBackground": true
   },
   "rules": {
     "pt": [
