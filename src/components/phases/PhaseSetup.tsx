@@ -36,7 +36,7 @@ export function PhaseSetup({ state }: PhaseProps) {
         <AnimatedGearIcon className="phase-announcement__icon" />
 
         <Instruction style={{ color: 'white' }}>
-          <Translate pt="Aguarde um momento" en="In just a moment" />
+          <Translate pt="Aguarde um momento" en="Gathering resources..." />
         </Instruction>
       </div>
       <VideoBackground />

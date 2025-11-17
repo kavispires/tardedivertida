@@ -1,4 +1,7 @@
 // Types
+import type { Achievement } from 'types/achievements';
+import type { GameRanking } from 'types/game';
+import type { GamePlayer } from 'types/player';
 import type { CityLocation } from 'types/tdr';
 // Components
 import type { GridMapType } from 'components/toolKits/GridMap';
@@ -27,12 +30,50 @@ export type CityLocationsDict = Dictionary<CityLocation>;
 
 export type GalleryEntry = {
   locationId: string;
-  guess: string;
-  guessAdjacentLocationsIds: string[];
-  cone: string;
-  coneAdjacentLocationsIds: string[];
+  architectId: string;
+  coneId: string;
   correctCellId: string;
-  result: 'CORRECT' | 'INCORRECT';
+  correctPlayersIds: PlayerId[];
+  playersSay: Dictionary<PlayerId[]>;
+  playersPoints: Record<PlayerId, number>;
+  architectPoints: number;
   finalCellId: string;
-  score: number;
+};
+
+export type PhasePlanningState = {
+  architectId: PlayerId;
+  availableProjectsIds: CardId[];
+  city: City;
+  cityLocationsDict: CityLocationsDict;
+  coneCellIds: Dictionary<string>;
+  gameOrder: GameOrder;
+};
+
+export type PhasePlacingState = {
+  architectId: PlayerId;
+  availableProjectsIds: CardId[];
+  city: City;
+  cityLocationsDict: CityLocationsDict;
+  coneCellIds: Dictionary<string>;
+  planning: Record<string, string>;
+  gameOrder: GameOrder;
+};
+
+export type PhaseResolutionState = {
+  architectId: PlayerId;
+  availableProjectsIds: CardId[];
+  city: City;
+  cityLocationsDict: CityLocationsDict;
+  coneCellIds: Dictionary<string>;
+  planning: Record<string, string>;
+  gameOrder: GameOrder;
+  gallery: GalleryEntry[];
+  ranking: GameRanking;
+};
+
+export type PhaseGameOverState = {
+  achievements: Achievement[];
+  city: City;
+  cityLocationsDict: CityLocationsDict;
+  winners: GamePlayer[];
 };

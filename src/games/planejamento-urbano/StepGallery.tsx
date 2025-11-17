@@ -1,21 +1,26 @@
 import { useMeasure } from 'react-use';
 // Ant Design Resources
-import { DragOutlined } from '@ant-design/icons';
-import { Divider, Flex, Typography } from 'antd';
+import { Flex, Typography } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import type { SlideShowConfig } from 'hooks/useSlideShow';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Icons
-import { AngryMayorIcon } from 'icons/AngryMayorIcon';
+import { ArrowIcon } from 'icons/ArrowIcon';
 import { ConeIcon } from 'icons/ConeIcon';
-import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 // Components
-import { PlayerAvatarName, IconAvatar } from 'components/avatars';
-import { DualTranslate, Translate } from 'components/language';
-import { SlideShow } from 'components/slide-show';
+import { IconAvatar, PlayerAvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { StarPoints } from 'components/points';
+import {
+  SlideShow,
+  SlideShowBubbleValue,
+  SlideShowLabel,
+  SlideShowNoWins,
+  SlideShowPlayersList,
+} from 'components/slide-show';
 import { Step } from 'components/steps';
 import { StepTitle } from 'components/text';
 // Internal
@@ -25,21 +30,23 @@ import { LocationCard } from './components/LocationCard';
 import { CityMapSnippet } from './components/CityMapSnippet';
 
 type StepGalleryProps = {
-  activePlayer: GamePlayer;
+  architect: GamePlayer;
   city: City;
   cityLocationsDict: CityLocationsDict;
   placements: number;
   gallery: GalleryEntry[];
   slideShowConfig: SlideShowConfig;
+  players: GamePlayers;
 };
 
 export function StepGallery({
-  activePlayer,
+  architect,
   city,
   cityLocationsDict,
   placements,
   gallery,
   slideShowConfig,
+  players,
 }: StepGalleryProps) {
   useTemporarilyHidePlayersBar();
   const [ref, { width, height }] = useMeasure<HTMLDivElement>();
@@ -47,7 +54,7 @@ export function StepGallery({
   const constructionWidth = useCardWidth(placements + 5, { maxWidth: 256 });
 
   const galleryEntry = gallery[slideShowConfig.slideIndex];
-  const coneColor = getConeColor(galleryEntry.cone);
+  const coneColor = getConeColor(galleryEntry.coneId);
 
   return (
     <Step fullWidth>
@@ -73,99 +80,78 @@ export function StepGallery({
         </div>
 
         <div>
-          <div className="pu-gallery__label">
-            <Translate pt="Projeto" en="Project" />
-          </div>
-          <div className="pu-gallery__construction">
+          <SlideShowLabel>
+            <Translate pt="Projeto para o engenheiro chefe" en="Project for the lead engineer" />
+            <PlayerAvatarName player={architect} />
+          </SlideShowLabel>
+
+          <Flex gap={12} align="center">
             <LocationCard
               locationId={galleryEntry.locationId}
               cityLocationsDict={cityLocationsDict}
               width={constructionWidth}
               fontSize="small"
             />
-          </div>
-          <Divider className="my-2" />
+            <IconAvatar icon={<ArrowIcon />} size={48} />
+            <ConeIcon color={coneColor} width={constructionWidth / 2} />
+          </Flex>
 
-          <div className="pu-gallery__label">
-            <Translate pt="Plano do Engenheiro Chefe" en="Chief Engineer's Plan" />{' '}
-            <PlayerAvatarName player={activePlayer} />
-          </div>
+          <SlideShowLabel>
+            <Translate pt="Pedreiros Corretos" en="Correct Builders" />
+          </SlideShowLabel>
+          <SlideShowBubbleValue winner extra={<StarPoints quantity={2} hideText keyPrefix="correct" />}>
+            <Translate pt="A gente sabe o que tá fazendo!" en="We know what we're doing!" />{' '}
+          </SlideShowBubbleValue>
+          <SlideShowPlayersList players={players} playersIds={galleryEntry.correctPlayersIds} />
+          {galleryEntry.correctPlayersIds.length === 0 && (
+            <Typography.Text italic>
+              <Translate pt="Nenhum jogador acertou esse projeto." en="No player got this project right." />
+            </Typography.Text>
+          )}
+          {Object.keys(galleryEntry.playersSay).length > 0 && (
+            <>
+              <SlideShowLabel style={{ marginTop: '1em' }}>
+                <Translate pt="Decisão Erradas dos Pedreiros" en="Builders' Wrong Decisions" />
+              </SlideShowLabel>
 
-          <Cone
-            cone={galleryEntry.cone}
-            adjacentLocationsIds={galleryEntry.coneAdjacentLocationsIds}
-            cityLocationsDict={cityLocationsDict}
-          />
+              {Object.entries(galleryEntry.playersSay).map(([coneId, playersIds]) => {
+                const color = getConeColor(coneId as GalleryEntry['coneId']);
+                return (
+                  <div key={coneId} className="mb-2">
+                    <SlideShowBubbleValue
+                      color={color}
+                      extra={
+                        playersIds.length > 1 && (
+                          <StarPoints quantity={playersIds.length - 1} hideText keyPrefix="bonus" />
+                        )
+                      }
+                    >
+                      <Translate pt="Prefiro construir no local" en="I prefer building in the site" />:{' '}
+                      <ConeIcon color={color} width={16} />
+                    </SlideShowBubbleValue>
 
-          <Divider className="my-2" />
+                    <SlideShowPlayersList players={players} playersIds={playersIds} />
+                  </div>
+                );
+              })}
+            </>
+          )}
 
-          <div className="pu-gallery__label">
-            <Translate pt="Decisão dos Pedreiros" en="Builders' Decision" />
-          </div>
-
-          <Cone
-            cone={galleryEntry.guess}
-            adjacentLocationsIds={galleryEntry.guessAdjacentLocationsIds}
-            cityLocationsDict={cityLocationsDict}
-          />
-
-          <Divider className="my-2" />
-
-          <div className="pu-gallery__label">
-            <Translate pt="Resultado" en="Result" />
-          </div>
-
-          <div>
-            {galleryEntry.result === 'CORRECT' ? (
-              <Flex gap={8} align="center">
-                <IconAvatar icon={<SealOfApprovalIcon />} size={64} />
-                <Typography.Text italic>
-                  <Translate
-                    pt="O público aprovou esse projeto e ele será construído!"
-                    en="The public approved this project and it will be built!"
-                  />
-                </Typography.Text>
-              </Flex>
-            ) : (
-              <Flex gap={8} align="center">
-                <IconAvatar icon={<AngryMayorIcon />} size={64} />
-                <Typography.Text italic>
-                  <Translate
-                    pt="Prefeito: Como vocês podem ser tão burros? Isso é um desastre! Eu tive 2.41% de desaprovação! Vou colocar a construção onde ele quiser!"
-                    en="Mayor: How can you be so dumb? This is a disaster! I had 2.41% disapproval! I'll put the construction wherever I want!"
-                  />
-                </Typography.Text>
-              </Flex>
-            )}
-          </div>
+          {galleryEntry.architectPoints === 0 && (
+            <>
+              <SlideShowLabel>
+                <Translate pt="Pontos" en="Points" />
+              </SlideShowLabel>
+              <SlideShowNoWins>
+                <Translate
+                  pt="O prefeito apelou e vai colocar essa construção num local aleatório."
+                  en="The mayor overruled and will place this construction in a random location."
+                />
+              </SlideShowNoWins>
+            </>
+          )}
         </div>
       </SlideShow>
     </Step>
-  );
-}
-
-type ConeProps = {
-  cone: GalleryEntry['cone'];
-  adjacentLocationsIds: string[];
-  cityLocationsDict: CityLocationsDict;
-};
-
-export function Cone({ cone, adjacentLocationsIds, cityLocationsDict }: ConeProps) {
-  return (
-    <Flex gap={8} align="center">
-      <Flex justify="center" align="center">
-        {cone}
-        <IconAvatar size={48} icon={<ConeIcon color={getConeColor(cone)} width={48} />} />
-      </Flex>
-      <Divider type="vertical" />
-
-      <Flex vertical>
-        {adjacentLocationsIds.map((locationId) => (
-          <Typography.Text key={locationId}>
-            <DragOutlined /> <DualTranslate>{cityLocationsDict?.[locationId]?.name}</DualTranslate>
-          </Typography.Text>
-        ))}
-      </Flex>
-    </Flex>
   );
 }

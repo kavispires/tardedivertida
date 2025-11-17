@@ -49,23 +49,3 @@ export function useOnSubmitPlacingAPIRequest(setStep: UseStep['setStep']) {
     });
   };
 }
-
-export function useOnUpdatePlacementAPIRequest() {
-  const { translate } = useLanguage();
-
-  const request = useGameActionRequest({
-    actionName: 'update-placing',
-    successMessage: translate('Construção atualizada com sucesso', 'Construction updated successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua construção',
-      'Oops, the application found an error while trying to submit your construction',
-    ),
-  });
-
-  return (payload: SubmitPlacingPayload) => {
-    request({
-      action: PLANEJAMENTO_URBANO_ACTIONS.UPDATE_PLACEMENT,
-      ...payload,
-    });
-  };
-}

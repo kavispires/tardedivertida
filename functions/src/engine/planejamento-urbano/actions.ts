@@ -26,27 +26,13 @@ export const handleSubmitPlacements = async (
   playerId: PlayerId,
   evaluations: Dictionary<string>,
 ) => {
-  return await utils.firestore.updateState({
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
     actionText: 'submit your evaluations',
+    shouldReady: true,
     change: { evaluations },
     nextPhaseFunction: getNextPhase,
-  });
-};
-
-export const handleUpdatePlacement = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  evaluations: Dictionary<string>,
-) => {
-  return await utils.firestore.updateState({
-    gameName,
-    gameId,
-    playerId,
-    actionText: 'update your placement',
-    change: { evaluations },
   });
 };

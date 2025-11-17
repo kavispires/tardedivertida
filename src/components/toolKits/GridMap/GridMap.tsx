@@ -4,7 +4,7 @@ import { type ComponentProps, Fragment } from 'react';
 import { TransformWrapper, TransformComponent, useControls } from 'react-zoom-pan-pinch';
 // Ant Design Resources
 import { FullscreenExitOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';
-import { Button, Space } from 'antd';
+import { Button, Space, Tooltip } from 'antd';
 // Internal
 import type { GridMapType, GridMapCellType } from './grid-map';
 // Sass
@@ -51,6 +51,7 @@ export function GridMap<TCellData, TCellAdditionalProps = any>({
     maxScale = 4,
     wheel = { step: 0.5 },
     centerOnInit = true,
+    centerZoomedOut = true,
     ...restTransformWrapperProps
   } = transformWrapperProps ?? {};
 
@@ -62,8 +63,10 @@ export function GridMap<TCellData, TCellAdditionalProps = any>({
         maxScale={maxScale}
         wheel={wheel}
         centerOnInit={centerOnInit}
+        centerZoomedOut={centerZoomedOut}
         {...restTransformWrapperProps}
       >
+        {/** biome-ignore lint/complexity/noUselessFragments: it is necessary */}
         <Fragment>
           {!hideControls && <GridMapControls position="top" />}
           {additionalContent}
@@ -96,18 +99,32 @@ type GridMapControlsProps = {
 };
 
 function GridMapControls({ position }: GridMapControlsProps) {
-  const { zoomIn, zoomOut, resetTransform } = useControls();
+  const { zoomIn, zoomOut, resetTransform, centerView } = useControls();
+
   return (
     <Space.Compact size="small" className={clsx('grid-map-controls', `grid-map-controls--${position}`)}>
-      <Button onClick={() => zoomIn()}>
-        <ZoomInOutlined />
-      </Button>
-      <Button onClick={() => zoomOut()}>
-        <ZoomOutOutlined />
-      </Button>
-      <Button onClick={() => resetTransform()}>
-        <FullscreenExitOutlined />
-      </Button>
+      <Tooltip title="Zoom In" placement={position}>
+        <Button onClick={() => zoomIn()}>
+          <ZoomInOutlined />
+        </Button>
+      </Tooltip>
+      <Tooltip title="Zoom Out" placement={position}>
+        <Button onClick={() => zoomOut()}>
+          <ZoomOutOutlined />
+        </Button>
+      </Tooltip>
+      <Tooltip title="Reset" placement={position}>
+        <Button
+          onClick={() => {
+            resetTransform();
+            setTimeout(() => {
+              centerView();
+            }, 200);
+          }}
+        >
+          <FullscreenExitOutlined />
+        </Button>
+      </Tooltip>
     </Space.Compact>
   );
 }
