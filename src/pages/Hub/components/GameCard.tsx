@@ -85,7 +85,7 @@ export function GameCard({ game, isAdmin = true }: GameCardProps) {
       <div className="game-card__contents">
         <Space direction="vertical" className="full-width">
           <Card.Meta
-            description={`${translate('Baseado em', 'Based on')} ${game.basedOn
+            description={`${translate('Inspirado por', 'Inspired by')} ${game.basedOn
               .split('')
               .reverse()
               .join('')}`}
