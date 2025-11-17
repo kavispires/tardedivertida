@@ -224,6 +224,11 @@ export const saveGame = async (
   sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
   saveContent: SaveGamePayload,
 ) => {
+  const now = Date.now();
+  const hasStateUpdate = !isEmpty(saveContent?.update?.state);
+  const hasStoreUpdate = !isEmpty(saveContent?.update?.store);
+  const hasStateSet = !isEmpty(saveContent?.set?.state);
+
   if (isEmulatingEnvironment()) {
     const undefinedValues = verifyUndefinedValues(saveContent);
     if (undefinedValues) {
@@ -240,34 +245,28 @@ export const saveGame = async (
   }
 
   try {
-    if (saveContent?.set?.state && !isEmpty(saveContent?.set?.state)) {
-      await sessionRef.doc('state').set({ ...(saveContent.set.state ?? {}), updatedAt: Date.now() });
+    if (hasStateSet) {
+      await sessionRef.doc('state').set({ ...(saveContent?.set?.state ?? {}), updatedAt: Date.now() });
     }
   } catch (error) {
     throwException(error, 'set game state');
   }
   try {
-    if (
-      (saveContent?.update?.store && !isEmpty(saveContent?.update?.store)) ||
-      saveContent?.update?.storeCleanup
-    ) {
+    if (hasStoreUpdate || saveContent?.update?.storeCleanup) {
       const cleanup = (saveContent?.update?.storeCleanup ?? []).reduce((acc, key) => {
         if (key) {
           acc[key] = deleteValue();
         }
         return acc;
       }, {});
-      await sessionRef.doc('store').update({ ...(saveContent.update.store ?? {}), ...cleanup });
+      await sessionRef.doc('store').update({ ...(saveContent?.update?.store ?? {}), ...cleanup });
     }
   } catch (error) {
     throwException(error, 'update game store');
   }
 
   try {
-    if (
-      (saveContent?.update?.state && !isEmpty(saveContent?.update?.state)) ||
-      saveContent?.update?.stateCleanup
-    ) {
+    if (hasStateUpdate || saveContent?.update?.stateCleanup) {
       const cleanup = (saveContent?.update?.stateCleanup ?? []).reduce((acc, key) => {
         if (key) {
           acc[key] = deleteValue();
@@ -277,10 +276,18 @@ export const saveGame = async (
 
       await sessionRef
         .doc('state')
-        .update({ ...(saveContent.update.state ?? {}), ...cleanup, updatedAt: Date.now() });
+        .update({ ...(saveContent?.update?.state ?? {}), ...cleanup, updatedAt: Date.now() });
     }
   } catch (error) {
     throwException(error, 'update game state');
+  }
+
+  if (hasStateSet || hasStateUpdate) {
+    const phase = (saveContent?.set?.state?.phase ?? saveContent?.update?.state?.phase) as string | undefined;
+
+    if (phase && phase === 'SETUP' && Date.now() - now < 7000) {
+      await utils.helpers.forceWait(7000 - (Date.now() - now));
+    }
   }
 
   return true;
