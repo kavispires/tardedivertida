@@ -24,11 +24,16 @@ export function StepRanking({ players, ranking, goToPreviousStep, round }: StepR
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[
-        <Translate key="1" pt="Deu match com outros jogadores" en="Match other player's pairs" />,
+        <Translate key="1" pt="Acertou o planejamento do arquiteto" en="Match the architect's plan" />,
         <Translate
           key="2"
-          pt="O item de fora foi o mesmo que outros jogadores"
-          en="The left out item was the same as other players"
+          pt="Pontos do Arquiteto para cada jogador que acertou o planejamento"
+          en="Architect points for each player who matched the plan"
+        />,
+        <Translate
+          key="3"
+          pt="Pontos por dar match com outros jogadores no cone errado"
+          en="Points for matching with other players on the wrong cone"
         />,
       ]}
     >

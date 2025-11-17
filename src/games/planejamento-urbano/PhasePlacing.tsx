@@ -6,23 +6,21 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { MapCityZonesIcon } from 'icons/MapCityZonesIcon';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
-import { useOnSubmitPlacingAPIRequest, useOnUpdatePlacementAPIRequest } from './utils/api-requests';
+import { useOnSubmitPlacingAPIRequest } from './utils/api-requests';
 import { PLANEJAMENTO_URBANO_PHASES } from './utils/constants';
+import type { PhasePlacingState } from './utils/types';
 import { StepPlaceLocations } from './StepPlaceLocations';
 // Icons
 
-export function PhasePlacing({ state, players }: PhaseProps) {
+export function PhasePlacing({ state, players }: PhaseProps<PhasePlacingState>) {
   const { step, setStep } = useStep();
-  const [activePlayer, isTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
-  const [controller, isTheController] = useWhichPlayerIsThe('controllerId', state, players);
+  const [architect, isTheArchitect] = useWhichPlayerIsThe('architectId', state, players);
   const onSubmitConstruction = useOnSubmitPlacingAPIRequest(setStep);
-  const onUpdateConstruction = useOnUpdatePlacementAPIRequest();
 
   const announcement = (
     <PhaseAnnouncement
@@ -33,20 +31,8 @@ export function PhasePlacing({ state, players }: PhaseProps) {
     >
       <Instruction>
         <Translate
-          pt={
-            <>
-              Agora, é hora de colocar as construções de acordo com o planejamento do engenheiro chefe.
-              <br />
-              <PlayerAvatarName player={controller} addressUser /> é o responsável por essa etapa.
-            </>
-          }
-          en={
-            <>
-              Now, it's time to place the buildings according to the chief engineer's planning.
-              <br />
-              <PlayerAvatarName player={controller} addressUser /> is responsible for this step.
-            </>
-          }
+          pt={<>Agora, é hora de colocar as construções de acordo com o planejamento do engenheiro chefe.</>}
+          en={<>Now, it's time to place the buildings according to the lead engineer's planning.</>}
         />
       </Instruction>
     </PhaseAnnouncement>
@@ -59,19 +45,15 @@ export function PhasePlacing({ state, players }: PhaseProps) {
         <StepPlaceLocations
           announcement={announcement}
           players={players}
-          activePlayer={activePlayer}
-          controller={controller}
+          architect={architect}
           gameOrder={state.gameOrder}
           city={state.city}
           cityLocationsDict={state.cityLocationsDict}
-          placements={state.placements}
+          placements={Object.keys(state.coneCellIds).length}
           availableProjectsIds={state.availableProjectsIds}
           onSubmitConstruction={onSubmitConstruction}
-          onUpdateConstruction={onUpdateConstruction}
-          evaluations={state.evaluations ?? {}}
           planning={state.planning ?? {}}
-          isTheController={isTheController}
-          isTheActivePlayer={isTheActivePlayer}
+          isTheArchitect={isTheArchitect}
         />
       </StepSwitcher>
     </PhaseContainer>

@@ -124,3 +124,28 @@
     }
   }
 }
+
+.city-map-actions-container {
+  display: grid;
+  grid-template-columns: 3fr auto;
+  place-items: center;
+
+  gap: get-unit(2);
+}
+
+.u-location-card-draggable {
+  cursor: grab;
+}
+
+.u-location-card-draggable-container {
+  position: relative;
+}
+
+.u-location-card-selected-cone {
+  position: absolute;
+  top: get-unit(-1);
+  right: get-unit(-1);
+  z-index: 7;
+  rotate: 30deg;
+  filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.3));
+}

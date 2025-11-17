@@ -13,12 +13,14 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { PLANEJAMENTO_URBANO_PHASES, SLIDE_DURATION } from './utils/constants';
+import type { PhaseResolutionState } from './utils/types';
 import { StepGallery } from './StepGallery';
-import { StepResults } from './StepResults';
-// Icons
+import { StepRanking } from './StepRanking';
 
-export function PhaseResolution({ state, players }: PhaseProps) {
+export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
+  const [architect] = useWhichPlayerIsThe('architectId', state, players);
+
   const slideShowConfig = useSlideShow({
     length: state.gallery.length,
     slideDuration: SLIDE_DURATION,
@@ -29,7 +31,6 @@ export function PhaseResolution({ state, players }: PhaseProps) {
     slideShowConfig.reset();
     goToPreviousStep();
   };
-  const [activePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
   return (
     <PhaseContainer phase={state?.phase} allowedPhase={PLANEJAMENTO_URBANO_PHASES.RESOLUTION}>
@@ -46,34 +47,28 @@ export function PhaseResolution({ state, players }: PhaseProps) {
         >
           <Instruction>
             <Translate
-              pt={<>Vamos ver se vocês, pedreiros, pensaram como o engenheiro chefe,</>}
-              en={<>Let's see if you, builders, thought like the chief engineer,</>}
+              pt={<>Vamos ver se você, pedreiro, pensou como o engenheiro chefe.</>}
+              en={<>Let's see if you, builder, thought like the lead engineer.</>}
             />
           </Instruction>
         </PhaseAnnouncement>
 
         {/* Step 1 */}
         <StepGallery
-          activePlayer={activePlayer}
+          architect={architect}
           city={state.city}
           cityLocationsDict={state.cityLocationsDict}
-          placements={state.placements}
           gallery={state.gallery}
           slideShowConfig={slideShowConfig}
+          placements={Object.keys(state.coneCellIds).length}
+          players={players}
         />
 
-        <StepResults
+        <StepRanking
           players={players}
           round={state.round}
-          cityLocationsDict={state.cityLocationsDict}
-          placements={state.placements}
-          gallery={state.gallery}
-          correct={state.correct}
-          status={state.status}
-          onGoBack={onGoBack}
-          groupScore={state.groupScore}
-          gameOrder={state.gameOrder}
-          controllerId={state.controllerId}
+          ranking={state.ranking}
+          goToPreviousStep={onGoBack}
         />
       </StepSwitcher>
     </PhaseContainer>

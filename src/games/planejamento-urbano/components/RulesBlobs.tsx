@@ -14,7 +14,7 @@ export function PlanningRules() {
       en={
         <>
           We are part of the city's urban planning committee and are responsible for deciding where new
-          buildings and establishments will be built. In each round, a player will take on the role of chief
+          buildings and establishments will be built. In each round, a player will take on the role of lead
           engineer, responsible for planning the best locations for new constructions
         </>
       }

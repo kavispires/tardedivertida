@@ -26,7 +26,7 @@ import {
   prepareGameOverPhase,
 } from './setup';
 import { getLocations } from './data';
-import { handleSubmitPlanning, handleUpdatePlacement, handleSubmitPlacements } from './actions';
+import { handleSubmitPlanning, handleSubmitPlacements } from './actions';
 
 /**
  * Get Initial Game State
@@ -122,9 +122,6 @@ export const submitAction = async (data: PlanejamentoUrbanoSubmitAction) => {
     case PLANEJAMENTO_URBANO_ACTIONS.SUBMIT_PLANNING:
       utils.firebase.validateSubmitActionProperties(data, ['planning'], 'submit planning');
       return handleSubmitPlanning(gameName, gameId, playerId, data.planning);
-    case PLANEJAMENTO_URBANO_ACTIONS.UPDATE_PLACEMENT:
-      utils.firebase.validateSubmitActionProperties(data, ['evaluations'], 'submit planning');
-      return handleUpdatePlacement(gameName, gameId, playerId, data.evaluations);
     case PLANEJAMENTO_URBANO_ACTIONS.SUBMIT_PLACEMENTS:
       utils.firebase.validateSubmitActionProperties(data, ['evaluations'], 'submit evaluations');
       return handleSubmitPlacements(gameName, gameId, playerId, data.evaluations);

@@ -168,6 +168,10 @@ interface DraggableItemProps {
 
     /** Scale factor to apply when dragging */
     dragScale?: number;
+    /**
+     * Rotation angle to apply when dragging (in degrees)
+     */
+    dragRotate?: number;
 
     /** Opacity to apply when dragging */
     dragOpacity?: number;
@@ -199,7 +203,7 @@ export function DraggableItem({
   wrapperStyle,
 }: DraggableItemProps) {
   // Set default options
-  const { withTransition = true, dragScale = 1.05, dragOpacity = 0.8 } = options;
+  const { withTransition = true, dragScale = 1.05, dragOpacity = 0.8, dragRotate = 0 } = options;
 
   // Use dnd-kit's useDraggable hook
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
@@ -220,7 +224,7 @@ export function DraggableItem({
     if (isDragging) {
       elementStyle.zIndex = 999;
       elementStyle.opacity = dragOpacity;
-      elementStyle.transform += ` scale(${dragScale})`;
+      elementStyle.transform += ` scale(${dragScale}) rotate(${dragRotate}deg)`;
     }
 
     if (withTransition && !isDragging) {

@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "planejamento-urbano",
-  "version": "0.0.32",
-  "release": "beta",
-  "available": false,
+  "version": "1.0.0",
+  "release": "stable",
+  "available": true,
   "title": {
     "pt": "Planejamento Urbano",
     "en": "City Planning"
@@ -22,23 +22,25 @@
     "clouds": "construction-clouds",
     "cloudsAnimationType": "flow",
     "primaryColor": "#65a1c9",
-    "colorScheme": "dark",
+    "colorScheme": "light",
     "videoBackground": true
   },
   "rules": {
     "pt": [
       "Vamos construir uma cidade juntos nesse jogo cooperativo.",
-      "A cada rodada, um jogador será o arquiteto-chefe e terá que planejar onde 3 (ou mais locais) vão nos espaços disponíveis da cidade.",
-      "Então os outros jogadores devem discutir e combinar os locais onde o arquiteto-chefe sugeriu que fossem colocados.",
-      "O grupo ganha pontos para cada combinação correta, mas se falharem em combinar, o Prefeito os coloca em espaços aleatórios",
-      "O jogo dura 6 rodadas e o grupo ganha se alcançar a meta de pontos!"
+      "A cada rodada, um jogador será o arquiteto-chefe e terá que planejar onde 3 projetos vão nos espaços disponíveis na cidade.",
+      "Os outros jogadores, pedreiros, devem então tentar fazer o mesmo planejamento que o arquiteto-chefe.",
+      "Você ganha 2 pontos para cada projeto que você acertar, mas se dar match com outro jogador, você também ganha 1 ponto.",
+      "Mas se ninguém acertar o planejamento de um espaço, o Prefeito (computador) os coloca em espaços aleatórios.",
+      "O jogo dura até que todo mundo tenha sido o arquiteto-chefe uma vez (ou duas com menos jogadores)!"
     ],
     "en": [
       "Let's build a city together in this cooperative game.",
-      "Each round, a player will be the chief architect and have to plan where 3 (or more locations) go in the available sites of the city.",
-      "Then the other players must discuss and match the locations where the chief architect suggested them to be placed.",
-      "The group wins points for each correct match, but if they fail to match, the Mayor places them in random spaces",
-      "The games goes for 6 rounds and the group wins if they reach the goal of points!"
+      "Each round, one player will be the lead architect and will have to plan where 3 projects will go in the available spaces in the city.",
+      "The other players, builders, must then try to make the same planning as the lead architect.",
+      "You earn 2 points for each project you get right, but if you match with another player, you also earn 1 point.",
+      "But if no one gets the planning of a space right, the Mayor (computer) places them in random spaces.",
+      "The game lasts until everyone has been the lead architect once (or twice with fewer players)!"
     ]
   },
   "playerCount": {
@@ -47,7 +49,7 @@
     "min": 2,
     "max": 10
   },
-  "tags": ["cooperative", "discussion", "turn-based"],
+  "tags": ["competitive", "guessing", "turn-based"],
   "duration": {
     "base": 0,
     "perPlayer": 0

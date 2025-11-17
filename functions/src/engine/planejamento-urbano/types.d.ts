@@ -15,14 +15,14 @@ export type ResourceData = {
 
 export type GalleryEntry = {
   locationId: string;
-  guess: string;
-  guessAdjacentLocationsIds: string[];
-  cone: string;
-  coneAdjacentLocationsIds: string[];
+  architectId: string;
+  coneId: string;
   correctCellId: string;
-  result: 'CORRECT' | 'INCORRECT';
+  correctPlayersIds: PlayerId[];
+  playersSay: Dictionary<PlayerId[]>;
+  playersPoints: Record<PlayerId, number>;
+  architectPoints: number;
   finalCellId: string;
-  score: number;
 };
 
 export type PlanejamentoUrbanoAchievement = keyof typeof PLANEJAMENTO_URBANO_ACHIEVEMENTS;

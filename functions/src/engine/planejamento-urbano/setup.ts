@@ -1,5 +1,5 @@
 // Constants
-import { CITY_BOUNDS_SIZE, PLANEJAMENTO_URBANO_PHASES, TOTAL_ROUNDS } from './constants';
+import { CITY_BOUNDS_SIZE, LOCATIONS_PER_ROUND, PLANEJAMENTO_URBANO_PHASES } from './constants';
 // Types
 import type { City, FirebaseStateData, FirebaseStoreData, GalleryEntry, ResourceData } from './types';
 // Utils
@@ -63,10 +63,15 @@ export const prepareSetupPhase = async (
   });
 
   const achievements = utils.achievements.setup(players, {
-    // TODO
+    coneA: 0,
+    coneB: 0,
+    coneC: 0,
+    coneD: 0,
+    architectMatches: 0,
+    nonArchitectMatches: 0,
   });
 
-  const { gameOrder } = utils.players.buildGameOrder(players);
+  const { playerIds: gameOrder, gameOrder: totalGameOrder } = utils.players.buildGameOrder(players, 6);
 
   // Save
   return {
@@ -79,14 +84,12 @@ export const prepareSetupPhase = async (
         phase: PLANEJAMENTO_URBANO_PHASES.SETUP,
         round: {
           current: 0,
-          total: TOTAL_ROUNDS,
+          total: totalGameOrder.length,
           forceLastRound: false,
         },
         cityLocationsDict: usedCityLocations,
         city,
-        placements: 3,
         gameOrder,
-        groupScore: 0,
       },
     },
   };
@@ -98,16 +101,14 @@ export const preparePlanningPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   const deck = store.deck;
-  const placements: number = state.placements;
   const city: City = state.city;
 
   const round = utils.helpers.increaseRound(state.round);
 
   // Determine the active planner
-  const activePlayerId = utils.players.getActivePlayer(state.gameOrder, round.current);
-  // Determine the controller
-  const controllerId = utils.players.getNextPlayer(state.gameOrder, activePlayerId);
-  utils.players.readyPlayers(players, activePlayerId);
+  const architectId = utils.players.getActivePlayer(state.gameOrder, round.current);
+
+  utils.players.readyPlayers(players, architectId);
 
   // If there are pending sites, resolve them
   const gallery: GalleryEntry[] = state.gallery || [];
@@ -128,7 +129,7 @@ export const preparePlanningPhase = async (
     'available',
     'used',
   );
-  const selectedIds = utils.game.getRandomItems(availableOrthogonalCellsIds, placements);
+  const selectedIds = utils.game.getRandomItems(availableOrthogonalCellsIds, LOCATIONS_PER_ROUND + 1);
   const coneCellIds: Record<string, string> = {};
   selectedIds.forEach((id, index) => {
     coneCellIds[LETTERS[index]] = id;
@@ -136,7 +137,7 @@ export const preparePlanningPhase = async (
   });
 
   // Get N new locations from the deck
-  const availableProjectsIds = Array.from({ length: placements }, () => deck.pop()).filter(
+  const availableProjectsIds = Array.from({ length: LOCATIONS_PER_ROUND }, () => deck.pop()).filter(
     Boolean,
   ) as CardId[];
 
@@ -150,14 +151,12 @@ export const preparePlanningPhase = async (
         phase: PLANEJAMENTO_URBANO_PHASES.PLANNING,
         players,
         round,
-        activePlayerId,
-        controllerId,
+        architectId,
         availableProjectsIds,
         city,
-        placements,
         coneCellIds,
       },
-      stateCleanup: ['gallery', 'planning', 'evaluations', 'correct', 'incorrect', 'status'],
+      stateCleanup: ['gallery', 'planning', 'correct', 'incorrect', 'status'],
     },
   };
 };
@@ -167,14 +166,13 @@ export const preparePlacingPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const activePlayerId = state.activePlayerId;
-  const controllerId = state.controllerId;
+  const architectId = state.architectId;
 
-  const planning = players[activePlayerId].planning;
+  const planning = players[architectId].planning;
 
   utils.players.removePropertiesFromPlayers(players, ['planning']);
 
-  utils.players.readyPlayers(players, controllerId);
+  utils.players.unReadyPlayers(players, architectId);
 
   // Save
   return {
@@ -189,7 +187,7 @@ export const preparePlacingPhase = async (
 };
 
 export const prepareResolutionPhase = async (
-  _store: FirebaseStoreData,
+  store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
@@ -198,53 +196,72 @@ export const prepareResolutionPhase = async (
   const city: City = state.city;
   const availableProjectsIds: string[] = state.availableProjectsIds;
   const planning: Record<string, string> = state.planning;
-  const evaluations: Record<string, string> = state.evaluations;
-  const groupScore: number = state.groupScore;
-  const placements: number = state.placements;
+  const architectId: string = state.architectId;
 
-  let correct = 0;
   let incorrect = 0;
   const conesCellIds: Record<string, string> = state.coneCellIds;
+
+  // Gained Points [correct guesses, architect points, bonus matches]
+  const scores = new utils.players.Scores(players, [0, 0, 0]);
 
   const gallery: GalleryEntry[] = [];
   // If placement is correct, give 1 point, and place it in the city
   // If placement is incorrect, give 0 points, and place it in a diagonal site
   // If perfect score, increase placements if possible (and announce it)
   availableProjectsIds.forEach((projectId) => {
-    const answer = planning[projectId];
-    const guess = evaluations[projectId];
-    const isCorrect = answer === evaluations[projectId];
+    const correctConeId = planning[projectId];
+    let isCorrect = false;
+    const correctPlayersIds: PlayerId[] = [];
+    const playersSay: Dictionary<PlayerId[]> = {};
+    const playersPoints: Record<PlayerId, number> = {};
+    let architectPoints = 0;
+
+    // If at least one player guessed correctly, it's correct
+    utils.players.getListOfPlayers(players, false, [architectId]).forEach((player) => {
+      const playerGuess = player.evaluations?.[projectId];
+      if (playerGuess) {
+        playersPoints[player.id] = playersPoints[player.id] || 0;
+        if (playerGuess === correctConeId) {
+          isCorrect = true;
+          correctPlayersIds.push(player.id);
+          scores.add(player.id, 2, 0); // Correct guess
+          scores.add(architectId, 1, 1); // The architect gets a point for each correct guess
+          playersPoints[player.id] += 1;
+          architectPoints += 1;
+        } else {
+          playersSay[playerGuess] = playersSay[playerGuess] || [];
+          playersSay[playerGuess].push(player.id);
+        }
+      }
+    });
+
+    // For each player say, score number of players - 1
+    Object.entries(playersSay).forEach(([, playerIds]) => {
+      if (playerIds.length > 1) {
+        const points = playerIds.length - 1;
+        playerIds.forEach((playerId) => {
+          scores.add(playerId, points, 2); // Points for matching other players
+        });
+      }
+    });
 
     if (isCorrect) {
-      correct++;
       // For each cell that was correctly placed, set the city cell to 'reserved'
-      utils.toolKits.gridMapUtils.updateCellState(city, conesCellIds[answer], 'reserved');
+      utils.toolKits.gridMapUtils.updateCellState(city, conesCellIds[correctConeId], 'reserved');
     } else {
       incorrect++;
     }
 
     gallery.push({
       locationId: projectId,
-      guess: guess,
-      guessAdjacentLocationsIds: utils.toolKits.gridMapUtils
-        .getAdjacentIdsToCellId(city, conesCellIds[guess], 'orthogonal', 'used')
-        .map((cellId) => {
-          const cell = utils.toolKits.gridMapUtils.getCellById(city, cellId);
-          return cell?.data?.locationId || null;
-        })
-        .filter(Boolean) as string[],
-      cone: answer,
-      coneAdjacentLocationsIds: utils.toolKits.gridMapUtils
-        .getAdjacentIdsToCellId(city, conesCellIds[answer], 'orthogonal', 'used')
-        .map((cellId) => {
-          const cell = utils.toolKits.gridMapUtils.getCellById(city, cellId);
-          return cell?.data?.locationId || null;
-        })
-        .filter(Boolean) as string[],
-      correctCellId: conesCellIds[answer],
-      result: isCorrect ? 'CORRECT' : 'INCORRECT',
-      finalCellId: isCorrect ? conesCellIds[answer] : '',
-      score: isCorrect ? 1 : 0,
+      architectId,
+      coneId: correctConeId,
+      correctCellId: conesCellIds[correctConeId],
+      correctPlayersIds: correctPlayersIds,
+      playersSay,
+      playersPoints,
+      architectPoints,
+      finalCellId: conesCellIds[correctConeId],
     });
   });
 
@@ -275,7 +292,7 @@ export const prepareResolutionPhase = async (
   }
 
   gallery.forEach((entry) => {
-    if (entry.result === 'INCORRECT') {
+    if (entry.architectPoints === 0) {
       const diagonalCellId = onlyDiagonal.pop();
       if (diagonalCellId) {
         entry.finalCellId = diagonalCellId;
@@ -283,18 +300,14 @@ export const prepareResolutionPhase = async (
     }
   });
 
-  const update: PlainObject = {
-    status: 'CONTINUE',
-    correct,
-    incorrect,
-    groupScore: groupScore + correct,
-  };
-  // If all placements are correct, increase placements up to 4
-  if (incorrect === 0) {
-    update.status = 'PERFECT';
-    update.groupScore += 1;
-    update.placements = Math.min(placements + 1, 4);
-  }
+  const cityLocationsDict: Dictionary<CityLocation> = state.cityLocationsDict;
+  const sortedGallery = orderBy(
+    gallery,
+    [(g) => cityLocationsDict[g.locationId].name[store.language ?? 'en']],
+    ['asc'],
+  );
+
+  const ranking = scores.rank(players);
 
   // Save
   return {
@@ -302,9 +315,9 @@ export const prepareResolutionPhase = async (
       state: {
         phase: PLANEJAMENTO_URBANO_PHASES.RESOLUTION,
         players,
-        gallery: orderBy(gallery, ['cone'], ['asc']),
+        gallery: sortedGallery,
         city,
-        ...update,
+        ranking,
       },
     },
   };
@@ -360,7 +373,6 @@ export const prepareGameOverPhase = async (
         players,
         cityLocationsDict: state.cityLocationsDict,
         city,
-        groupScore: state.groupScore ?? 0,
         achievements,
       },
     },
