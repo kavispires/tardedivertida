@@ -7,13 +7,14 @@ import { GameOverWrapper } from 'components/game-over';
 import { Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
+import type { PhaseGameOverState } from './utils/types';
 import { CityMap } from './components/CityMap';
 // import { Achievements } from 'components/general/Achievements';
 // Internal
 // import { getReference } from './utils/helpers';
 // import achievementsReference from './utils/achievements';
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   return (
     <GameOverWrapper state={state} players={players} announcementIcon={<FlagIcon />}>
       {/* <Achievements

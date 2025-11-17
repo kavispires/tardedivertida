@@ -10,19 +10,21 @@ type CityMapProps = {
   city: City;
   cityLocationsDict: CityLocationsDict;
   mapEvaluations?: Record<string, string>;
+  dragAndDropEnabled?: boolean;
 };
 
-export function CityMap({ city, cityLocationsDict, mapEvaluations }: CityMapProps) {
+export function CityMap({ city, cityLocationsDict, mapEvaluations, dragAndDropEnabled }: CityMapProps) {
   const sizes = useWindowSize();
   const cellWidth = useLocationWidth(city.width);
+  const max = Math.min(sizes.width, sizes.height) * 0.85;
 
   return (
     <GridMap
-      maxWidth={sizes.width}
-      maxHeight={sizes.height}
+      maxWidth={max}
+      maxHeight={max}
       grid={city}
       cellComponent={MapSlot}
-      cellProps={{ cellWidth, cityLocationsDict, mapEvaluations }}
+      cellProps={{ cellWidth, cityLocationsDict, mapEvaluations, dragAndDropEnabled }}
     />
   );
 }

@@ -16,14 +16,15 @@ import { ViewOr } from 'components/views';
 // Internal
 import { useOnSubmitPlanningAPIRequest } from './utils/api-requests';
 import { PLANEJAMENTO_URBANO_PHASES } from './utils/constants';
+import type { PhasePlanningState } from './utils/types';
 import { PlanningRules } from './components/RulesBlobs';
 import { StepPlanLocations } from './StepPlanLocations';
 import { StepWaitForPlanning } from './StepWaitForPlanning';
-// Icons
 
-export function PhasePlanning({ state, players }: PhaseProps) {
+export function PhasePlanning({ state, players }: PhaseProps<PhasePlanningState>) {
   const { step, goToNextStep, setStep } = useStep();
-  const [activePlayer, isTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
+  const [architect, isTheArchitect] = useWhichPlayerIsThe('architectId', state, players);
+
   const onSubmitPlanning = useOnSubmitPlanningAPIRequest(setStep);
 
   const announcement = (
@@ -39,12 +40,12 @@ export function PhasePlanning({ state, players }: PhaseProps) {
         <Translate
           pt={
             <>
-              Para essa rodada, <PlayerAvatarName player={activePlayer} addressUser /> é o engenheiro chefe.
+              Para essa rodada, <PlayerAvatarName player={architect} addressUser /> é o engenheiro chefe.
             </>
           }
           en={
             <>
-              In this round, <PlayerAvatarName player={activePlayer} addressUser /> is the chief engineer.
+              In this round, <PlayerAvatarName player={architect} addressUser /> is the lead engineer.
             </>
           }
         />
@@ -66,15 +67,15 @@ export function PhasePlanning({ state, players }: PhaseProps) {
         </RoundAnnouncement>
 
         {/* Step 1 */}
-        <ViewOr condition={isTheActivePlayer}>
+        <ViewOr condition={isTheArchitect}>
           <StepPlanLocations
             announcement={announcement}
             players={players}
-            activePlayerId={state.activePlayerId}
+            architectId={state.architectId}
             gameOrder={state.gameOrder}
             city={state.city}
             cityLocationsDict={state.cityLocationsDict}
-            placements={state.placements}
+            placements={Object.keys(state.coneCellIds).length}
             availableProjectsIds={state.availableProjectsIds}
             onSubmitPlanning={onSubmitPlanning}
           />
@@ -83,9 +84,10 @@ export function PhasePlanning({ state, players }: PhaseProps) {
             announcement={announcement}
             players={players}
             gameOrder={state.gameOrder}
-            activePlayer={activePlayer}
+            architect={architect}
             city={state.city}
             cityLocationsDict={state.cityLocationsDict}
+            placements={Object.keys(state.coneCellIds).length}
           />
         </ViewOr>
       </StepSwitcher>
