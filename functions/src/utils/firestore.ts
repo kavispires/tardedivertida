@@ -285,8 +285,8 @@ export const saveGame = async (
   if (hasStateSet || hasStateUpdate) {
     const phase = (saveContent?.set?.state?.phase ?? saveContent?.update?.state?.phase) as string | undefined;
 
-    if (phase && phase === 'SETUP' && Date.now() - now < 7000) {
-      await utils.helpers.forceWait(7000 - (Date.now() - now));
+    if (phase && phase === 'SETUP' && Date.now() - now < 5000) {
+      await utils.helpers.forceWait(5000 - (Date.now() - now));
     }
   }
 

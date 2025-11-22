@@ -19,6 +19,7 @@ import METALINGUAGEM from 'games/metalinguagem/utils/achievements';
 import NA_RUA_DO_MEDO from 'games/na-rua-do-medo/utils/achievements';
 import NAO_SOU_ROBO from 'games/nao-sou-robo/utils/achievements';
 import ONDA_TELEPATICA from 'games/onda-telepatica/utils/achievements';
+import PLANEJAMENTO_URBANO from 'games/planejamento-urbano/utils/achievements';
 import POLEMICA_DA_VEZ from 'games/polemica-da-vez/utils/achievements';
 import PORTA_DOS_DESESPERADOS from 'games/porta-dos-desesperados/utils/achievements';
 import QUEM_SOU_EU from 'games/quem-sou-eu/utils/achievements';
@@ -72,6 +73,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   naufragos: null,
   'onda-telepatica': ONDA_TELEPATICA,
   'palheta-de-cores': null,
+  'planejamento-urbano': PLANEJAMENTO_URBANO,
   'polemica-da-vez': POLEMICA_DA_VEZ,
   'porta-dos-desesperados': PORTA_DOS_DESESPERADOS,
   'quem-nao-mata': null,

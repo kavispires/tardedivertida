@@ -1,6 +1,6 @@
 import { useMeasure } from 'react-use';
 // Ant Design Resources
-import { Flex, Typography } from 'antd';
+import { Flex } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
@@ -10,6 +10,8 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 // Icons
 import { ArrowIcon } from 'icons/ArrowIcon';
 import { ConeIcon } from 'icons/ConeIcon';
+import { CrownIcon } from 'icons/CrownIcon';
+import { XIcon } from 'icons/XIcon';
 // Components
 import { IconAvatar, PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
@@ -96,21 +98,22 @@ export function StepGallery({
             <ConeIcon color={coneColor} width={constructionWidth / 2} />
           </Flex>
 
-          <SlideShowLabel>
-            <Translate pt="Pedreiros Corretos" en="Correct Builders" />
-          </SlideShowLabel>
-          <SlideShowBubbleValue winner extra={<StarPoints quantity={2} hideText keyPrefix="correct" />}>
-            <Translate pt="A gente sabe o que tá fazendo!" en="We know what we're doing!" />{' '}
-          </SlideShowBubbleValue>
-          <SlideShowPlayersList players={players} playersIds={galleryEntry.correctPlayersIds} />
-          {galleryEntry.correctPlayersIds.length === 0 && (
-            <Typography.Text italic>
-              <Translate pt="Nenhum jogador acertou esse projeto." en="No player got this project right." />
-            </Typography.Text>
+          {galleryEntry.correctPlayersIds.length > 0 && (
+            <>
+              <SlideShowLabel>
+                <IconAvatar icon={<CrownIcon />} size="small" />{' '}
+                <Translate pt="Pedreiros Corretos" en="Correct Builders" />
+              </SlideShowLabel>
+              <SlideShowBubbleValue winner extra={<StarPoints quantity={2} hideText keyPrefix="correct" />}>
+                <Translate pt="A gente sabe o que tá fazendo!" en="We know what we're doing!" />{' '}
+              </SlideShowBubbleValue>
+              <SlideShowPlayersList players={players} playersIds={galleryEntry.correctPlayersIds} />
+            </>
           )}
           {Object.keys(galleryEntry.playersSay).length > 0 && (
             <>
               <SlideShowLabel style={{ marginTop: '1em' }}>
+                <IconAvatar icon={<XIcon />} size="small" />{' '}
                 <Translate pt="Decisão Erradas dos Pedreiros" en="Builders' Wrong Decisions" />
               </SlideShowLabel>
 
@@ -138,17 +141,12 @@ export function StepGallery({
           )}
 
           {galleryEntry.architectPoints === 0 && (
-            <>
-              <SlideShowLabel>
-                <Translate pt="Pontos" en="Points" />
-              </SlideShowLabel>
-              <SlideShowNoWins>
-                <Translate
-                  pt="O prefeito apelou e vai colocar essa construção num local aleatório."
-                  en="The mayor overruled and will place this construction in a random location."
-                />
-              </SlideShowNoWins>
-            </>
+            <SlideShowNoWins>
+              <Translate
+                pt="O prefeito apelou e vai colocar essa construção num local aleatório."
+                en="The mayor overruled and will place this construction in a random location."
+              />
+            </SlideShowNoWins>
           )}
         </div>
       </SlideShow>

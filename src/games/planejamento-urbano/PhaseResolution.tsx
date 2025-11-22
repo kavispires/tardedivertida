@@ -8,6 +8,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { MapCityIcon } from 'icons/MapCityIcon';
 // Components
 import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
@@ -42,13 +43,35 @@ export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionSt
           currentRound={state?.round?.current}
           type="block"
           unskippable
-          duration={3}
+          duration={[10, 5, 3]?.[state.round.current - 1] ?? 3}
           onClose={goToNextStep}
         >
           <Instruction>
             <Translate
-              pt={<>Vamos ver se você, pedreiro, pensou como o engenheiro chefe.</>}
-              en={<>Let's see if you, builder, thought like the lead engineer.</>}
+              pt={
+                <>
+                  Vamos ver se você, pedreiro, pensou como o engenheiro chefe.
+                  <br />
+                  Você ganha <PointsHighlight>2 pontos</PointsHighlight> se acertar o planejamento!
+                  <br />O engenheiro chefe ganha <PointsHighlight>1 ponto</PointsHighlight> para cada jogador
+                  que acertar!
+                  <br />
+                  Quem errar, ganha <PointsHighlight>1 ponto</PointsHighlight> para cada jogador que pensou
+                  igual!
+                </>
+              }
+              en={
+                <>
+                  Let's see if you, builder, thought like the lead engineer.
+                  <br /> You earn <PointsHighlight>2 points</PointsHighlight> if you match the plan!
+                  <br />
+                  The lead engineer earns <PointsHighlight>1 point</PointsHighlight> for each player who
+                  matches!
+                  <br />
+                  Those who miss earn <PointsHighlight>1 point</PointsHighlight> for each player who thought
+                  the same!
+                </>
+              }
             />
           </Instruction>
         </PhaseAnnouncement>
@@ -69,6 +92,7 @@ export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionSt
           round={state.round}
           ranking={state.ranking}
           goToPreviousStep={onGoBack}
+          gallery={state.gallery}
         />
       </StepSwitcher>
     </PhaseContainer>

@@ -97,7 +97,6 @@ export const MEDALS_IDS = orderBy([
   'minus',
   'money-bag',
   'moon',
-
   'open-book',
   'paint',
   'paint-brush',
@@ -127,6 +126,15 @@ export const MEDALS_IDS = orderBy([
   'thumbs-down',
   'thumbs-up',
   'tree',
+  'trophy',
   'x',
   'zero',
+  'perception',
+  'stop',
+  'cone',
+  'earth',
+  'tie',
+  'diamond',
+  'microphone',
+  'audience',
 ]);
