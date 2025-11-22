@@ -23,6 +23,7 @@ export function CityMap({ city, cityLocationsDict, mapEvaluations, dragAndDropEn
       maxWidth={max}
       maxHeight={max}
       grid={city}
+      transformWrapperProps={{ initialScale: 0.5 }}
       cellComponent={MapSlot}
       cellProps={{ cellWidth, cityLocationsDict, mapEvaluations, dragAndDropEnabled }}
     />

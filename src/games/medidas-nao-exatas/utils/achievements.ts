@@ -15,7 +15,7 @@ const ACHIEVEMENTS = {
 
 export const achievementsReference: AchievementReference = {
   [ACHIEVEMENTS.MOST_DOUBLE_GUESSES]: {
-    icon: 'trophy',
+    icon: 'question-mark',
     title: {
       pt: 'Mais Indeciso',
       en: 'Most Indecisive',
@@ -26,7 +26,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.FEWEST_DOUBLE_GUESSES]: {
-    icon: 'trophy',
+    icon: 'check-mark',
     title: {
       pt: 'Mais Decidido',
       en: 'Most Decisive',
@@ -37,7 +37,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.WORST_METRICS]: {
-    icon: 'trophy',
+    icon: 'tie',
     title: {
       pt: 'Consultor de Nicho',
       en: 'Niche Consultant',
@@ -48,7 +48,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.BEST_METRICS]: {
-    icon: 'trophy',
+    icon: 'graph-increase',
     title: {
       pt: 'Consultor de Massa',
       en: 'Mass Consultant',
@@ -59,7 +59,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.MOST_LEVEL_1_GUESSES]: {
-    icon: 'trophy',
+    icon: 'brain',
     title: {
       pt: 'Mais Esperto',
       en: 'Smartest',
@@ -70,7 +70,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.MOST_LEVEL_2_GUESSES]: {
-    icon: 'trophy',
+    icon: 'puzzle',
     title: {
       pt: 'Mais Perspicaz',
       en: 'Most Insightful',
@@ -81,7 +81,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.MOST_LEVEL_3_GUESSES]: {
-    icon: 'trophy',
+    icon: 'glasses',
     title: {
       pt: 'Mais Observador',
       en: 'Most Observant',
@@ -92,7 +92,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.MOST_LEVEL_4_GUESSES]: {
-    icon: 'trophy',
+    icon: 'perception',
     title: {
       pt: 'Mais Perceptivo',
       en: 'Most Perceptive',
@@ -103,7 +103,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.MOST_LEVEL_5_GUESSES]: {
-    icon: 'trophy',
+    icon: 'eye',
     title: {
       pt: 'Mais Visionário',
       en: 'Most Visionary',

@@ -2,6 +2,7 @@
 import type { GamePlayers } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
+import { useMock } from 'hooks/useMock';
 // Components
 import { SendButton } from 'components/buttons';
 import { DevButton } from 'components/debug';
@@ -44,9 +45,9 @@ export function StepPlanLocations({
   const { playerSelections, setPlayerSelections, updatePlayerSelections, isComplete } =
     useAssignLocationsToCones(availableProjectsIds);
 
-  // useMock(() => {
-  //   onSubmitPlanning({ planning: mockAction(placements, availableProjectsIds) });
-  // });
+  useMock(() => {
+    onSubmitPlanning({ planning: mockAction(placements, availableProjectsIds) });
+  });
 
   const onMock = () => {
     setPlayerSelections(mockAction(placements, availableProjectsIds));
