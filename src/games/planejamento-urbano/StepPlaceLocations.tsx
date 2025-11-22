@@ -2,6 +2,7 @@
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
+import { useMock } from 'hooks/useMock';
 // Components
 import { PlayerAvatarName } from 'components/avatars';
 import { SendButton } from 'components/buttons';
@@ -54,6 +55,12 @@ export function StepPlaceLocations({
   const onMock = () => {
     setPlayerSelections(mockAction(placements, availableProjectsIds));
   };
+
+  useMock(() => {
+    if (!isTheArchitect) {
+      onSubmitConstruction({ evaluations: mockAction(placements, availableProjectsIds) });
+    }
+  });
 
   return (
     <Step fullWidth announcement={announcement}>

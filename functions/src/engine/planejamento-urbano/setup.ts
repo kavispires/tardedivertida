@@ -1,12 +1,13 @@
 // Constants
-import { CITY_BOUNDS_SIZE, LOCATIONS_PER_ROUND, PLANEJAMENTO_URBANO_PHASES } from './constants';
+import { CITY_BOUNDS_SIZE, CONES, LOCATIONS_PER_ROUND, PLANEJAMENTO_URBANO_PHASES } from './constants';
 // Types
 import type { City, FirebaseStateData, FirebaseStoreData, GalleryEntry, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
 import type { CityLocation } from '../../types/tdr';
 import { GAME_NAMES, LETTERS } from '../../utils/constants';
-import { orderBy } from 'lodash';
+import { difference, orderBy } from 'lodash';
+import { getAchievements } from './helpers';
 
 /**
  * Prepares the setup phase for the urban planning game.
@@ -56,7 +57,9 @@ export const prepareSetupPhase = async (
     }
   });
 
-  const deck = utils.game.getRandomItems(allLocations, 23).map((l) => l.id);
+  const { playerIds: gameOrder, gameOrder: totalGameOrder } = utils.players.buildGameOrder(players, 6);
+
+  const deck = utils.game.getRandomItems(allLocations, totalGameOrder.length * 3).map((l) => l.id);
 
   deck.forEach((locationId) => {
     usedCityLocations[locationId] = allCityLocations[locationId];
@@ -68,10 +71,9 @@ export const prepareSetupPhase = async (
     coneC: 0,
     coneD: 0,
     architectMatches: 0,
-    nonArchitectMatches: 0,
+    playersMatches: 0,
+    soloMatches: 0,
   });
-
-  const { playerIds: gameOrder, gameOrder: totalGameOrder } = utils.players.buildGameOrder(players, 6);
 
   // Save
   return {
@@ -162,21 +164,32 @@ export const preparePlanningPhase = async (
 };
 
 export const preparePlacingPhase = async (
-  _store: FirebaseStoreData,
+  store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const architectId = state.architectId;
+  const architectId: string = state.architectId;
 
-  const planning = players[architectId].planning;
+  const planning: Dictionary<string> = players[architectId].planning;
 
   utils.players.removePropertiesFromPlayers(players, ['planning']);
 
   utils.players.unReadyPlayers(players, architectId);
 
+  // Achievement: Cones for architect
+  const leftOverCone = difference(Object.values(planning), CONES)[0];
+  if (leftOverCone) {
+    utils.achievements.increase(store, architectId, `cone${leftOverCone}`, 1);
+  } else {
+    utils.helpers.print('No leftover cone for architect');
+  }
+
   // Save
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       state: {
         phase: PLANEJAMENTO_URBANO_PHASES.PLACING,
         players,
@@ -228,6 +241,7 @@ export const prepareResolutionPhase = async (
           scores.add(architectId, 1, 1); // The architect gets a point for each correct guess
           playersPoints[player.id] += 1;
           architectPoints += 1;
+          utils.achievements.increase(store, player.id, 'architectMatches', 1);
         } else {
           playersSay[playerGuess] = playersSay[playerGuess] || [];
           playersSay[playerGuess].push(player.id);
@@ -235,12 +249,20 @@ export const prepareResolutionPhase = async (
       }
     });
 
+    // playersMatches: 0,
+    // soloMatches: 0,
+
     // For each player say, score number of players - 1
     Object.entries(playersSay).forEach(([, playerIds]) => {
       if (playerIds.length > 1) {
         const points = playerIds.length - 1;
         playerIds.forEach((playerId) => {
           scores.add(playerId, points, 2); // Points for matching other players
+          utils.achievements.increase(store, playerId, 'playersMatches', 1);
+        });
+      } else {
+        playerIds.forEach((playerId) => {
+          utils.achievements.increase(store, playerId, 'soloMatches', 1);
         });
       }
     });
@@ -312,6 +334,9 @@ export const prepareResolutionPhase = async (
   // Save
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       state: {
         phase: PLANEJAMENTO_URBANO_PHASES.RESOLUTION,
         players,
@@ -343,8 +368,7 @@ export const prepareGameOverPhase = async (
 
   const winners = utils.players.determineWinners(players);
 
-  // const achievements = getAchievements(store);
-  const achievements = [];
+  const achievements = getAchievements(store);
 
   await utils.firestore.markGameAsComplete(gameId);
 
