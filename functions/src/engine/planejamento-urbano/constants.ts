@@ -32,6 +32,7 @@ export const LOCATIONS_PER_ROUND = 3;
 export const CITY_BOUNDS_SIZE = 7;
 
 export const ARCHITECT_MATCH_POINTS = 3;
+export const ARCHITECT_PASSIVE_POINTS = 1;
 export const PLAYER_MATCH_POINTS = 1;
 
 export const CONES = ['A', 'B', 'C', 'D'] as const;

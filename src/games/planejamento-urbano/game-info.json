@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "planejamento-urbano",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "release": "stable",
   "available": true,
   "title": {
@@ -30,7 +30,7 @@
       "Vamos construir uma cidade juntos nesse jogo cooperativo.",
       "A cada rodada, um jogador será o arquiteto-chefe e terá que planejar onde 3 projetos vão nos espaços disponíveis na cidade.",
       "Os outros jogadores, pedreiros, devem então tentar fazer o mesmo planejamento que o arquiteto-chefe.",
-      "Você ganha 2 pontos para cada projeto que você acertar, mas se dar match com outro jogador, você também ganha 1 ponto.",
+      "Você ganha 3 pontos para cada projeto que você acertar, mas se dar match com outro jogador, você também ganha 1 ponto.",
       "Mas se ninguém acertar o planejamento de um espaço, o Prefeito (computador) os coloca em espaços aleatórios.",
       "O jogo dura até que todo mundo tenha sido o arquiteto-chefe uma vez (ou duas com menos jogadores)!"
     ],
@@ -38,7 +38,7 @@
       "Let's build a city together in this cooperative game.",
       "Each round, one player will be the lead architect and will have to plan where 3 projects will go in the available spaces in the city.",
       "The other players, builders, must then try to make the same planning as the lead architect.",
-      "You earn 2 points for each project you get right, but if you match with another player, you also earn 1 point.",
+      "You earn 3 points for each project you get right, but if you match with another player, you also earn 1 point.",
       "But if no one gets the planning of a space right, the Mayor (computer) places them in random spaces.",
       "The game lasts until everyone has been the lead architect once (or twice with fewer players)!"
     ]

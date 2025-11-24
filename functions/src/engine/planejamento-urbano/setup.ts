@@ -1,5 +1,13 @@
 // Constants
-import { CITY_BOUNDS_SIZE, CONES, LOCATIONS_PER_ROUND, PLANEJAMENTO_URBANO_PHASES } from './constants';
+import {
+  ARCHITECT_MATCH_POINTS,
+  ARCHITECT_PASSIVE_POINTS,
+  CITY_BOUNDS_SIZE,
+  CONES,
+  LOCATIONS_PER_ROUND,
+  PLANEJAMENTO_URBANO_PHASES,
+  PLAYER_MATCH_POINTS,
+} from './constants';
 // Types
 import type { City, FirebaseStateData, FirebaseStoreData, GalleryEntry, ResourceData } from './types';
 // Utils
@@ -237,9 +245,10 @@ export const prepareResolutionPhase = async (
         if (playerGuess === correctConeId) {
           isCorrect = true;
           correctPlayersIds.push(player.id);
-          scores.add(player.id, 2, 0); // Correct guess
-          scores.add(architectId, 1, 1); // The architect gets a point for each correct guess
-          playersPoints[player.id] += 1;
+          scores.add(player.id, ARCHITECT_MATCH_POINTS, 0); // Correct guess
+          playersPoints[player.id] += ARCHITECT_MATCH_POINTS;
+          scores.add(architectId, ARCHITECT_PASSIVE_POINTS, 1); // The architect gets a point for each correct guess
+          playersPoints[architectId] += ARCHITECT_PASSIVE_POINTS;
           architectPoints += 1;
           utils.achievements.increase(store, player.id, 'architectMatches', 1);
         } else {
@@ -255,9 +264,11 @@ export const prepareResolutionPhase = async (
     // For each player say, score number of players - 1
     Object.entries(playersSay).forEach(([, playerIds]) => {
       if (playerIds.length > 1) {
-        const points = playerIds.length - 1;
+        const points = (playerIds.length - 1) * PLAYER_MATCH_POINTS;
         playerIds.forEach((playerId) => {
+          playersPoints[playerId] = playersPoints[playerId] || 0;
           scores.add(playerId, points, 2); // Points for matching other players
+          playersPoints[architectId] += points;
           utils.achievements.increase(store, playerId, 'playersMatches', 1);
         });
       } else {
