@@ -618,7 +618,7 @@ export type SuspectCard = {
   /**
    * Flag indicating if the suspect is exclusive to the gb style
    */
-  gbExclusive?: true;
+  gbExclusive?: boolean | true;
   /**
    * Short description label of the suspect
    */
