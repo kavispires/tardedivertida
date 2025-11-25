@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ComponentType } from 'react';
 // Ant Design Resources
 import { Steps } from 'antd';
 // Components
@@ -21,74 +21,82 @@ import { SoundsTest } from './components/SoundsTest';
 import { IconsTest } from './components/IconsTest';
 import { MouseFollowingContentTest } from './components/FollowerTest';
 
-const steps = [
-  {
-    key: 'language',
-    title: '',
-    content: LanguageTest,
-  },
-  {
-    key: 'canvas',
-    title: '',
-    content: DrawingTest,
-  },
-  {
-    key: 'resizing',
-    title: '',
-    content: ResizingTest,
-  },
-  {
-    key: 'floating-hand',
-    title: '',
-    content: FloatingHandTest,
-  },
-  {
-    key: 'timers',
-    title: '',
-    content: TimersTest,
-  },
-  {
-    key: 'text-highlight',
-    title: '',
-    content: TextHighlightTest,
-  },
-  {
-    key: 'ribbons',
-    title: '',
-    content: RibbonsTest,
-  },
-  {
-    key: 'avatars',
-    title: '',
-    content: AvatarsTest,
-  },
-  {
-    key: 'sounds',
-    title: '',
-    content: SoundsTest,
-  },
-  {
-    key: 'icons',
-    title: '',
-    content: IconsTest,
-  },
-  {
-    key: 'follower',
-    title: '',
-    content: MouseFollowingContentTest,
-  },
-  {
-    key: 'done',
-    title: '',
-    content: CompleteTest,
-  },
-];
-
 export type TestStepProps = {
   step: number;
   onResult: (stepIndex: number, value: boolean) => void;
   results?: boolean[];
 };
+
+type StepConfig = {
+  key: string;
+  title: string;
+  component: ComponentType<TestStepProps>;
+};
+
+const stepConfigs: StepConfig[] = [
+  {
+    key: 'language',
+    title: '',
+    component: LanguageTest,
+  },
+  {
+    key: 'canvas',
+    title: '',
+    component: DrawingTest,
+  },
+  {
+    key: 'resizing',
+    title: '',
+    component: ResizingTest,
+  },
+  {
+    key: 'floating-hand',
+    title: '',
+    component: FloatingHandTest,
+  },
+  {
+    key: 'timers',
+    title: '',
+    component: TimersTest,
+  },
+  {
+    key: 'text-highlight',
+    title: '',
+    component: TextHighlightTest,
+  },
+  {
+    key: 'ribbons',
+    title: '',
+    component: RibbonsTest,
+  },
+  {
+    key: 'avatars',
+    title: '',
+    component: AvatarsTest,
+  },
+  {
+    key: 'sounds',
+    title: '',
+    component: SoundsTest,
+  },
+  {
+    key: 'icons',
+    title: '',
+    component: IconsTest,
+  },
+  {
+    key: 'follower',
+    title: '',
+    component: MouseFollowingContentTest,
+  },
+  {
+    key: 'done',
+    title: '',
+    component: CompleteTest,
+  },
+];
+
+const steps = stepConfigs.map(({ key, title }) => ({ key, title }));
 
 function TestArea() {
   const [current, setCurrent] = useState(0);
@@ -103,7 +111,7 @@ function TestArea() {
     setCurrent((prev) => prev + 1);
   };
 
-  const Content = steps[current].content;
+  const Content = stepConfigs[current]?.component;
 
   return (
     <PageLayout className="container">
@@ -114,7 +122,7 @@ function TestArea() {
 
         <Steps current={current} items={steps} size="small" />
 
-        <Content onResult={setResult} step={current} results={results} />
+        {Content && <Content onResult={setResult} step={current} results={results} />}
 
         <Results results={results} steps={steps} activeStep={current} />
       </SpaceContainer>

@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { useTitle } from 'react-use';
 // Ant Design Resources
 import { DatabaseFilled } from '@ant-design/icons';
-import { Typography, Layout, Divider, Row, Col, Tag } from 'antd';
+import { Typography, Layout, Divider, Row, Col, Tag, Flex } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
@@ -149,9 +149,11 @@ function Hub() {
               <Translate pt="Em Desenvolvimento" en="Under Development" />
             </Typography.Title>
             <Typography.Paragraph>
-              {statsCountsArray.map((e) => (
-                <Tag key={e}>{e}</Tag>
-              ))}
+              <Flex gap={6} align="center" wrap="wrap">
+                {statsCountsArray.map((e) => (
+                  <Tag key={e}>{e}</Tag>
+                ))}
+              </Flex>
             </Typography.Paragraph>
             <RowOfGames games={devGames} />
             <Divider />

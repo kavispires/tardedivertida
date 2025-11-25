@@ -45,7 +45,7 @@ export function ResultBrackets({ brackets, players, cards }: ResultBracketsProps
               })}
               {bracket.playersIds.length === 0 && <IconAvatar icon={<BoxXIcon />} />}
             </Avatar.Group>
-            <Divider type="vertical" />
+            <Divider orientation="vertical" />
             <Flex vertical>
               {bracket.wrongGuesses.map((guess) => {
                 return (

@@ -64,14 +64,14 @@ export function StepWaiting({ players }: StepWaitingProps) {
     },
     onError: (e: Error) => {
       notification.error({
-        message: translate(
+        title: translate(
           'Vixi, o aplicativo encontrou um erro ao tentar trancar e iniciar o jogo',
           'Oops, the application found an error while trying to lock and start the game',
         ),
         description: JSON.stringify(e.message),
         placement: 'bottomLeft',
       });
-      // biome-ignore lint/suspicious/noConsole: <explanation>
+      // biome-ignore lint/suspicious/noConsole: on purpose
       console.error(e);
     },
     onSettled: () => {
@@ -79,7 +79,7 @@ export function StepWaiting({ players }: StepWaitingProps) {
     },
   });
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: it should trigger only when the isLocking changes
   useEffect(() => {
     setLoader('lock-game', isLocking);
 

@@ -16,18 +16,20 @@ export function useGameState(gameId: GameId, gameName: GameName): GameState {
 
   if (isError) {
     notification.error({
-      message: 'The application found an error while trying to update the game state',
+      title: 'The application found an error while trying to update the game state',
       description: JSON.stringify(error),
       placement: 'bottomLeft',
     });
+    // biome-ignore lint/suspicious/noConsole: on purpose
     console.error(error);
   }
 
   const state = data ?? {};
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: we want to trigger this when the game state changes
   useEffect(() => {
     if (isLoading || isRefetching) {
+      // biome-ignore lint/suspicious/noConsole: on purpose
       console.count('Refreshing state...');
     } else {
       print({ state });

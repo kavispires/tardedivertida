@@ -79,7 +79,7 @@ export function useHostActionRequest({
     },
     onError: (e: any) => {
       notification.error({
-        message: errorMessage,
+        title: errorMessage,
         description: JSON.stringify(e?.message),
         placement: 'bottomLeft',
       });

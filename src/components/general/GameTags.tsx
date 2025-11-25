@@ -45,7 +45,7 @@ const sortTags = (tags: string[]) => {
   return sortedTags.filter((v) => Boolean(v));
 };
 
-const icons: Dictionary<any> = {
+const icons: Dictionary<React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
   competitive: CompetitiveGameIcon,
   cooperative: CooperativeGameIcon,
   'same-time': TogetherGameIcon,
@@ -101,7 +101,7 @@ export function GameTags({ tags, gameCode, ...rest }: GameTagsProps) {
       </div>
 
       {otherTags.map((tag) => (
-        <Tag key={`${gameCode}-${tag}`} color={TAG_DICT[tag]?.color}>
+        <Tag key={`${gameCode}-${tag}`} color={TAG_DICT[tag]?.color} style={{ marginRight: 6 }}>
           {TAG_DICT[tag]?.label[language]}
         </Tag>
       ))}

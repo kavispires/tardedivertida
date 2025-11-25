@@ -23,7 +23,7 @@ export function Settings({ hasImages }: SettingsProps) {
   };
 
   return (
-    <Space className="lobby-step__settings" split={<Divider type="vertical" />}>
+    <Space className="lobby-step__settings" separator={<Divider orientation="vertical" />}>
       <div className="lobby-step__settings-entry">
         <div className="lobby-step__switch-label">
           <Translate pt="Som" en="Sound" />

@@ -41,7 +41,7 @@ export function FiltersDrawer({
       title={<Translate pt={<>Filtros ({list.length} jogos)</>} en={<>Filters ({list.length} games)</>} />}
       placement="left"
       onClose={() => setShowFilters(false)}
-      width={Math.min(width / 1.1, 600)}
+      size={Math.min(width / 1.1, 600)}
       footer={
         <SpaceContainer align="center">
           <Button onClick={() => setFilters({})}>

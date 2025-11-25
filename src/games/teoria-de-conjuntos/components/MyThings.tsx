@@ -27,7 +27,7 @@ export function MyThings({ hand = [], items, total }: MyThingsProps) {
               <Translate en="Items to place and total items" pt="Itens para posicionar e total de itens" />
             }
           >
-            <Tag bordered={false} icon={<AimOutlined />}>
+            <Tag variant="solid" icon={<AimOutlined />}>
               {hand.length}/{total}
             </Tag>
           </Tooltip>

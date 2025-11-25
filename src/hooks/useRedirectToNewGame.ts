@@ -42,13 +42,14 @@ export function useRedirectToNewGame() {
     },
     onSuccess: async () => {
       notification.success({
-        message: 'Redirect successfully triggered',
+        title: 'Redirect successfully triggered',
       });
     },
     onError: (e: any) => {
+      // biome-ignore lint/suspicious/noConsole: we want to log errors for debugging purposes
       console.error(e);
       notification.error({
-        message: 'Failed to load previous game to continue the redirect',
+        title: 'Failed to load previous game to continue the redirect',
         description: JSON.stringify(e.message),
       });
     },
@@ -57,7 +58,7 @@ export function useRedirectToNewGame() {
   const startRedirect = async (prevGameId: GameId, newGameId: GameId, newGameName: GameName) => {
     if (happenedOnce) {
       notification.error({
-        message: 'Redirect has failed to trigger',
+        title: 'Redirect has failed to trigger',
       });
       return;
     }

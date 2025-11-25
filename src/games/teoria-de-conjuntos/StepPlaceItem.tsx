@@ -254,7 +254,7 @@ export function StepPlaceItem({
                 <Translate en="Items to place and total items" pt="Itens para posicionar e total de itens" />
               }
             >
-              <Tag bordered={false} icon={<AimOutlined />}>
+              <Tag variant="filled" icon={<AimOutlined />}>
                 {(user.hand ?? []).slice(0, 10).length}/{targetItemCount}
               </Tag>
             </Tooltip>

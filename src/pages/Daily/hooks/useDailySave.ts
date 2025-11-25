@@ -23,14 +23,14 @@ export function useDailySaveDrawings(onSuccess: GenericFunction) {
       }),
     onSuccess: () => {
       notification.success({
-        message: translate('Desenhos salvos com sucesso!', 'Drawings saved successfully!'),
+        title: translate('Desenhos salvos com sucesso!', 'Drawings saved successfully!'),
         placement: 'bottomLeft',
       });
       onSuccess();
     },
     onError: (e: Error) => {
       notification.error({
-        message: translate(
+        title: translate(
           'Vixi, o aplicativo encontrou um erro ao tentar salvar desenhos',
           'Oops, the application failed when trying to save drawings',
         ),
@@ -58,14 +58,14 @@ export function useDailySaveTestimonies(onSuccess: () => void) {
       }),
     onSuccess: () => {
       notification.success({
-        message: translate('Respostas salvas com sucesso!', 'Answers saved successfully!'),
+        title: translate('Respostas salvas com sucesso!', 'Answers saved successfully!'),
         placement: 'bottomLeft',
       });
       onSuccess();
     },
     onError: (e: Error) => {
       notification.error({
-        message: translate(
+        title: translate(
           'Vixi, o aplicativo encontrou um erro ao tentar salvar respostas',
           'Oops, the application failed when trying to save answers',
         ),

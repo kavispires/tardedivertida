@@ -26,13 +26,13 @@ export function MovieStats({ movie }: MovieStatsProps) {
           <MetricHighlight icon={<GenderIcon />}>{summary.genderDiversity}%</MetricHighlight>
         </div>
       </Tooltip>
-      <Divider type="vertical" />
+      <Divider orientation="vertical" />
       <Tooltip title={<Translate pt="Diversidade de idade" en="Age Diversity" />}>
         <div>
           <MetricHighlight icon={<AgeIcon />}>{summary.ageDiversity}%</MetricHighlight>
         </div>
       </Tooltip>
-      <Divider type="vertical" />
+      <Divider orientation="vertical" />
       <Tooltip title={<Translate pt="Diversidade cultural" en="Cultural Diversity" />}>
         <div>
           <MetricHighlight icon={<CulturesIcon />}>{summary.ethnicityDiversity}%</MetricHighlight>

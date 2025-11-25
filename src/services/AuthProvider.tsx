@@ -134,7 +134,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       // biome-ignore lint/suspicious/noConsole: on purpose
       console.error(query.error);
       notification.error({
-        message: 'Failed to load user',
+        title: 'Failed to load user',
         description: JSON.stringify(query.error.message),
       });
     }

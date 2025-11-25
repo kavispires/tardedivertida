@@ -13,7 +13,6 @@ import { useLanguage } from './useLanguage';
 import { useLoading } from './useLoading';
 import { useGameId } from './useGameId';
 import { useError } from './useError';
-// API
 
 /**
  * Get game meta document
@@ -31,6 +30,7 @@ export function useGameMeta(): GameMeta {
     queryKey: ['meta', gameId],
     queryFn: async () => {
       setLoader('load', true);
+      // biome-ignore lint/suspicious/noConsole: on purpose
       console.count('Fetching game meta...');
 
       const response = await GAME_API.run({
@@ -48,22 +48,23 @@ export function useGameMeta(): GameMeta {
     staleTime: 30 * 60 * 1000, // 30 minutes
   });
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: we only want to trigger this when the error state changes
   useEffect(() => {
     if (!query.isError && query.isSuccess) {
       setError('meta', '');
     }
     if (query.isError) {
+      // biome-ignore lint/suspicious/noConsole: we want to log errors for debugging purposes
       console.error(query.error);
       setError('meta', JSON.stringify(query.error.message));
       notification.error({
-        message: 'Failed to load game',
+        title: 'Failed to load game',
         description: JSON.stringify(query.error.message),
       });
     }
   }, [query.isError]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: we only want to trigger this when the loading state changes
   useEffect(() => {
     setLoader('load', query.isLoading);
   }, [query.isLoading]);

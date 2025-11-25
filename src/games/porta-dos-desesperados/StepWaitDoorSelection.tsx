@@ -112,7 +112,8 @@ export function StepWaitDoorSelection({
       <Space className="i-book-container">
         <Image.PreviewGroup
           preview={{
-            className: clsx(trap === TRAPS.SEPIA && 'image-preview-sepia'),
+            // TODO: AntD bug: it should be classnames.body but it's not working
+            rootClassName: clsx(trap === TRAPS.SEPIA && 'image-preview-sepia'),
           }}
         >
           <Book>

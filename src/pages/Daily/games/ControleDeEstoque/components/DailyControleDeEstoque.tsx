@@ -103,9 +103,15 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
           />
         )}
 
-        <Region direction="horizontal" split={<Divider type="vertical" />}>
+        <Region orientation="horizontal" separator={<Divider orientation="vertical" />}>
           {evaluations.map((attempt, index) => (
-            <Tooltip key={`${attempt}-${index}`} title={<Translate pt="Acertos" en="Correct" />}>
+            <Tooltip
+              key={`${attempt}-${
+                // biome-ignore lint/suspicious/noArrayIndexKey: it's fine
+                index
+              }`}
+              title={<Translate pt="Acertos" en="Correct" />}
+            >
               <span>{attempt.filter(Boolean).length} 📫</span>
             </Tooltip>
           ))}
