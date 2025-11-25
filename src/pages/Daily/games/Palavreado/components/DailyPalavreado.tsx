@@ -88,8 +88,11 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
         <Region direction="vertical" size="small">
           {guesses.map((attempt, index) => (
             <Space
-              key={`${attempt}-${index}`}
-              split={<Divider type="vertical" className="mx-0" />}
+              key={`${attempt}-${
+                // biome-ignore lint/suspicious/noArrayIndexKey: it's fine
+                index
+              }`}
+              separator={<Divider orientation="vertical" className="mx-0" />}
               size="small"
             >
               {attempt.map((word, i) => (
@@ -98,7 +101,10 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
                   className={clsx('palavreado-word', {
                     [`palavreado-word--${i}`]: word.toLowerCase() === words[i].toLowerCase(),
                   })}
-                  key={`${attempt}-${index}-${word}-${i}`}
+                  key={`${attempt}-${index}-${word}-${
+                    // biome-ignore lint/suspicious/noArrayIndexKey: it's fine
+                    i
+                  }`}
                   // style={word.toLowerCase() === words[i].toLowerCase() ? { color: 'gold' } : {}}
                 >
                   {word}

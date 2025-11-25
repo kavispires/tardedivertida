@@ -42,11 +42,11 @@ export function StepFinalAssessment({
   const { notification } = App.useApp();
   const { translate } = useLanguage();
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: we only want to trigger this when the outcome type changes
   useEffect(() => {
     if (outcome?.type === 'VOTE_FAIL') {
       notification.info({
-        message: translate('A votação não foi unânime', 'The voting was not unanimous'),
+        title: translate('A votação não foi unânime', 'The voting was not unanimous'),
         description: outcome.votedYes ? `Votaram sim: ${outcome.votedYes}` : 'Ninguém votou sim',
         duration: 10,
       });

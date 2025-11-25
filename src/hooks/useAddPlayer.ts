@@ -49,13 +49,15 @@ export function useAddPlayer(name: string, avatarId: string, isGuest: boolean, o
     },
     onError: (e: Error) => {
       notification.error({
-        message: translate(
+        title: translate(
           'Vixi, o aplicativo encontrou um erro ao tentar te adicionar como jogador',
           'Oops, the application failed when trying to add you as a player',
         ),
         description: JSON.stringify(e.message),
         placement: 'bottomLeft',
       });
+
+      // biome-ignore lint/suspicious/noConsole: we want to log errors for debugging purposes
       console.error(e);
     },
   });

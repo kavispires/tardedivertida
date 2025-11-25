@@ -47,6 +47,10 @@
         "noUnusedVariables": "warn",
         "useUniqueElementIds": "off"
       },
+      "nursery": {
+        "noDeprecatedImports": "warn",
+        "noDuplicateDependencies": "warn"
+      },
       "security": {
         "noDangerouslySetInnerHtml": "warn"
       },
@@ -63,8 +67,8 @@
         "noUselessElse": "error"
       },
       "suspicious": {
-        "noExplicitAny": "off",
-        "noArrayIndexKey": "warn",
+        "noExplicitAny": "warn",
+        "noArrayIndexKey": "off",
         "noConsole": "warn"
       }
     }

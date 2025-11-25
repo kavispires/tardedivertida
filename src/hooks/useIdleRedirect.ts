@@ -17,7 +17,7 @@ export function useIdleRedirect() {
   useEffect(() => {
     if (isIdle) {
       notification.warning({
-        message: translate(
+        title: translate(
           'Página parada por um longo tempo, redirecionando...',
           'The page has been idle for too long, redirecting...',
         ),

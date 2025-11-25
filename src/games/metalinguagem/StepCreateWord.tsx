@@ -162,7 +162,7 @@ export function StepCreateWord({
             <SpaceContainer key={`${beginsWithName}-${endsWithName}`}>
               <div style={{ minWidth: 500 }}>
                 <Flex justify="space-between" gap={32}>
-                  <div>
+                  <Flex gap={6}>
                     {beginsWithName.split('').map((l, i) => (
                       <Tag
                         key={`${l}-${i}`}
@@ -173,8 +173,8 @@ export function StepCreateWord({
                         {l}
                       </Tag>
                     ))}
-                  </div>
-                  <div>
+                  </Flex>
+                  <Flex gap={6}>
                     {endsWithName.split('').map((l, i) => (
                       <Tag
                         key={`${l}-${i}`}
@@ -185,7 +185,7 @@ export function StepCreateWord({
                         {l}
                       </Tag>
                     ))}
-                  </div>
+                  </Flex>
                 </Flex>
                 <Slider
                   range

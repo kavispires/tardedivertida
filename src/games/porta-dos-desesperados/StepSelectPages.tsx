@@ -87,7 +87,8 @@ export function StepSelectPages({
             cardWidth={150}
             className={clsx(trap === TRAPS.FADED_DOORS && 'i-faded-card')}
             preview={{
-              className: clsx(trap === TRAPS.FADED_DOORS && 'image-preview-fading'),
+              // TODO: AntD bug: it should be classnames.body but it's not working
+              rootClassName: clsx({ 'image-preview-fading': trap === TRAPS.FADED_DOORS }),
             }}
           />
         </DoorFrame>
@@ -191,8 +192,11 @@ export function StepSelectPages({
           selectButtonText={<Translate pt="Remover" en="Remove" />}
           onSelectCard={select}
           cardClassName={clsx(trap === TRAPS.SEPIA && 'i-sepia-card')}
-          imageGroupPreview={{
-            className: clsx(trap === TRAPS.SEPIA && 'image-preview-sepia'),
+          imageGroupPreview={trap === TRAPS.SEPIA}
+          imageGroupPreviewClassNames={{
+            popup: {
+              body: 'image-preview-sepia',
+            },
           }}
         />
       </Instruction>
@@ -215,9 +219,16 @@ export function StepSelectPages({
               preview={trap !== TRAPS.NO_PREVIEW}
               selectedCards={selections}
               cardClassName={clsx({ 'i-sepia-card': trap === TRAPS.SEPIA })}
-              imageGroupPreview={{
-                className: clsx({ 'image-preview-sepia': trap === TRAPS.SEPIA }),
-              }}
+              imageGroupPreview={trap !== TRAPS.NO_PREVIEW}
+              imageGroupPreviewClassNames={
+                trap === TRAPS.SEPIA
+                  ? {
+                      popup: {
+                        body: 'image-preview-sepia',
+                      },
+                    }
+                  : undefined
+              }
             />
           </Flex>
         )}

@@ -1,5 +1,5 @@
 // Ant Design Resources
-import type { StepProps } from 'antd';
+import type { StepsProps } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { MovieCard } from 'types/tdr';
@@ -9,7 +9,7 @@ import type { SeedEntry } from './types';
 export const buildSeedingSteps = (
   seeds: SeedEntry[],
   translate: (pt: string, en: string, custom?: string | undefined) => string,
-): StepProps[] => {
+): StepsProps['items'] => {
   return seeds.map((seed) => {
     switch (seed.type) {
       case 'arte-ruim':

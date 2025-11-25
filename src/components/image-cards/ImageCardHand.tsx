@@ -68,6 +68,10 @@ type ImageCardHandProps = {
    * The Image group preview object
    */
   imageGroupPreview?: GetProps<typeof Image.PreviewGroup>['preview'];
+  /**
+   * The Image group preview classNames
+   */
+  imageGroupPreviewClassNames?: GetProps<typeof Image.PreviewGroup>['classNames'];
 };
 
 export function ImageCardHand({
@@ -85,6 +89,7 @@ export function ImageCardHand({
   cardClassName = '',
   preview = true,
   imageGroupPreview,
+  imageGroupPreviewClassNames,
 }: ImageCardHandProps) {
   // Prefers cardSize otherwise calculates width based on screen and ratio
   const [cardWidth, containerRef] = useCardWidthByContainerRef(Math.max(sizeRatio, 6), {
@@ -92,7 +97,7 @@ export function ImageCardHand({
   });
 
   return (
-    <Image.PreviewGroup preview={imageGroupPreview}>
+    <Image.PreviewGroup preview={imageGroupPreview} classNames={imageGroupPreviewClassNames}>
       <Space className={clsx('image-card-hand', className)} ref={containerRef as Ref<HTMLDivElement>}>
         {hand.map((cardId, index) => {
           return (

@@ -117,7 +117,7 @@ export function Hub() {
           showIcon={false}
           message={
             <>
-              <Link to="debug">Debug</Link> <Divider type="vertical" />{' '}
+              <Link to="debug">Debug</Link> <Divider orientation="vertical" />{' '}
               <a href={getFirestoreConsoleUrl(`diario/${today}`)} target="_blank" rel="noreferrer">
                 Firestore
               </a>

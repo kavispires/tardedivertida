@@ -208,7 +208,7 @@ export const AnimatedRoutes = () => {
   useEffect(() => {
     if (usingFirestoreEmulator) {
       notification.warning({
-        message: `Emulando Firestore para ${usingFirestoreEmulator}`,
+        title: `Emulando Firestore para ${usingFirestoreEmulator}`,
         placement: 'topLeft',
       });
     }
@@ -218,7 +218,7 @@ export const AnimatedRoutes = () => {
   useEffect(() => {
     if (usingFunctionsEmulator) {
       notification.warning({
-        message: `Emulando Functions para ${usingFunctionsEmulator}`,
+        title: `Emulando Functions para ${usingFunctionsEmulator}`,
         placement: 'topLeft',
       });
     }

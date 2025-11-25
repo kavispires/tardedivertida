@@ -37,6 +37,16 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ConfigProvider
+        modal={{
+          mask: {
+            blur: false,
+          },
+        }}
+        drawer={{
+          mask: {
+            blur: false,
+          },
+        }}
         theme={{
           token: {
             fontFamily: "'Lato', sans-serif",

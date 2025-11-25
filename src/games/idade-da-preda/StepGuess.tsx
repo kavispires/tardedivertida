@@ -126,7 +126,7 @@ export function StepGuess({
             );
           })}
         </Flex>
-        <Divider type="vertical" />
+        <Divider orientation="vertical" />
 
         <Flex justify="center" align="center" wrap="wrap" gap={6} className="my-2">
           {pool.map((item) => (
@@ -142,7 +142,7 @@ export function StepGuess({
           ))}
         </Flex>
 
-        <Divider type="vertical" />
+        <Divider orientation="vertical" />
 
         <Flex justify="center" align="center" wrap="wrap" gap={6}>
           <DevButton onClick={() => onSubmitGuesses(mockGuesses(user, pool, newNames))}>

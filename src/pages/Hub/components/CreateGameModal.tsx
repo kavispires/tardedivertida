@@ -153,7 +153,7 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
       }
     } catch (e: unknown) {
       notification.error({
-        message: translate(
+        title: translate(
           'Aplicativo encontrou um erro ao tentar criar o jogo',
           'The application found an error while trying to create a game',
           language,

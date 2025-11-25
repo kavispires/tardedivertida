@@ -24,7 +24,7 @@ export function StatusBar({ entries, title }: StatusBarProps) {
           <Tooltip title={entry.title}>
             <div>{entry.value}</div>
           </Tooltip>
-          {index < arr.length - 1 && <Divider type="vertical" />}
+          {index < arr.length - 1 && <Divider orientation="vertical" />}
         </Fragment>
       ))}
     </div>

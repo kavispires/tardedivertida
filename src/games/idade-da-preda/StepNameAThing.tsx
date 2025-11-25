@@ -113,7 +113,7 @@ export function StepNameAThing({
             </TransparentButton>
           ))}
         </Flex>
-        <Divider type="vertical" />
+        <Divider orientation="vertical" />
 
         {newName.length > 0 && (
           <Flex justify="center" align="center" wrap="wrap" gap={6}>
@@ -124,7 +124,7 @@ export function StepNameAThing({
           </Flex>
         )}
 
-        <Divider type="vertical" />
+        <Divider orientation="vertical" />
 
         <SendButton size="large" disabled={!selectedItem || newName.length < 2} onClick={onSendName}>
           <Translate pt="Enviar Nome" en="Send Name" />

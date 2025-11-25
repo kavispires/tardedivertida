@@ -86,7 +86,8 @@ export function Corridor({
   return (
     <Image.PreviewGroup
       preview={{
-        className: clsx({
+        // TODO: AntD bug: it should be classnames.body but it's not working
+        rootClassName: clsx({
           'image-preview-fading': trap === TRAPS.FADED_DOORS,
           'image-preview-dancing': trap === TRAPS.DANCING_DOORS,
         }),

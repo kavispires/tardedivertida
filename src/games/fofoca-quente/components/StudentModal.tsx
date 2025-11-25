@@ -62,7 +62,7 @@ export function StudentModal({
                   <Tag
                     color={socialGroup.colors.primary}
                     className="student-details__social-group-name"
-                    bordered
+                    variant="outlined"
                   >
                     <DualTranslate>{socialGroup.name}</DualTranslate>
                   </Tag>

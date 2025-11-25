@@ -275,7 +275,7 @@ export function useCloverState(
     }
 
     notification.warning({
-      message: translate(`${4 - correctCount} folhas estão erradas`, `${4 - correctCount} leaves are wrong`),
+      title: translate(`${4 - correctCount} folhas estão erradas`, `${4 - correctCount} leaves are wrong`),
       description: translate(
         'Tente novamente. Pode ter sido folha errada ou rotação errada',
         'Try again. It may have been wrong leaf or just wrong rotation',

@@ -71,7 +71,7 @@ export function ResultsModalContent({
         )}
       </Typography.Paragraph>
 
-      <Space className="result-answer" split={<Divider type="vertical" />}>
+      <Space className="result-answer" separator={<Divider orientation="vertical" />}>
         {words.map((word) => (
           <Typography.Text key={word}>{word}</Typography.Text>
         ))}

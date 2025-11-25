@@ -39,7 +39,7 @@ export function StepSecretWordSelection({
       // Block more than 2 categories
       if (Object.keys(categoriesCopy).length === 2) {
         notification.error({
-          message: <Translate pt="Um máximo de 2 categorias é permitido" en="Up to 2 categories allowed" />,
+          title: <Translate pt="Um máximo de 2 categorias é permitido" en="Up to 2 categories allowed" />,
         });
       } else {
         categoriesCopy[category] = true;

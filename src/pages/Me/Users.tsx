@@ -101,7 +101,7 @@ function Users() {
     },
     onError: (error: any) => {
       notification.error({
-        message: 'Error',
+        title: 'Error',
         description: error.message,
       });
     },

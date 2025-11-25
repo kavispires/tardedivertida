@@ -84,7 +84,7 @@ export function GameInfoDrawer({ players, state, userId }: GameInfoDrawerProps) 
           <RulesModal gameInfo={info} />
           <Drawer
             title={<Translate pt="Configurações" en="Settings" />}
-            width={200}
+            size={200}
             closable={false}
             onClose={toggleSettingsDrawer}
             open={isSettingsOpen}
