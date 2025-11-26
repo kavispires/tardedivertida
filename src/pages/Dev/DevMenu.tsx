@@ -13,10 +13,9 @@ export function DevMenu() {
     { label: 'Colors', value: '/dev/colors', disabled: pathname === '/dev/colors' },
     { label: 'Sprites', value: '/dev/sprites', disabled: pathname === '/dev/sprites' },
     { label: 'Playground', value: '/dev/playground', disabled: pathname === '/dev/playground' },
-    { label: 'Showcase', value: '/showcase', disabled: pathname === '/showcase' },
   ];
 
-  const onNavigate = (path: any) => {
+  const onNavigate = (path: string) => {
     navigate(path);
   };
 

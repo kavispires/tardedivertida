@@ -18,7 +18,6 @@ const Me = lazy(() => import('pages/Me/Me' /* webpackChunkName: "page-me" */));
 const Users = lazy(() => import('pages/Me/Users' /* webpackChunkName: "page-users" */));
 const Hub = lazy(() => import('pages/Hub/Hub' /* webpackChunkName: "page-hub" */));
 const Game = lazy(() => import('pages/Game/Game' /* webpackChunkName: "page-game" */));
-const Showcase = lazy(() => import('pages/Showcase/Showcase' /* webpackChunkName: "page-showcase" */));
 const TestArea = lazy(() => import('pages/TestArea/TestArea' /* webpackChunkName: "page-test-area" */));
 const DevIcons = lazy(() => import('pages/Dev/Icons' /* webpackChunkName: "page-dev-icons" */));
 const DevColors = lazy(() => import('pages/Dev/Colors' /* webpackChunkName: "page-dev-colors" */));
@@ -46,11 +45,6 @@ const LazyUsers = () => (
 const LazyGame = () => (
   <Suspense fallback={<LoadingPage />}>
     <Game />
-  </Suspense>
-);
-const LazyShowcase = () => (
-  <Suspense fallback={<LoadingPage />}>
-    <Showcase />
   </Suspense>
 );
 const LazyTestArea = () => (
@@ -180,14 +174,6 @@ export const routes: RouteObject[] = [
   {
     path: '/teste',
     element: <LazyTestArea />,
-  },
-  {
-    path: '/showcase',
-    element: <LazyShowcase />,
-  },
-  {
-    path: '/vitrine',
-    element: <LazyShowcase />,
   },
   {
     path: '*',
