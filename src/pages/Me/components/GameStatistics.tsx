@@ -1,3 +1,4 @@
+import { useState } from 'react';
 // Ant Design Resources
 import { ClockCircleOutlined } from '@ant-design/icons';
 import { Col, Divider, Row } from 'antd';
@@ -22,6 +23,7 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 import { IconAvatar } from 'components/avatars';
 import { GameStrip } from 'components/general/GameBanner';
 import { GameTags } from 'components/general/GameTags';
+import { GameVideo } from 'components/general/GameVideo';
 import { DualTranslate, Translate } from 'components/language';
 import { RulesModal } from 'components/rules';
 import { Title } from 'components/text';
@@ -41,6 +43,7 @@ const leftColProps = { xs: 24, sm: 24, md: 24, lg: 24 };
 
 export function GameStatistics({ game, info, achievements }: GameUserStatisticsProps) {
   const { language } = useLanguage();
+  const [isHovered, setIsHovered] = useState(false);
 
   const duration = calculateGameAverageDuration(info);
 
@@ -48,8 +51,18 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
     <Row gutter={8}>
       <Col xs={24} sm={8} md={8} lg={6}>
         {/* <Row gutter={8}> */}
-        <Col>
-          <GameStrip title={info.title} gameName={info.gameName} className="me__game-banner" width={256} />
+        <Col onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+          {isHovered ? (
+            <GameVideo title={info.title} gameName={info.gameName} className="me__game-banner" width={256} />
+          ) : (
+            <GameStrip
+              title={info.title}
+              gameName={info.gameName}
+              className="me__game-banner"
+              width={256}
+              stripWidth={256}
+            />
+          )}
         </Col>
         <InfoCard title={<Translate pt="Nome" en="Name" />} {...leftColProps}>
           <DualTranslate>{info.title}</DualTranslate>
