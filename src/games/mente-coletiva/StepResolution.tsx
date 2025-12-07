@@ -51,7 +51,7 @@ export function StepResolution({
     autoStart: true,
   });
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only timeLeft changes
   useEffect(() => {
     if (timeLeft === 7) {
       setStep(1);
