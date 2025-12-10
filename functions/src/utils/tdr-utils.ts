@@ -354,6 +354,7 @@ export const modifySuspectIdsByOptions = (
           gender: suspect.gender,
           age: suspect.age,
           ethnicity: suspect.ethnicity,
+          race: suspect.race,
           build: suspect.build,
           height: suspect.height,
           features: [],

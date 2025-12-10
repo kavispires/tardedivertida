@@ -72,7 +72,7 @@ export const getPoolOfSuspects = (
     return orderBy(utils.game.getRandomItems(allSuspects, poolSize), [`name.${language}`], ['asc']);
   }
 
-  const attributeKeys = utils.game.shuffle(['age', 'build', 'ethnicity', 'gender']);
+  const attributeKeys = utils.game.shuffle(['age', 'build', 'race', 'gender']);
   const startIndex = random(1, poolSize);
   const ordering = utils.game.shuffle(['asc', 'desc', 'asc', 'desc']);
 
