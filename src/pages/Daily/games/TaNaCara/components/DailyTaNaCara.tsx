@@ -123,6 +123,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                         },
                         gender: '',
                         ethnicity: '',
+                        race: '',
                         age: '',
                         build: '',
                         height: '',
