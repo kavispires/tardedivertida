@@ -1,3 +1,4 @@
+// Sass
 import './SnowEffect.scss';
 
 export function SnowEffect() {

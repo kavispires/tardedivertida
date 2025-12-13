@@ -13,7 +13,7 @@ import { Instruction } from 'components/text';
 // Internal
 import type { PhasePreliminaryResultsState } from './utils/types';
 import { ESQUIADORES_PHASES } from './utils/constants';
-import { SnowEffect } from './components/SnowEffect';
+import { SnowEffect } from '../../components/visual-effects/SnowEffect';
 import { StepResults } from './StepResults';
 // Icons
 
