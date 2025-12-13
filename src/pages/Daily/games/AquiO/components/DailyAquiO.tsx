@@ -83,14 +83,14 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
         </div>
 
         {isComplete && (
-          <Space className="results-container" align="center" direction="vertical">
+          <Space className="results-container" align="center" orientation="vertical">
             <Button onClick={() => setShowResultModal(true)}>
               <Translate pt="Ver Resultado" en="Show Results" />
             </Button>
           </Space>
         )}
 
-        <SpaceContainer direction="vertical">
+        <SpaceContainer orientation="vertical">
           {!isPlaying && (
             <>
               <Button size="large" onClick={onStart} type="primary" disabled={isWin || isLose} icon="🔘">
@@ -111,7 +111,7 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
           )}
 
           {isPlaying && (
-            <SpaceContainer direction="vertical">
+            <SpaceContainer orientation="vertical">
               <Disc
                 disc={discA}
                 onSelect={onSelect}

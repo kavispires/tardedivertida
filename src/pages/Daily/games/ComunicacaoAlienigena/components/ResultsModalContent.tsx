@@ -96,7 +96,7 @@ export function ResultsModalContent({
         </Flex>
       </Region>
 
-      <Space direction="vertical">
+      <Space orientation="vertical">
         {attributes.map((attribute) => (
           <Flex key={attribute.id} gap={6}>
             <SignCard signId={attribute.spriteId} width={width} />

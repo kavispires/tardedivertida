@@ -81,7 +81,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
             />
           </Typography.Text>
 
-          <Space direction="vertical" className="alien-attributes">
+          <Space orientation="vertical" className="alien-attributes">
             {data.attributes.map((attribute) => (
               <Flex className="alien-attributes__attribute" key={attribute.id} gap={8}>
                 <SignCard signId={attribute.spriteId} width={width} className="alien-attributes__sign" />
@@ -181,7 +181,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
             })}
           </Flex>
           {isComplete && (
-            <SpaceContainer direction="vertical">
+            <SpaceContainer orientation="vertical">
               {previousGuesses.map((guess) => (
                 <Space key={String(guess)}>
                   {guess.map((itemId) => (
@@ -231,7 +231,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
             <Typography.Text strong>
               <Translate pt="Tentativas anteriores" en="Previous Guesses:" />
             </Typography.Text>
-            <Space direction="vertical" className="previous-guesses">
+            <Space orientation="vertical" className="previous-guesses">
               {previousGuesses.map((guess) => (
                 <Space key={String(guess)}>
                   {guess.map((itemId) => (

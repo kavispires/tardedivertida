@@ -115,7 +115,7 @@ export function Hub() {
         <Alert
           style={{ marginTop: '64px' }}
           showIcon={false}
-          message={
+          title={
             <>
               <Link to="debug">Debug</Link> <Divider orientation="vertical" />{' '}
               <a href={getFirestoreConsoleUrl(`diario/${today}`)} target="_blank" rel="noreferrer">
@@ -161,7 +161,6 @@ function HubList({ list, width, startingIndex }: HubListProps) {
         ),
       )}
       {Array.from({ length: (3 - (list.length % 3)) % 3 }).map((_, index) => (
-        // biome-ignore lint/suspicious/noArrayIndexKey: non important
         <div key={index} style={{ width }} className="hub-item-placeholder" />
       ))}
     </div>

@@ -142,7 +142,7 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
           })}
 
         {isComplete && (
-          <Space className="results-container" direction="vertical" align="center" size="large">
+          <Space className="results-container" orientation="vertical" align="center" size="large">
             <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
               <Translate pt="Ver Resultado" en="Show Results" />
             </Button>

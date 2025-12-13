@@ -19,7 +19,7 @@ export function DebugPage() {
 
   return (
     <DailyChrome>
-      <Space direction="vertical" className="margin">
+      <Space orientation="vertical" className="margin">
         <pre>Today: {getToday()}</pre>
         {PRIORITY_LIST.map((game) => (
           <Content key={game.KEY} localKey={game.KEY} />
@@ -36,7 +36,7 @@ function Content({ localKey }: { localKey: string }) {
     [localKey],
   );
   return (
-    <Space direction="vertical">
+    <Space orientation="vertical">
       <Typography.Paragraph className="center" strong>
         {localKey}
       </Typography.Paragraph>
