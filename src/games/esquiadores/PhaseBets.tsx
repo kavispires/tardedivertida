@@ -18,8 +18,8 @@ import { ViewOr } from 'components/views';
 import type { PhaseBetsState } from './utils/types';
 import { useOnSubmitBetsAPIRequest, useOnSubmitChoicesAPIRequest } from './utils/api-requests';
 import { ESQUIADORES_PHASES } from './utils/constants';
-import { SnowEffect } from './components/SnowEffect';
 import { CurrentBets } from './components/CurrentBets';
+import { SnowEffect } from '../../components/visual-effects/SnowEffect';
 import { StepMakeBets } from './StepMakeBets';
 import { StepMakeChoices } from './StepMakeChoices';
 

@@ -15,8 +15,8 @@ import { ViewOr } from 'components/views';
 import type { PhaseBetsState } from './utils/types';
 import { useOnSubmitBetsAPIRequest } from './utils/api-requests';
 import { ESQUIADORES_PHASES } from './utils/constants';
-import { SnowEffect } from './components/SnowEffect';
 import { CurrentBets, CurrentSkierBets } from './components/CurrentBets';
+import { SnowEffect } from '../../components/visual-effects/SnowEffect';
 import { StepMakeBets } from './StepMakeBets';
 import { StepChoosePlayers } from './StepChoosePlayers';
 // Icons
