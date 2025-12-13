@@ -1,3 +1,4 @@
+import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { Region, RegionText } from 'pages/Daily/components/Region';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
@@ -64,7 +65,7 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
       <Header icon={<DailyImagesGameIcon />} localStorageKey={SETTINGS.KEY}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
-      <Layout.Content ref={ref}>
+      <DailyContent ref={ref}>
         <Menu
           hearts={hearts}
           total={SETTINGS.HEARTS}
@@ -160,7 +161,7 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
             goal={data.goal ?? 0}
           />
         </Modal>
-      </Layout.Content>
+      </DailyContent>
     </Layout>
   );
 }

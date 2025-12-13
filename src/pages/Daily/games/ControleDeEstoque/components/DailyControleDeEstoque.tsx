@@ -1,3 +1,4 @@
+import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { Region } from 'pages/Daily/components/Region';
 import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
@@ -64,7 +65,7 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
       <Header icon={<DailyWarehouseGameIcon />} localStorageKey={SETTINGS.KEY}>
         <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
-      <Layout.Content ref={contentRef}>
+      <DailyContent ref={contentRef}>
         <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules date={data.id} />} />
 
         <PreloadItems goods={data.goods} />
@@ -126,7 +127,7 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
             title={data.title}
           />
         </Modal>
-      </Layout.Content>
+      </DailyContent>
 
       <Region>
         <Popconfirm

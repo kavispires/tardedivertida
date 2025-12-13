@@ -1,3 +1,4 @@
+import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { Keyboard } from 'pages/Daily/components/Keyboard';
 import { RegionText } from 'pages/Daily/components/Region';
 import { useState } from 'react';
@@ -38,7 +39,7 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
       <Header icon={<DailyArtGameIcon />} localStorageKey={SETTINGS.KEY}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
-      <Layout.Content>
+      <DailyContent>
         <Menu
           hearts={hearts}
           total={SETTINGS.HEARTS}
@@ -72,7 +73,7 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
         </Modal>
 
         <Keyboard lettersState={guesses} onLetterClick={guessLetter} disabled={isComplete} />
-      </Layout.Content>
+      </DailyContent>
     </Layout>
   );
 }

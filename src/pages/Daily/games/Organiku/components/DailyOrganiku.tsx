@@ -1,3 +1,4 @@
+import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { Region, RegionText } from 'pages/Daily/components/Region';
 import { useState } from 'react';
 // Ant Design Resources
@@ -53,7 +54,7 @@ export function DailyOrganiku({ data }: DailyOrganikuProps) {
       <Header icon={<DailyMemoryGridGameIcon />} localStorageKey={SETTINGS.KEY}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
-      <Layout.Content ref={ref}>
+      <DailyContent ref={ref}>
         <Menu
           hearts={hearts}
           total={SETTINGS.HEARTS}
@@ -123,7 +124,7 @@ export function DailyOrganiku({ data }: DailyOrganikuProps) {
             flips={flips}
           />
         </Modal>
-      </Layout.Content>
+      </DailyContent>
     </Layout>
   );
 }

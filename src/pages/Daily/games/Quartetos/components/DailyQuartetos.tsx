@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { DailyItem } from 'pages/Daily/components/DailyItem';
 import { Region, RegionHint, RegionText } from 'pages/Daily/components/Region';
 import { useState } from 'react';
@@ -59,7 +60,7 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
       <Header icon={<DailyGroupingGameIcon />} localStorageKey={SETTINGS.KEY}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
-      <Layout.Content ref={ref}>
+      <DailyContent ref={ref}>
         <Menu
           hearts={hearts}
           total={SETTINGS.HEARTS}
@@ -151,7 +152,7 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
             hearts={hearts}
           />
         </Modal>
-      </Layout.Content>
+      </DailyContent>
     </Layout>
   );
 }

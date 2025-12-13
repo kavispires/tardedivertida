@@ -1,3 +1,4 @@
+import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { DailyItem } from 'pages/Daily/components/DailyItem';
 import { Keyboard } from 'pages/Daily/components/Keyboard';
 import { Region } from 'pages/Daily/components/Region';
@@ -41,7 +42,7 @@ export function DailyFilmaco({ data }: DailyFilmacoProps) {
       <Header icon={<DailyMovieGameIcon />} localStorageKey={SETTINGS.KEY}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
-      <Layout.Content>
+      <DailyContent>
         <Menu
           hearts={hearts}
           total={SETTINGS.HEARTS}
@@ -88,7 +89,7 @@ export function DailyFilmaco({ data }: DailyFilmacoProps) {
         </Modal>
 
         <Keyboard lettersState={guesses} onLetterClick={guessLetter} disabled={isComplete} withNumbers />
-      </Layout.Content>
+      </DailyContent>
     </Layout>
   );
 }

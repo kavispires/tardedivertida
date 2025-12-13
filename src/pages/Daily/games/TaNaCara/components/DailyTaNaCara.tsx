@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { Region } from 'pages/Daily/components/Region';
 import { StepDots } from 'pages/Daily/components/StepDots';
@@ -79,7 +80,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
       <Header icon={<DailyDrawingGameIcon />} localStorageKey={SETTINGS.KEY}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
-      <Layout.Content ref={ref}>
+      <DailyContent ref={ref}>
         <ImageCardPreloadHand hand={allSuspects} />
         <div>
           <Menu hearts={0} total={0} openRules rules={<Rules date={data.id} />} />
@@ -262,7 +263,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
             />
           </Region>
         )}
-      </Layout.Content>
+      </DailyContent>
     </Layout>
   );
 }

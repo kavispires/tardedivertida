@@ -21,7 +21,7 @@ export function DailyContent({ children, ...props }: DailyContentProps) {
   const backgroundOverride = () => {
     if (month === 11) {
       return {
-        background: 'linear-gradient(#e50000, #810505)', // December theme
+        background: 'linear-gradient(#cf3434, #810505)', // December theme
       };
     }
 
