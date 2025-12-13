@@ -44,7 +44,7 @@ export function Statements({
           <MotionAlert
             banner
             icon={getStatementIcon(statement.type)}
-            message={statement.text}
+            title={statement.text}
             type={isStatementComplete(statement.excludes, released) ? 'success' : 'info'}
           />
         </motion.div>
@@ -54,7 +54,7 @@ export function Statements({
           <MotionAlert
             icon={<HeartFilled />}
             banner
-            message={statement.text}
+            title={statement.text}
             type={isStatementComplete(statement.excludes, released) ? 'success' : 'warning'}
           />
         </motion.div>

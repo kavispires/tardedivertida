@@ -104,7 +104,7 @@ export function DailyOrganiku({ data }: DailyOrganikuProps) {
         </Region>
 
         {isComplete && (
-          <Space className="results-container" direction="vertical" align="center">
+          <Space className="results-container" orientation="vertical" align="center">
             <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
               <Translate pt="Ver Resultado" en="Show Results" />
             </Button>
