@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { Region } from 'pages/Daily/components/Region';
 import { useState } from 'react';
 // Ant Design Resources
@@ -51,7 +52,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
       <Header icon={<DailyWordGameIcon />} localStorageKey={SETTINGS.KEY}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
-      <Layout.Content>
+      <DailyContent>
         <Menu
           hearts={hearts}
           total={Math.max(SETTINGS.HEARTS, size)}
@@ -85,7 +86,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
           )}
         </Region>
 
-        <Region direction="vertical" size="small">
+        <Region orientation="vertical" size="small">
           {guesses.map((attempt, index) => (
             <Space
               key={`${attempt}-${
@@ -154,7 +155,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
             guesses={guesses}
           />
         </Modal>
-      </Layout.Content>
+      </DailyContent>
     </Layout>
   );
 }

@@ -1,3 +1,4 @@
+import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
@@ -52,7 +53,7 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
       <Header icon={<DailyDrawingGameIcon />} localStorageKey={SETTINGS.KEY}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
-      <Layout.Content ref={contentRef}>
+      <DailyContent ref={contentRef}>
         <div ref={headerRef}>
           <Menu hearts={0} total={0} openRules rules={<Rules date={data.id} />} />
           {alreadyPlayed && (
@@ -126,7 +127,7 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
             </SpaceContainer>
           </SpaceContainer>
         )}
-      </Layout.Content>
+      </DailyContent>
     </Layout>
   );
 }

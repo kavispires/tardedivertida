@@ -1,3 +1,4 @@
+import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
@@ -66,7 +67,7 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
       <Header icon={<DailyFindingGameIcon />} localStorageKey={SETTINGS.KEY}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
-      <Layout.Content ref={contentRef}>
+      <DailyContent ref={contentRef}>
         <div ref={headerRef}>
           <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules date={data.id} />} />
           <SpaceContainer>
@@ -151,7 +152,7 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
             />
           </Modal>
         </SpaceContainer>
-      </Layout.Content>
+      </DailyContent>
     </Layout>
   );
 }

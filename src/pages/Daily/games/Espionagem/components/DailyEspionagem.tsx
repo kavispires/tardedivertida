@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { motion } from 'motion/react';
+import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { Region } from 'pages/Daily/components/Region';
 import { useState } from 'react';
 // Ant Design Resources
@@ -59,7 +60,7 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
       <Header icon={<DailyMovieGameIcon />} localStorageKey={SETTINGS.KEY}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
-      <Layout.Content>
+      <DailyContent>
         <Menu
           hearts={hearts}
           total={SETTINGS.HEARTS}
@@ -202,7 +203,7 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
             culpritId={data.culpritId}
           />
         </Modal>
-      </Layout.Content>
+      </DailyContent>
     </Layout>
   );
 }

@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { DailyItem } from 'pages/Daily/components/DailyItem';
 import { Region } from 'pages/Daily/components/Region';
 import { useMemo, useState } from 'react';
@@ -64,7 +65,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
       <Header icon={<DailyAlienGameIcon />} localStorageKey={SETTINGS.KEY}>
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
-      <Layout.Content>
+      <DailyContent>
         <Menu
           hearts={hearts}
           total={SETTINGS.HEARTS}
@@ -260,11 +261,10 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
             width={width * 0.65}
           />
         </Modal>
-      </Layout.Content>
-
-      <Region>
-        <RulesHints />
-      </Region>
+        <Region>
+          <RulesHints />
+        </Region>
+      </DailyContent>
     </Layout>
   );
 }

@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { Region, RegionText } from 'pages/Daily/components/Region';
 import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
@@ -67,7 +68,7 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
       <Header icon={<DailyDiagramGameIcon />} localStorageKey={SETTINGS.KEY}>
         <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
-      <Layout.Content ref={contentRef}>
+      <DailyContent ref={contentRef}>
         <Menu
           hearts={hearts}
           total={SETTINGS.HEARTS + (isWeekend ? 1 : 0)}
@@ -178,7 +179,7 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
             isWeekend={isWeekend}
           />
         </Modal>
-      </Layout.Content>
+      </DailyContent>
     </Layout>
   );
 }
