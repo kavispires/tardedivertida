@@ -5,16 +5,17 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Loading } from 'components/loaders';
 // Internal
 import { DailyChrome } from './DailyChrome';
+import { DailyContent } from './DailyContent';
 
 export function DailyLoading() {
   const { translate } = useLanguage();
   return (
     <DailyChrome>
-      <div className="daily-loading">
+      <DailyContent className="daily-loading">
         <SpaceContainer>
           <Loading message={translate('Carregando desafio...', 'Loading challenge...')} margin />
         </SpaceContainer>
-      </div>
+      </DailyContent>
     </DailyChrome>
   );
 }

@@ -7,6 +7,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { Translate } from 'components/language';
 // Internal
 import { DailyChrome } from './DailyChrome';
+import { DailyContent } from './DailyContent';
 
 export function DailyError() {
   const { toggleLanguage, language } = useLanguage();
@@ -18,33 +19,35 @@ export function DailyError() {
   };
   return (
     <DailyChrome>
-      <Space className="container container--center">
-        <Alert
-          message={
-            <Translate pt="O servidor decidiu não cooperar" en="The server decided not to cooperate" />
-          }
-          description={
-            <Space direction="vertical">
-              <Typography.Paragraph>
-                <Translate
-                  en="It's likely that the administrator forgot to generate new challenges for today. If you know them, please complain immediately. Bullying is the way."
-                  pt="Provavelmente o administrador esqueceu de gerar novos desafios para hoje. Se você os conhece, reclame imediatamente. O bullying é o caminho."
-                />
-                <br />
-                <Translate
-                  en="It is also possible that you are in the wrong URL. Press here to go back to the right page."
-                  pt="Também é possível que você esteja na URL errada. Pressione aqui para voltar para a página correta."
-                />
-                <Button type="link" onClick={onRedirect}>
-                  Redirecionar/Redirect
-                </Button>
-              </Typography.Paragraph>
-            </Space>
-          }
-          type="error"
-          showIcon
-        />
-      </Space>
+      <DailyContent>
+        <Space className="container container--center">
+          <Alert
+            title={
+              <Translate pt="O servidor decidiu não cooperar" en="The server decided not to cooperate" />
+            }
+            description={
+              <Space orientation="vertical">
+                <Typography.Paragraph>
+                  <Translate
+                    en="It's likely that the administrator forgot to generate new challenges for today. If you know them, please complain immediately. Bullying is the way."
+                    pt="Provavelmente o administrador esqueceu de gerar novos desafios para hoje. Se você os conhece, reclame imediatamente. O bullying é o caminho."
+                  />
+                  <br />
+                  <Translate
+                    en="It is also possible that you are in the wrong URL. Press here to go back to the right page."
+                    pt="Também é possível que você esteja na URL errada. Pressione aqui para voltar para a página correta."
+                  />
+                  <Button type="link" onClick={onRedirect}>
+                    Redirecionar/Redirect
+                  </Button>
+                </Typography.Paragraph>
+              </Space>
+            }
+            type="error"
+            showIcon
+          />
+        </Space>
+      </DailyContent>
     </DailyChrome>
   );
 }
