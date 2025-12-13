@@ -11,8 +11,9 @@ import { PageLayout } from 'components/layout/PageLayout';
 import { useDailyChallenge } from '../hooks/useDailyChallenge';
 import { DevResetLocalStorageButton } from './DevResetLocalStorageButton';
 import { Header } from './Header';
+import { DailyContent } from './DailyContent';
 
-const { Content, Footer } = Layout;
+const { Footer } = Layout;
 
 type DailyChromeProps = {
   children: ReactNode;
@@ -27,7 +28,7 @@ export function DailyChrome({ children }: DailyChromeProps) {
         <Translate pt="TD Diário" en="TD Daily" />
       </Header>
       {challengeQuery.isLoading && <div className="loading-bar"></div>}
-      <Content>{children}</Content>
+      <DailyContent>{children}</DailyContent>
       <DebugOnly devOnly>
         <Footer>
           <DevResetLocalStorageButton />
