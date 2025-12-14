@@ -38,7 +38,7 @@ export const TrackComunicacaoAlienigena = ({ track, onSubmitAnswer }: TrackProps
   return (
     <>
       <MinigameTitle title={{ pt: 'Comunicação Alienígena', en: 'Alien Communication' }} />
-      <Space direction="vertical" align="center" className="contained margin">
+      <Space orientation="vertical" align="center" className="contained margin">
         <RuleInstruction type="lore">
           <Translate
             pt={

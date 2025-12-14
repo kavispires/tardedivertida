@@ -131,7 +131,7 @@ function HostNextGroup({ onNextGroup, duration, players }: HostNextGroupProps) {
   const rejections = useMemo(() => Object.values(players).filter((p) => p.ready).length, [players]);
 
   return (
-    <HostOnlyContainer className="m-admin" direction="vertical" align="center">
+    <HostOnlyContainer className="m-admin" orientation="vertical" align="center">
       <span>
         <Translate pt="Rejeições" en="Rejections" />: <TextHighlight>{rejections}</TextHighlight>
       </span>

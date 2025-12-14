@@ -42,7 +42,7 @@ export function LobbyRules({ players }: LobbyRulesProps) {
           fallback={`${PUBLIC_URL.RULES}no-rules.jpg`}
           preview={{
             countRender: (current, total) => (
-              <Space direction="vertical" size="small" className="text-center">
+              <Space orientation="vertical" size="small" className="text-center">
                 <span>{info.rules[language][current]}</span>
                 <span>
                   {current}/{total}

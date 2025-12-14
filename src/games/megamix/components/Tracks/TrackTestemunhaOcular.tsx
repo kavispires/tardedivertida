@@ -43,7 +43,7 @@ export const TrackTestemunhaOcular = ({ track, onSubmitAnswer, user }: TrackProp
   return (
     <>
       <MinigameTitle title={{ pt: 'Testemunha Ocular', en: 'Eye Witness' }} />
-      <Space direction="vertical" align="center" className="contained margin">
+      <Space orientation="vertical" align="center" className="contained margin">
         <RuleInstruction type="action">
           <Translate
             pt="Uma testemunha deu essa resposta ao tentar falar quem era o criminoso à polícia."

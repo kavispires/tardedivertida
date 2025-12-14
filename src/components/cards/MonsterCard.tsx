@@ -37,7 +37,7 @@ export function MonsterCard({ currentMonster, showControls = true, cardWidth, ..
 
   const baseClass = 'monster-card';
   return (
-    <Space direction="vertical" align="center" {...props}>
+    <Space orientation="vertical" align="center" {...props}>
       <ImageCard
         classic
         cardId={currentMonster.id}

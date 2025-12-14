@@ -30,7 +30,7 @@ export function RoleBoard({ activeRole, instruction, movie, children, outcome }:
 
   return (
     <Space wrap>
-      <Space className="role" direction="vertical" align="center">
+      <Space className="role" orientation="vertical" align="center">
         {movie && (
           <>
             <Icon width={75} />
@@ -45,7 +45,7 @@ export function RoleBoard({ activeRole, instruction, movie, children, outcome }:
         {children}
       </Space>
 
-      <Space className="role" direction="vertical">
+      <Space className="role" orientation="vertical">
         {instruction !== 'CAST' && (
           <div className="role__round">
             <Avatar size="large" style={{ backgroundColor: 'orange' }}>

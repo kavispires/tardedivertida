@@ -158,7 +158,7 @@ export function StepEvaluation({
         />
       </RuleInstruction>
 
-      <Space direction="vertical">
+      <Space orientation="vertical">
         <SpaceContainer wrap>
           <Button
             type="default"

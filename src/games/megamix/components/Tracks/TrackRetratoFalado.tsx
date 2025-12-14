@@ -33,7 +33,7 @@ export const TrackRetratoFalado = ({ track, onSubmitAnswer, user }: TrackProps) 
   return (
     <>
       <MinigameTitle title={{ pt: 'Retrato Falado Monstruoso', en: 'Monster Sketch' }} />
-      <Space direction="vertical" align="center" className="contained margin">
+      <Space orientation="vertical" align="center" className="contained margin">
         <RuleInstruction type="action">
           <Translate
             pt={

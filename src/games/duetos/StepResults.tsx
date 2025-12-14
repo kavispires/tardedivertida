@@ -114,7 +114,7 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
           <SpaceContainer wrap style={{ alignItems: 'flex-start' }}>
             {leftOut.map((entry, index) => {
               return (
-                <Space key={entry.id} className="results" direction="vertical">
+                <Space key={entry.id} className="results" orientation="vertical">
                   <SpaceContainer>
                     <Avatar.Group max={{ count: 7 }}>
                       {entry.players.map((playerId) => (

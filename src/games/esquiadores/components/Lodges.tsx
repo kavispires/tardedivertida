@@ -39,7 +39,7 @@ export function Lodges({ lodges, players, user, onSubmitBets, betType }: LodgesP
   const [chipsLeft, setChipsLeft] = useState(user.chips ?? 0);
 
   return (
-    <SpaceContainer direction="vertical">
+    <SpaceContainer orientation="vertical">
       <div className="lodges">
         {lodges.map((lodge) => (
           <div key={lodge.id} className="lodge" style={{ width: lodgeWidth }}>

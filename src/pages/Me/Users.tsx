@@ -145,7 +145,7 @@ function Users() {
       <Typography.Title>Users</Typography.Title>
       {usersQuery.isLoading && <Typography.Paragraph>Loading...</Typography.Paragraph>}
       <Space className="margin" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)' }}>
-        <Space direction="vertical">
+        <Space orientation="vertical">
           <Typography.Title level={2}>Origin</Typography.Title>
           <Space className="margin">{selectO}</Space>
           <Typography.Paragraph>
@@ -159,7 +159,7 @@ function Users() {
           />
         </Space>
 
-        <Space direction="vertical">
+        <Space orientation="vertical">
           <Typography.Title level={2}>Destination</Typography.Title>
           <Space className="margin">{selectD}</Space>
           <Typography.Paragraph>
@@ -174,7 +174,7 @@ function Users() {
         </Space>
       </Space>
 
-      <Space direction="vertical">
+      <Space orientation="vertical">
         <Typography.Title level={2}>Merge</Typography.Title>
 
         <Typography.Paragraph>{mergedUser?.names?.join(', ') ?? 'No user selected'}</Typography.Paragraph>

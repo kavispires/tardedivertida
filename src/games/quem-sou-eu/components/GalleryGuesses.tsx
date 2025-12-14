@@ -54,8 +54,8 @@ export function GalleryGuesses({
   const correctGuesses = playersSay[currentPlayer.character.id];
 
   return (
-    <Space className="q-gallery__info-container" direction="vertical">
-      <Space className="q-gallery__votes" direction="vertical">
+    <Space className="q-gallery__info-container" orientation="vertical">
+      <Space className="q-gallery__votes" orientation="vertical">
         <SlideShowLabel>
           <Translate pt="Jogadores votaram" en="Players voted" />
         </SlideShowLabel>
@@ -76,7 +76,7 @@ export function GalleryGuesses({
         })}
       </Space>
 
-      <Space className="q-gallery__votes" direction="vertical">
+      <Space className="q-gallery__votes" orientation="vertical">
         <SlideShowLabel>
           <Translate pt="Pontos" en="Points" />
         </SlideShowLabel>

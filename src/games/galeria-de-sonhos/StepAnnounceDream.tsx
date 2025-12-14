@@ -125,7 +125,7 @@ export function StepAnnounceDream({
         </div>
         <footer className="g-dream-result__footer">
           {latest.isPhaseOver || latest.cardsLeft === 0 ? (
-            <Space align="center" className="full-width padding" direction="vertical">
+            <Space align="center" className="full-width padding" orientation="vertical">
               <p className="center">
                 <Translate
                   pt="Todos jogadores já usaram seus sonhos ou não deram match com ninguém. Vamos para a próxima rodada?"
@@ -173,7 +173,7 @@ export function StepAnnounceDream({
               )}
             </Space>
           ) : (
-            <Space align="center" className="full-width padding" direction="vertical">
+            <Space align="center" className="full-width padding" orientation="vertical">
               <p className="center">
                 <Translate pt="Próximo jogador:" en="Next player:" />
                 <PlayerAvatarName player={activePlayer} addressUser />

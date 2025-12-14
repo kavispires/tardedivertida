@@ -32,7 +32,7 @@ export function HumanSignBoard({ attributes, startingAttributesIds = [] }: Human
   };
 
   return (
-    <Space direction="vertical">
+    <Space orientation="vertical">
       <Title level={3} size="xx-small">
         <Translate pt="Atributos e Símbolos" en="Attributes and Symbols" />
         <Popover
@@ -48,7 +48,7 @@ export function HumanSignBoard({ attributes, startingAttributesIds = [] }: Human
           <Button type="text" style={{ color: 'white' }} icon={<InfoCircleOutlined />} shape="circle" />{' '}
         </Popover>
       </Title>
-      <Space direction="vertical" className="board-container">
+      <Space orientation="vertical" className="board-container">
         <div className="attributes-grid">
           {orderBy(attributes, `attribute.${language}`).map((attribute) => {
             if (startingAttributesIds.find((attributeId) => attributeId === attribute.id)) {

@@ -83,7 +83,7 @@ export function GameCard({ game, isAdmin = true }: GameCardProps) {
       }
     >
       <div className="game-card__contents">
-        <Space direction="vertical" className="full-width">
+        <Space orientation="vertical" className="full-width">
           <Card.Meta
             description={`${translate('Inspirado por', 'Inspired by')} ${game.basedOn
               .split('')
@@ -126,7 +126,7 @@ export function GameCard({ game, isAdmin = true }: GameCardProps) {
 
         <Divider className="game-card__divider" />
 
-        <Space direction="vertical">
+        <Space orientation="vertical">
           <Card.Meta
             description={translate(
               `Para ${game.playerCount.min}-${game.playerCount.max} jogadores`,

@@ -67,7 +67,7 @@ export function SeedRetratoFalado({ seed, updateData }: SeedRetratoFaladoProps) 
         />
       </Title>
 
-      <Space direction="vertical">
+      <Space orientation="vertical">
         <Instruction className="seed-instruction">
           <Translate
             pt={

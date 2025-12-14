@@ -67,7 +67,7 @@ export const TrackFileiraDeFatos = ({ track, onSubmitAnswer }: TrackProps) => {
   return (
     <>
       <MinigameTitle title={{ pt: 'Fileira de Fatos', en: 'Facts Lineup' }} />
-      <Space direction="vertical" align="center" className="contained margin">
+      <Space orientation="vertical" align="center" className="contained margin">
         <RuleInstruction type="action">
           <Translate pt="Qual das situações é a pior?" en="Which of the following situations is the worst?" />
         </RuleInstruction>

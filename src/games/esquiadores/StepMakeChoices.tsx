@@ -134,7 +134,7 @@ export function StepMakeChoices({
       )}
 
       {isLastStep && (
-        <SpaceContainer direction="vertical">
+        <SpaceContainer orientation="vertical">
           <RuleInstruction type="event">
             <Translate
               pt="Você respondeu todas as perguntas. Clique em 'Enviar' para finalizar."

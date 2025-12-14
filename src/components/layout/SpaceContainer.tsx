@@ -35,7 +35,7 @@ export function SpaceContainer({
   return (
     <Space
       className={clsx('space-container', contained && 'contained', fullWidth && 'full-width', className)}
-      direction={vertical ? 'vertical' : direction}
+      orientation={vertical ? 'vertical' : direction}
       align={align ?? 'center'}
       {...props}
     >

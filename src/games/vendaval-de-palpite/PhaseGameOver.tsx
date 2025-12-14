@@ -22,7 +22,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
       announcementIcon={state.outcome === 'WIN' ? <TrophyIcon /> : <TheEndIcon />}
       rateWidgetCustomText={<Translate pt="Sugira palavras-secretas" en="Suggest secret words" />}
     >
-      <SpaceContainer direction="vertical" align="center">
+      <SpaceContainer orientation="vertical" align="center">
         {state.outcome === 'WIN' ? (
           <>
             <IconAvatar icon={<QualitySealIcon />} size={100} shape="square" />

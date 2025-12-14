@@ -63,7 +63,7 @@ function RulesModal({ rules, defaultOpen }: RulesModalProps) {
         open={open}
         onClose={() => setOpen(false)}
       >
-        <Space direction="vertical" size="small">
+        <Space orientation="vertical" size="small">
           <ul className="list">{rules}</ul>
         </Space>
       </Drawer>

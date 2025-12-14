@@ -18,7 +18,7 @@ export function Pair({ index, firstItem, secondItem, placeholder, size }: PairPr
   return (
     <Space
       className={clsx('pairs-grid__pair', `pairs-grid__pair--${index}`)}
-      direction="vertical"
+      orientation="vertical"
       key={`pair-${index}`}
     >
       <div className="pairs-grid__slot">

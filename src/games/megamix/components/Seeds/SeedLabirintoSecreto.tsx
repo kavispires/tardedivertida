@@ -30,7 +30,7 @@ export function SeedLabirintoSecreto({ seed, updateData, user }: SeedLabirintoSe
         />
       </Title>
 
-      <Space direction="vertical">
+      <Space orientation="vertical">
         <Instruction className="seed-instruction">
           <Translate
             pt={

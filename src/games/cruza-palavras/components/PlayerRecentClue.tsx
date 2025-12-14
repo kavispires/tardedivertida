@@ -20,7 +20,7 @@ export function PlayerRecentClue({ user, grid }: PlayerRecentClueProps) {
   }
 
   return (
-    <SpaceContainer direction="vertical" className="mb-10">
+    <SpaceContainer orientation="vertical" className="mb-10">
       <Title size="xx-small">
         <Translate pt="Sua dica" en="Your clue" />
       </Title>

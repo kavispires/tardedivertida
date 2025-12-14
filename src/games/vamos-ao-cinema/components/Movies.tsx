@@ -105,7 +105,7 @@ export function Movies({
 
   return (
     <Space className="movies">
-      <SpaceContainer direction="vertical">
+      <SpaceContainer orientation="vertical">
         {leftMovies.map((movie, index, arr) => (
           <div key={movie.id} className="movie-container">
             <PlayersSelections
@@ -154,7 +154,7 @@ export function Movies({
           />
         ))}
       </div>
-      <SpaceContainer direction="vertical">
+      <SpaceContainer orientation="vertical">
         {rightMovies.map((movie, index, arr) => (
           <div key={movie.id} className="movie-container">
             <PlayersSelections

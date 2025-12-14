@@ -27,7 +27,7 @@ export function CustomQuestion({ onSubmit, userId }: CustomQuestionProps) {
         <Translate pt="OU" en="OR" />
       </Divider>
 
-      <Space className="contained center" direction="vertical">
+      <Space className="contained center" orientation="vertical">
         <Title size="xx-small">
           <Translate pt="Crie uma pergunta" en="Write custom question" />:
         </Title>

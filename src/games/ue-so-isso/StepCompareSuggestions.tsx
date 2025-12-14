@@ -134,7 +134,7 @@ export function StepCompareSuggestions({
               en="Host Controls (only use if the assign player doesn't)"
             />
           }
-          direction="vertical"
+          orientation="vertical"
           align="center"
         >
           <Cards

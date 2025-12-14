@@ -40,7 +40,7 @@ export const TrackMegamixWhoSaidThis = ({ track, onSubmitAnswer, user, players }
       </RuleInstruction>
       <Card hideHeader>"{track.data.card.text}"</Card>
 
-      <Space direction="vertical" align="center" className="contained margin">
+      <Space orientation="vertical" align="center" className="contained margin">
         <SpaceContainer>
           {track.data.card.options.map((playerId: PlayerId) => {
             const player = players[playerId];

@@ -89,7 +89,7 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
   };
 
   return (
-    <SpaceContainer className="contained seeding-container" direction="vertical" wrap>
+    <SpaceContainer className="contained seeding-container" orientation="vertical" wrap>
       <div className="seeding-container__stepper">
         <Steps progressDot current={currentStep} items={steps} />
       </div>

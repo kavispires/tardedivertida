@@ -50,7 +50,7 @@ export function SignsKeyCard({ attributes, startingAttributesIds = [], phase }: 
   }, [startingAttributesIds, phase]);
 
   return (
-    <Space direction="vertical">
+    <Space orientation="vertical">
       <Title level={3} size="xx-small">
         <Translate pt="Atributos e Símbolos" en="Attributes and Symbols" />
         <Popover

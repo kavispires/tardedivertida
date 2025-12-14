@@ -58,7 +58,12 @@ export function SignInWithGoogle({ onSuccess, ...buttonProps }: SignInProps & Bu
   };
 
   return (
-    <Space className="div-container" direction="vertical" align="center" classNames={{ item: 'full-width' }}>
+    <Space
+      className="div-container"
+      orientation="vertical"
+      align="center"
+      classNames={{ item: 'full-width' }}
+    >
       {isError && (
         <Alert
           description={

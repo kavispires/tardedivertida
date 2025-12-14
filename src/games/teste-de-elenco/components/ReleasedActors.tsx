@@ -34,7 +34,7 @@ export function ReleasedActors({ actors, players, selection, playersSelections }
     <SpaceContainer className="actors-board" wrap>
       {nonSelectedActors.map((actor) => {
         return (
-          <Space key={actor.id} className="actors-board__actor" direction="vertical">
+          <Space key={actor.id} className="actors-board__actor" orientation="vertical">
             <SuspectCard suspect={actor} width={cardWidth} />
             <SpaceContainer>
               <Avatar.Group max={{ count: 5 }}>

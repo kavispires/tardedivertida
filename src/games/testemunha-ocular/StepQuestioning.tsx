@@ -106,7 +106,7 @@ export function StepQuestioning({
           />
         </StepTitle>
 
-        <SpaceContainer align="center" direction="vertical">
+        <SpaceContainer align="center" orientation="vertical">
           <Card
             header={translate('O suspeito...', 'The perpetrator...')}
             color="blue"

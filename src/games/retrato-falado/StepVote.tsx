@@ -110,7 +110,7 @@ export function StepVote({
           const player = players[sketchObj.playerId];
           const ownDrawing = sketchObj.playerId === user.id;
           return (
-            <Space direction="vertical" align="center" key={`sketch-for-player-${sketchObj.playerId}`}>
+            <Space orientation="vertical" align="center" key={`sketch-for-player-${sketchObj.playerId}`}>
               <CanvasSVG
                 key={`sketch-${sketchObj.playerId}`}
                 width={canvasSize || canvasWidth}

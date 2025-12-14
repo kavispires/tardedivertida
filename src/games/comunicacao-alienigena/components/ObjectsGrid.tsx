@@ -27,7 +27,7 @@ export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll, 
   const width = useSpriteWidth();
 
   return (
-    <Space direction="vertical">
+    <Space orientation="vertical">
       <Title level={3} size="xx-small">
         <Translate pt="Itens" en="Items" />
       </Title>
