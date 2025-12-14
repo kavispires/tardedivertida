@@ -1,0 +1,1 @@
+import{j as i}from"./index-BFz8YS-F.js";import{C as s}from"./ClockIcon-CCx6g_G9.js";import{M as n}from"./MetricHighlight-B2MuW0Xt.js";function x({children:o,type:r,iconSize:t,className:m}){return i.jsx(n,{icon:i.jsx(s,{}),type:r,iconSize:t,className:m,children:o})}export{x as T};
