@@ -91,7 +91,15 @@
 .daily-loading {
   display: grid;
   place-items: center;
-  min-height: 50svh;
+  min-height: calc(99svh - 64px);
+}
+
+.daily-page-error {
+  display: grid;
+  place-items: center;
+  min-height: calc(99svh - 64px);
+  text-align: center;
+  padding: get-unit(4);
 }
 
 .hub {
