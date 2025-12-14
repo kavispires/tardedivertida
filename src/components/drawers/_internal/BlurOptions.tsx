@@ -63,7 +63,7 @@ export function BlurOptions() {
       <div className="blur-options">
         <Alert
           type="error"
-          message={
+          title={
             <Translate
               pt="Servidor falhou ao tentar baixar a lista de cartas credo"
               en="Server failed while trying to fetch blur cards list"

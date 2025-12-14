@@ -43,7 +43,7 @@ export function StepJoin({ setStep }: StepJoinProps) {
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
         <SignInWithGoogle onSuccess={() => setStep(1)} block size="large" />
 
-        {isError && <Alert message="Error" description={JSON.stringify(error)} type="error" showIcon />}
+        {isError && <Alert title="Error" description={JSON.stringify(error)} type="error" showIcon />}
 
         <Divider>
           <Translate pt="ou" en="or" />

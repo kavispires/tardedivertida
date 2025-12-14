@@ -171,7 +171,7 @@ function SignInWithEmail({ onSuccess }: SignInProps) {
       {showForgotPassword && (
         <Alert
           type="info"
-          message={
+          title={
             <ResetPasswordForm
               email={form.getFieldValue('username')}
               onSuccess={() => setShowForgotPassword(false)}

@@ -14,7 +14,7 @@ export function PageError({ message, description }: PageErrorProps) {
   return (
     <PageLayout className="container container--center">
       <Alert
-        message={
+        title={
           <Translate pt="Algo errado não está certo" en="Something wrong is not right" custom={message} />
         }
         description={

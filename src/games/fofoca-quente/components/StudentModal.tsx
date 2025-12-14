@@ -94,7 +94,7 @@ export function StudentModal({
             <Flex vertical gap={3} className="student-details__secrets">
               {student.intimidated && (
                 <Alert
-                  message={
+                  title={
                     <Translate
                       en="This student has been intimidated. They cannot be questioned unless the detective first comfort them"
                       pt="Esse estudante está intimidado. Ele(a) não pode ser questionado(a) a menos que o detetive o(a) console primeiro"
@@ -111,9 +111,7 @@ export function StudentModal({
               <Flex vertical gap={3} className="student-details__secrets">
                 {student.id === gossiperId && (
                   <Alert
-                    message={
-                      <Translate en="This student is the gossiper" pt="Esse estudante é o fofoqueiro" />
-                    }
+                    title={<Translate en="This student is the gossiper" pt="Esse estudante é o fofoqueiro" />}
                     type="error"
                     showIcon
                     banner
@@ -121,7 +119,7 @@ export function StudentModal({
                 )}
                 {student.id === bestFriendId && (
                   <Alert
-                    message={
+                    title={
                       <Translate en="This student is the best friend" pt="Esse estudante é o melhor amigo" />
                     }
                     type="warning"
@@ -132,7 +130,7 @@ export function StudentModal({
 
                 {student.canLie && (
                   <Alert
-                    message={<Translate en="This student can lie for you" pt="Esse estudante pode mentir" />}
+                    title={<Translate en="This student can lie for you" pt="Esse estudante pode mentir" />}
                     type="info"
                     showIcon
                     banner
