@@ -184,7 +184,12 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
 
       {children}
 
-      <Space align="center" direction="vertical" className="full-width padding" style={{ marginTop: '48px' }}>
+      <Space
+        align="center"
+        orientation="vertical"
+        className="full-width padding"
+        style={{ marginTop: '48px' }}
+      >
         <Space.Compact>
           <Button onClick={() => navigate('/')}>
             <Translate pt="Página Inicial" en="Home Page" />

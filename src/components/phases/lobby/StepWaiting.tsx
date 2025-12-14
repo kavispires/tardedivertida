@@ -118,7 +118,7 @@ export function StepWaiting({ players }: StepWaitingProps) {
             en="Please, wait while other players join..."
           />
         </Paragraph>
-        <HostOnlyContainer className="lobby-waiting__lock-button" direction="vertical">
+        <HostOnlyContainer className="lobby-waiting__lock-button" orientation="vertical">
           <Typography.Text className="center padding">
             <Translate pt="Jogadores necessários" en="Players needed" />:{' '}
             <Tag>

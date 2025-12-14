@@ -152,7 +152,7 @@ export function StepEvaluate({
         />
       </RuleInstruction>
 
-      <Space direction="vertical">
+      <Space orientation="vertical">
         <SpaceContainer wrap>
           <Button type="default" icon={<ClearOutlined />} onClick={resetGuesses} disabled={isLoading}>
             <Translate pt="Limpar seleções" en="Clear selections" />

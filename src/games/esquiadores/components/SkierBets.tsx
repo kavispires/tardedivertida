@@ -42,7 +42,7 @@ export function SkierBets({ players, user, onSubmitBets, betType }: SkierBetsPro
   const [chipsLeft, setChipsLeft] = useState(user.chips ?? 0);
 
   return (
-    <SpaceContainer direction="vertical">
+    <SpaceContainer orientation="vertical">
       <div className="skier-bets">
         {playersList.map((player) => (
           <div key={player.id} className="lodge">

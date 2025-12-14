@@ -87,7 +87,7 @@ export function GameTags({ tags, gameCode, ...rest }: GameTagsProps) {
   }, [tags]);
 
   return (
-    <Space wrap {...rest} direction="vertical">
+    <Space wrap {...rest} orientation="vertical">
       <div className="game-tags-group">
         {buttonTags.map((tag) => {
           const Icon = icons[tag];

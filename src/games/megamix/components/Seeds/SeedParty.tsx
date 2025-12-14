@@ -50,7 +50,7 @@ export function SeedParty({ seed, updateData }: SeedPartyProps) {
         </RuleInstruction>
 
         <Instruction contained>
-          <Space direction="vertical">
+          <Space orientation="vertical">
             {seed.cards.map((card) => {
               return (
                 <div className="" key={card.id}>

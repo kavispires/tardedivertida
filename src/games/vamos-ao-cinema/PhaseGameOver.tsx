@@ -21,7 +21,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
   const posterWidth = useCardWidth(8, { gap: 16, minWidth: 80, maxWidth: 150, margin: 32 });
   return (
     <GameOverWrapper state={state} players={players} announcementIcon={<FlagIcon />}>
-      <SpaceContainer direction="vertical">
+      <SpaceContainer orientation="vertical">
         <Title size="xx-small">
           <Translate pt="Pontuação" en="Score" />
         </Title>

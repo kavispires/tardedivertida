@@ -75,7 +75,7 @@ export function AdminAnswerControl({
   }, [answerGroup.entries.length, isDevEnv, playerCount, remainingGroupsCount]);
 
   return (
-    <HostOnlyContainer className="m-admin" direction="vertical" align="center">
+    <HostOnlyContainer className="m-admin" orientation="vertical" align="center">
       <TimedButton
         onClick={() => onNextAnswer({ allowedList: Object.keys(allowedList) })}
         disabled={disableButton || isLoading}

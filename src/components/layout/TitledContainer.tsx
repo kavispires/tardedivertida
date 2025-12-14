@@ -38,13 +38,13 @@ export function TitledContainer({
   } = contentProps ?? {};
 
   return (
-    <Space direction="vertical" className={clsx('container-wrapper', className)} {...spaceProps}>
+    <Space orientation="vertical" className={clsx('container-wrapper', className)} {...spaceProps}>
       <Title level={level} size={size} {...restTitleProps}>
         {title}
       </Title>
 
       <Space
-        direction={childrenDirection}
+        orientation={childrenDirection}
         wrap={wrap}
         className={clsx(
           'container-wrapper__children',

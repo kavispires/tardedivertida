@@ -51,7 +51,7 @@ export const TrackTaNaCara = ({ track, onSubmitAnswer }: TrackProps) => {
         {track.data.question.question}
       </Card>
 
-      <SpaceContainer direction="vertical">
+      <SpaceContainer orientation="vertical">
         <SuspectCard suspect={track.data.suspect} width={cardWidth} />
       </SpaceContainer>
 

@@ -71,7 +71,7 @@ export function InquiryHistory({
   }
 
   return (
-    <Space direction="vertical">
+    <Space orientation="vertical">
       <Table columns={columns} bordered dataSource={inquiryHistory} />
     </Space>
   );

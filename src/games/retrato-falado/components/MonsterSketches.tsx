@@ -31,7 +31,7 @@ export function MonsterSketches({
         return (
           <Space
             key={`monster-sketch-item-${sketchObj.playerId}`}
-            direction="vertical"
+            orientation="vertical"
             align="center"
             className="r-monster-sketch"
           >

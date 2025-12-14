@@ -64,7 +64,7 @@ export function RequestHistory({
   }
 
   return (
-    <Space direction="vertical">
+    <Space orientation="vertical">
       <Table columns={columns} bordered dataSource={requestHistory} />
     </Space>
   );
@@ -79,7 +79,7 @@ function Offerings({ offers, players, items }: OfferingsProps) {
   return (
     <Space>
       {offers.map((offer) => (
-        <Space direction="vertical" align="center" key={`offer-${offer.objectId}-${offer.playerId}`}>
+        <Space orientation="vertical" align="center" key={`offer-${offer.objectId}-${offer.playerId}`}>
           <ItemCard itemId={`${offer.objectId}`} className={'objects-grid__item-offered'} width={48} />
           <PlayerAvatarName size="small" player={players[offer.playerId]} />
           <ItemResolution itemId={offer.objectId} items={items} />

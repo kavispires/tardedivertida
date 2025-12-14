@@ -145,7 +145,7 @@ export function StepSelectCard({
           </SpaceContainer>
         </Flex>
       ) : (
-        <Space direction="vertical" className="contained">
+        <Space orientation="vertical" className="contained">
           <SpaceContainer>
             <Typography.Text strong>
               <Translate pt="Ingressos" en="Tickets" />{' '}

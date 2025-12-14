@@ -56,7 +56,7 @@ export function SeedArteRuim({ seed, updateData }: SeedArteRuimProps) {
         />
       </Title>
 
-      <Space direction="vertical">
+      <Space orientation="vertical">
         <Instruction className="seed-instruction">
           <Translate
             pt={

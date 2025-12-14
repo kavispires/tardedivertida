@@ -30,7 +30,7 @@ export const TrackPolemicaDaVez = ({ track, onSubmitAnswer, user }: TrackProps) 
   return (
     <>
       <MinigameTitle title={{ pt: 'Polêmica da Vez', en: "That's Polemic" }} />
-      <Space direction="vertical" align="center" className="contained margin">
+      <Space orientation="vertical" align="center" className="contained margin">
         <RuleInstruction type="action">
           <Translate
             pt={

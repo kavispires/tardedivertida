@@ -36,7 +36,7 @@ export const TrackMegamixThisThat = ({ track, onSubmitAnswer, user }: TrackProps
       <RuleInstruction type="action">
         <Translate pt="Selecione qual você prefere:" en="Select which one you prefer:" />
       </RuleInstruction>
-      <Space direction="vertical" align="center" className="contained margin">
+      <Space orientation="vertical" align="center" className="contained margin">
         <SpaceContainer>
           <TransparentButton onClick={() => onSelect(0)} disabled={isLoading || user.ready}>
             <Card header={translate('Isso', 'This')} color="red">

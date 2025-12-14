@@ -58,7 +58,7 @@ export const TrackQuemSouEu = ({ track, onSubmitAnswer, user }: TrackProps) => {
       <SpaceContainer>
         {track.data.contenders.map((contender: FightingContender) => {
           return (
-            <Space direction="vertical" key={contender.id}>
+            <Space orientation="vertical" key={contender.id}>
               <CharacterCard size={cardWidth} character={contender} />
 
               <Button

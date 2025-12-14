@@ -45,7 +45,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
       <SpaceContainer className="margin">
         {pastBattles.map((battle) => {
           return (
-            <Space direction="vertical" key={battle.challenge.id} align="center" className="final-gallery">
+            <Space orientation="vertical" key={battle.challenge.id} align="center" className="final-gallery">
               <Card header={translate('Desafio', 'Challenge')} color="purple" className="final-gallery__card">
                 {battle.challenge.text}
               </Card>

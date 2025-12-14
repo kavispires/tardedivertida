@@ -31,7 +31,7 @@ export const TrackMegamixBestOfThree = ({ track, onSubmitAnswer, user }: TrackPr
   return (
     <>
       <MinigameTitle title={{ pt: 'Melhor de 3', en: 'Best of 3' }} />
-      <Space direction="vertical" align="center" className="contained margin">
+      <Space orientation="vertical" align="center" className="contained margin">
         <Card header={translate('Pergunta', 'Question')} color="orange">
           {track.data.card.question}
         </Card>

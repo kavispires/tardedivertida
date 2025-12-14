@@ -29,7 +29,7 @@ export function SeedContadoresHistorias({ seed, updateData }: SeedContadoresHist
         />
       </Title>
 
-      <SpaceContainer direction="vertical">
+      <SpaceContainer orientation="vertical">
         <SVGPhone>
           <div className="ff-phone">
             <div className="ff-phone__contact">

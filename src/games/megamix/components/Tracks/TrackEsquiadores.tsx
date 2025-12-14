@@ -68,7 +68,7 @@ export const TrackEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) =>
   return (
     <>
       <MinigameTitle title={{ pt: 'O Esquiador', en: 'Ski Resorte' }} />
-      <Space direction="vertical" align="center" className="contained margin">
+      <Space orientation="vertical" align="center" className="contained margin">
         <RuleInstruction type="action">
           <Translate
             pt={

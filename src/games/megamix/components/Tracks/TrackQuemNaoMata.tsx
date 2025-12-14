@@ -36,7 +36,7 @@ export const TrackQuemNaoMata = ({ onSubmitAnswer, user, players }: TrackProps) 
   return (
     <>
       <MinigameTitle title={{ pt: 'Quem Não Mata, Morre!', en: 'Mortal Standoff' }} />
-      <Space direction="vertical" align="center" className="contained margin">
+      <Space orientation="vertical" align="center" className="contained margin">
         <RuleInstruction type="action">
           <Translate
             pt={

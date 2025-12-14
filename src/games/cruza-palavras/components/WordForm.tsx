@@ -36,7 +36,7 @@ export function WordForm({ x, y, onSubmit, disabled, index }: WordFormProps) {
   }, []);
 
   return (
-    <Space direction="vertical">
+    <Space orientation="vertical">
       <Input
         ref={textInput}
         placeholder={`${x} + ${y}`}

@@ -102,7 +102,7 @@ export function StepGuess({
         />
       </RuleInstruction>
 
-      <SpaceContainer className="mt-4 contained" direction="vertical">
+      <SpaceContainer className="mt-4 contained" orientation="vertical">
         <Flex justify="center" align="center" wrap="wrap" gap={6} className="mb-2">
           {newNames.map((entry) => {
             const entryId = getEntryId(['player', entry.playerId]);

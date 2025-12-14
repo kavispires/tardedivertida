@@ -96,7 +96,7 @@ export function PossessionAnimation() {
   };
 
   return (
-    <Space direction="vertical">
+    <Space orientation="vertical">
       <PanicIcon style={{ width: '6rem' }} className={animation[possessionLevel]} />
       <Button size="small" onClick={onPossessionLevelChange}>
         {text[possessionLevel]}

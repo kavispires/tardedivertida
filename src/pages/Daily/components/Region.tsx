@@ -8,7 +8,7 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 export function Region({ align, direction, children, className, ...props }: SpaceProps) {
   return (
     <SpaceContainer
-      direction={direction ?? 'vertical'}
+      orientation={direction ?? 'vertical'}
       align={align ?? 'center'}
       className={clsx('region', className)}
       {...props}

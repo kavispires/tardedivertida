@@ -49,7 +49,7 @@ export const TrackSuperCampeonato = ({ track, onSubmitAnswer, user }: TrackProps
       <SpaceContainer>
         {track.data.contenders.map((contender: FightingContender, index: number) => {
           return (
-            <Space direction="vertical" key={contender.id}>
+            <Space orientation="vertical" key={contender.id}>
               <ImageBlurButtonContainer cardId={contender.id}>
                 <CharacterCard
                   size={cardWidth}

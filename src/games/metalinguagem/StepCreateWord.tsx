@@ -199,7 +199,7 @@ export function StepCreateWord({
             </SpaceContainer>
           )}
 
-          <SpaceContainer direction="vertical">
+          <SpaceContainer orientation="vertical">
             <Card
               header={dualTranslate({
                 en: `Your new word (${newWord.length} letters)`,

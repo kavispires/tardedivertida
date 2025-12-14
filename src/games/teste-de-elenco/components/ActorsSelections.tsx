@@ -27,7 +27,7 @@ export function ActorsSelections({ actors, players, selection, playersSelections
         const actor = actors[actorId];
 
         return (
-          <Space key={actor.id} className="actors-board__actor" direction="vertical">
+          <Space key={actor.id} className="actors-board__actor" orientation="vertical">
             <SpaceContainer>
               <Avatar.Group max={{ count: 7 }}>
                 {playersSelections[actorId].map((playerId) => (

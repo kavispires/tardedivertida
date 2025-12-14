@@ -64,7 +64,7 @@ export const TrackNaRuaDoMedo = ({ track, onSubmitAnswer, user }: TrackProps) =>
             disabled={user.ready || isLoading}
             onClick={() => onSelect('0')}
           >
-            <Space direction="vertical" align="center" className="margin">
+            <Space orientation="vertical" align="center" className="margin">
               <Avatar style={{ backgroundColor: 'brown' }}>A</Avatar>
               <IconAvatar icon={<StreetIcon />} size="large" />
             </Space>
@@ -79,7 +79,7 @@ export const TrackNaRuaDoMedo = ({ track, onSubmitAnswer, user }: TrackProps) =>
             disabled={user.ready || isLoading}
             onClick={() => onSelect('1')}
           >
-            <Space direction="vertical" align="center" className="margin">
+            <Space orientation="vertical" align="center" className="margin">
               <Avatar style={{ backgroundColor: 'dodgerblue' }}>B</Avatar>
               <IconAvatar icon={<StreetIcon />} size="large" />
             </Space>
