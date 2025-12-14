@@ -225,7 +225,7 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
         <Alert
           type="warning"
           showIcon
-          message={
+          title={
             <Translate
               pt="Este jogo está em alpha, não o jogue"
               en="This game is still in alpha and shouldn't be played"
@@ -238,7 +238,7 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
         <Alert
           type="warning"
           showIcon
-          message={
+          title={
             <Translate
               pt="Este jogo está em beta, prossiga com cuidado"
               en="This game is in beta and bugs might be everywhere"
@@ -257,7 +257,7 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
               <Alert
                 type="info"
                 showIcon
-                message={
+                title={
                   <>
                     <Translate
                       pt={<>Você quer redirecionar jogadores em {previousGameId} para essa nova partida?</>}
@@ -281,7 +281,7 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
               <Alert
                 type="info"
                 showIcon
-                message={
+                title={
                   <Translate
                     pt={
                       <>

@@ -58,7 +58,7 @@ export function StepPlayersWaitEvaluation({
       <Alert
         type="warning"
         showIcon
-        message={
+        title={
           <>
             <PlayerAvatar avatarId="A" size="small" />
             <Translate

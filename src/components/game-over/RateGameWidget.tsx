@@ -105,7 +105,7 @@ function RateGameWidgetContent({ customText, hideWidget, setHideWidget }: RateGa
       )}
     >
       {thankYouMessage ? (
-        <Alert message={translate('Obrigado', 'Thank you')} type="success" showIcon />
+        <Alert title={translate('Obrigado', 'Thank you')} type="success" showIcon />
       ) : (
         <>
           <h3>

@@ -136,7 +136,7 @@ export function StepAnnounceDream({
                 <Alert
                   className="center"
                   type="error"
-                  message={
+                  title={
                     playerInNightmare?.id === gameOrder[0] ? (
                       <Translate
                         pt={

@@ -68,7 +68,7 @@ function Login() {
 
         {Boolean(error) && (
           <Alert
-            message="Error"
+            title="Error"
             description={JSON.stringify(error)}
             type="error"
             showIcon

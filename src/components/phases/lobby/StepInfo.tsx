@@ -75,7 +75,7 @@ export function StepInfo({ players, setStep }: StepInfoProps) {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <Alert
             type="info"
-            message={<Translate pt="Você jogou esse jogo anteriormente" en="You played this game before" />}
+            title={<Translate pt="Você jogou esse jogo anteriormente" en="You played this game before" />}
             className="margin"
           />
         </motion.div>

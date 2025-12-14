@@ -21,7 +21,7 @@ export function OutcomeOptions({ outcome, onSubmitOutcome, finalAnswersLeft }: O
           <Alert
             type="warning"
             showIcon
-            message={
+            title={
               <>
                 <PlayerAvatar avatarId="A" size="small" />{' '}
                 <Translate

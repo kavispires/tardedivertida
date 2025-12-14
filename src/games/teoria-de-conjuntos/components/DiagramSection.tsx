@@ -257,7 +257,7 @@ function SelectedAreaItems({
                     ? 'warning'
                     : 'success'
             }
-            message={
+            title={
               <Translate
                 pt="Nenhuma coisa foi colocada só nessa seção."
                 en="No thing has been placed exclusively in this section."

@@ -34,7 +34,7 @@ export function LobbyStep({ children, isLocked }: LobbyStepProps) {
               <Alert
                 type="warning"
                 showIcon
-                message={
+                title={
                   <Translate
                     pt="O jogo já foi iniciado e novos jogadores não podem ser adicionados"
                     en="The game has started and new players cannot be added at this time"

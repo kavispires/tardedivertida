@@ -150,7 +150,7 @@ export function StepPlayerClue({
           <Alert
             type="warning"
             showIcon
-            message={
+            title={
               <Translate
                 pt={
                   <>

@@ -46,7 +46,7 @@ export function DevEmulatorAlert() {
     <>
       {displayDevWarningMessage && (
         <Alert
-          message={
+          title={
             <>
               You are in a development environment and not using the Firestore emulator.{' '}
               <Button href={emulatorUrl} type="link">
@@ -61,7 +61,7 @@ export function DevEmulatorAlert() {
       )}
       {displayDevWarningMessageFunctions && (
         <Alert
-          message={
+          title={
             <>
               You are in a development environment and not using the Functions emulator.{' '}
               <Button href={emulatorUrl} type="link">
@@ -75,7 +75,7 @@ export function DevEmulatorAlert() {
         />
       )}
       {!displayDevWarningMessageFunctions && !displayDevWarningMessage && (
-        <Alert message={<>You are running emulators safely.</>} type="success" showIcon banner />
+        <Alert title={<>You are running emulators safely.</>} type="success" showIcon banner />
       )}
     </>
   );
