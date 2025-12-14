@@ -16,11 +16,10 @@ export function DailyContent({ children, ...props }: DailyContentProps) {
   const { pathname } = useLocation();
 
   const componentEffect = useMemo(() => {
-    if (!pathname.includes('/diario/hub')) {
-      return null;
-    }
-    if (month === 11) {
-      return <SnowEffect />;
+    if (pathname.includes('/diario/hub') || pathname === '/diario') {
+      if (month === 11) {
+        return <SnowEffect />;
+      }
     }
     return null;
   }, [pathname, month]);

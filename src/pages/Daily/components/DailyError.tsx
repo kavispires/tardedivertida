@@ -19,7 +19,7 @@ export function DailyError() {
   };
   return (
     <DailyChrome>
-      <DailyContent>
+      <DailyContent className="daily-loading">
         <Space className="container container--center">
           <Alert
             title={
@@ -35,7 +35,7 @@ export function DailyError() {
                   <br />
                   <Translate
                     en="It is also possible that you are in the wrong URL. Press here to go back to the right page."
-                    pt="Também é possível que você esteja na URL errada. Pressione aqui para voltar para a página correta."
+                    pt="Também é possível que você esteja na URL errada. Pressione aqui para voltar para a página correta:"
                   />
                   <Button type="link" onClick={onRedirect}>
                     Redirecionar/Redirect
