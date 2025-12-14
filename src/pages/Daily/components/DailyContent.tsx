@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 // Ant Design Resources
 import { Layout } from 'antd';
 // Components
+import { Fireworks } from 'components/visual-effects/Fireworks';
 import { SnowEffect } from 'components/visual-effects/SnowEffect';
 
 const { Content } = Layout;
@@ -17,6 +18,9 @@ export function DailyContent({ children, ...props }: DailyContentProps) {
 
   const componentEffect = useMemo(() => {
     if (pathname.includes('/diario/hub') || pathname === '/diario') {
+      if (month === 0) {
+        return <Fireworks />;
+      }
       if (month === 11) {
         return <SnowEffect />;
       }
