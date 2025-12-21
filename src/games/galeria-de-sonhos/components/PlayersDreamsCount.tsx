@@ -55,7 +55,7 @@ export function PlayersDreamsCount({ players, playerInNightmareId }: PlayersDrea
                         infinite: true,
                       })}
                     >
-                      {player.name} <Translate pt="tá em pesadelo!" en="is in a nightmare" />
+                      {player.name} <Translate pt="está em um pesadelo!" en="is in a nightmare" />
                     </div>
                   ) : undefined
                 }
