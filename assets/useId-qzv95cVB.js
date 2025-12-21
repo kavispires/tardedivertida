@@ -1,0 +1,1 @@
+import{r,d$ as d}from"./index-BwXlJHSy.js";function I(){return{...d}.useId}let u=0;const s=I(),i=s?(function(e){const t=s();return e||t}):(function(e){const[t,o]=r.useState("ssr-id");return r.useEffect(()=>{const c=u;u+=1,o(`rc_unique_${c}`)},[]),e||t});export{i as u};
