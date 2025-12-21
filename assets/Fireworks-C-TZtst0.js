@@ -1,1 +1,0 @@
-import{j as s}from"./index-BbyNXcvu.js";function e(){return s.jsxs("div",{className:"fireworks",children:[s.jsx("div",{className:"fireworks__before"}),s.jsx("div",{className:"fireworks__after"})]})}export{e as F};

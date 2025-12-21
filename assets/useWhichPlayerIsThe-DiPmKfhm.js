@@ -1,1 +1,0 @@
-import{as as l,r as t,cP as n}from"./index-BbyNXcvu.js";function E(e="activePlayer",s={},a={}){const[c]=l("userId"),[r,u]=t.useState(n),[i,o]=t.useState(!1);return t.useEffect(()=>{const P=s?.[e];u(a?.[P]??{}),o(s?.[e]===c)},[a,e,s,c]),[r,i]}export{E as u};
