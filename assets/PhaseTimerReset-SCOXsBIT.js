@@ -1,0 +1,1 @@
+import{r,j as a}from"./index-Dm74Z5K1.js";function i({goToNextStep:e}){const t=r.useRef(!1);return r.useEffect(()=>{if(t.current)return;t.current=!0;const s=()=>new Promise(n=>setTimeout(n,100));(async()=>(await s(),e()))()},[e]),a.jsx("div",{})}export{i as P};
