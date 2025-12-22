@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 // Ant Design Resources
@@ -6,6 +6,8 @@ import { AppstoreFilled, HeartFilled, HeartOutlined, QuestionCircleFilled } from
 import { Button, Drawer, Space } from 'antd';
 // Components
 import { Translate } from 'components/language';
+// Internal
+import { useDailyGlobalStore } from '../hooks/useDailyGlobalStore';
 
 type MenuProps = {
   hearts: number;
@@ -48,6 +50,13 @@ type RulesModalProps = {
 
 function RulesModal({ rules, defaultOpen }: RulesModalProps) {
   const [open, setOpen] = useState(defaultOpen);
+  const [, setRulesOpen] = useDailyGlobalStore('rulesOpen');
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only open matters
+  useEffect(() => {
+    // Update the global store's rulesOpen state when the drawer is opened or closed
+    setRulesOpen(open);
+  }, [open]);
 
   return (
     <>

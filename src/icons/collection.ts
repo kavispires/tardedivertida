@@ -85,6 +85,7 @@ export * from './DailyImagesGameIcon';
 export * from './DailyJudgingGameIcon';
 export * from './DailyMemoryGridGameIcon';
 export * from './DailyMovieGameIcon';
+export * from './DailyPuzzleGameIcon';
 export * from './DailySuspectGameIcon';
 export * from './DailyWarehouseGameIcon';
 export * from './DailyWordGameIcon';
