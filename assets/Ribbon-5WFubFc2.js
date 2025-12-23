@@ -1,0 +1,1 @@
+import{j as n,c as r,bv as t,bX as i}from"./index-C2-SKf40.js";function e({label:o,position:s="absolute"}){return n.jsx("div",{className:r("ribbon",`ribbon--${s}`),children:n.jsx("div",{className:r("ribbon__content",`ribbon__content--${o}`,`color-background--${i(o)}`,t("bounceIn")),children:o})})}export{e as R};
