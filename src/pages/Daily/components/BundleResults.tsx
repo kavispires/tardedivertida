@@ -180,6 +180,12 @@ function getResultForGame(data: DailyResponse[keyof DailyResponse], language: La
         language,
       });
     }
+    case 'vitrais': {
+      return ALL_HELPERS.VITRAIS.getWrittenResult({
+        data,
+        language,
+      });
+    }
 
     // Add other games here as needed
     default:

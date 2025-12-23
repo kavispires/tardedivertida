@@ -5,7 +5,7 @@ import { DailyPuzzleGameIcon } from 'icons/DailyPuzzleGameIcon';
 export const SETTINGS: GameSettings = {
   KEY: 'VITRAIS',
   ROUTE: 'vitrais',
-  RELEASE_DATE: '2025-06-07',
+  RELEASE_DATE: '2025-12-24',
   COLOR: 'rgba(255, 150, 29, 0.85)',
   EMOJI: '🧩',
   HUB_ICON: DailyPuzzleGameIcon,
@@ -15,8 +15,8 @@ export const SETTINGS: GameSettings = {
     en: 'Are you puzzled enough to do this?',
     pt: 'Já quebrou a cabeça hoje?',
   },
-  VERSION: 'beta',
+  VERSION: 'stable',
   // Custom settings
   HEARTS: 5,
-  HEART_LOSS_INTERVAL_SECONDS: 25,
+  HEART_LOSS_INTERVAL_SECONDS: 30,
 };

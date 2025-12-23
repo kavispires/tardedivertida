@@ -36,7 +36,7 @@ type Entry = GameSettings & {
   disabled?: boolean;
 };
 
-const COMING_SOON_ENTRY: Entry = {
+const _COMING_SOON_ENTRY: Entry = {
   KEY: '',
   ROUTE: '',
   RELEASE_DATE: moment().add(1, 'year').format('YYYY-MM-DD'),
@@ -61,6 +61,7 @@ const GAMES: Entry[] = [
   ALL_SETTINGS.PALAVREADO,
   ALL_SETTINGS.PORTAIS_MAGICOS,
   ALL_SETTINGS.QUARTETOS,
+  ALL_SETTINGS.VITRAIS,
 ];
 
 const CONTRIBUTIONS: Entry[] = [
@@ -76,14 +77,13 @@ const CONTRIBUTIONS: Entry[] = [
 ];
 
 const DEMOS: Entry[] = [
-  ALL_SETTINGS.VITRAIS,
-  {
-    ...COMING_SOON_ENTRY,
-    HUB_ICON: DailyCrimeGameIcon,
-    HUB_NAME: { pt: 'Criminologia', en: 'Criminology' },
-    COLOR: 'rgba(243, 232, 145, 0.85)',
-    VERSION: 'disabled',
-  },
+  // {
+  //   ...COMING_SOON_ENTRY,
+  //   HUB_ICON: DailyCrimeGameIcon,
+  //   HUB_NAME: { pt: 'Criminologia', en: 'Criminology' },
+  //   COLOR: 'rgba(243, 232, 145, 0.85)',
+  //   VERSION: 'disabled',
+  // },
 ];
 
 export function Hub() {
@@ -113,13 +113,15 @@ export function Hub() {
         <HubList list={CONTRIBUTIONS} width={width} startingIndex={GAMES.length} />
       </div>
 
-      <div className="hub">
-        <Typography.Title level={5}>
-          <Translate pt="Demos" en="Demos" />
-        </Typography.Title>
+      {DEMOS.length > 0 && (
+        <div className="hub">
+          <Typography.Title level={5}>
+            <Translate pt="Demos" en="Demos" />
+          </Typography.Title>
 
-        <HubList list={DEMOS} width={width} startingIndex={GAMES.length} />
-      </div>
+          <HubList list={DEMOS} width={width} startingIndex={GAMES.length} />
+        </div>
+      )}
 
       <BundleResults list={GAMES} />
 

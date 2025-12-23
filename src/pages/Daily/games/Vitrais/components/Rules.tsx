@@ -14,6 +14,7 @@ export function Rules({ date }: RulesProps) {
   return (
     <RulesWrapper
       date={date}
+      betaVersion
       basicRules={
         <Translate
           pt={
@@ -25,7 +26,8 @@ export function Rules({ date }: RulesProps) {
                 você tem sobrando.
               </li>
               <li>
-                Você tem {SETTINGS.HEARTS} <HeartFilled /> e perde um coração a cada 25 segundos. Boa sorte!
+                Você tem {SETTINGS.HEARTS} <HeartFilled /> e perde um coração a cada{' '}
+                {SETTINGS.HEART_LOSS_INTERVAL_SECONDS} segundos. Boa sorte!
               </li>
             </>
           }
@@ -37,7 +39,8 @@ export function Rules({ date }: RulesProps) {
                 For each piece you place correctly, you earn 1 point + the amount of hearts you have left.
               </li>
               <li>
-                You have {SETTINGS.HEARTS} <HeartFilled /> and lose one heart every 25 seconds. Good luck!
+                You have {SETTINGS.HEARTS} <HeartFilled /> and lose one heart every{' '}
+                {SETTINGS.HEART_LOSS_INTERVAL_SECONDS} seconds. Good luck!
               </li>
             </>
           }

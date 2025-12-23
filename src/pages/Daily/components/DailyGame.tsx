@@ -65,6 +65,10 @@ export function DemoGame({ GameComponent, useDemoHook, lsKey }: DemoGameProps) {
   }
 
   const demoData = demo?.data;
+  // biome-ignore lint/suspicious/noConsole: on purpose
+  console.log('Demo Data:');
+  // biome-ignore lint/suspicious/noConsole: on purpose
+  console.log(JSON.stringify(demoData));
 
   if (demo.isError || !demoData || typeof demoData !== 'object') {
     return <DailyError />;

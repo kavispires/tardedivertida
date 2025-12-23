@@ -12,7 +12,6 @@ import type { Me } from 'types/user';
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { useTDImageCardUrl } from 'hooks/useTDImageCardUrl';
 // Icons
-import { DailyMemoryGridGameIcon } from 'icons/DailyMemoryGridGameIcon';
 import { DailyPuzzleGameIcon } from 'icons/DailyPuzzleGameIcon';
 // Components
 import { DualTranslate, Translate } from 'components/language';
