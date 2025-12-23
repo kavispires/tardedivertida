@@ -61,13 +61,6 @@ const GAMES: Entry[] = [
   ALL_SETTINGS.PALAVREADO,
   ALL_SETTINGS.PORTAIS_MAGICOS,
   ALL_SETTINGS.QUARTETOS,
-  {
-    ...COMING_SOON_ENTRY,
-    HUB_ICON: DailyCrimeGameIcon,
-    HUB_NAME: { pt: 'Criminologia', en: 'Criminology' },
-    COLOR: 'rgba(243, 232, 145, 0.85)',
-    VERSION: 'disabled',
-  },
 ];
 
 const CONTRIBUTIONS: Entry[] = [
@@ -80,6 +73,17 @@ const CONTRIBUTIONS: Entry[] = [
   //   COLOR: 'rgba(240, 240, 228, 0.85)',
   //   disabled: true,
   // },
+];
+
+const DEMOS: Entry[] = [
+  ALL_SETTINGS.VITRAIS,
+  {
+    ...COMING_SOON_ENTRY,
+    HUB_ICON: DailyCrimeGameIcon,
+    HUB_NAME: { pt: 'Criminologia', en: 'Criminology' },
+    COLOR: 'rgba(243, 232, 145, 0.85)',
+    VERSION: 'disabled',
+  },
 ];
 
 export function Hub() {
@@ -107,6 +111,14 @@ export function Hub() {
         </Typography.Title>
 
         <HubList list={CONTRIBUTIONS} width={width} startingIndex={GAMES.length} />
+      </div>
+
+      <div className="hub">
+        <Typography.Title level={5}>
+          <Translate pt="Demos" en="Demos" />
+        </Typography.Title>
+
+        <HubList list={DEMOS} width={width} startingIndex={GAMES.length} />
       </div>
 
       <BundleResults list={GAMES} />

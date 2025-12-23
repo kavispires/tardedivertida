@@ -39,6 +39,16 @@ type DemoGameProps = {
   lsKey: string;
 };
 
+/**
+ * Renders a demo game component by loading challenge data using a custom hook,
+ * resetting relevant local storage on mount, and handling loading and error states.
+ *
+ * @param GameComponent - The React component to render for the game, which receives `data` and `currentUser` as props.
+ * @param useDemoHook - A custom hook that fetches the demo challenge data and returns loading, error, and data states.
+ * @param lsKey - (Optional) A local storage key used to reset the daily game state on component mount.
+ *
+ * @returns The loading, error, or game component based on the current state of the demo data.
+ */
 export function DemoGame({ GameComponent, useDemoHook, lsKey }: DemoGameProps) {
   const { currentUser } = useCurrentUserContext();
 
