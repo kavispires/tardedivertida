@@ -1,1 +1,0 @@
-import{j as s}from"./index-CoVhiA3v.js";function e(){return s.jsxs("div",{className:"fireworks",children:[s.jsx("div",{className:"fireworks__before"}),s.jsx("div",{className:"fireworks__after"})]})}export{e as F};
