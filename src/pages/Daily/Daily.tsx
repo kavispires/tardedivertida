@@ -24,6 +24,7 @@ import { DailyQuartetosGame } from './games/Quartetos/DailyQuartetosGame';
 import { DailyTaNaCaraGame } from './games/TaNaCara/DailyTaNaCaraGame';
 import { DailyEspionagemGame } from './games/Espionagem/DailyEspionagemGame';
 import { DailyOrganikuGame } from './games/Organiku/DailyOrganikuGame';
+import { DailyVitraisGame } from './games/Vitrais/DailyVitraisGame';
 // Sass
 import './utils/daily.scss';
 
@@ -71,6 +72,7 @@ function DailyPage() {
       'portais-magicos': DailyPortaisMagicosGame,
       quartetos: DailyQuartetosGame,
       'teoria-de-conjuntos': DailyTeoriaDeConjuntosGame,
+      vitrais: DailyVitraisGame,
       // Contribute
       picaco: DailyPicacoGame,
       'ta-na-cara': DailyTaNaCaraGame,
