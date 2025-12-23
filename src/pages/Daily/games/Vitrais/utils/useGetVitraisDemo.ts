@@ -4,7 +4,16 @@ import { sample } from 'lodash';
 import type { DailyVitraisEntry } from './types';
 import { generatePuzzleData } from './puzzleUtils';
 
-const DEMO_CARD_IDS = ['td-d1-106', 'td-d1-111', 'td-d1-191', 'td-d1-207', 'td-d1-216'];
+const DEMO_CARD_IDS = [
+  'td-d1-25',
+  'td-d1-21',
+  'td-d11-217',
+  'td-d11-133',
+  'td-d11-110',
+  'td-d12-175',
+  'td-d12-155',
+  'td-d12-126',
+];
 
 export function useGetVitraisDemo() {
   return useQuery<DailyVitraisEntry>({
