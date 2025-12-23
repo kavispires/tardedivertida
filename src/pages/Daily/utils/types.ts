@@ -13,6 +13,7 @@ import type { DailyTaNaCaraEntry } from '../games/TaNaCara/utils/types';
 import type { DailyPortaisMagicosEntry } from '../games/PortaisMagicos/utils/types';
 import type { DailyOrganikuEntry } from '../games/Organiku/utils/types';
 import type { DailyEspionagemEntry } from '../games/Espionagem/utils/types';
+import type { DailyVitraisEntry } from '../games/Vitrais/utils/types';
 
 export type DateKey = string; // Format YYYY-MM-DD
 
@@ -30,6 +31,7 @@ export type DailyResponse = {
   'portais-magicos': DailyPortaisMagicosEntry;
   quartetos: DailyQuartetosEntry;
   'teoria-de-conjuntos': DailyTeoriaDeConjuntosEntry;
+  vitrais?: DailyVitraisEntry;
   // Contributions
   artista: DailyPicacoEntry;
   'ta-na-cara': DailyTaNaCaraEntry;

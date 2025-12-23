@@ -12,6 +12,7 @@ import * as PORTAIS_MAGICOS from '../games/PortaisMagicos/utils/helpers';
 import * as QUARTETOS from '../games/Quartetos/utils/helpers';
 import * as TEORIA_DE_CONJUNTOS from '../games/TeoriaDeConjuntos/utils/helpers';
 import * as TA_NA_CARA from '../games/TaNaCara/utils/helpers';
+import * as VITRAIS from '../games/Vitrais/utils/helpers';
 
 export const ALL_HELPERS = {
   AQUI_O,
@@ -27,4 +28,5 @@ export const ALL_HELPERS = {
   QUARTETOS,
   TEORIA_DE_CONJUNTOS,
   TA_NA_CARA,
+  VITRAIS,
 };
