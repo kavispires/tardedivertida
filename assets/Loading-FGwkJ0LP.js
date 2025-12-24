@@ -1,0 +1,1 @@
+import{j as a,y as n,c as r,I as i,O as c}from"./index-C3TN4MTR.js";import{A as e}from"./AnimatedLoaderIcon-A4dXIaNa.js";function x({message:o,margin:s=!1}){return a.jsxs(n,{className:r("loading",s&&"loading--margin"),children:[a.jsx(i,{icon:a.jsx(e,{}),style:{display:"block"}}),!!o&&a.jsx(c.Text,{children:o})]})}export{x as L};
