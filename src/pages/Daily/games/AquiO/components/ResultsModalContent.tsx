@@ -34,7 +34,7 @@ const titles = [
     <IconAvatar icon={<ApplauseIcon />} /> <Translate pt="Muito bom!" en="Very good!" />
   </Fragment>,
   <Fragment key="4">
-    <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Parabéns!" en="Congratulations!" />
+    <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Quase lá!" en="Almost there!" />
   </Fragment>,
   <Fragment key="5">
     <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Incrível!" en="Incredible!" />
@@ -43,8 +43,8 @@ const titles = [
 
 const getTitle = (progress: number, remainingHearts: number) => {
   if (progress <= 3 || remainingHearts === 0) return titles[0];
-  if (progress <= 8) return titles[1];
-  if (progress <= 10) return titles[2];
+  if (progress <= 10) return titles[1];
+  if (progress <= 12) return titles[2];
   if (progress < 15) return titles[3];
 
   return titles[4];
