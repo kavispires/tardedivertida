@@ -1,1 +1,0 @@
-import{j as r}from"./index-DIftwjO2.js";import{P as m}from"./PlayersIcon-Df_WmH-u.js";import{M as a}from"./MetricHighlight-yso2MWC2.js";function x({children:i,type:o,iconSize:t,className:s}){return r.jsx(a,{icon:r.jsx(m,{}),type:o,iconSize:t,className:s,children:i})}export{x as P};
