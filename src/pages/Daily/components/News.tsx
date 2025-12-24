@@ -15,7 +15,21 @@ import { NEWS_LIST } from './NewsList';
 const NEWS_KEY = 'daily-news';
 
 // Only use news that are today or earlier
-const AVAILABLE_NEWS_LIST = NEWS_LIST.filter((item) => moment(item.date).isSameOrBefore(moment(), 'day'));
+const UP_TO_TODAY_NEWS_LIST = NEWS_LIST.filter((item) => moment(item.date).isSameOrBefore(moment(), 'day'));
+
+// Filtered news list based on exact dates and today
+const AVAILABLE_NEWS_LIST = (() => {
+  const today = moment().format('YYYY-MM-DD');
+
+  return UP_TO_TODAY_NEWS_LIST.filter((item) => {
+    // If exact is true, only include if date matches today
+    if (item.exact) {
+      return item.date === today;
+    }
+    // Otherwise, include the item
+    return true;
+  });
+})();
 
 /**
  * Checks if the news modal should auto-open based on the last seen news date
