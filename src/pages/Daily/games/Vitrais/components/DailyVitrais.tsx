@@ -71,7 +71,8 @@ export function DailyVitrais({ data }: DailyVitraisProps) {
         />
 
         <Region>
-          <Typography.Text>
+          <Typography.Text className="center">{data.title}</Typography.Text>
+          <Typography.Text className="center">
             {lockedPieces.length}/{data.pieces.length} - {time} - {score} pts
           </Typography.Text>
         </Region>
@@ -145,6 +146,7 @@ export function DailyVitrais({ data }: DailyVitraisProps) {
             hearts={hearts}
             totalTime={totalTime}
             score={score}
+            title={data.title}
           />
         </Modal>
       </DailyContent>
