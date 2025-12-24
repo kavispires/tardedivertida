@@ -22,6 +22,7 @@ type ResultsModalContentProps = {
   hearts: number;
   totalTime: number;
   score: number;
+  title: string;
 };
 
 export function ResultsModalContent({
@@ -30,6 +31,7 @@ export function ResultsModalContent({
   hearts,
   totalTime,
   score,
+  title,
 }: ResultsModalContentProps) {
   const { language } = useLanguage();
 
@@ -62,9 +64,10 @@ export function ResultsModalContent({
       </Typography.Title>
 
       <Typography.Paragraph strong className="center">
-        {score} <Translate pt="pontos" en="points" />
+        "{title}"
         <br />
-        em {Math.floor(totalTime / 60)}:{totalTime % 60} <Translate pt="segundos" en="seconds" />.
+        {score} <Translate pt="pontos" en="points" /> em {Math.floor(totalTime / 60)}:{totalTime % 60}{' '}
+        <Translate pt="segundos" en="seconds" />.
       </Typography.Paragraph>
 
       <CopyToClipboardResult result={result} rows={4} />
