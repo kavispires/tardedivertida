@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 // Icons
+import { CalendarIcon } from 'icons/CalendarIcon';
 import { NewFeatureIcon } from 'icons/NewFeatureIcon';
 import { WeekendIcon } from 'icons/WeekendIcon';
 // Components
@@ -11,9 +12,20 @@ import { ALL_SETTINGS } from '../utils/settings';
 type NewsItem = {
   date: string; // YYYY-MM-DD format
   content: ReactNode;
+  exact?: boolean;
 };
 
 export const NEWS_LIST: NewsItem[] = [
+  {
+    date: '2025-12-25',
+    content: (
+      <>
+        <IconAvatar icon={<CalendarIcon />} size="small" /> <strong>Feliz Natal!</strong> Alguns jogos estão
+        com desafios especiais para você aproveitar a data! Boas festas!
+      </>
+    ),
+    exact: true,
+  },
   {
     date: '2025-12-24',
     content: (
