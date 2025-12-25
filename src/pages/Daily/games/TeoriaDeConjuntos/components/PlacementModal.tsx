@@ -1,9 +1,10 @@
-import { Region } from 'pages/Daily/components/Region';
 // Ant Design Resources
 import { CaretDownOutlined } from '@ant-design/icons';
 import { Flex, Modal } from 'antd';
 // Components
 import { Translate } from 'components/language';
+// Pages
+import { Region } from 'pages/Daily/components/Region';
 // Internal
 import type { useTeoriaDeConjuntosEngine } from '../utils/useTeoriaDeConjuntosEngine';
 import { Thing } from './Thing';

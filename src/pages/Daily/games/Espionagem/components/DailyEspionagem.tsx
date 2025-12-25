@@ -1,7 +1,5 @@
 import clsx from 'clsx';
 import { motion } from 'motion/react';
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { Region } from 'pages/Daily/components/Region';
 import { useState } from 'react';
 // Ant Design Resources
 import { BarChartOutlined, BulbOutlined, CheckCircleOutlined } from '@ant-design/icons';
@@ -18,6 +16,9 @@ import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
 import { getSuspectImageId } from 'components/cards/SuspectCard';
 import { ImageCard } from 'components/image-cards';
 import { DualTranslate, Translate } from 'components/language';
+// Pages
+import { DailyContent } from 'pages/Daily/components/DailyContent';
+import { Region } from 'pages/Daily/components/Region';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';

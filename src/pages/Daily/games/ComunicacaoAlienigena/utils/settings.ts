@@ -1,6 +1,7 @@
-import type { GameSettings } from 'pages/Daily/utils/types';
 // Icons
 import { DailyAlienGameIcon } from 'icons/DailyAlienGameIcon';
+// Pages
+import type { GameSettings } from 'pages/Daily/utils/types';
 
 export const SETTINGS: GameSettings = {
   KEY: 'COMUNICACAO_ALIENIGENA',

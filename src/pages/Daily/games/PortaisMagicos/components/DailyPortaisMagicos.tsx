@@ -1,5 +1,3 @@
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { Region, RegionText } from 'pages/Daily/components/Region';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { BarChartOutlined, SendOutlined } from '@ant-design/icons';
@@ -12,6 +10,9 @@ import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { DailyImagesGameIcon } from 'icons/DailyImagesGameIcon';
 // Components
 import { DualTranslate, Translate } from 'components/language';
+// Pages
+import { DailyContent } from 'pages/Daily/components/DailyContent';
+import { Region, RegionText } from 'pages/Daily/components/Region';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';

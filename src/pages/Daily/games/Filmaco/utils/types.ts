@@ -1,3 +1,4 @@
+// Pages
 import type { DateKey, LettersDictionary } from 'pages/Daily/utils/types';
 
 export type GameState = {

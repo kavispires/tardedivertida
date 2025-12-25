@@ -1,4 +1,3 @@
-import type { LettersDictionary } from 'pages/Daily/utils/types';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Avatar, Space } from 'antd';
@@ -6,6 +5,8 @@ import { Avatar, Space } from 'antd';
 import { BoxBlankIcon } from 'icons/BoxBlankIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
+// Pages
+import type { LettersDictionary } from 'pages/Daily/utils/types';
 // Internal
 import { cleanupLetter, isLetter } from '../utils/helpers';
 

@@ -1,9 +1,10 @@
 import { motion } from 'motion/react';
-import { DailyItem } from 'pages/Daily/components/DailyItem';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { getAnimation } from 'utils/animations';
+// Pages
+import { DailyItem } from 'pages/Daily/components/DailyItem';
 
 type PreloadItemsProps = {
   items: string[];

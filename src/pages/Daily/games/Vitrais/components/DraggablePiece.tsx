@@ -1,8 +1,9 @@
 import { useDraggable } from '@dnd-kit/core';
 import { motion } from 'motion/react';
-import { playSFX } from 'pages/Daily/utils/soundEffects';
 import type React from 'react';
 import { useEffect, useRef } from 'react';
+// Pages
+import { playSFX } from 'pages/Daily/utils/soundEffects';
 // Internal
 import type { Piece, Point } from '../utils/types';
 

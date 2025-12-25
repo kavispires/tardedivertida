@@ -2,11 +2,11 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "qual-quesito",
-  "version": "0.0.6",
-  "release": "planned",
+  "version": "0.0.9",
+  "release": "dev",
   "available": false,
   "title": {
-    "pt": "Qual Quesito",
+    "pt": "Qual O Quesito?",
     "en": "And The Category Is"
   },
   "popularName": {
@@ -39,5 +39,5 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive"]
+  "tags": ["competitive", "writing", "voting"]
 }

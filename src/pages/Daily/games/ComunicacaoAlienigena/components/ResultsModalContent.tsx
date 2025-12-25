@@ -1,7 +1,4 @@
 import { motion } from 'motion/react';
-import { DailyItem } from 'pages/Daily/components/DailyItem';
-import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { Region } from 'pages/Daily/components/Region';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex, Space, Typography } from 'antd';
@@ -17,6 +14,10 @@ import { IconAvatar } from 'components/avatars';
 import { SignCard } from 'components/cards/SignCard';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+// Pages
+import { DailyItem } from 'pages/Daily/components/DailyItem';
+import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
+import { Region } from 'pages/Daily/components/Region';
 // Internal
 import { SETTINGS } from '../utils/settings';
 import type { DailyComunicacaoAlienigenaEntry } from '../utils/types';

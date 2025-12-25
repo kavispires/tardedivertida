@@ -1,4 +1,3 @@
-import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex, Typography } from 'antd';
@@ -14,6 +13,8 @@ import { ImageCard } from 'components/image-cards';
 import { DualTranslate, Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TextHighlight } from 'components/text';
+// Pages
+import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 // Internal
 import { SETTINGS } from '../utils/settings';
 import { writeResult } from '../utils/helpers';

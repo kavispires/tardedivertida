@@ -1,5 +1,3 @@
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
@@ -19,6 +17,9 @@ import { DualTranslate, Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { Instruction } from 'components/text';
+// Pages
+import { DailyContent } from 'pages/Daily/components/DailyContent';
+import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';

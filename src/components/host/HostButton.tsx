@@ -1,11 +1,13 @@
 import clsx from 'clsx';
+import type { ComponentProps } from 'react';
 // Ant Design Resources
 import { RocketOutlined } from '@ant-design/icons';
+// Hooks
+import { useCountdown } from 'hooks/useCountdown';
+// Components
+import { SendButton } from 'components/buttons';
 // Sass
 import './HostButton.scss';
-import { useCountdown } from 'hooks/useCountdown';
-import { SendButton } from 'components/buttons';
-import type { ComponentProps } from 'react';
 
 /**
  * Host Button (orange with rocket icon)

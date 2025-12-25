@@ -1,4 +1,3 @@
-import { Region } from 'pages/Daily/components/Region';
 // Ant Design Resources
 import { SkinFilled } from '@ant-design/icons';
 import { Flex, Modal, Typography } from 'antd';
@@ -8,6 +7,8 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { getSuspectImageId } from 'components/cards/SuspectCard';
 import { ImageCard } from 'components/image-cards';
 import { DualTranslate, Translate } from 'components/language';
+// Pages
+import { Region } from 'pages/Daily/components/Region';
 // Internal
 import type { DailyEspionagemEntry } from '../utils/types';
 import type { useEspionagemEngine } from '../utils/useEspionagemEngine';

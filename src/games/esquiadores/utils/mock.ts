@@ -1,4 +1,5 @@
 import { sample } from 'lodash';
+// Types
 import type { GamePlayers } from 'types/player';
 
 export const mockChoices = (): string[] => {

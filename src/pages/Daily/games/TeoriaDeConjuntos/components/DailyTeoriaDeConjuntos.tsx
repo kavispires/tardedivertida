@@ -1,6 +1,4 @@
 import clsx from 'clsx';
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { Region, RegionText } from 'pages/Daily/components/Region';
 import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
@@ -15,6 +13,9 @@ import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { DualTranslate, Translate } from 'components/language';
+// Pages
+import { DailyContent } from 'pages/Daily/components/DailyContent';
+import { Region, RegionText } from 'pages/Daily/components/Region';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';

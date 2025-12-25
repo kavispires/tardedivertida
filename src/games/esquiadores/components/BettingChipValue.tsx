@@ -1,5 +1,6 @@
-import { Avatar, Tooltip } from 'antd';
 import type { ReactNode } from 'react';
+// Ant Design Resources
+import { Avatar, Tooltip } from 'antd';
 
 type BettingChipValueProps = {
   value: number;

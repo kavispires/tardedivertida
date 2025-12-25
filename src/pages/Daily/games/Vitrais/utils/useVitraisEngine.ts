@@ -1,13 +1,14 @@
 import { type DragEndEvent, useSensor, useSensors, PointerSensor } from '@dnd-kit/core';
 import moment from 'moment';
+import { useEffect, useRef, useState } from 'react';
+import { useStopwatch } from 'react-timer-hook';
+// Pages
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyGlobalStore } from 'pages/Daily/hooks/useDailyGlobalStore';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
-import { useEffect, useRef, useState } from 'react';
-import { useStopwatch } from 'react-timer-hook';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyVitraisEntry, GameState, Piece, PieceState, SessionState } from './types';

@@ -1,4 +1,8 @@
 import { chunk, cloneDeep } from 'lodash';
+import { useEffect } from 'react';
+// Services
+import { logAnalyticsEvent } from 'services/firebase';
+// Pages
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
@@ -6,9 +10,6 @@ import { getAnalyticsEventName } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { vibrate } from 'pages/Daily/utils/vibrate';
-import { useEffect } from 'react';
-// Services
-import { logAnalyticsEvent } from 'services/firebase';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyPalavreadoEntry, GameState, PalavreadoLetter, SessionState } from './types';

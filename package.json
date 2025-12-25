@@ -1,7 +1,7 @@
 {
 	"name": "tardedivertida",
 	"homepage": "http://www.kavispires.com/tardedivertida/",
-	"version": "50.8.10",
+	"version": "50.8.13",
 	"private": true,
 	"type": "module",
 	"dependencies": {
@@ -49,7 +49,7 @@
 		"serve": "vite preview",
 		"predeploy": "yarn build",
 		"deploy": "gh-pages -d build",
-		"lint": "biome check --staged --write --no-errors-on-unmatched",
+		"lint": "biome check . --write --no-errors-on-unmatched",
 		"prepare": "husky",
 		"update-commit": "bash scripts/update_commit.sh",
 		"sort-imports": "node scripts/sort-imports-in-folder.cjs",

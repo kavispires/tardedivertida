@@ -1,16 +1,18 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
+// Hooks
+import { useMock } from 'hooks/useMock';
 // Components
 import { Translate } from 'components/language';
+import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
+// Internal
 import type { PhaseBetsState, SubmitBetsPayload } from './utils/types';
+import { mockSkierBets } from './utils/mock';
 import { ChipsHighlight } from './components/Highlights';
-import { TurnOrder } from 'components/players';
 import { Mountain } from './components/Mountain';
 import { Lodges } from './components/Lodges';
-import { useMock } from 'hooks/useMock';
-import { mockSkierBets } from './utils/mock';
 import { SkierBets } from './components/SkierBets';
 
 type StepChoosePlayersProps = {

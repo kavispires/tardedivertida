@@ -1,6 +1,4 @@
 import clsx from 'clsx';
-import { DailyItem } from 'pages/Daily/components/DailyItem';
-import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex, Typography } from 'antd';
@@ -15,6 +13,9 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+// Pages
+import { DailyItem } from 'pages/Daily/components/DailyItem';
+import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 // Internal
 import { SETTINGS } from '../utils/settings';
 import type { DailyOrganikuEntry } from '../utils/types';

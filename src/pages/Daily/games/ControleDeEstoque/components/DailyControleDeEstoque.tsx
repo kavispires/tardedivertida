@@ -1,5 +1,3 @@
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { Region } from 'pages/Daily/components/Region';
 import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
@@ -10,6 +8,9 @@ import type { Me } from 'types/user';
 import { DailyWarehouseGameIcon } from 'icons/DailyWarehouseGameIcon';
 // Components
 import { DualTranslate, Translate } from 'components/language';
+// Pages
+import { DailyContent } from 'pages/Daily/components/DailyContent';
+import { Region } from 'pages/Daily/components/Region';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { PHASES, SETTINGS } from '../utils/settings';

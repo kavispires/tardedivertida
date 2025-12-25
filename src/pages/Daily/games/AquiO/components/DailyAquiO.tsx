@@ -1,4 +1,3 @@
-import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
@@ -13,6 +12,8 @@ import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate, Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TimerBar } from 'components/timers';
+// Pages
+import { DailyContent } from 'pages/Daily/components/DailyContent';
 // Internal
 import { SETTINGS } from '../utils/settings';
 import type { DailyAquiOEntry } from '../utils/types';
