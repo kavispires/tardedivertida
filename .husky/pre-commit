@@ -100,17 +100,28 @@ check_game_versions() {
 
 sort_imports() {
   echo "♻️ Sorting imports"
+  local files_to_format=""
   # Find and sort the imports in .ts and .tsx files, then re-add them to the staging area
-  git diff --name-only --cached | grep -E '^src/.*\.(ts|tsx)$' | while read -r file; do
+  local staged_files=$(git diff --name-only --cached | grep -E '^src/.*\.(ts|tsx)$')
+
+  for file in $staged_files; do
     if git ls-files --error-unmatch "$file" >/dev/null 2>&1; then
       node ./scripts/sort-imports.cjs "$file"
-      npx biome check --staged --write "$file"
       git add "$file"
       echo "   ➕ Sorted and re-added $file to staging."
+      files_to_format="$files_to_format $file"
     else
       echo "   ➖ Skipping deleted file: $file"
     fi
   done
+
+  # Run biome on all files after sorting imports
+  if [ -n "$files_to_format" ]; then
+    npx biome check --staged --write $files_to_format
+    git add $files_to_format
+    echo "   ✨ Biome formatting applied to all files"
+  fi
+
   echo "✅ Done"
 }
 
