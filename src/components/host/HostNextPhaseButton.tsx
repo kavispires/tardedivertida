@@ -113,7 +113,7 @@ export function HostNextPhaseButton({
           />
         </Tooltip>
         <HostButton
-          disabled={isLoading}
+          disabled={isLoading || (hasTimer && timeLeft <= 5)}
           onClick={handleClick}
           icon={
             hasTimer && (
