@@ -1,11 +1,12 @@
+import { useMutation } from '@tanstack/react-query';
+import { doc, setDoc } from 'firebase/firestore';
 // Ant Design Resources
 import { BugFilled } from '@ant-design/icons';
 import { Button, type ButtonProps } from 'antd';
+// Services
+import { firestore } from 'services/firebase';
 // Internal
 import { DebugOnly } from './DebugOnly';
-import { useMutation } from '@tanstack/react-query';
-import { firestore } from 'services/firebase';
-import { doc, setDoc } from 'firebase/firestore';
 
 /**
  * Overwrite the state of a game in Firestore.

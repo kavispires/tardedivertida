@@ -1,9 +1,10 @@
 import clsx from 'clsx';
 import { motion } from 'motion/react';
-import { DailyItem } from 'pages/Daily/components/DailyItem';
 import { useMemo } from 'react';
 // Utils
 import { getAnimation } from 'utils/animations';
+// Pages
+import { DailyItem } from 'pages/Daily/components/DailyItem';
 // Internal
 import type { DailyOrganikuEntry } from '../utils/types';
 import { getRowAndColumnIndexes } from '../utils/helpers';

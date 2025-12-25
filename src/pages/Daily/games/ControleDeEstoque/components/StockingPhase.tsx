@@ -1,9 +1,10 @@
-import { Region, RegionHint, RegionText } from 'pages/Daily/components/Region';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
 import { Translate } from 'components/language';
+// Pages
+import { Region, RegionHint, RegionText } from 'pages/Daily/components/Region';
 // Internal
 import type { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
 import { StockingBoard } from './StockingBoard';

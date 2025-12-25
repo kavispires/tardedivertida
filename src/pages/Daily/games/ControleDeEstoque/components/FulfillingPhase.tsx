@@ -1,4 +1,3 @@
-import { Region, RegionText } from 'pages/Daily/components/Region';
 // Ant Design Resources
 import { BarChartOutlined, WarningFilled } from '@ant-design/icons';
 import { Button } from 'antd';
@@ -6,6 +5,8 @@ import { Button } from 'antd';
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
+// Pages
+import { Region, RegionText } from 'pages/Daily/components/Region';
 // Internal
 import { PHASES } from '../utils/settings';
 import type { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';

@@ -1,7 +1,8 @@
 import clsx from 'clsx';
-import { DailyItem } from 'pages/Daily/components/DailyItem';
 // Ant Design Resources
 import { Badge, Flex } from 'antd';
+// Pages
+import { DailyItem } from 'pages/Daily/components/DailyItem';
 // Internal
 import type { useOrganikuEngine } from '../utils/useOrganikuEngine';
 

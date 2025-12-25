@@ -1,8 +1,4 @@
 import { motion } from 'motion/react';
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { Region } from 'pages/Daily/components/Region';
-import { StepDots } from 'pages/Daily/components/StepDots';
 import { useState } from 'react';
 // Ant Design Resources
 import {
@@ -32,6 +28,11 @@ import { ImageCardPreloadHand } from 'components/image-cards';
 import { DualTranslate, Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction } from 'components/text';
+// Pages
+import { DailyContent } from 'pages/Daily/components/DailyContent';
+import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
+import { Region } from 'pages/Daily/components/Region';
+import { StepDots } from 'pages/Daily/components/StepDots';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';

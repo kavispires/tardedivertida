@@ -1,4 +1,3 @@
-import { Region } from 'pages/Daily/components/Region';
 import type { ReactNode } from 'react';
 import { useToggle } from 'react-use';
 // Ant Design Resources
@@ -6,6 +5,8 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Button, Modal, Typography } from 'antd';
 // Components
 import { Translate } from 'components/language';
+// Pages
+import { Region } from 'pages/Daily/components/Region';
 
 type RulesHintsProps = {
   label: ReactNode;

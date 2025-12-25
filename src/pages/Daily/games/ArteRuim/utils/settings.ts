@@ -1,6 +1,7 @@
-import type { GameSettings } from 'pages/Daily/utils/types';
 // Icons
 import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
+// Pages
+import type { GameSettings } from 'pages/Daily/utils/types';
 
 export const SETTINGS: GameSettings = {
   KEY: 'ARTE_RUIM',

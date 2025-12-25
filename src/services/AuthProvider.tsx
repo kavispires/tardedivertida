@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import type { User } from 'firebase/auth';
-import { getToday } from 'pages/Daily/utils';
 import { type ReactNode, createContext, useEffect, useState } from 'react';
 import { useEffectOnce } from 'react-use';
 // Ant Design Resources
@@ -13,6 +12,8 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { print } from 'utils/helpers';
+// Pages
+import { getToday } from 'pages/Daily/utils';
 // Internal
 import { auth } from './firebase';
 import { USER_API, USER_API_ACTIONS } from './adapters';

@@ -1,7 +1,4 @@
 import clsx from 'clsx';
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { DailyItem } from 'pages/Daily/components/DailyItem';
-import { Region } from 'pages/Daily/components/Region';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { ArrowRightOutlined, BarChartOutlined } from '@ant-design/icons';
@@ -20,6 +17,10 @@ import { DivButton } from 'components/buttons/DivButton';
 import { SignCard } from 'components/cards/SignCard';
 import { DualTranslate, Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+// Pages
+import { DailyContent } from 'pages/Daily/components/DailyContent';
+import { DailyItem } from 'pages/Daily/components/DailyItem';
+import { Region } from 'pages/Daily/components/Region';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';

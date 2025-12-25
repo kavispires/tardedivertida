@@ -1,10 +1,11 @@
-import { LoginModal } from 'pages/Me/components/LoginModal';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTitle } from 'react-use';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useLanguage } from 'hooks/useLanguage';
+// Pages
+import { LoginModal } from 'pages/Me/components/LoginModal';
 // Internal
 import { DailyChrome } from './components/DailyChrome';
 import { DailyAquiOGame } from './games/AquiO/DailyAquiOGame';

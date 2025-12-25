@@ -1,6 +1,7 @@
-import type { GameSettings } from 'pages/Daily/utils/types';
 // Icons
 import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
+// Pages
+import type { GameSettings } from 'pages/Daily/utils/types';
 
 export const SETTINGS: GameSettings = {
   KEY: 'PALAVREADO',

@@ -1,6 +1,7 @@
-import { RulesWrapper } from 'pages/Daily/components/RulesWrapper';
 // Components
 import { Translate } from 'components/language';
+// Pages
+import { RulesWrapper } from 'pages/Daily/components/RulesWrapper';
 
 type RulesProps = {
   date: string;

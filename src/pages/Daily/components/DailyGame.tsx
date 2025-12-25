@@ -1,10 +1,11 @@
-import { DailyError } from 'pages/Daily/components/DailyError';
-import { DailyLoading } from 'pages/Daily/components/DailyLoading';
 import { useEffectOnce } from 'react-use';
 // Types
 import type { Me } from 'types/user';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+// Pages
+import { DailyError } from 'pages/Daily/components/DailyError';
+import { DailyLoading } from 'pages/Daily/components/DailyLoading';
 // Internal
 import type { DailyResponse } from '../utils/types';
 import { useDailyChallenge } from '../hooks/useDailyChallenge';

@@ -1,6 +1,7 @@
-import type { GameSettings } from 'pages/Daily/utils/types';
 // Icons
 import { DailyWarehouseGameIcon } from 'icons/DailyWarehouseGameIcon';
+// Pages
+import type { GameSettings } from 'pages/Daily/utils/types';
 
 export const SETTINGS: GameSettings = {
   KEY: 'CONTROLE_DE_ESTOQUE',

@@ -1,12 +1,18 @@
 import type { ReactNode } from 'react';
+// Ant Design Resources
 import { FireFilled } from '@ant-design/icons';
+// Types
 import type { GameRound } from 'types/game';
+// Hooks
 import { useHostActionRequest } from 'hooks/useHostActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
+// Services
 import { HOST_API_ACTIONS } from 'services/adapters';
+// Components
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
+// Internal
 import { AdminOnlyContainer } from './AdminOnlyContainer';
 
 function ButtonLabel({ round }: { round?: GameRound }) {

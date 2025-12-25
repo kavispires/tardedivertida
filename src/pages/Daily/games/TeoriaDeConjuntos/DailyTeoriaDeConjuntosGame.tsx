@@ -1,3 +1,4 @@
+// Pages
 import { DailyGame } from 'pages/Daily/components/DailyGame';
 // Internal
 import { DailyTeoriaDeConjuntos } from './components/DailyTeoriaDeConjuntos';

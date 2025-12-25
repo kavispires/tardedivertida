@@ -1,4 +1,3 @@
-import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Divider, Space, Typography } from 'antd';
@@ -11,6 +10,8 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+// Pages
+import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 // Internal
 import { SETTINGS } from '../utils/settings';
 import { writeResult } from '../utils/helpers';

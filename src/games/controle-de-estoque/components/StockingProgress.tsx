@@ -1,7 +1,9 @@
-import { Translate } from 'components/language';
-import { MetricHighlight } from 'components/metrics/MetricHighlight';
+// Icons
 import { ClockIcon } from 'icons/ClockIcon';
 import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
+// Components
+import { Translate } from 'components/language';
+import { MetricHighlight } from 'components/metrics/MetricHighlight';
 
 type StockingProgressProps = {
   /**

@@ -1,6 +1,3 @@
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { Keyboard } from 'pages/Daily/components/Keyboard';
-import { RegionText } from 'pages/Daily/components/Region';
 import { useState } from 'react';
 // Ant Design Resources
 import { BarChartOutlined } from '@ant-design/icons';
@@ -11,6 +8,10 @@ import type { Me } from 'types/user';
 import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
 // Components
 import { DualTranslate, Translate } from 'components/language';
+// Pages
+import { DailyContent } from 'pages/Daily/components/DailyContent';
+import { Keyboard } from 'pages/Daily/components/Keyboard';
+import { RegionText } from 'pages/Daily/components/Region';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';

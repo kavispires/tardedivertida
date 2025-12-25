@@ -1,7 +1,5 @@
 import { DndContext } from '@dnd-kit/core';
 import { motion } from 'motion/react';
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { Region } from 'pages/Daily/components/Region';
 import { useState } from 'react';
 // Ant Design Resources
 import { BarChartOutlined } from '@ant-design/icons';
@@ -15,6 +13,9 @@ import { useTDImageCardUrl } from 'hooks/useTDImageCardUrl';
 import { DailyPuzzleGameIcon } from 'icons/DailyPuzzleGameIcon';
 // Components
 import { DualTranslate, Translate } from 'components/language';
+// Pages
+import { DailyContent } from 'pages/Daily/components/DailyContent';
+import { Region } from 'pages/Daily/components/Region';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';

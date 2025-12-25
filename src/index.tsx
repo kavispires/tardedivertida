@@ -1,8 +1,9 @@
-import App from 'pages/App';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 // Components
 import ErrorBoundary from 'components/errors/ErrorBoundary';
+// Pages
+import App from 'pages/App';
 // Internal
 import reportWebVitals from './reportWebVitals';
 // Sass

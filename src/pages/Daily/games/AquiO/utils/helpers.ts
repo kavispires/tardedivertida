@@ -1,10 +1,11 @@
 import { chain, cloneDeep, merge, orderBy, random, sample, sampleSize, shuffle } from 'lodash';
-import { generateShareableResult, loadLocalToday } from 'pages/Daily/utils';
-import { STATUSES } from 'pages/Daily/utils/constants';
-import type { BasicResultsOptions } from 'pages/Daily/utils/types';
 // Utils
 import { SEPARATOR } from 'utils/constants';
 import { pluralize } from 'utils/helpers';
+// Pages
+import { generateShareableResult, loadLocalToday } from 'pages/Daily/utils';
+import { STATUSES } from 'pages/Daily/utils/constants';
+import type { BasicResultsOptions } from 'pages/Daily/utils/types';
 // Internal
 import type { AquiODisc, DailyAquiOEntry, GameState } from './types';
 import { SETTINGS } from './settings';

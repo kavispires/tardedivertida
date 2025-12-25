@@ -1,11 +1,4 @@
 import { cloneDeep, difference, shuffle } from 'lodash';
-import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
-import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
-import { getAnalyticsEventName } from 'pages/Daily/utils';
-import { STATUSES } from 'pages/Daily/utils/constants';
-import { playSFX } from 'pages/Daily/utils/soundEffects';
-import { vibrate } from 'pages/Daily/utils/vibrate';
 import { useEffect } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
@@ -13,6 +6,14 @@ import { App } from 'antd';
 import { useLanguage } from 'hooks/useLanguage';
 // Services
 import { logAnalyticsEvent } from 'services/firebase';
+// Pages
+import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
+import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { getAnalyticsEventName } from 'pages/Daily/utils';
+import { STATUSES } from 'pages/Daily/utils/constants';
+import { playSFX } from 'pages/Daily/utils/soundEffects';
+import { vibrate } from 'pages/Daily/utils/vibrate';
 // Internal
 import type { DailyQuartetosEntry, GameState, SessionState } from './types';
 import { SETTINGS } from './settings';

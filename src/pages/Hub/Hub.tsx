@@ -1,5 +1,4 @@
 import { orderBy } from 'lodash';
-import { DevHeader } from 'pages/Dev/DevHeader';
 import { useMemo, useState } from 'react';
 import { useTitle } from 'react-use';
 // Ant Design Resources
@@ -17,6 +16,8 @@ import GAME_LIST from 'utils/info';
 import { LogoutButton } from 'components/auth/LogoutButton';
 import { LanguageSwitch, Translate } from 'components/language';
 import { PageLayout } from 'components/layout/PageLayout';
+// Pages
+import { DevHeader } from 'pages/Dev/DevHeader';
 // Internal
 import { GameCard } from './components/GameCard';
 import { DevEmulatorAlert } from './components/DevEmulatorAlert';
