@@ -14,12 +14,13 @@ const IMPORT_COMMENTS = [
   '// Components',
   '// Sass',
   '// Constants',
-  '// Internal',
   '// Resources and Utils',
   '// Images',
   '// Fonts',
   '// API & Hooks',
   '// Services',
+  '// Pages',
+  '// Internal',
 ];
 
 function sortImportGroups(group, name) {
@@ -83,6 +84,7 @@ const sortImports = (imports) => {
     icons: [],
     components: [],
     relative: [],
+    pages: [],
     images: [],
     sass: [],
   };
@@ -128,6 +130,10 @@ const sortImports = (imports) => {
     else if (line.endsWith(".png';") || line.endsWith(".svg';") || line.endsWith(".jpg';") || line.endsWith(".svg?url';")) {
       groups.images.push(line);
     }
+    // Page imports
+    else if (line.includes("'pages/")) {
+      groups.pages.push(line);
+    }
     // Relative imports
     else if (line.includes("'./") || line.includes("'../")) {
       groups.relative.push(line);
@@ -146,6 +152,7 @@ const sortImports = (imports) => {
     ...sortImportGroups(groups.utils, 'Utils'),
     ...sortImportGroups(groups.icons, 'Icons'),
     ...sortImportGroups(groups.components, 'Components'),
+    ...sortImportGroups(groups.pages, 'Pages'),
     ...sortRelativeImports(groups.relative),
     ...sortImportGroups(groups.images, 'Images'),
     ...sortImportGroups(groups.sass, 'Sass'),
