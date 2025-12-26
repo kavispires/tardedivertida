@@ -20,6 +20,7 @@ const generateRepackedState = (
   cWidth: number,
   bOffset: { x: number; y: number },
   data: DailyVitraisEntry,
+  lockedPieces: string[],
 ): Dictionary<PieceState> => {
   const boardHeight = data.gridRows * blockSize;
 
@@ -51,7 +52,7 @@ const generateRepackedState = (
     // Check if locked (either in current state OR it's the starter piece on init)
     const isLocked = currentDict[p.id]?.isLocked || (isInit && p.id === data.startingPieceId);
 
-    if (isLocked) {
+    if (isLocked || lockedPieces.includes(p.id)) {
       // Force locked pieces to exact grid position (handles window resize adjustments)
       newState[p.id] = {
         x: correctPixelX,
@@ -173,6 +174,7 @@ export function useVitraisEngine(data: DailyVitraisEntry, initialState: GameStat
       containerSize.width,
       boardOffset,
       data,
+      state.lockedPieces,
     ),
   });
 
@@ -233,6 +235,7 @@ export function useVitraisEngine(data: DailyVitraisEntry, initialState: GameStat
           containerSize.width,
           boardOffset,
           data,
+          state.lockedPieces,
         ),
       });
     }
@@ -313,6 +316,7 @@ export function useVitraisEngine(data: DailyVitraisEntry, initialState: GameStat
             containerSize.width,
             boardOffset,
             data,
+            lockedPiecesIds,
           ),
         };
       }
