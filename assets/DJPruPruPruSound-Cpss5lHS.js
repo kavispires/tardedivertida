@@ -1,1 +1,0 @@
-import{J as s,r as e,j as r}from"./index-Fzjfwldm.js";import{u}from"./useAudio-CqirfBiD.js";const n="/tardedivertida/assets/airhorn-oHat7aJE.mp3";function m(){const[o]=s("volume"),[t,,a]=u({src:n,autoPlay:!0});return e.useEffect(()=>{a.volume(o)},[o]),r.jsx(r.Fragment,{children:t})}export{m as D};
