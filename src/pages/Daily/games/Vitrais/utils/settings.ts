@@ -19,5 +19,5 @@ export const SETTINGS: GameSettings = {
   VERSION: 'stable',
   // Custom settings
   HEARTS: 5,
-  HEART_LOSS_INTERVAL_SECONDS: 30,
+  HEART_LOSS_INTERVAL_SECONDS: 20,
 };

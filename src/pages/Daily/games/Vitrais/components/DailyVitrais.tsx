@@ -68,7 +68,7 @@ export function DailyVitrais({ data }: DailyVitraisProps) {
           hearts={hearts}
           total={SETTINGS.HEARTS}
           openRules={!isComplete || hearts === SETTINGS.HEARTS}
-          rules={<Rules date={data.id} />}
+          rules={<Rules date={data.id} numberOfPieces={data.pieces.length} />}
         />
 
         <Region>

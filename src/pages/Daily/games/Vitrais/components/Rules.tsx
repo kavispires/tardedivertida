@@ -9,9 +9,10 @@ import { SETTINGS } from '../utils/settings';
 
 type RulesProps = {
   date: string;
+  numberOfPieces: number;
 };
 
-export function Rules({ date }: RulesProps) {
+export function Rules({ date, numberOfPieces }: RulesProps) {
   return (
     <RulesWrapper
       date={date}
@@ -26,9 +27,13 @@ export function Rules({ date }: RulesProps) {
                 A cada peça que você coloca corretamente, você ganha 1 ponto + a quantidade de corações que
                 você tem sobrando.
               </li>
+              <li>As peças restantes se embaralham automaticamente.</li>
               <li>
                 Você tem {SETTINGS.HEARTS} <HeartFilled /> e perde um coração a cada{' '}
-                {SETTINGS.HEART_LOSS_INTERVAL_SECONDS} segundos. Boa sorte!
+                <strong>{SETTINGS.HEART_LOSS_INTERVAL_SECONDS + numberOfPieces} segundos*</strong>. Boa sorte!
+              </li>
+              <li style={{ listStyle: 'none' }}>
+                <small>* O tempo para perder um coração depende do número de peças no quebra-cabeça.</small>
               </li>
             </>
           }
@@ -39,9 +44,13 @@ export function Rules({ date }: RulesProps) {
               <li>
                 For each piece you place correctly, you earn 1 point + the amount of hearts you have left.
               </li>
+              <li>The remaining pieces shuffle automatically.</li>
               <li>
                 You have {SETTINGS.HEARTS} <HeartFilled /> and lose one heart every{' '}
-                {SETTINGS.HEART_LOSS_INTERVAL_SECONDS} seconds. Good luck!
+                <strong>{SETTINGS.HEART_LOSS_INTERVAL_SECONDS + numberOfPieces} seconds*</strong>. Good luck!
+              </li>
+              <li style={{ listStyle: 'none' }}>
+                <small>* The time to lose a heart depends on the number of pieces in the puzzle.</small>
               </li>
             </>
           }
