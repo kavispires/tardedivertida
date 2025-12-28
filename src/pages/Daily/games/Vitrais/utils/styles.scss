@@ -4,7 +4,6 @@
   position: relative;
   border-radius: var(--border-radius);
   overflow: hidden;
-  touch-action: none;
   border: 1px solid get-color("white", 5, 0.5);
   transition: height 500ms ease;
 }
