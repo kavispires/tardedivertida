@@ -1,7 +1,7 @@
 {
 	"name": "tardedivertida",
 	"homepage": "http://www.kavispires.com/tardedivertida/",
-	"version": "50.8.14",
+	"version": "50.8.15",
 	"private": true,
 	"type": "module",
 	"dependencies": {
@@ -51,6 +51,7 @@
 		"deploy": "gh-pages -d build",
 		"lint": "biome check . --write --no-errors-on-unmatched",
 		"prepare": "husky",
+		"onboard": "node scripts/onboard-game.cjs",
 		"update-commit": "bash scripts/update_commit.sh",
 		"sort-imports": "node scripts/sort-imports-in-folder.cjs",
 		"clean": "rm -rf node_modules"
