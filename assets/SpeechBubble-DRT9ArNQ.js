@@ -1,1 +1,0 @@
-import{j as b,c as l}from"./index-sVTxFDD7.js";function n({children:a,direction:t="left",shadow:c,size:e,...o}){const s="speech-bubble";return b.jsx("div",{...o,className:l(s,`${s}--${t}`,c&&`${s}--shadow`,e&&`${s}--${e}`),children:a})}export{n as S};
