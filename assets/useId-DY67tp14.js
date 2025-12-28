@@ -1,0 +1,1 @@
+import{r,e3 as I}from"./index-sVTxFDD7.js";function d(){return{...I}.useId}let u=0;const s=d(),i=s?(function(e){const t=s();return e||t}):(function(e){const[t,o]=r.useState("ssr-id");return r.useEffect(()=>{const c=u;u+=1,o(`rc_unique_${c}`)},[]),e||t});export{i as u};
