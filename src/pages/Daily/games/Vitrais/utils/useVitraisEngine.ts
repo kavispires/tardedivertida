@@ -243,6 +243,25 @@ export function useVitraisEngine(data: DailyVitraisEntry, initialState: GameStat
     }
   }, [blockSize, boardOffset.x, containerSize.width]);
 
+  // Reset unlocked pieces to their initial positions
+  const resetUnlockedPieces = () => {
+    if (blockSize === 0 || containerSize.width === 0) return;
+
+    setSession({
+      ...session,
+      piecesState: generateRepackedState(
+        session.piecesState,
+        data.pieces,
+        blockSize,
+        containerSize.width,
+        boardOffset,
+        data,
+        state.lockedPieces,
+      ),
+    });
+    playSFX('shuffle');
+  };
+
   // 3. Drag Logic
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, delta } = event;
@@ -262,6 +281,32 @@ export function useVitraisEngine(data: DailyVitraisEntry, initialState: GameStat
       // New Raw Position
       let newX = currentState.x + delta.x;
       let newY = currentState.y + delta.y;
+
+      // Calculate piece bounds based on shape
+      const minBlockX = Math.min(...pieceStatic.shape.map((b) => b.x));
+      const maxBlockX = Math.max(...pieceStatic.shape.map((b) => b.x));
+      const minBlockY = Math.min(...pieceStatic.shape.map((b) => b.y));
+      const maxBlockY = Math.max(...pieceStatic.shape.map((b) => b.y));
+
+      const pieceLeftEdge = newX + minBlockX * blockSize;
+      const pieceRightEdge = newX + (maxBlockX + 1) * blockSize;
+      const pieceTopEdge = newY + minBlockY * blockSize;
+      const pieceBottomEdge = newY + (maxBlockY + 1) * blockSize;
+
+      // Check if piece is fully out of bounds
+      const isFullyOutOfBounds =
+        pieceRightEdge < 0 ||
+        pieceLeftEdge > containerSize.width ||
+        pieceBottomEdge < 0 ||
+        pieceTopEdge > containerSize.height;
+
+      // If fully out of bounds, reset to center of container
+      if (isFullyOutOfBounds) {
+        const pieceWidth = (maxBlockX - minBlockX + 1) * blockSize;
+        const pieceHeight = (maxBlockY - minBlockY + 1) * blockSize;
+        newX = (containerSize.width - pieceWidth) / 2 - minBlockX * blockSize;
+        newY = (containerSize.height - pieceHeight) / 2 - minBlockY * blockSize;
+      }
 
       // Calculate Snap Target
       const targetX = boardOffset.x + gridX * blockSize;
@@ -340,6 +385,7 @@ export function useVitraisEngine(data: DailyVitraisEntry, initialState: GameStat
     isComplete,
     time: `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`,
     handleDragEnd,
+    resetUnlockedPieces,
     sensors,
     containerRef,
     piecesState: session.piecesState,

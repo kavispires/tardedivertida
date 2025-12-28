@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { useState } from 'react';
 // Ant Design Resources
 import { BarChartOutlined } from '@ant-design/icons';
-import { Button, Layout, Modal, Space, Typography } from 'antd';
+import { Button, Flex, Layout, Modal, Space, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
@@ -42,6 +42,7 @@ export function DailyVitrais({ data }: DailyVitraisProps) {
     isComplete,
     time,
     handleDragEnd,
+    resetUnlockedPieces,
     piecesState,
     lockedPieces,
     blockSize,
@@ -134,6 +135,12 @@ export function DailyVitrais({ data }: DailyVitraisProps) {
                       />
                     );
                   })}
+
+                  <Flex style={{ position: 'absolute', bottom: 16, right: 16 }} gap={8}>
+                    <Button size="small" onClick={resetUnlockedPieces}>
+                      <Translate pt="Resetar" en="Reset" />
+                    </Button>
+                  </Flex>
                 </>
               )}
             </div>
