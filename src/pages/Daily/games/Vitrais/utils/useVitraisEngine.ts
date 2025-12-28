@@ -146,7 +146,9 @@ export function useVitraisEngine(data: DailyVitraisEntry, initialState: GameStat
     if (isComplete || !isRunning || state.hearts <= 0) return;
 
     const totalSeconds = minutes * 60 + seconds;
-    const intervalsPassed = Math.floor(totalSeconds / SETTINGS.HEART_LOSS_INTERVAL_SECONDS);
+    const intervalsPassed = Math.floor(
+      totalSeconds / (SETTINGS.HEART_LOSS_INTERVAL_SECONDS + data.pieces.length),
+    );
 
     if (intervalsPassed > lastHeartRemovalRef.current) {
       lastHeartRemovalRef.current = intervalsPassed;
