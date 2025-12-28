@@ -1,0 +1,1 @@
+import{j as x,c as a}from"./index-BkA1yr1_.js";function r({children:t,className:s,dark:i,...h}){return x.jsx("span",{className:a("text-highlight",i&&"text-highlight--dark",s),...h,children:t})}export{r as T};
