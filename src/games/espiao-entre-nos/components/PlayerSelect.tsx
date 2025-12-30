@@ -1,7 +1,7 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { LoadingOutlined } from '@ant-design/icons';
-import { Button, Popconfirm, Select, Space } from 'antd';
+import { Button, Select, Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Hooks
@@ -9,6 +9,7 @@ import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
+import { Popconfirm } from 'components/general/Popconfirm';
 import { Translate } from 'components/language';
 
 type PlayersElectProps = {
@@ -53,8 +54,7 @@ export function PlayerSelect({ players, onSend, isFinalAssessment = false }: Pla
           players[selectedPlayerId]?.name
         }?`}
         onConfirm={() => onSend({ targetId: selectedPlayerId })}
-        okText={translate('Sim', 'Yes')}
-        cancelText={translate('Não', 'No')}
+        type="yes-no"
       >
         <Button
           type="primary"

@@ -1,6 +1,7 @@
 // Ant Design Resources
-import { Button, Popconfirm } from 'antd';
+import { Button } from 'antd';
 // Components
+import { Popconfirm } from 'components/general/Popconfirm';
 import { Translate } from 'components/language';
 
 type ResetBettingButtonProps = {
@@ -17,8 +18,7 @@ export function ResetBetsButton({ onConfirm }: ResetBettingButtonProps) {
         />
       }
       onConfirm={onConfirm}
-      okText={<Translate pt="Sim" en="Yes" />}
-      cancelText={<Translate pt="Não" en="No" />}
+      type="yes-no"
     >
       <Button>
         <Translate pt="Reiniciar" en="Reset" />

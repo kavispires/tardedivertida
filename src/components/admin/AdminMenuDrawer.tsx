@@ -1,7 +1,7 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { FireFilled } from '@ant-design/icons';
-import { Button, Drawer, Popconfirm } from 'antd';
+import { Button, Drawer } from 'antd';
 // Types
 import type { GameState } from 'types/game';
 import type { GamePlayers } from 'types/player';
@@ -16,6 +16,7 @@ import { HOST_API_ACTIONS } from 'services/adapters';
 import { getFirestoreConsoleUrl } from 'services/firebase';
 // Components
 import { FixedMenuButton } from 'components/buttons';
+import { Popconfirm } from 'components/general/Popconfirm';
 import { Translate } from 'components/language';
 // Internal
 import { AdminPerformActionButton } from './_internal/AdminPerformActionButton';

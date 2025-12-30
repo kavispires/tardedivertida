@@ -1,7 +1,7 @@
 import { orderBy } from 'lodash';
 // Ant Design Resources
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { Button, Popconfirm, Popover, Space, Tooltip } from 'antd';
+import { Button, Popover, Space, Tooltip } from 'antd';
 // Hooks
 import { useCache } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
@@ -9,6 +9,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { TransparentButton } from 'components/buttons';
 import { DrawingCanvas } from 'components/canvas';
 import { SignCard } from 'components/cards/SignCard';
+import { Popconfirm } from 'components/general/Popconfirm';
 import { DualTranslate, Translate } from 'components/language';
 import { Title } from 'components/text';
 // Internal

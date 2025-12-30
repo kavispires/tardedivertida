@@ -1,5 +1,3 @@
-// Ant Design Resources
-import { Popconfirm } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
@@ -9,6 +7,7 @@ import { useLoading } from 'hooks/useLoading';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { SuspectCard } from 'components/cards/SuspectCard';
+import { Popconfirm } from 'components/general/Popconfirm';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import type { ActingRole, SubmitMovieActorPayload } from '../utils/types';
@@ -44,8 +43,7 @@ export function ActorsBoard({ actors, user, onSubmitActor, selection }: ActorsBo
               `Are you sure you want to choose ${name}?`,
             )}
             onConfirm={() => onSubmitActor({ actorId: actor.id })}
-            okText={translate('Sim', 'Yes')}
-            cancelText={translate('Não', 'No')}
+            type="yes-no"
             disabled={isLoading || user.ready}
           >
             <TransparentButton

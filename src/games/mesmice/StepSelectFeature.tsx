@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { orderBy } from 'lodash';
 import { useMemo } from 'react';
 // Ant Design Resources
-import { Divider, Popconfirm } from 'antd';
+import { Divider } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
@@ -14,6 +14,7 @@ import { XIcon } from 'icons/XIcon';
 // Components
 import { PlayerAvatarName, IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
+import { Popconfirm } from 'components/general/Popconfirm';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
@@ -152,6 +153,7 @@ export function StepSelectFeature({
                 }
                 onConfirm={() => onEliminate({ featureId: feature.id })}
                 disabled={feature.eliminated || isUserTheActivePlayer || isLoading}
+                type="yes-no"
               >
                 <TransparentButton className="features-container__button" disabled={feature.eliminated}>
                   <ObjectFeature

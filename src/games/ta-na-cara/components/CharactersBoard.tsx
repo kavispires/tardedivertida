@@ -1,12 +1,13 @@
 import clsx from 'clsx';
 // Ant Design Resources
-import { Image, Popconfirm } from 'antd';
+import { Image } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
 import { TransparentButton } from 'components/buttons';
+import { Popconfirm } from 'components/general/Popconfirm';
 import { ImageCard } from 'components/image-cards';
 import { DualTranslate } from 'components/language';
 // Internal
@@ -55,8 +56,7 @@ export function CharactersBoard({
                 `Are you sure you want to choose ${name}?`,
               )}
               onConfirm={() => onCardClick({ characterId: character.id })}
-              okText={translate('Sim', 'Yes')}
-              cancelText={translate('Não', 'No')}
+              type="yes-no"
               disabled={unavailable || revealed || ownCharacter || isLoading}
             >
               <TransparentButton

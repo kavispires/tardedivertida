@@ -1,11 +1,12 @@
 import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { LoadingOutlined } from '@ant-design/icons';
-import { Button, Popconfirm, Select, Space } from 'antd';
+import { Button, Select, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
+import { Popconfirm } from 'components/general/Popconfirm';
 import { Translate } from 'components/language';
 // Internal
 import type { Location } from '../utils/types';
@@ -43,8 +44,7 @@ export function LocationSelect({ locations, onSend }: LocationSelectProps) {
           />
         }
         onConfirm={() => onSend({ locationId: selectedLocationId })}
-        okText="Sim"
-        cancelText="Não"
+        type="yes-no"
       >
         <Button
           type="primary"

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Ant Design Resources
-import { Image, Popconfirm } from 'antd';
+import { Image } from 'antd';
 // Types
 import type { SuspectCard } from 'types/tdr';
 // Hooks
@@ -8,6 +8,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
+import { Popconfirm } from 'components/general/Popconfirm';
 import { ImageCard } from 'components/image-cards';
 import { DualTranslate, Translate } from 'components/language';
 
@@ -46,8 +47,7 @@ export function Suspects({
                 `Are you sure you want to release ${name}?`,
               )}
               onConfirm={() => onCardClick(suspect.id)}
-              okText={translate('Sim', 'Yes')}
-              cancelText={translate('Não', 'No')}
+              type="yes-no"
               disabled={wasEliminated || isLoading}
             >
               <button
