@@ -1,12 +1,12 @@
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
-import { App, Button, type ButtonProps, Popconfirm } from 'antd';
+import { App, Button, type ButtonProps } from 'antd';
 // Services
 import { signOut } from 'services/firebase';
 // Components
+import { Popconfirm } from 'components/general/Popconfirm';
 import { Translate } from 'components/language';
-// Services
 
 export function LogoutButton(props: ButtonProps) {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ export function LogoutButton(props: ButtonProps) {
       message.success('You have been logged out');
       navigate('/');
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       message.error(`Something went wrong: ${JSON.stringify(error, null, 2)}`);
     },
   });

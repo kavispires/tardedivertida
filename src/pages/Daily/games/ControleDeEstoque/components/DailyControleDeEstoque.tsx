@@ -1,12 +1,13 @@
 import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
-import { Button, Divider, Layout, Modal, Popconfirm, Tooltip, Typography } from 'antd';
+import { Button, Divider, Layout, Modal, Tooltip, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Icons
 import { DailyWarehouseGameIcon } from 'icons/DailyWarehouseGameIcon';
 // Components
+import { Popconfirm } from 'components/general/Popconfirm';
 import { DualTranslate, Translate } from 'components/language';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';

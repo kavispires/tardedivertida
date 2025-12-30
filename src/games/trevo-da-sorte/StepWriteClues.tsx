@@ -1,10 +1,11 @@
 // Ant Design Resources
-import { Button, Popconfirm } from 'antd';
+import { Button } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
 import { DebugOnly } from 'components/debug';
+import { Popconfirm } from 'components/general/Popconfirm';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PopoverRule } from 'components/rules';

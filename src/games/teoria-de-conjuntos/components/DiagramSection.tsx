@@ -1,13 +1,14 @@
 import clsx from 'clsx';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
-import { Alert, Divider, Flex, Popconfirm } from 'antd';
+import { Alert, Divider, Flex } from 'antd';
 // Types
 import type { Item } from 'types/tdr';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
+import { Popconfirm } from 'components/general/Popconfirm';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 // Internal

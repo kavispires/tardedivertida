@@ -3,7 +3,7 @@ import { useMemo, type ReactNode } from 'react';
 import { useToggle } from 'react-use';
 // Ant Design Resources
 import { CloseCircleOutlined } from '@ant-design/icons';
-import { Button, Image, Popconfirm, Tooltip } from 'antd';
+import { Button, Image, Tooltip } from 'antd';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Icons
@@ -14,6 +14,7 @@ import { AlienStarEyesIcon } from 'icons/AlienStarEyesIcon';
 import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { DivButton } from 'components/buttons/DivButton';
+import { Popconfirm } from 'components/general/Popconfirm';
 import { Translate } from 'components/language';
 // Internal
 import type { DeckEntry } from '../utils/types';

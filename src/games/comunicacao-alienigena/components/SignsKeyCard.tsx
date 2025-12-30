@@ -3,13 +3,14 @@ import { isEmpty, orderBy } from 'lodash';
 import { useEffect } from 'react';
 // Ant Design Resources
 import { CheckCircleFilled, CheckSquareOutlined, InfoCircleOutlined } from '@ant-design/icons';
-import { Button, Popconfirm, Popover, Space } from 'antd';
+import { Button, Popover, Space } from 'antd';
 // Hooks
 import { useCacheAlternative } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { SignCard } from 'components/cards/SignCard';
+import { Popconfirm } from 'components/general/Popconfirm';
 import { DualTranslate, Translate } from 'components/language';
 import { Title } from 'components/text';
 // Internal
@@ -34,7 +35,7 @@ export function SignsKeyCard({ attributes, startingAttributesIds = [], phase }: 
     });
   };
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: a function doesn't need to be in the dependencies array
   useEffect(() => {
     if (phase === COMUNICACAO_ALIENIGENA_PHASES.HUMAN_ASK && startingAttributesIds.length && isEmpty(cache)) {
       setCache((prev) => {

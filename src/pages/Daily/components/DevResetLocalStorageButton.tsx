@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { BugOutlined } from '@ant-design/icons';
-import { App, Button, Flex, Popconfirm, Space } from 'antd';
+import { App, Button, Flex, Space } from 'antd';
 // Utils
 import { isDevEnv } from 'utils/helpers';
 // Components
+import { Popconfirm } from 'components/general/Popconfirm';
 import { Translate } from 'components/language';
 // Internal
 import { ALL_SETTINGS } from '../utils/settings';

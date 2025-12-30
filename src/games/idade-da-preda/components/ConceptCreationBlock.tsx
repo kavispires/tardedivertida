@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { useState } from 'react';
 // Ant Design Resources
 import { DeleteOutlined, EditOutlined, SaveOutlined } from '@ant-design/icons';
-import { Button, Card, Flex, Input, Popconfirm, Tooltip } from 'antd';
+import { Button, Card, Flex, Input, Tooltip } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 import type { Item } from 'types/tdr';
@@ -15,6 +15,7 @@ import { PlayerAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { DivButton } from 'components/buttons/DivButton';
 import { ItemCard } from 'components/cards/ItemCard';
+import { Popconfirm } from 'components/general/Popconfirm';
 import { DualTranslate } from 'components/language';
 // Internal
 import type { Concept } from '../utils/types';
