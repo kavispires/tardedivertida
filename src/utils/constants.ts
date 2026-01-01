@@ -293,6 +293,7 @@ export const GAME_COLLECTION = {
   PLANEJAMENTO_URBANO: 'planejamento-urbano',
   POLEMICA_DA_VEZ: 'polemica-da-vez',
   PORTA_DOS_DESESPERADOS: 'porta-dos-desesperados',
+  QUAL_QUESITO: 'qual-quesito',
   QUEM_NAO_MATA: 'quem-nao-mata',
   QUEM_SOU_EU: 'quem-sou-eu',
   RETRATO_FALADO: 'retrato-falado',

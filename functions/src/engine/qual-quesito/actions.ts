@@ -49,18 +49,18 @@ export const handleSubmitCards = async (
   });
 };
 
-export const handleRejectCards = async (
+export const handleEvaluations = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  cardsIds: CardId[],
+  evaluations: Dictionary<boolean>,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
-    actionText: 'reject the cards',
-    change: { rejectedCards: cardsIds },
+    actionText: 'submit card evaluations',
+    change: { evaluations },
     shouldReady: true,
     nextPhaseFunction: getNextPhase,
   });

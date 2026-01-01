@@ -12,6 +12,18 @@ export type ResourceData = {
   allItems: Item[];
 };
 
+export type TableEntry = {
+  playerId: PlayerId;
+  cardId: CardId;
+  accepted: boolean;
+};
+
+export type GalleryEntry = {
+  category: string;
+  creatorId: PlayerId;
+  items: TableEntry[];
+};
+
 export type QualQuesitoPhase = keyof typeof QUAL_QUESITO_PHASES;
 export type QualQuesitoAchievement = keyof typeof QUAL_QUESITO_ACHIEVEMENTS;
 

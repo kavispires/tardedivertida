@@ -34,6 +34,7 @@ export const collectionByCategory: Record<string, string[]> = {
     'LoupeIcon',
     'PrototypeIcon',
     'AudioIcon',
+    'SkipIcon',
   ],
   gameTags: [
     'CompetitiveGameIcon',

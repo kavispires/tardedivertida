@@ -1,0 +1,90 @@
+@use "styles/sass" as *;
+
+.thing-card {
+  padding: get-unit(4);
+  border-radius: var(--border-radius);
+  background: get-color("gray");
+  border: get-unit(1) outset get-color("gray", 6);
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  position: relative;
+
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    border-radius: var(--border-radius);
+    z-index: 0;
+  }
+
+  &__image,
+  &__name {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__image--masked {
+    opacity: 0.25;
+    filter: sepia(80%) grayscale(80%);
+  }
+
+  &__name {
+    text-transform: uppercase;
+    font-family: "Courier New", Courier, monospace;
+    margin: 0;
+    margin-top: 0.5rem;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    width: 100%;
+    overflow-wrap: break-word;
+  }
+
+  &--color-0 {
+    background: radial-gradient(get-color("red", 4), get-color("red", 5));
+    border-color: get-color("red", 4);
+  }
+  &--color-1 {
+    background: radial-gradient(get-color("yellow", 4), get-color("yellow", 5));
+    border-color: get-color("yellow", 4);
+  }
+  &--color-2 {
+    background: radial-gradient(get-color("blue", 4), get-color("blue", 6));
+    border-color: get-color("blue", 4);
+  }
+  &--color-3 {
+    background: radial-gradient(get-color("orange", 4), get-color("orange", 5));
+    border-color: get-color("orange", 4);
+  }
+  &--color-4 {
+    background: radial-gradient(get-color("green", 4), get-color("green", 5));
+    border-color: get-color("green", 4);
+  }
+  &--color-5 {
+    background: radial-gradient(get-color("purple", 4), get-color("purple", 5));
+    border-color: get-color("purple", 4);
+  }
+  &--color-6 {
+    background: radial-gradient(get-color("violet", 4), get-color("violet", 5));
+    border-color: get-color("violet", 4);
+  }
+  &--color-7 {
+    background: radial-gradient(get-color("teal", 4), get-color("teal", 5));
+    border-color: get-color("teal", 4);
+  }
+  &--color-8 {
+    background: radial-gradient(get-color("brown", 3), get-color("brown", 5));
+    border-color: get-color("brown", 3);
+  }
+  &--color-9 {
+    background: radial-gradient(get-color("pink", 4), get-color("pink", 5));
+    border-color: get-color("pink", 4);
+  }
+}
