@@ -34,6 +34,11 @@ export function DailyContent({ children, ...props }: DailyContentProps) {
         background: 'linear-gradient(#cf3434, #810505)', // December theme
       };
     }
+    if (month === 0) {
+      return {
+        background: 'linear-gradient(#ffffff, #d2f6ff, #000000)', // January theme
+      };
+    }
 
     return {};
   }, [month]);
