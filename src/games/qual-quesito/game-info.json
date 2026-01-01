@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "qual-quesito",
-  "version": "0.0.9",
-  "release": "dev",
-  "available": false,
+  "version": "1.0.0",
+  "release": "beta",
+  "available": true,
   "title": {
     "pt": "Qual O Quesito?",
     "en": "And The Category Is"
@@ -39,5 +39,23 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive", "writing", "voting"]
+  "tags": ["competitive", "writing", "voting"],
+  "options": [
+    {
+      "key": "nsfw",
+      "kind": "switch",
+      "label": "NSFW",
+      "description": "Allow NSFW content",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
+    }
+  ]
 }

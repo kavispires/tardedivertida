@@ -2,7 +2,7 @@ import { lazy } from 'react';
 // Utils
 import { GAME_COLLECTION } from 'utils/constants';
 
-type GameSessionComponent = React.LazyExoticComponent<React.ComponentType<any>>;
+type GameSessionComponent = React.LazyExoticComponent<React.ComponentType<unknown>>;
 
 type GameSessionMap = {
   [key: string]: GameSessionComponent;
@@ -53,6 +53,7 @@ export const gameSessions: GameSessionMap = {
   [GAME_COLLECTION.PORTA_DOS_DESESPERADOS]: lazy(
     () => import('games/porta-dos-desesperados/SessionPortaDosDesesperados'),
   ),
+  [GAME_COLLECTION.QUAL_QUESITO]: lazy(() => import('games/qual-quesito/SessionQualQuesito')),
   [GAME_COLLECTION.QUEM_NAO_MATA]: lazy(() => import('games/quem-nao-mata/SessionQuemNaoMata')),
   [GAME_COLLECTION.QUEM_SOU_EU]: lazy(() => import('games/quem-sou-eu/SessionQuemSouEu')),
   [GAME_COLLECTION.RETRATO_FALADO]: lazy(() => import('games/retrato-falado/SessionRetratoFalado')),

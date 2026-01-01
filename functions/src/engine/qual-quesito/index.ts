@@ -21,9 +21,10 @@ import {
   prepareGameOverPhase,
   prepareResultsPhase,
   prepareSetupPhase,
+  prepareSkipAnnouncementPhase,
   prepareVerificationPhase,
 } from './setup';
-import { handleRejectCards, handleSkipTurn, handleSubmitCards, handleSubmitCategory } from './actions';
+import { handleEvaluations, handleSkipTurn, handleSubmitCards, handleSubmitCategory } from './actions';
 
 /**
  * Get Initial Game State
@@ -69,7 +70,12 @@ export const getNextPhase = async (
   >(gameName, gameId, 'prepare next phase', currentState);
 
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase as QualQuesitoPhase, state?.round, state?.skipTurn);
+  const nextPhase = determineNextPhase(
+    state?.phase as QualQuesitoPhase,
+    state?.round,
+    !!state?.skipTurn,
+    players,
+  );
 
   // LOBBY -> SETUP
   if (nextPhase === QUAL_QUESITO_PHASES.SETUP) {
@@ -86,6 +92,12 @@ export const getNextPhase = async (
   // * -> CATEGORY_CREATION
   if (nextPhase === QUAL_QUESITO_PHASES.CATEGORY_CREATION) {
     const newPhase = await prepareCategoryCreationPhase(store, state, players);
+    return utils.firestore.saveGame(sessionRef, newPhase);
+  }
+
+  if (nextPhase === QUAL_QUESITO_PHASES.SKIP_ANNOUNCEMENT) {
+    // Just update the phase to SKIP_ANNOUNCEMENT
+    const newPhase = await prepareSkipAnnouncementPhase(store, state, players);
     return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
@@ -134,9 +146,9 @@ export const submitAction = async (data: QualQuesitoSubmitAction) => {
     case QUAL_QUESITO_ACTIONS.SUBMIT_CARDS:
       utils.firebase.validateSubmitActionProperties(data, ['cardsIds'], 'submit cards');
       return handleSubmitCards(gameName, gameId, playerId, data.cardsIds);
-    case QUAL_QUESITO_ACTIONS.REJECT_CARDS:
-      utils.firebase.validateSubmitActionProperties(data, ['cardsIds'], 'reject cards');
-      return handleRejectCards(gameName, gameId, playerId, data.cardsIds);
+    case QUAL_QUESITO_ACTIONS.SUBMIT_EVALUATIONS:
+      utils.firebase.validateSubmitActionProperties(data, ['evaluations'], 'submit evaluations');
+      return handleEvaluations(gameName, gameId, playerId, data.evaluations);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }

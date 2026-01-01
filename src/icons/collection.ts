@@ -230,6 +230,7 @@ export * from './SixPackIcon';
 export * from './SketchIcon';
 export * from './SkierIcon';
 export * from './SkiingIcon';
+export * from './SkipIcon';
 export * from './SkullIcon';
 export * from './SleepIcon';
 export * from './SmartphoneIcon';

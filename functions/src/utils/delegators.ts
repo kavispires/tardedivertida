@@ -30,6 +30,7 @@ import * as planejamentoUrbanoEngine from '../engine/planejamento-urbano';
 import * as polemicaDaVezEngine from '../engine/polemica-da-vez';
 import * as portadosDesesperadosEngine from '../engine/porta-dos-desesperados';
 import * as retratoFaladoEngine from '../engine/retrato-falado';
+import * as qualQuesitoEngine from '../engine/qual-quesito';
 import * as quemNaoMataEngine from '../engine/quem-nao-mata';
 import * as quemSouEuEngine from '../engine/quem-sou-eu';
 import * as sinaisDeAlertaEngine from '../engine/sinais-de-alerta';
@@ -76,6 +77,7 @@ const engines = {
   [GAME_NAMES.PLANEJAMENTO_URBANO]: planejamentoUrbanoEngine,
   [GAME_NAMES.PORTA_DOS_DESESPERADOS]: portadosDesesperadosEngine,
   [GAME_NAMES.POLEMICA_DA_VEZ]: polemicaDaVezEngine,
+  [GAME_NAMES.QUAL_QUESITO]: qualQuesitoEngine,
   [GAME_NAMES.QUEM_NAO_MATA]: quemNaoMataEngine,
   [GAME_NAMES.QUEM_SOU_EU]: quemSouEuEngine,
   [GAME_NAMES.RETRATO_FALADO]: retratoFaladoEngine,

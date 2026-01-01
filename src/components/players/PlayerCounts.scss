@@ -1,0 +1,40 @@
+@use "styles/sass" as *;
+
+.player-counts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  transform: scale(75%);
+  margin: get-unit(2 auto);
+
+  &__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color: white, $alpha: 0.6);
+    padding: get-unit(1);
+    border-radius: get-unit(6);
+    flex-wrap: wrap;
+    gap: get-unit(1);
+    color: get-color("black");
+  }
+
+  &__players {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color: white, $alpha: 0.6);
+    padding: get-unit(1);
+    border-radius: get-unit(6);
+    flex-wrap: wrap;
+    gap: get-unit(1);
+  }
+
+  &__player {
+    background-color: rgba($color: white, $alpha: 0.6);
+    padding: get-unit(1 2);
+    border-radius: get-unit(6);
+    white-space: nowrap;
+  }
+}
