@@ -72,6 +72,7 @@ export const gameSessions: GameSessionMap = {
   [GAME_COLLECTION.VENDAVAL_DE_PALPITE]: lazy(
     () => import('games/vendaval-de-palpite/SessionVendavalDePalpite'),
   ),
+  [GAME_COLLECTION.VICE_CAMPEAO]: lazy(() => import('games/vice-campeao/SessionViceCampeao')),
 };
 
 /**
