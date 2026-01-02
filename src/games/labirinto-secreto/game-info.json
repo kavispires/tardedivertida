@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "labirinto-secreto",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "Das árvores",
     "en": "The trees game"
   },
-  "basedOn": "shtaP citsyM",
+  "inspiredBy": "shtaP citsyM",
   "appearance": {
     "clouds": "tree-cloud",
     "cloudsAnimationType": "flow",

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "W",
   "gameName": "super-campeonato",
-  "version": "2.3.64",
+  "version": "2.3.65",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "O do campeonato",
     "en": "The one with the tournament"
   },
-  "basedOn": "nwodwohS etamitlU",
+  "inspiredBy": "nwodwohS etamitlU",
   "summary": {
     "pt": "Num campeonato aleatório quem você aposta todas suas fichas?",
     "en": "In a random showdown, who will you bet all your chips?"

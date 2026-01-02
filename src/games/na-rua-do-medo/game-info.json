@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "N",
   "gameName": "na-rua-do-medo",
-  "version": "3.1.70",
+  "version": "3.1.71",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "O dos doces/halloween",
     "en": "The one with the candy"
   },
-  "basedOn": "tnamaiD/dloG nacnI",
+  "inspiredBy": "tnamaiD/dloG nacnI",
   "summary": {
     "pt": "Jogadores são crianças recolhendo doces durante o Halloween, mas se você ver o mesmo monstro mais de uma vez...",
     "en": "Players are trick-or-treaters collecting candy, but if you see the same monster twice..."

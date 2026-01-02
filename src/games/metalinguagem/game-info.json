@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "metalinguagem",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "O da criação de palavras",
     "en": "The one about creating words"
   },
-  "basedOn": "uaetnamtroP",
+  "inspiredBy": "uaetnamtroP",
   "summary": {
     "pt": "Crie um novo dicionário para o novo mundo.",
     "en": "Create a new dictionary for the new world."

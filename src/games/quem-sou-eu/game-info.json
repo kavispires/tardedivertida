@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "quem-sou-eu",
-  "version": "2.0.50",
+  "version": "2.0.51",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "O dos ícones",
     "en": "The one with glyphs"
   },
-  "basedOn": "ytitnedI terceS",
+  "inspiredBy": "ytitnedI terceS",
   "appearance": {
     "clouds": "mirrors-clouds",
     "cloudsAnimationType": "rising",

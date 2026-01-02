@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sinais-de-alerta",
-  "version": "1.0.42",
+  "version": "1.0.43",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "Jogo das placas",
     "en": "Signs drawing game"
   },
-  "basedOn": "sngiS noituaC",
+  "inspiredBy": "sngiS noituaC",
   "summary": {
     "pt": "Desenhe placas de sinalização para o governo e tente adivinhar as dos outros",
     "en": "Draw signaling signs for the government and try to guess the others'"

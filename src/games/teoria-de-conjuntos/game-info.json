@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "teoria-de-conjuntos",
-  "version": "4.0.20",
+  "version": "4.0.21",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "Dos círculos",
     "en": "The circles one"
   },
-  "basedOn": "sgniR ni sgnihT",
+  "inspiredBy": "sgniR ni sgnihT",
   "summary": {
     "pt": "Desfaça-se de suas coisas colocando-os nos círculos corretos.",
     "en": "Get rid of your things by placing them in the correct circles."

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "R",
   "gameName": "retrato-falado",
-  "version": "2.1.48",
+  "version": "2.1.49",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "O do monstro",
     "en": "The one with the monster sketch"
   },
-  "basedOn": "ytiswardsnoM",
+  "inspiredBy": "ytiswardsnoM",
   "summary": {
     "pt": "Um monstro atacou a pobre testemunha. Será que ela vai conseguir descrever o criminoso",
     "en": "A monster has attacked a poor witness. Will she be able to describe the perpetrator"

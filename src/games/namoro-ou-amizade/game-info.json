@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "R",
   "gameName": "megarobos",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "release": "cancelled",
   "available": false,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "",
     "en": ""
   },
-  "basedOn": "kaertS toH",
+  "inspiredBy": "kaertS toH",
   "summary": {
     "pt": "TBD",
     "en": "TBD"

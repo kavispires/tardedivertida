@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "cinegrafistas-amadores",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "release": "planned",
   "available": false,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "",
     "en": ""
   },
-  "basedOn": "'tcefreP erutciP'",
+  "inspiredBy": "'tcefreP erutciP'",
   "summary": {
     "pt": "Jogadores tentam montar uma foto baseados nas pistas",
     "en": "Players try to set up a picture based on clues"

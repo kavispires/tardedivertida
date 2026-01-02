@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "O",
   "gameName": "onda-telepatica",
-  "version": "4.0.74",
+  "version": "4.0.75",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "Do treco com ponteiro marcando de 1 a 10",
     "en": "The one with the pointer and the two ideas"
   },
-  "basedOn": "htgnelevaW",
+  "inspiredBy": "htgnelevaW",
   "summary": {
     "pt": "Jogadores tentam comunicar através de ondas telepáticas",
     "en": "Players try to communicate using their telepathic waves"

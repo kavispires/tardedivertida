@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "ta-na-cara",
-  "version": "1.1.81",
+  "version": "1.1.82",
   "release": "deprecated",
   "available": false,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "Jogo do preconceito competitivo",
     "en": "Competitive NSFW game"
   },
-  "basedOn": "ohW sseuG",
+  "inspiredBy": "ohW sseuG",
   "appearance": {
     "clouds": "face-id-cloud",
     "cloudsAnimationType": "flow",

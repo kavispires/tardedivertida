@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "comunicacao-duo",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "",
     "en": ""
   },
-  "basedOn": "teuD semanedoC",
+  "inspiredBy": "teuD semanedoC",
   "appearance": {
     "clouds": "alien-communication-cloud",
     "cloudsAnimationType": "rising",

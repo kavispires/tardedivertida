@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "esquiadores",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "o de apostar na cabana",
     "en": "the bets on lodges one"
   },
-  "basedOn": "ammeliD thgiR tfeL",
+  "inspiredBy": "ammeliD thgiR tfeL",
   "summary": {
     "pt": "Jogadores apostam em o que o esquiador vai decidir em uma série de escolhas",
     "en": "Players bet on what the skier will decide in a series of choices"

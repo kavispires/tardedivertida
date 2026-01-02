@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "planejamento-urbano",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "O da cidade",
     "en": "The city one"
   },
-  "basedOn": "ytiC kniL",
+  "inspiredBy": "ytiC kniL",
   "summary": {
     "pt": "Crie a cidade mais eficiente.",
     "en": "Create the most efficient city."

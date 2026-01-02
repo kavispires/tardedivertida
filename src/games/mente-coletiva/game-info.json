@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "M",
   "gameName": "mente-coletiva",
-  "version": "5.2.70",
+  "version": "5.2.71",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "Da ovelhinha",
     "en": "The one with the sheep"
   },
-  "basedOn": "dniM eviH",
+  "inspiredBy": "dniM eviH",
   "summary": {
     "pt": "Você é capaz de pensar como o grupo para não correr o risco de ser expulso?",
     "en": "Do you think like the group or are you the sheep about to be kicked out?"

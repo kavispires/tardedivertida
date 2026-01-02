@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "contadores-historias",
-  "version": "4.1.20",
+  "version": "4.1.21",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "Das cartas bonitas",
     "en": "The one with pretty images"
   },
-  "basedOn": "tixiD",
+  "inspiredBy": "tixiD",
   "summary": {
     "pt": "Uma imagem vale mesmo mais que mil palavras? Tente descobrir de qual imagem o contador de histórias está falando",
     "en": "Is an image really worth a thousand words? Try to find out what image is the storyteller referring to"

@@ -9,7 +9,7 @@ export type GameInfo = {
   available: boolean;
   title: DualLanguageValue;
   popularName: DualLanguageValue;
-  basedOn: string;
+  inspiredBy: string;
   summary: DualLanguageValue;
   appearance: {
     clouds: string;

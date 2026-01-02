@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sonhos-pesadelos",
-  "version": "0.11.66",
+  "version": "0.11.67",
   "release": "deprecated",
   "available": false,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "Das cartas bonitas e sonhos",
     "en": "The one with images"
   },
-  "basedOn": "esuM",
+  "inspiredBy": "esuM",
   "summary": {
     "pt": "Às vezes, sonhos são bem difíceis de contar porque você só consegue lembrar fragmentos e colocar todas ideias juntas pode ser um desafio",
     "en": "Sometimes dreams are very hard to tell because you can only remember so many things among the fragments of your memory and trying to put your ideas together can be a challenge"

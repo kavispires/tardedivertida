@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "detetives-imaginativos",
-  "version": "4.0.11",
+  "version": "4.0.12",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "De mentir com cartas bonitas",
     "en": "The one with lying about your card"
   },
-  "basedOn": "bulC evitceteD",
+  "inspiredBy": "bulC evitceteD",
   "summary": {
     "pt": "Existe um impostor entre nós, mas será que ele tem boa lábia para se safar?",
     "en": "There is an impostor among us, but will they be able to fool us all?"

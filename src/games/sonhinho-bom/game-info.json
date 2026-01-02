@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sonhinho-bom",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "release": "planned",
   "available": false,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "",
     "en": ""
   },
-  "basedOn": "maerD I nehW",
+  "inspiredBy": "maerD I nehW",
   "appearance": {
     "clouds": "cloud",
     "cloudsAnimationType": "flow",
