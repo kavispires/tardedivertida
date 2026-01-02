@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "?",
   "gameName": "template",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "release": "planned",
   "available": false,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "",
     "en": ""
   },
-  "basedOn": "Template",
+  "inspiredBy": "Template",
   "summary": {
     "pt": "TBD",
     "en": "TBD"

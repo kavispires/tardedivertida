@@ -15,7 +15,7 @@ const PLACEHOLDER_GAME_INFO: GameInfo = {
   available: false,
   title: { en: '', pt: '' },
   popularName: { en: '', pt: '' },
-  basedOn: '',
+  inspiredBy: '',
   summary: { en: '', pt: '' },
   appearance: {
     clouds: 'cloud',

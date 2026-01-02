@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vice-campeao",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "o do segundo lugar",
     "en": "the one of the second place"
   },
-  "basedOn": "?tsrif yhW",
+  "inspiredBy": "?tsrif yhW",
   "summary": {
     "pt": "Tente ser o segundo colocado",
     "en": "Try to be the runner-up"

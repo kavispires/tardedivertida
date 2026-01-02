@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "bomba-relogio",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "release": "planned",
   "available": false,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "",
     "en": ""
   },
-  "basedOn": "bmoB emiT/uhluhtC htiw ssem t'noD",
+  "inspiredBy": "bmoB emiT/uhluhtC htiw ssem t'noD",
   "summary": {
     "pt": "Uns são agentes, outros terroristas. Você será capaz de parar a bomba antes que ela detone?",
     "en": "Some are agents, some are terrorists. Are you capable to stop the bomb before it goes kaboom?"

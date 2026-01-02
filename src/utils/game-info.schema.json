@@ -26,7 +26,7 @@
       },
       "required": ["pt", "en"]
     },
-    "basedOn": { "type": "string" },
+    "inspiredBy": { "type": "string" },
     "summary": {
       "type": "object",
       "properties": {
@@ -156,7 +156,7 @@
     "available",
     "title",
     "popularName",
-    "basedOn",
+    "inspiredBy",
     "summary",
     "rules",
     "playerCount",

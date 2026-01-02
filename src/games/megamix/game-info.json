@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "megamix",
-  "version": "4.0.89",
+  "version": "4.0.90",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "Jogo da área vip",
     "en": "The VIP area game"
   },
-  "basedOn": "sniW maeT neerG ehT",
+  "inspiredBy": "sniW maeT neerG ehT",
   "summary": {
     "pt": "Responda uma pergunta e entre para área VIP!",
     "en": "Answer a question correctly and join the VIP area!"

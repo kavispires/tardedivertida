@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "controle-de-estoque",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "release": "paused",
   "available": false,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "",
     "en": ""
   },
-  "basedOn": "esuoheraW s'tomliW",
+  "inspiredBy": "esuoheraW s'tomliW",
   "appearance": {
     "clouds": "package-cloud",
     "cloudsAnimationType": "flow",

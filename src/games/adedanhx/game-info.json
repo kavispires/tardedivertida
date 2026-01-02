@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "K",
   "gameName": "adedanhx",
-  "version": "2.0.44",
+  "version": "2.0.45",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "Adedanha de tabela",
     "en": "Stop with a twist"
   },
-  "basedOn": "sgaT",
+  "inspiredBy": "sgaT",
   "summary": {
     "pt": "Seja o primeiro a preencher a tabela com palavras que comecem com as letras sorteadas!",
     "en": "Be the first to fill the table with words that start with the drawn letters!"

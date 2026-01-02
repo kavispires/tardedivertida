@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "X",
   "gameName": "cruza-palavras",
-  "version": "7.0.5",
+  "version": "7.0.6",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "Conectar duas palavras da grade",
     "en": "The one of with the word grid"
   },
-  "basedOn": "seulC ssorC",
+  "inspiredBy": "seulC ssorC",
   "summary": {
     "pt": "Uma grade de palavras e várias coordenadas... você consegue associar todas as palavras?",
     "en": "A word grid and many coordinates... are you able to match all words?"

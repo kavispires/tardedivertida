@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "F",
   "gameName": "fofoca-quente",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "release": "paused",
   "available": false,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "",
     "en": ""
   },
-  "basedOn": "lliK oT tnetnI",
+  "inspiredBy": "lliK oT tnetnI",
   "summary": {
     "pt": "TBD",
     "en": "TBD"

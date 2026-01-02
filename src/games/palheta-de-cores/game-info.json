@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "K",
   "gameName": "palheta-de-cores",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "release": "planned",
   "available": false,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "O das cores",
     "en": "The color one"
   },
-  "basedOn": "enotnaP",
+  "inspiredBy": "enotnaP",
   "summary": {
     "pt": "Crie palhetas para outros jogadores adivinharem",
     "en": "Create beautiful palettes so other players can guess"

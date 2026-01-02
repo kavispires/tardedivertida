@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "escape-room",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "release": "planned",
   "available": false,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "",
     "en": ""
   },
-  "basedOn": "ecapS ni sbooN",
+  "inspiredBy": "ecapS ni sbooN",
   "summary": {
     "pt": "Com as pistas que vocês tem em mãos, você consegue escapar da sala?",
     "en": "With the clues you have in hand, can you escape the room?"

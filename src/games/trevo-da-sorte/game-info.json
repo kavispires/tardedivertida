@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Y",
   "gameName": "trevo-da-sorte",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "release": "paused",
   "available": false,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "do trevo de palavras",
     "en": ""
   },
-  "basedOn": "revolC oS",
+  "inspiredBy": "revolC oS",
   "summary": {
     "pt": "Adivinhe a combinação correta de folhos do seu trevo de palavras baseado nas dicas dadas por outros jogadores",
     "en": "Guess the write combination of leaves in your word clover based on other player's clues"

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "J",
   "gameName": "mesmice",
-  "version": "1.0.55",
+  "version": "1.0.56",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "De eliminar as características",
     "en": "The one with the object features"
   },
-  "basedOn": "emaG emaS ehT",
+  "inspiredBy": "emaG emaS ehT",
   "summary": {
     "pt": "Elimine as características que não se aplicam aos objetos da vez",
     "en": "Eliminate the features that do not apply to the objects of the round"

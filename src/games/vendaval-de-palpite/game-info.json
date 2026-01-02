@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vendaval-de-palpite",
-  "version": "0.9.61",
+  "version": "0.9.62",
   "release": "paused",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "O jogo de adivinhar a palavra",
     "en": "The one you guess the word with words"
   },
-  "basedOn": "droW retsaM",
+  "inspiredBy": "droW retsaM",
   "summary": {
     "pt": "Uma palavra secreta que sabemos apenas o tema. Consegue descobri-la fazendo associação de palavras?",
     "en": "A secret work with a known category. Can you guess that word by just associating words?"

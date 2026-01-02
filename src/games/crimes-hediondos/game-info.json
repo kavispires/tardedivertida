@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "H",
   "gameName": "crimes-hediondos",
-  "version": "3.0.12",
+  "version": "3.0.13",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "Da Convenção de Serial Killers",
     "en": "The one about crimes"
   },
-  "basedOn": "gnoK gnoH ni redruM :noitpeceD",
+  "inspiredBy": "gnoK gnoH ni redruM :noitpeceD",
   "summary": {
     "pt": "Numa convenção anual de Serial Killers, quem é o mais serial dos killers?",
     "en": "At an annual Serial Killers convention, who is the most serial of killers?"

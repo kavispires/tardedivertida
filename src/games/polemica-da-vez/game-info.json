@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "P",
   "gameName": "polemica-da-vez",
-  "version": "3.0.42",
+  "version": "3.0.43",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "Do quem ganha mais likes",
     "en": "The one with the likes"
   },
-  "basedOn": "cimeloP",
+  "inspiredBy": "cimeloP",
   "summary": {
     "pt": "Um tópico... Polêmico. Você sabe a sua opinião, mas consegue descobrir a dos seus oponentes?",
     "en": "One... polemic... subject... You know your opinion, but can do guess the opponents' ones?"

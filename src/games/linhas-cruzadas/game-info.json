@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "linhas-cruzadas",
-  "version": "1.2.74",
+  "version": "1.2.75",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "Telefone sem fio de desenhar",
     "en": "Telephone with drawings"
   },
-  "basedOn": "snoitartseleT",
+  "inspiredBy": "snoitartseleT",
   "summary": {
     "pt": "Desenhe... adivinhe... repita...",
     "en": "Draw... guess... repeat..."

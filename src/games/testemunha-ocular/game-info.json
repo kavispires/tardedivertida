@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "testemunha-ocular",
-  "version": "5.0.8",
+  "version": "5.0.9",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "Do preconceito",
     "en": "The cooperative NSFW"
   },
-  "basedOn": "stcepsuS lausunU",
+  "inspiredBy": "stcepsuS lausunU",
   "summary": {
     "pt": "Um crime. Uma testemunha. Desde quando julgando por aparência não se desvenda um crime?",
     "en": "One crime. One witness... that judge people by their appearances. What could go wrong?"

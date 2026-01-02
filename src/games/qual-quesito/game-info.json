@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "qual-quesito",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "release": "beta",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "",
     "en": ""
   },
-  "basedOn": "gnihT gnihT",
+  "inspiredBy": "gnihT gnihT",
   "summary": {
     "en": "Make up a category and see how many things are thrown at it.",
     "pt": "Crie uma categoria e veja quantas coisas são jogadas nela."

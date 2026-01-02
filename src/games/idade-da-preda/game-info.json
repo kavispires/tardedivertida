@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "idade-da-preda",
-  "version": "0.9.19",
+  "version": "0.9.20",
   "release": "beta",
   "available": false,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "O de criar a linguagem",
     "en": "The one about creating language"
   },
-  "basedOn": "aDaDaD",
+  "inspiredBy": "aDaDaD",
   "summary": {
     "pt": "Homens das cavernas tem que criar uma nova língua. Vamos nomear objetos?",
     "en": "Cavemen must create a new language. Let's name objects?"

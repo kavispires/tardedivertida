@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "espiao-entre-nos",
-  "version": "0.10.68",
+  "version": "0.10.69",
   "release": "paused",
   "available": false,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "Do espião",
     "en": "The one with the spy in the location"
   },
-  "basedOn": "llafypS",
+  "inspiredBy": "llafypS",
   "summary": {
     "pt": "Todos nós, agentes de bem, estamos num mesmo local, mas um de nós é um espião! Será que conseguimos descobrir quem é o impostor antes dele descobrir que local estamos?",
     "en": "We, all good agents, are meeting in the same place, but there's a spy among us. Can we find the impostor before they find out where we're supposed to meet?"

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vamos-ao-cinema",
-  "version": "2.0.15",
+  "version": "2.0.16",
   "release": "stable",
   "available": true,
   "title": {
@@ -13,7 +13,7 @@
     "pt": "O dos filmes",
     "en": "The one with movies"
   },
-  "basedOn": "eivom taht toN",
+  "inspiredBy": "eivom taht toN",
   "summary": {
     "pt": "Você e seus amigos querem ir ao cinema e baseado na crítica, qual filme você quer ver?",
     "en": "You and your friends want to go the movies, so based on the reviews, what movie do you want to watch?"
