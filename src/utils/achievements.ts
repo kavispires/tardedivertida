@@ -22,6 +22,7 @@ import ONDA_TELEPATICA from 'games/onda-telepatica/utils/achievements';
 import PLANEJAMENTO_URBANO from 'games/planejamento-urbano/utils/achievements';
 import POLEMICA_DA_VEZ from 'games/polemica-da-vez/utils/achievements';
 import PORTA_DOS_DESESPERADOS from 'games/porta-dos-desesperados/utils/achievements';
+import QUAL_QUESITO from 'games/qual-quesito/utils/achievements';
 import QUEM_SOU_EU from 'games/quem-sou-eu/utils/achievements';
 import RETRATO_FALADO from 'games/retrato-falado/utils/achievements';
 import SINAIS_DE_ALERTA from 'games/sinais-de-alerta/utils/achievements';
@@ -78,6 +79,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'porta-dos-desesperados': PORTA_DOS_DESESPERADOS,
   'quem-nao-mata': null,
   'quem-sou-eu': QUEM_SOU_EU,
+  'qual-quesito': QUAL_QUESITO,
   'retrato-falado': RETRATO_FALADO,
   'sinais-de-alerta': SINAIS_DE_ALERTA,
   'sonhos-pesadelos': null,

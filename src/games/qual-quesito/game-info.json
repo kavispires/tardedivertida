@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "qual-quesito",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "release": "beta",
   "available": true,
   "title": {
@@ -39,7 +39,7 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive", "writing", "voting"],
+  "tags": ["competitive", "writing", "voting", "achievements"],
   "options": [
     {
       "key": "nsfw",
