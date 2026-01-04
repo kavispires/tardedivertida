@@ -14,7 +14,6 @@ import { SEPARATOR } from '../../utils/constants';
 import { CRUZA_PALAVRAS_PHASES, CRUZA_PALAVRAS_ACHIEVEMENTS } from './constants';
 // Utils
 import utils from '../../utils';
-import { getListOfPlayers } from '../../utils/players-utils';
 
 /**
  * Determine the next phase based on the current one
@@ -163,7 +162,7 @@ export const distributeCoordinates = (players: Players, grid: GridCell[]): GridC
     }
   };
 
-  const listOfPlayers = getListOfPlayers(players);
+  const listOfPlayers = utils.players.getListOfPlayers(players);
 
   listOfPlayers.forEach((player) => {
     const cell = shuffledCoordinates.pop();

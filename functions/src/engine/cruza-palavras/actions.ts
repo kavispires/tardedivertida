@@ -13,7 +13,7 @@ export const handleSubmitWords = async (
     gameName,
     gameId,
     playerId,
-    actionText: 'submit your clue',
+    actionText: 'submit your words',
     shouldReady: true,
     change: { selectedWordsIds: words },
     nextPhaseFunction: getNextPhase,
