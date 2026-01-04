@@ -1,8 +1,9 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { AnimatePresence, motion } from 'motion/react';
 import { useEffect } from 'react';
 import { useLocalStorage } from 'react-use';
 // Ant Design Resources
-import { Alert, Typography } from 'antd';
+import { Alert, Button, Typography } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -40,6 +41,7 @@ export function PhaseLobby({ players, meta }: PhaseProps) {
   const [localUsername] = useLocalStorage('username', '');
   const [localAvatarId] = useLocalStorage('avatarId', '');
   const info = useGameInfoContext();
+  const queryClient = useQueryClient();
 
   const player = players?.[currentUser.id];
 
@@ -98,6 +100,17 @@ export function PhaseLobby({ players, meta }: PhaseProps) {
                         pt="O jogo já foi iniciado e novos jogadores não podem ser adicionados"
                         en="The game has started and new players cannot be added at this time"
                       />
+                    }
+                    action={
+                      <Button
+                        onClick={() =>
+                          queryClient.refetchQueries({
+                            queryKey: ['meta', meta.gameId],
+                          })
+                        }
+                      >
+                        <Translate pt="Recarregar jogo" en="Reload game" />
+                      </Button>
                     }
                   />
                 </>
