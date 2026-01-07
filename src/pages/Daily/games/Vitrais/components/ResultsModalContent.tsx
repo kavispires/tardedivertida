@@ -67,8 +67,8 @@ export function ResultsModalContent({
       <Typography.Paragraph strong className="center">
         "{title}"
         <br />
-        {score} <Translate pt="pontos" en="points" /> em {Math.floor(totalTime / 60)}:{totalTime % 60}{' '}
-        <Translate pt="segundos" en="seconds" />.
+        {score} <Translate pt="pontos" en="points" /> em {Math.floor(totalTime / 60)}:
+        {(totalTime % 60).toString().padStart(2, '0')} <Translate pt="segundos" en="seconds" />.
       </Typography.Paragraph>
 
       <CopyToClipboardResult result={result} rows={4} />
