@@ -63,7 +63,7 @@ export function writeResult({
   // const additionalLines = [correctItems.map((item) => (item ? '🟢' : '◼️')).join('')];
 
   return generateShareableResult({
-    heartsSuffix: ` (${score} pts em ${Math.floor(timeElapsed / 60)}:${timeElapsed % 60} s)`,
+    heartsSuffix: ` (${score} pts em ${Math.floor(timeElapsed / 60)}:${(timeElapsed % 60).toString().padStart(2, '0')})`,
     additionalLines: [''],
     ...rest,
   });
