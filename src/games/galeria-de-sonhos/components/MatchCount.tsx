@@ -9,7 +9,7 @@ import { PlayerHighlight } from 'components/metrics/PlayerHighlight';
 import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { StarPoints } from 'components/points';
-import { Fireworks } from 'components/visual-effects/Fireworks';
+import { FireworksEffect } from 'components/visual-effects/FireworksEffect';
 
 type MatchCountProps = {
   matchCount: number;
@@ -52,7 +52,7 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
               {pluralize(matchCount, 'player')} there!
               <br />
               {isSuperSpark && 'Super Spark!'}
-              {isSuperSpark && <Fireworks />}
+              {isSuperSpark && <FireworksEffect />}
               <StarPoints keyPrefix="dream-result" quantity={isSuperSpark ? 3 : 2} />
             </p>
           }

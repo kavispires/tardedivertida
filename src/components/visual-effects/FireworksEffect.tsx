@@ -1,7 +1,7 @@
 // Sass
-import './Fireworks.scss';
+import './FireworksEffect.scss';
 
-export function Fireworks() {
+export function FireworksEffect() {
   return (
     <div className="fireworks">
       <div className="fireworks__before"></div>

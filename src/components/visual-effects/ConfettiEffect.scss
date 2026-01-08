@@ -1,0 +1,95 @@
+@use "styles/sass" as *;
+
+.confetti {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
+
+  span {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    top: -10%;
+    animation: confetti-fall linear infinite;
+    opacity: 0;
+
+    // Generate random properties for each confetti piece
+    @for $i from 1 through 50 {
+      &:nth-child(#{$i}) {
+        left: random(100) * 1%;
+        width: (random(8) + 5) * 1px;
+        height: (random(8) + 5) * 1px;
+        animation-duration: (random(30) + 20) * 0.1s;
+        animation-delay: random(20) * 0.1s;
+        opacity: (random(5) + 5) * 0.1;
+
+        // Varied confetti colors
+        @if $i % 7 == 0 {
+          background: #ff6b6b; // Red
+        } @else if $i % 7 == 1 {
+          background: #4ecdc4; // Teal
+        } @else if $i % 7 == 2 {
+          background: #ffe66d; // Yellow
+        } @else if $i % 7 == 3 {
+          background: #a8e6cf; // Green
+        } @else if $i % 7 == 4 {
+          background: #ff8b94; // Pink
+        } @else if $i % 7 == 5 {
+          background: #b4a7d6; // Purple
+        } @else {
+          background: #ffd3b6; // Orange
+        }
+
+        // Random rotation speeds
+        transform: rotate(random(360) * 1deg);
+        animation-name: confetti-fall-#{$i % 3};
+      }
+    }
+  }
+}
+
+// Three different falling patterns for variety
+@keyframes confetti-fall-0 {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes confetti-fall-1 {
+  0% {
+    transform: translateY(0) rotate(0deg) translateX(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(55vh) rotate(360deg) translateX(100px);
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg) translateX(0);
+    opacity: 0;
+  }
+}
+
+@keyframes confetti-fall-2 {
+  0% {
+    transform: translateY(0) rotate(0deg) translateX(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(55vh) rotate(360deg) translateX(-100px);
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg) translateX(0);
+    opacity: 0;
+  }
+}
