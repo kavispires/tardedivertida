@@ -114,6 +114,7 @@ export const updateCardDataCollection = async (
     const currentData = doc.data() ?? {};
     // Merge data
     Object.entries(data).forEach(([cardId, clues]) => {
+      if (clues.length === 0) return;
       if (currentData[cardId]) {
         currentData[cardId] = utils.game.removeDuplicates([...currentData[cardId], ...clues]);
       } else {
