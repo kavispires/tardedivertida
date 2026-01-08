@@ -1,4 +1,5 @@
 import { orderBy } from 'lodash';
+import moment from 'moment';
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 // Ant Design Resources
@@ -30,8 +31,18 @@ const PRIORITY_LIST = orderBy(
     ALL_SETTINGS.TA_NA_CARA,
     ALL_SETTINGS.PICACO,
   ],
-  ['name.pt'],
-  ['asc'],
+  [
+    (o) => {
+      const releaseDate = moment(o.RELEASE_DATE, 'YYYY-MM-DD');
+      const now = moment();
+      return (
+        releaseDate.isValid() && releaseDate.diff(now, 'days') <= 30 && releaseDate.diff(now, 'days') >= 0
+      );
+    },
+    'TYPE',
+    'HUB_NAME',
+  ],
+  ['desc', 'desc', 'asc'],
 );
 
 const getUnplayedGames = () => {

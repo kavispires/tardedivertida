@@ -6,6 +6,7 @@ import type { GameSettings } from 'pages/Daily/utils/types';
 export const SETTINGS: GameSettings = {
   KEY: 'FILMACO',
   ROUTE: 'filmaco',
+  TYPE: 'game',
   RELEASE_DATE: '2024-05-30',
   COLOR: 'rgba(85, 161, 255, 0.85)',
   EMOJI: '🎬',

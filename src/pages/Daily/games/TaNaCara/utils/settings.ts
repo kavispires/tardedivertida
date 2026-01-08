@@ -6,6 +6,7 @@ import type { GameSettings } from 'pages/Daily/utils/types';
 export const SETTINGS: GameSettings = {
   KEY: 'TA_NA_CARA',
   ROUTE: 'ta-na-cara',
+  TYPE: 'contribution',
   RELEASE_DATE: '2025-02-21',
   COLOR: 'rgba(242, 233, 236, 0.85)',
   EMOJI: '👤',

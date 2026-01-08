@@ -6,6 +6,7 @@ import type { GameSettings } from 'pages/Daily/utils/types';
 export const SETTINGS: GameSettings = {
   KEY: 'ORGANIKU',
   ROUTE: 'organiku',
+  TYPE: 'game',
   RELEASE_DATE: '2025-06-07',
   COLOR: 'rgba(186, 243, 154, 0.85)',
   EMOJI: '🧸',

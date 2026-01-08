@@ -6,6 +6,7 @@ import type { GameSettings } from 'pages/Daily/utils/types';
 export const SETTINGS: GameSettings = {
   KEY: 'AQUI_O',
   ROUTE: 'aqui-o',
+  TYPE: 'game',
   RELEASE_DATE: '2024-04-30',
   COLOR: 'rgba(227, 167, 111, 0.85)',
   EMOJI: '🔍',

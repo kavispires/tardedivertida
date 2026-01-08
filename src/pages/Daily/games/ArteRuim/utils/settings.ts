@@ -6,6 +6,7 @@ import type { GameSettings } from 'pages/Daily/utils/types';
 export const SETTINGS: GameSettings = {
   KEY: 'ARTE_RUIM',
   ROUTE: 'arte-ruim',
+  TYPE: 'game',
   RELEASE_DATE: '2023-11-04',
   COLOR: 'rgba(158, 182, 244, 0.85)',
   EMOJI: '🖼️',
