@@ -98,12 +98,14 @@ export const ImageCard = ({
         src={`${baseUrl}/${imageURL}.${fileExtension}`}
         placeholder={<Image preview={false} src={placeholder} width={cardWidth} />}
         fallback={`${PUBLIC_URL.CARDS}${fallbackName}.jpg`}
+        classNames={{
+          cover: clsx(`${baseClass}__preview-mask`),
+        }}
         preview={
           isBlurred || !preview
             ? false
             : {
                 ...previewConfig,
-                maskClassName: clsx(`${baseClass}__preview-mask`, previewConfig?.maskClassName),
                 src: previewImageId
                   ? `${baseUrl}/${previewImageId.replace(/-/g, '/')}.${fileExtension}`
                   : previewConfig?.src,
