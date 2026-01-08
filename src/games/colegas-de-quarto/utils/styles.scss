@@ -1,0 +1,19 @@
+@use "styles/sass" as *;
+
+.store-board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+
+  &__item-text {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  &__item {
+    background-color: get-color("gray", 2, 0.5);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+  }
+}

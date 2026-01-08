@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "colegas-de-quarto",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "release": "dev",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Colegas de Quarto",
     "en": "Roommates"

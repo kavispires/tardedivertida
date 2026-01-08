@@ -261,11 +261,12 @@ export const GAME_COLLECTION = {
   ARTE_RUIM: 'arte-ruim',
   BARRADOS_NA_ALFANDEGA: 'barrados-na-alfandega', // upcoming
   BOMBA_RELOGIO: 'bomba-relogio', // upcoming
+  CINEGRAFISTAS_AMADORES: 'cinegrafistas-amadores', // upcoming
+  COLEGAS_DE_QUARTO: 'colegas-de-quarto',
   COMUNICACAO_ALIENIGENA: 'comunicacao-alienigena',
   COMUNICACAO_DUO: 'comunicacao-duo',
   CONTADORES_HISTORIAS: 'contadores-historias',
   CONTROLE_DE_ESTOQUE: 'controle-de-estoque',
-  CINEGRAFISTAS_AMADORES: 'cinegrafistas-amadores', // upcoming
   CRIMES_HEDIONDOS: 'crimes-hediondos',
   CRUZA_PALAVRAS: 'cruza-palavras',
   DETETIVES_IMAGINATIVOS: 'detetives-imaginativos',
