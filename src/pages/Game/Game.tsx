@@ -13,7 +13,9 @@ function Game() {
   const { translate } = useLanguage();
   const { isKeyLoading } = useLoading();
 
-  const { gameId, gameName, createdAt } = useGameMeta();
+  const {
+    meta: { gameId, gameName, createdAt },
+  } = useGameMeta();
 
   const isGameStale = useIsGameStale(createdAt);
 

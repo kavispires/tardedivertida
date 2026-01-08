@@ -56,7 +56,9 @@ type RateGameWidgetContentProps = {
 } & RateGameWidgetProps;
 
 function RateGameWidgetContent({ customText, hideWidget, setHideWidget }: RateGameWidgetContentProps) {
-  const { gameId } = useGameMeta();
+  const {
+    meta: { gameId },
+  } = useGameMeta();
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
   const [userId] = useGlobalState('userId');

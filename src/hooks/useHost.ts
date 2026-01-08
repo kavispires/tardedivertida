@@ -7,7 +7,9 @@ import { useGlobalState } from './useGlobalState';
  * @returns Returns true if the user is the Host, false otherwise
  */
 export function useHost(): boolean {
-  const { createdBy } = useGameMeta();
+  const {
+    meta: { createdBy },
+  } = useGameMeta();
   const [userId] = useGlobalState('userId');
 
   return createdBy === userId;

@@ -57,7 +57,9 @@ export function useHostActionRequest({
 }: UseHostActionRequestArgs): (...args: any[]) => any {
   const { message, notification } = App.useApp();
   const { setLoader } = useLoading();
-  const { gameId, gameName } = useGameMeta();
+  const {
+    meta: { gameId, gameName },
+  } = useGameMeta();
   const [userId] = useGlobalState('userId');
 
   const query = useMutation({
