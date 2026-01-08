@@ -1,3 +1,4 @@
+@use "sass:math";
 @use "styles/sass" as *;
 
 .confetti {
@@ -22,12 +23,12 @@
     // Generate random properties for each confetti piece
     @for $i from 1 through 50 {
       &:nth-child(#{$i}) {
-        left: random(100) * 1%;
-        width: (random(8) + 5) * 1px;
-        height: (random(8) + 5) * 1px;
-        animation-duration: (random(30) + 20) * 0.1s;
-        animation-delay: random(20) * 0.1s;
-        opacity: (random(5) + 5) * 0.1;
+        left: math.random(100) * 1%;
+        width: (math.random(8) + 5) * 1px;
+        height: (math.random(8) + 5) * 1px;
+        animation-duration: (math.random(30) + 20) * 0.1s;
+        animation-delay: math.random(20) * 0.1s;
+        opacity: (math.random(5) + 5) * 0.1;
 
         // Varied confetti colors
         @if $i % 7 == 0 {
@@ -47,7 +48,7 @@
         }
 
         // Random rotation speeds
-        transform: rotate(random(360) * 1deg);
+        transform: rotate(math.random(360) * 1deg);
         animation-name: confetti-fall-#{$i % 3};
       }
     }
