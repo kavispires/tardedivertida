@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "colegas-de-quarto",
-  "version": "0.0.4",
-  "release": "planned",
-  "available": false,
+  "version": "0.0.6",
+  "release": "dev",
+  "available": true,
   "title": {
     "pt": "Colegas de Quarto",
     "en": "Roommates"
@@ -39,5 +39,40 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["cooperative"]
+  "tags": ["cooperative", "guessing"],
+  "options": [
+    {
+      "key": "wordsSource",
+      "label": "Words Source",
+      "description": "Determines the deck the words for the game will come from.",
+      "kind": "radio",
+      "values": [
+        {
+          "label": "Normal",
+          "value": "words",
+          "description": "The first grid uses normal words as headers"
+        },
+        {
+          "label": "Properties",
+          "value": "properties"
+        }
+      ]
+    },
+    {
+      "key": "nsfw",
+      "kind": "switch",
+      "label": "NSFW Items",
+      "description": "Allow NSFW items (only if playing with Items)",
+      "values": [
+        {
+          "label": "Off",
+          "value": false
+        },
+        {
+          "label": "On",
+          "value": true
+        }
+      ]
+    }
+  ]
 }
