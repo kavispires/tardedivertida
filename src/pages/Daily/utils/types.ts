@@ -63,6 +63,10 @@ export interface GameSettings {
    */
   ROUTE: string;
   /**
+   * Game type
+   */
+  TYPE: 'game' | 'contribution';
+  /**
    * Game box hub color
    */
   COLOR: string;

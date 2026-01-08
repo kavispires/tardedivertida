@@ -6,6 +6,7 @@ import type { GameSettings } from 'pages/Daily/utils/types';
 export const SETTINGS: GameSettings = {
   KEY: 'PORTAIS_MAGICOS',
   ROUTE: 'portais-magicos',
+  TYPE: 'game',
   RELEASE_DATE: '2025-04-12',
   COLOR: 'rgba(255, 171, 145, 0.85)',
   EMOJI: '🚪',

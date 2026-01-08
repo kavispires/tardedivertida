@@ -39,6 +39,7 @@ type Entry = GameSettings & {
 const _COMING_SOON_ENTRY: Entry = {
   KEY: '',
   ROUTE: '',
+  TYPE: 'game',
   RELEASE_DATE: moment().add(1, 'year').format('YYYY-MM-DD'),
   EMOJI: '',
   COLOR: '',

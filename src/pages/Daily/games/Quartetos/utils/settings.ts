@@ -6,6 +6,7 @@ import type { GameSettings } from 'pages/Daily/utils/types';
 export const SETTINGS: GameSettings = {
   KEY: 'QUARTETOS',
   ROUTE: 'quartetos',
+  TYPE: 'game',
   RELEASE_DATE: '2025-03-01',
   COLOR: 'rgba(243, 145, 189, 0.85)',
   EMOJI: '🗂',

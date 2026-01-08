@@ -6,6 +6,7 @@ import type { GameSettings } from 'pages/Daily/utils/types';
 export const SETTINGS: GameSettings = {
   KEY: 'PICACO',
   ROUTE: 'picaco',
+  TYPE: 'contribution',
   RELEASE_DATE: '2024-04-30',
   COLOR: 'rgba(234, 236, 241, 0.85)',
   EMOJI: '🎨',

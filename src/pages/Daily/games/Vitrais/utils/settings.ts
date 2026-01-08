@@ -6,6 +6,7 @@ import type { GameSettings } from 'pages/Daily/utils/types';
 export const SETTINGS: GameSettings = {
   KEY: 'VITRAIS',
   ROUTE: 'vitrais',
+  TYPE: 'game',
   RELEASE_DATE: '2025-12-24',
   COLOR: 'rgba(255, 150, 29, 0.85)',
   EMOJI: '🧩',

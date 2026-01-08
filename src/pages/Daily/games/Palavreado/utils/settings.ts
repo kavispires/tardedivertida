@@ -6,6 +6,7 @@ import type { GameSettings } from 'pages/Daily/utils/types';
 export const SETTINGS: GameSettings = {
   KEY: 'PALAVREADO',
   ROUTE: 'palavreado',
+  TYPE: 'game',
   RELEASE_DATE: '2024-05-10',
   COLOR: 'rgba(239, 83, 80, 0.85)',
   EMOJI: '🔤',
