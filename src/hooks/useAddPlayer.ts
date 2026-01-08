@@ -12,7 +12,9 @@ import { useLanguage } from './useLanguage';
 import { getKey, useGlobalLocalStorage } from './useGlobalLocalStorage';
 
 export function useAddPlayer(name: string, avatarId: string, isGuest: boolean, onSuccess: GenericFunction) {
-  const { gameId, gameName } = useGameMeta();
+  const {
+    meta: { gameId, gameName },
+  } = useGameMeta();
   const [, setUserId] = useGlobalState('userId');
   const [, setUsername] = useGlobalState('username');
   const [, setUserAvatarId] = useGlobalState('userAvatarId');

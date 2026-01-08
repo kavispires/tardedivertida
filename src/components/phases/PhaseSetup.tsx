@@ -1,5 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -20,10 +20,14 @@ import { ImageBackground } from './lobby/ImageBackground';
 export function PhaseSetup({ state }: PhaseProps) {
   const gameId = useGameId();
   const queryClient = useQueryClient();
+  const hasInvalidated = useRef(false);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: only gameId is necessary
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only the id matters
   useEffect(() => {
-    queryClient.invalidateQueries({ queryKey: ['meta', gameId] });
+    if (!hasInvalidated.current && gameId) {
+      queryClient.invalidateQueries({ queryKey: ['meta', gameId] });
+      hasInvalidated.current = true;
+    }
   }, [gameId]);
 
   return (

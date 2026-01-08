@@ -18,7 +18,7 @@ import { useError } from './useError';
  * Get game meta document
  * Gets stale after 30 minutes
  */
-export function useGameMeta(): GameMeta {
+export function useGameMeta(): { meta: GameMeta; dataUpdatedAt: number } {
   const { notification } = App.useApp();
   const gameId = useGameId();
   const { setLanguage } = useLanguage();
@@ -69,17 +69,20 @@ export function useGameMeta(): GameMeta {
     setLoader('load', query.isLoading);
   }, [query.isLoading]);
 
-  return (query.data?.data ?? {
-    gameId: '',
-    gameName: '',
-    createdAt: 0,
-    createdBy: '',
-    isComplete: false,
-    isLocked: false,
-    language: 'en',
-    max: 0,
-    min: 0,
-    replay: 0,
-    options: {},
-  }) as GameMeta;
+  return {
+    meta: (query.data?.data ?? {
+      gameId: '',
+      gameName: '',
+      createdAt: 0,
+      createdBy: '',
+      isComplete: false,
+      isLocked: false,
+      language: 'en',
+      max: 0,
+      min: 0,
+      replay: 0,
+      options: {},
+    }) as GameMeta,
+    dataUpdatedAt: query.dataUpdatedAt,
+  };
 }

@@ -36,7 +36,7 @@ type SessionProps = {
 };
 
 export function Session({ gameCollection, getActiveComponent }: SessionProps) {
-  const gameMeta = useGameMeta();
+  const { meta: gameMeta, dataUpdatedAt } = useGameMeta();
   const { language } = useLanguage();
   const state = useGameState(gameMeta.gameId, gameCollection);
   const [userId] = useGlobalState('userId');
@@ -88,7 +88,7 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
   return (
     <PageLayout>
       <GameInfoProvider gameCollection={gameCollection}>
-        <SessionConfigWrapper>
+        <SessionConfigWrapper key={dataUpdatedAt}>
           <GameInfoDrawer players={players} state={state} userId={userId} />
           <RedirectSession state={state} />
           <ActiveComponent players={players} state={state} meta={gameMeta} user={user} />

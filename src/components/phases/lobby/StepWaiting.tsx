@@ -34,11 +34,9 @@ type StepWaitingProps = {
 export function StepWaiting({ players }: StepWaitingProps) {
   const info = useGameInfoContext();
   const { message, notification } = App.useApp();
-  const { gameId, gameName } = useGameMeta();
+  const { meta: gameMeta } = useGameMeta();
   const { translate } = useLanguage();
   const { isLoading, setLoader } = useLoading();
-
-  const gameMeta = useGameMeta();
 
   const [username] = useGlobalState('username');
   const [userAvatarId] = useGlobalState('userAvatarId');
@@ -49,8 +47,8 @@ export function StepWaiting({ players }: StepWaitingProps) {
       setLoader('lock-game', true);
       return await HOST_API.run({
         action: HOST_API_ACTIONS.LOCK_GAME,
-        gameId,
-        gameName,
+        gameId: gameMeta.gameId,
+        gameName: gameMeta.gameName,
       });
     },
     onSuccess: (response) => {

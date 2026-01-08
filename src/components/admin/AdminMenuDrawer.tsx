@@ -42,7 +42,7 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
   const [usingFirestoreEmulator] = useGlobalState('usingFirestoreEmulator');
   const [isAdminEnabled] = useGlobalState('isAdminEnabled');
   const [visible, setVisible] = useState(false);
-  const meta = useGameMeta();
+  const { meta } = useGameMeta();
 
   const showDrawer = () => {
     setVisible(true);
