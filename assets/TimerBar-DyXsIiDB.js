@@ -1,1 +1,0 @@
-import{j as i}from"./index-9n8xigqu.js";import{P as n}from"./progress-Dk6WWe7V.js";function p({steps:r,strokeLinecap:m,total:e,type:o="line",value:t,status:c="active",...s}){const a=100-t*100/e;return i.jsx(n,{percent:a,steps:r,showInfo:!1,style:{marginBottom:"1rem"},size:r&&r>30?"small":void 0,type:o,...s})}export{p as T};
