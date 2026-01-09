@@ -1,0 +1,42 @@
+@use "styles/sass" as *;
+
+.vitrais-dnd-area {
+  position: relative;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  border: 1px solid get-color("white", 5, 0.5);
+  transition: height 500ms ease;
+}
+
+.vitrais-board-guide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+  z-index: 0;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.vitrais-board-grid {
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+}
+
+.vitrais-piece-dnd {
+  position: absolute;
+  top: 0;
+  left: 0;
+  touch-action: none;
+  z-index: 10;
+}
+
+.vitrais-piece {
+  transform-origin: "0 0";
+}
+
+.vitrais-piece-image-block {
+  position: absolute;
+  box-sizing: border-box;
+}

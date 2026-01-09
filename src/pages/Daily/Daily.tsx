@@ -26,6 +26,7 @@ import { DailyTaNaCaraGame } from './games/TaNaCara/DailyTaNaCaraGame';
 import { DailyEspionagemGame } from './games/Espionagem/DailyEspionagemGame';
 import { DailyOrganikuGame } from './games/Organiku/DailyOrganikuGame';
 import { DailyVitraisGame } from './games/Vitrais/DailyVitraisGame';
+import { DailyDemoPage } from './games/Demo/DailyDemoPage';
 // Sass
 import './utils/daily.scss';
 
@@ -77,6 +78,7 @@ function DailyPage() {
       // Contribute
       picaco: DailyPicacoGame,
       'ta-na-cara': DailyTaNaCaraGame,
+      demo: DailyDemoPage,
       // Dev
       debug: DebugPage,
     }?.[subPath] ?? Hub;

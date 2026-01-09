@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { useTimer } from 'react-timer-hook';
 // Ant Design Resources
 import { BugFilled, MutedOutlined, SoundFilled } from '@ant-design/icons';
-import { Alert, Button, Collapse, Divider, Switch, Typography } from 'antd';
+import { Alert, Button, Collapse, Divider, Space, Switch, Typography } from 'antd';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
@@ -155,8 +155,12 @@ export function Hub() {
           style={{ marginTop: '64px' }}
           showIcon={false}
           title={
-            <>
-              <Link to="debug">Debug</Link> <Divider orientation="vertical" />{' '}
+            <Space
+              size="small"
+              separator={<Divider orientation="vertical" />}
+            >
+              <Link to="/daily/debug">Debug</Link>
+              <Link to="/daily/demo">Demo</Link>
               <a
                 href={getFirestoreConsoleUrl(`diario/${today}`)}
                 target="_blank"
@@ -164,7 +168,7 @@ export function Hub() {
               >
                 Firestore
               </a>
-            </>
+            </Space>
           }
           type="info"
           banner
