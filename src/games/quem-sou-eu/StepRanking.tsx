@@ -26,7 +26,11 @@ export function StepRanking({ players, ranking, round, onGoBack }: StepRankingPr
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[
-        <Translate key="1" pt="Votos corretos" en="Correct guesses" />,
+        <Translate
+          key="1"
+          pt="Votos corretos"
+          en="Correct guesses"
+        />,
         <Translate
           key="2"
           pt="Votos corretos em seu personagem por outros jogadores"
@@ -38,8 +42,15 @@ export function StepRanking({ players, ranking, round, onGoBack }: StepRankingPr
 
       <RoundsLeftInstruction round={round} />
 
-      <Button size="large" onClick={onGoBack} icon={<PictureOutlined />}>
-        <Translate pt="Ver Galeria Novamente" en="See Gallery Again" />
+      <Button
+        size="large"
+        onClick={onGoBack}
+        icon={<PictureOutlined />}
+      >
+        <Translate
+          pt="Ver Galeria Novamente"
+          en="See Gallery Again"
+        />
       </Button>
 
       <HostNextPhaseButton round={round} />

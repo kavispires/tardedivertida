@@ -59,21 +59,36 @@ export function ResultsModalContent({
 
   return (
     <SpaceContainer vertical>
-      <Typography.Title level={2} className="center">
+      <Typography.Title
+        level={2}
+        className="center"
+      >
         {win ? (
           <>
-            <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Parabéns!" en="Congratulations!" />
+            <IconAvatar icon={<TrophyIcon />} />{' '}
+            <Translate
+              pt="Parabéns!"
+              en="Congratulations!"
+            />
           </>
         ) : (
           <>
-            <IconAvatar icon={<BoxXIcon />} /> <Translate pt="Que pena!" en="Too bad!" />
+            <IconAvatar icon={<BoxXIcon />} />{' '}
+            <Translate
+              pt="Que pena!"
+              en="Too bad!"
+            />
           </>
         )}
       </Typography.Title>
 
       <SpaceContainer vertical>
         {corridors.map(({ passcode }, index, arr) => (
-          <Flex key={passcode} justify="center" className="result-passcode">
+          <Flex
+            key={passcode}
+            justify="center"
+            className="result-passcode"
+          >
             <Typography.Text keyboard>{passcode}</Typography.Text>{' '}
             {currentCorridorIndex > index && guesses?.[index]?.length
               ? '🔶'
@@ -84,7 +99,10 @@ export function ResultsModalContent({
         ))}
       </SpaceContainer>
 
-      <CopyToClipboardResult result={result} rows={4} />
+      <CopyToClipboardResult
+        result={result}
+        rows={4}
+      />
 
       <NextGameSuggestion />
     </SpaceContainer>

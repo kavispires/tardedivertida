@@ -31,7 +31,10 @@ export const StarPoints = ({ keyPrefix, quantity, className, hideText }: StarPoi
       {isNegative ? '-' : '+'} <span className="star-points__stars">{StarsArray}</span>
       {!hideText && (
         <>
-          <Translate pt="ponto" en="point" />
+          <Translate
+            pt="ponto"
+            en="point"
+          />
           {num > 1 ? 's' : ''}
         </>
       )}

@@ -37,24 +37,46 @@ export function StepWinner({
   useTemporarilyHidePlayersBar();
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Vencedor" en="Winner" />
+        <Translate
+          pt="Vencedor"
+          en="Winner"
+        />
       </StepTitle>
 
       <Challenge challenge={challenge} />
 
       <SpaceContainer className="margin">
-        <CharacterCard size={200} overlayColor="yellow" character={brackets[brackets.length - 1]} />
+        <CharacterCard
+          size={200}
+          overlayColor="yellow"
+          character={brackets[brackets.length - 1]}
+        />
       </SpaceContainer>
 
       <SpaceContainer>
-        <TimedButton duration={7} icon={<TrophyOutlined />} onExpire={goToNextStep} onClick={goToNextStep}>
-          <Translate pt="Ver Ranking" en="See Ranking" />
+        <TimedButton
+          duration={7}
+          icon={<TrophyOutlined />}
+          onExpire={goToNextStep}
+          onClick={goToNextStep}
+        >
+          <Translate
+            pt="Ver Ranking"
+            en="See Ranking"
+          />
         </TimedButton>
       </SpaceContainer>
 
-      <BetsFloatingHand bets={bets} brackets={brackets} selectedContenderId={selectedContenderId} />
+      <BetsFloatingHand
+        bets={bets}
+        brackets={brackets}
+        selectedContenderId={selectedContenderId}
+      />
     </Step>
   );
 }

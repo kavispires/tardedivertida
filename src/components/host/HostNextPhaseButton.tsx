@@ -24,10 +24,20 @@ import { HostButton } from './HostButton';
 
 function ButtonLabel({ round }: { round?: GameRound }) {
   if (!round || round.current === round.total || round.forceLastRound) {
-    return <Translate pt="Tela de Game Over" en="Game Over Screen" />;
+    return (
+      <Translate
+        pt="Tela de Game Over"
+        en="Game Over Screen"
+      />
+    );
   }
 
-  return <Translate pt="Próxima rodada" en="Next Round" />;
+  return (
+    <Translate
+      pt="Próxima rodada"
+      en="Next Round"
+    />
+  );
 }
 
 type HostNextPhaseButtonProps = {
@@ -99,7 +109,12 @@ export function HostNextPhaseButton({
 
   return (
     <>
-      {withWaitingTimeBar && <WaitingTime duration={autoTriggerTime} timeLeft={timeLeft} />}
+      {withWaitingTimeBar && (
+        <WaitingTime
+          duration={autoTriggerTime}
+          timeLeft={timeLeft}
+        />
+      )}
 
       <HostOnlyContainer
         label="Host Action"

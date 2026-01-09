@@ -124,7 +124,12 @@ export function DroppableArea({
   };
 
   return (
-    <div ref={setNodeRef} style={elementStyle} className={combinedClassName} {...dataProps}>
+    <div
+      ref={setNodeRef}
+      style={elementStyle}
+      className={combinedClassName}
+      {...dataProps}
+    >
       {children}
     </div>
   );
@@ -256,7 +261,10 @@ export function DraggableItem({
   if (dragHandle) {
     // With custom drag handle
     return (
-      <div className={clsx('draggable-item-wrapper', wrapperClassName)} style={wrapperStyleObj}>
+      <div
+        className={clsx('draggable-item-wrapper', wrapperClassName)}
+        style={wrapperStyleObj}
+      >
         <button
           ref={setNodeRef}
           type="button"
@@ -266,7 +274,10 @@ export function DraggableItem({
           disabled={disabled}
           {...attributes}
         >
-          <span className="draggable-item-handle" {...listeners}>
+          <span
+            className="draggable-item-handle"
+            {...listeners}
+          >
             {dragHandle}
           </span>
           <span className="draggable-item-content">{children}</span>
@@ -277,7 +288,10 @@ export function DraggableItem({
 
   // Standard draggable (whole item is draggable)
   return (
-    <div className={clsx('draggable-item-wrapper', wrapperClassName)} style={wrapperStyleObj}>
+    <div
+      className={clsx('draggable-item-wrapper', wrapperClassName)}
+      style={wrapperStyleObj}
+    >
       <button
         ref={setNodeRef}
         type="button"

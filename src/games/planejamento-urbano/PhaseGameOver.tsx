@@ -14,12 +14,30 @@ import { CityMap } from './components/CityMap';
 
 export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<FlagIcon />}>
-      <Achievements achievements={state.achievements} players={players} reference={achievementsReference} />
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<FlagIcon />}
+    >
+      <Achievements
+        achievements={state.achievements}
+        players={players}
+        reference={achievementsReference}
+      />
 
-      <TitledContainer title={<Translate pt="Cidade Inaugurada" en="Final City" />}>
+      <TitledContainer
+        title={
+          <Translate
+            pt="Cidade Inaugurada"
+            en="Final City"
+          />
+        }
+      >
         {state.city && state.cityLocationsDict && (
-          <CityMap city={state.city} cityLocationsDict={state.cityLocationsDict} />
+          <CityMap
+            city={state.city}
+            cityLocationsDict={state.cityLocationsDict}
+          />
         )}
       </TitledContainer>
     </GameOverWrapper>

@@ -21,16 +21,49 @@ export function Info() {
       icon={<CustomerServiceOutlined />}
     >
       <FloatButton
-        tooltip={<Translate en="Game Phases" pt="Fases do Jogo" />}
+        tooltip={
+          <Translate
+            en="Game Phases"
+            pt="Fases do Jogo"
+          />
+        }
         icon={<OrderedListOutlined />}
       />
-      <FloatButton tooltip={<Translate en="Board Summary" pt="Resumo" />} icon={<BarChartOutlined />} />
-      <FloatButton tooltip={<Translate en="Motivations" pt="Motivações" />} icon={<AimOutlined />} />
       <FloatButton
-        tooltip={<Translate en="Questions" pt="Sugestões de Perguntas" />}
+        tooltip={
+          <Translate
+            en="Board Summary"
+            pt="Resumo"
+          />
+        }
+        icon={<BarChartOutlined />}
+      />
+      <FloatButton
+        tooltip={
+          <Translate
+            en="Motivations"
+            pt="Motivações"
+          />
+        }
+        icon={<AimOutlined />}
+      />
+      <FloatButton
+        tooltip={
+          <Translate
+            en="Questions"
+            pt="Sugestões de Perguntas"
+          />
+        }
         icon={<FileUnknownOutlined />}
       />
-      <FloatButton tooltip={<Translate en="Notebook" pt="Blocos de Notas" />} />
+      <FloatButton
+        tooltip={
+          <Translate
+            en="Notebook"
+            pt="Blocos de Notas"
+          />
+        }
+      />
     </FloatButton.Group>
   );
 }

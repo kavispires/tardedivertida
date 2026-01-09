@@ -45,7 +45,10 @@ export function NeedleChoice({ user, isPsychic, currentCategory }: NeedleChoiceP
 
   return (
     <Instruction contained>
-      <Translate en="You chose:" pt="Você escolheu" />
+      <Translate
+        en="You chose:"
+        pt="Você escolheu"
+      />
       <br />
       <Slider
         className="o-needle-choice"

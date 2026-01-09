@@ -11,8 +11,15 @@ type WarningDrawingProps = {
 export function WarningDrawing({ drawing, width }: WarningDrawingProps) {
   return (
     <div className="sda-alert-sign">
-      <WarningSignBackgroundMask style={{ width }} className="sda-alert-sign__mask" />
-      <CanvasSVG drawing={drawing} width={width} className="sda-alert-sign__canvas" />
+      <WarningSignBackgroundMask
+        style={{ width }}
+        className="sda-alert-sign__mask"
+      />
+      <CanvasSVG
+        drawing={drawing}
+        width={width}
+        className="sda-alert-sign__canvas"
+      />
     </div>
   );
 }

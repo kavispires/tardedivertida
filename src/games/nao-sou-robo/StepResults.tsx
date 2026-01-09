@@ -37,16 +37,31 @@ export function StepResult({ user, announcement, goToNextStep, players, result, 
   const cardWidth = useCardWidth(5, { gap: 8, minWidth: 140, maxWidth: 150 });
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle size="small">
-        <Translate pt="Resultado" en="Results" />
+        <Translate
+          pt="Resultado"
+          en="Results"
+        />
       </StepTitle>
 
-      <FloatingPlayerStats user={user} robot={robot} />
+      <FloatingPlayerStats
+        user={user}
+        robot={robot}
+      />
 
-      <RobotResult result={result} robot={robot} />
+      <RobotResult
+        result={result}
+        robot={robot}
+      />
 
-      <Space wrap className="result-container">
+      <Space
+        wrap
+        className="result-container"
+      >
         {result.options.map((option) => {
           return (
             <Flex
@@ -55,22 +70,38 @@ export function StepResult({ user, announcement, goToNextStep, players, result, 
               className={clsx('result', option.bot && 'result--bot')}
               key={option.id}
             >
-              <Flex vertical justify="center" align="center">
+              <Flex
+                vertical
+                justify="center"
+                align="center"
+              >
                 {option.bot ? (
                   <>
-                    <IconAvatar icon={<RobotIcon />} size="large" />
-                    <Translate pt="Robô" en="Robot" />
+                    <IconAvatar
+                      icon={<RobotIcon />}
+                      size="large"
+                    />
+                    <Translate
+                      pt="Robô"
+                      en="Robot"
+                    />
                   </>
                 ) : (
                   <>
-                    <IconAvatar icon={<SealOfApprovalIcon />} size="large" />
+                    <IconAvatar
+                      icon={<SealOfApprovalIcon />}
+                      size="large"
+                    />
                     {option.playerId ? players[option.playerId].name : 'Player'}
                   </>
                 )}
               </Flex>
 
               <ImageBlurButtonContainer cardId={option.id}>
-                <ImageCard cardId={option.id} cardWidth={cardWidth} />
+                <ImageCard
+                  cardId={option.id}
+                  cardWidth={cardWidth}
+                />
               </ImageBlurButtonContainer>
 
               <Avatar.Group max={{ count: 7 }}>
@@ -87,15 +118,33 @@ export function StepResult({ user, announcement, goToNextStep, players, result, 
         })}
       </Space>
 
-      <TitledContainer title={<Translate pt="Palavra-chave da Rodada" en="Round's keyword" />}>
+      <TitledContainer
+        title={
+          <Translate
+            pt="Palavra-chave da Rodada"
+            en="Round's keyword"
+          />
+        }
+      >
         <CaptchaTopic captcha={result} />
       </TitledContainer>
 
-      <Summary user={user} robot={robot} />
+      <Summary
+        user={user}
+        robot={robot}
+      />
 
       <Flex justify="center">
-        <TimedButton duration={45} onExpire={goToNextStep} onClick={goToNextStep} icon={<TrophyOutlined />}>
-          <Translate pt="Ver Ranking" en="See Ranking" />
+        <TimedButton
+          duration={45}
+          onExpire={goToNextStep}
+          onClick={goToNextStep}
+          icon={<TrophyOutlined />}
+        >
+          <Translate
+            pt="Ver Ranking"
+            en="See Ranking"
+          />
         </TimedButton>
       </Flex>
     </Step>

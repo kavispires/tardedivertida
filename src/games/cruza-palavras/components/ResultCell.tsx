@@ -24,7 +24,10 @@ function PlayersInCell({ cellPlayers, players }: PlayersInCellProps) {
             key={`players-in-cell-${playerId}`}
             className={clsx(isCorrect && 'x-players-in-cell-player--correct')}
           >
-            <PlayerAvatarName player={players[playerId]} size="small" />
+            <PlayerAvatarName
+              player={players[playerId]}
+              size="small"
+            />
           </li>
         ) : undefined,
       )}
@@ -60,7 +63,10 @@ export function ResultCell({
           player={players[clue.playerId]}
         />
         {cellPlayers.length ? (
-          <PlayersInCell cellPlayers={cellPlayers} players={players} />
+          <PlayersInCell
+            cellPlayers={cellPlayers}
+            players={players}
+          />
         ) : (
           <CloseSquareOutlined style={{ color: 'white' }} />
         )}
@@ -74,7 +80,12 @@ export function ResultCell({
 
   return (
     <span>
-      {Boolean(cellPlayers.length) && <PlayersInCell cellPlayers={cellPlayers} players={players} />}
+      {Boolean(cellPlayers.length) && (
+        <PlayersInCell
+          cellPlayers={cellPlayers}
+          players={players}
+        />
+      )}
     </span>
   );
 }

@@ -60,7 +60,12 @@ export function GlyphCard({
       className={clsx('glyph-card', className)}
       style={{ ...rest.style, width: `${width}px`, height: `${width}px`, ...divPadding }}
     >
-      <Sprite source={source} spriteId={id} width={width} padding={padding} />
+      <Sprite
+        source={source}
+        spriteId={id}
+        width={width}
+        padding={padding}
+      />
     </div>
   );
 }
@@ -74,5 +79,13 @@ export function GlyphSprite({
   ...props
 }: Pick<GlyphCardProps, 'glyphId' | 'width'> & ElementProps) {
   const [source, id] = getSource(+glyphId);
-  return <Sprite source={source} spriteId={id} width={width} padding={0} {...props} />;
+  return (
+    <Sprite
+      source={source}
+      spriteId={id}
+      width={width}
+      padding={0}
+      {...props}
+    />
+  );
 }

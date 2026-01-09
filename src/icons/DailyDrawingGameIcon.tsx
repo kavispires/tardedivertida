@@ -1,16 +1,30 @@
 export function DailyDrawingGameIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#c4cbcf"
         d="M35.31 385.86H485.5v48.2a17.66 17.66 0 01-17.66 17.65H52.96a17.65 17.65 0 01-17.65-17.65z"
       ></path>
-      <rect width="467.85" height="317.79" x="35.31" y="98.62" fill="#edeef0" rx="17.65"></rect>
+      <rect
+        width="467.85"
+        height="317.79"
+        x="35.31"
+        y="98.62"
+        fill="#edeef0"
+        rx="17.65"
+      ></rect>
       <path
         fill="#6c574c"
         d="M491.77 30.74a22.05 22.05 0 00-30 8.62L352.65 236.24l-6.35 57 45-35.57L500.42 60.84a22.06 22.06 0 00-8.62-30z"
       ></path>
-      <path fill="#968780" d="M352.65 236.33l-6.35 56.93 45-35.57z"></path>
+      <path
+        fill="#968780"
+        d="M352.65 236.33l-6.35 56.93 45-35.57z"
+      ></path>
       <path
         fill="#b0ca77"
         d="M491.95 30.91a22.08 22.08 0 018.67 30L485.5 87.94l-38.66-21.36 15-27.1a22.06 22.06 0 0130-8.57h.09z"

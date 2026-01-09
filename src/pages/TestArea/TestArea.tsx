@@ -115,16 +115,39 @@ function TestArea() {
 
   return (
     <PageLayout className="container">
-      <SpaceContainer className="full-width" vertical>
-        <Title level={1} size="large">
-          <Translate pt="Área de Teste" en="Test Area" />
+      <SpaceContainer
+        className="full-width"
+        vertical
+      >
+        <Title
+          level={1}
+          size="large"
+        >
+          <Translate
+            pt="Área de Teste"
+            en="Test Area"
+          />
         </Title>
 
-        <Steps current={current} items={steps} size="small" />
+        <Steps
+          current={current}
+          items={steps}
+          size="small"
+        />
 
-        {Content && <Content onResult={setResult} step={current} results={results} />}
+        {Content && (
+          <Content
+            onResult={setResult}
+            step={current}
+            results={results}
+          />
+        )}
 
-        <Results results={results} steps={steps} activeStep={current} />
+        <Results
+          results={results}
+          steps={steps}
+          activeStep={current}
+        />
       </SpaceContainer>
     </PageLayout>
   );

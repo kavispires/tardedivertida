@@ -37,7 +37,10 @@ function getActiveComponent(state: GameState) {
 
 function SessionVendavalDePalpite() {
   return (
-    <Session gameCollection={GAME_COLLECTION.VENDAVAL_DE_PALPITE} getActiveComponent={getActiveComponent} />
+    <Session
+      gameCollection={GAME_COLLECTION.VENDAVAL_DE_PALPITE}
+      getActiveComponent={getActiveComponent}
+    />
   );
 }
 

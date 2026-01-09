@@ -21,7 +21,12 @@ export function PhaseAnswer({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<ChatIcon />}
-      title={<Translate pt="Responda!" en="Answer the question!" />}
+      title={
+        <Translate
+          pt="Responda!"
+          en="Answer the question!"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={4}
@@ -29,8 +34,14 @@ export function PhaseAnswer({ state, players, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={TA_NA_CARA_PHASES.ANSWERING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={TA_NA_CARA_PHASES.ANSWERING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepAnswerTheQuestion
           announcement={announcement}

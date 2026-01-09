@@ -1,6 +1,10 @@
 export function RotationIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#9b98e7"
         fillRule="evenodd"

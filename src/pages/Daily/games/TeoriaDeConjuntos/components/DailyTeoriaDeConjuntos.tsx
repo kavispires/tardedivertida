@@ -66,7 +66,10 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyDiagramGameIcon />} localStorageKey={SETTINGS.KEY}>
+      <Header
+        icon={<DailyDiagramGameIcon />}
+        localStorageKey={SETTINGS.KEY}
+      >
         <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <DailyContent ref={contentRef}>
@@ -78,11 +81,25 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
         />
 
         <Region>
-          <Typography.Text strong className="teoria-de-conjuntos-title">
+          <Typography.Text
+            strong
+            className="teoria-de-conjuntos-title"
+          >
             {data.title}
           </Typography.Text>
-          <Tooltip title={<Translate pt="Dificuldade" en="Difficulty" />}>
-            <Rate disabled value={data.level} count={data.level} />
+          <Tooltip
+            title={
+              <Translate
+                pt="Dificuldade"
+                en="Difficulty"
+              />
+            }
+          >
+            <Rate
+              disabled
+              value={data.level}
+              count={data.level}
+            />
           </Tooltip>
         </Region>
 
@@ -91,28 +108,58 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
             width={Math.min(contentMeasure.width - 16, 600)}
             leftCircleChildren={
               isComplete ? (
-                <InDiagramThings things={rule1Things} width={thingWidth} />
+                <InDiagramThings
+                  things={rule1Things}
+                  width={thingWidth}
+                />
               ) : (
-                <TransparentButton onClick={() => onSelectArea(1)} disabled={isComplete} hoverType="none">
-                  <InDiagramThings things={rule1Things} width={thingWidth} />
+                <TransparentButton
+                  onClick={() => onSelectArea(1)}
+                  disabled={isComplete}
+                  hoverType="none"
+                >
+                  <InDiagramThings
+                    things={rule1Things}
+                    width={thingWidth}
+                  />
                 </TransparentButton>
               )
             }
             rightCircleChildren={
               isComplete ? (
-                <InDiagramThings things={rule2Things} width={thingWidth} />
+                <InDiagramThings
+                  things={rule2Things}
+                  width={thingWidth}
+                />
               ) : (
-                <TransparentButton onClick={() => onSelectArea(2)} disabled={isComplete} hoverType="none">
-                  <InDiagramThings things={rule2Things} width={thingWidth} />
+                <TransparentButton
+                  onClick={() => onSelectArea(2)}
+                  disabled={isComplete}
+                  hoverType="none"
+                >
+                  <InDiagramThings
+                    things={rule2Things}
+                    width={thingWidth}
+                  />
                 </TransparentButton>
               )
             }
             intersectionChildren={
               isComplete ? (
-                <InDiagramThings things={intersectingThings} width={thingWidth} />
+                <InDiagramThings
+                  things={intersectingThings}
+                  width={thingWidth}
+                />
               ) : (
-                <TransparentButton onClick={() => onSelectArea(0)} disabled={isComplete} hoverType="none">
-                  <InDiagramThings things={intersectingThings} width={thingWidth} />
+                <TransparentButton
+                  onClick={() => onSelectArea(0)}
+                  disabled={isComplete}
+                  hoverType="none"
+                >
+                  <InDiagramThings
+                    things={intersectingThings}
+                    width={thingWidth}
+                  />
                 </TransparentButton>
               )
             }
@@ -121,7 +168,10 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
 
         {isComplete ? (
           <RegionText>
-            <Translate pt="Você já completou o desafio!" en="You have already completed the challenge!" />
+            <Translate
+              pt="Você já completou o desafio!"
+              en="You have already completed the challenge!"
+            />
           </RegionText>
         ) : (
           <RegionText>
@@ -134,13 +184,24 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
 
         {isComplete && (
           <Region>
-            <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
-              <Translate pt="Ver Resultado" en="Show Results" />
+            <Button
+              onClick={() => setShowResultModal(true)}
+              type="primary"
+              icon={<BarChartOutlined />}
+            >
+              <Translate
+                pt="Ver Resultado"
+                en="Show Results"
+              />
             </Button>
           </Region>
         )}
 
-        <Region className="space-center" orientation="horizontal" wrap>
+        <Region
+          className="space-center"
+          orientation="horizontal"
+          wrap
+        >
           {hand.map((thing) => (
             <TransparentButton
               key={thing.id}
@@ -151,7 +212,11 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
               disabled={isComplete}
               hoverType="none"
             >
-              <Thing itemId={thing.id} name={thing.name} width={thingWidth} />
+              <Thing
+                itemId={thing.id}
+                name={thing.name}
+                width={thingWidth}
+              />
             </TransparentButton>
           ))}
         </Region>
@@ -170,7 +235,11 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
           />
         )}
 
-        <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
+        <Modal
+          open={showResultModal}
+          onCancel={() => setShowResultModal(false)}
+          footer={null}
+        >
           <ResultsModalContent
             challengeNumber={data?.number}
             isWin={isWin}

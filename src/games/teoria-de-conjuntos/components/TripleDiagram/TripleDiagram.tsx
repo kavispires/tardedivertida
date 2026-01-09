@@ -6,7 +6,12 @@ type TripleDiagramProps = {
 
 export const TripleDiagram = forwardRef<SVGSVGElement, TripleDiagramProps>(({ width }, ref) => {
   return (
-    <svg ref={ref} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 780" width={width}>
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 820 780"
+      width={width}
+    >
       <path
         fill="#31a1ff"
         d="M289 271.6A258 258 0 0 1 390.5 70a236.6 236.6 0 0 0-119.3-32c-63.6 0-123.3 24.8-168.3 69.8S33.2 212.5 33.2 276 58 399.4 102.9 444.3a239.6 239.6 0 0 0 44.1 34.9 260.2 260.2 0 0 1 142-207.6"

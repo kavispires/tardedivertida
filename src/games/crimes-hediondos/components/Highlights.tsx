@@ -8,7 +8,12 @@ import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricH
 
 export function WeaponHighlight({ children, type, iconSize, className }: HighlightProps) {
   return (
-    <MetricHighlight icon={<KnifeIcon />} type={type} iconSize={iconSize} className={className}>
+    <MetricHighlight
+      icon={<KnifeIcon />}
+      type={type}
+      iconSize={iconSize}
+      className={className}
+    >
       {children}
     </MetricHighlight>
   );
@@ -16,7 +21,12 @@ export function WeaponHighlight({ children, type, iconSize, className }: Highlig
 
 export function EvidenceHighlight({ children, type, iconSize, className }: HighlightProps) {
   return (
-    <MetricHighlight icon={<CardboardBoxIcon />} type={type} iconSize={iconSize} className={className}>
+    <MetricHighlight
+      icon={<CardboardBoxIcon />}
+      type={type}
+      iconSize={iconSize}
+      className={className}
+    >
       {children}
     </MetricHighlight>
   );
@@ -24,7 +34,12 @@ export function EvidenceHighlight({ children, type, iconSize, className }: Highl
 
 export function LocationHighlight({ children, type, iconSize, className }: HighlightProps) {
   return (
-    <MetricHighlight icon={<LocationIcon />} type={type} iconSize={iconSize} className={className}>
+    <MetricHighlight
+      icon={<LocationIcon />}
+      type={type}
+      iconSize={iconSize}
+      className={className}
+    >
       {children}
     </MetricHighlight>
   );
@@ -32,7 +47,12 @@ export function LocationHighlight({ children, type, iconSize, className }: Highl
 
 export function VictimHighlight({ children, type, iconSize, className }: HighlightProps) {
   return (
-    <MetricHighlight icon={<AnonymousIcon />} type={type} iconSize={iconSize} className={className}>
+    <MetricHighlight
+      icon={<AnonymousIcon />}
+      type={type}
+      iconSize={iconSize}
+      className={className}
+    >
       {children}
     </MetricHighlight>
   );

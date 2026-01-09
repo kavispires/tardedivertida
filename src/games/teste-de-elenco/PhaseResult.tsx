@@ -27,7 +27,11 @@ export function PhaseResult({ state, players }: PhaseProps) {
       icon={<Icon />}
       title={
         <>
-          <Translate pt="Resultado" en="Results" />: <DualTranslate>{activeRole.title}</DualTranslate>
+          <Translate
+            pt="Resultado"
+            en="Results"
+          />
+          : <DualTranslate>{activeRole.title}</DualTranslate>
         </>
       }
       currentRound={state?.round?.current}
@@ -35,7 +39,10 @@ export function PhaseResult({ state, players }: PhaseProps) {
       duration={4}
     >
       <Instruction>
-        <Translate pt={<>E o papel foi escolhido?</>} en={<>So was the role cast?</>} />
+        <Translate
+          pt={<>E o papel foi escolhido?</>}
+          en={<>So was the role cast?</>}
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
@@ -43,8 +50,14 @@ export function PhaseResult({ state, players }: PhaseProps) {
   //
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={TESTE_DE_ELENCO_PHASES.RESULT}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={TESTE_DE_ELENCO_PHASES.RESULT}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepResult
           activeRole={activeRole}

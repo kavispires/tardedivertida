@@ -27,7 +27,12 @@ export function PhaseSuggest({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<WritingIcon />}
-      title={<Translate pt="Escreva uma dica!" en="Write a Clue!" />}
+      title={
+        <Translate
+          pt="Escreva uma dica!"
+          en="Write a Clue!"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >

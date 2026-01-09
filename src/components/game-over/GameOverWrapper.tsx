@@ -64,7 +64,11 @@ export function GameOverWrapper({
     <PhaseAnnouncement
       icon={announcementIcon}
       title={
-        <Translate pt="E o jogo chegou ao fim..." en="And the game is over..." custom={announcementTitle} />
+        <Translate
+          pt="E o jogo chegou ao fim..."
+          en="And the game is over..."
+          custom={announcementTitle}
+        />
       }
       currentRound={state?.round?.current}
       duration={announcementDuration}
@@ -80,9 +84,16 @@ export function GameOverWrapper({
       allowedPhase={PHASES.DEFAULT.GAME_OVER}
       className="game-over__container"
     >
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/*Step 0 */}
-        <GameOver state={state} rateWidgetCustomText={rateWidgetCustomText} announcement={announcement}>
+        <GameOver
+          state={state}
+          rateWidgetCustomText={rateWidgetCustomText}
+          announcement={announcement}
+        >
           {children}
         </GameOver>
       </StepSwitcher>

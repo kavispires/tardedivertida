@@ -1,6 +1,10 @@
 export function DailyImagesGameIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#b87d72"
         d="M256 7.5C148 7.5 60.46 95.04 60.46 203.03V504.5h391.07V203.03C451.53 95.04 363.99 7.5 256 7.5z"

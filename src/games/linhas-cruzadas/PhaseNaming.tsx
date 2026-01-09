@@ -21,18 +21,32 @@ export function PhaseNaming({ state, players, user }: PhaseProps) {
   const onSubmitGuess = useOnSubmitGuessAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={LINHAS_CRUZADAS_PHASES.NAMING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={LINHAS_CRUZADAS_PHASES.NAMING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<WriteIdeaIcon />}
-          title={<Translate pt="O que é isso?" en="What is it?" />}
+          title={
+            <Translate
+              pt="O que é isso?"
+              en="What is it?"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           type="block"
         >
           <Instruction>
-            <Translate pt="Tente adivinhar o que é a obra" en="Try to guess what the artwork is" />
+            <Translate
+              pt="Tente adivinhar o que é a obra"
+              en="Try to guess what the artwork is"
+            />
 
             <TurnOrder
               players={players}

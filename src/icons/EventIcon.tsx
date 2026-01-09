@@ -1,6 +1,10 @@
 export function EventIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#ffdc00"
         d="M256 208.41c91.14 0 145.64 21.64 182.25 34.64l35.46-146.92C443.18 82.84 361.86 50.46 256 50.46S68.82 82.84 38.3 96.13l35.45 146.92c36.61-13 91.1-34.64 182.25-34.64z"

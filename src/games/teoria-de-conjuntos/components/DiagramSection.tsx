@@ -60,14 +60,23 @@ export function DiagramSection({
 
   return (
     <div className="diagram-section">
-      <Instruction contained={hasAnAreaSelected} className="diagram-section__selected-scope">
+      <Instruction
+        contained={hasAnAreaSelected}
+        className="diagram-section__selected-scope"
+      >
         {hasAnAreaSelected && (
           <>
             <Title size="xx-small">
               {selectedArea === 'O' ? (
-                <Translate pt="Fora do Diagrama" en="Outside the Diagram" />
+                <Translate
+                  pt="Fora do Diagrama"
+                  en="Outside the Diagram"
+                />
               ) : (
-                <Translate pt="Coisas na área" en="Things in area" />
+                <Translate
+                  pt="Coisas na área"
+                  en="Things in area"
+                />
               )}
             </Title>
             <SelectedAreaItemsSection
@@ -80,7 +89,10 @@ export function DiagramSection({
           </>
         )}
       </Instruction>
-      <Instruction contained className="diagram-section__world">
+      <Instruction
+        contained
+        className="diagram-section__world"
+      >
         {doubleDiagram ? (
           <>
             <DoubleDiagram width={width} />
@@ -92,7 +104,10 @@ export function DiagramSection({
                 containerWidth={width}
               />
             ))}
-            <DoubleDiagramClickableAreas width={width} onClick={onAreaClick} />
+            <DoubleDiagramClickableAreas
+              width={width}
+              onClick={onAreaClick}
+            />
           </>
         ) : (
           <>
@@ -105,7 +120,10 @@ export function DiagramSection({
                 containerWidth={width}
               />
             ))}
-            <TripleDiagramClickableAreas width={width} onClick={onAreaClick} />
+            <TripleDiagramClickableAreas
+              width={width}
+              onClick={onAreaClick}
+            />
           </>
         )}
 
@@ -195,7 +213,12 @@ function SelectedAreaItemsSection({
   }, [selectedArea, diagrams]);
 
   return (
-    <Flex vertical align="center" style={{ maxHeight: maxHeight, overflowY: 'auto' }} gap={6}>
+    <Flex
+      vertical
+      align="center"
+      style={{ maxHeight: maxHeight, overflowY: 'auto' }}
+      gap={6}
+    >
       {areaKeys.map((areaKey, index) => (
         <SelectedAreaItems
           key={areaKey}
@@ -233,17 +256,32 @@ function SelectedAreaItems({
         <SelectedAreasCircles selectedArea={areaKey} />
       </div>
 
-      <Flex justify="center" align="center" gap={6} wrap="wrap">
+      <Flex
+        justify="center"
+        align="center"
+        gap={6}
+        wrap="wrap"
+      >
         {itemsIds.map((itemId) => (
           <Popconfirm
             placement="right"
             disabled={!reevaluation?.isJudge}
             key={itemId}
-            title={<Translate pt="Quer reavaliar essa coisa?" en="Do you want to reevaluate this thing?" />}
+            title={
+              <Translate
+                pt="Quer reavaliar essa coisa?"
+                en="Do you want to reevaluate this thing?"
+              />
+            }
             onConfirm={() => reevaluation?.onOpenFixModal(itemId, areaKey)}
           >
             <div>
-              <ItemCard key={itemId} itemId={itemId} width={84} text={items[itemId].name} />
+              <ItemCard
+                key={itemId}
+                itemId={itemId}
+                width={84}
+                text={items[itemId].name}
+              />
             </div>
           </Popconfirm>
         ))}

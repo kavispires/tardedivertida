@@ -26,14 +26,21 @@ export function PhaseActorSelection({ state, players, user }: PhaseProps) {
       icon={<SofaIcon />}
       title={
         <>
-          <Translate pt="Seleção" en="Actor Selection" />: <DualTranslate>{activeRole.title}</DualTranslate>
+          <Translate
+            pt="Seleção"
+            en="Actor Selection"
+          />
+          : <DualTranslate>{activeRole.title}</DualTranslate>
         </>
       }
       currentRound={state?.round?.current}
       type="overlay"
     >
       <Instruction>
-        <Translate pt={<>Quem vai ser o</>} en={<>Who is the best choice for</>} />
+        <Translate
+          pt={<>Quem vai ser o</>}
+          en={<>Who is the best choice for</>}
+        />
         <TextHighlight>
           <DualTranslate>{activeRole.description}</DualTranslate>
         </TextHighlight>
@@ -42,8 +49,14 @@ export function PhaseActorSelection({ state, players, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={TESTE_DE_ELENCO_PHASES.ACTOR_SELECTION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={TESTE_DE_ELENCO_PHASES.ACTOR_SELECTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepSelectActor
           user={user}

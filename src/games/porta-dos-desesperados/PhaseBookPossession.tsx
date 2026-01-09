@@ -44,8 +44,14 @@ export function PhaseBookPossession({ state, players }: PhaseProps<PhaseBookPoss
   const announceTrap = shouldAnnounceTrap(state.trap, PORTA_DOS_DESESPERADOS_PHASES.BOOK_POSSESSION);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PORTA_DOS_DESESPERADOS_PHASES.BOOK_POSSESSION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={PORTA_DOS_DESESPERADOS_PHASES.BOOK_POSSESSION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <RoundAnnouncement
           round={state?.round}
@@ -55,16 +61,27 @@ export function PhaseBookPossession({ state, players }: PhaseProps<PhaseBookPoss
           unskippable
         >
           {state.round.current === 1 ? (
-            <RoundOneRule magic={state.magic} difficulty={state.difficulty} />
+            <RoundOneRule
+              magic={state.magic}
+              difficulty={state.difficulty}
+            />
           ) : (
-            <RoundRule magic={state.magic} currentCorridor={state.currentCorridor} />
+            <RoundRule
+              magic={state.magic}
+              currentCorridor={state.currentCorridor}
+            />
           )}
         </RoundAnnouncement>
 
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<MagicBookIcon />}
-          title={<Translate pt="O Livro possui um jogador" en="The Book possesses a player" />}
+          title={
+            <Translate
+              pt="O Livro possui um jogador"
+              en="The Book possesses a player"
+            />
+          }
           onClose={announceTrap ? goToNextStep : () => setStep(4)}
           currentRound={state?.round?.current}
           type="block"
@@ -75,9 +92,12 @@ export function PhaseBookPossession({ state, players }: PhaseProps<PhaseBookPoss
                 <>
                   Cada rodada um jogador é possuído pelo <BookHighlight>Livro que Tudo Sabe</BookHighlight>.
                   <br />
-                  <PlayerAvatarName player={possessed} addressUser /> vai escolher cartas que representam as
-                  páginas do livro para ajudar os outros jogadores a escolherem a porta correta pra ir para o
-                  próximo corredor.
+                  <PlayerAvatarName
+                    player={possessed}
+                    addressUser
+                  />{' '}
+                  vai escolher cartas que representam as páginas do livro para ajudar os outros jogadores a
+                  escolherem a porta correta pra ir para o próximo corredor.
                 </>
               }
               en={
@@ -85,9 +105,12 @@ export function PhaseBookPossession({ state, players }: PhaseProps<PhaseBookPoss
                   Each round a player is possessed by{' '}
                   <BookHighlight>The Book That Knows It All</BookHighlight>.
                   <br />
-                  <PlayerAvatarName player={possessed} addressUser /> will choose cards representing the pages
-                  in the book to try to help the other players choose the correct door to move to the next
-                  level.
+                  <PlayerAvatarName
+                    player={possessed}
+                    addressUser
+                  />{' '}
+                  will choose cards representing the pages in the book to try to help the other players choose
+                  the correct door to move to the next level.
                 </>
               }
             />
@@ -96,7 +119,12 @@ export function PhaseBookPossession({ state, players }: PhaseProps<PhaseBookPoss
               players={players}
               order={state.gameOrder}
               activePlayerId={state.possessedId}
-              title={<Translate pt="Ordem da Possessão" en="Possession Order" />}
+              title={
+                <Translate
+                  pt="Ordem da Possessão"
+                  en="Possession Order"
+                />
+              }
             />
           </Instruction>
         </PhaseAnnouncement>
@@ -105,7 +133,10 @@ export function PhaseBookPossession({ state, players }: PhaseProps<PhaseBookPoss
         <PhaseTimerReset goToNextStep={goToNextStep} />
 
         {/* Step 3 */}
-        <TrapAnnouncement trapEntry={state.trapEntry} goToNextStep={goToNextStep} />
+        <TrapAnnouncement
+          trapEntry={state.trapEntry}
+          goToNextStep={goToNextStep}
+        />
 
         {/* Step 4 */}
         <ViewOr condition={isPossessed}>

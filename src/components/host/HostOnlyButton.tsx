@@ -18,7 +18,10 @@ type HostOnlyButtonProps = {
 export function HostOnlyButton({ onClick, children, ...buttonProps }: HostOnlyButtonProps) {
   return (
     <HostOnlyContainer>
-      <HostButton onClick={onClick} {...buttonProps}>
+      <HostButton
+        onClick={onClick}
+        {...buttonProps}
+      >
         {children}
       </HostButton>
     </HostOnlyContainer>

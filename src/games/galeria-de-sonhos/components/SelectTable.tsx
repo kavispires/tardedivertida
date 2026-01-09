@@ -45,9 +45,15 @@ export function SelectTable({ table, onSelectCard, selectedCards }: SelectTableP
                   icon={isSelected ? <CloseCircleOutlined /> : undefined}
                   buttonText={
                     isSelected ? (
-                      <Translate pt="Desmarcar" en="Deselect" />
+                      <Translate
+                        pt="Desmarcar"
+                        en="Deselect"
+                      />
                     ) : (
-                      <Translate pt="Selecionar" en="Select" />
+                      <Translate
+                        pt="Selecionar"
+                        en="Select"
+                      />
                     )
                   }
                 >

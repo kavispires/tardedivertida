@@ -58,7 +58,10 @@ function PhaseQuestioning({ state, players }: PhaseProps<PhaseQuestioningState>)
       allowedPhase={TESTEMUNHA_OCULAR_PHASES.QUESTIONING}
       className="t-phase"
     >
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepQuestioning
           suspectsDict={state.suspectsDict}

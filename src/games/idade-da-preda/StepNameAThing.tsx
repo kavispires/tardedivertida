@@ -74,9 +74,15 @@ export function StepNameAThing({
   });
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt={<>Nomeie um Item</>} en={<>Name an Item</>} />
+        <Translate
+          pt={<>Nomeie um Item</>}
+          en={<>Name an Item</>}
+        />
       </StepTitle>
 
       <RuleInstruction type="action">
@@ -101,7 +107,13 @@ export function StepNameAThing({
       </RuleInstruction>
 
       <SpaceContainer className="mt-4 contained">
-        <Flex justify="center" align="center" wrap="wrap" gap={6} className="mb-2">
+        <Flex
+          justify="center"
+          align="center"
+          wrap="wrap"
+          gap={6}
+          className="mb-2"
+        >
           {hand.map((item) => (
             <TransparentButton
               key={item.id}
@@ -109,25 +121,49 @@ export function StepNameAThing({
               activeClass="idp-selected"
               active={selectedItem?.id === item.id}
             >
-              <ItemCard key={item.id} itemId={item.id} width={itemWidth} title={dualTranslate(item.name)} />
+              <ItemCard
+                key={item.id}
+                itemId={item.id}
+                width={itemWidth}
+                title={dualTranslate(item.name)}
+              />
             </TransparentButton>
           ))}
         </Flex>
         <Divider orientation="vertical" />
 
         {newName.length > 0 && (
-          <Flex justify="center" align="center" wrap="wrap" gap={6}>
+          <Flex
+            justify="center"
+            align="center"
+            wrap="wrap"
+            gap={6}
+          >
             <TextHighlight className="idp-item-name">
-              <ItemName concepts={concepts} basicConcepts={basicConcepts} name={newName} />
+              <ItemName
+                concepts={concepts}
+                basicConcepts={basicConcepts}
+                name={newName}
+              />
             </TextHighlight>
-            <Button icon={<RollbackOutlined />} onClick={() => setNewName((p) => p.slice(0, -1))} />
+            <Button
+              icon={<RollbackOutlined />}
+              onClick={() => setNewName((p) => p.slice(0, -1))}
+            />
           </Flex>
         )}
 
         <Divider orientation="vertical" />
 
-        <SendButton size="large" disabled={!selectedItem || newName.length < 2} onClick={onSendName}>
-          <Translate pt="Enviar Nome" en="Send Name" />
+        <SendButton
+          size="large"
+          disabled={!selectedItem || newName.length < 2}
+          onClick={onSendName}
+        >
+          <Translate
+            pt="Enviar Nome"
+            en="Send Name"
+          />
         </SendButton>
       </SpaceContainer>
 

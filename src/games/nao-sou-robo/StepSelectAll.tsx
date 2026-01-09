@@ -73,12 +73,21 @@ export function StepSelectAll({
   };
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle size="small">
-        <Translate pt={<>Você é um robô?</>} en={<>Are you a robot?</>} />
+        <Translate
+          pt={<>Você é um robô?</>}
+          en={<>Are you a robot?</>}
+        />
       </StepTitle>
 
-      <FloatingPlayerStats user={user} robot={robot} />
+      <FloatingPlayerStats
+        user={user}
+        robot={robot}
+      />
 
       <RuleInstruction type="rule">
         <Translate
@@ -99,7 +108,10 @@ export function StepSelectAll({
 
       <div className="n-table-container">
         <div className="n-table-robot">
-          <IconAvatar icon={<RobotIcon />} size={64} />
+          <IconAvatar
+            icon={<RobotIcon />}
+            size={64}
+          />
           <SpeechBubble style={{ width: '90%' }}>
             <Translate
               pt={
@@ -129,7 +141,10 @@ export function StepSelectAll({
                   className={clsx('n-table-item', getAnimationClass('zoomIn'))}
                   style={{ width: `${cardWidth + 8}px` }}
                 >
-                  <TransparentButton onClick={() => toggleCard(cardId)} hoverType="sepia">
+                  <TransparentButton
+                    onClick={() => toggleCard(cardId)}
+                    hoverType="sepia"
+                  >
                     <ImageBlurButtonContainer cardId={cardId}>
                       <ImageCard
                         cardId={cardId}
@@ -177,11 +192,18 @@ export function StepSelectAll({
           disabled={user.ready || length !== playerCount}
           ref={scrollToSubmitRef}
         >
-          <Translate pt="Enviar Captcha" en="Submit Captcha" /> <Avatar size="small">{length}</Avatar>
+          <Translate
+            pt="Enviar Captcha"
+            en="Submit Captcha"
+          />{' '}
+          <Avatar size="small">{length}</Avatar>
         </SendButton>
       </Flex>
 
-      <Summary user={user} robot={robot} />
+      <Summary
+        user={user}
+        robot={robot}
+      />
     </Step>
   );
 }

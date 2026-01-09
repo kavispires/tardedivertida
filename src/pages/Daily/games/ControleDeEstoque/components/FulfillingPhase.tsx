@@ -50,7 +50,10 @@ export function FulfillingPhase({
 
   const board = (
     <Region>
-      <div key={latestAttempt} className={shouldShakeScreen ? getAnimationClass('shakeX') : ''}>
+      <div
+        key={latestAttempt}
+        className={shouldShakeScreen ? getAnimationClass('shakeX') : ''}
+      >
         <FulfillmentBoard
           activeOrder={activeOrder}
           warehouse={warehouse}
@@ -112,8 +115,15 @@ export function FulfillingPhase({
         {fulfillments.length === 4 && !isComplete && (
           <>
             <Region>
-              <Button size="large" type="primary" onClick={onSubmit}>
-                <Translate pt="Enviar pacotes" en="Send packages" />
+              <Button
+                size="large"
+                type="primary"
+                onClick={onSubmit}
+              >
+                <Translate
+                  pt="Enviar pacotes"
+                  en="Send packages"
+                />
               </Button>
             </Region>
 
@@ -149,12 +159,22 @@ export function FulfillingPhase({
         {board}
 
         <RegionText>
-          <Translate pt="Tudo pronto, hora de entregar!" en="All set, time to deliver!" />
+          <Translate
+            pt="Tudo pronto, hora de entregar!"
+            en="All set, time to deliver!"
+          />
         </RegionText>
 
         <Region>
-          <Button size="large" type="primary" onClick={onSubmit}>
-            <Translate pt="Enviar pacotes" en="Send packages" />
+          <Button
+            size="large"
+            type="primary"
+            onClick={onSubmit}
+          >
+            <Translate
+              pt="Enviar pacotes"
+              en="Send packages"
+            />
           </Button>
         </Region>
 
@@ -198,12 +218,22 @@ export function FulfillingPhase({
       {board}
 
       <RegionText>
-        <Translate pt="Você completou todos os pedidos!" en="You have completed all orders!" />
+        <Translate
+          pt="Você completou todos os pedidos!"
+          en="You have completed all orders!"
+        />
       </RegionText>
 
       <Region>
-        <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
-          <Translate pt="Ver Resultado" en="Show Results" />
+        <Button
+          onClick={() => setShowResultModal(true)}
+          type="primary"
+          icon={<BarChartOutlined />}
+        >
+          <Translate
+            pt="Ver Resultado"
+            en="Show Results"
+          />
         </Button>
       </Region>
     </>

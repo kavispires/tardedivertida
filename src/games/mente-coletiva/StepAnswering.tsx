@@ -72,10 +72,16 @@ export function StepAnswering({
   };
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <div className="m-step__contained-content">
         <StepTitle size="small">
-          <Translate pt="Responda a pergunta" en="Answer the question" />
+          <Translate
+            pt="Responda a pergunta"
+            en="Answer the question"
+          />
           {Boolean(timedAnswers) && (
             <TimedTimerClock
               duration={2 * 60}
@@ -102,7 +108,10 @@ export function StepAnswering({
               const key = `answer-${index}`;
               const id = getEntryId(['answer', String(index), user.id]);
               return (
-                <li className="m-answers__item" key={key}>
+                <li
+                  className="m-answers__item"
+                  key={key}
+                >
                   <Input
                     className="m-answers__input"
                     id={id}
@@ -122,13 +131,24 @@ export function StepAnswering({
             Mock Answers
           </DevButton>
 
-          <SendButton type="primary" disabled={isDisabled} onClick={() => onSubmitAnswers({ answers })}>
-            <Translate pt="Enviar respostas" en="Submit answers" />
+          <SendButton
+            type="primary"
+            disabled={isDisabled}
+            onClick={() => onSubmitAnswers({ answers })}
+          >
+            <Translate
+              pt="Enviar respostas"
+              en="Submit answers"
+            />
           </SendButton>
         </SpaceContainer>
       </div>
 
-      <Pasture players={players} pastureSize={pastureSize} roundType={roundType} />
+      <Pasture
+        players={players}
+        pastureSize={pastureSize}
+        roundType={roundType}
+      />
     </Step>
   );
 }

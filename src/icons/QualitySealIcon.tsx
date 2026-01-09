@@ -1,11 +1,18 @@
 export function QualitySealIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#f07281"
         d="M434.555 465.945l-52.22-14-13.99 52.23-48.44-83.92-10.35-17.92 38.07-37.99 24.5-6.54 10.35 17.94z"
       ></path>
-      <path fill="#eb5569" d="M339.555 402.335l38.3 66.34-9.51 35.5-58.79-101.84 38.07-37.99z"></path>
+      <path
+        fill="#eb5569"
+        d="M339.555 402.335l38.3 66.34-9.51 35.5-58.79-101.84 38.07-37.99z"
+      ></path>
       <path
         fill="#f07281"
         d="M202.695 402.855l-10.36 17.94-48.14 83.38-14-52.23-52.22 14 52.08-90.23 10.35-17.93 23.67 6.37z"

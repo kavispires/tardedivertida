@@ -1,6 +1,10 @@
 export function MagicCandlesIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#f8e883"
         d="M280.11 74.08c0-15.48-11.92-42.76-21.11-61.72-.95-1.38-1.91-2.74-2.89-4.07-17.18 23.49-30 53.43-30 70 0 4.3.92 8.4 2.55 12.1 5.05 7.84 16.75 11.9 23.25 11.9a28.2 28.2 0 0028.2-28.2z"

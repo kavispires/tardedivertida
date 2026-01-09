@@ -19,12 +19,29 @@ export function WordGrid({ grid, user, CellComponent, gridType, cellComponentPro
   const length = Math.sqrt(grid.length);
 
   return (
-    <SpreadsheetGrid columns={length} rows={length}>
+    <SpreadsheetGrid
+      columns={length}
+      rows={length}
+    >
       {grid.map((cell) => (
-        <SpreadsheetCell key={`${cell.index}-${cell.kind}`} header={cell.kind === 'header'}>
-          {cell.kind === 'header' && <WordGridHeader cell={cell} gridType={gridType} />}
+        <SpreadsheetCell
+          key={`${cell.index}-${cell.kind}`}
+          header={cell.kind === 'header'}
+        >
+          {cell.kind === 'header' && (
+            <WordGridHeader
+              cell={cell}
+              gridType={gridType}
+            />
+          )}
 
-          {cell.kind === 'cell' && <CellComponent {...cellComponentProps} cell={cell} user={user} />}
+          {cell.kind === 'cell' && (
+            <CellComponent
+              {...cellComponentProps}
+              cell={cell}
+              user={user}
+            />
+          )}
         </SpreadsheetCell>
       ))}
     </SpreadsheetGrid>

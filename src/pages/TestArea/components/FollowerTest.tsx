@@ -39,16 +39,33 @@ export function MouseFollowingContentTest({ onResult, step }: TestStepProps) {
     });
   };
   return (
-    <SpaceContainer className="full-width" vertical>
-      <Title level={2} size="small">
-        <Translate pt="Seguidor do mouse" en="Mouse Follower" />
+    <SpaceContainer
+      className="full-width"
+      vertical
+    >
+      <Title
+        level={2}
+        size="small"
+      >
+        <Translate
+          pt="Seguidor do mouse"
+          en="Mouse Follower"
+        />
       </Title>
 
       <Instruction contained>
-        <Translate pt="Mova o mouse ou dedo pela tela" en="Move the mouse or finger across the screen" />
+        <Translate
+          pt="Mova o mouse ou dedo pela tela"
+          en="Move the mouse or finger across the screen"
+        />
       </Instruction>
 
-      <SpaceContainer vertical wrap className="full-width" style={{ height: 150 }}>
+      <SpaceContainer
+        vertical
+        wrap
+        className="full-width"
+        style={{ height: 150 }}
+      >
         <MouseFollowingContent active={contentType === 'div'}>
           <div
             style={{
@@ -68,11 +85,18 @@ export function MouseFollowingContentTest({ onResult, step }: TestStepProps) {
           <PlayerAvatarName player={player} />
         </MouseFollowingContent>
         <MouseFollowingContent active={contentType === 'icon'}>
-          <IconAvatar icon={<EarthIcon />} size="large" />
+          <IconAvatar
+            icon={<EarthIcon />}
+            size="large"
+          />
         </MouseFollowingContent>
 
         {contentType === 'div' && (
-          <Button onClick={onContentChange} type="primary" size="large">
+          <Button
+            onClick={onContentChange}
+            type="primary"
+            size="large"
+          >
             <Translate
               pt="Se um quadrado preto com a letra B está seguindo seu cursor, aperte o botão"
               en="If a black square with the letter B is following your cursor, press the button"
@@ -80,7 +104,11 @@ export function MouseFollowingContentTest({ onResult, step }: TestStepProps) {
           </Button>
         )}
         {contentType === 'avatar' && (
-          <Button onClick={onContentChange} type="primary" size="large">
+          <Button
+            onClick={onContentChange}
+            type="primary"
+            size="large"
+          >
             <Translate
               pt="Se um avatar está seguindo seu cursor, aperte o botão"
               en="If an avatar is following your cursor, press the button"

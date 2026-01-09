@@ -1,6 +1,10 @@
 export function CircleIcon({ mainColor, ...props }: React.SVGProps<SVGSVGElement> & { mainColor?: string }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill={mainColor ?? '#e0230d'}
         d="M256 7.5v45c112.39 0 203.5 91.11 203.5 203.5S368.39 459.5 256 459.5v45c137.24 0 248.5-111.26 248.5-248.5S393.24 7.5 256 7.5z"

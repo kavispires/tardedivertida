@@ -39,8 +39,14 @@ export function AnswerGroup({
 
   return (
     <Step className="m-step">
-      <Title level={3} size="small">
-        <Translate pt="Comparar Respostas" en="Compare Answers" />
+      <Title
+        level={3}
+        size="small"
+      >
+        <Translate
+          pt="Comparar Respostas"
+          en="Compare Answers"
+        />
       </Title>
       <Card
         header={translate('Pergunta', 'Question')}
@@ -70,7 +76,10 @@ export function AnswerGroup({
               player.answers[entry.id].parsedAnswer === answerGroup.parsedAnswer ||
               player.answers[entry.id].isLocked;
             return (
-              <li className="m-answer-group__player" key={key}>
+              <li
+                className="m-answer-group__player"
+                key={key}
+              >
                 <SheepAvatar
                   id={player.avatarId}
                   sheepId={player.sheepId}

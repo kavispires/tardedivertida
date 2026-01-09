@@ -39,9 +39,15 @@ export function StepClueWriting({
   };
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Escreva sua dica" en="Write your clue" />
+        <Translate
+          pt="Escreva sua dica"
+          en="Write your clue"
+        />
       </StepTitle>
 
       <PopoverRule content={<WritingCluesRule playerCount={Object.keys(players).length} />} />

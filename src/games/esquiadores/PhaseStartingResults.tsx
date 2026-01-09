@@ -24,7 +24,12 @@ export function PhaseStartingResults({ players, state, user }: PhaseProps<PhaseS
   const announcement = (
     <PhaseAnnouncement
       icon={<SkiingIcon />}
-      title={<Translate pt="Primeira descida" en="First slope" />}
+      title={
+        <Translate
+          pt="Primeira descida"
+          en="First slope"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}
@@ -34,9 +39,15 @@ export function PhaseStartingResults({ players, state, user }: PhaseProps<PhaseS
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={ESQUIADORES_PHASES.STARTING_RESULTS}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={ESQUIADORES_PHASES.STARTING_RESULTS}
+    >
       <SnowEffect />
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 1 */}
         <StepResults
           announcement={announcement}

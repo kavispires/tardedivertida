@@ -52,7 +52,10 @@ export const TrackGaleriaDeSonhos = ({ track, onSubmitAnswer, user }: TrackProps
         />
       </RuleInstruction>
 
-      <Card header={translate('Tema', 'Theme')} color="orange">
+      <Card
+        header={translate('Tema', 'Theme')}
+        color="orange"
+      >
         {track.data.theme.text}
       </Card>
 
@@ -60,9 +63,15 @@ export const TrackGaleriaDeSonhos = ({ track, onSubmitAnswer, user }: TrackProps
         <SpaceContainer>
           {track.data.cards.map((cardId: ImageCardId) => {
             return (
-              <SpaceContainer key={cardId} vertical>
+              <SpaceContainer
+                key={cardId}
+                vertical
+              >
                 <ImageBlurButtonContainer cardId={cardId}>
-                  <ImageCard cardId={cardId} cardWidth={cardWidth} />
+                  <ImageCard
+                    cardId={cardId}
+                    cardWidth={cardWidth}
+                  />
                 </ImageBlurButtonContainer>
                 <Button
                   shape="round"
@@ -71,7 +80,10 @@ export const TrackGaleriaDeSonhos = ({ track, onSubmitAnswer, user }: TrackProps
                   loading={isLoading}
                   onClick={() => onSelect(cardId)}
                 >
-                  <Translate pt="Selecionar" en="Select" />
+                  <Translate
+                    pt="Selecionar"
+                    en="Select"
+                  />
                 </Button>
               </SpaceContainer>
             );

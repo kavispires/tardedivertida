@@ -47,8 +47,14 @@ export function SelectableObjectsGrid({
 
   return (
     <Space orientation="vertical">
-      <Title level={3} size="xx-small">
-        <Translate pt="Itens" en="Items" />
+      <Title
+        level={3}
+        size="xx-small"
+      >
+        <Translate
+          pt="Itens"
+          en="Items"
+        />
       </Title>
       <div className="objects-grid">
         {items.map((item) =>
@@ -57,7 +63,11 @@ export function SelectableObjectsGrid({
               className={clsx('objects-grid__item', `objects-grid__item--${item.type}`)}
               key={`selectable-${item.id}`}
             >
-              <Badge count={item.inquiries} color="orange" title={dualTranslate(BADGE_INSTRUCTION)}>
+              <Badge
+                count={item.inquiries}
+                color="orange"
+                title={dualTranslate(BADGE_INSTRUCTION)}
+              >
                 <ItemCard
                   itemId={`${item.id}`}
                   className={clsx(item.offerings.length && 'objects-grid__item-offered')}
@@ -80,7 +90,11 @@ export function SelectableObjectsGrid({
               activeClass={'objects-grid__button--active'}
               onClick={() => selectObject(item.id)}
             >
-              <Badge count={item.inquiries} color="orange" title={dualTranslate(BADGE_INSTRUCTION)}>
+              <Badge
+                count={item.inquiries}
+                color="orange"
+                title={dualTranslate(BADGE_INSTRUCTION)}
+              >
                 <ItemCard
                   itemId={`${item.id}`}
                   className={clsx(item.offerings.length && 'objects-grid__item-offered')}

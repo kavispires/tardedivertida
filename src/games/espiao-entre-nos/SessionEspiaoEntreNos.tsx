@@ -38,7 +38,10 @@ function getActiveComponent(state: GameState) {
 
 function SessionEspiaoEntreNos() {
   return (
-    <Session gameCollection={GAME_COLLECTION.ESPIAO_ENTRE_NOS} getActiveComponent={getActiveComponent} />
+    <Session
+      gameCollection={GAME_COLLECTION.ESPIAO_ENTRE_NOS}
+      getActiveComponent={getActiveComponent}
+    />
   );
 }
 

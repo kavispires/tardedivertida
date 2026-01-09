@@ -6,5 +6,10 @@ import { DailyOrganiku } from './components/DailyOrganiku';
 import './utils/styles.scss';
 
 export function DailyOrganikuGame() {
-  return <DailyGame GameComponent={DailyOrganiku} gameName="organiku" />;
+  return (
+    <DailyGame
+      GameComponent={DailyOrganiku}
+      gameName="organiku"
+    />
+  );
 }

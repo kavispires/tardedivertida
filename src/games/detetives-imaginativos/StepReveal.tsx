@@ -58,7 +58,10 @@ export function StepReveal({
         ]}
         title={
           <>
-            <Translate pt="O impostor era " en="The impostor was " />
+            <Translate
+              pt="O impostor era "
+              en="The impostor was "
+            />
             <PlayerAvatarName player={impostor} />
           </>
         }
@@ -100,13 +103,21 @@ export function StepReveal({
                 />
               )}
             </RuleInstruction>
-            <VotingOptions players={players} isAllDisabled={true} leaderId={leaderId} onVote={() => {}} />
+            <VotingOptions
+              players={players}
+              isAllDisabled={true}
+              leaderId={leaderId}
+              onVote={() => {}}
+            />
           </>
         }
       >
         <RoundsLeftInstruction round={round} />
 
-        <TableFocus table={table} currentPlayer={impostor} />
+        <TableFocus
+          table={table}
+          currentPlayer={impostor}
+        />
 
         <HostNextPhaseButton round={round} />
       </StepRankingWrapper>

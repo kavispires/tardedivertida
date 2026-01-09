@@ -20,15 +20,27 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
       state={state}
       players={players}
       announcementIcon={<TheEndIcon />}
-      rateWidgetCustomText={<Translate pt="Sugira uma pergunta:" en="Suggest a question:" />}
+      rateWidgetCustomText={
+        <Translate
+          pt="Sugira uma pergunta:"
+          en="Suggest a question:"
+        />
+      }
     >
       <div className="m-game-over-in-memoriam">
         <Title>In memoriam</Title>
         <div className="m-sheep-rip">
           {state.losers.map((player: GamePlayer) => {
             return (
-              <div className="m-sheep-rip__entry" key={'sheep-player-1'}>
-                <SheepAvatar id={player.avatarId} width={80} sheepId={player.sheepId} />
+              <div
+                className="m-sheep-rip__entry"
+                key={'sheep-player-1'}
+              >
+                <SheepAvatar
+                  id={player.avatarId}
+                  width={80}
+                  sheepId={player.sheepId}
+                />
                 <span className="m-sheep-rip__name">{player.name}</span>
               </div>
             );
@@ -36,26 +48,49 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
         </div>
       </div>
 
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
 
       {Boolean(state.gallery) && (
         <>
-          <Title size="x-small" level={3}>
-            <Translate pt="Melhores Respostas" en="Best Answers" />
+          <Title
+            size="x-small"
+            level={3}
+          >
+            <Translate
+              pt="Melhores Respostas"
+              en="Best Answers"
+            />
           </Title>
-          <SpaceContainer className="gallery" wrap>
+          <SpaceContainer
+            className="gallery"
+            wrap
+          >
             {state.gallery.map(({ question, answers }: GalleryEntry) => {
               return (
-                <div className="gallery-entry" key={question.id}>
+                <div
+                  className="gallery-entry"
+                  key={question.id}
+                >
                   <h4 className="gallery-entry__question">
                     {question.prefix} {question.number} {question.suffix}
                   </h4>
                   {answers.map(({ answer, playerIds }) => {
                     return (
-                      <div className="gallery-entry__answer" key={`${question.id}-${answer}`}>
+                      <div
+                        className="gallery-entry__answer"
+                        key={`${question.id}-${answer}`}
+                      >
                         <span>{answer}</span>
                         <span>
-                          {playerIds.length} <Translate pt="jogadores" en="players" />
+                          {playerIds.length}{' '}
+                          <Translate
+                            pt="jogadores"
+                            en="players"
+                          />
                         </span>
                       </div>
                     );

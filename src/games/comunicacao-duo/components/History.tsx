@@ -28,33 +28,61 @@ export function History({ history, players, deck, deckType, clueInputType, userS
   const columns: TableProps<HistoryEntry>['columns'] = [
     {
       key: 'player',
-      title: <Translate pt="Jogador" en="Player" />,
+      title: (
+        <Translate
+          pt="Jogador"
+          en="Player"
+        />
+      ),
       dataIndex: 'requesterId',
       render: (requesterId) => <PlayerAvatarName player={players[requesterId]} />,
     },
     {
       key: 'clue',
-      title: <Translate pt="Pedido" en="Dica" />,
+      title: (
+        <Translate
+          pt="Pedido"
+          en="Dica"
+        />
+      ),
       dataIndex: 'clue',
       render: (clue) => {
         if (clueInputType === 'alien-keyboard') {
-          return <AlienText value={clue} withTranslation />;
+          return (
+            <AlienText
+              value={clue}
+              withTranslation
+            />
+          );
         }
         return clue;
       },
     },
     {
       key: 'quantity',
-      title: <Translate pt="Quantidade" en="Quantity" />,
+      title: (
+        <Translate
+          pt="Quantidade"
+          en="Quantity"
+        />
+      ),
       dataIndex: 'quantity',
     },
     {
       key: 'deliverables',
-      title: <Translate pt="Itens" en="Items" />,
+      title: (
+        <Translate
+          pt="Itens"
+          en="Items"
+        />
+      ),
       dataIndex: 'deliverables',
       render: (deliverables: string[]) => {
         return (
-          <Flex wrap="wrap" gap={8}>
+          <Flex
+            wrap="wrap"
+            gap={8}
+          >
             {deliverables.map((deliverableId) => (
               <HistoryDeliverableEntry
                 key={deliverableId}
@@ -72,8 +100,19 @@ export function History({ history, players, deck, deckType, clueInputType, userS
   const panels: CollapseProps['items'] = [
     {
       key: 'history',
-      label: <Translate pt="Histórico de Perguntas" en="Inquiry History" />,
-      children: <Table dataSource={history} columns={columns} pagination={false} />,
+      label: (
+        <Translate
+          pt="Histórico de Perguntas"
+          en="Inquiry History"
+        />
+      ),
+      children: (
+        <Table
+          dataSource={history}
+          columns={columns}
+          pagination={false}
+        />
+      ),
     },
   ];
 

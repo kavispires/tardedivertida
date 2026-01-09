@@ -161,7 +161,10 @@ export function StepGuessing({
   return (
     <Step announcement={announcement}>
       <StepTitle>
-        <Translate pt="Quais foram os crimes?" en="What were the crimes?" />
+        <Translate
+          pt="Quais foram os crimes?"
+          en="What were the crimes?"
+        />
       </StepTitle>
 
       <RuleInstruction type="action">
@@ -196,15 +199,25 @@ export function StepGuessing({
           <DevButton
             onClick={() => setGuesses(mockGuesses(groupedItems, players, user, isVictimGame, isLocationGame))}
           >
-            <Translate pt="Seleção Aleatória Semi-inteligente" en="Semi-intelligent Random Selection" />
+            <Translate
+              pt="Seleção Aleatória Semi-inteligente"
+              en="Semi-intelligent Random Selection"
+            />
           </DevButton>
         </SpaceContainer>
       </DebugOnly>
 
       {isAllComplete && (
         <SpaceContainer align="center">
-          <SendButton size="large" disabled={!isAllComplete} onClick={() => onSubmitGuesses({ guesses })}>
-            <Translate pt="Enviar Respostas" en="Send Guesses" />
+          <SendButton
+            size="large"
+            disabled={!isAllComplete}
+            onClick={() => onSubmitGuesses({ guesses })}
+          >
+            <Translate
+              pt="Enviar Respostas"
+              en="Send Guesses"
+            />
           </SendButton>
         </SpaceContainer>
       )}
@@ -232,7 +245,10 @@ export function StepGuessing({
       </PlayersCards>
 
       {activeCrime && (
-        <FloatingHand title="Crime" icon={<InvestigationIcon />}>
+        <FloatingHand
+          title="Crime"
+          icon={<InvestigationIcon />}
+        >
           <CrimeSummary
             key={`crime-by-${activeCrime.playerId}`}
             crime={activeCrime}

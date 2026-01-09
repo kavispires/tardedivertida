@@ -1,6 +1,10 @@
 export function MirrorIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#ffe07d"
         d="M436.567 191.783H75.431c-9.917 0-17.957 8.04-17.957 17.957 0 9.917 8.04 17.957 17.957 17.957h361.136c9.917 0 17.957-8.04 17.957-17.957 0-9.917-8.039-17.957-17.957-17.957z"

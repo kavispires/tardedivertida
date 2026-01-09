@@ -96,14 +96,20 @@ export function StepSelectDoor({
   return (
     <Step fullWidth>
       <StepTitle>
-        <Translate pt="Selecione a porta correta" en="Select the correct door" />
+        <Translate
+          pt="Selecione a porta correta"
+          en="Select the correct door"
+        />
       </StepTitle>
 
       {showTrap && <TrapPopupRule trapEntry={trapEntry} />}
 
       {botEnabled && <BotPopupRule />}
 
-      <RuleInstruction type="rule" className="i-sand-timer-container">
+      <RuleInstruction
+        type="rule"
+        className="i-sand-timer-container"
+      >
         <Translate
           pt={
             <>
@@ -159,7 +165,11 @@ export function StepSelectDoor({
           })}
         >
           <strong>
-            <RadarChartOutlined /> <Translate pt="Silêncio Absoluto!" en="Absolute Silence!" />
+            <RadarChartOutlined />{' '}
+            <Translate
+              pt="Silêncio Absoluto!"
+              en="Absolute Silence!"
+            />
           </strong>
         </Instruction>
       )}
@@ -193,7 +203,10 @@ export function StepSelectDoor({
           disabled={!user.doorId || user.ready || isButtonDisabled || shouldRestrainDoorConfirmation}
           onClick={() => onConfirmDoor()}
         >
-          <Translate pt="Confirmar Porta" en="Confirm Door" />
+          <Translate
+            pt="Confirmar Porta"
+            en="Confirm Door"
+          />
         </SendButton>
       )}
 
@@ -216,7 +229,10 @@ export function StepSelectDoor({
         >
           <Book>
             {Boolean(pages[0]) && (
-              <ImageBlurButtonContainer cardId={pages[0]} ghost={false}>
+              <ImageBlurButtonContainer
+                cardId={pages[0]}
+                ghost={false}
+              >
                 <ImageCard
                   cardId={pages[0]}
                   cardWidth={140}
@@ -226,7 +242,10 @@ export function StepSelectDoor({
               </ImageBlurButtonContainer>
             )}
             {Boolean(pages[1]) && (
-              <ImageBlurButtonContainer cardId={pages[1]} ghost={false}>
+              <ImageBlurButtonContainer
+                cardId={pages[1]}
+                ghost={false}
+              >
                 <ImageCard
                   cardId={pages[1]}
                   cardWidth={140}
@@ -236,7 +255,10 @@ export function StepSelectDoor({
               </ImageBlurButtonContainer>
             )}
             {Boolean(pages[2]) && (
-              <ImageBlurButtonContainer cardId={pages[2]} ghost={false}>
+              <ImageBlurButtonContainer
+                cardId={pages[2]}
+                ghost={false}
+              >
                 <ImageCard
                   cardId={pages[2]}
                   cardWidth={140}

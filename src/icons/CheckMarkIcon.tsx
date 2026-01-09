@@ -1,6 +1,10 @@
 export function CheckMarkIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#a5eb78"
         d="M427.53 73.08L203.03 297.6a15.5 15.5 0 01-21.92 0l-96.64-96.64L8.1 277.3l145.78 145.8a54 54 0 0076.37 0L503.9 149.45l-76.37-76.37z"

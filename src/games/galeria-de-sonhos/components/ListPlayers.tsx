@@ -13,7 +13,10 @@ export function ListPlayers({ listPlayers, className }: ListPlayersProps) {
     <ul className={className}>
       {listPlayers.map((player) => (
         <li key={`${className}-${player.id}`}>
-          <PlayerAvatarName player={player} addressUser />
+          <PlayerAvatarName
+            player={player}
+            addressUser
+          />
         </li>
       ))}
     </ul>

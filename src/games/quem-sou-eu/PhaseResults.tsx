@@ -31,12 +31,23 @@ export function PhaseResults({ state, players }: PhaseProps) {
   };
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={QUEM_SOU_EU_PHASES.RESULTS}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={QUEM_SOU_EU_PHASES.RESULTS}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<MirrorIcon />}
-          title={<Translate pt="Resultado" en="Results" />}
+          title={
+            <Translate
+              pt="Resultado"
+              en="Results"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           unskippable
@@ -58,7 +69,12 @@ export function PhaseResults({ state, players }: PhaseProps) {
         />
 
         {/* Step 2 */}
-        <StepRanking players={players} ranking={state.ranking} round={state.round} onGoBack={onGoBack} />
+        <StepRanking
+          players={players}
+          ranking={state.ranking}
+          round={state.round}
+          onGoBack={onGoBack}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

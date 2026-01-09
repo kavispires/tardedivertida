@@ -23,12 +23,20 @@ export function LobbyStep({ children, isLocked }: LobbyStepProps) {
   return (
     <div className="lobby-step">
       <div className="lobby-step__card">
-        <GameStrip title={info?.title} gameName={info?.gameName} className="lobby-step__banner" width={256} />
+        <GameStrip
+          title={info?.title}
+          gameName={info?.gameName}
+          className="lobby-step__banner"
+          width={256}
+        />
         <div className="lobby-step__content">
           {isLocked ? (
             <>
               <Typography.Title className="lobby-step__title">
-                <Translate pt="Esse jogo está trancado" en="This session is locked" />
+                <Translate
+                  pt="Esse jogo está trancado"
+                  en="This session is locked"
+                />
               </Typography.Title>
 
               <Alert

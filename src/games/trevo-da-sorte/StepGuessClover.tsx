@@ -103,11 +103,22 @@ export function StepGuessClover({ clover, leaves, onSubmitGuess, activeCloverPla
       />
 
       <SpaceContainer align="center">
-        <Button type="primary" size="large" onClick={submitClover} disabled={!isCloverComplete || isLoading}>
-          <Translate pt="Enviar adivinhação" en="Submit guess" />
+        <Button
+          type="primary"
+          size="large"
+          onClick={submitClover}
+          disabled={!isCloverComplete || isLoading}
+        >
+          <Translate
+            pt="Enviar adivinhação"
+            en="Submit guess"
+          />
         </Button>
 
-        <DevButton size="large" onClick={onSubmitMock}>
+        <DevButton
+          size="large"
+          onClick={onSubmitMock}
+        >
           Mock guesses
         </DevButton>
       </SpaceContainer>

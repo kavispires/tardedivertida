@@ -77,7 +77,11 @@ export function ConceptCreationBlock({
       })}
       style={{ width: itemWidth * 3.25 }}
     >
-      <Flex className="concept-block__header" justify="space-between" align="center">
+      <Flex
+        className="concept-block__header"
+        justify="space-between"
+        align="center"
+      >
         <div className="concept-block__sound">
           <SpeakButton text={concept.syllable} />
           <DivButton
@@ -95,7 +99,10 @@ export function ConceptCreationBlock({
             pt: `Criado por ${players[concept.playerId].name}`,
           })}
         >
-          <PlayerAvatar avatarId={players[concept.playerId].avatarId} size="small" />
+          <PlayerAvatar
+            avatarId={players[concept.playerId].avatarId}
+            size="small"
+          />
         </Tooltip>
       </Flex>
       {showMeaning && (
@@ -107,25 +114,41 @@ export function ConceptCreationBlock({
           variant={isEditing ? 'outlined' : 'filled'}
         />
       )}
-      <Flex wrap="wrap" gap={6} className="my-2">
+      <Flex
+        wrap="wrap"
+        gap={6}
+        className="my-2"
+      >
         {concept.itemsIds.map((itemId) => (
           <TransparentButton
             key={itemId}
             onClick={isEditing ? () => onRemoveItem(itemId) : undefined}
             className="idade-transparent-button"
           >
-            <ItemCard width={itemWidth / 2} itemId={itemId} />
+            <ItemCard
+              width={itemWidth / 2}
+              itemId={itemId}
+            />
           </TransparentButton>
         ))}
         {!!toggleEditing &&
           placeholderItems.map((item) => (
-            <div key={item.id} className="concept-block__placeholder-item">
-              <ItemCard width={itemWidth / 2} itemId="0" />
+            <div
+              key={item.id}
+              className="concept-block__placeholder-item"
+            >
+              <ItemCard
+                width={itemWidth / 2}
+                itemId="0"
+              />
             </div>
           ))}
       </Flex>
       {!!toggleEditing && (
-        <Flex justify="flex-end" gap={6}>
+        <Flex
+          justify="flex-end"
+          gap={6}
+        >
           {isEditing ? (
             <>
               <Popconfirm
@@ -135,24 +158,42 @@ export function ConceptCreationBlock({
                 })}
                 onConfirm={() => onDelete?.(concept.id)}
               >
-                <Button type="dashed" danger size="small" disabled={!onDelete}>
+                <Button
+                  type="dashed"
+                  danger
+                  size="small"
+                  disabled={!onDelete}
+                >
                   <DeleteOutlined />
                 </Button>
               </Popconfirm>
-              <Button type="primary" size="small" onClick={handleSave}>
+              <Button
+                type="primary"
+                size="small"
+                onClick={handleSave}
+              >
                 <SaveOutlined />
               </Button>
             </>
           ) : (
             <Tooltip title={dualTranslate({ en: 'Edit Concept', pt: 'Editar Conceito' })}>
-              <Button type="dashed" size="small" onClick={() => toggleEditing?.(concept.id)}>
+              <Button
+                type="dashed"
+                size="small"
+                onClick={() => toggleEditing?.(concept.id)}
+              >
                 <EditOutlined />
               </Button>
             </Tooltip>
           )}
         </Flex>
       )}
-      {!onChange && <Note concept={concept} userId={user?.id} />}
+      {!onChange && (
+        <Note
+          concept={concept}
+          userId={user?.id}
+        />
+      )}
     </Card>
   );
 }

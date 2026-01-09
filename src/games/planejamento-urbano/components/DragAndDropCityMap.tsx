@@ -57,7 +57,10 @@ export function DragAndDropCityMap({
   );
 
   return (
-    <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
+    <DndContext
+      sensors={sensors}
+      onDragEnd={handleDragEnd}
+    >
       <div className="city-map-actions-container">
         <CityMap
           city={city}
@@ -65,14 +68,31 @@ export function DragAndDropCityMap({
           mapEvaluations={playerSelections}
           dragAndDropEnabled
         />
-        <Flex className="contained" vertical>
-          <Title level={5} size="xx-small" icon={<BrickWallIcon />}>
+        <Flex
+          className="contained"
+          vertical
+        >
+          <Title
+            level={5}
+            size="xx-small"
+            icon={<BrickWallIcon />}
+          >
             {title}
           </Title>
-          <Flex justify="center" vertical className="my-2" gap={6}>
+          <Flex
+            justify="center"
+            vertical
+            className="my-2"
+            gap={6}
+          >
             {children}
           </Flex>
-          <Flex justify="center" className="mt-2" gap={6} vertical>
+          <Flex
+            justify="center"
+            className="mt-2"
+            gap={6}
+            vertical
+          >
             {availableProjectsIds.map((locationId) => {
               const coneId = playerSelections[locationId];
 
@@ -87,7 +107,10 @@ export function DragAndDropCityMap({
                 >
                   {!!coneId && (
                     <span className="u-location-card-selected-cone">
-                      <ConeIcon color={color} width={32} />
+                      <ConeIcon
+                        color={color}
+                        width={32}
+                      />
                     </span>
                   )}
                   <DraggableItem

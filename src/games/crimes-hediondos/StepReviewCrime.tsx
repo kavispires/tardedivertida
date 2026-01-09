@@ -44,11 +44,17 @@ export function StepReviewCrime({
   return (
     <Step announcement={announcement}>
       <StepTitle>
-        <Translate pt="Seu crime tá bom?" en="Is your crime alright?" />
+        <Translate
+          pt="Seu crime tá bom?"
+          en="Is your crime alright?"
+        />
       </StepTitle>
 
       <RuleInstruction type="rule">
-        <Translate pt={<>Revise seu crime.</>} en={<>Recap your crime.</>} />
+        <Translate
+          pt={<>Revise seu crime.</>}
+          en={<>Recap your crime.</>}
+        />
       </RuleInstruction>
 
       <SelectedItems
@@ -83,8 +89,14 @@ export function StepReviewCrime({
       </div>
 
       <SpaceContainer align="center">
-        <SendButton onClick={onSubmitCrime} size="large">
-          <Translate pt="Enviar" en="Submit" />
+        <SendButton
+          onClick={onSubmitCrime}
+          size="large"
+        >
+          <Translate
+            pt="Enviar"
+            en="Submit"
+          />
         </SendButton>
       </SpaceContainer>
 

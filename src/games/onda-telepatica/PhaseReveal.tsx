@@ -22,20 +22,34 @@ export function PhaseReveal({ state, players }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<WavelengthDeviceIcon />}
-      title={<Translate pt="Resultado" en="Results" />}
+      title={
+        <Translate
+          pt="Resultado"
+          en="Results"
+        />
+      }
       currentRound={state?.round?.current}
       duration={4}
       type="overlay"
     >
       <Instruction>
-        <Translate pt="Hora de contar os pontos!" en="Time to score!" />
+        <Translate
+          pt="Hora de contar os pontos!"
+          en="Time to score!"
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={ONDA_TELEPATICA_PHASES.REVEAL}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={ONDA_TELEPATICA_PHASES.REVEAL}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepReveal
           players={players}

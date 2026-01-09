@@ -1,6 +1,10 @@
 export function StopIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#efe7e4"
         d="M346.3 31.7H165.7c-24.3 0-46.7 13-58.8 34L16.6 222a67.9 67.9 0 000 68l90.3 156.3c12.1 21 34.5 34 58.8 34h180.6c24.2 0 46.6-13 58.8-34L495.4 290a67.9 67.9 0 000-67.9L405 65.6a67.9 67.9 0 00-58.8-34z"

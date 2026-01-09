@@ -20,8 +20,16 @@ export function PhaseGameOver({ state, players, user }: PhaseProps<PhaseGameOver
   const { isLocationGame, isVictimGame } = useGameTypes(state.items);
 
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<TrophyIcon />}>
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<TrophyIcon />}
+    >
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
 
       <ul>
         {crimes.map((crime) => (

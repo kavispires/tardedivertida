@@ -1,7 +1,14 @@
 export function SecretIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <path fill="#E6E6E6" d="M464.691 28.009v137.69L47.567 356.903V28.009z"></path>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <path
+        fill="#E6E6E6"
+        d="M464.691 28.009v137.69L47.567 356.903V28.009z"
+      ></path>
       <path
         fill="#CCC"
         d="M464.691 136.744v28.955L47.567 356.903V57.547a44.917 44.917 0 017.232-.583h111.45c18.385 0 34.916 11.259 41.632 28.373l8.822 22.438c6.729 17.127 23.246 28.386 41.632 28.386h199.124c2.464 0 4.888.199 7.232.583z"

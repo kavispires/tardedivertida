@@ -118,19 +118,28 @@ function Users() {
   };
 
   const options = data.map((entry) => (
-    <Select.Option key={entry.id} value={entry.id}>
+    <Select.Option
+      key={entry.id}
+      value={entry.id}
+    >
       <strong>{entry?.names?.[0]}</strong>: {entry.id}
     </Select.Option>
   ));
 
   const selectO = (
-    <Select onChange={onSelectUserO} style={{ minWidth: 300 }}>
+    <Select
+      onChange={onSelectUserO}
+      style={{ minWidth: 300 }}
+    >
       {options}
     </Select>
   );
 
   const selectD = (
-    <Select onChange={onSelectUserD} style={{ minWidth: 300 }}>
+    <Select
+      onChange={onSelectUserD}
+      style={{ minWidth: 300 }}
+    >
       {options}
     </Select>
   );
@@ -144,7 +153,10 @@ function Users() {
     <PageLayout>
       <Typography.Title>Users</Typography.Title>
       {usersQuery.isLoading && <Typography.Paragraph>Loading...</Typography.Paragraph>}
-      <Space className="margin" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)' }}>
+      <Space
+        className="margin"
+        style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)' }}
+      >
         <Space orientation="vertical">
           <Typography.Title level={2}>Origin</Typography.Title>
           <Space className="margin">{selectO}</Space>

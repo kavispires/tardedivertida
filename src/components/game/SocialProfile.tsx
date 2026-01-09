@@ -38,7 +38,11 @@ type SocialProfileProps = {
 export function SocialProfile({ avatarId, name, handle, verified, className }: SocialProfileProps) {
   return (
     <div className={clsx('profile', className)}>
-      <PlayerAvatar avatarId={avatarId} size="large" className="profile__avatar" />
+      <PlayerAvatar
+        avatarId={avatarId}
+        size="large"
+        className="profile__avatar"
+      />
       <span className="profile__name">
         {name} {verified && <CheckCircleFilled style={{ color: 'dodgerBlue' }} />}
       </span>
@@ -79,14 +83,35 @@ export function Tweet({
 }: TweetProps) {
   return (
     <div className={clsx('tweet', className)}>
-      <SocialProfile avatarId={avatarId} name={name} handle={handle} verified={verified} />
+      <SocialProfile
+        avatarId={avatarId}
+        name={name}
+        handle={handle}
+        verified={verified}
+      />
       <span className="tweet__text">{children}</span>
       <div className="tweet__buttons">
-        <Button block icon={<LikeFilled />} onClick={onLike} disabled={disabled}>
-          <Translate pt="Curtir" en="Like" />
+        <Button
+          block
+          icon={<LikeFilled />}
+          onClick={onLike}
+          disabled={disabled}
+        >
+          <Translate
+            pt="Curtir"
+            en="Like"
+          />
         </Button>
-        <Button block icon={<DislikeFilled />} onClick={onDislike} disabled={disabled}>
-          <Translate pt="Não curto" en="Dislike" />
+        <Button
+          block
+          icon={<DislikeFilled />}
+          onClick={onDislike}
+          disabled={disabled}
+        >
+          <Translate
+            pt="Não curto"
+            en="Dislike"
+          />
         </Button>
       </div>
     </div>

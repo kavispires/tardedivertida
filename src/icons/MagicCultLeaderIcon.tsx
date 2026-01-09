@@ -1,6 +1,10 @@
 export function MagicCultLeaderIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#8288cb"
         d="M481.93 160.06l-73.26-83.42A203.27 203.27 0 00256 7.5a203.22 203.22 0 00-152.66 69.13l-73.27 83.43c-25.31 28.83-25.32 72.3 0 101.12l73.24 83.4a203.4 203.4 0 00152.68 69.22h.07c58.41 0 114.1-25.28 152.8-69.36l73.08-83.27a76.82 76.82 0 000-101.1z"
@@ -22,8 +26,16 @@ export function MagicCultLeaderIcon(props: React.SVGProps<SVGSVGElement>) {
         d="M256 346.85l-47.21 25.4c8.29 21.73 24.87 38.95 47.21 50.9 22.34-11.95 38.9-29.17 47.19-50.9z"
       ></path>
       <g fill="#ffcbbe">
-        <circle cx="87.67" cy="210.63" r="41.85"></circle>
-        <circle cx="424.33" cy="210.63" r="41.85"></circle>
+        <circle
+          cx="87.67"
+          cy="210.63"
+          r="41.85"
+        ></circle>
+        <circle
+          cx="424.33"
+          cy="210.63"
+          r="41.85"
+        ></circle>
       </g>
       <path
         fill="#ffddcf"
@@ -34,8 +46,18 @@ export function MagicCultLeaderIcon(props: React.SVGProps<SVGSVGElement>) {
         d="M143.47 210.63c0-83.46 60.75-152.74 140.43-166.03-9.08-1.52-18.4-2.3-27.9-2.3-92.96 0-168.33 75.36-168.33 168.33 0 92.96 75.37 168.32 168.33 168.32 9.5 0 18.82-.8 27.9-2.3-79.68-13.3-140.43-82.57-140.43-166.02z"
       ></path>
       <g fill="#ffcbbe">
-        <ellipse cx="164.24" cy="267.89" rx="33.5" ry="26.68"></ellipse>
-        <ellipse cx="347.63" cy="267.89" rx="33.64" ry="26.68"></ellipse>
+        <ellipse
+          cx="164.24"
+          cy="267.89"
+          rx="33.5"
+          ry="26.68"
+        ></ellipse>
+        <ellipse
+          cx="347.63"
+          cy="267.89"
+          rx="33.64"
+          ry="26.68"
+        ></ellipse>
       </g>
       <path
         fill="#8288cb"

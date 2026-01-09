@@ -85,10 +85,16 @@ export function StepResults({
   );
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         {mostVoted ? (
-          <Translate pt="O retrato mais votado foi..." en="The sketch who got the most votes was..." />
+          <Translate
+            pt="O retrato mais votado foi..."
+            en="The sketch who got the most votes was..."
+          />
         ) : (
           <Translate
             en="The sketches who got the most votes were..."
@@ -137,7 +143,10 @@ export function StepResults({
       </RuleInstruction>
 
       <div className="r-monster-list">
-        <MonsterCard currentMonster={currentMonster} style={{ width: `${canvasWidth * 2}px` }} />
+        <MonsterCard
+          currentMonster={currentMonster}
+          style={{ width: `${canvasWidth * 2}px` }}
+        />
         <MonsterSketches
           sketches={mostVotedSketches}
           players={players}
@@ -181,12 +190,26 @@ export function StepResults({
         )}
       </RuleInstruction>
 
-      <TimedButton duration={30} onExpire={goToNextStep} onClick={goToNextStep} icon={<TrophyOutlined />}>
-        <Translate pt="Ver Ranking" en="See Ranking" />
+      <TimedButton
+        duration={30}
+        onExpire={goToNextStep}
+        onClick={goToNextStep}
+        icon={<TrophyOutlined />}
+      >
+        <Translate
+          pt="Ver Ranking"
+          en="See Ranking"
+        />
       </TimedButton>
 
-      <StepTitle level={3} className="r-other-sketches-title">
-        <Translate pt="Outros desenhos" en="Other sketches" />
+      <StepTitle
+        level={3}
+        className="r-other-sketches-title"
+      >
+        <Translate
+          pt="Outros desenhos"
+          en="Other sketches"
+        />
       </StepTitle>
 
       <SpaceContainer>

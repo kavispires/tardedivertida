@@ -27,7 +27,10 @@ export function PlayersBoards({ players, user, questionsDict }: PlayersBoardsPro
   const cardWidth = useCardWidth(10, { gap: 16, minWidth: 80, maxWidth: 100, margin: 16 });
 
   return (
-    <SpaceContainer wrap className="players-boards">
+    <SpaceContainer
+      wrap
+      className="players-boards"
+    >
       {playersList.map((player) => (
         <PlayerBoard
           key={player.id}
@@ -73,7 +76,13 @@ export function PlayerBoard({
         <PointsHighlight>{Math.max(10 - (player?.answers?.length ?? 0), 1)}</PointsHighlight>
       </div>
       <div className="player-board__avatar">
-        <PlayerAvatarCard player={player} size="small" withName withRoundCorners addressUser />
+        <PlayerAvatarCard
+          player={player}
+          size="small"
+          withName
+          withRoundCorners
+          addressUser
+        />
       </div>
       <ul className="player-board__history">
         {Boolean(player?.answers?.length) &&
@@ -93,9 +102,18 @@ export function PlayerBoard({
         {Boolean(history) &&
           history?.map((characterId) => {
             return (
-              <li key={`${player.id}-${characterId}`} className="player-board__history-previous-guess">
-                <ImageCard cardId={characterId} cardWidth={cardWidth / 3} />
-                <IconAvatar icon={<SpeechBubbleDeclinedIcon />} size="small" />
+              <li
+                key={`${player.id}-${characterId}`}
+                className="player-board__history-previous-guess"
+              >
+                <ImageCard
+                  cardId={characterId}
+                  cardWidth={cardWidth / 3}
+                />
+                <IconAvatar
+                  icon={<SpeechBubbleDeclinedIcon />}
+                  size="small"
+                />
               </li>
             );
           })}

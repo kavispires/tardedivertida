@@ -21,9 +21,15 @@ export function ResultCrimesHediondos({ track, winningValues, containerWidth }: 
     <>
       <Instruction>
         {winningValues.length > 1 ? (
-          <Translate pt="As cartas mais votadas foram" en="Most voted cards are" />
+          <Translate
+            pt="As cartas mais votadas foram"
+            en="Most voted cards are"
+          />
         ) : (
-          <Translate pt="A carta mais votada foi" en="Most voted card is" />
+          <Translate
+            pt="A carta mais votada foi"
+            en="Most voted card is"
+          />
         )}
         :
       </Instruction>
@@ -35,7 +41,14 @@ export function ResultCrimesHediondos({ track, winningValues, containerWidth }: 
             return null;
           }
 
-          return <CrimeItemCard key={item.id} item={item} cardWidth={width} className="margin" />;
+          return (
+            <CrimeItemCard
+              key={item.id}
+              item={item}
+              cardWidth={width}
+              className="margin"
+            />
+          );
         })}
       </div>
     </>

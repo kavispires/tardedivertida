@@ -1,6 +1,10 @@
 export function CulturesIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#ffdecf"
         d="M459 144h3l42-20c0-10-8-17-18-17h-27l18-20c-1-9-9-16-18-16h-23l18-20c-1-10-9-17-19-17H329c-28 0-34 12-60 12h-90l-4 7v109l28 11 2-24h85l38 17h113l36-6c-1-9-8-16-18-16z"

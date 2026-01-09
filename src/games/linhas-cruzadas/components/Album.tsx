@@ -21,9 +21,18 @@ export function Album({ albumEntry, currentPage, players }: AlbumProps) {
 
   return (
     <div className="l-album">
-      <h2 className="l-album__owner" style={{ backgroundColor: albumColor }}>
-        <PlayerAvatar avatarId={albumOwner.avatarId} size="large" />{' '}
-        <Translate pt={<>Álbum de {albumOwner.name}</>} en={<>{albumOwner.name}'s Album</>} />
+      <h2
+        className="l-album__owner"
+        style={{ backgroundColor: albumColor }}
+      >
+        <PlayerAvatar
+          avatarId={albumOwner.avatarId}
+          size="large"
+        />{' '}
+        <Translate
+          pt={<>Álbum de {albumOwner.name}</>}
+          en={<>{albumOwner.name}'s Album</>}
+        />
       </h2>
 
       <Page

@@ -19,11 +19,22 @@ type UserQuestionsProps = {
 
 export function UserQuestions({ user, questionsDict }: UserQuestionsProps) {
   return (
-    <FloatingHand title={<Translate pt="Suas Perguntas" en="Your Questions" />}>
+    <FloatingHand
+      title={
+        <Translate
+          pt="Suas Perguntas"
+          en="Your Questions"
+        />
+      }
+    >
       <Space>
         {(user.questions ?? []).map((questionId: CardId, index: number) => {
           return (
-            <Card key={questionId} header={LETTERS[index]} color={getColorFromLetter(LETTERS[index])}>
+            <Card
+              key={questionId}
+              header={LETTERS[index]}
+              color={getColorFromLetter(LETTERS[index])}
+            >
               {questionsDict[questionId].question}
             </Card>
           );

@@ -53,7 +53,10 @@ export function StepWordSelection({
   };
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         <Translate
           pt={
@@ -95,8 +98,15 @@ export function StepWordSelection({
       <ul className="u-word-card">
         {words.map((word) => {
           return (
-            <li className="u-word-card__word" key={word.id}>
-              <button type="button" className="u-word-card__button" onClick={() => onSelectWord(word.id)}>
+            <li
+              className="u-word-card__word"
+              key={word.id}
+            >
+              <button
+                type="button"
+                className="u-word-card__button"
+                onClick={() => onSelectWord(word.id)}
+              >
                 <span className="u-word-card__text">{word.text}</span>
                 <span className="u-word-card__icon">
                   {Boolean(selectedWords[word.id]) && <CheckCircleFilled />}
@@ -116,10 +126,18 @@ export function StepWordSelection({
         duration={20}
         hideTimer={!noSelection}
       >
-        <Translate pt="Enviar votos" en="Send votes" />
+        <Translate
+          pt="Enviar votos"
+          en="Send votes"
+        />
       </TimedButton>
 
-      <TurnOrder players={players} order={turnOrder} activePlayerId={guesser.id} className="u-margin" />
+      <TurnOrder
+        players={players}
+        order={turnOrder}
+        activePlayerId={guesser.id}
+        className="u-margin"
+      />
     </Step>
   );
 }

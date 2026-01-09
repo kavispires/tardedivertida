@@ -38,7 +38,10 @@ export function Table({ table, players }: TableProps) {
         const { playerId, cards } = entry;
         const playerEntryKey = `table-${playerId}`;
         return (
-          <div key={playerEntryKey} className="d-table__player-entry">
+          <div
+            key={playerEntryKey}
+            className="d-table__player-entry"
+          >
             <div className="d-table__cards">
               {cards.map((cardId) => {
                 if (!cardId) {
@@ -52,9 +55,18 @@ export function Table({ table, players }: TableProps) {
                 }
 
                 return (
-                  <motion.div key={`${playerEntryKey}${cardId}`} {...getAnimation('flipInY', { delay: 0.5 })}>
-                    <ImageBlurButtonContainer cardId={cardId} className="d-table__card">
-                      <ImageCard cardId={cardId} cardWidth={cardWidth} />
+                  <motion.div
+                    key={`${playerEntryKey}${cardId}`}
+                    {...getAnimation('flipInY', { delay: 0.5 })}
+                  >
+                    <ImageBlurButtonContainer
+                      cardId={cardId}
+                      className="d-table__card"
+                    >
+                      <ImageCard
+                        cardId={cardId}
+                        cardWidth={cardWidth}
+                      />
                     </ImageBlurButtonContainer>
                   </motion.div>
                 );

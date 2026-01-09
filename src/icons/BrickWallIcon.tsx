@@ -1,26 +1,78 @@
 export function BrickWallIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <path fill="#ffcebf" d="M173.17 386.01H7.5v-82.75c0-9 7.29-16.29 16.29-16.29h149.38z"></path>
-      <path fill="#ffb09e" d="M150.08 286.97h23.09v99.04h-23.09z"></path>
-      <path fill="#e49280" d="M173.17 286.97h165.67v99.04H173.17z"></path>
-      <path fill="#dd7f66" d="M315.18 286.97h23.65v99.04h-23.65z"></path>
-      <path fill="#ffcebf" d="M338.83 286.97H504.5v99.04H338.83z"></path>
-      <path fill="#ffb09e" d="M481.22 286.97h23.28v99.04h-23.28z"></path>
-      <path fill="#ffcebf" d="M90.33 485.05H23.79c-9 0-16.29-7.29-16.29-16.29v-82.75h82.83z"></path>
-      <path fill="#ffb09e" d="M67.25 386.01h23.08v99.04H67.25z"></path>
-      <path fill="#e49280" d="M90.33 386.01H256v99.04H90.33z"></path>
-      <path fill="#dd7f66" d="M232.91 386.01H256v99.04h-23.09z"></path>
-      <path fill="#ffcebf" d="M256 386.01h165.67v99.04H256z"></path>
-      <path fill="#ffb09e" d="M398.02 386.01h23.65v99.04h-23.65z"></path>
-      <path fill="#e49280" d="M488.21 485.05h-66.55v-99.04h82.83v82.75c0 9-7.29 16.29-16.29 16.29Z"></path>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <path
+        fill="#ffcebf"
+        d="M173.17 386.01H7.5v-82.75c0-9 7.29-16.29 16.29-16.29h149.38z"
+      ></path>
+      <path
+        fill="#ffb09e"
+        d="M150.08 286.97h23.09v99.04h-23.09z"
+      ></path>
+      <path
+        fill="#e49280"
+        d="M173.17 286.97h165.67v99.04H173.17z"
+      ></path>
+      <path
+        fill="#dd7f66"
+        d="M315.18 286.97h23.65v99.04h-23.65z"
+      ></path>
+      <path
+        fill="#ffcebf"
+        d="M338.83 286.97H504.5v99.04H338.83z"
+      ></path>
+      <path
+        fill="#ffb09e"
+        d="M481.22 286.97h23.28v99.04h-23.28z"
+      ></path>
+      <path
+        fill="#ffcebf"
+        d="M90.33 485.05H23.79c-9 0-16.29-7.29-16.29-16.29v-82.75h82.83z"
+      ></path>
+      <path
+        fill="#ffb09e"
+        d="M67.25 386.01h23.08v99.04H67.25z"
+      ></path>
+      <path
+        fill="#e49280"
+        d="M90.33 386.01H256v99.04H90.33z"
+      ></path>
+      <path
+        fill="#dd7f66"
+        d="M232.91 386.01H256v99.04h-23.09z"
+      ></path>
+      <path
+        fill="#ffcebf"
+        d="M256 386.01h165.67v99.04H256z"
+      ></path>
+      <path
+        fill="#ffb09e"
+        d="M398.02 386.01h23.65v99.04h-23.65z"
+      ></path>
+      <path
+        fill="#e49280"
+        d="M488.21 485.05h-66.55v-99.04h82.83v82.75c0 9-7.29 16.29-16.29 16.29Z"
+      ></path>
       <path
         fill="#dd7f66"
         d="M504.5 386.01v82.75c0 9-7.29 16.29-16.29 16.29h-23.27c8.99 0 16.28-7.29 16.28-16.29v-82.75z"
       ></path>
-      <path fill="#e49280" d="M421.67 286.97H256v-82.75c0-9 7.29-16.29 16.29-16.29h149.38z"></path>
-      <path fill="#dd7f66" d="M398.02 187.93h23.65v99.04h-23.65z"></path>
-      <path fill="#ffcebf" d="M504.5 286.97h-82.83v-99.04h66.54c9 0 16.29 7.29 16.29 16.29z"></path>
+      <path
+        fill="#e49280"
+        d="M421.67 286.97H256v-82.75c0-9 7.29-16.29 16.29-16.29h149.38z"
+      ></path>
+      <path
+        fill="#dd7f66"
+        d="M398.02 187.93h23.65v99.04h-23.65z"
+      ></path>
+      <path
+        fill="#ffcebf"
+        d="M504.5 286.97h-82.83v-99.04h66.54c9 0 16.29 7.29 16.29 16.29z"
+      ></path>
       <path
         fill="#ffb09e"
         d="M504.5 204.21v82.76h-23.28v-82.76c0-8.99-7.29-16.28-16.28-16.28h23.27c9 0 16.29 7.29 16.29 16.28"

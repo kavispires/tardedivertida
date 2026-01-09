@@ -64,13 +64,25 @@ export const TrackNaRuaDoMedo = ({ track, onSubmitAnswer, user }: TrackProps) =>
             disabled={user.ready || isLoading}
             onClick={() => onSelect('0')}
           >
-            <Space orientation="vertical" align="center" className="margin">
+            <Space
+              orientation="vertical"
+              align="center"
+              className="margin"
+            >
               <Avatar style={{ backgroundColor: 'brown' }}>A</Avatar>
-              <IconAvatar icon={<StreetIcon />} size="large" />
+              <IconAvatar
+                icon={<StreetIcon />}
+                size="large"
+              />
             </Space>
             <div className="n-street__houses">
               {track.data.options['0'].map((house: StreetCard) => (
-                <HouseCard key={`A-${house.id}`} card={house} candyLeftover={0} preview={false} />
+                <HouseCard
+                  key={`A-${house.id}`}
+                  card={house}
+                  candyLeftover={0}
+                  preview={false}
+                />
               ))}
             </div>
           </TransparentButton>
@@ -79,13 +91,25 @@ export const TrackNaRuaDoMedo = ({ track, onSubmitAnswer, user }: TrackProps) =>
             disabled={user.ready || isLoading}
             onClick={() => onSelect('1')}
           >
-            <Space orientation="vertical" align="center" className="margin">
+            <Space
+              orientation="vertical"
+              align="center"
+              className="margin"
+            >
               <Avatar style={{ backgroundColor: 'dodgerblue' }}>B</Avatar>
-              <IconAvatar icon={<StreetIcon />} size="large" />
+              <IconAvatar
+                icon={<StreetIcon />}
+                size="large"
+              />
             </Space>
             <div className="n-street__houses">
               {track.data.options['1'].map((house: StreetCard) => (
-                <HouseCard key={`B-${house.id}`} card={house} candyLeftover={0} preview={false} />
+                <HouseCard
+                  key={`B-${house.id}`}
+                  card={house}
+                  candyLeftover={0}
+                  preview={false}
+                />
               ))}
             </div>
           </TransparentButton>
@@ -117,8 +141,16 @@ export const TrackNaRuaDoMedo = ({ track, onSubmitAnswer, user }: TrackProps) =>
 
       <SpaceContainer>
         {track.data.options.map((house: StreetCard) => (
-          <SpaceContainer vertical key={house.id} className="n-street-house">
-            <HouseCard card={house} candyLeftover={0} preview={false} />
+          <SpaceContainer
+            vertical
+            key={house.id}
+            className="n-street-house"
+          >
+            <HouseCard
+              card={house}
+              candyLeftover={0}
+              preview={false}
+            />
             <Button
               shape="round"
               type="primary"
@@ -126,7 +158,10 @@ export const TrackNaRuaDoMedo = ({ track, onSubmitAnswer, user }: TrackProps) =>
               onClick={() => onSelect(house.id)}
               loading={isLoading}
             >
-              <Translate pt="Selecionar" en="Select" />
+              <Translate
+                pt="Selecionar"
+                en="Select"
+              />
             </Button>
           </SpaceContainer>
         ))}

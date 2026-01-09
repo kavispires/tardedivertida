@@ -21,14 +21,24 @@ export function PhaseJudgeSelection({ state, players }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<LawIcon />}
-      title={<Translate pt="Quem quer ser o juiz?" en="Who will be the Judge?" />}
+      title={
+        <Translate
+          pt="Quem quer ser o juiz?"
+          en="Who will be the Judge?"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={4}
     />
   );
 
-  const title = <Translate pt="Quem quer ser o juiz?" en="Who will be the Judge?" />;
+  const title = (
+    <Translate
+      pt="Quem quer ser o juiz?"
+      en="Who will be the Judge?"
+    />
+  );
 
   const ruleInstruction = (
     <Translate
@@ -48,8 +58,14 @@ export function PhaseJudgeSelection({ state, players }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={TEORIA_DE_CONJUNTOS_PHASES.JUDGE_SELECTION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={TEORIA_DE_CONJUNTOS_PHASES.JUDGE_SELECTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepSelectPlayer
           players={players}

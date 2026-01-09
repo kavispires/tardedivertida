@@ -25,7 +25,10 @@ export function RobotResult({ result, robot }: RobotResultProps) {
   return (
     <>
       <div className="n-table-robot">
-        <IconAvatar icon={<RobotIcon />} size={64} />
+        <IconAvatar
+          icon={<RobotIcon />}
+          size={64}
+        />
         <SpeechBubble style={{ width: '90%' }}>
           {outcome === OUTCOME.ROBOT_WINS && (
             <Translate
@@ -57,14 +60,20 @@ export function RobotResult({ result, robot }: RobotResultProps) {
       <RuleInstruction type={someoneBeat ? 'event' : 'rule'}>
         {someoneBeat ? (
           <>
-            <IconAvatar icon={<SealOfApprovalIcon />} size="small" />
+            <IconAvatar
+              icon={<SealOfApprovalIcon />}
+              size="small"
+            />
             <Translate
               pt={<> Pelo menos um jogador resolveu o captcha corretamente!</>}
               en={<>At least one player solved the captcha correctly!</>}
             />
           </>
         ) : (
-          <Translate pt={<>Ninguém resolveu o captcha!</>} en={<>Nobody solved the captcha!</>} />
+          <Translate
+            pt={<>Ninguém resolveu o captcha!</>}
+            en={<>Nobody solved the captcha!</>}
+          />
         )}
         <br />
         <Translate

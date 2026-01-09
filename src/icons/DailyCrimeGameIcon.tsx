@@ -1,11 +1,18 @@
 export function DailyCrimeGameIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#ffe177"
         d="M471.21 113.22l-149.19 61.35-107.36-23.42-199.94-43.62a9.18 9.18 0 01-7.22-8.96V23.45a9.18 9.18 0 0111.13-8.96l343 74.82z"
       ></path>
-      <path fill="#fece85" d="M490.38 117.4v17.27l-119.94 50.46-155.78-33.98L361.63 89.3z"></path>
+      <path
+        fill="#fece85"
+        d="M490.38 117.4v17.27l-119.94 50.46-155.78-33.98L361.63 89.3z"
+      ></path>
       <path
         fill="#fece85"
         d="M504.5 120.48v81.37a10.1 10.1 0 01-12.24 9.86l-121.82-26.58-48.42-10.56 149.19-61.35 19.17 4.18z"

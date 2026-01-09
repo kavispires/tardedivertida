@@ -50,14 +50,39 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
   const items: TabsProps['items'] = [
     {
       key: '1',
-      icon: <IconAvatar icon={<CatalogIcon />} size="small" />,
-      label: <Translate pt="Jogos" en="Games" />,
-      children: <GameCheckCard info={alphabetizedPlayableGames} games={user.games} />,
+      icon: (
+        <IconAvatar
+          icon={<CatalogIcon />}
+          size="small"
+        />
+      ),
+      label: (
+        <Translate
+          pt="Jogos"
+          en="Games"
+        />
+      ),
+      children: (
+        <GameCheckCard
+          info={alphabetizedPlayableGames}
+          games={user.games}
+        />
+      ),
     },
     {
       key: '2',
-      icon: <IconAvatar icon={<SealOfApprovalIcon />} size="small" />,
-      label: <Translate pt="Medalhas" en="Achievements" />,
+      icon: (
+        <IconAvatar
+          icon={<SealOfApprovalIcon />}
+          size="small"
+        />
+      ),
+      label: (
+        <Translate
+          pt="Medalhas"
+          en="Achievements"
+        />
+      ),
       children: <AchievementsCompleteList playedGames={user.games} />,
     },
   ];
@@ -68,22 +93,59 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
         {additionalContent}
 
         <header className="me__header">
-          <Title size="small" level={1} align="left">
-            <IconAvatar icon={<UserStatsIcon />} size="large" />
-            <Translate pt="Página do" en="User Page" /> <UserName names={user.names} />
+          <Title
+            size="small"
+            level={1}
+            align="left"
+          >
+            <IconAvatar
+              icon={<UserStatsIcon />}
+              size="large"
+            />
+            <Translate
+              pt="Página do"
+              en="User Page"
+            />{' '}
+            <UserName names={user.names} />
           </Title>
           <Space>
             <LanguageSwitch />
-            <LogoutButton key="logout-button" danger ghost size="small" />
+            <LogoutButton
+              key="logout-button"
+              danger
+              ghost
+              size="small"
+            />
           </Space>
         </header>
 
         <Row gutter={8}>
-          <InfoCard title={<Translate pt="Nomes usados" en="Used Names" />}>{user.names.join(', ')}</InfoCard>
+          <InfoCard
+            title={
+              <Translate
+                pt="Nomes usados"
+                en="Used Names"
+              />
+            }
+          >
+            {user.names.join(', ')}
+          </InfoCard>
 
-          <InfoCard title={<Translate pt="Avatares preferidos" en="Favorite Avatars" />}>
+          <InfoCard
+            title={
+              <Translate
+                pt="Avatares preferidos"
+                en="Favorite Avatars"
+              />
+            }
+          >
             {user.avatars.map((avatarId) => (
-              <PlayerAvatar key={avatarId} avatarId={avatarId} shape="square" size="small" />
+              <PlayerAvatar
+                key={avatarId}
+                avatarId={avatarId}
+                shape="square"
+                size="small"
+              />
             ))}
           </InfoCard>
         </Row>
@@ -92,7 +154,12 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
 
         <Summary user={user} />
 
-        <Tabs defaultActiveKey="1" items={items} size="large" type="card" />
+        <Tabs
+          defaultActiveKey="1"
+          items={items}
+          size="large"
+          type="card"
+        />
       </Layout.Content>
     </PageLayout>
   );
@@ -112,12 +179,29 @@ function Summary({ user }: Pick<MeContentProps, 'user'>) {
 
   return (
     <>
-      <Title size="x-small" level={1} align="left">
-        <Translate pt="Sumário" en="Summary" />{' '}
+      <Title
+        size="x-small"
+        level={1}
+        align="left"
+      >
+        <Translate
+          pt="Sumário"
+          en="Summary"
+        />{' '}
         {user?.today?.plays > 0 && (
           <Switch
-            checkedChildren={<Translate pt="Mostrar Todas" en="Show All" />}
-            unCheckedChildren={<Translate pt="Mostrar Hoje" en="Show Today" />}
+            checkedChildren={
+              <Translate
+                pt="Mostrar Todas"
+                en="Show All"
+              />
+            }
+            unCheckedChildren={
+              <Translate
+                pt="Mostrar Hoje"
+                en="Show Today"
+              />
+            }
             onChange={() => setToday(!today)}
           />
         )}
@@ -125,14 +209,24 @@ function Summary({ user }: Pick<MeContentProps, 'user'>) {
 
       <Row gutter={8}>
         <StatisticCard
-          title={<Translate pt="Total de Partidas" en="Total Plays" />}
+          title={
+            <Translate
+              pt="Total de Partidas"
+              en="Total Plays"
+            />
+          }
           icon={<DiceIcon />}
           value={today ? user.today.plays : user.statistics.plays}
         />
 
         {!today && (
           <StatisticCard
-            title={<Translate pt="Jogos" en="Played Games" />}
+            title={
+              <Translate
+                pt="Jogos"
+                en="Played Games"
+              />
+            }
             icon={<CatalogIcon />}
             value={user.statistics.uniqueGamesPlayed}
             suffix={`/${availableGamesCount}`}
@@ -140,7 +234,12 @@ function Summary({ user }: Pick<MeContentProps, 'user'>) {
         )}
 
         <StatisticCard
-          title={<Translate pt="Vitórias" en="Victories" />}
+          title={
+            <Translate
+              pt="Vitórias"
+              en="Victories"
+            />
+          }
           value={today ? user.today.win : (user.statistics.win / user.statistics.winnableGames) * 100}
           icon={<TrophyIcon />}
           precision={0}
@@ -149,7 +248,12 @@ function Summary({ user }: Pick<MeContentProps, 'user'>) {
         />
 
         <StatisticCard
-          title={<Translate pt="Jogos em Último" en="Dead Last" />}
+          title={
+            <Translate
+              pt="Jogos em Último"
+              en="Dead Last"
+            />
+          }
           value={today ? user.today.last : (user.statistics.last / user.statistics.winnableGames) * 100}
           icon={<SkullIcon />}
           precision={0}
@@ -158,17 +262,32 @@ function Summary({ user }: Pick<MeContentProps, 'user'>) {
         />
         {!today && (
           <StatisticCard
-            title={<Translate pt="Tempo Jogado" en="Play Duration" />}
+            title={
+              <Translate
+                pt="Tempo Jogado"
+                en="Play Duration"
+              />
+            }
             value={durationToHours(user.statistics.totalPlayDuration)}
             icon={<ClockIcon />}
-            suffix={<Translate pt="horas" en="hours" />}
+            suffix={
+              <Translate
+                pt="horas"
+                en="hours"
+              />
+            }
             precision={1}
           />
         )}
 
         {!today && (
           <StatisticCard
-            title={<Translate pt="Partida Mais Recente" en="Latest Play" />}
+            title={
+              <Translate
+                pt="Partida Mais Recente"
+                en="Latest Play"
+              />
+            }
             value={timestampToDate(user.statistics.latestPlay.startedAt)}
             icon={<CalendarIcon />}
           />
@@ -176,16 +295,31 @@ function Summary({ user }: Pick<MeContentProps, 'user'>) {
 
         {!today && (
           <StatisticCard
-            title={<Translate pt="Média de Jogadores" en="Average Player Count" />}
+            title={
+              <Translate
+                pt="Média de Jogadores"
+                en="Average Player Count"
+              />
+            }
             value={user.statistics.averagePlayerCount}
             icon={<PlayersIcon />}
             precision={1}
-            suffix={<Translate pt="jogadores" en="players" />}
+            suffix={
+              <Translate
+                pt="jogadores"
+                en="players"
+              />
+            }
           />
         )}
 
         <StatisticCard
-          title={<Translate pt="Total de Medalhas" en="Total Achievements" />}
+          title={
+            <Translate
+              pt="Total de Medalhas"
+              en="Total Achievements"
+            />
+          }
           value={today ? user.today.achievements : user.statistics.achievements}
           icon={<SealOfApprovalIcon />}
           suffix={today ? '' : `/${achievementsCount}`}

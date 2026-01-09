@@ -42,17 +42,29 @@ export function GalleryWindowGuesses({
   return (
     <div className="a-gallery__guesses">
       <SlideShowLabel>
-        <Translate pt="Participantes votaram" en="Players voted" />
+        <Translate
+          pt="Participantes votaram"
+          en="Players voted"
+        />
       </SlideShowLabel>
 
       {entries.map((entry, index) => {
         return (
-          <div key={`guess-${entry.cardId}-${index}`} className="a-gallery__guess">
-            <SlideShowBubbleValue winner={entry.isCorrect} backgroundColor={artistColor}>
+          <div
+            key={`guess-${entry.cardId}-${index}`}
+            className="a-gallery__guess"
+          >
+            <SlideShowBubbleValue
+              winner={entry.isCorrect}
+              backgroundColor={artistColor}
+            >
               {entry.card?.text}
             </SlideShowBubbleValue>
 
-            <SlideShowPlayersList players={players} playersIds={entry.playersIds} />
+            <SlideShowPlayersList
+              players={players}
+              playersIds={entry.playersIds}
+            />
           </div>
         );
       })}

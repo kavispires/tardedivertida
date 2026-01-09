@@ -48,7 +48,11 @@ export function SuspectsList({ players }: SuspectsListProps) {
   return (
     <div className="e-list">
       <h3 className="e-list__title">
-        <AimOutlined /> <Translate pt="Suspeitos" en="Suspects" />
+        <AimOutlined />{' '}
+        <Translate
+          pt="Suspeitos"
+          en="Suspects"
+        />
         <Tooltip title={translate('Desmarcar todos', 'Unselect all')}>
           <Button
             shape="circle"

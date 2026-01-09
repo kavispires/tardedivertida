@@ -33,12 +33,24 @@ function PhaseGallery({ state, players, meta }: PhaseProps) {
     : Object.values(players).some((player) => player.score > 50);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={ARTE_RUIM_PHASES.GALLERY} className="a-gallery-phase">
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={ARTE_RUIM_PHASES.GALLERY}
+      className="a-gallery-phase"
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/*Step 0 */}
         <PhaseAnnouncement
           icon={<PictureIcon />}
-          title={<Translate pt="Galeria de Arte" en="Art Gallery" />}
+          title={
+            <Translate
+              pt="Galeria de Arte"
+              en="Art Gallery"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           unskippable

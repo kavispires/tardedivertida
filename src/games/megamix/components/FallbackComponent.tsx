@@ -9,9 +9,15 @@ import { Title } from 'components/text';
 export function FallbackComponent(_: unknown) {
   return (
     <SpaceContainer vertical>
-      <IconAvatar size="large" icon={<UnderConstructionIcon />} />
+      <IconAvatar
+        size="large"
+        icon={<UnderConstructionIcon />}
+      />
       <Title size="xx-small">
-        <Translate pt="Algo errado não está certo" en="Something wrong is not right" />
+        <Translate
+          pt="Algo errado não está certo"
+          en="Something wrong is not right"
+        />
       </Title>
     </SpaceContainer>
   );

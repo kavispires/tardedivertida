@@ -15,8 +15,16 @@ export function VideoBackground() {
 
   return (
     <div className="video-background">
-      <video autoPlay muted loop playsInline>
-        <source src={`${PUBLIC_URL.VIDEOS}${info.gameName}.mp4`} type="video/mp4" />
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+      >
+        <source
+          src={`${PUBLIC_URL.VIDEOS}${info.gameName}.mp4`}
+          type="video/mp4"
+        />
       </video>
     </div>
   );

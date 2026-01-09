@@ -47,7 +47,10 @@ export function StepEliminateMovie({
   mistakes,
 }: StepEliminateMovieProps) {
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle className={getAnimationClass('tada')}>
         {isActivePlayer ? (
           <Translate
@@ -70,7 +73,10 @@ export function StepEliminateMovie({
         )}
       </StepTitle>
 
-      <Reviews goodReview={goodReview} badReview={badReview} />
+      <Reviews
+        goodReview={goodReview}
+        badReview={badReview}
+      />
 
       <RuleInstruction type="rule">
         <Translate
@@ -118,7 +124,11 @@ export function StepEliminateMovie({
         disableButtons={!isActivePlayer}
       />
 
-      <TurnOrder players={players} activePlayerId={activePlayer.id} order={turnOrder} />
+      <TurnOrder
+        players={players}
+        activePlayerId={activePlayer.id}
+        order={turnOrder}
+      />
     </Step>
   );
 }

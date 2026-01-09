@@ -41,17 +41,27 @@ export function VotingOptions({
       {votingOptions?.map((playerOption) => {
         const votedForPlayer = Object.values(players).filter((player) => player?.vote === playerOption.id);
         return (
-          <div className="d-voting-options__container" key={`voting-button-${playerOption.name}`}>
+          <div
+            className="d-voting-options__container"
+            key={`voting-button-${playerOption.name}`}
+          >
             <Button
               onClick={() => onVote({ vote: playerOption.id })}
               ghost
               size="large"
               disabled={isAllDisabled || user?.vote || isLoading || user?.name === playerOption.name}
             >
-              <PlayerAvatarName player={playerOption} uppercase />
+              <PlayerAvatarName
+                player={playerOption}
+                uppercase
+              />
             </Button>
             <div className="d-voting-options__vote-container">
-              <Translate pt="Votos" en="Votes" />: {votedForPlayer.length}
+              <Translate
+                pt="Votos"
+                en="Votes"
+              />
+              : {votedForPlayer.length}
               <ul className="d-voting-options__votes">
                 {votedForPlayer.map((vPlayer) => (
                   <PlayerAvatar

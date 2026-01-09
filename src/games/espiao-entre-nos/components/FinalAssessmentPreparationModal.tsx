@@ -25,7 +25,12 @@ export function FinalAssessmentPreparationModal({
   return (
     <Modal
       open={isHost}
-      title={<Translate pt="O Tempo Acabou!" en="Time's up" />}
+      title={
+        <Translate
+          pt="O Tempo Acabou!"
+          en="Time's up"
+        />
+      }
       footer={null}
       closable={false}
       className="e-modal"

@@ -30,7 +30,10 @@ export function Clues({ clues, clueColors, onActivateClue, active, guesses, user
         }
 
         return (
-          <li key={`${clueObj.coordinate}-${clueObj.clue}`} className="x-clue-card-li">
+          <li
+            key={`${clueObj.coordinate}-${clueObj.clue}`}
+            className="x-clue-card-li"
+          >
             <DraggableClue
               clue={clueObj}
               isSelected={isSelected}

@@ -31,7 +31,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionTesteDeElenco() {
-  return <Session gameCollection={GAME_COLLECTION.TESTE_DE_ELENCO} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.TESTE_DE_ELENCO}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionTesteDeElenco;

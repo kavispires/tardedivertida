@@ -92,7 +92,14 @@ export function StepEvaluate({
   }, []);
 
   const descriptors = (
-    <TitledContainer title={<Translate pt="Descritores" en="Descriptors" />}>
+    <TitledContainer
+      title={
+        <Translate
+          pt="Descritores"
+          en="Descriptors"
+        />
+      }
+    >
       <EvaluationAllDescriptors
         cards={cards}
         descriptorsIds={descriptorsIds}
@@ -104,7 +111,14 @@ export function StepEvaluate({
   );
 
   const subjects = (
-    <TitledContainer title={<Translate pt="Sujeitos" en="Subjects" />}>
+    <TitledContainer
+      title={
+        <Translate
+          pt="Sujeitos"
+          en="Subjects"
+        />
+      }
+    >
       <EvaluationAllSubjects
         cards={cards}
         subjectsIds={subjectsIds}
@@ -116,9 +130,15 @@ export function StepEvaluate({
   );
 
   return (
-    <Step announcement={announcement} fullWidth>
+    <Step
+      announcement={announcement}
+      fullWidth
+    >
       <StepTitle>
-        <Translate pt="Adivinhação" en="Match the Pairs" />
+        <Translate
+          pt="Adivinhação"
+          en="Match the Pairs"
+        />
       </StepTitle>
 
       <PopoverRule content={<EvaluationRules />} />
@@ -154,8 +174,16 @@ export function StepEvaluate({
 
       <Space orientation="vertical">
         <SpaceContainer wrap>
-          <Button type="default" icon={<ClearOutlined />} onClick={resetGuesses} disabled={isLoading}>
-            <Translate pt="Limpar seleções" en="Clear selections" />
+          <Button
+            type="default"
+            icon={<ClearOutlined />}
+            onClick={resetGuesses}
+            disabled={isLoading}
+          >
+            <Translate
+              pt="Limpar seleções"
+              en="Clear selections"
+            />
           </Button>
           <Button
             type="default"
@@ -163,7 +191,10 @@ export function StepEvaluate({
             onClick={onGuessForMe}
             disabled={isLoading || isComplete}
           >
-            <Translate pt="Chutar restantes" en="Guess for me" />
+            <Translate
+              pt="Chutar restantes"
+              en="Guess for me"
+            />
           </Button>
           <SendButton
             onClick={() =>
@@ -175,7 +206,10 @@ export function StepEvaluate({
             disabled={!isComplete}
             icon={<CloudUploadOutlined />}
           >
-            <Translate pt="Enviar sua avaliação" en="Send evaluation" />
+            <Translate
+              pt="Enviar sua avaliação"
+              en="Send evaluation"
+            />
           </SendButton>
         </SpaceContainer>
 

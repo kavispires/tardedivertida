@@ -20,19 +20,33 @@ export function PhaseClueWriting({ players, state, user }: PhaseProps<PhaseClueW
   const announcement = (
     <PhaseAnnouncement
       icon={<TDIcon />}
-      title={<Translate pt="?" en="?" />}
+      title={
+        <Translate
+          pt="?"
+          en="?"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
       <Instruction>
-        <Translate pt={<>?</>} en={<>?</>} />
+        <Translate
+          pt={<>?</>}
+          en={<>?</>}
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={COLEGAS_DE_QUARTO_PHASES.CLUE_WRITING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={COLEGAS_DE_QUARTO_PHASES.CLUE_WRITING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepWriteClues
           user={user}

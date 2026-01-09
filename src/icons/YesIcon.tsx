@@ -1,8 +1,20 @@
 export function YesIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <path fill="none" d="M.09.09h512v512H.09z"></path>
-      <circle cx="256.09" cy="256.09" r="248.59" fill="#46e846"></circle>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <path
+        fill="none"
+        d="M.09.09h512v512H.09z"
+      ></path>
+      <circle
+        cx="256.09"
+        cy="256.09"
+        r="248.59"
+        fill="#46e846"
+      ></circle>
       <path
         fill="#32d632"
         d="M398.28 52.16a248 248 0 0189.35 190.93c0 137.29-111.29 248.59-248.59 248.59a247.45 247.45 0 01-142.18-44.69 247.53 247.53 0 00159.23 57.69c137.29 0 248.59-111.29 248.59-248.59a248.28 248.28 0 00-106.4-203.93"

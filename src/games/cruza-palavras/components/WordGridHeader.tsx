@@ -44,7 +44,10 @@ function WordGridHeaderContender({ cell }: WordGridHeaderProps) {
 
   const isBlurred = shouldBeBlurred(cell.id);
   return (
-    <div className="w-contender" style={{ width: `${cardWidth}px` }}>
+    <div
+      className="w-contender"
+      style={{ width: `${cardWidth}px` }}
+    >
       <Tooltip title={cell.text}>
         <span className="w-contender-name">{cell.text}</span>
       </Tooltip>
@@ -64,9 +67,15 @@ function WordGridHeaderImage({ cell }: WordGridHeaderProps) {
   const cardWidth = useCardWidth(8, { gap: 16, minWidth: 30, maxWidth: 100 });
 
   return (
-    <div className="w-contender" style={{ width: `${cardWidth}px` }}>
+    <div
+      className="w-contender"
+      style={{ width: `${cardWidth}px` }}
+    >
       <ImageBlurButtonContainer cardId={cell.id ?? ''}>
-        <ImageCard cardId={cell.id ?? ''} cardWidth={cardWidth} />
+        <ImageCard
+          cardId={cell.id ?? ''}
+          cardWidth={cardWidth}
+        />
       </ImageBlurButtonContainer>
     </div>
   );
@@ -75,7 +84,10 @@ function WordGridHeaderImage({ cell }: WordGridHeaderProps) {
 function WordGridHeaderItem({ cell }: WordGridHeaderProps) {
   const cardWidth = useCardWidth(8, { gap: 16, minWidth: 30, maxWidth: 100 });
   return (
-    <div className="w-contender" style={{ width: `${cardWidth}px` }}>
+    <div
+      className="w-contender"
+      style={{ width: `${cardWidth}px` }}
+    >
       <ImageBlurButtonContainer cardId={cell.id ?? ''}>
         <ItemCard
           itemId={cell.id ?? ''}

@@ -1,6 +1,10 @@
 export function MagicHourGlassIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#e9eef2"
         d="M384 456H128c0-65.27 48.86-174.72 112-192v-16c-63.14-17.28-112-126.73-112-192h256c0 65.27-48.86 174.72-112 192v16c63.14 17.28 112 126.73 112 192z"
@@ -9,13 +13,26 @@ export function MagicHourGlassIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#b077c7"
         d="M80 472l.37-24a45.26 45.26 0 000-64 56.57 56.57 0 010-80l24-24a33.94 33.94 0 010 48 22.63 22.63 0 000 32 79.2 79.2 0 010 112zm352 0v-24a45.26 45.26 0 010-64 56.57 56.57 0 000-80l-24-24a33.94 33.94 0 000 48 22.63 22.63 0 010 32 79.2 79.2 0 000 112z"
       ></path>
-      <path fill="#764f85" d="M424 488H88a16 16 0 110-32h336a16 16 0 110 32z"></path>
+      <path
+        fill="#764f85"
+        d="M424 488H88a16 16 0 110-32h336a16 16 0 110 32z"
+      ></path>
       <path
         fill="#b077c7"
         d="M80 32l1.37 24a45.26 45.26 0 010 64 56.57 56.57 0 000 80l24 24a33.94 33.94 0 000-48 22.63 22.63 0 010-32 79.2 79.2 0 000-112zm352 8v16a45.26 45.26 0 000 64 56.57 56.57 0 010 80l-24 24a33.94 33.94 0 010-48 22.63 22.63 0 000-32 79.2 79.2 0 010-112z"
       ></path>
-      <circle cx="96" cy="256" r="24" fill="#ffd33a"></circle>
-      <circle cx="416" cy="256" r="24" fill="#ffd33a"></circle>
+      <circle
+        cx="96"
+        cy="256"
+        r="24"
+        fill="#ffd33a"
+      ></circle>
+      <circle
+        cx="416"
+        cy="256"
+        r="24"
+        fill="#ffd33a"
+      ></circle>
       <path
         fill="none"
         d="M384 56c0 47.45-25.82 118.24-64.18 160H192.18C153.82 174.24 128 103.45 128 56z"

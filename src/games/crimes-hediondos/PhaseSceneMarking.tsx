@@ -32,7 +32,12 @@ export function PhaseSceneMarking({ players, state, user }: PhaseProps<PhaseScen
   const announcement = (
     <PhaseAnnouncement
       icon={<LoupeIcon />}
-      title={<Translate pt="Nova pista" en="New clue" />}
+      title={
+        <Translate
+          pt="Nova pista"
+          en="New clue"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -50,10 +55,21 @@ export function PhaseSceneMarking({ players, state, user }: PhaseProps<PhaseScen
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={CRIMES_HEDIONDOS_PHASES.SCENE_MARKING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={CRIMES_HEDIONDOS_PHASES.SCENE_MARKING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
-        <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5} />
+        <RoundAnnouncement
+          round={state?.round}
+          onPressButton={goToNextStep}
+          buttonText=" "
+          time={5}
+        />
 
         {/* Step 1 */}
         <StepNewScene

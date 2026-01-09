@@ -14,7 +14,11 @@ export function ResultNamoroOuAmizade({
   return (
     <>
       <Instruction>
-        <Translate pt="O melhor partido foi" en="The best match was" />:{' '}
+        <Translate
+          pt="O melhor partido foi"
+          en="The best match was"
+        />
+        :{' '}
       </Instruction>
       <div className="track-result-values__cards">
         {winningValues.map((value) => {

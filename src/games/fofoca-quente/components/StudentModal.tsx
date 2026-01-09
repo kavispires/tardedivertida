@@ -34,7 +34,10 @@ export function StudentModal({
   const socialGroup = socialGroups[student.socialGroupId];
 
   return (
-    <ModalOverlay onClose={closeModal} open={true}>
+    <ModalOverlay
+      onClose={closeModal}
+      open={true}
+    >
       <Card>
         <div className="student-details">
           <StudentCard
@@ -51,7 +54,10 @@ export function StudentModal({
                 <div className="student-details__title">
                   <DualTranslate>{student.title}</DualTranslate>
                 </div>
-                <Flex align="center" className="student-details__social-group">
+                <Flex
+                  align="center"
+                  className="student-details__social-group"
+                >
                   <StudentIcon
                     iconId={student.socialGroupId}
                     tooltip={{ en: 'Social Group', pt: 'Grupo Social' }}
@@ -68,14 +74,22 @@ export function StudentModal({
                   </Tag>
                 </Flex>
               </div>
-              <Flex gap={6} vertical className="student-details__icons">
+              <Flex
+                gap={6}
+                vertical
+                className="student-details__icons"
+              >
                 <span>
                   <DualTranslate>{GENDER[student.gender]}</DualTranslate>{' '}
                   <GenderIcon gender={student.gender} />
                 </span>
 
                 <span>
-                  {AGE_NUMBER[student.age]} <Translate en="years old" pt="anos" />{' '}
+                  {AGE_NUMBER[student.age]}{' '}
+                  <Translate
+                    en="years old"
+                    pt="anos"
+                  />{' '}
                   <AgeIcon age={student.age} />
                 </span>
 
@@ -91,7 +105,11 @@ export function StudentModal({
             </div>
             <Divider />
 
-            <Flex vertical gap={3} className="student-details__secrets">
+            <Flex
+              vertical
+              gap={3}
+              className="student-details__secrets"
+            >
               {student.intimidated && (
                 <Alert
                   title={
@@ -108,10 +126,19 @@ export function StudentModal({
             </Flex>
 
             {showSecrets && (
-              <Flex vertical gap={3} className="student-details__secrets">
+              <Flex
+                vertical
+                gap={3}
+                className="student-details__secrets"
+              >
                 {student.id === gossiperId && (
                   <Alert
-                    title={<Translate en="This student is the gossiper" pt="Esse estudante é o fofoqueiro" />}
+                    title={
+                      <Translate
+                        en="This student is the gossiper"
+                        pt="Esse estudante é o fofoqueiro"
+                      />
+                    }
                     type="error"
                     showIcon
                     banner
@@ -120,7 +147,10 @@ export function StudentModal({
                 {student.id === bestFriendId && (
                   <Alert
                     title={
-                      <Translate en="This student is the best friend" pt="Esse estudante é o melhor amigo" />
+                      <Translate
+                        en="This student is the best friend"
+                        pt="Esse estudante é o melhor amigo"
+                      />
                     }
                     type="warning"
                     showIcon
@@ -130,7 +160,12 @@ export function StudentModal({
 
                 {student.canLie && (
                   <Alert
-                    title={<Translate en="This student can lie for you" pt="Esse estudante pode mentir" />}
+                    title={
+                      <Translate
+                        en="This student can lie for you"
+                        pt="Esse estudante pode mentir"
+                      />
+                    }
                     type="info"
                     showIcon
                     banner
@@ -141,8 +176,16 @@ export function StudentModal({
 
             {actionType === ACTION_TYPES.INTIMIDATE && canStudentBeIntimidated(student) && (
               <Flex justify="center">
-                <SendButton onClick={() => onPerformAction?.(student.id)} type="primary" size="large" block>
-                  <Translate en="Intimidate" pt="Intimidar" />
+                <SendButton
+                  onClick={() => onPerformAction?.(student.id)}
+                  type="primary"
+                  size="large"
+                  block
+                >
+                  <Translate
+                    en="Intimidate"
+                    pt="Intimidar"
+                  />
                 </SendButton>
               </Flex>
             )}

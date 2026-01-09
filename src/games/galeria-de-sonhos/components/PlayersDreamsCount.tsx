@@ -23,7 +23,10 @@ export function PlayersDreamsCount({ players, playerInNightmareId }: PlayersDrea
   return (
     <div className="g-players-dreams-count">
       <header className="g-players-dreams-count__title">
-        <Translate en="Player Dream Count" pt="Sonhos por Jogador" />
+        <Translate
+          en="Player Dream Count"
+          pt="Sonhos por Jogador"
+        />
       </header>
       <ul className="g-players-dreams-count__players">
         {sortedPlayers.map((player) => {
@@ -55,7 +58,11 @@ export function PlayersDreamsCount({ players, playerInNightmareId }: PlayersDrea
                         infinite: true,
                       })}
                     >
-                      {player.name} <Translate pt="está em um pesadelo!" en="is in a nightmare" />
+                      {player.name}{' '}
+                      <Translate
+                        pt="está em um pesadelo!"
+                        en="is in a nightmare"
+                      />
                     </div>
                   ) : undefined
                 }
@@ -63,7 +70,11 @@ export function PlayersDreamsCount({ players, playerInNightmareId }: PlayersDrea
                 placement="bottom"
                 open={showTooltip}
               >
-                <PlayerAvatar shape="square" avatarId={player.avatarId} alt={player.name} />
+                <PlayerAvatar
+                  shape="square"
+                  avatarId={player.avatarId}
+                  alt={player.name}
+                />
 
                 <div
                   className={clsx(

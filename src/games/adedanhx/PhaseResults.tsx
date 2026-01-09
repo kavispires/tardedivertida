@@ -30,7 +30,12 @@ export function PhaseResults({ players, state, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<RankIcon />}
-      title={<Translate pt="Resultado" en="Results" />}
+      title={
+        <Translate
+          pt="Resultado"
+          en="Results"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -41,8 +46,14 @@ export function PhaseResults({ players, state, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={ADEDANHX_PHASES.RESULTS}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={ADEDANHX_PHASES.RESULTS}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepResultGrid
           players={players}

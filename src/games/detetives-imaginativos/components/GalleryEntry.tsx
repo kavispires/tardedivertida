@@ -36,7 +36,10 @@ export function GalleryEntry({ entry, players }: GalleryEntryProps) {
   const player = players[entry.playerId];
 
   return (
-    <motion.div className={clsx(baseClass, `${baseClass}--center`)} {...getAnimation('zoomIn')}>
+    <motion.div
+      className={clsx(baseClass, `${baseClass}--center`)}
+      {...getAnimation('zoomIn')}
+    >
       <div className="d-table__player-entry">
         <div className="d-table__cards">
           {entry.cards.map((cardId) => {
@@ -46,13 +49,21 @@ export function GalleryEntry({ entry, players }: GalleryEntryProps) {
                 className="d-table__card"
                 key={`table-focus-${cardId}`}
               >
-                <ImageCard key={`table-focus-${cardId}`} cardId={cardId} cardWidth={cardWidth} />
+                <ImageCard
+                  key={`table-focus-${cardId}`}
+                  cardId={cardId}
+                  cardWidth={cardWidth}
+                />
               </ImageBlurButtonContainer>
             );
           })}
         </div>
         <div className="d-table__player-info">
-          <PlayerAvatar avatarId={player.avatarId} className="d-table__player-avatar" size="default" />
+          <PlayerAvatar
+            avatarId={player.avatarId}
+            className="d-table__player-avatar"
+            size="default"
+          />
           <span
             className="d-table__player-bar"
             style={{ backgroundColor: getAvatarColorById(player.avatarId) }}

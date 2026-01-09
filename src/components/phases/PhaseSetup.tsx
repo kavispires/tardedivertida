@@ -31,16 +31,29 @@ export function PhaseSetup({ state }: PhaseProps) {
   }, [gameId]);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.DEFAULT.SETUP} className="setup">
-      <div className="phase-announcement" style={{ zIndex: 3, background: 'transparent' }}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={PHASES.DEFAULT.SETUP}
+      className="setup"
+    >
+      <div
+        className="phase-announcement"
+        style={{ zIndex: 3, background: 'transparent' }}
+      >
         <StepTitle colorScheme="dark">
-          <Translate pt="Preparando o jogo..." en="Setting up..." />
+          <Translate
+            pt="Preparando o jogo..."
+            en="Setting up..."
+          />
         </StepTitle>
 
         <AnimatedGearIcon className="phase-announcement__icon" />
 
         <Instruction style={{ color: 'white' }}>
-          <Translate pt="Aguarde um momento" en="Gathering resources..." />
+          <Translate
+            pt="Aguarde um momento"
+            en="Gathering resources..."
+          />
         </Instruction>
       </div>
       <VideoBackground />

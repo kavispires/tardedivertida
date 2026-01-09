@@ -29,9 +29,21 @@ export function StepRanking({ players, ranking, goToPreviousStep, round, roundTy
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[
-        <Translate key="1" pt="Posições corretas" en="Correct positions" />,
-        <Translate key="2" pt="Penalidade em rodadas especiais" en="Penalty in special rounds" />,
-        <Translate key="3" pt="Bonus por acertar todos" en="Bonus points for getting all correct" />,
+        <Translate
+          key="1"
+          pt="Posições corretas"
+          en="Correct positions"
+        />,
+        <Translate
+          key="2"
+          pt="Penalidade em rodadas especiais"
+          en="Penalty in special rounds"
+        />,
+        <Translate
+          key="3"
+          pt="Bonus por acertar todos"
+          en="Bonus points for getting all correct"
+        />,
       ]}
     >
       <RuleInstruction type="alert">
@@ -53,7 +65,10 @@ export function StepRanking({ players, ranking, goToPreviousStep, round, roundTy
 
       <SpaceContainer>
         <Button onClick={goToPreviousStep}>
-          <Translate pt="Ver resultado novamente" en="See results again" />
+          <Translate
+            pt="Ver resultado novamente"
+            en="See results again"
+          />
         </Button>
       </SpaceContainer>
       <HostNextPhaseButton round={round} />

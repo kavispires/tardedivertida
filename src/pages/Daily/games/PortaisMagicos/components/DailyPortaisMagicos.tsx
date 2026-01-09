@@ -63,7 +63,10 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyImagesGameIcon />} localStorageKey={SETTINGS.KEY}>
+      <Header
+        icon={<DailyImagesGameIcon />}
+        localStorageKey={SETTINGS.KEY}
+      >
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <DailyContent ref={ref}>
@@ -111,14 +114,25 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
                 disabled={currentGuess === latestGuess || isLose}
                 className="mt-4"
               >
-                <Translate pt="Enviar palavra-chave" en="Send passcode" />
+                <Translate
+                  pt="Enviar palavra-chave"
+                  en="Send passcode"
+                />
               </Button>
             </Region>
 
             <Region>
-              <Flex justify="center" vertical>
+              <Flex
+                justify="center"
+                vertical
+              >
                 {guesses[currentCorridorIndex]?.map((guess, index) => (
-                  <Typography.Text type="secondary" key={`${guess}-${index}`} keyboard className="uppercase">
+                  <Typography.Text
+                    type="secondary"
+                    key={`${guess}-${index}`}
+                    keyboard
+                    className="uppercase"
+                  >
                     {guess}
                   </Typography.Text>
                 ))}
@@ -143,14 +157,30 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
           })}
 
         {isComplete && (
-          <Space className="results-container" orientation="vertical" align="center" size="large">
-            <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
-              <Translate pt="Ver Resultado" en="Show Results" />
+          <Space
+            className="results-container"
+            orientation="vertical"
+            align="center"
+            size="large"
+          >
+            <Button
+              onClick={() => setShowResultModal(true)}
+              type="primary"
+              icon={<BarChartOutlined />}
+            >
+              <Translate
+                pt="Ver Resultado"
+                en="Show Results"
+              />
             </Button>
           </Space>
         )}
 
-        <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
+        <Modal
+          open={showResultModal}
+          onCancel={() => setShowResultModal(false)}
+          footer={null}
+        >
           <ResultsModalContent
             challengeNumber={data.number}
             win={isWin}

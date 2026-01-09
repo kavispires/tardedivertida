@@ -41,7 +41,11 @@ export function WaitingRoom({ players, title, instruction, children, icon }: Wai
   return (
     <div className="waiting-room">
       <Title colorScheme="light">
-        <Translate pt="Pronto!" en="Done!" custom={title} />
+        <Translate
+          pt="Pronto!"
+          en="Done!"
+          custom={title}
+        />
       </Title>
       {icon ?? <WaitingRoomIcon style={{ width: '6rem' }} />}
       <div className="waiting-room__content">
@@ -49,7 +53,10 @@ export function WaitingRoom({ players, title, instruction, children, icon }: Wai
           {instruction ? (
             instruction
           ) : (
-            <Translate pt="Vamos aguardar os outros jogadores!" en="Please wait for the other players!" />
+            <Translate
+              pt="Vamos aguardar os outros jogadores!"
+              en="Please wait for the other players!"
+            />
           )}
         </Instruction>
         {children}

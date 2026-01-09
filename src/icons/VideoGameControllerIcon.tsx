@@ -1,17 +1,52 @@
 export function VideoGameControllerIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#DEDEDE"
         d="M359.862 127.095v-.048h-240v.048C57.531 127.556 7.375 178.46 7.837 240.791c.462 62.331 51.365 112.487 113.697 112.025a112.864 112.864 0 0079.681-33.77h77.296c43.685 44.457 115.139 45.083 159.596 1.398s45.083-115.139 1.398-159.596a112.86 112.86 0 00-79.643-33.753z"
       ></path>
-      <circle cx="359.862" cy="239.047" r="96" fill="#C7C7C7"></circle>
-      <circle cx="359.862" cy="183.047" r="24" fill="#4398D1"></circle>
-      <circle cx="359.862" cy="295.047" r="24" fill="#FDB62F"></circle>
-      <circle cx="303.862" cy="239.047" r="24" fill="#88B337"></circle>
-      <circle cx="415.862" cy="239.047" r="24" fill="#DE4C3C"></circle>
-      <path fill="#737373" d="M183.862 215.047h-40v-40h-48v40h-40v48h40v40h48v-40h40v-48z"></path>
-      <path fill="#666" d="M95.862 263.047v40h48v-40h40v-48h-40l-48 48z"></path>
+      <circle
+        cx="359.862"
+        cy="239.047"
+        r="96"
+        fill="#C7C7C7"
+      ></circle>
+      <circle
+        cx="359.862"
+        cy="183.047"
+        r="24"
+        fill="#4398D1"
+      ></circle>
+      <circle
+        cx="359.862"
+        cy="295.047"
+        r="24"
+        fill="#FDB62F"
+      ></circle>
+      <circle
+        cx="303.862"
+        cy="239.047"
+        r="24"
+        fill="#88B337"
+      ></circle>
+      <circle
+        cx="415.862"
+        cy="239.047"
+        r="24"
+        fill="#DE4C3C"
+      ></circle>
+      <path
+        fill="#737373"
+        d="M183.862 215.047h-40v-40h-48v40h-40v48h40v40h48v-40h40v-48z"
+      ></path>
+      <path
+        fill="#666"
+        d="M95.862 263.047v40h48v-40h40v-48h-40l-48 48z"
+      ></path>
       <path
         fill="#77A61F"
         d="M289.086 257.823a23.727 23.727 0 0014.776 5.224c13.255 0 24-10.745 24-24a23.727 23.727 0 00-5.224-14.776l-33.552 33.552z"

@@ -22,12 +22,37 @@ type PlayerGuessProps = {
 export function PlayerGuess({ item, currentGuess, activePlayer }: PlayerGuessProps) {
   return (
     <Flex justify="center">
-      <PlayerAvatarCard player={activePlayer} withName addressUser withRoundCorners />
-      <SpeechBubble shadow size="medium">
-        <Flex gap={6} justify="center" align="center" style={{ height: '100%' }} className="contained">
-          <ItemCard itemId={item.id} text={item.name} width={100} className="q-player-guess-bubble" />{' '}
-          <IconAvatar icon={<ArrowIcon />} size="small" />
-          <SelectedAreasCircles selectedArea={currentGuess.suggestedArea} size={50} />
+      <PlayerAvatarCard
+        player={activePlayer}
+        withName
+        addressUser
+        withRoundCorners
+      />
+      <SpeechBubble
+        shadow
+        size="medium"
+      >
+        <Flex
+          gap={6}
+          justify="center"
+          align="center"
+          style={{ height: '100%' }}
+          className="contained"
+        >
+          <ItemCard
+            itemId={item.id}
+            text={item.name}
+            width={100}
+            className="q-player-guess-bubble"
+          />{' '}
+          <IconAvatar
+            icon={<ArrowIcon />}
+            size="small"
+          />
+          <SelectedAreasCircles
+            selectedArea={currentGuess.suggestedArea}
+            size={50}
+          />
         </Flex>
       </SpeechBubble>
     </Flex>

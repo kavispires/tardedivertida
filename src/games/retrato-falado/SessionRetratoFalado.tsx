@@ -31,7 +31,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionRetratoFalado() {
-  return <Session gameCollection={GAME_COLLECTION.RETRATO_FALADO} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.RETRATO_FALADO}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionRetratoFalado;

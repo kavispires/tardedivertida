@@ -12,9 +12,18 @@ export function DrawingTest({ onResult, step }: TestStepProps) {
   const [lines, setLines] = useState<CanvasLine[]>([]);
 
   return (
-    <SpaceContainer className="full-width" vertical>
-      <Title level={2} size="small">
-        <Translate pt="Desenho" en="Desenho" />
+    <SpaceContainer
+      className="full-width"
+      vertical
+    >
+      <Title
+        level={2}
+        size="small"
+      >
+        <Translate
+          pt="Desenho"
+          en="Desenho"
+        />
       </Title>
 
       <Instruction contained>
@@ -24,8 +33,16 @@ export function DrawingTest({ onResult, step }: TestStepProps) {
         />
       </Instruction>
 
-      <SpaceContainer wrap className="full-width">
-        <DrawingCanvas lines={lines} setLines={setLines} showControls strokeWidth="small" />
+      <SpaceContainer
+        wrap
+        className="full-width"
+      >
+        <DrawingCanvas
+          lines={lines}
+          setLines={setLines}
+          showControls
+          strokeWidth="small"
+        />
       </SpaceContainer>
 
       <DecisionButtons

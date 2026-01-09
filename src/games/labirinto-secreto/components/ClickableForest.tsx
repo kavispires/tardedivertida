@@ -75,7 +75,10 @@ export function ClickableForest({
 
   return (
     <SpaceContainer vertical>
-      <PlayerMap map={map} selectedTrees={selectedTrees} />
+      <PlayerMap
+        map={map}
+        selectedTrees={selectedTrees}
+      />
 
       <MouseFollowingContent active={Boolean(currentSegment)}>
         <MapEntry
@@ -90,7 +93,10 @@ export function ClickableForest({
         onClick={() => onSubmitPath({ guess: selection.slice(1), pathId, choseRandomly: false })}
         disabled={selection.length - 1 < currentMap.length}
       >
-        <Translate pt="Concluir" en="Submit" />
+        <Translate
+          pt="Concluir"
+          en="Submit"
+        />
       </SendButton>
       <DevButton
         onClick={() =>

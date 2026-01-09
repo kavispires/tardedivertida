@@ -38,7 +38,10 @@ export function AchievementCard({ gameName, gameTitle, achievement, value, width
         </div>
 
         <div className="achievement-card__medal">
-          <Medal id={achievement.icon} className={clsx(!value && 'achievement-card__disabled-icon')} />
+          <Medal
+            id={achievement.icon}
+            className={clsx(!value && 'achievement-card__disabled-icon')}
+          />
         </div>
         <h4 className="achievement-card__title">
           <DualTranslate>{achievement.title ?? unknownText}</DualTranslate>
@@ -53,7 +56,12 @@ export function AchievementCard({ gameName, gameTitle, achievement, value, width
                 </>
               }
             >
-              <Button icon={<QuestionCircleOutlined />} shape="circle" type="text" size="small" />
+              <Button
+                icon={<QuestionCircleOutlined />}
+                shape="circle"
+                type="text"
+                size="small"
+              />
             </Popover>
           </div>
         )}

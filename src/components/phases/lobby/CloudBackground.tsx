@@ -100,8 +100,14 @@ export function CloudBackground() {
     <div className={clsx('cloud-background', `cloud-background--${cloudType}`)}>
       {CLOUDS.map((id) => {
         return (
-          <motion.div key={id} {...getAnimationProps(cloudAnimationType, id, config)}>
-            <CloudTypeComponent index={id} type={cloudType} />
+          <motion.div
+            key={id}
+            {...getAnimationProps(cloudAnimationType, id, config)}
+          >
+            <CloudTypeComponent
+              index={id}
+              type={cloudType}
+            />
           </motion.div>
         );
       })}

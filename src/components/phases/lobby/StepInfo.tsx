@@ -67,15 +67,31 @@ export function StepInfo({ players, setStep }: StepInfoProps) {
 
   return (
     <>
-      <Title level={2} className="lobby-step__title" layoutId="lobby-step-title">
-        <Translate pt="Adicione seus dados" en="Add your info" />
+      <Title
+        level={2}
+        className="lobby-step__title"
+        layoutId="lobby-step-title"
+      >
+        <Translate
+          pt="Adicione seus dados"
+          en="Add your info"
+        />
       </Title>
 
       {hasPlayedBefore && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
           <Alert
             type="info"
-            title={<Translate pt="Você jogou esse jogo anteriormente" en="You played this game before" />}
+            title={
+              <Translate
+                pt="Você jogou esse jogo anteriormente"
+                en="You played this game before"
+              />
+            }
             className="margin"
           />
         </motion.div>
@@ -88,9 +104,16 @@ export function StepInfo({ players, setStep }: StepInfoProps) {
         userId={currentUser.id}
       />
 
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         {currentUser?.avatars.length > 0 && (
-          <UsualAvatarsSelection avatarsIds={currentUser.avatars} setSelectedAvatar={setSelectedAvatar} />
+          <UsualAvatarsSelection
+            avatarsIds={currentUser.avatars}
+            setSelectedAvatar={setSelectedAvatar}
+          />
         )}
 
         <AutoComplete
@@ -112,7 +135,10 @@ export function StepInfo({ players, setStep }: StepInfoProps) {
           type="primary"
           onClick={() => mutate()}
         >
-          <Translate pt="Entrar" en="Enter" />
+          <Translate
+            pt="Entrar"
+            en="Enter"
+          />
         </Button>
       </motion.div>
     </>

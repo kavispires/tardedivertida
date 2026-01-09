@@ -33,7 +33,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionQuemNaoMata() {
-  return <Session gameCollection={GAME_COLLECTION.QUEM_NAO_MATA} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.QUEM_NAO_MATA}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionQuemNaoMata;

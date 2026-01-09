@@ -37,10 +37,23 @@ export function ImageBlurButtonContainer({
   ...rest
 }: ImageBlurButtonContainerProps) {
   return (
-    <div className={clsx('image-blur-button-container', className)} {...rest}>
-      {position === 'top' && <ImageBlurButton cardId={cardId} ghost={ghost} />}
+    <div
+      className={clsx('image-blur-button-container', className)}
+      {...rest}
+    >
+      {position === 'top' && (
+        <ImageBlurButton
+          cardId={cardId}
+          ghost={ghost}
+        />
+      )}
       {children}
-      {position === 'bottom' && <ImageBlurButton cardId={cardId} ghost={ghost} />}
+      {position === 'bottom' && (
+        <ImageBlurButton
+          cardId={cardId}
+          ghost={ghost}
+        />
+      )}
     </div>
   );
 }

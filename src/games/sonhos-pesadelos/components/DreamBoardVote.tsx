@@ -44,8 +44,15 @@ export function DreamBoardVote({ table, activeItem, onActivateItem, votes }: Dre
           >
             <div className="s-dream-board__card-container">
               <RibbonGroup labels={ribbonIds} />
-              <DreamCard cardId={cardId} cardWidth={cardWidth} hideBlurButton />
-              <ImageCardSelectButton cardId={cardEntryId} onClick={onActivateItem} />
+              <DreamCard
+                cardId={cardId}
+                cardWidth={cardWidth}
+                hideBlurButton
+              />
+              <ImageCardSelectButton
+                cardId={cardEntryId}
+                onClick={onActivateItem}
+              />
             </div>
             <ImageBlurButton cardId={cardId} />
           </li>

@@ -1,6 +1,10 @@
 export function SupportIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <g fill="#fcc69d">
         <path d="M222 81h88l-40 49z"></path>
         <path d="M341 59l-7-8a57 57 0 00-41-18h-79v14c0 19 16 35 36 35h66l25-23zm-89 347c16 13 37 20 58 18h3l55 54 134-115-76-76-174 119z"></path>

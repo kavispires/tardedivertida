@@ -74,7 +74,11 @@ export function StepGallery({ players, gallery, user, forest, slideShowConfig }:
         />
       </RuleInstruction>
 
-      <PlayerMapResultsSummary players={players} forest={forest} currentPlayer={currentPlayer} />
+      <PlayerMapResultsSummary
+        players={players}
+        forest={forest}
+        currentPlayer={currentPlayer}
+      />
 
       <div>
         <Forest
@@ -87,7 +91,10 @@ export function StepGallery({ players, gallery, user, forest, slideShowConfig }:
           playerMapping={playerMapping}
         />
 
-        <SlideShowControls config={slideShowConfig} barColor={currentColor} />
+        <SlideShowControls
+          config={slideShowConfig}
+          barColor={currentColor}
+        />
       </div>
     </Step>
   );

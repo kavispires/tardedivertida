@@ -14,5 +14,10 @@ export function SelectedDreams({ user }: SelectedDreamsProps) {
 
   const cards = Object.values<PlainObject>(user.cards ?? {}).map((card) => card.cardId);
 
-  return <ImageCardHand hand={cards} sizeRatio={16} />;
+  return (
+    <ImageCardHand
+      hand={cards}
+      sizeRatio={16}
+    />
+  );
 }

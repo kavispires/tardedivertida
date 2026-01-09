@@ -12,8 +12,14 @@ type PlayerAvatarTooltipProps = {
 
 export function PlayerAvatarTooltip({ player, tooltipProps, ...avatarProps }: PlayerAvatarTooltipProps) {
   return (
-    <Tooltip title={player.name} {...tooltipProps}>
-      <PlayerAvatar avatarId={player.avatarId} {...avatarProps} />
+    <Tooltip
+      title={player.name}
+      {...tooltipProps}
+    >
+      <PlayerAvatar
+        avatarId={player.avatarId}
+        {...avatarProps}
+      />
     </Tooltip>
   );
 }

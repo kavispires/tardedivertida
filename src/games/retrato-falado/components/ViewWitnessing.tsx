@@ -33,15 +33,25 @@ export function ViewWitnessing({
     <ViewOr condition={isUserTheWitness}>
       <div className="r-view">
         <Title>
-          <Translate pt="Memorize!" en="Memorize!" />
+          <Translate
+            pt="Memorize!"
+            en="Memorize!"
+          />
         </Title>
-        <TimerBar steps={TIMES.MEMORY} value={remainingWitnessingTime} total={TIMES.MEMORY} />
+        <TimerBar
+          steps={TIMES.MEMORY}
+          value={remainingWitnessingTime}
+          total={TIMES.MEMORY}
+        />
         <MonsterCard currentMonster={currentMonster} />
       </div>
 
       <div className="r-view">
         <Title>
-          <Translate pt="Aguarde..." en="Please wait..." />
+          <Translate
+            pt="Aguarde..."
+            en="Please wait..."
+          />
         </Title>
         <RuleInstruction type="wait">
           <Translate
@@ -58,8 +68,17 @@ export function ViewWitnessing({
             }
           />
         </RuleInstruction>
-        <TimerBar steps={TIMES.MEMORY} value={remainingWitnessingTime} total={TIMES.MEMORY} />
-        <DrawingCanvas lines={lines} setLines={setLines} showControls strokeWidth="small" />
+        <TimerBar
+          steps={TIMES.MEMORY}
+          value={remainingWitnessingTime}
+          total={TIMES.MEMORY}
+        />
+        <DrawingCanvas
+          lines={lines}
+          setLines={setLines}
+          showControls
+          strokeWidth="small"
+        />
       </div>
     </ViewOr>
   );

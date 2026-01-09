@@ -9,7 +9,11 @@ export function BoxOneIcon({ color, ...props }: BoxOneIconProps) {
   const darkColor = color || '#ebe868';
 
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill={mainColor}
         d="M473.16 481.12H38.84A31.34 31.34 0 017.5 449.78V45.18A37.68 37.68 0 0145.18 7.5h421.64a37.68 37.68 0 0137.68 37.68v404.6a31.34 31.34 0 01-31.34 31.34z"

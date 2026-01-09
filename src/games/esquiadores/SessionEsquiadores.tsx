@@ -40,7 +40,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionEsquiadores() {
-  return <Session gameCollection={GAME_COLLECTION.ESQUIADORES} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.ESQUIADORES}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionEsquiadores;

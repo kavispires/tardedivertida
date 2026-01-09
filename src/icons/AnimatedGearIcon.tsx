@@ -1,6 +1,10 @@
 export function AnimatedGearIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <g>
         <path
           fill="#c5d3dd"
@@ -20,7 +24,12 @@ export function AnimatedGearIcon(props: React.SVGProps<SVGSVGElement>) {
           type="rotate"
         ></animateTransform>
       </g>
-      <circle cx="377.66" cy="132.98" r="65.76" fill="#fdf6ec"></circle>
+      <circle
+        cx="377.66"
+        cy="132.98"
+        r="65.76"
+        fill="#fdf6ec"
+      ></circle>
       <path
         fill="#fae2c0"
         d="M443.5 133.01a65.74 65.74 0 01-98.72 56.9 65.76 65.76 0 0046.69-121.25 65.86 65.86 0 0152 64.31z"
@@ -46,7 +55,12 @@ export function AnimatedGearIcon(props: React.SVGProps<SVGSVGElement>) {
         ></animateTransform>
       </g>
 
-      <circle cx="221.31" cy="292" r="128.68" fill="#fdf6ec"></circle>
+      <circle
+        cx="221.31"
+        cy="292"
+        r="128.68"
+        fill="#fdf6ec"
+      ></circle>
       <path
         fill="#fae2c0"
         d="M350 292.01a128.74 128.74 0 01-178.42 118.7 128.72 128.72 0 0079.69-243.89A128.74 128.74 0 01350 292.01z"
@@ -66,9 +80,17 @@ export function AnimatedGearIcon(props: React.SVGProps<SVGSVGElement>) {
 
       <path d="M221.31 155.83a136.15 136.15 0 00-67.17 17.69 7.49 7.49 0 007.4 13A121.35 121.35 0 11135 207.01a7.5 7.5 0 10-10.67-10.52 135.39 135.39 0 00-39.19 95.52c0 75.08 61.09 136.17 136.17 136.17s136.17-61.1 136.17-136.17-61.08-136.18-136.17-136.18z"></path>
       <path d="M221.31 200.71a6.47 6.47 0 10-6.46-6.46 6.46 6.46 0 006.46 6.46zm-6.46 189.04a6.46 6.46 0 106.46-6.47 6.46 6.46 0 00-6.46 6.47zm-39.18-176.81a6.47 6.47 0 10-8.83-2.37 6.46 6.46 0 008.83 2.37zm88.92 166.94a6.46 6.46 0 102.37-8.82 6.46 6.46 0 00-2.37 8.82z"></path>
-      <circle cx="136.61" cy="243.22" r="6.46"></circle>
+      <circle
+        cx="136.61"
+        cy="243.22"
+        r="6.46"
+      ></circle>
       <path d="M302.73 346.47a6.46 6.46 0 10-2.36-8.83 6.46 6.46 0 002.36 8.83zM117.1 292.01a6.46 6.46 0 106.46-6.47 6.46 6.46 0 00-6.46 6.47zm208.43 0a6.47 6.47 0 10-6.47 6.46 6.47 6.47 0 006.47-6.46zm-192.11 43.27a6.46 6.46 0 108.83 2.36 6.46 6.46 0 00-8.83-2.36z"></path>
-      <circle cx="305.94" cy="243.08" r="6.46"></circle>
+      <circle
+        cx="305.94"
+        cy="243.08"
+        r="6.46"
+      ></circle>
       <path d="M169.2 382.25a6.46 6.46 0 10-2.36-8.83 6.46 6.46 0 002.36 8.83zM267 212.94a6.46 6.46 0 10-2.37-8.83 6.45 6.45 0 002.37 8.83z"></path>
     </svg>
   );

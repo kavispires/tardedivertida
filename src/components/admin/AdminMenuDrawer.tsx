@@ -66,14 +66,25 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
         position={-1}
         icon={<FireFilled />}
         type="button"
-        label={<Translate pt=" Admin" en=" Admin" />}
+        label={
+          <Translate
+            pt=" Admin"
+            en=" Admin"
+          />
+        }
         onClick={showDrawer}
         buttonProps={{
           type: 'default',
         }}
       />
 
-      <Drawer title="Admin Menu" placement="left" closable={false} open={visible} onClose={onClose}>
+      <Drawer
+        title="Admin Menu"
+        placement="left"
+        closable={false}
+        open={visible}
+        onClose={onClose}
+      >
         <ul>
           <PlayersReadyState players={players} />
           <li>
@@ -138,7 +149,11 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
             <hr />
           </li>
           <li>
-            <ForceStateForm isLoading={isLoading} onPerformAdminAction={onPerformAdminAction} state={state} />
+            <ForceStateForm
+              isLoading={isLoading}
+              onPerformAdminAction={onPerformAdminAction}
+              state={state}
+            />
           </li>
           <li>
             <hr />

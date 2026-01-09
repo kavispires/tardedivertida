@@ -28,7 +28,10 @@ export function SeedMenteColetiva({ seed, updateData }: SeedMenteColetivaProps) 
 
   return (
     <div className="seed-container">
-      <Title size="xx-small" colorScheme="light">
+      <Title
+        size="xx-small"
+        colorScheme="light"
+      >
         <Translate
           pt="Depois de ver alguns vídeos, você decidiu fazer esse teste no TikTok"
           en="After watching some videos, you decided to do this test on TikTok"
@@ -45,7 +48,10 @@ export function SeedMenteColetiva({ seed, updateData }: SeedMenteColetivaProps) 
             </div>
 
             <div className="tt-phone__icons">
-              <PlayerAvatar avatarId="D" size="large" />
+              <PlayerAvatar
+                avatarId="D"
+                size="large"
+              />
               <MessageFilled />
               <HeartFilled />
               <FlagFilled />
@@ -56,7 +62,10 @@ export function SeedMenteColetiva({ seed, updateData }: SeedMenteColetivaProps) 
             </div>
 
             <div className="tt-phone__question">
-              <GroupQuestionCard question={seed.card} overrideNumber={2} />
+              <GroupQuestionCard
+                question={seed.card}
+                overrideNumber={2}
+              />
             </div>
           </div>
         </SVGPhone>
@@ -77,7 +86,10 @@ export function SeedMenteColetiva({ seed, updateData }: SeedMenteColetivaProps) 
           onClick={() => updateData({ answers: [value1, value2] }, true)}
           disabled={!value1 || !value2}
         >
-          <Translate pt="Enviar" en="Submit" />
+          <Translate
+            pt="Enviar"
+            en="Submit"
+          />
         </Button>
       </SpaceContainer>
     </div>

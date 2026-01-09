@@ -17,18 +17,32 @@ export function PhaseResults({ state, players }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={TREVO_DA_SORTE_PHASES.RESULTS}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={TREVO_DA_SORTE_PHASES.RESULTS}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<RankIcon />}
-          title={<Translate pt="Resultado" en="Results" />}
+          title={
+            <Translate
+              pt="Resultado"
+              en="Results"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           type="block"
         >
           <Instruction>
-            <Translate pt="Quantos pontos você ganhou?" en="How many points did you get?" />
+            <Translate
+              pt="Quantos pontos você ganhou?"
+              en="How many points did you get?"
+            />
           </Instruction>
         </PhaseAnnouncement>
 

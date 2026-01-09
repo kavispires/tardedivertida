@@ -9,10 +9,16 @@ export function VoteVamosAoCinema({ track, playersList }: VoteComponentProps) {
   const movies: StringDictionary = getMovieTitles(track.data.movies);
 
   return (
-    <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
+    <SpacePlayerCheckWrapper
+      playersList={playersList}
+      paths={['data.value']}
+    >
       {playersList.map((player) => {
         return (
-          <div key={`vote-${player.id}`} className="player-vote">
+          <div
+            key={`vote-${player.id}`}
+            className="player-vote"
+          >
             <PlayerAvatar avatarId={player.avatarId} />
             <div>{player.name}</div>
             <div className="player-vote__value">{movies[player.data.value]}</div>

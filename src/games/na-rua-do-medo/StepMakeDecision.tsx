@@ -69,12 +69,25 @@ export function StepMakeDecision({
   });
 
   return (
-    <Step fullWidth className="n-step-trick-or-treat">
-      <StepTitle className={clsx('n-title', getAnimationClass('tada'))} level={2}>
-        <Translate pt="Continua ou Volta pra Casa?" en="Next House or Go Home?" />
+    <Step
+      fullWidth
+      className="n-step-trick-or-treat"
+    >
+      <StepTitle
+        className={clsx('n-title', getAnimationClass('tada'))}
+        level={2}
+      >
+        <Translate
+          pt="Continua ou Volta pra Casa?"
+          en="Next House or Go Home?"
+        />
       </StepTitle>
 
-      <Title size="small" level={3} className="n-subtitle">
+      <Title
+        size="small"
+        level={3}
+        className="n-subtitle"
+      >
         {currentCard.type === 'candy' && (
           <Translate
             pt={
@@ -85,8 +98,12 @@ export function StepMakeDecision({
             }
             en={
               <>
-                Yummy! <CandyCount candyCount={currentCard.value} size="large" />! {candyPerPlayer} for each
-                one of us!
+                Yummy!{' '}
+                <CandyCount
+                  candyCount={currentCard.value}
+                  size="large"
+                />
+                ! {candyPerPlayer} for each one of us!
               </>
             }
           />
@@ -126,12 +143,19 @@ export function StepMakeDecision({
         phase="TRICK_OR_TREAT"
       />
 
-      <Street street={street} currentCard={currentCard} candySidewalk={candySidewalk} />
+      <Street
+        street={street}
+        currentCard={currentCard}
+        candySidewalk={candySidewalk}
+      />
 
       <NewHouseCard card={currentCard} />
 
       {user.isTrickOrTreating ? (
-        <DecisionExplanation user={user} totalCandyInSidewalk={totalCandyInSidewalk} />
+        <DecisionExplanation
+          user={user}
+          totalCandyInSidewalk={totalCandyInSidewalk}
+        />
       ) : (
         <RuleInstruction type="wait">
           <Translate
@@ -160,21 +184,36 @@ export function StepMakeDecision({
             onClick={() => onSubmitDecision({ decision: 'GO_HOME' })}
             disabled={isLoading || user.ready}
           >
-            <IconAvatar icon={<HouseIcon />} size="large" />
-            <Translate pt="Voltar pra casa" en="Go back home" />
+            <IconAvatar
+              icon={<HouseIcon />}
+              size="large"
+            />
+            <Translate
+              pt="Voltar pra casa"
+              en="Go back home"
+            />
           </TransparentButton>
           <TransparentButton
             className="n-decision-button n-decision-button--continue"
             onClick={() => onSubmitDecision({ decision: 'CONTINUE' })}
             disabled={isLoading || user.ready}
           >
-            <IconAvatar icon={<WalkIcon />} size="large" />
-            <Translate pt="Continuar para a próxima casa" en="Continue trick or treating" />
+            <IconAvatar
+              icon={<WalkIcon />}
+              size="large"
+            />
+            <Translate
+              pt="Continuar para a próxima casa"
+              en="Continue trick or treating"
+            />
           </TransparentButton>
         </div>
       )}
 
-      <PlayerStats user={user} omitDecision={!user.ready} />
+      <PlayerStats
+        user={user}
+        omitDecision={!user.ready}
+      />
     </Step>
   );
 }

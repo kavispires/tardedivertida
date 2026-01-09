@@ -93,7 +93,11 @@ export function ComparisonPhaseRules({ controller }: { controller: GamePlayer })
       <Translate
         pt={
           <>
-            Para não virar bagunça, somente <PlayerAvatarName player={controller} addressUser />
+            Para não virar bagunça, somente{' '}
+            <PlayerAvatarName
+              player={controller}
+              addressUser
+            />
             pode clicar nas palavras para eliminá-las ou ativá-las, mas todos podem discutir.
             <br />
             <strong>Uma dica ser muito ruim não significa que ela seja inválida.</strong>

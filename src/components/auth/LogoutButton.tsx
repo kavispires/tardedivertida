@@ -26,11 +26,21 @@ export function LogoutButton(props: ButtonProps) {
 
   return (
     <Popconfirm
-      title={<Translate pt="Tem certeza que quer deslogar?" en="Are you sure you want to log out?" />}
+      title={
+        <Translate
+          pt="Tem certeza que quer deslogar?"
+          en="Are you sure you want to log out?"
+        />
+      }
       onConfirm={() => mutate()}
       key="logout-button"
     >
-      <Button danger ghost {...props} loading={isPending}>
+      <Button
+        danger
+        ghost
+        {...props}
+        loading={isPending}
+      >
         Logout
       </Button>
     </Popconfirm>

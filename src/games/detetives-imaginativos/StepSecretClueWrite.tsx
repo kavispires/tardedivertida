@@ -43,9 +43,15 @@ export function StepSecretClueWrite({ user, onSubmitClue, announcement }: Secret
   };
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Escreva a Pista!" en="Write a Clue!" />
+        <Translate
+          pt="Escreva a Pista!"
+          en="Write a Clue!"
+        />
       </StepTitle>
       <RuleInstruction type="action">
         <Translate
@@ -90,12 +96,22 @@ export function StepSecretClueWrite({ user, onSubmitClue, announcement }: Secret
           onKeyDown={(e) => e.key === 'Enter' && onEnterInput(e)}
         />
 
-        <Button type="primary" disabled={isLoading || clue.length < 1} onClick={onButtonClick}>
-          <Translate pt="Enviar pista secreta" en="Send secret clue" />
+        <Button
+          type="primary"
+          disabled={isLoading || clue.length < 1}
+          onClick={onButtonClick}
+        >
+          <Translate
+            pt="Enviar pista secreta"
+            en="Send secret clue"
+          />
         </Button>
       </SpaceContainer>
 
-      <ImageCardHand hand={user.hand} sizeRatio={user.hand?.length} />
+      <ImageCardHand
+        hand={user.hand}
+        sizeRatio={user.hand?.length}
+      />
     </Step>
   );
 }

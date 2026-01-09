@@ -67,7 +67,10 @@ export function CrimeItemCard({
         }}
       >
         <Popover content={dualTranslate(item.name).toUpperCase()}>
-          <div className="crime-item-card__name" style={{ maxWidth: `${cardWidth}px` }}>
+          <div
+            className="crime-item-card__name"
+            style={{ maxWidth: `${cardWidth}px` }}
+          >
             <span>{isDebugEnabled ? item.id : <DualTranslate>{item.name}</DualTranslate>}</span>
           </div>
         </Popover>

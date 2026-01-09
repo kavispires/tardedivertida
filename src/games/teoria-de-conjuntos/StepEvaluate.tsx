@@ -59,8 +59,14 @@ export function StepEvaluate({
   const item = items[currentGuess.itemId];
 
   return (
-    <Step fullWidth announcement={announcement}>
-      <div ref={ref} style={{ width: '100%' }} />
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
+      <div
+        ref={ref}
+        style={{ width: '100%' }}
+      />
       <StepTitle wait>
         <Translate
           pt={
@@ -87,7 +93,11 @@ export function StepEvaluate({
           solutions={solutions}
         />
       ) : (
-        <PlayerGuess item={item} currentGuess={currentGuess} activePlayer={activePlayer} />
+        <PlayerGuess
+          item={item}
+          currentGuess={currentGuess}
+          activePlayer={activePlayer}
+        />
       )}
 
       <DiagramSection
@@ -101,7 +111,13 @@ export function StepEvaluate({
         <EvaluationRules />
       </RuleInstruction>
 
-      {!isJudge && <MyThings hand={user.hand ?? []} items={items} total={targetItemCount} />}
+      {!isJudge && (
+        <MyThings
+          hand={user.hand ?? []}
+          items={items}
+          total={targetItemCount}
+        />
+      )}
 
       <TurnOrder
         players={players}

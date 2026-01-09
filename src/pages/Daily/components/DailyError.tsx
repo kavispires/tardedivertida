@@ -23,7 +23,10 @@ export function DailyError() {
         <Space className="container container--center">
           <Alert
             title={
-              <Translate pt="O servidor decidiu não cooperar" en="The server decided not to cooperate" />
+              <Translate
+                pt="O servidor decidiu não cooperar"
+                en="The server decided not to cooperate"
+              />
             }
             description={
               <Space orientation="vertical">
@@ -37,7 +40,10 @@ export function DailyError() {
                     en="It is also possible that you are in the wrong URL. Press here to go back to the right page."
                     pt="Também é possível que você esteja na URL errada. Pressione aqui para voltar para a página correta:"
                   />
-                  <Button type="link" onClick={onRedirect}>
+                  <Button
+                    type="link"
+                    onClick={onRedirect}
+                  >
                     Redirecionar/Redirect
                   </Button>
                 </Typography.Paragraph>

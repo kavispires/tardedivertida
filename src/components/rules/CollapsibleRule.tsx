@@ -19,14 +19,23 @@ export function CollapsibleRule({ children, title }: CollapsibleRuleProps) {
   const panels: CollapseProps['items'] = [
     {
       key: '1',
-      label: <Translate pt="Regras" en="Rules" custom={title} />,
+      label: (
+        <Translate
+          pt="Regras"
+          en="Rules"
+          custom={title}
+        />
+      ),
       children: children,
     },
   ];
 
   return (
     <Instruction contained>
-      <Collapse ghost items={panels} />
+      <Collapse
+        ghost
+        items={panels}
+      />
     </Instruction>
   );
 }

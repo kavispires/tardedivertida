@@ -23,20 +23,34 @@ export function PhaseReveal({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<SpotlightIcon />}
-      title={<Translate pt="E a pessoa foi descoberta?" en="Was the person revealed?" />}
+      title={
+        <Translate
+          pt="E a pessoa foi descoberta?"
+          en="Was the person revealed?"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={4}
     >
       <Instruction>
-        <Translate pt="Quem? O que? Esse?" en="Who? What? That?" />
+        <Translate
+          pt="Quem? O que? Esse?"
+          en="Who? What? That?"
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={TA_NA_CARA_PHASES.REVEAL}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={TA_NA_CARA_PHASES.REVEAL}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepReveal
           announcement={announcement}

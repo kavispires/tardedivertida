@@ -1,6 +1,10 @@
 export function CompetitiveGameIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#ffea00"
         d="m213.824 245.227 34.289-71.862-75.118-26.72 75.157-26.617-34.184-71.909 71.999 34.22 26.774-74.975 26.665 75.011 72.048-34.122-34.288 71.863 75.117 26.72-75.156 26.617 34.183 71.909-71.998-34.22-26.775 74.975-26.664-75.011z"

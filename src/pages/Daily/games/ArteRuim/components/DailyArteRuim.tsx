@@ -37,7 +37,10 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyArtGameIcon />} localStorageKey={SETTINGS.KEY}>
+      <Header
+        icon={<DailyArtGameIcon />}
+        localStorageKey={SETTINGS.KEY}
+      >
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <DailyContent>
@@ -48,22 +51,43 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
           rules={<Rules date={data.id} />}
         />
         <RegionText>
-          <Translate pt="Adivinhe a expressão, letra por letra" en="Guess the expression, letter by letter" />
+          <Translate
+            pt="Adivinhe a expressão, letra por letra"
+            en="Guess the expression, letter by letter"
+          />
         </RegionText>
 
         <DrawingCarousel drawings={data.drawings} />
 
-        <Prompt text={data.text} guesses={guesses} />
+        <Prompt
+          text={data.text}
+          guesses={guesses}
+        />
 
         {isComplete && (
-          <Space className="results-container" orientation="vertical" align="center">
-            <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
-              <Translate pt="Ver Resultado" en="Show Results" />
+          <Space
+            className="results-container"
+            orientation="vertical"
+            align="center"
+          >
+            <Button
+              onClick={() => setShowResultModal(true)}
+              type="primary"
+              icon={<BarChartOutlined />}
+            >
+              <Translate
+                pt="Ver Resultado"
+                en="Show Results"
+              />
             </Button>
           </Space>
         )}
 
-        <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
+        <Modal
+          open={showResultModal}
+          onCancel={() => setShowResultModal(false)}
+          footer={null}
+        >
           <ResultsModalContent
             challengeNumber={data.number}
             win={isWin}
@@ -73,7 +97,11 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
           />
         </Modal>
 
-        <Keyboard lettersState={guesses} onLetterClick={guessLetter} disabled={isComplete} />
+        <Keyboard
+          lettersState={guesses}
+          onLetterClick={guessLetter}
+          disabled={isComplete}
+        />
       </DailyContent>
     </Layout>
   );

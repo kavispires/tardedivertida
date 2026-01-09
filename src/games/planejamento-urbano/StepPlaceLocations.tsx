@@ -63,8 +63,14 @@ export function StepPlaceLocations({
   });
 
   return (
-    <Step fullWidth announcement={announcement}>
-      <StepTitle size="small" wait={isTheArchitect}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
+      <StepTitle
+        size="small"
+        wait={isTheArchitect}
+      >
         {isTheArchitect ? (
           <Translate
             en={<>Wait while the players try to match where each project should go with your planning.</>}
@@ -105,7 +111,11 @@ export function StepPlaceLocations({
       </RuleInstruction>
 
       <ViewIf condition={isTheArchitect}>
-        <CityMap city={city} cityLocationsDict={cityLocationsDict} mapEvaluations={planning} />
+        <CityMap
+          city={city}
+          cityLocationsDict={cityLocationsDict}
+          mapEvaluations={planning}
+        />
       </ViewIf>
 
       <ViewIf condition={!isTheArchitect}>
@@ -116,7 +126,12 @@ export function StepPlaceLocations({
           constructionWidth={constructionWidth}
           playerSelections={playerSelections}
           updatePlayerSelections={updatePlayerSelections}
-          title={<Translate pt="Projetos" en="Projects" />}
+          title={
+            <Translate
+              pt="Projetos"
+              en="Projects"
+            />
+          }
         >
           <SendButton
             type="primary"
@@ -124,15 +139,25 @@ export function StepPlaceLocations({
             disabled={!isComplete}
             onClick={() => onSubmitConstruction({ evaluations: playerSelections })}
           >
-            <Translate pt="Confirmar" en="Confirm" />
+            <Translate
+              pt="Confirmar"
+              en="Confirm"
+            />
           </SendButton>
-          <DevButton size="small" onClick={onMock}>
+          <DevButton
+            size="small"
+            onClick={onMock}
+          >
             Mock
           </DevButton>
         </DragAndDropCityMap>
       </ViewIf>
 
-      <TurnOrder players={players} activePlayerId={architect.id} order={gameOrder} />
+      <TurnOrder
+        players={players}
+        activePlayerId={architect.id}
+        order={gameOrder}
+      />
     </Step>
   );
 }

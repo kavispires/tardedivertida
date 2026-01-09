@@ -46,7 +46,10 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
   });
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         <Translate
           pt={
@@ -81,7 +84,10 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
         />
       </RuleInstruction>
 
-      <Space className="grid-container grid-template-6 gap-4" wrap>
+      <Space
+        className="grid-container grid-template-6 gap-4"
+        wrap
+      >
         {availableCharacters.map((character: ContenderCard) => (
           <TransparentButton
             key={character.id}
@@ -90,7 +96,10 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
             active={selection[character.id]}
             activeClass="q-character-player"
           >
-            <CharacterCard size={cardWidth} character={character} />
+            <CharacterCard
+              size={cardWidth}
+              character={character}
+            />
           </TransparentButton>
         ))}
       </Space>
@@ -103,7 +112,10 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
           loading={isLoading}
           disabled={isLoading || user.ready}
         >
-          <Translate pt={<>Escolha pra mim</>} en={<>Choose for me</>} />
+          <Translate
+            pt={<>Escolha pra mim</>}
+            en={<>Choose for me</>}
+          />
         </SendButton>
         <Badge count={count}>
           <SendButton
@@ -112,7 +124,10 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
             loading={isLoading}
             disabled={user.ready || count !== 6}
           >
-            <Translate pt="Enviar cartas" en="Submit cards" />
+            <Translate
+              pt="Enviar cartas"
+              en="Submit cards"
+            />
           </SendButton>
         </Badge>
       </SpaceContainer>

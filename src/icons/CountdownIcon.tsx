@@ -1,6 +1,10 @@
 export function CountdownIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#FF637B"
         d="M421.8 465.9C443 444.2 456 411.6 456 379c0-66.3-53.7-123-120-123-14.1 0-27.6 2.4-40.2 6.9l-79.7 108.9.1.3c-.1 2.3-.2 4.6-.2 6.9 0 66.3 53.7 123 120 123h140l-54.2-36.1z"

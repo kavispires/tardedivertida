@@ -20,13 +20,23 @@ import { achievementsReference } from './utils/achievements';
 export function PhaseGameOver({ state, players }: PhaseProps) {
   const posterWidth = useCardWidth(8, { gap: 16, minWidth: 80, maxWidth: 150, margin: 32 });
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<FlagIcon />}>
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<FlagIcon />}
+    >
       <SpaceContainer orientation="vertical">
         <Title size="xx-small">
-          <Translate pt="Pontuação" en="Score" />
+          <Translate
+            pt="Pontuação"
+            en="Score"
+          />
         </Title>
 
-        <Progress type="circle" percent={Math.round((100 * state.groupScore) / 30)} />
+        <Progress
+          type="circle"
+          percent={Math.round((100 * state.groupScore) / 30)}
+        />
 
         <Achievements
           players={players}
@@ -34,10 +44,24 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
           reference={achievementsReference}
         />
 
-        <TitledContainer title={<Translate pt="Filmes" en="Movies" />}>
+        <TitledContainer
+          title={
+            <Translate
+              pt="Filmes"
+              en="Movies"
+            />
+          }
+        >
           {state.finalMovies.map((movie: PlainObject) => (
-            <SpaceContainer vertical key={movie.id}>
-              <ImageCard cardId={movie.posterId} cardWidth={posterWidth} preview={false} />
+            <SpaceContainer
+              vertical
+              key={movie.id}
+            >
+              <ImageCard
+                cardId={movie.posterId}
+                cardWidth={posterWidth}
+                preview={false}
+              />
               <TextHighlight>{movie.title}</TextHighlight>
             </SpaceContainer>
           ))}

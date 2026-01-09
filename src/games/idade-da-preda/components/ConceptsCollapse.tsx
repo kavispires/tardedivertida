@@ -45,11 +45,26 @@ export function ConceptsCollapse({
     if (basicConcepts) {
       entries.push({
         key: 'basic-concepts',
-        label: <Translate pt="Conceitos Básicos" en="Basic Concepts" />,
+        label: (
+          <Translate
+            pt="Conceitos Básicos"
+            en="Basic Concepts"
+          />
+        ),
         children: (
-          <Flex justify="center" align="center" wrap="wrap" gap={6} className="my-2">
+          <Flex
+            justify="center"
+            align="center"
+            wrap="wrap"
+            gap={6}
+            className="my-2"
+          >
             {basicConcepts.map((concept) => (
-              <BasicConceptBlock key={concept.id} concept={concept} onSelect={onSelectConcept} />
+              <BasicConceptBlock
+                key={concept.id}
+                concept={concept}
+                onSelect={onSelectConcept}
+              />
             ))}
           </Flex>
         ),
@@ -57,7 +72,12 @@ export function ConceptsCollapse({
     }
     entries.push({
       key: 'concepts',
-      label: <Translate pt="Conceitos Criados" en="Created Concepts" />,
+      label: (
+        <Translate
+          pt="Conceitos Criados"
+          en="Created Concepts"
+        />
+      ),
       children: (
         <ConceptsContent
           user={user}
@@ -72,11 +92,26 @@ export function ConceptsCollapse({
     if (pool && pool.length > 0) {
       entries.push({
         key: 'pool',
-        label: <Translate pt="Itens da Rodada" en="Round's Items" />,
+        label: (
+          <Translate
+            pt="Itens da Rodada"
+            en="Round's Items"
+          />
+        ),
         children: (
-          <Flex justify="center" align="center" wrap="wrap" gap={6} className="my-2">
+          <Flex
+            justify="center"
+            align="center"
+            wrap="wrap"
+            gap={6}
+            className="my-2"
+          >
             {pool?.map((item) => (
-              <ItemCard key={item.id} itemId={item.id} width={itemWidth} />
+              <ItemCard
+                key={item.id}
+                itemId={item.id}
+                width={itemWidth}
+              />
             ))}
           </Flex>
         ),
@@ -135,10 +170,42 @@ function ConceptsContent({
   }, [concepts, players, user, onSelectConcept, sortBy, cache]);
 
   const radioOptions = [
-    { label: <Translate pt="Sílaba" en="Syllable" />, value: 'default' },
-    { label: <Translate pt="Jogador" en="Player" />, value: 'player' },
-    { label: <Translate pt="Itens" en="Items" />, value: 'items' },
-    { label: <Translate pt="Anotações" en="Notes" />, value: 'notes' },
+    {
+      label: (
+        <Translate
+          pt="Sílaba"
+          en="Syllable"
+        />
+      ),
+      value: 'default',
+    },
+    {
+      label: (
+        <Translate
+          pt="Jogador"
+          en="Player"
+        />
+      ),
+      value: 'player',
+    },
+    {
+      label: (
+        <Translate
+          pt="Itens"
+          en="Items"
+        />
+      ),
+      value: 'items',
+    },
+    {
+      label: (
+        <Translate
+          pt="Anotações"
+          en="Notes"
+        />
+      ),
+      value: 'notes',
+    },
   ];
 
   return (
@@ -152,7 +219,13 @@ function ConceptsContent({
           className="ml-2"
         />
       </Flex>
-      <Flex justify="center" align="center" wrap="wrap" gap={6} className="my-2">
+      <Flex
+        justify="center"
+        align="center"
+        wrap="wrap"
+        gap={6}
+        className="my-2"
+      >
         {list.map((concept) => (
           <ConceptCreationBlock
             key={concept.id}

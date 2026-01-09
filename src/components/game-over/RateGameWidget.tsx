@@ -107,23 +107,52 @@ function RateGameWidgetContent({ customText, hideWidget, setHideWidget }: RateGa
       )}
     >
       {thankYouMessage ? (
-        <Alert title={translate('Obrigado', 'Thank you')} type="success" showIcon />
+        <Alert
+          title={translate('Obrigado', 'Thank you')}
+          type="success"
+          showIcon
+        />
       ) : (
         <>
           <h3>
-            <Translate pt="O que achou do jogo?" en="Rate this game" />
+            <Translate
+              pt="O que achou do jogo?"
+              en="Rate this game"
+            />
           </h3>
           <Rate onChange={setRating} />
           <p>
-            <Translate pt="Comentários" en="Comments" custom={customText} />
+            <Translate
+              pt="Comentários"
+              en="Comments"
+              custom={customText}
+            />
           </p>
-          <TextArea onChange={(e) => setComments(e.target.value)} disabled={isLoading} />
-          <Button type="primary" disabled={!rating || isLoading} onClick={onSubmit} size="small">
-            <Translate pt="Enviar" en="Send" />
+          <TextArea
+            onChange={(e) => setComments(e.target.value)}
+            disabled={isLoading}
+          />
+          <Button
+            type="primary"
+            disabled={!rating || isLoading}
+            onClick={onSubmit}
+            size="small"
+          >
+            <Translate
+              pt="Enviar"
+              en="Send"
+            />
           </Button>
           <p style={{ marginTop: '1rem' }}>
-            <Button ghost onClick={() => setHideWidget(true)} size="small">
-              <Translate pt="Hide" en="Hide" />
+            <Button
+              ghost
+              onClick={() => setHideWidget(true)}
+              size="small"
+            >
+              <Translate
+                pt="Hide"
+                en="Hide"
+              />
             </Button>
           </p>
         </>

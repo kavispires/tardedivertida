@@ -19,32 +19,51 @@ import { History } from './components/History';
 
 export function PhaseGameOver({ state, players, user }: PhaseProps) {
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<TheEndIcon />}>
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<TheEndIcon />}
+    >
       <SpaceContainer vertical>
         {state.status === STATUS.WIN && (
           <>
             <Title level={3}>
-              <Translate pt="Vocês venceram!" en="You won!" />
+              <Translate
+                pt="Vocês venceram!"
+                en="You won!"
+              />
             </Title>
             <Instruction contained>
-              <Translate pt="Vocês comunicaram todos os items" en="You communicated all items" />
+              <Translate
+                pt="Vocês comunicaram todos os items"
+                en="You communicated all items"
+              />
             </Instruction>
           </>
         )}
         {state.status === STATUS.LOSE && (
           <>
             <Title level={3}>
-              <Translate pt="Vocês perderam!" en="You lost!" />
+              <Translate
+                pt="Vocês perderam!"
+                en="You lost!"
+              />
             </Title>
             <Instruction contained>
-              <Translate pt="Alguém clicou em  um tabu" en="Someone selected a taboo" />
+              <Translate
+                pt="Alguém clicou em  um tabu"
+                en="Someone selected a taboo"
+              />
             </Instruction>
           </>
         )}
         {state.status === STATUS.CONTINUE && (
           <>
             <Title level={3}>
-              <Translate pt="Vocês perderam!" en="You lost!" />
+              <Translate
+                pt="Vocês perderam!"
+                en="You lost!"
+              />
             </Title>
             <Instruction contained>
               <Translate
@@ -56,11 +75,27 @@ export function PhaseGameOver({ state, players, user }: PhaseProps) {
         )}
       </SpaceContainer>
 
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
 
-      <Flex gap={8} align="center">
-        <Board deck={state.deck} deckType={state.deckType} userId={user.id} userSide={user.side} />
-        <SummaryBox summary={state.summary} players={players} round={state.round} />
+      <Flex
+        gap={8}
+        align="center"
+      >
+        <Board
+          deck={state.deck}
+          deckType={state.deckType}
+          userId={user.id}
+          userSide={user.side}
+        />
+        <SummaryBox
+          summary={state.summary}
+          players={players}
+          round={state.round}
+        />
       </Flex>
 
       <History

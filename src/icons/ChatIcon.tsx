@@ -1,6 +1,10 @@
 export function ChatIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#91deb6"
         d="M456.07 218.597c26.86 0 48.634 21.774 48.634 48.634v152.374c0 26.859-21.774 48.633-48.633 48.633h-16.808L416.1 494.922c-2.417 2.784-6.738 2.784-9.155 0l-23.163-26.684H249.314c-26.859 0-48.633-21.774-48.633-48.633v-164.22c0-20.317 16.47-36.788 36.788-36.788z"

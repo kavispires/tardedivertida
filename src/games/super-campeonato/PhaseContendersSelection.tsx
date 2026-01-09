@@ -24,19 +24,30 @@ export function PhaseContenderSelection({ state, players, user }: PhaseProps<Pha
   const announcement = (
     <PhaseAnnouncement
       icon={<AnonymousIcon />}
-      title={<Translate pt="Competidores" en="Contenders" />}
+      title={
+        <Translate
+          pt="Competidores"
+          en="Contenders"
+        />
+      }
       type="overlay"
       currentRound={state?.round?.current}
       duration={5}
     >
       <Instruction>
-        <Translate pt="Quem tem chance de ganhar?" en="Who has what it takes?" />
+        <Translate
+          pt="Quem tem chance de ganhar?"
+          en="Who has what it takes?"
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={SUPER_CAMPEONATO_PHASES.CONTENDER_SELECTION}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={SUPER_CAMPEONATO_PHASES.CONTENDER_SELECTION}
+    >
       <StepSwitcher
         step={step}
         players={players}

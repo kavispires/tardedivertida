@@ -43,7 +43,10 @@ export function StepGallery({
   return (
     <Step fullWidth>
       <StepTitle size="small">
-        <Translate pt="Novos termos no dicionário" en="New Terms in the Dictionary" />
+        <Translate
+          pt="Novos termos no dicionário"
+          en="New Terms in the Dictionary"
+        />
       </StepTitle>
 
       <PopoverRule content={<ScoringRules />} />
@@ -54,9 +57,18 @@ export function StepGallery({
         leftClassName="idp-gallery__left-page"
         rightClassName="idp-gallery__right-page"
       >
-        <DefinitionPage entry={galleryEntry} basicConcepts={basicConcepts} concepts={concepts} />
+        <DefinitionPage
+          entry={galleryEntry}
+          basicConcepts={basicConcepts}
+          concepts={concepts}
+        />
 
-        <CreditsPage creator={creator} creatorColor={currentColor} entry={galleryEntry} players={players} />
+        <CreditsPage
+          creator={creator}
+          creatorColor={currentColor}
+          entry={galleryEntry}
+          players={players}
+        />
       </SlideShow>
     </Step>
   );

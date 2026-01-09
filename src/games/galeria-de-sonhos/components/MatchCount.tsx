@@ -38,7 +38,10 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
               {pluralize(matchCount, 'jogador')} lá!
               <br />
               {isSuperSpark && 'Brilho total!'}
-              <StarPoints keyPrefix="dream-result" quantity={isSuperSpark ? 3 : 2} />
+              <StarPoints
+                keyPrefix="dream-result"
+                quantity={isSuperSpark ? 3 : 2}
+              />
             </p>
           }
           en={
@@ -53,7 +56,10 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
               <br />
               {isSuperSpark && 'Super Spark!'}
               {isSuperSpark && <FireworksEffect />}
-              <StarPoints keyPrefix="dream-result" quantity={isSuperSpark ? 3 : 2} />
+              <StarPoints
+                keyPrefix="dream-result"
+                quantity={isSuperSpark ? 3 : 2}
+              />
             </p>
           }
         />
@@ -64,14 +70,24 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
               <h2 className="g-announce-title">Vixi...</h2>
               <p>
                 Não sei o que dizer... Ninguém visitou esse sonho e{' '}
-                <PlayerAvatarName player={lastActivePlayer} size="small" addressUser /> está fora da rodada.
+                <PlayerAvatarName
+                  player={lastActivePlayer}
+                  size="small"
+                  addressUser
+                />{' '}
+                está fora da rodada.
                 <br />
                 <small>(as cartas restantes ainda contarão pontos para outros jogadores)</small>{' '}
                 {isPlayerInNightmare && (
                   <>
                     <br />
-                    Para piorar, <PlayerAvatarName player={lastActivePlayer} size="small" addressUser /> vai
-                    perder <PointsHighlight type="negative">1</PointsHighlight>
+                    Para piorar,{' '}
+                    <PlayerAvatarName
+                      player={lastActivePlayer}
+                      size="small"
+                      addressUser
+                    />{' '}
+                    vai perder <PointsHighlight type="negative">1</PointsHighlight>
                     ponto por sonho usado até então.
                   </>
                 )}
@@ -83,16 +99,25 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
               <h2 className="g-announce-title">Oops...</h2>
               <p>
                 I don't know what to say... no one has visited this dream and{' '}
-                <PlayerAvatarName player={lastActivePlayer} size="small" addressUser /> is/are out of the
-                round.
+                <PlayerAvatarName
+                  player={lastActivePlayer}
+                  size="small"
+                  addressUser
+                />{' '}
+                is/are out of the round.
                 <br />
                 <small>(the remaining cards will still count towards scoring for other players)</small>
                 {isPlayerInNightmare && (
                   <>
                     <br />
                     To make this worse,{' '}
-                    <PlayerAvatarName player={lastActivePlayer} size="small" addressUser /> will lose{' '}
-                    <PointsHighlight type="negative">1</PointsHighlight> point for each scored dream.
+                    <PlayerAvatarName
+                      player={lastActivePlayer}
+                      size="small"
+                      addressUser
+                    />{' '}
+                    will lose <PointsHighlight type="negative">1</PointsHighlight> point for each scored
+                    dream.
                   </>
                 )}
               </p>

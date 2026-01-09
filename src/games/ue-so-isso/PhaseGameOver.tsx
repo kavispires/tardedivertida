@@ -20,13 +20,31 @@ import achievementsReference from './utils/achievements';
 
 export function PhaseGameOver({ state, players }: PhaseProps) {
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<FlagIcon />}>
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<FlagIcon />}
+    >
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
 
-      <TitledContainer title={<Translate pt="Dicas do jogo" en="Game's clues" />}>
+      <TitledContainer
+        title={
+          <Translate
+            pt="Dicas do jogo"
+            en="Game's clues"
+          />
+        }
+      >
         {state.gallery.map((entry: GalleryEntry) => {
           return (
-            <div className="u-gallery-entry" key={entry.id}>
+            <div
+              className="u-gallery-entry"
+              key={entry.id}
+            >
               <div className="u-gallery-entry__word">{entry.text}</div>
               {orderBy(entry.suggestions, 'invalid').map((suggestion) => (
                 <div
@@ -36,12 +54,18 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
                     suggestion.invalid && 'u-gallery-entry__suggestion--invalid',
                   )}
                 >
-                  <PlayerAvatar avatarId={players[suggestion.playerId].avatarId} size="small" />{' '}
+                  <PlayerAvatar
+                    avatarId={players[suggestion.playerId].avatarId}
+                    size="small"
+                  />{' '}
                   {suggestion.suggestion}
                 </div>
               ))}
               <div className="u-gallery-entry__outcome">
-                <PlayerAvatar avatarId={players[entry.guesserId].avatarId} size="small" />
+                <PlayerAvatar
+                  avatarId={players[entry.guesserId].avatarId}
+                  size="small"
+                />
 
                 {entry.outcome === 'CORRECT' && <IconAvatar icon={<BoxCheckMarkIcon />} />}
                 {entry.outcome === 'WRONG' && <IconAvatar icon={<BoxXIcon />} />}

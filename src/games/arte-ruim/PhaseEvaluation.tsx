@@ -24,7 +24,12 @@ function EvaluationPhase({ players, state, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<EvaluateIcon />}
-      title={<Translate pt="Adivinhação" en="Match the Pairs" />}
+      title={
+        <Translate
+          pt="Adivinhação"
+          en="Match the Pairs"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -33,7 +38,10 @@ function EvaluationPhase({ players, state, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={ARTE_RUIM_PHASES.EVALUATION}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={ARTE_RUIM_PHASES.EVALUATION}
+    >
       <StepSwitcher
         step={step}
         players={players}

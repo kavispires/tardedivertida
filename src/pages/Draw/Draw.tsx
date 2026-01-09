@@ -12,8 +12,16 @@ function Draw() {
     <Layout.Content className="container">
       <Title>Draw</Title>
 
-      <Space wrap className="gallery">
-        <DrawingCanvas lines={lines} setLines={setLines} showControls strokeWidth="small" />
+      <Space
+        wrap
+        className="gallery"
+      >
+        <DrawingCanvas
+          lines={lines}
+          setLines={setLines}
+          showControls
+          strokeWidth="small"
+        />
       </Space>
     </Layout.Content>
   );

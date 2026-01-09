@@ -1,6 +1,10 @@
 export function IncreaseDifficultyIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#d3f39f"
         d="M122.5 463.1H107l-1.7.4-4.4 4.5v29.9l2 4 2.7 2 2.4.6h14.5c4.9 0 8.8-4 8.8-8.7v-24c0-4.8-4-8.7-8.8-8.7z"

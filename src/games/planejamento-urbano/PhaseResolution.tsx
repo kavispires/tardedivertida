@@ -34,12 +34,23 @@ export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionSt
   };
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PLANEJAMENTO_URBANO_PHASES.RESOLUTION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={PLANEJAMENTO_URBANO_PHASES.RESOLUTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<MapCityIcon />}
-          title={<Translate pt="Resultado" en="Results" />}
+          title={
+            <Translate
+              pt="Resultado"
+              en="Results"
+            />
+          }
           currentRound={state?.round?.current}
           type="block"
           unskippable

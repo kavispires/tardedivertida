@@ -55,9 +55,15 @@ export function StepSetupGossiper({
   };
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt={<>Preparando a escola</>} en={<>Setting up the school</>} />
+        <Translate
+          pt={<>Preparando a escola</>}
+          en={<>Setting up the school</>}
+        />
       </StepTitle>
 
       <SchoolBoard
@@ -70,7 +76,10 @@ export function StepSetupGossiper({
 
       <Instruction contained>
         <Flex justify="center">
-          <BoardSummary students={students} socialGroups={socialGroups} />
+          <BoardSummary
+            students={students}
+            socialGroups={socialGroups}
+          />
 
           <div>
             <GossiperGoals
@@ -81,7 +90,10 @@ export function StepSetupGossiper({
               onOpenStudentModal={setSelectedSocialGroupId}
             />
 
-            <RuleInstruction type="action" className="text-left">
+            <RuleInstruction
+              type="action"
+              className="text-left"
+            >
               <Translate
                 en="To help you with your chaos, select one of these social groups to be associated with you. They also will be able to lie for you. The numbers are how many students are in each group."
                 pt="Para te ajudar com seu caos, selecione um desses grupos sociais para ser associado a você. Eles também poderão mentir por você. Os números são quantos alunos estão em cada grupo."
@@ -121,7 +133,10 @@ export function StepSetupGossiper({
                   block
                   disabled={!selectedSocialGroupId || !!user.associatedSocialGroupId}
                 >
-                  <Translate en="Submit" pt="Enviar" />
+                  <Translate
+                    en="Submit"
+                    pt="Enviar"
+                  />
                 </SendButton>
               )}
             </RuleInstruction>

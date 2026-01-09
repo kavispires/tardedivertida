@@ -30,7 +30,10 @@ export function ActorsBoard({ actors, user, onSubmitActor, selection }: ActorsBo
   const { language, translate } = useLanguage();
 
   return (
-    <SpaceContainer className="actors-board" wrap>
+    <SpaceContainer
+      className="actors-board"
+      wrap
+    >
       {selection.map((actorId) => {
         const actor = actors[actorId];
         const name = actor.name[language];
@@ -50,7 +53,10 @@ export function ActorsBoard({ actors, user, onSubmitActor, selection }: ActorsBo
               className="characters-table__character characters-table__character-button"
               disabled={isLoading || user.ready}
             >
-              <SuspectCard suspect={actor} width={cardWidth} />
+              <SuspectCard
+                suspect={actor}
+                width={cardWidth}
+              />
             </TransparentButton>
           </Popconfirm>
         );

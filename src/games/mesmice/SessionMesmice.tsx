@@ -31,7 +31,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionMesmice() {
-  return <Session gameCollection={GAME_COLLECTION.MESMICE} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.MESMICE}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionMesmice;

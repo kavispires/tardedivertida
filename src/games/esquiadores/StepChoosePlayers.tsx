@@ -49,9 +49,15 @@ export function StepChoosePlayers({
   });
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Escolha jogadores" en="Choose players" />
+        <Translate
+          pt="Escolha jogadores"
+          en="Choose players"
+        />
       </StepTitle>
 
       <RuleInstruction type="rule">
@@ -84,11 +90,25 @@ export function StepChoosePlayers({
         showLevel={3}
       />
 
-      <Lodges lodges={lodges} players={players} user={user} betType={betType} />
+      <Lodges
+        lodges={lodges}
+        players={players}
+        user={user}
+        betType={betType}
+      />
 
-      <SkierBets players={players} user={user} onSubmitBets={onSubmitBets} betType={playerBetType} />
+      <SkierBets
+        players={players}
+        user={user}
+        onSubmitBets={onSubmitBets}
+        betType={playerBetType}
+      />
 
-      <TurnOrder players={players} order={turnOrder} activePlayerId={skier.id} />
+      <TurnOrder
+        players={players}
+        order={turnOrder}
+        activePlayerId={skier.id}
+      />
     </Step>
   );
 }

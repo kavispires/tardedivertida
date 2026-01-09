@@ -50,7 +50,10 @@ export function SelectableGroupedItemsBoard({
   const cardWidth = useCardWidth(12, { gap: 8, minWidth: 50, maxWidth: 96 });
 
   return (
-    <ul className="h-grouped-items-board" style={activeColor ? { backgroundColor: activeColor } : {}}>
+    <ul
+      className="h-grouped-items-board"
+      style={activeColor ? { backgroundColor: activeColor } : {}}
+    >
       {Object.keys(groupedItems).map((key, index) => {
         const group = groupedItems[key];
         const isGroupWrong = wrongGroups.includes(index);
@@ -69,7 +72,10 @@ export function SelectableGroupedItemsBoard({
                     disabled={isGroupWrong}
                   >
                     {isGroupWrong || wrongItems.includes(itemId) ? (
-                      <CrimeItemBackgroundCard id="x" cardWidth={cardWidth} />
+                      <CrimeItemBackgroundCard
+                        id="x"
+                        cardWidth={cardWidth}
+                      />
                     ) : (
                       <CrimeItemCard
                         item={isGroupWrong ? getEliminatedCard(itemId.split('-')[1]) : items[itemId]}

@@ -23,7 +23,12 @@ export function PhaseVerification({ players, state, user }: PhaseProps<PhaseVeri
   const announcement = (
     <PhaseAnnouncement
       icon={<FeedbackIcon />}
-      title={<Translate pt="Avalie as coisas!" en="Evaluate the things!" />}
+      title={
+        <Translate
+          pt="Avalie as coisas!"
+          en="Evaluate the things!"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -37,8 +42,15 @@ export function PhaseVerification({ players, state, user }: PhaseProps<PhaseVeri
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={QUAL_QUESITO_PHASES.VERIFICATION}>
-      <StepSwitcher step={step} players={players} conditions={[!!user.id && !!state.table]}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={QUAL_QUESITO_PHASES.VERIFICATION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+        conditions={[!!user.id && !!state.table]}
+      >
         {/* Step 0 */}
         <StepEvaluateThings
           players={players}

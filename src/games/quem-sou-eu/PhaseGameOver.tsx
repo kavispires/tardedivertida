@@ -14,8 +14,16 @@ import { FinalCharacter } from './components/FinalCharacter';
 
 export function PhaseGameOver({ state, players, meta }: PhaseProps) {
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<TrophyIcon />}>
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<TrophyIcon />}
+    >
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
 
       <SpaceContainer wrap>
         {orderBy(state.gallery, `name.${meta.language}`).map((entry: FinalCharacterEntry) => (

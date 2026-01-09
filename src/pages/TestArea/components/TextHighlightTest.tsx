@@ -12,16 +12,32 @@ import type { TestStepProps } from '../TestArea';
 export function TextHighlightTest({ onResult, step }: TestStepProps) {
   const { translate } = useLanguage();
   return (
-    <SpaceContainer className="full-width" vertical>
-      <Title level={2} size="small">
-        <Translate pt="Texto e Destaques de Texto" en="Text Highlights" />
+    <SpaceContainer
+      className="full-width"
+      vertical
+    >
+      <Title
+        level={2}
+        size="small"
+      >
+        <Translate
+          pt="Texto e Destaques de Texto"
+          en="Text Highlights"
+        />
       </Title>
 
       <Instruction contained>
-        <Translate pt="Algumas vezes o texto será destacado" en="Sometimes text will be highlighted" />
+        <Translate
+          pt="Algumas vezes o texto será destacado"
+          en="Sometimes text will be highlighted"
+        />
       </Instruction>
 
-      <SpaceContainer wrap className="full-width" vertical>
+      <SpaceContainer
+        wrap
+        className="full-width"
+        vertical
+      >
         <MovieReviewCard
           type="negative"
           text={translate(

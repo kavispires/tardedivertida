@@ -22,10 +22,19 @@ export function FinalGalleryItem({ entry, players, width }: FinalGalleryItemProp
   const playerColor = getAvatarColorById(player.avatarId);
 
   return (
-    <SpaceContainer vertical contained>
+    <SpaceContainer
+      vertical
+      contained
+    >
       <PlayerAvatarName player={player} />
-      <WarningDrawing drawing={entry.drawing} width={width} />
-      <Typography.Text code className="uppercase">
+      <WarningDrawing
+        drawing={entry.drawing}
+        width={width}
+      />
+      <Typography.Text
+        code
+        className="uppercase"
+      >
         {entry.title}
       </Typography.Text>
 

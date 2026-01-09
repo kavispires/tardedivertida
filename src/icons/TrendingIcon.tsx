@@ -1,6 +1,10 @@
 export function TrendingIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#e4f6ff"
         d="M130.035 145.986l39.912-53.576h-86.24l39.912 53.576c1.6 2.147 4.816 2.147 6.416 0z"

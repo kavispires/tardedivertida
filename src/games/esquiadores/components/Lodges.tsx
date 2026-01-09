@@ -42,19 +42,32 @@ export function Lodges({ lodges, players, user, onSubmitBets, betType }: LodgesP
     <SpaceContainer orientation="vertical">
       <div className="lodges">
         {lodges.map((lodge) => (
-          <div key={lodge.id} className="lodge" style={{ width: lodgeWidth }}>
+          <div
+            key={lodge.id}
+            className="lodge"
+            style={{ width: lodgeWidth }}
+          >
             <div className="lodge__icon">
-              <LodgeIcon width={lodgeWidth / 3} color={LODGE_COLORS[lodge.id]} />
+              <LodgeIcon
+                width={lodgeWidth / 3}
+                color={LODGE_COLORS[lodge.id]}
+              />
               <span className="lodge__number">{lodge.id + 1}</span>
             </div>
 
             <div className="lodge__players">
               <Tooltip
                 title={
-                  <Translate pt="Jogadores que apostaram nessa cabana" en="Players who bet on this lodge" />
+                  <Translate
+                    pt="Jogadores que apostaram nessa cabana"
+                    en="Players who bet on this lodge"
+                  />
                 }
               >
-                <IconAvatar icon={<GamblingChipIcon />} size="small" />
+                <IconAvatar
+                  icon={<GamblingChipIcon />}
+                  size="small"
+                />
               </Tooltip>
               <AvatarGroup
                 list={lodge.playersIds.map((pId) => players[pId])}
@@ -67,7 +80,12 @@ export function Lodges({ lodges, players, user, onSubmitBets, betType }: LodgesP
               {user.initial !== undefined && (
                 <div className="lodge__bet">
                   <BettingChipValue
-                    title={<Translate pt="Apostas iniciais" en="Initial Bets" />}
+                    title={
+                      <Translate
+                        pt="Apostas iniciais"
+                        en="Initial Bets"
+                      />
+                    }
                     value={user.initial[lodge.id] ?? 0}
                   />
                 </div>
@@ -75,7 +93,12 @@ export function Lodges({ lodges, players, user, onSubmitBets, betType }: LodgesP
               {user.boost !== undefined && (
                 <div className="lodge__bet">
                   <BettingChipValue
-                    title={<Translate pt="Apostas de bônus" en="Bonus Bets" />}
+                    title={
+                      <Translate
+                        pt="Apostas de bônus"
+                        en="Bonus Bets"
+                      />
+                    }
                     value={user.boost[lodge.id] ?? 0}
                   />
                 </div>
@@ -83,7 +106,12 @@ export function Lodges({ lodges, players, user, onSubmitBets, betType }: LodgesP
               {user.final !== undefined && (
                 <div className="lodge__bet">
                   <BettingChipValue
-                    title={<Translate pt="Apostas finais" en="Final Bets" />}
+                    title={
+                      <Translate
+                        pt="Apostas finais"
+                        en="Final Bets"
+                      />
+                    }
                     value={user.final[lodge.id] ?? 0}
                   />
                 </div>
@@ -105,7 +133,12 @@ export function Lodges({ lodges, players, user, onSubmitBets, betType }: LodgesP
                       setChipsLeft(chipsLeft - diff);
                     }
                   }}
-                  suffix={<Translate pt="fichas" en="chips" />}
+                  suffix={
+                    <Translate
+                      pt="fichas"
+                      en="chips"
+                    />
+                  }
                 />
               </div>
             )}
@@ -116,8 +149,15 @@ export function Lodges({ lodges, players, user, onSubmitBets, betType }: LodgesP
       {onSubmitBets && (
         <SpaceContainer>
           <ChipsHighlight>{chipsLeft}</ChipsHighlight>
-          <SendButton size="large" onClick={() => onSubmitBets({ bets, betType })} disabled={chipsLeft > 0}>
-            <Translate pt="Enviar apostas" en="Send bets" />
+          <SendButton
+            size="large"
+            onClick={() => onSubmitBets({ bets, betType })}
+            disabled={chipsLeft > 0}
+          >
+            <Translate
+              pt="Enviar apostas"
+              en="Send bets"
+            />
           </SendButton>
         </SpaceContainer>
       )}

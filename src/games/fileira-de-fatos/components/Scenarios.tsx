@@ -31,12 +31,19 @@ export function Scenarios({ scenarios, reference, player }: ScenarioCardProps) {
     <Space className={clsx(player ? 'scenarios-results' : 'scenarios')}>
       {!!player && <PlayerAvatarStrip player={player} />}
       {scenarios.map((entry, index) => (
-        <div key={`position-${index}`} className="scenario" style={{ width: `${width}px` }}>
+        <div
+          key={`position-${index}`}
+          className="scenario"
+          style={{ width: `${width}px` }}
+        >
           <Avatar>{index + 1}</Avatar>
           <div className="scenario__tagline">
             <DualTranslate>{reference[index].text}</DualTranslate>
           </div>
-          <EmojiCard emojiId={reference[index].id} className="scenario__emoji" />
+          <EmojiCard
+            emojiId={reference[index].id}
+            className="scenario__emoji"
+          />
           {entry && <div className="scenario__card">{entry.text}</div>}
         </div>
       ))}

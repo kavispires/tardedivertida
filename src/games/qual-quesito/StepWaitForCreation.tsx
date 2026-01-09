@@ -28,7 +28,10 @@ export function StepWaitForCreation({
   turnOrder,
 }: StepWaitForCreationProps) {
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle wait>
         <Translate
           pt={
@@ -75,9 +78,15 @@ export function StepWaitForCreation({
         />
       </RuleInstruction>
 
-      <ItemsHand hand={user.hand ?? []} cardsDict={cardsDict} />
+      <ItemsHand
+        hand={user.hand ?? []}
+        cardsDict={cardsDict}
+      />
 
-      <PlayersHandsCounts players={players} turnOrder={turnOrder} />
+      <PlayersHandsCounts
+        players={players}
+        turnOrder={turnOrder}
+      />
     </Step>
   );
 }

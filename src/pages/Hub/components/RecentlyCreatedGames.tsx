@@ -34,15 +34,35 @@ export function RecentlyCreatedGames() {
   return (
     <Space>
       <span>
-        <Translate pt="Jogos criados recentemente (por você)" en="Recently created games (by you)" />:
+        <Translate
+          pt="Jogos criados recentemente (por você)"
+          en="Recently created games (by you)"
+        />
+        :
       </span>
       {ids.map((gameId) => (
-        <Button key={`recent-${gameId}`} ghost onClick={() => goTo(gameId)}>
+        <Button
+          key={`recent-${gameId}`}
+          ghost
+          onClick={() => goTo(gameId)}
+        >
           {gameId}
         </Button>
       ))}
-      <Tooltip title={<Translate pt="Atualizar lista" en="Refresh list" />}>
-        <Button shape="circle" icon={<RedoOutlined />} onClick={refreshIds} ghost />
+      <Tooltip
+        title={
+          <Translate
+            pt="Atualizar lista"
+            en="Refresh list"
+          />
+        }
+      >
+        <Button
+          shape="circle"
+          icon={<RedoOutlined />}
+          onClick={refreshIds}
+          ghost
+        />
       </Tooltip>
     </Space>
   );

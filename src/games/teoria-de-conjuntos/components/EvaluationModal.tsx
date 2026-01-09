@@ -30,7 +30,12 @@ export function EvaluationModal({ item, onSubmitEvaluation, solutions, onCancel 
 
   return (
     <Modal
-      title={<Translate en="Evaluate the item" pt="Avalie o item" />}
+      title={
+        <Translate
+          en="Evaluate the item"
+          pt="Avalie o item"
+        />
+      }
       open
       onCancel={onCancel}
       footer={null}
@@ -44,7 +49,11 @@ export function EvaluationModal({ item, onSubmitEvaluation, solutions, onCancel 
       </Typography.Paragraph>
 
       <Flex justify="center">
-        <ItemCard itemId={item.id} text={item.name} width={120} />
+        <ItemCard
+          itemId={item.id}
+          text={item.name}
+          width={120}
+        />
       </Flex>
 
       <Divider />
@@ -65,7 +74,10 @@ export function EvaluationModal({ item, onSubmitEvaluation, solutions, onCancel 
 
       <Flex justify="center">
         <SendButton onClick={() => onSubmitEvaluation(evaluation)}>
-          <Translate en="Submit" pt="Enviar" />
+          <Translate
+            en="Submit"
+            pt="Enviar"
+          />
         </SendButton>
       </Flex>
     </Modal>

@@ -63,9 +63,15 @@ export function StepHumansOffer({
 }: StepHumansOfferProps) {
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt={<>Ofereça um objeto</>} en={<>Offer an object</>} />
+        <Translate
+          pt={<>Ofereça um objeto</>}
+          en={<>Offer an object</>}
+        />
       </StepTitle>
 
       <PopoverRule content={<Status status={status} />} />
@@ -119,14 +125,27 @@ export function StepHumansOffer({
       />
 
       <AlienContent user={user}>
-        <Space className="boards-container" wrap>
-          <ObjectsGrid items={items} showTypes={isUserAlien} status={status} />
-          <SignsKeyCard attributes={attributes} startingAttributesIds={startingAttributesIds} />
+        <Space
+          className="boards-container"
+          wrap
+        >
+          <ObjectsGrid
+            items={items}
+            showTypes={isUserAlien}
+            status={status}
+          />
+          <SignsKeyCard
+            attributes={attributes}
+            startingAttributesIds={startingAttributesIds}
+          />
         </Space>
       </AlienContent>
 
       <HumanContent user={user}>
-        <Space className="boards-container" wrap>
+        <Space
+          className="boards-container"
+          wrap
+        >
           <HumanOffering
             attributes={attributes}
             startingAttributesIds={startingAttributesIds}
@@ -150,7 +169,10 @@ export function StepHumansOffer({
       />
 
       <DebugOnly>
-        <SignsKeyCard attributes={attributes} startingAttributesIds={startingAttributesIds} />
+        <SignsKeyCard
+          attributes={attributes}
+          startingAttributesIds={startingAttributesIds}
+        />
       </DebugOnly>
     </Step>
   );

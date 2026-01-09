@@ -50,7 +50,11 @@ export function PlayersGuesses({
 
   return (
     <Instruction contained>
-      <Tabs activeKey={activePlayerTab} onChange={(key) => setActivePlayerTab(key)} items={items} />
+      <Tabs
+        activeKey={activePlayerTab}
+        onChange={(key) => setActivePlayerTab(key)}
+        items={items}
+      />
     </Instruction>
   );
 }

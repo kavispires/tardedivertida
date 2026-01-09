@@ -48,7 +48,12 @@ export function StepPlayCardWaiting({
         <Translate
           pt={
             <>
-              Aguarde enquanto <PlayerAvatarName player={currentPlayer} addressUser /> escolhe uma carta.
+              Aguarde enquanto{' '}
+              <PlayerAvatarName
+                player={currentPlayer}
+                addressUser
+              />{' '}
+              escolhe uma carta.
             </>
           }
           en={
@@ -59,7 +64,10 @@ export function StepPlayCardWaiting({
         />
       </RuleInstruction>
 
-      <Table table={table} players={players} />
+      <Table
+        table={table}
+        players={players}
+      />
 
       <TurnOrder
         players={players}
@@ -69,7 +77,11 @@ export function StepPlayCardWaiting({
       />
 
       <FloatingHand>
-        <ImageCardHand hand={user.hand} disabledSelectButton={isLoading} sizeRatio={user.hand?.length} />
+        <ImageCardHand
+          hand={user.hand}
+          disabledSelectButton={isLoading}
+          sizeRatio={user.hand?.length}
+        />
       </FloatingHand>
     </>
   );

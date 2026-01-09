@@ -27,9 +27,19 @@ export function PhaseDrawing({ state, players, meta, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<DrawingIcon />}
-      title={<Translate pt="Alerte!" en="Warn!" />}
+      title={
+        <Translate
+          pt="Alerte!"
+          en="Warn!"
+        />
+      }
       currentRound={state?.round?.current}
-      buttonText={<Translate pt="Um dó, lá, si... vamos e... já!" en="Ready! Set! Go!" />}
+      buttonText={
+        <Translate
+          pt="Um dó, lá, si... vamos e... já!"
+          en="Ready! Set! Go!"
+        />
+      }
       type="overlay"
       withoutTimer
       onClose={() => setStartDrawingTimer(true)}
@@ -44,8 +54,14 @@ export function PhaseDrawing({ state, players, meta, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={SINAIS_DE_ALERTA_PHASES.DRAWING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={SINAIS_DE_ALERTA_PHASES.DRAWING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <RoundAnnouncement
           round={state?.round}

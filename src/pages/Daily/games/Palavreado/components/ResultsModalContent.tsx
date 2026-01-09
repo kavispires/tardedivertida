@@ -53,32 +53,55 @@ export function ResultsModalContent({
 
   return (
     <SpaceContainer vertical>
-      <Typography.Title level={2} className="center">
+      <Typography.Title
+        level={2}
+        className="center"
+      >
         {isWin ? (
           <>
-            <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Parabéns!" en="Congratulations!" />
+            <IconAvatar icon={<TrophyIcon />} />{' '}
+            <Translate
+              pt="Parabéns!"
+              en="Congratulations!"
+            />
           </>
         ) : (
           <>
-            <IconAvatar icon={<BoxXIcon />} /> <Translate pt="Que pena!" en="Too bad!" />
+            <IconAvatar icon={<BoxXIcon />} />{' '}
+            <Translate
+              pt="Que pena!"
+              en="Too bad!"
+            />
           </>
         )}
       </Typography.Title>
       <Typography.Paragraph className="center">
         {isWin ? (
-          <Translate pt="Você acertou as palavras!" en="You guessed the words!" />
+          <Translate
+            pt="Você acertou as palavras!"
+            en="You guessed the words!"
+          />
         ) : (
-          <Translate pt="Você não acertou todas as palavras!" en="You missed the words!" />
+          <Translate
+            pt="Você não acertou todas as palavras!"
+            en="You missed the words!"
+          />
         )}
       </Typography.Paragraph>
 
-      <Space className="result-answer" separator={<Divider orientation="vertical" />}>
+      <Space
+        className="result-answer"
+        separator={<Divider orientation="vertical" />}
+      >
         {words.map((word) => (
           <Typography.Text key={word}>{word}</Typography.Text>
         ))}
       </Space>
 
-      <CopyToClipboardResult result={result} rows={guesses[0].length + 2} />
+      <CopyToClipboardResult
+        result={result}
+        rows={guesses[0].length + 2}
+      />
 
       <NextGameSuggestion />
     </SpaceContainer>

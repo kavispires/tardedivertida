@@ -97,13 +97,24 @@ export function DailyItem({
   const divPadding = padding === 0 ? { padding: 0 } : {};
 
   return (
-    <Tooltip title={tooltipTitle} placement="top" open={tooltipTitle ? open : false} trigger={[]}>
+    <Tooltip
+      title={tooltipTitle}
+      placement="top"
+      open={tooltipTitle ? open : false}
+      trigger={[]}
+    >
       <div
         className={clsx('item-card', className)}
         style={{ width: `${width}px`, height, ...divPadding }}
         ref={containerRef}
       >
-        <Sprite source={source} spriteId={id} width={width} title={title} padding={padding} />
+        <Sprite
+          source={source}
+          spriteId={id}
+          width={width}
+          title={title}
+          padding={padding}
+        />
       </div>
     </Tooltip>
   );

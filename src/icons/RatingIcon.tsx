@@ -1,6 +1,10 @@
 export function RatingIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#fff5b5"
         d="M7.5 76.8v283.66c0 38.27 31.47 69.3 70.28 69.3h221.58l84.55 74.74v-74.74h50.31c38.81 0 70.28-31.03 70.28-69.3V76.8c0-38.27-31.46-69.3-70.28-69.3H77.78C38.97 7.5 7.5 38.52 7.5 76.8z"
@@ -9,7 +13,12 @@ export function RatingIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#ffef8f"
         d="M434.22 7.5h-40c38.81 0 70.28 31.03 70.28 69.3v283.66c0 38.27-31.46 69.3-70.28 69.3h40c38.81 0 70.28-31.03 70.28-69.3V76.8c0-38.27-31.47-69.3-70.28-69.3z"
       ></path>
-      <circle cx="253.81" cy="218.14" r="151.18" fill="#ffd54d"></circle>
+      <circle
+        cx="253.81"
+        cy="218.14"
+        r="151.18"
+        fill="#ffd54d"
+      ></circle>
       <path
         fill="#ffc919"
         d="M253.81 66.96c-6.78 0-13.46.45-20 1.31 74.04 9.79 131.18 73.15 131.18 149.87s-57.14 140.09-131.18 149.87c6.54.86 13.22 1.31 20 1.31 83.5 0 151.18-67.69 151.18-151.18 0-83.5-67.69-151.18-151.18-151.18z"

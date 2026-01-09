@@ -77,7 +77,10 @@ export function StepGuess({
   };
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         <Translate
           pt={<>O que os jogadores estão falando?</>}
@@ -102,8 +105,17 @@ export function StepGuess({
         />
       </RuleInstruction>
 
-      <SpaceContainer className="mt-4 contained" orientation="vertical">
-        <Flex justify="center" align="center" wrap="wrap" gap={6} className="mb-2">
+      <SpaceContainer
+        className="mt-4 contained"
+        orientation="vertical"
+      >
+        <Flex
+          justify="center"
+          align="center"
+          wrap="wrap"
+          gap={6}
+          className="mb-2"
+        >
           {newNames.map((entry) => {
             const entryId = getEntryId(['player', entry.playerId]);
             return (
@@ -113,14 +125,26 @@ export function StepGuess({
                 activeClass="idp-selected"
                 active={isItemActive(entryId)}
               >
-                <Flex vertical align="center" gap={6}>
-                  <Flex align="center" gap={6}>
+                <Flex
+                  vertical
+                  align="center"
+                  gap={6}
+                >
+                  <Flex
+                    align="center"
+                    gap={6}
+                  >
                     <PlayerAvatar avatarId={players[entry.playerId].avatarId} />
                     <SpeechBubble>
                       <TextHighlight className="idp-item-name-speech">{entry.name}</TextHighlight>
                     </SpeechBubble>
                   </Flex>
-                  {votes[entryId] && <ItemCard itemId={votes[entryId]} width={itemWidth} />}
+                  {votes[entryId] && (
+                    <ItemCard
+                      itemId={votes[entryId]}
+                      width={itemWidth}
+                    />
+                  )}
                 </Flex>
               </TransparentButton>
             );
@@ -128,7 +152,13 @@ export function StepGuess({
         </Flex>
         <Divider orientation="vertical" />
 
-        <Flex justify="center" align="center" wrap="wrap" gap={6} className="my-2">
+        <Flex
+          justify="center"
+          align="center"
+          wrap="wrap"
+          gap={6}
+          className="my-2"
+        >
           {pool.map((item) => (
             <TransparentButton
               key={item.id}
@@ -137,19 +167,35 @@ export function StepGuess({
               active={isItemActive(item.id)}
               className="idp-pool-item"
             >
-              <ItemCard itemId={item.id} width={itemWidth} title={dualTranslate(item.name)} />
+              <ItemCard
+                itemId={item.id}
+                width={itemWidth}
+                title={dualTranslate(item.name)}
+              />
             </TransparentButton>
           ))}
         </Flex>
 
         <Divider orientation="vertical" />
 
-        <Flex justify="center" align="center" wrap="wrap" gap={6}>
+        <Flex
+          justify="center"
+          align="center"
+          wrap="wrap"
+          gap={6}
+        >
           <DevButton onClick={() => onSubmitGuesses(mockGuesses(user, pool, newNames))}>
             Mock Guesses
           </DevButton>
-          <SendButton size="large" disabled={!isVotingComplete} onClick={handleSubmitGuesses}>
-            <Translate pt="Enviar Palpites" en="Send Guesses" />
+          <SendButton
+            size="large"
+            disabled={!isVotingComplete}
+            onClick={handleSubmitGuesses}
+          >
+            <Translate
+              pt="Enviar Palpites"
+              en="Send Guesses"
+            />
           </SendButton>
         </Flex>
       </SpaceContainer>

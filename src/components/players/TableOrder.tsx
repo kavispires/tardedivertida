@@ -81,8 +81,14 @@ export function TableOrder({
                 style={{ '--t': doublePlayerCount, '--i': index * 2 }}
                 className={clsx('table-order__player', isActive && 'table-order__player--active')}
               >
-                <span className="table-order__icon" style={isActive ? { backgroundColor: color } : undefined}>
-                  <PlayerAvatarName player={player} upright />
+                <span
+                  className="table-order__icon"
+                  style={isActive ? { backgroundColor: color } : undefined}
+                >
+                  <PlayerAvatarName
+                    player={player}
+                    upright
+                  />
                 </span>
               </li>
               <li
@@ -101,7 +107,11 @@ export function TableOrder({
           <div className="table-order__center-container">
             <TableIcon style={{ width: '3rem', transform: 'scaleX(-1)' }} />
             <header className="table-order__title">
-              <Translate en="Player Order" pt="Ordem dos Jogadores" custom={title} />
+              <Translate
+                en="Player Order"
+                pt="Ordem dos Jogadores"
+                custom={title}
+              />
             </header>
           </div>
         </li>

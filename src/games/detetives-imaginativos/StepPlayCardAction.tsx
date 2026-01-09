@@ -115,7 +115,11 @@ export function StepPlayCardAction({
         <ViewOr condition={isUserTheImpostor}>
           {/** biome-ignore lint/complexity/noUselessFragments: View Container TODO: could it be a div? */}
           <>
-            <IconAvatar icon={<ImageCardsIcon />} size="large" shape="square" />{' '}
+            <IconAvatar
+              icon={<ImageCardsIcon />}
+              size="large"
+              shape="square"
+            />{' '}
             <Translate
               pt="Selecione uma carta que mais combine com as cartas que os outros
                 jogadores estão usando."
@@ -125,17 +129,27 @@ export function StepPlayCardAction({
 
           {/** biome-ignore lint/complexity/noUselessFragments: View Container TODO: could it be a div? */}
           <>
-            <IconAvatar icon={<ImageCardsIcon />} size="large" shape="square" />{' '}
+            <IconAvatar
+              icon={<ImageCardsIcon />}
+              size="large"
+              shape="square"
+            />{' '}
             <Translate
               pt="Selecione uma carta que mais combine com a pista secreta."
               en="Select a card that best fits the secret clue."
             />
           </>
         </ViewOr>
-        <TimedTimerClock duration={75} onExpire={() => onSelectCard('back-default')} />
+        <TimedTimerClock
+          duration={75}
+          onExpire={() => onSelectCard('back-default')}
+        />
       </RuleInstruction>
 
-      <Table table={table} players={players} />
+      <Table
+        table={table}
+        players={players}
+      />
 
       <TurnOrder
         players={players}
@@ -144,7 +158,10 @@ export function StepPlayCardAction({
         reorderByUser={leaderId}
       />
 
-      <WaitingTime timeLeft={timeLeft} duration={PREVENT_USER_FROM_CLICKING_TIME} />
+      <WaitingTime
+        timeLeft={timeLeft}
+        duration={PREVENT_USER_FROM_CLICKING_TIME}
+      />
 
       <ImageCardHand
         hand={user.hand}

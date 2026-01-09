@@ -48,7 +48,10 @@ export function StepGuessItems({
   });
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         <Translate
           pt={
@@ -65,7 +68,10 @@ export function StepGuessItems({
       </StepTitle>
 
       <SpaceContainer>
-        <Card size="large" hideHeader>
+        <Card
+          size="large"
+          hideHeader
+        >
           {newWord}
         </Card>
       </SpaceContainer>
@@ -77,17 +83,28 @@ export function StepGuessItems({
         />
       </RuleInstruction>
 
-      <ItemsGrid items={items} targets={[]} selectedItems={selectedItems} onItemSelect={updateDict} />
+      <ItemsGrid
+        items={items}
+        targets={[]}
+        selectedItems={selectedItems}
+        onItemSelect={updateDict}
+      />
 
       <SendButton
         disabled={!isComplete}
         onClick={() => onSubmitGuesses({ guesses: selectedItems })}
         size="large"
       >
-        <Translate en="Submit" pt="Enviar" />
+        <Translate
+          en="Submit"
+          pt="Enviar"
+        />
       </SendButton>
 
-      <WordLengths wordLengths={wordLengths} highlightLength={newWord.length} />
+      <WordLengths
+        wordLengths={wordLengths}
+        highlightLength={newWord.length}
+      />
     </Step>
   );
 }

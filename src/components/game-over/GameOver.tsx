@@ -26,7 +26,12 @@ import { RateGameWidget } from './RateGameWidget';
 // Images
 import gameOverTitle from 'assets/images/game-over-title.svg?url';
 
-const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over" />;
+const GameOverText = () => (
+  <Translate
+    pt="Jogo concluído"
+    en="The game is over"
+  />
+);
 
 type GameOverProps = {
   /**
@@ -63,7 +68,11 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
     (Boolean(state.winners) && state.winners.length > 0) || Boolean(state.group) || Boolean(state.team);
 
   return (
-    <Step className={className} announcement={announcement} fullWidth>
+    <Step
+      className={className}
+      announcement={announcement}
+      fullWidth
+    >
       <div className="game-over__banner">
         <GameStrip
           gameName={info.gameName}
@@ -95,17 +104,29 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
               <div className="game-over__text">
                 <GameOverText />{' '}
                 {state.winners.length > 1 ? (
-                  <Translate pt="e os vencedores são" en="and the winners are" />
+                  <Translate
+                    pt="e os vencedores são"
+                    en="and the winners are"
+                  />
                 ) : (
-                  <Translate pt="e o vencedor é" en="and the winner is" />
+                  <Translate
+                    pt="e o vencedor é"
+                    en="and the winner is"
+                  />
                 )}
                 :
               </div>
               <ul className="game-over__winners">
                 {state.winners.map((winner: GamePlayer) => {
                   return (
-                    <li className="game-over__winner" key={`winner-${winner.name}`}>
-                      <PlayerAvatar className="game-over__avatar" avatarId={winner.avatarId ?? 25} />
+                    <li
+                      className="game-over__winner"
+                      key={`winner-${winner.name}`}
+                    >
+                      <PlayerAvatar
+                        className="game-over__avatar"
+                        avatarId={winner.avatarId ?? 25}
+                      />
                       <div className="game-over__winner-name">
                         <strong>{winner.name ?? '?'}</strong>,{' '}
                         {AVATARS[winner.avatarId].description[language]}
@@ -140,9 +161,15 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
               />
               <div className="game-over__text">
                 {state.group.outcome === 'WIN' ? (
-                  <Translate pt="Parabéns, vocês ganharam!" en="Congratulations, you won!" />
+                  <Translate
+                    pt="Parabéns, vocês ganharam!"
+                    en="Congratulations, you won!"
+                  />
                 ) : (
-                  <Translate pt="Não foi dessa vez, que vergonha heim!" en="You lost! What a shame!" />
+                  <Translate
+                    pt="Não foi dessa vez, que vergonha heim!"
+                    en="You lost! What a shame!"
+                  />
                 )}
               </div>
             </div>
@@ -164,9 +191,15 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
               />
               <div className="game-over__text">
                 {state.team.victory ? (
-                  <Translate pt="Parabéns, vocês ganharam!" en="Congratulations, you won!" />
+                  <Translate
+                    pt="Parabéns, vocês ganharam!"
+                    en="Congratulations, you won!"
+                  />
                 ) : (
-                  <Translate pt="Não foi dessa vez, que vergonha heim!" en="You lost! What a shame!" />
+                  <Translate
+                    pt="Não foi dessa vez, que vergonha heim!"
+                    en="You lost! What a shame!"
+                  />
                 )}
               </div>
             </div>
@@ -192,11 +225,20 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
       >
         <Space.Compact>
           <Button onClick={() => navigate('/')}>
-            <Translate pt="Página Inicial" en="Home Page" />
+            <Translate
+              pt="Página Inicial"
+              en="Home Page"
+            />
           </Button>
           <Button>
-            <Link to="/me" target="_blank">
-              <Translate pt="Meu Perfil" en="My Profile" />{' '}
+            <Link
+              to="/me"
+              target="_blank"
+            >
+              <Translate
+                pt="Meu Perfil"
+                en="My Profile"
+              />{' '}
               <ArrowRightOutlined style={{ rotate: '-45deg' }} />
             </Link>
           </Button>

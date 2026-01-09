@@ -21,13 +21,22 @@ export function MyThings({ hand = [], items, total }: MyThingsProps) {
       contained
       title={
         <>
-          <Translate pt="Suas coisas" en="Your items" />{' '}
+          <Translate
+            pt="Suas coisas"
+            en="Your items"
+          />{' '}
           <Tooltip
             title={
-              <Translate en="Items to place and total items" pt="Itens para posicionar e total de itens" />
+              <Translate
+                en="Items to place and total items"
+                pt="Itens para posicionar e total de itens"
+              />
             }
           >
-            <Tag variant="solid" icon={<AimOutlined />}>
+            <Tag
+              variant="solid"
+              icon={<AimOutlined />}
+            >
               {hand.length}/{total}
             </Tag>
           </Tooltip>
@@ -41,14 +50,25 @@ export function MyThings({ hand = [], items, total }: MyThingsProps) {
       />
 
       <ViewOr condition={hand.length > 0}>
-        <Flex gap={8} justify="center">
+        <Flex
+          gap={8}
+          justify="center"
+        >
           {hand.slice(0, 10).map((itemId: string) => (
-            <ItemCard key={itemId} itemId={itemId} width={100} text={items[itemId]?.name} />
+            <ItemCard
+              key={itemId}
+              itemId={itemId}
+              width={100}
+              text={items[itemId]?.name}
+            />
           ))}
         </Flex>
 
         <p>
-          <Translate en="You don't have any items yet" pt="Você ainda não tem itens." />
+          <Translate
+            en="You don't have any items yet"
+            pt="Você ainda não tem itens."
+          />
         </p>
       </ViewOr>
     </TitledContainer>

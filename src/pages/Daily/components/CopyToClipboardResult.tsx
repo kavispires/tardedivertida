@@ -31,9 +31,17 @@ export function CopyToClipboardResult({ result, rows = 4 }: CopyToClipboardResul
   }, [state, message, translate]);
 
   return (
-    <SpaceContainer vertical fullWidth>
+    <SpaceContainer
+      vertical
+      fullWidth
+    >
       <TransparentButton onClick={() => copyToClipboard(result)}>
-        <Input.TextArea value={result} readOnly cols={30} rows={rows} />
+        <Input.TextArea
+          value={result}
+          readOnly
+          cols={30}
+          rows={rows}
+        />
       </TransparentButton>
 
       <Typography.Paragraph className="center">

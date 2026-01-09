@@ -47,17 +47,34 @@ export function StepResult({
 
   return (
     <Step fullWidth>
-      <StepTitle className={clsx('n-title', getAnimationClass('fadeIn'))} level={2}>
-        <Translate pt="Decisões" en="Decisions" />:
+      <StepTitle
+        className={clsx('n-title', getAnimationClass('fadeIn'))}
+        level={2}
+      >
+        <Translate
+          pt="Decisões"
+          en="Decisions"
+        />
+        :
       </StepTitle>
 
-      <Title size="small" level={3} className={clsx('n-subtitle', getAnimationClass('fadeIn', { delay: 1 }))}>
+      <Title
+        size="small"
+        level={3}
+        className={clsx('n-subtitle', getAnimationClass('fadeIn', { delay: 1 }))}
+      >
         {goingHomePlayerIds.length === 0 && (
-          <Translate pt="Todos continuaram..." en="Everybody will continue..." />
+          <Translate
+            pt="Todos continuaram..."
+            en="Everybody will continue..."
+          />
         )}
 
         {goingHomePlayerIds.length === 1 && (
-          <Translate pt="Olha o cagão voltando pra casa..." en="Look at this scared cat going back home..." />
+          <Translate
+            pt="Olha o cagão voltando pra casa..."
+            en="Look at this scared cat going back home..."
+          />
         )}
         {goingHomePlayerIds.length > 1 && (
           <Translate
@@ -79,10 +96,17 @@ export function StepResult({
         phase="RESULT"
       />
 
-      <Street street={street} currentCard={currentCard} candySidewalk={candySidewalk} />
+      <Street
+        street={street}
+        currentCard={currentCard}
+        candySidewalk={candySidewalk}
+      />
 
       <HostNextPhaseButton autoTriggerTime={7}>
-        <Translate pt="Próxima Casa" en="Next House" />
+        <Translate
+          pt="Próxima Casa"
+          en="Next House"
+        />
       </HostNextPhaseButton>
 
       <PlayerStats user={user} />

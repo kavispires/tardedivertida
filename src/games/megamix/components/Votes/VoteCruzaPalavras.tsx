@@ -13,12 +13,21 @@ export function VoteCruzaPalavras({ track, playersList }: VoteComponentProps) {
   };
 
   return (
-    <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
+    <SpacePlayerCheckWrapper
+      playersList={playersList}
+      paths={['data.value']}
+    >
       {playersList.map((player) => (
-        <div key={`vote-${player.id}`} className="player-vote">
+        <div
+          key={`vote-${player.id}`}
+          className="player-vote"
+        >
           <PlayerAvatar avatarId={player.avatarId} />
           <div>{player.name}</div>
-          <div key={player.data.value} className="track-result-values__text-value">
+          <div
+            key={player.data.value}
+            className="track-result-values__text-value"
+          >
             {cheatSheet[player.data.value][0]} {'+'} {cheatSheet[player.data.value][1]}
           </div>
         </div>

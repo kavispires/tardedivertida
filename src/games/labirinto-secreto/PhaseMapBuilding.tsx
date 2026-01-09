@@ -28,9 +28,15 @@ export function PhaseMapBuilding({ state, players, user }: PhaseProps<PhaseMapBu
       icon={<MapIcon />}
       title={
         state.round.current === 1 ? (
-          <Translate pt="Construa o seu mapa" en="Build your map" />
+          <Translate
+            pt="Construa o seu mapa"
+            en="Build your map"
+          />
         ) : (
-          <Translate pt="Expanda seu mapa" en="Expand your map" />
+          <Translate
+            pt="Expanda seu mapa"
+            en="Expand your map"
+          />
         )
       }
       currentRound={state?.round?.current}
@@ -48,17 +54,30 @@ export function PhaseMapBuilding({ state, players, user }: PhaseProps<PhaseMapBu
   const isUserMapComplete = user?.map?.every((segment: MapSegment) => segment.passed);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={LABIRINTO_SECRETO_PHASES.MAP_BUILDING}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={LABIRINTO_SECRETO_PHASES.MAP_BUILDING}
+    >
       <StepSwitcher
         step={step}
         players={players}
         waitingRoom={{
-          content: <PlayerSelectionMap forest={state.forest} map={user.map} newMap={user.newMap} />,
+          content: (
+            <PlayerSelectionMap
+              forest={state.forest}
+              map={user.map}
+              newMap={user.newMap}
+            />
+          ),
         }}
       >
         {/* Step 0 */}
         <ViewOr condition={isUserMapComplete}>
-          <StepBuildWait user={user} announcement={announcement} forest={state.forest} />
+          <StepBuildWait
+            user={user}
+            announcement={announcement}
+            forest={state.forest}
+          />
 
           <StepBuildMap
             players={players}

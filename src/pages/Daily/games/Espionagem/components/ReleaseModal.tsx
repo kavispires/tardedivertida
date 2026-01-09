@@ -53,17 +53,33 @@ export function ReleaseModal({
       }
       open
       onCancel={() => onDeselectSuspect()}
-      cancelText={<Translate pt="Não" en="No" />}
+      cancelText={
+        <Translate
+          pt="Não"
+          en="No"
+        />
+      }
       onOk={() => onRelease()}
-      okText={<Translate pt="Sim" en="Yes" />}
+      okText={
+        <Translate
+          pt="Sim"
+          en="Yes"
+        />
+      }
     >
-      <Flex align="center" gap={12}>
+      <Flex
+        align="center"
+        gap={12}
+      >
         <ImageCard
           cardId={getSuspectImageId(activeSuspectId, 'gb')}
           cardWidth={width}
           className="espionagem-suspect-card"
         />
-        <Flex vertical gap={6}>
+        <Flex
+          vertical
+          gap={6}
+        >
           <Typography.Text>
             Confira as declarações do tipo <SkinFilled />:
           </Typography.Text>
@@ -79,7 +95,10 @@ export function ReleaseModal({
 
       <Region>
         <Typography.Text strong>
-          <Translate pt="Declarações" en="Statements" />
+          <Translate
+            pt="Declarações"
+            en="Statements"
+          />
         </Typography.Text>
         <Statements
           statements={statements}
@@ -106,12 +125,20 @@ export function SuspectInfo({ name, features, gender, variant }: SuspectInfoProp
   );
 
   return (
-    <Flex gap={6} wrap justify={variant === 'result' ? 'center' : 'start'}>
+    <Flex
+      gap={6}
+      wrap
+      justify={variant === 'result' ? 'center' : 'start'}
+    >
       <strong>
         <DualTranslate>{name}</DualTranslate>
       </strong>
       {values.map((value, index, array) => (
-        <Typography.Text key={value} code={variant === 'release'} italic>
+        <Typography.Text
+          key={value}
+          code={variant === 'release'}
+          italic
+        >
           {value}
           {variant === 'result' && values.length > 1 && index < array.length - 1 ? ',' : ''}
         </Typography.Text>

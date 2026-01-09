@@ -43,12 +43,23 @@ export function StepBossEvaluation({
   return (
     <Step fullWidth>
       <StepTitle>
-        <Translate pt="Avaliação" en="Avaliação" />
+        <Translate
+          pt="Avaliação"
+          en="Avaliação"
+        />
       </StepTitle>
 
-      <CategoryWordGroup categories={categories} secretWord={secretWord} showSecretWord />
+      <CategoryWordGroup
+        categories={categories}
+        secretWord={secretWord}
+        showSecretWord
+      />
 
-      <Board board={board} clues={clues} players={players} />
+      <Board
+        board={board}
+        clues={clues}
+        players={players}
+      />
 
       <ClueEvaluation
         clues={clues}

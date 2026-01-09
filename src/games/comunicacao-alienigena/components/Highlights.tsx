@@ -7,7 +7,12 @@ import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricH
 
 export function ItemsHighlight({ children, type, iconSize, className }: HighlightProps) {
   return (
-    <MetricHighlight icon={<PlayerIconsIcon />} type={type} iconSize={iconSize} className={className}>
+    <MetricHighlight
+      icon={<PlayerIconsIcon />}
+      type={type}
+      iconSize={iconSize}
+      className={className}
+    >
       {children}
     </MetricHighlight>
   );
@@ -15,7 +20,12 @@ export function ItemsHighlight({ children, type, iconSize, className }: Highligh
 
 export function HieroglyphHighlight({ children, type, iconSize, className }: HighlightProps) {
   return (
-    <MetricHighlight icon={<HieroglyphIcon />} type={type} iconSize={iconSize} className={className}>
+    <MetricHighlight
+      icon={<HieroglyphIcon />}
+      type={type}
+      iconSize={iconSize}
+      className={className}
+    >
       {children}
     </MetricHighlight>
   );
@@ -23,7 +33,12 @@ export function HieroglyphHighlight({ children, type, iconSize, className }: Hig
 
 export function CurseItemHighlight({ children, type, iconSize, className }: HighlightProps) {
   return (
-    <MetricHighlight icon={<MagicSkullIcon />} type={type} iconSize={iconSize} className={className}>
+    <MetricHighlight
+      icon={<MagicSkullIcon />}
+      type={type}
+      iconSize={iconSize}
+      className={className}
+    >
       {children}
     </MetricHighlight>
   );

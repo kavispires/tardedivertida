@@ -1,6 +1,10 @@
 export function WeekendIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#ece6f2"
         d="M471.4 358.2v113.2a33.1 33.1 0 0 1-33.2 33.1H73.8a33.1 33.1 0 0 1-33.2-33.1v-33.2z"
@@ -21,8 +25,14 @@ export function WeekendIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#fff5f5"
         d="m406.1 401.7 62.3-29.7c2-4.3 3-9 3-13.8v-185H40.6v265a33.1 33.1 0 0 0 33.1 33.2h284.5c4.8 0 9.5-1 13.8-3z"
       />
-      <path fill="#ece6f2" d="M448.4 173.2V395l13.3-13.3a33.1 33.1 0 0 0 9.7-23.5v-185h-23z" />
-      <path fill="#ffda44" d="M380.3 32.4a24.9 24.9 0 0 0-49.7 0v33a24.9 24.9 0 0 0 49.7 0v-33z" />
+      <path
+        fill="#ece6f2"
+        d="M448.4 173.2V395l13.3-13.3a33.1 33.1 0 0 0 9.7-23.5v-185h-23z"
+      />
+      <path
+        fill="#ffda44"
+        d="M380.3 32.4a24.9 24.9 0 0 0-49.7 0v33a24.9 24.9 0 0 0 49.7 0v-33z"
+      />
       <path
         fill="#ffb655"
         d="M355.4 7.5c-4.1 0-8 1-11.5 2.8 8 4.2 13.4 12.5 13.4 22v33.2c0 9.6-5.5 17.9-13.4 22a24.9 24.9 0 0 0 36.4-22V32.4a24.9 24.9 0 0 0-24.9-24.9z"
@@ -31,7 +41,10 @@ export function WeekendIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#fff"
         d="m381.7 461.7 80-80c2.8-2.9 5-6.2 6.7-9.7H405a33.1 33.1 0 0 0-33 33v63.3c3.5-1.6 6.8-4 9.7-6.7z"
       />
-      <path fill="#ffda44" d="M181.5 32.4a24.9 24.9 0 0 0-49.7 0v33a24.9 24.9 0 0 0 49.7 0v-33z" />
+      <path
+        fill="#ffda44"
+        d="M181.5 32.4a24.9 24.9 0 0 0-49.7 0v33a24.9 24.9 0 0 0 49.7 0v-33z"
+      />
       <path
         fill="#ffb655"
         d="M156.6 7.5c-4.1 0-8 1-11.5 2.8 8 4.2 13.4 12.5 13.4 22v33.2c0 9.6-5.4 17.9-13.4 22a24.9 24.9 0 0 0 36.3-22V32.4a24.9 24.9 0 0 0-24.8-24.9z"

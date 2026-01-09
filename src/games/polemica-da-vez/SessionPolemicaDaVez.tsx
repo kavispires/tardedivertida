@@ -33,7 +33,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionPolemicaDaVez() {
-  return <Session gameCollection={GAME_COLLECTION.POLEMICA_DA_VEZ} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.POLEMICA_DA_VEZ}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionPolemicaDaVez;

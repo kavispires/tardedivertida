@@ -49,11 +49,24 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
 
   return (
     <Row gutter={8}>
-      <Col xs={24} sm={8} md={8} lg={6}>
+      <Col
+        xs={24}
+        sm={8}
+        md={8}
+        lg={6}
+      >
         {/* <Row gutter={8}> */}
-        <Col onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+        <Col
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           {isHovered ? (
-            <GameVideo title={info.title} gameName={info.gameName} className="me__game-banner" width={256} />
+            <GameVideo
+              title={info.title}
+              gameName={info.gameName}
+              className="me__game-banner"
+              width={256}
+            />
           ) : (
             <GameStrip
               title={info.title}
@@ -64,14 +77,30 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
             />
           )}
         </Col>
-        <InfoCard title={<Translate pt="Nome" en="Name" />} {...leftColProps}>
+        <InfoCard
+          title={
+            <Translate
+              pt="Nome"
+              en="Name"
+            />
+          }
+          {...leftColProps}
+        >
           <DualTranslate>{info.title}</DualTranslate>
           <br />
           <span className="italic">
             (<DualTranslate>{info.popularName}</DualTranslate>)
           </span>
         </InfoCard>
-        <InfoCard title={<Translate pt="Descrição" en="Summary" />} {...leftColProps}>
+        <InfoCard
+          title={
+            <Translate
+              pt="Descrição"
+              en="Summary"
+            />
+          }
+          {...leftColProps}
+        >
           <DualTranslate>{info.summary}</DualTranslate>
           {Boolean(info.rules?.[language]?.length > 1) && (
             <>
@@ -83,12 +112,23 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
             </>
           )}
           <br />
-          <GameTags tags={info.tags} gameCode={info.gameCode} />
+          <GameTags
+            tags={info.tags}
+            gameCode={info.gameCode}
+          />
         </InfoCard>
         {/* <InfoCard title={<Translate pt="Sua avaliação" en="Your Rating" />} {...leftColProps}>
             <Rate value={game?.rating} />
           </InfoCard> */}
-        <InfoCard title={<Translate pt="Jogadores" en="Players" />} {...leftColProps}>
+        <InfoCard
+          title={
+            <Translate
+              pt="Jogadores"
+              en="Players"
+            />
+          }
+          {...leftColProps}
+        >
           <Translate
             pt={
               <>
@@ -110,7 +150,15 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
             }
           />
         </InfoCard>
-        <InfoCard title={<Translate pt="Duração" en="Duration" />} {...leftColProps}>
+        <InfoCard
+          title={
+            <Translate
+              pt="Duração"
+              en="Duration"
+            />
+          }
+          {...leftColProps}
+        >
           <Translate
             pt={
               <>
@@ -127,18 +175,33 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
         {/* </Row> */}
       </Col>
 
-      <Col xs={24} sm={16} md={16} lg={18}>
+      <Col
+        xs={24}
+        sm={16}
+        md={16}
+        lg={18}
+      >
         {game ? (
           <Row gutter={8}>
             <StatisticCard
-              title={<Translate pt="Total de Partidas" en="Total Plays" />}
+              title={
+                <Translate
+                  pt="Total de Partidas"
+                  en="Total Plays"
+                />
+              }
               icon={<DiceIcon />}
               value={game.plays}
             />
 
             {game.isWinnable && (
               <StatisticCard
-                title={<Translate pt="Vitórias" en="Victories" />}
+                title={
+                  <Translate
+                    pt="Vitórias"
+                    en="Victories"
+                  />
+                }
                 value={(game.win / game.plays) * 100}
                 icon={<TrophyIcon />}
                 precision={0}
@@ -149,7 +212,12 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
 
             {game.isWinnable && info.tags.includes('competitive') && (
               <StatisticCard
-                title={<Translate pt="Partidas em Último" en="Dead Last" />}
+                title={
+                  <Translate
+                    pt="Partidas em Último"
+                    en="Dead Last"
+                  />
+                }
                 value={(game.last / game.plays) * 100}
                 icon={<SkullIcon />}
                 precision={0}
@@ -159,36 +227,71 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
             )}
 
             <StatisticCard
-              title={<Translate pt="Tempo Jogado" en="Play Duration" />}
+              title={
+                <Translate
+                  pt="Tempo Jogado"
+                  en="Play Duration"
+                />
+              }
               value={durationToHours(game.totalPlayDuration)}
               icon={<ClockIcon />}
-              suffix={<Translate pt="horas" en="hours" />}
+              suffix={
+                <Translate
+                  pt="horas"
+                  en="hours"
+                />
+              }
               precision={1}
             />
 
             <StatisticCard
-              title={<Translate pt="Partida Mais Recente" en="Latest Play" />}
+              title={
+                <Translate
+                  pt="Partida Mais Recente"
+                  en="Latest Play"
+                />
+              }
               value={timestampToDate(game.latestPlay.startedAt)}
               icon={<CalendarIcon />}
             />
 
             <StatisticCard
-              title={<Translate pt="Primeira Partida" en="First Play" />}
+              title={
+                <Translate
+                  pt="Primeira Partida"
+                  en="First Play"
+                />
+              }
               value={timestampToDate(game.firstPlay.startedAt)}
               icon={<CalendarIcon />}
             />
 
             <StatisticCard
-              title={<Translate pt="Média de Jogadores" en="Average Player Count" />}
+              title={
+                <Translate
+                  pt="Média de Jogadores"
+                  en="Average Player Count"
+                />
+              }
               value={game.averagePlayerCount}
               icon={<PlayersIcon />}
-              suffix={<Translate pt="jogadores" en="players" />}
+              suffix={
+                <Translate
+                  pt="jogadores"
+                  en="players"
+                />
+              }
               precision={0}
             />
 
             {Boolean(achievements) && (
               <StatisticCard
-                title={<Translate pt="Total de Medalhas" en="Total Achievements" />}
+                title={
+                  <Translate
+                    pt="Total de Medalhas"
+                    en="Total Achievements"
+                  />
+                }
                 value={Object.keys(game.achievements).length}
                 icon={<SealOfApprovalIcon />}
                 suffix={`/${Object.keys(achievements ?? {}).length}`}
@@ -198,8 +301,14 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
         ) : (
           <>
             <div className="me-modal__no-plays">
-              <IconAvatar icon={<MultitaskIcon />} size={75} />
-              <Translate pt="Você ainda não jogou esse jogo" en="You haven't played this game yet" />
+              <IconAvatar
+                icon={<MultitaskIcon />}
+                size={75}
+              />
+              <Translate
+                pt="Você ainda não jogou esse jogo"
+                en="You haven't played this game yet"
+              />
             </div>
             <Divider />
           </>
@@ -207,10 +316,19 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
 
         {Boolean(achievements) && (
           <>
-            <Title level={4} size="xx-small">
-              <Translate pt="Medalhas" en="Achievements" />
+            <Title
+              level={4}
+              size="xx-small"
+            >
+              <Translate
+                pt="Medalhas"
+                en="Achievements"
+              />
             </Title>
-            <UserAchievements reference={achievements ?? {}} achievements={game?.achievements ?? {}} />
+            <UserAchievements
+              reference={achievements ?? {}}
+              achievements={game?.achievements ?? {}}
+            />
           </>
         )}
       </Col>

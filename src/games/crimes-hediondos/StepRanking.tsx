@@ -35,7 +35,10 @@ export function StepRanking({ ranking, players, goToPreviousStep, round }: StepR
     >
       <SpaceContainer>
         <Button onClick={goToPreviousStep}>
-          <Translate pt="Ver resultado novamente" en="See results again" />
+          <Translate
+            pt="Ver resultado novamente"
+            en="See results again"
+          />
         </Button>
       </SpaceContainer>
       <HostNextPhaseButton round={round} />

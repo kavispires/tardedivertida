@@ -62,7 +62,10 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
             getAnimationClass('zoomIn'),
           )}
         >
-          <IconAvatar icon={<TrophyIcon />} size="large" />
+          <IconAvatar
+            icon={<TrophyIcon />}
+            size="large"
+          />
           <p className="w-bet-form__instruction">
             <Translate
               pt={
@@ -91,8 +94,15 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
 
           <SpaceContainer>
             <ResetBetsButton onConfirm={resetBets} />
-            <Button onClick={() => setStep(step + 1)} disabled={Boolean(!bets.final)} type="primary">
-              <Translate pt="Próximo" en="Next" />
+            <Button
+              onClick={() => setStep(step + 1)}
+              disabled={Boolean(!bets.final)}
+              type="primary"
+            >
+              <Translate
+                pt="Próximo"
+                en="Next"
+              />
             </Button>
           </SpaceContainer>
         </Instruction>
@@ -106,7 +116,10 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
             getAnimationClass('zoomIn'),
           )}
         >
-          <IconAvatar icon={<MedalIcon />} size="large" />
+          <IconAvatar
+            icon={<MedalIcon />}
+            size="large"
+          />
           <p className="w-bet-form__instruction">
             <Translate
               pt={
@@ -135,8 +148,15 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
 
           <SpaceContainer>
             <ResetBetsButton onConfirm={resetBets} />
-            <Button onClick={() => setStep(step + 1)} disabled={Boolean(!bets.semi)} type="primary">
-              <Translate pt="Próximo" en="Next" />
+            <Button
+              onClick={() => setStep(step + 1)}
+              disabled={Boolean(!bets.semi)}
+              type="primary"
+            >
+              <Translate
+                pt="Próximo"
+                en="Next"
+              />
             </Button>
           </SpaceContainer>
         </Instruction>
@@ -150,7 +170,10 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
             getAnimationClass('zoomIn'),
           )}
         >
-          <IconAvatar icon={<ThumbsUpIcon />} size="large" />
+          <IconAvatar
+            icon={<ThumbsUpIcon />}
+            size="large"
+          />
           <p className="w-bet-form__instruction">
             <Translate
               pt={
@@ -179,8 +202,14 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
 
           <SpaceContainer>
             <ResetBetsButton onConfirm={resetBets} />
-            <SendButton onClick={() => onSubmitBets(bets)} disabled={Boolean(!bets.quarter)}>
-              <Translate pt="Enviar Apostas" en="Submit Bets" />
+            <SendButton
+              onClick={() => onSubmitBets(bets)}
+              disabled={Boolean(!bets.quarter)}
+            >
+              <Translate
+                pt="Enviar Apostas"
+                en="Submit Bets"
+              />
             </SendButton>
           </SpaceContainer>
         </Instruction>

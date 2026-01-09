@@ -26,7 +26,11 @@ export function RaceTrack({ players, runActivity }: RaceTrackProps) {
 
   // Horizontal track lines
   const horizontalLines = Array.from({ length: trackCount }, (_, i) => (
-    <div key={`track-${i}`} className="track-row" style={{ top: `${i * TRACK_HEIGHT}px` }} />
+    <div
+      key={`track-${i}`}
+      className="track-row"
+      style={{ top: `${i * TRACK_HEIGHT}px` }}
+    />
   ));
 
   // Vertical segments with labels
@@ -39,7 +43,10 @@ export function RaceTrack({ players, runActivity }: RaceTrackProps) {
         style={{ left: `${(i - TRACK_MIN) * POSITION_WIDTH}px` }}
       >
         <div className="segment-line" />
-        <Avatar className="segment-label" shape="square">
+        <Avatar
+          className="segment-label"
+          shape="square"
+        >
           {i}
         </Avatar>
       </div>,
@@ -78,8 +85,14 @@ export function RaceTrack({ players, runActivity }: RaceTrackProps) {
                 }}
                 transition={{ duration: 1, delay: 1 }}
               >
-                <Tooltip title={players[playerId].name} placement="right">
-                  <RunnerAvatar avatarId={players[playerId].avatarId} width={AVATAR_SIZE} />
+                <Tooltip
+                  title={players[playerId].name}
+                  placement="right"
+                >
+                  <RunnerAvatar
+                    avatarId={players[playerId].avatarId}
+                    width={AVATAR_SIZE}
+                  />
                 </Tooltip>
               </motion.div>
             );

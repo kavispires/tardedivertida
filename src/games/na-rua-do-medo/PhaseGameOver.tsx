@@ -47,19 +47,28 @@ export function PhaseGameOver({ state, players, user }: PhaseProps) {
     >
       <Instruction contained>
         <p>
-          <Translate pt="com" en="with" />
+          <Translate
+            pt="com"
+            en="with"
+          />
         </p>
         <ul className="n-game-over-players">
           {state.winners.map((player: GamePlayer) => {
             return (
-              <div key={player.id} className="n-game-over-player">
+              <div
+                key={player.id}
+                className="n-game-over-player"
+              >
                 <CostumeAvatar
                   key={`winner-${player.id}`}
                   avatarId={state.winners[0].avatarId}
                   id={player.costumeId}
                 />
                 <div>
-                  <CandyCount candyCount={player.score} size="default" />
+                  <CandyCount
+                    candyCount={player.score}
+                    size="default"
+                  />
                 </div>
               </div>
             );
@@ -74,20 +83,33 @@ export function PhaseGameOver({ state, players, user }: PhaseProps) {
         }}
       >
         {nonWinningPlayers.map((player) => (
-          <li className="n-game-over-player" key={`game-over-player-${player.id}`}>
+          <li
+            className="n-game-over-player"
+            key={`game-over-player-${player.id}`}
+          >
             <div className="n-game-over-player__name">
-              <CostumeAvatar avatarId={player.avatarId} id={player.costumeId} />
+              <CostumeAvatar
+                avatarId={player.avatarId}
+                id={player.costumeId}
+              />
               <br />
               <strong>{player.name}</strong>, {AVATARS[player.avatarId].description[language]}
             </div>
             <div className="n-game-over-player__candy">
-              <CandyCount candyCount={player.score} size="small" />
+              <CandyCount
+                candyCount={player.score}
+                size="small"
+              />
             </div>
           </li>
         ))}
       </ul>
 
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
 
       <PlayerStats user={user} />
     </GameOverWrapper>

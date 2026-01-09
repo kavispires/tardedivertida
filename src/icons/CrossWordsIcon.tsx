@@ -1,6 +1,10 @@
 export function CrossWordsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#f2f2fb"
         d="M353.89 417.4v-8.25l-18.44-88.79 18.44-113.3V94.6a87.1 87.1 0 00-87.1-87.1h-87c-131.49 22.13-151.71 466.1 18 497h69.06a87.1 87.1 0 0087.04-87.1z"
@@ -13,7 +17,10 @@ export function CrossWordsIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#00c8fb"
         d="M240.94 173.17v60.24c0 30.12-60.24 30.12-60.24 0v-60.24c-.01-26.78 60.24-26.78 60.24 0z"
       ></path>
-      <path fill="#60dafd" d="M240.94 233.41v42.17a18.07 18.07 0 01-18.07 18.07H180.7v-60.24z"></path>
+      <path
+        fill="#60dafd"
+        d="M240.94 233.41v42.17a18.07 18.07 0 01-18.07 18.07H180.7v-60.24z"
+      ></path>
       <path
         fill="#8a94ff"
         d="M301.18 131v24.09a18.08 18.08 0 01-18.07 18.08h-42.17c-27.72 0-27.72-60.25 0-60.25h42.17A18.08 18.08 0 01301.18 131z"
@@ -26,7 +33,10 @@ export function CrossWordsIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#fbb938"
         d="M120.45 293.65v42.17a18.09 18.09 0 0018.08 18.08h9.31a697.34 697.34 0 01-7.8-80.13c-10.83 2.54-19.59 9.17-19.59 19.88z"
       ></path>
-      <path fill="#fbe582" d="M180.69 233.41h-41.25c-19 8.37-18.18 58.07 1.67 60.24h39.58z"></path>
+      <path
+        fill="#fbe582"
+        d="M180.69 233.41h-41.25c-19 8.37-18.18 58.07 1.67 60.24h39.58z"
+      ></path>
       <path
         fill="#fbd354"
         d="M139.44 233.41h-.91a18.08 18.08 0 00-18.08 18.07v42.17h20.66a762.11 762.11 0 01-1.67-60.24z"
@@ -47,7 +57,10 @@ export function CrossWordsIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#f73e48"
         d="M120.45 112.92c-26.37 0-26.37 60.25 0 60.25h22c1.88-20.81 4.56-41 8-60.25z"
       ></path>
-      <path fill="#60dafd" d="M180.7 112.92h60.24v60.24H180.7z"></path>
+      <path
+        fill="#60dafd"
+        d="M180.7 112.92h60.24v60.24H180.7z"
+      ></path>
       <path
         fill="#8a94ff"
         d="M120.45 112.92v60.25H78.28a18.08 18.08 0 01-18.07-18.08V131a18.08 18.08 0 0118.07-18.08z"

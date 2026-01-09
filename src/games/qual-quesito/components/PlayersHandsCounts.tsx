@@ -17,7 +17,12 @@ export function PlayersHandsCounts({ players, turnOrder }: PlayersHandsCountsPro
       players={players}
       turnOrder={turnOrder}
       countGetter={(player) => player.hand.length}
-      title={<Translate pt="Cartas na mão" en="Cards in hand" />}
+      title={
+        <Translate
+          pt="Cartas na mão"
+          en="Cards in hand"
+        />
+      }
       icon={<HandOfCardsIcon />}
       size="large"
     />

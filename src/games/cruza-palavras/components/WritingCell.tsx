@@ -22,12 +22,26 @@ export function WritingCell({ onSubmitClue, cell, user, disabled }: WritingCellP
     return (
       <Popover
         content={
-          <WordForm x={cell.xText ?? ''} y={cell.yText ?? ''} index={cell.index} onSubmit={onSubmitClue} />
+          <WordForm
+            x={cell.xText ?? ''}
+            y={cell.yText ?? ''}
+            index={cell.index}
+            onSubmit={onSubmitClue}
+          />
         }
-        title={<Translate pt="Escreva" en="Write" />}
+        title={
+          <Translate
+            pt="Escreva"
+            en="Write"
+          />
+        }
         trigger="click"
       >
-        <Button shape="circle" type="primary" disabled={disabled}>
+        <Button
+          shape="circle"
+          type="primary"
+          disabled={disabled}
+        >
           <FormOutlined />
         </Button>
       </Popover>

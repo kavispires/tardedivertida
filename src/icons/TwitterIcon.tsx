@@ -1,12 +1,26 @@
 export function TwitterIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <rect width="62" height="62" x="1" y="1" fill="#55d0f2" rx="6"></rect>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <rect
+        width="62"
+        height="62"
+        x="1"
+        y="1"
+        fill="#55d0f2"
+        rx="6"
+      ></rect>
       <path
         fill="#61ddff"
         d="M57 1H7a6 6 0 0 0-6 6v10a22 22 0 0 0 22 22h18a22 22 0 0 0 22-22V7a6 6 0 0 0-6-6"
       ></path>
-      <path fill="#9ceaff" d="M57 1H7a6 6 0 0 0-6 6v4a6 6 0 0 1 6-6h50a6 6 0 0 1 6 6V7a6 6 0 0 0-6-6"></path>
+      <path
+        fill="#9ceaff"
+        d="M57 1H7a6 6 0 0 0-6 6v4a6 6 0 0 1 6-6h50a6 6 0 0 1 6 6V7a6 6 0 0 0-6-6"
+      ></path>
       <path
         fill="#52aff4"
         d="M57 59H7a6 6 0 0 1-6-6v4a6 6 0 0 0 6 6h50a6 6 0 0 0 6-6v-4a6 6 0 0 1-6 6"

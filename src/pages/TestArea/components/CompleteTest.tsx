@@ -22,9 +22,18 @@ export function CompleteTest({ results }: TestStepProps) {
   const result = `Tarde Divertida Test:\n${(results ?? []).map((r) => (r ? '✅' : '❌')).join('')}`;
 
   return (
-    <SpaceContainer className="full-width" vertical>
-      <Title level={2} size="small">
-        <Translate pt="Pronto!" en="Done!" />
+    <SpaceContainer
+      className="full-width"
+      vertical
+    >
+      <Title
+        level={2}
+        size="small"
+      >
+        <Translate
+          pt="Pronto!"
+          en="Done!"
+        />
       </Title>
 
       <Instruction contained>
@@ -34,10 +43,24 @@ export function CompleteTest({ results }: TestStepProps) {
         />
       </Instruction>
 
-      <SpaceContainer wrap className="full-width" vertical>
-        <Input.TextArea readOnly value={result} cols={30}></Input.TextArea>
-        <Button type="primary" onClick={() => copyToClipboard(result)}>
-          <Translate pt="Copiar" en="Copy" />
+      <SpaceContainer
+        wrap
+        className="full-width"
+        vertical
+      >
+        <Input.TextArea
+          readOnly
+          value={result}
+          cols={30}
+        ></Input.TextArea>
+        <Button
+          type="primary"
+          onClick={() => copyToClipboard(result)}
+        >
+          <Translate
+            pt="Copiar"
+            en="Copy"
+          />
         </Button>
       </SpaceContainer>
     </SpaceContainer>

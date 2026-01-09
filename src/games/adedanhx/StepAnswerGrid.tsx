@@ -88,19 +88,36 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
   return (
     <Step fullWidth>
       <StepTitle>
-        <Translate pt="Complete a grade" en="Complete the grid" />{' '}
-        <TimerClock seconds={seconds} minutes={minutes} iconSize="large" className="timer" />
+        <Translate
+          pt="Complete a grade"
+          en="Complete the grid"
+        />{' '}
+        <TimerClock
+          seconds={seconds}
+          minutes={minutes}
+          iconSize="large"
+          className="timer"
+        />
       </StepTitle>
 
-      {stoppedBy && <StopAnnouncement stopper={players[stoppedBy]} onSubmit={onSubmit} />}
+      {stoppedBy && (
+        <StopAnnouncement
+          stopper={players[stoppedBy]}
+          onSubmit={onSubmit}
+        />
+      )}
 
       <RuleInstruction type="rule">
         <Translate
           pt={
             <>
               <strong>Escreva</strong> na ordem que achar melhor e não esqueça de <strong>apertar</strong> do
-              botão de cadeado <IconAvatar size="small" icon={<LockIcon />} /> a cada resposta para que seu
-              tempo seja gravado corretamente.
+              botão de cadeado{' '}
+              <IconAvatar
+                size="small"
+                icon={<LockIcon />}
+              />{' '}
+              a cada resposta para que seu tempo seja gravado corretamente.
               <br />
               Você tem <TimeHighlight>{ANSWERING_TIME_IN_MINUTES} minutos</TimeHighlight>!
             </>
@@ -108,8 +125,12 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
           en={
             <>
               <strong>Write</strong> tne the answers in the order you think is best and don't forget to{' '}
-              <strong>press</strong> the lock button <IconAvatar size="small" icon={<LockIcon />} /> after
-              each answer.
+              <strong>press</strong> the lock button{' '}
+              <IconAvatar
+                size="small"
+                icon={<LockIcon />}
+              />{' '}
+              after each answer.
               <br />
               You have <TimeHighlight>{ANSWERING_TIME_IN_MINUTES} minutes</TimeHighlight>!
             </>
@@ -117,7 +138,12 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
         />
       </RuleInstruction>
 
-      <Grid grid={grid} answers={answers} updateAnswer={updateAnswer} toggleLock={toggleLock} />
+      <Grid
+        grid={grid}
+        answers={answers}
+        updateAnswer={updateAnswer}
+        toggleLock={toggleLock}
+      />
 
       <Instruction contained>
         <Translate
@@ -125,7 +151,10 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
           en="If you finish all the cells before the time you can press stop to end the round."
         />
         <SpaceContainer>
-          <DevButton ghost onClick={() => setAnswers(mockAnswers(answers, grid.xHeaders, grid.yHeaders))}>
+          <DevButton
+            ghost
+            onClick={() => setAnswers(mockAnswers(answers, grid.xHeaders, grid.yHeaders))}
+          >
             Mock Answers
           </DevButton>
           <DevButton
@@ -141,9 +170,17 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
             onClick={() => onSubmit(true)}
             disabled={isLoading || timeLeft < 20 || !allLocked}
             loading={isLoading}
-            icon={<IconAvatar size="small" icon={<StopIcon />} />}
+            icon={
+              <IconAvatar
+                size="small"
+                icon={<StopIcon />}
+              />
+            }
           >
-            <Translate pt="STOP!" en="STOP!" />
+            <Translate
+              pt="STOP!"
+              en="STOP!"
+            />
           </Button>
         </SpaceContainer>
       </Instruction>

@@ -45,7 +45,10 @@ export function SkierBets({ players, user, onSubmitBets, betType }: SkierBetsPro
     <SpaceContainer orientation="vertical">
       <div className="skier-bets">
         {playersList.map((player) => (
-          <div key={player.id} className="lodge">
+          <div
+            key={player.id}
+            className="lodge"
+          >
             <div className="lodge__icon">
               <PlayerAvatarName player={player} />
             </div>
@@ -54,7 +57,12 @@ export function SkierBets({ players, user, onSubmitBets, betType }: SkierBetsPro
               {user[SKIER_BET_TYPES.SKIERS_BETS] !== undefined && (
                 <div className="lodge__bet">
                   <BettingChipValue
-                    title={<Translate pt="Apostas iniciais" en="Initial Bets" />}
+                    title={
+                      <Translate
+                        pt="Apostas iniciais"
+                        en="Initial Bets"
+                      />
+                    }
                     value={user[SKIER_BET_TYPES.SKIERS_BETS][player.id] ?? 0}
                   />
                 </div>
@@ -62,7 +70,12 @@ export function SkierBets({ players, user, onSubmitBets, betType }: SkierBetsPro
               {user[SKIER_BET_TYPES.SKIERS_BOOST] !== undefined && (
                 <div className="lodge__bet">
                   <BettingChipValue
-                    title={<Translate pt="Apostas de bônus" en="Bonus Bets" />}
+                    title={
+                      <Translate
+                        pt="Apostas de bônus"
+                        en="Bonus Bets"
+                      />
+                    }
                     value={user[SKIER_BET_TYPES.SKIERS_BOOST][player.id] ?? 0}
                   />
                 </div>
@@ -84,7 +97,12 @@ export function SkierBets({ players, user, onSubmitBets, betType }: SkierBetsPro
                       setChipsLeft(chipsLeft - diff);
                     }
                   }}
-                  suffix={<Translate pt="fichas" en="chips" />}
+                  suffix={
+                    <Translate
+                      pt="fichas"
+                      en="chips"
+                    />
+                  }
                 />
               </div>
             )}
@@ -95,8 +113,15 @@ export function SkierBets({ players, user, onSubmitBets, betType }: SkierBetsPro
       {onSubmitBets && (
         <SpaceContainer>
           <ChipsHighlight>{chipsLeft}</ChipsHighlight>
-          <SendButton size="large" onClick={() => onSubmitBets({ bets, betType })} disabled={chipsLeft > 0}>
-            <Translate pt="Enviar apostas" en="Send bets" />
+          <SendButton
+            size="large"
+            onClick={() => onSubmitBets({ bets, betType })}
+            disabled={chipsLeft > 0}
+          >
+            <Translate
+              pt="Enviar apostas"
+              en="Send bets"
+            />
           </SendButton>
         </SpaceContainer>
       )}

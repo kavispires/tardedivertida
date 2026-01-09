@@ -37,7 +37,10 @@ export function StepQuestionWaiting({
   return (
     <Step announcement={announcement}>
       <StepTitle wait>
-        <Translate pt={<>Examine os suspeitos</>} en={<>Examine the suspects</>} />
+        <Translate
+          pt={<>Examine os suspeitos</>}
+          en={<>Examine the suspects</>}
+        />
       </StepTitle>
       <RuleInstruction type="wait">
         <Translate
@@ -61,7 +64,12 @@ export function StepQuestionWaiting({
         eliminatedSuspects={previouslyEliminatedSuspects}
       />
 
-      {history.length > 0 && <QuestionsHistory history={history} suspectsDict={suspectsDict} />}
+      {history.length > 0 && (
+        <QuestionsHistory
+          history={history}
+          suspectsDict={suspectsDict}
+        />
+      )}
 
       {status && <Summary status={status} />}
     </Step>

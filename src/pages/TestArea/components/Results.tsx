@@ -28,7 +28,10 @@ type ResultsProps = {
 };
 export function Results({ steps, results, activeStep }: ResultsProps) {
   return (
-    <SpaceContainer className="full-width" wrap>
+    <SpaceContainer
+      className="full-width"
+      wrap
+    >
       {steps.map((_, index) => {
         const ActiveIcon = getActiveIcon(results[index], activeStep === index);
         return (

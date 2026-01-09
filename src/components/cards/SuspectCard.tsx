@@ -49,8 +49,16 @@ export function SuspectCard({
 }: SuspectCardProps) {
   const imageId = getSuspectImageId(suspect.id, variant);
   return (
-    <div className={clsx('suspect-card', className)} style={{ width: `${width}px`, ...style }}>
-      <ImageCard cardId={imageId} className="suspect-card__image" cardWidth={width} preview={preview} />
+    <div
+      className={clsx('suspect-card', className)}
+      style={{ width: `${width}px`, ...style }}
+    >
+      <ImageCard
+        cardId={imageId}
+        className="suspect-card__image"
+        cardWidth={width}
+        preview={preview}
+      />
       {!hideName && (
         <div className="suspect-card__name">
           <DualTranslate>{suspect.name}</DualTranslate>

@@ -15,14 +15,26 @@ export function VoteRetratoFalado({ track, playersList }: VoteComponentProps) {
   });
 
   return (
-    <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
+    <SpacePlayerCheckWrapper
+      playersList={playersList}
+      paths={['data.value']}
+    >
       {playersList.map((player) => {
         const drawing = track.data.options.find((entry: PlainObject) => entry.playerId === player.data.value);
         return (
-          <div key={`vote-${player.id}`} className="player-vote">
+          <div
+            key={`vote-${player.id}`}
+            className="player-vote"
+          >
             <PlayerAvatar avatarId={player.avatarId} />
             <div>{player.name}</div>
-            {Boolean(drawing) && <CanvasSVG drawing={drawing.drawing} width={width} className="a-drawing" />}
+            {Boolean(drawing) && (
+              <CanvasSVG
+                drawing={drawing.drawing}
+                width={width}
+                className="a-drawing"
+              />
+            )}
           </div>
         );
       })}

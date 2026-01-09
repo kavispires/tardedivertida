@@ -42,12 +42,21 @@ export function AvatarSelection({
               userId={userId}
             />
           }
-          title={<Translate pt="Escolha seu avatar" en="Choose your avatar" />}
+          title={
+            <Translate
+              pt="Escolha seu avatar"
+              en="Choose your avatar"
+            />
+          }
           trigger="click"
           open={open}
           onOpenChange={setOpen}
         >
-          <motion.svg viewBox="0 0 100 100" className="lobby-avatar" layoutId="avatar">
+          <motion.svg
+            viewBox="0 0 100 100"
+            className="lobby-avatar"
+            layoutId="avatar"
+          >
             <use href={`${avatars}#avatar-${selectedAvatar}`}></use>
             <title>
               <DualTranslate>{AVATARS[selectedAvatar].description}</DualTranslate>
@@ -60,8 +69,15 @@ export function AvatarSelection({
           <DualTranslate>{AVATARS[selectedAvatar].description}</DualTranslate>
         </small>
       </div>
-      <Button type="link" onClick={setOpen} block>
-        <Translate pt="Trocar avatar" en="Change avatar" />
+      <Button
+        type="link"
+        onClick={setOpen}
+        block
+      >
+        <Translate
+          pt="Trocar avatar"
+          en="Change avatar"
+        />
       </Button>
     </>
   );
@@ -106,7 +122,10 @@ function AvatarOptions({ players, setSelectedAvatar, selectedAvatar, userId }: A
                 isUsed && 'avatar-selection-options__avatar--used',
               )}
             >
-              <svg viewBox="0 0 100 100" className="avatar-selection-options__avatar-svg">
+              <svg
+                viewBox="0 0 100 100"
+                className="avatar-selection-options__avatar-svg"
+              >
                 <use href={`${avatars}#avatar-${avatarId}`}></use>
                 <title>
                   <DualTranslate>{avatar.description}</DualTranslate>

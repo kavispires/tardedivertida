@@ -41,8 +41,14 @@ export function PhaseItemPlacement({ state, players, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={TEORIA_DE_CONJUNTOS_PHASES.ITEM_PLACEMENT}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={TEORIA_DE_CONJUNTOS_PHASES.ITEM_PLACEMENT}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <ViewOr condition={isTheActivePlayer}>
           <StepPlaceItem

@@ -40,7 +40,10 @@ export function StepTellDream({ table, user, onSubmitDream }: StepTellDreamProps
   };
 
   return (
-    <Step fullWidth className="s-tell-dream-step">
+    <Step
+      fullWidth
+      className="s-tell-dream-step"
+    >
       <StepTitle>
         <Card
           header={translate('Tema do Sonho', 'Dream Theme')}
@@ -59,7 +62,10 @@ export function StepTellDream({ table, user, onSubmitDream }: StepTellDreamProps
         />
       </Instruction>
 
-      <DreamBoard table={table} user={user} />
+      <DreamBoard
+        table={table}
+        user={user}
+      />
 
       <SpaceContainer>
         <Input
@@ -71,8 +77,15 @@ export function StepTellDream({ table, user, onSubmitDream }: StepTellDreamProps
       </SpaceContainer>
 
       <SpaceContainer>
-        <Button type="primary" disabled={isLoading || !dream} onClick={onSubmitDreamsClick}>
-          <Translate pt="Enviar Sonho" en="Submit Dream" />
+        <Button
+          type="primary"
+          disabled={isLoading || !dream}
+          onClick={onSubmitDreamsClick}
+        >
+          <Translate
+            pt="Enviar Sonho"
+            en="Submit Dream"
+          />
         </Button>
       </SpaceContainer>
     </Step>

@@ -31,12 +31,23 @@ export function PhaseResolution({ state, players }: PhaseProps) {
   };
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={SONHOS_PESADELOS_PHASES.RESOLUTION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={SONHOS_PESADELOS_PHASES.RESOLUTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<CountdownIcon />}
-          title={<Translate pt="Resultado" en="Results" />}
+          title={
+            <Translate
+              pt="Resultado"
+              en="Results"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           type="block"
@@ -68,7 +79,12 @@ export function PhaseResolution({ state, players }: PhaseProps) {
         />
 
         {/* Step 2 */}
-        <StepRanking players={players} ranking={state.ranking} round={state.round} onGoBack={onGoBack} />
+        <StepRanking
+          players={players}
+          ranking={state.ranking}
+          round={state.round}
+          onGoBack={onGoBack}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

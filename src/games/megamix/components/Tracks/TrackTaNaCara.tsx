@@ -47,12 +47,18 @@ export const TrackTaNaCara = ({ track, onSubmitAnswer }: TrackProps) => {
         />
       </RuleInstruction>
 
-      <Card header={translate('Pergunta', 'Question')} color="orange">
+      <Card
+        header={translate('Pergunta', 'Question')}
+        color="orange"
+      >
         {track.data.question.question}
       </Card>
 
       <SpaceContainer orientation="vertical">
-        <SuspectCard suspect={track.data.suspect} width={cardWidth} />
+        <SuspectCard
+          suspect={track.data.suspect}
+          width={cardWidth}
+        />
       </SpaceContainer>
 
       <SpaceContainer>
@@ -63,7 +69,10 @@ export const TrackTaNaCara = ({ track, onSubmitAnswer }: TrackProps) => {
           disabled={isLoading}
           shape="round"
         >
-          <Translate en="NO" pt="NÃO" />
+          <Translate
+            en="NO"
+            pt="NÃO"
+          />
         </Button>
 
         <Button
@@ -73,7 +82,10 @@ export const TrackTaNaCara = ({ track, onSubmitAnswer }: TrackProps) => {
           disabled={isLoading}
           shape="round"
         >
-          <Translate en="YES" pt="SIM" />
+          <Translate
+            en="YES"
+            pt="SIM"
+          />
         </Button>
       </SpaceContainer>
     </>

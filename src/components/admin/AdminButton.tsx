@@ -26,7 +26,14 @@ export function AdminButton({ onClick, children, ...rest }: AdminButtonProps) {
   if (!isAdmin || !isAdminEnabled) return <span></span>;
 
   return (
-    <Button icon={<RocketFilled />} danger type="primary" onClick={onClick} disabled={isLoading} {...rest}>
+    <Button
+      icon={<RocketFilled />}
+      danger
+      type="primary"
+      onClick={onClick}
+      disabled={isLoading}
+      {...rest}
+    >
       {children}
     </Button>
   );

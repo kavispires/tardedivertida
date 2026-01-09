@@ -19,10 +19,16 @@ export function DebugPage() {
 
   return (
     <DailyChrome>
-      <Space orientation="vertical" className="margin">
+      <Space
+        orientation="vertical"
+        className="margin"
+      >
         <pre>Today: {getToday()}</pre>
         {PRIORITY_LIST.map((game) => (
-          <Content key={game.KEY} localKey={game.KEY} />
+          <Content
+            key={game.KEY}
+            localKey={game.KEY}
+          />
         ))}
       </Space>
     </DailyChrome>
@@ -37,11 +43,19 @@ function Content({ localKey }: { localKey: string }) {
   );
   return (
     <Space orientation="vertical">
-      <Typography.Paragraph className="center" strong>
+      <Typography.Paragraph
+        className="center"
+        strong
+      >
         {localKey}
       </Typography.Paragraph>
 
-      <Input.TextArea cols={10} rows={8} value={value} style={{ width: 'clamp(300px, 80vw, 960px)' }} />
+      <Input.TextArea
+        cols={10}
+        rows={8}
+        value={value}
+        style={{ width: 'clamp(300px, 80vw, 960px)' }}
+      />
     </Space>
   );
 }

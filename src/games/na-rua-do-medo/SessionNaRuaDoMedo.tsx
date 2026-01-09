@@ -31,7 +31,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionNaRuaDoMedo() {
-  return <Session gameCollection={GAME_COLLECTION.NA_RUA_DO_MEDO} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.NA_RUA_DO_MEDO}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionNaRuaDoMedo;

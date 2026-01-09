@@ -1,36 +1,90 @@
 export function UsersStatsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <path fill="#62dbfb" d="M43.9 256c0-117.2 95-212.1 212.1-212.1V256z"></path>
-      <path fill="#a2e62e" d="M256 256l150 150a211.5 211.5 0 0062.1-150z"></path>
-      <path fill="#97d729" d="M450 256a248 248 0 01-67.8 126.2L406 406a211.5 211.5 0 0062.1-150z"></path>
-      <path fill="#ffd15b" d="M256 488.3c64.2 0 122.2-26 164.3-68L256 256z"></path>
-      <path fill="#ffc344" d="M256 450v38.3c64.2 0 122.2-26 164.3-68l-38-38A248 248 0 01256 450z"></path>
-      <path fill="#fe73c5" d="M256 7.5V256h248.5A248.5 248.5 0 00256 7.5z"></path>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <path
+        fill="#62dbfb"
+        d="M43.9 256c0-117.2 95-212.1 212.1-212.1V256z"
+      ></path>
+      <path
+        fill="#a2e62e"
+        d="M256 256l150 150a211.5 211.5 0 0062.1-150z"
+      ></path>
+      <path
+        fill="#97d729"
+        d="M450 256a248 248 0 01-67.8 126.2L406 406a211.5 211.5 0 0062.1-150z"
+      ></path>
+      <path
+        fill="#ffd15b"
+        d="M256 488.3c64.2 0 122.2-26 164.3-68L256 256z"
+      ></path>
+      <path
+        fill="#ffc344"
+        d="M256 450v38.3c64.2 0 122.2-26 164.3-68l-38-38A248 248 0 01256 450z"
+      ></path>
+      <path
+        fill="#fe73c5"
+        d="M256 7.5V256h248.5A248.5 248.5 0 00256 7.5z"
+      ></path>
       <path
         fill="#fe4fb7"
         d="M455 206.5c0 17-1.7 33.5-5 49.5h54.5c0-81.2-39-153.4-99.3-198.7A247.4 247.4 0 01455 206.5z"
       ></path>
-      <path fill="#6cf5c2" d="M256 504.5V256H7.5A248.5 248.5 0 00256 504.5z"></path>
+      <path
+        fill="#6cf5c2"
+        d="M256 504.5V256H7.5A248.5 248.5 0 00256 504.5z"
+      ></path>
       <path
         fill="#00f2a6"
         d="M206.5 455c-56 0-107.7-18.5-149.2-49.8A248.1 248.1 0 00256 504.5v-54.4c-16 3.2-32.5 4.9-49.5 4.9z"
       ></path>
-      <circle cx="256" cy="256" r="138.4" fill="#c8effe"></circle>
-      <circle cx="256" cy="178.2" r="27.3" fill="#fed2a4"></circle>
-      <path fill="#ffbd86" d="M265.4 152.6a27.2 27.2 0 01-35 35 27.3 27.3 0 1035-35z"></path>
+      <circle
+        cx="256"
+        cy="256"
+        r="138.4"
+        fill="#c8effe"
+      ></circle>
+      <circle
+        cx="256"
+        cy="178.2"
+        r="27.3"
+        fill="#fed2a4"
+      ></circle>
+      <path
+        fill="#ffbd86"
+        d="M265.4 152.6a27.2 27.2 0 01-35 35 27.3 27.3 0 1035-35z"
+      ></path>
       <path
         fill="#fe73c5"
         d="M304.5 300.4h-97v-62.6a32.3 32.3 0 0132.3-32.3h32.4a32.3 32.3 0 0132.3 32.3v62.6z"
       ></path>
-      <circle cx="296.9" cy="232.8" r="27.3" fill="#fed2a4"></circle>
-      <path fill="#ffbd86" d="M306.4 207.2a27.2 27.2 0 01-35 35 27.3 27.3 0 1035-35z"></path>
+      <circle
+        cx="296.9"
+        cy="232.8"
+        r="27.3"
+        fill="#fed2a4"
+      ></circle>
+      <path
+        fill="#ffbd86"
+        d="M306.4 207.2a27.2 27.2 0 01-35 35 27.3 27.3 0 1035-35z"
+      ></path>
       <path
         fill="#a2e62e"
         d="M345.4 314.6h-97v-22.2a32.3 32.3 0 0132.4-32.4H313a32.3 32.3 0 0132.3 32.4v22.2z"
       ></path>
-      <circle cx="215.1" cy="232.8" r="27.3" fill="#fed2a4"></circle>
-      <path fill="#ffbd86" d="M224.5 207.2a27.2 27.2 0 01-35 35 27.3 27.3 0 1035-35z"></path>
+      <circle
+        cx="215.1"
+        cy="232.8"
+        r="27.3"
+        fill="#fed2a4"
+      ></circle>
+      <path
+        fill="#ffbd86"
+        d="M224.5 207.2a27.2 27.2 0 01-35 35 27.3 27.3 0 1035-35z"
+      ></path>
       <path
         fill="#0573ce"
         d="M263.5 314.6h-97v-22.2A32.3 32.3 0 01199 260h32.3a32.3 32.3 0 0132.3 32.4v22.2z"

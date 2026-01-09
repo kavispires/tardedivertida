@@ -55,7 +55,10 @@ export function StepReveal({
   const isCorrect = correct.length > 0;
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         <ViewOr condition={isCorrect}>
           <Translate
@@ -71,14 +74,21 @@ export function StepReveal({
             }
           />
 
-          <Translate pt="Vixi, ninguém acertou" en="Oh no! Nobody got it right" />
+          <Translate
+            pt="Vixi, ninguém acertou"
+            en="Oh no! Nobody got it right"
+          />
         </ViewOr>
       </StepTitle>
 
       <Instruction contained>
         <ViewOr condition={isCorrect}>
           <>
-            <ListOfPlayers players={players} list={correct} prefix="winners" />
+            <ListOfPlayers
+              players={players}
+              list={correct}
+              prefix="winners"
+            />
             <Translate
               pt={
                 <>
@@ -141,11 +151,18 @@ export function StepReveal({
           onClick={goToNextStep}
           icon={<TrophyOutlined />}
         >
-          <Translate pt="Ver Ranking" en="See Ranking" />
+          <Translate
+            pt="Ver Ranking"
+            en="See Ranking"
+          />
         </TimedButton>
       </SpaceContainer>
 
-      <TurnOrder players={players} order={turnOrder} activePlayerId={activePlayerId} />
+      <TurnOrder
+        players={players}
+        order={turnOrder}
+        activePlayerId={activePlayerId}
+      />
     </Step>
   );
 }

@@ -1,6 +1,10 @@
 export function VoteIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#e4c6bd"
         d="M474.304 177.493c16.189 0 29.313 13.124 29.313 29.313V475.11c0 16.189-13.124 29.313-29.313 29.313H37.62c-16.189 0-29.313-13.124-29.313-29.313V206.806c0-16.189 13.124-29.313 29.313-29.313z"

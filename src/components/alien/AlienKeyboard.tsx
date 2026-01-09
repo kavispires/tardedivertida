@@ -85,7 +85,10 @@ export function AlienKeyboard({ value, onChange, availableAttributeKeys, disable
 
   return (
     <Spin spinning={isLoading}>
-      <div className="alien-keyboard" style={{ width: '100%' }}>
+      <div
+        className="alien-keyboard"
+        style={{ width: '100%' }}
+      >
         <div className="alien-keyboard__keys">
           {HELPER_KEYS.map((key) => {
             return (

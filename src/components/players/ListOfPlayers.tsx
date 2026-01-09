@@ -55,7 +55,10 @@ export function ListOfPlayers({
     return (
       <span className={className}>
         {list.map((playerId) => (
-          <Tooltip key={playerId} title={players[playerId].name}>
+          <Tooltip
+            key={playerId}
+            title={players[playerId].name}
+          >
             <PlayerAvatar avatarId={players[playerId].avatarId} />
           </Tooltip>
         ))}
@@ -69,7 +72,12 @@ export function ListOfPlayers({
         <Fragment key={`${prefix}-${playerId}`}>
           <PlayerAvatarName player={players[playerId]} />
           {index < list.length - 2 && ','}
-          {index === list.length - 2 && <Translate pt="e" en="and" />}
+          {index === list.length - 2 && (
+            <Translate
+              pt="e"
+              en="and"
+            />
+          )}
         </Fragment>
       ))}
     </span>

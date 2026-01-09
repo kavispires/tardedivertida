@@ -27,27 +27,44 @@ export function PlayerSelectionMap({ forest, map, newMap }: PlayerSelectionMapPr
         const tree = forest[treeId];
         const mapLocation = newMap?.[index];
         return (
-          <div key={treeId} className="map-builder__segment">
+          <div
+            key={treeId}
+            className="map-builder__segment"
+          >
             {!!mapLocation && (
               <div className="map-builder__card map-builder__card--new">
                 {mapLocation.text}
                 {mapLocation?.negate && (
-                  <IconAvatar icon={<NoIcon />} size="small" className="map-builder__card-no" />
+                  <IconAvatar
+                    icon={<NoIcon />}
+                    size="small"
+                    className="map-builder__card-no"
+                  />
                 )}
               </div>
             )}
             {segment.clues.map((clue) => {
               return (
-                <div className="map-builder__card" key={`card-${segment.index}-${clue.id}`}>
+                <div
+                  className="map-builder__card"
+                  key={`card-${segment.index}-${clue.id}`}
+                >
                   {clue.text}
                   {clue?.negate && (
-                    <IconAvatar icon={<NoIcon />} size="small" className="map-builder__card-no" />
+                    <IconAvatar
+                      icon={<NoIcon />}
+                      size="small"
+                      className="map-builder__card-no"
+                    />
                   )}
                 </div>
               );
             })}
 
-            <TreeImage id={tree.treeType} text={passed ? '' : tree.card.text} />
+            <TreeImage
+              id={tree.treeType}
+              text={passed ? '' : tree.card.text}
+            />
           </div>
         );
       })}

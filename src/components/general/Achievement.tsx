@@ -20,7 +20,10 @@ export function Achievement({ achievement, value }: AchievementProps) {
   return (
     <div className={clsx('achievement', Boolean(value) && 'achievement--achieved')}>
       <div className="achievement__medal">
-        <Medal id={achievement.icon} className={clsx(!value && 'achievement__disabled-icon')} />
+        <Medal
+          id={achievement.icon}
+          className={clsx(!value && 'achievement__disabled-icon')}
+        />
       </div>
       <h4 className="achievement__title">
         <DualTranslate>{achievement.title ?? unknownText}</DualTranslate>
@@ -35,7 +38,12 @@ export function Achievement({ achievement, value }: AchievementProps) {
               </>
             }
           >
-            <Button icon={<QuestionCircleOutlined />} shape="circle" type="text" size="small" />
+            <Button
+              icon={<QuestionCircleOutlined />}
+              shape="circle"
+              type="text"
+              size="small"
+            />
           </Popover>
         </div>
       )}

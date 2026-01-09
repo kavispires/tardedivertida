@@ -47,15 +47,26 @@ export function ReadyPlayersBar({
       <div className="ready-player-bar__bar">
         <Avatar.Group size="small">
           {readyPlayers.map((player) => (
-            <PlayerAvatar key={player.name} avatarId={player.avatarId} />
+            <PlayerAvatar
+              key={player.name}
+              avatarId={player.avatarId}
+            />
           ))}
         </Avatar.Group>
         <span className="ready-player-bar__speech-bubble">
           <Typography.Text>
             {readyPlayers.length > 1 ? (
-              <Translate pt="Estamos prontos!" en="We're ready!" custom={readyTextPlural} />
+              <Translate
+                pt="Estamos prontos!"
+                en="We're ready!"
+                custom={readyTextPlural}
+              />
             ) : (
-              <Translate pt="Estou pronto!" en="I'm ready!" custom={readyText} />
+              <Translate
+                pt="Estou pronto!"
+                en="I'm ready!"
+                custom={readyText}
+              />
             )}
           </Typography.Text>
           <LikeFilled className="ready-player-bar__speech-bubble-icon" />
@@ -63,7 +74,11 @@ export function ReadyPlayersBar({
       </div>
       {!hideNames && notReadyPlayers.length > 0 && (
         <span className="ready-player-bar__names">
-          <Translate pt="Esperando" en="Waiting for" />: {notReadyPlayers.join(', ')}
+          <Translate
+            pt="Esperando"
+            en="Waiting for"
+          />
+          : {notReadyPlayers.join(', ')}
         </span>
       )}
     </div>

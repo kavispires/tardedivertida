@@ -24,7 +24,10 @@ export function StepBossPlayerSelection({ players, onBossPlayerClick }: StepBoss
   return (
     <Step key={1}>
       <StepTitle wait>
-        <Translate pt="Quem quer ser o Chefe?" en="Who wants to be the Boss?" />
+        <Translate
+          pt="Quem quer ser o Chefe?"
+          en="Who wants to be the Boss?"
+        />
       </StepTitle>
 
       <Instruction contained>
@@ -37,18 +40,33 @@ export function StepBossPlayerSelection({ players, onBossPlayerClick }: StepBoss
                   disabled={isLoading}
                   onClick={() => onBossPlayerClick({ bossId: player.id })}
                 >
-                  <PlayerAvatarCard key={`p-a-${player.id}`} player={player} withName addressUser />
+                  <PlayerAvatarCard
+                    key={`p-a-${player.id}`}
+                    player={player}
+                    withName
+                    addressUser
+                  />
                 </TransparentButton>
               );
             }
 
-            return <PlayerAvatarCard key={`p-a-${player.id}`} player={player} withName addressUser />;
+            return (
+              <PlayerAvatarCard
+                key={`p-a-${player.id}`}
+                player={player}
+                withName
+                addressUser
+              />
+            );
           })}
         </Space>
       </Instruction>
 
       <RuleInstruction type="wait">
-        <Translate pt="O anfitrião selecionará o chefe" en="The host will select the boss" />
+        <Translate
+          pt="O anfitrião selecionará o chefe"
+          en="The host will select the boss"
+        />
       </RuleInstruction>
     </Step>
   );

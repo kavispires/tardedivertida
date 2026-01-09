@@ -22,15 +22,31 @@ export function StepBossWaiting({ players, board, clues, secretWord, categories 
     <Step fullWidth>
       <WaitingRoom
         players={players}
-        title={<Translate pt="Aguarde" en="Please wait" />}
+        title={
+          <Translate
+            pt="Aguarde"
+            en="Please wait"
+          />
+        }
         instruction={
-          <Translate pt="Os jogadores estão escrevendo dicas" en="The players are writing clues" />
+          <Translate
+            pt="Os jogadores estão escrevendo dicas"
+            en="The players are writing clues"
+          />
         }
       />
 
-      <CategoryWordGroup categories={categories} secretWord={secretWord} showSecretWord />
+      <CategoryWordGroup
+        categories={categories}
+        secretWord={secretWord}
+        showSecretWord
+      />
 
-      <Board players={players} clues={clues} board={board} />
+      <Board
+        players={players}
+        clues={clues}
+        board={board}
+      />
     </Step>
   );
 }

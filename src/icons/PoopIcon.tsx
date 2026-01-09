@@ -1,6 +1,10 @@
 export function PoopIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#cda0e1"
         d="M454.391 349.133c0-28.72-23.282-52.001-52.001-52.001l-156.113-6.408-135.207 6.408c-28.72 0-52.001 23.282-52.001 52.001 0 28.72 23.282 52.001 52.001 52.001h291.319c28.72 0 52.002-23.282 52.002-52.001z"

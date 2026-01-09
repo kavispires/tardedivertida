@@ -6,5 +6,10 @@ import { DailyFilmaco } from './components/DailyFilmaco';
 import './utils/styles.scss';
 
 export function DailyFilmacoGame() {
-  return <DailyGame gameName="filmaco" GameComponent={DailyFilmaco} />;
+  return (
+    <DailyGame
+      gameName="filmaco"
+      GameComponent={DailyFilmaco}
+    />
+  );
 }

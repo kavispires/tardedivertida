@@ -72,7 +72,11 @@ export function Mountain({ mountain, skier, animateFrom = 0, animateTo, betType,
 
   return (
     <div className="ski-mountain">
-      <motion.span ref={refSkier} className="ski-mountain__skier" animate={controls}>
+      <motion.span
+        ref={refSkier}
+        className="ski-mountain__skier"
+        animate={controls}
+      >
         <IconAvatar
           size="large"
           icon={<SkierIcon color={getAvatarColorById(skier.avatarId)} />}
@@ -160,9 +164,16 @@ const MountainCard = forwardRef<HTMLDivElement, MountainCardProps>(
     const endBackground = getEndColor(showDirection, mountainEntry.selected);
 
     return (
-      <div ref={ref} className="ski-mountain-entry" style={{ width }}>
+      <div
+        ref={ref}
+        className="ski-mountain-entry"
+        style={{ width }}
+      >
         <div className="ski-mountain-entry__prompt">{mountainEntry.dilemma.prompt}</div>
-        <MountainIllustration spriteId={mountainEntry.spriteId} width={width / 2} />
+        <MountainIllustration
+          spriteId={mountainEntry.spriteId}
+          width={width / 2}
+        />
         <div className="ski-mountain-entry__options">
           <motion.div
             className="ski-mountain-entry__option"
@@ -198,7 +209,10 @@ type MountainIllustrationProps = {
 export function MountainIllustration({ spriteId, width }: MountainIllustrationProps) {
   return (
     <div className="ski-mountain-entry__illustration">
-      <svg viewBox="0 0 512 512" className="ski-mountain-entry__icon">
+      <svg
+        viewBox="0 0 512 512"
+        className="ski-mountain-entry__icon"
+      >
         <use href={`${mountainIcons}#${spriteId}`}></use>
       </svg>
       <svg

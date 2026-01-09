@@ -16,9 +16,25 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
   const gallery: DuetosGalleryEntry[] = state.gallery ?? [];
 
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<TrophyIcon />}>
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
-      <TitledContainer title={<Translate pt="Melhores Pares" en="Best Pairs" />} className="mt-4">
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<TrophyIcon />}
+    >
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
+      <TitledContainer
+        title={
+          <Translate
+            pt="Melhores Pares"
+            en="Best Pairs"
+          />
+        }
+        className="mt-4"
+      >
         {gallery.map((pair: DuetosGalleryEntry, index) => (
           <Pair
             key={pair.pairId}

@@ -64,10 +64,19 @@ export function StepAsk({
   };
 
   return (
-    <Step fullWidth announcement={announcement}>
-      <StepTitle size="small" wait={isTheRequester}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
+      <StepTitle
+        size="small"
+        wait={isTheRequester}
+      >
         {isTheRequester ? (
-          <Translate pt={<>Peça algo!</>} en={<>Ask for something!</>} />
+          <Translate
+            pt={<>Peça algo!</>}
+            en={<>Ask for something!</>}
+          />
         ) : (
           <Translate
             pt={
@@ -98,9 +107,21 @@ export function StepAsk({
         )}
       </RuleInstruction>
 
-      <Flex gap={8} align="center">
-        <Board deck={deck} deckType={deckType} userId={user.id} userSide={user.side} />
-        <SummaryBox summary={summary} players={players} round={round} />
+      <Flex
+        gap={8}
+        align="center"
+      >
+        <Board
+          deck={deck}
+          deckType={deckType}
+          userId={user.id}
+          userSide={user.side}
+        />
+        <SummaryBox
+          summary={summary}
+          players={players}
+          round={round}
+        />
       </Flex>
 
       <ViewIf condition={clueInputType === 'alien-keyboard'}>
@@ -115,10 +136,20 @@ export function StepAsk({
 
         <SpaceContainer vertical>
           <ViewIf condition={isTheRequester}>
-            <Flex gap={8} align="center">
-              <AlienText value={sentence} withTranslation />
+            <Flex
+              gap={8}
+              align="center"
+            >
+              <AlienText
+                value={sentence}
+                withTranslation
+              />
               <strong>
-                <Translate en="Quantity" pt="Quantidade" />:
+                <Translate
+                  en="Quantity"
+                  pt="Quantidade"
+                />
+                :
               </strong>
               <InputNumber
                 value={clueQuantity}
@@ -127,12 +158,24 @@ export function StepAsk({
                 max={6}
                 size="large"
               />
-              <SendButton size="large" loading={isLoading} disabled={!sentence} onClick={onSubmit}>
-                <Translate en="Submit" pt="Enviar" />
+              <SendButton
+                size="large"
+                loading={isLoading}
+                disabled={!sentence}
+                onClick={onSubmit}
+              >
+                <Translate
+                  en="Submit"
+                  pt="Enviar"
+                />
               </SendButton>
             </Flex>
           </ViewIf>
-          <AlienKeyboard value={sentence} onChange={setSentence} disabled={!isTheRequester || user.ready} />
+          <AlienKeyboard
+            value={sentence}
+            onChange={setSentence}
+            disabled={!isTheRequester || user.ready}
+          />
         </SpaceContainer>
       </ViewIf>
 
@@ -145,7 +188,10 @@ export function StepAsk({
         </RuleInstruction>
 
         <SpaceContainer vertical>
-          <Flex gap={8} align="center">
+          <Flex
+            gap={8}
+            align="center"
+          >
             <Input
               size="large"
               value={sentence}
@@ -156,7 +202,11 @@ export function StepAsk({
               })}
             />
             <strong>
-              <Translate en="Quantity" pt="Quantidade" />:
+              <Translate
+                en="Quantity"
+                pt="Quantidade"
+              />
+              :
             </strong>
             <InputNumber
               value={clueQuantity}
@@ -166,8 +216,16 @@ export function StepAsk({
               size="large"
             />
           </Flex>
-          <SendButton size="large" loading={isLoading} disabled={!sentence} onClick={onSubmit}>
-            <Translate en="Submit" pt="Enviar" />
+          <SendButton
+            size="large"
+            loading={isLoading}
+            disabled={!sentence}
+            onClick={onSubmit}
+          >
+            <Translate
+              en="Submit"
+              pt="Enviar"
+            />
           </SendButton>
         </SpaceContainer>
       </ViewIf>

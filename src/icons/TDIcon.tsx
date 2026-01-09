@@ -1,6 +1,10 @@
 export function TDIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#3a7ca5"
         d="M256 267l-11.73 11.73-94.72 94.72a16.61 16.61 0 000 23.45l94.72 94.72a16.6 16.6 0 0023.46 0L377.44 381.9a31.84 31.84 0 01-15-8.46z"

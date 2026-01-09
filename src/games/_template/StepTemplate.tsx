@@ -16,14 +16,23 @@ export function StepTemplate({ announcement }: StepTemplateProps) {
   const { isLoading } = useLoading();
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt={<>?</>} en={<>?</>} />
+        <Translate
+          pt={<>?</>}
+          en={<>?</>}
+        />
       </StepTitle>
 
       {isLoading}
       <Instruction contained>
-        <Translate pt={<>?</>} en={<>?</>} />
+        <Translate
+          pt={<>?</>}
+          en={<>?</>}
+        />
       </Instruction>
     </Step>
   );

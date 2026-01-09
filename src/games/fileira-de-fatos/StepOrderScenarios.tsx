@@ -27,7 +27,10 @@ export function StepOrderScenarios({
   roundType,
 }: StepOrderScenariosProps) {
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         <Translate
           pt={
@@ -66,7 +69,11 @@ export function StepOrderScenarios({
 
       <RoundTypeExplanation roundType={roundType} />
 
-      <SelectableScenarioOrder scenarios={scenarios} kind="negative" onSubmitOrder={onSubmitOrder} />
+      <SelectableScenarioOrder
+        scenarios={scenarios}
+        kind="negative"
+        onSubmitOrder={onSubmitOrder}
+      />
     </Step>
   );
 }

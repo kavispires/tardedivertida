@@ -36,9 +36,15 @@ export function StepResolution({
         className={clsx('e-phase-title', !resolutionStatus.isPlayerVictory && 'e-phase-title--fail')}
       >
         {resolutionStatus.isPlayerVictory ? (
-          <Translate pt="Missão Cumprida!" en="Mission Accomplished!" />
+          <Translate
+            pt="Missão Cumprida!"
+            en="Mission Accomplished!"
+          />
         ) : (
-          <Translate pt="Missão Fracassada" en="Mission Failed" />
+          <Translate
+            pt="Missão Fracassada"
+            en="Mission Failed"
+          />
         )}
       </StepTitle>
 
@@ -107,22 +113,48 @@ export function StepResolution({
 
       <Instruction className="e-phase-instruction">
         <h4>{resolutionStatus.currentLocation?.name}</h4>
-        <Translate pt="Disfarces dos infiltrados:" en="Agent's roles:" />
+        <Translate
+          pt="Disfarces dos infiltrados:"
+          en="Agent's roles:"
+        />
         {Object.values(players).map(({ id, name, role }) => (
           <li key={`role-list-${id}`}>
-            {name} <Translate pt="como" en="as" />{' '}
-            {role === 'SPY' ? <Translate pt="ESPIÃO" en="SPY" /> : role}
+            {name}{' '}
+            <Translate
+              pt="como"
+              en="as"
+            />{' '}
+            {role === 'SPY' ? (
+              <Translate
+                pt="ESPIÃO"
+                en="SPY"
+              />
+            ) : (
+              role
+            )}
           </li>
         ))}
       </Instruction>
 
       {
         <HostOnlyContainer>
-          <HostButton onClick={() => onProgressGame({ continue: true })} disabled={isLoading}>
-            <Translate pt="Jogar mais uma rodada" en="Play another round" />
+          <HostButton
+            onClick={() => onProgressGame({ continue: true })}
+            disabled={isLoading}
+          >
+            <Translate
+              pt="Jogar mais uma rodada"
+              en="Play another round"
+            />
           </HostButton>
-          <HostButton onClick={() => onProgressGame({ end: true })} disabled={isLoading}>
-            <Translate pt="Terminar Jogo" en="End Game" />
+          <HostButton
+            onClick={() => onProgressGame({ end: true })}
+            disabled={isLoading}
+          >
+            <Translate
+              pt="Terminar Jogo"
+              en="End Game"
+            />
           </HostButton>
         </HostOnlyContainer>
       }

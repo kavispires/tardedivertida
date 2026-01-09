@@ -109,11 +109,17 @@ export function StepBuildMetrics({
   };
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       {step === 1 && (
         <>
           <StepTitle>
-            <Translate pt="Qual será a palavra secreta?" en="Which will be the secret word?" />
+            <Translate
+              pt="Qual será a palavra secreta?"
+              en="Which will be the secret word?"
+            />
           </StepTitle>
 
           <RuleInstruction type="action">
@@ -132,7 +138,10 @@ export function StepBuildMetrics({
                   onClick={() => setSelectedCardId(card.id)}
                   active={selectedCardId === card.id}
                 >
-                  <Card header={LETTERS[index]} color={getColorFromIndex(index + 2)}>
+                  <Card
+                    header={LETTERS[index]}
+                    color={getColorFromIndex(index + 2)}
+                  >
                     {card.text}
                   </Card>
                 </TransparentButton>
@@ -141,8 +150,16 @@ export function StepBuildMetrics({
           </SpaceContainer>
 
           <SpaceContainer>
-            <Button size="large" type="primary" onClick={goToNextStep} disabled={!selectedCardId}>
-              <Translate pt="Continuar" en="Continue" />
+            <Button
+              size="large"
+              type="primary"
+              onClick={goToNextStep}
+              disabled={!selectedCardId}
+            >
+              <Translate
+                pt="Continuar"
+                en="Continue"
+              />
             </Button>
           </SpaceContainer>
         </>
@@ -203,14 +220,20 @@ export function StepBuildMetrics({
               disabled={selectedWords.length >= TOTAL_WORDS}
               icon={<UndoOutlined />}
             >
-              <Translate pt="Aleatório" en="Random" />
+              <Translate
+                pt="Aleatório"
+                en="Random"
+              />
             </Button>
             <SendButton
               size="large"
               onClick={onCompletePool}
               disabled={!selectedCardId || selectedWords.length !== TOTAL_WORDS}
             >
-              <Translate pt="Enviar" en="Submit" />
+              <Translate
+                pt="Enviar"
+                en="Submit"
+              />
             </SendButton>
           </SpaceContainer>
         </>
@@ -219,7 +242,10 @@ export function StepBuildMetrics({
       {step === 3 && (
         <>
           <StepTitle>
-            <Translate pt="Crie suas métricas" en="Create the metrics" />
+            <Translate
+              pt="Crie suas métricas"
+              en="Create the metrics"
+            />
           </StepTitle>
 
           <RuleInstruction type="action">
@@ -257,8 +283,14 @@ export function StepBuildMetrics({
           />
 
           <SpaceContainer className="mt-6">
-            <SendButton size="large" onClick={onCompleteMetrics}>
-              <Translate pt="Enviar Métricas" en="Submit Metrics" />
+            <SendButton
+              size="large"
+              onClick={onCompleteMetrics}
+            >
+              <Translate
+                pt="Enviar Métricas"
+                en="Submit Metrics"
+              />
             </SendButton>
           </SpaceContainer>
 
@@ -271,7 +303,11 @@ export function StepBuildMetrics({
               {poolIds.map((cardId) => {
                 const card = wordsDict[cardId];
                 return (
-                  <Card key={card.id} hideHeader size="small">
+                  <Card
+                    key={card.id}
+                    hideHeader
+                    size="small"
+                  >
                     {card.text}
                   </Card>
                 );

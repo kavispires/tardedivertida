@@ -41,10 +41,18 @@ export function ConvertGuestToAccount({ onSuccess }: ConvertGuestToAccountProps)
   return (
     <div className="sign-up">
       <div className="sign-up__logo">
-        <Image src={logo} preview={false} />
+        <Image
+          src={logo}
+          preview={false}
+        />
       </div>
 
-      <SignUpForm form={form} onFinish={onFinish} isError={isError} isLoading={isPending} />
+      <SignUpForm
+        form={form}
+        onFinish={onFinish}
+        isError={isError}
+        isLoading={isPending}
+      />
     </div>
   );
 }
@@ -62,8 +70,18 @@ export function ConvertGuestToAccountModal() {
     <div>
       <Modal
         open={open}
-        title={<Translate pt="Cadastro" en="Sign Up Form" />}
-        cancelText={<Translate pt="Cancelar" en="Cancel" />}
+        title={
+          <Translate
+            pt="Cadastro"
+            en="Sign Up Form"
+          />
+        }
+        cancelText={
+          <Translate
+            pt="Cancelar"
+            en="Cancel"
+          />
+        }
         onCancel={() => setOpen(false)}
         okButtonProps={{
           disabled: true,
@@ -72,9 +90,18 @@ export function ConvertGuestToAccountModal() {
         <ConvertGuestToAccount onSuccess={invalidateUser} />
       </Modal>
 
-      <Instruction contained className="convert-guest-instruction">
-        <Title size="xx-small" level={3}>
-          <IconAvatar size="large" icon={<UserStatsIcon />} />
+      <Instruction
+        contained
+        className="convert-guest-instruction"
+      >
+        <Title
+          size="xx-small"
+          level={3}
+        >
+          <IconAvatar
+            size="large"
+            icon={<UserStatsIcon />}
+          />
           <Translate
             pt="Você jogou como visitante. Converta para um Perfil de Usuário!"
             en="You played as a guest, do you want to convert to an User Account?"
@@ -88,8 +115,14 @@ export function ConvertGuestToAccountModal() {
         </p>
 
         <SpaceContainer>
-          <Button type="primary" onClick={() => setOpen(true)}>
-            <Translate pt="Converter Perfil" en="Convert to Account" />
+          <Button
+            type="primary"
+            onClick={() => setOpen(true)}
+          >
+            <Translate
+              pt="Converter Perfil"
+              en="Convert to Account"
+            />
           </Button>
         </SpaceContainer>
       </Instruction>

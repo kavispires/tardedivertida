@@ -38,9 +38,16 @@ export function Statements({
     };
   }, [statements, additionalStatements, hearts, released, isComplete]);
   return (
-    <Flex vertical gap={4} className="espionagem-statements">
+    <Flex
+      vertical
+      gap={4}
+      className="espionagem-statements"
+    >
       {slicedStatements.map((statement, index) => (
-        <motion.div {...(animate ? getAnimation('fadeIn', { delay: 0.1 * index }) : {})} key={statement.key}>
+        <motion.div
+          {...(animate ? getAnimation('fadeIn', { delay: 0.1 * index }) : {})}
+          key={statement.key}
+        >
           <MotionAlert
             banner
             icon={getStatementIcon(statement.type)}
@@ -50,7 +57,10 @@ export function Statements({
         </motion.div>
       ))}
       {slicedAdditionalStatements.map((statement, index) => (
-        <motion.div {...(animate ? getAnimation('fadeIn', { delay: 0.1 * index }) : {})} key={statement.key}>
+        <motion.div
+          {...(animate ? getAnimation('fadeIn', { delay: 0.1 * index }) : {})}
+          key={statement.key}
+        >
           <MotionAlert
             icon={<HeartFilled />}
             banner

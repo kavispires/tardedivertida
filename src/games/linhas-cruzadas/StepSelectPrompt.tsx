@@ -33,7 +33,10 @@ export function StepSelectPrompt({ prompts, onSubmitPrompt }: StepSelectPromptPr
   return (
     <Step fullWidth>
       <Title>
-        <Translate pt="Seleção de Carta" en="Card Selection" />
+        <Translate
+          pt="Seleção de Carta"
+          en="Card Selection"
+        />
       </Title>
       <RuleInstruction type="action">
         <Translate
@@ -57,8 +60,15 @@ export function StepSelectPrompt({ prompts, onSubmitPrompt }: StepSelectPromptPr
       </div>
 
       <SpaceContainer>
-        <SendButton onClick={onRandomSelect} icon={<RedoOutlined />} type="dashed">
-          <Translate pt="Escolha pra mim" en="Select for me" />
+        <SendButton
+          onClick={onRandomSelect}
+          icon={<RedoOutlined />}
+          type="dashed"
+        >
+          <Translate
+            pt="Escolha pra mim"
+            en="Select for me"
+          />
         </SendButton>
       </SpaceContainer>
     </Step>

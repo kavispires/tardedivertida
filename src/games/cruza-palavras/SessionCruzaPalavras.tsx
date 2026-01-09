@@ -34,7 +34,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionCruzaPalavras() {
-  return <Session gameCollection={GAME_COLLECTION.CRUZA_PALAVRAS} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.CRUZA_PALAVRAS}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionCruzaPalavras;

@@ -32,14 +32,27 @@ export function ImageBlurButton({ cardId, ghost = true }: ImageBlurButtonProps) 
         />
       }
     >
-      <Button ghost={ghost} onClick={() => blurCard(cardId)} size="small" className="image-blur-button">
+      <Button
+        ghost={ghost}
+        onClick={() => blurCard(cardId)}
+        size="small"
+        className="image-blur-button"
+      >
         {shouldBeBlurred(cardId) ? (
           <>
-            <EyeOutlined /> <Translate pt="Descredar" en="Focus" />
+            <EyeOutlined />{' '}
+            <Translate
+              pt="Descredar"
+              en="Focus"
+            />
           </>
         ) : (
           <>
-            <EyeInvisibleOutlined /> <Translate pt="Credo" en="Blur" />
+            <EyeInvisibleOutlined />{' '}
+            <Translate
+              pt="Credo"
+              en="Blur"
+            />
           </>
         )}
       </Button>

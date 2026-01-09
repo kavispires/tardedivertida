@@ -59,12 +59,22 @@ export function AlienText({ value, withTranslation = false, className, ...divPro
 
   return (
     <Spin spinning={isLoading}>
-      <div className={clsx('alien-text', className)} {...divProps}>
+      <div
+        className={clsx('alien-text', className)}
+        {...divProps}
+      >
         {characters.map((character) => {
           return (
-            <Tooltip title={dualTranslate(character.name)} key={`${character.spriteId}-${character.variant}`}>
+            <Tooltip
+              title={dualTranslate(character.name)}
+              key={`${character.spriteId}-${character.variant}`}
+            >
               <div className={clsx('alien-text__character', `alien-text__character--${character.variant}`)}>
-                <SignCard width={48} signId={`${character.spriteId.split('-')[1]}`} className="transparent" />
+                <SignCard
+                  width={48}
+                  signId={`${character.spriteId.split('-')[1]}`}
+                  className="transparent"
+                />
               </div>
             </Tooltip>
           );

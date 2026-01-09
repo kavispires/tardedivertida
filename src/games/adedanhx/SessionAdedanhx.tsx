@@ -31,7 +31,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionAdedanhx() {
-  return <Session gameCollection={GAME_COLLECTION.ADEDANHX} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.ADEDANHX}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionAdedanhx;

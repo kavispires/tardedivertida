@@ -27,9 +27,21 @@ export function WaitingRoomFeature({
 }: WaitingRoomFeatureProps) {
   return (
     <SpaceContainer>
-      <ActivePlayerObjectClue activePlayer={activePlayer} item={item} clue={clue} />
-      <IconAvatar icon={<XIcon />} size="large" />
-      {Boolean(selectedFeatureId) && <ObjectFeature feature={features[selectedFeatureId]} width={72} />}
+      <ActivePlayerObjectClue
+        activePlayer={activePlayer}
+        item={item}
+        clue={clue}
+      />
+      <IconAvatar
+        icon={<XIcon />}
+        size="large"
+      />
+      {Boolean(selectedFeatureId) && (
+        <ObjectFeature
+          feature={features[selectedFeatureId]}
+          width={72}
+        />
+      )}
     </SpaceContainer>
   );
 }

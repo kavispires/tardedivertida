@@ -22,7 +22,10 @@ export function GalleryWindowResult({ cards, galleryEntry, gameLanguage }: Galle
       {galleryEntry.correctness !== 2 && (
         <>
           <SlideShowLabel>
-            <Translate pt="E o título correto da placa é" en="And the warning sign title is" />
+            <Translate
+              pt="E o título correto da placa é"
+              en="And the warning sign title is"
+            />
           </SlideShowLabel>
 
           <SlideShowBubbleValue winner>
@@ -41,8 +44,11 @@ export function GalleryWindowResult({ cards, galleryEntry, gameLanguage }: Galle
       )}
 
       <Typography.Paragraph className="mt-2">
-        <Translate pt="O criador ganhou" en="The creator earned" />:{' '}
-        <PointsHighlight>{galleryEntry.artistScore}</PointsHighlight> pontos
+        <Translate
+          pt="O criador ganhou"
+          en="The creator earned"
+        />
+        : <PointsHighlight>{galleryEntry.artistScore}</PointsHighlight> pontos
       </Typography.Paragraph>
     </div>
   );

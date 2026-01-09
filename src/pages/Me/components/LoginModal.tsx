@@ -14,8 +14,18 @@ export function LoginModal({ isAuthenticated }: LoginModalProps) {
   return (
     <Modal
       open={!isAuthenticated}
-      title={<Translate pt="Logar" en="LogIn" />}
-      cancelText={<Translate pt="Cancelar" en="Cancel" />}
+      title={
+        <Translate
+          pt="Logar"
+          en="LogIn"
+        />
+      }
+      cancelText={
+        <Translate
+          pt="Cancelar"
+          en="Cancel"
+        />
+      }
       onCancel={NOOP}
       okButtonProps={{
         style: { display: 'none' },

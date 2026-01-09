@@ -41,18 +41,36 @@ export function StepTimedDrawing({ currentPrompt, onSubmitDrawing, players }: St
 
   return (
     <Step>
-      <Card size="large" header={author.name} color={AVATARS[author.avatarId].color}>
+      <Card
+        size="large"
+        header={author.name}
+        color={AVATARS[author.avatarId].color}
+      >
         {currentPrompt.content}
       </Card>
-      <TimedTimerBar steps={90} duration={DRAWING_TIME_IN_SECONDS} onExpire={onExpire} />
+      <TimedTimerBar
+        steps={90}
+        duration={DRAWING_TIME_IN_SECONDS}
+        onExpire={onExpire}
+      />
       {isTimesUp ? (
         <AnimatedLoaderIcon style={{ background: 'white', width: '250px', padding: '125px' }} />
       ) : (
-        <DrawingCanvas lines={lines} setLines={setLines} showControls />
+        <DrawingCanvas
+          lines={lines}
+          setLines={setLines}
+          showControls
+        />
       )}
       <SpaceContainer>
-        <SendButton onClick={() => onSubmit()} size="large">
-          <Translate pt="Enviar desenho" en="Submit drawing" />
+        <SendButton
+          onClick={() => onSubmit()}
+          size="large"
+        >
+          <Translate
+            pt="Enviar desenho"
+            en="Submit drawing"
+          />
         </SendButton>
       </SpaceContainer>
     </Step>

@@ -31,9 +31,15 @@ export const MovieReviewCard = ({ type, text, highlights = [], className = '' }:
     <div className={clsx(baseClass, `${baseClass}--${type}`, className)}>
       <span className={`${baseClass}__header`}>
         {type === 'positive' ? (
-          <Translate pt="Crítica Positiva" en="Positive Review" />
+          <Translate
+            pt="Crítica Positiva"
+            en="Positive Review"
+          />
         ) : (
-          <Translate pt="Crítica Negativa" en="Negative Review" />
+          <Translate
+            pt="Crítica Negativa"
+            en="Negative Review"
+          />
         )}
         {type === 'positive' ? ' 👏' : ' 🤮'}
       </span>

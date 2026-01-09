@@ -27,10 +27,21 @@ export function ResultsTable({ players, results }: ResultsTableProps) {
     {
       title: '',
       dataIndex: 'playerId',
-      render: (playerId: string) => <PlayerAvatarName player={players[playerId]} size="small" addressUser />,
+      render: (playerId: string) => (
+        <PlayerAvatarName
+          player={players[playerId]}
+          size="small"
+          addressUser
+        />
+      ),
     },
     ...orderBy(Object.keys(results)).map((playerId) => ({
-      title: <PlayerAvatar avatarId={players[playerId].avatarId} size="small" />,
+      title: (
+        <PlayerAvatar
+          avatarId={players[playerId].avatarId}
+          size="small"
+        />
+      ),
       dataIndex: playerId,
       render: (status: string) => <ResultsTableCell status={status} />,
     })),
@@ -45,7 +56,15 @@ export function ResultsTable({ players, results }: ResultsTableProps) {
       };
     });
 
-  return <Table columns={columns} dataSource={data} pagination={false} size="small" bordered />;
+  return (
+    <Table
+      columns={columns}
+      dataSource={data}
+      pagination={false}
+      size="small"
+      bordered
+    />
+  );
 }
 
 type ResultsTableCellProps = {
@@ -57,38 +76,110 @@ function ResultsTableCell({ status }: ResultsTableCellProps) {
     case GUESS_STATUS.LOCKED:
     case GUESS_STATUS.CORRECT:
       return (
-        <Tooltip title={<CrimeGuessStatus status={status} withDescription />} color="white">
-          <IconAvatar icon={<BoxCheckMarkIcon />} shape="square" alt={status} />
+        <Tooltip
+          title={
+            <CrimeGuessStatus
+              status={status}
+              withDescription
+            />
+          }
+          color="white"
+        >
+          <IconAvatar
+            icon={<BoxCheckMarkIcon />}
+            shape="square"
+            alt={status}
+          />
         </Tooltip>
       );
     case GUESS_STATUS.ONE:
       return (
-        <Tooltip title={<CrimeGuessStatus status={status} withDescription />} color="white">
-          <IconAvatar icon={<BoxOneIcon />} shape="square" alt={status} />
+        <Tooltip
+          title={
+            <CrimeGuessStatus
+              status={status}
+              withDescription
+            />
+          }
+          color="white"
+        >
+          <IconAvatar
+            icon={<BoxOneIcon />}
+            shape="square"
+            alt={status}
+          />
         </Tooltip>
       );
     case GUESS_STATUS.TWO:
       return (
-        <Tooltip title={<CrimeGuessStatus status={status} withDescription />} color="white">
-          <IconAvatar icon={<BoxTwoIcon />} shape="square" alt={status} />
+        <Tooltip
+          title={
+            <CrimeGuessStatus
+              status={status}
+              withDescription
+            />
+          }
+          color="white"
+        >
+          <IconAvatar
+            icon={<BoxTwoIcon />}
+            shape="square"
+            alt={status}
+          />
         </Tooltip>
       );
     case GUESS_STATUS.THREE:
       return (
-        <Tooltip title={<CrimeGuessStatus status={status} withDescription />} color="white">
-          <IconAvatar icon={<BoxThreeIcon />} shape="square" alt={status} />
+        <Tooltip
+          title={
+            <CrimeGuessStatus
+              status={status}
+              withDescription
+            />
+          }
+          color="white"
+        >
+          <IconAvatar
+            icon={<BoxThreeIcon />}
+            shape="square"
+            alt={status}
+          />
         </Tooltip>
       );
     case GUESS_STATUS.WRONG:
       return (
-        <Tooltip title={<CrimeGuessStatus status={status} withDescription />} color="white">
-          <IconAvatar icon={<BoxMinusIcon />} shape="square" alt={status} />
+        <Tooltip
+          title={
+            <CrimeGuessStatus
+              status={status}
+              withDescription
+            />
+          }
+          color="white"
+        >
+          <IconAvatar
+            icon={<BoxMinusIcon />}
+            shape="square"
+            alt={status}
+          />
         </Tooltip>
       );
     case GUESS_STATUS.WRONG_GROUP:
       return (
-        <Tooltip title={<CrimeGuessStatus status={status} withDescription />} color="white">
-          <IconAvatar icon={<BoxXIcon />} shape="square" alt={status} />
+        <Tooltip
+          title={
+            <CrimeGuessStatus
+              status={status}
+              withDescription
+            />
+          }
+          color="white"
+        >
+          <IconAvatar
+            icon={<BoxXIcon />}
+            shape="square"
+            alt={status}
+          />
         </Tooltip>
       );
     default:

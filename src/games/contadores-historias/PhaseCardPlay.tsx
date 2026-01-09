@@ -25,7 +25,12 @@ export function PhaseCardPlay({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<ImageCardsIcon />}
-      title={<Translate pt="Selecione uma carta" en="Play a card..." />}
+      title={
+        <Translate
+          pt="Selecione uma carta"
+          en="Play a card..."
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -51,8 +56,14 @@ export function PhaseCardPlay({ state, players, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={CONTADORES_HISTORIAS_PHASES.CARD_PLAY}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={CONTADORES_HISTORIAS_PHASES.CARD_PLAY}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepPlayCard
           players={players}

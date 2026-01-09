@@ -51,7 +51,10 @@ export function StepLocationSelection({
   return (
     <Step announcement={announcement}>
       <StepTitle>
-        <Translate pt="Onde foi o crime?" en="Where was the crime?" />
+        <Translate
+          pt="Onde foi o crime?"
+          en="Where was the crime?"
+        />
       </StepTitle>
       <RuleInstruction type="action">
         <Translate
@@ -90,7 +93,10 @@ export function StepLocationSelection({
         ) : (
           <ul className="h-items-selection">
             {userItems.map((itemId) => (
-              <li key={itemId} className="h-items-selection__item">
+              <li
+                key={itemId}
+                className="h-items-selection__item"
+              >
                 <CrimeItemCard
                   item={items[itemId]}
                   cardWidth={cardWidth}
@@ -100,7 +106,11 @@ export function StepLocationSelection({
             ))}
           </ul>
         )}
-        <SceneTile tile={locationTile} onSelectValue={onSelectItem} index={locationIndex} />
+        <SceneTile
+          tile={locationTile}
+          onSelectValue={onSelectItem}
+          index={locationIndex}
+        />
       </SpaceContainer>
 
       <SpaceContainer>

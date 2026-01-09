@@ -16,8 +16,15 @@ export function TierContenders({ contenders }: TierContendersProps) {
   return (
     <ul className="w-tier-contenders">
       {flatContenders.map((contender) => (
-        <li className="w-tier-contender" key={`w-tier-contender-${contender.id}`}>
-          <CharacterCard character={contender} overlayColor="gray" size={cardWidth} />
+        <li
+          className="w-tier-contender"
+          key={`w-tier-contender-${contender.id}`}
+        >
+          <CharacterCard
+            character={contender}
+            overlayColor="gray"
+            size={cardWidth}
+          />
         </li>
       ))}
     </ul>

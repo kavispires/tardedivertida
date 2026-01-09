@@ -28,25 +28,40 @@ export function PhaseGuess({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<SoundWaveIcon />}
-      title={<Translate pt="Adivinhação" en="Guessing" />}
+      title={
+        <Translate
+          pt="Adivinhação"
+          en="Guessing"
+        />
+      }
       currentRound={state?.round?.current}
       duration={7}
       type="overlay"
     >
       <Instruction>
-        <Translate pt="Você está sincronizado telepaticamente?" en="Are you telepathically in sync?" />
+        <Translate
+          pt="Você está sincronizado telepaticamente?"
+          en="Are you telepathically in sync?"
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={ONDA_TELEPATICA_PHASES.GUESS}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={ONDA_TELEPATICA_PHASES.GUESS}
+    >
       <StepSwitcher
         step={step}
         players={players}
         waitingRoom={{
           content: (
-            <NeedleChoice currentCategory={state.currentCategory} user={user} isPsychic={isUserThePsychic} />
+            <NeedleChoice
+              currentCategory={state.currentCategory}
+              user={user}
+              isPsychic={isUserThePsychic}
+            />
           ),
         }}
       >

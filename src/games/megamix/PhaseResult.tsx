@@ -29,20 +29,34 @@ export function PhaseResult({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<BouncerIcon />}
-      title={<Translate pt="Resultado" en="Results" />}
+      title={
+        <Translate
+          pt="Resultado"
+          en="Results"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={4}
     >
       <Instruction>
-        <Translate pt="Quem vai pra área VIP?" en="So who goes to the VIP area?" />
+        <Translate
+          pt="Quem vai pra área VIP?"
+          en="So who goes to the VIP area?"
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={MEGAMIX_PHASES.RESULT}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={MEGAMIX_PHASES.RESULT}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepResult
           players={players}

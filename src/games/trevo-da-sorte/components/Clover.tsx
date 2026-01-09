@@ -71,7 +71,10 @@ export function Clover({
 
   return (
     <div className="container center">
-      <div className="y-clover" style={{ transform: `rotate(${rotation}deg)` }}>
+      <div
+        className="y-clover"
+        style={{ transform: `rotate(${rotation}deg)` }}
+      >
         {/* ANSWERS */}
         {cloverLeaves.map(([_, cloverLeaf], index) => {
           const leafIndex = Number(index) as LeafIndex;
@@ -135,8 +138,14 @@ export function Clover({
         })}
       </div>
       <div className="controls div-container center">
-        <Button icon={<RotateLeftOutlined />} onClick={() => onRotate(-1)} />
-        <Button icon={<RotateRightOutlined />} onClick={() => onRotate(1)} />
+        <Button
+          icon={<RotateLeftOutlined />}
+          onClick={() => onRotate(-1)}
+        />
+        <Button
+          icon={<RotateRightOutlined />}
+          onClick={() => onRotate(1)}
+        />
       </div>
     </div>
   );
@@ -194,20 +203,41 @@ const getIcon = (score: number) => {
   switch (score) {
     case SECOND_ATTEMPT_SCORE:
       return (
-        <Tooltip title={<Translate pt="Acertou na segunda tentativa" en="Got it in their second attempt" />}>
+        <Tooltip
+          title={
+            <Translate
+              pt="Acertou na segunda tentativa"
+              en="Got it in their second attempt"
+            />
+          }
+        >
           <BoxOneIcon />
         </Tooltip>
       );
     case FIRST_ATTEMPT_SCORE:
       return (
-        <Tooltip title={<Translate pt="Acertou na primeira tentativa" en="Got it in their first attempt" />}>
+        <Tooltip
+          title={
+            <Translate
+              pt="Acertou na primeira tentativa"
+              en="Got it in their first attempt"
+            />
+          }
+        >
           <BoxCheckMarkIcon />
         </Tooltip>
       );
     // case 0:
     default:
       return (
-        <Tooltip title={<Translate pt="Burro pra carai e não acertou" en="Did not get it right" />}>
+        <Tooltip
+          title={
+            <Translate
+              pt="Burro pra carai e não acertou"
+              en="Did not get it right"
+            />
+          }
+        >
           <BoxXIcon />
         </Tooltip>
       );

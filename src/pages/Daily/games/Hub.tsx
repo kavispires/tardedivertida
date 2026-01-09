@@ -99,28 +99,52 @@ export function Hub() {
         <TimeLeft />
         <SoundFXToggle />
       </div>
-      <div className="hub" ref={ref}>
+      <div
+        className="hub"
+        ref={ref}
+      >
         <Typography.Title level={5}>
-          <Translate pt="Jogue" en="Play" />
+          <Translate
+            pt="Jogue"
+            en="Play"
+          />
         </Typography.Title>
 
-        <HubList list={GAMES} width={width} startingIndex={0} />
+        <HubList
+          list={GAMES}
+          width={width}
+          startingIndex={0}
+        />
       </div>
       <div className="hub">
         <Typography.Title level={5}>
-          <Translate pt="Contribua" en="Contribute" />
+          <Translate
+            pt="Contribua"
+            en="Contribute"
+          />
         </Typography.Title>
 
-        <HubList list={CONTRIBUTIONS} width={width} startingIndex={GAMES.length} />
+        <HubList
+          list={CONTRIBUTIONS}
+          width={width}
+          startingIndex={GAMES.length}
+        />
       </div>
 
       {DEMOS.length > 0 && (
         <div className="hub">
           <Typography.Title level={5}>
-            <Translate pt="Demos" en="Demos" />
+            <Translate
+              pt="Demos"
+              en="Demos"
+            />
           </Typography.Title>
 
-          <HubList list={DEMOS} width={width} startingIndex={GAMES.length} />
+          <HubList
+            list={DEMOS}
+            width={width}
+            startingIndex={GAMES.length}
+          />
         </div>
       )}
 
@@ -133,7 +157,11 @@ export function Hub() {
           title={
             <>
               <Link to="debug">Debug</Link> <Divider orientation="vertical" />{' '}
-              <a href={getFirestoreConsoleUrl(`diario/${today}`)} target="_blank" rel="noreferrer">
+              <a
+                href={getFirestoreConsoleUrl(`diario/${today}`)}
+                target="_blank"
+                rel="noreferrer"
+              >
                 Firestore
               </a>
             </>
@@ -176,7 +204,11 @@ function HubList({ list, width, startingIndex }: HubListProps) {
         ),
       )}
       {Array.from({ length: (3 - (list.length % 3)) % 3 }).map((_, index) => (
-        <div key={index} style={{ width }} className="hub-item-placeholder" />
+        <div
+          key={index}
+          style={{ width }}
+          className="hub-item-placeholder"
+        />
       ))}
     </div>
   );
@@ -218,7 +250,11 @@ function GameButton({
   return (
     <motion.div className="played-wrapper">
       {wasPlayed && (
-        <IconAvatar icon={<SpeechBubbleAcceptedIcon />} size="small" className="played-wrapper__played" />
+        <IconAvatar
+          icon={<SpeechBubbleAcceptedIcon />}
+          size="small"
+          className="played-wrapper__played"
+        />
       )}
       {version === 'demo' && <div className="played-wrapper__demo">Demo</div>}
       {version === 'soon' && (
@@ -241,7 +277,10 @@ function GameButton({
             logAnalyticsEvent(`daily_${lsKey}_hub_click`);
           }}
         >
-          <Link to={`/diario/${href}`} className="hub-link">
+          <Link
+            to={`/diario/${href}`}
+            className="hub-link"
+          >
             <Icon style={{ width: width / 2 }} />
             <DualTranslate>{name}</DualTranslate>
           </Link>
@@ -310,7 +349,11 @@ function SFXTest() {
       children: (
         <div className="hub-list">
           {SFXAllNames.map((name) => (
-            <Button key={name} onClick={() => dailySoundEffects.play(name)} block>
+            <Button
+              key={name}
+              onClick={() => dailySoundEffects.play(name)}
+              block
+            >
               {name}
             </Button>
           ))}

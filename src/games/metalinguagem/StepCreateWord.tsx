@@ -90,10 +90,18 @@ export function StepCreateWord({
   const steps: CollapseProps['items'] = [
     {
       key: 1,
-      label: <Translate pt="Passo 1: Nomeie os itens" en="Step 1: Name the items" />,
+      label: (
+        <Translate
+          pt="Passo 1: Nomeie os itens"
+          en="Step 1: Name the items"
+        />
+      ),
       children: (
         <>
-          <RuleInstruction type="action" className="no-margin">
+          <RuleInstruction
+            type="action"
+            className="no-margin"
+          >
             <Translate
               pt={<>Passo 1: Primeiro você deve nomear as duas coisas.</>}
               en={<>Step 1: You must name these two things</>}
@@ -101,8 +109,16 @@ export function StepCreateWord({
           </RuleInstruction>
 
           <div className="new-word-items-grid contained">
-            <Flex vertical gap={4} align="center">
-              <ItemCard itemId={beginsWith} className="item-forced-outline" width={100} />
+            <Flex
+              vertical
+              gap={4}
+              align="center"
+            >
+              <ItemCard
+                itemId={beginsWith}
+                className="item-forced-outline"
+                width={100}
+              />
               <Input
                 autoComplete="off"
                 value={beginsWithName}
@@ -112,8 +128,16 @@ export function StepCreateWord({
               />
             </Flex>
 
-            <Flex vertical gap={4} align="center">
-              <ItemCard itemId={endsWith} className="item-forced-outline" width={100} />
+            <Flex
+              vertical
+              gap={4}
+              align="center"
+            >
+              <ItemCard
+                itemId={endsWith}
+                className="item-forced-outline"
+                width={100}
+              />
               <Input
                 autoComplete="off"
                 value={endsWithName}
@@ -130,7 +154,10 @@ export function StepCreateWord({
               disabled={beginsWithName.length < 3 || endsWithName.length < 3}
               onClick={goToNextStep}
             >
-              <Translate pt="Próximo passo" en="Next step" />
+              <Translate
+                pt="Próximo passo"
+                en="Next step"
+              />
             </Button>
           </SpaceContainer>
         </>
@@ -138,7 +165,12 @@ export function StepCreateWord({
     },
     {
       key: 2,
-      label: <Translate pt="Passo 2: Crie a palavra-valise" en="Step 2: Create the portmanteau" />,
+      label: (
+        <Translate
+          pt="Passo 2: Crie a palavra-valise"
+          en="Step 2: Create the portmanteau"
+        />
+      ),
       children: (
         <>
           <RuleInstruction type="action">
@@ -161,7 +193,10 @@ export function StepCreateWord({
           {step === 2 && (
             <SpaceContainer key={`${beginsWithName}-${endsWithName}`}>
               <div style={{ minWidth: 500 }}>
-                <Flex justify="space-between" gap={32}>
+                <Flex
+                  justify="space-between"
+                  gap={32}
+                >
                   <Flex gap={6}>
                     {beginsWithName.split('').map((l, i) => (
                       <Tag
@@ -210,14 +245,28 @@ export function StepCreateWord({
             </Card>
           </SpaceContainer>
 
-          <WordLengths wordLengths={wordLengths} highlightLength={newWord.length} phase="WORD_CREATION" />
+          <WordLengths
+            wordLengths={wordLengths}
+            highlightLength={newWord.length}
+            phase="WORD_CREATION"
+          />
 
           <SpaceContainer>
             <Button onClick={goToPreviousStep}>
-              <Translate pt="Voltar" en="Back" />
+              <Translate
+                pt="Voltar"
+                en="Back"
+              />
             </Button>
-            <SendButton size="large" disabled={!isWordValid} onClick={onCompleteNewWord}>
-              <Translate pt="Enviar Nova Palavra" en="Send New Word" />
+            <SendButton
+              size="large"
+              disabled={!isWordValid}
+              onClick={onCompleteNewWord}
+            >
+              <Translate
+                pt="Enviar Nova Palavra"
+                en="Send New Word"
+              />
             </SendButton>
           </SpaceContainer>
         </>
@@ -226,9 +275,15 @@ export function StepCreateWord({
   ];
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt={<>Crie a nova palavra</>} en={<>Create the new word</>} />
+        <Translate
+          pt={<>Crie a nova palavra</>}
+          en={<>Create the new word</>}
+        />
       </StepTitle>
 
       <RuleInstruction type="rule">
@@ -244,9 +299,18 @@ export function StepCreateWord({
         />
       </RuleInstruction>
 
-      <ItemsGrid items={items} targets={[beginsWith, endsWith]} selectedItems={[]} />
+      <ItemsGrid
+        items={items}
+        targets={[beginsWith, endsWith]}
+        selectedItems={[]}
+      />
 
-      <Collapse items={steps} className="contained" accordion activeKey={step} />
+      <Collapse
+        items={steps}
+        className="contained"
+        accordion
+        activeKey={step}
+      />
     </Step>
   );
 }

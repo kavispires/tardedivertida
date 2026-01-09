@@ -30,7 +30,12 @@ export function PhaseOrdering({ state, players }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<BarChartIcon />}
-      title={<Translate pt="Do melhor para o pior!" en="From best to worst!" />}
+      title={
+        <Translate
+          pt="Do melhor para o pior!"
+          en="From best to worst!"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={isFirstRound ? 12 : undefined}
@@ -40,24 +45,42 @@ export function PhaseOrdering({ state, players }: PhaseProps) {
         <Translate
           pt={
             <>
-              O juiz da rodada é <PlayerAvatarName player={activePlayer} addressUser />
+              O juiz da rodada é{' '}
+              <PlayerAvatarName
+                player={activePlayer}
+                addressUser
+              />
             </>
           }
           en={
             <>
-              The judge for the round is <PlayerAvatarName player={activePlayer} addressUser />
+              The judge for the round is{' '}
+              <PlayerAvatarName
+                player={activePlayer}
+                addressUser
+              />
             </>
           }
         />
       </Instruction>
 
-      <TurnOrder players={players} order={state.turnOrder} activePlayerId={activePlayer.id} />
+      <TurnOrder
+        players={players}
+        order={state.turnOrder}
+        activePlayerId={activePlayer.id}
+      />
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={FILEIRA_DE_FATOS_PHASES.ORDERING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={FILEIRA_DE_FATOS_PHASES.ORDERING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <ViewOr condition={isTheActivePlayer}>
           <StepJudgeScenarios

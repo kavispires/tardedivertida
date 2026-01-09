@@ -54,7 +54,10 @@ export function StepPlanLocations({
   };
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle size="small">
         <Translate
           pt={<>Decida onde as {availableProjectsIds.length} novos projetos devem ser construídos</>}
@@ -96,7 +99,12 @@ export function StepPlanLocations({
         constructionWidth={constructionWidth}
         playerSelections={playerSelections}
         updatePlayerSelections={updatePlayerSelections}
-        title={<Translate pt="Novos Projetos" en="New Projects" />}
+        title={
+          <Translate
+            pt="Novos Projetos"
+            en="New Projects"
+          />
+        }
       >
         <SendButton
           type="primary"
@@ -104,14 +112,24 @@ export function StepPlanLocations({
           disabled={!isComplete}
           onClick={() => onSubmitPlanning({ planning: playerSelections })}
         >
-          <Translate pt="Confirmar" en="Confirm" />
+          <Translate
+            pt="Confirmar"
+            en="Confirm"
+          />
         </SendButton>
-        <DevButton size="small" onClick={onMock}>
+        <DevButton
+          size="small"
+          onClick={onMock}
+        >
           Mock
         </DevButton>
       </DragAndDropCityMap>
 
-      <TurnOrder players={players} activePlayerId={architectId} order={gameOrder} />
+      <TurnOrder
+        players={players}
+        activePlayerId={architectId}
+        order={gameOrder}
+      />
     </Step>
   );
 }

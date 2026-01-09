@@ -18,11 +18,26 @@ export function DecisionButtons({ step, onClick, prompt }: DecisionButtonsProps)
         <DualTranslate>{prompt}</DualTranslate>
       </Instruction>
       <SpaceContainer wrap>
-        <Button type="primary" size="large" onClick={() => onClick(step, true)}>
-          <Translate pt="Sim" en="Yes" />
+        <Button
+          type="primary"
+          size="large"
+          onClick={() => onClick(step, true)}
+        >
+          <Translate
+            pt="Sim"
+            en="Yes"
+          />
         </Button>
-        <Button type="primary" danger size="large" onClick={() => onClick(step, false)}>
-          <Translate pt="Não" en="No" />
+        <Button
+          type="primary"
+          danger
+          size="large"
+          onClick={() => onClick(step, false)}
+        >
+          <Translate
+            pt="Não"
+            en="No"
+          />
         </Button>
       </SpaceContainer>
     </div>

@@ -145,13 +145,19 @@ export function StepSelectPages({
           onClick={() => onSubmitPages({ pageIds: selectedIds })}
           className={getAnimationClass('tada')}
         >
-          <Translate pt="Enviar Páginas" en="Submit Pages" />
+          <Translate
+            pt="Enviar Páginas"
+            en="Submit Pages"
+          />
         </SendButton>
       )}
 
       <Instruction contained>
         <Title size="xx-small">
-          <Translate pt="Páginas selecionadas" en="Selected Pages" />
+          <Translate
+            pt="Páginas selecionadas"
+            en="Selected Pages"
+          />
         </Title>
 
         <div>
@@ -189,7 +195,12 @@ export function StepSelectPages({
           hand={selectedIds}
           cardSize={100}
           selectButtonIcon={<CloseCircleFilled />}
-          selectButtonText={<Translate pt="Remover" en="Remove" />}
+          selectButtonText={
+            <Translate
+              pt="Remover"
+              en="Remove"
+            />
+          }
           onSelectCard={select}
           cardClassName={clsx(trap === TRAPS.SEPIA && 'i-sepia-card')}
           imageGroupPreview={trap === TRAPS.SEPIA}
@@ -201,7 +212,14 @@ export function StepSelectPages({
         />
       </Instruction>
 
-      <FloatingHand title={<Translate pt="Páginas do Livro" en="Book Pages" />}>
+      <FloatingHand
+        title={
+          <Translate
+            pt="Páginas do Livro"
+            en="Book Pages"
+          />
+        }
+      >
         {trap === TRAPS.FLIP_BOOK ? (
           <FlipBookHand
             pages={pages}
@@ -253,7 +271,11 @@ function FlipBookHand({ pages, onSelectPage, disabledSelectButton, selectedCards
   const isFinalPage = (spread + 1) * 2 >= pages.length;
 
   return (
-    <Flex align="center" justify="center" gap={16}>
+    <Flex
+      align="center"
+      justify="center"
+      gap={16}
+    >
       <div className="i-flip-book-hand">
         <ImageCardHand
           hand={currentPages}
@@ -264,8 +286,15 @@ function FlipBookHand({ pages, onSelectPage, disabledSelectButton, selectedCards
         />
       </div>
       {!isFinalPage && (
-        <Flex vertical align="center" gap={8}>
-          <Typography.Text style={{ maxWidth: 256 }} className="i-text-center">
+        <Flex
+          vertical
+          align="center"
+          gap={8}
+        >
+          <Typography.Text
+            style={{ maxWidth: 256 }}
+            className="i-text-center"
+          >
             <Translate
               pt="Você deve decidir se quer alguma dessas páginas ou não antes de prosseguir. Você pode selecionar até 4 páginas no total, antes de finalizar as (no máximo) 2 escolhas finais."
               en="You must decide whether you want any of these pages or not before proceeding. You can select up to 4 pages in total, before finalizing the (at most) 2 final choices."

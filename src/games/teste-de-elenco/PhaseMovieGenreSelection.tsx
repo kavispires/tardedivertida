@@ -23,7 +23,12 @@ export function PhaseMovieGenreSelection({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<MovieGenreIcon />}
-      title={<Translate pt="Seleção do Gênero do Filme" en="Movie Genre Selection" />}
+      title={
+        <Translate
+          pt="Seleção do Gênero do Filme"
+          en="Movie Genre Selection"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -34,8 +39,14 @@ export function PhaseMovieGenreSelection({ state, players, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={TESTE_DE_ELENCO_PHASES.MOVIE_GENRE_SELECTION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={TESTE_DE_ELENCO_PHASES.MOVIE_GENRE_SELECTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepSelectGenre
           user={user}

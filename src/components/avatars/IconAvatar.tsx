@@ -16,7 +16,13 @@ interface IconAvatarProps extends AvatarProps {
  */
 export function IconAvatar({ icon, shape, size, ...rest }: IconAvatarProps) {
   return (
-    <Avatar src={icon} shape={shape ?? 'square'} size={size} rootClassName={getSafariClass(size)} {...rest} />
+    <Avatar
+      src={icon}
+      shape={shape ?? 'square'}
+      size={size}
+      rootClassName={getSafariClass(size)}
+      {...rest}
+    />
   );
 }
 

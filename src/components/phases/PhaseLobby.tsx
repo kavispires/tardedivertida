@@ -71,9 +71,16 @@ export function PhaseLobby({ players, meta }: PhaseProps) {
   ]);
 
   return (
-    <PhaseContainer phase="LOBBY" allowedPhase={PHASES.DEFAULT.LOBBY} className="lobby">
+    <PhaseContainer
+      phase="LOBBY"
+      allowedPhase={PHASES.DEFAULT.LOBBY}
+      className="lobby"
+    >
       <AnimatePresence>
-        <motion.div className="lobby-step" layout>
+        <motion.div
+          className="lobby-step"
+          layout
+        >
           <motion.div className="lobby-step__card">
             <GameStrip
               width={340}
@@ -82,14 +89,20 @@ export function PhaseLobby({ players, meta }: PhaseProps) {
               className="lobby-step__banner"
             />
             <div className="lobby-step__content">
-              <Paragraph className="lobby-step__summary italic" layoutId="lobby-step-summary">
+              <Paragraph
+                className="lobby-step__summary italic"
+                layoutId="lobby-step-summary"
+              >
                 <DualTranslate>{info.summary}</DualTranslate>
               </Paragraph>
 
               {meta.isLocked ? (
                 <>
                   <Typography.Title className="lobby-step__title">
-                    <Translate pt="Esse jogo está trancado" en="This session is locked" />
+                    <Translate
+                      pt="Esse jogo está trancado"
+                      en="This session is locked"
+                    />
                   </Typography.Title>
 
                   <Alert
@@ -109,7 +122,10 @@ export function PhaseLobby({ players, meta }: PhaseProps) {
                           })
                         }
                       >
-                        <Translate pt="Recarregar jogo" en="Reload game" />
+                        <Translate
+                          pt="Recarregar jogo"
+                          en="Reload game"
+                        />
                       </Button>
                     }
                   />
@@ -117,7 +133,12 @@ export function PhaseLobby({ players, meta }: PhaseProps) {
               ) : (
                 <>
                   {step === 0 && <StepJoin setStep={setStep} />}
-                  {step === 1 && <StepInfo players={players} setStep={setStep} />}
+                  {step === 1 && (
+                    <StepInfo
+                      players={players}
+                      setStep={setStep}
+                    />
+                  )}
                   {step === 2 && <StepWaiting players={players} />}
                 </>
               )}
@@ -126,7 +147,10 @@ export function PhaseLobby({ players, meta }: PhaseProps) {
           <div className="lobby-step__waiting">
             {step === 2 && <LobbyRules players={players} />}
 
-            <JoinedPlayers players={players} orientation={step === 1 ? 'vertical' : 'horizontal'} />
+            <JoinedPlayers
+              players={players}
+              orientation={step === 1 ? 'vertical' : 'horizontal'}
+            />
           </div>
 
           <AdminMenuDrawer

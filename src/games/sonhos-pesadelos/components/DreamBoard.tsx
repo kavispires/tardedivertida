@@ -32,15 +32,32 @@ export function DreamBoard({ table, user, className = '' }: DreamBoardProps) {
             key={`board-${cardId}`}
             style={{ maxWidth: `${cardWidth + 20}px` }}
           >
-            <DreamCard cardId={cardId} cardWidth={cardWidth} isDream={isDream} isNightmare={isNightmare} />
+            <DreamCard
+              cardId={cardId}
+              cardWidth={cardWidth}
+              isDream={isDream}
+              isNightmare={isNightmare}
+            />
             {isDream && (
-              <div className="s-dream-board__dream-label" style={{ maxWidth: `${cardWidth}px` }}>
-                <Translate pt="Sonho" en="Dream" />
+              <div
+                className="s-dream-board__dream-label"
+                style={{ maxWidth: `${cardWidth}px` }}
+              >
+                <Translate
+                  pt="Sonho"
+                  en="Dream"
+                />
               </div>
             )}
             {isNightmare && (
-              <div className="s-dream-board__nightmare-label" style={{ maxWidth: `${cardWidth}px` }}>
-                <Translate pt="Pesadelo" en="Nightmare" />
+              <div
+                className="s-dream-board__nightmare-label"
+                style={{ maxWidth: `${cardWidth}px` }}
+              >
+                <Translate
+                  pt="Pesadelo"
+                  en="Nightmare"
+                />
               </div>
             )}
           </li>

@@ -115,9 +115,15 @@ export function StepGuessing({
   const ribbons = getRibbons(players, votes);
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt={<>Pareie os cada personagem com um jogador</>} en={<>Pair player and characters</>} />
+        <Translate
+          pt={<>Pareie os cada personagem com um jogador</>}
+          en={<>Pair player and characters</>}
+        />
       </StepTitle>
 
       <RuleInstruction type="rule">
@@ -180,7 +186,11 @@ export function StepGuessing({
                 onClick={() => activateItem(entryId)}
                 active={isItemActive(entryId)}
               >
-                <PlayerGlyphs player={player} glyphWidth={glyphWidth} done={Boolean(votes[entryId])} />
+                <PlayerGlyphs
+                  player={player}
+                  glyphWidth={glyphWidth}
+                  done={Boolean(votes[entryId])}
+                />
               </TransparentButton>
             );
           })}
@@ -193,7 +203,10 @@ export function StepGuessing({
           onClick={() => onSubmitGuesses({ guesses: prepareGuesses(votes), choseRandomly })}
           disabled={user.ready || !isVotingComplete}
         >
-          <Translate pt={<>Enviar pares</>} en={<>Submit guesses</>} />
+          <Translate
+            pt={<>Enviar pares</>}
+            en={<>Submit guesses</>}
+          />
         </SendButton>
         <Button
           size="large"
@@ -202,7 +215,10 @@ export function StepGuessing({
           disabled={isLoading || user.ready}
           icon={<ThunderboltOutlined />}
         >
-          <Translate pt={<>Desistir</>} en={<>Guess for me</>} />
+          <Translate
+            pt={<>Desistir</>}
+            en={<>Guess for me</>}
+          />
         </Button>
       </SpaceContainer>
     </Step>

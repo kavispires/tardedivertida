@@ -49,9 +49,15 @@ export function StepGuessPlayer({
   });
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Quem é esse jogador?" en="Who is this player?" />
+        <Translate
+          pt="Quem é esse jogador?"
+          en="Who is this player?"
+        />
       </StepTitle>
 
       <Instruction contained>
@@ -96,7 +102,11 @@ export function StepGuessPlayer({
         historyEntry={user.history?.[targetedPlayer.id]}
       />
 
-      <TurnOrder players={players} order={turnOrder} activePlayerId={activePlayerId} />
+      <TurnOrder
+        players={players}
+        order={turnOrder}
+        activePlayerId={activePlayerId}
+      />
     </Step>
   );
 }

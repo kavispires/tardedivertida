@@ -19,7 +19,10 @@ export function DevHeader({ title, subTitle, extra }: DevHeaderProps) {
           <span className="dev-header__subtitle">{subTitle}</span>
         </div>
         <div className="dev-header__extra">
-          <Space className="dev-header__extra-space" wrap>
+          <Space
+            className="dev-header__extra-space"
+            wrap
+          >
             {extra}
           </Space>
           <DevMenu />

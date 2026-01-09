@@ -1,6 +1,10 @@
 export function TalkIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#fd8087"
         d="M194.2 28.3C90.8 28.3 7 84.6 7 154c0 51.1 45.4 95 110.5 114.8v48.9a5 5 0 009 2.8l30.7-43.2c12 1.7 24.4 2.5 37.1 2.5 103.4 0 177.3-56.3 177.3-125.8s-74-125.7-177.4-125.7z"

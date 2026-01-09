@@ -75,16 +75,49 @@ export function AchievementsCompleteList({ playedGames }: AchievementsCompleteLi
   }, [playedGames, orderDirection, order, language]);
 
   return (
-    <Flex vertical gap={8}>
-      <Flex align="center" gap={8}>
+    <Flex
+      vertical
+      gap={8}
+    >
+      <Flex
+        align="center"
+        gap={8}
+      >
         <span>
-          <Translate pt="Ordenar por:" en="Sort by:" />
+          <Translate
+            pt="Ordenar por:"
+            en="Sort by:"
+          />
         </span>
         <Select
           options={[
-            { value: 'gameName', label: <Translate pt="Jogo" en="Game" /> },
-            { value: 'achievementName', label: <Translate pt="Medalha" en="Achievement" /> },
-            { value: 'count', label: <Translate pt="Conquistas" en="Medals" /> },
+            {
+              value: 'gameName',
+              label: (
+                <Translate
+                  pt="Jogo"
+                  en="Game"
+                />
+              ),
+            },
+            {
+              value: 'achievementName',
+              label: (
+                <Translate
+                  pt="Medalha"
+                  en="Achievement"
+                />
+              ),
+            },
+            {
+              value: 'count',
+              label: (
+                <Translate
+                  pt="Conquistas"
+                  en="Medals"
+                />
+              ),
+            },
           ]}
           value={order}
           onChange={(value) => setOrder(value)}

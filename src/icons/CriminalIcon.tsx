@@ -1,6 +1,10 @@
 export function CriminalIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#f9f8f9"
         d="M500.5 7.5h-489a4 4 0 00-4 4v489a4 4 0 004 4h15.04l230.608-5.597L485.46 504.5h15.04a4 4 0 004-4v-489a4 4 0 00-4-4z"

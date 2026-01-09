@@ -119,7 +119,14 @@ export function AnswersGrid({ grid, players, answersGrid, answersGroups }: Answe
           element.groupAnswer = answersGroups.find((g) => g.id === element.id);
         }
 
-        return <CellComponent key={key} data={element} updateAnswer={NOOP} players={players} />;
+        return (
+          <CellComponent
+            key={key}
+            data={element}
+            updateAnswer={NOOP}
+            players={players}
+          />
+        );
       })}
     </div>
   );
@@ -165,8 +172,18 @@ export function LetterCell({ data }: CellProps) {
   return (
     <div className={clsx('adedanhx-grid-cell adedanhx-grid-cell__header')}>
       <span className={clsx('adedanhx-grid-cell__letters-type', `adedanhx-grid-cell__letters-type--${type}`)}>
-        {type === 'ends-with' && <Translate pt="Termina com" en="Ends with" />}
-        {type === 'includes' && <Translate pt="Contém" en="Includes" />}
+        {type === 'ends-with' && (
+          <Translate
+            pt="Termina com"
+            en="Ends with"
+          />
+        )}
+        {type === 'includes' && (
+          <Translate
+            pt="Contém"
+            en="Includes"
+          />
+        )}
       </span>
       <span className="adedanhx-grid-cell__letters-label">
         {type === 'ends-with' && '-'}
@@ -205,9 +222,19 @@ function ResultCell({ data, players }: CellProps) {
 
   if (!groupAnswer || groupAnswer?.answers?.length === 0 || !players) {
     return (
-      <Popover content={<Translate pt="Ninguém respondeu essa" en="Nobody has answered this one" />}>
+      <Popover
+        content={
+          <Translate
+            pt="Ninguém respondeu essa"
+            en="Nobody has answered this one"
+          />
+        }
+      >
         <div className={clsx('adedanhx-grid-cell adedanhx-grid-cell__results')}>
-          <IconAvatar icon={<BoxQuestionMarkIcon />} size="large" />
+          <IconAvatar
+            icon={<BoxQuestionMarkIcon />}
+            size="large"
+          />
         </div>
       </Popover>
     );
@@ -215,16 +242,33 @@ function ResultCell({ data, players }: CellProps) {
 
   if (groupAnswer?.answers?.length > 0 && !result) {
     return (
-      <Popover content={<PopoverResult groupAnswer={groupAnswer} players={players} />}>
+      <Popover
+        content={
+          <PopoverResult
+            groupAnswer={groupAnswer}
+            players={players}
+          />
+        }
+      >
         <div className={clsx('adedanhx-grid-cell adedanhx-grid-cell__results')}>
-          <IconAvatar icon={<BoxXIcon />} size="large" />
+          <IconAvatar
+            icon={<BoxXIcon />}
+            size="large"
+          />
         </div>
       </Popover>
     );
   }
 
   return (
-    <Popover content={<PopoverResult groupAnswer={groupAnswer} players={players} />}>
+    <Popover
+      content={
+        <PopoverResult
+          groupAnswer={groupAnswer}
+          players={players}
+        />
+      }
+    >
       <div className={clsx('adedanhx-grid-cell adedanhx-grid-cell__results')}>
         <span className="adedanhx-grid-cell__results-player">
           <PlayerAvatarName player={players[result.main.playerId]} />
@@ -266,10 +310,23 @@ function PopoverResult({ groupAnswer, players }: PopoverResultProps) {
         <Fragment key={answer.id}>
           <PlayerAvatarName player={players[answer.playerId]} />
           <span>{answer.answer}</span>
-          {answer.autoRejected && <IconAvatar icon={<NoIcon />} size="small" />}
-          {answer.rejected && <IconAvatar icon={<SpeechBubbleThumbsDownIcon />} size="small" />}
+          {answer.autoRejected && (
+            <IconAvatar
+              icon={<NoIcon />}
+              size="small"
+            />
+          )}
+          {answer.rejected && (
+            <IconAvatar
+              icon={<SpeechBubbleThumbsDownIcon />}
+              size="small"
+            />
+          )}
           {!answer.rejected && !answer.autoRejected && (
-            <IconAvatar icon={<SpeechBubbleThumbsUpIcon />} size="small" />
+            <IconAvatar
+              icon={<SpeechBubbleThumbsUpIcon />}
+              size="small"
+            />
           )}
         </Fragment>
       ))}

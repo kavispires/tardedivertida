@@ -51,12 +51,22 @@ export function AnimatedRaceTrack({
   const card = runActivity.cardId ? cardsDict[runActivity.cardId] : null;
 
   return (
-    <SpaceContainer orientation="vertical" align="center">
-      <RaceTrack runActivity={runActivity} players={players} />
+    <SpaceContainer
+      orientation="vertical"
+      align="center"
+    >
+      <RaceTrack
+        runActivity={runActivity}
+        players={players}
+      />
 
       {card && (
         <>
-          <Progress steps={race.length} showInfo={false} percent={(100 * (currentIndex + 1)) / race.length} />
+          <Progress
+            steps={race.length}
+            showInfo={false}
+            percent={(100 * (currentIndex + 1)) / race.length}
+          />
           <CardPlay
             runActivity={runActivity}
             players={players}

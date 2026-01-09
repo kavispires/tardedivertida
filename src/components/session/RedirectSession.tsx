@@ -51,10 +51,23 @@ export function RedirectSession({ state }: RedirectSessionProps) {
           navigate(`/${redirect.gameId}`);
         }}
         okButtonProps={{ loading: isLoading }}
-        okText={<Translate pt="Quero participar!" en="Take me there!" />}
-        cancelText={<Translate pt="Cancelar" en="Cancel" />}
+        okText={
+          <Translate
+            pt="Quero participar!"
+            en="Take me there!"
+          />
+        }
+        cancelText={
+          <Translate
+            pt="Cancelar"
+            en="Cancel"
+          />
+        }
       >
-        <Flex align="center" justify="center">
+        <Flex
+          align="center"
+          justify="center"
+        >
           <GameStrip
             width={340}
             title={gameInfo.title}

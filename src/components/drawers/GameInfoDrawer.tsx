@@ -42,12 +42,19 @@ export function GameInfoDrawer({ players, state, userId }: GameInfoDrawerProps) 
 
   return (
     <div className="game-info-drawer-container">
-      <button type="button" className="game-info-drawer-button" onClick={toggleDrawer}>
+      <button
+        type="button"
+        className="game-info-drawer-button"
+        onClick={toggleDrawer}
+      >
         <span className="game-info-drawer-button__game-title">
           {info.title?.[language] ?? '?'}
           <DebugOnly devOnly>({players?.[userId]?.name})</DebugOnly>
         </span>
-        <Avatar icon={<SettingOutlined />} size="small" />
+        <Avatar
+          icon={<SettingOutlined />}
+          size="small"
+        />
         <div className="game-info-drawer-button__player-status-bar">
           <PlayersStatusBar players={players} />
         </div>
@@ -70,20 +77,43 @@ export function GameInfoDrawer({ players, state, userId }: GameInfoDrawerProps) 
       >
         {isAuthenticated && !isGuest && (
           <p>
-            <Badge size="default" dot color="green">
-              <PlayerAvatar avatarId={players?.[userId]?.avatarId} shape="square" size="small" />
+            <Badge
+              size="default"
+              dot
+              color="green"
+            >
+              <PlayerAvatar
+                avatarId={players?.[userId]?.avatarId}
+                shape="square"
+                size="small"
+              />
             </Badge>{' '}
-            <Translate pt="Você está logado!" en="You are logged in!" />
+            <Translate
+              pt="Você está logado!"
+              en="You are logged in!"
+            />
           </p>
         )}
 
         <Space>
-          <Button type="default" onClick={() => toggleSettingsDrawer(true)} icon={<SettingOutlined />}>
-            <Translate pt="Configurações" en="Settings" />
+          <Button
+            type="default"
+            onClick={() => toggleSettingsDrawer(true)}
+            icon={<SettingOutlined />}
+          >
+            <Translate
+              pt="Configurações"
+              en="Settings"
+            />
           </Button>
           <RulesModal gameInfo={info} />
           <Drawer
-            title={<Translate pt="Configurações" en="Settings" />}
+            title={
+              <Translate
+                pt="Configurações"
+                en="Settings"
+              />
+            }
             size={200}
             closable={false}
             onClose={toggleSettingsDrawer}
@@ -92,7 +122,12 @@ export function GameInfoDrawer({ players, state, userId }: GameInfoDrawerProps) 
             <SectionSettings />
           </Drawer>
           {isAdmin && (
-            <Button type="default" danger onClick={() => navigate('/hub')} icon={<FireOutlined />}>
+            <Button
+              type="default"
+              danger
+              onClick={() => navigate('/hub')}
+              icon={<FireOutlined />}
+            >
               Hub
             </Button>
           )}
@@ -100,7 +135,10 @@ export function GameInfoDrawer({ players, state, userId }: GameInfoDrawerProps) 
 
         <Divider />
 
-        <SectionMeta round={state?.round || 0} groupScore={state?.groupScore} />
+        <SectionMeta
+          round={state?.round || 0}
+          groupScore={state?.groupScore}
+        />
 
         <SectionRankedPlayers players={players} />
       </Drawer>

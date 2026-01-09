@@ -94,7 +94,10 @@ export const RuleInstruction = ({
       className={clsx(baseClass, fullWidth && `${baseClass}--full-width`, className)}
       data-testid="rule-instruction"
     >
-      <div className={clsx(`${baseClass}__icon`, `${baseClass}__icon--${type}`)} style={color}>
+      <div
+        className={clsx(`${baseClass}__icon`, `${baseClass}__icon--${type}`)}
+        style={color}
+      >
         <div className={animationClass}>{icon}</div>
       </div>
       {sfx}

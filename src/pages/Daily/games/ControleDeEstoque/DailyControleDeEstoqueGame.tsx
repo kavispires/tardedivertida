@@ -6,5 +6,10 @@ import { DailyControleDeEstoque } from './components/DailyControleDeEstoque';
 import './utils/styles.scss';
 
 export function DailyControleDeEstoqueGame() {
-  return <DailyGame gameName="controle-de-estoque" GameComponent={DailyControleDeEstoque} />;
+  return (
+    <DailyGame
+      gameName="controle-de-estoque"
+      GameComponent={DailyControleDeEstoque}
+    />
+  );
 }

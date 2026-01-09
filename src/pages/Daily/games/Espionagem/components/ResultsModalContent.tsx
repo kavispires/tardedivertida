@@ -59,20 +59,36 @@ export function ResultsModalContent({
 
   return (
     <SpaceContainer vertical>
-      <Typography.Title level={2} className="center">
+      <Typography.Title
+        level={2}
+        className="center"
+      >
         {win ? (
           <>
-            <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Parabéns!" en="Congratulations!" />
+            <IconAvatar icon={<TrophyIcon />} />{' '}
+            <Translate
+              pt="Parabéns!"
+              en="Congratulations!"
+            />
           </>
         ) : (
           <>
-            <IconAvatar icon={<BoxXIcon />} /> <Translate pt="Que pena!" en="Too bad!" />
+            <IconAvatar icon={<BoxXIcon />} />{' '}
+            <Translate
+              pt="Que pena!"
+              en="Too bad!"
+            />
           </>
         )}
       </Typography.Title>
 
       <Flex align="center">
-        {culprit && <ImageCard cardId={getSuspectImageId(culprit.id, 'gb')} cardWidth={96} />}
+        {culprit && (
+          <ImageCard
+            cardId={getSuspectImageId(culprit.id, 'gb')}
+            cardWidth={96}
+          />
+        )}
         <Flex vertical>
           <Typography.Paragraph className="center">
             {win ? (
@@ -81,7 +97,10 @@ export function ResultsModalContent({
                 en="You caught the culprit for the crime:"
               />
             ) : (
-              <Translate pt="Você deixou o culpado escapar! Crime:" en="You let the culprit escape! Crime:" />
+              <Translate
+                pt="Você deixou o culpado escapar! Crime:"
+                en="You let the culprit escape! Crime:"
+              />
             )}
           </Typography.Paragraph>
           <TextHighlight className="espionagem-crime-title">
@@ -101,7 +120,10 @@ export function ResultsModalContent({
         />
       )}
 
-      <CopyToClipboardResult result={result} rows={3} />
+      <CopyToClipboardResult
+        result={result}
+        rows={3}
+      />
 
       <NextGameSuggestion />
     </SpaceContainer>

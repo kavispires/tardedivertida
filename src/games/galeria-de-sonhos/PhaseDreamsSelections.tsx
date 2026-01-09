@@ -25,7 +25,12 @@ export function PhaseDreamsSelections({ state, players, meta, user }: PhaseProps
   const announcement = (
     <PhaseAnnouncement
       icon={<DreamIcon />}
-      title={<Translate pt="Visite sonhos!" en="Visit dreams!" />}
+      title={
+        <Translate
+          pt="Visite sonhos!"
+          en="Visit dreams!"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -35,8 +40,15 @@ export function PhaseDreamsSelections({ state, players, meta, user }: PhaseProps
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={GALERIA_DE_SONHOS_PHASES.DREAMS_SELECTION}>
-      <StepSwitcher step={step} players={players} waitingRoom={{ content: <SelectedDreams user={user} /> }}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={GALERIA_DE_SONHOS_PHASES.DREAMS_SELECTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+        waitingRoom={{ content: <SelectedDreams user={user} /> }}
+      >
         {/* Step 0 */}
         <StepDreamsSelection
           table={state.table}

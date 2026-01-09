@@ -25,12 +25,23 @@ export function PhaseSecretWordSelection({ state, players }: PhaseProps) {
   const onSubmitSecretWord = useOnSubmitSecretWordAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={VENDAVAL_DE_PALPITE_PHASES.SECRET_WORD_SELECTION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={VENDAVAL_DE_PALPITE_PHASES.SECRET_WORD_SELECTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<KnowledgeIcon />}
-          title={<Translate pt="A Palavra Secreta" en="The Secret Word" />}
+          title={
+            <Translate
+              pt="A Palavra Secreta"
+              en="The Secret Word"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={5}

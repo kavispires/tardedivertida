@@ -27,7 +27,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionEscapeRoom() {
-  return <Session gameCollection={GAME_COLLECTION.ESCAPE_ROOM} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.ESCAPE_ROOM}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionEscapeRoom;

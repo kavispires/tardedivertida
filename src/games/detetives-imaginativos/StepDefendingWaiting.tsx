@@ -61,13 +61,26 @@ export function StepDefendingWaiting({
         )}
       </RuleInstruction>
 
-      <SpaceContainer align="center" wrap>
-        <TableFocus table={table} currentPlayer={currentPlayer} />
+      <SpaceContainer
+        align="center"
+        wrap
+      >
+        <TableFocus
+          table={table}
+          currentPlayer={currentPlayer}
+        />
       </SpaceContainer>
 
-      <TurnOrder players={players} activePlayerId={currentPlayer.id} order={turnOrder} />
+      <TurnOrder
+        players={players}
+        activePlayerId={currentPlayer.id}
+        order={turnOrder}
+      />
 
-      <YourSelectedCards table={table} user={user} />
+      <YourSelectedCards
+        table={table}
+        user={user}
+      />
     </>
   );
 }

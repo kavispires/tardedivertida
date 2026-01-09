@@ -65,7 +65,10 @@ export function GalleryWindowGuesses({
   return (
     <div className="sda-gallery__guesses">
       <SlideShowLabel>
-        <Translate pt="Participantes votaram" en="Players voted" />
+        <Translate
+          pt="Participantes votaram"
+          en="Players voted"
+        />
       </SlideShowLabel>
       {entries.map((entry, index) => {
         const subjectName = (
@@ -101,13 +104,23 @@ export function GalleryWindowGuesses({
         );
 
         return (
-          <div key={`guess-${entry.id}-${index}`} className="sda-gallery__guess">
+          <div
+            key={`guess-${entry.id}-${index}`}
+            className="sda-gallery__guess"
+          >
             <SlideShowBubbleValue
               winner={entry.correctness === 2}
               backgroundColor={artistColor}
               extra={
-                <Flex align="center" gap={3}>
-                  <IconAvatar icon={<StarIcon />} size="small" /> {entry.score}
+                <Flex
+                  align="center"
+                  gap={3}
+                >
+                  <IconAvatar
+                    icon={<StarIcon />}
+                    size="small"
+                  />{' '}
+                  {entry.score}
                 </Flex>
               }
             >
@@ -122,7 +135,10 @@ export function GalleryWindowGuesses({
               )}
             </SlideShowBubbleValue>
 
-            <SlideShowPlayersList playersIds={entry.playersIds} players={players} />
+            <SlideShowPlayersList
+              playersIds={entry.playersIds}
+              players={players}
+            />
           </div>
         );
       })}

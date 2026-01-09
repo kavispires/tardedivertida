@@ -22,7 +22,12 @@ export function PhaseCharacterFiltering({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<FilterIcon />}
-      title={<Translate pt="Quem você conhece?" en="Who do you know?" />}
+      title={
+        <Translate
+          pt="Quem você conhece?"
+          en="Who do you know?"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -36,8 +41,14 @@ export function PhaseCharacterFiltering({ state, players, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={QUEM_SOU_EU_PHASES.CHARACTER_FILTERING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={QUEM_SOU_EU_PHASES.CHARACTER_FILTERING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepSelectCharacters
           user={user}

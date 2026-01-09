@@ -83,7 +83,12 @@ export function GridMap<TCellData, TCellAdditionalProps = any>({
             }}
           >
             {grid.cells.map((cell: GridMapCellType<TCellData | null>) => (
-              <CellComponent key={cell.id} cell={cell} grid={grid} cellProps={cellProps} />
+              <CellComponent
+                key={cell.id}
+                cell={cell}
+                grid={grid}
+                cellProps={cellProps}
+              />
             ))}
           </TransformComponent>
 
@@ -102,18 +107,30 @@ function GridMapControls({ position }: GridMapControlsProps) {
   const { zoomIn, zoomOut, resetTransform, centerView } = useControls();
 
   return (
-    <Space.Compact size="small" className={clsx('grid-map-controls', `grid-map-controls--${position}`)}>
-      <Tooltip title="Zoom In" placement={position}>
+    <Space.Compact
+      size="small"
+      className={clsx('grid-map-controls', `grid-map-controls--${position}`)}
+    >
+      <Tooltip
+        title="Zoom In"
+        placement={position}
+      >
         <Button onClick={() => zoomIn()}>
           <ZoomInOutlined />
         </Button>
       </Tooltip>
-      <Tooltip title="Zoom Out" placement={position}>
+      <Tooltip
+        title="Zoom Out"
+        placement={position}
+      >
         <Button onClick={() => zoomOut()}>
           <ZoomOutOutlined />
         </Button>
       </Tooltip>
-      <Tooltip title="Reset" placement={position}>
+      <Tooltip
+        title="Reset"
+        placement={position}
+      >
         <Button
           onClick={() => {
             resetTransform();

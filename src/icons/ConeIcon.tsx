@@ -1,6 +1,10 @@
 export function ConeIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill={props.color ?? '#ff9b46'}
         d="M100.22 466.76 217.56 15.45a9.17 9.17 0 0 1 8.87-6.86h59.13c4.17 0 7.82 2.82 8.87 6.86l117.34 451.31"

@@ -24,14 +24,26 @@ export function StepSecretClueWaiting({
   announcement,
 }: StepSecretClueWaitingProps) {
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle wait>
-        <Translate pt="Aguarde..." en="Please wait..." />
+        <Translate
+          pt="Aguarde..."
+          en="Please wait..."
+        />
       </StepTitle>
 
       <RuleInstruction type="wait">
-        <PlayerAvatarName player={leader} addressUser />{' '}
-        <Translate pt="está escrevendo a pista secreta." en="is writing the secret clue." />
+        <PlayerAvatarName
+          player={leader}
+          addressUser
+        />{' '}
+        <Translate
+          pt="está escrevendo a pista secreta."
+          en="is writing the secret clue."
+        />
         <br />
         <Translate
           pt="Enquanto isso, examine suas cartas! Você as usará durante esta rodada."
@@ -39,10 +51,18 @@ export function StepSecretClueWaiting({
         />
       </RuleInstruction>
 
-      <TurnOrder players={players} activePlayerId={leader.id} order={turnOrder} reorderByUser={leader.id} />
+      <TurnOrder
+        players={players}
+        activePlayerId={leader.id}
+        order={turnOrder}
+        reorderByUser={leader.id}
+      />
 
       <FloatingHand>
-        <ImageCardHand hand={user.hand} sizeRatio={user.hand?.length} />
+        <ImageCardHand
+          hand={user.hand}
+          sizeRatio={user.hand?.length}
+        />
       </FloatingHand>
     </Step>
   );

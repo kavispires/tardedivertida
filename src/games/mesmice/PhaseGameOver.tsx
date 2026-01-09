@@ -14,11 +14,24 @@ import { FinalGalleryEntry } from './components/FinalGalleryEntry';
 
 export function PhaseGameOver({ state, players }: PhaseProps) {
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<CrownIcon />}>
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<CrownIcon />}
+    >
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
 
       <TitledContainer
-        title={<Translate pt="Objetos, Dicas e Características" en="Objects, Clues and Features" />}
+        title={
+          <Translate
+            pt="Objetos, Dicas e Características"
+            en="Objects, Clues and Features"
+          />
+        }
         contentProps={{ className: 'final-gallery' }}
       >
         {state.gallery.map((entry: MesmiceGalleryEntry) => {

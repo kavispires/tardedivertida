@@ -57,10 +57,16 @@ export const TrackPortaDosDesesperados = ({ track, onSubmitAnswer, user }: Track
         <Image.PreviewGroup>
           <Book>
             <ImageBlurButtonContainer cardId={track.data.book}>
-              <ImageCard cardId={track.data.book[0]} cardWidth={140} />
+              <ImageCard
+                cardId={track.data.book[0]}
+                cardWidth={140}
+              />
             </ImageBlurButtonContainer>
             <ImageBlurButtonContainer cardId={track.data.book}>
-              <ImageCard cardId={track.data.book?.[1] || track.data.book[0]} cardWidth={140} />
+              <ImageCard
+                cardId={track.data.book?.[1] || track.data.book[0]}
+                cardWidth={140}
+              />
             </ImageBlurButtonContainer>
           </Book>
         </Image.PreviewGroup>
@@ -69,10 +75,16 @@ export const TrackPortaDosDesesperados = ({ track, onSubmitAnswer, user }: Track
         <SpaceContainer>
           {track.data.doors.map((cardId: ImageCardId) => {
             return (
-              <SpaceContainer vertical key={cardId}>
+              <SpaceContainer
+                vertical
+                key={cardId}
+              >
                 <ImageBlurButtonContainer cardId={cardId}>
                   <DoorFrame width={doorWidth}>
-                    <ImageCard cardId={cardId} cardWidth={150} />
+                    <ImageCard
+                      cardId={cardId}
+                      cardWidth={150}
+                    />
                   </DoorFrame>
                 </ImageBlurButtonContainer>
                 <Button
@@ -82,7 +94,10 @@ export const TrackPortaDosDesesperados = ({ track, onSubmitAnswer, user }: Track
                   loading={isLoading}
                   onClick={() => onSelect(cardId)}
                 >
-                  <Translate pt="Esse é a saída" en="This is the exit" />
+                  <Translate
+                    pt="Esse é a saída"
+                    en="This is the exit"
+                  />
                 </Button>
               </SpaceContainer>
             );

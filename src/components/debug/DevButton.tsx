@@ -11,7 +11,12 @@ import { DebugOnly } from './DebugOnly';
 export function DevButton({ children, ghost, type, ...rest }: ButtonProps) {
   return (
     <DebugOnly devOnly>
-      <Button icon={<BugFilled />} ghost={ghost ?? true} type={type ?? 'primary'} {...rest}>
+      <Button
+        icon={<BugFilled />}
+        ghost={ghost ?? true}
+        type={type ?? 'primary'}
+        {...rest}
+      >
         {children}
       </Button>
     </DebugOnly>

@@ -14,9 +14,18 @@ export function ResizingTest({ onResult, step }: TestStepProps) {
   const [canvasSize] = useGlobalLocalStorage('canvasSize');
 
   return (
-    <SpaceContainer className="full-width" vertical>
-      <Title level={2} size="small">
-        <Translate pt="Redimensionador" en="Resizer" />
+    <SpaceContainer
+      className="full-width"
+      vertical
+    >
+      <Title
+        level={2}
+        size="small"
+      >
+        <Translate
+          pt="Redimensionador"
+          en="Resizer"
+        />
       </Title>
 
       <Instruction contained>
@@ -27,7 +36,10 @@ export function ResizingTest({ onResult, step }: TestStepProps) {
       </Instruction>
 
       <CanvasResizer />
-      <SpaceContainer wrap className="full-width">
+      <SpaceContainer
+        wrap
+        className="full-width"
+      >
         <ImageCardBack cardWidth={canvasSize ?? 50} />
       </SpaceContainer>
 

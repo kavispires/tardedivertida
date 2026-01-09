@@ -31,7 +31,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionArteRuim() {
-  return <Session gameCollection={GAME_COLLECTION.ARTE_RUIM} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.ARTE_RUIM}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionArteRuim;

@@ -31,7 +31,11 @@ export const TrackMenteColetiva = ({ track, onSubmitAnswer }: TrackProps) => {
   return (
     <>
       <MinigameTitle title={{ pt: 'Mente Coletiva', en: 'Herd Mind' }} />
-      <SpaceContainer vertical contained className="margin">
+      <SpaceContainer
+        vertical
+        contained
+        className="margin"
+      >
         <RuleInstruction type="action">
           <Translate
             pt="Qual das respostas provavelmente viria na sua cabeça primeiro ao ver a pergunta?"
@@ -40,14 +44,25 @@ export const TrackMenteColetiva = ({ track, onSubmitAnswer }: TrackProps) => {
         </RuleInstruction>
 
         <SpaceContainer>
-          <Card className="m-question-wrapper" color="yellow">
-            <GroupQuestionCard question={track.data.question} overrideNumber={2} />
+          <Card
+            className="m-question-wrapper"
+            color="yellow"
+          >
+            <GroupQuestionCard
+              question={track.data.question}
+              overrideNumber={2}
+            />
           </Card>
         </SpaceContainer>
 
         <SpaceContainer wrap>
           {track.data.options.map((option: string) => (
-            <Button key={option} onClick={() => onSubmit(option)} size="large" disabled={isLoading}>
+            <Button
+              key={option}
+              onClick={() => onSubmit(option)}
+              size="large"
+              disabled={isLoading}
+            >
               {option}
             </Button>
           ))}

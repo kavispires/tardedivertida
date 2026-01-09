@@ -95,23 +95,35 @@ export function StepItemsSelection({
   const getCountsInstructions = () => {
     const result = [
       <WeaponHighlight key="mean">
-        <Translate pt="16 meios" en="16 means of murder" />
+        <Translate
+          pt="16 meios"
+          en="16 means of murder"
+        />
       </WeaponHighlight>,
       <EvidenceHighlight key="evidence">
-        <Translate pt="16 evidências" en="16 pieces of evidence" />
+        <Translate
+          pt="16 evidências"
+          en="16 pieces of evidence"
+        />
       </EvidenceHighlight>,
     ];
     if (isVictimGame) {
       result.push(
         <VictimHighlight key="victim">
-          <Translate pt="16 vítimas" en="16 victims" />
+          <Translate
+            pt="16 vítimas"
+            en="16 victims"
+          />
         </VictimHighlight>,
       );
     }
     if (isLocationGame) {
       result.push(
         <LocationHighlight key="location">
-          <Translate pt="16 locais" en="16 locations" />
+          <Translate
+            pt="16 locais"
+            en="16 locations"
+          />
         </LocationHighlight>,
       );
     }
@@ -122,7 +134,10 @@ export function StepItemsSelection({
   return (
     <Step announcement={announcement}>
       <StepTitle>
-        <Translate pt="Qual foi seu último crime?" en="How was your last crime?" />
+        <Translate
+          pt="Qual foi seu último crime?"
+          en="How was your last crime?"
+        />
       </StepTitle>
       <RuleInstruction type="action">
         <Translate
@@ -176,7 +191,10 @@ export function StepItemsSelection({
 
       <ul className="h-items-selection">
         {userItems.map((itemId) => (
-          <li key={itemId} className="h-items-selection__item">
+          <li
+            key={itemId}
+            className="h-items-selection__item"
+          >
             <TransparentButton onClick={() => onSelectItem(items[itemId])}>
               <CrimeItemCard
                 item={items[itemId]}
@@ -189,8 +207,14 @@ export function StepItemsSelection({
       </ul>
 
       <SpaceContainer>
-        <Button onClick={onRandomSelect} size="large">
-          <Translate pt="Selecionar aleatoriamente" en="Random picks" />
+        <Button
+          onClick={onRandomSelect}
+          size="large"
+        >
+          <Translate
+            pt="Selecionar aleatoriamente"
+            en="Random picks"
+          />
         </Button>
 
         <ContinueButton

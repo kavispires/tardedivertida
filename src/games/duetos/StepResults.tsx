@@ -31,12 +31,21 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
   const galleryNoMatches = useMemo(() => gallery.filter((entry) => entry.players.length === 1), [gallery]);
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Resultado" en="Results" />
+        <Translate
+          pt="Resultado"
+          en="Results"
+        />
       </StepTitle>
       <Title size="xx-small">
-        <Translate pt="Pares Vencedores" en="Winnings Pairs" />
+        <Translate
+          pt="Pares Vencedores"
+          en="Winnings Pairs"
+        />
       </Title>
       {galleryMatches.length > 0 && (
         <RuleInstruction type="scoring">
@@ -60,12 +69,19 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
       <SpaceContainer wrap>
         {galleryMatches.length === 0 && (
           <RuleInstruction type="event">
-            <Translate pt="Ninguém deu match!" en="Nobody matched anything!" />
+            <Translate
+              pt="Ninguém deu match!"
+              en="Nobody matched anything!"
+            />
           </RuleInstruction>
         )}
         {galleryMatches.map((entry, index) => {
           return (
-            <SpaceContainer key={entry.pairId} className="pairs-grid__pair" vertical>
+            <SpaceContainer
+              key={entry.pairId}
+              className="pairs-grid__pair"
+              vertical
+            >
               <SpaceContainer>
                 <Avatar.Group max={{ count: 7 }}>
                   {entry.players.map((playerId) => (
@@ -91,7 +107,10 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
       {leftOut.length > 1 && (
         <>
           <Title size="xx-small">
-            <Translate pt="Sobras Vencedoras" en="Left Out Matches" />
+            <Translate
+              pt="Sobras Vencedoras"
+              en="Left Out Matches"
+            />
           </Title>
 
           <RuleInstruction type="scoring">
@@ -111,10 +130,17 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
             />
           </RuleInstruction>
 
-          <SpaceContainer wrap style={{ alignItems: 'flex-start' }}>
+          <SpaceContainer
+            wrap
+            style={{ alignItems: 'flex-start' }}
+          >
             {leftOut.map((entry, index) => {
               return (
-                <Space key={entry.id} className="results" orientation="vertical">
+                <Space
+                  key={entry.id}
+                  className="results"
+                  orientation="vertical"
+                >
                   <SpaceContainer>
                     <Avatar.Group max={{ count: 7 }}>
                       {entry.players.map((playerId) => (
@@ -127,7 +153,11 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
                     </Avatar.Group>
                   </SpaceContainer>
 
-                  <Pair index={index % 6} placeholder={pool[0]} firstItem={entry.item} />
+                  <Pair
+                    index={index % 6}
+                    placeholder={pool[0]}
+                    firstItem={entry.item}
+                  />
                 </Space>
               );
             })}
@@ -135,20 +165,38 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
         </>
       )}
       <SpaceContainer>
-        <TimedButton duration={45} onExpire={goToNextStep} onClick={goToNextStep} icon={<TrophyOutlined />}>
-          <Translate pt="Ver Ranking" en="See Ranking" />
+        <TimedButton
+          duration={45}
+          onExpire={goToNextStep}
+          onClick={goToNextStep}
+          icon={<TrophyOutlined />}
+        >
+          <Translate
+            pt="Ver Ranking"
+            en="See Ranking"
+          />
         </TimedButton>
       </SpaceContainer>
       {galleryNoMatches.length > 0 && (
         <>
           <Title size="xx-small">
-            <Translate pt="Pares que não deram match" en="Pairs that didn't match" />
+            <Translate
+              pt="Pares que não deram match"
+              en="Pairs that didn't match"
+            />
           </Title>
 
-          <SpaceContainer wrap style={{ alignItems: 'flex-start' }}>
+          <SpaceContainer
+            wrap
+            style={{ alignItems: 'flex-start' }}
+          >
             {galleryNoMatches.map((entry, index) => {
               return (
-                <SpaceContainer key={entry.pairId} className="pairs-grid__pair" vertical>
+                <SpaceContainer
+                  key={entry.pairId}
+                  className="pairs-grid__pair"
+                  vertical
+                >
                   <SpaceContainer>
                     <Avatar.Group max={{ count: 7 }}>
                       {entry.players.map((playerId) => (

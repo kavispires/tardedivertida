@@ -63,7 +63,10 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
 
   return (
     <Layout className="app">
-      <Header icon={<DailyAlienGameIcon />} localStorageKey={SETTINGS.KEY}>
+      <Header
+        icon={<DailyAlienGameIcon />}
+        localStorageKey={SETTINGS.KEY}
+      >
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <DailyContent>
@@ -82,10 +85,21 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
             />
           </Typography.Text>
 
-          <Space orientation="vertical" className="alien-attributes">
+          <Space
+            orientation="vertical"
+            className="alien-attributes"
+          >
             {data.attributes.map((attribute) => (
-              <Flex className="alien-attributes__attribute" key={attribute.id} gap={8}>
-                <SignCard signId={attribute.spriteId} width={width} className="alien-attributes__sign" />
+              <Flex
+                className="alien-attributes__attribute"
+                key={attribute.id}
+                gap={8}
+              >
+                <SignCard
+                  signId={attribute.spriteId}
+                  width={width}
+                  className="alien-attributes__sign"
+                />
                 <ArrowRightOutlined />
                 <Flex className="alien-attributes__items">
                   {attribute.itemsIds.map((itemId) => (
@@ -106,18 +120,34 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
 
         {isComplete && (
           <Region>
-            <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
-              <Translate pt="Ver Resultado" en="Show Results" />
+            <Button
+              onClick={() => setShowResultModal(true)}
+              type="primary"
+              icon={<BarChartOutlined />}
+            >
+              <Translate
+                pt="Ver Resultado"
+                en="Show Results"
+              />
             </Button>
           </Region>
         )}
 
-        <Region key={latestAttempt} className={shouldShakeScreen ? getAnimationClass('shakeX') : ''}>
+        <Region
+          key={latestAttempt}
+          className={shouldShakeScreen ? getAnimationClass('shakeX') : ''}
+        >
           <Typography.Text strong>
-            <Translate pt="O alienígena quer isso:" en="The alien wants these:" />
+            <Translate
+              pt="O alienígena quer isso:"
+              en="The alien wants these:"
+            />
           </Typography.Text>
 
-          <Flex className="alien-requests" gap={8}>
+          <Flex
+            className="alien-requests"
+            gap={8}
+          >
             {data.requests.map((request, index) => {
               const selected = selection[index];
               return (
@@ -129,7 +159,11 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
                   justify="flex-start"
                 >
                   <Avatar className="mb-2">{index + 1}</Avatar>
-                  <Flex vertical className="alien-requests__attributes" align="center">
+                  <Flex
+                    vertical
+                    className="alien-requests__attributes"
+                    align="center"
+                  >
                     <SignCard
                       signId={request.spritesIds[2]}
                       width={width - 12}
@@ -153,7 +187,11 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
                       className="mt-1"
                       disabled={isComplete}
                     >
-                      <DailyItem itemId={selected} width={isLose ? width / 2 : width} padding={0} />
+                      <DailyItem
+                        itemId={selected}
+                        width={isLose ? width / 2 : width}
+                        padding={0}
+                      />
                     </TransparentButton>
                   ) : (
                     <TransparentButton
@@ -163,7 +201,10 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
                       active={slotIndex === index}
                       activeClass="alien-request__slot--active"
                     >
-                      <Avatar shape="square" size="large">
+                      <Avatar
+                        shape="square"
+                        size="large"
+                      >
                         ?
                       </Avatar>
                     </TransparentButton>
@@ -201,8 +242,14 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
 
           {isReady && !isComplete && (
             <Region>
-              <Button type="primary" onClick={submitGuess}>
-                <Translate pt="Enviar" en="Submit" />
+              <Button
+                type="primary"
+                onClick={submitGuess}
+              >
+                <Translate
+                  pt="Enviar"
+                  en="Submit"
+                />
               </Button>
             </Region>
           )}
@@ -210,7 +257,10 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
 
         <Region>
           <Typography.Text strong>
-            <Translate pt="E essas são as coisas disponíveis:" en="And these are the available things:" />
+            <Translate
+              pt="E essas são as coisas disponíveis:"
+              en="And these are the available things:"
+            />
           </Typography.Text>
 
           <SpaceContainer wrap>
@@ -221,7 +271,11 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
                 disabled={isComplete || isReady || selection.includes(itemId)}
                 className="alien-items__item-button"
               >
-                <DailyItem itemId={itemId} width={width} padding={0} />
+                <DailyItem
+                  itemId={itemId}
+                  width={width}
+                  padding={0}
+                />
               </TransparentButton>
             ))}
           </SpaceContainer>
@@ -230,9 +284,15 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
         {!isComplete && previousGuesses.length > 0 && (
           <Region>
             <Typography.Text strong>
-              <Translate pt="Tentativas anteriores" en="Previous Guesses:" />
+              <Translate
+                pt="Tentativas anteriores"
+                en="Previous Guesses:"
+              />
             </Typography.Text>
-            <Space orientation="vertical" className="previous-guesses">
+            <Space
+              orientation="vertical"
+              className="previous-guesses"
+            >
               {previousGuesses.map((guess) => (
                 <Space key={String(guess)}>
                   {guess.map((itemId) => (
@@ -250,7 +310,11 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
           </Region>
         )}
 
-        <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
+        <Modal
+          open={showResultModal}
+          onCancel={() => setShowResultModal(false)}
+          footer={null}
+        >
           <ResultsModalContent
             challengeNumber={data.number}
             win={isWin}

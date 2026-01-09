@@ -28,14 +28,22 @@ export function PhasePrompt({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<ChoiceIcon />}
-      title={<Translate pt="Pergunta" en="Question" />}
+      title={
+        <Translate
+          pt="Pergunta"
+          en="Question"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={4}
     >
       <Instruction>
         {isUserTheActivePlayer ? (
-          <Translate pt="É a sua vez!" en="It's your turn!" />
+          <Translate
+            pt="É a sua vez!"
+            en="It's your turn!"
+          />
         ) : (
           <Translate
             pt={
@@ -55,8 +63,14 @@ export function PhasePrompt({ state, players, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={TA_NA_CARA_PHASES.PROMPT}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={TA_NA_CARA_PHASES.PROMPT}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <ViewOr condition={isUserTheActivePlayer}>
           <StepSelectPrompt

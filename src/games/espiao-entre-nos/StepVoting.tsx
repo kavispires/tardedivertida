@@ -73,22 +73,42 @@ export function StepVoting({
         <View key="others">
           {!user.ready ? (
             <Space>
-              <Button ghost disabled={isLoading} onClick={() => onSubmitVote({ vote: true })}>
-                <Translate pt="Também acho!" en="Agree!" />
+              <Button
+                ghost
+                disabled={isLoading}
+                onClick={() => onSubmitVote({ vote: true })}
+              >
+                <Translate
+                  pt="Também acho!"
+                  en="Agree!"
+                />
               </Button>
-              <Button ghost disabled={isLoading} onClick={() => onSubmitVote({ vote: false })}>
-                <Translate pt="Não é ele(a)" en="It's not them" />
+              <Button
+                ghost
+                disabled={isLoading}
+                onClick={() => onSubmitVote({ vote: false })}
+              >
+                <Translate
+                  pt="Não é ele(a)"
+                  en="It's not them"
+                />
               </Button>
             </Space>
           ) : (
             <Instruction className="e-phase-instruction">
-              <Translate pt="Voto computado" en="Vote accepted" />
+              <Translate
+                pt="Voto computado"
+                en="Vote accepted"
+              />
             </Instruction>
           )}
         </View>
       </ViewSwitch>
 
-      <Card location={user.location} role={user.role} />
+      <Card
+        location={user.location}
+        role={user.role}
+      />
 
       <ReadyPlayersBar
         players={players}

@@ -27,7 +27,14 @@ export function PopoverRule({ content, label, showLabel = false }: PopoverRulePr
       position={0}
       icon={<ReadOutlined />}
       content={content}
-      label={label || <Translate pt=" Regras" en=" Rules" />}
+      label={
+        label || (
+          <Translate
+            pt=" Regras"
+            en=" Rules"
+          />
+        )
+      }
       showLabel={showLabel}
     />
   );

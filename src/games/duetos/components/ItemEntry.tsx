@@ -53,7 +53,11 @@ export function ItemEntry({ itemEntry, className, size, looseItem }: ItemEntryPr
 
   if (itemEntry.type === 'words') {
     return (
-      <Card hideHeader className={className} size={size}>
+      <Card
+        hideHeader
+        className={className}
+        size={size}
+      >
         {itemEntry.value.text}
       </Card>
     );
@@ -62,7 +66,11 @@ export function ItemEntry({ itemEntry, className, size, looseItem }: ItemEntryPr
   if (itemEntry.type === 'suspects') {
     return (
       <div className={className}>
-        <SuspectCard suspect={itemEntry.value} width={100 * sizeMultiplier} hideName />
+        <SuspectCard
+          suspect={itemEntry.value}
+          width={100 * sizeMultiplier}
+          hideName
+        />
       </div>
     );
   }
@@ -79,11 +87,23 @@ export function ItemEntry({ itemEntry, className, size, looseItem }: ItemEntryPr
   }
 
   if (itemEntry.type === 'emojis') {
-    return <EmojiCard emojiId={String(itemEntry.value)} width={75 * sizeMultiplier} className={className} />;
+    return (
+      <EmojiCard
+        emojiId={String(itemEntry.value)}
+        width={75 * sizeMultiplier}
+        className={className}
+      />
+    );
   }
 
   if (itemEntry.type === 'glyphs') {
-    return <GlyphCard glyphId={itemEntry.value} width={75 * sizeMultiplier} className={className} />;
+    return (
+      <GlyphCard
+        glyphId={itemEntry.value}
+        width={75 * sizeMultiplier}
+        className={className}
+      />
+    );
   }
 
   if (itemEntry.type === 'clubbers') {

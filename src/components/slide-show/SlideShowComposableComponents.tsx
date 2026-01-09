@@ -19,7 +19,10 @@ import { Translate } from 'components/language';
  */
 export function SlideShowLabel({ children, className, ...props }: ElementPropsWithChildren) {
   return (
-    <div className={clsx('slide-show-composable__label', className)} {...props}>
+    <div
+      className={clsx('slide-show-composable__label', className)}
+      {...props}
+    >
       {children}
     </div>
   );
@@ -102,10 +105,16 @@ export function SlideShowPlayersList({
   );
 
   return (
-    <div className={clsx('slide-show-composable__players', className)} {...props}>
+    <div
+      className={clsx('slide-show-composable__players', className)}
+      {...props}
+    >
       <Avatar.Group>
         {playersIds.map((playerId) => (
-          <PlayerAvatar avatarId={players[playerId].avatarId} key={`slide-show-player-${playerId}`} />
+          <PlayerAvatar
+            avatarId={players[playerId].avatarId}
+            key={`slide-show-player-${playerId}`}
+          />
         ))}
       </Avatar.Group>
       {children}
@@ -126,10 +135,20 @@ type SlideShowNoWinsProps = TextProps & {
  */
 export function SlideShowNoWins({ children, icon, className, ...props }: SlideShowNoWinsProps) {
   return (
-    <Typography.Text className={clsx('slide-show-composable__no-wins', className)} {...props}>
-      <IconAvatar icon={icon ?? <GarbageIcon />} size="large" shape="square" />
+    <Typography.Text
+      className={clsx('slide-show-composable__no-wins', className)}
+      {...props}
+    >
+      <IconAvatar
+        icon={icon ?? <GarbageIcon />}
+        size="large"
+        shape="square"
+      />
       <div>
-        <Translate pt="Nossa, ninguém acertou." en="Wow, nobody got it." />
+        <Translate
+          pt="Nossa, ninguém acertou."
+          en="Wow, nobody got it."
+        />
         <br />
         {children}
       </div>

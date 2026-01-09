@@ -1,12 +1,34 @@
 export function RainbowIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <path fill="#fb6672" d="M472 347H334a78 78 0 10-156 0H40a216 216 0 01432 0z"></path>
-      <path fill="#fb4a59" d="M472 347h-34c0-114-87-207-199-215l17-1c119 0 216 97 216 216z"></path>
-      <path fill="#fee265" d="M427 347h-93a78 78 0 10-156 0H85a171 171 0 01342 0z"></path>
-      <path fill="#fdd330" d="M427 347h-34c0-89-67-162-154-170l17-1c94 0 171 77 171 171z"></path>
-      <path fill="#27d1b3" d="M381 347h-47a78 78 0 10-156 0h-47a125 125 0 01250 0z"></path>
-      <path fill="#20b69f" d="M382 347h-34c0-63-47-116-109-124a126 126 0 01143 124z"></path>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <path
+        fill="#fb6672"
+        d="M472 347H334a78 78 0 10-156 0H40a216 216 0 01432 0z"
+      ></path>
+      <path
+        fill="#fb4a59"
+        d="M472 347h-34c0-114-87-207-199-215l17-1c119 0 216 97 216 216z"
+      ></path>
+      <path
+        fill="#fee265"
+        d="M427 347h-93a78 78 0 10-156 0H85a171 171 0 01342 0z"
+      ></path>
+      <path
+        fill="#fdd330"
+        d="M427 347h-34c0-89-67-162-154-170l17-1c94 0 171 77 171 171z"
+      ></path>
+      <path
+        fill="#27d1b3"
+        d="M381 347h-47a78 78 0 10-156 0h-47a125 125 0 01250 0z"
+      ></path>
+      <path
+        fill="#20b69f"
+        d="M382 347h-34c0-63-47-116-109-124a126 126 0 01143 124z"
+      ></path>
       <path
         fill="#b5dbfd"
         d="M165 323l-14 2a51 51 0 00-92 0 38 38 0 00-52 35 38 38 0 0066 26 51 51 0 0064 0 38 38 0 0065-26c0-21-16-37-37-37z"

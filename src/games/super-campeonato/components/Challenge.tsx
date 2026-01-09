@@ -14,7 +14,10 @@ export function Challenge({ challenge }: ChallengeProps) {
   const { translate } = useLanguage();
   return (
     <SpaceContainer>
-      <Card header={translate('Desafio', 'Challenge')} color="purple">
+      <Card
+        header={translate('Desafio', 'Challenge')}
+        color="purple"
+      >
         {challenge.text}
       </Card>
     </SpaceContainer>

@@ -26,7 +26,12 @@ export function PhaseFinalResults({ players, state, user }: PhaseProps<PhaseFina
   const announcement = (
     <PhaseAnnouncement
       icon={<LodgeIcon />}
-      title={<Translate pt="E chegamos uma cabana!" en="We've reached a lodge!" />}
+      title={
+        <Translate
+          pt="E chegamos uma cabana!"
+          en="We've reached a lodge!"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}
@@ -36,9 +41,15 @@ export function PhaseFinalResults({ players, state, user }: PhaseProps<PhaseFina
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={ESQUIADORES_PHASES.FINAL_RESULTS}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={ESQUIADORES_PHASES.FINAL_RESULTS}
+    >
       <SnowEffect />
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 1 */}
         <StepResults
           announcement={announcement}

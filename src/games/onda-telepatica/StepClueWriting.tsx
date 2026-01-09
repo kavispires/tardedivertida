@@ -56,15 +56,22 @@ export function StepClueWriting({
   return (
     <Step fullWidth>
       <StepTitle>
-        <Translate pt="Escreva sua dica" en="Write your clue" />
+        <Translate
+          pt="Escreva sua dica"
+          en="Write your clue"
+        />
       </StepTitle>
       <RuleInstruction type="action">
         <Translate
           pt={
             <>
               O ponteiro está no <WavelengthHighlight>{Math.abs(target)}</WavelengthHighlight>{' '}
-              <TargetSideHighlight target={target} card={card} />. <strong>Escreva</strong> uma dica que ajude
-              os outros jogadores a escolher exatamente esse número!
+              <TargetSideHighlight
+                target={target}
+                card={card}
+              />
+              . <strong>Escreva</strong> uma dica que ajude os outros jogadores a escolher exatamente esse
+              número!
               <br />
               Revise as regras de quais dicas são válidas clicando no Ícone de Livrinho.
             </>
@@ -72,8 +79,11 @@ export function StepClueWriting({
           en={
             <>
               The needle is pointing at <WavelengthHighlight>{Math.abs(target)}</WavelengthHighlight>{' '}
-              <TargetSideHighlight target={target} card={card} />. <strong>Write</strong> a clue that will
-              help the other players to choose this exact number!
+              <TargetSideHighlight
+                target={target}
+                card={card}
+              />
+              . <strong>Write</strong> a clue that will help the other players to choose this exact number!
               <br />
               Revise the rules for clue writing by clicking on the top left Book Icon.
             </>
@@ -81,7 +91,13 @@ export function StepClueWriting({
         />
         <ClueWritingRules />
       </RuleInstruction>
-      {!!card && <Dial target={target} card={card} showTarget />}
+      {!!card && (
+        <Dial
+          target={target}
+          card={card}
+          showTarget
+        />
+      )}
       <SpaceContainer>
         <Input
           onChange={onChangeInput}
@@ -89,8 +105,16 @@ export function StepClueWriting({
           placeholder={translate('Escreva aqui', 'Write here')}
           size="large"
         />
-        <SendButton onClick={onSubmitClue} disabled={isLoading} loading={isLoading} size="large">
-          <Translate pt="Enviar" en="Send" />
+        <SendButton
+          onClick={onSubmitClue}
+          disabled={isLoading}
+          loading={isLoading}
+          size="large"
+        >
+          <Translate
+            pt="Enviar"
+            en="Send"
+          />
         </SendButton>
       </SpaceContainer>
     </Step>

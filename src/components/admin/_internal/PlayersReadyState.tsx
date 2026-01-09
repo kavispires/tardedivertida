@@ -38,20 +38,32 @@ export function PlayersReadyState({ players }: PlayersReadyStateProps) {
     <li className="admin-players-ready-state">
       <h3>Players Ready State</h3>
       <div className="admin-players-ready-state__entry">
-        <CheckCircleFilled style={{ color: 'green' }} title="Ready:" />
+        <CheckCircleFilled
+          style={{ color: 'green' }}
+          title="Ready:"
+        />
         <ul className="admin-players-ready-state__list">
           {readyPlayers.map((playerName) => (
-            <li key={`admin-player-${playerName}`} className="admin-players-ready-state__item">
+            <li
+              key={`admin-player-${playerName}`}
+              className="admin-players-ready-state__item"
+            >
               {playerName}
             </li>
           ))}
         </ul>
       </div>
       <div className="admin-players-ready-state__entry">
-        <MinusCircleFilled style={{ color: 'orange' }} title="Ready:" />
+        <MinusCircleFilled
+          style={{ color: 'orange' }}
+          title="Ready:"
+        />
         <ul className="admin-players-ready-state__list">
           {pendingPlayers.map((playerName) => (
-            <li key={`admin-player-${playerName}`} className="admin-players-ready-state__item">
+            <li
+              key={`admin-player-${playerName}`}
+              className="admin-players-ready-state__item"
+            >
               {playerName}
             </li>
           ))}

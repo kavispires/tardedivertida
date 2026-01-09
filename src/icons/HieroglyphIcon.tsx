@@ -1,6 +1,10 @@
 export function HieroglyphIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#e8a882"
         d="M470.19 7.5H41.81A34.31 34.31 0 007.5 41.81v428.38a34.31 34.31 0 0034.31 34.31h428.38a34.31 34.31 0 0034.31-34.31V41.81A34.31 34.31 0 00470.19 7.5"

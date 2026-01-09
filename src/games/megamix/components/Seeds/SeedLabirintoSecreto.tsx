@@ -23,7 +23,10 @@ type SeedLabirintoSecretoProps = {
 export function SeedLabirintoSecreto({ seed, updateData, user }: SeedLabirintoSecretoProps) {
   return (
     <div className="seed-container">
-      <Title size="xx-small" colorScheme="light">
+      <Title
+        size="xx-small"
+        colorScheme="light"
+      >
         <Translate
           pt="Você decidiu postar uma foto piranhuda no Instagram antes de se arrumar..."
           en="You decided to post a thirst trap on Instagram before getting ready..."
@@ -53,7 +56,12 @@ export function SeedLabirintoSecreto({ seed, updateData, user }: SeedLabirintoSe
           <SocialProfile
             avatarId={user.avatarId}
             name={user.name}
-            handle={<Translate pt="Logo ali, Brasil" en="Somewhere" />}
+            handle={
+              <Translate
+                pt="Logo ali, Brasil"
+                en="Somewhere"
+              />
+            }
             className="cm-instagram__user"
           />
           <div className="cm-instagram__picture">

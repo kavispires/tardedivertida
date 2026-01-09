@@ -18,20 +18,48 @@ type MapEntryProps = {
 
 export function MapEntry({ segment, tree, showArrow, className }: MapEntryProps) {
   return (
-    <div className={clsx('map-entry', className)} key={`map-${segment.index}`}>
-      {tree && <TreeImage id={tree.treeType} text={tree.card.text} className="map-entry__tree" />}
+    <div
+      className={clsx('map-entry', className)}
+      key={`map-${segment.index}`}
+    >
+      {tree && (
+        <TreeImage
+          id={tree.treeType}
+          text={tree.card.text}
+          className="map-entry__tree"
+        />
+      )}
 
-      <IconAvatar icon={<MapIcon />} size="large" className="map-entry__icon" />
+      <IconAvatar
+        icon={<MapIcon />}
+        size="large"
+        className="map-entry__icon"
+      />
       {segment.clues.map((clue) => {
         return (
-          <div className="map-entry__clue" key={`clue-${segment.index}-${clue.id}`}>
+          <div
+            className="map-entry__clue"
+            key={`clue-${segment.index}-${clue.id}`}
+          >
             {clue.text}
-            {clue?.negate && <IconAvatar icon={<NoIcon />} size="small" className="map-entry__clue-no" />}
+            {clue?.negate && (
+              <IconAvatar
+                icon={<NoIcon />}
+                size="small"
+                className="map-entry__clue-no"
+              />
+            )}
           </div>
         );
       })}
 
-      {showArrow && <IconAvatar icon={<ArrowIcon />} size="small" className="map-entry__arrow" />}
+      {showArrow && (
+        <IconAvatar
+          icon={<ArrowIcon />}
+          size="small"
+          className="map-entry__arrow"
+        />
+      )}
     </div>
   );
 }

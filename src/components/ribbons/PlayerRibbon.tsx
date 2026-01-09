@@ -21,7 +21,10 @@ export function PlayerRibbon({ player, position = 'absolute' }: RibbonProps) {
         style={{ backgroundColor: getAvatarColorById(player.avatarId) }}
       >
         <Tooltip title={player.name}>
-          <PlayerAvatar avatarId={player.avatarId} size="small" />
+          <PlayerAvatar
+            avatarId={player.avatarId}
+            size="small"
+          />
         </Tooltip>
       </div>
     </div>

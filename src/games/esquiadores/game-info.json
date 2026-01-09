@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "esquiadores",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "release": "stable",
   "available": true,
   "title": {

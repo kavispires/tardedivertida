@@ -40,7 +40,10 @@ export function Solution({
     <div>
       <Typography.Paragraph>
         <CircleHighlight color="blue">
-          <Translate en="Attribute" pt="Atributo" />
+          <Translate
+            en="Attribute"
+            pt="Atributo"
+          />
         </CircleHighlight>
         {solutions.attribute.text}
 
@@ -59,7 +62,10 @@ export function Solution({
       <Divider />
       <Typography.Paragraph>
         <CircleHighlight color="gold">
-          <Translate en="Word" pt="Palavra" />
+          <Translate
+            en="Word"
+            pt="Palavra"
+          />
         </CircleHighlight>
         {solutions.word.text}
 
@@ -81,7 +87,10 @@ export function Solution({
           <Divider />
           <Typography.Paragraph>
             <CircleHighlight color="red">
-              <Translate en="Context" pt="Contexto" />
+              <Translate
+                en="Context"
+                pt="Contexto"
+              />
             </CircleHighlight>
             {solutions.context.text}
             {!!setContext && (
@@ -104,7 +113,11 @@ export function Solution({
 
 function AttributeHints() {
   return (
-    <Flex wrap="wrap" gap={8} className="venn-word-hints">
+    <Flex
+      wrap="wrap"
+      gap={8}
+      className="venn-word-hints"
+    >
       <Translate
         en="When describing this thing, would you use this in your top 10 things about it?"
         pt="Ao descrever essa coisa, você usaria esse atributo dentre os 10 principais pontos sobre ela?"
@@ -120,41 +133,84 @@ function WordHints({ word }: { word: string }) {
 
   const hints = [
     <Fragment key="1">
-      <Translate en="Letters" pt="Letras" />: {hintsObj.letters}
+      <Translate
+        en="Letters"
+        pt="Letras"
+      />
+      : {hintsObj.letters}
     </Fragment>,
 
     <Fragment key="2">
-      <Translate en="Vowels" pt="Vogais" />: {hintsObj.vowels}
+      <Translate
+        en="Vowels"
+        pt="Vogais"
+      />
+      : {hintsObj.vowels}
     </Fragment>,
     <Fragment key="3">
-      <Translate en="Consonants" pt="Consoantes" />: {hintsObj.consonants}
+      <Translate
+        en="Consonants"
+        pt="Consoantes"
+      />
+      : {hintsObj.consonants}
     </Fragment>,
     <Fragment key="4">
-      <Translate en="Number of words" pt="Número de palavras" />: {hintsObj.numberOfWords}
+      <Translate
+        en="Number of words"
+        pt="Número de palavras"
+      />
+      : {hintsObj.numberOfWords}
     </Fragment>,
     <Fragment key="5">
-      <Translate en="Repeated vowels" pt="Repetição de vogais" />: {getCheckIcon(hintsObj.hasRepeatedVowels)}
+      <Translate
+        en="Repeated vowels"
+        pt="Repetição de vogais"
+      />
+      : {getCheckIcon(hintsObj.hasRepeatedVowels)}
     </Fragment>,
     <Fragment key="6">
-      <Translate en="Repeated consonants" pt="Repetição de consoantes" />:{' '}
-      {getCheckIcon(hintsObj.hasRepeatedConsonants)}
+      <Translate
+        en="Repeated consonants"
+        pt="Repetição de consoantes"
+      />
+      : {getCheckIcon(hintsObj.hasRepeatedConsonants)}
     </Fragment>,
     <Fragment key="7">
-      <Translate en="Consecutive vowels" pt="Vogais consecutivas" />: {hintsObj.consecutiveVowels}
+      <Translate
+        en="Consecutive vowels"
+        pt="Vogais consecutivas"
+      />
+      : {hintsObj.consecutiveVowels}
     </Fragment>,
     <Fragment key="8">
-      <Translate en="Consecutive consonants" pt="Consoantes consecutivas" />: {hintsObj.consecutiveConsonants}
+      <Translate
+        en="Consecutive consonants"
+        pt="Consoantes consecutivas"
+      />
+      : {hintsObj.consecutiveConsonants}
     </Fragment>,
     <Fragment key="9">
-      <Translate en="Hyphen" pt="Hífen" />: {getCheckIcon(hintsObj.hasHyphen)}
+      <Translate
+        en="Hyphen"
+        pt="Hífen"
+      />
+      : {getCheckIcon(hintsObj.hasHyphen)}
     </Fragment>,
     <Fragment key="10">
-      <Translate en="Accents" pt="Acentos" />: {getCheckIcon(hintsObj.hasAccents)}
+      <Translate
+        en="Accents"
+        pt="Acentos"
+      />
+      : {getCheckIcon(hintsObj.hasAccents)}
     </Fragment>,
   ];
 
   return (
-    <Flex wrap="wrap" gap={8} className="venn-word-hints">
+    <Flex
+      wrap="wrap"
+      gap={8}
+      className="venn-word-hints"
+    >
       {hints.map((hint, index) => (
         <div key={index}>{hint}</div>
       ))}
@@ -164,7 +220,11 @@ function WordHints({ word }: { word: string }) {
 
 function ContextHints() {
   return (
-    <Flex wrap="wrap" gap={8} className="venn-word-hints">
+    <Flex
+      wrap="wrap"
+      gap={8}
+      className="venn-word-hints"
+    >
       <Translate
         en="Always think in a general consensus. In a common situation would people say it fits? No technicalities."
         pt="Pense sempre em senso comum. Em uma situação geral, as pessoas diriam que se encaixa? Sem tecnicalidades."

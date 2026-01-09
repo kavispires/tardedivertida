@@ -44,7 +44,10 @@ export function PlayerChoices({
           />
         </strong>
       </p>
-      <Space wrap className="questions-container-grid">
+      <Space
+        wrap
+        className="questions-container-grid"
+      >
         {(user.questions ?? []).length === 0 && (
           <Instruction contained>
             <Translate
@@ -92,7 +95,12 @@ export function PlayerChoices({
                 onClick={() => onSubmitTarget({ targetId: player.id })}
                 disabled={isLoading || user.ready}
               >
-                <PlayerAvatarCard player={player} size="small" withName withRoundCorners />
+                <PlayerAvatarCard
+                  player={player}
+                  size="small"
+                  withName
+                  withRoundCorners
+                />
               </TransparentButton>
             );
           })}

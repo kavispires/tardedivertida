@@ -128,10 +128,20 @@ function Hub() {
             <DatabaseFilled /> Hub
           </>
         }
-        subTitle={<Translate pt="Selecione um jogo para começar" en="Select a game to start" />}
+        subTitle={
+          <Translate
+            pt="Selecione um jogo para começar"
+            en="Select a game to start"
+          />
+        }
         extra={[
           <LanguageSwitch key="language-switch" />,
-          <LogoutButton key="logout-button" danger ghost size="small" />,
+          <LogoutButton
+            key="logout-button"
+            danger
+            ghost
+            size="small"
+          />,
         ]}
       />
 
@@ -143,14 +153,24 @@ function Hub() {
         availabilityCount={availableGames.length}
       />
 
-      <Layout.Content className="container" id="main-container">
+      <Layout.Content
+        className="container"
+        id="main-container"
+      >
         {isDevEnv && (
           <>
             <Typography.Title level={2}>
-              <Translate pt="Em Desenvolvimento" en="Under Development" />
+              <Translate
+                pt="Em Desenvolvimento"
+                en="Under Development"
+              />
             </Typography.Title>
             <Typography.Paragraph>
-              <Flex gap={6} align="center" wrap="wrap">
+              <Flex
+                gap={6}
+                align="center"
+                wrap="wrap"
+              >
                 {statsCountsArray.map((e) => (
                   <Tag key={e}>{e}</Tag>
                 ))}
@@ -161,7 +181,10 @@ function Hub() {
           </>
         )}
         <Typography.Title level={2}>
-          <Translate pt="Disponíveis" en="Available" />
+          <Translate
+            pt="Disponíveis"
+            en="Available"
+          />
         </Typography.Title>
         <RowOfGames games={availableGames} />
 
@@ -169,7 +192,10 @@ function Hub() {
         {!isDevEnv && (
           <>
             <Typography.Title level={2}>
-              <Translate pt="Em Desenvolvimento" en="Under Development" />
+              <Translate
+                pt="Em Desenvolvimento"
+                en="Under Development"
+              />
             </Typography.Title>
             <RowOfGames games={devGames} />
 
@@ -177,7 +203,10 @@ function Hub() {
           </>
         )}
         <Typography.Title level={2}>
-          <Translate pt="Em Breve" en="Coming Soon" />
+          <Translate
+            pt="Em Breve"
+            en="Coming Soon"
+          />
         </Typography.Title>
         <RowOfGames games={comingSoonGames} />
       </Layout.Content>
@@ -193,7 +222,10 @@ function RowOfGames({ games }: RowOfGamesProps) {
   if (games.length === 0) {
     return (
       <Typography.Text type="secondary">
-        <Translate pt="Nenhum jogo encontrado nessa categoria" en="No games found in this category" />
+        <Translate
+          pt="Nenhum jogo encontrado nessa categoria"
+          en="No games found in this category"
+        />
       </Typography.Text>
     );
   }
@@ -201,8 +233,19 @@ function RowOfGames({ games }: RowOfGamesProps) {
   return (
     <Row gutter={[8, 16]}>
       {games.map((game: GameInfo) => (
-        <Col key={game.gameName} xs={24} sm={12} md={8} lg={8} xl={6} xxl={4}>
-          <GameCard game={game} isAdmin={['dev', 'beta', 'stable'].includes(game.release)} />
+        <Col
+          key={game.gameName}
+          xs={24}
+          sm={12}
+          md={8}
+          lg={8}
+          xl={6}
+          xxl={4}
+        >
+          <GameCard
+            game={game}
+            isAdmin={['dev', 'beta', 'stable'].includes(game.release)}
+          />
         </Col>
       ))}
     </Row>

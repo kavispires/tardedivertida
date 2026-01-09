@@ -20,21 +20,34 @@ export function GroupProgress({ group }: GroupProgressProps) {
 
   return (
     <div className="u-group-progress">
-      <Title size="xx-small" level={5} className="u-group-progress__title">
-        <Translate pt="Progresso:" en="Group Progress" />
+      <Title
+        size="xx-small"
+        level={5}
+        className="u-group-progress__title"
+      >
+        <Translate
+          pt="Progresso:"
+          en="Group Progress"
+        />
       </Title>
       <ol className="u-group-progress__bar">
         {attempts.map((value, index) => {
           const key = `attempt-${index}`;
           return (
-            <li className="u-group-progress__item" key={key}>
+            <li
+              className="u-group-progress__item"
+              key={key}
+            >
               <div className="u-group-progress__label">{index + 1}</div>
               <div className="u-group-progress__result">
                 {value === 'CORRECT' && <IconAvatar icon={<BoxCheckMarkIcon />} />}
                 {value === 'WRONG' && <IconAvatar icon={<BoxXIcon />} />}
                 {value === 'PASS' && <IconAvatar icon={<BoxBlankIcon />} />}
                 {value === 'UNKNOWN' && (
-                  <IconAvatar icon={<BoxQuestionMarkIcon />} className="u-group-progress__unknown" />
+                  <IconAvatar
+                    icon={<BoxQuestionMarkIcon />}
+                    className="u-group-progress__unknown"
+                  />
                 )}
               </div>
             </li>
@@ -42,7 +55,10 @@ export function GroupProgress({ group }: GroupProgressProps) {
         })}
       </ol>
       <span>
-        <Translate pt="Pontuação:" en="Score:" />
+        <Translate
+          pt="Pontuação:"
+          en="Score:"
+        />
         <PointsHighlight>
           {group.score ?? 0}/{group.goal}
         </PointsHighlight>

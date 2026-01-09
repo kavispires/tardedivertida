@@ -1,6 +1,10 @@
 export function DeathIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#da4a54"
         d="M209.98 60.31L14.7 398.54c-20.45 35.43 5.11 79.72 46.02 79.72h390.55c40.91 0 66.48-44.29 46.02-79.72L302.02 60.31c-20.45-35.43-71.59-35.43-92.05 0z"

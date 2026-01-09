@@ -16,9 +16,15 @@ type StepSeedAlienProps = {
 
 export function StepSeedAlien({ user, announcement, onSubmitSeeds }: StepSeedAlienProps) {
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Análise de Objetos" en="Objects analyses" />
+        <Translate
+          pt="Análise de Objetos"
+          en="Objects analyses"
+        />
       </StepTitle>
 
       <BotPopupRule />
@@ -43,7 +49,12 @@ export function StepSeedAlien({ user, announcement, onSubmitSeeds }: StepSeedAli
         />
       </RuleInstruction>
 
-      {user.seeds && <HumanSeedingSteps onSubmitSeeds={onSubmitSeeds} user={user} />}
+      {user.seeds && (
+        <HumanSeedingSteps
+          onSubmitSeeds={onSubmitSeeds}
+          user={user}
+        />
+      )}
     </Step>
   );
 }

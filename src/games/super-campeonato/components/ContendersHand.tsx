@@ -18,10 +18,20 @@ export function ContendersHand({ contenders, onSelect }: ContendersHandProps) {
   const cardWidth = useCardWidth(Math.max(contenders.length ?? 8, 5), { minWidth: 100 });
 
   return (
-    <FloatingHand title={<Translate pt="Seus Competidores" en="Your Contenders" />}>
+    <FloatingHand
+      title={
+        <Translate
+          pt="Seus Competidores"
+          en="Your Contenders"
+        />
+      }
+    >
       <ul className="w-contenders-hand">
         {contenders.map((contender) => (
-          <li key={contender.id} className="w-contenders-hand__entry">
+          <li
+            key={contender.id}
+            className="w-contenders-hand__entry"
+          >
             {!!onSelect && (
               <Button
                 onClick={() => onSelect(contender.id)}
@@ -29,10 +39,17 @@ export function ContendersHand({ contenders, onSelect }: ContendersHandProps) {
                 ghost
                 className="w-contenders-hand__button"
               >
-                <Translate pt="Selecionar" en="Select" />
+                <Translate
+                  pt="Selecionar"
+                  en="Select"
+                />
               </Button>
             )}
-            <CharacterCard character={contender} overlayColor="gray" size={cardWidth} />
+            <CharacterCard
+              character={contender}
+              overlayColor="gray"
+              size={cardWidth}
+            />
           </li>
         ))}
       </ul>

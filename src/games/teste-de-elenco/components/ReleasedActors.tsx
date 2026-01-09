@@ -31,11 +31,21 @@ export function ReleasedActors({ actors, players, selection, playersSelections }
   }
 
   return (
-    <SpaceContainer className="actors-board" wrap>
+    <SpaceContainer
+      className="actors-board"
+      wrap
+    >
       {nonSelectedActors.map((actor) => {
         return (
-          <Space key={actor.id} className="actors-board__actor" orientation="vertical">
-            <SuspectCard suspect={actor} width={cardWidth} />
+          <Space
+            key={actor.id}
+            className="actors-board__actor"
+            orientation="vertical"
+          >
+            <SuspectCard
+              suspect={actor}
+              width={cardWidth}
+            />
             <SpaceContainer>
               <Avatar.Group max={{ count: 5 }}>
                 {(playersSelections[actor.id] ?? []).map((playerId) => (

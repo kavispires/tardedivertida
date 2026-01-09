@@ -33,7 +33,10 @@ export function StepPlayersWaitEvaluation({
   return (
     <Step fullWidth>
       <StepTitle>
-        <Translate pt="Avaliação" en="Avaliação" />
+        <Translate
+          pt="Avaliação"
+          en="Avaliação"
+        />
       </StepTitle>
 
       <CategoryCard categories={categories} />
@@ -60,7 +63,10 @@ export function StepPlayersWaitEvaluation({
         showIcon
         title={
           <>
-            <PlayerAvatar avatarId="A" size="small" />
+            <PlayerAvatar
+              avatarId="A"
+              size="small"
+            />
             <Translate
               pt={<>O grupo usou até agora {3 - finalAnswersLeft}/3 chances de respostas finais</>}
               en={<>The group has used so far {3 - finalAnswersLeft}/3 chances of final answers</>}
@@ -69,7 +75,11 @@ export function StepPlayersWaitEvaluation({
         }
       />
 
-      <Board board={board} clues={clues} players={players} />
+      <Board
+        board={board}
+        clues={clues}
+        players={players}
+      />
     </Step>
   );
 }

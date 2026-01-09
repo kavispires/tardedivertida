@@ -29,12 +29,24 @@ export function PhaseResult({ state, players }: PhaseProps) {
           <Translate
             pt={
               <>
-                E <PlayerAvatarName player={guesser} addressUser size="large" /> passou...
+                E{' '}
+                <PlayerAvatarName
+                  player={guesser}
+                  addressUser
+                  size="large"
+                />{' '}
+                passou...
               </>
             }
             en={
               <>
-                And <PlayerAvatarName player={guesser} addressUser size="large" /> passed...
+                And{' '}
+                <PlayerAvatarName
+                  player={guesser}
+                  addressUser
+                  size="large"
+                />{' '}
+                passed...
               </>
             }
           />
@@ -42,12 +54,24 @@ export function PhaseResult({ state, players }: PhaseProps) {
           <Translate
             pt={
               <>
-                E <PlayerAvatarName player={guesser} addressUser size="large" /> disse...
+                E{' '}
+                <PlayerAvatarName
+                  player={guesser}
+                  addressUser
+                  size="large"
+                />{' '}
+                disse...
               </>
             }
             en={
               <>
-                And <PlayerAvatarName player={guesser} addressUser size="large" /> said...
+                And{' '}
+                <PlayerAvatarName
+                  player={guesser}
+                  addressUser
+                  size="large"
+                />{' '}
+                said...
               </>
             }
           />
@@ -58,7 +82,10 @@ export function PhaseResult({ state, players }: PhaseProps) {
       duration={3}
     >
       {!isPass && (
-        <Instruction className="u-guess" contained>
+        <Instruction
+          className="u-guess"
+          contained
+        >
           <TextHighlight>"{state.guess}"</TextHighlight>
         </Instruction>
       )}
@@ -66,8 +93,14 @@ export function PhaseResult({ state, players }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={UE_SO_ISSO_PHASES.RESULT}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={UE_SO_ISSO_PHASES.RESULT}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepResult
           guesser={guesser}

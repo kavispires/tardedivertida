@@ -45,9 +45,15 @@ function IconsPage() {
       />
       <Layout.Content className="dev-content">
         {displayAll ? (
-          <AllIconsView iconEntries={iconEntries} copyToClipboard={copyToClipboard} />
+          <AllIconsView
+            iconEntries={iconEntries}
+            copyToClipboard={copyToClipboard}
+          />
         ) : (
-          <IconsByCategoryView iconEntries={iconEntries} copyToClipboard={copyToClipboard} />
+          <IconsByCategoryView
+            iconEntries={iconEntries}
+            copyToClipboard={copyToClipboard}
+          />
         )}
       </Layout.Content>
     </PageLayout>
@@ -63,7 +69,10 @@ function AllIconsView({ iconEntries, copyToClipboard }: AllIconsViewProps) {
   return (
     <ul className="icons-grid">
       {iconEntries.map(([key, Icon]) => (
-        <li key={key} className="icons-grid__item">
+        <li
+          key={key}
+          className="icons-grid__item"
+        >
           <TransparentButton onClick={() => copyToClipboard(`<${key} />`)}>
             <Icon style={{ width: '90px' }} />
             <div style={{ width: '90px', overflow: 'hidden', textAlign: 'center' }}>{key}</div>
@@ -117,7 +126,10 @@ function IconsCategoryListing({ list, collection, copyToClipboard }: IconsCatego
         const iconsNames = sortBy(collection[game]);
 
         return (
-          <div key={game} className="icons-grid">
+          <div
+            key={game}
+            className="icons-grid"
+          >
             <h2>
               {game} ({iconsNames.length})
             </h2>
@@ -132,7 +144,10 @@ function IconsCategoryListing({ list, collection, copyToClipboard }: IconsCatego
                   return null;
                 }
                 return (
-                  <li key={iconName} className="icons-grid__item">
+                  <li
+                    key={iconName}
+                    className="icons-grid__item"
+                  >
                     <TransparentButton onClick={() => copyToClipboard(`<${iconName} />`)}>
                       <Icon style={{ width: '90px' }} />
                       <div style={{ width: '90px', overflow: 'hidden', textAlign: 'center' }}>{iconName}</div>

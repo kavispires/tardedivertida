@@ -24,7 +24,12 @@ export function PhasePairing({ players, state, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<SocksIcon />}
-      title={<Translate pt="Coloque os itens em pares" en="Pair the items" />}
+      title={
+        <Translate
+          pt="Coloque os itens em pares"
+          en="Pair the items"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -38,15 +43,28 @@ export function PhasePairing({ players, state, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={DUETOS_PHASES.PAIRING}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={DUETOS_PHASES.PAIRING}
+    >
       <StepSwitcher
         step={step}
         players={players}
         waitingRoom={{
-          content: <MadePairs pool={state.pool} pairs={user?.pairs ?? []} size="small" />,
+          content: (
+            <MadePairs
+              pool={state.pool}
+              pairs={user?.pairs ?? []}
+              size="small"
+            />
+          ),
         }}
       >
-        <RoundAnnouncement round={state.round} time={3} onPressButton={goToNextStep} />
+        <RoundAnnouncement
+          round={state.round}
+          time={3}
+          onPressButton={goToNextStep}
+        />
         {/* Step 0 */}
         <StepMakePairs
           user={user}

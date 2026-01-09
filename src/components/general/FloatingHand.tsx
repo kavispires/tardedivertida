@@ -51,9 +51,19 @@ export function FloatingHand({ children, icon, title }: FloatingHandProps) {
             alt={translate('Mão de Cartas', 'Hand of Cards')}
           />
           <span className="floating-hand__label-text">
-            {title ?? <Translate pt="Suas Cartas" en="Your Cards" />}
+            {title ?? (
+              <Translate
+                pt="Suas Cartas"
+                en="Your Cards"
+              />
+            )}
             <span className="floating-hand__label-text-hint">
-              (<Translate pt="Passe o mouse para expandir" en="Hover to expand" />)
+              (
+              <Translate
+                pt="Passe o mouse para expandir"
+                en="Hover to expand"
+              />
+              )
             </span>
           </span>
         </h3>
@@ -85,9 +95,19 @@ export function FloatingHandDrawer({ children, icon, title }: FloatingHandProps)
             alt={translate('Mão de Cartas', 'Hand of Cards')}
           />
           <span className="floating-hand-drawer__label-text">
-            {title ?? <Translate pt="Suas Cartas" en="Your Cards" />}
+            {title ?? (
+              <Translate
+                pt="Suas Cartas"
+                en="Your Cards"
+              />
+            )}
             <span className="floating-hand-drawer__label-text-hint">
-              (<Translate pt="Passe o mouse para expandir" en="Hover to expand" />)
+              (
+              <Translate
+                pt="Passe o mouse para expandir"
+                en="Hover to expand"
+              />
+              )
             </span>
           </span>
         </span>
@@ -105,9 +125,19 @@ export function FloatingHandDrawer({ children, icon, title }: FloatingHandProps)
               alt={translate('Mão de Cartas', 'Hand of Cards')}
             />
             <span className="floating-hand-drawer__label-text">
-              {title ?? <Translate pt="Suas Cartas" en="Your Cards" />}
+              {title ?? (
+                <Translate
+                  pt="Suas Cartas"
+                  en="Your Cards"
+                />
+              )}
               <span className="floating-hand-drawer__label-text-hint">
-                (<Translate pt="Clique aqui para fechar" en="Click here to close" />)
+                (
+                <Translate
+                  pt="Clique aqui para fechar"
+                  en="Click here to close"
+                />
+                )
               </span>
             </span>
           </DivButton>

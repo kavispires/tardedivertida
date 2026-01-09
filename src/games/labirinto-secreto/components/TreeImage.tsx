@@ -18,8 +18,16 @@ export function TreeImage({ id, text, width = 100, className }: TreeImageProps) 
     const [source, itemId] = getSource(id);
 
     return (
-      <div className={clsx('tree-card', className)} style={{ width: `${width}px` }}>
-        <Sprite source={source} spriteId={itemId} width={width} title={text} />
+      <div
+        className={clsx('tree-card', className)}
+        style={{ width: `${width}px` }}
+      >
+        <Sprite
+          source={source}
+          spriteId={itemId}
+          width={width}
+          title={text}
+        />
         <Tooltip title={text}>
           <div className="tree-card__text">{text}</div>
         </Tooltip>
@@ -27,5 +35,12 @@ export function TreeImage({ id, text, width = 100, className }: TreeImageProps) 
     );
   }
 
-  return <TreeCard treeId={id} text={text} width={width} className={className} />;
+  return (
+    <TreeCard
+      treeId={id}
+      text={text}
+      width={width}
+      className={className}
+    />
+  );
 }

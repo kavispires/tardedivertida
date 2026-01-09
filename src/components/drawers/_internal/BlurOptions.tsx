@@ -47,7 +47,12 @@ export function BlurOptions() {
     });
 
     selectedGroups.flat().forEach(blurCard);
-    message.success(<Translate pt="Cartas 'credadas' com sucesso" en="Cards blurred successfully" />);
+    message.success(
+      <Translate
+        pt="Cartas 'credadas' com sucesso"
+        en="Cards blurred successfully"
+      />,
+    );
   };
 
   if (isLoading) {
@@ -90,7 +95,10 @@ export function BlurOptions() {
         onChange={(e) => onUpdateSelected('aliens', e.target.checked)}
         className="blur-options__checkbox"
       >
-        <Translate pt="alienígenas" en="aliens" />
+        <Translate
+          pt="alienígenas"
+          en="aliens"
+        />
       </Checkbox>
 
       <Checkbox
@@ -99,7 +107,10 @@ export function BlurOptions() {
         onChange={(e) => onUpdateSelected('cockroaches', e.target.checked)}
         className="blur-options__checkbox"
       >
-        <Translate pt="baratas" en="cockroaches" />
+        <Translate
+          pt="baratas"
+          en="cockroaches"
+        />
       </Checkbox>
 
       <Checkbox
@@ -108,7 +119,10 @@ export function BlurOptions() {
         onChange={(e) => onUpdateSelected('scorpions', e.target.checked)}
         className="blur-options__checkbox"
       >
-        <Translate pt="escorpiões" en="scorpions" />
+        <Translate
+          pt="escorpiões"
+          en="scorpions"
+        />
       </Checkbox>
 
       <Checkbox
@@ -117,7 +131,10 @@ export function BlurOptions() {
         onChange={(e) => onUpdateSelected('snakes', e.target.checked)}
         className="blur-options__checkbox"
       >
-        <Translate pt="cobras" en="snakes" />
+        <Translate
+          pt="cobras"
+          en="snakes"
+        />
       </Checkbox>
 
       <Checkbox
@@ -126,11 +143,22 @@ export function BlurOptions() {
         onChange={(e) => onUpdateSelected('spiders', e.target.checked)}
         className="blur-options__checkbox"
       >
-        <Translate pt="aranhas" en="spiders" />
+        <Translate
+          pt="aranhas"
+          en="spiders"
+        />
       </Checkbox>
 
-      <Button type="primary" ghost size="small" onClick={onBlurSelected}>
-        <Translate pt="Credar selecionados" en="Blur selected" />
+      <Button
+        type="primary"
+        ghost
+        size="small"
+        onClick={onBlurSelected}
+      >
+        <Translate
+          pt="Credar selecionados"
+          en="Blur selected"
+        />
       </Button>
     </div>
   );

@@ -1,12 +1,22 @@
 export function HouseIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <path fill="#dfebfa" d="M255.949 54.053L83.061 222.227v247.044h345.777V222.227z"></path>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <path
+        fill="#dfebfa"
+        d="M255.949 54.053L83.061 222.227v247.044h345.777V222.227z"
+      ></path>
       <path
         fill="#b1dbfc"
         d="M124.063 247.45a21.84 21.84 0 016.612-15.655l154-149.8-28.726-27.942L83.061 222.227v247.045h41.003V247.45z"
       ></path>
-      <path fill="#695d67" d="M361.903 42.635v62.701l55.362 53.853V42.635z"></path>
+      <path
+        fill="#695d67"
+        d="M361.903 42.635v62.701l55.362 53.853V42.635z"
+      ></path>
       <path
         fill="#544e55"
         d="M393.965 109.597a14.468 14.468 0 01-4.381-10.372v-56.59h-27.681v62.701l55.362 53.852v-26.926z"
@@ -27,8 +37,14 @@ export function HouseIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#695d67"
         d="M373.524 38.403v-23.72a7.23 7.23 0 017.231-7.231h-27.681a7.231 7.231 0 00-7.231 7.231v23.72a7.231 7.231 0 007.231 7.232h27.681a7.232 7.232 0 01-7.231-7.232z"
       ></path>
-      <path fill="#ab6b51" d="M123.063 282.028h115.973v187.243H123.063z"></path>
-      <path fill="#965a44" d="M123.063 282.028h37.559v187.243h-37.559z"></path>
+      <path
+        fill="#ab6b51"
+        d="M123.063 282.028h115.973v187.243H123.063z"
+      ></path>
+      <path
+        fill="#965a44"
+        d="M123.063 282.028h37.559v187.243h-37.559z"
+      ></path>
       <path
         fill="#60b8fe"
         d="M272.862 283.028v140.029a5.592 5.592 0 005.592 5.592h104.789a5.592 5.592 0 005.592-5.592V283.028z"
@@ -53,7 +69,12 @@ export function HouseIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#ab6b51"
         d="M166.214 247.616h-37.559a5.592 5.592 0 00-5.592 5.592v30.821h37.559v-30.821a5.592 5.592 0 015.592-5.592z"
       ></path>
-      <circle cx="198.619" cy="364.622" r="15.014" fill="#dfebfa"></circle>
+      <circle
+        cx="198.619"
+        cy="364.622"
+        r="15.014"
+        fill="#dfebfa"
+      ></circle>
       <path
         fill="#43cb8e"
         d="M436.138 466.271H75.76a7.231 7.231 0 00-7.231 7.231v23.72a7.23 7.23 0 007.231 7.231h360.378a7.232 7.232 0 007.232-7.231v-23.72a7.232 7.232 0 00-7.232-7.231z"

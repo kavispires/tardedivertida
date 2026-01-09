@@ -11,7 +11,10 @@ type TextHighlightProps = {
 
 export function TextHighlight({ children, className, dark, ...props }: TextHighlightProps) {
   return (
-    <span className={clsx('text-highlight', dark && 'text-highlight--dark', className)} {...props}>
+    <span
+      className={clsx('text-highlight', dark && 'text-highlight--dark', className)}
+      {...props}
+    >
       {children}
     </span>
   );

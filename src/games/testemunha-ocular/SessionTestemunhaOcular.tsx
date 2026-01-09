@@ -36,7 +36,10 @@ function getActiveComponent(state: GameState) {
 
 function SessionTestemunhaOcular() {
   return (
-    <Session gameCollection={GAME_COLLECTION.TESTEMUNHA_OCULAR} getActiveComponent={getActiveComponent} />
+    <Session
+      gameCollection={GAME_COLLECTION.TESTEMUNHA_OCULAR}
+      getActiveComponent={getActiveComponent}
+    />
   );
 }
 

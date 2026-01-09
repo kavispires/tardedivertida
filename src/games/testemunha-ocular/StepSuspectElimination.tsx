@@ -70,14 +70,33 @@ export function StepSuspectElimination({
     <Step announcement={announcement}>
       <StepTitle>
         <span>
-          <PlayerAvatarName player={witness} addressUser />
-          <Translate en="answered" pt="respondeu" />{' '}
-          {testimony ? <Translate en="YES" pt="SIM" /> : <Translate en="NO" pt="NÃO" />}{' '}
+          <PlayerAvatarName
+            player={witness}
+            addressUser
+          />
+          <Translate
+            en="answered"
+            pt="respondeu"
+          />{' '}
+          {testimony ? (
+            <Translate
+              en="YES"
+              pt="SIM"
+            />
+          ) : (
+            <Translate
+              en="NO"
+              pt="NÃO"
+            />
+          )}{' '}
           <IconAvatar
             size="large"
             icon={testimony ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
           />{' '}
-          <Translate en="to the question" pt="para a pergunta:" />
+          <Translate
+            en="to the question"
+            pt="para a pergunta:"
+          />
         </span>
       </StepTitle>
 
@@ -99,7 +118,10 @@ export function StepSuspectElimination({
             en="Click on a suspect card to release it."
           />
           <br />
-          <Translate pt="Selecione alguém que" en="Select someone that " />{' '}
+          <Translate
+            pt="Selecione alguém que"
+            en="Select someone that "
+          />{' '}
           <TextHighlight>{oppositeAction}</TextHighlight>
           <br />
           {Boolean(eliminatedSuspects?.length && isUserTheQuestioner) && (
@@ -119,7 +141,10 @@ export function StepSuspectElimination({
             en="is the one who is releasing the suspects and they must release at least one."
           />
           <br />
-          <Translate pt="E deve ser alguém que" en="It must someone that " />{' '}
+          <Translate
+            pt="E deve ser alguém que"
+            en="It must someone that "
+          />{' '}
           <TextHighlight>{oppositeAction}</TextHighlight>
         </RuleInstruction>
       )}
@@ -132,7 +157,12 @@ export function StepSuspectElimination({
         eliminatedSuspects={[...(eliminatedSuspects ?? []), ...(previouslyEliminatedSuspects ?? [])]}
       />
 
-      {history.length > 0 && <QuestionsHistory history={history} suspectsDict={suspectsDict} />}
+      {history.length > 0 && (
+        <QuestionsHistory
+          history={history}
+          suspectsDict={suspectsDict}
+        />
+      )}
 
       {status && <Summary status={status} />}
     </Step>

@@ -9,7 +9,10 @@ import { StepResult } from './StepResult';
 
 export function PhaseResult({ state, players, user }: PhaseProps) {
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={NA_RUA_DO_MEDO_PHASES.RESULT}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={NA_RUA_DO_MEDO_PHASES.RESULT}
+    >
       {/* Step 1 */}
       <StepResult
         players={players}

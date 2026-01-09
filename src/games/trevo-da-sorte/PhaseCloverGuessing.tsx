@@ -25,12 +25,23 @@ export function PhaseCloverGuessing({ state, players }: PhaseProps) {
   const onSubmitGuess = useOnSubmitGuessAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={TREVO_DA_SORTE_PHASES.CLOVER_GUESSING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={TREVO_DA_SORTE_PHASES.CLOVER_GUESSING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<CloverIcon />}
-          title={<Translate pt="Hora de Adivinhar" en="Time to guess" />}
+          title={
+            <Translate
+              pt="Hora de Adivinhar"
+              en="Time to guess"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           type="block"
@@ -42,7 +53,11 @@ export function PhaseCloverGuessing({ state, players }: PhaseProps) {
             />
           </Instruction>
 
-          <TurnOrder players={players} activePlayerId={state.activeCloverId} order={state.gameOrder} />
+          <TurnOrder
+            players={players}
+            activePlayerId={state.activeCloverId}
+            order={state.gameOrder}
+          />
         </PhaseAnnouncement>
 
         {/* Step 1 */}

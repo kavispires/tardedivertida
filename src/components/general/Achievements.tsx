@@ -41,7 +41,12 @@ const unknownText = { pt: 'Desconhecido', en: 'Unknown' };
 export function Achievements({ players, achievements, reference, colorScheme }: AchievementsProps) {
   return (
     <TitledContainer
-      title={<Translate pt="Medalhas" en="Achievements" />}
+      title={
+        <Translate
+          pt="Medalhas"
+          en="Achievements"
+        />
+      }
       titleProps={{
         colorScheme,
         size: 'small',
@@ -101,7 +106,12 @@ export function Achievements({ players, achievements, reference, colorScheme }: 
                       </span>
                     }
                   >
-                    <Button icon={<QuestionCircleOutlined />} shape="circle" type="text" size="small" />
+                    <Button
+                      icon={<QuestionCircleOutlined />}
+                      shape="circle"
+                      type="text"
+                      size="small"
+                    />
                   </Popover>
                 </div>
               )}

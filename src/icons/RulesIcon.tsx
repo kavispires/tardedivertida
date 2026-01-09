@@ -1,6 +1,10 @@
 export function RulesIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#ccad76"
         d="M489.5 100.5c8.284 0 15 6.716 15 15v301c0 22.091-17.909 40-40 40H276c-11.046 0-20-8.954-20-20v-336z"

@@ -37,16 +37,36 @@ export function StudentCard({ student, socialGroup, showInfo, className }: Stude
     >
       {showInfo && (
         <div className="student-card__info">
-          <Flex gap={2} align="center" vertical className="student-card__icons">
-            <SocialGroupIcon socialGroup={socialGroup} size="small" />
+          <Flex
+            gap={2}
+            align="center"
+            vertical
+            className="student-card__icons"
+          >
+            <SocialGroupIcon
+              socialGroup={socialGroup}
+              size="small"
+            />
 
-            <GenderIcon gender={student.gender} size="small" />
+            <GenderIcon
+              gender={student.gender}
+              size="small"
+            />
 
-            <AgeIcon age={student.age} size="small" />
+            <AgeIcon
+              age={student.age}
+              size="small"
+            />
 
-            <BuildIcon build={student.build} size="small" />
+            <BuildIcon
+              build={student.build}
+              size="small"
+            />
 
-            <HeightIcon height={student.height} size="small" />
+            <HeightIcon
+              height={student.height}
+              size="small"
+            />
           </Flex>
           <div className="student-card__name">
             {translate(student.name.pt, student.name.en).split(' ')[0]}

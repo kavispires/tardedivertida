@@ -29,12 +29,23 @@ export function PhaseGallery({ state, players, meta }: PhaseProps) {
   };
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={SINAIS_DE_ALERTA_PHASES.GALLERY}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={SINAIS_DE_ALERTA_PHASES.GALLERY}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/*Step 0 */}
         <PhaseAnnouncement
           icon={<WarningSignIcon />}
-          title={<Translate pt="Galeria de Placas" en="Signs Gallery" />}
+          title={
+            <Translate
+              pt="Galeria de Placas"
+              en="Signs Gallery"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           unskippable
@@ -54,7 +65,12 @@ export function PhaseGallery({ state, players, meta }: PhaseProps) {
         />
 
         {/* Step 2 */}
-        <StepRanking players={players} ranking={state.ranking} round={state.round} onGoBack={onGoBack} />
+        <StepRanking
+          players={players}
+          ranking={state.ranking}
+          round={state.round}
+          onGoBack={onGoBack}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

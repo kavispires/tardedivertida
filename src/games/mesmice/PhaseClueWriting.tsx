@@ -31,7 +31,12 @@ export function PhaseClueWriting({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<WritingIcon />}
-      title={<Translate pt="Objeto e característica" en="Object vs Feature" />}
+      title={
+        <Translate
+          pt="Objeto e característica"
+          en="Object vs Feature"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -54,14 +59,28 @@ export function PhaseClueWriting({ state, players, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={MESMICE_PHASES.CLUE_WRITING}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={MESMICE_PHASES.CLUE_WRITING}
+    >
       <StepSwitcher
         step={step}
         players={players}
-        waitingRoom={{ content: <PlayerObjectClueFeature user={user} features={state.features} /> }}
+        waitingRoom={{
+          content: (
+            <PlayerObjectClueFeature
+              user={user}
+              features={state.features}
+            />
+          ),
+        }}
       >
         {/* Step 0 */}
-        <StepSelectObject user={user} onSelectObject={onSelectObject} announcement={announcement} />
+        <StepSelectObject
+          user={user}
+          onSelectObject={onSelectObject}
+          announcement={announcement}
+        />
 
         {/* Step 1 */}
         <StepWriteClue

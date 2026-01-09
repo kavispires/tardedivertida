@@ -1,11 +1,18 @@
 export function SpyIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#c68a65"
         d="M156.334 337.752h-42c-47.681 0-86.333 38.653-86.333 86.333v77.917h456v-77.917c0-47.681-38.653-86.333-86.333-86.333h-42.302z"
       ></path>
-      <path fill="#a7bcce" d="M300.799 277.505l-44.798 224.497-44.798-224.497z"></path>
+      <path
+        fill="#a7bcce"
+        d="M300.799 277.505l-44.798 224.497-44.798-224.497z"
+      ></path>
       <path
         fill="#d1a184"
         d="M214.624 502.002l-65.956-118h30l-27-70.385 59.535-36.112 44.798 224.497zm82.754 0l65.956-118h-30l27-70.385-59.535-36.112-44.798 224.497z"

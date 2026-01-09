@@ -32,10 +32,20 @@ type SentenceProps = {
 
 function Sentence({ currentCategory }: SentenceProps) {
   return (
-    <Flex wrap="wrap" align="center" justify="center">
-      <Translate pt="O resultado para" en="The answer for" />{' '}
+    <Flex
+      wrap="wrap"
+      align="center"
+      justify="center"
+    >
+      <Translate
+        pt="O resultado para"
+        en="The answer for"
+      />{' '}
       <span className="o-dial-guess-selection__clue">{currentCategory.clue}</span>{' '}
-      <Translate pt="na escala" en="on the scale" />{' '}
+      <Translate
+        pt="na escala"
+        en="on the scale"
+      />{' '}
       <strong>
         {currentCategory.left}-{currentCategory.right}
       </strong>
@@ -73,12 +83,24 @@ export function StepReveal({
   );
 
   return (
-    <Step fullWidth announcement={announcement}>
-      <StepTitle level={2} className="o-step-reveal-title" size="small">
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
+      <StepTitle
+        level={2}
+        className="o-step-reveal-title"
+        size="small"
+      >
         <Sentence currentCategory={currentCategory} />
       </StepTitle>
 
-      <Dial card={currentCategory} target={currentCategory.target} showTarget animate />
+      <Dial
+        card={currentCategory}
+        target={currentCategory.target}
+        showTarget
+        animate
+      />
 
       <Instruction contained>
         <Translate
@@ -99,7 +121,10 @@ export function StepReveal({
       <ul className="o-player-guesses">
         {regularPlayers.map((player) => {
           return (
-            <li className="o-player-guess" key={player.id}>
+            <li
+              className="o-player-guess"
+              key={player.id}
+            >
               <span
                 className={clsx(
                   'o-player-guess__guess',
@@ -110,7 +135,10 @@ export function StepReveal({
                 {Math.abs(player.guess)}
                 {player.guess > 0 && '»'}
               </span>
-              <PlayerAvatar avatarId={player.avatarId} className="o-player-guess__avatar" />
+              <PlayerAvatar
+                avatarId={player.avatarId}
+                className="o-player-guess__avatar"
+              />
               <span className="o-player-guess__name">{player.name}</span>
               <StarPoints
                 quantity={getPoints(player.guess, currentCategory.target ?? 0)}
@@ -130,7 +158,10 @@ export function StepReveal({
           onClick={goToNextStep}
           icon={<TrophyOutlined />}
         >
-          <Translate pt="Ver Ranking" en="See Ranking" />
+          <Translate
+            pt="Ver Ranking"
+            en="See Ranking"
+          />
         </TimedButton>
       </SpaceContainer>
     </Step>

@@ -24,9 +24,15 @@ export function StepSelectObject({ user, announcement, onSelectObject }: StepSel
   useMock(() => onSelectObject(mockObjectIdSelection(items)));
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt={<>Escolha um objeto</>} en={<>Select an object</>} />
+        <Translate
+          pt={<>Escolha um objeto</>}
+          en={<>Select an object</>}
+        />
       </StepTitle>
 
       <RuleInstruction type="action">
@@ -57,7 +63,10 @@ export function StepSelectObject({ user, announcement, onSelectObject }: StepSel
 
       <div className="object-selection-container">
         {items.map((item) => (
-          <TransparentButton key={item.id} onClick={() => onSelectObject(item.id)}>
+          <TransparentButton
+            key={item.id}
+            onClick={() => onSelectObject(item.id)}
+          >
             <ObjectCard item={item} />
           </TransparentButton>
         ))}

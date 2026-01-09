@@ -32,7 +32,12 @@ export function PhaseDialClue({ state, players }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<TurbanIcon />}
-      title={<Translate pt="Concentração" en="Focus" />}
+      title={
+        <Translate
+          pt="Concentração"
+          en="Focus"
+        />
+      }
       currentRound={state?.round?.current}
       duration={7}
       type="overlay"
@@ -41,25 +46,50 @@ export function PhaseDialClue({ state, players }: PhaseProps) {
         <Translate
           pt={
             <>
-              Para essa rodada, <PlayerAvatarName player={psychic} addressUser /> será o(a) Medium.
+              Para essa rodada,{' '}
+              <PlayerAvatarName
+                player={psychic}
+                addressUser
+              />{' '}
+              será o(a) Medium.
             </>
           }
           en={
             <>
-              For this round, <PlayerAvatarName player={psychic} addressUser /> will be the Psychic.
+              For this round,{' '}
+              <PlayerAvatarName
+                player={psychic}
+                addressUser
+              />{' '}
+              will be the Psychic.
             </>
           }
         />
-        <TurnOrder players={players} order={state.gameOrder} activePlayerId={state.psychicId} />
+        <TurnOrder
+          players={players}
+          order={state.gameOrder}
+          activePlayerId={state.psychicId}
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={ONDA_TELEPATICA_PHASES.DIAL_CLUE}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={ONDA_TELEPATICA_PHASES.DIAL_CLUE}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} buttonText=" " onPressButton={goToNextStep} time={5} />
+        <RoundAnnouncement
+          round={state.round}
+          buttonText=" "
+          onPressButton={goToNextStep}
+          time={5}
+        />
 
         {/* Step 1 */}
         <ViewOr condition={isUserThePsychic}>

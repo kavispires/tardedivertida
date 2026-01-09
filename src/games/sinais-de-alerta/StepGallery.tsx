@@ -42,7 +42,10 @@ export function StepGallery({ gallery, players, cards, slideShowConfig, gameLang
   return (
     <Step fullWidth>
       <StepTitle size="small">
-        <Translate pt="Galeria de Placas" en="Signs Gallery" />
+        <Translate
+          pt="Galeria de Placas"
+          en="Signs Gallery"
+        />
       </StepTitle>
 
       <PopoverRule content={<ScoringRules />} />
@@ -54,7 +57,10 @@ export function StepGallery({ gallery, players, cards, slideShowConfig, gameLang
         rightClassName="sda-gallery__info"
       >
         <div>
-          <WarningDrawing drawing={galleryEntry.drawing} width={canvasWidth} />
+          <WarningDrawing
+            drawing={galleryEntry.drawing}
+            width={canvasWidth}
+          />
         </div>
 
         {/** biome-ignore lint/complexity/noUselessFragments: Represents the left page of the slide show */}
@@ -69,7 +75,11 @@ export function StepGallery({ gallery, players, cards, slideShowConfig, gameLang
             gameLanguage={gameLanguage}
           />
 
-          <GalleryWindowResult cards={cards} galleryEntry={galleryEntry} gameLanguage={gameLanguage} />
+          <GalleryWindowResult
+            cards={cards}
+            galleryEntry={galleryEntry}
+            gameLanguage={gameLanguage}
+          />
         </>
       </SlideShow>
     </Step>

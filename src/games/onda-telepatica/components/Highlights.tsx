@@ -12,7 +12,12 @@ import { TextHighlight } from 'components/text';
 
 export function WavelengthHighlight({ children, type, iconSize, className }: HighlightProps) {
   return (
-    <MetricHighlight icon={<WavelengthDeviceIcon />} type={type} iconSize={iconSize} className={className}>
+    <MetricHighlight
+      icon={<WavelengthDeviceIcon />}
+      type={type}
+      iconSize={iconSize}
+      className={className}
+    >
       {children}
     </MetricHighlight>
   );

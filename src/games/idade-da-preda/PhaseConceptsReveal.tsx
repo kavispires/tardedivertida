@@ -21,15 +21,26 @@ export function PhaseConceptsReveal({ state, players, user }: PhaseProps<PhaseCo
   const announcement = (
     <PhaseAnnouncement
       icon={<PuzzleIcon />}
-      title={<Translate pt="Novos Conceitos" en="New Concepts" />}
+      title={
+        <Translate
+          pt="Novos Conceitos"
+          en="New Concepts"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     />
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={IDADE_DA_PREDA_PHASES.CONCEPTS_REVEAL}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={IDADE_DA_PREDA_PHASES.CONCEPTS_REVEAL}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 1 */}
         <StepNewConcepts
           user={user}

@@ -45,14 +45,25 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
       state={state}
       players={players}
       announcementIcon={isVictory ? <MagicCultLeaderIcon /> : <MagicSkullIcon />}
-      announcementTitle={<Translate pt="A jornada chegou ao fim!" en="The journey has come to an end!" />}
+      announcementTitle={
+        <Translate
+          pt="A jornada chegou ao fim!"
+          en="The journey has come to an end!"
+        />
+      }
       announcementContent={<Instruction>...</Instruction>}
     >
       <Title>
         {isVictory ? (
-          <Translate pt="Conseguimos!" en="We did it!" />
+          <Translate
+            pt="Conseguimos!"
+            en="We did it!"
+          />
         ) : (
-          <Translate pt="Ficamos presos" en="We stayed trapped" />
+          <Translate
+            pt="Ficamos presos"
+            en="We stayed trapped"
+          />
         )}
       </Title>
 
@@ -71,18 +82,28 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
         )}
       </RuleInstruction>
 
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
 
       <Divider />
       <Title size="x-small">
-        <Translate pt="O corredor" en="The Corridor" />
+        <Translate
+          pt="O corredor"
+          en="The Corridor"
+        />
       </Title>
 
       <SpaceContainer wrap>
         {doors.map((doorId: ImageCardId, index, arr) => (
           <Fragment key={doorId || index}>
             <DoorFrame width={doorWidth}>
-              <ImageCard cardId={doorId || 'back-lockedDoor'} cardWidth={150} />
+              <ImageCard
+                cardId={doorId || 'back-lockedDoor'}
+                cardWidth={150}
+              />
             </DoorFrame>
             {index < arr.length - 1 && <CaretRightOutlined />}
           </Fragment>

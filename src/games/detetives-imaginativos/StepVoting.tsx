@@ -36,7 +36,12 @@ export function StepVoting({
   return (
     <Step announcement={announcement}>
       <StepTitle wait={isLoading}>
-        {!isLoading && <Translate pt="Quem é o impostor?" en="Who is the impostor?" />}
+        {!isLoading && (
+          <Translate
+            pt="Quem é o impostor?"
+            en="Who is the impostor?"
+          />
+        )}
       </StepTitle>
 
       <ViewIf condition={isUserTheLeader}>
@@ -94,7 +99,10 @@ export function StepVoting({
         isAllDisabled={isUserTheLeader}
       />
 
-      <Table table={table} players={players} />
+      <Table
+        table={table}
+        players={players}
+      />
 
       <ReadyPlayersBar players={players} />
     </Step>

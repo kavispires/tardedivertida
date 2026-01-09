@@ -41,7 +41,10 @@ export function StepWaitingForGuess({
   });
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         <Translate
           pt={
@@ -105,7 +108,13 @@ export function StepWaitingForGuess({
       <Space className="u-word-guess-phase__suggestions">
         {validSuggestions.map((suggestionEntry, index) => {
           const id = `${suggestionEntry.suggestion}-${index}`;
-          return <SuggestionEasel key={id} id={id} value={suggestionEntry.suggestion} />;
+          return (
+            <SuggestionEasel
+              key={id}
+              id={id}
+              value={suggestionEntry.suggestion}
+            />
+          );
         })}
       </Space>
 

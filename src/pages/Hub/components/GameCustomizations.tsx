@@ -26,7 +26,10 @@ export function GameCustomizations({
     return (
       <div className="create-game-modal-options create-game-modal-options__no-options">
         <Typography.Text>
-          <Translate pt="Este jogo não possui customizações" en="This game does not support customizations" />
+          <Translate
+            pt="Este jogo não possui customizações"
+            en="This game does not support customizations"
+          />
         </Typography.Text>
       </div>
     );
@@ -34,8 +37,14 @@ export function GameCustomizations({
 
   return (
     <div className="create-game-modal-options">
-      <Typography.Title level={5} className="create-game-modal-options__title">
-        <Translate pt="Opções:" en="Options:" />
+      <Typography.Title
+        level={5}
+        className="create-game-modal-options__title"
+      >
+        <Translate
+          pt="Opções:"
+          en="Options:"
+        />
       </Typography.Title>
       <div className="create-game-modal-options__list">
         {(options ?? []).map((option) => (
@@ -106,7 +115,10 @@ function SwitchOptions({ option, disabled, onChangeOptions, selectedOptions }: O
       >
         {option?.values[0].label ?? ''}
       </span>
-      <Switch disabled={disabled || option.disabled} onChange={(e) => onChangeOptions(option.key, e)} />
+      <Switch
+        disabled={disabled || option.disabled}
+        onChange={(e) => onChangeOptions(option.key, e)}
+      />
       <span
         className={clsx(
           'create-game-modal-options__on',
@@ -128,7 +140,10 @@ function RadioOptions({ option, disabled, onChangeOptions }: OptionProps) {
       className="create-game-modal-options__selections"
     >
       {option.values.map((value) => (
-        <Radio key={String(value.value)} value={value.value}>
+        <Radio
+          key={String(value.value)}
+          value={value.value}
+        >
           {value.label}
         </Radio>
       ))}

@@ -63,12 +63,24 @@ export const ForceStateForm = ({ isLoading, state, onPerformAdminAction }: Force
   };
 
   return (
-    <Form name="basic" form={form} initialValues={{ valueType: 'string' }} onFinish={onFinish}>
+    <Form
+      name="basic"
+      form={form}
+      initialValues={{ valueType: 'string' }}
+      onFinish={onFinish}
+    >
       <h3>Force Property</h3>
-      <Form.Item label="Key" name="key" rules={[{ required: true }]}>
+      <Form.Item
+        label="Key"
+        name="key"
+        rules={[{ required: true }]}
+      >
         <AutoComplete options={stateKeys} />
       </Form.Item>
-      <Form.Item label="Type" name="valueType">
+      <Form.Item
+        label="Type"
+        name="valueType"
+      >
         <Select onChange={onValueTypeSelectChange}>
           <Select.Option value="string">string</Select.Option>
           <Select.Option value="number">number</Select.Option>
@@ -79,7 +91,12 @@ export const ForceStateForm = ({ isLoading, state, onPerformAdminAction }: Force
 
       <ValueFormItem valueType={valueType} />
 
-      <Button type="primary" htmlType="submit" disabled={isLoading} danger>
+      <Button
+        type="primary"
+        htmlType="submit"
+        disabled={isLoading}
+        danger
+      >
         Submit
       </Button>
     </Form>

@@ -49,7 +49,10 @@ export function LeafSlot({
           )}
           onClick={(_) => onActivateSlot(position)}
         >
-          <IconAvatar icon={<GuessIcon />} size="large" />
+          <IconAvatar
+            icon={<GuessIcon />}
+            size="large"
+          />
         </button>
       </div>
     );
@@ -112,8 +115,14 @@ function LeafSlotContent({
       icon={icon}
     />
   ) : (
-    <div key={`clue-key-${position}`} className={clsx('y-leaf', 'y-leaf--empty')}>
-      <IconAvatar icon={<GuessIcon />} size="large" />
+    <div
+      key={`clue-key-${position}`}
+      className={clsx('y-leaf', 'y-leaf--empty')}
+    >
+      <IconAvatar
+        icon={<GuessIcon />}
+        size="large"
+      />
     </div>
   );
 }

@@ -64,7 +64,10 @@ export function StepAlienRequests({
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         <Translate
           pt={
@@ -138,7 +141,10 @@ export function StepAlienRequests({
       </AlienContent>
 
       <AlienContent user={user}>
-        <Space className="boards-container" wrap>
+        <Space
+          className="boards-container"
+          wrap
+        >
           <SelectableObjectsGrid
             items={items}
             showTypes={isUserAlien}
@@ -148,14 +154,26 @@ export function StepAlienRequests({
             isAlienRequest
             status={status}
           />
-          <SignsKeyCard attributes={attributes} startingAttributesIds={startingAttributesIds} />
+          <SignsKeyCard
+            attributes={attributes}
+            startingAttributesIds={startingAttributesIds}
+          />
         </Space>
       </AlienContent>
 
       <HumanContent user={user}>
-        <Space className="boards-container" wrap>
-          <ObjectsGrid items={items} status={status} />
-          <HumanSignBoard attributes={attributes} startingAttributesIds={startingAttributesIds} />
+        <Space
+          className="boards-container"
+          wrap
+        >
+          <ObjectsGrid
+            items={items}
+            status={status}
+          />
+          <HumanSignBoard
+            attributes={attributes}
+            startingAttributesIds={startingAttributesIds}
+          />
         </Space>
       </HumanContent>
 
@@ -171,7 +189,10 @@ export function StepAlienRequests({
       />
 
       <DebugOnly>
-        <SignsKeyCard attributes={attributes} startingAttributesIds={startingAttributesIds} />
+        <SignsKeyCard
+          attributes={attributes}
+          startingAttributesIds={startingAttributesIds}
+        />
       </DebugOnly>
     </Step>
   );

@@ -36,7 +36,11 @@ export const TrackQuemNaoMata = ({ onSubmitAnswer, user, players }: TrackProps) 
   return (
     <>
       <MinigameTitle title={{ pt: 'Quem Não Mata, Morre!', en: 'Mortal Standoff' }} />
-      <Space orientation="vertical" align="center" className="contained margin">
+      <Space
+        orientation="vertical"
+        align="center"
+        className="contained margin"
+      >
         <RuleInstruction type="action">
           <Translate
             pt={
@@ -52,14 +56,22 @@ export const TrackQuemNaoMata = ({ onSubmitAnswer, user, players }: TrackProps) 
         <SpaceContainer wrap>
           {sortPlayers(players).map((player, index, arr) => {
             return (
-              <div key={player.id} className="qnm-shooter">
+              <div
+                key={player.id}
+                className="qnm-shooter"
+              >
                 <IconAvatar
                   icon={<ShooterIcon />}
                   size={48}
                   className={clsx(index >= arr.length / 2 && 'qnm-shooter__reverse')}
                 />
                 <Button
-                  icon={<PlayerAvatar avatarId={player.avatarId} size="small" />}
+                  icon={
+                    <PlayerAvatar
+                      avatarId={player.avatarId}
+                      size="small"
+                    />
+                  }
                   onClick={() => onSelect(player.id)}
                   type="primary"
                   loading={isLoading}

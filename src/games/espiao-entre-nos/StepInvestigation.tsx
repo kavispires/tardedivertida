@@ -71,30 +71,58 @@ export function StepInvestigation({
     <Step className="e-phase-step">
       <div className="e-phase-step-header">
         <div className="e-phase-step-header__timer-container">
-          <Timer timer={timer} hideAccusationSelect={hideAccusationSelect} setStep={setStep} />
+          <Timer
+            timer={timer}
+            hideAccusationSelect={hideAccusationSelect}
+            setStep={setStep}
+          />
         </div>
 
         <div className="e-phase-step-header__center">
-          <Title level={2} className="e-phase-title">
+          <Title
+            level={2}
+            className="e-phase-title"
+          >
             {isUserTheSpy ? (
-              <Translate pt="Onde eles estão?" en="Where are they?" />
+              <Translate
+                pt="Onde eles estão?"
+                en="Where are they?"
+              />
             ) : (
-              <Translate pt="Quem é o espião?" en="Who is the spy?" />
+              <Translate
+                pt="Quem é o espião?"
+                en="Who is the spy?"
+              />
             )}
           </Title>
 
-          <Card location={user.location} role={user.role} />
+          <Card
+            location={user.location}
+            role={user.role}
+          />
         </div>
       </div>
 
       {isAccusationSelectVisible && (
         <SpaceContainer>
-          {isUserTheSpy && <LocationSelect locations={locations} onSend={onGuessLocation} />}|
+          {isUserTheSpy && (
+            <LocationSelect
+              locations={locations}
+              onSend={onGuessLocation}
+            />
+          )}
+          |
           {!user?.usedAccusation ? (
-            <PlayerSelect players={players} onSend={onMakeAccusation} />
+            <PlayerSelect
+              players={players}
+              onSend={onMakeAccusation}
+            />
           ) : (
             <Instruction className="e-phase-instruction">
-              <Translate pt="Você já usou sua chance de acusar" en="You already used your accusation" />
+              <Translate
+                pt="Você já usou sua chance de acusar"
+                en="You already used your accusation"
+              />
             </Instruction>
           )}
         </SpaceContainer>

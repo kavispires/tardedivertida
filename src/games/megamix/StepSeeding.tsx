@@ -50,48 +50,99 @@ export const StepSeeding = ({ announcement, user, onSubmitData }: StepSeedingPro
   const currentSeed: SeedEntry = seeds[currentStep];
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle size="small">
         {seeds.length > 1 ? (
-          <Translate pt="Termine todas suas obrigações" en="Finish all your chores" />
+          <Translate
+            pt="Termine todas suas obrigações"
+            en="Finish all your chores"
+          />
         ) : (
-          <Translate pt="Hora de se arrumar" en="Time to get ready" />
+          <Translate
+            pt="Hora de se arrumar"
+            en="Time to get ready"
+          />
         )}
       </StepTitle>
       <div className="full-width container center">
-        <Steps current={currentStep} items={items} />
+        <Steps
+          current={currentStep}
+          items={items}
+        />
         {/* DEV only */}
-        {Boolean(currentSeed?.type) && <DevMock seeds={seeds} onSubmitData={onSubmitData} />}
+        {Boolean(currentSeed?.type) && (
+          <DevMock
+            seeds={seeds}
+            onSubmitData={onSubmitData}
+          />
+        )}
 
-        {currentSeed?.type === 'arte-ruim' && <SeedArteRuim seed={currentSeed} updateData={updateData} />}
+        {currentSeed?.type === 'arte-ruim' && (
+          <SeedArteRuim
+            seed={currentSeed}
+            updateData={updateData}
+          />
+        )}
 
         {currentSeed?.type === 'contadores-historias' && (
-          <SeedContadoresHistorias seed={currentSeed} updateData={updateData} />
+          <SeedContadoresHistorias
+            seed={currentSeed}
+            updateData={updateData}
+          />
         )}
 
         {currentSeed?.type === 'labirinto-secreto' && (
-          <SeedLabirintoSecreto seed={currentSeed} updateData={updateData} user={user} />
+          <SeedLabirintoSecreto
+            seed={currentSeed}
+            updateData={updateData}
+            user={user}
+          />
         )}
 
         {currentSeed?.type === 'mente-coletiva' && (
-          <SeedMenteColetiva seed={currentSeed} updateData={updateData} />
+          <SeedMenteColetiva
+            seed={currentSeed}
+            updateData={updateData}
+          />
         )}
 
         {currentSeed?.type === 'onda-telepatica' && (
-          <SeedOndaTelepatica seed={currentSeed} updateData={updateData} />
+          <SeedOndaTelepatica
+            seed={currentSeed}
+            updateData={updateData}
+          />
         )}
 
         {currentSeed?.type === 'polemica-da-vez' && (
-          <SeedPolemicaDaVez seed={currentSeed} updateData={updateData} />
+          <SeedPolemicaDaVez
+            seed={currentSeed}
+            updateData={updateData}
+          />
         )}
 
         {currentSeed?.type === 'retrato-falado' && (
-          <SeedRetratoFalado seed={currentSeed} updateData={updateData} />
+          <SeedRetratoFalado
+            seed={currentSeed}
+            updateData={updateData}
+          />
         )}
 
-        {currentSeed?.type === 'ue-so-isso' && <SeedUeSoIsso seed={currentSeed} updateData={updateData} />}
+        {currentSeed?.type === 'ue-so-isso' && (
+          <SeedUeSoIsso
+            seed={currentSeed}
+            updateData={updateData}
+          />
+        )}
 
-        {currentSeed?.type === 'party' && <SeedParty seed={currentSeed} updateData={updateData} />}
+        {currentSeed?.type === 'party' && (
+          <SeedParty
+            seed={currentSeed}
+            updateData={updateData}
+          />
+        )}
 
         {currentSeed?.type === 'clubber' && (
           <SeedClubber

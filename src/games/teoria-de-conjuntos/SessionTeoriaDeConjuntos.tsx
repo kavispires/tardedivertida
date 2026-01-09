@@ -32,7 +32,10 @@ function getActiveComponent(state: GameState) {
 
 function SessionTeoriaDeConjuntos() {
   return (
-    <Session gameCollection={GAME_COLLECTION.TEORIA_DE_CONJUNTOS} getActiveComponent={getActiveComponent} />
+    <Session
+      gameCollection={GAME_COLLECTION.TEORIA_DE_CONJUNTOS}
+      getActiveComponent={getActiveComponent}
+    />
   );
 }
 

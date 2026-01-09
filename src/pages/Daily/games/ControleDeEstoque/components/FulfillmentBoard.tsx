@@ -53,7 +53,10 @@ export function FulfillmentBoard({
                   className="shelves-board__placed-order"
                 />
               ) : (
-                <TransparentButton onClick={() => onTakeBack(isFulfilled.order)} hoverType="none">
+                <TransparentButton
+                  onClick={() => onTakeBack(isFulfilled.order)}
+                  hoverType="none"
+                >
                   <WarehouseGoodCard
                     goodId={isFulfilled.order}
                     width={width - 24}
@@ -62,7 +65,10 @@ export function FulfillmentBoard({
                 </TransparentButton>
               )}
               {reveal ? (
-                <WarehouseGoodCard goodId={goodId} width={width - 12} />
+                <WarehouseGoodCard
+                  goodId={goodId}
+                  width={width - 12}
+                />
               ) : (
                 <ShippingBoxIcon width={width - 12} />
               )}
@@ -71,12 +77,22 @@ export function FulfillmentBoard({
         }
 
         return (
-          <div key={index} className={clsx('shelves-board__shelf')} style={size}>
+          <div
+            key={index}
+            className={clsx('shelves-board__shelf')}
+            style={size}
+          >
             {reveal ? (
-              <WarehouseGoodCard goodId={goodId} width={width - 12} />
+              <WarehouseGoodCard
+                goodId={goodId}
+                width={width - 12}
+              />
             ) : (
               <TransparentButton onClick={activeOrder ? () => onFulfill(index) : undefined}>
-                <ShippingBoxIcon width={width - 12} className={getAnimationClass('bounce')} />
+                <ShippingBoxIcon
+                  width={width - 12}
+                  className={getAnimationClass('bounce')}
+                />
               </TransparentButton>
             )}
           </div>

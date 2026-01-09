@@ -35,7 +35,10 @@ function getActiveComponent(state: GameState) {
 
 function SessionLabirintoSecreto() {
   return (
-    <Session gameCollection={GAME_COLLECTION.LABIRINTO_SECRETO} getActiveComponent={getActiveComponent} />
+    <Session
+      gameCollection={GAME_COLLECTION.LABIRINTO_SECRETO}
+      getActiveComponent={getActiveComponent}
+    />
   );
 }
 

@@ -17,7 +17,11 @@ type PlayerStatusProps = {
 export function PlayerStatus({ player, side }: PlayerStatusProps) {
   return (
     <div className={clsx('q-player-status', `q-player-status--${side}`)}>
-      <PlayerAvatarCard player={player} withName size="small" />
+      <PlayerAvatarCard
+        player={player}
+        withName
+        size="small"
+      />
       <div className={clsx('q-player-status__icon', `q-player-status__icon--${side}`)}>
         <IconAvatar
           icon={

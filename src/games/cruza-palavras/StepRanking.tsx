@@ -29,13 +29,21 @@ export function StepRanking({ players, playerCount, ranking, goToPreviousStep, r
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[
-        <Translate key="1" pt="Palpites corretos" en="Correct guesses" />,
+        <Translate
+          key="1"
+          pt="Palpites corretos"
+          en="Correct guesses"
+        />,
         <Translate
           key="2"
           pt="Palpites que acertaram a célula de outra dica"
           en="Guesses that were placed in a cell for a different clue"
         />,
-        <Translate key="3" pt="Palpites recebidos corretamente" en="Received correct guesses" />,
+        <Translate
+          key="3"
+          pt="Palpites recebidos corretamente"
+          en="Received correct guesses"
+        />,
         <Translate
           key="4"
           pt="Penalidade se ninguém acertou a sua dica"
@@ -47,14 +55,23 @@ export function StepRanking({ players, playerCount, ranking, goToPreviousStep, r
 
       <SpaceContainer align="center">
         <Button onClick={goToPreviousStep}>
-          <Translate pt="Ver resultado novamente" en="See results again" />
+          <Translate
+            pt="Ver resultado novamente"
+            en="See results again"
+          />
         </Button>
       </SpaceContainer>
-      <HostNextPhaseButton round={round} withWaitingTimeBar />
+      <HostNextPhaseButton
+        round={round}
+        withWaitingTimeBar
+      />
 
       {round.current === 3 && (
         <RuleInstruction type="event">
-          <Translate pt="Está pronto para uma reviravolta?" en="Ready for a twist?" />
+          <Translate
+            pt="Está pronto para uma reviravolta?"
+            en="Ready for a twist?"
+          />
         </RuleInstruction>
       )}
     </StepRankingWrapper>

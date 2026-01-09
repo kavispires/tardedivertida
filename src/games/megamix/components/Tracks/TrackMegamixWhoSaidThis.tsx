@@ -40,7 +40,11 @@ export const TrackMegamixWhoSaidThis = ({ track, onSubmitAnswer, user, players }
       </RuleInstruction>
       <Card hideHeader>"{track.data.card.text}"</Card>
 
-      <Space orientation="vertical" align="center" className="contained margin">
+      <Space
+        orientation="vertical"
+        align="center"
+        className="contained margin"
+      >
         <SpaceContainer>
           {track.data.card.options.map((playerId: PlayerId) => {
             const player = players[playerId];
@@ -50,7 +54,10 @@ export const TrackMegamixWhoSaidThis = ({ track, onSubmitAnswer, user, players }
                 onClick={() => onSelect(playerId)}
                 disabled={isLoading || user.ready}
               >
-                <PlayerAvatarCard player={player} withName />
+                <PlayerAvatarCard
+                  player={player}
+                  withName
+                />
               </TransparentButton>
             );
           })}

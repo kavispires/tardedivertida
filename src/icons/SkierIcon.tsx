@@ -1,6 +1,10 @@
 export function SkierIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill={props.color ?? '#df75a5'}
         d="m307.6 347 21.8 21.8a18.6 18.6 0 0 1 4 20.2L316 431.3a22.4 22.4 0 0 1 10.5 29l-3.3 7.6-58-25.6 19.8-47-82-56.6 48.7-61.2 36.3 36.3"

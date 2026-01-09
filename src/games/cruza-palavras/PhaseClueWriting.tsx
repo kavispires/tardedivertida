@@ -25,7 +25,12 @@ export function PhaseClueWriting({ players, state, user }: PhaseProps<PhaseClueW
   const announcement = (
     <PhaseAnnouncement
       icon={<GridIcon />}
-      title={<Translate pt="Escreva!" en="Write!" />}
+      title={
+        <Translate
+          pt="Escreva!"
+          en="Write!"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -34,14 +39,29 @@ export function PhaseClueWriting({ players, state, user }: PhaseProps<PhaseClueW
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={CRUZA_PALAVRAS_PHASES.CLUE_WRITING}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={CRUZA_PALAVRAS_PHASES.CLUE_WRITING}
+    >
       <StepSwitcher
         step={step}
         players={players}
-        waitingRoom={{ content: <PlayerRecentClue grid={state.grid} user={user} /> }}
+        waitingRoom={{
+          content: (
+            <PlayerRecentClue
+              grid={state.grid}
+              user={user}
+            />
+          ),
+        }}
       >
         {/* Step 0 */}
-        <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5} />
+        <RoundAnnouncement
+          round={state?.round}
+          onPressButton={goToNextStep}
+          buttonText=" "
+          time={5}
+        />
 
         {/* Step 1 */}
         <StepClueWriting

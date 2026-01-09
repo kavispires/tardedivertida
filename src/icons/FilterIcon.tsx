@@ -1,6 +1,10 @@
 export function FilterIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#ffe17d"
         d="M215.92 304.64v191.83a8 8 0 0011.6 7.17l59.7-29.85a16 16 0 008.86-14.34V304.64a24.06 24.06 0 015.41-15.2L467 86.28a24.08 24.08 0 005.4-15.19V23.53a16 16 0 00-16-16H55.6a16 16 0 00-16 16v47.56A24.08 24.08 0 0045 86.28l165.51 203.17a24 24 0 015.41 15.19z"

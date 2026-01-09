@@ -71,9 +71,15 @@ export function StepEvaluateThings({
   });
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle size="small">
-        <Translate pt={<>Avalie as coisas</>} en={<>Evaluate the things</>} />
+        <Translate
+          pt={<>Avalie as coisas</>}
+          en={<>Evaluate the things</>}
+        />
       </StepTitle>
 
       <SpaceContainer>
@@ -103,17 +109,39 @@ export function StepEvaluateThings({
         />
       </RuleInstruction>
 
-      <SpaceContainer contained wrap>
+      <SpaceContainer
+        contained
+        wrap
+      >
         {table.map((entry) => {
           return (
-            <Flex key={entry.cardId} vertical gap={6}>
-              <ThingCard itemId={entry.cardId} name={cardsDict[entry.cardId].name} width={100} maskImage />
+            <Flex
+              key={entry.cardId}
+              vertical
+              gap={6}
+            >
+              <ThingCard
+                itemId={entry.cardId}
+                name={cardsDict[entry.cardId].name}
+                width={100}
+                maskImage
+              />
               <Flex justify="center">
                 {entry.playerId === user.id ? (
                   <Segmented
                     size="large"
                     disabled
-                    options={[{ label: <Translate key="yours" pt="Seu" en="Yours" /> }]}
+                    options={[
+                      {
+                        label: (
+                          <Translate
+                            key="yours"
+                            pt="Seu"
+                            en="Yours"
+                          />
+                        ),
+                      },
+                    ]}
                   />
                 ) : (
                   <TripleStateButton
@@ -137,11 +165,17 @@ export function StepEvaluateThings({
             onSubmitEvaluations({ evaluations: evaluations as Record<string, boolean> });
           }}
         >
-          <Translate pt="Concluir avaliações" en="Submit evaluations" />
+          <Translate
+            pt="Concluir avaliações"
+            en="Submit evaluations"
+          />
         </SendButton>
       </SpaceContainer>
 
-      <PlayersHandsCounts players={players} turnOrder={turnOrder} />
+      <PlayersHandsCounts
+        players={players}
+        turnOrder={turnOrder}
+      />
     </Step>
   );
 }

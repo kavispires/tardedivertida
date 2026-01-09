@@ -54,9 +54,15 @@ export function StepAnswerTheQuestion({
   });
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Responda:" en="Please answer:" />
+        <Translate
+          pt="Responda:"
+          en="Please answer:"
+        />
       </StepTitle>
 
       <div className="answer-board">
@@ -67,7 +73,11 @@ export function StepAnswerTheQuestion({
           questionsDict={questionsDict}
         />
         <div className="answer-board__text">
-          <Title size="x-small" level={3} className="answer-board__question">
+          <Title
+            size="x-small"
+            level={3}
+            className="answer-board__question"
+          >
             {questionsDict[questionId].question}
           </Title>
 
@@ -78,8 +88,14 @@ export function StepAnswerTheQuestion({
                 disabled={user.ready || isLoading}
                 onClick={() => onSubmitAnswer({ answer: true })}
               >
-                <IconAvatar icon={<SpeechBubbleAcceptedIcon />} size="large" />
-                <Translate pt="Sim" en="Yes" />
+                <IconAvatar
+                  icon={<SpeechBubbleAcceptedIcon />}
+                  size="large"
+                />
+                <Translate
+                  pt="Sim"
+                  en="Yes"
+                />
               </TransparentButton>
             </ViewIf>
             <ViewIf condition={user.currentAnswer === undefined || user.currentAnswer === false}>
@@ -88,7 +104,14 @@ export function StepAnswerTheQuestion({
                 disabled={user.ready || isLoading}
                 onClick={() => onSubmitAnswer({ answer: false })}
               >
-                <IconAvatar icon={<SpeechBubbleDeclinedIcon />} size="large" /> <Translate pt="Não" en="No" />
+                <IconAvatar
+                  icon={<SpeechBubbleDeclinedIcon />}
+                  size="large"
+                />{' '}
+                <Translate
+                  pt="Não"
+                  en="No"
+                />
               </TransparentButton>
             </ViewIf>
           </Space>
@@ -101,7 +124,11 @@ export function StepAnswerTheQuestion({
         userCharacterId={user.cardId}
       />
 
-      <TurnOrder players={players} order={turnOrder} activePlayerId={activePlayerId} />
+      <TurnOrder
+        players={players}
+        order={turnOrder}
+        activePlayerId={activePlayerId}
+      />
     </Step>
   );
 }

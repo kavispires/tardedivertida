@@ -37,18 +37,31 @@ export function StepResult({
 }: StepResultProps) {
   const isPass = group.attempts.at(-1) === 'PASS';
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle className={getAnimationClass('heartBeat')}>
         {isPass ? (
           <Translate
             pt={
               <>
-                <PlayerAvatarName player={guesser} addressUser size="large" /> passou...
+                <PlayerAvatarName
+                  player={guesser}
+                  addressUser
+                  size="large"
+                />{' '}
+                passou...
               </>
             }
             en={
               <>
-                <PlayerAvatarName player={guesser} addressUser size="large" /> passed...
+                <PlayerAvatarName
+                  player={guesser}
+                  addressUser
+                  size="large"
+                />{' '}
+                passed...
               </>
             }
           />
@@ -56,14 +69,22 @@ export function StepResult({
           <Translate
             pt={
               <>
-                <PlayerAvatarName player={guesser} addressUser size="large" /> disse{' '}
-                <TextHighlight>{guess}</TextHighlight>
+                <PlayerAvatarName
+                  player={guesser}
+                  addressUser
+                  size="large"
+                />{' '}
+                disse <TextHighlight>{guess}</TextHighlight>
               </>
             }
             en={
               <>
-                <PlayerAvatarName player={guesser} addressUser size="large" /> said{' '}
-                <TextHighlight>{guess}</TextHighlight>
+                <PlayerAvatarName
+                  player={guesser}
+                  addressUser
+                  size="large"
+                />{' '}
+                said <TextHighlight>{guess}</TextHighlight>
               </>
             }
           />
@@ -101,27 +122,54 @@ export function StepResult({
         />
       </RuleInstruction>
 
-      <Title size="xx-small" className="margin">
-        <Translate pt="Dicas válidas" en="Valid clues" />
+      <Title
+        size="xx-small"
+        className="margin"
+      >
+        <Translate
+          pt="Dicas válidas"
+          en="Valid clues"
+        />
       </Title>
 
       <SpaceContainer wrap>
         {validSuggestions.map((suggestionEntry, index) => {
           const id = `${suggestionEntry.suggestion}-${index}`;
-          return <SuggestionEasel key={id} id={id} value={suggestionEntry.suggestion} />;
+          return (
+            <SuggestionEasel
+              key={id}
+              id={id}
+              value={suggestionEntry.suggestion}
+            />
+          );
         })}
       </SpaceContainer>
 
       {validSuggestions.length !== suggestions.length && (
         <div className="u-margin">
-          <Title size="x-small" className="margin">
-            <Translate pt="Todas as dicas" en="All clues" />
+          <Title
+            size="x-small"
+            className="margin"
+          >
+            <Translate
+              pt="Todas as dicas"
+              en="All clues"
+            />
           </Title>
 
-          <SpaceContainer className="u-all-suggestions" wrap>
+          <SpaceContainer
+            className="u-all-suggestions"
+            wrap
+          >
             {suggestions.map((suggestionEntry, index) => {
               const id = `all-${suggestionEntry.suggestion}-${index}`;
-              return <SuggestionEasel key={id} id={id} value={suggestionEntry.suggestion} />;
+              return (
+                <SuggestionEasel
+                  key={id}
+                  id={id}
+                  value={suggestionEntry.suggestion}
+                />
+              );
             })}
           </SpaceContainer>
         </div>

@@ -52,14 +52,23 @@ export const TrackQuemSouEu = ({ track, onSubmitAnswer, user }: TrackProps) => {
       </RuleInstruction>
 
       <SpaceContainer>
-        <PlayerGlyphs player={botPlayer} glyphWidth={50} />
+        <PlayerGlyphs
+          player={botPlayer}
+          glyphWidth={50}
+        />
       </SpaceContainer>
 
       <SpaceContainer>
         {track.data.contenders.map((contender: FightingContender) => {
           return (
-            <Space orientation="vertical" key={contender.id}>
-              <CharacterCard size={cardWidth} character={contender} />
+            <Space
+              orientation="vertical"
+              key={contender.id}
+            >
+              <CharacterCard
+                size={cardWidth}
+                character={contender}
+              />
 
               <Button
                 shape="round"
@@ -72,7 +81,10 @@ export const TrackQuemSouEu = ({ track, onSubmitAnswer, user }: TrackProps) => {
                   })
                 }
               >
-                <Translate pt="Selecionar" en="Select" />
+                <Translate
+                  pt="Selecionar"
+                  en="Select"
+                />
               </Button>
             </Space>
           );

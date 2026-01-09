@@ -19,7 +19,12 @@ export function PhaseVerification({ players, state, user }: PhaseProps) {
     state.status === STATUS.LOSE ? (
       <PhaseAnnouncement
         icon={<NuclearExplosionIcon />}
-        title={<Translate pt="Nãaaaaaooooooo" en="Nooooooooo" />}
+        title={
+          <Translate
+            pt="Nãaaaaaooooooo"
+            en="Nooooooooo"
+          />
+        }
         currentRound={state?.round?.current}
         type="overlay"
         duration={4}
@@ -27,8 +32,14 @@ export function PhaseVerification({ players, state, user }: PhaseProps) {
     ) : undefined;
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={COMUNICACAO_DUO_PHASES.VERIFICATION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={COMUNICACAO_DUO_PHASES.VERIFICATION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepVerification
           user={user}

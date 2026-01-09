@@ -61,7 +61,10 @@ export function StepGallery({
   return (
     <Step fullWidth>
       <StepTitle size="small">
-        <Translate pt="Construções" en="Constructions" />
+        <Translate
+          pt="Construções"
+          en="Constructions"
+        />
       </StepTitle>
 
       <SlideShow
@@ -69,9 +72,19 @@ export function StepGallery({
         barColor={coneColor}
         leftClassName="pu-gallery__map"
         rightClassName="pu-gallery__info"
-        nextButtonProps={{ children: <Translate pt="Ver Resultado" en="See Results" /> }}
+        nextButtonProps={{
+          children: (
+            <Translate
+              pt="Ver Resultado"
+              en="See Results"
+            />
+          ),
+        }}
       >
-        <div style={{ height: '100%' }} ref={ref}>
+        <div
+          style={{ height: '100%' }}
+          ref={ref}
+        >
           <CityMapSnippet
             city={city}
             cityLocationsDict={cityLocationsDict}
@@ -83,57 +96,113 @@ export function StepGallery({
 
         <div>
           <SlideShowLabel>
-            <Translate pt="Projeto para o engenheiro chefe" en="Project for the lead engineer" />
+            <Translate
+              pt="Projeto para o engenheiro chefe"
+              en="Project for the lead engineer"
+            />
             <PlayerAvatarName player={architect} />
           </SlideShowLabel>
 
-          <Flex gap={12} align="center">
+          <Flex
+            gap={12}
+            align="center"
+          >
             <LocationCard
               locationId={galleryEntry.locationId}
               cityLocationsDict={cityLocationsDict}
               width={constructionWidth}
               fontSize="small"
             />
-            <IconAvatar icon={<ArrowIcon />} size={48} />
-            <ConeIcon color={coneColor} width={constructionWidth / 2} />
+            <IconAvatar
+              icon={<ArrowIcon />}
+              size={48}
+            />
+            <ConeIcon
+              color={coneColor}
+              width={constructionWidth / 2}
+            />
           </Flex>
 
           {galleryEntry.correctPlayersIds.length > 0 && (
             <>
               <SlideShowLabel>
-                <IconAvatar icon={<CrownIcon />} size="small" />{' '}
-                <Translate pt="Pedreiros Corretos" en="Correct Builders" />
+                <IconAvatar
+                  icon={<CrownIcon />}
+                  size="small"
+                />{' '}
+                <Translate
+                  pt="Pedreiros Corretos"
+                  en="Correct Builders"
+                />
               </SlideShowLabel>
-              <SlideShowBubbleValue winner extra={<StarPoints quantity={2} hideText keyPrefix="correct" />}>
-                <Translate pt="A gente sabe o que tá fazendo!" en="We know what we're doing!" />{' '}
+              <SlideShowBubbleValue
+                winner
+                extra={
+                  <StarPoints
+                    quantity={2}
+                    hideText
+                    keyPrefix="correct"
+                  />
+                }
+              >
+                <Translate
+                  pt="A gente sabe o que tá fazendo!"
+                  en="We know what we're doing!"
+                />{' '}
               </SlideShowBubbleValue>
-              <SlideShowPlayersList players={players} playersIds={galleryEntry.correctPlayersIds} />
+              <SlideShowPlayersList
+                players={players}
+                playersIds={galleryEntry.correctPlayersIds}
+              />
             </>
           )}
           {Object.keys(galleryEntry.playersSay).length > 0 && (
             <>
               <SlideShowLabel style={{ marginTop: '1em' }}>
-                <IconAvatar icon={<XIcon />} size="small" />{' '}
-                <Translate pt="Decisão Erradas dos Pedreiros" en="Builders' Wrong Decisions" />
+                <IconAvatar
+                  icon={<XIcon />}
+                  size="small"
+                />{' '}
+                <Translate
+                  pt="Decisão Erradas dos Pedreiros"
+                  en="Builders' Wrong Decisions"
+                />
               </SlideShowLabel>
 
               {Object.entries(galleryEntry.playersSay).map(([coneId, playersIds]) => {
                 const color = getConeColor(coneId as GalleryEntry['coneId']);
                 return (
-                  <div key={coneId} className="mb-2">
+                  <div
+                    key={coneId}
+                    className="mb-2"
+                  >
                     <SlideShowBubbleValue
                       color={color}
                       extra={
                         playersIds.length > 1 && (
-                          <StarPoints quantity={playersIds.length - 1} hideText keyPrefix="bonus" />
+                          <StarPoints
+                            quantity={playersIds.length - 1}
+                            hideText
+                            keyPrefix="bonus"
+                          />
                         )
                       }
                     >
-                      <Translate pt="Prefiro construir no local" en="I prefer building in the site" />:{' '}
-                      <ConeIcon color={color} width={16} />
+                      <Translate
+                        pt="Prefiro construir no local"
+                        en="I prefer building in the site"
+                      />
+                      :{' '}
+                      <ConeIcon
+                        color={color}
+                        width={16}
+                      />
                     </SlideShowBubbleValue>
 
-                    <SlideShowPlayersList players={players} playersIds={playersIds} />
+                    <SlideShowPlayersList
+                      players={players}
+                      playersIds={playersIds}
+                    />
                   </div>
                 );
               })}

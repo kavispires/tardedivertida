@@ -43,14 +43,20 @@ export function MetricHighlight({
     <span className={clsx('metric-highlight', type && `metric-highlight--${type}`, className)}>
       {iconPlacement === 'before' && (
         <>
-          <IconAvatar size={iconSize} icon={icon} />{' '}
+          <IconAvatar
+            size={iconSize}
+            icon={icon}
+          />{' '}
         </>
       )}
       {children}
       {iconPlacement === 'after' && (
         <>
           {' '}
-          <IconAvatar size={iconSize} icon={icon} />
+          <IconAvatar
+            size={iconSize}
+            icon={icon}
+          />
         </>
       )}
     </span>

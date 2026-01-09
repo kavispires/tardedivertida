@@ -42,14 +42,25 @@ export function MonsterSketches({
               className="r-sketch"
             />
             <div>
-              <PlayerAvatar avatarId={player.avatarId} size="small" /> {player.name}
+              <PlayerAvatar
+                avatarId={player.avatarId}
+                size="small"
+              />{' '}
+              {player.name}
             </div>
             {(votes?.[player.id] ?? []).length > 0 && (
               <Space align="center">
-                <Translate pt="Votos:" en="Votes:" />
+                <Translate
+                  pt="Votos:"
+                  en="Votes:"
+                />
                 <Avatar.Group max={{ count: 5 }}>
                   {(votes?.[player.id] ?? []).map((vote) => (
-                    <PlayerAvatar key={`vote-${vote}`} avatarId={players[vote].avatarId} size="small" />
+                    <PlayerAvatar
+                      key={`vote-${vote}`}
+                      avatarId={players[vote].avatarId}
+                      size="small"
+                    />
                   ))}
                 </Avatar.Group>
               </Space>

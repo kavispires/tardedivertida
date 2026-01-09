@@ -6,5 +6,10 @@ import { DailyTaNaCara } from './components/DailyTaNaCara';
 import './utils/styles.scss';
 
 export function DailyTaNaCaraGame() {
-  return <DailyGame gameName="ta-na-cara" GameComponent={DailyTaNaCara} />;
+  return (
+    <DailyGame
+      gameName="ta-na-cara"
+      GameComponent={DailyTaNaCara}
+    />
+  );
 }

@@ -60,7 +60,11 @@ export const TrackOndaTelepatica = ({ track, onSubmitAnswer, user }: TrackProps)
       <Card>{track.data.option.value}</Card>
 
       <div className="o-simple-dial">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 669.93 340" width="40vw">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 669.93 340"
+          width="40vw"
+        >
           <path
             fill="#181d44"
             d="M669.88 329.88a440.53 440.53 0 00-27.31-127.68C591.16 83.26 472.81 0 335 0h-.22C198.2.07 80.75 81.88 28.66 199.16A439.25 439.25 0 000 332a7.67 7.67 0 007.68 8h654.63a7.7 7.7 0 007.21-5 7.78 7.78 0 00.41-1.68l-.05-3.44z"
@@ -128,7 +132,10 @@ export const TrackOndaTelepatica = ({ track, onSubmitAnswer, user }: TrackProps)
 
 export function SimpleDial() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 669.93 340">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 669.93 340"
+    >
       <path
         fill="#181d44"
         d="M669.88 329.88a440.53 440.53 0 00-27.31-127.68C591.16 83.26 472.81 0 335 0h-.22C198.2.07 80.75 81.88 28.66 199.16A439.25 439.25 0 000 332a7.67 7.67 0 007.68 8h654.63a7.7 7.7 0 007.21-5 7.78 7.78 0 00.41-1.68l-.05-3.44z"

@@ -55,31 +55,53 @@ export function ResultsModalContent({
 
   return (
     <SpaceContainer vertical>
-      <Typography.Title level={2} className="center">
+      <Typography.Title
+        level={2}
+        className="center"
+      >
         {isWin ? (
           <>
-            <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Parabéns!" en="Congratulations!" />
+            <IconAvatar icon={<TrophyIcon />} />{' '}
+            <Translate
+              pt="Parabéns!"
+              en="Congratulations!"
+            />
           </>
         ) : (
           <>
-            <IconAvatar icon={<BoxXIcon />} /> <Translate pt="Que pena!" en="Too bad!" />
+            <IconAvatar icon={<BoxXIcon />} />{' '}
+            <Translate
+              pt="Que pena!"
+              en="Too bad!"
+            />
           </>
         )}
       </Typography.Title>
 
       <Typography.Paragraph className="center">
-        Regra do círculo <IconAvatar icon={<CircleIcon mainColor="gold" />} size="small" />
+        Regra do círculo{' '}
+        <IconAvatar
+          icon={<CircleIcon mainColor="gold" />}
+          size="small"
+        />
         <br />
         <Typography.Text code> {data.rule1.text}</Typography.Text>
       </Typography.Paragraph>
 
       <Typography.Paragraph className="center">
-        Regra do círculo <IconAvatar icon={<CircleIcon mainColor="red" />} size="small" />
+        Regra do círculo{' '}
+        <IconAvatar
+          icon={<CircleIcon mainColor="red" />}
+          size="small"
+        />
         <br />
         <Typography.Text code> {data.rule2.text}</Typography.Text>
       </Typography.Paragraph>
 
-      <CopyToClipboardResult result={result} rows={3} />
+      <CopyToClipboardResult
+        result={result}
+        rows={3}
+      />
 
       <NextGameSuggestion />
     </SpaceContainer>

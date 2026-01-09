@@ -30,7 +30,12 @@ export function PhaseMovieSelection({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<ReviewIcon />}
-      title={<Translate pt="Qual filme vamos ver?" en="What movie should we watch?" />}
+      title={
+        <Translate
+          pt="Qual filme vamos ver?"
+          en="What movie should we watch?"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}
@@ -45,17 +50,35 @@ export function PhaseMovieSelection({ state, players, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={VAMOS_AO_CINEMA_PHASES.MOVIE_SELECTION}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={VAMOS_AO_CINEMA_PHASES.MOVIE_SELECTION}
+    >
       <StepSwitcher
         step={step}
         players={players}
-        waitingRoom={{ content: <YourMovie movies={state.movies} movieId={user.movieId} /> }}
+        waitingRoom={{
+          content: (
+            <YourMovie
+              movies={state.movies}
+              movieId={user.movieId}
+            />
+          ),
+        }}
       >
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} time={3} onPressButton={goToNextStep} buttonText=" ">
+        <RoundAnnouncement
+          round={state.round}
+          time={3}
+          onPressButton={goToNextStep}
+          buttonText=" "
+        >
           <Instruction contained>
             {state.round.current}
-            <Translate pt={<> de </>} en={<> of </>} />
+            <Translate
+              pt={<> de </>}
+              en={<> of </>}
+            />
             {state.round.total}
           </Instruction>
         </RoundAnnouncement>

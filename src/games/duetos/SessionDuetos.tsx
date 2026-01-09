@@ -28,7 +28,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionDuetos() {
-  return <Session gameCollection={GAME_COLLECTION.DUETOS} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.DUETOS}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionDuetos;

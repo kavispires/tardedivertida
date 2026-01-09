@@ -14,11 +14,17 @@ export function LanguageButtons() {
 
   return (
     <Space align="center">
-      <TransparentButton onClick={() => onClick('en')} active={language === 'en'}>
+      <TransparentButton
+        onClick={() => onClick('en')}
+        active={language === 'en'}
+      >
         <UnitedStatesFlag width="100px" />
       </TransparentButton>
 
-      <TransparentButton onClick={() => onClick('pt')} active={language === 'pt'}>
+      <TransparentButton
+        onClick={() => onClick('pt')}
+        active={language === 'pt'}
+      >
         <BrazilFlag width="100px" />
       </TransparentButton>
     </Space>
@@ -27,7 +33,11 @@ export function LanguageButtons() {
 
 export function BrazilFlag(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 335.4" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 335.4"
+      {...props}
+    >
       <path
         fill="#73af00"
         d="M473.6 0H38.3A38.3 38.3 0 000 38.3v258.8a38.4 38.4 0 0038.4 38.4h435.3A38.4 38.4 0 00512 297V38.3A38.3 38.3 0 00473.6 0z"
@@ -36,7 +46,12 @@ export function BrazilFlag(props: React.SVGProps<SVGSVGElement>) {
         fill="#ffe15a"
         d="M251.4 47l-186 113.2a8.8 8.8 0 000 15l186 113.3a8.8 8.8 0 009.2 0l186-113.2a8.8 8.8 0 000-15.1l-186-113.3a8.8 8.8 0 00-9.2 0z"
       ></path>
-      <circle cx="256" cy="167.7" r="70.6" fill="#41479b"></circle>
+      <circle
+        cx="256"
+        cy="167.7"
+        r="70.6"
+        fill="#41479b"
+      ></circle>
       <path
         fill="#f5f5f5"
         d="M195.4 131.6a70.2 70.2 0 00-7.6 18.1c39.1-3 97 8 134 43.8a70.4 70.4 0 004.5-19.5c-38-32.1-90.7-43.5-130.9-42.4zm63.6 60.2l1.8 5.7h6a.8.8 0 01.4 1.4l-4.8 3.5 1.8 5.7a.8.8 0 01-1.2.9l-4.8-3.5-4.9 3.5a.8.8 0 01-1.2-.9l1.8-5.7-4.8-3.5a.8.8 0 01.5-1.4h6l1.8-5.7a.8.8 0 011.5 0zm23 14.6l.8 2.4h2.6a.3.3 0 01.2.7l-2 1.5.7 2.4a.3.3 0 01-.5.4l-2.1-1.5-2.1 1.5a.3.3 0 01-.5-.4l.7-2.4-2-1.5a.3.3 0 01.2-.7h2.5l.9-2.4a.3.3 0 01.6 0zm-33-25.3l.7 2.4h2.6a.3.3 0 01.2.7l-2 1.5.7 2.5a.3.3 0 01-.5.3l-2-1.5-2.2 1.5a.3.3 0 01-.5-.4l.8-2.4-2-1.5a.3.3 0 01.1-.6h2.6l.8-2.5a.3.3 0 01.6 0zm-44.9-2.9l.8 2.4h2.6a.3.3 0 01.2.6l-2 1.5.7 2.5a.3.3 0 01-.5.4l-2.1-1.5-2 1.4a.3.3 0 01-.6-.3l.8-2.5-2-1.5a.3.3 0 01.1-.6h2.6l.8-2.4a.3.3 0 01.6 0zm37.5 27.4l.8 2.4h2.6a.3.3 0 01.2.6l-2 1.5.7 2.5a.3.3 0 01-.5.4l-2.1-1.5-2 1.5a.3.3 0 01-.6-.4l.7-2.5-2-1.5a.3.3 0 01.2-.6h2.5l.9-2.4a.3.3 0 01.6 0zM221 176.5l.7 2h2a.3.3 0 01.2.5l-1.7 1.2.7 2a.3.3 0 01-.5.3l-1.7-1.2-1.7 1.2a.3.3 0 01-.4-.3l.6-2-1.7-1.2a.3.3 0 01.2-.5h2.1l.7-2a.3.3 0 01.5 0zm62.8-41l.8 2.5h2.7a.3.3 0 01.2.6l-2.1 1.6.7 2.5a.3.3 0 01-.5.4l-2.1-1.5-2.1 1.5a.4.4 0 01-.6-.4l.8-2.5-2.1-1.6a.3.3 0 01.2-.6h2.6l.8-2.5a.3.3 0 01.7 0zM207 164.3l.7 2h2a.3.3 0 01.2.5l-1.7 1.3.7 2a.3.3 0 01-.5.3l-1.7-1.2-1.7 1.2a.3.3 0 01-.4-.3l.6-2-1.7-1.3a.3.3 0 01.2-.5h2.1l.7-2a.3.3 0 01.5 0zm10.1 28l1 3h3.2a.4.4 0 01.2.8L219 198l1 3a.4.4 0 01-.7.5l-2.5-1.9-2.6 1.9a.4.4 0 01-.7-.5l1-3-2.5-1.9a.4.4 0 01.2-.8h3.2l1-3a.4.4 0 01.7 0zm77.8 14.7l.6 2h2a.3.3 0 01.2.4l-1.6 1.2.6 1.9a.3.3 0 01-.4.3l-1.7-1.2-1.6 1.2a.3.3 0 01-.4-.3l.6-1.9-1.6-1.2a.3.3 0 01.1-.5h2l.7-1.9a.3.3 0 01.5 0zm7-14.4l.8 2.4h2.5a.3.3 0 01.3.7l-2.1 1.5.8 2.4a.3.3 0 01-.6.4l-2-1.5-2.1 1.5a.3.3 0 01-.6-.4l.8-2.4-2-1.5a.3.3 0 01.1-.6h2.6l.8-2.4a.3.3 0 01.7-.1z"
@@ -47,7 +62,11 @@ export function BrazilFlag(props: React.SVGProps<SVGSVGElement>) {
 
 export function UnitedStatesFlag(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 335.45" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 335.45"
+      {...props}
+    >
       <path
         fill="#f5f5f5"
         d="M473.65.01H38.35A38.34 38.34 0 000 38.35v258.76a38.35 38.35 0 0038.35 38.35h435.3A38.35 38.35 0 00512 297.11V38.35A38.34 38.34 0 00473.65.01z"
@@ -56,15 +75,30 @@ export function UnitedStatesFlag(props: React.SVGProps<SVGSVGElement>) {
         fill="#ff4b55"
         d="M2.11 25.81h507.78A38.34 38.34 0 00473.66.01H38.35a38.35 38.35 0 00-36.24 25.8z"
       ></path>
-      <path fill="#ff4b55" d="M0 103.22H512V129.02H0z"></path>
-      <path fill="#ff4b55" d="M0 51.61H512V77.41H0z"></path>
-      <path fill="#ff4b55" d="M0 171.8a8.83 8.83 0 008.83 8.83H512v-25.8H0z"></path>
-      <path fill="#ff4b55" d="M0 258.05H512V283.85H0z"></path>
+      <path
+        fill="#ff4b55"
+        d="M0 103.22H512V129.02H0z"
+      ></path>
+      <path
+        fill="#ff4b55"
+        d="M0 51.61H512V77.41H0z"
+      ></path>
+      <path
+        fill="#ff4b55"
+        d="M0 171.8a8.83 8.83 0 008.83 8.83H512v-25.8H0z"
+      ></path>
+      <path
+        fill="#ff4b55"
+        d="M0 258.05H512V283.85H0z"
+      ></path>
       <path
         fill="#ff4b55"
         d="M509.89 309.65H2.11a38.35 38.35 0 0036.24 25.8h435.3a38.35 38.35 0 0036.24-25.8z"
       ></path>
-      <path fill="#ff4b55" d="M0 206.43H512V232.23000000000002H0z"></path>
+      <path
+        fill="#ff4b55"
+        d="M0 206.43H512V232.23000000000002H0z"
+      ></path>
       <path
         fill="#41479b"
         d="M8.83 180.63h220.69a8.83 8.83 0 008.83-8.83V8.83A8.84 8.84 0 00229.52 0H38.35A38.36 38.36 0 000 38.35V171.8a8.83 8.83 0 008.83 8.83z"

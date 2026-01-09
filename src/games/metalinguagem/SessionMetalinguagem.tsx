@@ -31,7 +31,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionMetalinguagem() {
-  return <Session gameCollection={GAME_COLLECTION.METALINGUAGEM} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.METALINGUAGEM}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionMetalinguagem;

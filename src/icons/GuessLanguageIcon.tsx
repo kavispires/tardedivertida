@@ -1,6 +1,10 @@
 export function GuessLanguageIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#8ac9fe"
         d="M495.6 504.5c5.3 0 9.4-4.6 8.8-9.9-4.8-44-41.4-78.4-85.9-78.4s-81.1 34.3-86 78.4a8.9 8.9 0 0 0 8.9 9.9z"
@@ -13,7 +17,12 @@ export function GuessLanguageIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#e8edf2"
         d="M404.5 7.5h-40a100 100 0 0 1 12.8 199.3v2.4l31.4 31.5a5 5 0 0 0 8.5-3.5v-30.4a100 100 0 0 0 87.3-99.2v-.1a100 100 0 0 0-100-100"
       ></path>
-      <circle cx="418.5" cy="305.2" r="36.4" fill="#f6a96c"></circle>
+      <circle
+        cx="418.5"
+        cy="305.2"
+        r="36.4"
+        fill="#f6a96c"
+      ></circle>
       <path
         fill="#fd6930"
         d="M170.6 504.5c5.3 0 9.4-4.6 8.8-9.9-4.8-44-41.4-78.4-86-78.4s-81 34.3-85.9 78.4a8.9 8.9 0 0 0 8.8 9.9z"

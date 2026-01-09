@@ -38,4 +38,9 @@ export const CanvasResizer = () => {
   );
 };
 
-const labelText = <Translate pt="Tamanho das Artes" en="Art Size" />;
+const labelText = (
+  <Translate
+    pt="Tamanho das Artes"
+    en="Art Size"
+  />
+);

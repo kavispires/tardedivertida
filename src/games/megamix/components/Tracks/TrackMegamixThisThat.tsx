@@ -34,18 +34,37 @@ export const TrackMegamixThisThat = ({ track, onSubmitAnswer, user }: TrackProps
     <>
       <MinigameTitle title={{ pt: 'Isso ou Aquilo?', en: 'This or That?' }} />
       <RuleInstruction type="action">
-        <Translate pt="Selecione qual você prefere:" en="Select which one you prefer:" />
+        <Translate
+          pt="Selecione qual você prefere:"
+          en="Select which one you prefer:"
+        />
       </RuleInstruction>
-      <Space orientation="vertical" align="center" className="contained margin">
+      <Space
+        orientation="vertical"
+        align="center"
+        className="contained margin"
+      >
         <SpaceContainer>
-          <TransparentButton onClick={() => onSelect(0)} disabled={isLoading || user.ready}>
-            <Card header={translate('Isso', 'This')} color="red">
+          <TransparentButton
+            onClick={() => onSelect(0)}
+            disabled={isLoading || user.ready}
+          >
+            <Card
+              header={translate('Isso', 'This')}
+              color="red"
+            >
               {track.data.card.options[0]}
             </Card>
           </TransparentButton>
 
-          <TransparentButton onClick={() => onSelect(1)} disabled={isLoading || user.ready}>
-            <Card header={translate('Aquilo', 'That')} color="blue">
+          <TransparentButton
+            onClick={() => onSelect(1)}
+            disabled={isLoading || user.ready}
+          >
+            <Card
+              header={translate('Aquilo', 'That')}
+              color="blue"
+            >
               {track.data.card.options[1]}
             </Card>
           </TransparentButton>

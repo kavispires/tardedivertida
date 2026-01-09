@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "espiao-entre-nos",
-  "version": "0.10.69",
+  "version": "0.10.70",
   "release": "paused",
   "available": false,
   "title": {

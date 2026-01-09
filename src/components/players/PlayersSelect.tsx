@@ -17,7 +17,11 @@ export function PlayersSelect({ players, style, ...props }: PlayersSelectProps) 
     value: player.id,
     label: (
       <>
-        <PlayerAvatar avatarId={player.avatarId} size="small" /> {player.name}
+        <PlayerAvatar
+          avatarId={player.avatarId}
+          size="small"
+        />{' '}
+        {player.name}
       </>
     ),
     // label: player.name,
@@ -27,7 +31,12 @@ export function PlayersSelect({ players, style, ...props }: PlayersSelectProps) 
     <Select
       options={options}
       style={{ minWidth: 128, ...style }}
-      placeholder={<Translate en="Select a player" pt="Selecione um jogador" />}
+      placeholder={
+        <Translate
+          en="Select a player"
+          pt="Selecione um jogador"
+        />
+      }
       {...props}
     />
   );

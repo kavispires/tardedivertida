@@ -38,7 +38,10 @@ export function MouseFollowingContent({
   }
 
   return (
-    <MouseFollowingContentInternal className={className} contained={contained}>
+    <MouseFollowingContentInternal
+      className={className}
+      contained={contained}
+    >
       {children}
     </MouseFollowingContentInternal>
   );

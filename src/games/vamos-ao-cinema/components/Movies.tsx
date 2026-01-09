@@ -107,7 +107,10 @@ export function Movies({
     <Space className="movies">
       <SpaceContainer orientation="vertical">
         {leftMovies.map((movie, index, arr) => (
-          <div key={movie.id} className="movie-container">
+          <div
+            key={movie.id}
+            className="movie-container"
+          >
             <PlayersSelections
               side="left"
               index={index}
@@ -156,7 +159,10 @@ export function Movies({
       </div>
       <SpaceContainer orientation="vertical">
         {rightMovies.map((movie, index, arr) => (
-          <div key={movie.id} className="movie-container">
+          <div
+            key={movie.id}
+            className="movie-container"
+          >
             <PlayersSelections
               side="right"
               index={index}
@@ -205,7 +211,12 @@ function MovieButton({
 
   if (isDisabled) {
     return (
-      <Button shape="circle" size="large" ghost disabled>
+      <Button
+        shape="circle"
+        size="large"
+        ghost
+        disabled
+      >
         <ButtonLabel
           isEliminated={isEliminated}
           isLoading={isLoading}
@@ -251,15 +262,30 @@ type MovieButtonLabel = {
 
 function ButtonLabel({ isEliminated, isLoading, letter, isPlayerMovie, isWrong }: MovieButtonLabel) {
   if (isWrong) {
-    return <IconAvatar icon={<ScaredIcon />} size="small" />;
+    return (
+      <IconAvatar
+        icon={<ScaredIcon />}
+        size="small"
+      />
+    );
   }
 
   if (isEliminated) {
-    return <IconAvatar icon={<TomatoIcon />} size="small" />;
+    return (
+      <IconAvatar
+        icon={<TomatoIcon />}
+        size="small"
+      />
+    );
   }
 
   if (isPlayerMovie) {
-    return <IconAvatar icon={<StarIcon />} size="small" />;
+    return (
+      <IconAvatar
+        icon={<StarIcon />}
+        size="small"
+      />
+    );
   }
 
   return isLoading ? <Spin /> : letter;
@@ -295,7 +321,10 @@ function PlayersSelections({
     <span className={clsx('movie-players', side === 'right' && 'movie-players--right')}>
       <Avatar.Group max={{ count: 5 }}>
         {moviePlayers.map((playerId) => (
-          <PlayerAvatar avatarId={players[playerId].avatarId} key={playerId} />
+          <PlayerAvatar
+            avatarId={players[playerId].avatarId}
+            key={playerId}
+          />
         ))}
       </Avatar.Group>
     </span>

@@ -10,7 +10,10 @@ type DetectiveGoalsProps = {
 
 export function DetectiveGoals({ bestFriendId }: DetectiveGoalsProps) {
   return (
-    <RuleInstruction type="lore" className="text-left">
+    <RuleInstruction
+      type="lore"
+      className="text-left"
+    >
       <Translate
         en={
           <>
@@ -25,7 +28,10 @@ export function DetectiveGoals({ bestFriendId }: DetectiveGoalsProps) {
       />
       <br />
       <Tag color="red">
-        <Translate en="Gossiper" pt="Fofoqueiro" />
+        <Translate
+          en="Gossiper"
+          pt="Fofoqueiro"
+        />
       </Tag>{' '}
       <Button size="small">?</Button>
       <br />
@@ -43,7 +49,10 @@ export function DetectiveGoals({ bestFriendId }: DetectiveGoalsProps) {
       />
       <br />
       <Tag color="red">
-        <Translate en="Motivation" pt="Motivação" />
+        <Translate
+          en="Motivation"
+          pt="Motivação"
+        />
       </Tag>{' '}
       <Button size="small">?</Button>
       {bestFriendId && (
@@ -55,7 +64,10 @@ export function DetectiveGoals({ bestFriendId }: DetectiveGoalsProps) {
           />
           <br />
           <Tag color="orange">
-            <Translate en="Best Friend" pt="Melhor Amigo" />
+            <Translate
+              en="Best Friend"
+              pt="Melhor Amigo"
+            />
           </Tag>{' '}
           <Button size="small">-</Button>
         </>
@@ -67,7 +79,10 @@ export function DetectiveGoals({ bestFriendId }: DetectiveGoalsProps) {
       />
       <br />
       <Tag color="orange">
-        <Translate en="Allied Social Group" pt="Grupo Social Aliado" />
+        <Translate
+          en="Allied Social Group"
+          pt="Grupo Social Aliado"
+        />
       </Tag>{' '}
       <Button size="small">-</Button>
     </RuleInstruction>

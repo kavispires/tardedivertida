@@ -63,10 +63,19 @@ export function StepDeliver({
   const latestHistoryEntry = history[history.length - 1];
 
   return (
-    <Step fullWidth announcement={announcement}>
-      <StepTitle size="small" wait={isTheRequester}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
+      <StepTitle
+        size="small"
+        wait={isTheRequester}
+      >
         {!isTheRequester ? (
-          <Translate pt={<>Dê um item</>} en={<>Give an item</>} />
+          <Translate
+            pt={<>Dê um item</>}
+            en={<>Give an item</>}
+          />
         ) : (
           <Translate
             pt={<>Aguarde o outro jogador responder com alguma coisa</>}
@@ -126,21 +135,39 @@ export function StepDeliver({
             />
           )}
           <br />
-          <SendButton onClick={onStopDelivery} type="default" loading={isLoading} block>
-            <Translate en="Stop" pt="Parar" />
+          <SendButton
+            onClick={onStopDelivery}
+            type="default"
+            loading={isLoading}
+            block
+          >
+            <Translate
+              en="Stop"
+              pt="Parar"
+            />
           </SendButton>
         </RuleInstruction>
       </ViewIf>
 
-      <Flex gap={8} align="center" className="mb-4">
+      <Flex
+        gap={8}
+        align="center"
+        className="mb-4"
+      >
         <div className="cd-clue-quantity">{clueQuantity}</div>
         <ViewOr condition={clueInputType === 'alien-keyboard'}>
-          <AlienText value={clue} withTranslation />
+          <AlienText
+            value={clue}
+            withTranslation
+          />
           <TextHighlight style={{ fontSize: '1.5rem', background: 'white' }}>{clue}</TextHighlight>
         </ViewOr>
       </Flex>
 
-      <Flex gap={8} align="center">
+      <Flex
+        gap={8}
+        align="center"
+      >
         <Board
           deck={deck}
           deckType={deckType}
@@ -149,12 +176,20 @@ export function StepDeliver({
           onClick={!isTheRequester ? onDeliver : undefined}
           disabled={isLoading}
         />
-        <SummaryBox summary={summary} players={players} round={round} />
+        <SummaryBox
+          summary={summary}
+          players={players}
+          round={round}
+        />
       </Flex>
 
       <ViewIf condition={clueInputType === 'alien-keyboard'}>
         <SpaceContainer>
-          <AlienKeyboard value={''} onChange={() => {}} disabled />
+          <AlienKeyboard
+            value={''}
+            onChange={() => {}}
+            disabled
+          />
         </SpaceContainer>
       </ViewIf>
 

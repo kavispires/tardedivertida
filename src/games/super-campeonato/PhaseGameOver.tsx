@@ -23,30 +23,63 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
   const { translate } = useLanguage();
 
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<TrophyIcon />}>
-      <Title size="xx-small" className="padding">
-        <Translate pt="Campeão Ultimate" en="Ultimate Champion" />
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<TrophyIcon />}
+    >
+      <Title
+        size="xx-small"
+        className="padding"
+      >
+        <Translate
+          pt="Campeão Ultimate"
+          en="Ultimate Champion"
+        />
       </Title>
 
       <SpaceContainer className="margin">
-        <CharacterCard size={200} overlayColor="yellow" character={state.finalWinner} />
+        <CharacterCard
+          size={200}
+          overlayColor="yellow"
+          character={state.finalWinner}
+        />
       </SpaceContainer>
 
       <Divider />
 
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
 
       <Divider />
 
-      <Title size="xx-small" className="padding">
-        <Translate pt="Resumo das Batalhas" en="Battles Summary" />
+      <Title
+        size="xx-small"
+        className="padding"
+      >
+        <Translate
+          pt="Resumo das Batalhas"
+          en="Battles Summary"
+        />
       </Title>
 
       <SpaceContainer className="margin">
         {pastBattles.map((battle) => {
           return (
-            <Space orientation="vertical" key={battle.challenge.id} align="center" className="final-gallery">
-              <Card header={translate('Desafio', 'Challenge')} color="purple" className="final-gallery__card">
+            <Space
+              orientation="vertical"
+              key={battle.challenge.id}
+              align="center"
+              className="final-gallery"
+            >
+              <Card
+                header={translate('Desafio', 'Challenge')}
+                color="purple"
+                className="final-gallery__card"
+              >
                 {battle.challenge.text}
               </Card>
               {battle.contenders.map((contender, index) => (

@@ -1,6 +1,10 @@
 export function DeckIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#edf3f6"
         d="M381.241 482.5l-13-410.192H73.952c-8.284 0-15 6.716-15 15V489.5l307.289 8c8.284 0 15-6.716 15-15z"
@@ -25,7 +29,10 @@ export function DeckIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#c8d2dc"
         d="M438.049 7.5v409.692a7.5 7.5 0 01-7.5 7.5h-306.79c0 8.284 6.716 15 15 15h299.289c8.284 0 15-6.716 15-15V22.5c.001-8.284-6.715-15-14.999-15z"
       ></path>
-      <path fill="#80b6fc" d="M162.13 39.904a7.5 7.5 0 00-7.5 7.5v282.704h266.015l-20-290.204z"></path>
+      <path
+        fill="#80b6fc"
+        d="M162.13 39.904a7.5 7.5 0 00-7.5 7.5v282.704h266.015l-20-290.204z"
+      ></path>
       <path
         fill="#62a4fb"
         d="M413.145 39.904h-12.5v214.552c6.622 29.239 20 27.911 20 27.911V47.404a7.5 7.5 0 00-7.5-7.5z"

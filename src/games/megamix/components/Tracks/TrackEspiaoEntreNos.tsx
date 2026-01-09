@@ -82,7 +82,10 @@ export const TrackEspiaoEntreNos = ({ track, onSubmitAnswer, user }: TrackProps)
           loading={isLoading}
           onClick={onSubmit}
         >
-          <Translate pt="Selecionar" en="Select" />
+          <Translate
+            pt="Selecionar"
+            en="Select"
+          />
         </Button>
       </SpaceContainer>
     </>

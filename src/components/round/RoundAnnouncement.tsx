@@ -76,11 +76,20 @@ export function RoundAnnouncement({
             appearance.colorScheme === 'dark' && 'round-announcement__title--dark',
           )}
         >
-          <img src={translate(roundTitlePt, roundTitleEn)} alt={translate('Rodada', 'Round')} />
+          <img
+            src={translate(roundTitlePt, roundTitleEn)}
+            alt={translate('Rodada', 'Round')}
+          />
         </div>
         <div className={clsx('round-announcement__round-wrapper', getAnimationClass('zoomIn'))}>
-          <div className="round-announcement__circle" style={circleStyle} />
-          <div className="round-announcement__circle-2" style={circleStyle} />
+          <div
+            className="round-announcement__circle"
+            style={circleStyle}
+          />
+          <div
+            className="round-announcement__circle-2"
+            style={circleStyle}
+          />
           <div
             className={clsx(
               'round-announcement__number',
@@ -94,7 +103,11 @@ export function RoundAnnouncement({
         {children}
 
         {Boolean(onPressButton) && !time && (
-          <Button type="primary" onClick={onPressButton} className="round-announcement__go-button">
+          <Button
+            type="primary"
+            onClick={onPressButton}
+            className="round-announcement__go-button"
+          >
             {buttonText}
           </Button>
         )}
@@ -107,7 +120,11 @@ export function RoundAnnouncement({
             duration={time}
             disabled={unskippable}
           >
-            <Translate pt="Prosseguir" en="Continue" custom={buttonText} />
+            <Translate
+              pt="Prosseguir"
+              en="Continue"
+              custom={buttonText}
+            />
           </TimedButton>
         )}
       </div>

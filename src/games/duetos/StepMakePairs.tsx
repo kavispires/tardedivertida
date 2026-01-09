@@ -74,7 +74,10 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
   };
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         <Translate
           pt={<>Agrupe os itens em {pairsCount} pares</>}
@@ -124,7 +127,10 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
         </RuleInstruction>
       )}
 
-      <Space className={clsx('pairs-grid', `pairs-grid--${pairsCount}`)} wrap>
+      <Space
+        className={clsx('pairs-grid', `pairs-grid--${pairsCount}`)}
+        wrap
+      >
         {Array.from({ length: pairsCount }).map((_, index) => {
           const firstItemIndex = index * 2;
           const firstItem = pairs[firstItemIndex];
@@ -151,7 +157,10 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
                     <ItemEntry itemEntry={selectedFirstItem} />
                   </TransparentButton>
                 ) : (
-                  <ItemEntry itemEntry={placeholder} className="pairs-grid__empty-slot" />
+                  <ItemEntry
+                    itemEntry={placeholder}
+                    className="pairs-grid__empty-slot"
+                  />
                 )}
               </div>
               <div className="pairs-grid__slot">
@@ -163,7 +172,10 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
                     <ItemEntry itemEntry={selectedSecondItem} />
                   </TransparentButton>
                 ) : (
-                  <ItemEntry itemEntry={placeholder} className="pairs-grid__empty-slot" />
+                  <ItemEntry
+                    itemEntry={placeholder}
+                    className="pairs-grid__empty-slot"
+                  />
                 )}
               </div>
             </Space>
@@ -178,19 +190,37 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
           disabled={user.ready || !isComplete}
           onClick={() => onSubmitPairs({ pairs: pairs.map((v) => String(v)) })}
         >
-          <Translate pt="Enviar Pares" en="Submit Pairs" />
+          <Translate
+            pt="Enviar Pares"
+            en="Submit Pairs"
+          />
         </SendButton>
       </SpaceContainer>
 
-      <Space wrap className={clsx('options-grid', `options-grid--${pool.length}`)}>
+      <Space
+        wrap
+        className={clsx('options-grid', `options-grid--${pool.length}`)}
+      >
         {pool.map((entry) => {
           const selected = pairs.includes(entry.id);
           if (selected) {
-            return <ItemEntry itemEntry={entry} key={entry.id} className="options-grid--selected" />;
+            return (
+              <ItemEntry
+                itemEntry={entry}
+                key={entry.id}
+                className="options-grid--selected"
+              />
+            );
           }
           return (
-            <TransparentButton onClick={() => addItem(entry.id)} key={entry.id}>
-              <ItemEntry itemEntry={entry} looseItem />
+            <TransparentButton
+              onClick={() => addItem(entry.id)}
+              key={entry.id}
+            >
+              <ItemEntry
+                itemEntry={entry}
+                looseItem
+              />
             </TransparentButton>
           );
         })}

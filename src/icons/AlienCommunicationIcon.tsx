@@ -1,7 +1,14 @@
 export function AlienCommunicationIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <path fill="none" d="M0 0h512v512H0z"></path>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <path
+        fill="none"
+        d="M0 0h512v512H0z"
+      ></path>
       <path
         fill="#6cf5c2"
         d="M428.3 504.5H83.7a78.84 78.84 0 0157.94-59.85l22.84-4.65L256 421.26l28.52 5.83 85.84 17.56a78.84 78.84 0 0157.94 59.85z"

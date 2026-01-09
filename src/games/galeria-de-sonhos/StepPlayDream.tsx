@@ -85,13 +85,22 @@ export function StepPlayDream({
   return (
     <Step fullWidth>
       <StepTitle size="small">
-        <Translate pt="Bingo dos Sonhos" en="Dream Bingo" />
+        <Translate
+          pt="Bingo dos Sonhos"
+          en="Dream Bingo"
+        />
       </StepTitle>
-      <Card header={translate('Tema', 'Theme')} color="purple">
+      <Card
+        header={translate('Tema', 'Theme')}
+        color="purple"
+      >
         {word.text}
       </Card>
 
-      <PlayersDreamsCount players={players} playerInNightmareId={playerInNightmareId} />
+      <PlayersDreamsCount
+        players={players}
+        playerInNightmareId={playerInNightmareId}
+      />
 
       {Boolean(user.fallen) && Boolean(user.inNightmare) && (
         <RuleInstruction type="event">
@@ -131,14 +140,20 @@ export function StepPlayDream({
           <Translate
             pt={
               <>
-                <PlayerAvatarName player={activePlayer} className={getAnimationClass('flash')} /> está
-                selecionando um sonho.
+                <PlayerAvatarName
+                  player={activePlayer}
+                  className={getAnimationClass('flash')}
+                />{' '}
+                está selecionando um sonho.
               </>
             }
             en={
               <>
-                <PlayerAvatarName player={activePlayer} className={getAnimationClass('flash')} /> is selecting
-                a dream.
+                <PlayerAvatarName
+                  player={activePlayer}
+                  className={getAnimationClass('flash')}
+                />{' '}
+                is selecting a dream.
               </>
             }
           />
@@ -153,7 +168,12 @@ export function StepPlayDream({
           position={1}
           icon={<RobotOutlined />}
           content={<BotsRules />}
-          label={<Translate pt=" Bots" en=" Bots" />}
+          label={
+            <Translate
+              pt=" Bots"
+              en=" Bots"
+            />
+          }
         />
       )}
 
@@ -164,7 +184,11 @@ export function StepPlayDream({
         isPlayAvailable={isActivePlayer}
       />
 
-      <TurnOrder players={players} order={gameOrder} activePlayerId={activePlayer.id} />
+      <TurnOrder
+        players={players}
+        order={gameOrder}
+        activePlayerId={activePlayer.id}
+      />
     </Step>
   );
 }

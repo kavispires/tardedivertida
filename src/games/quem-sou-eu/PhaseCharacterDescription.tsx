@@ -24,7 +24,12 @@ export function PhaseCharacterDescription({ state, players, user }: PhaseProps) 
   const announcement = (
     <PhaseAnnouncement
       icon={<PlayerIconsIcon />}
-      title={<Translate pt="Descreva seu personagem com ícones" en="Describe your character with glyphs" />}
+      title={
+        <Translate
+          pt="Descreva seu personagem com ícones"
+          en="Describe your character with glyphs"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -38,7 +43,10 @@ export function PhaseCharacterDescription({ state, players, user }: PhaseProps) 
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={QUEM_SOU_EU_PHASES.CHARACTER_DESCRIPTION}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={QUEM_SOU_EU_PHASES.CHARACTER_DESCRIPTION}
+    >
       <StepSwitcher
         step={step}
         players={players}
@@ -47,7 +55,12 @@ export function PhaseCharacterDescription({ state, players, user }: PhaseProps) 
         }}
       >
         {/* Step 0 */}
-        <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5} />
+        <RoundAnnouncement
+          round={state?.round}
+          onPressButton={goToNextStep}
+          buttonText=" "
+          time={5}
+        />
 
         {/* Step 0 */}
         <StepSelectGlyphs

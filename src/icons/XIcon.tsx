@@ -1,6 +1,10 @@
 export function XIcon({ mainColor, ...props }: React.SVGProps<SVGSVGElement> & { mainColor?: string }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         d="M504.5 95.18L343.68 256 504.5 416.82l-21.21 21.22L211.25 256 483.29 73.97z"
         fill={mainColor ?? '#ff5440'}

@@ -60,15 +60,26 @@ export function ScoringRules({ storyteller }: ScoringRulesProps) {
         pt={
           <>
             Hora de revelar a resposta correta!
-            <br />O Contador de Histórias {<PlayerAvatar avatarId={storyteller.avatarId} size="small" />}{' '}
+            <br />O Contador de Histórias{' '}
+            {
+              <PlayerAvatar
+                avatarId={storyteller.avatarId}
+                size="small"
+              />
+            }{' '}
             ganha <PointsHighlight>3</PointsHighlight> pontos se pelo menos uma pessoa acertar (mas não
             todas).
             <br />
             Cada jogador que votou corretamente ganha <PointsHighlight>3</PointsHighlight> pontos.
             <br />
             Para cada voto que sua carta recebeu (menos{' '}
-            {<PlayerAvatar avatarId={storyteller.avatarId} size="small" />}), você ganha{' '}
-            <PointsHighlight>1</PointsHighlight> ponto.
+            {
+              <PlayerAvatar
+                avatarId={storyteller.avatarId}
+                size="small"
+              />
+            }
+            ), você ganha <PointsHighlight>1</PointsHighlight> ponto.
             <br />
             Mas se todos jogadores votarem corretamente ou incorretamente, todos ganham{' '}
             <PointsHighlight>2</PointsHighlight> pontos e o Contador de Histórias não ganha nada.
@@ -78,13 +89,26 @@ export function ScoringRules({ storyteller }: ScoringRulesProps) {
           <>
             Time to reveal the answer!
             <br />
-            The Storyteller {<PlayerAvatar avatarId={storyteller.avatarId} size="small" />} gets{' '}
-            <PointsHighlight>3</PointsHighlight> points if at least one player got it correctly (but not all).
+            The Storyteller{' '}
+            {
+              <PlayerAvatar
+                avatarId={storyteller.avatarId}
+                size="small"
+              />
+            }{' '}
+            gets <PointsHighlight>3</PointsHighlight> points if at least one player got it correctly (but not
+            all).
             <br />
             Each player who voted correctly gets <PointsHighlight>3</PointsHighlight> points.
             <br />
             Each vote your card receives grants you <PointsHighlight>1</PointsHighlight> points (except{' '}
-            {<PlayerAvatar avatarId={storyteller.avatarId} size="small" />}).
+            {
+              <PlayerAvatar
+                avatarId={storyteller.avatarId}
+                size="small"
+              />
+            }
+            ).
             <br />
             But if all players vote correctly or incorrectly, they get <PointsHighlight>2</PointsHighlight>{' '}
             points each and the Storyteller gets nothing.

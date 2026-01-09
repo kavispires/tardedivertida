@@ -21,14 +21,23 @@ export function BestMatches({ bestMatches }: BestMatchesProps) {
   return (
     <Step>
       <Divider />
-      <Title size="x-small" level={3}>
-        <Translate pt="Sonhos mais visitados" en="Most visited dreams" />
+      <Title
+        size="x-small"
+        level={3}
+      >
+        <Translate
+          pt="Sonhos mais visitados"
+          en="Most visited dreams"
+        />
       </Title>
 
       <ul className="g-best-matches">
         {orderBy(bestMatches, 'matchedPlayers.length', 'desc').map((entry, index) => {
           return (
-            <div key={`${entry.id}-${index}`} className="g-best-matches__entry">
+            <div
+              key={`${entry.id}-${index}`}
+              className="g-best-matches__entry"
+            >
               <div className="g-best-matches__label">
                 <Avatar size="small">{entry.matchedPlayers.length}</Avatar>
                 <span>{entry.text}</span>

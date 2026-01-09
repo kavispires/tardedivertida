@@ -13,9 +13,17 @@ export function Reviews({ goodReview, badReview }: ReviewsProps) {
   return (
     <SpaceContainer>
       <div className="movie-reviews">
-        <MovieReviewCard type="positive" text={goodReview.text} highlights={goodReview.highlights} />
+        <MovieReviewCard
+          type="positive"
+          text={goodReview.text}
+          highlights={goodReview.highlights}
+        />
 
-        <MovieReviewCard type="negative" text={badReview.text} highlights={badReview.highlights} />
+        <MovieReviewCard
+          type="negative"
+          text={badReview.text}
+          highlights={badReview.highlights}
+        />
       </div>
     </SpaceContainer>
   );

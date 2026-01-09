@@ -1,6 +1,10 @@
 export function QuestionIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#0573ce"
         d="M441.421 22.803H70.579C35.741 22.803 7.5 51.045 7.5 85.882v262.21c0 34.838 28.241 63.079 63.079 63.079h91.616l66.896 66.896c14.861 14.861 38.956 14.861 53.817 0l66.896-66.896h91.616c34.838 0 63.079-28.241 63.079-63.079V85.882c.001-34.837-28.24-63.079-63.078-63.079z"

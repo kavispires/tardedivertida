@@ -36,7 +36,14 @@ export function TimedTimerBar({ duration, onExpire, type, steps = 10, className 
 
   return (
     <div className={clsx('timer-number', className)}>
-      {timeLeft} <TimerBar steps={steps} value={timeLeft} total={duration} type={type} /> {timeLeft}
+      {timeLeft}{' '}
+      <TimerBar
+        steps={steps}
+        value={timeLeft}
+        total={duration}
+        type={type}
+      />{' '}
+      {timeLeft}
     </div>
   );
 }

@@ -28,30 +28,67 @@ export function ItemsHand({
   hideCount = false,
 }: ItemHandProps) {
   return (
-    <Flex vertical align="center">
-      <Flex wrap="wrap" gap={12} justify="center" className="contained">
+    <Flex
+      vertical
+      align="center"
+    >
+      <Flex
+        wrap="wrap"
+        gap={12}
+        justify="center"
+        className="contained"
+      >
         {hand.map((itemId: string) => (
-          <Flex key={itemId} orientation="vertical" gap={4} align="center">
+          <Flex
+            key={itemId}
+            orientation="vertical"
+            gap={4}
+            align="center"
+          >
             {onSelectItem && (
               <div style={{ textAlign: 'center' }}>
-                <Button size="small" shape="round" onClick={() => onSelectItem?.(itemId)}>
+                <Button
+                  size="small"
+                  shape="round"
+                  onClick={() => onSelectItem?.(itemId)}
+                >
                   {selectedItemsIds.includes(itemId) ? (
-                    <Translate pt="Desmarcar" en="Deselect" />
+                    <Translate
+                      pt="Desmarcar"
+                      en="Deselect"
+                    />
                   ) : (
-                    <Translate pt="Usar" en="Use" />
+                    <Translate
+                      pt="Usar"
+                      en="Use"
+                    />
                   )}
                 </Button>
               </div>
             )}
             {onSelectItem ? (
               <TransparentButton onClick={() => onSelectItem?.(itemId)}>
-                <Badge count={selectedItemsIds.indexOf(itemId) + 1} offset={[0, 0]}>
-                  <ThingCard itemId={itemId} name={cardsDict[itemId].name} width={100} />
+                <Badge
+                  count={selectedItemsIds.indexOf(itemId) + 1}
+                  offset={[0, 0]}
+                >
+                  <ThingCard
+                    itemId={itemId}
+                    name={cardsDict[itemId].name}
+                    width={100}
+                  />
                 </Badge>
               </TransparentButton>
             ) : (
-              <Badge count={selectedItemsIds.indexOf(itemId) + 1} offset={[0, 0]}>
-                <ThingCard itemId={itemId} name={cardsDict[itemId].name} width={100} />
+              <Badge
+                count={selectedItemsIds.indexOf(itemId) + 1}
+                offset={[0, 0]}
+              >
+                <ThingCard
+                  itemId={itemId}
+                  name={cardsDict[itemId].name}
+                  width={100}
+                />
               </Badge>
             )}
           </Flex>

@@ -26,7 +26,12 @@ export function PhaseGuessing({ players, state, user }: PhaseProps<PhaseGuessing
   const announcement = (
     <PhaseAnnouncement
       icon={<GuessIcon />}
-      title={<Translate pt="Tente Adivinhar" en="Try to guess" />}
+      title={
+        <Translate
+          pt="Tente Adivinhar"
+          en="Try to guess"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -35,8 +40,14 @@ export function PhaseGuessing({ players, state, user }: PhaseProps<PhaseGuessing
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={CRIMES_HEDIONDOS_PHASES.GUESSING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={CRIMES_HEDIONDOS_PHASES.GUESSING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepGuessing
           user={user}

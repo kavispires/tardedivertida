@@ -35,9 +35,15 @@ export function StepRace({
 }: StepRaceProps) {
   const duration = 6 * Object.keys(players).length;
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Já!" en="Go!" />
+        <Translate
+          pt="Já!"
+          en="Go!"
+        />
       </StepTitle>
 
       <AnimatedRaceTrack
@@ -50,8 +56,16 @@ export function StepRace({
       />
 
       <SpaceContainer>
-        <TimedButton duration={duration} onExpire={goToNextStep} icon={<TrophyOutlined />} disabled>
-          <Translate pt="Ranking em" en="Ranking in" />
+        <TimedButton
+          duration={duration}
+          onExpire={goToNextStep}
+          icon={<TrophyOutlined />}
+          disabled
+        >
+          <Translate
+            pt="Ranking em"
+            en="Ranking in"
+          />
         </TimedButton>
       </SpaceContainer>
     </Step>

@@ -23,7 +23,10 @@ export function StudentIcon({ iconId, tooltip, ...props }: StudentIconProps) {
         shape="square"
         {...props}
         src={
-          <svg viewBox="0 0 512 512" style={{ width: '32px', height: '32px' }}>
+          <svg
+            viewBox="0 0 512 512"
+            style={{ width: '32px', height: '32px' }}
+          >
             <use href={`${studentIcons}#${iconId}`}></use>
           </svg>
         }
@@ -76,8 +79,19 @@ export function AgeIcon({ age, size }: AgeIconProps) {
   const ageNumber = AGE_NUMBER[age];
 
   return (
-    <Tooltip title={<Translate en={`Age ${ageNumber} years old`} pt={`Idade ${ageNumber} anos`} />}>
-      <Avatar className={clsx('student-icon__age', `student-icon__age--${age}`)} shape="circle" size={size}>
+    <Tooltip
+      title={
+        <Translate
+          en={`Age ${ageNumber} years old`}
+          pt={`Idade ${ageNumber} anos`}
+        />
+      }
+    >
+      <Avatar
+        className={clsx('student-icon__age', `student-icon__age--${age}`)}
+        shape="circle"
+        size={size}
+      >
         {ageNumber}
       </Avatar>
     </Tooltip>

@@ -60,12 +60,18 @@ export function Leaf({
             <div className="y-leaf__card-text">{card.text}</div>
           </div>
         ) : (
-          <div key={card.id} className={clsx('y-leaf__card', `y-leaf__card--${cIndex}`)}>
+          <div
+            key={card.id}
+            className={clsx('y-leaf__card', `y-leaf__card--${cIndex}`)}
+          >
             <div className="y-leaf__card-text">{card.text}</div>
           </div>
         ),
       )}
-      <div className="y-leaf__controls" style={{ transform: `rotate(-${rotation}deg)` }}>
+      <div
+        className="y-leaf__controls"
+        style={{ transform: `rotate(-${rotation}deg)` }}
+      >
         {!isLocked && rotatable && (
           <Button
             onClick={(e) => onLeafRotate?.(e, leaf.id)}

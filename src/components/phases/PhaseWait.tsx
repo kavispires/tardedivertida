@@ -12,16 +12,26 @@ import { PhaseContainer } from './PhaseContainer';
 
 export function PhaseWait({ state }: PhaseProps) {
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PHASES.DEFAULT.WAIT} className="setup">
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={PHASES.DEFAULT.WAIT}
+      className="setup"
+    >
       <div className="phase-announcement">
         <Title>
-          <Translate pt="Processando..." en="Processing..." />
+          <Translate
+            pt="Processando..."
+            en="Processing..."
+          />
         </Title>
 
         <AnimatedProcessingIcon className="phase-announcement__icon" />
 
         <Instruction>
-          <Translate pt="Aguarde um momento" en="Just a moment" />
+          <Translate
+            pt="Aguarde um momento"
+            en="Just a moment"
+          />
         </Instruction>
       </div>
     </PhaseContainer>

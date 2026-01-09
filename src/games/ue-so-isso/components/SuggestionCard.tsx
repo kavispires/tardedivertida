@@ -26,11 +26,18 @@ export function SuggestionCard({ avatarId, playerName, index, invalid, suggestio
       header={playerName ? `${LETTERS[index]} (${playerName})` : LETTERS[index]}
     >
       {invalid ? (
-        <Avatar size="small" className="u-suggestion-card__suggestion-avatar">
+        <Avatar
+          size="small"
+          className="u-suggestion-card__suggestion-avatar"
+        >
           <CloseOutlined />
         </Avatar>
       ) : (
-        <PlayerAvatar avatarId={avatarId} size="small" className="u-suggestion-card__suggestion-avatar" />
+        <PlayerAvatar
+          avatarId={avatarId}
+          size="small"
+          className="u-suggestion-card__suggestion-avatar"
+        />
       )}
       {suggestion}
     </Card>

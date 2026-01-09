@@ -50,11 +50,17 @@ export function FinalOutcome({ players, outcome, robot }: FinalOutcomeProps) {
         title={
           <>
             <IconAvatar icon={<NuclearExplosionIcon />} />{' '}
-            <Translate pt="Os robôs venceram!" en="Robots win!" />
+            <Translate
+              pt="Os robôs venceram!"
+              en="Robots win!"
+            />
           </>
         }
       >
-        <Instruction contained noMargin>
+        <Instruction
+          contained
+          noMargin
+        >
           <Translate
             en={
               <>
@@ -82,7 +88,10 @@ export function FinalOutcome({ players, outcome, robot }: FinalOutcomeProps) {
         title={
           <>
             <IconAvatar icon={<UnderConstructionIcon />} />{' '}
-            <Translate pt="Banidos do servidor!" en="Banned from the server!" />
+            <Translate
+              pt="Banidos do servidor!"
+              en="Banned from the server!"
+            />
           </>
         }
       >
@@ -92,7 +101,11 @@ export function FinalOutcome({ players, outcome, robot }: FinalOutcomeProps) {
             pt={<>Os jogadores estavam muito suspeitos sempre selecionando cartas de robô! Em particular:</>}
           />
           <br />
-          <ListOfPlayers list={mostSuspicious} players={players} prefix="sus" />
+          <ListOfPlayers
+            list={mostSuspicious}
+            players={players}
+            prefix="sus"
+          />
         </RuleInstruction>
       </TitledContainer>
     );

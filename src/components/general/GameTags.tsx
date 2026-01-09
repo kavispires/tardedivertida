@@ -87,21 +87,35 @@ export function GameTags({ tags, gameCode, ...rest }: GameTagsProps) {
   }, [tags]);
 
   return (
-    <Space wrap {...rest} orientation="vertical">
+    <Space
+      wrap
+      {...rest}
+      orientation="vertical"
+    >
       <div className="game-tags-group">
         {buttonTags.map((tag) => {
           const Icon = icons[tag];
 
           return (
-            <Tooltip key={`${gameCode}-${tag}`} title={TAG_DICT[tag]?.label[language]}>
-              <Icon style={{ width: 36 }} className="game-tags-group__icon" />
+            <Tooltip
+              key={`${gameCode}-${tag}`}
+              title={TAG_DICT[tag]?.label[language]}
+            >
+              <Icon
+                style={{ width: 36 }}
+                className="game-tags-group__icon"
+              />
             </Tooltip>
           );
         })}
       </div>
 
       {otherTags.map((tag) => (
-        <Tag key={`${gameCode}-${tag}`} color={TAG_DICT[tag]?.color} style={{ marginRight: 6 }}>
+        <Tag
+          key={`${gameCode}-${tag}`}
+          color={TAG_DICT[tag]?.color}
+          style={{ marginRight: 6 }}
+        >
           {TAG_DICT[tag]?.label[language]}
         </Tag>
       ))}

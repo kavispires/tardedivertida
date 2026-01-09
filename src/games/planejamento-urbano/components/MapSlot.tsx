@@ -49,7 +49,10 @@ export function MapSlot({
 
   if (!cell.data) {
     return (
-      <div style={sizes} className="city-site city-site--unavailable">
+      <div
+        style={sizes}
+        className="city-site city-site--unavailable"
+      >
         <span style={{ opacity: 0 }}>.</span>
       </div>
     );
@@ -57,7 +60,10 @@ export function MapSlot({
 
   if (cell.data?.locationId) {
     return (
-      <div style={sizes} id={`cell-${cell.id}`}>
+      <div
+        style={sizes}
+        id={`cell-${cell.id}`}
+      >
         <LocationCard
           locationId={cell.data.locationId}
           cityLocationsDict={cityLocationsDict}
@@ -81,11 +87,18 @@ export function MapSlot({
           options={{ withTransition: true }}
           className="city-site--droppable-area"
         >
-          <div style={sizes} className="city-site" id={`cell-${cell.id}`}>
+          <div
+            style={sizes}
+            className="city-site"
+            id={`cell-${cell.id}`}
+          >
             {locationId && (
               <>
                 <span className="city-site--temp-construction-cone">
-                  <ConeIcon color={color} width={32} />
+                  <ConeIcon
+                    color={color}
+                    width={32}
+                  />
                 </span>
                 <LocationCard
                   locationId={locationId}
@@ -99,7 +112,10 @@ export function MapSlot({
               </>
             )}
             <div className="city-site-available">
-              <ConeIcon color={color} width={64} />
+              <ConeIcon
+                color={color}
+                width={64}
+              />
               <Tag color={color}>{cell.data.coneId ?? 'U'}</Tag>
             </div>
           </div>
@@ -108,11 +124,18 @@ export function MapSlot({
     }
 
     return (
-      <div style={sizes} className="city-site" id={`cell-${cell.id}`}>
+      <div
+        style={sizes}
+        className="city-site"
+        id={`cell-${cell.id}`}
+      >
         {locationId && (
           <>
             <span className="city-site--temp-construction-cone">
-              <ConeIcon color={color} width={32} />
+              <ConeIcon
+                color={color}
+                width={32}
+              />
             </span>
             <LocationCard
               locationId={locationId}
@@ -126,7 +149,10 @@ export function MapSlot({
           </>
         )}
         <div className="city-site-available">
-          <ConeIcon color={color} width={64} />
+          <ConeIcon
+            color={color}
+            width={64}
+          />
           <Tag color={color}>{cell.data.coneId ?? 'U'}</Tag>
         </div>
       </div>
@@ -134,7 +160,11 @@ export function MapSlot({
   }
 
   return (
-    <div style={sizes} id={`cell-${cell.id}`} className="city-site city-site--unavailable">
+    <div
+      style={sizes}
+      id={`cell-${cell.id}`}
+      className="city-site city-site--unavailable"
+    >
       <span style={{ opacity: 0 }}>.</span>
     </div>
   );

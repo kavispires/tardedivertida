@@ -36,21 +36,55 @@ export function StepJoin({ setStep }: StepJoinProps) {
 
   return (
     <>
-      <Title level={2} className="lobby-step__title" layoutId="lobby-step-title">
-        <Translate pt="Bem-vindo!" en="Welcome" />
+      <Title
+        level={2}
+        className="lobby-step__title"
+        layoutId="lobby-step-title"
+      >
+        <Translate
+          pt="Bem-vindo!"
+          en="Welcome"
+        />
       </Title>
 
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-        <SignInWithGoogle onSuccess={() => setStep(1)} block size="large" />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <SignInWithGoogle
+          onSuccess={() => setStep(1)}
+          block
+          size="large"
+        />
 
-        {isError && <Alert title="Error" description={JSON.stringify(error)} type="error" showIcon />}
+        {isError && (
+          <Alert
+            title="Error"
+            description={JSON.stringify(error)}
+            type="error"
+            showIcon
+          />
+        )}
 
         <Divider>
-          <Translate pt="ou" en="or" />
+          <Translate
+            pt="ou"
+            en="or"
+          />
         </Divider>
 
-        <Button type="primary" block disabled={isAuthenticated} onClick={() => mutate()} loading={isPending}>
-          <Translate pt="Entrar como visitante" en="Join as a Guest" />
+        <Button
+          type="primary"
+          block
+          disabled={isAuthenticated}
+          onClick={() => mutate()}
+          loading={isPending}
+        >
+          <Translate
+            pt="Entrar como visitante"
+            en="Join as a Guest"
+          />
         </Button>
       </motion.div>
     </>
@@ -69,8 +103,18 @@ export function LoginButton({ disabled, setStep }: LoginButtonProps) {
     <div>
       <Modal
         open={open}
-        title={<Translate pt="Logar" en="LogIn" />}
-        cancelText={<Translate pt="Cancelar" en="Cancel" />}
+        title={
+          <Translate
+            pt="Logar"
+            en="LogIn"
+          />
+        }
+        cancelText={
+          <Translate
+            pt="Cancelar"
+            en="Cancel"
+          />
+        }
         onCancel={() => setOpen(false)}
         okButtonProps={{
           style: { display: 'none' },
@@ -78,8 +122,16 @@ export function LoginButton({ disabled, setStep }: LoginButtonProps) {
       >
         <SignIn onSuccess={() => setStep(1)} />
       </Modal>
-      <Button type="link" block disabled={disabled} onClick={() => setOpen(true)}>
-        <Translate pt="Fazer Login" en="Login" />
+      <Button
+        type="link"
+        block
+        disabled={disabled}
+        onClick={() => setOpen(true)}
+      >
+        <Translate
+          pt="Fazer Login"
+          en="Login"
+        />
       </Button>
     </div>
   );
@@ -97,8 +149,18 @@ export function SignUpButton({ disabled, setStep }: SignUpButtonProps) {
     <div>
       <Modal
         open={open}
-        title={<Translate pt="Cadastro" en="Sign Up Form" />}
-        cancelText={<Translate pt="Cancelar" en="Cancel" />}
+        title={
+          <Translate
+            pt="Cadastro"
+            en="Sign Up Form"
+          />
+        }
+        cancelText={
+          <Translate
+            pt="Cancelar"
+            en="Cancel"
+          />
+        }
         onCancel={() => setOpen(false)}
         okButtonProps={{
           style: { display: 'none' },
@@ -106,8 +168,16 @@ export function SignUpButton({ disabled, setStep }: SignUpButtonProps) {
       >
         <SignUp onSuccess={() => setStep(1)} />
       </Modal>
-      <Button type="link" block disabled={disabled} onClick={() => setOpen(true)}>
-        <Translate pt="Cadastrar" en="Sign up" />
+      <Button
+        type="link"
+        block
+        disabled={disabled}
+        onClick={() => setOpen(true)}
+      >
+        <Translate
+          pt="Cadastrar"
+          en="Sign up"
+        />
       </Button>
     </div>
   );

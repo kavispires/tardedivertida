@@ -1,6 +1,10 @@
 export function MagicHamsaIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#a4ace3"
         d="M256 497c82 0 146-66 146-139 0-64 8-91 64-160-25-30-73-23-98 31s-6-142-6-151c-1-14-7-27-14-32-5-3-11-5-17-5-21 0-38 17-38 37 0 0-8-60-19-66-5-3-12-5-18-5-21 0-37 17-37 38v33s-8-26-20-32c-5-3-11-5-18-5-20 0-37 17-37 37v151l-15-24c-30-36-73-31-91 5 54 55 64 74 64 148 0 19 4 38 12 55 30 48 86 83 142 83z"
@@ -21,14 +25,28 @@ export function MagicHamsaIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#f8e883"
         d="M293 352c0-9-5-22-13-30-6-5-15-8-24-8a43 43 0 00-35 68c7 8 20 13 29 13 24 0 43-20 43-43z"
       ></path>
-      <path fill="#ffd064" d="M280 322a43 43 0 01-60 60 43 43 0 1060-60z"></path>
-      <circle cx="256" cy="357.6" r="14.4" fill="#ffd064"></circle>
+      <path
+        fill="#ffd064"
+        d="M280 322a43 43 0 01-60 60 43 43 0 1060-60z"
+      ></path>
+      <circle
+        cx="256"
+        cy="357.6"
+        r="14.4"
+        fill="#ffd064"
+      ></circle>
       <path
         fill="#f8e883"
         d="M254 280c8 0 14-7 14-15l-2-10c-4-8-9-14-10-14-2 0-14 18-14 29 1 6 8 10 12 10z"
       ></path>
-      <path fill="#ffd064" d="M266 255v5a14 14 0 01-24 10 14 14 0 0028 0c0-4-2-10-4-15z"></path>
-      <path fill="#f8e883" d="M256 497c1 0 13-15 13-28a14 14 0 00-27 6c2 10 12 22 14 22z"></path>
+      <path
+        fill="#ffd064"
+        d="M266 255v5a14 14 0 01-24 10 14 14 0 0028 0c0-4-2-10-4-15z"
+      ></path>
+      <path
+        fill="#f8e883"
+        d="M256 497c1 0 13-15 13-28a14 14 0 00-27 6c2 10 12 22 14 22z"
+      ></path>
       <path
         fill="#ffd064"
         d="M256 490c-2 0-12-7-14-15 0 11 12 30 14 30s14-19 14-30l-1-6c-3 11-12 20-13 20z"

@@ -62,5 +62,10 @@ export const VotesDelegator = (props: Omit<VoteComponentProps, 'playersList'>) =
       'vamos-ao-cinema': VoteVamosAoCinema,
     }?.[props.track.game] ?? FallbackComponent;
 
-  return <VotesComponent {...props} playersList={playersList} />;
+  return (
+    <VotesComponent
+      {...props}
+      playersList={playersList}
+    />
+  );
 };

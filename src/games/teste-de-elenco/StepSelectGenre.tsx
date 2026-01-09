@@ -54,9 +54,15 @@ export function StepSelectGenre({
   });
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate en={<>Let's customize the movie!</>} pt={<>Vamos personalizar o filme!</>} />
+        <Translate
+          en={<>Let's customize the movie!</>}
+          pt={<>Vamos personalizar o filme!</>}
+        />
       </StepTitle>
 
       <RuleInstruction type="rule">
@@ -64,7 +70,12 @@ export function StepSelectGenre({
       </RuleInstruction>
 
       <TitledContainer
-        title={<Translate en="Select the genre of te movie" pt="Selecione o gênero do filme" />}
+        title={
+          <Translate
+            en="Select the genre of te movie"
+            pt="Selecione o gênero do filme"
+          />
+        }
         contentProps={{
           style: { gridTemplateColumns: `repeat(${genres.length}, 1fr)` },
           className: 'movie-personalization-selection',
@@ -81,7 +92,10 @@ export function StepSelectGenre({
               active={selectedGenre === genre.key}
               activeClass="movie-personalization-selection__button--selected"
             >
-              <IconAvatar icon={<Icon />} size={64} />
+              <IconAvatar
+                icon={<Icon />}
+                size={64}
+              />
               <DualTranslate>{genre.title}</DualTranslate>
             </TransparentButton>
           );
@@ -89,7 +103,12 @@ export function StepSelectGenre({
       </TitledContainer>
 
       <TitledContainer
-        title={<Translate en="Select the title of te movie" pt="Selecione o título do filme" />}
+        title={
+          <Translate
+            en="Select the title of te movie"
+            pt="Selecione o título do filme"
+          />
+        }
         contentProps={{
           style: { gridTemplateColumns: `repeat(${moviesTitles.length}, 1fr)` },
           className: 'movie-personalization-selection',
@@ -151,7 +170,10 @@ export function StepSelectGenre({
           }
           disabled={user.ready || !selectedGenre || !selectedMovieTitle || !selectedProps.length}
         >
-          <Translate en="Submit" pt="Enviar" />
+          <Translate
+            en="Submit"
+            pt="Enviar"
+          />
         </SendButton>
       </SpaceContainer>
     </Step>

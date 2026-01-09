@@ -44,7 +44,10 @@ export function StepRanking({ ranking, players, goToPreviousStep, round, user }:
     <>
       <SpaceContainer>
         <Button onClick={goToPreviousStep}>
-          <Translate pt="Ver resultado novamente" en="See results again" />
+          <Translate
+            pt="Ver resultado novamente"
+            en="See results again"
+          />
         </Button>
       </SpaceContainer>
       <HostNextPhaseButton round={round} />
@@ -55,7 +58,11 @@ export function StepRanking({ ranking, players, goToPreviousStep, round, user }:
     return (
       <Step>
         <StepTitle size="small">
-          <Translate pt="Ranking" en="Ranking" />?
+          <Translate
+            pt="Ranking"
+            en="Ranking"
+          />
+          ?
         </StepTitle>
 
         <SpaceContainer>
@@ -83,7 +90,12 @@ export function StepRanking({ ranking, players, goToPreviousStep, round, user }:
           en={<>Points for joining the Winning Team.</>}
         />,
       ]}
-      title={<Translate pt={<>Ranking da Área VIP</>} en={<>VIP Ranking</>} />}
+      title={
+        <Translate
+          pt={<>Ranking da Área VIP</>}
+          en={<>VIP Ranking</>}
+        />
+      }
       // TODO: white
       subtitle={innerContent}
     >

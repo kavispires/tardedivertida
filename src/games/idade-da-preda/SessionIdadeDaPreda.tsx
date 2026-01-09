@@ -37,7 +37,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionIdadeDaPreda() {
-  return <Session gameCollection={GAME_COLLECTION.IDADE_DA_PREDA} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.IDADE_DA_PREDA}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionIdadeDaPreda;

@@ -32,7 +32,10 @@ function getActiveComponent(state: GameState) {
 
 function SessionControleDeEstoque() {
   return (
-    <Session gameCollection={GAME_COLLECTION.CONTROLE_DE_ESTOQUE} getActiveComponent={getActiveComponent} />
+    <Session
+      gameCollection={GAME_COLLECTION.CONTROLE_DE_ESTOQUE}
+      getActiveComponent={getActiveComponent}
+    />
   );
 }
 

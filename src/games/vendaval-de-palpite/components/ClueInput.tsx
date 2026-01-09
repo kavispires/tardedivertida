@@ -53,8 +53,18 @@ export function ClueInput({
       <Switch
         className="v-clue-input__switch"
         size="small"
-        unCheckedChildren={<Translate pt="Dica" en="Clue" />}
-        checkedChildren={<Translate pt="Resposta" en="Guess" />}
+        unCheckedChildren={
+          <Translate
+            pt="Dica"
+            en="Clue"
+          />
+        }
+        checkedChildren={
+          <Translate
+            pt="Resposta"
+            en="Guess"
+          />
+        }
         onChange={(e) => setIsGuess(e)}
       />
     </div>

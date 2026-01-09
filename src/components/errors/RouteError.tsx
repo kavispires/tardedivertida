@@ -24,9 +24,19 @@ export function RouteError() {
 
   // Handle regular errors
   if (error instanceof Error) {
-    return <PageError message="Route Error" description={error.message} />;
+    return (
+      <PageError
+        message="Route Error"
+        description={error.message}
+      />
+    );
   }
 
   // Handle unknown errors
-  return <PageError message="Unknown Error" description="An unexpected error occurred" />;
+  return (
+    <PageError
+      message="Unknown Error"
+      description="An unexpected error occurred"
+    />
+  );
 }

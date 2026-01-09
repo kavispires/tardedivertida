@@ -84,15 +84,39 @@ export const ModalOverlay: React.FC<ModalOverlayProps> = ({ children, onClose, o
             </div>
             <div className="simple-modal-overlay__controls-container">
               <Space.Compact className="simple-modal-overlay__controls">
-                <Button onClick={zoomIn} ghost icon={<ZoomInOutlined />} />
+                <Button
+                  onClick={zoomIn}
+                  ghost
+                  icon={<ZoomInOutlined />}
+                />
 
-                <Button onClick={zoomOut} ghost icon={<ZoomOutOutlined />} />
+                <Button
+                  onClick={zoomOut}
+                  ghost
+                  icon={<ZoomOutOutlined />}
+                />
 
-                <Button onClick={rotateLeft} ghost icon={<RotateLeftOutlined />} />
-                <Button onClick={rotateRight} ghost icon={<RotateRightOutlined />} />
+                <Button
+                  onClick={rotateLeft}
+                  ghost
+                  icon={<RotateLeftOutlined />}
+                />
+                <Button
+                  onClick={rotateRight}
+                  ghost
+                  icon={<RotateRightOutlined />}
+                />
 
-                <Button onClick={toggleFlipX} ghost icon={<SwapOutlined />} />
-                <Button onClick={toggleFlipY} ghost icon={<SwapOutlined style={{ rotate: '90deg' }} />} />
+                <Button
+                  onClick={toggleFlipX}
+                  ghost
+                  icon={<SwapOutlined />}
+                />
+                <Button
+                  onClick={toggleFlipY}
+                  ghost
+                  icon={<SwapOutlined style={{ rotate: '90deg' }} />}
+                />
               </Space.Compact>
             </div>
           </motion.div>

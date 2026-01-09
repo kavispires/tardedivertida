@@ -21,15 +21,30 @@ export function PhaseWordSelection({ state, players, user }: PhaseProps) {
   const onSubmitBadWords = useOnSubmitBadWordsAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={TREVO_DA_SORTE_PHASES.WORD_SELECTION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={TREVO_DA_SORTE_PHASES.WORD_SELECTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={4} />
+        <RoundAnnouncement
+          round={state.round}
+          onPressButton={goToNextStep}
+          time={4}
+        />
 
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<VerifyListIcon />}
-          title={<Translate pt="Seleção das Palavras" en="Words Selection" />}
+          title={
+            <Translate
+              pt="Seleção das Palavras"
+              en="Words Selection"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           type="block"
@@ -43,7 +58,10 @@ export function PhaseWordSelection({ state, players, user }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 2 */}
-        <StepSelectWords hand={user.hand} onSubmitBadWords={onSubmitBadWords} />
+        <StepSelectWords
+          hand={user.hand}
+          onSubmitBadWords={onSubmitBadWords}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -27,8 +27,14 @@ export function PhaseCompositeSketch({ state, players }: PhaseProps) {
   const onSubmitOrientation = useOnSubmitOrientationAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={RETRATO_FALADO_PHASES.COMPOSITE_SKETCH}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={RETRATO_FALADO_PHASES.COMPOSITE_SKETCH}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <RoundAnnouncement
           round={state?.round}
@@ -59,7 +65,12 @@ export function PhaseCompositeSketch({ state, players }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<MonsterIcon />}
-          title={<Translate pt="Memorize! Descreva! Desenhe!" en="Memorize! Describe! Sketch!" />}
+          title={
+            <Translate
+              pt="Memorize! Descreva! Desenhe!"
+              en="Memorize! Describe! Sketch!"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 2 ? 20 : 5}

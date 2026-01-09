@@ -22,19 +22,41 @@ export function Corridor({ number, imagesIds, width, passcode, moves }: Corridor
   return (
     <>
       {passcode ? (
-        <Flex justify="center" gap={6}>
+        <Flex
+          justify="center"
+          gap={6}
+        >
           <Typography.Text keyboard>{passcode}</Typography.Text>
         </Flex>
       ) : (
-        <Flex justify="center" gap={6}>
-          <CorridorNumber number={number} corridorNumber={1} />
-          <CorridorNumber number={number} corridorNumber={2} />
-          <CorridorNumber number={number} corridorNumber={3} />
+        <Flex
+          justify="center"
+          gap={6}
+        >
+          <CorridorNumber
+            number={number}
+            corridorNumber={1}
+          />
+          <CorridorNumber
+            number={number}
+            corridorNumber={2}
+          />
+          <CorridorNumber
+            number={number}
+            corridorNumber={3}
+          />
         </Flex>
       )}
-      <Flex justify="center" className="mt-2">
+      <Flex
+        justify="center"
+        className="mt-2"
+      >
         <Tag style={{ background: 'transparent' }}>
-          {moves} <Translate pt="movimentos" en="moves" />
+          {moves}{' '}
+          <Translate
+            pt="movimentos"
+            en="moves"
+          />
         </Tag>
       </Flex>
       <Image.PreviewGroup>
@@ -42,13 +64,25 @@ export function Corridor({ number, imagesIds, width, passcode, moves }: Corridor
           {imagesIds.map((cardId, index) => (
             <>
               {isIOS || isSafari ? (
-                <motion.div key={cardId} {...getAnimation('zoomIn', { delay: index * 0.1, speed: 'fast' })}>
-                  <ImageCard cardId={cardId} cardWidth={width} />
+                <motion.div
+                  key={cardId}
+                  {...getAnimation('zoomIn', { delay: index * 0.1, speed: 'fast' })}
+                >
+                  <ImageCard
+                    cardId={cardId}
+                    cardWidth={width}
+                  />
                 </motion.div>
               ) : (
-                <DoorFrame key={cardId} width={width}>
+                <DoorFrame
+                  key={cardId}
+                  width={width}
+                >
                   <motion.div {...getAnimation('zoomIn', { delay: index * 0.1, speed: 'fast' })}>
-                    <ImageCard cardId={cardId} cardWidth={150} />
+                    <ImageCard
+                      cardId={cardId}
+                      cardWidth={150}
+                    />
                   </motion.div>
                 </DoorFrame>
               )}

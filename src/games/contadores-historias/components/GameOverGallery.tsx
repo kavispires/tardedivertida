@@ -16,12 +16,22 @@ type GameOverGalleryProps = {
 export function GameOverGallery({ gallery }: GameOverGalleryProps) {
   const cardWidth = useCardWidth(6, { gap: 8, minWidth: 60, maxWidth: 200 });
   return (
-    <TitledContainer title={<Translate pt="Histórias" en="Stories" />}>
+    <TitledContainer
+      title={
+        <Translate
+          pt="Histórias"
+          en="Stories"
+        />
+      }
+    >
       <Image.PreviewGroup>
         <ul className="c-gallery">
           {gallery.map((entry, index) => {
             return (
-              <div key={`${entry.cardId}-${index}`} className="c-gallery__entry">
+              <div
+                key={`${entry.cardId}-${index}`}
+                className="c-gallery__entry"
+              >
                 <div className="c-gallery__label">
                   <span>{entry.story}</span>
                 </div>

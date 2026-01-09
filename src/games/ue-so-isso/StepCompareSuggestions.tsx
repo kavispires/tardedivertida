@@ -91,9 +91,15 @@ export function StepCompareSuggestions({
   const suggestionsValues = Object.values(myRecommendation);
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Comparem as Dicas" en="Compare Clues" />
+        <Translate
+          pt="Comparem as Dicas"
+          en="Compare Clues"
+        />
       </StepTitle>
 
       <Card word={secretWord.text} />
@@ -121,7 +127,10 @@ export function StepCompareSuggestions({
               })
             }
           >
-            <Translate pt="Confirmar dicas válidas" en="Confirm valid clues" />
+            <Translate
+              pt="Confirmar dicas válidas"
+              en="Confirm valid clues"
+            />
           </SendButton>
         </SpaceContainer>
       </ViewIf>
@@ -152,7 +161,10 @@ export function StepCompareSuggestions({
               })
             }
           >
-            <Translate pt="Confirmar dicas válidas como Admin" en="Confirm valid clues as Admin" />
+            <Translate
+              pt="Confirmar dicas válidas como Admin"
+              en="Confirm valid clues as Admin"
+            />
           </HostButton>
         </HostOnlyContainer>
       </ViewIf>

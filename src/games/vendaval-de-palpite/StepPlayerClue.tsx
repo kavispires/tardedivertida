@@ -99,12 +99,19 @@ export function StepPlayerClue({
   return (
     <Step fullWidth>
       <StepTitle>
-        <Translate pt="Escreva palpites" en="Write Ideas" />
+        <Translate
+          pt="Escreva palpites"
+          en="Write Ideas"
+        />
       </StepTitle>
 
       <CategoryCard categories={categories} />
 
-      <Board board={board} clues={clues} players={players} />
+      <Board
+        board={board}
+        clues={clues}
+        players={players}
+      />
 
       <Instruction contained>
         <Translate
@@ -113,7 +120,11 @@ export function StepPlayerClue({
         />
       </Instruction>
 
-      <TimerBar value={timeLeft} total={timerTotal} steps={timerTotal / 3} />
+      <TimerBar
+        value={timeLeft}
+        total={timerTotal}
+        steps={timerTotal / 3}
+      />
 
       <ControlledInputWriting
         onSubmit={onSubmitEverything}
@@ -128,13 +139,22 @@ export function StepPlayerClue({
         submitButtonLabel={
           guessesIds.length > 0 ? (
             cluesPerPlayer > 1 ? (
-              <Translate pt="Enviar dicas e respostas" en="Send clues and guesses" />
+              <Translate
+                pt="Enviar dicas e respostas"
+                en="Send clues and guesses"
+              />
             ) : (
-              <Translate pt="Enviar resposta" en="Send guess" />
+              <Translate
+                pt="Enviar resposta"
+                en="Send guess"
+              />
             )
           ) : (
             <>
-              <Translate pt="Enviar dica" en="Send clue" />
+              <Translate
+                pt="Enviar dica"
+                en="Send clue"
+              />
               {cluesPerPlayer > 1 && 's'}
             </>
           )

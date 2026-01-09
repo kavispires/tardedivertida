@@ -26,14 +26,22 @@ export function PhaseGuessing({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<AnonymousIcon />}
-      title={<Translate pt="Quem é essa pessoa?" en="Who's that?" />}
+      title={
+        <Translate
+          pt="Quem é essa pessoa?"
+          en="Who's that?"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={4}
     >
       <Instruction>
         {isUserTheTargetedPlayer ? (
-          <Translate pt="Você está na berlinda!" en="You are the target!" />
+          <Translate
+            pt="Você está na berlinda!"
+            en="You are the target!"
+          />
         ) : (
           <Translate
             pt={
@@ -53,8 +61,14 @@ export function PhaseGuessing({ state, players, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={TA_NA_CARA_PHASES.GUESSING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={TA_NA_CARA_PHASES.GUESSING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <ViewOr condition={!isUserTheTargetedPlayer}>
           <StepGuessPlayer

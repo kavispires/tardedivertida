@@ -1,6 +1,10 @@
 export function VIPLineIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#fec145"
         fillRule="evenodd"
@@ -16,13 +20,21 @@ export function VIPLineIcon(props: React.SVGProps<SVGSVGElement>) {
         fillRule="evenodd"
         d="M90 396a20.05 20.05 0 0 0-20-20H30a20.06 20.06 0 0 0-20 20v20h80Z"
       />
-      <path fill="#ffda8f" fillRule="evenodd" d="M70 376V170.64a40.06 40.06 0 0 1-40 0V376Z" />
+      <path
+        fill="#ffda8f"
+        fillRule="evenodd"
+        d="M70 376V170.64a40.06 40.06 0 0 1-40 0V376Z"
+      />
       <path
         fill="#fec145"
         fillRule="evenodd"
         d="M50 176a40 40 0 1 0-20-5.35A39.83 39.83 0 0 0 50 176M422 136a40 40 0 1 0 40-40 40 40 0 0 0-40 40"
       />
-      <path fill="#ffda8f" fillRule="evenodd" d="M442 170.64V376h40V170.64a40.06 40.06 0 0 1-40 0" />
+      <path
+        fill="#ffda8f"
+        fillRule="evenodd"
+        d="M442 170.64V376h40V170.64a40.06 40.06 0 0 1-40 0"
+      />
       <path
         fill="#fec145"
         fillRule="evenodd"
@@ -44,7 +56,10 @@ export function VIPLineIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#010101"
         d="M300.81 262.15a10 10 0 0 1-1.69-19.85 246.85 246.85 0 0 0 115.13-53.77 10 10 0 1 0-12.78-15.3 226.59 226.59 0 0 1-145.42 52.9 226.56 226.56 0 0 1-145.42-52.91 10 10 0 0 0-14 1.26 10 10 0 0 0 1.25 14 246.86 246.86 0 0 0 115.05 53.82 10 10 0 1 1-3.51 19.7 266.94 266.94 0 0 1-124.47-58.15 30 30 0 0 1 38.47-46A206.58 206.58 0 0 0 256 206.09a206.59 206.59 0 0 0 132.58-48.19 30 30 0 1 1 38.46 46A266.85 266.85 0 0 1 302.58 262a9.63 9.63 0 0 1-1.77.15Z"
       />
-      <path fill="#010101" d="M256 266.13a10 10 0 0 1 0-20 10 10 0 0 1 0 20Z" />
+      <path
+        fill="#010101"
+        d="M256 266.13a10 10 0 0 1 0-20 10 10 0 0 1 0 20Z"
+      />
     </svg>
   );
 }

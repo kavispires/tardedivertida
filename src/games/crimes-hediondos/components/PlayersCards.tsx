@@ -51,8 +51,18 @@ export function PlayersCards({
                   withName
                   className="h-players-cards__avatar"
                   replacementAvatar={
-                    (isLocked && <IconAvatar icon={<LockIcon />} className="h-players-cards__seal" />) ||
-                    (isComplete && <IconAvatar icon={<KnifeIcon />} className="h-players-cards__seal" />)
+                    (isLocked && (
+                      <IconAvatar
+                        icon={<LockIcon />}
+                        className="h-players-cards__seal"
+                      />
+                    )) ||
+                    (isComplete && (
+                      <IconAvatar
+                        icon={<KnifeIcon />}
+                        className="h-players-cards__seal"
+                      />
+                    ))
                   }
                 />
               </TransparentButton>

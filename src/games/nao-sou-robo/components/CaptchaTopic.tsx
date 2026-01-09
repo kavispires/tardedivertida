@@ -20,7 +20,10 @@ export function CaptchaTopic({ captcha }: CaptchaTopicProps) {
     return (
       <Space>
         {values.map((glyph) => (
-          <GlyphCard key={glyph} glyphId={String(glyph)} />
+          <GlyphCard
+            key={glyph}
+            glyphId={String(glyph)}
+          />
         ))}
       </Space>
     );
@@ -28,7 +31,12 @@ export function CaptchaTopic({ captcha }: CaptchaTopicProps) {
 
   if (captcha.roundType === 'emojis') {
     const values = captcha.values as number;
-    return <EmojiCard key={values} emojiId={String(values)} />;
+    return (
+      <EmojiCard
+        key={values}
+        emojiId={String(values)}
+      />
+    );
   }
 
   if (captcha.roundType === 'warehouse-goods') {
@@ -36,7 +44,10 @@ export function CaptchaTopic({ captcha }: CaptchaTopicProps) {
     return (
       <Space>
         {values.map((id) => (
-          <WarehouseGoodCard key={id} goodId={id} />
+          <WarehouseGoodCard
+            key={id}
+            goodId={id}
+          />
         ))}
       </Space>
     );

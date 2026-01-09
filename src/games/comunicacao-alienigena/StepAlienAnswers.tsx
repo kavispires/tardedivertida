@@ -86,7 +86,10 @@ export function StepAlienAnswers({
   const hasAlienResponse = Boolean(alienResponse);
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle wait={!hasAlienResponse}>
         <Translate
           pt={
@@ -125,7 +128,11 @@ export function StepAlienAnswers({
 
       <SpaceContainer wrap>
         {currentInquiry.map((itemId) => (
-          <ItemCard key={`inquiry-${itemId}`} itemId={itemId} width={64} />
+          <ItemCard
+            key={`inquiry-${itemId}`}
+            itemId={itemId}
+            width={64}
+          />
         ))}
       </SpaceContainer>
 
@@ -158,7 +165,10 @@ export function StepAlienAnswers({
 
       <ViewIf condition={hasAlienResponse}>
         <RuleInstruction type="event">
-          <Translate pt={<>O Alienígena respondeu:</>} en={<>The Alien answered:</>} />
+          <Translate
+            pt={<>O Alienígena respondeu:</>}
+            en={<>The Alien answered:</>}
+          />
         </RuleInstruction>
 
         {!!alienResponse && (
@@ -172,24 +182,53 @@ export function StepAlienAnswers({
 
         <HumanContent user={user}>
           <SpaceContainer>
-            <SendButton size="large" onClick={() => onConfirmNote()} disabled={isLoading || user.ready}>
-              <Translate pt="Anotei o símbolo e estou pronto" en="I have noted the symbol and I'm ready" />
+            <SendButton
+              size="large"
+              onClick={() => onConfirmNote()}
+              disabled={isLoading || user.ready}
+            >
+              <Translate
+                pt="Anotei o símbolo e estou pronto"
+                en="I have noted the symbol and I'm ready"
+              />
             </SendButton>
           </SpaceContainer>
         </HumanContent>
       </ViewIf>
 
       <AlienContent user={user}>
-        <Space className="boards-container" wrap>
-          <ObjectsGrid items={items} showTypes={isUserAlien} activeObjects={currentInquiry} status={status} />
-          <SignsKeyCard attributes={attributes} startingAttributesIds={startingAttributesIds} />
+        <Space
+          className="boards-container"
+          wrap
+        >
+          <ObjectsGrid
+            items={items}
+            showTypes={isUserAlien}
+            activeObjects={currentInquiry}
+            status={status}
+          />
+          <SignsKeyCard
+            attributes={attributes}
+            startingAttributesIds={startingAttributesIds}
+          />
         </Space>
       </AlienContent>
 
       <HumanContent user={user}>
-        <Space className="boards-container" wrap>
-          <ObjectsGrid items={items} showTypes={isUserAlien} activeObjects={currentInquiry} status={status} />
-          <HumanSignBoard attributes={attributes} startingAttributesIds={startingAttributesIds} />
+        <Space
+          className="boards-container"
+          wrap
+        >
+          <ObjectsGrid
+            items={items}
+            showTypes={isUserAlien}
+            activeObjects={currentInquiry}
+            status={status}
+          />
+          <HumanSignBoard
+            attributes={attributes}
+            startingAttributesIds={startingAttributesIds}
+          />
         </Space>
       </HumanContent>
 
@@ -205,7 +244,10 @@ export function StepAlienAnswers({
       />
 
       <DebugOnly>
-        <SignsKeyCard attributes={attributes} startingAttributesIds={startingAttributesIds} />
+        <SignsKeyCard
+          attributes={attributes}
+          startingAttributesIds={startingAttributesIds}
+        />
       </DebugOnly>
     </Step>
   );

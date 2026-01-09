@@ -21,20 +21,35 @@ type FinalGalleryEntryProps = {
 export function FinalGalleryEntry({ entry, features, players }: FinalGalleryEntryProps) {
   return (
     <div className="selections-container__active-player">
-      <PlayerAvatarStrip player={players[entry.playerId]} withName />
+      <PlayerAvatarStrip
+        player={players[entry.playerId]}
+        withName
+      />
       <div className="selections-container__object selections-container__content">
         <ObjectCard item={entry.item} />
         <div>
-          <IconAvatar icon={<BoxPlusIcon />} size="small" />
+          <IconAvatar
+            icon={<BoxPlusIcon />}
+            size="small"
+          />
         </div>
         <div>
           <Card hideHeader>{entry.clue}</Card>
         </div>
         <div>
-          <IconAvatar icon={<BoxEqualIcon />} size="small" />
+          <IconAvatar
+            icon={<BoxEqualIcon />}
+            size="small"
+          />
         </div>
-        <ObjectFeature feature={features[entry.featureId]} width={48} />
-        <ScoreTrack history={entry.history} hideInstructions />
+        <ObjectFeature
+          feature={features[entry.featureId]}
+          width={48}
+        />
+        <ScoreTrack
+          history={entry.history}
+          hideInstructions
+        />
       </div>
     </div>
   );

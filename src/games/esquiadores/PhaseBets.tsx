@@ -33,19 +33,32 @@ export function PhaseBets({ state, players, user }: PhaseProps<PhaseBetsState>) 
   const announcement = isUserSkier ? (
     <PhaseAnnouncement
       icon={<QuestionIcon />}
-      title={<Translate pt="Responda as perguntas" en="Answer the questions" />}
+      title={
+        <Translate
+          pt="Responda as perguntas"
+          en="Answer the questions"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={5}
     >
       <Instruction>
-        <Translate pt="Responda as perguntas" en="Answer the questions" />
+        <Translate
+          pt="Responda as perguntas"
+          en="Answer the questions"
+        />
       </Instruction>
     </PhaseAnnouncement>
   ) : (
     <PhaseAnnouncement
       icon={<GamblingChipIcon />}
-      title={<Translate pt="Apostas" en="Bets" />}
+      title={
+        <Translate
+          pt="Apostas"
+          en="Bets"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={5}
@@ -60,18 +73,35 @@ export function PhaseBets({ state, players, user }: PhaseProps<PhaseBetsState>) 
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={ESQUIADORES_PHASES.BETS}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={ESQUIADORES_PHASES.BETS}
+    >
       <SnowEffect />
       <StepSwitcher
         step={step}
         players={players}
         waitingRoom={{
-          content: !isUserSkier && <CurrentBets user={user} lodges={state.lodges} betType="initial" />,
+          content: !isUserSkier && (
+            <CurrentBets
+              user={user}
+              lodges={state.lodges}
+              betType="initial"
+            />
+          ),
         }}
       >
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} time={5} onPressButton={goToNextStep}>
-          <TurnOrder players={players} order={state.turnOrder} activePlayerId={state.activeSkierId} />
+        <RoundAnnouncement
+          round={state.round}
+          time={5}
+          onPressButton={goToNextStep}
+        >
+          <TurnOrder
+            players={players}
+            order={state.turnOrder}
+            activePlayerId={state.activeSkierId}
+          />
         </RoundAnnouncement>
 
         {/* Step 1 */}

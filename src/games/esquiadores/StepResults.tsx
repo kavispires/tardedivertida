@@ -54,9 +54,15 @@ export function StepResults({
   }
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Uhuuuuu!" en="Weeeeeeeee" />
+        <Translate
+          pt="Uhuuuuu!"
+          en="Weeeeeeeee"
+        />
       </StepTitle>
 
       <RuleInstruction type="event">
@@ -105,7 +111,10 @@ export function StepResults({
       </RuleInstruction>
 
       {betType !== 'final' && (
-        <HostNextPhaseButton withWaitingTimeBar autoTriggerTime={15}>
+        <HostNextPhaseButton
+          withWaitingTimeBar
+          autoTriggerTime={15}
+        >
           Next
         </HostNextPhaseButton>
       )}
@@ -119,7 +128,12 @@ export function StepResults({
         showLevel={showLevel}
       />
 
-      <Lodges lodges={lodges} players={players} user={user} betType={betType} />
+      <Lodges
+        lodges={lodges}
+        players={players}
+        user={user}
+        betType={betType}
+      />
 
       {betType === 'final' && (
         <SpaceContainer>
@@ -129,12 +143,19 @@ export function StepResults({
             onClick={goToNextStep}
             icon={<UnorderedListOutlined />}
           >
-            <Translate pt="Ver Ranking" en="See Ranking" />
+            <Translate
+              pt="Ver Ranking"
+              en="See Ranking"
+            />
           </TimedButton>
         </SpaceContainer>
       )}
 
-      <TurnOrder players={players} order={turnOrder} activePlayerId={skier.id} />
+      <TurnOrder
+        players={players}
+        order={turnOrder}
+        activePlayerId={skier.id}
+      />
     </Step>
   );
 }

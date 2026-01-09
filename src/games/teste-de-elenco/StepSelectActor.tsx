@@ -41,12 +41,22 @@ export function StepSelectActor({
   });
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt={<>Selecione um ator!</>} en={<>Cast a role:</>} />
+        <Translate
+          pt={<>Selecione um ator!</>}
+          en={<>Cast a role:</>}
+        />
       </StepTitle>
 
-      <RoleBoard activeRole={activeRole} instruction="SELECT" movie={movie}>
+      <RoleBoard
+        activeRole={activeRole}
+        instruction="SELECT"
+        movie={movie}
+      >
         <CastSummary movie={movie} />
       </RoleBoard>
 

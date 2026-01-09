@@ -20,19 +20,33 @@ export function PhaseResults({ state, players }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<PuzzleIcon />}
-      title={<Translate pt="Resultado" en="Results" />}
+      title={
+        <Translate
+          pt="Resultado"
+          en="Results"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
       <Instruction>
-        <Translate pt={<>Quantos pares você acertou?</>} en={<>How many pairs did you get?</>} />
+        <Translate
+          pt={<>Quantos pares você acertou?</>}
+          en={<>How many pairs did you get?</>}
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={DUETOS_PHASES.RESULTS}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={DUETOS_PHASES.RESULTS}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepResult
           players={players}

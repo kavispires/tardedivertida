@@ -27,7 +27,12 @@ export function PhaseAlienAnswer({ players, state, user }: PhaseProps<PhaseAlien
   const announcement = (
     <PhaseAnnouncement
       icon={<HieroglyphIcon />}
-      title={<Translate pt="Resposta do Alienígena" en="Alien Answer" />}
+      title={
+        <Translate
+          pt="Resposta do Alienígena"
+          en="Alien Answer"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}
@@ -35,8 +40,14 @@ export function PhaseAlienAnswer({ players, state, user }: PhaseProps<PhaseAlien
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={COMUNICACAO_ALIENIGENA_PHASES.ALIEN_ANSWER}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={COMUNICACAO_ALIENIGENA_PHASES.ALIEN_ANSWER}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepAlienAnswers
           players={players}

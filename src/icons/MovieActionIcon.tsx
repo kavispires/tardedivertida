@@ -1,6 +1,10 @@
 export function MovieActionIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#948393"
         d="M441 439V143a8 8 0 00-7-8h-38l-8 8H128l-14-8H76a8 8 0 00-7 8v296a3 3 0 003 3h23l10-5h299l11 5h23a3 3 0 003-3zm0 0"
@@ -9,14 +13,26 @@ export function MovieActionIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#7c6c79"
         d="M122 161H95a4 4 0 00-4 4v15a4 4 0 004 4h27zm0 49H95a4 4 0 00-4 4v15a4 4 0 004 4h27zm0 49H95a4 4 0 00-4 4v15a4 4 0 004 4h27zm0 49H95a4 4 0 00-4 3v15a4 4 0 004 4h27zm0 48H95a4 4 0 00-4 4v15a4 4 0 004 4h19zm266-195h27a4 4 0 014 4v15a4 4 0 01-4 4h-27zm0 49h27a4 4 0 014 4v15a4 4 0 01-4 4h-27zm0 49h27a4 4 0 014 4v15a4 4 0 01-4 4h-27zm0 49h27a4 4 0 014 3v15a4 4 0 01-4 4h-27zm0 48h27a4 4 0 014 4v15a4 4 0 01-4 4h-19zm0 0"
       ></path>
-      <path fill="#f5f8f9" d="M389 373V141l-13-6H114v244h262zm0 0"></path>
-      <path fill="#e8edf2" d="M376 135h20v244h-20z"></path>
+      <path
+        fill="#f5f8f9"
+        d="M389 373V141l-13-6H114v244h262zm0 0"
+      ></path>
+      <path
+        fill="#e8edf2"
+        d="M376 135h20v244h-20z"
+      ></path>
       <path
         fill="#7c6c79"
         d="M415 442h-19l-7-11 7-12h19a4 4 0 014 4v15a4 4 0 01-4 4zm-301 0H95a4 4 0 01-4-4v-15a4 4 0 014-4h19l7 12zm0 0"
       ></path>
-      <path fill="#f5f8f9" d="M114 442v-11l6-7 271-1 1 14-11 5zm0 0"></path>
-      <path fill="#e8edf2" d="M396 419v23h-15v-6a5 5 0 00-5-5H114v-12zm0 0"></path>
+      <path
+        fill="#f5f8f9"
+        d="M114 442v-11l6-7 271-1 1 14-11 5zm0 0"
+      ></path>
+      <path
+        fill="#e8edf2"
+        d="M396 419v23h-15v-6a5 5 0 00-5-5H114v-12zm0 0"
+      ></path>
       <path
         fill="#7c6c79"
         d="M284 211l5 12a144 144 0 0072 44 3 3 0 004-3l1-9-4-7 7-4 1-9a3 3 0 00-2-4 111 111 0 01-53-34c-5-1-7-4-10-8l-19 1zm-44 43l2 17 18 42a2 2 0 003 1l24-9-19-43a11 11 0 013-12l-4-4-13-6zm0 0"
@@ -25,22 +41,46 @@ export function MovieActionIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#6a5d67"
         d="M267 246l-25 25-6-13 5-14 17-7zm48-49l-26 26-8-10 5-23 21-3a118 118 0 008 10zm0 0"
       ></path>
-      <path fill="#6a5d67" d="M293 189l-9 8 2-7zm0 0"></path>
-      <path fill="#948393" d="M335 119l-13-13a2 2 0 00-3 0l-8 9-2 7h-6l-14 14 21 15zm0 0"></path>
-      <path fill="#6a5d67" d="M228 197l34-33 20 20-34 33zm0 0"></path>
+      <path
+        fill="#6a5d67"
+        d="M293 189l-9 8 2-7zm0 0"
+      ></path>
+      <path
+        fill="#948393"
+        d="M335 119l-13-13a2 2 0 00-3 0l-8 9-2 7h-6l-14 14 21 15zm0 0"
+      ></path>
+      <path
+        fill="#6a5d67"
+        d="M228 197l34-33 20 20-34 33zm0 0"
+      ></path>
       <path
         fill="#7c6c79"
         d="M191 235l-9 9a40 40 0 01-22 11 39 39 0 00-5 1l-3 6-8-1a40 40 0 00-5 5l-3 2a8 8 0 000 11l28 27h5a8 8 0 0011 0l35-46-3-16zm0 0"
       ></path>
-      <path fill="#6a5d67" d="M218 263l-25 31h-7v9l-6 7a8 8 0 01-11 1l-5-5 43-54 5-8zm0 0"></path>
+      <path
+        fill="#6a5d67"
+        d="M218 263l-25 31h-7v9l-6 7a8 8 0 01-11 1l-5-5 43-54 5-8zm0 0"
+      ></path>
       <path
         fill="#7c6c79"
         d="M307 146l-18-18a3 3 0 00-5 0l-32 33a3 3 0 000 4l21 21zm59-58l-18-18a3 3 0 00-4 0 17 17 0 000 24l7 8 12-3zm0 0"
       ></path>
-      <path fill="#948393" d="M363 114l28-28a3 3 0 000-5l-2-4-4-4a3 3 0 00-5 0l-29 29 1 11zm0 0"></path>
-      <path fill="#7c6c79" d="M351 102l-44 44 9 14 46-47zm0 0"></path>
-      <path fill="#7c6c79" d="M394 87l-29 29-5-1-2-6 31-32 5 5a3 3 0 010 5zm0 0"></path>
-      <path fill="#6a5d67" d="M365 116l-47 47-6-9 46-45zm0 0"></path>
+      <path
+        fill="#948393"
+        d="M363 114l28-28a3 3 0 000-5l-2-4-4-4a3 3 0 00-5 0l-29 29 1 11zm0 0"
+      ></path>
+      <path
+        fill="#7c6c79"
+        d="M351 102l-44 44 9 14 46-47zm0 0"
+      ></path>
+      <path
+        fill="#7c6c79"
+        d="M394 87l-29 29-5-1-2-6 31-32 5 5a3 3 0 010 5zm0 0"
+      ></path>
+      <path
+        fill="#6a5d67"
+        d="M365 116l-47 47-6-9 46-45zm0 0"
+      ></path>
       <path
         fill="#948393"
         d="M186 226a3 3 0 000 5l7 7 8 1v7l6 6 16 6a3 3 0 005 0l93-91a3 3 0 000-4l-7-10-7-7-58 58a2 2 0 01-3 0l-17-17a3 3 0 00-4 0zm0 0"
@@ -57,7 +97,10 @@ export function MovieActionIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#ffda45"
         d="M167 155l-9-8-9-9a4 4 0 010-6l10-10 6-1 2-7 10-10a4 4 0 016 0l9 9 7 9a4 4 0 010 5l-27 28a4 4 0 01-5 0zm0 0"
       ></path>
-      <path fill="#ffbe36" d="M215 94v3a30 30 0 01-8 17l-7 7-7-1-1-7 22-23a4 4 0 011 4zm0 0"></path>
+      <path
+        fill="#ffbe36"
+        d="M215 94v3a30 30 0 01-8 17l-7 7-7-1-1-7 22-23a4 4 0 011 4zm0 0"
+      ></path>
       <path
         fill="#ffcb3d"
         d="M201 128l-10 10h-10l2 8-11 10a4 4 0 01-5 0l-9-9 30-31 4-3 9 9a4 4 0 010 6zm15 214l-14-14 10-10a30 30 0 0117-9h4a4 4 0 013 1l-1 3v3c-1 7-4 11-9 16zm0 0"
@@ -66,7 +109,10 @@ export function MovieActionIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#ffda45"
         d="M188 374l-9-8-9-9a4 4 0 010-5l10-11 7-1 1-7 11-10a4 4 0 015 0l9 9 7 9a4 4 0 010 5l-27 28a4 4 0 01-5 0zm0 0"
       ></path>
-      <path fill="#ffbe36" d="M237 313l-1 3a30 30 0 01-8 17l-7 7-7-1-1-7 23-22a4 4 0 011 3zm0 0"></path>
+      <path
+        fill="#ffbe36"
+        d="M237 313l-1 3a30 30 0 01-8 17l-7 7-7-1-1-7 23-22a4 4 0 011 3zm0 0"
+      ></path>
       <path
         fill="#ffcb3d"
         d="M222 347l-10 10-9 1 1 7-10 10a4 4 0 01-6 0l-9-9 31-30 3-4 9 9a4 4 0 010 6zm133-28l-14-14 10-10a30 30 0 0117-8l4-1a4 4 0 013 1v3l-1 4c-1 6-4 11-8 15zm0 0"
@@ -75,7 +121,10 @@ export function MovieActionIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#ffda45"
         d="M328 351l-9-7-10-10a4 4 0 010-5l11-10 6-2 2-6 10-11a4 4 0 015 0l10 10 7 8a4 4 0 010 6l-27 27a4 4 0 01-5 0zm0 0"
       ></path>
-      <path fill="#ffbe36" d="M376 290v4a30 30 0 01-9 17l-6 7-7-1-1-7 22-23a4 4 0 011 3zm0 0"></path>
+      <path
+        fill="#ffbe36"
+        d="M376 290v4a30 30 0 01-9 17l-6 7-7-1-1-7 22-23a4 4 0 011 3zm0 0"
+      ></path>
       <path
         fill="#ffcb3d"
         d="M362 324l-10 11h-10l2 8-11 10a4 4 0 01-5 0l-9-9 30-31 4-3 9 9a4 4 0 010 5zm0 0"

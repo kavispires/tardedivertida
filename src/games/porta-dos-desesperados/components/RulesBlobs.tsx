@@ -54,10 +54,16 @@ export function RoundOneRule({ magic, difficulty }: RoundOneRuleProps) {
 
       <br />
       <strong>
-        <Translate pt="Dificuldade: " en="Difficulty: " />
+        <Translate
+          pt="Dificuldade: "
+          en="Difficulty: "
+        />
       </strong>
       <br />
-      <TrapLevel level={difficulty} count={5} />
+      <TrapLevel
+        level={difficulty}
+        count={5}
+      />
     </Instruction>
   );
 }
@@ -113,19 +119,31 @@ export function TrapRule({ trapEntry, showTitle = false }: TrapRuleProps) {
   const TrapIcon = getTrapIcon(trapEntry?.icon);
 
   return (
-    <Instruction contained style={{ maxWidth: 512 }}>
+    <Instruction
+      contained
+      style={{ maxWidth: 512 }}
+    >
       <TrapIcon style={{ width: '3rem' }} />
       {showTitle && (
-        <Title size="xx-small" level={3}>
+        <Title
+          size="xx-small"
+          level={3}
+        >
           <DualTranslate>{trapEntry.title}</DualTranslate>
         </Title>
       )}
       <DualTranslate>{trapEntry.description}</DualTranslate>
       <br />
       <div className="mt-4">
-        <Translate pt="Dificuldade: " en="Difficulty: " />
+        <Translate
+          pt="Dificuldade: "
+          en="Difficulty: "
+        />
         <br />
-        <TrapLevel level={trapEntry.level} count={3} />
+        <TrapLevel
+          level={trapEntry.level}
+          count={3}
+        />
       </div>
     </Instruction>
   );
@@ -135,7 +153,12 @@ export function TrapPopupRule({ trapEntry }: Pick<TrapRuleProps, 'trapEntry'>) {
   return (
     <FixedMenuButton
       type="popover"
-      content={<TrapRule trapEntry={trapEntry} showTitle />}
+      content={
+        <TrapRule
+          trapEntry={trapEntry}
+          showTitle
+        />
+      }
       position={1}
       icon={<RadarChartOutlined />}
     />
@@ -203,7 +226,12 @@ export function BotPopupRule() {
       position={2}
       icon={<RobotOutlined />}
       content={<BotsRules />}
-      label={<Translate pt=" Bots" en=" Bots" />}
+      label={
+        <Translate
+          pt=" Bots"
+          en=" Bots"
+        />
+      }
     />
   );
 }

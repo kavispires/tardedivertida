@@ -5,7 +5,12 @@ import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricH
 
 export function PlayersHighlight({ children, type, iconSize, className }: HighlightProps) {
   return (
-    <MetricHighlight icon={<PlayersIcon />} type={type} iconSize={iconSize} className={className}>
+    <MetricHighlight
+      icon={<PlayersIcon />}
+      type={type}
+      iconSize={iconSize}
+      className={className}
+    >
       {children}
     </MetricHighlight>
   );

@@ -20,23 +20,53 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
       state={state}
       players={players}
       announcementIcon={state.outcome === 'WIN' ? <TrophyIcon /> : <TheEndIcon />}
-      rateWidgetCustomText={<Translate pt="Sugira palavras-secretas" en="Suggest secret words" />}
+      rateWidgetCustomText={
+        <Translate
+          pt="Sugira palavras-secretas"
+          en="Suggest secret words"
+        />
+      }
     >
-      <SpaceContainer orientation="vertical" align="center">
+      <SpaceContainer
+        orientation="vertical"
+        align="center"
+      >
         {state.outcome === 'WIN' ? (
           <>
-            <IconAvatar icon={<QualitySealIcon />} size={100} shape="square" />
-            <Translate pt="VITÓRIA" en="WIN" />
+            <IconAvatar
+              icon={<QualitySealIcon />}
+              size={100}
+              shape="square"
+            />
+            <Translate
+              pt="VITÓRIA"
+              en="WIN"
+            />
           </>
         ) : (
           <>
-            <IconAvatar icon={<GarbageIcon />} size={100} shape="square" />
-            <Translate pt="DERROTA" en="LOSE" />
+            <IconAvatar
+              icon={<GarbageIcon />}
+              size={100}
+              shape="square"
+            />
+            <Translate
+              pt="DERROTA"
+              en="LOSE"
+            />
           </>
         )}
       </SpaceContainer>
-      <CategoryWordGroup categories={state.categories} secretWord={state.secretWord} showSecretWord />
-      <Board players={players} clues={state.clues} board={state.board} />
+      <CategoryWordGroup
+        categories={state.categories}
+        secretWord={state.secretWord}
+        showSecretWord
+      />
+      <Board
+        players={players}
+        clues={state.clues}
+        board={state.board}
+      />
     </GameOverWrapper>
   );
 }

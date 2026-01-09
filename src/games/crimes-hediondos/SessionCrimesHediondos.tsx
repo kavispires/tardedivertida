@@ -35,7 +35,10 @@ function getActiveComponent(state: GameState) {
 
 function SessionCrimesHediondos() {
   return (
-    <Session gameCollection={GAME_COLLECTION.CRIMES_HEDIONDOS} getActiveComponent={getActiveComponent} />
+    <Session
+      gameCollection={GAME_COLLECTION.CRIMES_HEDIONDOS}
+      getActiveComponent={getActiveComponent}
+    />
   );
 }
 

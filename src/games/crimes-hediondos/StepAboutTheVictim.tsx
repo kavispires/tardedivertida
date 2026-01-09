@@ -51,7 +51,10 @@ export function StepAboutTheVictim({
   return (
     <Step announcement={announcement}>
       <StepTitle>
-        <Translate pt="Quem foi a pobre alma que se foi?" en="Who was the poor soul that taken?" />
+        <Translate
+          pt="Quem foi a pobre alma que se foi?"
+          en="Who was the poor soul that taken?"
+        />
       </StepTitle>
       <RuleInstruction type="action">
         <Translate
@@ -90,7 +93,10 @@ export function StepAboutTheVictim({
         ) : (
           <ul className="h-items-selection">
             {userItems.map((itemId) => (
-              <li key={itemId} className="h-items-selection__item">
+              <li
+                key={itemId}
+                className="h-items-selection__item"
+              >
                 <CrimeItemCard
                   item={items[itemId]}
                   cardWidth={cardWidth}
@@ -100,7 +106,11 @@ export function StepAboutTheVictim({
             ))}
           </ul>
         )}
-        <SceneTile tile={victimTile} onSelectValue={onSelectItem} index={victimIndex} />
+        <SceneTile
+          tile={victimTile}
+          onSelectValue={onSelectItem}
+          index={victimIndex}
+        />
       </SpaceContainer>
 
       <SpaceContainer>

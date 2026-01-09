@@ -31,7 +31,12 @@ export function PhaseStory({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<FairyTaleIcon />}
-      title={<Translate pt="Conte-nos uma história" en="Tell us a story..." />}
+      title={
+        <Translate
+          pt="Conte-nos uma história"
+          en="Tell us a story..."
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -39,31 +44,59 @@ export function PhaseStory({ state, players, user }: PhaseProps) {
         <Translate
           pt={
             <>
-              Para essa rodada, <PlayerAvatarName player={storyteller} addressUser size="small" /> será o(a)
-              Contador(a) de Histórias.
+              Para essa rodada,{' '}
+              <PlayerAvatarName
+                player={storyteller}
+                addressUser
+                size="small"
+              />{' '}
+              será o(a) Contador(a) de Histórias.
             </>
           }
           en={
             <>
-              For this round, <PlayerAvatarName player={storyteller} addressUser /> will be the Storyteller.
+              For this round,{' '}
+              <PlayerAvatarName
+                player={storyteller}
+                addressUser
+              />{' '}
+              will be the Storyteller.
             </>
           }
         />
-        <TurnOrder players={players} order={state.gameOrder} activePlayerId={state.storytellerId} />
+        <TurnOrder
+          players={players}
+          order={state.gameOrder}
+          activePlayerId={state.storytellerId}
+        />
         <ImageCardPreloadHand hand={user?.hand} />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={CONTADORES_HISTORIAS_PHASES.STORY}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={CONTADORES_HISTORIAS_PHASES.STORY}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={5} />
+        <RoundAnnouncement
+          round={state.round}
+          onPressButton={goToNextStep}
+          time={5}
+        />
 
         {/* Step 1 */}
         <ViewOr condition={isUserTheStoryTeller}>
-          <StoryWriting user={user} onSubmitStory={onSubmitStory} announcement={announcement} />
+          <StoryWriting
+            user={user}
+            onSubmitStory={onSubmitStory}
+            announcement={announcement}
+          />
           <StoryWaiting
             user={user}
             storyteller={storyteller}

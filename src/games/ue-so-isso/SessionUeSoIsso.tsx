@@ -43,7 +43,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionUeSoIsso() {
-  return <Session gameCollection={GAME_COLLECTION.UE_SO_ISSO} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.UE_SO_ISSO}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionUeSoIsso;

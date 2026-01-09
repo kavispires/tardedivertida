@@ -64,9 +64,21 @@ export const TrackVamosAoCinema = ({ track, onSubmitAnswer, user }: TrackProps) 
 
       <Space className="v-movies">
         <SpaceContainer vertical>
-          <MovieCard movie={track.data.movies[0]} disableSuffix prefixColor="Khaki" />
-          <MovieCard movie={track.data.movies[1]} prefixColor="aquamarine" suffixColor="Khaki" />
-          <MovieCard movie={track.data.movies[2]} disablePrefix suffixColor="aquamarine" />
+          <MovieCard
+            movie={track.data.movies[0]}
+            disableSuffix
+            prefixColor="Khaki"
+          />
+          <MovieCard
+            movie={track.data.movies[1]}
+            prefixColor="aquamarine"
+            suffixColor="Khaki"
+          />
+          <MovieCard
+            movie={track.data.movies[2]}
+            disablePrefix
+            suffixColor="aquamarine"
+          />
         </SpaceContainer>
         <div className="v-movie-buttons">
           <Button
@@ -113,9 +125,21 @@ export const TrackVamosAoCinema = ({ track, onSubmitAnswer, user }: TrackProps) 
           </Button>
         </div>
         <SpaceContainer vertical>
-          <MovieCard movie={track.data.movies[3]} disableSuffix prefixColor="LightGreen" />
-          <MovieCard movie={track.data.movies[4]} prefixColor="Plum" suffixColor="LightGreen" />
-          <MovieCard movie={track.data.movies[5]} disablePrefix suffixColor="Plum" />
+          <MovieCard
+            movie={track.data.movies[3]}
+            disableSuffix
+            prefixColor="LightGreen"
+          />
+          <MovieCard
+            movie={track.data.movies[4]}
+            prefixColor="Plum"
+            suffixColor="LightGreen"
+          />
+          <MovieCard
+            movie={track.data.movies[5]}
+            disablePrefix
+            suffixColor="Plum"
+          />
         </SpaceContainer>
       </Space>
     </>

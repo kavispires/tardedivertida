@@ -45,7 +45,12 @@ export function EmojiCard({
       className={clsx('emoji-card', className)}
       style={{ ...rest.style, width: `${width}px`, height: `${width}px`, ...divPadding }}
     >
-      <Sprite source="emojis" spriteId={id} width={width} padding={padding} />
+      <Sprite
+        source="emojis"
+        spriteId={id}
+        width={width}
+        padding={padding}
+      />
     </div>
   );
 }
@@ -59,5 +64,13 @@ export function EmojiSprite({
   ...props
 }: Pick<EmojiCardProps, 'emojiId' | 'width'> & ElementProps) {
   const id = emojiId.startsWith('emoji') ? emojiId : `emoji-${emojiId}`;
-  return <Sprite source="emojis" spriteId={id} width={width} padding={0} {...props} />;
+  return (
+    <Sprite
+      source="emojis"
+      spriteId={id}
+      width={width}
+      padding={0}
+      {...props}
+    />
+  );
 }

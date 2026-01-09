@@ -1,6 +1,10 @@
 export function GarbageIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#f7f3f1"
         d="M199.02 408.89h-19.67a5 5 0 01-5-5V290.5a5 5 0 015-5h19.67a5 5 0 015 5v113.4a5 5 0 01-5 5z"

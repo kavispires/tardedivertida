@@ -74,9 +74,15 @@ export function StepReveal({
   const latestRequest = requestHistory?.[0] ?? {};
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt={<>Resultado</>} en={<>Results</>} />
+        <Translate
+          pt={<>Resultado</>}
+          en={<>Results</>}
+        />
       </StepTitle>
 
       <PopoverRule content={<Status status={status} />} />
@@ -120,29 +126,61 @@ export function StepReveal({
           {Boolean(latestRequest) &&
             latestRequest.offers.map((entry) => {
               return (
-                <SpaceContainer key={`offer-${entry.playerId}-${entry.objectId}`} vertical>
-                  <ItemCard itemId={`${entry.objectId}`} className={''} width={48} />
+                <SpaceContainer
+                  key={`offer-${entry.playerId}-${entry.objectId}`}
+                  vertical
+                >
+                  <ItemCard
+                    itemId={`${entry.objectId}`}
+                    className={''}
+                    width={48}
+                  />
                   <PlayerAvatarName player={players[entry.playerId]} />
-                  <ItemResolution itemId={entry.objectId} items={items} />
+                  <ItemResolution
+                    itemId={entry.objectId}
+                    items={items}
+                  />
                 </SpaceContainer>
               );
             })}
         </SpaceContainer>
       </Instruction>
 
-      <HostNextPhaseButton round={round} withWaitingTimeBar />
+      <HostNextPhaseButton
+        round={round}
+        withWaitingTimeBar
+      />
 
       <AlienContent user={user}>
-        <Space className="boards-container" wrap>
-          <ObjectsGrid items={items} showTypes={isUserAlien} status={status} />
-          <SignsKeyCard attributes={attributes} startingAttributesIds={startingAttributesIds} />
+        <Space
+          className="boards-container"
+          wrap
+        >
+          <ObjectsGrid
+            items={items}
+            showTypes={isUserAlien}
+            status={status}
+          />
+          <SignsKeyCard
+            attributes={attributes}
+            startingAttributesIds={startingAttributesIds}
+          />
         </Space>
       </AlienContent>
 
       <HumanContent user={user}>
-        <Space className="boards-container" wrap>
-          <ObjectsGrid items={items} status={status} />
-          <HumanSignBoard attributes={attributes} startingAttributesIds={startingAttributesIds} />
+        <Space
+          className="boards-container"
+          wrap
+        >
+          <ObjectsGrid
+            items={items}
+            status={status}
+          />
+          <HumanSignBoard
+            attributes={attributes}
+            startingAttributesIds={startingAttributesIds}
+          />
         </Space>
       </HumanContent>
 
@@ -158,7 +196,10 @@ export function StepReveal({
       />
 
       <DebugOnly>
-        <SignsKeyCard attributes={attributes} startingAttributesIds={startingAttributesIds} />
+        <SignsKeyCard
+          attributes={attributes}
+          startingAttributesIds={startingAttributesIds}
+        />
       </DebugOnly>
     </Step>
   );

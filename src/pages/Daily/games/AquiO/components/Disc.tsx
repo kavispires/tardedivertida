@@ -36,7 +36,12 @@ export function Disc({ disc, onSelect, width, discProps }: DiscProps) {
           }}
           onClick={() => onSelect(item.itemId)}
         >
-          <ItemCard itemId={item.itemId} className="aqui-o-disc-sprite" width={width / 4} padding={9} />
+          <ItemCard
+            itemId={item.itemId}
+            className="aqui-o-disc-sprite"
+            width={width / 4}
+            padding={9}
+          />
         </DivButton>
       ))}
     </MotionDiv>

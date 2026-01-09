@@ -64,16 +64,27 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyWarehouseGameIcon />} localStorageKey={SETTINGS.KEY}>
+      <Header
+        icon={<DailyWarehouseGameIcon />}
+        localStorageKey={SETTINGS.KEY}
+      >
         <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <DailyContent ref={contentRef}>
-        <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules date={data.id} />} />
+        <Menu
+          hearts={hearts}
+          total={SETTINGS.HEARTS}
+          openRules={true}
+          rules={<Rules date={data.id} />}
+        />
 
         <PreloadItems goods={data.goods} />
 
         <Region>
-          <Typography.Text strong className="controle-de-estoque-title">
+          <Typography.Text
+            strong
+            className="controle-de-estoque-title"
+          >
             {data.title}
           </Typography.Text>
         </Region>
@@ -106,15 +117,30 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
           />
         )}
 
-        <Region orientation="horizontal" separator={<Divider orientation="vertical" />}>
+        <Region
+          orientation="horizontal"
+          separator={<Divider orientation="vertical" />}
+        >
           {evaluations.map((attempt, index) => (
-            <Tooltip key={`${attempt}-${index}`} title={<Translate pt="Acertos" en="Correct" />}>
+            <Tooltip
+              key={`${attempt}-${index}`}
+              title={
+                <Translate
+                  pt="Acertos"
+                  en="Correct"
+                />
+              }
+            >
               <span>{attempt.filter(Boolean).length} 📫</span>
             </Tooltip>
           ))}
         </Region>
 
-        <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
+        <Modal
+          open={showResultModal}
+          onCancel={() => setShowResultModal(false)}
+          footer={null}
+        >
           <ResultsModalContent
             challengeNumber={data.number}
             isWin={isWin}
@@ -127,12 +153,29 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
 
       <Region>
         <Popconfirm
-          title={<Translate pt="Deseja mesmo recomeçar o jogo?" en="Do you really want to reset the game?" />}
-          description={<Translate pt="Você perderá um coração." en="You will lose a heart." />}
+          title={
+            <Translate
+              pt="Deseja mesmo recomeçar o jogo?"
+              en="Do you really want to reset the game?"
+            />
+          }
+          description={
+            <Translate
+              pt="Você perderá um coração."
+              en="You will lose a heart."
+            />
+          }
           onConfirm={reset}
         >
-          <Button type="primary" danger disabled={hearts <= 0}>
-            <Translate pt="Recomeçar Jogo" en="Reset Game" />
+          <Button
+            type="primary"
+            danger
+            disabled={hearts <= 0}
+          >
+            <Translate
+              pt="Recomeçar Jogo"
+              en="Reset Game"
+            />
           </Button>
         </Popconfirm>
       </Region>

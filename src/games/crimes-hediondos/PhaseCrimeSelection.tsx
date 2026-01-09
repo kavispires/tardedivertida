@@ -66,7 +66,12 @@ export function PhaseCrimeSelection({ players, state, user }: PhaseProps<PhaseCr
   const announcementItems = (
     <PhaseAnnouncement
       icon={<EventIcon />}
-      title={<Translate pt="A Convenção" en="The Convention" />}
+      title={
+        <Translate
+          pt="A Convenção"
+          en="The Convention"
+        />
+      }
       currentRound={state?.round?.current}
       duration={30}
       type="overlay"
@@ -78,12 +83,20 @@ export function PhaseCrimeSelection({ players, state, user }: PhaseProps<PhaseCr
   const announcementCause = (
     <PhaseAnnouncement
       icon={<SkullIcon />}
-      title={<Translate pt="Causa da Morte" en="Cause of Death" />}
+      title={
+        <Translate
+          pt="Causa da Morte"
+          en="Cause of Death"
+        />
+      }
       duration={3}
       type="overlay"
     >
       <Instruction>
-        <Translate pt="Como a vítima morreu?" en="How did the victim die?" />
+        <Translate
+          pt="Como a vítima morreu?"
+          en="How did the victim die?"
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
@@ -91,7 +104,12 @@ export function PhaseCrimeSelection({ players, state, user }: PhaseProps<PhaseCr
   const announcementEvidence = (
     <PhaseAnnouncement
       icon={<CrimeSceneIcon />}
-      title={<Translate pt="Evidências?" en="Evidence?" />}
+      title={
+        <Translate
+          pt="Evidências?"
+          en="Evidence?"
+        />
+      }
       duration={3}
       type="overlay"
     >
@@ -107,12 +125,20 @@ export function PhaseCrimeSelection({ players, state, user }: PhaseProps<PhaseCr
   const announcementVictim = (
     <PhaseAnnouncement
       icon={<AnonymousIcon />}
-      title={<Translate pt="Sobre a Vítima" en="About the Victim" />}
+      title={
+        <Translate
+          pt="Sobre a Vítima"
+          en="About the Victim"
+        />
+      }
       duration={3}
       type="overlay"
     >
       <Instruction>
-        <Translate pt="Quem foi a vítima?" en="Who was the victim?" />
+        <Translate
+          pt="Quem foi a vítima?"
+          en="Who was the victim?"
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
@@ -120,12 +146,20 @@ export function PhaseCrimeSelection({ players, state, user }: PhaseProps<PhaseCr
   const announcementLocation = (
     <PhaseAnnouncement
       icon={<LocationIcon />}
-      title={<Translate pt="Local do Crime" en="Crime Location" />}
+      title={
+        <Translate
+          pt="Local do Crime"
+          en="Crime Location"
+        />
+      }
       duration={3}
       type="overlay"
     >
       <Instruction>
-        <Translate pt="Onde que foi?" en="Where was it?" />
+        <Translate
+          pt="Onde que foi?"
+          en="Where was it?"
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
@@ -133,14 +167,22 @@ export function PhaseCrimeSelection({ players, state, user }: PhaseProps<PhaseCr
   const announcementReview = (
     <PhaseAnnouncement
       icon={<CrimeTapeIcon />}
-      title={<Translate pt="Revisão" en="Review" />}
+      title={
+        <Translate
+          pt="Revisão"
+          en="Review"
+        />
+      }
       duration={3}
       type="overlay"
     />
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={CRIMES_HEDIONDOS_PHASES.CRIME_SELECTION}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={CRIMES_HEDIONDOS_PHASES.CRIME_SELECTION}
+    >
       <StepSwitcher
         step={step}
         players={players}
@@ -157,7 +199,12 @@ export function PhaseCrimeSelection({ players, state, user }: PhaseProps<PhaseCr
         }}
       >
         {/* Step 0 */}
-        <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5} />
+        <RoundAnnouncement
+          round={state?.round}
+          onPressButton={goToNextStep}
+          buttonText=" "
+          time={5}
+        />
 
         {/* Step 1 */}
         <div>
@@ -172,7 +219,10 @@ export function PhaseCrimeSelection({ players, state, user }: PhaseProps<PhaseCr
             isVictimGame={isVictimGame}
             cardWidth={cardWidth}
           />
-          <DevButton onClick={onMockCrime} size="large">
+          <DevButton
+            onClick={onMockCrime}
+            size="large"
+          >
             Random Crime
           </DevButton>
         </div>

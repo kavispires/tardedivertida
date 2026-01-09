@@ -27,12 +27,20 @@ export function SignIn({ onSuccess }: SignInProps) {
   return (
     <div className="sign-in">
       <div className="sign-in__logo">
-        <Image src={logo} preview={false} />
+        <Image
+          src={logo}
+          preview={false}
+        />
       </div>
 
       <SpaceContainer>
         <Switch
-          checkedChildren={<Translate pt="E-mail e senha" en="Email and Password" />}
+          checkedChildren={
+            <Translate
+              pt="E-mail e senha"
+              en="Email and Password"
+            />
+          }
           unCheckedChildren="Google"
           onChange={(checked) => setView(checked ? 'email' : 'google')}
         />
@@ -67,7 +75,10 @@ export function SignInWithGoogle({ onSuccess, ...buttonProps }: SignInProps & Bu
       {isError && (
         <Alert
           description={
-            <Translate pt="Algo deu errado, tente novamente" en="Something went wrong. Please try again" />
+            <Translate
+              pt="Algo deu errado, tente novamente"
+              en="Something went wrong. Please try again"
+            />
           }
           type="error"
           showIcon
@@ -80,10 +91,18 @@ export function SignInWithGoogle({ onSuccess, ...buttonProps }: SignInProps & Bu
         onClick={onFinish}
         loading={isPending}
         block
-        icon={<IconAvatar icon={<GoogleIcon />} size="small" />}
+        icon={
+          <IconAvatar
+            icon={<GoogleIcon />}
+            size="small"
+          />
+        }
         {...buttonProps}
       >
-        <Translate pt="Entrar com Google" en="Sign in with Google" />
+        <Translate
+          pt="Entrar com Google"
+          en="Sign in with Google"
+        />
       </Button>
     </Space>
   );
@@ -116,7 +135,12 @@ function SignInWithEmail({ onSuccess }: SignInProps) {
         autoComplete="off"
       >
         <Form.Item
-          label={<Translate pt="E-mail" en="E-mail" />}
+          label={
+            <Translate
+              pt="E-mail"
+              en="E-mail"
+            />
+          }
           name="username"
           rules={[
             {
@@ -129,7 +153,12 @@ function SignInWithEmail({ onSuccess }: SignInProps) {
         </Form.Item>
 
         <Form.Item
-          label={<Translate pt="Senha" en="Password" />}
+          label={
+            <Translate
+              pt="Senha"
+              en="Password"
+            />
+          }
           name="password"
           rules={[
             {
@@ -159,12 +188,25 @@ function SignInWithEmail({ onSuccess }: SignInProps) {
         )}
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit" loading={isPending}>
-            <Translate pt="Entrar" en="Submit" />
+          <Button
+            type="primary"
+            htmlType="submit"
+            loading={isPending}
+          >
+            <Translate
+              pt="Entrar"
+              en="Submit"
+            />
           </Button>
 
-          <Button type="link" onClick={() => setShowForgotPassword((v) => !v)}>
-            <Translate pt="Esqueci minha senha" en="Forgot my password" />
+          <Button
+            type="link"
+            onClick={() => setShowForgotPassword((v) => !v)}
+          >
+            <Translate
+              pt="Esqueci minha senha"
+              en="Forgot my password"
+            />
           </Button>
         </Form.Item>
       </Form>
@@ -222,12 +264,23 @@ function ResetPasswordForm({ email, onSuccess }: ResetPasswordFormProps) {
       autoComplete="off"
     >
       <Form.Item>
-        <Title level={4} size="xx-small">
-          <Translate pt="Redefinir a senha" en="Password Reset" />
+        <Title
+          level={4}
+          size="xx-small"
+        >
+          <Translate
+            pt="Redefinir a senha"
+            en="Password Reset"
+          />
         </Title>
       </Form.Item>
       <Form.Item
-        label={<Translate pt="E-mail" en="E-mail" />}
+        label={
+          <Translate
+            pt="E-mail"
+            en="E-mail"
+          />
+        }
         name="username"
         rules={[
           {
@@ -256,8 +309,15 @@ function ResetPasswordForm({ email, onSuccess }: ResetPasswordFormProps) {
       )}
 
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit" loading={isPending}>
-          <Translate pt="Enviar" en="Submit" />
+        <Button
+          type="primary"
+          htmlType="submit"
+          loading={isPending}
+        >
+          <Translate
+            pt="Enviar"
+            en="Submit"
+          />
         </Button>
       </Form.Item>
     </Form>

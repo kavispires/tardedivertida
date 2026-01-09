@@ -33,9 +33,15 @@ function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
       announcementDuration={15}
       announcementTitle={
         didUserWin ? (
-          <Translate pt="Capturado!" en="Arrested!" />
+          <Translate
+            pt="Capturado!"
+            en="Arrested!"
+          />
         ) : (
-          <Translate pt="O criminoso escapou!" en="They got away!" />
+          <Translate
+            pt="O criminoso escapou!"
+            en="They got away!"
+          />
         )
       }
       announcementContent={<AnnouncementContent didUserWin={didUserWin} />}
@@ -54,19 +60,36 @@ function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
           }
         />
         <br />
-        <Translate pt="O criminoso era:" en="The perpetrator was:" />
+        <Translate
+          pt="O criminoso era:"
+          en="The perpetrator was:"
+        />
 
         <div className="t-suspects-table__suspect">
-          <ImageCard cardId={perpetrator.id} className="t-suspects-table__suspect-image" cardWidth={150} />
+          <ImageCard
+            cardId={perpetrator.id}
+            className="t-suspects-table__suspect-image"
+            cardWidth={150}
+          />
           <div className="t-suspects-table__suspect-name">{perpetrator.name[language]}</div>
         </div>
       </Instruction>
 
-      <Achievements achievements={state.achievements} players={players} reference={achievementsReference} />
+      <Achievements
+        achievements={state.achievements}
+        players={players}
+        reference={achievementsReference}
+      />
 
-      <QuestionsHistory history={state.history} suspectsDict={state.suspectsDict} />
+      <QuestionsHistory
+        history={state.history}
+        suspectsDict={state.suspectsDict}
+      />
 
-      <Suspects suspectsIds={state.suspectsIds} suspectsDict={state.suspectsDict} />
+      <Suspects
+        suspectsIds={state.suspectsIds}
+        suspectsDict={state.suspectsDict}
+      />
     </GameOverWrapper>
   );
 }

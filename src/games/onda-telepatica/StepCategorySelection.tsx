@@ -31,7 +31,10 @@ export function StepCategorySelection({
   }, []);
 
   return (
-    <Step className="o-card-selection" announcement={announcement}>
+    <Step
+      className="o-card-selection"
+      announcement={announcement}
+    >
       <StepTitle>
         <Translate
           pt="Medium, selecione uma das duas categorias"
@@ -45,7 +48,10 @@ export function StepCategorySelection({
         />
         {isLoading && (
           <div>
-            <IconAvatar icon={<AnimatedLoaderIcon />} size="small" />
+            <IconAvatar
+              icon={<AnimatedLoaderIcon />}
+              size="small"
+            />
           </div>
         )}
       </RuleInstruction>
@@ -59,7 +65,10 @@ export function StepCategorySelection({
             onClick={() => onSendChosenSide({ categoryId: card.id })}
             disabled={isLoading}
           >
-            <OpposingIdeasCard left={card.left} right={card.right} />
+            <OpposingIdeasCard
+              left={card.left}
+              right={card.right}
+            />
           </button>
         ))}
       </div>

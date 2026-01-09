@@ -28,7 +28,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionViceCampeao() {
-  return <Session gameCollection={GAME_COLLECTION.VICE_CAMPEAO} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.VICE_CAMPEAO}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionViceCampeao;

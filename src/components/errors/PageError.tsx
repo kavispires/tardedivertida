@@ -15,7 +15,11 @@ export function PageError({ message, description }: PageErrorProps) {
     <PageLayout className="container container--center">
       <Alert
         title={
-          <Translate pt="Algo errado não está certo" en="Something wrong is not right" custom={message} />
+          <Translate
+            pt="Algo errado não está certo"
+            en="Something wrong is not right"
+            custom={message}
+          />
         }
         description={
           <>
@@ -26,7 +30,10 @@ export function PageError({ message, description }: PageErrorProps) {
             />
             <br />
             <Link to="/">
-              <Translate pt="Ir para a página inicial" en="Go home" />
+              <Translate
+                pt="Ir para a página inicial"
+                en="Go home"
+              />
             </Link>
           </>
         }

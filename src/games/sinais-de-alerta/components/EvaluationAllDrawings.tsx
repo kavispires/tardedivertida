@@ -41,7 +41,12 @@ export function EvaluationAllDrawings({
 
   return (
     <TitledContainer
-      title={<Translate pt="Desenhos" en="Drawings" />}
+      title={
+        <Translate
+          pt="Desenhos"
+          en="Drawings"
+        />
+      }
       contentProps={{ className: 'div-container' }}
       className="contained"
     >
@@ -60,11 +65,22 @@ export function EvaluationAllDrawings({
             activeClass="sda-word-button--active"
           >
             <span className="sda-word-button__avatar">
-              {isFullyGuessed && <IconAvatar icon={<CheckMarkIcon />} className="sda-word-button__matched" />}
+              {isFullyGuessed && (
+                <IconAvatar
+                  icon={<CheckMarkIcon />}
+                  className="sda-word-button__matched"
+                />
+              )}
               <PlayerAvatarName player={players[drawing.playerId]} />
             </span>
-            <WarningDrawing drawing={drawing.drawing} width={canvasSize} />
-            <Typography.Text code className="uppercase">
+            <WarningDrawing
+              drawing={drawing.drawing}
+              width={canvasSize}
+            />
+            <Typography.Text
+              code
+              className="uppercase"
+            >
               {gameLanguage === 'pt' ? (
                 <>
                   {subject ?? '?'} {descriptor ?? '?'}

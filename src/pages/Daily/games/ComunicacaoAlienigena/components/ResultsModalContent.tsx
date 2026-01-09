@@ -63,20 +63,34 @@ export function ResultsModalContent({
 
   return (
     <SpaceContainer vertical>
-      <Typography.Title level={2} className="center">
+      <Typography.Title
+        level={2}
+        className="center"
+      >
         {win ? (
           <>
-            <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Parabéns!" en="Congratulations!" />
+            <IconAvatar icon={<TrophyIcon />} />{' '}
+            <Translate
+              pt="Parabéns!"
+              en="Congratulations!"
+            />
           </>
         ) : (
           <>
-            <IconAvatar icon={<BoxXIcon />} /> <Translate pt="Que pena!" en="Too bad!" />
+            <IconAvatar icon={<BoxXIcon />} />{' '}
+            <Translate
+              pt="Que pena!"
+              en="Too bad!"
+            />
           </>
         )}
       </Typography.Title>
       <Typography.Paragraph className="center">
         {win ? (
-          <Translate pt="O alienígena abduziu todos os itens!" en="The alien abducted all items!" />
+          <Translate
+            pt="O alienígena abduziu todos os itens!"
+            en="The alien abducted all items!"
+          />
         ) : (
           <Translate
             pt="O alienígena vai destruir a Terra porque você não entregou as coisas certas!"
@@ -86,11 +100,22 @@ export function ResultsModalContent({
       </Typography.Paragraph>
 
       <Region>
-        <Flex className="alien-requests" gap={8}>
+        <Flex
+          className="alien-requests"
+          gap={8}
+        >
           {requests.map((request, index) => {
             return (
-              <motion.div key={request.itemId} {...getAnimation('fadeIn', { delay: index * 0.2 })}>
-                <DailyItem itemId={request.itemId} width={width} padding={0} className="transparent" />
+              <motion.div
+                key={request.itemId}
+                {...getAnimation('fadeIn', { delay: index * 0.2 })}
+              >
+                <DailyItem
+                  itemId={request.itemId}
+                  width={width}
+                  padding={0}
+                  className="transparent"
+                />
               </motion.div>
             );
           })}
@@ -99,8 +124,14 @@ export function ResultsModalContent({
 
       <Space orientation="vertical">
         {attributes.map((attribute) => (
-          <Flex key={attribute.id} gap={6}>
-            <SignCard signId={attribute.spriteId} width={width} />
+          <Flex
+            key={attribute.id}
+            gap={6}
+          >
+            <SignCard
+              signId={attribute.spriteId}
+              width={width}
+            />
             <Flex vertical>
               <Typography.Text strong>{attribute.name}</Typography.Text>
               <Typography.Text italic>{attribute.description}</Typography.Text>
@@ -109,7 +140,10 @@ export function ResultsModalContent({
         ))}
       </Space>
 
-      <CopyToClipboardResult result={result} rows={3} />
+      <CopyToClipboardResult
+        result={result}
+        rows={3}
+      />
 
       <NextGameSuggestion />
     </SpaceContainer>

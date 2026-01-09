@@ -52,13 +52,23 @@ export function StepLiking({
   );
 
   return (
-    <Step fullWidth className="p-step" announcement={announcement}>
+    <Step
+      fullWidth
+      className="p-step"
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="O que você acha da polêmica da vez?" en="What do you think of this trending topic?" />
+        <Translate
+          pt="O que você acha da polêmica da vez?"
+          en="What do you think of this trending topic?"
+        />
       </StepTitle>
 
       <div className="p-reaction-buttons">
-        <Tweet tweet={customTweet ?? currentTweet?.text} className="p-reaction-buttons__tweet" />
+        <Tweet
+          tweet={customTweet ?? currentTweet?.text}
+          className="p-reaction-buttons__tweet"
+        />
         <TransparentButton
           className={clsx(
             'p-reaction-button',
@@ -67,8 +77,15 @@ export function StepLiking({
           )}
           onClick={() => setLike(true)}
         >
-          <IconAvatar icon={<SpeechBubbleThumbsUpIcon />} shape="square" className="p-like-icon" />
-          <Translate pt="Curto" en="Like" />
+          <IconAvatar
+            icon={<SpeechBubbleThumbsUpIcon />}
+            shape="square"
+            className="p-like-icon"
+          />
+          <Translate
+            pt="Curto"
+            en="Like"
+          />
         </TransparentButton>
         <TransparentButton
           className={clsx(
@@ -78,8 +95,15 @@ export function StepLiking({
           )}
           onClick={() => setLike(false)}
         >
-          <IconAvatar icon={<SpeechBubbleThumbsDownIcon />} shape="square" className="p-like-icon" />
-          <Translate pt="Não curto" en="Dislike" />
+          <IconAvatar
+            icon={<SpeechBubbleThumbsDownIcon />}
+            shape="square"
+            className="p-like-icon"
+          />
+          <Translate
+            pt="Não curto"
+            en="Dislike"
+          />
         </TransparentButton>
       </div>
 

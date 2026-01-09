@@ -29,15 +29,30 @@ export function SectionRankedPlayers({ players }: SectionRankedPlayersProps) {
     <ul>
       {rankedPlayers.map((player, index) => {
         return (
-          <div className="game-info-drawer__ranked-player" key={`ranked-${player.name}`}>
+          <div
+            className="game-info-drawer__ranked-player"
+            key={`ranked-${player.name}`}
+          >
             {index + 1}.{' '}
-            <Badge count={player.score} className="game-info-drawer__avatar-with-badge">
-              <PlayerAvatar avatarId={player.avatarId} shape="square" />
+            <Badge
+              count={player.score}
+              className="game-info-drawer__avatar-with-badge"
+            >
+              <PlayerAvatar
+                avatarId={player.avatarId}
+                shape="square"
+              />
             </Badge>
             {player.name}, {AVATARS[player.avatarId].description[language]}
             {player.id === user.id && (
-              <Tag color={AVATARS[player.avatarId].color} className="game-info-drawer__avatar-tag">
-                <Translate pt="VOCÊ" en="YOU" />
+              <Tag
+                color={AVATARS[player.avatarId].color}
+                className="game-info-drawer__avatar-tag"
+              >
+                <Translate
+                  pt="VOCÊ"
+                  en="YOU"
+                />
               </Tag>
             )}
           </div>

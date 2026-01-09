@@ -80,9 +80,15 @@ export const StepTrack = ({ announcement, ...rest }: StepTrackProps) => {
     }?.[rest.track.game] ?? FallbackComponent;
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <TrackComponent {...rest} />
-      <ClubLine players={rest.players} currentRound={rest.round.current} />
+      <ClubLine
+        players={rest.players}
+        currentRound={rest.round.current}
+      />
     </Step>
   );
 };

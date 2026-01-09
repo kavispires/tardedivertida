@@ -44,7 +44,10 @@ export const TrackCrimesHediondos = ({ track, onSubmitAnswer, user }: TrackProps
               O médico legista examinou o crime e chegou às conclusões abaixo.
               <br />
               Selecione qual{' '}
-              <MetricHighlight icon={icon} iconPlacement="before">
+              <MetricHighlight
+                icon={icon}
+                iconPlacement="before"
+              >
                 {track.variant === 'weapon' ? 'arma' : 'evidencia'}
               </MetricHighlight>{' '}
               você acha que foi usada no crime.
@@ -55,7 +58,10 @@ export const TrackCrimesHediondos = ({ track, onSubmitAnswer, user }: TrackProps
               The forensic scientist examined the body and came to those conclusions below.
               <br />
               Select the one{' '}
-              <MetricHighlight icon={icon} iconPlacement="before">
+              <MetricHighlight
+                icon={icon}
+                iconPlacement="before"
+              >
                 {track.variant}
               </MetricHighlight>{' '}
               you think took part in the crime.
@@ -66,7 +72,10 @@ export const TrackCrimesHediondos = ({ track, onSubmitAnswer, user }: TrackProps
 
       <ul className="h-table">
         {Boolean(track.data.scenes.causeOfDeath) && (
-          <SceneTile tile={track.data.scenes.causeOfDeath} index={track.data.crimeIndexes.causeOfDeath} />
+          <SceneTile
+            tile={track.data.scenes.causeOfDeath}
+            index={track.data.crimeIndexes.causeOfDeath}
+          />
         )}
         {Boolean(track.data.scenes.reasonForEvidence) && (
           <SceneTile
@@ -75,17 +84,36 @@ export const TrackCrimesHediondos = ({ track, onSubmitAnswer, user }: TrackProps
           />
         )}
 
-        <SceneTile tile={track.data.scenes.location} index={track.data.crimeIndexes.location} />
-        <SceneTile tile={track.data.scenes.sceneA} index={track.data.crimeIndexes.sceneA} />
-        <SceneTile tile={track.data.scenes.sceneB} index={track.data.crimeIndexes.sceneB} />
-        <SceneTile tile={track.data.scenes.sceneC} index={track.data.crimeIndexes.sceneC} />
+        <SceneTile
+          tile={track.data.scenes.location}
+          index={track.data.crimeIndexes.location}
+        />
+        <SceneTile
+          tile={track.data.scenes.sceneA}
+          index={track.data.crimeIndexes.sceneA}
+        />
+        <SceneTile
+          tile={track.data.scenes.sceneB}
+          index={track.data.crimeIndexes.sceneB}
+        />
+        <SceneTile
+          tile={track.data.scenes.sceneC}
+          index={track.data.crimeIndexes.sceneC}
+        />
       </ul>
 
       <ul className="h-cards">
         {track.data.cards.map((card: CrimesHediondosCard) => {
           return (
-            <li key={card.id} className="margin">
-              <CrimeItemCard item={card} cardWidth={cardWidth} isSelected={user?.data?.value === card.id} />
+            <li
+              key={card.id}
+              className="margin"
+            >
+              <CrimeItemCard
+                item={card}
+                cardWidth={cardWidth}
+                isSelected={user?.data?.value === card.id}
+              />
 
               <Button
                 shape="round"
@@ -98,7 +126,10 @@ export const TrackCrimesHediondos = ({ track, onSubmitAnswer, user }: TrackProps
                   })
                 }
               >
-                <Translate pt="Selecionar" en="Select" />
+                <Translate
+                  pt="Selecionar"
+                  en="Select"
+                />
               </Button>
             </li>
           );

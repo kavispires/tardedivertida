@@ -18,13 +18,25 @@ type GalleryCategoryEntryProps = {
 
 export function GalleryCategoryEntry({ entry, cardsDict, players }: GalleryCategoryEntryProps) {
   return (
-    <Flex vertical justify="center" className="contained">
+    <Flex
+      vertical
+      justify="center"
+      className="contained"
+    >
       <Flex justify="center">
         <Card hideHeader>
-          <PlayerAvatar avatarId={players[entry.creatorId].avatarId} size="small" /> {entry.category}
+          <PlayerAvatar
+            avatarId={players[entry.creatorId].avatarId}
+            size="small"
+          />{' '}
+          {entry.category}
         </Card>
       </Flex>
-      <Flex justify="center" gap={3} wrap="wrap">
+      <Flex
+        justify="center"
+        gap={3}
+        wrap="wrap"
+      >
         {entry.items.map((tableEntry) => (
           <Flex
             key={`${tableEntry.playerId}-${tableEntry.cardId}`}
@@ -32,7 +44,11 @@ export function GalleryCategoryEntry({ entry, cardsDict, players }: GalleryCateg
             gap={8}
             align="center"
           >
-            <ThingCard itemId={tableEntry.cardId} name={cardsDict[tableEntry.cardId].name} width={100} />
+            <ThingCard
+              itemId={tableEntry.cardId}
+              name={cardsDict[tableEntry.cardId].name}
+              width={100}
+            />
             <PlayerAvatarName player={players[tableEntry.playerId]} />
           </Flex>
         ))}

@@ -46,16 +46,28 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
     <div className="w-brackets-container">
       <div className="tournament-headers">
         <h3>
-          <Translate pt="Quartas" en="Quarter-finals" />
+          <Translate
+            pt="Quartas"
+            en="Quarter-finals"
+          />
         </h3>
         <h3>
-          <Translate pt="Semifinais" en="Semifinals" />
+          <Translate
+            pt="Semifinais"
+            en="Semifinals"
+          />
         </h3>
         <h3>
-          <Translate pt="Final" en="Final" />
+          <Translate
+            pt="Final"
+            en="Final"
+          />
         </h3>
         <h3>
-          <Translate pt="Campeão" en="Winner" />
+          <Translate
+            pt="Campeão"
+            en="Winner"
+          />
         </h3>
       </div>
       <div className="w-tournament-brackets">
@@ -75,7 +87,10 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
                 }}
                 className="w-bracket-contender"
               />
-              <BracketContenderVotes bracket={entry} players={players} />
+              <BracketContenderVotes
+                bracket={entry}
+                players={players}
+              />
             </li>
           ))}
         </ul>
@@ -94,7 +109,10 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
                 }}
                 className="w-bracket-contender"
               />
-              <BracketContenderVotes bracket={entry} players={players} />
+              <BracketContenderVotes
+                bracket={entry}
+                players={players}
+              />
             </li>
           ))}
         </ul>
@@ -113,7 +131,10 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
                 }}
                 className="w-bracket-contender"
               />
-              <BracketContenderVotes bracket={entry} players={players} />
+              <BracketContenderVotes
+                bracket={entry}
+                players={players}
+              />
             </li>
           ))}
         </ul>
@@ -132,7 +153,10 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
                 }}
                 className="w-bracket-contender"
               />
-              <BracketContenderVotes bracket={entry} players={players} />
+              <BracketContenderVotes
+                bracket={entry}
+                players={players}
+              />
             </li>
           ))}
         </ul>

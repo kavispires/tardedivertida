@@ -22,12 +22,23 @@ export function ScoreTrack({ history, hideInstructions = false }: ScoreTrackProp
   return (
     <TitledContainer
       titleProps={{ size: 'xx-small' }}
-      title={<Translate en="Progress" pt="Progresso" />}
+      title={
+        <Translate
+          en="Progress"
+          pt="Progresso"
+        />
+      }
       contentProps={{ direction: 'vertical' }}
     >
-      <div className="score-track" style={{ gridTemplateColumns: `repeat(${history.length}, 1fr)` }}>
+      <div
+        className="score-track"
+        style={{ gridTemplateColumns: `repeat(${history.length}, 1fr)` }}
+      >
         {history.map((entry, index) => (
-          <div key={index} className="score-track__item">
+          <div
+            key={index}
+            className="score-track__item"
+          >
             <div className="score-track__item-icon">
               {entry.featureId ? (
                 <IconAvatar
@@ -39,17 +50,30 @@ export function ScoreTrack({ history, hideInstructions = false }: ScoreTrackProp
                   size="small"
                 />
               ) : (
-                <IconAvatar icon={<BoxQuestionMarkIcon />} size="small" />
+                <IconAvatar
+                  icon={<BoxQuestionMarkIcon />}
+                  size="small"
+                />
               )}
               <div className="score-track__item-score">{entry.score}</div>
               {entry.featureId ? (
                 entry.pass ? (
-                  <IconAvatar icon={<BoxCheckMarkIcon />} size="small" />
+                  <IconAvatar
+                    icon={<BoxCheckMarkIcon />}
+                    size="small"
+                  />
                 ) : (
-                  <IconAvatar icon={<BoxXIcon />} size="small" />
+                  <IconAvatar
+                    icon={<BoxXIcon />}
+                    size="small"
+                  />
                 )
               ) : (
-                <IconAvatar icon={<BoxBlankIcon />} size="small" className="invisible" />
+                <IconAvatar
+                  icon={<BoxBlankIcon />}
+                  size="small"
+                  className="invisible"
+                />
               )}
             </div>
           </div>

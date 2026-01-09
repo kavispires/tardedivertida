@@ -63,16 +63,28 @@ export function EvaluatedDrawings({ votes, cards, drawings, players }: Evaluated
           const card = cardsDict[votes[drawingKey]] as ArteRuimCard;
 
           return (
-            <li className="a-evaluated-drawings__item" key={`${drawing.id}-${card.id}-${card.playerId}`}>
-              <div className="a-evaluated-drawings__card" style={{ maxWidth: `${cSize}px` }}>
-                <PlayerAvatarName player={players[drawing.playerId]} size="small" />
+            <li
+              className="a-evaluated-drawings__item"
+              key={`${drawing.id}-${card.id}-${card.playerId}`}
+            >
+              <div
+                className="a-evaluated-drawings__card"
+                style={{ maxWidth: `${cSize}px` }}
+              >
+                <PlayerAvatarName
+                  player={players[drawing.playerId]}
+                  size="small"
+                />
               </div>
               <CanvasSVG
                 drawing={drawing.drawing}
                 width={cSize}
                 className="a-evaluation-all-drawings__drawing"
               />
-              <div className="a-evaluated-drawings__card" style={{ maxWidth: `${cSize}px` }}>
+              <div
+                className="a-evaluated-drawings__card"
+                style={{ maxWidth: `${cSize}px` }}
+              >
                 {card.text}
               </div>
             </li>

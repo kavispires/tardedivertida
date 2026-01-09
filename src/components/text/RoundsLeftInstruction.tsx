@@ -22,7 +22,10 @@ export function RoundsLeftInstruction({ round }: RoundsLeftInstructionProps) {
   if (left === 0 || round.forceLastRound) {
     return (
       <RuleInstruction type="event">
-        <Translate pt="Essa foi a última rodada" en="No more rounds left" />
+        <Translate
+          pt="Essa foi a última rodada"
+          en="No more rounds left"
+        />
       </RuleInstruction>
     );
   }

@@ -27,8 +27,14 @@ export function PhasePlacementConfirmation({ players, state, user }: PhaseProps)
   const warehouse = useMemo(() => orderBy(state.warehouseGrid, ['id']), [state.warehouseGrid]);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={CONTROLE_DE_ESTOQUE_PHASES.PLACEMENT_CONFIRMATION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={CONTROLE_DE_ESTOQUE_PHASES.PLACEMENT_CONFIRMATION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepConfirmGood
           user={user}

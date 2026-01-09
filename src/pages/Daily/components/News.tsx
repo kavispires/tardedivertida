@@ -60,19 +60,40 @@ export function News() {
 
   return (
     <>
-      <Button type="text" style={{ color: 'white' }} icon={<BellFilled />} onClick={() => setOpen(true)} />
+      <Button
+        type="text"
+        style={{ color: 'white' }}
+        icon={<BellFilled />}
+        onClick={() => setOpen(true)}
+      />
       <Modal
         open={open}
         onCancel={() => setOpen(false)}
         title={
-          <Flex align="center" gap={8}>
-            <IconAvatar icon={<BellIcon />} size="small" />
-            <Translate pt="Novidades" en="News" />
+          <Flex
+            align="center"
+            gap={8}
+          >
+            <IconAvatar
+              icon={<BellIcon />}
+              size="small"
+            />
+            <Translate
+              pt="Novidades"
+              en="News"
+            />
           </Flex>
         }
         footer={
-          <Button block type="primary" onClick={onDismiss}>
-            <Translate pt="Ok" en="Ok" />
+          <Button
+            block
+            type="primary"
+            onClick={onDismiss}
+          >
+            <Translate
+              pt="Ok"
+              en="Ok"
+            />
           </Button>
         }
       >

@@ -25,9 +25,15 @@ function Examples({ examples, title }: ExamplesProps) {
   );
 
   return (
-    <Popover content={content} title={title}>
+    <Popover
+      content={content}
+      title={title}
+    >
       <Button type="link">
-        <Translate en="See examples" pt="Ver exemplos" />
+        <Translate
+          en="See examples"
+          pt="Ver exemplos"
+        />
       </Button>
     </Popover>
   );
@@ -48,18 +54,27 @@ export function DiagramRules({ examples }: DiagramRulesProps) {
             <br />
             The <CircleHighlight color="blue">blue area</CircleHighlight> has a rule related to an{' '}
             <TextHighlight>Attribute</TextHighlight> of the thing, like its physical properties.{' '}
-            <Examples examples={examples.attribute} title="Attribute Examples" />
+            <Examples
+              examples={examples.attribute}
+              title="Attribute Examples"
+            />
             <br />
             The <CircleHighlight color="yellow">yellow area</CircleHighlight> has a rule related to the{' '}
             <TextHighlight>word</TextHighlight>: the name of the thing, spelling, grammar or pronunciation.
-            <Examples examples={examples.word} title="Word Examples" />
+            <Examples
+              examples={examples.word}
+              title="Word Examples"
+            />
             {!!examples.context && (
               <>
                 <br />
                 The <CircleHighlight color="red">red area</CircleHighlight> has a rule related to the{' '}
                 <TextHighlight>context</TextHighlight>
                 of the thing, where you might find it or use it.{' '}
-                <Examples examples={examples.context} title="Context Examples" />
+                <Examples
+                  examples={examples.context}
+                  title="Context Examples"
+                />
               </>
             )}
           </>
@@ -69,15 +84,24 @@ export function DiagramRules({ examples }: DiagramRulesProps) {
             O diagrama tem {hasContext ? 'três' : 'duas'} áreas e cada área tem uma regra secreta.
             <br />A <CircleHighlight color="blue">área azul</CircleHighlight> tem uma regra relacionada a um{' '}
             <TextHighlight>Atributo</TextHighlight> da coisa, como suas propriedades físicas.{' '}
-            <Examples examples={examples.attribute} title="Exemplos de Atributos" />
+            <Examples
+              examples={examples.attribute}
+              title="Exemplos de Atributos"
+            />
             <br />A <CircleHighlight color="yellow">área amarela</CircleHighlight> tem uma regra relacionada à{' '}
             <TextHighlight>palavra</TextHighlight>: o nome da coisa, grafia, gramática ou pronúncia.
-            <Examples examples={examples.word} title="Exemplos de Palavras" />
+            <Examples
+              examples={examples.word}
+              title="Exemplos de Palavras"
+            />
             {!!examples.context && (
               <>
                 <br />A <CircleHighlight color="red">área vermelha</CircleHighlight> tem uma regra relacionada
                 ao <TextHighlight>contexto</TextHighlight> da coisa, onde você pode encontrá-la ou usá-la.{' '}
-                <Examples examples={examples.context} title="Exemplos de Contexto" />
+                <Examples
+                  examples={examples.context}
+                  title="Exemplos de Contexto"
+                />
               </>
             )}
           </>

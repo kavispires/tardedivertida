@@ -6,5 +6,10 @@ import { DailyAquiO } from './components/DailyAquiO';
 import './utils/styles.scss';
 
 export function DailyAquiOGame() {
-  return <DailyGame gameName="aqui-o" GameComponent={DailyAquiO} />;
+  return (
+    <DailyGame
+      gameName="aqui-o"
+      GameComponent={DailyAquiO}
+    />
+  );
 }

@@ -22,9 +22,24 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
   const forest: Tree[] = state.forest ?? [];
 
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<FlagIcon />}>
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
-      <TitledContainer title={<Translate pt="Mapas dos Jogadores" en="Players' Maps" />}>
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<FlagIcon />}
+    >
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
+      <TitledContainer
+        title={
+          <Translate
+            pt="Mapas dos Jogadores"
+            en="Players' Maps"
+          />
+        }
+      >
         {sortedPlayers.map((player) => {
           const mapTrees = (player.map ?? []).map((segment: MapSegment) => forest[segment.treeId]);
           return (
@@ -33,8 +48,16 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
               className="game-over-strip"
               style={{ borderColor: getAvatarColorById(player.avatarId) }}
             >
-              <PlayerAvatarStrip player={player} withName className="game-over-avatar-strip" />
-              <PlayerMap map={player.map} fullMap selectedTrees={mapTrees} />
+              <PlayerAvatarStrip
+                player={player}
+                withName
+                className="game-over-avatar-strip"
+              />
+              <PlayerMap
+                map={player.map}
+                fullMap
+                selectedTrees={mapTrees}
+              />
             </Space>
           );
         })}

@@ -66,7 +66,11 @@ export function Warehouse({
             }
 
             return (
-              <div key={index} className={clsx('warehouse__shelf', 'warehouse__shelf-active')} style={size}>
+              <div
+                key={index}
+                className={clsx('warehouse__shelf', 'warehouse__shelf-active')}
+                style={size}
+              >
                 <WarehouseGoodCard
                   goodId={good.id}
                   width={width - 12}
@@ -77,14 +81,22 @@ export function Warehouse({
           }
 
           return (
-            <div key={index} className={clsx('warehouse__shelf', getAnimationClass('flipInY'))} style={size}>
+            <div
+              key={index}
+              className={clsx('warehouse__shelf', getAnimationClass('flipInY'))}
+              style={size}
+            >
               <ShippingBoxIcon width={width - 12} />
             </div>
           );
         }
 
         return (
-          <div key={index} className={clsx('warehouse__empty-shelf')} style={size}>
+          <div
+            key={index}
+            className={clsx('warehouse__empty-shelf')}
+            style={size}
+          >
             .
           </div>
         );

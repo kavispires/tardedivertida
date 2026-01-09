@@ -30,11 +30,18 @@ export function RoleBoard({ activeRole, instruction, movie, children, outcome }:
 
   return (
     <Space wrap>
-      <Space className="role" orientation="vertical" align="center">
+      <Space
+        className="role"
+        orientation="vertical"
+        align="center"
+      >
         {movie && (
           <>
             <Icon width={75} />
-            <Title size="small" className="role__title">
+            <Title
+              size="small"
+              className="role__title"
+            >
               {movie.movieTitle}
             </Title>
             <TextHighlight>
@@ -45,15 +52,24 @@ export function RoleBoard({ activeRole, instruction, movie, children, outcome }:
         {children}
       </Space>
 
-      <Space className="role" orientation="vertical">
+      <Space
+        className="role"
+        orientation="vertical"
+      >
         {instruction !== 'CAST' && (
           <div className="role__round">
-            <Avatar size="large" style={{ backgroundColor: 'orange' }}>
+            <Avatar
+              size="large"
+              style={{ backgroundColor: 'orange' }}
+            >
               {instruction === 'SELECT' || outcome === 'CAST' ? activeRole.round : activeRole.round - 1}
             </Avatar>
           </div>
         )}
-        <Title size="small" className="role__title">
+        <Title
+          size="small"
+          className="role__title"
+        >
           <DualTranslate>{activeRole.title}</DualTranslate>
         </Title>
         <Instruction className="role__description">

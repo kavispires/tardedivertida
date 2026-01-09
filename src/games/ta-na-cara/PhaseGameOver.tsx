@@ -11,7 +11,11 @@ import { PlayerBoard } from './components/PlayersBoards';
 
 export function PhaseGameOver({ state, players }: PhaseProps) {
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<FlagIcon />}>
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<FlagIcon />}
+    >
       <SpaceContainer wrap>
         {state.gallery.map((entry: GamePlayer) => {
           return (

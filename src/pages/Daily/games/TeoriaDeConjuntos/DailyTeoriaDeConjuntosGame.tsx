@@ -6,5 +6,10 @@ import { DailyTeoriaDeConjuntos } from './components/DailyTeoriaDeConjuntos';
 import './utils/styles.scss';
 
 export function DailyTeoriaDeConjuntosGame() {
-  return <DailyGame gameName="teoria-de-conjuntos" GameComponent={DailyTeoriaDeConjuntos} />;
+  return (
+    <DailyGame
+      gameName="teoria-de-conjuntos"
+      GameComponent={DailyTeoriaDeConjuntos}
+    />
+  );
 }

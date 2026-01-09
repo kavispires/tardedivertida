@@ -29,7 +29,10 @@ export function SeedUeSoIsso({ seed, updateData }: SeedUeSoIssoProps) {
 
   return (
     <div className="seed-container">
-      <Title size="xx-small" colorScheme="light">
+      <Title
+        size="xx-small"
+        colorScheme="light"
+      >
         <Translate
           pt="Você recebeu o torpedo de um amigo e precisa responder antes de se arrumar"
           en="You received the following text message from a friend and you must answer it before leaving"
@@ -40,21 +43,37 @@ export function SeedUeSoIsso({ seed, updateData }: SeedUeSoIssoProps) {
         <SVGPhone>
           <div className="ff-phone">
             <div className="ff-phone__contact">
-              <PlayerAvatar avatarId="B" size="large" />
+              <PlayerAvatar
+                avatarId="B"
+                size="large"
+              />
               <div className="ff-phone__name">Bob {'>'}</div>
             </div>
             <div className="ff-phone__thread">
               <div className="ff-phone__message">
-                <Translate pt="Ow" en="Dude" />
+                <Translate
+                  pt="Ow"
+                  en="Dude"
+                />
               </div>
               <div className="ff-phone__message">
-                <Translate pt="fala aí" en="Answer this" />
+                <Translate
+                  pt="fala aí"
+                  en="Answer this"
+                />
               </div>
               <div className="ff-phone__message">
-                <Translate pt="Diga uma palavra relacionada à..." en="Say a single word related to..." />
+                <Translate
+                  pt="Diga uma palavra relacionada à..."
+                  en="Say a single word related to..."
+                />
               </div>
               <div className="ff-phone__timestamp">
-                <Translate pt="Recebido" en="Received" /> {now}
+                <Translate
+                  pt="Recebido"
+                  en="Received"
+                />{' '}
+                {now}
               </div>
               <div
                 className={clsx('ff-phone__message ff-phone__message--important', getAnimationClass('tada'))}
@@ -72,8 +91,15 @@ export function SeedUeSoIsso({ seed, updateData }: SeedUeSoIssoProps) {
           onPressEnter={() => updateData({ singleClue: value }, true)}
         />
 
-        <Button block onClick={() => updateData({ singleClue: value }, true)} type="primary">
-          <Translate pt="Enviar" en="Submit" />
+        <Button
+          block
+          onClick={() => updateData({ singleClue: value }, true)}
+          type="primary"
+        >
+          <Translate
+            pt="Enviar"
+            en="Submit"
+          />
         </Button>
       </SpaceContainer>
     </div>

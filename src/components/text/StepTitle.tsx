@@ -59,7 +59,10 @@ export const StepTitle = ({
     >
       {(!!icon || wait) && (
         <span className="title__icon">
-          <IconAvatar size={size} icon={wait ? <AnimatedClockIcon /> : icon} />
+          <IconAvatar
+            size={size}
+            icon={wait ? <AnimatedClockIcon /> : icon}
+          />
         </span>
       )}
       {children}

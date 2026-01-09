@@ -23,7 +23,12 @@ export function PhaseEverybodyWrites({ state, players, meta, user }: PhaseProps)
   const announcement = (
     <PhaseAnnouncement
       icon={<WritingIcon />}
-      title={<Translate pt="Todos Respondem" en="Everybody Writes" />}
+      title={
+        <Translate
+          pt="Todos Respondem"
+          en="Everybody Writes"
+        />
+      }
       currentRound={state?.round?.current}
       duration={state?.round?.current < 3 ? 20 : undefined}
       type="overlay"
@@ -33,7 +38,10 @@ export function PhaseEverybodyWrites({ state, players, meta, user }: PhaseProps)
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={MENTE_COLETIVA_PHASES.EVERYBODY_WRITES}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={MENTE_COLETIVA_PHASES.EVERYBODY_WRITES}
+    >
       <StepSwitcher
         step={step}
         players={players}

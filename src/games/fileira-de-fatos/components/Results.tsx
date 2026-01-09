@@ -37,7 +37,10 @@ export function Results({ players, activePlayerId, correctOrder, roundType }: Re
   return (
     <SpaceContainer vertical>
       {listOfPLayers.map((player) => (
-        <Space className="scenarios-results" key={player.id}>
+        <Space
+          className="scenarios-results"
+          key={player.id}
+        >
           <PlayerAvatarStrip player={player} />
           {player.currentOrder.map((cardId: CardId, index: number) => {
             const isCorrect = correctOrder[index] === cardId;
@@ -50,8 +53,15 @@ export function Results({ players, activePlayerId, correctOrder, roundType }: Re
               >
                 {isCorrect ? (
                   <span>
-                    <PlayerAvatar avatarId={player.avatarId} alt={player.name} size="small" />{' '}
-                    <PositiveStarPoints roundType={roundType} position={index + 1} />
+                    <PlayerAvatar
+                      avatarId={player.avatarId}
+                      alt={player.name}
+                      size="small"
+                    />{' '}
+                    <PositiveStarPoints
+                      roundType={roundType}
+                      position={index + 1}
+                    />
                   </span>
                 ) : (
                   <span>
@@ -60,14 +70,22 @@ export function Results({ players, activePlayerId, correctOrder, roundType }: Re
                         <Translate
                           pt={
                             <>
-                              <PlayerAvatarName player={player} addressUser size="small" /> achou que esse
-                              cenário era na posição #{correctOrder.indexOf(cardId) + 1}
+                              <PlayerAvatarName
+                                player={player}
+                                addressUser
+                                size="small"
+                              />{' '}
+                              achou que esse cenário era na posição #{correctOrder.indexOf(cardId) + 1}
                             </>
                           }
                           en={
                             <>
-                              <PlayerAvatarName player={player} addressUser size="small" /> thought this
-                              scenario would go in position #{correctOrder.indexOf(cardId) + 1}
+                              <PlayerAvatarName
+                                player={player}
+                                addressUser
+                                size="small"
+                              />{' '}
+                              thought this scenario would go in position #{correctOrder.indexOf(cardId) + 1}
                             </>
                           }
                         />
@@ -75,7 +93,10 @@ export function Results({ players, activePlayerId, correctOrder, roundType }: Re
                     >
                       <Avatar size="small">{correctOrder.indexOf(cardId) + 1}</Avatar>
                     </Tooltip>
-                    <NegativeStarPoints roundType={roundType} position={index + 1} />
+                    <NegativeStarPoints
+                      roundType={roundType}
+                      position={index + 1}
+                    />
                   </span>
                 )}
               </div>
@@ -91,9 +112,18 @@ export function Results({ players, activePlayerId, correctOrder, roundType }: Re
 function TripleStar() {
   return (
     <>
-      <IconAvatar icon={<StarIcon />} size="small" />
-      <IconAvatar icon={<StarIcon />} size="small" />
-      <IconAvatar icon={<StarIcon />} size="small" />
+      <IconAvatar
+        icon={<StarIcon />}
+        size="small"
+      />
+      <IconAvatar
+        icon={<StarIcon />}
+        size="small"
+      />
+      <IconAvatar
+        icon={<StarIcon />}
+        size="small"
+      />
     </>
   );
 }
@@ -114,7 +144,12 @@ function PositiveStarPoints({ roundType, position }: PositiveStarPointsProps) {
     return <TripleStar />;
   }
 
-  return <IconAvatar icon={<StarIcon />} size="small" />;
+  return (
+    <IconAvatar
+      icon={<StarIcon />}
+      size="small"
+    />
+  );
 }
 
 type NegativeStarPointsProps = {
@@ -124,10 +159,20 @@ type NegativeStarPointsProps = {
 
 function NegativeStarPoints({ roundType, position }: NegativeStarPointsProps) {
   if (roundType === 'CURSED_FIRST_POSITION' && position === 1) {
-    return <IconAvatar icon={<BoxXIcon />} size="small" />;
+    return (
+      <IconAvatar
+        icon={<BoxXIcon />}
+        size="small"
+      />
+    );
   }
   if (roundType === 'CURSED_LAST_POSITION' && position === 5) {
-    return <IconAvatar icon={<BoxXIcon />} size="small" />;
+    return (
+      <IconAvatar
+        icon={<BoxXIcon />}
+        size="small"
+      />
+    );
   }
 
   return null;

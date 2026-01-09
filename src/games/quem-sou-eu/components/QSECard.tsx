@@ -15,10 +15,21 @@ export function QSECard({ character, width, imageCardMode, className }: QSECardP
   if (imageCardMode) {
     return (
       <ImageBlurButtonContainer cardId={character.id}>
-        <ImageCard cardId={character.id} cardWidth={width} className={className} preview={false} />
+        <ImageCard
+          cardId={character.id}
+          cardWidth={width}
+          className={className}
+          preview={false}
+        />
       </ImageBlurButtonContainer>
     );
   }
 
-  return <CharacterCard character={character} size={width} className={className} />;
+  return (
+    <CharacterCard
+      character={character}
+      size={width}
+      className={className}
+    />
+  );
 }

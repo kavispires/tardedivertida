@@ -11,8 +11,16 @@ import { GameOverGallery } from './components/GameOverGallery';
 
 export function PhaseGameOver({ state, players }: PhaseProps) {
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<TrophyIcon />}>
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<TrophyIcon />}
+    >
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
 
       <GameOverGallery gallery={state.gallery} />
     </GameOverWrapper>

@@ -34,7 +34,12 @@ export function RequestHistory({
   const columns: ColumnsType<RequestHistoryEntry> = [
     {
       key: 'request',
-      title: <Translate pt="Pedido" en="Request" />,
+      title: (
+        <Translate
+          pt="Pedido"
+          en="Request"
+        />
+      ),
       dataIndex: 'request',
       render: (answer) => (
         <AlienViewBoard
@@ -48,24 +53,52 @@ export function RequestHistory({
     },
     {
       key: 'offers',
-      title: <Translate pt="Oferendas" en="Offerings" />,
+      title: (
+        <Translate
+          pt="Oferendas"
+          en="Offerings"
+        />
+      ),
       dataIndex: 'offers',
-      render: (offers) => <Offerings players={players} offers={offers} items={items} />,
+      render: (offers) => (
+        <Offerings
+          players={players}
+          offers={offers}
+          items={items}
+        />
+      ),
     },
   ];
 
   if (showIntention) {
     columns.push({
       key: 'intention',
-      title: <Translate pt="Intenção" en="Intention" />,
+      title: (
+        <Translate
+          pt="Intenção"
+          en="Intention"
+        />
+      ),
       dataIndex: 'intention',
-      render: (intention) => (intention ? <ItemCard itemId={`${intention}`} width={50} /> : <></>),
+      render: (intention) =>
+        intention ? (
+          <ItemCard
+            itemId={`${intention}`}
+            width={50}
+          />
+        ) : (
+          <></>
+        ),
     });
   }
 
   return (
     <Space orientation="vertical">
-      <Table columns={columns} bordered dataSource={requestHistory} />
+      <Table
+        columns={columns}
+        bordered
+        dataSource={requestHistory}
+      />
     </Space>
   );
 }
@@ -79,10 +112,24 @@ function Offerings({ offers, players, items }: OfferingsProps) {
   return (
     <Space>
       {offers.map((offer) => (
-        <Space orientation="vertical" align="center" key={`offer-${offer.objectId}-${offer.playerId}`}>
-          <ItemCard itemId={`${offer.objectId}`} className={'objects-grid__item-offered'} width={48} />
-          <PlayerAvatarName size="small" player={players[offer.playerId]} />
-          <ItemResolution itemId={offer.objectId} items={items} />
+        <Space
+          orientation="vertical"
+          align="center"
+          key={`offer-${offer.objectId}-${offer.playerId}`}
+        >
+          <ItemCard
+            itemId={`${offer.objectId}`}
+            className={'objects-grid__item-offered'}
+            width={48}
+          />
+          <PlayerAvatarName
+            size="small"
+            player={players[offer.playerId]}
+          />
+          <ItemResolution
+            itemId={offer.objectId}
+            items={items}
+          />
         </Space>
       ))}
     </Space>

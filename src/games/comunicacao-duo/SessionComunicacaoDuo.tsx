@@ -31,7 +31,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionComunicacaoDuo() {
-  return <Session gameCollection={GAME_COLLECTION.COMUNICACAO_DUO} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.COMUNICACAO_DUO}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionComunicacaoDuo;

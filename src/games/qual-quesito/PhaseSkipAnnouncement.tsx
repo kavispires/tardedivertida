@@ -21,7 +21,12 @@ export function PhaseSkipAnnouncement({ players, state, user }: PhaseProps<Phase
   const announcement = (
     <PhaseAnnouncement
       icon={<SkipIcon />}
-      title={<Translate pt="Pula a vez" en="Skip Turn" />}
+      title={
+        <Translate
+          pt="Pula a vez"
+          en="Skip Turn"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}
@@ -29,8 +34,14 @@ export function PhaseSkipAnnouncement({ players, state, user }: PhaseProps<Phase
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={QUAL_QUESITO_PHASES.SKIP_ANNOUNCEMENT}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={QUAL_QUESITO_PHASES.SKIP_ANNOUNCEMENT}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepAnnounceSkipTurn
           user={user}

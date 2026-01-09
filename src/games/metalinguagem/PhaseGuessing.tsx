@@ -28,7 +28,12 @@ export function PhaseGuessing({ state, players, user }: PhaseProps<PhaseGuessing
   const announcement = (
     <PhaseAnnouncement
       icon={<GuessLanguageIcon />}
-      title={<Translate pt="Adivinhe os items" en="Guess the items" />}
+      title={
+        <Translate
+          pt="Adivinhe os items"
+          en="Guess the items"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -42,12 +47,20 @@ export function PhaseGuessing({ state, players, user }: PhaseProps<PhaseGuessing
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={METALINGUAGEM_PHASES.GUESSING}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={METALINGUAGEM_PHASES.GUESSING}
+    >
       <StepSwitcher
         step={step}
         players={players}
         waitingRoom={{
-          content: <Portmanteau itemsIds={user?.guesses ?? []} word={state.newWord} />,
+          content: (
+            <Portmanteau
+              itemsIds={user?.guesses ?? []}
+              word={state.newWord}
+            />
+          ),
         }}
       >
         {/* Step 0 */}

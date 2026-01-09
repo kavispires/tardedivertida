@@ -69,14 +69,21 @@ export function StepPlaceGood({
 
   if (isUserTheSupervisor) {
     return (
-      <Step fullWidth announcement={announcement} ref={ref}>
+      <Step
+        fullWidth
+        announcement={announcement}
+        ref={ref}
+      >
         <StepTitle icon={<BossIdeaIcon />}>
           <DualTranslate>{bossIdea.title}</DualTranslate>
         </StepTitle>
 
         <RuleInstruction type="lore">
           <strong>
-            <Translate pt={<>Coloque a mercadoria do galpão!</>} en={<>Place the good in the warehouse</>} />
+            <Translate
+              pt={<>Coloque a mercadoria do galpão!</>}
+              en={<>Place the good in the warehouse</>}
+            />
           </strong>
           <Divider className="my-1" />
           <DualTranslate>{bossIdea.description}</DualTranslate>
@@ -114,7 +121,11 @@ export function StepPlaceGood({
   }
 
   return (
-    <Step fullWidth announcement={announcement} ref={ref}>
+    <Step
+      fullWidth
+      announcement={announcement}
+      ref={ref}
+    >
       <StepTitle icon={<BossIdeaIcon />}>
         <DualTranslate>{bossIdea.title}</DualTranslate>
       </StepTitle>
@@ -124,8 +135,11 @@ export function StepPlaceGood({
           <Translate
             pt={
               <>
-                <PlayerAvatarName player={supervisor} size="small" /> é o(a) supervisor(a) do dia e colocará a
-                mercadoria no galpão.
+                <PlayerAvatarName
+                  player={supervisor}
+                  size="small"
+                />{' '}
+                é o(a) supervisor(a) do dia e colocará a mercadoria no galpão.
               </>
             }
             en={

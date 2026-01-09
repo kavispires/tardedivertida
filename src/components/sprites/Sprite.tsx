@@ -115,9 +115,20 @@ export function Sprite({
       className={className}
       {...props}
     >
-      <svg viewBox="0 0 512 512" style={{ width: `${paddedWidth}px`, height: `${paddedWidth}px` }}>
-        <use href={`#${spriteId}`} dangerouslySetInnerHTML={{ __html: svgContent }} />
-        <foreignObject x="0" y="0" width="100%" height="100%">
+      <svg
+        viewBox="0 0 512 512"
+        style={{ width: `${paddedWidth}px`, height: `${paddedWidth}px` }}
+      >
+        <use
+          href={`#${spriteId}`}
+          dangerouslySetInnerHTML={{ __html: svgContent }}
+        />
+        <foreignObject
+          x="0"
+          y="0"
+          width="100%"
+          height="100%"
+        >
           {title && (
             <Tooltip title={title}>
               <div style={{ background: 'transparent', width: '100%', height: '100vh' }}></div>

@@ -37,23 +37,46 @@ export function PhaseTweetSelection({ state, players, meta }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<TrendingIcon />}
-      title={<Translate pt="Você sabe qual a polêmica da vez?" en="Do you know what's trending now?" />}
+      title={
+        <Translate
+          pt="Você sabe qual a polêmica da vez?"
+          en="Do you know what's trending now?"
+        />
+      }
       currentRound={state?.round?.current}
       duration={state?.round?.current < 3 ? 30 : undefined}
       type="overlay"
     >
       <Instruction>
-        <ScoringRules round={state.round} activePlayer={activePlayer} isFixedRounds={isFixedRounds} />
-        <TurnOrder order={state.gameOrder} players={players} activePlayerId={state.activePlayerId} />
+        <ScoringRules
+          round={state.round}
+          activePlayer={activePlayer}
+          isFixedRounds={isFixedRounds}
+        />
+        <TurnOrder
+          order={state.gameOrder}
+          players={players}
+          activePlayerId={state.activePlayerId}
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={POLEMICA_DA_VEZ_PHASES.TOPIC_SELECTION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={POLEMICA_DA_VEZ_PHASES.TOPIC_SELECTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={4}>
+        <RoundAnnouncement
+          round={state.round}
+          onPressButton={goToNextStep}
+          time={4}
+        >
           <Instruction contained>
             <Translate
               pt="Cada rodada um novo assunto, a sua opinião e a opinião dos outros."
@@ -73,9 +96,17 @@ export function PhaseTweetSelection({ state, players, meta }: PhaseProps) {
             isFixedRounds={isFixedRounds}
           />
 
-          <Step fullWidth announcement={announcement}>
+          <Step
+            fullWidth
+            announcement={announcement}
+          >
             <WaitingRoom
-              title={<Translate pt="Aguarde..." en="Please wait..." />}
+              title={
+                <Translate
+                  pt="Aguarde..."
+                  en="Please wait..."
+                />
+              }
               instruction={
                 <>
                   <Instruction>

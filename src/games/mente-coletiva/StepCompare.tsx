@@ -65,7 +65,10 @@ export function StepCompare({
   if (!answerGroup) {
     return (
       <Step fullWidth>
-        <Translate pt="Pronto!" en="All done!" />
+        <Translate
+          pt="Pronto!"
+          en="All done!"
+        />
         <Divider />
         <HostNextPhaseButton round={round} />
       </Step>
@@ -73,7 +76,10 @@ export function StepCompare({
   }
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <AnswerGroup
         currentQuestion={currentQuestion}
         answerGroup={answerGroup}
@@ -82,7 +88,11 @@ export function StepCompare({
         remainingGroupsCount={remainingGroupsCount}
       />
       <Divider />
-      <UserAnswers user={user} answerGroup={answerGroup} onAddAnswer={onAddAnswer} />
+      <UserAnswers
+        user={user}
+        answerGroup={answerGroup}
+        onAddAnswer={onAddAnswer}
+      />
       <Divider />
       <AdminAnswerControl
         key={answerGroup.answer}

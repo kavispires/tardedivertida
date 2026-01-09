@@ -23,7 +23,12 @@ export function PhaseResults({ players, state, user }: PhaseProps<PhaseResultsSt
   const announcement = (
     <PhaseAnnouncement
       icon={<RankIcon />}
-      title={<Translate pt="Resultado" en="Results" />}
+      title={
+        <Translate
+          pt="Resultado"
+          en="Results"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}
@@ -38,8 +43,14 @@ export function PhaseResults({ players, state, user }: PhaseProps<PhaseResultsSt
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={QUAL_QUESITO_PHASES.RESULTS}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={QUAL_QUESITO_PHASES.RESULTS}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepResults
           players={players}

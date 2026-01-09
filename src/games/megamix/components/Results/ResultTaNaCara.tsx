@@ -13,15 +13,24 @@ export function ResultTaNaCara({ winningValues }: ResultComponentProps) {
     <>
       <Instruction>
         {winningValues.length > 1 ? (
-          <Translate pt="As respostas votadas foram" en="Most voted answers are" />
+          <Translate
+            pt="As respostas votadas foram"
+            en="Most voted answers are"
+          />
         ) : (
-          <Translate pt="A resposta mais votada foi" en="Most voted answer is" />
+          <Translate
+            pt="A resposta mais votada foi"
+            en="Most voted answer is"
+          />
         )}
         :
       </Instruction>
       <div className="track-result-values__cards">
         {winningValues.map((value) => (
-          <div key={`answer-${value}`} className="track-result-values__text-value">
+          <div
+            key={`answer-${value}`}
+            className="track-result-values__text-value"
+          >
             <IconAvatar
               size="large"
               icon={value === 'yes' ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}

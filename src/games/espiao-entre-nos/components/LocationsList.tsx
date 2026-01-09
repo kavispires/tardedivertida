@@ -45,7 +45,11 @@ export function LocationsList({ locations }: LocationsListProps) {
   return (
     <div className="e-list">
       <h3 className="e-list__title">
-        <EnvironmentOutlined /> <Translate pt="Possíveis Locais" en="Possible Locations" />
+        <EnvironmentOutlined />{' '}
+        <Translate
+          pt="Possíveis Locais"
+          en="Possible Locations"
+        />
         <Tooltip title={translate('Desmarcar todos', 'Unselect all')}>
           <Button
             shape="circle"

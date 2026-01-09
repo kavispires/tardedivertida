@@ -70,11 +70,36 @@ export function RunCard({ card, width = 128 }: RunCardProps) {
 const getCardTypeName = (card: RunnerCard) => {
   return (
     {
-      'movement-positive': <Translate en="Move Forward" pt="Avanço" />,
-      'movement-negative': <Translate en="Move Backward" pt="Recuo" />,
-      'movement-neutral': <Translate en="Break" pt="Descanso" />,
-      ongoing: <Translate en="Ongoing" pt="Durante a rodada" />,
-      effect: <Translate en="Effect" pt="Especial" />,
+      'movement-positive': (
+        <Translate
+          en="Move Forward"
+          pt="Avanço"
+        />
+      ),
+      'movement-negative': (
+        <Translate
+          en="Move Backward"
+          pt="Recuo"
+        />
+      ),
+      'movement-neutral': (
+        <Translate
+          en="Break"
+          pt="Descanso"
+        />
+      ),
+      ongoing: (
+        <Translate
+          en="Ongoing"
+          pt="Durante a rodada"
+        />
+      ),
+      effect: (
+        <Translate
+          en="Effect"
+          pt="Especial"
+        />
+      ),
     }[card.type] ?? <DualTranslate>{{ pt: 'Carta', en: 'Card' }}</DualTranslate>
   );
 };

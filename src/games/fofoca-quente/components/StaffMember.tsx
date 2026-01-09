@@ -27,7 +27,11 @@ export function StaffMemberEntry({ id, staffMembers }: StaffMemberProps) {
         type="text"
       />
 
-      <StaffMemberModal staffMember={staffMember} open={open} onClose={toggleOpen} />
+      <StaffMemberModal
+        staffMember={staffMember}
+        open={open}
+        onClose={toggleOpen}
+      />
     </div>
   );
 }
@@ -40,7 +44,10 @@ type StaffMemberModalProps = {
 
 function StaffMemberModal({ staffMember, open, onClose }: StaffMemberModalProps) {
   return (
-    <ModalOverlay onClose={onClose} open={open}>
+    <ModalOverlay
+      onClose={onClose}
+      open={open}
+    >
       <Card>
         <div className="student-details">
           <ImageCard cardId={staffMember.id} />
@@ -51,7 +58,10 @@ function StaffMemberModal({ staffMember, open, onClose }: StaffMemberModalProps)
 
             <div className="student-details__title">
               <Tag color="blue-inverse">
-                <Translate en="Action for the Detective" pt="Ação para o Detetive" />
+                <Translate
+                  en="Action for the Detective"
+                  pt="Ação para o Detetive"
+                />
               </Tag>{' '}
               <DualTranslate>{staffMember.description}</DualTranslate>
             </div>

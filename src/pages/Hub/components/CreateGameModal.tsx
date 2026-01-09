@@ -83,10 +83,24 @@ export function CreateGameFlow({ gameInfo }: CreateGameFlowProps) {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <Button type="primary" onClick={() => setOpen(true)} block disabled={!gameInfo.available}>
-        <Translate pt="Criar" en="Create" />
+      <Button
+        type="primary"
+        onClick={() => setOpen(true)}
+        block
+        disabled={!gameInfo.available}
+      >
+        <Translate
+          pt="Criar"
+          en="Create"
+        />
       </Button>
-      {open && <CreateGameModal gameInfo={gameInfo} open={open} setOpen={setOpen} />}
+      {open && (
+        <CreateGameModal
+          gameInfo={gameInfo}
+          open={open}
+          setOpen={setOpen}
+        />
+      )}
     </>
   );
 }
@@ -199,7 +213,11 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
 
       {!gameId && (
         <Instruction>
-          <Translate pt="Você está criando um jogo em:" en="You are creating a game in:" /> <LanguageSwitch />
+          <Translate
+            pt="Você está criando um jogo em:"
+            en="You are creating a game in:"
+          />{' '}
+          <LanguageSwitch />
         </Instruction>
       )}
 
@@ -215,9 +233,15 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
       {isLoading && (
         <>
           <Instruction>
-            <Translate pt="O jogo está sendo criado..." en="The game session is being created" />
+            <Translate
+              pt="O jogo está sendo criado..."
+              en="The game session is being created"
+            />
           </Instruction>
-          <Loading message={translate('Gerando...', 'Generating...')} margin />
+          <Loading
+            message={translate('Gerando...', 'Generating...')}
+            margin
+          />
         </>
       )}
 
@@ -250,7 +274,11 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
       {gameId ? (
         <div>
           <Title className="center">
-            <Translate pt="Jogo inicializado" en="Game Initialized" />: {gameId}
+            <Translate
+              pt="Jogo inicializado"
+              en="Game Initialized"
+            />
+            : {gameId}
           </Title>
           <Instruction>
             {previousGameId && !wasRedirectSuccessful && (
@@ -271,7 +299,10 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
                       disabled={!gameId || !previousGameId}
                       loading={isSettingRedirect}
                     >
-                      <Translate pt="Redirecione-os" en="Redirect them" />
+                      <Translate
+                        pt="Redirecione-os"
+                        en="Redirect them"
+                      />
                     </Button>
                   </>
                 }
@@ -301,8 +332,16 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
         </div>
       ) : (
         <SpaceContainer align="center">
-          <Button type="primary" size="large" disabled={isLoading} onClick={createGame}>
-            <Translate pt="Criar Jogo" en="Create Game" />
+          <Button
+            type="primary"
+            size="large"
+            disabled={isLoading}
+            onClick={createGame}
+          >
+            <Translate
+              pt="Criar Jogo"
+              en="Create Game"
+            />
           </Button>
         </SpaceContainer>
       )}

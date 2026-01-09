@@ -23,8 +23,16 @@ export function StepRanking({ players, ranking, onGoBack, round }: StepRankingPr
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[
-        <Translate key="1" pt="Rotas corretos" en="Correct paths" />,
-        <Translate key="2" pt="Pontos por sua rota" en="Points for your route" />,
+        <Translate
+          key="1"
+          pt="Rotas corretos"
+          en="Correct paths"
+        />,
+        <Translate
+          key="2"
+          pt="Pontos por sua rota"
+          en="Points for your route"
+        />,
       ]}
     >
       <RuleInstruction type="event">
@@ -36,7 +44,10 @@ export function StepRanking({ players, ranking, onGoBack, round }: StepRankingPr
 
       <SpaceContainer>
         <Button onClick={onGoBack}>
-          <Translate pt="Ver resultado novamente" en="See results again" />
+          <Translate
+            pt="Ver resultado novamente"
+            en="See results again"
+          />
         </Button>
       </SpaceContainer>
       <HostNextPhaseButton round={round} />

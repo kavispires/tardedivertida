@@ -7,11 +7,17 @@ import { Candidate } from '../Candidate';
 
 export function VoteNamoroOuAmizade({ track, playersList }: VoteComponentProps) {
   return (
-    <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
+    <SpacePlayerCheckWrapper
+      playersList={playersList}
+      paths={['data.value']}
+    >
       {playersList.map((player) => {
         const index = track.data.heads.findIndex((head: PlainObject) => head.id === player.data.value);
         return (
-          <div key={`vote-${player.id}`} className="player-vote">
+          <div
+            key={`vote-${player.id}`}
+            className="player-vote"
+          >
             <PlayerAvatar avatarId={player.avatarId} />
             <div>{player.name}</div>
             {index > -1 && (

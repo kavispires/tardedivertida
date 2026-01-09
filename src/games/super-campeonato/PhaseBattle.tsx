@@ -32,7 +32,12 @@ export function PhaseBattle({ state, players, user }: PhaseProps<PhaseBattleStat
   const announcement = (
     <PhaseAnnouncement
       icon={<BoxingGlovesIcon />}
-      title={<Translate pt="Batalha!" en="Battle!" />}
+      title={
+        <Translate
+          pt="Batalha!"
+          en="Battle!"
+        />
+      }
       type="overlay"
       currentRound={state?.round?.current}
       duration={3}
@@ -47,8 +52,14 @@ export function PhaseBattle({ state, players, user }: PhaseProps<PhaseBattleStat
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={SUPER_CAMPEONATO_PHASES.BATTLE}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={SUPER_CAMPEONATO_PHASES.BATTLE}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepBattle
           onSubmitVotes={onSubmitVotes}

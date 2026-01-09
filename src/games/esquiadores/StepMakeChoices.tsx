@@ -60,9 +60,15 @@ export function StepMakeChoices({
   };
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Responda as perguntas" en="Answer the questions" />
+        <Translate
+          pt="Responda as perguntas"
+          en="Answer the questions"
+        />
       </StepTitle>
 
       <RuleInstruction type="action">
@@ -120,13 +126,22 @@ export function StepMakeChoices({
             {currentDilemma.id}
           </div>
 
-          <MountainIllustration spriteId={currentDilemma.spriteId} width={256} />
+          <MountainIllustration
+            spriteId={currentDilemma.spriteId}
+            width={256}
+          />
 
           <div className="ski-mountain-entry__options">
-            <Button block onClick={() => handleChoice(currentDilemma.id, 'left')}>
+            <Button
+              block
+              onClick={() => handleChoice(currentDilemma.id, 'left')}
+            >
               {currentDilemma.dilemma.left}
             </Button>
-            <Button block onClick={() => handleChoice(currentDilemma.id, 'right')}>
+            <Button
+              block
+              onClick={() => handleChoice(currentDilemma.id, 'right')}
+            >
               {currentDilemma.dilemma.right}
             </Button>
           </div>
@@ -149,11 +164,18 @@ export function StepMakeChoices({
             }
             size="large"
           >
-            <Translate pt="Enviar" en="Send" />
+            <Translate
+              pt="Enviar"
+              en="Send"
+            />
           </SendButton>
         </SpaceContainer>
       )}
-      <TurnOrder players={players} order={turnOrder} activePlayerId={user.id} />
+      <TurnOrder
+        players={players}
+        order={turnOrder}
+        activePlayerId={user.id}
+      />
     </Step>
   );
 }

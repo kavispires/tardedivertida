@@ -52,7 +52,10 @@ export function DailyOrganiku({ data }: DailyOrganikuProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyMemoryGridGameIcon />} localStorageKey={SETTINGS.KEY}>
+      <Header
+        icon={<DailyMemoryGridGameIcon />}
+        localStorageKey={SETTINGS.KEY}
+      >
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <DailyContent ref={ref}>
@@ -65,7 +68,12 @@ export function DailyOrganiku({ data }: DailyOrganikuProps) {
 
         <Region>
           <Typography.Text>
-            <strong>{data.title}</strong> ({flips} de {swapLimit} <Translate pt="viradas" en="flips" />)
+            <strong>{data.title}</strong> ({flips} de {swapLimit}{' '}
+            <Translate
+              pt="viradas"
+              en="flips"
+            />
+            )
           </Typography.Text>
         </Region>
 
@@ -101,18 +109,37 @@ export function DailyOrganiku({ data }: DailyOrganikuProps) {
             tracker={tracker}
           />
 
-          <CompletionTracker itemsIds={data.itemsIds} tracker={tracker} itemWidth={itemWidth} />
+          <CompletionTracker
+            itemsIds={data.itemsIds}
+            tracker={tracker}
+            itemWidth={itemWidth}
+          />
         </Region>
 
         {isComplete && (
-          <Space className="results-container" orientation="vertical" align="center">
-            <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
-              <Translate pt="Ver Resultado" en="Show Results" />
+          <Space
+            className="results-container"
+            orientation="vertical"
+            align="center"
+          >
+            <Button
+              onClick={() => setShowResultModal(true)}
+              type="primary"
+              icon={<BarChartOutlined />}
+            >
+              <Translate
+                pt="Ver Resultado"
+                en="Show Results"
+              />
             </Button>
           </Space>
         )}
 
-        <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
+        <Modal
+          open={showResultModal}
+          onCancel={() => setShowResultModal(false)}
+          footer={null}
+        >
           <ResultsModalContent
             challengeNumber={data.number}
             win={isWin}

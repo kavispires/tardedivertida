@@ -49,12 +49,21 @@ export function StepDreamsSelection({
   }, []);
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <Title size="medium">
-        <Translate pt="Visite sonhos relacionados a " en="Visit dreams related to " />
+        <Translate
+          pt="Visite sonhos relacionados a "
+          en="Visit dreams related to "
+        />
         <TextHighlight>{word.text}</TextHighlight>
       </Title>
-      <DreamSelectionRules contained minimumSelection={minimumSelection} />
+      <DreamSelectionRules
+        contained
+        minimumSelection={minimumSelection}
+      />
 
       <PopoverRule content={<DreamSelectionExtendedRules />} />
 
@@ -64,7 +73,12 @@ export function StepDreamsSelection({
           position={1}
           icon={<RobotOutlined />}
           content={<BotsRules />}
-          label={<Translate pt=" Bots" en=" Bots" />}
+          label={
+            <Translate
+              pt=" Bots"
+              en=" Bots"
+            />
+          }
         />
       )}
 
@@ -74,10 +88,17 @@ export function StepDreamsSelection({
           disabled={selectedCount < minimumSelection || selectedCount > 10}
           onClick={() => onSubmitCards({ cardsIds: Object.keys(selectedCards) })}
         >
-          <Translate pt={`Visitar ${selectedCount} sonhos`} en={`Visit ${selectedCount} dreams`} />
+          <Translate
+            pt={`Visitar ${selectedCount} sonhos`}
+            en={`Visit ${selectedCount} dreams`}
+          />
         </SendButton>
       </SpaceContainer>
-      <SelectTable table={table} onSelectCard={onSelectCard} selectedCards={selectedCards} />
+      <SelectTable
+        table={table}
+        onSelectCard={onSelectCard}
+        selectedCards={selectedCards}
+      />
     </Step>
   );
 }

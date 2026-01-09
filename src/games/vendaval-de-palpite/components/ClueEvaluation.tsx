@@ -49,16 +49,27 @@ export function ClueEvaluation({ clues, latestBoardEntry, onSubmitEvaluation }: 
       <ul className="v-boss-evaluation">
         {Object.keys(evaluation).map((clueId) => {
           return (
-            <li key={clueId} className="v-boss-evaluation__item">
+            <li
+              key={clueId}
+              className="v-boss-evaluation__item"
+            >
               <Switch
                 checkedChildren={
                   <>
-                    <CheckOutlined /> <Translate pt="Tem a ver" en="Relates" />
+                    <CheckOutlined />{' '}
+                    <Translate
+                      pt="Tem a ver"
+                      en="Relates"
+                    />
                   </>
                 }
                 unCheckedChildren={
                   <>
-                    <CloseOutlined /> <Translate pt="Nada a ver" en="Does not relate" />
+                    <CloseOutlined />{' '}
+                    <Translate
+                      pt="Nada a ver"
+                      en="Does not relate"
+                    />
                   </>
                 }
                 onChange={(e) => updateEvaluation(clueId, e)}
@@ -70,8 +81,15 @@ export function ClueEvaluation({ clues, latestBoardEntry, onSubmitEvaluation }: 
         })}
 
         <SpaceContainer>
-          <Button type="primary" size="large" onClick={() => onSubmitEvaluation({ evaluation })}>
-            <Translate pt="Enviar avaliação" en="Submit evaluation" />
+          <Button
+            type="primary"
+            size="large"
+            onClick={() => onSubmitEvaluation({ evaluation })}
+          >
+            <Translate
+              pt="Enviar avaliação"
+              en="Submit evaluation"
+            />
           </Button>
         </SpaceContainer>
       </ul>

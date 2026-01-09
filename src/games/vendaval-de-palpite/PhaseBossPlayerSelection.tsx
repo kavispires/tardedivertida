@@ -20,12 +20,23 @@ export function PhaseBossPlayerSelection({ state, players }: PhaseProps) {
   const onBossPlayerClick = useOnSubmitBossPlayerAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={VENDAVAL_DE_PALPITE_PHASES.BOSS_SELECTION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={VENDAVAL_DE_PALPITE_PHASES.BOSS_SELECTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<BossIcon />}
-          title={<Translate pt="O Chefe" en="The Boss" />}
+          title={
+            <Translate
+              pt="O Chefe"
+              en="The Boss"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={10}
@@ -50,7 +61,10 @@ export function PhaseBossPlayerSelection({ state, players }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <StepBossPlayerSelection players={players} onBossPlayerClick={onBossPlayerClick} />
+        <StepBossPlayerSelection
+          players={players}
+          onBossPlayerClick={onBossPlayerClick}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

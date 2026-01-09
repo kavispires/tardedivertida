@@ -25,7 +25,12 @@ export function PhasePlacing({ state, players }: PhaseProps<PhasePlacingState>) 
   const announcement = (
     <PhaseAnnouncement
       icon={<MapCityZonesIcon />}
-      title={<Translate pt="Construção" en="Construction" />}
+      title={
+        <Translate
+          pt="Construção"
+          en="Construction"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -39,8 +44,14 @@ export function PhasePlacing({ state, players }: PhaseProps<PhasePlacingState>) 
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PLANEJAMENTO_URBANO_PHASES.PLACING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={PLANEJAMENTO_URBANO_PHASES.PLACING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepPlaceLocations
           announcement={announcement}

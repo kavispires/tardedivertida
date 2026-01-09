@@ -33,10 +33,16 @@ export function DetachedLeaves({
 
   return (
     <Instruction contained>
-      <SpaceContainer align="center" wrap>
+      <SpaceContainer
+        align="center"
+        wrap
+      >
         {availableLeaves.map((leaf) => {
           return (
-            <div className="y-leaf-loose" key={leaf.id}>
+            <div
+              className="y-leaf-loose"
+              key={leaf.id}
+            >
               <Leaf
                 key={leaf.id}
                 leaf={leaf}

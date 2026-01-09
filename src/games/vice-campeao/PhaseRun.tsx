@@ -31,12 +31,23 @@ export function PhaseRun({ state, players }: PhaseProps<PhaseRunState>) {
   }, [state.cardsDict, state.race]);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={VICE_CAMPEAO_PHASES.RUN}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={VICE_CAMPEAO_PHASES.RUN}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<WalkIcon />}
-          title={<Translate pt="A corrida" en="The race" />}
+          title={
+            <Translate
+              pt="A corrida"
+              en="The race"
+            />
+          }
           currentRound={state?.round?.current}
           type="block"
           onClose={goToNextStep}

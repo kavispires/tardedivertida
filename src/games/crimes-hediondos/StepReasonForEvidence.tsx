@@ -39,7 +39,10 @@ export function StepReasonForEvidence({
   return (
     <Step announcement={announcement}>
       <StepTitle>
-        <Translate pt="O que tinha no seu último crime?" en="What was in your last crime?" />
+        <Translate
+          pt="O que tinha no seu último crime?"
+          en="What was in your last crime?"
+        />
       </StepTitle>
       <RuleInstruction type="action">
         <Translate
@@ -68,7 +71,11 @@ export function StepReasonForEvidence({
           highlight="evidence"
         />
 
-        <SceneTile tile={reasonForEvidenceTile} onSelectValue={onSelectItem} index={reasonForEvidenceIndex} />
+        <SceneTile
+          tile={reasonForEvidenceTile}
+          onSelectValue={onSelectItem}
+          index={reasonForEvidenceIndex}
+        />
       </SpaceContainer>
 
       <SpaceContainer>

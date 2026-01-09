@@ -19,19 +19,34 @@ export function PhaseResolution({ state, players }: PhaseProps) {
   const { step, goToNextStep } = useStep();
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={GALERIA_DE_SONHOS_PHASES.RESOLUTION}>
-      <StepSwitcher step={step} players={players} waitingRoom={{ type: 'SERVER' }}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={GALERIA_DE_SONHOS_PHASES.RESOLUTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+        waitingRoom={{ type: 'SERVER' }}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<RankIcon />}
-          title={<Translate pt="Ranking" en="Ranking" />}
+          title={
+            <Translate
+              pt="Ranking"
+              en="Ranking"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           type="block"
           duration={3}
         >
           <Instruction>
-            <Translate pt="E quem deu mais matches foi..." en="And who matched the most was..." />
+            <Translate
+              pt="E quem deu mais matches foi..."
+              en="And who matched the most was..."
+            />
           </Instruction>
         </PhaseAnnouncement>
 

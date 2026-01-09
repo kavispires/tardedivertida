@@ -24,14 +24,20 @@ export function SummaryBox({ summary, players, round }: SummaryBoxProps) {
       <div className="cd-summary__entry">
         <div className="cd-summary__number">{round.total - round.current + 1}</div>
         <div className="cd-summary__entry-label">
-          <Translate en="Rounds left" pt="Rodadas restantes" />
+          <Translate
+            en="Rounds left"
+            pt="Rodadas restantes"
+          />
         </div>
       </div>
 
       <div className="cd-summary__entry">
         <div className="cd-summary__number cd-summary__number--left">{summary.deliverablesLeft}</div>
         <div className="cd-summary__entry-label">
-          <Translate en="Items left" pt="Itens restantes" />
+          <Translate
+            en="Items left"
+            pt="Itens restantes"
+          />
         </div>
       </div>
 

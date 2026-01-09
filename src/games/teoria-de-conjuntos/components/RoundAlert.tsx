@@ -27,7 +27,12 @@ export function RoundAlert({ round }: { round: GameRound }) {
           />
         }
       >
-        <Button type="text" shape="circle" icon={<InfoCircleOutlined />} size="small" />
+        <Button
+          type="text"
+          shape="circle"
+          icon={<InfoCircleOutlined />}
+          size="small"
+        />
       </Tooltip>
     </RuleInstruction>
   );

@@ -31,7 +31,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionNaoSouRobo() {
-  return <Session gameCollection={GAME_COLLECTION.NAO_SOU_ROBO} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.NAO_SOU_ROBO}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionNaoSouRobo;

@@ -42,16 +42,29 @@ export function GalleryGuesses({ entry, players, correctGuessPoints }: GalleryGu
                 {cardEntry.votes.map((playerId) => {
                   const player = players[playerId];
                   return (
-                    <PlayerAvatar key={playerId} avatarId={player.avatarId} alt={player.name} size="small" />
+                    <PlayerAvatar
+                      key={playerId}
+                      avatarId={player.avatarId}
+                      alt={player.name}
+                      size="small"
+                    />
                   );
                 })}
               </Avatar.Group>
               {cardEntry.votes.length > 0 && cardEntry.isDream && (
-                <StarPoints quantity={correctGuessPoints} keyPrefix={'dream-correct'} hideText />
+                <StarPoints
+                  quantity={correctGuessPoints}
+                  keyPrefix={'dream-correct'}
+                  hideText
+                />
               )}
 
               {cardEntry.votes.length > 0 && cardEntry.isNightmare && (
-                <StarPoints quantity={-1} keyPrefix={'dream-incorrect'} hideText />
+                <StarPoints
+                  quantity={-1}
+                  keyPrefix={'dream-incorrect'}
+                  hideText
+                />
               )}
             </div>
           </li>

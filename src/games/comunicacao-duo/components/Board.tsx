@@ -90,7 +90,11 @@ export function Board({
                     userSide={userSide}
                     animateEntries={animateEntries}
                   >
-                    <BoardEntry entry={entry} deckType={deckType} userSide={userSide} />
+                    <BoardEntry
+                      entry={entry}
+                      deckType={deckType}
+                      userSide={userSide}
+                    />
                   </NeutralDeliveriesWrapper>
                 </TransparentButton>
               </Popconfirm>
@@ -104,7 +108,11 @@ export function Board({
                 className={clsx(animateEntries.includes(entry.id) && getAnimationClass('slideInDown'))}
               >
                 <CoverAlienCard side={entry.status}>
-                  <BoardEntry entry={entry} deckType={deckType} userSide={userSide} />
+                  <BoardEntry
+                    entry={entry}
+                    deckType={deckType}
+                    userSide={userSide}
+                  />
                 </CoverAlienCard>
               </span>
             );
@@ -112,14 +120,21 @@ export function Board({
 
           if ((entry?.deliveredBy?.length ?? 0) > 0) {
             return (
-              <div key={entry.id} className="cd-board-entry-entry-wrapper">
+              <div
+                key={entry.id}
+                className="cd-board-entry-entry-wrapper"
+              >
                 <NeutralDeliveriesWrapper
                   entry={entry}
                   userId={userId}
                   userSide={userSide}
                   animateEntries={animateEntries}
                 >
-                  <BoardEntry entry={entry} deckType={deckType} userSide={userSide} />
+                  <BoardEntry
+                    entry={entry}
+                    deckType={deckType}
+                    userSide={userSide}
+                  />
                 </NeutralDeliveriesWrapper>
               </div>
             );
@@ -143,11 +158,19 @@ export function Board({
                       />
                     }
                   >
-                    <Button shape="circle" size="small" icon={<CloseCircleOutlined />} />
+                    <Button
+                      shape="circle"
+                      size="small"
+                      icon={<CloseCircleOutlined />}
+                    />
                   </Tooltip>
                 </div>
               )}
-              <BoardEntry entry={entry} deckType={deckType} userSide={userSide} />
+              <BoardEntry
+                entry={entry}
+                deckType={deckType}
+                userSide={userSide}
+              />
             </div>
           );
         })}
@@ -164,7 +187,10 @@ function CoverAlienCard({ side, children }: CoverAlienCardProps) {
   const [open, setOpen] = useToggle(false);
 
   return (
-    <DivButton className="cd-board-entry-cover" onClick={setOpen}>
+    <DivButton
+      className="cd-board-entry-cover"
+      onClick={setOpen}
+    >
       <div
         className={clsx(
           'cd-board-entry-cover__alien',

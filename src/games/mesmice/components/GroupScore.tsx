@@ -20,16 +20,27 @@ export function GroupScore({ groupScore, playerScore }: GroupScoreProps) {
       icon={<StarFilled />}
       content={
         <Instruction>
-          <Translate pt="Pontuação do Grupo" en="Group Score" />
+          <Translate
+            pt="Pontuação do Grupo"
+            en="Group Score"
+          />
           <br />
           <PointsHighlight>{groupScore}</PointsHighlight>
           <Divider />
-          <Translate pt="Sua pontuação" en="Group Score" />
+          <Translate
+            pt="Sua pontuação"
+            en="Group Score"
+          />
           <br />
           <PointsHighlight>{playerScore}</PointsHighlight>
         </Instruction>
       }
-      label={<Translate pt="Pontos" en="Score" />}
+      label={
+        <Translate
+          pt="Pontos"
+          en="Score"
+        />
+      }
     />
   );
 }

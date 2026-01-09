@@ -20,12 +20,23 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
   const cardWidth = useCardWidth(slideCount, { minWidth: 100 });
 
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<TheEndIcon />}>
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<TheEndIcon />}
+    >
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
 
       <ul className="l-album-strips">
         {state.album.map((albumEntry: AlbumEntry) => (
-          <li key={`album-strip-${albumEntry.id}`} className="l-album-strip-entry">
+          <li
+            key={`album-strip-${albumEntry.id}`}
+            className="l-album-strip-entry"
+          >
             <div
               className="l-album-strip-entry__author"
               style={{ backgroundColor: getAvatarColorById(players[albumEntry.id].avatarId) }}
@@ -41,7 +52,11 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
 
                 if (slide.type === 'title') {
                   return (
-                    <li key={key} className="l-album-strip-square-text" style={{ width: `${cardWidth}px` }}>
+                    <li
+                      key={key}
+                      className="l-album-strip-square-text"
+                      style={{ width: `${cardWidth}px` }}
+                    >
                       {slide.content}
                     </li>
                   );
@@ -49,8 +64,14 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
 
                 if (slide.type === 'drawing') {
                   return (
-                    <li key={key} className="l-album-strip-square-drawing">
-                      <CanvasSVG drawing={slide.content} width={cardWidth} />
+                    <li
+                      key={key}
+                      className="l-album-strip-square-drawing"
+                    >
+                      <CanvasSVG
+                        drawing={slide.content}
+                        width={cardWidth}
+                      />
                     </li>
                   );
                 }

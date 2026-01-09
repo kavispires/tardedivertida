@@ -28,7 +28,11 @@ export function StepRanking({ players, ranking, round, clover, leaves, activeClo
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[
-        <Translate key="1" pt="Pontos por encontrar só um jogador" en="Points for matching only 1 player" />,
+        <Translate
+          key="1"
+          pt="Pontos por encontrar só um jogador"
+          en="Points for matching only 1 player"
+        />,
         <Translate
           key="2"
           pt="Pontos por encontrar mais de um jogador"
@@ -41,7 +45,13 @@ export function StepRanking({ players, ranking, round, clover, leaves, activeClo
         />,
       ]}
     >
-      <Clover mode={mode} clover={clover} leaves={leaves} onRotate={onRotateClover} rotation={rotation} />
+      <Clover
+        mode={mode}
+        clover={clover}
+        leaves={leaves}
+        onRotate={onRotateClover}
+        rotation={rotation}
+      />
 
       <PlayersGuesses
         players={players}
@@ -53,7 +63,10 @@ export function StepRanking({ players, ranking, round, clover, leaves, activeClo
       />
 
       <HostNextPhaseButton round={round}>
-        <Translate pt="Próximo Trevo ou Game Over" en="Next Clover or Game Over" />
+        <Translate
+          pt="Próximo Trevo ou Game Over"
+          en="Next Clover or Game Over"
+        />
       </HostNextPhaseButton>
     </StepRankingWrapper>
   );

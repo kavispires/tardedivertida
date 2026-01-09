@@ -35,7 +35,12 @@ export function PhaseMovieElimination({ state, players, user }: PhaseProps) {
     first: (
       <PhaseAnnouncement
         icon={<PopcornIcon />}
-        title={<Translate pt="Qual filme NÃO ver?" en="What NOT to watch?" />}
+        title={
+          <Translate
+            pt="Qual filme NÃO ver?"
+            en="What NOT to watch?"
+          />
+        }
         currentRound={state?.round?.current}
         type="overlay"
         duration={state?.round?.current === 1 ? 12 : 7}
@@ -49,7 +54,11 @@ export function PhaseMovieElimination({ state, players, user }: PhaseProps) {
                 Se cometermos <MistakeCountHighlight>1 erro</MistakeCountHighlight>, tudo bem, mas se um
                 segundo filme escolhido por outro jogador for eliminado, a rodada acaba.
                 <br />
-                <PlayerAvatarName player={activePlayer} addressUser /> começa escolhendo o primeiro filme.
+                <PlayerAvatarName
+                  player={activePlayer}
+                  addressUser
+                />{' '}
+                começa escolhendo o primeiro filme.
               </>
             }
             en={
@@ -59,7 +68,11 @@ export function PhaseMovieElimination({ state, players, user }: PhaseProps) {
                 If we make <MistakeCountHighlight>1 mistake</MistakeCountHighlight>, it's okay, but if a
                 second movie chosen by another player is eliminated, the round is over.
                 <br />
-                <PlayerAvatarName player={activePlayer} addressUser /> begins by choosing the first movie.
+                <PlayerAvatarName
+                  player={activePlayer}
+                  addressUser
+                />{' '}
+                begins by choosing the first movie.
               </>
             }
           />
@@ -69,7 +82,12 @@ export function PhaseMovieElimination({ state, players, user }: PhaseProps) {
     active: (
       <PhaseAnnouncement
         icon={<PopcornIcon />}
-        title={<Translate pt="Sua vez!" en="Your turn!" />}
+        title={
+          <Translate
+            pt="Sua vez!"
+            en="Your turn!"
+          />
+        }
         currentRound={state?.round?.current}
         type="overlay"
         duration={3}
@@ -86,8 +104,14 @@ export function PhaseMovieElimination({ state, players, user }: PhaseProps) {
   };
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={VAMOS_AO_CINEMA_PHASES.MOVIE_ELIMINATION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={VAMOS_AO_CINEMA_PHASES.MOVIE_ELIMINATION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepEliminateMovie
           players={players}

@@ -24,27 +24,51 @@ export function PhaseChallengeSelection({ state, players, user }: PhaseProps<Pha
   const announcement = (
     <PhaseAnnouncement
       icon={<ListIcon />}
-      title={<Translate pt="Desafio" en="Challenge" />}
+      title={
+        <Translate
+          pt="Desafio"
+          en="Challenge"
+        />
+      }
       currentRound={state?.round?.current}
       duration={5}
       type="overlay"
     >
       <Instruction>
-        <Translate pt="Qual o desafio da rodada?" en="What's the round's challenge?" />
+        <Translate
+          pt="Qual o desafio da rodada?"
+          en="What's the round's challenge?"
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={SUPER_CAMPEONATO_PHASES.CHALLENGE_SELECTION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={SUPER_CAMPEONATO_PHASES.CHALLENGE_SELECTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={4}>
+        <RoundAnnouncement
+          round={state.round}
+          onPressButton={goToNextStep}
+          time={4}
+        >
           <Instruction contained>
             {state.round.current === state.round.total ? (
-              <Translate pt="Rodada final: Somente os finalistas!" en="Final Round: Only finalists" />
+              <Translate
+                pt="Rodada final: Somente os finalistas!"
+                en="Final Round: Only finalists"
+              />
             ) : (
-              <Translate pt="Quem vai ganhar a medalha de ouro?" en="Who's gonna get the gold medal?" />
+              <Translate
+                pt="Quem vai ganhar a medalha de ouro?"
+                en="Who's gonna get the gold medal?"
+              />
             )}
           </Instruction>
         </RoundAnnouncement>

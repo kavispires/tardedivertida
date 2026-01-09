@@ -61,9 +61,15 @@ export function StepMatchDreams({ players, user, table, onSubmitVotes, dreams }:
   };
 
   return (
-    <Step fullWidth className="s-tell-dream-step">
+    <Step
+      fullWidth
+      className="s-tell-dream-step"
+    >
       <StepTitle>
-        <Translate pt="Adivinhação" en="Match the Pairs" />
+        <Translate
+          pt="Adivinhação"
+          en="Match the Pairs"
+        />
       </StepTitle>
       <Instruction contained>
         <Translate
@@ -80,7 +86,10 @@ export function StepMatchDreams({ players, user, table, onSubmitVotes, dreams }:
           className={clsx(isVotingComplete && getAnimationClass('tada'))}
           size="large"
         >
-          <Translate pt="Vote pra mim" en="Vote for me" />
+          <Translate
+            pt="Vote pra mim"
+            en="Vote for me"
+          />
         </Button>
         <Button
           type="primary"
@@ -89,7 +98,10 @@ export function StepMatchDreams({ players, user, table, onSubmitVotes, dreams }:
           className={clsx(isVotingComplete && getAnimationClass('tada'))}
           size="large"
         >
-          <Translate pt="Enviar" en="Submit" />
+          <Translate
+            pt="Enviar"
+            en="Submit"
+          />
         </Button>
       </SpaceContainer>
 
