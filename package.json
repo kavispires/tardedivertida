@@ -54,7 +54,7 @@
 		"onboard": "node scripts/onboard-game.cjs",
 		"update-commit": "bash scripts/update_commit.sh",
 		"sort-imports": "node scripts/sort-imports-in-folder.cjs",
-		"clean": "rm -rf node_modules"
+		"clean": "rm -rf node_modules & yarn cache clean"
 	},
 	"browserslist": {
 		"production": [
