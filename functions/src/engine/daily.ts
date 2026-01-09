@@ -139,7 +139,7 @@ type DailySaveTestimoniesPayload = {
 };
 
 interface FirestoreTestimonyData {
-  [key: string]: string;
+  [key: string]: string; // userId -> stringified data
 }
 interface FirestoreParsedTestimonyData {
   [key: string]: {
@@ -159,38 +159,46 @@ const saveTestimonies = async (data: DailySaveTestimoniesPayload, auth: Firebase
     const docRef = utils.firestore.getDataRef().doc('testimonies');
     const doc = await docRef.get();
     const docData = doc.data() as FirestoreTestimonyData;
-    const parsedData = Object.keys(docData).reduce((acc: FirestoreParsedTestimonyData, testimonyId) => {
-      acc[testimonyId] = JSON.parse(docData[testimonyId]);
-      return acc;
-    }, {});
+    const previousUserData = JSON.parse(docData?.[uid] || '{}') as FirestoreTestimonyData;
+
+    const aggregatedUserData = Object.keys(previousUserData).reduce(
+      (acc: FirestoreParsedTestimonyData, testimonyId) => {
+        acc[testimonyId] = JSON.parse(previousUserData[testimonyId]);
+        return acc;
+      },
+      {},
+    );
 
     // Parse each data
     data.answers.forEach((answer) => {
       const testimonyId = answer.testimonyId;
-      if (!parsedData[testimonyId]) {
-        parsedData[testimonyId] = {};
+      if (!aggregatedUserData[testimonyId]) {
+        aggregatedUserData[testimonyId] = {};
       }
       answer.related.forEach((suspectId) => {
-        if (!parsedData[testimonyId][suspectId]) {
-          parsedData[testimonyId][suspectId] = [];
+        if (!aggregatedUserData[testimonyId][suspectId]) {
+          aggregatedUserData[testimonyId][suspectId] = [];
         }
-        parsedData[testimonyId][suspectId].push(1);
+        aggregatedUserData[testimonyId][suspectId].push(1);
       });
 
       answer.unrelated.forEach((suspectId) => {
-        if (!parsedData[testimonyId][suspectId]) {
-          parsedData[testimonyId][suspectId] = [];
+        if (!aggregatedUserData[testimonyId][suspectId]) {
+          aggregatedUserData[testimonyId][suspectId] = [];
         }
-        parsedData[testimonyId][suspectId].push(-1);
+        aggregatedUserData[testimonyId][suspectId].push(-1);
       });
     });
 
-    const stringifiedData = Object.keys(parsedData).reduce((acc: FirestoreTestimonyData, testimonyId) => {
-      acc[testimonyId] = JSON.stringify(parsedData[testimonyId]);
-      return acc;
-    }, {});
+    const stringifiedData = Object.keys(aggregatedUserData).reduce(
+      (acc: FirestoreTestimonyData, testimonyId) => {
+        acc[testimonyId] = JSON.stringify(aggregatedUserData[testimonyId]);
+        return acc;
+      },
+      {},
+    );
 
-    await docRef.update(stringifiedData);
+    await docRef.update({ [uid]: JSON.stringify(stringifiedData) });
   } catch (error) {
     utils.firebase.throwException(error, actionText);
   }
