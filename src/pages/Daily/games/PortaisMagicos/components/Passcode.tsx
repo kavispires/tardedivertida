@@ -23,7 +23,10 @@ export function Passcode({
   const wordsLength = words[0].length;
 
   return (
-    <div className="passcode" style={{ gridTemplateColumns: `repeat(${words.length}, 1fr)` }}>
+    <div
+      className="passcode"
+      style={{ gridTemplateColumns: `repeat(${words.length}, 1fr)` }}
+    >
       {words.map((word, wordIndex) => {
         const isCorrect = passcode[wordIndex] === latestGuess[wordIndex];
 

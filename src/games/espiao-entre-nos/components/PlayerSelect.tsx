@@ -37,7 +37,10 @@ export function PlayerSelect({ players, onSend, isFinalAssessment = false }: Pla
         placeholder={translate('Acuse um jogador', 'Accuse a player')}
       >
         {playersWithoutMe.map((player) => (
-          <Select.Option key={player.id} value={player.id}>
+          <Select.Option
+            key={player.id}
+            value={player.id}
+          >
             {player.name}
           </Select.Option>
         ))}
@@ -61,7 +64,10 @@ export function PlayerSelect({ players, onSend, isFinalAssessment = false }: Pla
           disabled={!selectedPlayerId || isLoading}
           icon={isLoading ? <LoadingOutlined /> : null}
         >
-          <Translate pt="Acusar" en="Accuse" />
+          <Translate
+            pt="Acusar"
+            en="Accuse"
+          />
           {selectedPlayerId ? `: ${players[selectedPlayerId]?.name}` : ''}
         </Button>
       </Popconfirm>

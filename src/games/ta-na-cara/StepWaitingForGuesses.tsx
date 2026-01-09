@@ -35,7 +35,10 @@ export function StepWaitingForGuesses({
   activePlayerId,
 }: StepWaitingForGuessesProps) {
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         <IconAvatar icon={<AnimatedClockIcon />} />
         <Translate
@@ -65,9 +68,17 @@ export function StepWaitingForGuesses({
         userCharacterId={user.cardId}
       />
 
-      <PlayersBoards players={players} user={user} questionsDict={questionsDict} />
+      <PlayersBoards
+        players={players}
+        user={user}
+        questionsDict={questionsDict}
+      />
 
-      <TurnOrder players={players} order={turnOrder} activePlayerId={activePlayerId} />
+      <TurnOrder
+        players={players}
+        order={turnOrder}
+        activePlayerId={activePlayerId}
+      />
     </Step>
   );
 }

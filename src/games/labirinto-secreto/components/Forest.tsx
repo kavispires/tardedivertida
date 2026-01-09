@@ -64,7 +64,10 @@ export function Forest({
   if (!forest || !map || map.length === 0 || !screenWidth) {
     return (
       <SpaceContainer vertical>
-        <IconAvatar icon={<AnimatedProcessingIcon />} size="large" />
+        <IconAvatar
+          icon={<AnimatedProcessingIcon />}
+          size="large"
+        />
       </SpaceContainer>
     );
   }
@@ -109,7 +112,10 @@ export function Forest({
             <TransformComponent
               wrapperClass={clsx('forest-container', size === 'small' && 'forest-container--small')}
             >
-              <div className="forest" style={{ borderColor: forestBorderColor }}>
+              <div
+                className="forest"
+                style={{ borderColor: forestBorderColor }}
+              >
                 {forest.map((tree) => {
                   const segment = treeMap?.[tree.id];
 
@@ -205,7 +211,10 @@ export function Forest({
                   }
 
                   return (
-                    <div key={`tree-${tree.id}`} className="forest__tree-container">
+                    <div
+                      key={`tree-${tree.id}`}
+                      className="forest__tree-container"
+                    >
                       <ForestTree
                         segment={segment}
                         tree={tree}
@@ -272,13 +281,22 @@ function ForestControls({ zoomIn, zoomOut, resetTransform, position }: ForestCon
       justify="center"
     >
       <Flex>
-        <Button onClick={() => zoomIn(0.1)} size="small">
+        <Button
+          onClick={() => zoomIn(0.1)}
+          size="small"
+        >
           <ZoomInOutlined />
         </Button>
-        <Button onClick={() => zoomOut(0.1)} size="small">
+        <Button
+          onClick={() => zoomOut(0.1)}
+          size="small"
+        >
           <ZoomOutOutlined />
         </Button>
-        <Button onClick={() => resetTransform()} size="small">
+        <Button
+          onClick={() => resetTransform()}
+          size="small"
+        >
           <FullscreenExitOutlined />
         </Button>
       </Flex>

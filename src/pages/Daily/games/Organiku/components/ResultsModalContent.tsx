@@ -70,23 +70,40 @@ export function ResultsModalContent({
 
   return (
     <SpaceContainer vertical>
-      <Typography.Title level={2} className="center">
+      <Typography.Title
+        level={2}
+        className="center"
+      >
         {win ? (
           <>
-            <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Parabéns!" en="Congratulations!" />
+            <IconAvatar icon={<TrophyIcon />} />{' '}
+            <Translate
+              pt="Parabéns!"
+              en="Congratulations!"
+            />
           </>
         ) : (
           <>
-            <IconAvatar icon={<BoxXIcon />} /> <Translate pt="Que pena!" en="Too bad!" />
+            <IconAvatar icon={<BoxXIcon />} />{' '}
+            <Translate
+              pt="Que pena!"
+              en="Too bad!"
+            />
           </>
         )}
       </Typography.Title>
 
-      <Typography.Text strong className="center">
+      <Typography.Text
+        strong
+        className="center"
+      >
         {title}
       </Typography.Text>
 
-      <Flex align="center" gap={3}>
+      <Flex
+        align="center"
+        gap={3}
+      >
         {correctItems.map((itemId, index) =>
           itemId ? (
             <DailyItem
@@ -103,12 +120,20 @@ export function ResultsModalContent({
               )}
             />
           ) : (
-            <DailyItem key={`empty-${index}`} itemId="0" width={45} className="organiku-incomplete-item" />
+            <DailyItem
+              key={`empty-${index}`}
+              itemId="0"
+              width={45}
+              className="organiku-incomplete-item"
+            />
           ),
         )}
       </Flex>
 
-      <CopyToClipboardResult result={result} rows={4} />
+      <CopyToClipboardResult
+        result={result}
+        rows={4}
+      />
 
       <NextGameSuggestion />
     </SpaceContainer>

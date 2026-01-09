@@ -1,6 +1,10 @@
 export function DictionaryIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#fbf7f7"
         d="M256 370.4 143.4 388 30.8 370.4v-29.3q81.45-25.5 162.9-30a59.3 59.3 0 0 1 62.3 59.3"

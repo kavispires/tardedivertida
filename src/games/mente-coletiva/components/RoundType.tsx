@@ -27,7 +27,10 @@ export function RoundType({ roundType, className = '' }: RoundTypeProps) {
       </div>
 
       <div>
-        <Translate pt={<>Nesta rodada,</>} en={<>This round</>} />
+        <Translate
+          pt={<>Nesta rodada,</>}
+          en={<>This round</>}
+        />
       </div>
       {roundType === 1 && (
         <Translate

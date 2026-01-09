@@ -79,25 +79,45 @@ export function StepReveal({
   const isFinalMovie = Boolean(outcome === 'DONE' && mistakes.length < 2 && finalMovieId);
 
   return (
-    <Step fullWidth announcement={announcement}>
-      <StepTitle size="small" className={getAnimationClass('slideInDown')}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
+      <StepTitle
+        size="small"
+        className={getAnimationClass('slideInDown')}
+      >
         <Translate
           pt={
             <>
-              <PlayerAvatarName player={activePlayer} addressUser /> eliminou
+              <PlayerAvatarName
+                player={activePlayer}
+                addressUser
+              />{' '}
+              eliminou
             </>
           }
           en={
             <>
-              <PlayerAvatarName player={activePlayer} addressUser /> eliminated
+              <PlayerAvatarName
+                player={activePlayer}
+                addressUser
+              />{' '}
+              eliminated
             </>
           }
         />
         :
-        <MovieHighlight movies={movies} movieId={currentMovieId} />
+        <MovieHighlight
+          movies={movies}
+          movieId={currentMovieId}
+        />
       </StepTitle>
 
-      <Reviews goodReview={goodReview} badReview={badReview} />
+      <Reviews
+        goodReview={goodReview}
+        badReview={badReview}
+      />
 
       <HostNextPhaseButton
         round={round}
@@ -117,13 +137,23 @@ export function StepReveal({
           <Translate
             pt={
               <>
-                Ah não! <ListOfPlayers players={players} list={votedForSelectedMovie} prefix="vote" />
+                Ah não!{' '}
+                <ListOfPlayers
+                  players={players}
+                  list={votedForSelectedMovie}
+                  prefix="vote"
+                />
                 {pluralize(votedForSelectedMovie.length, 'escolheu', 'escolheram')} esse filme.
               </>
             }
             en={
               <>
-                Oh no! <ListOfPlayers players={players} list={votedForSelectedMovie} prefix="vote" />
+                Oh no!{' '}
+                <ListOfPlayers
+                  players={players}
+                  list={votedForSelectedMovie}
+                  prefix="vote"
+                />
                 chose this movie.
               </>
             }
@@ -205,11 +235,22 @@ export function StepReveal({
 
       <ViewIf condition={isFinalMovie}>
         <div>
-          <Title level={4} size="medium">
-            {!!finalMovieId && <MovieHighlight movies={movies} movieId={finalMovieId} />}
+          <Title
+            level={4}
+            size="medium"
+          >
+            {!!finalMovieId && (
+              <MovieHighlight
+                movies={movies}
+                movieId={finalMovieId}
+              />
+            )}
           </Title>
           <Instruction contained>
-            <Translate pt="Vote no poster do filme" en="Vote for the movie poster" />
+            <Translate
+              pt="Vote no poster do filme"
+              en="Vote for the movie poster"
+            />
             :
             <br />
             <SpaceContainer wrap>
@@ -224,7 +265,11 @@ export function StepReveal({
                     })
                   }
                 >
-                  <ImageCard cardId={posterId} cardWidth={posterWidth} preview={false} />
+                  <ImageCard
+                    cardId={posterId}
+                    cardWidth={posterWidth}
+                    preview={false}
+                  />
                 </TransparentButton>
               ))}
             </SpaceContainer>
@@ -243,7 +288,11 @@ export function StepReveal({
         disableButtons
       />
 
-      <TurnOrder players={players} activePlayerId={activePlayer.id} order={turnOrder} />
+      <TurnOrder
+        players={players}
+        activePlayerId={activePlayer.id}
+        order={turnOrder}
+      />
     </Step>
   );
 }

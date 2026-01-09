@@ -61,7 +61,10 @@ export function DailyVitrais({ data }: DailyVitraisProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyPuzzleGameIcon />} localStorageKey={SETTINGS.KEY}>
+      <Header
+        icon={<DailyPuzzleGameIcon />}
+        localStorageKey={SETTINGS.KEY}
+      >
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <DailyContent ref={ref}>
@@ -69,7 +72,12 @@ export function DailyVitrais({ data }: DailyVitraisProps) {
           hearts={hearts}
           total={SETTINGS.HEARTS}
           openRules={!isComplete || hearts === SETTINGS.HEARTS}
-          rules={<Rules date={data.id} numberOfPieces={data.pieces.length} />}
+          rules={
+            <Rules
+              date={data.id}
+              numberOfPieces={data.pieces.length}
+            />
+          }
         />
 
         <Region>
@@ -80,14 +88,28 @@ export function DailyVitrais({ data }: DailyVitraisProps) {
         </Region>
 
         {isComplete && (
-          <Space className="results-container" orientation="vertical" align="center">
-            <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
-              <Translate pt="Ver Resultado" en="Show Results" />
+          <Space
+            className="results-container"
+            orientation="vertical"
+            align="center"
+          >
+            <Button
+              onClick={() => setShowResultModal(true)}
+              type="primary"
+              icon={<BarChartOutlined />}
+            >
+              <Translate
+                pt="Ver Resultado"
+                en="Show Results"
+              />
             </Button>
           </Space>
         )}
 
-        <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
+        <DndContext
+          sensors={sensors}
+          onDragEnd={handleDragEnd}
+        >
           <Region className="full-width">
             <div
               className="vitrais-dnd-area"
@@ -136,9 +158,18 @@ export function DailyVitrais({ data }: DailyVitraisProps) {
                     );
                   })}
 
-                  <Flex style={{ position: 'absolute', bottom: 16, right: 16 }} gap={8}>
-                    <Button size="small" onClick={resetUnlockedPieces}>
-                      <Translate pt="Resetar" en="Reset" />
+                  <Flex
+                    style={{ position: 'absolute', bottom: 16, right: 16 }}
+                    gap={8}
+                  >
+                    <Button
+                      size="small"
+                      onClick={resetUnlockedPieces}
+                    >
+                      <Translate
+                        pt="Resetar"
+                        en="Reset"
+                      />
                     </Button>
                   </Flex>
                 </>
@@ -147,7 +178,11 @@ export function DailyVitrais({ data }: DailyVitraisProps) {
           </Region>
         </DndContext>
 
-        <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
+        <Modal
+          open={showResultModal}
+          onCancel={() => setShowResultModal(false)}
+          footer={null}
+        >
           <ResultsModalContent
             challengeNumber={data.number}
             win={isWin}

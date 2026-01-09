@@ -34,7 +34,10 @@ function getActiveComponent(state: GameState) {
 
 function SessionSonhosPesadelos() {
   return (
-    <Session gameCollection={GAME_COLLECTION.SONHOS_PESADELOS} getActiveComponent={getActiveComponent} />
+    <Session
+      gameCollection={GAME_COLLECTION.SONHOS_PESADELOS}
+      getActiveComponent={getActiveComponent}
+    />
   );
 }
 

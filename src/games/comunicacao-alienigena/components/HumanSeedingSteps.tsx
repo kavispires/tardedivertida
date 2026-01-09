@@ -89,14 +89,29 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
   };
 
   return (
-    <SpaceContainer className="contained seeding-container" orientation="vertical" wrap>
+    <SpaceContainer
+      className="contained seeding-container"
+      orientation="vertical"
+      wrap
+    >
       <div className="seeding-container__stepper">
-        <Steps progressDot current={currentStep} items={steps} />
+        <Steps
+          progressDot
+          current={currentStep}
+          items={steps}
+        />
       </div>
 
       <SpaceContainer vertical>
-        <Title level={3} size="xx-small" colorScheme="light">
-          <Translate pt="Análise" en="Analysis" />
+        <Title
+          level={3}
+          size="xx-small"
+          colorScheme="light"
+        >
+          <Translate
+            pt="Análise"
+            en="Analysis"
+          />
         </Title>
         <RuleInstruction type="action">
           <Translate
@@ -122,15 +137,39 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
           </Card>
         </SpaceContainer>
 
-        <Flex justify="center" gap="middle" wrap="wrap">
+        <Flex
+          justify="center"
+          gap="middle"
+          wrap="wrap"
+        >
           {seed.items.map((item) => {
             const key = `${item.id}${SEPARATOR}${seed.attribute.id}`;
             return (
-              <Flex vertical justify="center" align="center" gap="small" key={key}>
-                <ItemCard itemId={`${item.id}`} text={item.name} width={84} />
+              <Flex
+                vertical
+                justify="center"
+                align="center"
+                gap="small"
+                key={key}
+              >
+                <ItemCard
+                  itemId={`${item.id}`}
+                  text={item.name}
+                  width={84}
+                />
                 <Switch
-                  checkedChildren={<Translate pt="Sim" en="Yes" />}
-                  unCheckedChildren={<Translate pt="Não" en="No" />}
+                  checkedChildren={
+                    <Translate
+                      pt="Sim"
+                      en="Yes"
+                    />
+                  }
+                  unCheckedChildren={
+                    <Translate
+                      pt="Não"
+                      en="No"
+                    />
+                  }
                   onChange={() => updateSelected(key)}
                   checked={selected[key]}
                 />
@@ -148,17 +187,40 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
 
         <SpaceContainer>
           {currentStep < seeders.length - 1 && (
-            <Button size="large" onClick={onGoToPreviousAttribute} disabled={isLoading || currentStep === 0}>
-              <Translate pt="Atributo anterior" en="Previous attribute" />
+            <Button
+              size="large"
+              onClick={onGoToPreviousAttribute}
+              disabled={isLoading || currentStep === 0}
+            >
+              <Translate
+                pt="Atributo anterior"
+                en="Previous attribute"
+              />
             </Button>
           )}
           {currentStep < seeders.length - 1 ? (
-            <Button size="large" type="primary" onClick={onAddSeeds} disabled={user.ready}>
-              <Translate pt="Próximo atributo" en="Next attribute" />
+            <Button
+              size="large"
+              type="primary"
+              onClick={onAddSeeds}
+              disabled={user.ready}
+            >
+              <Translate
+                pt="Próximo atributo"
+                en="Next attribute"
+              />
             </Button>
           ) : (
-            <Button size="large" type="primary" onClick={onDoneSeeding} disabled={isLoading}>
-              <Translate pt="Enviar análises" en="Submit Analyses" />
+            <Button
+              size="large"
+              type="primary"
+              onClick={onDoneSeeding}
+              disabled={isLoading}
+            >
+              <Translate
+                pt="Enviar análises"
+                en="Submit Analyses"
+              />
             </Button>
           )}
         </SpaceContainer>

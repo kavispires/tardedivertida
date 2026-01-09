@@ -34,8 +34,14 @@ export function HumanSignBoard({ attributes, startingAttributesIds = [] }: Human
 
   return (
     <Space orientation="vertical">
-      <Title level={3} size="xx-small">
-        <Translate pt="Atributos e Símbolos" en="Attributes and Symbols" />
+      <Title
+        level={3}
+        size="xx-small"
+      >
+        <Translate
+          pt="Atributos e Símbolos"
+          en="Attributes and Symbols"
+        />
         <Popover
           content={
             <Translate
@@ -43,36 +49,74 @@ export function HumanSignBoard({ attributes, startingAttributesIds = [] }: Human
               en="You may click on the title of an attribute to erase what you drew"
             />
           }
-          title={<Translate pt="Dica" en="Hint" />}
+          title={
+            <Translate
+              pt="Dica"
+              en="Hint"
+            />
+          }
           arrow
         >
-          <Button type="text" style={{ color: 'white' }} icon={<InfoCircleOutlined />} shape="circle" />{' '}
+          <Button
+            type="text"
+            style={{ color: 'white' }}
+            icon={<InfoCircleOutlined />}
+            shape="circle"
+          />{' '}
         </Popover>
       </Title>
-      <Space orientation="vertical" className="board-container">
+      <Space
+        orientation="vertical"
+        className="board-container"
+      >
         <div className="attributes-grid">
           {orderBy(attributes, `attribute.${language}`).map((attribute) => {
             if (startingAttributesIds.find((attributeId) => attributeId === attribute.id)) {
               return (
-                <div className="attributes-grid__item" key={attribute.id}>
+                <div
+                  className="attributes-grid__item"
+                  key={attribute.id}
+                >
                   <Tooltip
                     title={`${dualTranslate(attribute.description ? attribute.description : attribute.name)} (${dualTranslate({ pt: 'Item inicial', en: 'Starting item' })})`}
                     placement="bottom"
                   >
                     <DualTranslate>{attribute.name}</DualTranslate>*
                   </Tooltip>
-                  <SignCard signId={`${attribute.spriteId}`} className="transparent" width={48} />
+                  <SignCard
+                    signId={`${attribute.spriteId}`}
+                    className="transparent"
+                    width={48}
+                  />
                 </div>
               );
             }
 
             return (
-              <div className="attributes-grid__item" key={attribute.id}>
+              <div
+                className="attributes-grid__item"
+                key={attribute.id}
+              >
                 <Popconfirm
-                  title={<Translate pt="Apagar símbolo" en="Erase symbol" />}
+                  title={
+                    <Translate
+                      pt="Apagar símbolo"
+                      en="Erase symbol"
+                    />
+                  }
                   onConfirm={() => updateCache(attribute.id, [])}
-                  okText={<Translate pt="Sim" en="Yes" />}
-                  cancelText={<Translate pt="Não" en="No" />}
+                  okText={
+                    <Translate
+                      pt="Sim"
+                      en="Yes"
+                    />
+                  }
+                  cancelText={
+                    <Translate
+                      pt="Não"
+                      en="No"
+                    />
+                  }
                 >
                   <Tooltip
                     title={dualTranslate(attribute.description ? attribute.description : attribute.name)}
@@ -99,13 +143,31 @@ export function HumanSignBoard({ attributes, startingAttributesIds = [] }: Human
         </div>
         <div className="attributes-grid__item">
           <Popconfirm
-            title={<Translate pt="Apagar símbolo" en="Erase symbol" />}
+            title={
+              <Translate
+                pt="Apagar símbolo"
+                en="Erase symbol"
+              />
+            }
             onConfirm={() => updateCache('unknown', [])}
-            okText={<Translate pt="Sim" en="Yes" />}
-            cancelText={<Translate pt="Não" en="No" />}
+            okText={
+              <Translate
+                pt="Sim"
+                en="Yes"
+              />
+            }
+            cancelText={
+              <Translate
+                pt="Não"
+                en="No"
+              />
+            }
           >
             <TransparentButton>
-              <Translate pt="Símbolos Desconhecidos" en="Unknown Symbols" />
+              <Translate
+                pt="Símbolos Desconhecidos"
+                en="Unknown Symbols"
+              />
             </TransparentButton>
           </Popconfirm>
           <DrawingCanvas
@@ -121,13 +183,34 @@ export function HumanSignBoard({ attributes, startingAttributesIds = [] }: Human
         </div>
 
         <Popconfirm
-          title={<Translate pt="Apagar todos" en="Erase Clear all" />}
+          title={
+            <Translate
+              pt="Apagar todos"
+              en="Erase Clear all"
+            />
+          }
           onConfirm={() => setCache({})}
-          okText={<Translate pt="Sim" en="Yes" />}
-          cancelText={<Translate pt="Não" en="No" />}
+          okText={
+            <Translate
+              pt="Sim"
+              en="Yes"
+            />
+          }
+          cancelText={
+            <Translate
+              pt="Não"
+              en="No"
+            />
+          }
         >
-          <Button size="small" type="dashed">
-            <Translate pt="Apagar todos" en="Clear all" />
+          <Button
+            size="small"
+            type="dashed"
+          >
+            <Translate
+              pt="Apagar todos"
+              en="Clear all"
+            />
           </Button>
         </Popconfirm>
       </Space>

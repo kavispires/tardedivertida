@@ -28,7 +28,10 @@ export function StepSelectMovie({
   onSelectMovie,
 }: StepSelectMovieProps) {
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         <Translate
           pt={<>Selecione um filme que caiba às duas críticas abaixo</>}
@@ -36,7 +39,10 @@ export function StepSelectMovie({
         />
       </StepTitle>
 
-      <Reviews goodReview={goodReview} badReview={badReview} />
+      <Reviews
+        goodReview={goodReview}
+        badReview={badReview}
+      />
 
       <RuleInstruction type="rule">
         <Translate
@@ -45,7 +51,11 @@ export function StepSelectMovie({
         />
       </RuleInstruction>
 
-      <Movies movies={movies} user={user} onSelect={(movieId) => onSelectMovie({ movieId })} />
+      <Movies
+        movies={movies}
+        user={user}
+        onSelect={(movieId) => onSelectMovie({ movieId })}
+      />
     </Step>
   );
 }

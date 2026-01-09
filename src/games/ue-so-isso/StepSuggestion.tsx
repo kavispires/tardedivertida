@@ -42,7 +42,10 @@ export function StepSuggestion({
   }, []);
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         <Translate
           pt={
@@ -88,7 +91,10 @@ export function StepSuggestion({
         inputQuantity={suggestionsNumber}
         submitButtonLabel={
           <>
-            <Translate pt="Enviar dica" en="Send clue" />
+            <Translate
+              pt="Enviar dica"
+              en="Send clue"
+            />
             {suggestionsNumber > 1 && 's'}
           </>
         }
@@ -98,7 +104,10 @@ export function StepSuggestion({
         }}
       />
 
-      <DevButton ghost onClick={() => onSendSuggestions(mockSuggestions(suggestionsNumber))}>
+      <DevButton
+        ghost
+        onClick={() => onSendSuggestions(mockSuggestions(suggestionsNumber))}
+      >
         Mock Suggestions
       </DevButton>
     </Step>

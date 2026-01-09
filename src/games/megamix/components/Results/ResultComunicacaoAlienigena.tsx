@@ -10,9 +10,15 @@ export function ResultComunicacaoAlienigena({ winningValues }: ResultComponentPr
     <>
       <Instruction>
         {winningValues.length > 1 ? (
-          <Translate pt="Os objetos mais votados foram" en="Most voted objects are" />
+          <Translate
+            pt="Os objetos mais votados foram"
+            en="Most voted objects are"
+          />
         ) : (
-          <Translate pt="O objeto mais votado foi" en="Most voted object is" />
+          <Translate
+            pt="O objeto mais votado foi"
+            en="Most voted object is"
+          />
         )}
         :
       </Instruction>

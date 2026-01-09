@@ -1,6 +1,10 @@
 export function HangingPhotographIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#e9edf1"
         d="M413.714 484.001l-10-370.01H108.289c-8.284 0-15 6.716-15 15v360.01l305.426 10c8.284 0 14.999-6.715 14.999-15z"

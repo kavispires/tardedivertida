@@ -24,8 +24,16 @@ export function FinalCharacter({ players, character, glyphWidth, imageCardsMode 
 
   return (
     <div className="q-player-glyphs q-final-character">
-      <PlayerAvatarStrip player={players[character.playerId]} withName className="q-player-glyphs__strip" />
-      <QSECard width={100} character={character} imageCardMode={imageCardsMode} />
+      <PlayerAvatarStrip
+        player={players[character.playerId]}
+        withName
+        className="q-player-glyphs__strip"
+      />
+      <QSECard
+        width={100}
+        character={character}
+        imageCardMode={imageCardsMode}
+      />
 
       {positive.map((id, index) => {
         return (
@@ -33,9 +41,15 @@ export function FinalCharacter({ players, character, glyphWidth, imageCardsMode 
             className="q-player-glyphs__entry q-player-glyphs__entry--positive"
             key={`pos-${character.id}-${id}-${index}`}
           >
-            <IconAvatar icon={<YesIcon />} size="small" />
+            <IconAvatar
+              icon={<YesIcon />}
+              size="small"
+            />
             {id ? (
-              <GlyphCard width={glyphWidth} glyphId={id} />
+              <GlyphCard
+                width={glyphWidth}
+                glyphId={id}
+              />
             ) : (
               <div
                 className="q-selections__no-glyph"
@@ -51,9 +65,15 @@ export function FinalCharacter({ players, character, glyphWidth, imageCardsMode 
             className="q-player-glyphs__entry q-player-glyphs__entry--negative"
             key={`neg-${character.id}-${id}-${index}`}
           >
-            <IconAvatar icon={<NoIcon />} size="small" />
+            <IconAvatar
+              icon={<NoIcon />}
+              size="small"
+            />
             {id ? (
-              <GlyphCard width={glyphWidth} glyphId={id} />
+              <GlyphCard
+                width={glyphWidth}
+                glyphId={id}
+              />
             ) : (
               <div
                 className="q-selections__no-glyph"

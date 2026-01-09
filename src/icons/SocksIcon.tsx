@@ -1,6 +1,10 @@
 export function SocksIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#8cbafa"
         d="M236 8l-48 182-70 6a74 74 0 1013 147l96-8 44-4c12-1 23-10 26-23l35-131 36-134L236 8z"
@@ -9,12 +13,18 @@ export function SocksIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#5692d8"
         d="M344 36l-32 121-35 131c-3 12-14 21-26 22l-44 4-97 8c-17 2-34-3-48-12 15 22 41 35 69 33l96-8 44-4c12-1 23-10 26-23l35-131 36-134-24-7z"
       ></path>
-      <path fill="#e9e9ea" d="M123 195l-5 1a74 74 0 1013 147h5a96 96 0 00-13-148z"></path>
+      <path
+        fill="#e9e9ea"
+        d="M123 195l-5 1a74 74 0 1013 147h5a96 96 0 00-13-148z"
+      ></path>
       <path
         fill="#c9c8cd"
         d="M154 319l-44 3c-17 2-34-3-48-12l1 1a75 75 0 0013 14l1 1 2 2 1 1 2 1 1 1 2 1 1 1a74 74 0 005 3h1a74 74 0 006 2v1a74 74 0 006 2h1l3 1h4l3 1h8a74 74 0 008 0h5c7-7 13-16 18-24z"
       ></path>
-      <path fill="#ffcd34" d="M288 262a47 47 0 00-50 72l33-3c12-1 23-10 26-23l10-36c-5-5-11-8-19-10z"></path>
+      <path
+        fill="#ffcd34"
+        d="M288 262a47 47 0 00-50 72l33-3c12-1 23-10 26-23l10-36c-5-5-11-8-19-10z"
+      ></path>
       <path
         fill="#e69012"
         d="M284 261l-7 27c-3 12-14 21-26 22l-21 2c1 8 4 15 8 22l33-3c12-1 23-10 26-23l10-36a46 46 0 00-23-11z"
@@ -27,12 +37,18 @@ export function SocksIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#5692d8"
         d="M437 149v260c0 13-8 24-20 28l-41 15-91 33c-17 6-34 6-50 1 20 17 48 24 75 14l91-33 41-15c12-4 20-16 20-28V149h-25z"
       ></path>
-      <path fill="#e9e9ea" d="M264 359l-5 2a74 74 0 1051 139l5-2a96 96 0 00-51-139z"></path>
+      <path
+        fill="#e9e9ea"
+        d="M264 359l-5 2a74 74 0 1051 139l5-2a96 96 0 00-51-139z"
+      ></path>
       <path
         fill="#c9c8cd"
         d="M326 471l-41 14c-17 6-34 6-50 1l1 1a70 70 0 0016 10l1 1 3 1h1l2 1h1l3 1 1 1a71 71 0 006 1h1a72 72 0 006 1 75 75 0 007 1l3-1h9l2-1h1l3-1h1a77 77 0 007-2l5-2c5-8 8-18 11-27z"
       ></path>
-      <path fill="#ffcd34" d="M441 381a47 47 0 00-30 82l31-11c12-4 20-16 20-28v-38c-7-4-14-5-21-5z"></path>
+      <path
+        fill="#ffcd34"
+        d="M441 381a47 47 0 00-30 82l31-11c12-4 20-16 20-28v-38c-7-4-14-5-21-5z"
+      ></path>
       <path
         fill="#e69012"
         d="M437 381v28c0 13-8 24-20 28l-20 7c3 8 8 14 14 19l31-11c12-4 20-16 20-28v-38a46 46 0 00-25-5z"

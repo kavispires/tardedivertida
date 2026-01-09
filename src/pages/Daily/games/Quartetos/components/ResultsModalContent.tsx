@@ -52,27 +52,44 @@ export function ResultsModalContent({
 
   return (
     <SpaceContainer vertical>
-      <Typography.Title level={2} className="center">
+      <Typography.Title
+        level={2}
+        className="center"
+      >
         {win ? (
           <>
-            <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Parabéns!" en="Congratulations!" />
+            <IconAvatar icon={<TrophyIcon />} />{' '}
+            <Translate
+              pt="Parabéns!"
+              en="Congratulations!"
+            />
           </>
         ) : (
           <>
-            <IconAvatar icon={<BoxXIcon />} /> <Translate pt="Que pena!" en="Too bad!" />
+            <IconAvatar icon={<BoxXIcon />} />{' '}
+            <Translate
+              pt="Que pena!"
+              en="Too bad!"
+            />
           </>
         )}
       </Typography.Title>
 
       <SpaceContainer vertical>
         {sets.map((set) => (
-          <div key={set.id} className={clsx('set-result-title', `set-match--set-${set.level}`)}>
+          <div
+            key={set.id}
+            className={clsx('set-result-title', `set-match--set-${set.level}`)}
+          >
             {set.title}
           </div>
         ))}
       </SpaceContainer>
 
-      <CopyToClipboardResult result={result} rows={5} />
+      <CopyToClipboardResult
+        result={result}
+        rows={5}
+      />
 
       <NextGameSuggestion />
     </SpaceContainer>

@@ -70,7 +70,10 @@ export const PlayerAvatarStrip = ({
   const sizes = getSize(size);
 
   return (
-    <Tooltip title={player.name} placement="right">
+    <Tooltip
+      title={player.name}
+      placement="right"
+    >
       <div
         {...rest}
         className={clsx(
@@ -86,7 +89,10 @@ export const PlayerAvatarStrip = ({
         }}
       >
         {icon ? (
-          <IconAvatar style={{ width: sizes.avatarSize, height: sizes.avatarSize }} icon={icon} />
+          <IconAvatar
+            style={{ width: sizes.avatarSize, height: sizes.avatarSize }}
+            icon={icon}
+          />
         ) : (
           <PlayerAvatar
             avatarId={player.avatarId}

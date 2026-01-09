@@ -37,9 +37,15 @@ export function StepSelectChallenge({
   });
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Selecione o desafio da rodada" en="Select the theme for the round" />
+        <Translate
+          pt="Selecione o desafio da rodada"
+          en="Select the theme for the round"
+        />
       </StepTitle>
 
       <RuleInstruction type="rule">
@@ -54,7 +60,10 @@ export function StepSelectChallenge({
           />
         )}
         {userContenders.length === 0 && (
-          <Translate pt={<> Selecione um dos desafios.</>} en={<> Select one of the challenges.</>} />
+          <Translate
+            pt={<> Selecione um dos desafios.</>}
+            en={<> Select one of the challenges.</>}
+          />
         )}
         {userContenders.length > 1 && round.current < 5 ? (
           <Translate
@@ -105,7 +114,10 @@ export function StepSelectChallenge({
               key={challenge.id}
               onClick={() => onSubmitChallenge({ challengeId: challenge.id })}
             >
-              <Card header={LETTERS[index]} randomColor>
+              <Card
+                header={LETTERS[index]}
+                randomColor
+              >
                 {challenge.text}
               </Card>
             </TransparentButton>

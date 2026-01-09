@@ -46,7 +46,12 @@ export function Announcement({
     return (
       <PhaseAnnouncement
         icon={<DiagramIcon />}
-        title={<Translate pt="Vamos começar!" en="Let's start!" />}
+        title={
+          <Translate
+            pt="Vamos começar!"
+            en="Let's start!"
+          />
+        }
         currentRound={currentRound}
         type="overlay"
         duration={20}
@@ -64,7 +69,12 @@ export function Announcement({
                 <br />
                 The themes of each area are secret and it's up to you to figure out the logic!
                 <br />
-                Let's start with <PlayerAvatarName player={activePlayer} addressUser />.
+                Let's start with{' '}
+                <PlayerAvatarName
+                  player={activePlayer}
+                  addressUser
+                />
+                .
               </>
             }
             pt={
@@ -77,7 +87,12 @@ export function Announcement({
                 <br />
                 Os temas de cada área são secretos e cabe a você descobrir a lógica!
                 <br />
-                Vamos começar com <PlayerAvatarName player={activePlayer} addressUser />.
+                Vamos começar com{' '}
+                <PlayerAvatarName
+                  player={activePlayer}
+                  addressUser
+                />
+                .
               </>
             }
           />
@@ -92,20 +107,41 @@ export function Announcement({
     return (
       <PhaseAnnouncement
         icon={
-          <Flex gap={6} justify="center" align="center" style={{ height: '100%' }}>
-            <ItemCard itemId={item.id} width={84} /> <IconAvatar icon={<ArrowIcon />} size="large" />{' '}
-            <SelectedAreasCircles selectedArea={previousGuess.correctArea} size={75} />
+          <Flex
+            gap={6}
+            justify="center"
+            align="center"
+            style={{ height: '100%' }}
+          >
+            <ItemCard
+              itemId={item.id}
+              width={84}
+            />{' '}
+            <IconAvatar
+              icon={<ArrowIcon />}
+              size="large"
+            />{' '}
+            <SelectedAreasCircles
+              selectedArea={previousGuess.correctArea}
+              size={75}
+            />
           </Flex>
         }
         title={
-          <Translate pt="O Juiz colocou esse item para ajudar" en="The Judge placed this item to help" />
+          <Translate
+            pt="O Juiz colocou esse item para ajudar"
+            en="The Judge placed this item to help"
+          />
         }
         currentRound={currentRound}
         type="overlay"
         duration={7}
       >
         <Instruction>
-          <Translate en={<>So, does it help?</>} pt={<>E ai, ajuda?</>} />
+          <Translate
+            en={<>So, does it help?</>}
+            pt={<>E ai, ajuda?</>}
+          />
         </Instruction>
       </PhaseAnnouncement>
     );
@@ -115,14 +151,40 @@ export function Announcement({
     return (
       <PhaseAnnouncement
         icon={
-          <Flex gap={6} justify="center" align="center" style={{ height: '100%' }}>
-            <ItemCard itemId={item.id} width={84} /> <IconAvatar icon={<ArrowIcon />} size="large" />{' '}
-            <SelectedAreasCircles selectedArea={previousGuess.correctArea} size={75} />
-            <IconAvatar icon={<BoxEqualIcon />} size="large" />
-            <IconAvatar icon={<ApplauseIcon />} size={75} />
+          <Flex
+            gap={6}
+            justify="center"
+            align="center"
+            style={{ height: '100%' }}
+          >
+            <ItemCard
+              itemId={item.id}
+              width={84}
+            />{' '}
+            <IconAvatar
+              icon={<ArrowIcon />}
+              size="large"
+            />{' '}
+            <SelectedAreasCircles
+              selectedArea={previousGuess.correctArea}
+              size={75}
+            />
+            <IconAvatar
+              icon={<BoxEqualIcon />}
+              size="large"
+            />
+            <IconAvatar
+              icon={<ApplauseIcon />}
+              size={75}
+            />
           </Flex>
         }
-        title={<Translate pt="Muito bem!" en="Good job!" />}
+        title={
+          <Translate
+            pt="Muito bem!"
+            en="Good job!"
+          />
+        }
         currentRound={currentRound}
         type="overlay"
         duration={7}
@@ -131,14 +193,20 @@ export function Announcement({
           <Translate
             en={
               <>
-                <PlayerAvatarName player={activePlayer} addressUser /> got it right!{' '}
-                {isTheActivePlayer ? 'You' : 'They'} may place another thing.
+                <PlayerAvatarName
+                  player={activePlayer}
+                  addressUser
+                />{' '}
+                got it right! {isTheActivePlayer ? 'You' : 'They'} may place another thing.
               </>
             }
             pt={
               <>
-                <PlayerAvatarName player={activePlayer} addressUser /> acertou!{' '}
-                {isTheActivePlayer ? 'Você' : 'Ele(a)'} pode colocar outra coisa.
+                <PlayerAvatarName
+                  player={activePlayer}
+                  addressUser
+                />{' '}
+                acertou! {isTheActivePlayer ? 'Você' : 'Ele(a)'} pode colocar outra coisa.
               </>
             }
           />
@@ -151,17 +219,59 @@ export function Announcement({
     <PhaseAnnouncement
       icon={
         <>
-          <Flex gap={6} justify="center" align="center" style={{ height: '100%' }}>
-            <ItemCard itemId={item.id} width={84} /> <IconAvatar icon={<ArrowIcon />} size="small" />{' '}
-            <SelectedAreasCircles selectedArea={previousGuess.suggestedArea} size={50} />
-            <IconAvatar icon={<BoxEqualIcon />} size="small" />
-            <IconAvatar icon={<SkullIcon />} size={50} />
+          <Flex
+            gap={6}
+            justify="center"
+            align="center"
+            style={{ height: '100%' }}
+          >
+            <ItemCard
+              itemId={item.id}
+              width={84}
+            />{' '}
+            <IconAvatar
+              icon={<ArrowIcon />}
+              size="small"
+            />{' '}
+            <SelectedAreasCircles
+              selectedArea={previousGuess.suggestedArea}
+              size={50}
+            />
+            <IconAvatar
+              icon={<BoxEqualIcon />}
+              size="small"
+            />
+            <IconAvatar
+              icon={<SkullIcon />}
+              size={50}
+            />
           </Flex>
-          <Flex gap={6} justify="center" align="center" style={{ height: '100%', marginTop: 16 }}>
-            <ItemCard itemId={item.id} width={84} /> <IconAvatar icon={<ArrowIcon />} size="small" />{' '}
-            <SelectedAreasCircles selectedArea={previousGuess.correctArea} size={50} />
-            <IconAvatar icon={<BoxEqualIcon />} size="small" />
-            <IconAvatar icon={<CheckMarkIcon />} size={50} />
+          <Flex
+            gap={6}
+            justify="center"
+            align="center"
+            style={{ height: '100%', marginTop: 16 }}
+          >
+            <ItemCard
+              itemId={item.id}
+              width={84}
+            />{' '}
+            <IconAvatar
+              icon={<ArrowIcon />}
+              size="small"
+            />{' '}
+            <SelectedAreasCircles
+              selectedArea={previousGuess.correctArea}
+              size={50}
+            />
+            <IconAvatar
+              icon={<BoxEqualIcon />}
+              size="small"
+            />
+            <IconAvatar
+              icon={<CheckMarkIcon />}
+              size={50}
+            />
           </Flex>
         </>
       }
@@ -211,12 +321,33 @@ export const GameOverIcon = ({ items, lastGuess }: GameOverIconProps) => {
   const item = items[lastGuess.itemId];
   const isWin = lastGuess.outcome === OUTCOME.WIN;
   return (
-    <Flex gap={6} justify="center" align="center" style={{ height: '100%' }}>
-      <ItemCard itemId={item.id} text={item.name} width={100} />{' '}
-      <IconAvatar icon={<ArrowIcon />} size="large" />{' '}
-      <SelectedAreasCircles selectedArea={lastGuess.correctArea} size={75} />
-      <IconAvatar icon={<BoxEqualIcon />} size="large" />
-      <IconAvatar icon={isWin ? <CrownIcon /> : <GarbageIcon />} size={125} />
+    <Flex
+      gap={6}
+      justify="center"
+      align="center"
+      style={{ height: '100%' }}
+    >
+      <ItemCard
+        itemId={item.id}
+        text={item.name}
+        width={100}
+      />{' '}
+      <IconAvatar
+        icon={<ArrowIcon />}
+        size="large"
+      />{' '}
+      <SelectedAreasCircles
+        selectedArea={lastGuess.correctArea}
+        size={75}
+      />
+      <IconAvatar
+        icon={<BoxEqualIcon />}
+        size="large"
+      />
+      <IconAvatar
+        icon={isWin ? <CrownIcon /> : <GarbageIcon />}
+        size={125}
+      />
     </Flex>
   );
 };

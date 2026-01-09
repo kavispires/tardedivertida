@@ -30,13 +30,23 @@ export function PhaseAlienSelection({ state, players }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<UfoIcon />}
-      title={<Translate pt="Quem quer ser o alienígena?" en="Who will be the Alien?" />}
+      title={
+        <Translate
+          pt="Quem quer ser o alienígena?"
+          en="Who will be the Alien?"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     />
   );
 
-  const title = <Translate pt="Quem quer ser o alienígena?" en="Who will be the Alien?" />;
+  const title = (
+    <Translate
+      pt="Quem quer ser o alienígena?"
+      en="Who will be the Alien?"
+    />
+  );
 
   const ruleInstruction = (
     <Translate
@@ -83,8 +93,14 @@ export function PhaseAlienSelection({ state, players }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={COMUNICACAO_ALIENIGENA_PHASES.ALIEN_SELECTION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={COMUNICACAO_ALIENIGENA_PHASES.ALIEN_SELECTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepSelectPlayer
           players={players}

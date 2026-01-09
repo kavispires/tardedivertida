@@ -54,12 +54,21 @@ export function StepSelectCard({
   useMock(() => onSubmitCard({ cardId: mockCardPick(user.hand) }));
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle size="small">
-        <Translate pt={<>Vamos (tentar) comprar o ingresso!</>} en={<>Let's (try to) buy the tickets!</>} />
+        <Translate
+          pt={<>Vamos (tentar) comprar o ingresso!</>}
+          en={<>Let's (try to) buy the tickets!</>}
+        />
       </StepTitle>
 
-      <FloatingPlayerStats user={user} robot={robot} />
+      <FloatingPlayerStats
+        user={user}
+        robot={robot}
+      />
 
       <RuleInstruction type="rule">
         <Translate
@@ -102,18 +111,31 @@ export function StepSelectCard({
         />
       </RuleInstruction>
 
-      <Summary user={user} robot={robot} />
+      <Summary
+        user={user}
+        robot={robot}
+      />
 
       {areTicketsInCart ? (
-        <Flex vertical className={getAnimationClass('fadeIn')} align="center">
-          <RuleInstruction type="event" className={getAnimationClass('tada')}>
+        <Flex
+          vertical
+          className={getAnimationClass('fadeIn')}
+          align="center"
+        >
+          <RuleInstruction
+            type="event"
+            className={getAnimationClass('tada')}
+          >
             <Translate
               pt={<>Colocamos os ingressos no carrinho e apareceu esse anúncio:</>}
               en={<>As we add the tickets to the cart and this ad appeared:</>}
             />
           </RuleInstruction>
 
-          <SpaceContainer vertical contained>
+          <SpaceContainer
+            vertical
+            contained
+          >
             <Flex justify="center">
               <CaptchaTopic captcha={captcha} />
             </Flex>
@@ -145,19 +167,32 @@ export function StepSelectCard({
           </SpaceContainer>
         </Flex>
       ) : (
-        <Space orientation="vertical" className="contained">
+        <Space
+          orientation="vertical"
+          className="contained"
+        >
           <SpaceContainer>
             <Typography.Text strong>
-              <Translate pt="Ingressos" en="Tickets" />{' '}
+              <Translate
+                pt="Ingressos"
+                en="Tickets"
+              />{' '}
             </Typography.Text>
-            <InputNumber value={playerCount} readOnly width="30px" />
+            <InputNumber
+              value={playerCount}
+              readOnly
+              width="30px"
+            />
             <Button
               loading={isLoading}
               onClick={() => setAreTicketsInCart(true)}
               type="primary"
               icon={<ShoppingCartOutlined />}
             >
-              <Translate pt="Adicionar ao carrinho" en="Add tickets to cart" />
+              <Translate
+                pt="Adicionar ao carrinho"
+                en="Add tickets to cart"
+              />
             </Button>
           </SpaceContainer>
         </Space>

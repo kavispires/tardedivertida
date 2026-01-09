@@ -80,7 +80,10 @@ export function StepSelectFeature({
         />
       </StepTitle>
 
-      <GroupScore groupScore={groupScore} playerScore={user.score} />
+      <GroupScore
+        groupScore={groupScore}
+        playerScore={user.score}
+      />
 
       <ViewOr condition={isUserTheActivePlayer}>
         <RuleInstruction type="wait">
@@ -135,7 +138,11 @@ export function StepSelectFeature({
 
       <div className="game-container">
         <div className="selections-container">
-          <ActivePlayerObjectClue activePlayer={activePlayer} item={item} clue={clue} />
+          <ActivePlayerObjectClue
+            activePlayer={activePlayer}
+            item={item}
+            clue={clue}
+          />
           <div
             className="features-container"
             style={{
@@ -155,7 +162,10 @@ export function StepSelectFeature({
                 disabled={feature.eliminated || isUserTheActivePlayer || isLoading}
                 type="yes-no"
               >
-                <TransparentButton className="features-container__button" disabled={feature.eliminated}>
+                <TransparentButton
+                  className="features-container__button"
+                  disabled={feature.eliminated}
+                >
                   <ObjectFeature
                     key={feature.id}
                     feature={feature}
@@ -163,7 +173,11 @@ export function StepSelectFeature({
                     className={clsx(feature.eliminated && 'features-container__eliminated-object')}
                   />
                   {feature.eliminated && (
-                    <IconAvatar icon={<XIcon />} size="large" className="features-container__eliminated-x" />
+                    <IconAvatar
+                      icon={<XIcon />}
+                      size="large"
+                      className="features-container__eliminated-x"
+                    />
                   )}
                 </TransparentButton>
               </Popconfirm>

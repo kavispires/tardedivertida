@@ -126,7 +126,10 @@ export function StepCreateConcepts({
   return (
     <Step fullWidth>
       <StepTitle>
-        <Translate pt={<>Criação de Conceitos</>} en={<>Concept Creation</>} />
+        <Translate
+          pt={<>Criação de Conceitos</>}
+          en={<>Concept Creation</>}
+        />
       </StepTitle>
 
       <RuleInstruction type="action">
@@ -161,7 +164,11 @@ export function StepCreateConcepts({
       />
 
       <SpaceContainer className="new-concepts-container">
-        <Flex wrap="wrap" gap={12} align="center">
+        <Flex
+          wrap="wrap"
+          gap={12}
+          align="center"
+        >
           {proposedConcepts.map((concept) => (
             <ConceptCreationBlock
               players={players}
@@ -180,7 +187,10 @@ export function StepCreateConcepts({
             onClick={onNewConcept}
             icon={<PlusCircleOutlined />}
           >
-            <Translate pt="Criar Conceito" en="Create Concept" />
+            <Translate
+              pt="Criar Conceito"
+              en="Create Concept"
+            />
           </Button>
         </Flex>
       </SpaceContainer>
@@ -192,7 +202,10 @@ export function StepCreateConcepts({
             disabled={!!activeConceptId || !areAllNewComplete}
             onClick={() => onSubmitConcepts({ proposedConcepts })}
           >
-            <Translate pt="Enviar Conceitos" en="Send Concepts" />
+            <Translate
+              pt="Enviar Conceitos"
+              en="Send Concepts"
+            />
           </SendButton>
         </SpaceContainer>
       )}
@@ -206,9 +219,19 @@ export function StepCreateConcepts({
             'In the next phase of the game, you will have to name one of the things below, so try to create concepts that help you with this task.'
           }
         />
-        <Flex justify="center" align="center" className="mt-2" gap={12}>
+        <Flex
+          justify="center"
+          align="center"
+          className="mt-2"
+          gap={12}
+        >
           {user.hand.map((item: Item) => (
-            <ItemCard key={item.id} itemId={item.id} title={dualTranslate(item.name)} width={48} />
+            <ItemCard
+              key={item.id}
+              itemId={item.id}
+              title={dualTranslate(item.name)}
+              width={48}
+            />
           ))}
         </Flex>
         <Translate
@@ -218,7 +241,12 @@ export function StepCreateConcepts({
       </RuleInstruction>
 
       {concepts.length > 0 && (
-        <ConceptsCollapse user={user} players={players} items={items} concepts={concepts} />
+        <ConceptsCollapse
+          user={user}
+          players={players}
+          items={items}
+          concepts={concepts}
+        />
       )}
     </Step>
   );

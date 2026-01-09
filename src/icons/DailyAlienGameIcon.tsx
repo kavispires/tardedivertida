@@ -1,6 +1,10 @@
 export function DailyAlienGameIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#ffea7e"
         d="m403.566 474.754-97.765-169.168h-99.89l-97.766 169.168c-1.84 3.18.425 7.183 4.062 7.183h287.297c3.637 0 5.902-4.003 4.062-7.183m0 0"
@@ -25,8 +29,14 @@ export function DailyAlienGameIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#6c7fd9"
         d="M305.8 290.656h-99.89c-5.57 0-10.254-3.969-11.379-9.215l-.258-.03v14.773c0 6.402 5.239 11.636 11.637 11.636h99.89c6.4 0 11.637-5.234 11.637-11.636V281.41q-.127.016-.261.031c-1.121 5.247-5.809 9.215-11.375 9.215zm0 0"
       ></path>
-      <path fill="#4f66d1" d="M383.906 163.836H127.801L21.164 214.629h469.379zm0 0"></path>
-      <path fill="#314dca" d="M127.8 163.836 21.165 214.629h53.258l91.332-50.793zm0 0"></path>
+      <path
+        fill="#4f66d1"
+        d="M383.906 163.836H127.801L21.164 214.629h469.379zm0 0"
+      ></path>
+      <path
+        fill="#314dca"
+        d="M127.8 163.836 21.165 214.629h53.258l91.332-50.793zm0 0"
+      ></path>
       <path
         fill="#4f66d1"
         d="M255.855 235.906H38.711l134.973 43.168a142 142 0 0 0 39.574 5.625h85.195c13.39 0 26.715-1.894 39.574-5.625l134.97-43.168zm0 0"

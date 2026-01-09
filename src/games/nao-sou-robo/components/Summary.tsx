@@ -18,17 +18,32 @@ export function Summary({ user, robot }: SummaryProps) {
     () => [
       {
         key: 'captchas',
-        title: <Translate pt="Captcha corretos (individual)" en="Captcha correct (individual)" />,
+        title: (
+          <Translate
+            pt="Captcha corretos (individual)"
+            en="Captcha correct (individual)"
+          />
+        ),
         value: <CaptchaHighlight>{(user.beat ?? []).filter(Boolean).length}/3</CaptchaHighlight>,
       },
       {
         key: 'suspicions',
-        title: <Translate pt="Suspeita levantada (individual)" en="Suspicion caused (individual)" />,
+        title: (
+          <Translate
+            pt="Suspeita levantada (individual)"
+            en="Suspicion caused (individual)"
+          />
+        ),
         value: <SuspicionHighlight>{(user.suspicion ?? []).filter(Boolean).length}/3</SuspicionHighlight>,
       },
       {
         key: 'energy',
-        title: <Translate pt="Pontos do Robô para revolução (grupo)" en="Robot Points to Doom (group)" />,
+        title: (
+          <Translate
+            pt="Pontos do Robô para revolução (grupo)"
+            en="Robot Points to Doom (group)"
+          />
+        ),
         value: (
           <EnergyHighlight>
             {robot.points}/{robot.goal}

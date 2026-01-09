@@ -74,7 +74,10 @@ export function StepReveal({
   return (
     <Step announcement={announcement}>
       <StepTitle>
-        <Translate pt="Resultado" en="Results" />
+        <Translate
+          pt="Resultado"
+          en="Results"
+        />
       </StepTitle>
 
       <PopoverRule content={<ScoringMessage round={round} />} />
@@ -98,7 +101,10 @@ export function StepReveal({
       </RuleInstruction>
 
       <Instruction contained>
-        <ResultsTable players={players} results={results} />
+        <ResultsTable
+          players={players}
+          results={results}
+        />
 
         <Translate
           pt={
@@ -122,7 +128,12 @@ export function StepReveal({
             items={[
               {
                 key: 'weapons-evidences',
-                label: <Translate pt=" Ver todas cartas" en="See all cards" />,
+                label: (
+                  <Translate
+                    pt=" Ver todas cartas"
+                    en="See all cards"
+                  />
+                ),
                 children: (
                   <GroupedItemsBoard
                     items={items}
@@ -159,9 +170,15 @@ export function StepReveal({
             key={`instruction-status-${activePlayerId}`}
           >
             {latestHistoryEntry ? (
-              <CrimeGuessStatus status={latestHistoryEntry.status} withDescription />
+              <CrimeGuessStatus
+                status={latestHistoryEntry.status}
+                withDescription
+              />
             ) : isOwnCrime ? (
-              <Translate pt="Este é o seu próprio crime" en="This is your own crime" />
+              <Translate
+                pt="Este é o seu próprio crime"
+                en="This is your own crime"
+              />
             ) : (
               ''
             )}
@@ -200,11 +217,20 @@ export function StepReveal({
             duration={Math.min(playerCount * 15, 60)}
             icon={<TrophyOutlined />}
           >
-            <Translate pt="Ver Ranking" en="See Ranking" />
+            <Translate
+              pt="Ver Ranking"
+              en="See Ranking"
+            />
           </TimedButton>
         ) : (
-          <Button onClick={onSeeRanking} icon={<TrophyOutlined />}>
-            <Translate pt="Ver Ranking" en="See Ranking" />
+          <Button
+            onClick={onSeeRanking}
+            icon={<TrophyOutlined />}
+          >
+            <Translate
+              pt="Ver Ranking"
+              en="See Ranking"
+            />
           </Button>
         )}
       </SpaceContainer>

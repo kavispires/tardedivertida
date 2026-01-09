@@ -23,7 +23,12 @@ export function PhaseReveal({ state, players, user }: PhaseProps<PhaseRevealStat
   const announcement = (
     <PhaseAnnouncement
       icon={<RankIcon />}
-      title={<Translate pt="Resultado" en="Results" />}
+      title={
+        <Translate
+          pt="Resultado"
+          en="Results"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -32,8 +37,14 @@ export function PhaseReveal({ state, players, user }: PhaseProps<PhaseRevealStat
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={CRUZA_PALAVRAS_PHASES.REVEAL}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={CRUZA_PALAVRAS_PHASES.REVEAL}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepReveal
           user={user}

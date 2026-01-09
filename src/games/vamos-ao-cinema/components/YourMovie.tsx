@@ -17,7 +17,11 @@ export function YourMovie({ movies, movieId }: YourMovieProps) {
   if (movieId) {
     return (
       <Instruction contained>
-        <Translate pt="Seu Filme" en="Your Movie" />:
+        <Translate
+          pt="Seu Filme"
+          en="Your Movie"
+        />
+        :
         <TextHighlight>
           <IconAvatar icon={<FilmReelIcon />} /> {getMovieTitle(movies, movieId)}
         </TextHighlight>

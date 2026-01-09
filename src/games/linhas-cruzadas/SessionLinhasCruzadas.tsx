@@ -36,7 +36,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionInstrumentosCodificados() {
-  return <Session gameCollection={GAME_COLLECTION.LINHAS_CRUZADAS} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.LINHAS_CRUZADAS}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionInstrumentosCodificados;

@@ -28,7 +28,12 @@ export function PhaseHumanAsk({ players, state, user }: PhaseProps<PhaseHumanAsk
   const announcement = (
     <PhaseAnnouncement
       icon={<QuestionIcon />}
-      title={<Translate pt="Pergunte ao alienígena" en="Ask the Alien" />}
+      title={
+        <Translate
+          pt="Pergunte ao alienígena"
+          en="Ask the Alien"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}
@@ -36,10 +41,20 @@ export function PhaseHumanAsk({ players, state, user }: PhaseProps<PhaseHumanAsk
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={COMUNICACAO_ALIENIGENA_PHASES.HUMAN_ASK}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={COMUNICACAO_ALIENIGENA_PHASES.HUMAN_ASK}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={5} />
+        <RoundAnnouncement
+          round={state.round}
+          onPressButton={goToNextStep}
+          time={5}
+        />
 
         {/* Step 1 */}
         <StepHumanAsks

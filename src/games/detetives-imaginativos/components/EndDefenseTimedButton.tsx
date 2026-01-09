@@ -22,7 +22,10 @@ export function EndDefenseTimedButton({ onFinishDefenseClick, isLoading }: EndDe
         size="large"
         loading={isLoading}
       >
-        <Translate pt="Concluir Defesa" en="End Defense" />
+        <Translate
+          pt="Concluir Defesa"
+          en="End Defense"
+        />
       </TimedButton>
     </SpaceContainer>
   );

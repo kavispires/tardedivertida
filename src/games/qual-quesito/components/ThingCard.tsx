@@ -22,7 +22,10 @@ export function ThingCard({ itemId, name, width, maskImage }: ThingCardProps) {
       className={clsx('thing-card', `thing-card--color-${colorId}`)}
       style={{ minWidth: width, maxWidth: width * 1.25, height: width * 1.25 }}
     >
-      <div className="thing-card__background" style={{ backgroundImage: `url(${backgroundUrl})` }} />
+      <div
+        className="thing-card__background"
+        style={{ backgroundImage: `url(${backgroundUrl})` }}
+      />
       <ItemSprite
         itemId={itemId}
         width={width / 2}

@@ -33,7 +33,10 @@ describe('shared/Instruction', () => {
 
   it('accepts a `white` argument that reverses the background color', async () => {
     render(
-      <Instruction contained white>
+      <Instruction
+        contained
+        white
+      >
         <div>Hello</div>
       </Instruction>,
     );

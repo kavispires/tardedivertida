@@ -28,7 +28,12 @@ export function PhasePathFollowing({ state, players, user }: PhaseProps<PhasePat
   const announcement = (
     <PhaseAnnouncement
       icon={<DirectionsIcon />}
-      title={<Translate pt="Siga os mapas!" en="Follow the maps!" />}
+      title={
+        <Translate
+          pt="Siga os mapas!"
+          en="Follow the maps!"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}
@@ -39,14 +44,24 @@ export function PhasePathFollowing({ state, players, user }: PhaseProps<PhasePat
           en="Let's analise and try to follow the each player's map"
         />
         <br />
-        <TurnOrder players={players} order={state.turnOrder} activePlayerId={state.activePlayerId} />
+        <TurnOrder
+          players={players}
+          order={state.turnOrder}
+          activePlayerId={state.activePlayerId}
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={LABIRINTO_SECRETO_PHASES.PATH_FOLLOWING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={LABIRINTO_SECRETO_PHASES.PATH_FOLLOWING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <ViewOr condition={isTheActivePlayer}>
           <StepPathWaiting

@@ -72,12 +72,30 @@ function Metric({ descriptors, initialEvaluation = 3, onChange, disabled }: Metr
       </TransparentButton>
 
       <div className="metrics-board__evaluation">
-        <Pip position={0} value={evaluation} />
-        <Pip position={1} value={evaluation} />
-        <Pip position={2} value={evaluation} />
-        <Pip position={3} value={evaluation} />
-        <Pip position={4} value={evaluation} />
-        <Pip position={5} value={evaluation} />
+        <Pip
+          position={0}
+          value={evaluation}
+        />
+        <Pip
+          position={1}
+          value={evaluation}
+        />
+        <Pip
+          position={2}
+          value={evaluation}
+        />
+        <Pip
+          position={3}
+          value={evaluation}
+        />
+        <Pip
+          position={4}
+          value={evaluation}
+        />
+        <Pip
+          position={5}
+          value={evaluation}
+        />
       </div>
 
       <TransparentButton

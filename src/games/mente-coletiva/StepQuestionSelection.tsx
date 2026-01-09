@@ -47,16 +47,26 @@ export function StepQuestionSelection({
   });
 
   return (
-    <Step fullWidth className="m-step" announcement={announcement}>
+    <Step
+      fullWidth
+      className="m-step"
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Selecione uma das perguntas" en="Select one of the questions" />
+        <Translate
+          pt="Selecione uma das perguntas"
+          en="Select one of the questions"
+        />
       </StepTitle>
 
       <PopoverRule content={<GamePremiseRules activePlayer={activePlayer} />} />
 
       <ul className="contained">
         {currentQuestions.map((question) => (
-          <li className="m-question-selection-item" key={question.id}>
+          <li
+            className="m-question-selection-item"
+            key={question.id}
+          >
             <TransparentButton
               onClick={() => onSubmitQuestion({ questionId: question.id })}
               disabled={isLoading || user.ready}
@@ -66,9 +76,16 @@ export function StepQuestionSelection({
           </li>
         ))}
       </ul>
-      <CustomQuestion onSubmit={onSubmitCustomQuestion} userId={user.id} />
+      <CustomQuestion
+        onSubmit={onSubmitCustomQuestion}
+        userId={user.id}
+      />
 
-      <Pasture players={players} pastureSize={pastureSize} roundType={roundType} />
+      <Pasture
+        players={players}
+        pastureSize={pastureSize}
+        roundType={roundType}
+      />
     </Step>
   );
 }

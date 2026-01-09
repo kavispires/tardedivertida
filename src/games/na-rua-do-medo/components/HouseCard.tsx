@@ -72,7 +72,12 @@ export function HouseCard({
           </Tooltip>
         )}
       </div>
-      <ImageCard cardId={card.key} cardWidth={80} className={clsx(cardBaseClass)} preview={preview} />
+      <ImageCard
+        cardId={card.key}
+        cardWidth={80}
+        className={clsx(cardBaseClass)}
+        preview={preview}
+      />
 
       <h3 className={`${baseClass}__name`}>{dualTranslate(card.name)}</h3>
 

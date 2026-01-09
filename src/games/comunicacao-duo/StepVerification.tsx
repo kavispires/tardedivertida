@@ -127,13 +127,22 @@ export function StepVerification({
   }, [status, entryIdToAnimate, nextPhase]);
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle size="small">
-        <Translate en="Results" pt="Resultado" />
+        <Translate
+          en="Results"
+          pt="Resultado"
+        />
       </StepTitle>
 
       <RuleInstruction type="event">
-        <Translate en={results.en} pt={results.pt} />
+        <Translate
+          en={results.en}
+          pt={results.pt}
+        />
       </RuleInstruction>
 
       <HostNextPhaseButton
@@ -142,15 +151,25 @@ export function StepVerification({
         withWaitingTimeBar
       />
 
-      <Flex gap={8} align="center" className="mb-4">
+      <Flex
+        gap={8}
+        align="center"
+        className="mb-4"
+      >
         <div className="cd-clue-quantity">{clueQuantity}</div>
         <ViewOr condition={clueInputType === 'alien-keyboard'}>
-          <AlienText value={clue} withTranslation />
+          <AlienText
+            value={clue}
+            withTranslation
+          />
           <TextHighlight style={{ fontSize: '1.5rem', background: 'white' }}>{clue}</TextHighlight>
         </ViewOr>
       </Flex>
 
-      <Flex gap={8} align="center">
+      <Flex
+        gap={8}
+        align="center"
+      >
         <Board
           deck={deck}
           deckType={deckType}
@@ -158,12 +177,20 @@ export function StepVerification({
           userSide={user.side}
           animateEntries={entryIdToAnimate ? [entryIdToAnimate] : []}
         />
-        <SummaryBox summary={summary} players={players} round={round} />
+        <SummaryBox
+          summary={summary}
+          players={players}
+          round={round}
+        />
       </Flex>
 
       <ViewIf condition={clueInputType === 'alien-keyboard'}>
         <SpaceContainer>
-          <AlienKeyboard value={''} onChange={() => {}} disabled />
+          <AlienKeyboard
+            value={''}
+            onChange={() => {}}
+            disabled
+          />
         </SpaceContainer>
       </ViewIf>
 

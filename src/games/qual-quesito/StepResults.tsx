@@ -45,9 +45,15 @@ export function StepResults({
   turnOrder,
 }: StepResultsProps) {
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle wait>
-        <Translate pt={<>Resultados: "{category}"</>} en={<>Results: "{category}"</>} />
+        <Translate
+          pt={<>Resultados: "{category}"</>}
+          en={<>Results: "{category}"</>}
+        />
       </StepTitle>
 
       <RuleInstruction type="wait">
@@ -79,17 +85,29 @@ export function StepResults({
         />
       </RuleInstruction>
 
-      <SpaceContainer contained wrap>
+      <SpaceContainer
+        contained
+        wrap
+      >
         {table.map(({ playerId, accepted, cardId }) => {
           const player = players[playerId];
 
           return (
-            <Flex key={`${playerId}-${cardId}`} orientation="vertical" gap={8} align="center">
+            <Flex
+              key={`${playerId}-${cardId}`}
+              orientation="vertical"
+              gap={8}
+              align="center"
+            >
               <IconAvatar
                 size="large"
                 icon={accepted ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
               />
-              <ThingCard itemId={cardId} name={cardsDict[cardId].name} width={100} />
+              <ThingCard
+                itemId={cardId}
+                name={cardsDict[cardId].name}
+                width={100}
+              />
               <PlayerAvatarName player={player} />
             </Flex>
           );
@@ -119,7 +137,10 @@ export function StepResults({
         </RuleInstruction>
       )}
 
-      <PlayersHandsCounts players={players} turnOrder={turnOrder} />
+      <PlayersHandsCounts
+        players={players}
+        turnOrder={turnOrder}
+      />
 
       <SpaceContainer>
         <TimedButton
@@ -128,7 +149,10 @@ export function StepResults({
           onExpire={goToNextStep}
           onClick={goToNextStep}
         >
-          <Translate pt="Ver Ranking" en="See Ranking" />
+          <Translate
+            pt="Ver Ranking"
+            en="See Ranking"
+          />
         </TimedButton>
       </SpaceContainer>
     </Step>

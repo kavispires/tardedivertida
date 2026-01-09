@@ -23,9 +23,18 @@ export function RibbonsTest({ onResult, step }: TestStepProps) {
   };
 
   return (
-    <SpaceContainer className="full-width" vertical>
-      <Title level={2} size="small">
-        <Translate pt="Bandeirinhas e Seleções" en="Ribbons and Selections" />
+    <SpaceContainer
+      className="full-width"
+      vertical
+    >
+      <Title
+        level={2}
+        size="small"
+      >
+        <Translate
+          pt="Bandeirinhas e Seleções"
+          en="Ribbons and Selections"
+        />
       </Title>
 
       <Instruction contained>
@@ -35,10 +44,20 @@ export function RibbonsTest({ onResult, step }: TestStepProps) {
         />
       </Instruction>
 
-      <SpaceContainer wrap className="full-width" vertical>
-        <TransparentButton onClick={onAddRibbon} style={{ position: 'relative' }}>
+      <SpaceContainer
+        wrap
+        className="full-width"
+        vertical
+      >
+        <TransparentButton
+          onClick={onAddRibbon}
+          style={{ position: 'relative' }}
+        >
           <RibbonGroup labels={ribbons} />
-          <ImageCard cardId={imageId} preview={false} />
+          <ImageCard
+            cardId={imageId}
+            preview={false}
+          />
         </TransparentButton>
       </SpaceContainer>
 

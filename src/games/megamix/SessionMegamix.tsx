@@ -31,7 +31,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionMegamix() {
-  return <Session gameCollection={GAME_COLLECTION.MEGAMIX} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.MEGAMIX}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionMegamix;

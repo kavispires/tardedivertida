@@ -28,7 +28,12 @@ export function PhaseCompare({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<DiscussionIcon />}
-      title={<Translate pt="Respostas" en="Answers" />}
+      title={
+        <Translate
+          pt="Respostas"
+          en="Answers"
+        />
+      }
       currentRound={state?.round?.current}
       duration={state?.round?.current < 3 ? 20 : undefined}
       type="overlay"
@@ -38,8 +43,14 @@ export function PhaseCompare({ state, players, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={MENTE_COLETIVA_PHASES.COMPARE}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={MENTE_COLETIVA_PHASES.COMPARE}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepCompare
           currentQuestion={state.currentQuestion}

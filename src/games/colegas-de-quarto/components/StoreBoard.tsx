@@ -14,7 +14,14 @@ type StoreBoardProps = {
 
 export function StoreBoard({ board, round }: StoreBoardProps) {
   return (
-    <TitledContainer title={<Translate pt="Loja de Coisas" en="Thing Store" />}>
+    <TitledContainer
+      title={
+        <Translate
+          pt="Loja de Coisas"
+          en="Thing Store"
+        />
+      }
+    >
       <div className="store-board">
         {board.map((entry, index) => (
           <div
@@ -22,7 +29,10 @@ export function StoreBoard({ board, round }: StoreBoardProps) {
             className="
             store-board__item"
           >
-            <HouseItem index={index} setId={round.current} />
+            <HouseItem
+              index={index}
+              setId={round.current}
+            />
             <div className="store-board__item-text">{entry.text}</div>
           </div>
         ))}

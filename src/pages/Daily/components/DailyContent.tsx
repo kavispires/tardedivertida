@@ -118,7 +118,10 @@ export function DailyContent({ children, ...props }: DailyContentProps) {
   }, [activeEffect]);
 
   return (
-    <Content {...props} style={{ ...backgroundOverride, ...props.style }}>
+    <Content
+      {...props}
+      style={{ ...backgroundOverride, ...props.style }}
+    >
       {componentEffect}
       {children}
     </Content>

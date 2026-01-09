@@ -18,8 +18,14 @@ export function WaitingRoomCharacter({ user }: WaitingRoomCharacterProps) {
 
   return (
     <Space wrap>
-      <CharacterCard size={100} character={user.character} />
-      <PlayerGlyphs player={user} glyphWidth={60} />
+      <CharacterCard
+        size={100}
+        character={user.character}
+      />
+      <PlayerGlyphs
+        player={user}
+        glyphWidth={60}
+      />
     </Space>
   );
 }

@@ -37,13 +37,32 @@ export function CardPlay({
   if (!card) return null;
 
   return (
-    <RuleInstruction type="event" key={runActivity.id} className={getAnimationClass('tada')}>
-      <Flex align="center" gap={6}>
-        <PlayerAvatarCard player={players[runActivity.playerId]} withName withRoundCorners size="small" />
+    <RuleInstruction
+      type="event"
+      key={runActivity.id}
+      className={getAnimationClass('tada')}
+    >
+      <Flex
+        align="center"
+        gap={6}
+      >
+        <PlayerAvatarCard
+          player={players[runActivity.playerId]}
+          withName
+          withRoundCorners
+          size="small"
+        />
 
-        <Flex vertical gap={6} align="center">
+        <Flex
+          vertical
+          gap={6}
+          align="center"
+        >
           <IconAvatar icon={<ArrowIcon />} />
-          <Translate en="played" pt="jogou" />
+          <Translate
+            en="played"
+            pt="jogou"
+          />
         </Flex>
 
         <RunCard card={card} />
@@ -52,13 +71,25 @@ export function CardPlay({
 
         {!card.noTarget && (
           <>
-            <Flex vertical gap={6} align="center">
+            <Flex
+              vertical
+              gap={6}
+              align="center"
+            >
               <IconAvatar icon={<ArrowIcon />} />
-              <Translate en="on" pt="em" />
+              <Translate
+                en="on"
+                pt="em"
+              />
             </Flex>
 
             {lockedPlayersIds.includes(runActivity.targetId) && <IconAvatar icon={<NoIcon />} />}
-            <PlayerAvatarCard player={players[runActivity.targetId]} withName withRoundCorners size="small" />
+            <PlayerAvatarCard
+              player={players[runActivity.targetId]}
+              withName
+              withRoundCorners
+              size="small"
+            />
             {ongoingPlusOnePlayersIds.includes(runActivity.targetId) && <PositiveValue value={1} />}
             {ongoingMinusOnePlayersIds.includes(runActivity.targetId) && <NegativeValue value={-1} />}
           </>
@@ -70,7 +101,10 @@ export function CardPlay({
 
 function PositiveValue({ value }: { value: number }) {
   return (
-    <Avatar size="large" style={{ backgroundColor: 'green' }}>
+    <Avatar
+      size="large"
+      style={{ backgroundColor: 'green' }}
+    >
       +{value}
     </Avatar>
   );
@@ -78,7 +112,10 @@ function PositiveValue({ value }: { value: number }) {
 
 function NegativeValue({ value }: { value: number }) {
   return (
-    <Avatar size="large" style={{ backgroundColor: 'red' }}>
+    <Avatar
+      size="large"
+      style={{ backgroundColor: 'red' }}
+    >
       {value}
     </Avatar>
   );

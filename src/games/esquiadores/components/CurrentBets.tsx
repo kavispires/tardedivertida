@@ -26,9 +26,16 @@ export function CurrentBets({ lodges, user, betType }: CurrentBetsProps) {
         const value = user?.[betType]?.[lodge.id] ?? 0;
         const total = user?.bets?.[lodge.id] ?? 0;
         return (
-          <div key={lodge.id} className="lodge" style={{ width: 84 }}>
+          <div
+            key={lodge.id}
+            className="lodge"
+            style={{ width: 84 }}
+          >
             <div className="lodge__icon">
-              <LodgeIcon width={64} color={LODGE_COLORS[lodge.id]} />
+              <LodgeIcon
+                width={64}
+                color={LODGE_COLORS[lodge.id]}
+              />
               <span className="lodge__number">{lodge.id + 1}</span>
             </div>
             <div className="lodge__bet">
@@ -60,10 +67,20 @@ export function CurrentSkierBets({ players, user }: CurrentSkierBetsProps) {
   );
 
   return (
-    <TitledContainer title={<Translate pt="Suas apostas" en="Your bets" />}>
+    <TitledContainer
+      title={
+        <Translate
+          pt="Suas apostas"
+          en="Your bets"
+        />
+      }
+    >
       <div className="skier-bets">
         {playersList.map((player) => (
-          <div key={player.id} className="lodge">
+          <div
+            key={player.id}
+            className="lodge"
+          >
             <div className="lodge__icon">
               <PlayerAvatarName player={player} />
             </div>
@@ -72,7 +89,12 @@ export function CurrentSkierBets({ players, user }: CurrentSkierBetsProps) {
               {user.skierBets !== undefined && (
                 <div className="lodge__bet">
                   <BettingChipValue
-                    title={<Translate pt="Apostas iniciais" en="Initial Bets" />}
+                    title={
+                      <Translate
+                        pt="Apostas iniciais"
+                        en="Initial Bets"
+                      />
+                    }
                     value={user.skierBets[player.id] ?? 0}
                   />
                 </div>
@@ -80,7 +102,12 @@ export function CurrentSkierBets({ players, user }: CurrentSkierBetsProps) {
               {user.skiersBoost !== undefined && (
                 <div className="lodge__bet">
                   <BettingChipValue
-                    title={<Translate pt="Apostas de bônus" en="Bonus Bets" />}
+                    title={
+                      <Translate
+                        pt="Apostas de bônus"
+                        en="Bonus Bets"
+                      />
+                    }
                     value={user.skiersBoost[player.id] ?? 0}
                   />
                 </div>

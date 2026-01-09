@@ -53,7 +53,11 @@ const getUnplayedGames = () => {
 
 function NextSuggestionEntry({ settings }: { settings: GameSettings }) {
   return (
-    <Typography.Paragraph className="center" strong key={settings.KEY}>
+    <Typography.Paragraph
+      className="center"
+      strong
+      key={settings.KEY}
+    >
       <DualTranslate>{settings.TAGLINE}</DualTranslate>
       <br />
       <Link
@@ -73,17 +77,30 @@ export const NextGameSuggestion = () => {
 
   if (unplayedGames.length === 0) {
     return (
-      <Typography.Paragraph className="center" strong>
-        <Translate pt="Você já jogou todos os jogos de hoje!" en="You've played all today's games!" />
+      <Typography.Paragraph
+        className="center"
+        strong
+      >
+        <Translate
+          pt="Você já jogou todos os jogos de hoje!"
+          en="You've played all today's games!"
+        />
         <br />
-        <Translate pt="Que eficiência!" en="How efficient!" />
+        <Translate
+          pt="Que eficiência!"
+          en="How efficient!"
+        />
       </Typography.Paragraph>
     );
   }
 
   return (
     <div style={{ width: '84vw', maxWidth: 500 }}>
-      <Carousel autoplay autoplaySpeed={5000} dots={false}>
+      <Carousel
+        autoplay
+        autoplaySpeed={5000}
+        dots={false}
+      >
         {unplayedGames.map((entry) => (
           <div key={entry.key}>{entry}</div>
         ))}

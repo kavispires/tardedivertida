@@ -33,16 +33,35 @@ export function LobbyRules({ players }: LobbyRulesProps) {
       exit={{ opacity: 0 }}
       transition={{ delay: 0.25 }}
     >
-      <Flex vertical gap={6}>
-        <Typography.Title level={4} style={{ marginTop: 0 }}>
-          <Translate pt="Revise as regras" en="Review the rules" />
+      <Flex
+        vertical
+        gap={6}
+      >
+        <Typography.Title
+          level={4}
+          style={{ marginTop: 0 }}
+        >
+          <Translate
+            pt="Revise as regras"
+            en="Review the rules"
+          />
         </Typography.Title>
-        <GameTags wrap size={[1, 10]} style={{ display: 'flex' }} gameCode={info.gameCode} tags={info.tags} />
+        <GameTags
+          wrap
+          size={[1, 10]}
+          style={{ display: 'flex' }}
+          gameCode={info.gameCode}
+          tags={info.tags}
+        />
         <Image.PreviewGroup
           fallback={`${PUBLIC_URL.RULES}no-rules.jpg`}
           preview={{
             countRender: (current, total) => (
-              <Space orientation="vertical" size="small" className="text-center">
+              <Space
+                orientation="vertical"
+                size="small"
+                className="text-center"
+              >
                 <span>{info.rules[language][current]}</span>
                 <span>
                   {current}/{total}

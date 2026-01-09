@@ -1,13 +1,46 @@
 export function UnderConstructionIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <path fill="#615260" d="M424.3 95.7h32.1v352.7h-32z"></path>
-      <circle cx="440.4" cy="79.6" r="32.1" fill="#ffaa5a"></circle>
-      <circle cx="440.4" cy="79.6" r="8" fill="#ffc263"></circle>
-      <path fill="#615260" d="M55.6 95.7h32v352.7h-32z"></path>
-      <circle cx="71.6" cy="79.6" r="32.1" fill="#ffaa5a"></circle>
-      <circle cx="71.6" cy="79.6" r="8" fill="#ffc263"></circle>
-      <path fill="#ffd05b" d="M472.4 432.4h-64a16 16 0 00-16.1 16v16h96.2v-16a16 16 0 00-16-16z"></path>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <path
+        fill="#615260"
+        d="M424.3 95.7h32.1v352.7h-32z"
+      ></path>
+      <circle
+        cx="440.4"
+        cy="79.6"
+        r="32.1"
+        fill="#ffaa5a"
+      ></circle>
+      <circle
+        cx="440.4"
+        cy="79.6"
+        r="8"
+        fill="#ffc263"
+      ></circle>
+      <path
+        fill="#615260"
+        d="M55.6 95.7h32v352.7h-32z"
+      ></path>
+      <circle
+        cx="71.6"
+        cy="79.6"
+        r="32.1"
+        fill="#ffaa5a"
+      ></circle>
+      <circle
+        cx="71.6"
+        cy="79.6"
+        r="8"
+        fill="#ffc263"
+      ></circle>
+      <path
+        fill="#ffd05b"
+        d="M472.4 432.4h-64a16 16 0 00-16.1 16v16h96.2v-16a16 16 0 00-16-16z"
+      ></path>
       <path
         fill="#ffe077"
         d="M488.5 240h-465a16 16 0 01-16-16v-64.2a16 16 0 0116-16h465a16 16 0 0116 16V224a16 16 0 01-16 16z"
@@ -24,12 +57,18 @@ export function UnderConstructionIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#4e3d4d"
         d="M392.3 216l-24 24h80l24.1-24zm96.2-72.2h-8v64.1l24-24v-24a16 16 0 00-16-16.1z"
       ></path>
-      <path fill="#ffd05b" d="M103.7 432.4H39.6a16 16 0 00-16 16v16h96.1v-16a16 16 0 00-16-16z"></path>
+      <path
+        fill="#ffd05b"
+        d="M103.7 432.4H39.6a16 16 0 00-16 16v16h96.1v-16a16 16 0 00-16-16z"
+      ></path>
       <path
         fill="#ffc244"
         d="M103.7 432.4h-16v32h32v-16a16 16 0 00-16-16zm368.7 0h-16v32h32v-16a16 16 0 00-16-16z"
       ></path>
-      <path fill="#4e3d4d" d="M71.6 216l-24 24h80.1l24-24zm160.4 0l-24.1 24h80.2l24-24z"></path>
+      <path
+        fill="#4e3d4d"
+        d="M71.6 216l-24 24h80.1l24-24zm160.4 0l-24.1 24h80.2l24-24z"
+      ></path>
       <path
         fill="#ffe077"
         d="M488.5 368.2h-465a16 16 0 01-16-16V288a16 16 0 0116-16h465a16 16 0 0116 16v64a16 16 0 01-16 16.1z"

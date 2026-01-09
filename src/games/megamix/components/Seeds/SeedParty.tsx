@@ -25,8 +25,14 @@ export function SeedParty({ seed, updateData }: SeedPartyProps) {
 
   return (
     <div className="seed-container">
-      <Title size="xx-small" colorScheme="light">
-        <Translate pt="Responda as perguntas a seguir" en="Answer the following prompts" />
+      <Title
+        size="xx-small"
+        colorScheme="light"
+      >
+        <Translate
+          pt="Responda as perguntas a seguir"
+          en="Answer the following prompts"
+        />
       </Title>
 
       <SpaceContainer vertical>
@@ -53,7 +59,10 @@ export function SeedParty({ seed, updateData }: SeedPartyProps) {
           <Space orientation="vertical">
             {seed.cards.map((card) => {
               return (
-                <div className="" key={card.id}>
+                <div
+                  className=""
+                  key={card.id}
+                >
                   <label htmlFor={`input-${card.id}`}>
                     <DualTranslate>{card.text}</DualTranslate>
                   </label>
@@ -76,7 +85,10 @@ export function SeedParty({ seed, updateData }: SeedPartyProps) {
           type="primary"
           disabled={Object.keys(answers).length < seed.cards.length}
         >
-          <Translate pt="Enviar" en="Submit" />
+          <Translate
+            pt="Enviar"
+            en="Submit"
+          />
         </Button>
       </SpaceContainer>
     </div>

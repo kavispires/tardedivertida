@@ -30,7 +30,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionFofocaQuente() {
-  return <Session gameCollection={GAME_COLLECTION.FOFOCA_QUENTE} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.FOFOCA_QUENTE}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionFofocaQuente;

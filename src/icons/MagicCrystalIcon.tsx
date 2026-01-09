@@ -1,6 +1,10 @@
 export function MagicCrystalIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#bd80e1"
         d="M179.94 225.1l-8.25-24.89-59.7 37.36L93.5 260l155.94 240.79a5.99 5.99 0 005.04 2.76l10.16-218.02z"
@@ -13,7 +17,10 @@ export function MagicCrystalIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#cb97e7"
         d="M254.37 7.5l-.44.11c.14-.05.29-.09.44-.1-.87.02-1.72.22-2.52.6l-.04.02-.01.01a5.95 5.95 0 00-2.38 2.14L93.49 253.46a6.03 6.03 0 00.02 6.54l86.44-34.9 46.57-21.83 23.5-172.5 6.05-17.58z"
       ></path>
-      <path fill="#bd80e1" d="M254.21 503.54h.26-.26zm0 0c-.44 0-.23 0 0 0z"></path>
+      <path
+        fill="#bd80e1"
+        d="M254.21 503.54h.26-.26zm0 0c-.44 0-.23 0 0 0z"
+      ></path>
       <path
         fill="#d9b1ee"
         d="M383.65 216.27l-42-13-12.58 21.84-44.5 23.56-36.52 211.6 6.46 43.28s1.17-.02 0 0a6 6 0 005.07-2.76l155.93-240.8z"

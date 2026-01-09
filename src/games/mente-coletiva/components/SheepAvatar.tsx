@@ -40,11 +40,27 @@ export const SheepAvatar = ({
       {...props}
     >
       {/* shadow */}
-      <ellipse cx="50.96" cy="148.53" opacity="0.2" rx="28.18" ry="4.66"></ellipse>
+      <ellipse
+        cx="50.96"
+        cy="148.53"
+        opacity="0.2"
+        rx="28.18"
+        ry="4.66"
+      ></ellipse>
       {/* feet */}
       <g>
-        <ellipse cx="31.7" cy="139.22" rx="4.23" ry="10.75"></ellipse>
-        <ellipse cx="67.83" cy="139.22" rx="4.23" ry="10.75"></ellipse>
+        <ellipse
+          cx="31.7"
+          cy="139.22"
+          rx="4.23"
+          ry="10.75"
+        ></ellipse>
+        <ellipse
+          cx="67.83"
+          cy="139.22"
+          rx="4.23"
+          ry="10.75"
+        ></ellipse>
       </g>
       <path
         fill="#fff"
@@ -60,7 +76,13 @@ export const SheepAvatar = ({
         <use href={`${sheep}#sheep-face-${sheepId}`}></use>
       </svg>
 
-      <foreignObject x="25" y="0" width="50" height="50" style={{ borderRadius: '50%' }}>
+      <foreignObject
+        x="25"
+        y="0"
+        width="50"
+        height="50"
+        style={{ borderRadius: '50%' }}
+      >
         <svg viewBox="0 0 100 100">
           <use href={`${avatars}#avatar-${id}`}></use>
         </svg>

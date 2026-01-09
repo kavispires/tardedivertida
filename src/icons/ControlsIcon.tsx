@@ -1,6 +1,10 @@
 export function ControlsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#655e67"
         d="M69.15 28.59v454.82a21.09 21.09 0 1042.17 0V28.59a21.09 21.09 0 10-42.17 0zm165.13 0v454.82a21.09 21.09 0 1042.18 0V28.59a21.09 21.09 0 10-42.18 0zm165.14 0v454.82a21.09 21.09 0 1042.17 0V28.59a21.09 21.09 0 10-42.17 0z"

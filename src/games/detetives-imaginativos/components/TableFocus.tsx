@@ -35,7 +35,10 @@ export function TableFocus({ table, currentPlayer }: TableFocusProps) {
   }
 
   return (
-    <motion.div className={clsx(baseClass, `${baseClass}--center`)} {...getAnimation('slideInRight')}>
+    <motion.div
+      className={clsx(baseClass, `${baseClass}--center`)}
+      {...getAnimation('slideInRight')}
+    >
       <div className="d-table__player-entry">
         <div className="d-table__cards">
           {tableEntry?.cards.map((cardId) => {
@@ -45,13 +48,21 @@ export function TableFocus({ table, currentPlayer }: TableFocusProps) {
                 className="d-table__card"
                 key={`table-focus-${cardId}`}
               >
-                <ImageCard key={`table-focus-${cardId}`} cardId={cardId} cardWidth={cardWidth} />
+                <ImageCard
+                  key={`table-focus-${cardId}`}
+                  cardId={cardId}
+                  cardWidth={cardWidth}
+                />
               </ImageBlurButtonContainer>
             );
           })}
         </div>
         <div className="d-table__player-info">
-          <PlayerAvatar avatarId={currentPlayer.avatarId} className="d-table__player-avatar" size="default" />
+          <PlayerAvatar
+            avatarId={currentPlayer.avatarId}
+            className="d-table__player-avatar"
+            size="default"
+          />
           <span
             className="d-table__player-bar"
             style={{ backgroundColor: AVATARS[currentPlayer.avatarId].color }}

@@ -26,21 +26,42 @@ export function PhasePlayersClues({ state, players }: PhaseProps) {
   const onSubmitClues = useOnSubmitPlayerCluesAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={VENDAVAL_DE_PALPITE_PHASES.PLAYERS_CLUES}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={VENDAVAL_DE_PALPITE_PHASES.PLAYERS_CLUES}
+    >
       <StepSwitcher
         step={step}
         players={players}
-        waitingRoom={{ content: <Board players={players} clues={state.clues} board={state.board} /> }}
+        waitingRoom={{
+          content: (
+            <Board
+              players={players}
+              clues={state.clues}
+              board={state.board}
+            />
+          ),
+        }}
       >
         {/* Step 0 */}
-        <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5}>
+        <RoundAnnouncement
+          round={state?.round}
+          onPressButton={goToNextStep}
+          buttonText=" "
+          time={5}
+        >
           <RoundsLeftInstruction round={state.round} />
         </RoundAnnouncement>
 
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<DiscussionIcon />}
-          title={<Translate pt="Reunião" en="Meeting" />}
+          title={
+            <Translate
+              pt="Reunião"
+              en="Meeting"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={5}

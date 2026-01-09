@@ -40,21 +40,38 @@ export function Pasture({ players, pastureSize = 5, roundType }: PastureProps) {
   }, [players, pastureSize]);
 
   return (
-    <div className="m-pasture-container" style={{ width: `${pastureWidth}px` }}>
-      {roundType !== undefined && <RoundType roundType={roundType} className="m-pasture-round-type" />}
+    <div
+      className="m-pasture-container"
+      style={{ width: `${pastureWidth}px` }}
+    >
+      {roundType !== undefined && (
+        <RoundType
+          roundType={roundType}
+          className="m-pasture-round-type"
+        />
+      )}
 
-      <div className="m-pasture" style={{ height: `${pastureHeight}px` }}>
+      <div
+        className="m-pasture"
+        style={{ height: `${pastureHeight}px` }}
+      >
         <img
           src={`${PUBLIC_URL.IN_GAME}m-pasture-${pastureSize}.png`}
           alt="pasture background"
           className="m-pasture__background"
         />
 
-        <div className="m-enclosures" style={gridStyleDistribution}>
+        <div
+          className="m-enclosures"
+          style={gridStyleDistribution}
+        >
           {sheepPerEnclosure.map((sheepPlayers, enclosureId) => {
             const enclosureKey = `m-enclosure-${enclosureId}`;
             return (
-              <div className={clsx('m-enclosure', enclosureKey)} key={enclosureKey}>
+              <div
+                className={clsx('m-enclosure', enclosureKey)}
+                key={enclosureKey}
+              >
                 {sheepPlayers?.map((player: GamePlayer, index: number) => {
                   const sheepKey = `${enclosureKey}-${player.id}`;
                   const sheepClassName = `m-sheep--pos-${index}`;
@@ -88,7 +105,10 @@ export function Pasture({ players, pastureSize = 5, roundType }: PastureProps) {
           className="m-pasture__fence"
         />
         <div className="m-pasture-names">
-          <div className="m-enclosures m-enclosures--names" style={gridStyleDistribution}>
+          <div
+            className="m-enclosures m-enclosures--names"
+            style={gridStyleDistribution}
+          >
             {sheepPerEnclosure.map((sheepPlayers, index) => {
               const names = sheepPlayers?.map((p: GamePlayer) => p.name)?.join(',\n') ?? '';
               return (

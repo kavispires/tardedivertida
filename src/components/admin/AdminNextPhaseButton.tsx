@@ -17,9 +17,15 @@ import { AdminOnlyContainer } from './AdminOnlyContainer';
 
 function ButtonLabel({ round }: { round?: GameRound }) {
   return !round || round.current === round.total || round.forceLastRound ? (
-    <Translate pt="Tela de Game Over" en="Game Over Screen" />
+    <Translate
+      pt="Tela de Game Over"
+      en="Game Over Screen"
+    />
   ) : (
-    <Translate pt="Próxima rodada" en="Next Round" />
+    <Translate
+      pt="Próxima rodada"
+      en="Next Round"
+    />
   );
 }
 

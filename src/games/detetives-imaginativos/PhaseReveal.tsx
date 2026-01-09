@@ -23,7 +23,12 @@ export function PhaseReveal({ state, players }: PhaseProps<PhaseRevealState>) {
   const announcement = (
     <PhaseAnnouncement
       icon={<RankIcon />}
-      title={<Translate pt="Revelação" en="Reveal" />}
+      title={
+        <Translate
+          pt="Revelação"
+          en="Reveal"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -60,7 +65,10 @@ export function PhaseReveal({ state, players }: PhaseProps<PhaseRevealState>) {
       allowedPhase={DETETIVES_IMAGINATIVOS_PHASES.REVEAL}
       className="d-voting-phase"
     >
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepReveal
           impostor={impostor}

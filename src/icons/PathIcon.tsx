@@ -1,6 +1,10 @@
 export function PathIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#60a917"
         d="M170.51 162a85.29 85.29 0 01-6 32.82 55.58 55.58 0 01-25.15 28.56h-.6A709 709 0 0094.2 96.18a19.43 19.43 0 00-25.57-9 561.34 561.34 0 0127.19-69.17 17 17 0 0130.52 0c17.4 35.46 44.17 114.07 44.17 143.99z"
@@ -41,12 +45,42 @@ export function PathIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="sienna"
         d="M102.3 383.66H51.15a78.3 78.3 0 0011.68-43.89 75.91 75.91 0 0027.79 0 78.46 78.46 0 0011.68 43.89z"
       ></path>
-      <circle cx="238.71" cy="468.91" r="8.53" fill="#ff9801"></circle>
-      <circle cx="238.71" cy="417.76" r="8.53" fill="#ff9801"></circle>
-      <circle cx="400.69" cy="349.55" r="8.53" fill="#ff9801"></circle>
-      <circle cx="358.06" cy="332.5" r="8.53" fill="#ff9801"></circle>
-      <circle cx="213.13" cy="264.3" r="8.53" fill="#ff9801"></circle>
-      <circle cx="366.59" cy="358.08" r="8.53" fill="#ff9801"></circle>
+      <circle
+        cx="238.71"
+        cy="468.91"
+        r="8.53"
+        fill="#ff9801"
+      ></circle>
+      <circle
+        cx="238.71"
+        cy="417.76"
+        r="8.53"
+        fill="#ff9801"
+      ></circle>
+      <circle
+        cx="400.69"
+        cy="349.55"
+        r="8.53"
+        fill="#ff9801"
+      ></circle>
+      <circle
+        cx="358.06"
+        cy="332.5"
+        r="8.53"
+        fill="#ff9801"
+      ></circle>
+      <circle
+        cx="213.13"
+        cy="264.3"
+        r="8.53"
+        fill="#ff9801"
+      ></circle>
+      <circle
+        cx="366.59"
+        cy="358.08"
+        r="8.53"
+        fill="#ff9801"
+      ></circle>
       <path
         fill="#ffdc00"
         d="M306.91 170.52a49.73 49.73 0 01-3.67 18.93 389.94 389.94 0 00-39-1.87h-8.52c-16.63 0-32.48.59-47.49 1.87a49.34 49.34 0 01-3.66-18.93 51.15 51.15 0 01102.3 0z"

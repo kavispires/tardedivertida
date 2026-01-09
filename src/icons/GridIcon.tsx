@@ -1,6 +1,10 @@
 export function GridIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#f9ad32"
         d="M50.624 50.623h410.752v410.754H50.624V50.623zm40.624 40.625v329.504h329.505V91.248H91.248z"

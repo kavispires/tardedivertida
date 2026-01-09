@@ -61,11 +61,17 @@ function ColorsPage() {
   const iconEntries = Object.entries(icons);
   return (
     <PageLayout className="dev-layout">
-      <DevHeader title="Colors" subTitle={`(${iconEntries.length})`} />
+      <DevHeader
+        title="Colors"
+        subTitle={`(${iconEntries.length})`}
+      />
       <Layout.Content className="dev-content">
         <ul style={styles}>
           {COLOR_NAMES.map((colorName) => (
-            <li key={colorName} style={stylesLi}>
+            <li
+              key={colorName}
+              style={stylesLi}
+            >
               <ul>
                 {COLOR_SHADES.map((colorShade) => (
                   <li key={`${colorName}-${colorShade}`}>

@@ -14,24 +14,52 @@ import { FinalGalleryEntry } from './components/FinalGalleryEntry';
 
 export function PhaseGameOver({ state, players }: PhaseProps) {
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<CrownIcon />}>
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<CrownIcon />}
+    >
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
 
       <TitledContainer
-        title={<Translate pt="Respostas Mais Rápidas" en="Fastest Answers" />}
+        title={
+          <Translate
+            pt="Respostas Mais Rápidas"
+            en="Fastest Answers"
+          />
+        }
         contentProps={{ className: 'final-gallery' }}
       >
         {state.topAnswers.map((entry: AdedanhxGalleryEntry) => {
-          return <FinalGalleryEntry entry={entry} key={entry.id} />;
+          return (
+            <FinalGalleryEntry
+              entry={entry}
+              key={entry.id}
+            />
+          );
         })}
       </TitledContainer>
 
       <TitledContainer
-        title={<Translate pt="Sem Respostas" en="No Answers" />}
+        title={
+          <Translate
+            pt="Sem Respostas"
+            en="No Answers"
+          />
+        }
         contentProps={{ className: 'final-gallery' }}
       >
         {state.noAnswers.map((entry: AdedanhxGalleryEntry) => {
-          return <FinalGalleryEntry entry={entry} key={entry.id} />;
+          return (
+            <FinalGalleryEntry
+              entry={entry}
+              key={entry.id}
+            />
+          );
         })}
       </TitledContainer>
     </GameOverWrapper>

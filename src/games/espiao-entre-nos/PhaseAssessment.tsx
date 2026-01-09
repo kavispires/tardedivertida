@@ -29,11 +29,19 @@ export function PhaseAssessment({ state, players, user }: PhaseProps) {
       allowedPhase={ESPIAO_ENTRE_NOS_PHASES.ASSESSMENT}
       className="e-phase"
     >
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<AlertIcon />}
-          title={<Translate pt="Acusação!" en="Accusation!" />}
+          title={
+            <Translate
+              pt="Acusação!"
+              en="Accusation!"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           buttonText=""

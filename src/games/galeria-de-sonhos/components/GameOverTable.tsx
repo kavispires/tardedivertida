@@ -21,7 +21,11 @@ export function GameOverTable({ table }: TableProps) {
       <ul className="g-table g-table--game-over">
         {table.map((card) => {
           return (
-            <li key={`g-table-${card.id}`} className="g-table-item" style={{ width: `${cardWidth + 8}px` }}>
+            <li
+              key={`g-table-${card.id}`}
+              className="g-table-item"
+              style={{ width: `${cardWidth + 8}px` }}
+            >
               <ImageBlurButton cardId={card.id} />
               <ImageCard
                 cardId={card.id}

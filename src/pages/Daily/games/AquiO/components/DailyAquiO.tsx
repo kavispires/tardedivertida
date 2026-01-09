@@ -65,28 +65,55 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyFindingGameIcon />} localStorageKey={SETTINGS.KEY}>
+      <Header
+        icon={<DailyFindingGameIcon />}
+        localStorageKey={SETTINGS.KEY}
+      >
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <DailyContent ref={contentRef}>
         <div ref={headerRef}>
-          <Menu hearts={hearts} total={SETTINGS.HEARTS} openRules={true} rules={<Rules date={data.id} />} />
+          <Menu
+            hearts={hearts}
+            total={SETTINGS.HEARTS}
+            openRules={true}
+            rules={<Rules date={data.id} />}
+          />
           <SpaceContainer>
             <Typography.Text strong>
-              <DualTranslate>{data.title}</DualTranslate> | <Translate pt="Disco" en="Disc" /> {discIndex}/
-              {SETTINGS.GOAL} | <Translate pt="Tentativa" en="Attempt" /> {attempts}
+              <DualTranslate>{data.title}</DualTranslate> |{' '}
+              <Translate
+                pt="Disco"
+                en="Disc"
+              />{' '}
+              {discIndex}/{SETTINGS.GOAL} |{' '}
+              <Translate
+                pt="Tentativa"
+                en="Attempt"
+              />{' '}
+              {attempts}
             </Typography.Text>
           </SpaceContainer>
 
           <div className="full-width padding">
-            <TimerBar value={timeLeft} total={60} />
+            <TimerBar
+              value={timeLeft}
+              total={60}
+            />
           </div>
         </div>
 
         {isComplete && (
-          <Space className="results-container" align="center" orientation="vertical">
+          <Space
+            className="results-container"
+            align="center"
+            orientation="vertical"
+          >
             <Button onClick={() => setShowResultModal(true)}>
-              <Translate pt="Ver Resultado" en="Show Results" />
+              <Translate
+                pt="Ver Resultado"
+                en="Show Results"
+              />
             </Button>
           </Space>
         )}
@@ -94,15 +121,37 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
         <SpaceContainer orientation="vertical">
           {!isPlaying && (
             <>
-              <Button size="large" onClick={onStart} type="primary" disabled={isWin || isLose} icon="🔘">
-                <Translate pt="Começar" en="Start" />
+              <Button
+                size="large"
+                onClick={onStart}
+                type="primary"
+                disabled={isWin || isLose}
+                icon="🔘"
+              >
+                <Translate
+                  pt="Começar"
+                  en="Start"
+                />
                 &nbsp;
-                <Translate pt=" Diário" en=" Daily" />
+                <Translate
+                  pt=" Diário"
+                  en=" Daily"
+                />
               </Button>
 
               <Switch
-                unCheckedChildren={<Translate pt="Modo Normal" en="Normal Mode" />}
-                checkedChildren={<Translate pt="Modo Difícil" en="Challenge Mode" />}
+                unCheckedChildren={
+                  <Translate
+                    pt="Modo Normal"
+                    en="Normal Mode"
+                  />
+                }
+                checkedChildren={
+                  <Translate
+                    pt="Modo Difícil"
+                    en="Challenge Mode"
+                  />
+                }
                 value={mode === 'challenge'}
                 onChange={(checked) => onModeChange(checked ? 'challenge' : 'normal')}
               />
@@ -137,7 +186,11 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
           )}
           {isPlaying && <DevResult result={result} />}
 
-          <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
+          <Modal
+            open={showResultModal}
+            onCancel={() => setShowResultModal(false)}
+            footer={null}
+          >
             <ResultsModalContent
               challengeNumber={data.number}
               challengeTitle={data.title}
@@ -164,7 +217,14 @@ function DevResult({ result }: { result: string }) {
   return (
     <FloatButton
       shape="square"
-      icon={<ItemCard itemId={result} width={50} padding={0} className="raw-item" />}
+      icon={
+        <ItemCard
+          itemId={result}
+          width={50}
+          padding={0}
+          className="raw-item"
+        />
+      }
     />
   );
 }

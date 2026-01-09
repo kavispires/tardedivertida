@@ -12,7 +12,10 @@ export function BookHighlight({ children }: HighlightProps) {
 
 export function CrystalHighlight({ children, type }: HighlightProps) {
   return (
-    <MetricHighlight icon={<MagicCrystalIcon />} type={type}>
+    <MetricHighlight
+      icon={<MagicCrystalIcon />}
+      type={type}
+    >
       {children}
     </MetricHighlight>
   );

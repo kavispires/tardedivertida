@@ -39,16 +39,33 @@ export function StepResult({ announcement, activeRole, goToNextStep, outcome, pl
   }, [players]);
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Resultado" en="Results" />
+        <Translate
+          pt="Resultado"
+          en="Results"
+        />
       </StepTitle>
 
-      <RoleBoard activeRole={activeRole} instruction="RESULT" outcome={outcome}>
+      <RoleBoard
+        activeRole={activeRole}
+        instruction="RESULT"
+        outcome={outcome}
+      >
         {outcome === 'CAST' && activeRole.actor ? (
-          <SuspectCard suspect={activeRole.candidates[activeRole.actor]} width={120} />
+          <SuspectCard
+            suspect={activeRole.candidates[activeRole.actor]}
+            width={120}
+          />
         ) : (
-          <ImageCard cardId="us-unknown" cardWidth={120} preview={false} />
+          <ImageCard
+            cardId="us-unknown"
+            cardWidth={120}
+            preview={false}
+          />
         )}
       </RoleBoard>
 
@@ -95,8 +112,16 @@ export function StepResult({ announcement, activeRole, goToNextStep, outcome, pl
       />
 
       <SpaceContainer align="center">
-        <TimedButton duration={25} onExpire={goToNextStep} onClick={goToNextStep} icon={<TrophyOutlined />}>
-          <Translate pt="Ver Ranking" en="See Ranking" />
+        <TimedButton
+          duration={25}
+          onExpire={goToNextStep}
+          onClick={goToNextStep}
+          icon={<TrophyOutlined />}
+        >
+          <Translate
+            pt="Ver Ranking"
+            en="See Ranking"
+          />
         </TimedButton>
       </SpaceContainer>
 
@@ -108,7 +133,10 @@ export function StepResult({ announcement, activeRole, goToNextStep, outcome, pl
               en="Actors that did not receive the majority of votes and are out for the next phase:"
             />
           ) : (
-            <Translate pt="Atores não escolhidos:" en="Actors that were not chosen:" />
+            <Translate
+              pt="Atores não escolhidos:"
+              en="Actors that were not chosen:"
+            />
           )
         }
       >

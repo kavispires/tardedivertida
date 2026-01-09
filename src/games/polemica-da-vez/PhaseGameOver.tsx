@@ -19,8 +19,16 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
   const playerCount = Object.keys(players).length;
 
   return (
-    <GameOverWrapper announcementIcon={<TrophyIcon />} state={state} players={players}>
-      <Achievements achievements={state.achievements} players={players} reference={achievementsReference} />
+    <GameOverWrapper
+      announcementIcon={<TrophyIcon />}
+      state={state}
+      players={players}
+    >
+      <Achievements
+        achievements={state.achievements}
+        players={players}
+        reference={achievementsReference}
+      />
 
       <ul
         className="p-all-tweets"
@@ -29,13 +37,24 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
         {orderBy(state.allTweets, ['likes', 'text'], ['desc', 'asc']).map((tweet: PastTweet) => {
           const trended = tweet.likes > playerCount / 2;
           return (
-            <li className="p-all-tweets__tweet" key={tweet.id}>
+            <li
+              className="p-all-tweets__tweet"
+              key={tweet.id}
+            >
               <h3>
                 {trended ? <RiseOutlined /> : <FallOutlined />} {tweet.text}
               </h3>
               <div className="p-all-tweets__comment">
-                <IconAvatar icon={<SpeechBubbleThumbsUpIcon />} shape="square" className="p-like-icon" />{' '}
-                {tweet.likes} <Translate pt="curtidas" en="likes" />
+                <IconAvatar
+                  icon={<SpeechBubbleThumbsUpIcon />}
+                  shape="square"
+                  className="p-like-icon"
+                />{' '}
+                {tweet.likes}{' '}
+                <Translate
+                  pt="curtidas"
+                  en="likes"
+                />
               </div>
               {}
             </li>

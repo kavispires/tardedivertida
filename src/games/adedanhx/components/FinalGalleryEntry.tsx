@@ -14,9 +14,15 @@ type FinalGalleryEntryProps = {
 export function FinalGalleryEntry({ entry }: FinalGalleryEntryProps) {
   return (
     <div className="final-gallery-entry">
-      <CategoryCell data={entry.topic} updateAnswer={NOOP} />
+      <CategoryCell
+        data={entry.topic}
+        updateAnswer={NOOP}
+      />
       <PlusOutlined />
-      <LetterCell data={entry.letter} updateAnswer={NOOP} />
+      <LetterCell
+        data={entry.letter}
+        updateAnswer={NOOP}
+      />
       {entry.topAnswer && (
         <span className="final-gallery-entry__answer">
           <Tooltip title={entry.topAnswer.answer}>{entry.topAnswer.answer}</Tooltip>

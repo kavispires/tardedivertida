@@ -69,7 +69,11 @@ export function TableGrid({
                 className="organiku-table-grid-item-content"
                 style={{ width: itemWidth, height: itemWidth }}
               >
-                <DailyItem itemId={itemId} width={itemWidth} className="transparent" />
+                <DailyItem
+                  itemId={itemId}
+                  width={itemWidth}
+                  className="transparent"
+                />
               </div>
             ) : (
               <div

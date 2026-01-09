@@ -1,6 +1,10 @@
 export function TicketsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#da4a54"
         d="m504.5 284.2-8-23.7a34.7 34.7 0 0 1-22.2-65.7l-8-23.7a34.7 34.7 0 0 1-22.3-65.8l-8-23.7A34.7 34.7 0 0 1 392 60L56.5 173.3a34.7 34.7 0 0 1-21.7 44l8 23.7A34.7 34.7 0 0 1 65 306.7l8 23.7A34.7 34.7 0 0 1 95.2 396l8 23.7a34.7 34.7 0 0 1 44 21.8L482.7 328a34.7 34.7 0 0 1 21.8-44Z"

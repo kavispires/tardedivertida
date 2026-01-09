@@ -32,18 +32,37 @@ export function Board({ board, clues, players }: BoardProps) {
           >
             <ul className="v-board__clues">
               {boardEntry.clues.map((clueId) => (
-                <ClueEntry clue={clues[clueId]} key={clueId} players={players} />
+                <ClueEntry
+                  clue={clues[clueId]}
+                  key={clueId}
+                  players={players}
+                />
               ))}
             </ul>
             <div className="v-board__evaluation">
               {boardEntry.evaluation !== undefined ? (
-                <Tooltip title={<Translate pt="Quantidade de dicas corretas" en="Amount of correct clues" />}>
-                  <Avatar size={48} shape="circle" style={{ backgroundColor: 'green' }}>
+                <Tooltip
+                  title={
+                    <Translate
+                      pt="Quantidade de dicas corretas"
+                      en="Amount of correct clues"
+                    />
+                  }
+                >
+                  <Avatar
+                    size={48}
+                    shape="circle"
+                    style={{ backgroundColor: 'green' }}
+                  >
                     {boardEntry.evaluation}
                   </Avatar>
                 </Tooltip>
               ) : (
-                <IconAvatar icon={<QuestionIcon />} size={48} shape="square" />
+                <IconAvatar
+                  icon={<QuestionIcon />}
+                  size={48}
+                  shape="square"
+                />
               )}
             </div>
           </div>

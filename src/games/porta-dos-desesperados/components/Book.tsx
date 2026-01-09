@@ -13,9 +13,22 @@ export function Book({ children }: BookProps) {
       style={{ width: '50vw', maxWidth: '600px' }}
     >
       <defs>
-        <linearGradient id="a" x1="171.8" x2="354.26" y1="170.82" y2="170.82" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#d9d9d9"></stop>
-          <stop offset="1" stopColor="#fff"></stop>
+        <linearGradient
+          id="a"
+          x1="171.8"
+          x2="354.26"
+          y1="170.82"
+          y2="170.82"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop
+            offset="0"
+            stopColor="#d9d9d9"
+          ></stop>
+          <stop
+            offset="1"
+            stopColor="#fff"
+          ></stop>
         </linearGradient>
         <linearGradient
           id="b"
@@ -83,19 +96,37 @@ export function Book({ children }: BookProps) {
         d="M465.1 37.84c37.28 13.46 89 23.23 89 23.23v251.75s-6.94 2.31-25.51.78c-2.74-.22-5.74-.53-9-1l-2.77-.36q-6.6-1.14-13-2.11a444.4 444.4 0 01-23.48-5.12q-10.57-2.61-23-6.24a134.3 134.3 0 00-59.01-3.77c-16.56 2.64-26.64 7.52-26.64 7.52V49.84c38.67-25.84 55.86-25.56 93.41-12z"
       ></path>
 
-      <foreignObject x="185" y="63" width="150" height="225">
+      <foreignObject
+        x="185"
+        y="63"
+        width="150"
+        height="225"
+      >
         {children?.[0]}
       </foreignObject>
 
-      <foreignObject x="387" y="63" width="150" height="225">
+      <foreignObject
+        x="387"
+        y="63"
+        width="150"
+        height="225"
+      >
         {children?.[1]}
       </foreignObject>
 
       {!!children?.[2] && (
-        <path fill="#fff" d="M554.14 61.53s69.5-28 171.81-12v251.06s-117-6.94-171.81 12z"></path>
+        <path
+          fill="#fff"
+          d="M554.14 61.53s69.5-28 171.81-12v251.06s-117-6.94-171.81 12z"
+        ></path>
       )}
 
-      <foreignObject x="566" y="63" width="150" height="225">
+      <foreignObject
+        x="566"
+        y="63"
+        width="150"
+        height="225"
+      >
         {!!children?.[2] && children[2]}
       </foreignObject>
     </svg>

@@ -28,7 +28,12 @@ export function PhaseReact({ state, players }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<FeedbackIcon />}
-      title={<Translate pt="O que você acha?" en="What do you think?" />}
+      title={
+        <Translate
+          pt="O que você acha?"
+          en="What do you think?"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -54,8 +59,14 @@ export function PhaseReact({ state, players }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={POLEMICA_DA_VEZ_PHASES.REACT}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={POLEMICA_DA_VEZ_PHASES.REACT}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepLiking
           currentTweet={state.currentTweet}

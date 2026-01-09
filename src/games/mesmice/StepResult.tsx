@@ -78,12 +78,21 @@ export function StepResult({
   );
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Resultado" en="Result" />
+        <Translate
+          pt="Resultado"
+          en="Result"
+        />
       </StepTitle>
 
-      <GroupScore groupScore={groupScore} playerScore={user.score} />
+      <GroupScore
+        groupScore={groupScore}
+        playerScore={user.score}
+      />
 
       <ViewIf condition={outcome === OUTCOME.WIN}>
         <RuleInstruction type="scoring">
@@ -138,7 +147,11 @@ export function StepResult({
 
       <div className="game-container">
         <div className="selections-container">
-          <ActivePlayerObjectClue activePlayer={activePlayer} item={item} clue={clue} />
+          <ActivePlayerObjectClue
+            activePlayer={activePlayer}
+            item={item}
+            clue={clue}
+          />
           <div
             className="features-container"
             style={{
@@ -160,7 +173,11 @@ export function StepResult({
                   className={clsx(feature.eliminated && 'features-container__eliminated-object')}
                 />
                 {feature.eliminated && (
-                  <IconAvatar icon={<XIcon />} size="large" className="features-container__eliminated-x" />
+                  <IconAvatar
+                    icon={<XIcon />}
+                    size="large"
+                    className="features-container__eliminated-x"
+                  />
                 )}
               </motion.div>
             ))}
@@ -178,7 +195,11 @@ export function StepResult({
         withWaitingTimeBar
       />
 
-      <Votes votes={votes} features={features} players={players} />
+      <Votes
+        votes={votes}
+        features={features}
+        players={players}
+      />
     </Step>
   );
 }

@@ -20,21 +20,39 @@ export function PhaseTemplate({ players, state, user }: PhaseProps<PhaseTemplate
   const announcement = (
     <PhaseAnnouncement
       icon={<TDIcon />}
-      title={<Translate pt="?" en="?" />}
+      title={
+        <Translate
+          pt="?"
+          en="?"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
       <Instruction>
-        <Translate pt={<>?</>} en={<>?</>} />
+        <Translate
+          pt={<>?</>}
+          en={<>?</>}
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={TEMPLATE_PHASES.UNKNOWN}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={TEMPLATE_PHASES.UNKNOWN}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
-        <StepTemplate user={user} players={players} announcement={announcement} />
+        <StepTemplate
+          user={user}
+          players={players}
+          announcement={announcement}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

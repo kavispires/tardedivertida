@@ -33,11 +33,24 @@ export function MessageBoard({ messages, onSubmitMessage, disabled, players }: M
       <div className="q-message-send">
         <Popover
           placement="top"
-          title={<Translate pt="Enviar mensagem anônima" en="Send anonymous message" />}
-          content={<PopOverMessageForm players={players} onSubmitMessage={onSubmitMessage} />}
+          title={
+            <Translate
+              pt="Enviar mensagem anônima"
+              en="Send anonymous message"
+            />
+          }
+          content={
+            <PopOverMessageForm
+              players={players}
+              onSubmitMessage={onSubmitMessage}
+            />
+          }
           trigger="click"
         >
-          <Button size="small" disabled={disabled}>
+          <Button
+            size="small"
+            disabled={disabled}
+          >
             Enviar mensagem
           </Button>
         </Popover>
@@ -65,19 +78,54 @@ function PopOverMessageForm({ onSubmitMessage, players }: PopOverMessageFormProp
       size="small"
       onFinish={(e) => console.log(e)}
     >
-      <Form.Item label={<Translate pt="Apontem para" en="Aim on" />} name="targetId" required>
-        <Select placeholder={<Translate pt="Selecione alguém" en="Select someone" />}>
+      <Form.Item
+        label={
+          <Translate
+            pt="Apontem para"
+            en="Aim on"
+          />
+        }
+        name="targetId"
+        required
+      >
+        <Select
+          placeholder={
+            <Translate
+              pt="Selecione alguém"
+              en="Select someone"
+            />
+          }
+        >
           {Object.values(players).map((player) => {
             return (
-              <Select.Option key={player.id} value={player.id}>
+              <Select.Option
+                key={player.id}
+                value={player.id}
+              >
                 <PlayerAvatarName player={player} />
               </Select.Option>
             );
           })}
         </Select>
       </Form.Item>
-      <Form.Item label={<Translate pt="Enviar para" en="Send to" />} name="recipientId" required>
-        <Select placeholder={<Translate pt="Selecione alguém" en="Select someone" />}>
+      <Form.Item
+        label={
+          <Translate
+            pt="Enviar para"
+            en="Send to"
+          />
+        }
+        name="recipientId"
+        required
+      >
+        <Select
+          placeholder={
+            <Translate
+              pt="Selecione alguém"
+              en="Select someone"
+            />
+          }
+        >
           <Select.Option value="ALL">
             <PlayerAvatarName
               player={{
@@ -90,7 +138,10 @@ function PopOverMessageForm({ onSubmitMessage, players }: PopOverMessageFormProp
           </Select.Option>
           {Object.values(players).map((player) => {
             return (
-              <Select.Option key={player.id} value={player.id}>
+              <Select.Option
+                key={player.id}
+                value={player.id}
+              >
                 <PlayerAvatarName player={player} />
               </Select.Option>
             );
@@ -99,8 +150,14 @@ function PopOverMessageForm({ onSubmitMessage, players }: PopOverMessageFormProp
       </Form.Item>
 
       <Form.Item label="">
-        <Button type="primary" htmlType="submit">
-          <Translate pt="Enviar" en="Send" />
+        <Button
+          type="primary"
+          htmlType="submit"
+        >
+          <Translate
+            pt="Enviar"
+            en="Send"
+          />
         </Button>
       </Form.Item>
     </Form>

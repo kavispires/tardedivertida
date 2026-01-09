@@ -58,7 +58,10 @@ export const ResultValueDelegator = (props: ResultComponentProps) => {
 
   return (
     <>
-      <WinningCount winners={props.winningTeam.length} total={props.playersList.length} />
+      <WinningCount
+        winners={props.winningTeam.length}
+        total={props.playersList.length}
+      />
       <ResultComponent {...props} />
     </>
   );

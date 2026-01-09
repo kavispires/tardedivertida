@@ -29,9 +29,19 @@ export function PlayersStatusBar({ players }: PlayersStatusBarProps) {
       <ul className="players-status-bar__list">
         {sortPlayers(players).map((player) => {
           return (
-            <li className="players-status-bar__player" key={`players-status-bar-${player.id}`}>
-              <Tooltip title={player.name} placement="left" trigger="hover">
-                <Badge dot color={player.ready ? 'green' : 'gray'}>
+            <li
+              className="players-status-bar__player"
+              key={`players-status-bar-${player.id}`}
+            >
+              <Tooltip
+                title={player.name}
+                placement="left"
+                trigger="hover"
+              >
+                <Badge
+                  dot
+                  color={player.ready ? 'green' : 'gray'}
+                >
                   <PlayerAvatar
                     avatarId={player.avatarId}
                     alt={player.name}
@@ -43,7 +53,10 @@ export function PlayersStatusBar({ players }: PlayersStatusBarProps) {
               {player.ready && (
                 <div className="players-status-bar__ready">
                   <div className="players-status-bar__ready-speech">
-                    <Translate pt="Pronto!" en="I'm ready!" />
+                    <Translate
+                      pt="Pronto!"
+                      en="I'm ready!"
+                    />
                   </div>
                 </div>
               )}

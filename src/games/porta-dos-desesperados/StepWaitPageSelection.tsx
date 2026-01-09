@@ -80,9 +80,24 @@ export function PossessionAnimation() {
   };
 
   const text: Record<string, ReactNode> = {
-    0: <Translate pt="Tentar acalmar a possessão" en="Try to calm the possession" />,
-    1: <Translate pt="Vixi, piorou!" en="Oh no, it got worse!" />,
-    2: <Translate pt="Ave Maria cheia de graça...!" en="Oh please God make it stop!" />,
+    0: (
+      <Translate
+        pt="Tentar acalmar a possessão"
+        en="Try to calm the possession"
+      />
+    ),
+    1: (
+      <Translate
+        pt="Vixi, piorou!"
+        en="Oh no, it got worse!"
+      />
+    ),
+    2: (
+      <Translate
+        pt="Ave Maria cheia de graça...!"
+        en="Oh please God make it stop!"
+      />
+    ),
     3: (
       <Translate
         pt="Melhor assim, talvez mais um clique pare de vez..."
@@ -97,8 +112,14 @@ export function PossessionAnimation() {
 
   return (
     <Space orientation="vertical">
-      <PanicIcon style={{ width: '6rem' }} className={animation[possessionLevel]} />
-      <Button size="small" onClick={onPossessionLevelChange}>
+      <PanicIcon
+        style={{ width: '6rem' }}
+        className={animation[possessionLevel]}
+      />
+      <Button
+        size="small"
+        onClick={onPossessionLevelChange}
+      >
         {text[possessionLevel]}
       </Button>
     </Space>

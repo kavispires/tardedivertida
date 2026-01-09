@@ -63,7 +63,10 @@ export function SelectableScenarioOrder({ scenarios, kind, onSubmitOrder }: Sele
 
   return (
     <SpaceContainer vertical>
-      <Scenarios scenarios={selection} reference={reference} />
+      <Scenarios
+        scenarios={selection}
+        reference={reference}
+      />
 
       <RuleInstruction type="action">
         <Translate
@@ -92,15 +95,29 @@ export function SelectableScenarioOrder({ scenarios, kind, onSubmitOrder }: Sele
           icon={<UndoOutlined />}
           disabled={selection[0] === null}
         >
-          <Translate pt="Desfazer" en="Undo" />
+          <Translate
+            pt="Desfazer"
+            en="Undo"
+          />
         </Button>
 
-        <DevButton size="large" type="dashed" onClick={() => setSelection(mockOrder(scenarios))}>
+        <DevButton
+          size="large"
+          type="dashed"
+          onClick={() => setSelection(mockOrder(scenarios))}
+        >
           Auto-select
         </DevButton>
 
-        <SendButton size="large" onClick={onSubmit} disabled={selection.some((entry) => entry === null)}>
-          <Translate pt="Enviar" en="Submit" />
+        <SendButton
+          size="large"
+          onClick={onSubmit}
+          disabled={selection.some((entry) => entry === null)}
+        >
+          <Translate
+            pt="Enviar"
+            en="Submit"
+          />
         </SendButton>
       </SpaceContainer>
     </SpaceContainer>

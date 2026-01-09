@@ -26,25 +26,50 @@ export function PhaseGameOver({ state, players, user }: PhaseProps) {
     <GameOverWrapper
       state={state}
       players={players}
-      announcementIcon={<GameOverIcon items={state.items} lastGuess={state.lastGuess} />}
+      announcementIcon={
+        <GameOverIcon
+          items={state.items}
+          lastGuess={state.lastGuess}
+        />
+      }
     >
-      <div ref={ref} style={{ width: '100%' }} />
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+      <div
+        ref={ref}
+        style={{ width: '100%' }}
+      />
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
 
       <Divider />
 
       <TitledContainer
         contained
-        title={<Translate pt="As Regras Secretas" en="The Secret Rules" />}
+        title={
+          <Translate
+            pt="As Regras Secretas"
+            en="The Secret Rules"
+          />
+        }
         contentProps={{ direction: 'vertical' }}
       >
         <Solution solutions={state.solutions} />
       </TitledContainer>
 
-      <DiagramSection width={width} diagrams={state.diagrams} items={state.items} />
+      <DiagramSection
+        width={width}
+        diagrams={state.diagrams}
+        items={state.items}
+      />
 
       {!isTheJudge && user.hand && (
-        <MyThings hand={user.hand ?? []} items={state.items ?? {}} total={state.targetItemsCount} />
+        <MyThings
+          hand={user.hand ?? []}
+          items={state.items ?? {}}
+          total={state.targetItemsCount}
+        />
       )}
     </GameOverWrapper>
   );

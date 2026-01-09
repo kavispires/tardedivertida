@@ -13,8 +13,14 @@ type CandyCountProps = {
 export function CandyCount({ candyCount, size = 'small' }: CandyCountProps) {
   return (
     <>
-      <IconAvatar icon={<CandyIcon />} size={size} />
-      <Avatar size={size} style={{ backgroundColor: 'hotPink' }}>
+      <IconAvatar
+        icon={<CandyIcon />}
+        size={size}
+      />
+      <Avatar
+        size={size}
+        style={{ backgroundColor: 'hotPink' }}
+      >
         {candyCount}
       </Avatar>
     </>

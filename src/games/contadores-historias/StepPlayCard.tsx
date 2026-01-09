@@ -49,9 +49,16 @@ export function StepPlayCard({
   }, [user.hand]);
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Card header={storyteller.name} className="c-story-card" randomColor>
+        <Card
+          header={storyteller.name}
+          className="c-story-card"
+          randomColor
+        >
           {story}
         </Card>
       </StepTitle>
@@ -83,7 +90,10 @@ export function StepPlayCard({
         </ViewOr>
       </RuleInstruction>
 
-      <TableFaceDown players={players} user={user} />
+      <TableFaceDown
+        players={players}
+        user={user}
+      />
 
       <ImageCardHand
         hand={user.hand}

@@ -25,12 +25,23 @@ export function PhaseClueEvaluations({ state, players }: PhaseProps) {
   const onSubmitOutcome = useOnSubmitOutcomeAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={VENDAVAL_DE_PALPITE_PHASES.CLUE_EVALUATIONS}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={VENDAVAL_DE_PALPITE_PHASES.CLUE_EVALUATIONS}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<LoupeIcon />}
-          title={<Translate pt="Avaliação das Pistas" en="Clue Evaluation" />}
+          title={
+            <Translate
+              pt="Avaliação das Pistas"
+              en="Clue Evaluation"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={5}

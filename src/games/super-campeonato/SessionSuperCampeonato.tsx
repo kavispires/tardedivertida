@@ -40,7 +40,10 @@ function getActiveComponent(state: GameState) {
 
 function SessionSuperCampeonato() {
   return (
-    <Session gameCollection={GAME_COLLECTION.SUPER_CAMPEONATO} getActiveComponent={getActiveComponent} />
+    <Session
+      gameCollection={GAME_COLLECTION.SUPER_CAMPEONATO}
+      getActiveComponent={getActiveComponent}
+    />
   );
 }
 

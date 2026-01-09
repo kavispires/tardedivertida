@@ -50,9 +50,17 @@ export function RulesCarousel({
 
   return (
     <div>
-      <Carousel className={clsx('rules-carousel', className)} autoplay autoplaySpeed={15000} ref={ref}>
+      <Carousel
+        className={clsx('rules-carousel', className)}
+        autoplay
+        autoplaySpeed={15000}
+        ref={ref}
+      >
         {info.rules[language].map((rule, index) => (
-          <div className={clsx('rules-carousel__rule', className)} key={rule}>
+          <div
+            className={clsx('rules-carousel__rule', className)}
+            key={rule}
+          >
             <span className="rules-carousel__rule-number">{index + 1}</span>
 
             <Image
@@ -72,11 +80,29 @@ export function RulesCarousel({
         ))}
       </Carousel>
       <SpaceContainer className={actionsClassName}>
-        <Button type="default" ghost onClick={() => ref.current?.prev()} size="small">
-          <DoubleLeftOutlined /> <Translate pt="Regra Anterior" en="Previous Rule" />
+        <Button
+          type="default"
+          ghost
+          onClick={() => ref.current?.prev()}
+          size="small"
+        >
+          <DoubleLeftOutlined />{' '}
+          <Translate
+            pt="Regra Anterior"
+            en="Previous Rule"
+          />
         </Button>
-        <Button type="default" ghost onClick={() => ref.current?.next()} size="small">
-          <Translate pt="Próxima Regra" en="Next Rule" /> <DoubleRightOutlined />
+        <Button
+          type="default"
+          ghost
+          onClick={() => ref.current?.next()}
+          size="small"
+        >
+          <Translate
+            pt="Próxima Regra"
+            en="Next Rule"
+          />{' '}
+          <DoubleRightOutlined />
         </Button>
       </SpaceContainer>
     </div>

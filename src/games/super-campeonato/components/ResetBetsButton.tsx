@@ -21,7 +21,10 @@ export function ResetBetsButton({ onConfirm }: ResetBettingButtonProps) {
       type="yes-no"
     >
       <Button>
-        <Translate pt="Reiniciar" en="Reset" />
+        <Translate
+          pt="Reiniciar"
+          en="Reset"
+        />
       </Button>
     </Popconfirm>
   );

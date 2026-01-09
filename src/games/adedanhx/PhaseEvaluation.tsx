@@ -24,7 +24,12 @@ export function PhaseEvaluation({ players, state, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<VerifyListIcon />}
-      title={<Translate pt="Avaliação" en="Evaluation" />}
+      title={
+        <Translate
+          pt="Avaliação"
+          en="Evaluation"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={10}
@@ -50,8 +55,14 @@ export function PhaseEvaluation({ players, state, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={ADEDANHX_PHASES.EVALUATION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={ADEDANHX_PHASES.EVALUATION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepEvaluateGroup
           players={players}

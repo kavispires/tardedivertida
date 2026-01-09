@@ -23,10 +23,16 @@ export function Settings({ hasImages }: SettingsProps) {
   };
 
   return (
-    <Space className="lobby-step__settings" separator={<Divider orientation="vertical" />}>
+    <Space
+      className="lobby-step__settings"
+      separator={<Divider orientation="vertical" />}
+    >
       <div className="lobby-step__settings-entry">
         <div className="lobby-step__switch-label">
-          <Translate pt="Som" en="Sound" />
+          <Translate
+            pt="Som"
+            en="Sound"
+          />
           <Tooltip
             title={
               <Translate
@@ -35,7 +41,12 @@ export function Settings({ hasImages }: SettingsProps) {
               />
             }
           >
-            <Button type="text" shape="circle" icon={<InfoCircleOutlined />} size="small" />
+            <Button
+              type="text"
+              shape="circle"
+              icon={<InfoCircleOutlined />}
+              size="small"
+            />
           </Tooltip>
         </div>
 
@@ -49,7 +60,10 @@ export function Settings({ hasImages }: SettingsProps) {
 
       <div className="lobby-step__settings-entry">
         <div className="lobby-step__switch-label">
-          <Translate pt="Efeitos" en="Effects" />
+          <Translate
+            pt="Efeitos"
+            en="Effects"
+          />
           <Tooltip
             title={
               <Translate
@@ -58,16 +72,28 @@ export function Settings({ hasImages }: SettingsProps) {
               />
             }
           >
-            <Button type="text" shape="circle" icon={<InfoCircleOutlined />} size="small" />
+            <Button
+              type="text"
+              shape="circle"
+              icon={<InfoCircleOutlined />}
+              size="small"
+            />
           </Tooltip>
         </div>
 
-        <Switch checkedChildren="on" unCheckedChildren="off" disabled />
+        <Switch
+          checkedChildren="on"
+          unCheckedChildren="off"
+          disabled
+        />
       </div>
 
       <div className="lobby-step__settings-entry">
         <div className="lobby-step__switch-label">
-          <Translate pt="Credo" en="Blur" />
+          <Translate
+            pt="Credo"
+            en="Blur"
+          />
           <Tooltip
             title={
               <Translate
@@ -76,7 +102,12 @@ export function Settings({ hasImages }: SettingsProps) {
               />
             }
           >
-            <Button type="text" shape="circle" icon={<InfoCircleOutlined />} size="small" />
+            <Button
+              type="text"
+              shape="circle"
+              icon={<InfoCircleOutlined />}
+              size="small"
+            />
           </Tooltip>
         </div>
 

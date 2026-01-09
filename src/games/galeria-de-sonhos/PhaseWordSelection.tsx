@@ -28,10 +28,22 @@ export function PhaseWordSelection({ state, players }: PhaseProps) {
   const onSubmitWord = useOnSubmitWordAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={GALERIA_DE_SONHOS_PHASES.WORD_SELECTION}>
-      <StepSwitcher step={step} players={players} waitingRoom={{ type: 'SERVER' }}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={GALERIA_DE_SONHOS_PHASES.WORD_SELECTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+        waitingRoom={{ type: 'SERVER' }}
+      >
         {/* Step 0 */}
-        <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5}>
+        <RoundAnnouncement
+          round={state?.round}
+          onPressButton={goToNextStep}
+          buttonText=" "
+          time={5}
+        >
           <Instruction contained>
             <Translate
               pt="Somos caçadores de sonhos tentando encontrar uns aos outros..."
@@ -43,7 +55,12 @@ export function PhaseWordSelection({ state, players }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<SleepIcon />}
-          title={<Translate pt="Tema dos Sonhos" en="The Dream Theme" />}
+          title={
+            <Translate
+              pt="Tema dos Sonhos"
+              en="The Dream Theme"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           type="block"
@@ -53,11 +70,19 @@ export function PhaseWordSelection({ state, players }: PhaseProps) {
 
         {/* Step 2 */}
         <ViewOr condition={isUserTheScout}>
-          <StepWordSelection onSubmitWord={onSubmitWord} words={state.words} />
+          <StepWordSelection
+            onSubmitWord={onSubmitWord}
+            words={state.words}
+          />
 
           <WaitingRoom
             players={players}
-            title={<Translate pt="Aguarde..." en="Please wait..." />}
+            title={
+              <Translate
+                pt="Aguarde..."
+                en="Please wait..."
+              />
+            }
             instruction={
               <Translate
                 pt={

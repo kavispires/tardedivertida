@@ -61,13 +61,23 @@ export function StepVoting({
   }, [user?.hand]);
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Qual carta é a ilustração correta?" en="What card is the correct one?" />
+        <Translate
+          pt="Qual carta é a ilustração correta?"
+          en="What card is the correct one?"
+        />
       </StepTitle>
 
       <SpaceContainer>
-        <Card header={storyteller.name} className="c-story-card" color="yellow">
+        <Card
+          header={storyteller.name}
+          className="c-story-card"
+          color="yellow"
+        >
           {story}
         </Card>
       </SpaceContainer>
@@ -78,20 +88,41 @@ export function StepVoting({
         <VotingRules isUserTheStoryTeller={isUserTheStoryTeller} />
       </RuleInstruction>
 
-      {everybodyReady && <TimedTimerBar duration={15} onExpire={() => {}} />}
+      {everybodyReady && (
+        <TimedTimerBar
+          duration={15}
+          onExpire={() => {}}
+        />
+      )}
 
-      <Space className="c-game-table" wrap>
+      <Space
+        className="c-game-table"
+        wrap
+      >
         {table.map((cardEntry) => {
           const isUserCard = cardEntry.playerId === user.id;
           const isUserVote = cardEntry.cardId === user.vote;
           return (
-            <div key={`hand-${cardEntry.cardId}`} className="c-game-table__card-container">
+            <div
+              key={`hand-${cardEntry.cardId}`}
+              className="c-game-table__card-container"
+            >
               <ImageCardButton
                 cardId={cardEntry.cardId}
                 onClick={!isUserTheStoryTeller ? onSelectCard : undefined}
                 disabled={isLoading || isUserCard}
                 buttonText={
-                  isUserCard ? <Translate pt="Sua" en="Yours" /> : <Translate pt="Votar" en="Vote" />
+                  isUserCard ? (
+                    <Translate
+                      pt="Sua"
+                      en="Yours"
+                    />
+                  ) : (
+                    <Translate
+                      pt="Votar"
+                      en="Vote"
+                    />
+                  )
                 }
                 throttle
               >

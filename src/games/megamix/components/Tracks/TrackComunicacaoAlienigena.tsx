@@ -38,7 +38,11 @@ export const TrackComunicacaoAlienigena = ({ track, onSubmitAnswer }: TrackProps
   return (
     <>
       <MinigameTitle title={{ pt: 'Comunicação Alienígena', en: 'Alien Communication' }} />
-      <Space orientation="vertical" align="center" className="contained margin">
+      <Space
+        orientation="vertical"
+        align="center"
+        className="contained margin"
+      >
         <RuleInstruction type="lore">
           <Translate
             pt={
@@ -59,7 +63,10 @@ export const TrackComunicacaoAlienigena = ({ track, onSubmitAnswer }: TrackProps
         </RuleInstruction>
 
         <SpaceContainer>
-          <IconAvatar icon={<AlienIcon />} size="large" />{' '}
+          <IconAvatar
+            icon={<AlienIcon />}
+            size="large"
+          />{' '}
           <SpeechBubble shadow>
             <SpaceContainer>
               {track.data.attributes.map((attribute: AlienSign, index: number) => {
@@ -89,7 +96,10 @@ export const TrackComunicacaoAlienigena = ({ track, onSubmitAnswer }: TrackProps
                 onClick={() => onSelect(item.id)}
                 disabled={isLoading}
               >
-                <ItemCard itemId={item.id} width={80} />
+                <ItemCard
+                  itemId={item.id}
+                  width={80}
+                />
               </TransparentButton>
             );
           })}

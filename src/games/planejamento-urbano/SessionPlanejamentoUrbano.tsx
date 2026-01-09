@@ -32,7 +32,10 @@ function getActiveComponent(state: GameState) {
 
 function SessionPlanejamentoUrbano() {
   return (
-    <Session gameCollection={GAME_COLLECTION.PLANEJAMENTO_URBANO} getActiveComponent={getActiveComponent} />
+    <Session
+      gameCollection={GAME_COLLECTION.PLANEJAMENTO_URBANO}
+      getActiveComponent={getActiveComponent}
+    />
   );
 }
 

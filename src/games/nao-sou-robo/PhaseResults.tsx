@@ -20,7 +20,12 @@ export function PhaseResults({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<RobotIcon />}
-      title={<Translate pt="Beep Bop Beep" en="Beep Bop Beep" />}
+      title={
+        <Translate
+          pt="Beep Bop Beep"
+          en="Beep Bop Beep"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={5}
@@ -35,8 +40,14 @@ export function PhaseResults({ state, players, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={NAO_SOU_ROBO_PHASES.RESULTS}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={NAO_SOU_ROBO_PHASES.RESULTS}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepResult
           user={user}

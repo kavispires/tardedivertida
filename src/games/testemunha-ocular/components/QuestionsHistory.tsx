@@ -21,31 +21,60 @@ type QuestionsHistoryProps = {
 export function QuestionsHistory({ history, suspectsDict }: QuestionsHistoryProps) {
   const columns: TableProps<THistoryEntry>['columns'] = [
     {
-      title: <Translate pt="Pergunta" en="Question" />,
+      title: (
+        <Translate
+          pt="Pergunta"
+          en="Question"
+        />
+      ),
       dataIndex: 'question',
       key: 'question',
     },
     {
-      title: <Translate pt="Resposta" en="Answer" />,
+      title: (
+        <Translate
+          pt="Resposta"
+          en="Answer"
+        />
+      ),
       dataIndex: 'statement',
       key: 'statement',
       render: (statement: boolean) => {
         if (statement) {
           return (
             <Flex gap={6}>
-              <IconAvatar icon={<SpeechBubbleAcceptedIcon />} size="small" /> <Translate pt="Sim" en="Yes" />
+              <IconAvatar
+                icon={<SpeechBubbleAcceptedIcon />}
+                size="small"
+              />{' '}
+              <Translate
+                pt="Sim"
+                en="Yes"
+              />
             </Flex>
           );
         }
         return (
           <Flex gap={6}>
-            <IconAvatar icon={<SpeechBubbleDeclinedIcon />} size="small" /> <Translate pt="Não" en="No" />
+            <IconAvatar
+              icon={<SpeechBubbleDeclinedIcon />}
+              size="small"
+            />{' '}
+            <Translate
+              pt="Não"
+              en="No"
+            />
           </Flex>
         );
       },
     },
     {
-      title: <Translate pt="Eliminados" en="Eliminated" />,
+      title: (
+        <Translate
+          pt="Eliminados"
+          en="Eliminated"
+        />
+      ),
       dataIndex: 'eliminated',
       key: 'eliminated',
       render: (eliminated: string[]) => (eliminated.length ? eliminated.length : '-'),
@@ -53,7 +82,14 @@ export function QuestionsHistory({ history, suspectsDict }: QuestionsHistoryProp
   ];
 
   return (
-    <CollapsibleRule title={<Translate pt="Respostas Anteriores" en="Previous Answers" />}>
+    <CollapsibleRule
+      title={
+        <Translate
+          pt="Respostas Anteriores"
+          en="Previous Answers"
+        />
+      }
+    >
       <Table
         dataSource={history}
         columns={columns}
@@ -62,7 +98,10 @@ export function QuestionsHistory({ history, suspectsDict }: QuestionsHistoryProp
         size="small"
         expandable={{
           expandedRowRender: (record) => (
-            <EliminatedSuspects eliminated={record.eliminated} suspectsDict={suspectsDict} />
+            <EliminatedSuspects
+              eliminated={record.eliminated}
+              suspectsDict={suspectsDict}
+            />
           ),
           rowExpandable: (record) => record.eliminated.length > 0,
         }}
@@ -78,10 +117,20 @@ type EliminatedSuspectsProps = {
 
 function EliminatedSuspects({ eliminated, suspectsDict }: EliminatedSuspectsProps) {
   return (
-    <Flex gap={8} wrap justify="center">
+    <Flex
+      gap={8}
+      wrap
+      justify="center"
+    >
       {eliminated.map((id) => {
         const suspect = suspectsDict[id];
-        return <SuspectCardComponent suspect={suspect} key={id} width={100} />;
+        return (
+          <SuspectCardComponent
+            suspect={suspect}
+            key={id}
+            width={100}
+          />
+        );
       })}
     </Flex>
   );

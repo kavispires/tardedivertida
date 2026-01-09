@@ -42,7 +42,10 @@ export function StepEvaluateGroup({
   }, [answersGroup.answers.length]);
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         <Translate
           pt={
@@ -131,9 +134,17 @@ function HostNextGroup({ onNextGroup, duration, players }: HostNextGroupProps) {
   const rejections = useMemo(() => Object.values(players).filter((p) => p.ready).length, [players]);
 
   return (
-    <HostOnlyContainer className="m-admin" orientation="vertical" align="center">
+    <HostOnlyContainer
+      className="m-admin"
+      orientation="vertical"
+      align="center"
+    >
       <span>
-        <Translate pt="Rejeições" en="Rejections" />: <TextHighlight>{rejections}</TextHighlight>
+        <Translate
+          pt="Rejeições"
+          en="Rejections"
+        />
+        : <TextHighlight>{rejections}</TextHighlight>
       </span>
       <HostTimedButton
         onClick={onNextGroup}
@@ -141,7 +152,10 @@ function HostNextGroup({ onNextGroup, duration, players }: HostNextGroupProps) {
         duration={duration}
         onExpire={() => setDisableButton(false)}
       >
-        <Translate pt="Confirmar e ir paro o próximo grupo" en="Confirm and go to next answer" />
+        <Translate
+          pt="Confirmar e ir paro o próximo grupo"
+          en="Confirm and go to next answer"
+        />
       </HostTimedButton>
     </HostOnlyContainer>
   );

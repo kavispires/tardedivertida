@@ -30,7 +30,12 @@ export function PhaseMetricsBuilding({ state, players }: PhaseProps<PhaseMetrics
   const announcement = (
     <PhaseAnnouncement
       icon={<BarChartIcon />}
-      title={<Translate en="Metrics Building" pt="Construção de Métricas" />}
+      title={
+        <Translate
+          en="Metrics Building"
+          pt="Construção de Métricas"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -53,9 +58,19 @@ export function PhaseMetricsBuilding({ state, players }: PhaseProps<PhaseMetrics
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={MEDIDAS_NAO_EXATAS_PHASES.METRICS_BUILDING}>
-      <StepSwitcher step={step} players={players}>
-        <RoundAnnouncement round={state.round} time={3} onPressButton={goToNextStep} />
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={MEDIDAS_NAO_EXATAS_PHASES.METRICS_BUILDING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
+        <RoundAnnouncement
+          round={state.round}
+          time={3}
+          onPressButton={goToNextStep}
+        />
 
         {/* Step 0 */}
         <ViewOr condition={isThePresenter}>

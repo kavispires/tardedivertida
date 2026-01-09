@@ -16,7 +16,12 @@ export function StepWaiting({ players, instruction }: StepWaitingProps) {
     <Step fullWidth>
       <WaitingRoom
         players={players}
-        title={<Translate pt="Aguarde" en="Please wait" />}
+        title={
+          <Translate
+            pt="Aguarde"
+            en="Please wait"
+          />
+        }
         instruction={instruction}
       />
     </Step>

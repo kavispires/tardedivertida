@@ -19,30 +19,56 @@ export function Summary({ status }: SummaryProps) {
     () => [
       {
         key: 'time',
-        title: <Translate pt="Tempo" en="Time" />,
+        title: (
+          <Translate
+            pt="Tempo"
+            en="Time"
+          />
+        ),
         value: (
-          <MetricHighlight icon={<ClockIcon />} iconPlacement="before">
+          <MetricHighlight
+            icon={<ClockIcon />}
+            iconPlacement="before"
+          >
             {status.questions}/{status.totalTime}
           </MetricHighlight>
         ),
       },
       {
         key: 'suspects',
-        title: <Translate pt="Suspeitos Liberados" en="Released Suspects" />,
+        title: (
+          <Translate
+            pt="Suspeitos Liberados"
+            en="Released Suspects"
+          />
+        ),
         value: (
-          <MetricHighlight icon={<PeopleAssessmentIcon />} iconPlacement="before">
+          <MetricHighlight
+            icon={<PeopleAssessmentIcon />}
+            iconPlacement="before"
+          >
             {status.released}/{status.suspects}
           </MetricHighlight>
         ),
       },
       {
         key: 'score',
-        title: <Translate pt="Pontuação" en="Score" />,
+        title: (
+          <Translate
+            pt="Pontuação"
+            en="Score"
+          />
+        ),
         value: <PointsHighlight iconPlacement="before">{status.score}</PointsHighlight>,
       },
     ],
     [status],
   );
 
-  return <StatusBar entries={entries} title="Status" />;
+  return (
+    <StatusBar
+      entries={entries}
+      title="Status"
+    />
+  );
 }

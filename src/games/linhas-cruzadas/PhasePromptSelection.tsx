@@ -20,12 +20,23 @@ export function PhasePromptSelection({ state, players, user }: PhaseProps) {
   const onSubmitPrompt = useOnSubmitPromptAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={LINHAS_CRUZADAS_PHASES.PROMPT_SELECTION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={LINHAS_CRUZADAS_PHASES.PROMPT_SELECTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<ListIcon />}
-          title={<Translate pt="Seleção da Carta" en="Card Selection" />}
+          title={
+            <Translate
+              pt="Seleção da Carta"
+              en="Card Selection"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={20}
@@ -58,7 +69,10 @@ export function PhasePromptSelection({ state, players, user }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <StepSelectPrompt prompts={user.prompts} onSubmitPrompt={onSubmitPrompt} />
+        <StepSelectPrompt
+          prompts={user.prompts}
+          onSubmitPrompt={onSubmitPrompt}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

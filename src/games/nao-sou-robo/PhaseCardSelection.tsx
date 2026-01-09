@@ -23,7 +23,12 @@ export function PhaseCardSelection({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<TicketsIcon />}
-      title={<Translate pt="Tentativa de comprar ingressos" en="Attempt to buy tickets" />}
+      title={
+        <Translate
+          pt="Tentativa de comprar ingressos"
+          en="Attempt to buy tickets"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={5}
@@ -38,7 +43,10 @@ export function PhaseCardSelection({ state, players, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={NAO_SOU_ROBO_PHASES.CARD_SELECTION}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={NAO_SOU_ROBO_PHASES.CARD_SELECTION}
+    >
       <StepSwitcher
         step={step}
         players={players}
@@ -52,7 +60,12 @@ export function PhaseCardSelection({ state, players, user }: PhaseProps) {
         }}
       >
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} buttonText=" " onPressButton={goToNextStep} time={5} />
+        <RoundAnnouncement
+          round={state.round}
+          buttonText=" "
+          onPressButton={goToNextStep}
+          time={5}
+        />
 
         {/* Step 1 */}
         <StepSelectCard

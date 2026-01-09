@@ -6,5 +6,10 @@ import { DailyPortaisMagicos } from './components/DailyPortaisMagicos';
 import './utils/styles.scss';
 
 export function DailyPortaisMagicosGame() {
-  return <DailyGame gameName="portais-magicos" GameComponent={DailyPortaisMagicos} />;
+  return (
+    <DailyGame
+      gameName="portais-magicos"
+      GameComponent={DailyPortaisMagicos}
+    />
+  );
 }

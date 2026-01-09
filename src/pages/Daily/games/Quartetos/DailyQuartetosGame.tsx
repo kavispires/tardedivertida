@@ -6,5 +6,10 @@ import { DailyQuartetos } from './components/DailyQuartetos';
 import './utils/styles.scss';
 
 export function DailyQuartetosGame() {
-  return <DailyGame gameName="quartetos" GameComponent={DailyQuartetos} />;
+  return (
+    <DailyGame
+      gameName="quartetos"
+      GameComponent={DailyQuartetos}
+    />
+  );
 }

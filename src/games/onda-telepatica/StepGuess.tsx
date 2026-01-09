@@ -21,9 +21,15 @@ type PromptProps = {
 function Prompt({ currentCategory }: PromptProps) {
   return (
     <RuleInstruction type="action">
-      <Translate pt="Qual número melhor indica" en="What number best translates" />
+      <Translate
+        pt="Qual número melhor indica"
+        en="What number best translates"
+      />
       <span className="o-dial-guess-selection__clue">{currentCategory.clue}</span>{' '}
-      <Translate pt="na escala" en="on the scale" />{' '}
+      <Translate
+        pt="na escala"
+        en="on the scale"
+      />{' '}
       <strong>
         {currentCategory.left}-{currentCategory.right}
       </strong>
@@ -51,9 +57,15 @@ export function StepGuess({ currentCategory, onSendGuess, announcement }: StepGu
   }, []);
 
   return (
-    <Step className="o-dial-guess-selection" announcement={announcement}>
+    <Step
+      className="o-dial-guess-selection"
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Hora de brilhar telepaticamente!" en="Time to shine telepathically!" />
+        <Translate
+          pt="Hora de brilhar telepaticamente!"
+          en="Time to shine telepathically!"
+        />
       </StepTitle>
       <Prompt currentCategory={currentCategory} />
       <Dial
@@ -80,8 +92,11 @@ export function StepGuess({ currentCategory, onSendGuess, announcement }: StepGu
           disabled={isLoading}
           loading={isLoading}
         >
-          <Translate pt="Enviar" en="Submit" />: {needle < 0 ? currentCategory.left : currentCategory.right} »{' '}
-          {Math.abs(needle)}
+          <Translate
+            pt="Enviar"
+            en="Submit"
+          />
+          : {needle < 0 ? currentCategory.left : currentCategory.right} » {Math.abs(needle)}
         </Button>
       </SpaceContainer>
     </Step>

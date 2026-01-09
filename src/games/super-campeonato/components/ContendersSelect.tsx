@@ -15,12 +15,22 @@ type ContendersSelectProps = {
 
 export function ContendersSelect({ contenders, updateBet, language, betTier }: ContendersSelectProps) {
   return (
-    <Select className="w-bet-form__select" defaultValue="" onChange={(id) => updateBet({ [betTier]: id })}>
+    <Select
+      className="w-bet-form__select"
+      defaultValue=""
+      onChange={(id) => updateBet({ [betTier]: id })}
+    >
       <Select.Option value="">
-        <Translate pt="Selecione" en="Select" />
+        <Translate
+          pt="Selecione"
+          en="Select"
+        />
       </Select.Option>
       {contenders.map((contender) => (
-        <Select.Option value={contender.id} key={`option-${betTier}-${contender.id}`}>
+        <Select.Option
+          value={contender.id}
+          key={`option-${betTier}-${contender.id}`}
+        >
           {contender.name[language]}
         </Select.Option>
       ))}

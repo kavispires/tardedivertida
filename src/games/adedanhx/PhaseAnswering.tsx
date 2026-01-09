@@ -25,8 +25,14 @@ export function PhaseAnswering({ players, state, user }: PhaseProps) {
   const onSubmitAnswers = useOnSubmitAnswersAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={ADEDANHX_PHASES.ANSWERING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={ADEDANHX_PHASES.ANSWERING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <RoundAnnouncement
           round={state?.round}
@@ -42,7 +48,11 @@ export function PhaseAnswering({ players, state, user }: PhaseProps) {
                   Você tem <TimeHighlight>{ANSWERING_TIME_IN_MINUTES} minutos</TimeHighlight> para preencher o
                   maior número de células da tabela combinando coluna e linha.
                   <br />A cada célula que você completa, lembre-se de apertar o{' '}
-                  <IconAvatar size="small" icon={<LockIcon />} /> cadeado para gravar o tempo.
+                  <IconAvatar
+                    size="small"
+                    icon={<LockIcon />}
+                  />{' '}
+                  cadeado para gravar o tempo.
                 </>
               }
               en={
@@ -51,7 +61,11 @@ export function PhaseAnswering({ players, state, user }: PhaseProps) {
                   many cells of the table as possible by combining column and row.
                   <br />
                   For each cell you complete, remember to press the{' '}
-                  <IconAvatar size="small" icon={<LockIcon />} /> lock to record the time.
+                  <IconAvatar
+                    size="small"
+                    icon={<LockIcon />}
+                  />{' '}
+                  lock to record the time.
                 </>
               }
             />
@@ -61,7 +75,12 @@ export function PhaseAnswering({ players, state, user }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<TimeWritingIcon />}
-          title={<Translate pt="Adedanhe!" en="Write!!!" />}
+          title={
+            <Translate
+              pt="Adedanhe!"
+              en="Write!!!"
+            />
+          }
           currentRound={state?.round?.current}
           type="block"
           onClose={goToNextStep}
@@ -74,7 +93,10 @@ export function PhaseAnswering({ players, state, user }: PhaseProps) {
                 <>
                   As categorias da rodada são{' '}
                   {state.grid.xHeaders.map((c: TopicCard) => (
-                    <TextHighlight dark key={c.label}>
+                    <TextHighlight
+                      dark
+                      key={c.label}
+                    >
                       {c.label}
                     </TextHighlight>
                   ))}
@@ -87,7 +109,10 @@ export function PhaseAnswering({ players, state, user }: PhaseProps) {
                 <>
                   The round categories are{' '}
                   {state.grid.xHeaders.map((c: TopicCard) => (
-                    <TextHighlight dark key={c.label}>
+                    <TextHighlight
+                      dark
+                      key={c.label}
+                    >
                       {c.label}
                     </TextHighlight>
                   ))}

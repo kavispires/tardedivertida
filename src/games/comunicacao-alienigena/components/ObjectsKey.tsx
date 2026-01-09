@@ -15,7 +15,10 @@ export function ObjectsKey({ status }: ObjectsKeyProps) {
       <div className="objects-key__entry">
         <span className="objects-key__example objects-key__example--UNKNOWN"></span>
         <span className="objects-key__text">
-          <Translate pt="Desconhecido" en="Unknown" />
+          <Translate
+            pt="Desconhecido"
+            en="Unknown"
+          />
         </span>
         {/* TODO: add to status */}
         <span>
@@ -25,10 +28,17 @@ export function ObjectsKey({ status }: ObjectsKeyProps) {
       <div className="objects-key__entry">
         <span className="objects-key__example objects-key__example--ITEM"></span>
         <span className="objects-key__text">
-          <Translate pt="O alienígena quer" en="Alien wants it" />
+          <Translate
+            pt="O alienígena quer"
+            en="Alien wants it"
+          />
         </span>
         <span>
-          <Translate pt="Entregues / Necessários" en="Delivered / Needed" />:{' '}
+          <Translate
+            pt="Entregues / Necessários"
+            en="Delivered / Needed"
+          />
+          :{' '}
           <Tag>
             {status.found} / {status.needed}
           </Tag>
@@ -37,7 +47,10 @@ export function ObjectsKey({ status }: ObjectsKeyProps) {
       <div className="objects-key__entry">
         <span className="objects-key__example objects-key__example--CURSE"></span>
         <span className="objects-key__text">
-          <Translate pt="O alienígena tem medo" en="Alien is afraid of it" />
+          <Translate
+            pt="O alienígena tem medo"
+            en="Alien is afraid of it"
+          />
         </span>
         <span>
           Amaldiçoados:{' '}
@@ -49,10 +62,17 @@ export function ObjectsKey({ status }: ObjectsKeyProps) {
       <div className="objects-key__entry">
         <span className="objects-key__example objects-key__example--BLANK"></span>
         <span className="objects-key__text">
-          <Translate pt="Alienígena não quis" en="Alien did not want it" />
+          <Translate
+            pt="Alienígena não quis"
+            en="Alien did not want it"
+          />
         </span>
         <span>
-          <Translate pt="Rodadas restantes" en="Rounds left" />: <Tag>{status.timeLeft}</Tag>
+          <Translate
+            pt="Rodadas restantes"
+            en="Rounds left"
+          />
+          : <Tag>{status.timeLeft}</Tag>
         </span>
       </div>
     </div>

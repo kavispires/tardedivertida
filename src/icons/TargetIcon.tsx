@@ -1,13 +1,32 @@
 export function TargetIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <circle cx="256" cy="256" r="213.33" fill="#fe4f60"></circle>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <circle
+        cx="256"
+        cy="256"
+        r="213.33"
+        fill="#fe4f60"
+      ></circle>
       <path
         fill="#ff6d7a"
         d="M372.62 77.33c15.34 10 6.46 33.85-11.68 31.23C210.42 86.83 79.78 229.62 126.66 382.6c5.32 17.34-16.72 29.95-28.89 16.49a212.61 212.61 0 01-55-148C46.49 84.75 233-14 372.62 77.33z"
       ></path>
-      <circle cx="256" cy="256" r="148.27" fill="#eef7ff"></circle>
-      <circle cx="256" cy="256" r="73.19" fill="#fe4f60"></circle>
+      <circle
+        cx="256"
+        cy="256"
+        r="148.27"
+        fill="#eef7ff"
+      ></circle>
+      <circle
+        cx="256"
+        cy="256"
+        r="73.19"
+        fill="#fe4f60"
+      ></circle>
       <path
         fill="#fff"
         d="M244.79 124.66a213.81 213.81 0 00-120.34 140.5c-2.49 9.38-16.25 7.88-16.76-1.8-4.08-77.67 55.09-147 132.76-155 9.67-1 13.24 12.37 4.34 16.29z"

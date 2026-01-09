@@ -60,7 +60,10 @@ export function CreditsPage({
     <>
       <div className="idp-gallery__credits">
         <SlideShowLabel>
-          <Translate pt="Criador" en="Creator" />
+          <Translate
+            pt="Criador"
+            en="Creator"
+          />
         </SlideShowLabel>
         <span className="uppercase">
           <PlayerAvatarEntry player={creator} />
@@ -69,7 +72,10 @@ export function CreditsPage({
 
       <div className="idp-gallery__guesses">
         <SlideShowLabel>
-          <Translate pt="Participantes votaram" en="Players voted" />
+          <Translate
+            pt="Participantes votaram"
+            en="Players voted"
+          />
         </SlideShowLabel>
 
         <div className="idp-gallery__guess">
@@ -80,15 +86,29 @@ export function CreditsPage({
                   winner={vote.correct}
                   backgroundColor={creatorColor}
                   extra={
-                    <Flex align="center" gap={3} style={{ height: '100%' }}>
-                      <IconAvatar icon={<StarIcon />} size="small" /> 2
+                    <Flex
+                      align="center"
+                      gap={3}
+                      style={{ height: '100%' }}
+                    >
+                      <IconAvatar
+                        icon={<StarIcon />}
+                        size="small"
+                      />{' '}
+                      2
                     </Flex>
                   }
                 >
-                  <ItemCard itemId={vote.itemId} width={itemWidth / 2} />
+                  <ItemCard
+                    itemId={vote.itemId}
+                    width={itemWidth / 2}
+                  />
                 </SlideShowBubbleValue>
 
-                <SlideShowPlayersList playersIds={vote.playersIds} players={players} />
+                <SlideShowPlayersList
+                  playersIds={vote.playersIds}
+                  players={players}
+                />
               </div>
             );
           })}

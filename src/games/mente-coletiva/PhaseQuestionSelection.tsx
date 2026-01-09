@@ -30,7 +30,12 @@ export function PhaseQuestionSelection({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<SheepIcon />}
-      title={<Translate pt="O Pasto Superlotado" en="A Overcrowded Pasture" />}
+      title={
+        <Translate
+          pt="O Pasto Superlotado"
+          en="A Overcrowded Pasture"
+        />
+      }
       currentRound={state?.round?.current}
       duration={state?.round?.current < 3 ? 40 : 10}
       type="overlay"
@@ -40,10 +45,20 @@ export function PhaseQuestionSelection({ state, players, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={MENTE_COLETIVA_PHASES.QUESTION_SELECTION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={MENTE_COLETIVA_PHASES.QUESTION_SELECTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={3}>
+        <RoundAnnouncement
+          round={state.round}
+          onPressButton={goToNextStep}
+          time={3}
+        >
           <Instruction contained>
             <Translate
               pt="Somos ovelhinhas e nosso pasto está superlotado!"

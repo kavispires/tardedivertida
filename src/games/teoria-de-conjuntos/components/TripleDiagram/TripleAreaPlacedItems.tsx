@@ -205,7 +205,10 @@ export function TripleAreaPlacedItems({ areaKey, diagramArea, containerWidth }: 
               style={{ left: `${left}px`, top: `${top}px` }}
               {...getAnimation('bounceIn', { delay: index * 0.1 })}
             >
-              <Avatar size={itemWidth} style={{ transform: 'translate(-25%, -25%)' }}>
+              <Avatar
+                size={itemWidth}
+                style={{ transform: 'translate(-25%, -25%)' }}
+              >
                 + {itemsIds.length - boundaries.length + 1}
               </Avatar>
             </motion.span>
@@ -219,7 +222,12 @@ export function TripleAreaPlacedItems({ areaKey, diagramArea, containerWidth }: 
             style={{ left: `${left}px`, top: `${top}px` }}
             {...getAnimation('bounceIn', { delay: index * 0.1 })}
           >
-            <ItemCard itemId={itemId} width={itemWidth} className="bare-item" padding={0} />
+            <ItemCard
+              itemId={itemId}
+              width={itemWidth}
+              className="bare-item"
+              padding={0}
+            />
           </motion.span>
         );
       })

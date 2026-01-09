@@ -1,6 +1,10 @@
 export function TurnBasedGameIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#99e6fc"
         d="M314.85 260.96H197.04v-15.92c0-32.53 26.37-58.91 58.91-58.91s58.91 26.37 58.91 58.91v15.92Z"

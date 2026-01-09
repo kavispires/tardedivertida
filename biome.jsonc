@@ -1,9 +1,7 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
-  "vcs": {
-    "enabled": true,
-    "clientKind": "git",
-    "useIgnoreFile": true
+  "assist": {
+    "actions": { "source": { "organizeImports": "off" } }
   },
   "files": {
     "ignoreUnknown": true,
@@ -19,25 +17,29 @@
     ]
   },
   "formatter": {
+    "attributePosition": "multiline",
+    "bracketSpacing": true,
     "enabled": true,
     "indentStyle": "space",
     "indentWidth": 2,
     "lineEnding": "lf",
-    "lineWidth": 110,
-    "attributePosition": "auto",
-    "bracketSpacing": true
+    "lineWidth": 110
   },
-  "assist": { "actions": { "source": { "organizeImports": "off" } } },
+  "javascript": {
+    "formatter": {
+      "attributePosition": "multiline",
+      "quoteStyle": "single"
+    }
+  },
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true,
       "a11y": {
-        "noSvgWithoutTitle": "off",
-        "useKeyWithClickEvents": "off",
-        "useSemanticElements": "warn",
         "noNoninteractiveElementToInteractiveRole": "warn",
-        "useFocusableInteractive": "warn"
+        "noSvgWithoutTitle": "off",
+        "useFocusableInteractive": "warn",
+        "useKeyWithClickEvents": "off",
+        "useSemanticElements": "warn"
       },
       "complexity": {
         "noForEach": "off"
@@ -51,32 +53,32 @@
         "noDeprecatedImports": "warn",
         "noDuplicateDependencies": "warn"
       },
+      "recommended": true,
       "security": {
         "noDangerouslySetInnerHtml": "warn"
       },
       "style": {
-        "useSelfClosingElements": "off",
+        "noInferrableTypes": "error",
         "noParameterAssign": "warn",
+        "noUnusedTemplateLiteral": "error",
+        "noUselessElse": "error",
         "useAsConstAssertion": "warn",
         "useDefaultParameterLast": "error",
         "useEnumInitializers": "error",
-        "useSingleVarDeclarator": "error",
-        "noUnusedTemplateLiteral": "error",
         "useNumberNamespace": "error",
-        "noInferrableTypes": "error",
-        "noUselessElse": "error"
+        "useSelfClosingElements": "off",
+        "useSingleVarDeclarator": "error"
       },
       "suspicious": {
-        "noExplicitAny": "warn",
         "noArrayIndexKey": "off",
-        "noConsole": "warn"
+        "noConsole": "warn",
+        "noExplicitAny": "warn"
       }
     }
   },
-  "javascript": {
-    "formatter": {
-      "quoteStyle": "single",
-      "attributePosition": "multiline"
-    }
+  "vcs": {
+    "clientKind": "git",
+    "enabled": true,
+    "useIgnoreFile": true
   }
 }

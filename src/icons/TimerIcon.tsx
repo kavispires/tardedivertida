@@ -1,13 +1,27 @@
 export function TimerIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <circle cx="256" cy="256" r="247.47" fill="#39a4dd"></circle>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <circle
+        cx="256"
+        cy="256"
+        r="247.47"
+        fill="#39a4dd"
+      ></circle>
       <path
         fill="#0a78bc"
         d="M256.13 8.63q-6.44 0-12.8.32c131.58 6.74 234.8 115.39 234.8 247.14s-103.22 240.4-234.8 247.15q6.36.31 12.8.32c136.67 0 247.47-110.79 247.47-247.47S392.8 8.63 256.13 8.63z"
         transform="translate(-.13 -.09)"
       ></path>
-      <circle cx="256" cy="256" r="213.33" fill="#f5f6f6"></circle>
+      <circle
+        cx="256"
+        cy="256"
+        r="213.33"
+        fill="#f5f6f6"
+      ></circle>
       <path
         fill="#d0d9dc"
         d="M256.13 42.76c-4.27 0-8.53.16-12.8.42a213.33 213.33 0 010 425.81c4.27.26 8.53.42 12.8.42 117.07-1.05 211.43-96.25 211.43-213.33S373.2 43.81 256.13 42.76z"

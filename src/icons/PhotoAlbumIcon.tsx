@@ -1,6 +1,10 @@
 export function PhotoAlbumIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#c8d2dc"
         d="M469.191 57.604l-25.08-2.723-10 384.811 10-12.064 38.374-353.493c.893-8.236-5.058-15.637-13.294-16.531z"
@@ -17,7 +21,10 @@ export function PhotoAlbumIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#80b6fc"
         d="M395.822 349.106L383.539 97.681H154.825c-8.284 0-15 6.716-15 15v236.425z"
       ></path>
-      <path fill="#62a4fb" d="M388.539 97.681h-5v176.161l20 25.594V112.681c0-8.284-6.716-15-15-15z"></path>
+      <path
+        fill="#62a4fb"
+        d="M388.539 97.681h-5v176.161l20 25.594V112.681c0-8.284-6.716-15-15-15z"
+      ></path>
       <path
         fill="#5392f9"
         d="M393.539 389.319l-10-115.477c-14.622-17.591-33.549-37.787-43.381-37.787-17.417 0-97.759 97.759-97.759 97.759s-33.176-43.641-43.641-43.641-58.933 58.933-58.933 58.933v47.213l238.714 8c8.284 0 15-6.716 15-15z"

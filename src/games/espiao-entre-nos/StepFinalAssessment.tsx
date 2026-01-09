@@ -56,7 +56,10 @@ export function StepFinalAssessment({
   return (
     <Step>
       <StepTitle className="e-phase-title">
-        <Translate pt="Última Chance!" en="Last chance!" />
+        <Translate
+          pt="Última Chance!"
+          en="Last chance!"
+        />
       </StepTitle>
 
       <FinalAssessmentModal
@@ -66,9 +69,15 @@ export function StepFinalAssessment({
         finalAssessment={finalAssessment}
       />
 
-      <FinalAssessmentInstruction finalAssessment={finalAssessment} players={players} />
+      <FinalAssessmentInstruction
+        finalAssessment={finalAssessment}
+        players={players}
+      />
 
-      <Card location={user.location} role={user.role} />
+      <Card
+        location={user.location}
+        role={user.role}
+      />
 
       <Instruction className="e-lists">
         <SuspectsList players={players} />

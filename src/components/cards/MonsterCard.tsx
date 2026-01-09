@@ -37,7 +37,11 @@ export function MonsterCard({ currentMonster, showControls = true, cardWidth, ..
 
   const baseClass = 'monster-card';
   return (
-    <Space orientation="vertical" align="center" {...props}>
+    <Space
+      orientation="vertical"
+      align="center"
+      {...props}
+    >
       <ImageCard
         classic
         cardId={currentMonster.id}
@@ -50,7 +54,10 @@ export function MonsterCard({ currentMonster, showControls = true, cardWidth, ..
       {showControls && (
         <Button onClick={onChangeOrientation}>
           {monsterOrientation === 'vertical' ? <RotateRightOutlined /> : <RotateLeftOutlined />}
-          <Translate pt="Girar" en="Rotate" />
+          <Translate
+            pt="Girar"
+            en="Rotate"
+          />
         </Button>
       )}
     </Space>

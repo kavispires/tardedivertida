@@ -22,7 +22,10 @@ export function SeedContadoresHistorias({ seed, updateData }: SeedContadoresHist
   const avatar = 'B';
   return (
     <div className="seed-container">
-      <Title size="xx-small" colorScheme="light">
+      <Title
+        size="xx-small"
+        colorScheme="light"
+      >
         <Translate
           pt="Sua mãe te mandou uma mensagem e você precisa responder antes de se arrumar"
           en="Your mom sent you a message and you must answer it before leaving"
@@ -35,21 +38,38 @@ export function SeedContadoresHistorias({ seed, updateData }: SeedContadoresHist
             <div className="ff-phone__contact">
               <PlayerAvatar avatarId={avatar} />
               <div className="ff-phone__name">
-                <Translate pt="Mamãe" en="Mommy" /> {'>'}
+                <Translate
+                  pt="Mamãe"
+                  en="Mommy"
+                />{' '}
+                {'>'}
               </div>
             </div>
             <div className="ff-phone__thread">
               <div className="ff-phone__message">
-                <Translate pt="Filho(a)" en="Dear" />
+                <Translate
+                  pt="Filho(a)"
+                  en="Dear"
+                />
               </div>
               <div className="ff-phone__message">
-                <Translate pt="O que é isso?" en="What is this?" />
+                <Translate
+                  pt="O que é isso?"
+                  en="What is this?"
+                />
               </div>
               <div className="ff-phone__timestamp">
-                <Translate pt="Recebido" en="Received" /> {now}
+                <Translate
+                  pt="Recebido"
+                  en="Received"
+                />{' '}
+                {now}
               </div>
               <div className="ff-phone__message">
-                <ImageCard cardId={seed.card} cardWidth={100} />
+                <ImageCard
+                  cardId={seed.card}
+                  cardWidth={100}
+                />
               </div>
             </div>
           </div>

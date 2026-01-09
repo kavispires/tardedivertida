@@ -56,7 +56,10 @@ export function HumanOffering({
         </SendButton>
       </Badge>
 
-      <Space className="boards-container" wrap>
+      <Space
+        className="boards-container"
+        wrap
+      >
         <SelectableObjectsGrid
           items={items}
           selectedObjects={offerings}
@@ -65,7 +68,10 @@ export function HumanOffering({
           maxObjects={10}
           status={status}
         />
-        <HumanSignBoard attributes={attributes} startingAttributesIds={startingAttributesIds} />
+        <HumanSignBoard
+          attributes={attributes}
+          startingAttributesIds={startingAttributesIds}
+        />
       </Space>
 
       <RuleInstruction type="rule">

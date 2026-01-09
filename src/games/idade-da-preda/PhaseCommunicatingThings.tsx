@@ -26,19 +26,33 @@ export function PhaseCommunicatingThings({
   const announcement = (
     <PhaseAnnouncement
       icon={<PencilIcon />}
-      title={<Translate pt="Crie um novo nome" en="Create a new name" />}
+      title={
+        <Translate
+          pt="Crie um novo nome"
+          en="Create a new name"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
       <Instruction>
-        <Translate pt={<>Vamos expandir nosso dicionário.</>} en={<>Let's expand our dictionary.</>} />
+        <Translate
+          pt={<>Vamos expandir nosso dicionário.</>}
+          en={<>Let's expand our dictionary.</>}
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={IDADE_DA_PREDA_PHASES.COMMUNICATING_THINGS}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={IDADE_DA_PREDA_PHASES.COMMUNICATING_THINGS}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 1 */}
         <StepNameAThing
           user={user}

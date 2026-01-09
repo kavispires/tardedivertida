@@ -1,6 +1,10 @@
 export function StarOutlineIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#ffffff"
         d="M491.64 188.725l-153.53-22.31-68.66-139.12c-2.75-5.57-8.1-8.36-13.45-8.36l.02 400.2 137.3 72.19c11.01 5.78 23.86-3.56 21.76-15.81l-26.22-152.92 111.09-108.29c8.91-8.68 3.99-23.79-8.31-25.58z"

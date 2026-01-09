@@ -34,7 +34,11 @@ export function StepRanking({ players, ranking, goToPreviousStep, round, gallery
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[
-        <Translate key="1" pt="Acertou o planejamento do arquiteto" en="Match the architect's plan" />,
+        <Translate
+          key="1"
+          pt="Acertou o planejamento do arquiteto"
+          en="Match the architect's plan"
+        />,
         <Translate
           key="2"
           pt="Pontos do Arquiteto para cada jogador que acertou o planejamento"
@@ -49,7 +53,10 @@ export function StepRanking({ players, ranking, goToPreviousStep, round, gallery
     >
       <SpaceContainer>
         <Button onClick={goToPreviousStep}>
-          <Translate pt="Ver resultado novamente" en="See results again" />
+          <Translate
+            pt="Ver resultado novamente"
+            en="See results again"
+          />
         </Button>
       </SpaceContainer>
 

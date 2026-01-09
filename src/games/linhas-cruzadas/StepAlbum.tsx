@@ -83,12 +83,19 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
   return (
     <Step className="l-step-album">
       <Title>
-        <Translate pt="Álbum de Fotos" en="Photo Album" />
+        <Translate
+          pt="Álbum de Fotos"
+          en="Photo Album"
+        />
       </Title>
       {currentPage < 0 || !currentAlbumEntry ? (
         <div className="a">?</div>
       ) : (
-        <Album albumEntry={currentAlbumEntry} currentPage={currentPage} players={players} />
+        <Album
+          albumEntry={currentAlbumEntry}
+          currentPage={currentPage}
+          players={players}
+        />
       )}
       <div className="l-timer-bar">
         <span
@@ -101,20 +108,41 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
       </div>
       <SpaceContainer>
         <Space.Compact>
-          <Button disabled={areControlsLocked || currentEntry === 0} onClick={onPrevAlbum}>
-            <Translate pt="Álbum Anterior" en="Previous Album" />
+          <Button
+            disabled={areControlsLocked || currentEntry === 0}
+            onClick={onPrevAlbum}
+          >
+            <Translate
+              pt="Álbum Anterior"
+              en="Previous Album"
+            />
           </Button>
-          <Button disabled={areControlsLocked || currentPage === 0} onClick={onPrevPage}>
-            <Translate pt="Página Anterior" en="Previous Page" />
+          <Button
+            disabled={areControlsLocked || currentPage === 0}
+            onClick={onPrevPage}
+          >
+            <Translate
+              pt="Página Anterior"
+              en="Previous Page"
+            />
           </Button>
           <Button
             disabled={areControlsLocked || currentPage === currentAlbumLastPageIndex}
             onClick={onNextPage}
           >
-            <Translate pt="Próxima Página" en="Next Page" />
+            <Translate
+              pt="Próxima Página"
+              en="Next Page"
+            />
           </Button>
-          <Button disabled={areControlsLocked || isLastAlbum} onClick={onNextAlbum}>
-            <Translate pt="Próximo Álbum" en="Next Album" />
+          <Button
+            disabled={areControlsLocked || isLastAlbum}
+            onClick={onNextAlbum}
+          >
+            <Translate
+              pt="Próximo Álbum"
+              en="Next Album"
+            />
           </Button>
         </Space.Compact>
       </SpaceContainer>

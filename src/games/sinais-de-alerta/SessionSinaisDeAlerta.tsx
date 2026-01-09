@@ -32,7 +32,10 @@ function getActiveComponent(state: GameState) {
 
 function SessionSinaisDeAlerta() {
   return (
-    <Session gameCollection={GAME_COLLECTION.SINAIS_DE_ALERTA} getActiveComponent={getActiveComponent} />
+    <Session
+      gameCollection={GAME_COLLECTION.SINAIS_DE_ALERTA}
+      getActiveComponent={getActiveComponent}
+    />
   );
 }
 

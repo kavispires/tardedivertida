@@ -25,7 +25,12 @@ function PhaseWitnessSelection({ state, players }: PhaseProps<PhaseWitnessSelect
   const announcement = (
     <PhaseAnnouncement
       icon={<CrimeSceneIcon />}
-      title={<Translate pt="O Caso" en="The Case" />}
+      title={
+        <Translate
+          pt="O Caso"
+          en="The Case"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -77,14 +82,20 @@ function PhaseWitnessSelection({ state, players }: PhaseProps<PhaseWitnessSelect
       allowedPhase={TESTEMUNHA_OCULAR_PHASES.WITNESS_SELECTION}
       className="t-phase"
     >
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepSelectPlayer
           players={players}
           announcement={announcement}
           titleProps={{
             children: (
-              <Translate pt="Quem quer ser a testemunha ocular?" en="Who wants to be the eye witness?" />
+              <Translate
+                pt="Quem quer ser a testemunha ocular?"
+                en="Who wants to be the eye witness?"
+              />
             ),
           }}
           ruleInstructionProps={{

@@ -18,10 +18,30 @@ export function SelectedAreasCircles({ selectedArea, size = 'small' }: SelectedA
   const areas = selectedArea.split('');
 
   const icons: Record<string, ReactElement> = {
-    A: <IconAvatar size={size} icon={<CircleIcon mainColor="blue" />} />,
-    W: <IconAvatar size={size} icon={<CircleIcon mainColor="yellow" />} />,
-    C: <IconAvatar size={size} icon={<CircleIcon mainColor="red" />} />,
-    O: <IconAvatar size={size} icon={<XIcon mainColor="#736357" />} />,
+    A: (
+      <IconAvatar
+        size={size}
+        icon={<CircleIcon mainColor="blue" />}
+      />
+    ),
+    W: (
+      <IconAvatar
+        size={size}
+        icon={<CircleIcon mainColor="yellow" />}
+      />
+    ),
+    C: (
+      <IconAvatar
+        size={size}
+        icon={<CircleIcon mainColor="red" />}
+      />
+    ),
+    O: (
+      <IconAvatar
+        size={size}
+        icon={<XIcon mainColor="#736357" />}
+      />
+    ),
   };
 
   return (

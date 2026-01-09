@@ -81,7 +81,10 @@ export function Suspects({
           const wasEliminated = eliminatedSuspects.includes(suspect.id);
           const isThePerpetrator = perpetratorId === suspect.id;
           return (
-            <div className="t-suspects-table__suspect" key={suspect.id}>
+            <div
+              className="t-suspects-table__suspect"
+              key={suspect.id}
+            >
               <ImageCard
                 cardId={wasEliminated ? 'us-00' : suspect.id}
                 previewImageId={suspect.id}
@@ -93,7 +96,10 @@ export function Suspects({
               />
               {isThePerpetrator && (
                 <span className="t-suspects-table__culprit-badge">
-                  <Translate pt="Culpado" en="Culprit" />
+                  <Translate
+                    pt="Culpado"
+                    en="Culprit"
+                  />
                 </span>
               )}
               {!wasEliminated && (

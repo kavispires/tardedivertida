@@ -28,7 +28,10 @@ export function StepWaitWordCreation({
   turnOrder,
 }: StepWaitWordCreationProps) {
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle wait>
         <Translate
           pt={
@@ -71,11 +74,18 @@ export function StepWaitWordCreation({
         />
       </RuleInstruction>
 
-      <ItemsGrid items={items} selectedItems={[]} />
+      <ItemsGrid
+        items={items}
+        selectedItems={[]}
+      />
 
       <WordLengths wordLengths={wordLengths} />
 
-      <TurnOrder players={players} order={turnOrder} activePlayerId={creator.id} />
+      <TurnOrder
+        players={players}
+        order={turnOrder}
+        activePlayerId={creator.id}
+      />
     </Step>
   );
 }

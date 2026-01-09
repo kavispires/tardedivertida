@@ -1,6 +1,10 @@
 export function GenderIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#fe7ab6"
         d="M261 171a127 127 0 10-153 124v63c0 3-2 5-5 5H93a27 27 0 100 53h10c3 0 5 2 5 5v20a26 26 0 1053 0v-20c0-3 2-5 5-5h10a27 27 0 100-53h-10c-3 0-5-2-5-5v-63c57-12 100-63 100-124zm-127 77a77 77 0 110-154 77 77 0 010 154z"

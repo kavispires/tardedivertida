@@ -39,9 +39,15 @@ export function StepNewConcepts({
   useMock(() => onMakeMeReady());
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt={<>Novos Conceitos</>} en={<>New Concepts</>} />
+        <Translate
+          pt={<>Novos Conceitos</>}
+          en={<>New Concepts</>}
+        />
       </StepTitle>
 
       <RuleInstruction type="action">
@@ -52,12 +58,25 @@ export function StepNewConcepts({
       </RuleInstruction>
 
       <SpaceContainer>
-        <SendButton type="primary" size="large" onClick={onMakeMeReady}>
-          <Translate pt="Pronto" en="Ready" />
+        <SendButton
+          type="primary"
+          size="large"
+          onClick={onMakeMeReady}
+        >
+          <Translate
+            pt="Pronto"
+            en="Ready"
+          />
         </SendButton>
       </SpaceContainer>
 
-      <Flex justify="center" align="center" wrap="wrap" gap={12} className="my-2">
+      <Flex
+        justify="center"
+        align="center"
+        wrap="wrap"
+        gap={12}
+        className="my-2"
+      >
         {concepts.map((concept) => (
           <ConceptCreationBlock
             key={concept.id}

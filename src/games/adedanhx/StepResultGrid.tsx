@@ -33,20 +33,39 @@ export function StepResultGrid({
   announcement,
 }: StepResultGridProps) {
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt={<>Resultado</>} en={<>Results</>} />
+        <Translate
+          pt={<>Resultado</>}
+          en={<>Results</>}
+        />
       </StepTitle>
 
       <RuleInstruction type="rule">
         <ScoringRule />
       </RuleInstruction>
 
-      <AnswersGrid grid={grid} answersGrid={answersGrid} answersGroups={answersGroups} players={players} />
+      <AnswersGrid
+        grid={grid}
+        answersGrid={answersGrid}
+        answersGroups={answersGroups}
+        players={players}
+      />
 
       <SpaceContainer>
-        <TimedButton duration={25} icon={<TrophyOutlined />} onExpire={goToNextStep} onClick={goToNextStep}>
-          <Translate pt="Ver Ranking" en="See Ranking" />
+        <TimedButton
+          duration={25}
+          icon={<TrophyOutlined />}
+          onExpire={goToNextStep}
+          onClick={goToNextStep}
+        >
+          <Translate
+            pt="Ver Ranking"
+            en="See Ranking"
+          />
         </TimedButton>
       </SpaceContainer>
     </Step>

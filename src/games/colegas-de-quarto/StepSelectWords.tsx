@@ -40,9 +40,15 @@ export function StepSelectWords({ pool, onSubmitWords, user, announcement }: Ste
   };
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Quais cartas deveriam estar no jogo?" en="What cards should be in the game?" />
+        <Translate
+          pt="Quais cartas deveriam estar no jogo?"
+          en="What cards should be in the game?"
+        />
       </StepTitle>
 
       <RuleInstruction type="action">
@@ -65,8 +71,14 @@ export function StepSelectWords({ pool, onSubmitWords, user, announcement }: Ste
       </RuleInstruction>
 
       <SpaceContainer>
-        <Button onClick={onRandomSelection} size="large">
-          <Translate pt="Selecione pra mim" en="Select for me" />
+        <Button
+          onClick={onRandomSelection}
+          size="large"
+        >
+          <Translate
+            pt="Selecione pra mim"
+            en="Select for me"
+          />
         </Button>
         <Badge count={length}>
           <SendButton
@@ -74,12 +86,18 @@ export function StepSelectWords({ pool, onSubmitWords, user, announcement }: Ste
             size="large"
             disabled={length < 10 || user.ready}
           >
-            <Translate pt="Enviar cartas" en="Submit cards" />
+            <Translate
+              pt="Enviar cartas"
+              en="Submit cards"
+            />
           </SendButton>
         </Badge>
       </SpaceContainer>
 
-      <SpaceContainer className="max-width" wrap>
+      <SpaceContainer
+        className="max-width"
+        wrap
+      >
         {pool.map((card) => {
           return (
             <TransparentButton

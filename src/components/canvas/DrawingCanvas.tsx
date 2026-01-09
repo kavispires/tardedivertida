@@ -221,7 +221,11 @@ export const DrawingCanvas = ({
     }?.[strokeWidth] ?? 5;
 
   return (
-    <Flex vertical align="center" className="relative">
+    <Flex
+      vertical
+      align="center"
+      className="relative"
+    >
       {mask}
       <Stage
         width={width}
@@ -259,17 +263,35 @@ export const DrawingCanvas = ({
       </Stage>
       {showControls && (
         <Space className="mt-2">
-          <Button onClick={onUndo} disabled={lines.length === 0}>
+          <Button
+            onClick={onUndo}
+            disabled={lines.length === 0}
+          >
             <UndoOutlined />
-            <Translate pt="Desfazer" en="Undo" />
+            <Translate
+              pt="Desfazer"
+              en="Undo"
+            />
           </Button>
-          <Button onClick={onRedo} disabled={drawingHistory.length === 0}>
+          <Button
+            onClick={onRedo}
+            disabled={drawingHistory.length === 0}
+          >
             <UndoOutlined />
-            <Translate pt="Refazer" en="Redo" />
+            <Translate
+              pt="Refazer"
+              en="Redo"
+            />
           </Button>
-          <Button onClick={onClear} disabled={lines.length === 0}>
+          <Button
+            onClick={onClear}
+            disabled={lines.length === 0}
+          >
             <DeleteOutlined />
-            <Translate pt="Apagar" en="Clear" />
+            <Translate
+              pt="Apagar"
+              en="Clear"
+            />
           </Button>
         </Space>
       )}

@@ -38,12 +38,23 @@ export function PhaseResults({ state, players, user }: PhaseProps<PhaseResultsSt
   };
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={LABIRINTO_SECRETO_PHASES.RESULTS}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={LABIRINTO_SECRETO_PHASES.RESULTS}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<PathIcon />}
-          title={<Translate pt="Resultado" en="Results" />}
+          title={
+            <Translate
+              pt="Resultado"
+              en="Results"
+            />
+          }
           currentRound={state?.round?.current}
           type="block"
           onClose={goToNextStep}
@@ -67,7 +78,12 @@ export function PhaseResults({ state, players, user }: PhaseProps<PhaseResultsSt
         />
 
         {/* Step 2 */}
-        <StepRanking players={players} round={state.round} ranking={state.ranking} onGoBack={onGoBack} />
+        <StepRanking
+          players={players}
+          round={state.round}
+          ranking={state.ranking}
+          onGoBack={onGoBack}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

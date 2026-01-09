@@ -20,7 +20,15 @@ export function CandyHighlight({ children, type }: HighlightProps) {
 
 export function TitleCandyHighlight({ children, type }: HighlightProps) {
   return (
-    <MetricHighlight icon={<IconAvatar size="large" icon={<CandyIcon />} />} type={type}>
+    <MetricHighlight
+      icon={
+        <IconAvatar
+          size="large"
+          icon={<CandyIcon />}
+        />
+      }
+      type={type}
+    >
       {children}
     </MetricHighlight>
   );
@@ -28,7 +36,15 @@ export function TitleCandyHighlight({ children, type }: HighlightProps) {
 
 export function TitleIPadHighlight({ children, type }: HighlightProps) {
   return (
-    <MetricHighlight icon={<IconAvatar size="small" icon={<TabletIcon />} />} type={type}>
+    <MetricHighlight
+      icon={
+        <IconAvatar
+          size="small"
+          icon={<TabletIcon />}
+        />
+      }
+      type={type}
+    >
       {children}
     </MetricHighlight>
   );

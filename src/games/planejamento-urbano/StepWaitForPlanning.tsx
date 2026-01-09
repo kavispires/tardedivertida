@@ -30,8 +30,14 @@ export function StepWaitForPlanning({
   placements,
 }: StepWaitForPlanningProps) {
   return (
-    <Step fullWidth announcement={announcement}>
-      <StepTitle size="small" wait>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
+      <StepTitle
+        size="small"
+        wait
+      >
         <Translate
           pt={
             <>
@@ -67,9 +73,16 @@ export function StepWaitForPlanning({
         />
       </RuleInstruction>
 
-      <CityMap city={city} cityLocationsDict={cityLocationsDict} />
+      <CityMap
+        city={city}
+        cityLocationsDict={cityLocationsDict}
+      />
 
-      <TurnOrder players={players} activePlayerId={architect.id} order={gameOrder} />
+      <TurnOrder
+        players={players}
+        activePlayerId={architect.id}
+        order={gameOrder}
+      />
     </Step>
   );
 }

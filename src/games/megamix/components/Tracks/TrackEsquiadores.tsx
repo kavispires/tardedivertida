@@ -68,7 +68,11 @@ export const TrackEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) =>
   return (
     <>
       <MinigameTitle title={{ pt: 'O Esquiador', en: 'Ski Resorte' }} />
-      <Space orientation="vertical" align="center" className="contained margin">
+      <Space
+        orientation="vertical"
+        align="center"
+        className="contained margin"
+      >
         <RuleInstruction type="action">
           <Translate
             pt={
@@ -96,7 +100,10 @@ export const TrackEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) =>
               className={clsx('dd-animated-skiier__skiier', `dd-animated-skiier__skiier--${direction}`)}
             />
           </div>
-          <Card header={translate('Dica', 'Clue')} color="red">
+          <Card
+            header={translate('Dica', 'Clue')}
+            color="red"
+          >
             {track.data.dilemma.prompt}
           </Card>
 
@@ -108,7 +115,10 @@ export const TrackEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) =>
                 className="dd-button"
               >
                 <span className="dd-button__hill dd-button__hill--left">
-                  <IconAvatar icon={<SnowHillIcon />} size={64} />
+                  <IconAvatar
+                    icon={<SnowHillIcon />}
+                    size={64}
+                  />
                 </span>
                 <span className="dd-button__text">{track.data.dilemma.left}</span>
               </TransparentButton>
@@ -118,7 +128,10 @@ export const TrackEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) =>
                 className="dd-button"
               >
                 <span className="dd-button__hill">
-                  <IconAvatar icon={<SnowHillIcon />} size={64} />
+                  <IconAvatar
+                    icon={<SnowHillIcon />}
+                    size={64}
+                  />
                 </span>
                 <span className="dd-button__text">{track.data.dilemma.right}</span>
               </TransparentButton>

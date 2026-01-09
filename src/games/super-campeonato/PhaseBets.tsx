@@ -24,7 +24,12 @@ export function PhaseBets({ state, players, user }: PhaseProps<PhaseBetsState>) 
   const announcement = (
     <PhaseAnnouncement
       icon={<GamblingChipIcon />}
-      title={<Translate pt="Apostas" en="Bets" />}
+      title={
+        <Translate
+          pt="Apostas"
+          en="Bets"
+        />
+      }
       type="overlay"
       currentRound={state?.round?.current}
       duration={5}
@@ -39,7 +44,10 @@ export function PhaseBets({ state, players, user }: PhaseProps<PhaseBetsState>) 
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={SUPER_CAMPEONATO_PHASES.BETS}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={SUPER_CAMPEONATO_PHASES.BETS}
+    >
       <StepSwitcher
         step={step}
         players={players}

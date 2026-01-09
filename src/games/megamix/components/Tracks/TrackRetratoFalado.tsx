@@ -33,7 +33,11 @@ export const TrackRetratoFalado = ({ track, onSubmitAnswer, user }: TrackProps) 
   return (
     <>
       <MinigameTitle title={{ pt: 'Retrato Falado Monstruoso', en: 'Monster Sketch' }} />
-      <Space orientation="vertical" align="center" className="contained margin">
+      <Space
+        orientation="vertical"
+        align="center"
+        className="contained margin"
+      >
         <RuleInstruction type="action">
           <Translate
             pt={
@@ -54,13 +58,24 @@ export const TrackRetratoFalado = ({ track, onSubmitAnswer, user }: TrackProps) 
         </RuleInstruction>
 
         <SpaceContainer>
-          <MonsterCard currentMonster={track.data.card} showControls cardWidth={200} />
+          <MonsterCard
+            currentMonster={track.data.card}
+            showControls
+            cardWidth={200}
+          />
         </SpaceContainer>
 
         <div className="a-drawings">
           {track.data.options.map((entry: PlainObject) => (
-            <div className="a-drawings__entry" key={entry.playerId}>
-              <CanvasSVG drawing={entry.drawing} width={cardWidth} className="a-drawing" />
+            <div
+              className="a-drawings__entry"
+              key={entry.playerId}
+            >
+              <CanvasSVG
+                drawing={entry.drawing}
+                width={cardWidth}
+                className="a-drawing"
+              />
 
               <SpaceContainer>
                 <Button
@@ -70,7 +85,10 @@ export const TrackRetratoFalado = ({ track, onSubmitAnswer, user }: TrackProps) 
                   loading={isLoading}
                   onClick={() => onSelect(entry.playerId)}
                 >
-                  <Translate pt="Selecionar" en="Select" />
+                  <Translate
+                    pt="Selecionar"
+                    en="Select"
+                  />
                 </Button>
               </SpaceContainer>
             </div>

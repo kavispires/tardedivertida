@@ -18,11 +18,24 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
   const canvasWidth = useCardWidth(8, { gap: 16, minWidth: 100, maxWidth: 500 });
 
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<CrownIcon />}>
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<CrownIcon />}
+    >
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
 
       <TitledContainer
-        title={<Translate pt="Sinais" en="Sings" />}
+        title={
+          <Translate
+            pt="Sinais"
+            en="Sings"
+          />
+        }
         contentProps={{ className: 'final-gallery' }}
       >
         {state.gallery.map((entry: FinalGalleryEntry) => {

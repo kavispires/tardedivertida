@@ -31,7 +31,10 @@ export function ClubLine({ players, currentRound }: MinigameTitleProps) {
       <div className="club-line__clubbers">
         <div className="club-line__area">
           {winners.map((player) => (
-            <div className="club-line__player" key={`${player.id}-${player.clubberId}`}>
+            <div
+              className="club-line__player"
+              key={`${player.id}-${player.clubberId}`}
+            >
               <Tooltip title={player.name}>
                 <ClubberAvatar
                   avatarId={player.avatarId}

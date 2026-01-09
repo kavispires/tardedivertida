@@ -29,12 +29,23 @@ export function PhaseGuessing({ state, players, user }: PhaseProps<PhaseGuessing
   const onMakeMeReady = useOnMakeMeReady({});
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={MEDIDAS_NAO_EXATAS_PHASES.GUESSING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={MEDIDAS_NAO_EXATAS_PHASES.GUESSING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/*Step 0 */}
         <PhaseAnnouncement
           icon={<GuessIcon />}
-          title={<Translate pt="Adivinhação" en="Guessing" />}
+          title={
+            <Translate
+              pt="Adivinhação"
+              en="Guessing"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           unskippable

@@ -6,5 +6,10 @@ import { DailyPalavreado } from './components/DailyPalavreado';
 import './utils/styles.scss';
 
 export function DailyPalavreadoGame() {
-  return <DailyGame gameName="palavreado" GameComponent={DailyPalavreado} />;
+  return (
+    <DailyGame
+      gameName="palavreado"
+      GameComponent={DailyPalavreado}
+    />
+  );
 }

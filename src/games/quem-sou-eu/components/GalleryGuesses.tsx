@@ -54,42 +54,79 @@ export function GalleryGuesses({
   const correctGuesses = playersSay[currentPlayer.character.id];
 
   return (
-    <Space className="q-gallery__info-container" orientation="vertical">
-      <Space className="q-gallery__votes" orientation="vertical">
+    <Space
+      className="q-gallery__info-container"
+      orientation="vertical"
+    >
+      <Space
+        className="q-gallery__votes"
+        orientation="vertical"
+      >
         <SlideShowLabel>
-          <Translate pt="Jogadores votaram" en="Players voted" />
+          <Translate
+            pt="Jogadores votaram"
+            en="Players voted"
+          />
         </SlideShowLabel>
 
         {entries.map((entry, index) => {
           return (
-            <div key={`guess-${entry.cardId}-${index}`} className="q-gallery__guess">
-              <SlideShowBubbleValue winner={entry.isCorrect} backgroundColor={currentColor}>
+            <div
+              key={`guess-${entry.cardId}-${index}`}
+              className="q-gallery__guess"
+            >
+              <SlideShowBubbleValue
+                winner={entry.isCorrect}
+                backgroundColor={currentColor}
+              >
                 {imageCardMode ? (
-                  <ImageCard cardId={entry.character.id} cardWidth={35} className="inline" />
+                  <ImageCard
+                    cardId={entry.character.id}
+                    cardWidth={35}
+                    className="inline"
+                  />
                 ) : (
                   <DualTranslate>{entry.character.name}</DualTranslate>
                 )}
               </SlideShowBubbleValue>
-              <SlideShowPlayersList playersIds={entry.playersIds} players={players} />
+              <SlideShowPlayersList
+                playersIds={entry.playersIds}
+                players={players}
+              />
             </div>
           );
         })}
       </Space>
 
-      <Space className="q-gallery__votes" orientation="vertical">
+      <Space
+        className="q-gallery__votes"
+        orientation="vertical"
+      >
         <SlideShowLabel>
-          <Translate pt="Pontos" en="Points" />
+          <Translate
+            pt="Pontos"
+            en="Points"
+          />
         </SlideShowLabel>
 
         {correctGuesses.length ? (
           <>
             <div className="q-gallery__players">
-              <SlideShowPlayersList playersIds={correctGuesses} players={players}>
-                <StarPoints quantity={round.current} keyPrefix={`guessers-points-${currentPlayer.id}`} />
+              <SlideShowPlayersList
+                playersIds={correctGuesses}
+                players={players}
+              >
+                <StarPoints
+                  quantity={round.current}
+                  keyPrefix={`guessers-points-${currentPlayer.id}`}
+                />
               </SlideShowPlayersList>
             </div>
             <div className="q-gallery__player-points">
-              <SlideShowPlayersList playersIds={[currentPlayer.id]} players={players}>
+              <SlideShowPlayersList
+                playersIds={[currentPlayer.id]}
+                players={players}
+              >
                 <StarPoints
                   quantity={playersPoints?.[currentPlayer.id]}
                   keyPrefix={`artist-points-${currentPlayer.id}`}

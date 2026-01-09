@@ -1,6 +1,10 @@
 export function GameCardsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#fe646f"
         d="M430.3 429.5H156.7a30 30 0 01-30-30v-362a30 30 0 0130-30h273.6a30 30 0 0130 30v362a30 30 0 01-30 30z"

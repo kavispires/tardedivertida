@@ -24,7 +24,12 @@ export function PhaseAlienRequest({ players, state, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<AlienCommunicationIcon />}
-      title={<Translate pt="O Alienígena faz um pedido" en="The Alien makes a request" />}
+      title={
+        <Translate
+          pt="O Alienígena faz um pedido"
+          en="The Alien makes a request"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}
@@ -32,8 +37,14 @@ export function PhaseAlienRequest({ players, state, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={COMUNICACAO_ALIENIGENA_PHASES.ALIEN_REQUEST}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={COMUNICACAO_ALIENIGENA_PHASES.ALIEN_REQUEST}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepAlienRequests
           players={players}

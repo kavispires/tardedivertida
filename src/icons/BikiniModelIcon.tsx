@@ -1,6 +1,10 @@
 export function BikiniModelIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#533222"
         d="M155.58 182V79.32a55.32 55.32 0 017.88-28.46A55.32 55.32 0 01210.9 24h8.8a55.32 55.32 0 0152.48 37.83l.56 1.65a55.33 55.33 0 012.84 17.5V179z"
@@ -27,8 +31,14 @@ export function BikiniModelIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#e6af89"
         d="M332.73 351.03l-1.15.97-30.62 22.96a2 2 0 01-2.61-.19l-21.36-21.36a2 2 0 010-2.82l20.21-20.2-9.02-20.8a4 4 0 013.67-5.59h4.25z"
       ></path>
-      <path fill="#f6bb92" d="M347.58 330.46l-16 13.54-32 24-24-24 24-24-8-16h32z"></path>
-      <path fill="#d8595a" d="M213.37 275.3l21.3-4.7 1.45-10.3-22.83 4.2z"></path>
+      <path
+        fill="#f6bb92"
+        d="M347.58 330.46l-16 13.54-32 24-24-24 24-24-8-16h32z"
+      ></path>
+      <path
+        fill="#d8595a"
+        d="M213.37 275.3l21.3-4.7 1.45-10.3-22.83 4.2z"
+      ></path>
       <path
         fill="#f6bb92"
         d="M179.58 80v18.06a52.97 52.97 0 0015.51 37.45 28.97 28.97 0 0020.49 8.49 28.97 28.97 0 0020.48-8.48 52.97 52.97 0 0015.52-37.46V96l-4.92-.98A73.15 73.15 0 01195.58 56z"
@@ -41,7 +51,10 @@ export function BikiniModelIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#f6bb92"
         d="M139.58 428.26V440l-16 48h24l24-32 16 8 6.7-13.42a4 4 0 00-.74-4.62L179.58 432z"
       ></path>
-      <path fill="#e6af89" d="M179.58 304l-20.85-27.68 20.85 45.34z"></path>
+      <path
+        fill="#e6af89"
+        d="M179.58 304l-20.85-27.68 20.85 45.34z"
+      ></path>
       <path
         fill="#d8595a"
         d="M171.58 208l-14.73 29.45a46.19 46.19 0 00-1.57 37.8A33 33 0 00185.92 296a33 33 0 0027.45-14.7l6.2-9.3-4.22-16.87a46.2 46.2 0 00-15.95-24.87z"

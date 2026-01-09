@@ -39,7 +39,10 @@ export function StepCauseOfDeathSelection({
   return (
     <Step announcement={announcement}>
       <StepTitle>
-        <Translate pt="Como foi seu último crime?" en="How was your last crime?" />
+        <Translate
+          pt="Como foi seu último crime?"
+          en="How was your last crime?"
+        />
       </StepTitle>
       <RuleInstruction type="action">
         <Translate
@@ -68,7 +71,11 @@ export function StepCauseOfDeathSelection({
           highlight="weapon"
         />
 
-        <SceneTile tile={causeOfDeathTile} onSelectValue={onSelectItem} index={causeOfDeathIndex} />
+        <SceneTile
+          tile={causeOfDeathTile}
+          onSelectValue={onSelectItem}
+          index={causeOfDeathIndex}
+        />
       </SpaceContainer>
 
       <SpaceContainer>

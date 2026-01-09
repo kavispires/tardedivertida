@@ -26,7 +26,12 @@ export function PhaseCardPlay({ players, state, user }: PhaseProps<PhaseCardPlay
   const announcement = (
     <PhaseAnnouncement
       icon={<MysteryBoxIcon />}
-      title={<Translate pt="Adicione coisas!" en="Add things!" />}
+      title={
+        <Translate
+          pt="Adicione coisas!"
+          en="Add things!"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -47,14 +52,21 @@ export function PhaseCardPlay({ players, state, user }: PhaseProps<PhaseCardPlay
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={QUAL_QUESITO_PHASES.CARD_PLAY}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={QUAL_QUESITO_PHASES.CARD_PLAY}
+    >
       <StepSwitcher
         step={step}
         players={players}
         waitingRoom={{
           content:
             user?.playedCardsIds?.length > 0 ? (
-              <ItemsHand hand={user?.playedCardsIds} cardsDict={state.cardsDict} hideCount />
+              <ItemsHand
+                hand={user?.playedCardsIds}
+                cardsDict={state.cardsDict}
+                hideCount
+              />
             ) : (
               <Instruction contained>
                 <Translate

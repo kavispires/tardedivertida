@@ -21,16 +21,32 @@ export function PhaseCreatingConcepts({ state, players, user }: PhaseProps<Phase
   const onSubmitConcepts = useOnSubmitConceptsAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={IDADE_DA_PREDA_PHASES.CREATING_CONCEPTS}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={IDADE_DA_PREDA_PHASES.CREATING_CONCEPTS}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
-        <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5}>
+        <RoundAnnouncement
+          round={state?.round}
+          onPressButton={goToNextStep}
+          buttonText=" "
+          time={5}
+        >
           <Instruction contained>{getAge(state?.round?.current)}</Instruction>
         </RoundAnnouncement>
 
         <PhaseAnnouncement
           icon={<CreateIcon />}
-          title={<Translate pt="Criação de Conceitos" en="Concept Creation" />}
+          title={
+            <Translate
+              pt="Criação de Conceitos"
+              en="Concept Creation"
+            />
+          }
           currentRound={state?.round?.current}
           type="block"
           onClose={goToNextStep}
@@ -70,22 +86,52 @@ export function PhaseCreatingConcepts({ state, players, user }: PhaseProps<Phase
 const getAge = (round: number) => {
   switch (round) {
     case 1: {
-      return <Translate pt="Idade da Pedra" en="Stone Age" />;
+      return (
+        <Translate
+          pt="Idade da Pedra"
+          en="Stone Age"
+        />
+      );
     }
     case 2: {
-      return <Translate pt="Idade Medieval" en="Medieval Age" />;
+      return (
+        <Translate
+          pt="Idade Medieval"
+          en="Medieval Age"
+        />
+      );
     }
     case 3: {
-      return <Translate pt="Idade Industrial" en="Industrial Age" />;
+      return (
+        <Translate
+          pt="Idade Industrial"
+          en="Industrial Age"
+        />
+      );
     }
     case 4: {
-      return <Translate pt="Idade Moderna" en="Modern Age" />;
+      return (
+        <Translate
+          pt="Idade Moderna"
+          en="Modern Age"
+        />
+      );
     }
     case 5: {
-      return <Translate pt="O Futuro?" en="Future?" />;
+      return (
+        <Translate
+          pt="O Futuro?"
+          en="Future?"
+        />
+      );
     }
     default: {
-      return <Translate pt="Uma nova era se aproxima" en="A new era is coming" />;
+      return (
+        <Translate
+          pt="Uma nova era se aproxima"
+          en="A new era is coming"
+        />
+      );
     }
   }
 };

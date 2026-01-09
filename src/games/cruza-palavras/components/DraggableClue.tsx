@@ -35,7 +35,13 @@ export function DraggableClue({
         withTransition: true,
       }}
     >
-      <ClueCard isMatched={isMatched} isSelected={isSelected} clue={clue.clue} color={color} strikeMatches />
+      <ClueCard
+        isMatched={isMatched}
+        isSelected={isSelected}
+        clue={clue.clue}
+        color={color}
+        strikeMatches
+      />
     </DraggableItem>
   );
 }

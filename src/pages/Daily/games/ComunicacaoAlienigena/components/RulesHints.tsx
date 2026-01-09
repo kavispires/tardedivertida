@@ -6,8 +6,18 @@ import { RuleEntry, RulesHintsModal } from 'pages/Daily/components/RulesHintsMod
 export function RulesHints() {
   return (
     <RulesHintsModal
-      label={<Translate pt="Entenda como o alienígena pensa" en="Understand how the alien thinks" />}
-      title={<Translate pt="Regras dos atributos" en="Attributes rules" />}
+      label={
+        <Translate
+          pt="Entenda como o alienígena pensa"
+          en="Understand how the alien thinks"
+        />
+      }
+      title={
+        <Translate
+          pt="Regras dos atributos"
+          en="Attributes rules"
+        />
+      }
       description={
         <>
           O alienígena pensa em conceitos gerais e agrupa coisas comuns em atributos abrangentes.

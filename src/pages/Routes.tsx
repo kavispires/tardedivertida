@@ -215,7 +215,10 @@ export const AnimatedRoutes = () => {
   const isLoading = isAuthenticating || (!shouldSkipLoading && isUserLoading);
 
   return (
-    <div className="app background" id="app">
+    <div
+      className="app background"
+      id="app"
+    >
       <LoadingBar />
       {isError && <PageError description={Object.values(errors).join(', ')} />}
       {isLoading && <LoadingPage />}

@@ -20,7 +20,11 @@ export function RibbonGroup({ labels }: RibbonGroupProps) {
               position="static"
             />
           ) : (
-            <PlayerRibbon key={String(label)} player={label as GamePlayer} position="static" />
+            <PlayerRibbon
+              key={String(label)}
+              player={label as GamePlayer}
+              position="static"
+            />
           ),
         )}
     </div>

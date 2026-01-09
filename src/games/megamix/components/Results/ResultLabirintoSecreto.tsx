@@ -16,16 +16,26 @@ export function ResultLabirintoSecreto({ track, winningValues }: ResultComponent
   return (
     <>
       <Instruction>
-        <Translate pt="O caminho mais votado foi" en="The most popular path was" />:
+        <Translate
+          pt="O caminho mais votado foi"
+          en="The most popular path was"
+        />
+        :
       </Instruction>
       <div className="track-result-values__cards">
         {winningValues.map((value) => {
           const index = Number(value);
           const entry = track.data?.options?.[index] ?? {};
           return (
-            <div key={index} className="cm-clues__clue cm-clues__clue--small">
+            <div
+              key={index}
+              className="cm-clues__clue cm-clues__clue--small"
+            >
               {LETTERS[Number(value)]}
-              <IconAvatar icon={<MapIcon />} size={48} />
+              <IconAvatar
+                icon={<MapIcon />}
+                size={48}
+              />
               {Object.values<PlainObject>(entry).map((option, index, arr) => {
                 return (
                   <Fragment key={`${option.playerId}-${index}`}>

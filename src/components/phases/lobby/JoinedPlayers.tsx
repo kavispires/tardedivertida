@@ -47,11 +47,21 @@ export function JoinedPlayers({ players, orientation }: JoinedPlayersProps) {
               },
             }}
           >
-            <Badge dot={player?.ready} color="green">
-              <PlayerAvatar avatarId={player?.avatarId} size="large" />
+            <Badge
+              dot={player?.ready}
+              color="green"
+            >
+              <PlayerAvatar
+                avatarId={player?.avatarId}
+                size="large"
+              />
             </Badge>
             <div className="joined-players__avatar-name">
-              <Translate pt="Fulano" en="John Doe" custom={player?.name} />
+              <Translate
+                pt="Fulano"
+                en="John Doe"
+                custom={player?.name}
+              />
             </div>
           </motion.div>
         </motion.div>

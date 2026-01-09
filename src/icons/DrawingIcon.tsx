@@ -1,16 +1,40 @@
 export function DrawingIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#e1d8fa"
         d="M46 346.4a38.58 38.58 0 0138.8 38.8V94.4a38.8 38.8 0 00-77.6 0v290.8A38.58 38.58 0 0146 346.4z"
       ></path>
-      <path fill="#f1f1fb" d="M84.8 94.4h384v290.8h-384z"></path>
-      <path fill="#f9502e" d="M84.8 385.2A38.8 38.8 0 1046 424h306.4v-38.8z"></path>
-      <path fill="#00d6de" d="M387.6 259.2L319.2 192l-42.4 41.6-42.4-41.6-68.4 67.2z"></path>
-      <circle cx="276.8" cy="152" r="18" fill="#ffd92d"></circle>
-      <path fill="#ffdece" d="M86 30l45.2-22.8v45.2z"></path>
-      <path fill="#ffd92d" d="M131.2 52.4h246.4a27 27 0 008.4-36.8 28 28 0 00-8.4-8.4H131.2z"></path>
+      <path
+        fill="#f1f1fb"
+        d="M84.8 94.4h384v290.8h-384z"
+      ></path>
+      <path
+        fill="#f9502e"
+        d="M84.8 385.2A38.8 38.8 0 1046 424h306.4v-38.8z"
+      ></path>
+      <path
+        fill="#00d6de"
+        d="M387.6 259.2L319.2 192l-42.4 41.6-42.4-41.6-68.4 67.2z"
+      ></path>
+      <circle
+        cx="276.8"
+        cy="152"
+        r="18"
+        fill="#ffd92d"
+      ></circle>
+      <path
+        fill="#ffdece"
+        d="M86 30l45.2-22.8v45.2z"
+      ></path>
+      <path
+        fill="#ffd92d"
+        d="M131.2 52.4h246.4a27 27 0 008.4-36.8 28 28 0 00-8.4-8.4H131.2z"
+      ></path>
       <path
         fill="#5d86f9"
         d="M390 30a26.53 26.53 0 01-12.4 22.4h-60.8V7.2h60.8A27.22 27.22 0 01390 30z"

@@ -16,11 +16,23 @@ function PhaseGameOver({ state, players }: PhaseProps) {
       state={state}
       players={players}
       announcementIcon={<TrophyIcon />}
-      rateWidgetCustomText={<Translate pt="Alguma sugestão de carta?" en="Any card suggestions?" />}
+      rateWidgetCustomText={
+        <Translate
+          pt="Alguma sugestão de carta?"
+          en="Any card suggestions?"
+        />
+      }
     >
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
 
-      <FinalGallery players={players} drawings={state.drawings} />
+      <FinalGallery
+        players={players}
+        drawings={state.drawings}
+      />
     </GameOverWrapper>
   );
 }

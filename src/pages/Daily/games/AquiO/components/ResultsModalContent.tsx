@@ -26,19 +26,39 @@ import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult
 
 const titles = [
   <Fragment key="1">
-    <IconAvatar icon={<SkullIcon />} /> <Translate pt="Você é muito ruim!" en="You are really bad!" />
+    <IconAvatar icon={<SkullIcon />} />{' '}
+    <Translate
+      pt="Você é muito ruim!"
+      en="You are really bad!"
+    />
   </Fragment>,
   <Fragment key="2">
-    <IconAvatar icon={<SealOfApprovalIcon />} /> <Translate pt="Foi bem mais ou menos!" en="Pretty Weak!" />
+    <IconAvatar icon={<SealOfApprovalIcon />} />{' '}
+    <Translate
+      pt="Foi bem mais ou menos!"
+      en="Pretty Weak!"
+    />
   </Fragment>,
   <Fragment key="3">
-    <IconAvatar icon={<ApplauseIcon />} /> <Translate pt="Muito bom!" en="Very good!" />
+    <IconAvatar icon={<ApplauseIcon />} />{' '}
+    <Translate
+      pt="Muito bom!"
+      en="Very good!"
+    />
   </Fragment>,
   <Fragment key="4">
-    <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Quase lá!" en="Almost there!" />
+    <IconAvatar icon={<TrophyIcon />} />{' '}
+    <Translate
+      pt="Quase lá!"
+      en="Almost there!"
+    />
   </Fragment>,
   <Fragment key="5">
-    <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Incrível!" en="Incredible!" />
+    <IconAvatar icon={<TrophyIcon />} />{' '}
+    <Translate
+      pt="Incrível!"
+      en="Incredible!"
+    />
   </Fragment>,
 ];
 
@@ -113,7 +133,10 @@ export function ResultsModalContent({
 
   return (
     <SpaceContainer vertical>
-      <Typography.Title level={2} className="center">
+      <Typography.Title
+        level={2}
+        className="center"
+      >
         {title}
       </Typography.Title>
       {progress > 0 && (
@@ -139,7 +162,12 @@ export function ResultsModalContent({
               pt={`Seu melhor hoje foi de ${maxProgress} discos.`}
               en={`Your best today was ${maxProgress} discs.`}
             />
-            {!isComplete && <Translate pt=" Tente novamente!" en=" Try again!" />}
+            {!isComplete && (
+              <Translate
+                pt=" Tente novamente!"
+                en=" Try again!"
+              />
+            )}
           </>
         )}
       </Typography.Paragraph>
@@ -147,7 +175,11 @@ export function ResultsModalContent({
       <Flex gap={6}>
         {!!lastMatch && (
           <motion.div {...getAnimation('pulse', { infinite: true })}>
-            <DailyItem itemId={lastMatch} width={45} className="item-match-outline" />
+            <DailyItem
+              itemId={lastMatch}
+              width={45}
+              className="item-match-outline"
+            />
           </motion.div>
         )}
         {progress > 0 &&
@@ -155,13 +187,22 @@ export function ResultsModalContent({
             .filter((id) => id !== lastMatch)
             .slice(0, Math.floor((progress - 1) / 3))
             .map((id, index) => (
-              <motion.div key={id} {...getAnimation('pulse', { delay: index * 0.5, infinite: true })}>
-                <DailyItem itemId={id} width={45} />
+              <motion.div
+                key={id}
+                {...getAnimation('pulse', { delay: index * 0.5, infinite: true })}
+              >
+                <DailyItem
+                  itemId={id}
+                  width={45}
+                />
               </motion.div>
             ))}
       </Flex>
 
-      <CopyToClipboardResult result={result} rows={4} />
+      <CopyToClipboardResult
+        result={result}
+        rows={4}
+      />
 
       <NextGameSuggestion />
     </SpaceContainer>

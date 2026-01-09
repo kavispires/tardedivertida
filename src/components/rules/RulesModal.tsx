@@ -25,8 +25,16 @@ export function RulesModal({ gameInfo, buttonProps }: RulesModalProps) {
 
   return (
     <>
-      <Button type="default" onClick={() => setVisibility(true)} icon={<ReadOutlined />} {...buttonProps}>
-        <Translate pt="Regras" en="Rules" />
+      <Button
+        type="default"
+        onClick={() => setVisibility(true)}
+        icon={<ReadOutlined />}
+        {...buttonProps}
+      >
+        <Translate
+          pt="Regras"
+          en="Rules"
+        />
       </Button>
       {isVisible && (
         <Modal
@@ -35,8 +43,14 @@ export function RulesModal({ gameInfo, buttonProps }: RulesModalProps) {
           onCancel={onCloseModal}
           className="rules-modal"
           footer={[
-            <Button key="close" onClick={onCloseModal}>
-              <Translate pt="Fechar" en="Close" />
+            <Button
+              key="close"
+              onClick={onCloseModal}
+            >
+              <Translate
+                pt="Fechar"
+                en="Close"
+              />
             </Button>,
           ]}
         >

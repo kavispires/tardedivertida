@@ -57,7 +57,10 @@ export function StepVote({
   return (
     <Step announcement={announcement}>
       <StepTitle>
-        <Translate pt="Vote!" en="Vote!" />
+        <Translate
+          pt="Vote!"
+          en="Vote!"
+        />
       </StepTitle>
       <RuleInstruction type="action">
         <Translate
@@ -110,7 +113,11 @@ export function StepVote({
           const player = players[sketchObj.playerId];
           const ownDrawing = sketchObj.playerId === user.id;
           return (
-            <Space orientation="vertical" align="center" key={`sketch-for-player-${sketchObj.playerId}`}>
+            <Space
+              orientation="vertical"
+              align="center"
+              key={`sketch-for-player-${sketchObj.playerId}`}
+            >
               <CanvasSVG
                 key={`sketch-${sketchObj.playerId}`}
                 width={canvasSize || canvasWidth}
@@ -124,9 +131,15 @@ export function StepVote({
                 icon={!ownDrawing && <CheckSquareOutlined />}
               >
                 {ownDrawing ? (
-                  <Translate pt="Seu" en="Yours" />
+                  <Translate
+                    pt="Seu"
+                    en="Yours"
+                  />
                 ) : (
-                  <Translate pt="Vote neste" en="Vote for this one" />
+                  <Translate
+                    pt="Vote neste"
+                    en="Vote for this one"
+                  />
                 )}
               </SendButton>
             </Space>

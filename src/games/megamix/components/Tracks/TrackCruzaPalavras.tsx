@@ -57,26 +57,50 @@ export const TrackCruzaPalavras = ({ track, onSubmitAnswer, user }: TrackProps) 
       </RuleInstruction>
 
       <SpaceContainer>
-        <PlayerAvatar avatarId="A" size="large" /> <SpeechBubble shadow>{track.data.clue.text}</SpeechBubble>
+        <PlayerAvatar
+          avatarId="A"
+          size="large"
+        />{' '}
+        <SpeechBubble shadow>{track.data.clue.text}</SpeechBubble>
       </SpaceContainer>
 
       <SpaceContainer>
-        <SpreadsheetGrid columns={3} rows={3} topLeftCorner>
+        <SpreadsheetGrid
+          columns={3}
+          rows={3}
+          topLeftCorner
+        >
           <SpreadsheetCell header>{track.data.cards[0].text}</SpreadsheetCell>
           <SpreadsheetCell header>{track.data.cards[1].text}</SpreadsheetCell>
           <SpreadsheetCell header>{track.data.cards[2].text}</SpreadsheetCell>
           <SpreadsheetCell>
-            <CellPlusButton onClick={() => onSelect(0)} disabled={user.ready} loading={isLoading} />
+            <CellPlusButton
+              onClick={() => onSelect(0)}
+              disabled={user.ready}
+              loading={isLoading}
+            />
           </SpreadsheetCell>
           <SpreadsheetCell>
-            <CellPlusButton onClick={() => onSelect(1)} disabled={user.ready} loading={isLoading} />
+            <CellPlusButton
+              onClick={() => onSelect(1)}
+              disabled={user.ready}
+              loading={isLoading}
+            />
           </SpreadsheetCell>
           <SpreadsheetCell header>{track.data.cards[3].text}</SpreadsheetCell>
           <SpreadsheetCell>
-            <CellPlusButton onClick={() => onSelect(2)} disabled={user.ready} loading={isLoading} />
+            <CellPlusButton
+              onClick={() => onSelect(2)}
+              disabled={user.ready}
+              loading={isLoading}
+            />
           </SpreadsheetCell>
           <SpreadsheetCell>
-            <CellPlusButton onClick={() => onSelect(3)} disabled={user.ready} loading={isLoading} />
+            <CellPlusButton
+              onClick={() => onSelect(3)}
+              disabled={user.ready}
+              loading={isLoading}
+            />
           </SpreadsheetCell>
         </SpreadsheetGrid>
       </SpaceContainer>
@@ -86,7 +110,12 @@ export const TrackCruzaPalavras = ({ track, onSubmitAnswer, user }: TrackProps) 
 
 function CellPlusButton({ onClick, loading, ...rest }: ButtonProps) {
   return (
-    <Button onClick={onClick} shape="circle" loading={loading} {...rest}>
+    <Button
+      onClick={onClick}
+      shape="circle"
+      loading={loading}
+      {...rest}
+    >
       {!loading && <PlusCircleFilled />}
     </Button>
   );

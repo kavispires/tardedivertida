@@ -35,7 +35,10 @@ function getActiveComponent(state: GameState) {
 
 function SessionGaleriaDeSonhos() {
   return (
-    <Session gameCollection={GAME_COLLECTION.GALERIA_DE_SONHOS} getActiveComponent={getActiveComponent} />
+    <Session
+      gameCollection={GAME_COLLECTION.GALERIA_DE_SONHOS}
+      getActiveComponent={getActiveComponent}
+    />
   );
 }
 

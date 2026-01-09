@@ -24,23 +24,49 @@ export function PhaseCardSelection({ state, players, user }: PhaseProps<PhaseCar
   const announcement = (
     <PhaseAnnouncement
       icon={<HandOfCardsIcon />}
-      title={<Translate pt="Prepare-se para a corrida" en="Prepare for the race" />}
+      title={
+        <Translate
+          pt="Prepare-se para a corrida"
+          en="Prepare for the race"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
       <Instruction>
-        <Translate pt={<>Escolha uma das suas três cartas</>} en={<>Choose one of your three cards</>} />
+        <Translate
+          pt={<>Escolha uma das suas três cartas</>}
+          en={<>Choose one of your three cards</>}
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={VICE_CAMPEAO_PHASES.CARD_SELECTION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={VICE_CAMPEAO_PHASES.CARD_SELECTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} time={5} onPressButton={goToNextStep}>
+        <RoundAnnouncement
+          round={state.round}
+          time={5}
+          onPressButton={goToNextStep}
+        >
           <Instruction contained>
-            <Translate en="Round" pt="Rodada" /> {state.round.current} <Translate en="of" pt="de" />{' '}
+            <Translate
+              en="Round"
+              pt="Rodada"
+            />{' '}
+            {state.round.current}{' '}
+            <Translate
+              en="of"
+              pt="de"
+            />{' '}
             {state.round.total}
           </Instruction>
         </RoundAnnouncement>

@@ -21,14 +21,20 @@ export function GuessBrackets({ players, pointsBrackets }: GuessBracketsProps) {
   return (
     <div className="m-guessing-board__points-brackets">
       {pointsBrackets.map((bracket, index) => (
-        <div key={`${bracket}-${index}`} className="m-guessing-board__points-bracket">
+        <div
+          key={`${bracket}-${index}`}
+          className="m-guessing-board__points-bracket"
+        >
           <BracketPointsBox width="48px">
             <span className="m-guessing-board__points-bracket-label">{bracket}</span>
           </BracketPointsBox>
           <div className="m-guessing-board__points-bracket-value">
             {guessesByTimestamp?.[index]?.map((guessObj) => (
               <span key={guessObj?.playerId}>
-                <PlayerAvatar key={guessObj.playerId} avatarId={players[guessObj.playerId ?? ''].avatarId} />
+                <PlayerAvatar
+                  key={guessObj.playerId}
+                  avatarId={players[guessObj.playerId ?? ''].avatarId}
+                />
               </span>
             ))}
           </div>

@@ -36,7 +36,10 @@ export function PhaseTrack({ state, players, user }: PhaseProps) {
       icon={<TrackIcon track={state.track} />}
       title={
         <>
-          <Avatar size="large" style={{ backgroundColor: 'DimGray', verticalAlign: 'middle' }}>
+          <Avatar
+            size="large"
+            style={{ backgroundColor: 'DimGray', verticalAlign: 'middle' }}
+          >
             {state.round.current}
           </Avatar>{' '}
           <TrackTitle track={state.track} />
@@ -52,8 +55,14 @@ export function PhaseTrack({ state, players, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={MEGAMIX_PHASES.TRACK}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={MEGAMIX_PHASES.TRACK}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<DJIcon />}
@@ -83,8 +92,24 @@ export function PhaseTrack({ state, players, user }: PhaseProps) {
 }
 
 function DJAnnouncementTitle({ round }: { round: GameRound }) {
-  if (round.current < 2) return <Translate pt="A Balada" en="The Club" />;
+  if (round.current < 2)
+    return (
+      <Translate
+        pt="A Balada"
+        en="The Club"
+      />
+    );
   if (round.current === Math.round(round.total / 2))
-    return <Translate pt="E tamo só esquentando" en="We're halfway!" />;
-  return <Translate pt="Última música" en="The last song" />;
+    return (
+      <Translate
+        pt="E tamo só esquentando"
+        en="We're halfway!"
+      />
+    );
+  return (
+    <Translate
+      pt="Última música"
+      en="The last song"
+    />
+  );
 }

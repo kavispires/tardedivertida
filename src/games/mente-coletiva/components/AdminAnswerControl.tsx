@@ -75,7 +75,11 @@ export function AdminAnswerControl({
   }, [answerGroup.entries.length, isDevEnv, playerCount, remainingGroupsCount]);
 
   return (
-    <HostOnlyContainer className="m-admin" orientation="vertical" align="center">
+    <HostOnlyContainer
+      className="m-admin"
+      orientation="vertical"
+      align="center"
+    >
       <TimedButton
         onClick={() => onNextAnswer({ allowedList: Object.keys(allowedList) })}
         disabled={disableButton || isLoading}
@@ -84,7 +88,10 @@ export function AdminAnswerControl({
         icon={<RocketFilled />}
         onExpire={() => setDisableButton(false)}
       >
-        <Translate pt="Confirmar e ir para próxima resposta" en="Confirm and go to next answer" />
+        <Translate
+          pt="Confirmar e ir para próxima resposta"
+          en="Confirm and go to next answer"
+        />
       </TimedButton>
 
       {filteredAnswers.length > 0 && (

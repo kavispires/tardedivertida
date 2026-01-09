@@ -14,7 +14,12 @@ type CompletionTrackerProps = {
 
 export function CompletionTracker({ itemsIds, tracker, itemWidth }: CompletionTrackerProps) {
   return (
-    <Flex gap={12} align="center" justify="center" className="my-5">
+    <Flex
+      gap={12}
+      align="center"
+      justify="center"
+      className="my-5"
+    >
       {itemsIds.map((itemId) => {
         const isCompleted = tracker.completedItems[itemId];
         const count = tracker.remainingCounts[itemId];

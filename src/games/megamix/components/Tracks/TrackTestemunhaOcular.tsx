@@ -43,7 +43,11 @@ export const TrackTestemunhaOcular = ({ track, onSubmitAnswer, user }: TrackProp
   return (
     <>
       <MinigameTitle title={{ pt: 'Testemunha Ocular', en: 'Eye Witness' }} />
-      <Space orientation="vertical" align="center" className="contained margin">
+      <Space
+        orientation="vertical"
+        align="center"
+        className="contained margin"
+      >
         <RuleInstruction type="action">
           <Translate
             pt="Uma testemunha deu essa resposta ao tentar falar quem era o criminoso à polícia."
@@ -51,14 +55,33 @@ export const TrackTestemunhaOcular = ({ track, onSubmitAnswer, user }: TrackProp
           />
         </RuleInstruction>
 
-        <Card header={translate('Pergunta', 'Question')} color="orange">
+        <Card
+          header={translate('Pergunta', 'Question')}
+          color="orange"
+        >
           {track.data.question.question}
         </Card>
 
         <SpaceContainer>
-          <PlayerAvatar avatarId="A" size="large" />{' '}
-          <SpeechBubble shadow size="small">
-            {track.data.answer ? <Translate en="YES" pt="SIM" /> : <Translate en="NO" pt="NÃO" />}{' '}
+          <PlayerAvatar
+            avatarId="A"
+            size="large"
+          />{' '}
+          <SpeechBubble
+            shadow
+            size="small"
+          >
+            {track.data.answer ? (
+              <Translate
+                en="YES"
+                pt="SIM"
+              />
+            ) : (
+              <Translate
+                en="NO"
+                pt="NÃO"
+              />
+            )}{' '}
             <IconAvatar
               size="large"
               icon={track.data.answer ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
@@ -77,8 +100,14 @@ export const TrackTestemunhaOcular = ({ track, onSubmitAnswer, user }: TrackProp
           <SpaceContainer>
             {track.data.suspects.map((suspect: SuspectCardType) => {
               return (
-                <SpaceContainer vertical key={suspect.id}>
-                  <SuspectCard suspect={suspect} width={cardWidth} />
+                <SpaceContainer
+                  vertical
+                  key={suspect.id}
+                >
+                  <SuspectCard
+                    suspect={suspect}
+                    width={cardWidth}
+                  />
 
                   <Button
                     shape="round"
@@ -87,7 +116,10 @@ export const TrackTestemunhaOcular = ({ track, onSubmitAnswer, user }: TrackProp
                     loading={isLoading}
                     onClick={() => onSelect(suspect.id)}
                   >
-                    <Translate pt="Selecionar" en="Select" />
+                    <Translate
+                      pt="Selecionar"
+                      en="Select"
+                    />
                   </Button>
                 </SpaceContainer>
               );

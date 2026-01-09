@@ -24,7 +24,11 @@ export function StepRanking({ players, ranking, goToPreviousStep, round }: StepR
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[
-        <Translate key="1" pt="Coisas aceitas" en="Accepted things" />,
+        <Translate
+          key="1"
+          pt="Coisas aceitas"
+          en="Accepted things"
+        />,
         <Translate
           key="2"
           pt="Bônus se o criador teve ambas as coisas aceitas"
@@ -39,7 +43,10 @@ export function StepRanking({ players, ranking, goToPreviousStep, round }: StepR
     >
       <SpaceContainer>
         <Button onClick={goToPreviousStep}>
-          <Translate pt="Ver resultado novamente" en="See results again" />
+          <Translate
+            pt="Ver resultado novamente"
+            en="See results again"
+          />
         </Button>
       </SpaceContainer>
 

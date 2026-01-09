@@ -1,6 +1,10 @@
 export function SpeechBubbleHeartIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#f5f7f8"
         d="M252.93 7.52a247.84 247.84 0 00-245.4 251.8 247.31 247.31 0 0028.39 112.14L11.52 485.7a12.46 12.46 0 0014.79 14.8l114.23-24.4a247.31 247.31 0 00112.14 28.39 247.84 247.84 0 00251.8-245.41C506.17 119.4 392.6 5.83 252.93 7.52z"

@@ -1,6 +1,10 @@
 export function MagicRunesIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#d5d9f2"
         d="M401 318c25-1 55-11 71-27 33-33 39-173-1-222-37-28-105-26-137 6-21 21-29 84-25 139z"

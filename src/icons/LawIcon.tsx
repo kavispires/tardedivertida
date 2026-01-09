@@ -1,11 +1,25 @@
 export function LawIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 60 60"
+      {...props}
+    >
       <g>
         <g transform="translate(1 1)">
-          <path fill="#624421" d="M27.964 24.95h4v10.02h-4z" transform="rotate(-45 29.96 29.968)"></path>
-          <path fill="#f57c00" d="M23 51v4H3v-4a3 3 0 013-3h14a3 3 0 013 3z"></path>
-          <path fill="#ff9801" d="M20 51v4H3v-4a3 3 0 013-3h11a3 3 0 013 3z"></path>
+          <path
+            fill="#624421"
+            d="M27.964 24.95h4v10.02h-4z"
+            transform="rotate(-45 29.96 29.968)"
+          ></path>
+          <path
+            fill="#f57c00"
+            d="M23 51v4H3v-4a3 3 0 013-3h14a3 3 0 013 3z"
+          ></path>
+          <path
+            fill="#ff9801"
+            d="M20 51v4H3v-4a3 3 0 013-3h11a3 3 0 013 3z"
+          ></path>
           <path
             fill="#825a2c"
             d="M32.79 24.3l-8.49 8.49a2 2 0 01-2.83 0l-1.41-1.42 11.31-11.31 1.42 1.41a2 2 0 010 2.83z"
@@ -22,8 +36,14 @@ export function LawIcon(props: React.SVGProps<SVGSVGElement>) {
             fill="sienna"
             d="M37.48 12l-1.42 1.42a3 3 0 01-4.24 0L25 6.62a3 3 0 010-4.24L26.42 1a1 1 0 011.42 0l9.64 9.64a1 1 0 010 1.36z"
           ></path>
-          <path fill="#783e22" d="M26 55v2a1 1 0 01-1 1H1a1 1 0 01-1-1v-2a2 2 0 012-2h22a2 2 0 012 2z"></path>
-          <path fill="sienna" d="M23 55v2a1 1 0 01-1 1H1a1 1 0 01-1-1v-2a2 2 0 012-2h19a2 2 0 012 2z"></path>
+          <path
+            fill="#783e22"
+            d="M26 55v2a1 1 0 01-1 1H1a1 1 0 01-1-1v-2a2 2 0 012-2h22a2 2 0 012 2z"
+          ></path>
+          <path
+            fill="sienna"
+            d="M23 55v2a1 1 0 01-1 1H1a1 1 0 01-1-1v-2a2 2 0 012-2h19a2 2 0 012 2z"
+          ></path>
           <path
             fill="#f57c00"
             d="M33.49 17.94L17.94 33.49a2 2 0 01-2.83 0l-6.36-6.36L27.13 8.75l6.36 6.36a2 2 0 010 2.83z"
@@ -36,7 +56,10 @@ export function LawIcon(props: React.SVGProps<SVGSVGElement>) {
             fill="#783e22"
             d="M51.88 46.22l-5.66 5.66C32.63 38.29 32.79 38.54 32.79 38.44l5.65-5.65z"
           ></path>
-          <path fill="sienna" d="M49.7 48.41l-3.48 3.47C32.63 38.29 32.79 38.54 32.79 38.44L36.26 35z"></path>
+          <path
+            fill="sienna"
+            d="M49.7 48.41l-3.48 3.47C32.63 38.29 32.79 38.54 32.79 38.44L36.26 35z"
+          ></path>
           <path
             fill="#fec108"
             d="M38.44 32.79l-5.65 5.65L30 35.62a2 2 0 010-2.83L31.75 31l1-1a2 2 0 012.83 0z"
@@ -45,7 +68,10 @@ export function LawIcon(props: React.SVGProps<SVGSVGElement>) {
             fill="#ffdc00"
             d="M36 34.42L32.38 38 30 35.62a2 2 0 010-2.83L31.75 31a2 2 0 011.43.59z"
           ></path>
-          <path fill="#707070" d="M54.71 49.05l-5.66 5.66-2.83-2.83 5.66-5.66z"></path>
+          <path
+            fill="#707070"
+            d="M54.71 49.05l-5.66 5.66-2.83-2.83 5.66-5.66z"
+          ></path>
           <path
             fill="#9e9e9e"
             d="M46.77 49.506h5.18v3.69h-5.18z"

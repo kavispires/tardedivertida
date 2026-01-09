@@ -30,13 +30,22 @@ export function PlayerObjectClueFeature({ user, features }: PlayerObjectClueFeat
     <SpaceContainer>
       <ObjectCard item={selectedObject} />
       <div>
-        <IconAvatar icon={<BoxPlusIcon />} size="small" />
+        <IconAvatar
+          icon={<BoxPlusIcon />}
+          size="small"
+        />
       </div>
       <Card hideHeader>{user.clue}</Card>
       <div>
-        <IconAvatar icon={<BoxEqualIcon />} size="small" />
+        <IconAvatar
+          icon={<BoxEqualIcon />}
+          size="small"
+        />
       </div>
-      <ObjectFeature feature={features[user.target]} width={72} />
+      <ObjectFeature
+        feature={features[user.target]}
+        width={72}
+      />
     </SpaceContainer>
   );
 }

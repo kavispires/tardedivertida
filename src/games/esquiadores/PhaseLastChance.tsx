@@ -30,7 +30,12 @@ export function PhaseLastChance({ players, state, user }: PhaseProps<PhaseBetsSt
   const announcement = isUserSkier ? (
     <PhaseAnnouncement
       icon={<GamblingChipIcon />}
-      title={<Translate pt="Aposte nos jogadores" en="Bet on the players" />}
+      title={
+        <Translate
+          pt="Aposte nos jogadores"
+          en="Bet on the players"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={5}
@@ -38,28 +43,46 @@ export function PhaseLastChance({ players, state, user }: PhaseProps<PhaseBetsSt
   ) : (
     <PhaseAnnouncement
       icon={<GamblingChipIcon />}
-      title={<Translate pt="Aposta Final" en="Final Bet" />}
+      title={
+        <Translate
+          pt="Aposta Final"
+          en="Final Bet"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={5}
     >
       <Instruction>
-        <Translate pt="Escolha sua cabana final" en="Choose your final lodge" />
+        <Translate
+          pt="Escolha sua cabana final"
+          en="Choose your final lodge"
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={ESQUIADORES_PHASES.LAST_CHANGE}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={ESQUIADORES_PHASES.LAST_CHANGE}
+    >
       <SnowEffect />
       <StepSwitcher
         step={step}
         players={players}
         waitingRoom={{
           content: isUserSkier ? (
-            <CurrentSkierBets user={user} players={players} />
+            <CurrentSkierBets
+              user={user}
+              players={players}
+            />
           ) : (
-            <CurrentBets user={user} lodges={state.lodges} betType="final" />
+            <CurrentBets
+              user={user}
+              lodges={state.lodges}
+              betType="final"
+            />
           ),
         }}
       >

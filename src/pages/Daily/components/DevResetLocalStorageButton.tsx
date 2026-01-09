@@ -31,7 +31,12 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
         localStorage.removeItem(composeLocalPlayedKey(key.KEY));
       });
     }
-    message.success(<Translate pt="LS resetado corretamente" en="LS reset successfully" />);
+    message.success(
+      <Translate
+        pt="LS resetado corretamente"
+        en="LS reset successfully"
+      />,
+    );
     navigate('/diario');
   };
 
@@ -65,7 +70,10 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
   };
 
   return (
-    <Flex justify="center" gap={12}>
+    <Flex
+      justify="center"
+      gap={12}
+    >
       <Space.Compact>
         <Popconfirm
           title={
@@ -76,16 +84,32 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
           }
           onConfirm={onReset}
         >
-          <Button size="large" type="dashed" icon={<BugOutlined />}>
-            <Translate pt="Resetar LS" en="Reset LS" />
+          <Button
+            size="large"
+            type="dashed"
+            icon={<BugOutlined />}
+          >
+            <Translate
+              pt="Resetar LS"
+              en="Reset LS"
+            />
           </Button>
         </Popconfirm>
         {isDevEnv && (
-          <Button size="large" type="dashed" onClick={onDayBefore} icon={<BugOutlined />}>
+          <Button
+            size="large"
+            type="dashed"
+            onClick={onDayBefore}
+            icon={<BugOutlined />}
+          >
             Yesterday LS
           </Button>
         )}
-        <Button size="large" type="dashed" onClick={onLog}>
+        <Button
+          size="large"
+          type="dashed"
+          onClick={onLog}
+        >
           Log
         </Button>
       </Space.Compact>

@@ -1,21 +1,62 @@
 export function CompassIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <circle cx="256" cy="256" r="238.9" fill="#009688"></circle>
-      <path fill="#00695c" d="M256 17q-6.4 0-12.8.4a238.9 238.9 0 010 477.2A239 239 0 10256 17z"></path>
-      <circle cx="256" cy="256" r="204.8" fill="#ffe0b2"></circle>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <circle
+        cx="256"
+        cy="256"
+        r="238.9"
+        fill="#009688"
+      ></circle>
+      <path
+        fill="#00695c"
+        d="M256 17q-6.4 0-12.8.4a238.9 238.9 0 010 477.2A239 239 0 10256 17z"
+      ></path>
+      <circle
+        cx="256"
+        cy="256"
+        r="204.8"
+        fill="#ffe0b2"
+      ></circle>
       <path
         fill="#dfc49c"
         d="M256 51.2c-4.3 0-8.5.2-12.8.4a204.8 204.8 0 010 408.8A204.8 204.8 0 10256 51.2z"
       ></path>
-      <path fill="#ffdc00" d="M256 256H8.5l172.2-44.9 24.1-6.3z"></path>
-      <path fill="#ff9801" d="M256 8.5V256l-51.2-51.2 6.3-24.1z"></path>
-      <path fill="#ffdc00" d="M307.2 204.8L256 256V8.5l44.9 172.2z"></path>
-      <path fill="#ff9801" d="M503.5 256H256l51.2-51.2 24.1 6.3z"></path>
-      <path fill="#ffdc00" d="M503.5 256l-172.1 44.9-24.2 6.3L256 256z"></path>
-      <path fill="#ff9801" d="M307.2 307.2l-6.3 24.1L256 503.5V256z"></path>
-      <path fill="#ffdc00" d="M256 256v247.5l-44.9-172.1-6.3-24.2z"></path>
-      <path fill="#ff9801" d="M256 256l-51.2 51.2-24.1-6.3L8.5 256z"></path>
+      <path
+        fill="#ffdc00"
+        d="M256 256H8.5l172.2-44.9 24.1-6.3z"
+      ></path>
+      <path
+        fill="#ff9801"
+        d="M256 8.5V256l-51.2-51.2 6.3-24.1z"
+      ></path>
+      <path
+        fill="#ffdc00"
+        d="M307.2 204.8L256 256V8.5l44.9 172.2z"
+      ></path>
+      <path
+        fill="#ff9801"
+        d="M503.5 256H256l51.2-51.2 24.1 6.3z"
+      ></path>
+      <path
+        fill="#ffdc00"
+        d="M503.5 256l-172.1 44.9-24.2 6.3L256 256z"
+      ></path>
+      <path
+        fill="#ff9801"
+        d="M307.2 307.2l-6.3 24.1L256 503.5V256z"
+      ></path>
+      <path
+        fill="#ffdc00"
+        d="M256 256v247.5l-44.9-172.1-6.3-24.2z"
+      ></path>
+      <path
+        fill="#ff9801"
+        d="M256 256l-51.2 51.2-24.1-6.3L8.5 256z"
+      ></path>
       <path
         fill="#f57c00"
         d="M211.1 180.7l-6.3 24.1-24.1 6.3-35.6-66zM367 145l-35.6 66.1-24.2-6.3-6.3-24.1zM211.1 331.4l-66 35.5 35.5-66 24.2 6.3zM367 367l-66.1-35.6 6.3-24.2 24.1-6.3z"

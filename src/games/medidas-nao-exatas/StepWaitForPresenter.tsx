@@ -29,7 +29,10 @@ export function StepWaitForPresenter({
   announcement,
 }: StepWaitForPresenterProps) {
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <WaitingRoom
         players={players}
         title={
@@ -46,17 +49,33 @@ export function StepWaitForPresenter({
             }
           />
         }
-        instruction={poolIds ? <RoundsPool poolIds={poolIds} wordsDict={wordsDict} /> : <div>...</div>}
+        instruction={
+          poolIds ? (
+            <RoundsPool
+              poolIds={poolIds}
+              wordsDict={wordsDict}
+            />
+          ) : (
+            <div>...</div>
+          )
+        }
       ></WaitingRoom>
 
-      <TurnOrder players={players} order={turnOrder} activePlayerId={presenter.id} />
+      <TurnOrder
+        players={players}
+        order={turnOrder}
+        activePlayerId={presenter.id}
+      />
     </Step>
   );
 }
 function RoundsPool({ poolIds, wordsDict }: Pick<StepWaitForPresenterProps, 'poolIds' | 'wordsDict'>) {
   return (
     <AnimatePresence>
-      <Translate pt={<>Palavras disponíveis para a rodada:</>} en={<>Available words for the round:</>} />
+      <Translate
+        pt={<>Palavras disponíveis para a rodada:</>}
+        en={<>Available words for the round:</>}
+      />
       <Flex wrap>
         {poolIds?.map((cardId, index) => {
           const card = wordsDict[cardId];

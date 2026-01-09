@@ -22,7 +22,10 @@ export function SeedOndaTelepatica({ seed, updateData }: SeedOndaTelepaticaProps
 
   return (
     <div className="seed-container">
-      <Title size="xx-small" colorScheme="light">
+      <Title
+        size="xx-small"
+        colorScheme="light"
+      >
         <Translate
           pt="Você ainda estuda e precisa terminar sua tarefa de casa..."
           en="You're still in school and needs to finish your homework..."
@@ -51,7 +54,10 @@ export function SeedOndaTelepatica({ seed, updateData }: SeedOndaTelepaticaProps
           />
         </Instruction>
 
-        <Card header={translate('Tarefa', 'Homework')} color="purple">
+        <Card
+          header={translate('Tarefa', 'Homework')}
+          color="purple"
+        >
           {/* TODO: Verify */}
           {String(seed.card)}
         </Card>
@@ -69,7 +75,10 @@ export function SeedOndaTelepatica({ seed, updateData }: SeedOndaTelepaticaProps
             onClick={() => updateData({ wave: value }, true)}
             type="primary"
           >
-            <Translate pt="Enviar dever de casa" en="Submit homework" />
+            <Translate
+              pt="Enviar dever de casa"
+              en="Submit homework"
+            />
           </Button>
         </Space>
       </SpaceContainer>

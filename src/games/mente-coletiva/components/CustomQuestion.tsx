@@ -24,20 +24,39 @@ export function CustomQuestion({ onSubmit, userId }: CustomQuestionProps) {
   return (
     <>
       <Divider>
-        <Translate pt="OU" en="OR" />
+        <Translate
+          pt="OU"
+          en="OR"
+        />
       </Divider>
 
-      <Space className="contained center" orientation="vertical">
+      <Space
+        className="contained center"
+        orientation="vertical"
+      >
         <Title size="xx-small">
-          <Translate pt="Crie uma pergunta" en="Write custom question" />:
+          <Translate
+            pt="Crie uma pergunta"
+            en="Write custom question"
+          />
+          :
         </Title>
         <Space className="m-custom-question-form">
-          <Select value={questionType} onChange={(e) => setQuestionType(e)}>
+          <Select
+            value={questionType}
+            onChange={(e) => setQuestionType(e)}
+          >
             <Select.Option value={translate('Cite', 'What are')}>
-              <Translate pt="Cite" en="What are" />
+              <Translate
+                pt="Cite"
+                en="What are"
+              />
             </Select.Option>
             <Select.Option value={translate('Complete a frase', 'Fill in the blank')}>
-              <Translate pt="Complete a frase" en="Fill in the blank" />
+              <Translate
+                pt="Complete a frase"
+                en="Fill in the blank"
+              />
             </Select.Option>
           </Select>
           <InputNumber
@@ -66,7 +85,10 @@ export function CustomQuestion({ onSubmit, userId }: CustomQuestionProps) {
           }
           disabled={!questionText}
         >
-          <Translate pt="Enviar pergunta personalizada" en="Submit custom question" />
+          <Translate
+            pt="Enviar pergunta personalizada"
+            en="Submit custom question"
+          />
         </SendButton>
       </Space>
     </>

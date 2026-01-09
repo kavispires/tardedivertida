@@ -34,20 +34,37 @@ export function StepBattle({
   announcement,
 }: StepBattleProps) {
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         <TierTitle tier={tier} />
       </StepTitle>
 
       <Challenge challenge={challenge} />
 
-      <Voting brackets={brackets} tier={tier} onSubmitVotes={onSubmitVotes} players={players} bets={bets} />
+      <Voting
+        brackets={brackets}
+        tier={tier}
+        onSubmitVotes={onSubmitVotes}
+        players={players}
+        bets={bets}
+      />
 
-      <Brackets brackets={brackets} activeTier={tier} players={players} />
+      <Brackets
+        brackets={brackets}
+        activeTier={tier}
+        players={players}
+      />
 
       <ReadyPlayersBar players={players} />
 
-      <BetsFloatingHand bets={bets} brackets={brackets} selectedContenderId={selectedContenderId} />
+      <BetsFloatingHand
+        bets={bets}
+        brackets={brackets}
+        selectedContenderId={selectedContenderId}
+      />
     </Step>
   );
 }

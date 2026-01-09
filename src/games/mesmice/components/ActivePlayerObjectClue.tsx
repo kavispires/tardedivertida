@@ -18,11 +18,17 @@ type ActivePlayerObjectClueProps = {
 export function ActivePlayerObjectClue({ activePlayer, item, clue }: ActivePlayerObjectClueProps) {
   return (
     <div className="selections-container__active-player">
-      <PlayerAvatarStrip player={activePlayer} withName />
+      <PlayerAvatarStrip
+        player={activePlayer}
+        withName
+      />
       <div className="selections-container__object">
         <ObjectCard item={item} />
         <div>
-          <IconAvatar icon={<BoxPlusIcon />} size="small" />
+          <IconAvatar
+            icon={<BoxPlusIcon />}
+            size="small"
+          />
         </div>
         <Card hideHeader>{clue}</Card>
       </div>

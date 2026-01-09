@@ -98,8 +98,14 @@ export function StepPlaceItem({
   };
 
   return (
-    <Step fullWidth announcement={announcement}>
-      <div ref={ref} style={{ width: '100%' }} />
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
+      <div
+        ref={ref}
+        style={{ width: '100%' }}
+      />
       <StepTitle>
         {isJudge ? (
           <Translate
@@ -148,8 +154,14 @@ export function StepPlaceItem({
           }}
           ref={scrollToSubmitRef}
         >
-          <Flex gap={4} align="center">
-            <Translate en="Submit" pt="Enviar" />
+          <Flex
+            gap={4}
+            align="center"
+          >
+            <Translate
+              en="Submit"
+              pt="Enviar"
+            />
             <span className="selected-item">
               <DualTranslate>{selectedItem?.name}</DualTranslate>
             </span>
@@ -248,20 +260,32 @@ export function StepPlaceItem({
         contained
         title={
           <>
-            <Translate pt="Suas coisas" en="Your items" />{' '}
+            <Translate
+              pt="Suas coisas"
+              en="Your items"
+            />{' '}
             <Tooltip
               title={
-                <Translate en="Items to place and total items" pt="Itens para posicionar e total de itens" />
+                <Translate
+                  en="Items to place and total items"
+                  pt="Itens para posicionar e total de itens"
+                />
               }
             >
-              <Tag variant="filled" icon={<AimOutlined />}>
+              <Tag
+                variant="filled"
+                icon={<AimOutlined />}
+              >
                 {(user.hand ?? []).slice(0, 10).length}/{targetItemCount}
               </Tag>
             </Tooltip>
           </>
         }
       >
-        <Flex gap={8} justify="center">
+        <Flex
+          gap={8}
+          justify="center"
+        >
           {(user.hand ?? []).slice(0, 10).map((itemId: string) => (
             <TransparentButton
               key={itemId}
@@ -271,7 +295,11 @@ export function StepPlaceItem({
               }}
               active={itemId === selectedItem.id}
             >
-              <ItemCard itemId={itemId} width={100} text={items[itemId]?.name} />
+              <ItemCard
+                itemId={itemId}
+                width={100}
+                text={items[itemId]?.name}
+              />
             </TransparentButton>
           ))}
         </Flex>
@@ -280,7 +308,12 @@ export function StepPlaceItem({
       {isJudge && (
         <TitledContainer
           contained
-          title={<Translate pt="As Regras Secretas" en="The Secret Rules" />}
+          title={
+            <Translate
+              pt="As Regras Secretas"
+              en="The Secret Rules"
+            />
+          }
           contentProps={{ direction: 'vertical' }}
         >
           <Translate

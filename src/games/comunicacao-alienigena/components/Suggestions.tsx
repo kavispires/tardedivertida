@@ -31,13 +31,24 @@ export function InquirySuggestions({ items, attributes, startingAttributesIds }:
   const content = (
     <ul>
       {suggestions.map((suggestion) => (
-        <li key={suggestion.attribute.id} className="my-1">
-          <Flex align="center" gap={8}>
+        <li
+          key={suggestion.attribute.id}
+          className="my-1"
+        >
+          <Flex
+            align="center"
+            gap={8}
+          >
             <TextHighlight>
               <DualTranslate>{suggestion.attribute.name}</DualTranslate>
             </TextHighlight>
             {suggestion.items.map((item) => (
-              <ItemCard key={item.id} itemId={item.id} width={36} padding={2} />
+              <ItemCard
+                key={item.id}
+                itemId={item.id}
+                width={36}
+                padding={2}
+              />
             ))}
           </Flex>
         </li>
@@ -46,9 +57,20 @@ export function InquirySuggestions({ items, attributes, startingAttributesIds }:
   );
 
   return (
-    <Popover content={content} title={<Translate pt="Sugestões de Pergunta" en="Ask Suggestions" />}>
+    <Popover
+      content={content}
+      title={
+        <Translate
+          pt="Sugestões de Pergunta"
+          en="Ask Suggestions"
+        />
+      }
+    >
       <Button type="link">
-        <Translate pt="Sugestões?" en="Suggestions?" />
+        <Translate
+          pt="Sugestões?"
+          en="Suggestions?"
+        />
       </Button>
     </Popover>
   );
@@ -62,12 +84,22 @@ export function AnswerSuggestions({ suggestions }: AnswerSuggestionsProps) {
   const content = (
     <ul>
       {suggestions.map((suggestion) => (
-        <li key={suggestion.id} className="my-1">
-          <Flex align="center" gap={8}>
+        <li
+          key={suggestion.id}
+          className="my-1"
+        >
+          <Flex
+            align="center"
+            gap={8}
+          >
             <TextHighlight>
               <DualTranslate>{suggestion.name}</DualTranslate>
             </TextHighlight>
-            <SignCard signId={`${suggestion.spriteId}`} className="transparent" width={36} />
+            <SignCard
+              signId={`${suggestion.spriteId}`}
+              className="transparent"
+              width={36}
+            />
           </Flex>
         </li>
       ))}
@@ -75,9 +107,20 @@ export function AnswerSuggestions({ suggestions }: AnswerSuggestionsProps) {
   );
 
   return (
-    <Popover content={content} title={<Translate pt="Sugestões de Resposta" en="Answer Suggestions" />}>
+    <Popover
+      content={content}
+      title={
+        <Translate
+          pt="Sugestões de Resposta"
+          en="Answer Suggestions"
+        />
+      }
+    >
       <Button type="link">
-        <Translate pt="Ajuda?" en="Help?" />
+        <Translate
+          pt="Ajuda?"
+          en="Help?"
+        />
       </Button>
     </Popover>
   );

@@ -56,12 +56,18 @@ export function StepBetsBreakdown({
   return (
     <Step>
       <StepTitle>
-        <Translate pt="Resumo das Apostas" en="Bets Summary" />
+        <Translate
+          pt="Resumo das Apostas"
+          en="Bets Summary"
+        />
       </StepTitle>
 
       <div className="lodge-results">
         {orderedLodges.map((lodge) => (
-          <div key={lodge.id} className="lodge-result">
+          <div
+            key={lodge.id}
+            className="lodge-result"
+          >
             <div className="lodge-result__selected">
               <IconAvatar
                 size="large"
@@ -70,7 +76,10 @@ export function StepBetsBreakdown({
             </div>
             <div className="lodge-result__lodge">
               <div className="lodge__icon">
-                <LodgeIcon width={64} color={LODGE_COLORS[lodge.id]} />
+                <LodgeIcon
+                  width={64}
+                  color={LODGE_COLORS[lodge.id]}
+                />
                 <span className="lodge__number">{lodge.id + 1}</span>
               </div>
             </div>
@@ -92,7 +101,11 @@ export function StepBetsBreakdown({
       <TitledContainer
         title={
           <Flex>
-            <PlayerAvatarName player={skier} /> <Translate pt="Apostas do Esquiador" en=" the skier's Bets" />
+            <PlayerAvatarName player={skier} />{' '}
+            <Translate
+              pt="Apostas do Esquiador"
+              en=" the skier's Bets"
+            />
           </Flex>
         }
         contentProps={{ className: 'contained' }}
@@ -100,7 +113,10 @@ export function StepBetsBreakdown({
         {playersList.map((player) => {
           const betValue = (skier.skiersBets?.[player.id] ?? 0) + (skier.skiersBoost?.[player.id] ?? 0);
           return (
-            <div key={player.id} className="lodge">
+            <div
+              key={player.id}
+              className="lodge"
+            >
               <div className="lodge__icon">
                 <PlayerAvatarName player={player} />
               </div>
@@ -116,11 +132,25 @@ export function StepBetsBreakdown({
       </TitledContainer>
 
       <SpaceContainer>
-        <Button icon={<LeftOutlined />} onClick={goToPreviousStep}>
-          <Translate pt="Ver Montanha" en="See Mountain" />
+        <Button
+          icon={<LeftOutlined />}
+          onClick={goToPreviousStep}
+        >
+          <Translate
+            pt="Ver Montanha"
+            en="See Mountain"
+          />
         </Button>
-        <TimedButton duration={25} onExpire={goToNextStep} onClick={goToNextStep} icon={<TrophyOutlined />}>
-          <Translate pt="Ver Ranking" en="See Ranking" />
+        <TimedButton
+          duration={25}
+          onExpire={goToNextStep}
+          onClick={goToNextStep}
+          icon={<TrophyOutlined />}
+        >
+          <Translate
+            pt="Ver Ranking"
+            en="See Ranking"
+          />
         </TimedButton>
       </SpaceContainer>
     </Step>

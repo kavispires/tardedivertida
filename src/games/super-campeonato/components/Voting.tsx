@@ -61,19 +61,31 @@ export function Voting({ brackets, tier, onSubmitVotes, players, bets }: VotingP
   });
 
   return (
-    <StepSwitcher step={step} players={players}>
+    <StepSwitcher
+      step={step}
+      players={players}
+    >
       {/* Step 0 */}
       <Instruction contained>
         <p>
           {tier === 'quarter' ? (
-            <Translate pt="Competidores:" en="Contenders:" />
+            <Translate
+              pt="Competidores:"
+              en="Contenders:"
+            />
           ) : (
-            <Translate pt="Foram para a próxima fase:" en="Moved to the next bracket:" />
+            <Translate
+              pt="Foram para a próxima fase:"
+              en="Moved to the next bracket:"
+            />
           )}
         </p>
         <TierContenders contenders={bracketedContenders} />
         <p>
-          <Translate pt={<>Votação começando em {seconds}</>} en={<>Voting starting in {seconds}</>} />
+          <Translate
+            pt={<>Votação começando em {seconds}</>}
+            en={<>Voting starting in {seconds}</>}
+          />
         </p>
       </Instruction>
 
@@ -94,8 +106,15 @@ export function Voting({ brackets, tier, onSubmitVotes, players, bets }: VotingP
         </ul>
 
         <SpaceContainer>
-          <SendButton size="large" onClick={() => onSubmitVotes({ votes })} disabled={!isComplete}>
-            <Translate pt="Enviar votos" en="Submit votes" />
+          <SendButton
+            size="large"
+            onClick={() => onSubmitVotes({ votes })}
+            disabled={!isComplete}
+          >
+            <Translate
+              pt="Enviar votos"
+              en="Submit votes"
+            />
           </SendButton>
         </SpaceContainer>
       </div>
@@ -121,7 +140,11 @@ function VotingOptions({ left, right, colorLeft, colorRight, onClick, checkActiv
         className="w-vote"
         activeClass="w-vote--active"
       >
-        <CharacterCard size={200} character={left} overlayColor={colorLeft} />
+        <CharacterCard
+          size={200}
+          character={left}
+          overlayColor={colorLeft}
+        />
       </TransparentButton>
       <span className="w-voting-options__vs">VS</span>
       <TransparentButton
@@ -130,7 +153,11 @@ function VotingOptions({ left, right, colorLeft, colorRight, onClick, checkActiv
         className="w-vote"
         activeClass="w-vote--active"
       >
-        <CharacterCard size={200} character={right} overlayColor={colorRight} />
+        <CharacterCard
+          size={200}
+          character={right}
+          overlayColor={colorRight}
+        />
       </TransparentButton>
     </li>
   );

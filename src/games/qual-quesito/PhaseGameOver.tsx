@@ -14,15 +14,33 @@ import { GalleryCategoryEntry } from './components/GalleryCategoryEntry';
 
 export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<CrownIcon />}>
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<CrownIcon />}
+    >
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
 
       <TitledContainer
-        title={<Translate pt="Melhores Quesitos" en="Best Categories" />}
+        title={
+          <Translate
+            pt="Melhores Quesitos"
+            en="Best Categories"
+          />
+        }
         contentProps={{ className: 'final-gallery' }}
       >
         {state.gallery.map((entry, index) => (
-          <GalleryCategoryEntry key={index} entry={entry} players={players} cardsDict={state.cardsDict} />
+          <GalleryCategoryEntry
+            key={index}
+            entry={entry}
+            players={players}
+            cardsDict={state.cardsDict}
+          />
         ))}
       </TitledContainer>
     </GameOverWrapper>

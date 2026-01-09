@@ -31,7 +31,12 @@ export function StepClueWaiting({
     <Step announcement={announcement}>
       <WaitingRoom
         players={players}
-        title={<Translate pt={'Concentração...'} en={'Focus...'} />}
+        title={
+          <Translate
+            pt={'Concentração...'}
+            en={'Focus...'}
+          />
+        }
         instruction=""
       >
         <Instruction contained>
@@ -58,10 +63,16 @@ export function StepClueWaiting({
             <>
               <p>
                 <PlayerAvatarName player={psychic} />
-                <Translate pt={'escolheu:'} en={'chose:'} />
+                <Translate
+                  pt={'escolheu:'}
+                  en={'chose:'}
+                />
               </p>
               <SpaceContainer align="center">
-                <OpposingIdeasCard left={card.left} right={card.right} />
+                <OpposingIdeasCard
+                  left={card.left}
+                  right={card.right}
+                />
               </SpaceContainer>
               <p>
                 <Translate

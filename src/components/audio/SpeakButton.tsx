@@ -21,7 +21,12 @@ export function SpeakButton({ text, icon, ...buttonProps }: SpeakButtonProps) {
   return (
     <Button
       onClick={() => speak(text, language, volume || 0.5)}
-      icon={<IconAvatar size="small" icon={icon ?? <AudioIcon />} />}
+      icon={
+        <IconAvatar
+          size="small"
+          icon={icon ?? <AudioIcon />}
+        />
+      }
       {...buttonProps}
     />
   );

@@ -58,9 +58,15 @@ export function StepIntimidation({
   };
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt={<>Intimidação de dois estudantes</>} en={<>Intimidating two students</>} />
+        <Translate
+          pt={<>Intimidação de dois estudantes</>}
+          en={<>Intimidating two students</>}
+        />
       </StepTitle>
 
       <SchoolBoard
@@ -73,7 +79,10 @@ export function StepIntimidation({
 
       <Instruction contained>
         <Flex justify="center">
-          <BoardSummary students={students} socialGroups={socialGroups} />
+          <BoardSummary
+            students={students}
+            socialGroups={socialGroups}
+          />
 
           <div>
             <DetectiveGoals bestFriendId={bestFriendId} />

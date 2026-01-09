@@ -25,7 +25,12 @@ export function PhaseVoting({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<VoteIcon />}
-      title={<Translate pt="Votação" en="Voting" />}
+      title={
+        <Translate
+          pt="Votação"
+          en="Voting"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -40,7 +45,10 @@ export function PhaseVoting({ state, players, user }: PhaseProps) {
       allowedPhase={CONTADORES_HISTORIAS_PHASES.VOTING}
       className="c-phase"
     >
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepVoting
           players={players}

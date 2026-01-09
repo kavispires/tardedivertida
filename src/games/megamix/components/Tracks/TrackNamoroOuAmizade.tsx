@@ -50,7 +50,10 @@ export const TrackNamoroOuAmizade = ({ track, onSubmitAnswer, user }: TrackProps
       <div className="noa-candidates">
         {track.data.heads.map((head: DatingCandidateImageCard, index: number) => {
           return (
-            <SpaceContainer vertical key={head.id}>
+            <SpaceContainer
+              vertical
+              key={head.id}
+            >
               <Candidate
                 head={head}
                 body={track.data.bodies[index]}
@@ -66,7 +69,10 @@ export const TrackNamoroOuAmizade = ({ track, onSubmitAnswer, user }: TrackProps
                 type="primary"
                 shape="round"
               >
-                <Translate pt="Esse" en="This one" />
+                <Translate
+                  pt="Esse"
+                  en="This one"
+                />
               </Button>
             </SpaceContainer>
           );

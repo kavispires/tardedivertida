@@ -30,7 +30,10 @@ function getActiveComponent(state: GameState) {
 
 function SessionColegasDeQuarto() {
   return (
-    <Session gameCollection={GAME_COLLECTION.COLEGAS_DE_QUARTO} getActiveComponent={getActiveComponent} />
+    <Session
+      gameCollection={GAME_COLLECTION.COLEGAS_DE_QUARTO}
+      getActiveComponent={getActiveComponent}
+    />
   );
 }
 

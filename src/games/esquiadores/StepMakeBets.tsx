@@ -60,13 +60,29 @@ export function StepMakeBets({
   }
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        {betType === BET_TYPES.INITIAL && <Translate pt="Faça suas apostas" en="Make your bets" />}
-        {betType === BET_TYPES.BOOST && (
-          <Translate pt="Mais uma chance de melhorar suas apostas" en="Boost your bets" />
+        {betType === BET_TYPES.INITIAL && (
+          <Translate
+            pt="Faça suas apostas"
+            en="Make your bets"
+          />
         )}
-        {betType === BET_TYPES.FINAL && <Translate pt="Última chance de apostar" en="Last chance to bet" />}
+        {betType === BET_TYPES.BOOST && (
+          <Translate
+            pt="Mais uma chance de melhorar suas apostas"
+            en="Boost your bets"
+          />
+        )}
+        {betType === BET_TYPES.FINAL && (
+          <Translate
+            pt="Última chance de apostar"
+            en="Last chance to bet"
+          />
+        )}
       </StepTitle>
 
       <RuleInstruction type="rule">
@@ -140,7 +156,11 @@ export function StepMakeBets({
         Mock Bets
       </DevButton>
 
-      <TurnOrder players={players} order={turnOrder} activePlayerId={skier.id} />
+      <TurnOrder
+        players={players}
+        order={turnOrder}
+        activePlayerId={skier.id}
+      />
     </Step>
   );
 }

@@ -22,20 +22,34 @@ export function PhaseAreYouARobot({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<CaptchaIcon />}
-      title={<Translate pt="Você é um robô?" en="Are you a robot?" />}
+      title={
+        <Translate
+          pt="Você é um robô?"
+          en="Are you a robot?"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}
     >
       <Instruction>
-        <Translate pt={<>Prove que você não é um robô!</>} en={<>Prove you are not a robot!</>} />
+        <Translate
+          pt={<>Prove que você não é um robô!</>}
+          en={<>Prove you are not a robot!</>}
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={NAO_SOU_ROBO_PHASES.ARE_YOU_A_ROBOT}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={NAO_SOU_ROBO_PHASES.ARE_YOU_A_ROBOT}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepSelectAll
           user={user}

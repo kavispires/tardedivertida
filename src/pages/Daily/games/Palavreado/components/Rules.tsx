@@ -12,7 +12,13 @@ type RulesProps = {
 };
 
 export function Rules({ date }: RulesProps) {
-  return <RulesWrapper date={date} basicRules={getRulesSet(false)} weekendRules={getRulesSet(true)} />;
+  return (
+    <RulesWrapper
+      date={date}
+      basicRules={getRulesSet(false)}
+      weekendRules={getRulesSet(true)}
+    />
+  );
 }
 
 const getRulesSet = (isWeekend: boolean) => {

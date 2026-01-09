@@ -55,9 +55,17 @@ export function ImageCardSelectButton({
     >
       <UpCircleOutlined />
       {isSelected ? (
-        <Translate pt="Desmarcar" en="Deselect" custom={deselectLabel} />
+        <Translate
+          pt="Desmarcar"
+          en="Deselect"
+          custom={deselectLabel}
+        />
       ) : (
-        <Translate pt="Selecionar" en="Select" custom={selectLabel} />
+        <Translate
+          pt="Selecionar"
+          en="Select"
+          custom={selectLabel}
+        />
       )}
       <UpCircleOutlined />
     </Button>

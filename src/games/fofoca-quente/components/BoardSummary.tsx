@@ -58,13 +58,22 @@ export function BoardSummary({ students, socialGroups }: BoardSummaryProps) {
   return (
     <div className="board-summary">
       <Typography.Title level={4}>
-        <Translate en="Summary" pt="Resumo" />
+        <Translate
+          en="Summary"
+          pt="Resumo"
+        />
       </Typography.Title>
 
       <div className="board-summary__data">
-        <Flex vertical gap={3}>
+        <Flex
+          vertical
+          gap={3}
+        >
           <div className="board-summary__label">
-            <Translate en="Social Groups" pt="Grupos Sociais" />
+            <Translate
+              en="Social Groups"
+              pt="Grupos Sociais"
+            />
           </div>
           {summaryLists.socialGroups.map(({ id, label, count }) => (
             <div key={label.en}>
@@ -73,49 +82,95 @@ export function BoardSummary({ students, socialGroups }: BoardSummaryProps) {
           ))}
         </Flex>
 
-        <Flex vertical gap={6}>
+        <Flex
+          vertical
+          gap={6}
+        >
           <div className="board-summary__label">
-            <Translate en="Genders" pt="Gêneros" />
+            <Translate
+              en="Genders"
+              pt="Gêneros"
+            />
           </div>
-          <Flex vertical gap={3}>
+          <Flex
+            vertical
+            gap={3}
+          >
             {summaryLists.genders.map(({ id, count }) => (
               <span key={id}>
-                <GenderIcon gender={id} size="small" /> {count}
+                <GenderIcon
+                  gender={id}
+                  size="small"
+                />{' '}
+                {count}
               </span>
             ))}
           </Flex>
 
           <div className="board-summary__label">
-            <Translate en="Ages" pt="Idades" />
+            <Translate
+              en="Ages"
+              pt="Idades"
+            />
           </div>
-          <Flex vertical gap={3}>
+          <Flex
+            vertical
+            gap={3}
+          >
             {summaryLists.ages.map(({ id, count }) => (
               <span key={id}>
-                <AgeIcon age={id} size="small" /> {count}
+                <AgeIcon
+                  age={id}
+                  size="small"
+                />{' '}
+                {count}
               </span>
             ))}
           </Flex>
         </Flex>
 
-        <Flex vertical gap={6}>
+        <Flex
+          vertical
+          gap={6}
+        >
           <div className="board-summary__label">
-            <Translate en="Builds" pt="Tamanhos" />
+            <Translate
+              en="Builds"
+              pt="Tamanhos"
+            />
           </div>
-          <Flex vertical gap={3}>
+          <Flex
+            vertical
+            gap={3}
+          >
             {summaryLists.builds.map(({ id, count }) => (
               <span key={id}>
-                <BuildIcon build={id} size="small" /> {count}
+                <BuildIcon
+                  build={id}
+                  size="small"
+                />{' '}
+                {count}
               </span>
             ))}
           </Flex>
 
           <div className="board-summary__label">
-            <Translate en="Heights" pt="Alturas" />
+            <Translate
+              en="Heights"
+              pt="Alturas"
+            />
           </div>
-          <Flex vertical gap={3}>
+          <Flex
+            vertical
+            gap={3}
+          >
             {summaryLists.heights.map(({ id, count }) => (
               <span key={id}>
-                <HeightIcon height={id} size="small" /> {count}
+                <HeightIcon
+                  height={id}
+                  size="small"
+                />{' '}
+                {count}
               </span>
             ))}
           </Flex>

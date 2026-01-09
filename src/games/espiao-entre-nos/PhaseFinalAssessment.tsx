@@ -29,12 +29,20 @@ export function PhaseFinalAssessment({ state, players, user }: PhaseProps) {
       allowedPhase={ESPIAO_ENTRE_NOS_PHASES.FINAL_ASSESSMENT}
       className="e-phase"
     >
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         {state.finalAssessment.playerOrderIndex === 0 ? (
           <PhaseAnnouncement
             icon={<PeopleAssessmentIcon />}
-            title={<Translate pt="O tempo acabou!" en="Time's up!" />}
+            title={
+              <Translate
+                pt="O tempo acabou!"
+                en="Time's up!"
+              />
+            }
             onClose={goToNextStep}
             currentRound={state?.round?.current}
             buttonText=""
@@ -45,7 +53,12 @@ export function PhaseFinalAssessment({ state, players, user }: PhaseProps) {
         ) : (
           <PhaseAnnouncement
             icon={<OpinionsIcon />}
-            title={<Translate pt="A avaliação final continua" en="The final assessment continues" />}
+            title={
+              <Translate
+                pt="A avaliação final continua"
+                en="The final assessment continues"
+              />
+            }
             onClose={goToNextStep}
             currentRound={state?.round?.current}
             buttonText=""
@@ -54,7 +67,10 @@ export function PhaseFinalAssessment({ state, players, user }: PhaseProps) {
             type="block"
           >
             <Instruction>
-              <Translate pt="A votação não foi unanime" en="The vote wasn't unanimous" />
+              <Translate
+                pt="A votação não foi unanime"
+                en="The vote wasn't unanimous"
+              />
             </Instruction>
           </PhaseAnnouncement>
         )}

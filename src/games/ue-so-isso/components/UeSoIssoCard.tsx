@@ -14,7 +14,11 @@ export function UeSoIssoCard({ word, header }: UeSoIssoCardProps) {
   const { translate } = useLanguage();
 
   return (
-    <Card color="purple" header={translate('A Palavra Secreta é', 'Secret Word', header)} size="large">
+    <Card
+      color="purple"
+      header={translate('A Palavra Secreta é', 'Secret Word', header)}
+      size="large"
+    >
       {word ?? <WarningOutlined />}
     </Card>
   );

@@ -59,9 +59,16 @@ export function StepGuessing({
   };
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Hora de brilhar" en="Time to shine" />, <PlayerAvatarName player={guesser} />!
+        <Translate
+          pt="Hora de brilhar"
+          en="Time to shine"
+        />
+        , <PlayerAvatarName player={guesser} />!
       </StepTitle>
       {timerEnabled && (
         <TimerBar
@@ -121,11 +128,17 @@ export function StepGuessing({
           disabled={guess.length < 3 || timeLeft <= 0}
           size="large"
         >
-          <Translate pt="Enviar" en="Submit" />
+          <Translate
+            pt="Enviar"
+            en="Submit"
+          />
           {timeLeft}
         </SendButton>
         <span>
-          <Translate pt="OU" en="OR" />
+          <Translate
+            pt="OU"
+            en="OR"
+          />
         </span>
         <SendButton
           icon={<MinusOutlined />}
@@ -133,14 +146,23 @@ export function StepGuessing({
           onClick={() => onSubmitOutcome({ outcome: 'PASS' })}
           disabled={timeLeft <= 0}
         >
-          <Translate pt="Passar a vez..." en="Skip turn" />
+          <Translate
+            pt="Passar a vez..."
+            en="Skip turn"
+          />
         </SendButton>
       </SpaceContainer>
 
       <SpaceContainer wrap>
         {validSuggestions.map((suggestionEntry, index) => {
           const id = `${suggestionEntry.suggestion}-${index}`;
-          return <SuggestionEasel key={id} id={id} value={suggestionEntry.suggestion} />;
+          return (
+            <SuggestionEasel
+              key={id}
+              id={id}
+              value={suggestionEntry.suggestion}
+            />
+          );
         })}
         {validSuggestions.length === 0 && (
           <RuleInstruction type="alert">

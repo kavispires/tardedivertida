@@ -22,14 +22,26 @@ export function PreloadItems({ items }: PreloadItemsProps) {
     >
       <span />
       <span />
-      <motion.div className="preload-items__first" {...getAnimation('fadeIn')}>
-        <DailyItem itemId={items[0]} width={itemWidth} />
+      <motion.div
+        className="preload-items__first"
+        {...getAnimation('fadeIn')}
+      >
+        <DailyItem
+          itemId={items[0]}
+          width={itemWidth}
+        />
       </motion.div>
       <span />
       <span />
       {items.slice(1).map((itemId, index) => (
-        <motion.div key={itemId} {...getAnimation('fadeIn', { delay: index * 0.25 })}>
-          <DailyItem itemId={itemId} width={itemWidth} />
+        <motion.div
+          key={itemId}
+          {...getAnimation('fadeIn', { delay: index * 0.25 })}
+        >
+          <DailyItem
+            itemId={itemId}
+            width={itemWidth}
+          />
         </motion.div>
       ))}
     </motion.div>

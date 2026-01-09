@@ -86,7 +86,13 @@ export const CustomAvatarWrapper = ({
 
       {/* game avatar */}
       {hasAvatar && (
-        <foreignObject x="25" y="0" width="50" height="50" style={{ borderRadius: '50%' }}>
+        <foreignObject
+          x="25"
+          y="0"
+          width="50"
+          height="50"
+          style={{ borderRadius: '50%' }}
+        >
           <svg viewBox="0 0 100 100">
             <use href={`${avatars}#avatar-${avatarId}`}></use>
           </svg>

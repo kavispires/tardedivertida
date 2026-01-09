@@ -59,10 +59,16 @@ export function SlideShow({
 }: SlideShowProps) {
   return (
     <div className={clsx('slide-show', className)}>
-      <div className={clsx('slide-show__left', leftClassName)} id="gallery-left">
+      <div
+        className={clsx('slide-show__left', leftClassName)}
+        id="gallery-left"
+      >
         {children[0]}
       </div>
-      <div className={clsx('slide-show__right', rightClassName)} id="gallery-right">
+      <div
+        className={clsx('slide-show__right', rightClassName)}
+        id="gallery-right"
+      >
         {children[1]}
       </div>
       <SlideShowControls

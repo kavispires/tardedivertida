@@ -42,11 +42,19 @@ export function PlayerTargetCardButton({
             size="small"
           />
           <div className="a">
-            <Translate pt="Emboscar!" en="Ambush!" />
+            <Translate
+              pt="Emboscar!"
+              en="Ambush!"
+            />
           </div>
         </div>
       ) : (
-        <PlayerAvatarCard player={player} withName addressUser size="small" />
+        <PlayerAvatarCard
+          player={player}
+          withName
+          addressUser
+          size="small"
+        />
       )}
     </TransparentButton>
   );

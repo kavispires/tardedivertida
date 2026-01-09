@@ -28,11 +28,31 @@ export function Popconfirm({ type, ...props }: PopconfirmComponentProps) {
     return (
       <AntPopConfirm
         {...props}
-        okText={<Translate pt="Sim" en="Yes" />}
-        cancelText={<Translate pt="Não" en="No" />}
+        okText={
+          <Translate
+            pt="Sim"
+            en="Yes"
+          />
+        }
+        cancelText={
+          <Translate
+            pt="Não"
+            en="No"
+          />
+        }
       />
     );
   }
 
-  return <AntPopConfirm {...props} cancelText={<Translate pt="Cancelar" en="Cancel" />} />;
+  return (
+    <AntPopConfirm
+      {...props}
+      cancelText={
+        <Translate
+          pt="Cancelar"
+          en="Cancel"
+        />
+      }
+    />
+  );
 }

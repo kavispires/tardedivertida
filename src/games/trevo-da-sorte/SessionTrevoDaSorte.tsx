@@ -36,7 +36,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionTrevoDaSorte() {
-  return <Session gameCollection={GAME_COLLECTION.TREVO_DA_SORTE} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.TREVO_DA_SORTE}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionTrevoDaSorte;

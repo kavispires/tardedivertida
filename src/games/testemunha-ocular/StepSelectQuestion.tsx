@@ -40,7 +40,10 @@ export function StepSelectQuestion({
   return (
     <Step announcement={announcement}>
       <StepTitle>
-        <Translate pt="Selecione uma pergunta" en="Select a question" />
+        <Translate
+          pt="Selecione uma pergunta"
+          en="Select a question"
+        />
       </StepTitle>
 
       <RuleInstruction type="action">
@@ -58,7 +61,11 @@ export function StepSelectQuestion({
               onClick={() => onSelectQuestion({ questionId: id })}
               disabled={isLoading}
             >
-              <Card header={LETTERS[index]} color="blue" className="t-card">
+              <Card
+                header={LETTERS[index]}
+                color="blue"
+                className="t-card"
+              >
                 {question}
               </Card>
             </TransparentButton>
@@ -72,7 +79,12 @@ export function StepSelectQuestion({
         eliminatedSuspects={previouslyEliminatedSuspects}
       />
 
-      {history.length > 0 && <QuestionsHistory history={history} suspectsDict={suspectsDict} />}
+      {history.length > 0 && (
+        <QuestionsHistory
+          history={history}
+          suspectsDict={suspectsDict}
+        />
+      )}
 
       {status && <Summary status={status} />}
     </Step>

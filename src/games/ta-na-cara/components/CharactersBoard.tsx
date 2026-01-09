@@ -39,7 +39,10 @@ export function CharactersBoard({
 
   if (onCardClick) {
     return (
-      <div className="characters-table" style={{ width: `${cardWidth * 6}px` }}>
+      <div
+        className="characters-table"
+        style={{ width: `${cardWidth * 6}px` }}
+      >
         {charactersIds.map((characterId) => {
           const character = charactersDict[characterId];
           const name = character.name[language];
@@ -84,12 +87,18 @@ export function CharactersBoard({
   }
 
   return (
-    <div className="characters-table" style={{ width: `${(cardWidth + 16) * 6}px` }}>
+    <div
+      className="characters-table"
+      style={{ width: `${(cardWidth + 16) * 6}px` }}
+    >
       <Image.PreviewGroup>
         {charactersIds.map((characterId) => {
           const character = charactersDict[characterId];
           return (
-            <div className="characters-table__character" key={character.id}>
+            <div
+              className="characters-table__character"
+              key={character.id}
+            >
               <ImageCard
                 cardId={character?.revealed ? 'us-00' : character.id}
                 previewImageId={character.id}

@@ -1,6 +1,10 @@
 export function GoalsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#ffd35d"
         d="M446.258 246.293c0 115.799-93.873 209.672-209.672 209.672S26.915 362.092 26.915 246.293 120.788 36.621 236.587 36.621s209.671 93.873 209.671 209.672z"

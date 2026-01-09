@@ -13,7 +13,10 @@ type LoadingProps = {
 export function Loading({ message, margin = false }: LoadingProps) {
   return (
     <Space className={clsx('loading', margin && 'loading--margin')}>
-      <IconAvatar icon={<AnimatedLoaderIcon />} style={{ display: 'block' }} />
+      <IconAvatar
+        icon={<AnimatedLoaderIcon />}
+        style={{ display: 'block' }}
+      />
       {Boolean(message) && <Typography.Text>{message}</Typography.Text>}
     </Space>
   );

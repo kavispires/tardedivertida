@@ -19,11 +19,27 @@ type VotesProps = {
 
 export function Votes({ votes, players, features }: VotesProps) {
   return (
-    <TitledContainer title={<Translate pt="Votos" en="Votes" />}>
-      <div className="voting-track" style={{ gridTemplateColumns: `repeat(${votes.length}, 1fr)` }}>
+    <TitledContainer
+      title={
+        <Translate
+          pt="Votos"
+          en="Votes"
+        />
+      }
+    >
+      <div
+        className="voting-track"
+        style={{ gridTemplateColumns: `repeat(${votes.length}, 1fr)` }}
+      >
         {votes.map((entry, index) => (
-          <div key={index} className="voting-track__item">
-            <ObjectFeature feature={features[entry.value]} width={32} />
+          <div
+            key={index}
+            className="voting-track__item"
+          >
+            <ObjectFeature
+              feature={features[entry.value]}
+              width={32}
+            />
 
             <Avatar.Group max={{ count: 5 }}>
               {entry.votes.map((playerId) => (

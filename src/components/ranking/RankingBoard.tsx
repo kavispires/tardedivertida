@@ -35,7 +35,14 @@ function GainedPoint({ gainedPoint, order, description }: GainedPointProps) {
       )}
     >
       <Tooltip
-        title={description ?? <Translate pt="Pontos ganhos" en="Gained Points" />}
+        title={
+          description ?? (
+            <Translate
+              pt="Pontos ganhos"
+              en="Gained Points"
+            />
+          )
+        }
         color={isPositive ? 'gold' : isNegative ? 'red' : 'gray'}
       >
         {isPositive ? '+' : ''}
@@ -183,13 +190,27 @@ export function RankingBoard({
           </div>
           <div className="ranking-board__name">Placeholder</div>
         </div>
-        <Tooltip title={<Translate pt="Pontos Anteriores" en="Previous Points" />} color="gray">
+        <Tooltip
+          title={
+            <Translate
+              pt="Pontos Anteriores"
+              en="Previous Points"
+            />
+          }
+          color="gray"
+        >
           <div className="ranking-board__cell-points">0</div>
         </Tooltip>
 
-        <GainedPoints gainedPoints={0} playerId="A" />
+        <GainedPoints
+          gainedPoints={0}
+          playerId="A"
+        />
 
-        <Tooltip title="Total" color="gold">
+        <Tooltip
+          title="Total"
+          color="gold"
+        >
           <span className="ranking-board__cell-points-total">0</span>
         </Tooltip>
       </div>
@@ -217,7 +238,15 @@ export function RankingBoard({
               </div>
               <div className="ranking-board__name">{players[playerId].name}</div>
             </div>
-            <Tooltip title={<Translate pt="Pontos Anteriores" en="Previous Points" />} color="gray">
+            <Tooltip
+              title={
+                <Translate
+                  pt="Pontos Anteriores"
+                  en="Previous Points"
+                />
+              }
+              color="gray"
+            >
               <div className="ranking-board__cell-points">{previousScore}</div>
             </Tooltip>
             {!hideGainedPoints && displayStep >= 1 && gainedPoints !== undefined && (
@@ -228,7 +257,10 @@ export function RankingBoard({
               />
             )}
 
-            <Tooltip title="Total" color="gold">
+            <Tooltip
+              title="Total"
+              color="gold"
+            >
               {displayStep >= 2 ? (
                 <span className="ranking-board__cell-points-total">{newScore}</span>
               ) : (

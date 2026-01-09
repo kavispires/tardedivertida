@@ -8,11 +8,18 @@ export function ResultMegamix({ track, winningValues, winningTeam, playersList }
   return (
     <>
       <Instruction>
-        <Translate pt="O mais votado foi" en="The most popular was" />:
+        <Translate
+          pt="O mais votado foi"
+          en="The most popular was"
+        />
+        :
       </Instruction>
       <div className="track-result-values__cards">
         {winningValues.map((value) => (
-          <div key={value} className="track-result-values__text-value">
+          <div
+            key={value}
+            className="track-result-values__text-value"
+          >
             {track.data.card.options[Number(value)]}
           </div>
         ))}

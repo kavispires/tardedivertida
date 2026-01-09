@@ -19,7 +19,10 @@ export function WaitingTime({ duration, timeLeft, onExpire }: TimeForActionProps
   return (
     <div className="timer-waiting-time-bar">
       <span className="timer-waiting-time-bar__container">
-        <span className="timer-waiting-time-bar__left" style={{ width: `${percentage}%` }} />
+        <span
+          className="timer-waiting-time-bar__left"
+          style={{ width: `${percentage}%` }}
+        />
       </span>
     </div>
   );

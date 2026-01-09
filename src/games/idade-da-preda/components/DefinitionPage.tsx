@@ -30,19 +30,31 @@ export function DefinitionPage({ entry, basicConcepts, concepts }: DefinitionPag
 
   return (
     <div className="full-width">
-      <Flex align="center" gap={12}>
+      <Flex
+        align="center"
+        gap={12}
+      >
         <div>
           <span className="idp-gallery__letter">{entry.name[0]}</span>
         </div>
 
-        <ItemCard itemId={entry.itemId} width={64} />
+        <ItemCard
+          itemId={entry.itemId}
+          width={64}
+        />
 
         <div>
           <SlideShowLabel>
-            <Translate pt="Nome" en="Name" />
+            <Translate
+              pt="Nome"
+              en="Name"
+            />
           </SlideShowLabel>
 
-          <Flex align="center" gap={6}>
+          <Flex
+            align="center"
+            gap={6}
+          >
             <TextHighlight className="idp-item-name">{entry.name}</TextHighlight>
             <SpeakButton text={{ en: entry.name, pt: entry.name }} />
           </Flex>
@@ -52,11 +64,21 @@ export function DefinitionPage({ entry, basicConcepts, concepts }: DefinitionPag
       <Divider className="my-4" />
 
       <SlideShowLabel>
-        <Translate pt="Definição" en="Definition" />
+        <Translate
+          pt="Definição"
+          en="Definition"
+        />
       </SlideShowLabel>
-      <Flex wrap="wrap" gap={6} className="my-2">
+      <Flex
+        wrap="wrap"
+        gap={6}
+        className="my-2"
+      >
         {selectedConcepts.map((concept) => (
-          <SimplifiedConcept key={concept.id} concept={concept} />
+          <SimplifiedConcept
+            key={concept.id}
+            concept={concept}
+          />
         ))}
       </Flex>
     </div>
@@ -73,14 +95,21 @@ function SimplifiedConcept({ concept }: SimplifiedConceptProps) {
     <Card size="small">
       <div className={clsx('concept-block__syllable')}>
         <DualTranslate>{concept.syllable}</DualTranslate>
-        <Flex wrap="wrap" gap={3}>
+        <Flex
+          wrap="wrap"
+          gap={3}
+        >
           {concept.type === 'basic' && (
             <Typography.Text italic>
               <DualTranslate>{BASIC_CONCEPTS_TRANSLATIONS[concept.key]}</DualTranslate>
             </Typography.Text>
           )}
           {concept.itemsIds.slice(-3).map((itemId) => (
-            <ItemCard key={`${concept.id}-${itemId}`} width={itemWidth / 2} itemId={itemId} />
+            <ItemCard
+              key={`${concept.id}-${itemId}`}
+              width={itemWidth / 2}
+              itemId={itemId}
+            />
           ))}
         </Flex>
       </div>

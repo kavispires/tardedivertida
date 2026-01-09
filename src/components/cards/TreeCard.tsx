@@ -29,8 +29,15 @@ type TreeCardProps = {
  */
 export function TreeCard({ treeId, width = 100, className = '', text = '', ...rest }: TreeCardProps) {
   return (
-    <div {...rest} className={clsx('tree-card', className)} style={{ ...rest.style, width: `${width}px` }}>
-      <svg viewBox="0 0 512 512" style={{ width: `${width - 12}px`, height: `${width - 12}px` }}>
+    <div
+      {...rest}
+      className={clsx('tree-card', className)}
+      style={{ ...rest.style, width: `${width}px` }}
+    >
+      <svg
+        viewBox="0 0 512 512"
+        style={{ width: `${width - 12}px`, height: `${width - 12}px` }}
+      >
         <use href={`${trees}#tree-${treeId}`}></use>
       </svg>
       <Tooltip title={text}>

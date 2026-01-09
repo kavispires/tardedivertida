@@ -52,8 +52,14 @@ export function SignsKeyCard({ attributes, startingAttributesIds = [], phase }: 
 
   return (
     <Space orientation="vertical">
-      <Title level={3} size="xx-small">
-        <Translate pt="Atributos e Símbolos" en="Attributes and Symbols" />
+      <Title
+        level={3}
+        size="xx-small"
+      >
+        <Translate
+          pt="Atributos e Símbolos"
+          en="Attributes and Symbols"
+        />
         <Popover
           content={
             <Translate
@@ -61,10 +67,20 @@ export function SignsKeyCard({ attributes, startingAttributesIds = [], phase }: 
               en="You may click on the title of an attribute to mark it as used"
             />
           }
-          title={<Translate pt="Dica" en="Hint" />}
+          title={
+            <Translate
+              pt="Dica"
+              en="Hint"
+            />
+          }
           arrow
         >
-          <Button type="text" style={{ color: 'white' }} icon={<InfoCircleOutlined />} shape="circle" />
+          <Button
+            type="text"
+            style={{ color: 'white' }}
+            icon={<InfoCircleOutlined />}
+            shape="circle"
+          />
         </Popover>
       </Title>
       <div className="attributes-grid">
@@ -83,9 +99,15 @@ export function SignsKeyCard({ attributes, startingAttributesIds = [], phase }: 
               <Popconfirm
                 title={
                   isStarting ? (
-                    <Translate pt="Atributo inicial" en="Starting attribute" />
+                    <Translate
+                      pt="Atributo inicial"
+                      en="Starting attribute"
+                    />
                   ) : (
-                    <Translate pt="Usado?" en="Used?" />
+                    <Translate
+                      pt="Usado?"
+                      en="Used?"
+                    />
                   )
                 }
                 description={
@@ -97,8 +119,18 @@ export function SignsKeyCard({ attributes, startingAttributesIds = [], phase }: 
                 }
                 onConfirm={() => updateCache(attribute.id, true)}
                 onCancel={() => updateCache(attribute.id, false)}
-                okText={<Translate pt="Sim" en="Yes" />}
-                cancelText={<Translate pt="Não" en="No" />}
+                okText={
+                  <Translate
+                    pt="Sim"
+                    en="Yes"
+                  />
+                }
+                cancelText={
+                  <Translate
+                    pt="Não"
+                    en="No"
+                  />
+                }
                 okButtonProps={{
                   disabled: isStarting,
                 }}
@@ -112,7 +144,11 @@ export function SignsKeyCard({ attributes, startingAttributesIds = [], phase }: 
                   {Boolean(cache[attribute.id]) && !isStarting && <CheckCircleFilled />}
                 </TransparentButton>
               </Popconfirm>
-              <SignCard signId={`${attribute.spriteId}`} className="transparent" width={48} />
+              <SignCard
+                signId={`${attribute.spriteId}`}
+                className="transparent"
+                width={48}
+              />
             </div>
           );
         })}

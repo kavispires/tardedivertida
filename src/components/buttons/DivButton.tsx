@@ -10,5 +10,10 @@ type DivButtonProps = {
  * Button meant to look like a simple div, but with click functionality.
  */
 export function DivButton({ className, ...props }: DivButtonProps) {
-  return <button className={clsx('button-reset', className)} {...props} />;
+  return (
+    <button
+      className={clsx('button-reset', className)}
+      {...props}
+    />
+  );
 }

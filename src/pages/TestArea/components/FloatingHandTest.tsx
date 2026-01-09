@@ -15,9 +15,18 @@ const hand = Array(8)
 
 export function FloatingHandTest({ onResult, step }: TestStepProps) {
   return (
-    <SpaceContainer className="full-width" vertical>
-      <Title level={2} size="small">
-        <Translate pt="Mão de Cartas" en="Hand of Cards" />
+    <SpaceContainer
+      className="full-width"
+      vertical
+    >
+      <Title
+        level={2}
+        size="small"
+      >
+        <Translate
+          pt="Mão de Cartas"
+          en="Hand of Cards"
+        />
       </Title>
       <Instruction contained>
         <Translate
@@ -36,7 +45,10 @@ export function FloatingHandTest({ onResult, step }: TestStepProps) {
       />
 
       <FloatingHand>
-        <ImageCardHand sizeRatio={8} hand={hand} />
+        <ImageCardHand
+          sizeRatio={8}
+          hand={hand}
+        />
       </FloatingHand>
     </SpaceContainer>
   );

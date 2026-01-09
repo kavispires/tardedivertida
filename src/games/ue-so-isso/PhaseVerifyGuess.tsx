@@ -32,7 +32,12 @@ export function PhaseVerifyGuess({ state, players }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<AnimatedProcessingIcon />}
-      title={<Translate pt="Processando o palpite..." en="Processing the guess..." />}
+      title={
+        <Translate
+          pt="Processando o palpite..."
+          en="Processing the guess..."
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       unskippable={!isActionable}
@@ -41,8 +46,14 @@ export function PhaseVerifyGuess({ state, players }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={UE_SO_ISSO_PHASES.VERIFY_GUESS}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={UE_SO_ISSO_PHASES.VERIFY_GUESS}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <ViewOr condition={['CONTINUE', 'WIN'].includes(state.group.outcome)}>
           <Step announcement={announcement}>

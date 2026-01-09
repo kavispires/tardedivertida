@@ -96,7 +96,13 @@ export const ImageCard = ({
       <Image
         width={cardWidth}
         src={`${baseUrl}/${imageURL}.${fileExtension}`}
-        placeholder={<Image preview={false} src={placeholder} width={cardWidth} />}
+        placeholder={
+          <Image
+            preview={false}
+            src={placeholder}
+            width={cardWidth}
+          />
+        }
         fallback={`${PUBLIC_URL.CARDS}${fallbackName}.jpg`}
         classNames={{
           cover: clsx(`${baseClass}__preview-mask`),

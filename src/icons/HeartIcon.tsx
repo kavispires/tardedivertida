@@ -1,7 +1,14 @@
 export function HeartIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <path fill="#e0230d" d="M365 26h-10l-99 460c6-3 248-146 249-320 0-77-63-140-140-140z"></path>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <path
+        fill="#e0230d"
+        d="M365 26h-10l-99 460c6-3 248-146 249-320 0-77-63-140-140-140z"
+      ></path>
       <path
         fill="#ff5440"
         d="M355 26c61 5 110 66 110 140-1 174-204 316-209 320S8 342 8 166a140 140 0 01248-88c24-30 59-49 99-52z"

@@ -82,7 +82,12 @@ export function LobbyReadyButtons({ players }: LobbyReadyButtonsProps) {
   });
 
   return (
-    <Flex gap={6} justify="center" align="center" wrap="wrap">
+    <Flex
+      gap={6}
+      justify="center"
+      align="center"
+      wrap="wrap"
+    >
       <Button
         type="primary"
         size="small"
@@ -103,7 +108,10 @@ export function LobbyReadyButtons({ players }: LobbyReadyButtonsProps) {
         onClick={() => onBeReadyIDK({ action: GAME_API_COMMON_ACTIONS.MAKE_ME_READY })}
         loading={isLoading}
       >
-        <Translate pt="Não entendi nada, mas vamos lá!" en="I don't get it but let's go!" />
+        <Translate
+          pt="Não entendi nada, mas vamos lá!"
+          en="I don't get it but let's go!"
+        />
       </Button>
       <Button
         type="primary"
@@ -114,7 +122,10 @@ export function LobbyReadyButtons({ players }: LobbyReadyButtonsProps) {
         onClick={() => onBeReadyQue({ action: GAME_API_COMMON_ACTIONS.MAKE_ME_READY })}
         loading={isLoading}
       >
-        <Translate pt="Quê?" en="What?" />
+        <Translate
+          pt="Quê?"
+          en="What?"
+        />
       </Button>
     </Flex>
   );

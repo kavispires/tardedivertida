@@ -12,7 +12,10 @@ const getWaitingRoomInstruction = (kind: string) => {
   switch (kind) {
     case 'SERVER':
       return (
-        <Translate pt="Aguardando o servidor dar sinal de vida" en="Waiting for the server to resuscitate" />
+        <Translate
+          pt="Aguardando o servidor dar sinal de vida"
+          en="Waiting for the server to resuscitate"
+        />
       );
     case 'PLAYERS':
       return (
@@ -23,7 +26,12 @@ const getWaitingRoomInstruction = (kind: string) => {
       );
 
     default:
-      return <Translate pt="Aguardando algo acontecer..." en="Waiting for something..." />;
+      return (
+        <Translate
+          pt="Aguardando algo acontecer..."
+          en="Waiting for something..."
+        />
+      );
   }
 };
 
@@ -72,7 +80,12 @@ export function StepSwitcher({ children, step, conditions, players, waitingRoom 
     return (
       <WaitingRoom
         players={players}
-        title={<Translate pt="Pronto!" en="Done!" />}
+        title={
+          <Translate
+            pt="Pronto!"
+            en="Done!"
+          />
+        }
         instruction={waitingRoom.instruction ?? getWaitingRoomInstruction(waitingRoom.type ?? 'PLAYERS')}
       >
         {waitingRoom.content}

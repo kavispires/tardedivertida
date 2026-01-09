@@ -27,8 +27,18 @@ function PhaseDraw({ players, state, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<PaintingIcon />}
-      title={<Translate pt="Desenhe!" en="Draw!" />}
-      buttonText={<Translate pt="Um dó, lá, si... vamos e... já!" en="Ready! Set! Go!" />}
+      title={
+        <Translate
+          pt="Desenhe!"
+          en="Draw!"
+        />
+      }
+      buttonText={
+        <Translate
+          pt="Um dó, lá, si... vamos e... já!"
+          en="Ready! Set! Go!"
+        />
+      }
       onClose={() => setStartDrawingTimer(true)}
       currentRound={state?.round?.current}
       withoutTimer
@@ -39,7 +49,10 @@ function PhaseDraw({ players, state, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={ARTE_RUIM_PHASES.DRAW}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={ARTE_RUIM_PHASES.DRAW}
+    >
       <StepSwitcher
         step={step}
         players={players}
@@ -65,7 +78,10 @@ function PhaseDraw({ players, state, user }: PhaseProps) {
               pt={`Essa rodada usará cartas de nível ${state?.level || '?'}`}
               en={`This round uses cards of level ${state?.level || '?'}`}
             />
-            <LevelInstruction level={state.level} levelType={state.levelType} />
+            <LevelInstruction
+              level={state.level}
+              levelType={state.levelType}
+            />
           </Instruction>
         </RoundAnnouncement>
 

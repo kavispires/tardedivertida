@@ -14,9 +14,15 @@ export function ViewAnnouncement({ isUserTheWitness }: ViewAnnouncementProps) {
     <PhaseAnnouncement
       title={
         isUserTheWitness ? (
-          <Translate pt="Descreva!" en="Describe!" />
+          <Translate
+            pt="Descreva!"
+            en="Describe!"
+          />
         ) : (
-          <Translate pt="Hora de desenhar!" en="Time to draw!" />
+          <Translate
+            pt="Hora de desenhar!"
+            en="Time to draw!"
+          />
         )
       }
       unskippable

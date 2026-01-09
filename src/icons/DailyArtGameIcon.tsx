@@ -1,16 +1,38 @@
 export function DailyArtGameIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <path fill="#e08ea2" d="M7.5 52.53h495.04v404.98H7.5z"></path>
-      <path fill="#d15573" d="M29.5 434.34V52.54h-22V457.5h495.04v-23.17z"></path>
-      <path fill="#9eb6f4" d="M37.55 82.36v270h267.94l35-30h42l45-45h45v-195z"></path>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <path
+        fill="#e08ea2"
+        d="M7.5 52.53h495.04v404.98H7.5z"
+      ></path>
+      <path
+        fill="#d15573"
+        d="M29.5 434.34V52.54h-22V457.5h495.04v-23.17z"
+      ></path>
+      <path
+        fill="#9eb6f4"
+        d="M37.55 82.36v270h267.94l35-30h42l45-45h45v-195z"
+      ></path>
       <path
         fill="#3d6dea"
         d="M420.5 253.7l-46 46h-40.67l-35 30H60.2V82.36H37.55v270h267.94l35-30h42l45-45h45l1-23.66z"
       ></path>
-      <path fill="#c09fde" d="M37.55 426.69v-74.34h267.94l35-30h42l45-45h45V426.7z"></path>
-      <path fill="#f0b582" d="M404.97 300.02l22.67-22.67h-.14l-22.67 22.67z"></path>
-      <path fill="#a070ce" d="M60.02 404.36v-52H37.55v74.33H472.5v-22.33z"></path>
+      <path
+        fill="#c09fde"
+        d="M37.55 426.69v-74.34h267.94l35-30h42l45-45h45V426.7z"
+      ></path>
+      <path
+        fill="#f0b582"
+        d="M404.97 300.02l22.67-22.67h-.14l-22.67 22.67z"
+      ></path>
+      <path
+        fill="#a070ce"
+        d="M60.02 404.36v-52H37.55v74.33H472.5v-22.33z"
+      ></path>
       <path
         fill="#72869e"
         d="M209.5 374.35v-105l-15-22h-15v59h-7l-30-82v-90l-24-22.5h-6v75.34l-15 15v97.16l-15 21V426.7h150v-29.34z"
@@ -19,8 +41,14 @@ export function DailyArtGameIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#536275"
         d="M105.5 403.68v-74.33l15-21v-99l15-15V127.8l-17-15.94h-6v75.34l-15 15v97.16l-15 21V426.7h150v-23.01z"
       ></path>
-      <path fill="#536275" d="M182.33 314.35h20.16V259.1l-8-11.74h-12.16z"></path>
-      <path fill="#f8e868" d="M419 171.85h-30l-7-8v-30l7-7h23v14.5h15v22.5z"></path>
+      <path
+        fill="#536275"
+        d="M182.33 314.35h20.16V259.1l-8-11.74h-12.16z"
+      ></path>
+      <path
+        fill="#f8e868"
+        d="M419 171.85h-30l-7-8v-30l7-7h23v14.5h15v22.5z"
+      ></path>
       <path
         fill="#fff"
         d="M60 224.35h15v15H60zm120-45h15v15h-15zm165-75h15v15h-15zm89 90h15v15h-15zm-180 120h15v15h-15z"

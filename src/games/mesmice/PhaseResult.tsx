@@ -31,7 +31,12 @@ export function PhaseResult({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={icon}
-      title={<Translate pt="Resultado" en="Result" />}
+      title={
+        <Translate
+          pt="Resultado"
+          en="Result"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={2}
@@ -39,8 +44,14 @@ export function PhaseResult({ state, players, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={MESMICE_PHASES.RESULT}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={MESMICE_PHASES.RESULT}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepResult
           user={user}

@@ -34,16 +34,28 @@ export function GalleryWindowResult({
   return (
     <div className="a-gallery__result">
       <SlideShowLabel>
-        <Translate pt="E o título correto da obra é" en="And the masterpiece title is" />
+        <Translate
+          pt="E o título correto da obra é"
+          en="And the masterpiece title is"
+        />
       </SlideShowLabel>
       <SlideShowBubbleValue winner>{correctAnswerText}</SlideShowBubbleValue>
       {correctGuesses.length ? (
         <>
-          <SlideShowPlayersList players={players} playersIds={correctGuesses}>
-            <StarPoints quantity={2} keyPrefix={`guessers-points-${playerArtist.id}`} />
+          <SlideShowPlayersList
+            players={players}
+            playersIds={correctGuesses}
+          >
+            <StarPoints
+              quantity={2}
+              keyPrefix={`guessers-points-${playerArtist.id}`}
+            />
           </SlideShowPlayersList>
 
-          <SlideShowPlayersList players={players} playersIds={[playerArtist.id]}>
+          <SlideShowPlayersList
+            players={players}
+            playersIds={[playerArtist.id]}
+          >
             <StarPoints
               quantity={playersPoints?.[playerArtist.id]}
               keyPrefix={`artist-points-${playerArtist.id}`}

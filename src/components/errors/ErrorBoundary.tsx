@@ -39,7 +39,12 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
     const { children } = this.props;
 
     if (hasError) {
-      return <PageError message="Something went wrong" description={error?.message || 'Kaboom!'} />;
+      return (
+        <PageError
+          message="Something went wrong"
+          description={error?.message || 'Kaboom!'}
+        />
+      );
     }
 
     return children;

@@ -26,9 +26,18 @@ export function AvatarsTest({ onResult, step }: TestStepProps) {
   };
 
   return (
-    <SpaceContainer className="full-width" vertical>
-      <Title level={2} size="small">
-        <Translate pt="Avatares" en="Avatars" />
+    <SpaceContainer
+      className="full-width"
+      vertical
+    >
+      <Title
+        level={2}
+        size="small"
+      >
+        <Translate
+          pt="Avatares"
+          en="Avatars"
+        />
       </Title>
 
       <Instruction contained>
@@ -38,17 +47,38 @@ export function AvatarsTest({ onResult, step }: TestStepProps) {
         />
       </Instruction>
 
-      <SpaceContainer wrap className="full-width" vertical>
+      <SpaceContainer
+        wrap
+        className="full-width"
+        vertical
+      >
         <PlayerAvatarCard player={player} />
         <PlayerAvatarStrip player={player} />
         <PlayerAvatarName player={player} />
       </SpaceContainer>
 
-      <SpaceContainer wrap className="full-width" vertical>
-        <SuperHeroAvatar avatarId={player.avatarId} id={superHeroId} />
-        <CostumeAvatar avatarId={player.avatarId} id={superHeroId} />
-        <ClubberAvatar avatarId={player.avatarId} id={superHeroId} />
-        <SheepAvatar id={player.avatarId} sheepId={superHeroId} animate />
+      <SpaceContainer
+        wrap
+        className="full-width"
+        vertical
+      >
+        <SuperHeroAvatar
+          avatarId={player.avatarId}
+          id={superHeroId}
+        />
+        <CostumeAvatar
+          avatarId={player.avatarId}
+          id={superHeroId}
+        />
+        <ClubberAvatar
+          avatarId={player.avatarId}
+          id={superHeroId}
+        />
+        <SheepAvatar
+          id={player.avatarId}
+          sheepId={superHeroId}
+          animate
+        />
       </SpaceContainer>
 
       <DecisionButtons

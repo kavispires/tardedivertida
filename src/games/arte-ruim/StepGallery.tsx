@@ -41,7 +41,10 @@ export function StepGallery({ gallery, players, cards, slideShowConfig }: StepGa
   return (
     <Step fullWidth>
       <StepTitle size="small">
-        <Translate pt="Galeria de Arte" en="Art Gallery" />
+        <Translate
+          pt="Galeria de Arte"
+          en="Art Gallery"
+        />
       </StepTitle>
 
       <PopoverRule content={<ScoringRules />} />
@@ -52,7 +55,11 @@ export function StepGallery({ gallery, players, cards, slideShowConfig }: StepGa
         leftClassName="a-gallery__canvas"
         rightClassName="a-gallery__info"
       >
-        <CanvasSVG drawing={drawing} width={canvasWidth} className="a-gallery__drawing" />
+        <CanvasSVG
+          drawing={drawing}
+          width={canvasWidth}
+          className="a-gallery__drawing"
+        />
 
         {/** biome-ignore lint/complexity/noUselessFragments: I think it's needed */}
         <>

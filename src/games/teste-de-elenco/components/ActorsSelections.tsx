@@ -22,12 +22,19 @@ export function ActorsSelections({ actors, players, selection, playersSelections
   const cardWidth = useCardWidth(4, { gap: 16, minWidth: 80, maxWidth: 150, margin: 16 });
 
   return (
-    <SpaceContainer className="actors-board" wrap>
+    <SpaceContainer
+      className="actors-board"
+      wrap
+    >
       {selection.map((actorId) => {
         const actor = actors[actorId];
 
         return (
-          <Space key={actor.id} className="actors-board__actor" orientation="vertical">
+          <Space
+            key={actor.id}
+            className="actors-board__actor"
+            orientation="vertical"
+          >
             <SpaceContainer>
               <Avatar.Group max={{ count: 7 }}>
                 {playersSelections[actorId].map((playerId) => (
@@ -39,7 +46,10 @@ export function ActorsSelections({ actors, players, selection, playersSelections
               </Avatar.Group>
             </SpaceContainer>
 
-            <SuspectCard suspect={actor} width={cardWidth} />
+            <SuspectCard
+              suspect={actor}
+              width={cardWidth}
+            />
           </Space>
         );
       })}

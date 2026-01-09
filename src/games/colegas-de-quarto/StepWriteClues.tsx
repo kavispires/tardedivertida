@@ -31,17 +31,29 @@ export function StepWriteClues({
   const assignedPairs: PlayerAssignedPair[] = players[user.id]?.assignedPairs || [];
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt={<>?</>} en={<>?</>} />
+        <Translate
+          pt={<>?</>}
+          en={<>?</>}
+        />
       </StepTitle>
 
       {isLoading}
       <Instruction contained>
-        <Translate pt={<>?</>} en={<>?</>} />
+        <Translate
+          pt={<>?</>}
+          en={<>?</>}
+        />
       </Instruction>
 
-      <StoreBoard board={board} round={round} />
+      <StoreBoard
+        board={board}
+        round={round}
+      />
     </Step>
   );
 }

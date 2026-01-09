@@ -24,7 +24,10 @@ export function EvaluationAllSubjects({
   matchedItems,
 }: EvaluationAllSubjectsProps) {
   return (
-    <SpaceContainer size="small" wrap>
+    <SpaceContainer
+      size="small"
+      wrap
+    >
       {subjectsIds.map((subjectId) => (
         <TransparentButton
           key={subjectId}
@@ -33,7 +36,10 @@ export function EvaluationAllSubjects({
           className="sda-word-button"
         >
           {matchedItems[subjectId] && (
-            <IconAvatar icon={<CheckMarkIcon />} className="sda-word-button__matched" />
+            <IconAvatar
+              icon={<CheckMarkIcon />}
+              className="sda-word-button__matched"
+            />
           )}
           <Card hideHeader>{cards[subjectId].text}</Card>
         </TransparentButton>

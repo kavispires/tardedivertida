@@ -43,7 +43,11 @@ export function BoardEntry({ entry, deckType, userSide }: BoardEntryProps) {
         key={`cd-board-entry-${entry.data.id}`}
         className={clsx('cd-board-entry', `cd-board-entry--${entry.affiliation[sideIndex]}`)}
       >
-        <ImageCard cardId={entry.data.id} cardWidth={72} className="board-entry-image-card" />
+        <ImageCard
+          cardId={entry.data.id}
+          cardWidth={72}
+          className="board-entry-image-card"
+        />
       </div>
     );
   }
@@ -54,7 +58,11 @@ export function BoardEntry({ entry, deckType, userSide }: BoardEntryProps) {
         key={`cd-board-entry-${entry.data.id}`}
         className={clsx('cd-board-entry', `cd-board-entry--${entry.affiliation[sideIndex]}`)}
       >
-        <CharacterCard character={entry.data as ContenderCard} size={96} className="board-entry-image-card" />
+        <CharacterCard
+          character={entry.data as ContenderCard}
+          size={96}
+          className="board-entry-image-card"
+        />
       </div>
     );
   }
@@ -65,7 +73,11 @@ export function BoardEntry({ entry, deckType, userSide }: BoardEntryProps) {
         key={`cd-board-entry-${entry.data.id}`}
         className={clsx('cd-board-entry', `cd-board-entry--${entry.affiliation[sideIndex]}`)}
       >
-        <SuspectCard suspect={entry.data as SuspectCardType} width={72} hideName />
+        <SuspectCard
+          suspect={entry.data as SuspectCardType}
+          width={72}
+          hideName
+        />
       </div>
     );
   }

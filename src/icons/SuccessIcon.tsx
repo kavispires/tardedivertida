@@ -1,6 +1,10 @@
 export function SuccessIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#ff8b6f"
         d="M470.394 380.25c-10.682 18.571-34.339 24.934-52.84 14.212-18.501-10.722-24.84-34.469-14.158-53.04s34.339-24.934 52.84-14.212c18.5 10.722 24.839 34.469 14.158 53.04z"

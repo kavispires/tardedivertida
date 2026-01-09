@@ -22,9 +22,15 @@ export function StepJudgeScenarios({
   onSubmitOrder,
 }: StepJudgeScenariosProps) {
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt={<>Você é o juiz da rodada!</>} en={<>You are the round's judge!</>} />
+        <Translate
+          pt={<>Você é o juiz da rodada!</>}
+          en={<>You are the round's judge!</>}
+        />
       </StepTitle>
 
       <RuleInstruction type="rule">
@@ -51,7 +57,11 @@ export function StepJudgeScenarios({
 
       <RoundTypeExplanation roundType={roundType} />
 
-      <SelectableScenarioOrder scenarios={scenarios} kind="negative" onSubmitOrder={onSubmitOrder} />
+      <SelectableScenarioOrder
+        scenarios={scenarios}
+        kind="negative"
+        onSubmitOrder={onSubmitOrder}
+      />
     </Step>
   );
 }

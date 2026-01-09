@@ -9,7 +9,11 @@ export function BoxEqualIcon({ color, ...props }: BoxEqualIconProps) {
   const darkColor = color || '#eb51c9';
 
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill={mainColor}
         d="M473.16 492.81H38.84A31.34 31.34 0 017.5 461.47V56.87a37.68 37.68 0 0137.68-37.68h421.64a37.68 37.68 0 0137.68 37.68v404.6a31.34 31.34 0 01-31.34 31.34z"

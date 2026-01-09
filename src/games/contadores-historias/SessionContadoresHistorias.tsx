@@ -37,7 +37,10 @@ function getActiveComponent(state: GameState) {
 
 function SessionDetetivesImaginativos() {
   return (
-    <Session gameCollection={GAME_COLLECTION.CONTADORES_HISTORIAS} getActiveComponent={getActiveComponent} />
+    <Session
+      gameCollection={GAME_COLLECTION.CONTADORES_HISTORIAS}
+      getActiveComponent={getActiveComponent}
+    />
   );
 }
 

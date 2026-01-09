@@ -31,7 +31,10 @@ export function StepFollowPath({
   const playerCount = Object.keys(players).length;
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         <Translate
           pt={

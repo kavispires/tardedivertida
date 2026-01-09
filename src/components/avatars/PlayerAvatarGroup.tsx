@@ -31,10 +31,22 @@ export function AvatarGroup({
   );
 
   return (
-    <Avatar.Group max={{ count: maxCount }} size={size}>
+    <Avatar.Group
+      max={{ count: maxCount }}
+      size={size}
+    >
       {players.map((player) => (
-        <Tooltip key={`avatar-group-${player.id}`} title={`${tooltipPrefix}${player.name}`} trigger="hover">
-          <PlayerAvatar avatarId={player.avatarId} alt={player.name} size={size} {...avatarProps} />
+        <Tooltip
+          key={`avatar-group-${player.id}`}
+          title={`${tooltipPrefix}${player.name}`}
+          trigger="hover"
+        >
+          <PlayerAvatar
+            avatarId={player.avatarId}
+            alt={player.name}
+            size={size}
+            {...avatarProps}
+          />
         </Tooltip>
       ))}
     </Avatar.Group>

@@ -48,7 +48,10 @@ export function WordForm({ x, y, onSubmit, disabled, index }: WordFormProps) {
           onClick={() => onSubmit({ clue, currentClueCoordinate: index })}
           disabled={disabled || !clue.length}
         >
-          <Translate pt="Enviar" en="Submit" />
+          <Translate
+            pt="Enviar"
+            en="Submit"
+          />
         </SendButton>
       </Flex>
     </Space>

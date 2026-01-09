@@ -123,7 +123,12 @@ export function ImageCardButton({
         {...restButtonProps}
       >
         {iconComponent}
-        {buttonText ?? <Translate pt="Selecionar" en="Select" />}
+        {buttonText ?? (
+          <Translate
+            pt="Selecionar"
+            en="Select"
+          />
+        )}
         {iconComponent}
       </Button>
     ) : null;
@@ -131,7 +136,10 @@ export function ImageCardButton({
   return (
     <div className={clsx('image-card-button', className)}>
       {isTop && button}
-      <ImageBlurButtonContainer cardId={cardId} position={buttonPosition === 'bottom' ? 'top' : 'bottom'}>
+      <ImageBlurButtonContainer
+        cardId={cardId}
+        position={buttonPosition === 'bottom' ? 'top' : 'bottom'}
+      >
         <DebugOnly>
           <Typography.Text code>{cardId}</Typography.Text>
         </DebugOnly>

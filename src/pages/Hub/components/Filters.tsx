@@ -44,7 +44,11 @@ export function Filters({ availabilityCount, setTagFilters, setNumberFilters }: 
   ];
 
   return (
-    <Space className="hub-filters" wrap size="middle">
+    <Space
+      className="hub-filters"
+      wrap
+      size="middle"
+    >
       <span>
         <FilterOutlined /> ({availabilityCount})
       </span>
@@ -77,7 +81,10 @@ export function Filters({ availabilityCount, setTagFilters, setNumberFilters }: 
       </div>
       <div className="hub-filters__entry">
         <label htmlFor="tags">Tags</label>
-        <TagTreeSelect value={undefined} onTreeSelectChange={setTagFilters} />
+        <TagTreeSelect
+          value={undefined}
+          onTreeSelectChange={setTagFilters}
+        />
       </div>
     </Space>
   );

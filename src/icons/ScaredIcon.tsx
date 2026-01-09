@@ -1,20 +1,50 @@
 export function ScaredIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <ellipse cx="256.01" cy="242.035" fill="#a2ddfd" rx="228.989" ry="224.02"></ellipse>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <ellipse
+        cx="256.01"
+        cy="242.035"
+        fill="#a2ddfd"
+        rx="228.989"
+        ry="224.02"
+      ></ellipse>
       <path
         fill="#7acdf9"
         d="M409.744 408.066C91.82 427.476 64.192 181.406 193.608 26.433 97.466 53.009 27.021 139.473 27.021 242.035c0 123.723 102.522 224.02 228.989 224.02 59.167.001 113.096-21.955 153.734-57.989z"
       ></path>
-      <ellipse cx="127.128" cy="215.984" fill="#6a95d6" rx="47.555" ry="37.87"></ellipse>
-      <ellipse cx="384.892" cy="215.984" fill="#6a95d6" rx="47.555" ry="37.87"></ellipse>
+      <ellipse
+        cx="127.128"
+        cy="215.984"
+        fill="#6a95d6"
+        rx="47.555"
+        ry="37.87"
+      ></ellipse>
+      <ellipse
+        cx="384.892"
+        cy="215.984"
+        fill="#6a95d6"
+        rx="47.555"
+        ry="37.87"
+      ></ellipse>
       <path
         fill="#4e5660"
         d="M298.938 207.672c0-9.9-5.18-19.089-13.666-24.19-8.55-5.14-18.559-8.097-29.263-8.097s-20.713 2.958-29.263 8.097a28.222 28.222 0 00-13.666 24.19v136.605c0 23.709 19.22 42.928 42.928 42.928 23.709 0 42.928-19.22 42.928-42.928V207.672z"
       ></path>
       <g fill="#fff">
-        <circle cx="154.502" cy="150.864" r="45.58"></circle>
-        <circle cx="357.518" cy="150.864" r="45.58"></circle>
+        <circle
+          cx="154.502"
+          cy="150.864"
+          r="45.58"
+        ></circle>
+        <circle
+          cx="357.518"
+          cy="150.864"
+          r="45.58"
+        ></circle>
       </g>
       <path
         fill="#a2ddfd"

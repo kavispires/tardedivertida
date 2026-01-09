@@ -26,13 +26,21 @@ export function StepRanking({ players, ranking, round, onGoBack }: StepRankingPr
         players={players}
         ranking={ranking}
         gainedPointsDescriptions={[
-          <Translate key="1" pt="Votos corretos" en="Correct guesses" />,
+          <Translate
+            key="1"
+            pt="Votos corretos"
+            en="Correct guesses"
+          />,
           <Translate
             key="2"
             pt="Votos corretos em seu sonho por outros jogadores"
             en="Correct guesses on your dream by other players"
           />,
-          <Translate key="3" pt="Votos em pesadelos" en="Nightmares selected" />,
+          <Translate
+            key="3"
+            pt="Votos em pesadelos"
+            en="Nightmares selected"
+          />,
         ]}
       />
 
@@ -40,8 +48,15 @@ export function StepRanking({ players, ranking, round, onGoBack }: StepRankingPr
 
       {round.current < round.total && <RoundsLeftInstruction round={round} />}
 
-      <Button size="large" onClick={onGoBack} icon={<PictureOutlined />}>
-        <Translate pt="Ver Galeria De Novo" en="See Gallery Again" />
+      <Button
+        size="large"
+        onClick={onGoBack}
+        icon={<PictureOutlined />}
+      >
+        <Translate
+          pt="Ver Galeria De Novo"
+          en="See Gallery Again"
+        />
       </Button>
 
       <HostNextPhaseButton round={round} />

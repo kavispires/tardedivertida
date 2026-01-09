@@ -9,9 +9,18 @@ import type { TestStepProps } from '../TestArea';
 
 export function LanguageTest({ onResult, step }: TestStepProps) {
   return (
-    <SpaceContainer className="full-width" vertical>
-      <Title level={2} size="small">
-        <Translate pt="Mudança de Idioma" en="Language Switch" />
+    <SpaceContainer
+      className="full-width"
+      vertical
+    >
+      <Title
+        level={2}
+        size="small"
+      >
+        <Translate
+          pt="Mudança de Idioma"
+          en="Language Switch"
+        />
       </Title>
 
       <Instruction contained>

@@ -21,22 +21,42 @@ export function PlayersBets({ players, brackets }: PlayersBetsProps) {
   const playersList = sortPlayers(players);
   const contendersByTiers = getContenderIdsByTier(brackets);
   return (
-    <ul className="w-players-bets" style={{ gridTemplateColumns: `repeat(${playersList.length + 1}, auto)` }}>
+    <ul
+      className="w-players-bets"
+      style={{ gridTemplateColumns: `repeat(${playersList.length + 1}, auto)` }}
+    >
       <li className="w-players-bets__player w-players-bets__player--header">
         <div className="w-players-bets__square">
-          <PlayerAvatar shape="square" size="large" className="w-players-bets__avatar" avatarId="N" />
+          <PlayerAvatar
+            shape="square"
+            size="large"
+            className="w-players-bets__avatar"
+            avatarId="N"
+          />
         </div>
         <div className="w-players-bets__square">
-          <Translate pt="Final" en="Final" />
+          <Translate
+            pt="Final"
+            en="Final"
+          />
         </div>
         <div className="w-players-bets__square">
-          <Translate pt="Semi" en="Semi" />
+          <Translate
+            pt="Semi"
+            en="Semi"
+          />
         </div>
         <div className="w-players-bets__square">
-          <Translate pt="Quartas" en="Quarter" />
+          <Translate
+            pt="Quartas"
+            en="Quarter"
+          />
         </div>
         <div className="w-players-bets__square">
-          <Translate pt="Competidor" en="Contender" />
+          <Translate
+            pt="Competidor"
+            en="Contender"
+          />
         </div>
       </li>
 

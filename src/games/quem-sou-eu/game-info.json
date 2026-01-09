@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "quem-sou-eu",
-  "version": "2.0.51",
+  "version": "2.0.52",
   "release": "stable",
   "available": true,
   "title": {

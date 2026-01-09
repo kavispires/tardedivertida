@@ -68,7 +68,11 @@ export function StepQuestioning({
             }
           />
         </StepTitle>
-        <Flex align="center" className="margin" gap={12}>
+        <Flex
+          align="center"
+          className="margin"
+          gap={12}
+        >
           <AnswerNoButton
             onClick={() => onAnswer({ testimony: false })}
             disabled={!isUserTheWitness || isLoading}
@@ -106,7 +110,10 @@ export function StepQuestioning({
           />
         </StepTitle>
 
-        <SpaceContainer align="center" orientation="vertical">
+        <SpaceContainer
+          align="center"
+          orientation="vertical"
+        >
           <Card
             header={translate('O suspeito...', 'The perpetrator...')}
             color="blue"
@@ -118,7 +125,10 @@ export function StepQuestioning({
         </SpaceContainer>
 
         <RuleInstruction type="wait">
-          <Translate pt="Aguarde a testemunha responder." en="Wait for the witness to answer." />
+          <Translate
+            pt="Aguarde a testemunha responder."
+            en="Wait for the witness to answer."
+          />
         </RuleInstruction>
       </ViewIf>
 
@@ -129,7 +139,12 @@ export function StepQuestioning({
         eliminatedSuspects={previouslyEliminatedSuspects}
       />
 
-      {history.length > 0 && <QuestionsHistory history={history} suspectsDict={suspectsDict} />}
+      {history.length > 0 && (
+        <QuestionsHistory
+          history={history}
+          suspectsDict={suspectsDict}
+        />
+      )}
 
       {status && <Summary status={status} />}
     </Step>

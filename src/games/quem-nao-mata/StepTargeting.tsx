@@ -88,15 +88,33 @@ export function StepTargeting({
   };
 
   return (
-    <Step fullWidth className="q-target-grid">
+    <Step
+      fullWidth
+      className="q-target-grid"
+    >
       <div className="q-target-content">
         <StepTitle size="small">
-          <Translate pt="Escolha seu alvo!" en="Choose your target!" />
+          <Translate
+            pt="Escolha seu alvo!"
+            en="Choose your target!"
+          />
         </StepTitle>
-        <TimedTimerBar duration={90} steps={18} onExpire={timeExpireDisableVoting} />
+        <TimedTimerBar
+          duration={90}
+          steps={18}
+          onExpire={timeExpireDisableVoting}
+        />
 
-        <Button shape={'round'} size="small" onClick={popRule} icon={<ReadOutlined />}>
-          <Translate pt=" Regras" en=" Rules" />
+        <Button
+          shape={'round'}
+          size="small"
+          onClick={popRule}
+          icon={<ReadOutlined />}
+        >
+          <Translate
+            pt=" Regras"
+            en=" Rules"
+          />
         </Button>
 
         <MessageBoard
@@ -110,13 +128,21 @@ export function StepTargeting({
 
       <div className="q-target-players q-target-players--left">
         {leftPlayersIds.map((playerId) => (
-          <PlayerStatus key={playerId} player={players[playerId]} side="left" />
+          <PlayerStatus
+            key={playerId}
+            player={players[playerId]}
+            side="left"
+          />
         ))}
       </div>
 
       <div className="q-target-players q-target-players--right">
         {rightPlayersIds.map((playerId) => (
-          <PlayerStatus key={playerId} player={players[playerId]} side="right" />
+          <PlayerStatus
+            key={playerId}
+            player={players[playerId]}
+            side="right"
+          />
         ))}
       </div>
 

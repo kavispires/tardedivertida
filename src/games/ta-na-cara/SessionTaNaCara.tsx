@@ -34,7 +34,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionTaNaCara() {
-  return <Session gameCollection={GAME_COLLECTION.TA_NA_CARA} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.TA_NA_CARA}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionTaNaCara;

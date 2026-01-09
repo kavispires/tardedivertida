@@ -53,8 +53,14 @@ export function CharacterCard({ size, overlayColor, character, className, hideNa
 
   return (
     <ImageBlurButtonContainer cardId={character.id}>
-      <Tooltip title={dualTranslate(description)} placement="top">
-        <div className={clsx('character-card', className)} style={{ width: `${size}px` }}>
+      <Tooltip
+        title={dualTranslate(description)}
+        placement="top"
+      >
+        <div
+          className={clsx('character-card', className)}
+          style={{ width: `${size}px` }}
+        >
           {!hideName && (
             <span className="character-card__name">
               <DualTranslate>{character.name}</DualTranslate>

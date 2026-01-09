@@ -67,12 +67,24 @@ export function EvaluationGroup({
     <div>
       <div className="div-container evaluation-entry">
         <div className="div-container evaluation-entry__side">
-          <span className={clsx(getAnimationClass('flipInY'))} key={answersGroup.topic.id}>
-            <CategoryCell data={answersGroup.topic} updateAnswer={NOOP} />
+          <span
+            className={clsx(getAnimationClass('flipInY'))}
+            key={answersGroup.topic.id}
+          >
+            <CategoryCell
+              data={answersGroup.topic}
+              updateAnswer={NOOP}
+            />
           </span>
           <PlusOutlined />
-          <span className={clsx(getAnimationClass('flipInY'))} key={answersGroup.letter.letters}>
-            <LetterCell data={answersGroup.letter} updateAnswer={NOOP} />
+          <span
+            className={clsx(getAnimationClass('flipInY'))}
+            key={answersGroup.letter.letters}
+          >
+            <LetterCell
+              data={answersGroup.letter}
+              updateAnswer={NOOP}
+            />
           </span>
         </div>
         <div
@@ -81,7 +93,10 @@ export function EvaluationGroup({
         >
           {answersGroup.answers.map((answer) => {
             return (
-              <div className="evaluation-entry__player" key={answer.playerId}>
+              <div
+                className="evaluation-entry__player"
+                key={answer.playerId}
+              >
                 <TimeHighlight>{ANSWERING_TIME - answer.timestamp}"</TimeHighlight>{' '}
                 <PlayerAvatarName player={players[answer.playerId]} />{' '}
                 <span
@@ -101,11 +116,19 @@ export function EvaluationGroup({
                       />
                     }
                   >
-                    <IconAvatar icon={<NoIcon />} size="small" />
+                    <IconAvatar
+                      icon={<NoIcon />}
+                      size="small"
+                    />
                   </Tooltip>
                 ) : (
                   <Switch
-                    checkedChildren={<IconAvatar icon={<NoIcon />} size="small" />}
+                    checkedChildren={
+                      <IconAvatar
+                        icon={<NoIcon />}
+                        size="small"
+                      />
+                    }
                     unCheckedChildren={<CheckOutlined />}
                     onClick={(v) => updateRejection(answer.id, v)}
                     checked={rejections[answer.id] ? true : undefined}
@@ -122,13 +145,20 @@ export function EvaluationGroup({
               loading={isLoading}
               disabled={isEqual(rejections, user.evaluations)}
             >
-              <Translate pt="Atualizar rejeições" en="Reject wrong answers" />
+              <Translate
+                pt="Atualizar rejeições"
+                en="Reject wrong answers"
+              />
             </Button>
           </SpaceContainer>
         </div>
       </div>
       <SpaceContainer key={answersGroup.id}>
-        <TimedTimerBar duration={timer} onExpire={NOOP} className="margin" />
+        <TimedTimerBar
+          duration={timer}
+          onExpire={NOOP}
+          className="margin"
+        />
       </SpaceContainer>
     </div>
   );

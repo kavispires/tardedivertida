@@ -6,5 +6,10 @@ import { DailyArteRuim } from './components/DailyArteRuim';
 import './utils/styles.scss';
 
 export function DailyArteRuimGame() {
-  return <DailyGame gameName="arte-ruim" GameComponent={DailyArteRuim} />;
+  return (
+    <DailyGame
+      gameName="arte-ruim"
+      GameComponent={DailyArteRuim}
+    />
+  );
 }

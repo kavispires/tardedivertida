@@ -28,7 +28,10 @@ export function FinalScenarios({ scenarios, reference, player }: ScenarioCardPro
 
   return (
     <Space className="final-scenarios">
-      <PlayerAvatarStrip player={player} withName />
+      <PlayerAvatarStrip
+        player={player}
+        withName
+      />
       {scenarios.map((entry, index) => (
         <div
           key={`${player.id}-position-${index}-${entry?.id}`}
@@ -39,7 +42,10 @@ export function FinalScenarios({ scenarios, reference, player }: ScenarioCardPro
           <div className="scenario__tagline">
             <DualTranslate>{reference[index].text}</DualTranslate>
           </div>
-          <EmojiCard emojiId={reference[index].id} className="scenario__emoji" />
+          <EmojiCard
+            emojiId={reference[index].id}
+            className="scenario__emoji"
+          />
           {entry && <div className="scenario__card">{entry.text}</div>}
         </div>
       ))}

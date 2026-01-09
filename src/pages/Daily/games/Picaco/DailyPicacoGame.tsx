@@ -6,5 +6,10 @@ import { DailyPicaco } from './components/DailyPicaco';
 import './utils/styles.scss';
 
 export function DailyPicacoGame() {
-  return <DailyGame gameName="artista" GameComponent={DailyPicaco} />;
+  return (
+    <DailyGame
+      gameName="artista"
+      GameComponent={DailyPicaco}
+    />
+  );
 }

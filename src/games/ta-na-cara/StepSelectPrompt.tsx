@@ -45,9 +45,15 @@ export function StepSelectPrompt({
   });
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt={<>Selecione uma das opções</>} en={<>Select one of the options</>} />
+        <Translate
+          pt={<>Selecione uma das opções</>}
+          en={<>Select one of the options</>}
+        />
       </StepTitle>
 
       <Instruction contained>
@@ -65,7 +71,11 @@ export function StepSelectPrompt({
         onSubmitTarget={onSubmitTarget}
       />
 
-      <PlayersBoards players={players} user={user} questionsDict={questionsDict} />
+      <PlayersBoards
+        players={players}
+        user={user}
+        questionsDict={questionsDict}
+      />
 
       <CharactersBoard
         charactersDict={charactersDict}
@@ -73,7 +83,11 @@ export function StepSelectPrompt({
         userCharacterId={user.cardId}
       />
 
-      <TurnOrder players={players} order={turnOrder} activePlayerId={activePlayerId} />
+      <TurnOrder
+        players={players}
+        order={turnOrder}
+        activePlayerId={activePlayerId}
+      />
     </Step>
   );
 }

@@ -30,9 +30,15 @@ export function PhaseAskingForSomething({ players, state, user }: PhaseProps) {
       icon={<QuestionIcon />}
       title={
         isTheRequester ? (
-          <Translate pt="Peça algo" en="Ask for something" />
+          <Translate
+            pt="Peça algo"
+            en="Ask for something"
+          />
         ) : (
-          <Translate pt="O outro jogador pede algo" en="The other player asks for something" />
+          <Translate
+            pt="O outro jogador pede algo"
+            en="The other player asks for something"
+          />
         )
       }
       currentRound={state?.round?.current}
@@ -48,8 +54,14 @@ export function PhaseAskingForSomething({ players, state, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={COMUNICACAO_DUO_PHASES.ASKING_FOR_SOMETHING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={COMUNICACAO_DUO_PHASES.ASKING_FOR_SOMETHING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepAsk
           user={user}

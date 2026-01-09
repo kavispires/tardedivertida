@@ -75,18 +75,31 @@ export function StepAnnounceDream({
 
   return (
     <Step fullWidth>
-      <motion.div className="g-dream-result" {...getAnimation('fadeIn', { speed: 'slow' })}>
+      <motion.div
+        className="g-dream-result"
+        {...getAnimation('fadeIn', { speed: 'slow' })}
+      >
         <header
           className="g-dream-result__header"
           style={{
             backgroundColor: getAvatarColorById(lastActivePlayer.avatarId),
           }}
         >
-          <PlayerAvatarName player={lastActivePlayer} size="large" />
-          <Translate pt="escolheu visitar o sonho" en="chose to visit the dream" />:
+          <PlayerAvatarName
+            player={lastActivePlayer}
+            size="large"
+          />
+          <Translate
+            pt="escolheu visitar o sonho"
+            en="chose to visit the dream"
+          />
+          :
         </header>
         <div className="g-dream-result__card">
-          <ImageCard cardId={latest.cardId} cardWidth={cardWidth} />
+          <ImageCard
+            cardId={latest.cardId}
+            cardWidth={cardWidth}
+          />
         </div>
         <div className="g-dream-result__match-result">
           <MatchCount
@@ -99,10 +112,16 @@ export function StepAnnounceDream({
           {matchingPlayers.length > 0 && (
             <>
               <p>
-                <Translate pt="Ganharam pontos:" en="Scored points:" />
+                <Translate
+                  pt="Ganharam pontos:"
+                  en="Scored points:"
+                />
               </p>
 
-              <ListPlayers listPlayers={matchingPlayers} className="g-dream-result__matched-players-list" />
+              <ListPlayers
+                listPlayers={matchingPlayers}
+                className="g-dream-result__matched-players-list"
+              />
             </>
           )}
         </div>
@@ -125,7 +144,11 @@ export function StepAnnounceDream({
         </div>
         <footer className="g-dream-result__footer">
           {latest.isPhaseOver || latest.cardsLeft === 0 ? (
-            <Space align="center" className="full-width padding" orientation="vertical">
+            <Space
+              align="center"
+              className="full-width padding"
+              orientation="vertical"
+            >
               <p className="center">
                 <Translate
                   pt="Todos jogadores já usaram seus sonhos ou não deram match com ninguém. Vamos para a próxima rodada?"
@@ -173,10 +196,20 @@ export function StepAnnounceDream({
               )}
             </Space>
           ) : (
-            <Space align="center" className="full-width padding" orientation="vertical">
+            <Space
+              align="center"
+              className="full-width padding"
+              orientation="vertical"
+            >
               <p className="center">
-                <Translate pt="Próximo jogador:" en="Next player:" />
-                <PlayerAvatarName player={activePlayer} addressUser />
+                <Translate
+                  pt="Próximo jogador:"
+                  en="Next player:"
+                />
+                <PlayerAvatarName
+                  player={activePlayer}
+                  addressUser
+                />
               </p>
 
               <TimedButton
@@ -185,7 +218,10 @@ export function StepAnnounceDream({
                 disabled
                 onExpire={() => setStep(GO_TO_CARD_PLAY_STEP)}
               >
-                <Translate pt="Continuando em..." en="Continuing in..." />
+                <Translate
+                  pt="Continuando em..."
+                  en="Continuing in..."
+                />
               </TimedButton>
             </Space>
           )}
@@ -194,7 +230,11 @@ export function StepAnnounceDream({
               <Divider />
               <div className="g-dream-result__completed-players">
                 <p className="g-dream-result__label center">
-                  <Translate pt="Jogadores fora do rodízio" en="Players out of rotation" />:
+                  <Translate
+                    pt="Jogadores fora do rodízio"
+                    en="Players out of rotation"
+                  />
+                  :
                 </p>
                 <ListPlayers
                   listPlayers={completedPlayers}
@@ -207,7 +247,11 @@ export function StepAnnounceDream({
       </motion.div>
 
       {gameOrder.length > 1 && (
-        <TurnOrder players={players} order={gameOrder} activePlayerId={activePlayer.id} />
+        <TurnOrder
+          players={players}
+          order={gameOrder}
+          activePlayerId={activePlayer.id}
+        />
       )}
 
       {latest.isPhaseOver && <HostNextPhaseButton autoTriggerTime={15}>Ranking</HostNextPhaseButton>}

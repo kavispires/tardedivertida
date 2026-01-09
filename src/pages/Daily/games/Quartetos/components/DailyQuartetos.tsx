@@ -58,7 +58,10 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyGroupingGameIcon />} localStorageKey={SETTINGS.KEY}>
+      <Header
+        icon={<DailyGroupingGameIcon />}
+        localStorageKey={SETTINGS.KEY}
+      >
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <DailyContent ref={ref}>
@@ -70,18 +73,32 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
         />
 
         <RegionText>
-          <Translate pt="Faça quatro grupos de quatro" en="Connect four groups of four" />
+          <Translate
+            pt="Faça quatro grupos de quatro"
+            en="Connect four groups of four"
+          />
         </RegionText>
 
         <Region>
           {matches.map((match) => {
             return (
-              <div key={match.id} className={clsx('set-match', `set-match--set-${match.level}`)}>
+              <div
+                key={match.id}
+                className={clsx('set-match', `set-match--set-${match.level}`)}
+              >
                 <div className="set-title">{match.title}</div>
                 <div className={clsx('grid')}>
                   {match.itemsIds.map((itemId) => (
-                    <div key={itemId} className="set-match-item">
-                      <DailyItem key={itemId} itemId={itemId} className="transparent" width={width} />
+                    <div
+                      key={itemId}
+                      className="set-match-item"
+                    >
+                      <DailyItem
+                        key={itemId}
+                        itemId={itemId}
+                        className="transparent"
+                        width={width}
+                      />
                     </div>
                   ))}
                 </div>
@@ -99,29 +116,70 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
                 onClick={() => onSelectItem(itemId)}
                 className={clsx('grid-item', { 'grid-item--selected': selection.includes(itemId) })}
               >
-                <DailyItem itemId={itemId} className="transparent" width={width} />
+                <DailyItem
+                  itemId={itemId}
+                  className="transparent"
+                  width={width}
+                />
               </TransparentButton>
             ))}
           </div>
         </Region>
 
         {isComplete ? (
-          <Space className="results-container" orientation="vertical" align="center" size="large">
-            <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
-              <Translate pt="Ver Resultado" en="Show Results" />
+          <Space
+            className="results-container"
+            orientation="vertical"
+            align="center"
+            size="large"
+          >
+            <Button
+              onClick={() => setShowResultModal(true)}
+              type="primary"
+              icon={<BarChartOutlined />}
+            >
+              <Translate
+                pt="Ver Resultado"
+                en="Show Results"
+              />
             </Button>
           </Space>
         ) : (
           <Region>
-            <Flex justify="center" gap={8}>
-              <Button shape="round" onClick={onShuffle} disabled={grid.length === 0}>
-                <Translate en="Shuffle" pt="Embaralhar" />
+            <Flex
+              justify="center"
+              gap={8}
+            >
+              <Button
+                shape="round"
+                onClick={onShuffle}
+                disabled={grid.length === 0}
+              >
+                <Translate
+                  en="Shuffle"
+                  pt="Embaralhar"
+                />
               </Button>
-              <Button shape="round" onClick={onDeselectAll} disabled={!selection.length}>
-                <Translate en="Deselect" pt="Desmarcar" />
+              <Button
+                shape="round"
+                onClick={onDeselectAll}
+                disabled={!selection.length}
+              >
+                <Translate
+                  en="Deselect"
+                  pt="Desmarcar"
+                />
               </Button>
-              <Button shape="round" type="primary" onClick={onSubmit} disabled={selection.length !== 4}>
-                <Translate en="Submit" pt="Enviar" />
+              <Button
+                shape="round"
+                type="primary"
+                onClick={onSubmit}
+                disabled={selection.length !== 4}
+              >
+                <Translate
+                  en="Submit"
+                  pt="Enviar"
+                />
               </Button>
             </Flex>
           </Region>
@@ -144,7 +202,11 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
           />
         </RegionHint>
 
-        <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
+        <Modal
+          open={showResultModal}
+          onCancel={() => setShowResultModal(false)}
+          footer={null}
+        >
           <ResultsModalContent
             challengeNumber={data.number}
             win={isWin}

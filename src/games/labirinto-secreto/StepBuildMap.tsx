@@ -43,12 +43,21 @@ export function StepBuildMap({
   const playerMapping = buildPlayerMappingForLatestTree(players, user);
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         {currentRound === 1 ? (
-          <Translate pt="Construa o seu mapa" en="Build your map" />
+          <Translate
+            pt="Construa o seu mapa"
+            en="Build your map"
+          />
         ) : (
-          <Translate pt="Expanda seu mapa" en="Expand your map" />
+          <Translate
+            pt="Expanda seu mapa"
+            en="Expand your map"
+          />
         )}
       </StepTitle>
 
@@ -97,10 +106,19 @@ export function StepBuildMap({
               2. Você pode fazer quantos segmentos quiser desde que pelo menos uma carta esteja em cada árvore
               (dessa rodada ou de uma rodada anterior já que as cartas são cumulativas).
               <br />
-              3. Na barra abaixo, se quiser negar <IconAvatar icon={<NoIcon />} size="small" /> um adjectivo
-              selecionado, clique nele acima da árvore para trocar.
+              3. Na barra abaixo, se quiser negar{' '}
+              <IconAvatar
+                icon={<NoIcon />}
+                size="small"
+              />{' '}
+              um adjectivo selecionado, clique nele acima da árvore para trocar.
               <br />
-              4. Se quiser refazer uma árvore <IconAvatar icon={<TreeIcon />} size="small" />, clique nela.
+              4. Se quiser refazer uma árvore{' '}
+              <IconAvatar
+                icon={<TreeIcon />}
+                size="small"
+              />
+              , clique nela.
               <br />
               5. Quando você estiver pronto, aperte Enviar Mapa.
             </>
@@ -112,10 +130,19 @@ export function StepBuildMap({
               You can build as many segments you with as long as there is at least one card on each tree (from
               this round or a previous one since the cards are cumulative).
               <br />
-              If you want to negate <IconAvatar icon={<NoIcon />} size="small" /> an adjective you selected,
-              click on it below the tree to change.
+              If you want to negate{' '}
+              <IconAvatar
+                icon={<NoIcon />}
+                size="small"
+              />{' '}
+              an adjective you selected, click on it below the tree to change.
               <br />
-              If you want to redo a tree <IconAvatar icon={<TreeIcon />} size="small" />, click on it.
+              If you want to redo a tree{' '}
+              <IconAvatar
+                icon={<TreeIcon />}
+                size="small"
+              />
+              , click on it.
               <br />
               When you are ready, press Submit Map.
             </>
@@ -123,7 +150,11 @@ export function StepBuildMap({
         />
       </RuleInstruction>
 
-      <MapBuilder user={user} forest={forest} onSubmitMap={onSubmitMap} />
+      <MapBuilder
+        user={user}
+        forest={forest}
+        onSubmitMap={onSubmitMap}
+      />
     </Step>
   );
 }

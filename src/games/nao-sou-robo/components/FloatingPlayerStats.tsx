@@ -26,26 +26,48 @@ export function FloatingPlayerStats({ user, robot }: FloatingPlayerStatsProps) {
     <FixedMenuButton
       type="popover"
       position={1}
-      icon={<IconAvatar icon={<UserStatsIcon />} size="small" />}
+      icon={
+        <IconAvatar
+          icon={<UserStatsIcon />}
+          size="small"
+        />
+      }
       content={
         <div>
           <strong>
-            <Translate pt="Seus valores" en="Your stats" />
+            <Translate
+              pt="Seus valores"
+              en="Your stats"
+            />
           </strong>
           <ul className="n-floating-player-stats">
             <li>
-              <Translate pt="Acertou Captcha" en="Captcha correct" />:{' '}
-              <CaptchaHighlight>{correctCaptcha}/3</CaptchaHighlight>
+              <Translate
+                pt="Acertou Captcha"
+                en="Captcha correct"
+              />
+              : <CaptchaHighlight>{correctCaptcha}/3</CaptchaHighlight>
             </li>
             <li>
-              <Translate pt="Levantou suspeita" en="Caused suspicion" />:{' '}
-              <SuspicionHighlight>{suspicion}/3</SuspicionHighlight>
+              <Translate
+                pt="Levantou suspeita"
+                en="Caused suspicion"
+              />
+              : <SuspicionHighlight>{suspicion}/3</SuspicionHighlight>
             </li>
             <li>
-              <Translate pt="Pontuação" en="Score" />: <PointsHighlight>{user.score}</PointsHighlight>
+              <Translate
+                pt="Pontuação"
+                en="Score"
+              />
+              : <PointsHighlight>{user.score}</PointsHighlight>
             </li>
             <li>
-              <Translate pt="Robô" en="Robot" />:{' '}
+              <Translate
+                pt="Robô"
+                en="Robot"
+              />
+              :{' '}
               <EnergyHighlight>
                 {robot.points}/{robot.goal}
               </EnergyHighlight>

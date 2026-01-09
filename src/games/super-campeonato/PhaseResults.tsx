@@ -29,20 +29,34 @@ export function PhaseResults({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<TournamentIcon />}
-      title={<Translate pt="Resultado!" en="Results!" />}
+      title={
+        <Translate
+          pt="Resultado!"
+          en="Results!"
+        />
+      }
       type="overlay"
       currentRound={state?.round?.current}
       duration={3}
     >
       <Instruction>
-        <Translate pt="Só pode haver um..." en="There's only one..." />
+        <Translate
+          pt="Só pode haver um..."
+          en="There's only one..."
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={SUPER_CAMPEONATO_PHASES.RESULTS}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={SUPER_CAMPEONATO_PHASES.RESULTS}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepWinner
           brackets={state.brackets}

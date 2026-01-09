@@ -1,6 +1,10 @@
 export function MovieGenreIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#948393"
         d="M441 439V143a8 8 0 00-7-8h-38l-8 8H128l-14-8H76a8 8 0 00-7 8v296a3 3 0 003 3h23l10-5h299l11 5h23a3 3 0 003-3zm0 0"
@@ -9,14 +13,26 @@ export function MovieGenreIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#7c6c79"
         d="M122 161H95a4 4 0 00-4 4v15a4 4 0 004 4h27zm0 49H95a4 4 0 00-4 4v15a4 4 0 004 4h27zm0 49H95a4 4 0 00-4 4v15a4 4 0 004 4h27zm0 49H95a4 4 0 00-4 3v15a4 4 0 004 4h27zm0 48H95a4 4 0 00-4 4v15a4 4 0 004 4h19zm266-195h27a4 4 0 014 4v15a4 4 0 01-4 4h-27zm0 49h27a4 4 0 014 4v15a4 4 0 01-4 4h-27zm0 49h27a4 4 0 014 4v15a4 4 0 01-4 4h-27zm0 49h27a4 4 0 014 3v15a4 4 0 01-4 4h-27zm0 48h27a4 4 0 014 4v15a4 4 0 01-4 4h-19zm0 0"
       ></path>
-      <path fill="#f5f8f9" d="M389 373V141l-8-6H114v244h267zm0 0"></path>
-      <path fill="#e8edf2" d="M381 135h15v244h-15z"></path>
+      <path
+        fill="#f5f8f9"
+        d="M389 373V141l-8-6H114v244h267zm0 0"
+      ></path>
+      <path
+        fill="#e8edf2"
+        d="M381 135h15v244h-15z"
+      ></path>
       <path
         fill="#7c6c79"
         d="M415 442h-19l-7-11 7-12h19a4 4 0 014 4v15a4 4 0 01-4 4zm-301 0H95a4 4 0 01-4-4v-15a4 4 0 014-4h19l7 12zm0 0"
       ></path>
-      <path fill="#f5f8f9" d="M114 442v-11l6-7 271-1 1 14-11 5zm0 0"></path>
-      <path fill="#e8edf2" d="M396 419v23h-15v-6a5 5 0 00-5-5H114v-12zm0 0"></path>
+      <path
+        fill="#f5f8f9"
+        d="M114 442v-11l6-7 271-1 1 14-11 5zm0 0"
+      ></path>
+      <path
+        fill="#e8edf2"
+        d="M396 419v23h-15v-6a5 5 0 00-5-5H114v-12zm0 0"
+      ></path>
       <path
         fill="#fe7143"
         d="M368 100l-10 113a149 149 0 01-25 70c-14 20-30 35-52 47l-26 13-21-142 21-132a354 354 0 01105 16c2 1-1 4 1 5a10 10 0 017 10zm0 0"
@@ -29,7 +45,10 @@ export function MovieGenreIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#fe5c37"
         d="M374 98l-12 119a150 150 0 01-80 119 58 58 0 01-27 7l-4-6 4-6a59 59 0 0012-4 150 150 0 0080-119l13-123 7 2a10 10 0 017 11zm0 0"
       ></path>
-      <path fill="#aae76c" d="M255 331v12a58 58 0 01-27-7 149 149 0 01-20-12l5 3a58 58 0 0042 4zm0 0"></path>
+      <path
+        fill="#aae76c"
+        d="M255 331v12a58 58 0 01-27-7 149 149 0 01-20-12l5 3a58 58 0 0042 4zm0 0"
+      ></path>
       <path
         fill="#e8edf2"
         d="M299 292c-10-6-24-6-44-6a43 43 0 01-32-14l-30-33a1 1 0 011-1 138 138 0 0061 15c14 0 24 6 32 15 4 5 11 17 13 23a1 1 0 01-1 1zm0 0"

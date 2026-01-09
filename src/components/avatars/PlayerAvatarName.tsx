@@ -70,7 +70,11 @@ export const PlayerAvatarName = ({
         className,
       )}
     >
-      <PlayerAvatar avatarId={player.avatarId} className="avatar-name__avatar" size={size} />
+      <PlayerAvatar
+        avatarId={player.avatarId}
+        className="avatar-name__avatar"
+        size={size}
+      />
       <span className="avatar-name__name">{addressUser && isUser ? addressedUser : player.name}</span>
       {withDescription && (
         <span className="avatar-name__name">, {AVATARS[player.avatarId].description[language]}</span>

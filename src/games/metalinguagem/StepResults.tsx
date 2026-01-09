@@ -78,43 +78,99 @@ export function StepResults({
     };
   }, [mostVotedItems, beginsWith, endsWith]);
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle icon={getIcon(outcome)}>{getTitle(outcome)}</StepTitle>
 
       <SpaceContainer>
         {firstGuess ? (
-          <Tooltip title={<Translate pt="Mais votado" en="Most voted" />}>
-            <Badge count={<IconAvatar icon={<SpeechBubbleThumbsDownIcon />} size="small" />}>
+          <Tooltip
+            title={
+              <Translate
+                pt="Mais votado"
+                en="Most voted"
+              />
+            }
+          >
+            <Badge
+              count={
+                <IconAvatar
+                  icon={<SpeechBubbleThumbsDownIcon />}
+                  size="small"
+                />
+              }
+            >
               <span>
-                <ItemCard itemId={firstGuess} width={64} className="results-wrong-guess" />
+                <ItemCard
+                  itemId={firstGuess}
+                  width={64}
+                  className="results-wrong-guess"
+                />
               </span>
             </Badge>
           </Tooltip>
         ) : (
-          <ItemCard itemId="0" width={64} className="invisible" />
+          <ItemCard
+            itemId="0"
+            width={64}
+            className="invisible"
+          />
         )}
-        <Flex vertical align="center">
+        <Flex
+          vertical
+          align="center"
+        >
           <ItemCard itemId={beginsWith} />
           <TextHighlight className="center">{names[0]}</TextHighlight>
         </Flex>
-        <Card size="large" hideHeader>
+        <Card
+          size="large"
+          hideHeader
+        >
           <span className="created-word-begin">{newWord.slice(0, namesIndexes[0] + 1)}</span>
           <span className="created-word-end">{newWord.slice(namesIndexes[0] + 1)}</span>
         </Card>
-        <Flex vertical align="center">
+        <Flex
+          vertical
+          align="center"
+        >
           <ItemCard itemId={endsWith} />
           <TextHighlight className="center">{names[1]}</TextHighlight>
         </Flex>
         {secondGuess ? (
-          <Tooltip title={<Translate pt="Mais votado" en="Most voted" />}>
-            <Badge count={<IconAvatar icon={<SpeechBubbleThumbsDownIcon />} size="small" />}>
+          <Tooltip
+            title={
+              <Translate
+                pt="Mais votado"
+                en="Most voted"
+              />
+            }
+          >
+            <Badge
+              count={
+                <IconAvatar
+                  icon={<SpeechBubbleThumbsDownIcon />}
+                  size="small"
+                />
+              }
+            >
               <span>
-                <ItemCard itemId={secondGuess} width={64} className="results-wrong-guess" />
+                <ItemCard
+                  itemId={secondGuess}
+                  width={64}
+                  className="results-wrong-guess"
+                />
               </span>
             </Badge>
           </Tooltip>
         ) : (
-          <ItemCard itemId="0" width={64} className="invisible" />
+          <ItemCard
+            itemId="0"
+            width={64}
+            className="invisible"
+          />
         )}
       </SpaceContainer>
 
@@ -131,7 +187,12 @@ export function StepResults({
             pt="Você errou os itens, então o comprimento se torna ameaçado. A partir de agora, se este comprimento de palavra for usado novamente e adivinhado errado, o jogo acaba."
           />
         )}
-        {outcome === WORD_LENGTH_STATUS.FAILED && <Translate en="Loser." pt="Burro." />}
+        {outcome === WORD_LENGTH_STATUS.FAILED && (
+          <Translate
+            en="Loser."
+            pt="Burro."
+          />
+        )}
       </RuleInstruction>
 
       <ItemsGrid
@@ -141,11 +202,21 @@ export function StepResults({
         results={{ guessPlayersPerItem, players }}
       />
 
-      <HostNextPhaseButton round={round} withWaitingTimeBar />
+      <HostNextPhaseButton
+        round={round}
+        withWaitingTimeBar
+      />
 
-      <WordLengths wordLengths={wordLengths} highlightLength={newWord.length} />
+      <WordLengths
+        wordLengths={wordLengths}
+        highlightLength={newWord.length}
+      />
 
-      <TurnOrder players={players} order={turnOrder} activePlayerId={creator.id} />
+      <TurnOrder
+        players={players}
+        order={turnOrder}
+        activePlayerId={creator.id}
+      />
     </Step>
   );
 }
@@ -162,7 +233,10 @@ const getTitle = (outcome: keyof typeof WORD_LENGTH_STATUS) => {
 
   if (outcome === WORD_LENGTH_STATUS.ENDANGERED) {
     return (
-      <Translate pt="A palavra não foi definida corretamente." en="The word was not correctly defined." />
+      <Translate
+        pt="A palavra não foi definida corretamente."
+        en="The word was not correctly defined."
+      />
     );
   }
 

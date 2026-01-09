@@ -21,12 +21,21 @@ export function RulesHintsModal({ label, title, description, children }: RulesHi
   return (
     <>
       <Region className="rules-hints">
-        <Button onClick={() => toggleTipsModal(true)} icon={<QuestionCircleOutlined />} ghost>
+        <Button
+          onClick={() => toggleTipsModal(true)}
+          icon={<QuestionCircleOutlined />}
+          ghost
+        >
           {label}
         </Button>
       </Region>
       <Modal
-        title={<Translate pt={title} en={title} />}
+        title={
+          <Translate
+            pt={title}
+            en={title}
+          />
+        }
         open={showTipsModal}
         footer={null}
         onCancel={toggleTipsModal}

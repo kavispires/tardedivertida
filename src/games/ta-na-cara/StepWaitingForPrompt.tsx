@@ -35,7 +35,10 @@ export function StepWaitingForPrompt({
   activePlayerId,
 }: StepWaitingForPromptProps) {
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle wait>
         <Translate
           pt={
@@ -64,11 +67,22 @@ export function StepWaitingForPrompt({
         userCharacterId={user.cardId}
       />
 
-      <PlayersBoards players={players} user={user} questionsDict={questionsDict} />
+      <PlayersBoards
+        players={players}
+        user={user}
+        questionsDict={questionsDict}
+      />
 
-      <TurnOrder players={players} order={turnOrder} activePlayerId={activePlayerId} />
+      <TurnOrder
+        players={players}
+        order={turnOrder}
+        activePlayerId={activePlayerId}
+      />
 
-      <UserQuestions questionsDict={questionsDict} user={user} />
+      <UserQuestions
+        questionsDict={questionsDict}
+        user={user}
+      />
     </Step>
   );
 }

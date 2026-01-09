@@ -24,8 +24,14 @@ export function DailyChrome({ children }: DailyChromeProps) {
 
   return (
     <PageLayout className="app">
-      <Header icon={<CalendarIcon />} localStorageKey="">
-        <Translate pt="TD Diário" en="TD Daily" />
+      <Header
+        icon={<CalendarIcon />}
+        localStorageKey=""
+      >
+        <Translate
+          pt="TD Diário"
+          en="TD Daily"
+        />
       </Header>
       {challengeQuery.isLoading && <div className="loading-bar"></div>}
       <DailyContent>{children}</DailyContent>

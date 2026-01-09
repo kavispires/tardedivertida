@@ -30,37 +30,73 @@ export function BetsFloatingHand({ bets, brackets, selectedContenderId = '' }: B
   if (!quarterCard || !semiCard || !finalCard) return null;
 
   return (
-    <FloatingHand title={<Translate pt="Suas Apostas" en="Your Bets" />} icon={<GamblingChipIcon />}>
+    <FloatingHand
+      title={
+        <Translate
+          pt="Suas Apostas"
+          en="Your Bets"
+        />
+      }
+      icon={<GamblingChipIcon />}
+    >
       <div className="w-bets-floating-hand">
         <ul className="w-floating-bets">
           <li className="w-floating-bets__entry">
             <span className="w-floating-bets__label">
-              <Translate pt="Quartas de finais" en="Quarterfinals" />
+              <Translate
+                pt="Quartas de finais"
+                en="Quarterfinals"
+              />
             </span>
-            <CharacterCard character={quarterCard} overlayColor="gray" size={cardWidth} />
+            <CharacterCard
+              character={quarterCard}
+              overlayColor="gray"
+              size={cardWidth}
+            />
           </li>
 
           <li className="w-floating-bets__entry">
             <span className="w-floating-bets__label">
-              <Translate pt="Semifinais" en="Semifinals" />
+              <Translate
+                pt="Semifinais"
+                en="Semifinals"
+              />
             </span>
-            <CharacterCard character={semiCard} overlayColor="gray" size={cardWidth} />
+            <CharacterCard
+              character={semiCard}
+              overlayColor="gray"
+              size={cardWidth}
+            />
           </li>
 
           <li className="w-floating-bets__entry">
             <span className="w-floating-bets__label">
-              <Translate pt="Final" en="Final" />
+              <Translate
+                pt="Final"
+                en="Final"
+              />
             </span>
-            <CharacterCard character={finalCard} overlayColor="gray" size={cardWidth} />
+            <CharacterCard
+              character={finalCard}
+              overlayColor="gray"
+              size={cardWidth}
+            />
           </li>
 
           {!!selectedCard && (
             <li className="w-floating-bets__entry w-floating-bets__entry--your-contender">
               <span className="w-floating-bets__label">
-                <Translate pt="Seu competidor" en="Your contender" />
+                <Translate
+                  pt="Seu competidor"
+                  en="Your contender"
+                />
               </span>
               <ImageBlurButtonContainer cardId={selectedCard.id}>
-                <CharacterCard character={selectedCard} overlayColor="gray" size={cardWidth} />
+                <CharacterCard
+                  character={selectedCard}
+                  overlayColor="gray"
+                  size={cardWidth}
+                />
               </ImageBlurButtonContainer>
             </li>
           )}

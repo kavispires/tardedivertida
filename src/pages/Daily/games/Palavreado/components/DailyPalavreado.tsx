@@ -50,7 +50,10 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyWordGameIcon />} localStorageKey={SETTINGS.KEY}>
+      <Header
+        icon={<DailyWordGameIcon />}
+        localStorageKey={SETTINGS.KEY}
+      >
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <DailyContent>
@@ -62,7 +65,10 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
         />
 
         <Region>
-          <Typography.Text strong className="palavreado-word">
+          <Typography.Text
+            strong
+            className="palavreado-word"
+          >
             {keyword} {swaps > 0 && ` ↔️ ${swaps}`}
           </Typography.Text>
           <Board
@@ -77,21 +83,44 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
 
         <Region>
           {isComplete ? (
-            <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
-              <Translate pt="Ver Resultado" en="Show Results" />
+            <Button
+              onClick={() => setShowResultModal(true)}
+              type="primary"
+              icon={<BarChartOutlined />}
+            >
+              <Translate
+                pt="Ver Resultado"
+                en="Show Results"
+              />
             </Button>
           ) : (
-            <Button type="primary" onClick={submitGrid} disabled={isComplete} block>
-              <Translate pt="Enviar" en="Submit" />
+            <Button
+              type="primary"
+              onClick={submitGrid}
+              disabled={isComplete}
+              block
+            >
+              <Translate
+                pt="Enviar"
+                en="Submit"
+              />
             </Button>
           )}
         </Region>
 
-        <Region orientation="vertical" size="small">
+        <Region
+          orientation="vertical"
+          size="small"
+        >
           {guesses.map((attempt, index) => (
             <Space
               key={`${attempt}-${index}`}
-              separator={<Divider orientation="vertical" className="mx-0" />}
+              separator={
+                <Divider
+                  orientation="vertical"
+                  className="mx-0"
+                />
+              }
               size="small"
             >
               {attempt.map((word, i) => (
@@ -112,7 +141,11 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
 
         {guesses.length > 0 && (
           <Region>
-            <Flex className="contained" gap={12} align="center">
+            <Flex
+              className="contained"
+              gap={12}
+              align="center"
+            >
               <div className="palavreado-board__tile palavreado-board__tile--place-guessed palavreado-board__tile--sample">
                 ?
               </div>
@@ -140,7 +173,11 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
           </Region>
         )}
 
-        <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
+        <Modal
+          open={showResultModal}
+          onCancel={() => setShowResultModal(false)}
+          footer={null}
+        >
           <ResultsModalContent
             challengeNumber={data?.number}
             isWin={isWin}

@@ -1,6 +1,10 @@
 export function DiscussionIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#ffeae1"
         d="M277.605 356.329c-2.174-2.174-2.032-4.537-2.032-7.967v-22.065h-39.884v22.065c0 3.43.043 5.891-2.032 7.967 10.162 16.215 33.786 16.215 43.948 0z"

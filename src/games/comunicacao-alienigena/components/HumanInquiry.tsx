@@ -61,7 +61,10 @@ export function HumanInquiry({
           onChange={(value) => setAttribute(value)}
         >
           <Select.Option value="">
-            <Translate pt="Selecione um atributo" en="Select an attribute" />
+            <Translate
+              pt="Selecione um atributo"
+              en="Select an attribute"
+            />
           </Select.Option>
           {orderedAttributes.map((attribute) => (
             <Select.Option
@@ -82,7 +85,10 @@ export function HumanInquiry({
             disabled={!attribute || objectsIds.length < 1 || isLoading}
             onClick={() => submitInquiry({ objectsIds, intention: attribute })}
           >
-            <Translate pt="Enviar Objetos" en="Submit Objects" />
+            <Translate
+              pt="Enviar Objetos"
+              en="Submit Objects"
+            />
           </SendButton>
         </Badge>
         <DebugOnly devOnly>
@@ -94,7 +100,10 @@ export function HumanInquiry({
           />
         </DebugOnly>
       </Space>
-      <Space className="boards-container" wrap>
+      <Space
+        className="boards-container"
+        wrap
+      >
         <SelectableObjectsGrid
           items={items}
           selectedObjects={selected}
@@ -102,7 +111,10 @@ export function HumanInquiry({
           user={user}
           status={status}
         />
-        <HumanSignBoard attributes={attributes} startingAttributesIds={startingAttributesIds} />
+        <HumanSignBoard
+          attributes={attributes}
+          startingAttributesIds={startingAttributesIds}
+        />
       </Space>
     </SpaceContainer>
   );
@@ -129,7 +141,10 @@ export function MockInquiryButton({
   };
 
   return (
-    <DevButton onClick={onSubmitMockInquiry} size="large">
+    <DevButton
+      onClick={onSubmitMockInquiry}
+      size="large"
+    >
       Submit Mock
     </DevButton>
   );

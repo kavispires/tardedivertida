@@ -47,7 +47,14 @@ export function SelectableCell({
 
   if (isMatched && isPlayerOwnClueCell) {
     return (
-      <Tooltip title={<Translate pt="Essa é a sua própria dica!" en="This is your own clue!" />}>
+      <Tooltip
+        title={
+          <Translate
+            pt="Essa é a sua própria dica!"
+            en="This is your own clue!"
+          />
+        }
+      >
         <ClueCard
           isMatched={isMatched}
           isSelected={isSelected}
@@ -72,7 +79,10 @@ export function SelectableCell({
           />
         }
       >
-        <Button shape="circle" ghost>
+        <Button
+          shape="circle"
+          ghost
+        >
           <MinusSquareOutlined />
         </Button>
       </Tooltip>

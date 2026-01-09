@@ -9,8 +9,14 @@ type ResetButtonProps = {
 
 export function ResetButton({ goToStep }: ResetButtonProps) {
   return (
-    <Button onClick={() => goToStep(1)} size="large">
-      <Translate pt="Reiniciar" en="Restart" />
+    <Button
+      onClick={() => goToStep(1)}
+      size="large"
+    >
+      <Translate
+        pt="Reiniciar"
+        en="Restart"
+      />
     </Button>
   );
 }

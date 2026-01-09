@@ -57,7 +57,10 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
             {track.data.table.map((cardId: ImageCardId, index: number) => {
               const bot = BOTS_LIST[index];
               return (
-                <div className="d-table__player-entry" key={`table-focus-${cardId}`}>
+                <div
+                  className="d-table__player-entry"
+                  key={`table-focus-${cardId}`}
+                >
                   <ImageBlurButtonContainer
                     cardId={cardId}
                     className={clsx(
@@ -74,7 +77,11 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
                   </ImageBlurButtonContainer>
 
                   <div className="d-table__player-info">
-                    <PlayerAvatar avatarId={bot.avatarId} className="d-table__player-avatar" size="default" />
+                    <PlayerAvatar
+                      avatarId={bot.avatarId}
+                      className="d-table__player-avatar"
+                      size="default"
+                    />
                     <span
                       className="d-table__player-bar"
                       style={{ backgroundColor: AVATARS[bot.avatarId].color }}
@@ -100,7 +107,10 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
           <SpaceContainer>
             {track.data.cards.map((cardId: ImageCardId) => {
               return (
-                <div className="d-table__player-entry" key={`table-focus-${cardId}`}>
+                <div
+                  className="d-table__player-entry"
+                  key={`table-focus-${cardId}`}
+                >
                   <ImageBlurButtonContainer
                     cardId={cardId}
                     className={clsx(
@@ -128,7 +138,10 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
                         })
                       }
                     >
-                      <Translate pt="Selecionar" en="Select" />
+                      <Translate
+                        pt="Selecionar"
+                        en="Select"
+                      />
                     </Button>
                   </SpaceContainer>
                 </div>
@@ -167,7 +180,10 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
           {track.data.cards.map((cardId: ImageCardId, index: number) => {
             const bot = BOTS_LIST[index];
             return (
-              <div className="d-table__player-entry" key={`table-focus-${cardId}`}>
+              <div
+                className="d-table__player-entry"
+                key={`table-focus-${cardId}`}
+              >
                 <ImageBlurButtonContainer
                   cardId={cardId}
                   className={clsx('d-table__card', user?.data?.value === cardId && 'd-table__card--selected')}
@@ -181,7 +197,11 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
                 </ImageBlurButtonContainer>
 
                 <div className="d-table__player-info">
-                  <PlayerAvatar avatarId={bot.avatarId} className="d-table__player-avatar" size="default" />
+                  <PlayerAvatar
+                    avatarId={bot.avatarId}
+                    className="d-table__player-avatar"
+                    size="default"
+                  />
                   <span
                     className="d-table__player-bar"
                     style={{ backgroundColor: AVATARS[bot.avatarId].color }}
@@ -202,7 +222,10 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
                       })
                     }
                   >
-                    <Translate pt="Esse é o impostor" en="This is the impostor" />
+                    <Translate
+                      pt="Esse é o impostor"
+                      en="This is the impostor"
+                    />
                   </Button>
                 </SpaceContainer>
               </div>

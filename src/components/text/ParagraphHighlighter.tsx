@@ -50,7 +50,10 @@ export const ParagraphHighlighter: React.FC<HighlightTextProps> = ({
       {parts.map((part, index) =>
         regex.test(part) ? (
           // biome-ignore lint/suspicious/noArrayIndexKey: there's no other unique identifier
-          <span key={index} className={highlightClassName ?? 'highlight'}>
+          <span
+            key={index}
+            className={highlightClassName ?? 'highlight'}
+          >
             {part}
           </span>
         ) : (

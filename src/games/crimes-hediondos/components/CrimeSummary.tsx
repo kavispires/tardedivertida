@@ -86,7 +86,10 @@ export function CrimeSummary({
 
   return (
     <div className="h-crime">
-      <div className="h-crime__player" style={{ backgroundColor: color }}>
+      <div
+        className="h-crime__player"
+        style={{ backgroundColor: color }}
+      >
         <span className="h-crime__player-avatar">
           <PlayerAvatar avatarId={player.avatarId} />
         </span>
@@ -107,7 +110,10 @@ export function CrimeSummary({
             );
           })}
       </div>
-      <div className="h-crime__history" style={{ borderColor: hasHistory ? color : 'transparent' }}>
+      <div
+        className="h-crime__history"
+        style={{ borderColor: hasHistory ? color : 'transparent' }}
+      >
         {hasHistory && (
           <>
             <div className="h-crime__history-header">
@@ -141,29 +147,53 @@ export function CrimeSummary({
       </div>
       <div className="h-crime-selections">
         {activeWeaponId ? (
-          <CrimeItemCard item={items[activeWeaponId]} cardWidth={CARD_WIDTH} />
+          <CrimeItemCard
+            item={items[activeWeaponId]}
+            cardWidth={CARD_WIDTH}
+          />
         ) : (
-          <ItemCardEmpty cardWidth={CARD_WIDTH} cardType="weapon" />
+          <ItemCardEmpty
+            cardWidth={CARD_WIDTH}
+            cardType="weapon"
+          />
         )}
 
         {activeEvidenceId ? (
-          <CrimeItemCard item={items[activeEvidenceId]} cardWidth={CARD_WIDTH} />
+          <CrimeItemCard
+            item={items[activeEvidenceId]}
+            cardWidth={CARD_WIDTH}
+          />
         ) : (
-          <ItemCardEmpty cardWidth={CARD_WIDTH} cardType="evidence" />
+          <ItemCardEmpty
+            cardWidth={CARD_WIDTH}
+            cardType="evidence"
+          />
         )}
 
         {isVictimGame &&
           (activeVictimId ? (
-            <CrimeItemCard item={items[activeVictimId]} cardWidth={CARD_WIDTH} />
+            <CrimeItemCard
+              item={items[activeVictimId]}
+              cardWidth={CARD_WIDTH}
+            />
           ) : (
-            <ItemCardEmpty cardWidth={CARD_WIDTH} cardType="victim" />
+            <ItemCardEmpty
+              cardWidth={CARD_WIDTH}
+              cardType="victim"
+            />
           ))}
 
         {isLocationGame &&
           (activeLocationId ? (
-            <CrimeItemCard item={items[activeLocationId]} cardWidth={CARD_WIDTH} />
+            <CrimeItemCard
+              item={items[activeLocationId]}
+              cardWidth={CARD_WIDTH}
+            />
           ) : (
-            <ItemCardEmpty cardWidth={CARD_WIDTH} cardType="location" />
+            <ItemCardEmpty
+              cardWidth={CARD_WIDTH}
+              cardType="location"
+            />
           ))}
 
         <div className="h-crime-selections__status">
@@ -173,12 +203,18 @@ export function CrimeSummary({
           {historyEntryIndex === -1 && isLocked && <CrimeGuessStatus status="LOCKED" />}
           {historyEntryIndex === -1 && (
             <span className="crime-guess-status">
-              <IconAvatar icon={<BoxBlankIcon />} className="invisible" />
+              <IconAvatar
+                icon={<BoxBlankIcon />}
+                className="invisible"
+              />
             </span>
           )}
         </div>
       </div>
-      <div className="h-crime__player" style={{ backgroundColor: isComplete ? color : undefined }}>
+      <div
+        className="h-crime__player"
+        style={{ backgroundColor: isComplete ? color : undefined }}
+      >
         {isLocked && <LockFilled />}
         {!isLocked && isComplete && <CheckCircleFilled />}
       </div>

@@ -33,7 +33,12 @@ function PhaseQuestionSelection({ state, players }: PhaseProps<PhaseQuestionSele
   const announcement = (
     <PhaseAnnouncement
       icon={<InvestigationIcon />}
-      title={<Translate pt="Seleção da Pergunta" en="Question Selection" />}
+      title={
+        <Translate
+          pt="Seleção da Pergunta"
+          en="Question Selection"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -68,7 +73,10 @@ function PhaseQuestionSelection({ state, players }: PhaseProps<PhaseQuestionSele
       allowedPhase={TESTEMUNHA_OCULAR_PHASES.QUESTION_SELECTION}
       className="t-phase"
     >
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <ViewOr condition={isUserTheQuestioner}>
           <StepSelectQuestion

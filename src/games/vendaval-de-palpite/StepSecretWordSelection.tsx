@@ -39,7 +39,12 @@ export function StepSecretWordSelection({
       // Block more than 2 categories
       if (Object.keys(categoriesCopy).length === 2) {
         notification.error({
-          title: <Translate pt="Um máximo de 2 categorias é permitido" en="Up to 2 categories allowed" />,
+          title: (
+            <Translate
+              pt="Um máximo de 2 categorias é permitido"
+              en="Up to 2 categories allowed"
+            />
+          ),
         });
       } else {
         categoriesCopy[category] = true;
@@ -52,7 +57,10 @@ export function StepSecretWordSelection({
   return (
     <Step key={1}>
       <StepTitle>
-        <Translate pt="A Palavra Secreta" en="The Secret Word" />
+        <Translate
+          pt="A Palavra Secreta"
+          en="The Secret Word"
+        />
       </StepTitle>
       <Instruction contained>
         <Translate
@@ -76,8 +84,14 @@ export function StepSecretWordSelection({
         })}
       </SpaceContainer>
 
-      <Title level={3} size="x-small">
-        <Translate pt="Categorias" en="Categories" />
+      <Title
+        level={3}
+        size="x-small"
+      >
+        <Translate
+          pt="Categorias"
+          en="Categories"
+        />
       </Title>
 
       <Instruction contained>
@@ -107,7 +121,10 @@ export function StepSecretWordSelection({
           })
         }
       >
-        <Translate pt="Enviar " en="Submit " />
+        <Translate
+          pt="Enviar "
+          en="Submit "
+        />
         {isReadyToSend && (
           <span>
             "{secretWord}" + {Object.keys(selectedCategories).join(', ')}

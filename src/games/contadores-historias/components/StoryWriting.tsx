@@ -44,15 +44,27 @@ export function StoryWriting({ user, onSubmitStory, announcement }: StoryWriting
   }, []);
 
   return (
-    <Step fullWidth className="c-story-writing" announcement={announcement}>
+    <Step
+      fullWidth
+      className="c-story-writing"
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Escreva uma história" en="Tell us a story" />
+        <Translate
+          pt="Escreva uma história"
+          en="Tell us a story"
+        />
       </StepTitle>
       <div className="c-story-book">
         <BookPages
           leftPage={
             <div className="c-story-book__selected-card">
-              {cardId && <ImageCard cardId={cardId} cardWidth={175} />}
+              {cardId && (
+                <ImageCard
+                  cardId={cardId}
+                  cardWidth={175}
+                />
+              )}
             </div>
           }
           rightPage={
@@ -81,15 +93,25 @@ export function StoryWriting({ user, onSubmitStory, announcement }: StoryWriting
         />
       </div>
 
-      <SpaceContainer className="c-input-container" wrap>
+      <SpaceContainer
+        className="c-input-container"
+        wrap
+      >
         <Input
           placeholder={translate('Escreva aqui', 'Write your clue here')}
           onChange={(e) => setStory(e.target.value)}
           onPressEnter={onButtonClick}
           size="large"
         />
-        <SendButton disabled={story.length < 1 || !cardId} onClick={onButtonClick} size="large">
-          <Translate pt="Enviar história e carta" en="Send secret clue and card" />
+        <SendButton
+          disabled={story.length < 1 || !cardId}
+          onClick={onButtonClick}
+          size="large"
+        >
+          <Translate
+            pt="Enviar história e carta"
+            en="Send secret clue and card"
+          />
         </SendButton>
       </SpaceContainer>
 

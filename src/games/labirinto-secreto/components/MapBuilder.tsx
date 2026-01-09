@@ -90,7 +90,10 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
 
   return (
     <>
-      <SpaceContainer className="map-builder" wrap>
+      <SpaceContainer
+        className="map-builder"
+        wrap
+      >
         {map.map((segment, index) => {
           if (segment.passed) {
             return null;
@@ -103,7 +106,10 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
           }
 
           return (
-            <div className="map-builder__segment" key={`map-segment-${segment.index}`}>
+            <div
+              className="map-builder__segment"
+              key={`map-segment-${segment.index}`}
+            >
               {currentIndex === index && (
                 <div className="map-builder__caret">
                   <MotionIconAvatar
@@ -133,7 +139,11 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
                     className="map-builder__card map-builder__card--new"
                   >
                     {selections?.[index]?.negate && (
-                      <IconAvatar icon={<NoIcon />} size="small" className="map-builder__card-no" />
+                      <IconAvatar
+                        icon={<NoIcon />}
+                        size="small"
+                        className="map-builder__card-no"
+                      />
                     )}
                     {selections?.[index]?.text}
                   </TransparentButton>
@@ -142,9 +152,16 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
 
               {(previousSelections?.[index] ?? []).map((card) => {
                 return (
-                  <div className="map-builder__card" key={card.id}>
+                  <div
+                    className="map-builder__card"
+                    key={card.id}
+                  >
                     {card?.negate && (
-                      <IconAvatar icon={<NoIcon />} size="small" className="map-builder__card-no" />
+                      <IconAvatar
+                        icon={<NoIcon />}
+                        size="small"
+                        className="map-builder__card-no"
+                      />
                     )}
                     {card.text}
                   </div>
@@ -155,7 +172,10 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
                 onClick={() => onUnsetCard(index)}
                 disabled={!(selections?.[index] || skippedIndexes.includes(index))}
               >
-                <TreeImage id={tree.treeType} text={tree.card.text} />
+                <TreeImage
+                  id={tree.treeType}
+                  text={tree.card.text}
+                />
               </TransparentButton>
             </div>
           );
@@ -163,9 +183,15 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
       </SpaceContainer>
 
       {possibleTreeIds.length > 0 && (
-        <Space className="contained" wrap>
+        <Space
+          className="contained"
+          wrap
+        >
           <strong>
-            <Translate pt="Caminhos possíveis para a árvore atual" en="Possible paths for the current tree" />
+            <Translate
+              pt="Caminhos possíveis para a árvore atual"
+              en="Possible paths for the current tree"
+            />
             :
           </strong>
           {possibleTreeIds.map((treeId, index) => (
@@ -179,7 +205,15 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
         </Space>
       )}
 
-      <TitledContainer title={<Translate pt="Cartas" en="Hand" />} contained>
+      <TitledContainer
+        title={
+          <Translate
+            pt="Cartas"
+            en="Hand"
+          />
+        }
+        contained
+      >
         {(user.hand ?? []).map((card: ExtendedTextCard) => (
           <TransparentButton
             onClick={() => onSetCard(card)}
@@ -196,7 +230,10 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
           onClick={() => onSkipTree(currentIndex)}
           disabled={!previousSelections?.[currentIndex]?.length}
         >
-          <Translate pt="Pular árvore" en="Skip tree" />
+          <Translate
+            pt="Pular árvore"
+            en="Skip tree"
+          />
         </Button>
       </TitledContainer>
 
@@ -206,7 +243,10 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
           disabled={usedCards.length === 0}
           onClick={() => onSubmitMap({ newMap: selections })}
         >
-          <Translate pt="Enviar Mapa" en="Submit Map" />
+          <Translate
+            pt="Enviar Mapa"
+            en="Submit Map"
+          />
         </SendButton>
       </SpaceContainer>
     </>

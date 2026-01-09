@@ -17,12 +17,23 @@ export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionSt
   const { step, goToNextStep } = useStep();
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PORTA_DOS_DESESPERADOS_PHASES.RESOLUTION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={PORTA_DOS_DESESPERADOS_PHASES.RESOLUTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<MagicBookSpellIcon />}
-          title={<Translate pt="Vocês escolheram a porta correta?" en="Have you opened the right door?" />}
+          title={
+            <Translate
+              pt="Vocês escolheram a porta correta?"
+              en="Have you opened the right door?"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={3}

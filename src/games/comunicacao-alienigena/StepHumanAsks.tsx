@@ -70,12 +70,21 @@ export function StepHumanAsks({
 }: StepHumanAsksProps) {
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
   return (
-    <Step fullWidth announcement={isUserTheCurrentHuman ? announcement : undefined}>
+    <Step
+      fullWidth
+      announcement={isUserTheCurrentHuman ? announcement : undefined}
+    >
       <StepTitle>
         {isUserTheCurrentHuman ? (
-          <Translate pt={<>Pergunte ao Alienígena!</>} en={<>Ask the Alien!</>} />
+          <Translate
+            pt={<>Pergunte ao Alienígena!</>}
+            en={<>Ask the Alien!</>}
+          />
         ) : (
-          <Translate pt={<>Perguntas ao Alienígena</>} en={<>Asking the Alien</>} />
+          <Translate
+            pt={<>Perguntas ao Alienígena</>}
+            en={<>Asking the Alien</>}
+          />
         )}
       </StepTitle>
 
@@ -126,8 +135,15 @@ export function StepHumanAsks({
       </RuleInstruction>
 
       <AlienContent user={user}>
-        <Space className="boards-container" wrap>
-          <ObjectsGrid items={items} showTypes={isUserAlien} status={status} />
+        <Space
+          className="boards-container"
+          wrap
+        >
+          <ObjectsGrid
+            items={items}
+            showTypes={isUserAlien}
+            status={status}
+          />
           <SignsKeyCard
             attributes={attributes}
             startingAttributesIds={startingAttributesIds}
@@ -149,9 +165,19 @@ export function StepHumanAsks({
         </ViewIf>
 
         <ViewIf condition={!isUserTheCurrentHuman}>
-          <Space className="boards-container" wrap>
-            <ObjectsGrid items={items} showTypes={false} status={status} />
-            <HumanSignBoard attributes={attributes} startingAttributesIds={startingAttributesIds} />
+          <Space
+            className="boards-container"
+            wrap
+          >
+            <ObjectsGrid
+              items={items}
+              showTypes={false}
+              status={status}
+            />
+            <HumanSignBoard
+              attributes={attributes}
+              startingAttributesIds={startingAttributesIds}
+            />
           </Space>
         </ViewIf>
       </HumanContent>
@@ -168,7 +194,10 @@ export function StepHumanAsks({
       />
 
       <DebugOnly>
-        <SignsKeyCard attributes={attributes} startingAttributesIds={startingAttributesIds} />
+        <SignsKeyCard
+          attributes={attributes}
+          startingAttributesIds={startingAttributesIds}
+        />
       </DebugOnly>
     </Step>
   );

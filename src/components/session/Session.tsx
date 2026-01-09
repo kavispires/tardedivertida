@@ -60,7 +60,12 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
       <GameInfoProvider gameCollection={gameCollection}>
         <SessionConfigWrapper>
           <RedirectSession state={state} />
-          <PhaseLobby state={state} players={players} meta={gameMeta} user={user} />
+          <PhaseLobby
+            state={state}
+            players={players}
+            meta={gameMeta}
+            user={user}
+          />
         </SessionConfigWrapper>
       </GameInfoProvider>
     );
@@ -89,11 +94,23 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
     <PageLayout>
       <GameInfoProvider gameCollection={gameCollection}>
         <SessionConfigWrapper key={dataUpdatedAt}>
-          <GameInfoDrawer players={players} state={state} userId={userId} />
+          <GameInfoDrawer
+            players={players}
+            state={state}
+            userId={userId}
+          />
           <RedirectSession state={state} />
-          <ActiveComponent players={players} state={state} meta={gameMeta} user={user} />
+          <ActiveComponent
+            players={players}
+            state={state}
+            meta={gameMeta}
+            user={user}
+          />
           <AutoNextPhase players={players} />
-          <AdminMenuDrawer state={state} players={players} />
+          <AdminMenuDrawer
+            state={state}
+            players={players}
+          />
         </SessionConfigWrapper>
       </GameInfoProvider>
     </PageLayout>

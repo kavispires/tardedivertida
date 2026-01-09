@@ -45,10 +45,16 @@ export function CastSummary({ movie }: CastSummaryProps) {
         const role = movie.roles[roleId];
         const Icon = icons?.[role.type] ?? MovieStarIcon;
         return (
-          <div key={roleId} className="cast-summary__entry">
+          <div
+            key={roleId}
+            className="cast-summary__entry"
+          >
             <div className="cast-summary__type">
               <Tooltip title={<DualTranslate>{role.title}</DualTranslate>}>
-                <IconAvatar icon={<Icon />} size="small" />
+                <IconAvatar
+                  icon={<Icon />}
+                  size="small"
+                />
               </Tooltip>
             </div>
             <div className="cast-summary__cast">{role.cast ? <CheckOutlined /> : <QuestionOutlined />}</div>

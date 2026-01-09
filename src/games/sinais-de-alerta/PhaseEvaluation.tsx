@@ -23,7 +23,12 @@ export function PhaseEvaluation({ state, players, meta, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<EvaluateIcon />}
-      title={<Translate pt="Adivinhação" en="Match the cards" />}
+      title={
+        <Translate
+          pt="Adivinhação"
+          en="Match the cards"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={state.round.current < 2 ? 12 : undefined}
@@ -33,8 +38,14 @@ export function PhaseEvaluation({ state, players, meta, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={SINAIS_DE_ALERTA_PHASES.EVALUATION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={SINAIS_DE_ALERTA_PHASES.EVALUATION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/*Step 0 */}
         <ViewIf condition={state.drawings && user.id}>
           <StepEvaluate

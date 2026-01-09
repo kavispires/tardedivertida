@@ -36,7 +36,11 @@ export const TrackUeSoIsso = ({ track, onSubmitAnswer }: TrackProps) => {
   return (
     <>
       <MinigameTitle title={{ pt: 'Ué, só isso?', en: "That's it?" }} />
-      <Space orientation="vertical" align="center" className="contained margin">
+      <Space
+        orientation="vertical"
+        align="center"
+        className="contained margin"
+      >
         <RuleInstruction type="action">
           <Translate
             pt={
@@ -56,18 +60,32 @@ export const TrackUeSoIsso = ({ track, onSubmitAnswer }: TrackProps) => {
 
         <SpaceContainer wrap>
           {track.data.options.map((option: string) => (
-            <SuggestionEasel id={option} key={option} value={option} />
+            <SuggestionEasel
+              id={option}
+              key={option}
+              value={option}
+            />
           ))}
         </SpaceContainer>
 
         <RuleInstruction type="action">
-          <Translate pt="Qual você acha que é a palavra secreta?" en="Which one is the secret word?" />
+          <Translate
+            pt="Qual você acha que é a palavra secreta?"
+            en="Which one is the secret word?"
+          />
         </RuleInstruction>
 
         <SpaceContainer>
           {track.data.cards.map((card: TextCard, index: number) => (
-            <TransparentButton key={card.id} disabled={isLoading} onClick={() => onSubmitClue(card.text)}>
-              <Card header={LETTERS[index]} randomColor>
+            <TransparentButton
+              key={card.id}
+              disabled={isLoading}
+              onClick={() => onSubmitClue(card.text)}
+            >
+              <Card
+                header={LETTERS[index]}
+                randomColor
+              >
                 {card.text}
               </Card>
             </TransparentButton>

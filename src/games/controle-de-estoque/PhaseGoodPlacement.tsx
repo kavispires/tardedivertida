@@ -38,8 +38,15 @@ export function PhaseGoodPlacement({ players, state, user }: PhaseProps) {
       duration={state.roundGoodsIndex === 0 ? 15 : 5}
     >
       <Instruction>
-        "<Translate en="The floor supervisor for the day will be" pt="O supervisor do dia será" />{' '}
-        <PlayerAvatarName player={supervisor} addressUser />
+        "
+        <Translate
+          en="The floor supervisor for the day will be"
+          pt="O supervisor do dia será"
+        />{' '}
+        <PlayerAvatarName
+          player={supervisor}
+          addressUser
+        />
         ."
       </Instruction>
     </PhaseAnnouncement>
@@ -48,8 +55,14 @@ export function PhaseGoodPlacement({ players, state, user }: PhaseProps) {
   const warehouse = useMemo(() => orderBy(state.warehouseGrid, ['id']), [state.warehouseGrid]);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={CONTROLE_DE_ESTOQUE_PHASES.GOOD_PLACEMENT}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={CONTROLE_DE_ESTOQUE_PHASES.GOOD_PLACEMENT}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <RoundAnnouncement
           round={state?.round}

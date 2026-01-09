@@ -26,16 +26,26 @@ export function GossiperGoals({
 }: GossiperGoalsProps) {
   return (
     <>
-      <RuleInstruction type="lore" className="text-left">
+      <RuleInstruction
+        type="lore"
+        className="text-left"
+      >
         <Translate
           en="You are the gossiper and must spread rumors about 5 of your classmates, one round at a time."
           pt="Você é o fofoqueiro e deve espalhar boatos sobre 5 de seus colegas de classe, uma vez por rodada."
         />
         <br />
         <Tag color="red">
-          <Translate en="You" pt="Você" />
+          <Translate
+            en="You"
+            pt="Você"
+          />
         </Tag>{' '}
-        <Button size="small" onClick={() => onOpenStudentModal(gossiperId)} icon={<AimOutlined />}>
+        <Button
+          size="small"
+          onClick={() => onOpenStudentModal(gossiperId)}
+          icon={<AimOutlined />}
+        >
           <DualTranslate>{students[gossiperId].name}</DualTranslate>
         </Button>
         {bestFriendId && (
@@ -47,9 +57,16 @@ export function GossiperGoals({
             />
             <br />
             <Tag color="orange">
-              <Translate en="Best Friend" pt="Melhor Amigo" />
+              <Translate
+                en="Best Friend"
+                pt="Melhor Amigo"
+              />
             </Tag>{' '}
-            <Button size="small" onClick={() => onOpenStudentModal(bestFriendId)} icon={<AimOutlined />}>
+            <Button
+              size="small"
+              onClick={() => onOpenStudentModal(bestFriendId)}
+              icon={<AimOutlined />}
+            >
               <DualTranslate>{students[bestFriendId].name}</DualTranslate>
             </Button>
           </>
@@ -58,7 +75,10 @@ export function GossiperGoals({
         {/* // TODO Add allied social group */}
       </RuleInstruction>
 
-      <RuleInstruction type="event" className="text-left">
+      <RuleInstruction
+        type="event"
+        className="text-left"
+      >
         <Translate
           en="Your motivation determines how you can spread gossip and figuring it out is one of the Detective's goals."
           pt="Sua motivação determina como você pode espalhar boatos e descobri-la é um dos objetivos do Detetive."
@@ -66,7 +86,10 @@ export function GossiperGoals({
         <br />
         <span>
           <Tag color="blue">
-            <Translate en="Motivation" pt="Motivação" />
+            <Translate
+              en="Motivation"
+              pt="Motivação"
+            />
           </Tag>{' '}
           <DualTranslate>{motivation.title}</DualTranslate>:{' '}
           <i>

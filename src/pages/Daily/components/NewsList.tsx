@@ -20,8 +20,12 @@ export const NEWS_LIST: NewsItem[] = [
     date: '2025-12-25',
     content: (
       <>
-        <IconAvatar icon={<CalendarIcon />} size="small" /> <strong>Feliz Natal!</strong> Alguns jogos estão
-        com desafios especiais para você aproveitar a data! Boas festas!
+        <IconAvatar
+          icon={<CalendarIcon />}
+          size="small"
+        />{' '}
+        <strong>Feliz Natal!</strong> Alguns jogos estão com desafios especiais para você aproveitar a data!
+        Boas festas!
       </>
     ),
     exact: true,
@@ -32,7 +36,10 @@ export const NEWS_LIST: NewsItem[] = [
       <>
         <em>Novo jogo adicionado:</em>
         <br />
-        <IconAvatar icon={<ALL_SETTINGS.VITRAIS.HUB_ICON />} size="small" />{' '}
+        <IconAvatar
+          icon={<ALL_SETTINGS.VITRAIS.HUB_ICON />}
+          size="small"
+        />{' '}
         <strong>
           <DualTranslate>{ALL_SETTINGS.VITRAIS.HUB_NAME}</DualTranslate>
         </strong>{' '}
@@ -44,7 +51,11 @@ export const NEWS_LIST: NewsItem[] = [
     date: '2025-11-01',
     content: (
       <>
-        <IconAvatar icon={<NewFeatureIcon />} size="small" /> Para ficar mais fácil de identificar os itens do{' '}
+        <IconAvatar
+          icon={<NewFeatureIcon />}
+          size="small"
+        />{' '}
+        Para ficar mais fácil de identificar os itens do{' '}
         <strong>
           <DualTranslate>{ALL_SETTINGS.ORGANIKU.NAME}</DualTranslate>
         </strong>
@@ -57,7 +68,11 @@ export const NEWS_LIST: NewsItem[] = [
     date: '2025-09-29',
     content: (
       <>
-        <IconAvatar icon={<NewFeatureIcon />} size="small" /> Se você clicar e segurar um ícone do{' '}
+        <IconAvatar
+          icon={<NewFeatureIcon />}
+          size="small"
+        />{' '}
+        Se você clicar e segurar um ícone do{' '}
         <strong>
           <DualTranslate>{ALL_SETTINGS.TEORIA_DE_CONJUNTOS.NAME}</DualTranslate>
         </strong>
@@ -69,7 +84,10 @@ export const NEWS_LIST: NewsItem[] = [
     date: '2025-09-20',
     content: (
       <>
-        <IconAvatar icon={<WeekendIcon />} size="small" />{' '}
+        <IconAvatar
+          icon={<WeekendIcon />}
+          size="small"
+        />{' '}
         <strong>
           <DualTranslate>{ALL_SETTINGS.ORGANIKU.NAME}</DualTranslate>
         </strong>{' '}
@@ -81,10 +99,14 @@ export const NEWS_LIST: NewsItem[] = [
     date: '2025-08-09',
     content: (
       <>
-        <IconAvatar icon={<NewFeatureIcon />} size="small" /> <strong>Em jogos com ícones</strong>, ao clicar
-        e segurar um ícone, aparecerá um nome como sugestão para ajudar a identificá-lo. Esse nome pode não
-        ser o mesmo usado pelo jogo em si. Por exemplo, o nome “fatia de bolo” pode estar sendo usado como
-        “torta” ou apenas “bolo” em alguns jogos, mas a sugestão vai aparecer como "fatia de bolo".
+        <IconAvatar
+          icon={<NewFeatureIcon />}
+          size="small"
+        />{' '}
+        <strong>Em jogos com ícones</strong>, ao clicar e segurar um ícone, aparecerá um nome como sugestão
+        para ajudar a identificá-lo. Esse nome pode não ser o mesmo usado pelo jogo em si. Por exemplo, o nome
+        “fatia de bolo” pode estar sendo usado como “torta” ou apenas “bolo” em alguns jogos, mas a sugestão
+        vai aparecer como "fatia de bolo".
       </>
     ),
   },
@@ -94,7 +116,10 @@ export const NEWS_LIST: NewsItem[] = [
       <>
         <em>Novo jogo adicionado:</em>
         <br />
-        <IconAvatar icon={<ALL_SETTINGS.ESPIONAGEM.HUB_ICON />} size="small" />{' '}
+        <IconAvatar
+          icon={<ALL_SETTINGS.ESPIONAGEM.HUB_ICON />}
+          size="small"
+        />{' '}
         <strong>
           <DualTranslate>{ALL_SETTINGS.ESPIONAGEM.HUB_NAME}</DualTranslate>
         </strong>{' '}
@@ -106,7 +131,10 @@ export const NEWS_LIST: NewsItem[] = [
     date: '2025-06-28',
     content: (
       <>
-        <IconAvatar icon={<NewFeatureIcon />} size="small" />{' '}
+        <IconAvatar
+          icon={<NewFeatureIcon />}
+          size="small"
+        />{' '}
         <strong>
           <DualTranslate>{ALL_SETTINGS.TA_NA_CARA.NAME}</DualTranslate>
         </strong>{' '}
@@ -118,7 +146,10 @@ export const NEWS_LIST: NewsItem[] = [
     date: '2025-06-14',
     content: (
       <>
-        <IconAvatar icon={<WeekendIcon />} size="small" />{' '}
+        <IconAvatar
+          icon={<WeekendIcon />}
+          size="small"
+        />{' '}
         <strong>
           <DualTranslate>{ALL_SETTINGS.FILMACO.NAME}</DualTranslate>
         </strong>{' '}
@@ -132,7 +163,10 @@ export const NEWS_LIST: NewsItem[] = [
       <>
         <em>Novo jogo adicionado:</em>
         <br />
-        <IconAvatar icon={<ALL_SETTINGS.ORGANIKU.HUB_ICON />} size="small" />{' '}
+        <IconAvatar
+          icon={<ALL_SETTINGS.ORGANIKU.HUB_ICON />}
+          size="small"
+        />{' '}
         <strong>
           <DualTranslate>{ALL_SETTINGS.ORGANIKU.HUB_NAME}</DualTranslate>
         </strong>{' '}
@@ -144,7 +178,10 @@ export const NEWS_LIST: NewsItem[] = [
     date: '2025-05-16',
     content: (
       <>
-        <IconAvatar icon={<WeekendIcon />} size="small" />{' '}
+        <IconAvatar
+          icon={<WeekendIcon />}
+          size="small"
+        />{' '}
         <strong>
           <DualTranslate>{ALL_SETTINGS.TEORIA_DE_CONJUNTOS.NAME}</DualTranslate>
         </strong>{' '}
@@ -156,7 +193,10 @@ export const NEWS_LIST: NewsItem[] = [
     date: '2025-04-17',
     content: (
       <>
-        <IconAvatar icon={<NewFeatureIcon />} size="small" />{' '}
+        <IconAvatar
+          icon={<NewFeatureIcon />}
+          size="small"
+        />{' '}
         <strong>
           <DualTranslate>{ALL_SETTINGS.COMUNICACAO_ALIENIGENA.NAME}</DualTranslate>
         </strong>{' '}
@@ -170,7 +210,10 @@ export const NEWS_LIST: NewsItem[] = [
       <>
         <em>Novo jogo adicionado:</em>
         <br />
-        <IconAvatar icon={<ALL_SETTINGS.PORTAIS_MAGICOS.HUB_ICON />} size="small" />{' '}
+        <IconAvatar
+          icon={<ALL_SETTINGS.PORTAIS_MAGICOS.HUB_ICON />}
+          size="small"
+        />{' '}
         <strong>
           <DualTranslate>{ALL_SETTINGS.PORTAIS_MAGICOS.NAME}</DualTranslate>
         </strong>{' '}
@@ -184,7 +227,10 @@ export const NEWS_LIST: NewsItem[] = [
       <>
         <em>Novo jogo adicionado:</em>
         <br />
-        <IconAvatar icon={<ALL_SETTINGS.QUARTETOS.HUB_ICON />} size="small" />{' '}
+        <IconAvatar
+          icon={<ALL_SETTINGS.QUARTETOS.HUB_ICON />}
+          size="small"
+        />{' '}
         <strong>
           <DualTranslate>{ALL_SETTINGS.QUARTETOS.HUB_NAME}</DualTranslate>
         </strong>{' '}
@@ -198,7 +244,10 @@ export const NEWS_LIST: NewsItem[] = [
       <>
         <em>Nova forma de contribuir:</em>
         <br />
-        <IconAvatar icon={<ALL_SETTINGS.TA_NA_CARA.HUB_ICON />} size="small" />{' '}
+        <IconAvatar
+          icon={<ALL_SETTINGS.TA_NA_CARA.HUB_ICON />}
+          size="small"
+        />{' '}
         <strong>
           <DualTranslate>{ALL_SETTINGS.TA_NA_CARA.HUB_NAME}</DualTranslate>
         </strong>{' '}
@@ -210,8 +259,11 @@ export const NEWS_LIST: NewsItem[] = [
     date: '2025-02-09',
     content: (
       <>
-        <IconAvatar icon={<NewFeatureIcon />} size="small" /> Agora todos os jogos tem efeitos sonoros para
-        uma melhor experiência!
+        <IconAvatar
+          icon={<NewFeatureIcon />}
+          size="small"
+        />{' '}
+        Agora todos os jogos tem efeitos sonoros para uma melhor experiência!
       </>
     ),
   },
@@ -219,7 +271,10 @@ export const NEWS_LIST: NewsItem[] = [
     date: '2025-01-10',
     content: (
       <>
-        <IconAvatar icon={<WeekendIcon />} size="small" />{' '}
+        <IconAvatar
+          icon={<WeekendIcon />}
+          size="small"
+        />{' '}
         <strong>
           <DualTranslate>{ALL_SETTINGS.AQUI_O.NAME}</DualTranslate>
         </strong>{' '}
@@ -233,7 +288,10 @@ export const NEWS_LIST: NewsItem[] = [
       <>
         <em>Novo jogo adicionado:</em>
         <br />
-        <IconAvatar icon={<ALL_SETTINGS.COMUNICACAO_ALIENIGENA.HUB_ICON />} size="small" />{' '}
+        <IconAvatar
+          icon={<ALL_SETTINGS.COMUNICACAO_ALIENIGENA.HUB_ICON />}
+          size="small"
+        />{' '}
         <strong>
           <DualTranslate>{ALL_SETTINGS.COMUNICACAO_ALIENIGENA.NAME}</DualTranslate>
         </strong>{' '}

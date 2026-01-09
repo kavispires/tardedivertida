@@ -29,7 +29,12 @@ export function PhaseWordCreation({ state, players, user }: PhaseProps<PhaseWord
   const announcement = (
     <PhaseAnnouncement
       icon={<CreateIcon />}
-      title={<Translate pt="A Palavra-Valise" en="The Portmanteau" />}
+      title={
+        <Translate
+          pt="A Palavra-Valise"
+          en="The Portmanteau"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -37,24 +42,44 @@ export function PhaseWordCreation({ state, players, user }: PhaseProps<PhaseWord
         <Translate
           pt={
             <>
-              Hora de <PlayerAvatarName player={creator} addressUser /> criar a nova palavra!
+              Hora de{' '}
+              <PlayerAvatarName
+                player={creator}
+                addressUser
+              />{' '}
+              criar a nova palavra!
             </>
           }
           en={
             <>
-              Time for <PlayerAvatarName player={creator} addressUser /> to create the new word!
+              Time for{' '}
+              <PlayerAvatarName
+                player={creator}
+                addressUser
+              />{' '}
+              to create the new word!
             </>
           }
         />
       </Instruction>
 
-      <TurnOrder players={players} order={state.turnOrder} activePlayerId={state.creatorId} />
+      <TurnOrder
+        players={players}
+        order={state.turnOrder}
+        activePlayerId={state.creatorId}
+      />
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={METALINGUAGEM_PHASES.WORD_CREATION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={METALINGUAGEM_PHASES.WORD_CREATION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <ViewOr condition={isTheCreator}>
           <StepCreateWord

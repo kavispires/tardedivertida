@@ -37,7 +37,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionQualQuesito() {
-  return <Session gameCollection={GAME_COLLECTION.QUAL_QUESITO} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.QUAL_QUESITO}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionQualQuesito;

@@ -9,7 +9,11 @@ export function BoxTwoIcon({ color, ...props }: BoxTwoIconProps) {
   const darkColor = color || '#db9f3d';
 
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill={mainColor}
         d="M473.2 492.8H38.8c-17.3 0-31.3-14-31.3-31.3V56.9a37.7 37.7 0 0 1 37.7-37.7h421.6a37.7 37.7 0 0 1 37.7 37.7v404.6c0 17.3-14 31.3-31.3 31.3Z"

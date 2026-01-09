@@ -36,7 +36,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionMenteColetiva() {
-  return <Session gameCollection={GAME_COLLECTION.MENTE_COLETIVA} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.MENTE_COLETIVA}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionMenteColetiva;

@@ -23,7 +23,10 @@ export function CardSelection({ onSendChosenSide, cards }: CardSelectionProps) {
             className="o-card-selection__button"
             onClick={() => onSendChosenSide(card.id)}
           >
-            <OpposingIdeasCard left={card.left} right={card.right} />
+            <OpposingIdeasCard
+              left={card.left}
+              right={card.right}
+            />
           </button>
         ))}
       </div>

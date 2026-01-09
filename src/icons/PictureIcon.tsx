@@ -1,10 +1,26 @@
 export function PictureIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <path fill="#fccd7f" d="M57.142 7.501h397.717v497H57.142z"></path>
-      <path fill="#f0b95f" d="M435.756 7.501h19.103v497h-19.103z"></path>
-      <path fill="#8ce1a4" d="M422.859 39.501v433H89.142v-433z"></path>
-      <path fill="#78c2a4" d="M399.756 39.501h23.103v433h-23.103z"></path>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <path
+        fill="#fccd7f"
+        d="M57.142 7.501h397.717v497H57.142z"
+      ></path>
+      <path
+        fill="#f0b95f"
+        d="M435.756 7.501h19.103v497h-19.103z"
+      ></path>
+      <path
+        fill="#8ce1a4"
+        d="M422.859 39.501v433H89.142v-433z"
+      ></path>
+      <path
+        fill="#78c2a4"
+        d="M399.756 39.501h23.103v433h-23.103z"
+      ></path>
       <path
         fill="#7a6d79"
         d="M365.53 343.679H163.056V150.643c0-38.777 31.435-70.212 70.212-70.212h62.049c38.777 0 70.212 31.435 70.212 70.212v193.036z"
@@ -21,8 +37,14 @@ export function PictureIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#ea9b58"
         d="M254.293 138.302H231.19s10.527 47.113 61.351 47.113v97.489h23.103v-97.489c-50.823 0-61.351-47.113-61.351-47.113z"
       ></path>
-      <path fill="#7a6d79" d="M192.952 345.671h122.7v126.83h-122.7z"></path>
-      <path fill="#685e68" d="M315.652 345.671v126.83h-42.76v-109.43c0-6.56 2.24-12.6 6-17.4z"></path>
+      <path
+        fill="#7a6d79"
+        d="M192.952 345.671h122.7v126.83h-122.7z"
+      ></path>
+      <path
+        fill="#685e68"
+        d="M315.652 345.671v126.83h-42.76v-109.43c0-6.56 2.24-12.6 6-17.4z"
+      ></path>
       <path
         fill="#f6a96c"
         d="M315.652 282.901v65.85c0 25.45-18.49 46.57-42.76 50.68-2.81.47-5.7.72-8.64.72h-19.91c-28.38 0-51.39-23.01-51.39-51.4v-13.9l25.6-6.84c14.41-3.85 24.44-16.91 24.44-31.83v-13.28z"
@@ -39,7 +61,10 @@ export function PictureIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#c4a098"
         d="M192.943 472.501H89.142l35.302-110.855c5.082-15.958 19.905-26.794 36.652-26.794h31.846v137.649z"
       ></path>
-      <path fill="#a3847e" d="M169.84 334.852h23.103v137.649H169.84z"></path>
+      <path
+        fill="#a3847e"
+        d="M169.84 334.852h23.103v137.649H169.84z"
+      ></path>
       <path
         fill="#c4a098"
         d="M422.859 472.501H295.996V363.07c0-15.584 12.634-28.218 28.218-28.218h46.072c13.283 0 24.767 9.263 27.579 22.245z"

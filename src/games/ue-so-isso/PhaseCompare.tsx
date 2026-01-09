@@ -31,7 +31,12 @@ export function PhaseCompare({ state, players }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<VerifyListIcon />}
-      title={<Translate pt="Comparação de dicas!" en="Clue Check!" />}
+      title={
+        <Translate
+          pt="Comparação de dicas!"
+          en="Clue Check!"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -48,8 +53,14 @@ export function PhaseCompare({ state, players }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={UE_SO_ISSO_PHASES.COMPARE}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={UE_SO_ISSO_PHASES.COMPARE}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <ViewOr condition={isUserTheGuesser}>
           <GuesserWaitingRoom
@@ -78,7 +89,12 @@ export function PhaseCompare({ state, players }: PhaseProps) {
         {/* Step 1 */}
         <WaitingRoom
           players={players}
-          title={<Translate pt="Enviando a confirmação de dicas" en="Sending confirmation" />}
+          title={
+            <Translate
+              pt="Enviando a confirmação de dicas"
+              en="Sending confirmation"
+            />
+          }
           instruction="..."
         />
       </StepSwitcher>

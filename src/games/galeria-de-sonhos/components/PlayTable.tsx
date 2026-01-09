@@ -90,7 +90,12 @@ export function PlayTable({ table, onPlayCard, userCards, isPlayAvailable }: Pla
                   over
                   buttonPosition="bottom"
                   hideButton={!isPlayAvailable || !userCards[card.id]}
-                  buttonText={<Translate pt="Selecionar" en="Select" />}
+                  buttonText={
+                    <Translate
+                      pt="Selecionar"
+                      en="Select"
+                    />
+                  }
                   disabled={isLoading}
                   throttle
                 >

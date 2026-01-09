@@ -24,7 +24,11 @@ export function GamePremiseRules({ activePlayer }: GamePremiseRulesProps) {
             pasto fica menos lotado e todos mais felizes.
             <br />
             <Instruction contained>
-              <PlayerAvatarName player={activePlayer} addressUser /> escolherá uma pergunta para essa rodada.
+              <PlayerAvatarName
+                player={activePlayer}
+                addressUser
+              />{' '}
+              escolherá uma pergunta para essa rodada.
             </Instruction>
           </>
         }
@@ -40,7 +44,11 @@ export function GamePremiseRules({ activePlayer }: GamePremiseRulesProps) {
             die. The pasture is less crowded and everyone is happier.
             <br />
             <Instruction contained>
-              <PlayerAvatarName player={activePlayer} addressUser /> will choose a question for this round.
+              <PlayerAvatarName
+                player={activePlayer}
+                addressUser
+              />{' '}
+              will choose a question for this round.
             </Instruction>
           </>
         }

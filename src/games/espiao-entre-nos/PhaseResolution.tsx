@@ -39,13 +39,19 @@ export function PhaseResolution({ state, players }: PhaseProps) {
       allowedPhase={ESPIAO_ENTRE_NOS_PHASES.RESOLUTION}
       className="e-phase"
     >
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <ViewOr condition={resolutionStatus.didSpyGuess}>
           <PhaseAnnouncement
             icon={<MapLocationIcon />}
             title={
-              <Translate pt="O espião tentou adivinhar o local" en="The spy tried to guess the location" />
+              <Translate
+                pt="O espião tentou adivinhar o local"
+                en="The spy tried to guess the location"
+              />
             }
             onClose={goToNextStep}
             currentRound={state?.round?.current}
@@ -57,7 +63,12 @@ export function PhaseResolution({ state, players }: PhaseProps) {
 
           <PhaseAnnouncement
             icon={<ThiefIcon />}
-            title={<Translate pt="A votação foi unanime!" en="The vote was unanimous!" />}
+            title={
+              <Translate
+                pt="A votação foi unanime!"
+                en="The vote was unanimous!"
+              />
+            }
             onClose={goToNextStep}
             currentRound={state?.round?.current}
             buttonText=""
@@ -75,7 +86,12 @@ export function PhaseResolution({ state, players }: PhaseProps) {
           icon={
             resolutionStatus.phaseIcon === 'nuclear-explosion' ? <NuclearExplosionIcon /> : <HandcuffsIcon />
           }
-          title={<Translate pt="O fim chegou!" en="The end is here!" />}
+          title={
+            <Translate
+              pt="O fim chegou!"
+              en="The end is here!"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           buttonText=""

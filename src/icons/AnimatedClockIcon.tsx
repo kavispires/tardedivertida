@@ -1,6 +1,10 @@
 export function AnimatedClockIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#fbfbfb"
         d="M464 256c0 114.9-93.1 208-208 208S48 370.9 48 256 141.1 48 256 48s208 93.1 208 208z"

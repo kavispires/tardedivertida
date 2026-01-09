@@ -164,8 +164,17 @@ export function PhaseAnnouncement({
           {children}
 
           {withoutTimer ? (
-            <Button type="primary" onClick={onContinue} autoFocus className="mt-2">
-              <Translate pt="Prosseguir" en="Continue" custom={buttonText} />
+            <Button
+              type="primary"
+              onClick={onContinue}
+              autoFocus
+              className="mt-2"
+            >
+              <Translate
+                pt="Prosseguir"
+                en="Continue"
+                custom={buttonText}
+              />
             </Button>
           ) : (
             <TimedButton
@@ -177,7 +186,11 @@ export function PhaseAnnouncement({
               autoFocus
               className="mt-2"
             >
-              <Translate pt="Prosseguir" en="Continue" custom={buttonText} />
+              <Translate
+                pt="Prosseguir"
+                en="Continue"
+                custom={buttonText}
+              />
             </TimedButton>
           )}
         </div>

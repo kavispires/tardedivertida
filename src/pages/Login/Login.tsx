@@ -63,7 +63,10 @@ function Login() {
     <PageLayout className="login">
       <div className="login__content">
         <div className="login__logo">
-          <Image src={logo} preview={false} />
+          <Image
+            src={logo}
+            preview={false}
+          />
         </div>
 
         {Boolean(error) && (
@@ -83,14 +86,27 @@ function Login() {
           className="login__form"
           autoComplete="off"
         >
-          <Form.Item {...tailLayout} label="E-mail" name="email" className="login__form-item">
+          <Form.Item
+            {...tailLayout}
+            label="E-mail"
+            name="email"
+            className="login__form-item"
+          >
             <Input type="email" />
           </Form.Item>
-          <Form.Item {...tailLayout} label="Password" name="password" className="login__form-item">
+          <Form.Item
+            {...tailLayout}
+            label="Password"
+            name="password"
+            className="login__form-item"
+          >
             <Input type="password" />
           </Form.Item>
           <div className="login__form-action">
-            <Button type="primary" onClick={onHandleSubmit}>
+            <Button
+              type="primary"
+              onClick={onHandleSubmit}
+            >
               Login
             </Button>
           </div>

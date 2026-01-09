@@ -24,18 +24,35 @@ export function StepQuestionSelectionWaiting({
   pastureSize,
 }: StepQuestionSelectionWaitingProps) {
   return (
-    <Step fullWidth className="m-step" announcement={announcement}>
+    <Step
+      fullWidth
+      className="m-step"
+      announcement={announcement}
+    >
       <StepTitle wait>
-        <Translate pt="Aguarde..." en="Please wait..." />
+        <Translate
+          pt="Aguarde..."
+          en="Please wait..."
+        />
       </StepTitle>
 
       <RuleInstruction type="wait">
-        <PlayerAvatarName player={activePlayer} addressUser />{' '}
-        <Translate pt="está escolhendo a pergunta da rodada." en="is choosing the question for the round." />
+        <PlayerAvatarName
+          player={activePlayer}
+          addressUser
+        />{' '}
+        <Translate
+          pt="está escolhendo a pergunta da rodada."
+          en="is choosing the question for the round."
+        />
         <br />
       </RuleInstruction>
 
-      <Pasture players={players} pastureSize={pastureSize} roundType={roundType} />
+      <Pasture
+        players={players}
+        pastureSize={pastureSize}
+        roundType={roundType}
+      />
     </Step>
   );
 }

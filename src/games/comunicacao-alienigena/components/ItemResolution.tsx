@@ -20,7 +20,14 @@ export function ItemResolution({ itemId, items }: ItemResolutionProps) {
   if (item?.type === ITEM_TYPES.CURSE) {
     return (
       <div>
-        <IconAvatar icon={<BoxMinusIcon />} size="small" /> <Translate pt="Amaldiçoado" en="Cursed" />
+        <IconAvatar
+          icon={<BoxMinusIcon />}
+          size="small"
+        />{' '}
+        <Translate
+          pt="Amaldiçoado"
+          en="Cursed"
+        />
       </div>
     );
   }
@@ -28,14 +35,28 @@ export function ItemResolution({ itemId, items }: ItemResolutionProps) {
   if (item?.type === ITEM_TYPES.ITEM) {
     return (
       <div>
-        <IconAvatar icon={<BoxCheckMarkIcon />} size="small" /> <Translate pt="Correto" en="Correct" />
+        <IconAvatar
+          icon={<BoxCheckMarkIcon />}
+          size="small"
+        />{' '}
+        <Translate
+          pt="Correto"
+          en="Correct"
+        />
       </div>
     );
   }
 
   return (
     <div>
-      <IconAvatar icon={<BoxOneIcon />} size="small" /> <Translate pt="Irrelevante" en="Irrelevant" />
+      <IconAvatar
+        icon={<BoxOneIcon />}
+        size="small"
+      />{' '}
+      <Translate
+        pt="Irrelevante"
+        en="Irrelevant"
+      />
     </div>
   );
 }

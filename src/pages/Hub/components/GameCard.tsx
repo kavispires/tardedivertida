@@ -67,10 +67,20 @@ export function GameCard({ game, isAdmin = true }: GameCardProps) {
       key={game.gameName}
       className="game-card"
       cover={
-        <Badge.Ribbon text={game.version} color={getVersionColor(game.version)}>
+        <Badge.Ribbon
+          text={game.version}
+          color={getVersionColor(game.version)}
+        >
           <div className="game-card__image">
-            <GameStrip gameName={game.gameName} width={256} title={game.title} />
-            <span className="game-card__title" title={game.title[language]}>
+            <GameStrip
+              gameName={game.gameName}
+              width={256}
+              title={game.title}
+            />
+            <span
+              className="game-card__title"
+              title={game.title[language]}
+            >
               <span className="game-card__title-text">{game.title[language]}</span>{' '}
               <span>
                 <Tooltip title={translate('Código do jogo começará com', 'The game id will start with')}>
@@ -83,7 +93,10 @@ export function GameCard({ game, isAdmin = true }: GameCardProps) {
       }
     >
       <div className="game-card__contents">
-        <Space orientation="vertical" className="full-width">
+        <Space
+          orientation="vertical"
+          className="full-width"
+        >
           <Card.Meta
             description={`${translate('Inspirado por', 'Inspired by')} ${game.inspiredBy
               .split('')
@@ -91,7 +104,10 @@ export function GameCard({ game, isAdmin = true }: GameCardProps) {
               .join('')}`}
           />
 
-          <Card.Meta className="game-card__description" description={game.summary[language]} />
+          <Card.Meta
+            className="game-card__description"
+            description={game.summary[language]}
+          />
 
           {Boolean(game.rules?.[language]?.length > 1) && (
             <RulesModal

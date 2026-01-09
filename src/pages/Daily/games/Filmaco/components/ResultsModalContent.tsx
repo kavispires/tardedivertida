@@ -50,22 +50,39 @@ export function ResultsModalContent({
 
   return (
     <SpaceContainer vertical>
-      <Typography.Title level={2} className="center">
+      <Typography.Title
+        level={2}
+        className="center"
+      >
         {win ? (
           <>
-            <IconAvatar icon={<TrophyIcon />} /> <Translate pt="Parabéns!" en="Congratulations!" />
+            <IconAvatar icon={<TrophyIcon />} />{' '}
+            <Translate
+              pt="Parabéns!"
+              en="Congratulations!"
+            />
           </>
         ) : (
           <>
-            <IconAvatar icon={<BoxXIcon />} /> <Translate pt="Que pena!" en="Too bad!" />
+            <IconAvatar icon={<BoxXIcon />} />{' '}
+            <Translate
+              pt="Que pena!"
+              en="Too bad!"
+            />
           </>
         )}
       </Typography.Title>
       <Typography.Paragraph className="center">
         {win ? (
-          <Translate pt="Você acertou o filme!" en="You guessed the movie!" />
+          <Translate
+            pt="Você acertou o filme!"
+            en="You guessed the movie!"
+          />
         ) : (
-          <Translate pt="Você errou o filme!" en="You missed the movie!" />
+          <Translate
+            pt="Você errou o filme!"
+            en="You missed the movie!"
+          />
         )}
       </Typography.Paragraph>
 
@@ -73,7 +90,10 @@ export function ResultsModalContent({
         <Typography.Paragraph className="text-center">{text}</Typography.Paragraph>
       </TextHighlight>
 
-      <CopyToClipboardResult result={result} rows={3} />
+      <CopyToClipboardResult
+        result={result}
+        rows={3}
+      />
 
       <NextGameSuggestion />
     </SpaceContainer>

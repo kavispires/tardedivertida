@@ -9,7 +9,11 @@ export function BoxBlankIcon({ color, ...props }: BoxBlankIconProps) {
   const darkColor = color || '#878787';
 
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill={mainColor}
         d="M473.2 481.1H38.8a31.3 31.3 0 01-31.3-31.3V45.2A37.7 37.7 0 0145.2 7.5h421.6a37.7 37.7 0 0137.7 37.7v404.6a31.3 31.3 0 01-31.3 31.3z"

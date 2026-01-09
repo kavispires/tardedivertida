@@ -23,20 +23,34 @@ export function PhaseResults({ state, players }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<QualitySealIcon />}
-      title={<Translate pt="Resultado" en="Results" />}
+      title={
+        <Translate
+          pt="Resultado"
+          en="Results"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={4}
     >
       <Instruction>
-        <Translate pt={<>Quantos pontos você ganhou?</>} en={<>How many points did you get?</>} />
+        <Translate
+          pt={<>Quantos pontos você ganhou?</>}
+          en={<>How many points did you get?</>}
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={MEDIDAS_NAO_EXATAS_PHASES.RESULTS}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={MEDIDAS_NAO_EXATAS_PHASES.RESULTS}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepResults
           players={players}

@@ -41,7 +41,10 @@ export const TrackSuperCampeonato = ({ track, onSubmitAnswer, user }: TrackProps
       </RuleInstruction>
 
       <SpaceContainer>
-        <Card header={translate('Desafio', 'Challenge')} color="purple">
+        <Card
+          header={translate('Desafio', 'Challenge')}
+          color="purple"
+        >
           {track.data.challenge.text}
         </Card>
       </SpaceContainer>
@@ -49,7 +52,10 @@ export const TrackSuperCampeonato = ({ track, onSubmitAnswer, user }: TrackProps
       <SpaceContainer>
         {track.data.contenders.map((contender: FightingContender, index: number) => {
           return (
-            <Space orientation="vertical" key={contender.id}>
+            <Space
+              orientation="vertical"
+              key={contender.id}
+            >
               <ImageBlurButtonContainer cardId={contender.id}>
                 <CharacterCard
                   size={cardWidth}
@@ -68,7 +74,10 @@ export const TrackSuperCampeonato = ({ track, onSubmitAnswer, user }: TrackProps
                   })
                 }
               >
-                <Translate pt="Selecionar" en="Select" />
+                <Translate
+                  pt="Selecionar"
+                  en="Select"
+                />
               </Button>
             </Space>
           );

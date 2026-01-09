@@ -30,7 +30,12 @@ export function PhaseBoost({ players, state, user }: PhaseProps<PhaseBetsState>)
   const announcement = isUserSkier ? (
     <PhaseAnnouncement
       icon={<GamblingChipIcon />}
-      title={<Translate pt="Aposte nos jogadores" en="Bet on the players" />}
+      title={
+        <Translate
+          pt="Aposte nos jogadores"
+          en="Bet on the players"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={5}
@@ -38,7 +43,12 @@ export function PhaseBoost({ players, state, user }: PhaseProps<PhaseBetsState>)
   ) : (
     <PhaseAnnouncement
       icon={<GamblingChipIcon />}
-      title={<Translate pt="Apostas Bônus" en="Boost Bets" />}
+      title={
+        <Translate
+          pt="Apostas Bônus"
+          en="Boost Bets"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={5}
@@ -53,16 +63,26 @@ export function PhaseBoost({ players, state, user }: PhaseProps<PhaseBetsState>)
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={ESQUIADORES_PHASES.BOOSTS}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={ESQUIADORES_PHASES.BOOSTS}
+    >
       <SnowEffect />
       <StepSwitcher
         step={step}
         players={players}
         waitingRoom={{
           content: isUserSkier ? (
-            <CurrentSkierBets user={user} players={players} />
+            <CurrentSkierBets
+              user={user}
+              players={players}
+            />
           ) : (
-            <CurrentBets user={user} lodges={state.lodges} betType="boost" />
+            <CurrentBets
+              user={user}
+              lodges={state.lodges}
+              betType="boost"
+            />
           ),
         }}
       >

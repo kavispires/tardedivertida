@@ -35,9 +35,18 @@ export function SoundsTest({ onResult, step }: TestStepProps) {
   };
 
   return (
-    <SpaceContainer className="full-width" vertical>
-      <Title level={2} size="small">
-        <Translate pt="Sons" en="Sounds" />
+    <SpaceContainer
+      className="full-width"
+      vertical
+    >
+      <Title
+        level={2}
+        size="small"
+      >
+        <Translate
+          pt="Sons"
+          en="Sounds"
+        />
       </Title>
 
       <Instruction contained>
@@ -47,15 +56,37 @@ export function SoundsTest({ onResult, step }: TestStepProps) {
         />
       </Instruction>
 
-      <SpaceContainer wrap className="full-width" vertical>
-        <Button onClick={() => onStartAudio('arte-ruim')} disabled={Boolean(showAudio)}>
-          <Translate pt="Som 1" en="Sound 1" />
+      <SpaceContainer
+        wrap
+        className="full-width"
+        vertical
+      >
+        <Button
+          onClick={() => onStartAudio('arte-ruim')}
+          disabled={Boolean(showAudio)}
+        >
+          <Translate
+            pt="Som 1"
+            en="Sound 1"
+          />
         </Button>
-        <Button onClick={() => onStartAudio('dj')} disabled={Boolean(showAudio)}>
-          <Translate pt="Som 2" en="Sound 2" />
+        <Button
+          onClick={() => onStartAudio('dj')}
+          disabled={Boolean(showAudio)}
+        >
+          <Translate
+            pt="Som 2"
+            en="Sound 2"
+          />
         </Button>
-        <Button onClick={() => onStartAudio('dialog')} disabled={Boolean(showAudio)}>
-          <Translate pt="Som 3" en="Sound 3" />
+        <Button
+          onClick={() => onStartAudio('dialog')}
+          disabled={Boolean(showAudio)}
+        >
+          <Translate
+            pt="Som 3"
+            en="Sound 3"
+          />
         </Button>
         <Button
           onClick={() =>
@@ -70,7 +101,10 @@ export function SoundsTest({ onResult, step }: TestStepProps) {
           }
           disabled={Boolean(showAudio)}
         >
-          <Translate pt="Som 4" en="Sound 4" />
+          <Translate
+            pt="Som 4"
+            en="Sound 4"
+          />
         </Button>
         {showAudio === 'arte-ruim' && <ArteRuimTimerSound />}
         {showAudio === 'dj' && <DJPruPruPruSound />}

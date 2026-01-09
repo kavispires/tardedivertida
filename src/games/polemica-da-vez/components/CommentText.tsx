@@ -19,8 +19,16 @@ export function CommentText({ reaction, likes, playerId, points }: CommentTextPr
     <span>
       {reaction ? (
         <>
-          <IconAvatar icon={<SpeechBubbleThumbsUpIcon />} shape="square" className="p-like-icon" size={20} />{' '}
-          <Translate pt="Curto e " en="I like it and" />
+          <IconAvatar
+            icon={<SpeechBubbleThumbsUpIcon />}
+            shape="square"
+            className="p-like-icon"
+            size={20}
+          />{' '}
+          <Translate
+            pt="Curto e "
+            en="I like it and"
+          />
         </>
       ) : (
         <>
@@ -30,11 +38,17 @@ export function CommentText({ reaction, likes, playerId, points }: CommentTextPr
             className="p-like-icon"
             size={20}
           />{' '}
-          <Translate pt="Não curto, mas " en="I dislike it but " />
+          <Translate
+            pt="Não curto, mas "
+            en="I dislike it but "
+          />
         </>
       )}
 
-      <Translate pt={<>eu acho que </>} en={<>I think </>} />
+      <Translate
+        pt={<>eu acho que </>}
+        en={<>I think </>}
+      />
 
       <span
         className={clsx(
@@ -43,13 +57,22 @@ export function CommentText({ reaction, likes, playerId, points }: CommentTextPr
           points === 0 && 'p-tweet-comment__incorrect',
         )}
       >
-        <Translate pt={<>{likes} jogadores</>} en={<>{likes} players</>} />
+        <Translate
+          pt={<>{likes} jogadores</>}
+          en={<>{likes} players</>}
+        />
       </span>
 
-      <Translate pt={<> curtem.</>} en={<> do like it.</>} />
+      <Translate
+        pt={<> curtem.</>}
+        en={<> do like it.</>}
+      />
       <br />
       <span className="p-tweet-comment__points">
-        <StarPoints keyPrefix={playerId} quantity={points} />
+        <StarPoints
+          keyPrefix={playerId}
+          quantity={points}
+        />
       </span>
     </span>
   );

@@ -24,18 +24,32 @@ export function PhaseTargeting({ state, players, user }: PhaseProps) {
   const mockedPlayers = players;
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={QUEM_NAO_MATA_PHASES.TARGETING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={QUEM_NAO_MATA_PHASES.TARGETING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<TDIcon />}
-          title={<Translate pt="Apontem suas armas!" en="Point your guns!" />}
+          title={
+            <Translate
+              pt="Apontem suas armas!"
+              en="Point your guns!"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           type="block"
         >
           <Instruction>
-            <Translate pt="Tem alguém te olhando torto, heim..." en="Is anyone looking at you funny?" />
+            <Translate
+              pt="Tem alguém te olhando torto, heim..."
+              en="Is anyone looking at you funny?"
+            />
           </Instruction>
         </PhaseAnnouncement>
 

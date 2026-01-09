@@ -28,7 +28,10 @@ export function ViewSketching({
     <ViewOr condition={isUserTheWitness}>
       <div className="r-view">
         <Title>
-          <Translate pt="Descreva o monstro!" en="Describe the monster!" />
+          <Translate
+            pt="Descreva o monstro!"
+            en="Describe the monster!"
+          />
         </Title>
         <RuleInstruction type="tip">
           <Translate
@@ -36,13 +39,23 @@ export function ViewSketching({
             en="Try to give the largest number of details. Player may ask you questions too."
           />
         </RuleInstruction>
-        <TimerBar steps={TIMES.SKETCH} value={remainingSketchingTime} total={TIMES.SKETCH} />
-        <MonsterCard currentMonster={{ id: 'md-bs-000', orientation: 'vertical' }} showControls={false} />
+        <TimerBar
+          steps={TIMES.SKETCH}
+          value={remainingSketchingTime}
+          total={TIMES.SKETCH}
+        />
+        <MonsterCard
+          currentMonster={{ id: 'md-bs-000', orientation: 'vertical' }}
+          showControls={false}
+        />
       </div>
 
       <div className="r-view">
         <Title>
-          <Translate pt="Desenhe!" en="Sketch it!" />
+          <Translate
+            pt="Desenhe!"
+            en="Sketch it!"
+          />
         </Title>
         <RuleInstruction type="tip">
           {remainingSketchingTime > 0 ? (
@@ -51,11 +64,23 @@ export function ViewSketching({
               en="You may also ask the witness questions"
             />
           ) : (
-            <Translate pt="Últimos segundos para os retoques finais" en="A few seconds more to finish" />
+            <Translate
+              pt="Últimos segundos para os retoques finais"
+              en="A few seconds more to finish"
+            />
           )}
         </RuleInstruction>
-        <TimerBar steps={TIMES.SKETCH} value={remainingSketchingTime} total={TIMES.SKETCH} />
-        <DrawingCanvas lines={lines} setLines={setLines} showControls strokeWidth="small" />
+        <TimerBar
+          steps={TIMES.SKETCH}
+          value={remainingSketchingTime}
+          total={TIMES.SKETCH}
+        />
+        <DrawingCanvas
+          lines={lines}
+          setLines={setLines}
+          showControls
+          strokeWidth="small"
+        />
       </div>
     </ViewOr>
   );

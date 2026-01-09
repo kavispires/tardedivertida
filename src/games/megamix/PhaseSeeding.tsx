@@ -22,7 +22,12 @@ export function PhaseSeeding({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<SmsIcon />}
-      title={<Translate pt="Seu amigo te chamou pra balada!" en="Your friend invited to the club!" />}
+      title={
+        <Translate
+          pt="Seu amigo te chamou pra balada!"
+          en="Your friend invited to the club!"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -33,17 +38,31 @@ export function PhaseSeeding({ state, players, user }: PhaseProps) {
             en="But before that, you must finish some chores..."
           />
         ) : (
-          <Translate pt="Mas antes de ir, escolha seu modelito" en="Time to get ready!!!" />
+          <Translate
+            pt="Mas antes de ir, escolha seu modelito"
+            en="Time to get ready!!!"
+          />
         )}
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={MEGAMIX_PHASES.SEEDING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={MEGAMIX_PHASES.SEEDING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
-        <StepSeeding players={players} announcement={announcement} onSubmitData={onSubmitData} user={user} />
+        <StepSeeding
+          players={players}
+          announcement={announcement}
+          onSubmitData={onSubmitData}
+          user={user}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

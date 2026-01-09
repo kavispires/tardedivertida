@@ -24,7 +24,12 @@ export function PhaseOfferings({ players, state, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<OfferingIcon />}
-      title={<Translate pt="Oferendas" en="Offerings" />}
+      title={
+        <Translate
+          pt="Oferendas"
+          en="Offerings"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}
@@ -32,8 +37,14 @@ export function PhaseOfferings({ players, state, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={COMUNICACAO_ALIENIGENA_PHASES.OFFERINGS}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={COMUNICACAO_ALIENIGENA_PHASES.OFFERINGS}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepHumansOffer
           players={players}

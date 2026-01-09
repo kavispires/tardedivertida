@@ -13,7 +13,10 @@ export function GalleryWindowCredits({ artist }: GalleryWindowCreditsProps) {
   return (
     <div className="a-gallery__credits">
       <SlideShowLabel>
-        <Translate pt="Artista" en="Artist" />
+        <Translate
+          pt="Artista"
+          en="Artist"
+        />
       </SlideShowLabel>
       <span className="uppercase">
         <PlayerAvatarEntry player={artist} />

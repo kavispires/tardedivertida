@@ -1,6 +1,10 @@
 export function SofaIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#8a90a7"
         d="M124 348v30a5 5 0 01-5 5H71a5 5 0 01-5-5v-30a5 5 0 015-5h48a5 5 0 015 5zm315-5h-48a5 5 0 00-5 5v30a5 5 0 005 5h48a5 5 0 005-5v-30a5 5 0 00-5-5z"

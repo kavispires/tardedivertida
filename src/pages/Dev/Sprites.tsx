@@ -122,7 +122,10 @@ function SpritesPage() {
             style={{ minWidth: '15ch' }}
           >
             {optionsList.map((option) => (
-              <Select.Option value={option.key} key={option.key}>
+              <Select.Option
+                value={option.key}
+                key={option.key}
+              >
                 {option.label}
               </Select.Option>
             ))}
@@ -154,7 +157,10 @@ function AvatarsContent() {
               style={{ backgroundColor: avatar.color }}
             >
               <div style={{ overflow: 'hidden', textAlign: 'center' }}>[{avatar.id}]</div>
-              <PlayerAvatar avatarId={avatar.id} size={64} />
+              <PlayerAvatar
+                avatarId={avatar.id}
+                size={64}
+              />
               <div style={{ overflow: 'hidden', textAlign: 'center' }}>
                 <p>
                   {avatar.description.en}
@@ -176,7 +182,10 @@ function AvatarsContent() {
               className="sprites__avatar-grid-item"
               style={{ backgroundColor: avatar.color }}
             >
-              <PlayerAvatar avatarId={avatar.id} size={64} />
+              <PlayerAvatar
+                avatarId={avatar.id}
+                size={64}
+              />
               <div style={{ overflow: 'hidden', textAlign: 'center' }}>
                 <p>
                   {avatar.description.en}
@@ -201,11 +210,34 @@ function Content({ type }: { type: string }) {
     <ul className="sprites__flex">
       {ids.map((id) => {
         return (
-          <li key={`content-${id}`} className="sprites__flex-item">
-            {type === 'sheep' && <SheepAvatar sheepId={String(id)} id={placeholder} />}
-            {type === 'costumes' && <CostumeAvatar id={String(id)} avatarId={placeholder} />}
-            {type === 'clubbers' && <ClubberAvatar id={String(id)} avatarId={placeholder} />}
-            {type === 'super-heroes' && <SuperHeroAvatar id={String(id)} avatarId={placeholder} />}
+          <li
+            key={`content-${id}`}
+            className="sprites__flex-item"
+          >
+            {type === 'sheep' && (
+              <SheepAvatar
+                sheepId={String(id)}
+                id={placeholder}
+              />
+            )}
+            {type === 'costumes' && (
+              <CostumeAvatar
+                id={String(id)}
+                avatarId={placeholder}
+              />
+            )}
+            {type === 'clubbers' && (
+              <ClubberAvatar
+                id={String(id)}
+                avatarId={placeholder}
+              />
+            )}
+            {type === 'super-heroes' && (
+              <SuperHeroAvatar
+                id={String(id)}
+                avatarId={placeholder}
+              />
+            )}
           </li>
         );
       })}
@@ -222,7 +254,10 @@ function EmojisContent() {
     <ul className="sprites__flex">
       {ids.map((id) => {
         return (
-          <li key={`items-${id}`} className="sprites__flex-item">
+          <li
+            key={`items-${id}`}
+            className="sprites__flex-item"
+          >
             <EmojiCard emojiId={String(id)} />
             {id}
           </li>
@@ -237,8 +272,19 @@ function MedalsContent() {
     <Row gutter={8}>
       {MEDALS_IDS.map((id) => {
         return (
-          <Col xs={6} sm={6} md={4} lg={4} xl={2} key={`medal-${id}`} className="sprites__col">
-            <Medal id={String(id)} width={100} />
+          <Col
+            xs={6}
+            sm={6}
+            md={4}
+            lg={4}
+            xl={2}
+            key={`medal-${id}`}
+            className="sprites__col"
+          >
+            <Medal
+              id={String(id)}
+              width={100}
+            />
             {id}
           </Col>
         );
@@ -256,7 +302,10 @@ function TreeContent() {
     <ul className="sprites__flex">
       {ids.map((id) => {
         return (
-          <li key={`tree-${id}`} className="sprites__flex-item">
+          <li
+            key={`tree-${id}`}
+            className="sprites__flex-item"
+          >
             <TreeCard treeId={id} />
             {id}
           </li>

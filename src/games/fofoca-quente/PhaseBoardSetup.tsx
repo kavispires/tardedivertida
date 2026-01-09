@@ -33,7 +33,12 @@ export function PhaseBoardSetup({ players, state, user }: PhaseProps<PhaseBoardS
   const gossiperAnnouncement = (
     <PhaseAnnouncement
       icon={<PeopleAssessmentIcon />}
-      title={<Translate pt="Quem são seus aliados" en="Who are your allies?" />}
+      title={
+        <Translate
+          pt="Quem são seus aliados"
+          en="Who are your allies?"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -49,7 +54,12 @@ export function PhaseBoardSetup({ players, state, user }: PhaseProps<PhaseBoardS
   const detectiveAnnouncement = (
     <PhaseAnnouncement
       icon={<LocationIcon />}
-      title={<Translate pt="Onde você começa investigando?" en="Where do you start investigating?" />}
+      title={
+        <Translate
+          pt="Onde você começa investigando?"
+          en="Where do you start investigating?"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -63,8 +73,14 @@ export function PhaseBoardSetup({ players, state, user }: PhaseProps<PhaseBoardS
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={FOFOCA_QUENTE_PHASES.BOARD_SETUP}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={FOFOCA_QUENTE_PHASES.BOARD_SETUP}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <ViewOr condition={isTheGossiperPlayer}>
           <StepSetupGossiper

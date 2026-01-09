@@ -32,7 +32,10 @@ function getActiveComponent(state: GameState) {
 
 function SessionMedidasNaoExatas() {
   return (
-    <Session gameCollection={GAME_COLLECTION.MEDIDAS_NAO_EXATAS} getActiveComponent={getActiveComponent} />
+    <Session
+      gameCollection={GAME_COLLECTION.MEDIDAS_NAO_EXATAS}
+      getActiveComponent={getActiveComponent}
+    />
   );
 }
 

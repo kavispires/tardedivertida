@@ -18,7 +18,12 @@ export function MetricsBoard({ metricsDescriptors, evaluations, level }: Metrics
         const evaluation = evaluations?.[metricId] ?? 3;
 
         return (
-          <Metric key={metricId} descriptors={descriptors} evaluation={evaluation} visible={level > index} />
+          <Metric
+            key={metricId}
+            descriptors={descriptors}
+            evaluation={evaluation}
+            visible={level > index}
+          />
         );
       })}
     </div>
@@ -40,20 +45,47 @@ function Metric({ descriptors, evaluation, visible }: MetricProps) {
 
   return (
     <div className="metrics-board__metric">
-      <motion.div {...animationProps} className="metrics-board__card metrics-board__card--left">
+      <motion.div
+        {...animationProps}
+        className="metrics-board__card metrics-board__card--left"
+      >
         {descriptors[0].text}
       </motion.div>
 
-      <motion.div className="metrics-board__evaluation" {...animationProps}>
-        <Pip position={0} value={evaluation} />
-        <Pip position={1} value={evaluation} />
-        <Pip position={2} value={evaluation} />
-        <Pip position={3} value={evaluation} />
-        <Pip position={4} value={evaluation} />
-        <Pip position={5} value={evaluation} />
+      <motion.div
+        className="metrics-board__evaluation"
+        {...animationProps}
+      >
+        <Pip
+          position={0}
+          value={evaluation}
+        />
+        <Pip
+          position={1}
+          value={evaluation}
+        />
+        <Pip
+          position={2}
+          value={evaluation}
+        />
+        <Pip
+          position={3}
+          value={evaluation}
+        />
+        <Pip
+          position={4}
+          value={evaluation}
+        />
+        <Pip
+          position={5}
+          value={evaluation}
+        />
       </motion.div>
 
-      <motion.div {...animationProps} className="metrics-board__card metrics-board__card--right">
+      <motion.div
+        {...animationProps}
+        className="metrics-board__card metrics-board__card--right"
+      >
         {descriptors[1].text}
       </motion.div>
     </div>

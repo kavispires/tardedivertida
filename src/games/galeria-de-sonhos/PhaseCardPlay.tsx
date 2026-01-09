@@ -58,12 +58,23 @@ export function PhaseCardPlay({ state, players, meta, user }: PhaseProps) {
   }, [state.activePlayerId, setStep]);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={GALERIA_DE_SONHOS_PHASES.CARD_PLAY}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={GALERIA_DE_SONHOS_PHASES.CARD_PLAY}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<DoorSignIcon />}
-          title={<Translate pt="Hora do Bingo dos Sonhos!" en="Time for the Dream Bingo!" />}
+          title={
+            <Translate
+              pt="Hora do Bingo dos Sonhos!"
+              en="Time for the Dream Bingo!"
+            />
+          }
           onClose={() =>
             setStep(playerInNightmare.id ? GO_TO_PLAYER_WITH_NIGHTMARE_STEP : GO_TO_CARD_PLAY_STEP)
           }
@@ -85,13 +96,21 @@ export function PhaseCardPlay({ state, players, meta, user }: PhaseProps) {
             <Translate
               pt={
                 <>
-                  <PlayerAvatarName player={playerInNightmare} size="large" addressUser /> entrou em um
-                  pesadelo!
+                  <PlayerAvatarName
+                    player={playerInNightmare}
+                    size="large"
+                    addressUser
+                  />{' '}
+                  entrou em um pesadelo!
                 </>
               }
               en={
                 <>
-                  <PlayerAvatarName player={playerInNightmare} size="large" addressUser />{' '}
+                  <PlayerAvatarName
+                    player={playerInNightmare}
+                    size="large"
+                    addressUser
+                  />{' '}
                   {isThePlayerInNightmare ? 'are' : 'is'} in a nightmare!
                 </>
               }
@@ -107,7 +126,11 @@ export function PhaseCardPlay({ state, players, meta, user }: PhaseProps) {
             <Translate
               pt={
                 <>
-                  <PlayerAvatarName player={playerInNightmare} addressUser /> selecionou{' '}
+                  <PlayerAvatarName
+                    player={playerInNightmare}
+                    addressUser
+                  />{' '}
+                  selecionou{' '}
                   <CardHighlight>{Object.keys(playerInNightmare?.cards ?? {}).length} cartas</CardHighlight>,
                   o maior número de cartas da rodada!
                   <br />
@@ -119,7 +142,11 @@ export function PhaseCardPlay({ state, players, meta, user }: PhaseProps) {
               }
               en={
                 <>
-                  <PlayerAvatarName player={playerInNightmare} addressUser /> selected{' '}
+                  <PlayerAvatarName
+                    player={playerInNightmare}
+                    addressUser
+                  />{' '}
+                  selected{' '}
                   <CardHighlight>{Object.keys(playerInNightmare?.cards ?? {}).length} cards</CardHighlight>,
                   the largest number of cards for this round!
                   <br />

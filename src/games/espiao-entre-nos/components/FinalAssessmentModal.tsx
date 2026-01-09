@@ -26,19 +26,31 @@ export function FinalAssessmentModal({
   return (
     <Modal
       open={isModalVisible}
-      title={<Translate pt="Quem você vai acusar?" en="Who are you gonna accuse?" />}
+      title={
+        <Translate
+          pt="Quem você vai acusar?"
+          en="Who are you gonna accuse?"
+        />
+      }
       footer={null}
       closable={false}
       className="e-modal"
     >
-      <FinalAssessmentInstruction finalAssessment={finalAssessment} players={players} />
+      <FinalAssessmentInstruction
+        finalAssessment={finalAssessment}
+        players={players}
+      />
       <Translate
         pt="Não há tempo pra pensar, escolha alguém!"
         en="There's no time to think, just choose someone"
       />
 
       <SpaceContainer>
-        <PlayerSelect players={players} onSend={onMakeAccusation} isFinalAssessment />
+        <PlayerSelect
+          players={players}
+          onSend={onMakeAccusation}
+          isFinalAssessment
+        />
       </SpaceContainer>
     </Modal>
   );

@@ -58,7 +58,12 @@ export function PhaseReveal({ players, state, user }: PhaseProps<PhaseRevealStat
   const announcement = (
     <PhaseAnnouncement
       icon={icon}
-      title={<Translate pt="E as oferendas foram..." en="And the offerings were..." />}
+      title={
+        <Translate
+          pt="E as oferendas foram..."
+          en="And the offerings were..."
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}
@@ -66,8 +71,14 @@ export function PhaseReveal({ players, state, user }: PhaseProps<PhaseRevealStat
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={COMUNICACAO_ALIENIGENA_PHASES.REVEAL}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={COMUNICACAO_ALIENIGENA_PHASES.REVEAL}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepReveal
           announcement={announcement}

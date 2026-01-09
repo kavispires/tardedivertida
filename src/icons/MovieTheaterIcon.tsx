@@ -1,8 +1,18 @@
 export function MovieTheaterIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <path fill="#7fcccb" d="M8 8h464v216H8z"></path>
-      <path fill="#2bb3ce" d="M472 224H8l195.2-28.8C316.8 177.6 416.8 108.8 472 8v216z"></path>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <path
+        fill="#7fcccb"
+        d="M8 8h464v216H8z"
+      ></path>
+      <path
+        fill="#2bb3ce"
+        d="M472 224H8l195.2-28.8C316.8 177.6 416.8 108.8 472 8v216z"
+      ></path>
       <path
         fill="#dd1c4b"
         d="M392 240c4.8-34.4 29.6-62.4 62.4-71.2l1.6-.8c-50.4-24.8-84.8-73.6-92-128.8L360 8h112v232h-80zm-304 0c-4.8-34.4-29.6-62.4-62.4-71.2L24 168c50.4-24.8 84.8-73.6 92-128.8L120 8H8v232h80z"

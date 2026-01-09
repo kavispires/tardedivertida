@@ -78,26 +78,46 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyDrawingGameIcon />} localStorageKey={SETTINGS.KEY}>
+      <Header
+        icon={<DailyDrawingGameIcon />}
+        localStorageKey={SETTINGS.KEY}
+      >
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <DailyContent ref={ref}>
         <ImageCardPreloadHand hand={allSuspects} />
         <div>
-          <Menu hearts={0} total={0} openRules rules={<Rules date={data.id} />} />
+          <Menu
+            hearts={0}
+            total={0}
+            openRules
+            rules={<Rules date={data.id} />}
+          />
           {alreadyPlayed && (
             <Instruction className="info-screen">
               <IconAvatar icon={<ThumbsUpIcon />} />
-              <Translate pt="Você já jogou hoje!" en="You've already played today!" />
-              <Translate pt="Volte amanhã para jogar novamente!" en="Come back tomorrow to play again!" />
+              <Translate
+                pt="Você já jogou hoje!"
+                en="You've already played today!"
+              />
+              <Translate
+                pt="Volte amanhã para jogar novamente!"
+                en="Come back tomorrow to play again!"
+              />
               <Divider />
               <NextGameSuggestion />
             </Instruction>
           )}
         </div>
         {isPlaying && question && (
-          <SpaceContainer vertical key={question.testimonyId}>
-            <StepDots current={questionIndex} total={totalQuestions} />
+          <SpaceContainer
+            vertical
+            key={question.testimonyId}
+          >
+            <StepDots
+              current={questionIndex}
+              total={totalQuestions}
+            />
             <Card
               hideHeader={!question.nsfw}
               header={translate('Conteúdo Sensível', 'Sensitive Content')}
@@ -105,7 +125,11 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
             >
               {question.question}
             </Card>
-            <Flex gap={8} wrap="wrap" justify="center">
+            <Flex
+              gap={8}
+              wrap="wrap"
+              justify="center"
+            >
               {suspects.map((suspectId, index) => (
                 <MotionFlex
                   key={`q${questionIndex}-${suspectId}`}
@@ -115,7 +139,10 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                   justify="center"
                   gap={6}
                 >
-                  <Badge.Ribbon text={data?.names?.[suspectId] ?? null} color="orange">
+                  <Badge.Ribbon
+                    text={data?.names?.[suspectId] ?? null}
+                    color="orange"
+                  >
                     <SuspectCard
                       suspect={{
                         id: suspectId,
@@ -142,12 +169,20 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                     onChange={(checked) => onUpdateAnswer(suspectId, checked)}
                     unCheckedChildren={
                       <>
-                        <DislikeFilled /> <Translate pt="Não" en="No" />
+                        <DislikeFilled />{' '}
+                        <Translate
+                          pt="Não"
+                          en="No"
+                        />
                       </>
                     }
                     checkedChildren={
                       <>
-                        <LikeFilled /> <Translate pt="Sim" en="Yes" />
+                        <LikeFilled />{' '}
+                        <Translate
+                          pt="Sim"
+                          en="Yes"
+                        />
                       </>
                     }
                   />
@@ -163,7 +198,10 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                 iconPosition="start"
                 disabled={questionIndex === 0}
               >
-                <Translate pt="Anterior" en="Previous" />
+                <Translate
+                  pt="Anterior"
+                  en="Previous"
+                />
               </Button>
               <Button
                 shape="round"
@@ -172,7 +210,10 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                 iconPosition="end"
                 disabled={questionIndex === totalQuestions - 1}
               >
-                <Translate pt="Próximo" en="Next" />
+                <Translate
+                  pt="Próximo"
+                  en="Next"
+                />
               </Button>
             </Space.Compact>
 
@@ -196,9 +237,15 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                   size="large"
                 >
                   {questionIndex === totalQuestions - 1 ? (
-                    <Translate pt="Salvar e terminar" en="Save and finish" />
+                    <Translate
+                      pt="Salvar e terminar"
+                      en="Save and finish"
+                    />
                   ) : (
-                    <Translate pt="Cansei / Salvar" en="I'm done / save" />
+                    <Translate
+                      pt="Cansei / Salvar"
+                      en="I'm done / save"
+                    />
                   )}
                 </Button>
               </>
@@ -208,7 +255,10 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
         {isSaving && (
           <Instruction className="info-screen">
             <IconAvatar icon={<AnimatedProcessingIcon />} />
-            <Translate pt="Salvando" en="Saving" />
+            <Translate
+              pt="Salvando"
+              en="Saving"
+            />
           </Instruction>
         )}
         {isIdle && !alreadyPlayed && (
@@ -244,8 +294,23 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
               value={mode === 'nsfw'}
             />
 
-            <Button type="primary" size="large" onClick={onStart} disabled={alreadyPlayed}>
-              {isSaving ? <Translate pt="Salvando" en="Saving" /> : <Translate pt="Começar" en="Start" />}
+            <Button
+              type="primary"
+              size="large"
+              onClick={onStart}
+              disabled={alreadyPlayed}
+            >
+              {isSaving ? (
+                <Translate
+                  pt="Salvando"
+                  en="Saving"
+                />
+              ) : (
+                <Translate
+                  pt="Começar"
+                  en="Start"
+                />
+              )}
             </Button>
           </Region>
         )}
@@ -253,7 +318,10 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
         {!alreadyPlayed && (
           <Region className="my-12">
             <Typography.Text strong>
-              <Translate pt="Experimente em outros estilos:" en="Try in other styles:" />
+              <Translate
+                pt="Experimente em outros estilos:"
+                en="Try in other styles:"
+              />
             </Typography.Text>
 
             <Segmented<string>

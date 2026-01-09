@@ -32,12 +32,22 @@ function RoundAnnouncementText({ guesser, group }: RoundAnnouncementTextProps) {
       <Translate
         pt={
           <>
-            Para essa rodada, <PlayerAvatarName player={guesser} addressUser /> será o(a) adivinhador(a).
+            Para essa rodada,{' '}
+            <PlayerAvatarName
+              player={guesser}
+              addressUser
+            />{' '}
+            será o(a) adivinhador(a).
           </>
         }
         en={
           <>
-            For this round, <PlayerAvatarName player={guesser} addressUser /> will be the guesser.
+            For this round,{' '}
+            <PlayerAvatarName
+              player={guesser}
+              addressUser
+            />{' '}
+            will be the guesser.
           </>
         }
       />
@@ -56,7 +66,12 @@ export function PhaseWordSelection({ state, players }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<OpinionsIcon />}
-      title={<Translate pt="Seleção da Palavra Secreta" en="Secret Word Selection" />}
+      title={
+        <Translate
+          pt="Seleção da Palavra Secreta"
+          en="Secret Word Selection"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -106,11 +121,24 @@ export function PhaseWordSelection({ state, players }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={UE_SO_ISSO_PHASES.WORD_SELECTION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={UE_SO_ISSO_PHASES.WORD_SELECTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={7}>
-          <RoundAnnouncementText guesser={guesser} group={state.group} />
+        <RoundAnnouncement
+          round={state.round}
+          onPressButton={goToNextStep}
+          time={7}
+        >
+          <RoundAnnouncementText
+            guesser={guesser}
+            group={state.group}
+          />
         </RoundAnnouncement>
 
         {/* Step 1 */}

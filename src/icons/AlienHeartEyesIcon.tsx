@@ -1,6 +1,10 @@
 export function AlienHeartEyesIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#f7ae6a"
         d="m310 480.7 113.7-124C546 222.8 451.2 7.4 270 7.4h-28C60.8 7.5-34 222.9 88.3 356.6l113.6 124a73.3 73.3 0 0 0 108.2 0Z"

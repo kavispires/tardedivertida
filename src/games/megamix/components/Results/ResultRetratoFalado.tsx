@@ -22,12 +22,23 @@ export function ResultRetratoFalado({ track, winningValues, containerWidth }: Re
   return (
     <>
       <Instruction>
-        <Translate pt="O monstro escolhido foi" en="The best monster was" />:
+        <Translate
+          pt="O monstro escolhido foi"
+          en="The best monster was"
+        />
+        :
       </Instruction>
       <div className="track-result-values__cards">
         {winningArtworks.map((value) => (
-          <div className="track-result-values__text-value" key={value.drawing}>
-            <CanvasSVG drawing={value.drawing} width={width} className="a-drawing" />
+          <div
+            className="track-result-values__text-value"
+            key={value.drawing}
+          >
+            <CanvasSVG
+              drawing={value.drawing}
+              width={width}
+              className="a-drawing"
+            />
           </div>
         ))}
       </div>

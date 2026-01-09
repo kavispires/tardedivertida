@@ -32,10 +32,18 @@ export function SignUp({ onSuccess }: SignUpProps) {
   return (
     <div className="sign-up">
       <div className="sign-up__logo">
-        <Image src={logo} preview={false} />
+        <Image
+          src={logo}
+          preview={false}
+        />
       </div>
 
-      <SignUpForm form={form} onFinish={onFinish} isError={isError} isLoading={isPending} />
+      <SignUpForm
+        form={form}
+        onFinish={onFinish}
+        isError={isError}
+        isLoading={isPending}
+      />
     </div>
   );
 }
@@ -61,7 +69,12 @@ export function SignUpForm({ form, onFinish, isError, isLoading }: SignUpFormPro
       autoComplete="off"
     >
       <Form.Item
-        label={<Translate pt="E-mail" en="E-mail" />}
+        label={
+          <Translate
+            pt="E-mail"
+            en="E-mail"
+          />
+        }
         name="username"
         rules={[
           {
@@ -74,7 +87,12 @@ export function SignUpForm({ form, onFinish, isError, isLoading }: SignUpFormPro
       </Form.Item>
 
       <Form.Item
-        label={<Translate pt="Senha" en="Password" />}
+        label={
+          <Translate
+            pt="Senha"
+            en="Password"
+          />
+        }
         name="password"
         rules={[
           {
@@ -88,7 +106,12 @@ export function SignUpForm({ form, onFinish, isError, isLoading }: SignUpFormPro
       </Form.Item>
 
       <Form.Item
-        label={<Translate pt="Confirmar Senha" en="Confirm Password" />}
+        label={
+          <Translate
+            pt="Confirmar Senha"
+            en="Confirm Password"
+          />
+        }
         name="password-confirm"
         rules={[
           {
@@ -104,7 +127,10 @@ export function SignUpForm({ form, onFinish, isError, isLoading }: SignUpFormPro
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Alert
             description={
-              <Translate pt="Algo deu errado, tente novamente" en="Something went wrong. Please try again" />
+              <Translate
+                pt="Algo deu errado, tente novamente"
+                en="Something went wrong. Please try again"
+              />
             }
             type="error"
             showIcon
@@ -114,8 +140,15 @@ export function SignUpForm({ form, onFinish, isError, isLoading }: SignUpFormPro
       )}
 
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit" disabled={isLoading}>
-          <Translate pt="Enviar" en="Submit" />
+        <Button
+          type="primary"
+          htmlType="submit"
+          disabled={isLoading}
+        >
+          <Translate
+            pt="Enviar"
+            en="Submit"
+          />
         </Button>
       </Form.Item>
     </Form>

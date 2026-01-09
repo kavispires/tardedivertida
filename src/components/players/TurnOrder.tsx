@@ -62,7 +62,11 @@ export function TurnOrder({
   return (
     <div className={clsx('turn-order', className)}>
       <header className="turn-order__title">
-        <Translate en="Player Order" pt="Ordem dos Jogadores" custom={title} />
+        <Translate
+          en="Player Order"
+          pt="Ordem dos Jogadores"
+          custom={title}
+        />
       </header>
       <ol className="turn-order__players">
         {orderList.map((playerId, index) => {

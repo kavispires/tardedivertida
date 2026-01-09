@@ -28,14 +28,24 @@ export function PhaseRolesSelection({ state, players }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<LawIcon />}
-      title={<Translate pt="Quem quer ser o fofoqueiro?" en="Who will be the gossiper?" />}
+      title={
+        <Translate
+          pt="Quem quer ser o fofoqueiro?"
+          en="Who will be the gossiper?"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
       duration={4}
     />
   );
 
-  const title = <Translate pt="Quem quer ser o fofoqueiro?" en="Who will be the gossiper?" />;
+  const title = (
+    <Translate
+      pt="Quem quer ser o fofoqueiro?"
+      en="Who will be the gossiper?"
+    />
+  );
 
   const ruleInstruction = (
     <Translate
@@ -55,8 +65,14 @@ export function PhaseRolesSelection({ state, players }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={FOFOCA_QUENTE_PHASES.ROLES_SELECTION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={FOFOCA_QUENTE_PHASES.ROLES_SELECTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepSelectPlayer
           players={players}

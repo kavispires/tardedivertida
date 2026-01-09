@@ -33,22 +33,47 @@ export function InquiryHistory({
   const columns: ColumnsType<InquiryHistoryEntry> = [
     {
       key: 'player',
-      title: <Translate pt="Jogador" en="Player" />,
+      title: (
+        <Translate
+          pt="Jogador"
+          en="Player"
+        />
+      ),
       dataIndex: 'playerId',
-      render: (playerId) => <PlayerAvatarName size="small" player={players[playerId]} />,
+      render: (playerId) => (
+        <PlayerAvatarName
+          size="small"
+          player={players[playerId]}
+        />
+      ),
     },
     {
       key: 'items',
-      title: <Translate pt="Objetos" en="Objects" />,
+      title: (
+        <Translate
+          pt="Objetos"
+          en="Objects"
+        />
+      ),
       dataIndex: 'objectIds',
       render: (objectIds) => <Objects objectIds={objectIds} />,
     },
     {
       key: 'answer',
-      title: <Translate pt="Resposta" en="Answer" />,
+      title: (
+        <Translate
+          pt="Resposta"
+          en="Answer"
+        />
+      ),
       dataIndex: 'answer',
       render: (answer) => (
-        <AlienViewBoard request={answer} isAlienBot={isAlienBot} size="small" attributes={attributes} />
+        <AlienViewBoard
+          request={answer}
+          isAlienBot={isAlienBot}
+          size="small"
+          attributes={attributes}
+        />
       ),
     },
   ];
@@ -56,23 +81,47 @@ export function InquiryHistory({
   if (showIntention || debugMode) {
     columns.push({
       key: 'intention',
-      title: <Translate pt="Intenção" en="Intention" />,
+      title: (
+        <Translate
+          pt="Intenção"
+          en="Intention"
+        />
+      ),
       dataIndex: 'intention',
-      render: (intention) => <Intention attributes={attributes} intention={intention} />,
+      render: (intention) => (
+        <Intention
+          attributes={attributes}
+          intention={intention}
+        />
+      ),
     });
   }
   if (debugMode) {
     columns.push({
       key: 'assumption',
-      title: <Translate pt="Suposição" en="Assumption" />,
+      title: (
+        <Translate
+          pt="Suposição"
+          en="Assumption"
+        />
+      ),
       dataIndex: 'assumption',
-      render: (intention) => <Intention attributes={attributes} intention={intention} />,
+      render: (intention) => (
+        <Intention
+          attributes={attributes}
+          intention={intention}
+        />
+      ),
     });
   }
 
   return (
     <Space orientation="vertical">
-      <Table columns={columns} bordered dataSource={inquiryHistory} />
+      <Table
+        columns={columns}
+        bordered
+        dataSource={inquiryHistory}
+      />
     </Space>
   );
 }
@@ -81,7 +130,11 @@ function Objects({ objectIds }: Pick<InquiryHistoryEntry, 'objectIds'>) {
   return (
     <Space>
       {objectIds.map((objectId) => (
-        <ItemCard key={`${objectIds.join('-')}-${objectId}`} itemId={`${objectId}`} width={48} />
+        <ItemCard
+          key={`${objectIds.join('-')}-${objectId}`}
+          itemId={`${objectId}`}
+          width={48}
+        />
       ))}
     </Space>
   );
@@ -99,7 +152,10 @@ function Intention({ attributes, intention }: IntentionProps) {
       {attribute ? (
         <DualTranslate>{attribute.name}</DualTranslate>
       ) : (
-        <Translate pt="Desconhecido" en="Unknown" />
+        <Translate
+          pt="Desconhecido"
+          en="Unknown"
+        />
       )}
     </Space>
   );

@@ -1,6 +1,10 @@
 export function TableIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#fe76a8"
         d="M290.6 59.9h-69.2c-18 0-32.6 14.6-32.6 32.6v66.9h134.4v-67c0-18-14.6-32.5-32.6-32.5z"
@@ -22,7 +26,10 @@ export function TableIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#ffdfcf"
         d="M295.8 47.3A39.8 39.8 0 11219 32.4c16.2 6.7 20.2 3 36.9 3s18.5 4.8 37-3c1.8 4.6 2.8 9.6 2.8 14.9z"
       ></path>
-      <path fill="#7a6d79" d="M293 32.4a39.8 39.8 0 01-74 0 39.8 39.8 0 0174 0z"></path>
+      <path
+        fill="#7a6d79"
+        d="M293 32.4a39.8 39.8 0 01-74 0 39.8 39.8 0 0174 0z"
+      ></path>
       <circle
         cx="256"
         cy="47.3"
@@ -64,7 +71,10 @@ export function TableIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#ffdfcf"
         d="M295.8 464.7a39.8 39.8 0 10-76.7 14.9c16.2-6.7 20.2-3 36.9-3s18.5-4.8 37 3c1.8-4.6 2.8-9.6 2.8-14.9z"
       ></path>
-      <path fill="#7a6d79" d="M293 479.6a39.8 39.8 0 00-74 0 39.8 39.8 0 0074 0z"></path>
+      <path
+        fill="#7a6d79"
+        d="M293 479.6a39.8 39.8 0 00-74 0 39.8 39.8 0 0074 0z"
+      ></path>
       <circle
         cx="256"
         cy="464.7"
@@ -106,7 +116,10 @@ export function TableIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#ae6c6c"
         d="M95.1 117.2a39.8 39.8 0 11-51.2 59c13.9-10.7 12.7-16 21-30.5 8.4-14.5 13.5-13.6 16-33.5 4.9.7 9.7 2.4 14.2 5z"
       ></path>
-      <path fill="#7a6d79" d="M80.9 112.2a39.8 39.8 0 01-37 64 39.8 39.8 0 0137-64z"></path>
+      <path
+        fill="#7a6d79"
+        d="M80.9 112.2a39.8 39.8 0 01-37 64 39.8 39.8 0 0137-64z"
+      ></path>
       <circle
         cx="75.3"
         cy="151.6"
@@ -148,7 +161,10 @@ export function TableIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#ffdfcf"
         d="M456.6 325.9a39.8 39.8 0 10-25.5 73.9c2.4-17.4 7.6-19 16-33.5 8.3-14.5 5-18.4 21-30.5-3-3.9-7-7.3-11.5-9.9z"
       ></path>
-      <path fill="#7a6d79" d="M468 335.8a39.8 39.8 0 00-36.9 64 39.8 39.8 0 0037-64z"></path>
+      <path
+        fill="#7a6d79"
+        d="M468 335.8a39.8 39.8 0 00-36.9 64 39.8 39.8 0 0037-64z"
+      ></path>
       <circle
         cx="436.7"
         cy="360.4"
@@ -190,7 +206,10 @@ export function TableIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#ffdfcf"
         d="M55.4 325.9a39.8 39.8 0 1125.5 73.9c-2.4-17.4-7.6-19-16-33.5-8.3-14.5-5-18.4-21-30.5 3-3.9 7-7.3 11.5-9.9z"
       ></path>
-      <path fill="#7a6d79" d="M44 335.8a39.8 39.8 0 0136.9 64 39.8 39.8 0 01-37-64z"></path>
+      <path
+        fill="#7a6d79"
+        d="M44 335.8a39.8 39.8 0 0136.9 64 39.8 39.8 0 01-37-64z"
+      ></path>
       <circle
         cx="75.3"
         cy="360.4"
@@ -232,7 +251,10 @@ export function TableIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#ae6c6c"
         d="M416.9 117.2a39.8 39.8 0 1051.2 59c-13.9-10.7-12.7-16-21-30.5-8.4-14.5-13.5-13.6-16-33.5-4.9.7-9.7 2.4-14.2 5z"
       ></path>
-      <path fill="#7a6d79" d="M431.1 112.2a39.8 39.8 0 0037 64 39.8 39.8 0 00-37-64z"></path>
+      <path
+        fill="#7a6d79"
+        d="M431.1 112.2a39.8 39.8 0 0037 64 39.8 39.8 0 00-37-64z"
+      ></path>
       <path
         fill="none"
         stroke="#000"
@@ -242,7 +264,12 @@ export function TableIcon(props: React.SVGProps<SVGSVGElement>) {
         strokeWidth="15"
         d="M476.4 148.5a39.8 39.8 0 11-17-29.6M431.1 112.2a39.8 39.8 0 0037 64"
       ></path>
-      <circle cx="256" cy="256" r="135.2" fill="#dc8758"></circle>
+      <circle
+        cx="256"
+        cy="256"
+        r="135.2"
+        fill="#dc8758"
+      ></circle>
       <path
         fill="#d8ecfe"
         d="M277.2 223.5l-22.4 53a6.4 6.4 0 01-8.4 3.4l-74.8-31.5a6.4 6.4 0 01-3.4-8.4l22.4-53a6.4 6.4 0 018.4-3.5l74.8 31.5a6.4 6.4 0 013.4 8.5z"
@@ -282,7 +309,10 @@ export function TableIcon(props: React.SVGProps<SVGSVGElement>) {
         strokeWidth="15"
         d="M298.2 340.4l37.9-16.4a6.4 6.4 0 003.3-8.5L307.1 241a6.4 6.4 0 00-8.5-3.4l-52.8 23a6.5 6.5 0 00-3.3 8.4l30.4 70"
       ></path>
-      <path fill="#c57a44" d="M267.7 390.2a135.2 135.2 0 110-269.4 135.2 135.2 0 000 269.4z"></path>
+      <path
+        fill="#c57a44"
+        d="M267.7 390.2a135.2 135.2 0 110-269.4 135.2 135.2 0 000 269.4z"
+      ></path>
       <path
         fill="none"
         stroke="#000"
@@ -296,7 +326,10 @@ export function TableIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#8ac9fe"
         d="M277.5 367.6l11.8 11.9v40h33.9v-47.8c0-4-1.6-7.9-4.5-10.8l-17.3-17.2-17 7.2-7 16.7z"
       ></path>
-      <path fill="#ffdfcf" d="M273 363l4.5 4.6 24-24-4.6-4.5a16.9 16.9 0 00-24 0 17 17 0 000 24z"></path>
+      <path
+        fill="#ffdfcf"
+        d="M273 363l4.5 4.6 24-24-4.6-4.5a16.9 16.9 0 00-24 0 17 17 0 000 24z"
+      ></path>
       <path
         fill="none"
         stroke="#000"
@@ -344,7 +377,10 @@ export function TableIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#60b7ff"
         d="M234.5 367.6l-11.8 11.9v40h-34v-47.8c0-4 1.7-7.9 4.6-10.7l17.3-17.3 17 7.2 7 16.7z"
       ></path>
-      <path fill="#ffdfcf" d="M239 363.1l-4.5 4.5-24-24 4.6-4.5a16.9 16.9 0 0124 0 17 17 0 010 24z"></path>
+      <path
+        fill="#ffdfcf"
+        d="M239 363.1l-4.5 4.5-24-24 4.6-4.5a16.9 16.9 0 0124 0 17 17 0 010 24z"
+      ></path>
       <path
         fill="none"
         stroke="#000"

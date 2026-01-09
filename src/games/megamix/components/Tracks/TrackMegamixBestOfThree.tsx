@@ -31,26 +31,51 @@ export const TrackMegamixBestOfThree = ({ track, onSubmitAnswer, user }: TrackPr
   return (
     <>
       <MinigameTitle title={{ pt: 'Melhor de 3', en: 'Best of 3' }} />
-      <Space orientation="vertical" align="center" className="contained margin">
-        <Card header={translate('Pergunta', 'Question')} color="orange">
+      <Space
+        orientation="vertical"
+        align="center"
+        className="contained margin"
+      >
+        <Card
+          header={translate('Pergunta', 'Question')}
+          color="orange"
+        >
           {track.data.card.question}
         </Card>
 
         <SpaceContainer>
-          <TransparentButton onClick={() => onSelect(0)} disabled={isLoading || user.ready}>
-            <Card header="A" color="red">
+          <TransparentButton
+            onClick={() => onSelect(0)}
+            disabled={isLoading || user.ready}
+          >
+            <Card
+              header="A"
+              color="red"
+            >
               {track.data.card.options[0]}
             </Card>
           </TransparentButton>
 
-          <TransparentButton onClick={() => onSelect(1)} disabled={isLoading || user.ready}>
-            <Card header="B" color="purple">
+          <TransparentButton
+            onClick={() => onSelect(1)}
+            disabled={isLoading || user.ready}
+          >
+            <Card
+              header="B"
+              color="purple"
+            >
               {track.data.card.options[1]}
             </Card>
           </TransparentButton>
 
-          <TransparentButton onClick={() => onSelect(2)} disabled={isLoading || user.ready}>
-            <Card header="C" color="blue">
+          <TransparentButton
+            onClick={() => onSelect(2)}
+            disabled={isLoading || user.ready}
+          >
+            <Card
+              header="C"
+              color="blue"
+            >
               {track.data.card.options[2]}
             </Card>
           </TransparentButton>

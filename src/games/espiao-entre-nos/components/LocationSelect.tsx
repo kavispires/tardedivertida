@@ -29,9 +29,15 @@ export function LocationSelect({ locations, onSend }: LocationSelectProps) {
 
   return (
     <Space className="e-select-container e-select-container--locations">
-      <Select onChange={onSelectLocation} placeholder={translate('Chute um local', 'Guess location')}>
+      <Select
+        onChange={onSelectLocation}
+        placeholder={translate('Chute um local', 'Guess location')}
+      >
         {locations.map((location) => (
-          <Select.Option key={`select-${location.id}`} value={location.id}>
+          <Select.Option
+            key={`select-${location.id}`}
+            value={location.id}
+          >
             {location.name}
           </Select.Option>
         ))}
@@ -51,7 +57,10 @@ export function LocationSelect({ locations, onSend }: LocationSelectProps) {
           disabled={!selectedLocationId || isLoading}
           icon={isLoading ? <LoadingOutlined /> : null}
         >
-          <Translate pt="Chutar" en="Guess" />
+          <Translate
+            pt="Chutar"
+            en="Guess"
+          />
           {selectedLocationName ? `: ${selectedLocationName}` : ''}
         </Button>
       </Popconfirm>

@@ -22,19 +22,33 @@ export function PhaseResults({ state, players }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<QueueIcon />}
-      title={<Translate pt="Resultado" en="Results" />}
+      title={
+        <Translate
+          pt="Resultado"
+          en="Results"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
       <Instruction>
-        <Translate pt="Quem será que acertou mais?" en="Who got the most right?" />
+        <Translate
+          pt="Quem será que acertou mais?"
+          en="Who got the most right?"
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={FILEIRA_DE_FATOS_PHASES.RESULTS}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={FILEIRA_DE_FATOS_PHASES.RESULTS}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepReveal
           scenarios={state.scenarios}

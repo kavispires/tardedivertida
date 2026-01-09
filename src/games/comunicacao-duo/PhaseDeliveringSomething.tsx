@@ -32,9 +32,15 @@ export function PhaseDeliveringSomething({ players, state, user }: PhaseProps) {
       icon={<MysteryBoxIcon />}
       title={
         isTheRequester ? (
-          <Translate pt="Você pediu!" en="You asked for" />
+          <Translate
+            pt="Você pediu!"
+            en="You asked for"
+          />
         ) : (
-          <Translate pt="Por favor, me vê aí..." en="Please give me..." />
+          <Translate
+            pt="Por favor, me vê aí..."
+            en="Please give me..."
+          />
         )
       }
       currentRound={state?.round?.current}
@@ -52,8 +58,14 @@ export function PhaseDeliveringSomething({ players, state, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={COMUNICACAO_DUO_PHASES.DELIVER_SOMETHING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={COMUNICACAO_DUO_PHASES.DELIVER_SOMETHING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepDeliver
           user={user}

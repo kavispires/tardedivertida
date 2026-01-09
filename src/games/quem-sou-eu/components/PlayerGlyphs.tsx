@@ -37,9 +37,15 @@ export function PlayerGlyphs({ player, glyphWidth, done }: PlayerGlyphsProps) {
             className="q-player-glyphs__entry q-player-glyphs__entry--positive"
             key={`pos-${player.id}-${id}-${index}`}
           >
-            <IconAvatar icon={<YesIcon />} size="small" />
+            <IconAvatar
+              icon={<YesIcon />}
+              size="small"
+            />
             {id ? (
-              <GlyphCard width={glyphWidth} glyphId={id} />
+              <GlyphCard
+                width={glyphWidth}
+                glyphId={id}
+              />
             ) : (
               <div
                 className="q-selections__no-glyph"
@@ -55,9 +61,15 @@ export function PlayerGlyphs({ player, glyphWidth, done }: PlayerGlyphsProps) {
             className="q-player-glyphs__entry q-player-glyphs__entry--negative"
             key={`neg-${player.id}-${id}-${index}`}
           >
-            <IconAvatar icon={<NoIcon />} size="small" />
+            <IconAvatar
+              icon={<NoIcon />}
+              size="small"
+            />
             {id ? (
-              <GlyphCard width={glyphWidth} glyphId={id} />
+              <GlyphCard
+                width={glyphWidth}
+                glyphId={id}
+              />
             ) : (
               <div
                 className="q-selections__no-glyph"

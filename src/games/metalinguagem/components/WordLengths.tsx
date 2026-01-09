@@ -33,9 +33,15 @@ export function WordLengths({ wordLengths, highlightLength, phase }: WordLengthP
         title={
           <>
             {phase === 'WORD_CREATION' ? (
-              <Translate en="Word Lengths Available" pt="Comprimentos de Palavras Disponíveis" />
+              <Translate
+                en="Word Lengths Available"
+                pt="Comprimentos de Palavras Disponíveis"
+              />
             ) : (
-              <Translate en="Remaining Word Lengths" pt="Comprimentos de Palavras Restantes" />
+              <Translate
+                en="Remaining Word Lengths"
+                pt="Comprimentos de Palavras Restantes"
+              />
             )}
             :{' '}
             <Popover
@@ -45,7 +51,12 @@ export function WordLengths({ wordLengths, highlightLength, phase }: WordLengthP
                   pt="O objetivo é criar uma nova palavra-valise com os comprimentos fornecidos."
                 />
               }
-              title={<Translate en="Word Lengths" pt="Comprimentos de Palavras" />}
+              title={
+                <Translate
+                  en="Word Lengths"
+                  pt="Comprimentos de Palavras"
+                />
+              }
               trigger="click"
             >
               <InfoCircleOutlined />
@@ -56,7 +67,10 @@ export function WordLengths({ wordLengths, highlightLength, phase }: WordLengthP
           direction: 'vertical',
         }}
       >
-        <Flex justify="center" gap={16}>
+        <Flex
+          justify="center"
+          gap={16}
+        >
           {lengths.map((wl) => (
             <Tag
               key={wl.wordLength}
@@ -65,7 +79,12 @@ export function WordLengths({ wordLengths, highlightLength, phase }: WordLengthP
               {wl.wordLength}
             </Tag>
           ))}
-          {lengths.length === 0 && <Translate en="No lengths left" pt="Nenhum comprimento restante!" />}
+          {lengths.length === 0 && (
+            <Translate
+              en="No lengths left"
+              pt="Nenhum comprimento restante!"
+            />
+          )}
         </Flex>
         {hasEndangered && (
           <Instruction contained>

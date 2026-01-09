@@ -64,12 +64,18 @@ export function PlayerCounts({
   );
 
   return (
-    <div className={clsx('player-counts', className)} {...rest}>
+    <div
+      className={clsx('player-counts', className)}
+      {...rest}
+    >
       <ol className="player-counts__players">
         {title && (
           <div className="player-counts__title">
             <Tooltip title={title}>
-              <IconAvatar size={size} icon={icon ?? <InfoCircleOutlined style={{ color: 'black' }} />} />
+              <IconAvatar
+                size={size}
+                icon={icon ?? <InfoCircleOutlined style={{ color: 'black' }} />}
+              />
             </Tooltip>
           </div>
         )}
@@ -81,7 +87,10 @@ export function PlayerCounts({
               style={{ backgroundColor: getAvatarColorById(player.avatarId) }}
             >
               <Tooltip title={player.name}>
-                <PlayerAvatar avatarId={player.avatarId} size={size} />{' '}
+                <PlayerAvatar
+                  avatarId={player.avatarId}
+                  size={size}
+                />{' '}
                 <Avatar size={size}>{values[player.id]}</Avatar>
               </Tooltip>
             </span>

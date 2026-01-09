@@ -83,7 +83,11 @@ export function StepDefendingAction({
           player={currentPlayer}
           className={getAnimationClass('tada')}
         />
-        , <Translate pt="explique porque você escolheu as cartas." en="explain why you chose your cards." />
+        ,{' '}
+        <Translate
+          pt="explique porque você escolheu as cartas."
+          en="explain why you chose your cards."
+        />
         <Translate
           pt=" Quando terminar sua defesa, aperte concluir."
           en=" When you're done, press 'End Defense'."
@@ -99,15 +103,31 @@ export function StepDefendingAction({
         )}
       </RuleInstruction>
 
-      <EndDefenseTimedButton onFinishDefenseClick={onFinishDefenseClick} isLoading={isLoading} />
+      <EndDefenseTimedButton
+        onFinishDefenseClick={onFinishDefenseClick}
+        isLoading={isLoading}
+      />
 
-      <SpaceContainer align="center" wrap>
-        <TableFocus table={table} currentPlayer={currentPlayer} />
+      <SpaceContainer
+        align="center"
+        wrap
+      >
+        <TableFocus
+          table={table}
+          currentPlayer={currentPlayer}
+        />
       </SpaceContainer>
 
-      <TurnOrder players={players} activePlayerId={currentPlayer.id} order={turnOrder} />
+      <TurnOrder
+        players={players}
+        activePlayerId={currentPlayer.id}
+        order={turnOrder}
+      />
 
-      <YourSelectedCards table={table} user={user} />
+      <YourSelectedCards
+        table={table}
+        user={user}
+      />
     </>
   );
 }

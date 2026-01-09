@@ -20,7 +20,10 @@ type StepPathWaitingProps = {
 export function StepPathWaiting({ players, announcement, forest, activePlayer }: StepPathWaitingProps) {
   const playerCount = Object.keys(players).length;
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         <Translate
           pt={<>Os jogadores estão seguindo o seu mapa!</>}
@@ -63,7 +66,11 @@ export function StepPathWaiting({ players, announcement, forest, activePlayer }:
 
       <PlayerMap map={activePlayer.map} />
 
-      <Forest forest={forest} map={activePlayer.map} showPath />
+      <Forest
+        forest={forest}
+        map={activePlayer.map}
+        showPath
+      />
     </Step>
   );
 }

@@ -1,18 +1,66 @@
 export function InvestigationIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <path fill="#d7e6eb" d="M80 24h248v48H80z"></path>
-      <path fill="#ccdce4" d="M112 24l32 32h88l-32-32z"></path>
-      <path fill="#b4c2c9" d="M56 24l32 32h88l-32-32z"></path>
-      <path fill="#ecae49" d="M24 456V24h56l32 32h216v400z"></path>
-      <path fill="#ccdce4" d="M67.136 160.762l233.52-55.2 75.44 319.144-233.52 55.2z"></path>
-      <path fill="#7a8a9a" d="M115.26 190.481l155.68-36.8 14.72 62.272-155.68 36.8z"></path>
-      <circle cx="376" cy="216" r="112" fill="#0093ba"></circle>
-      <path fill="#ecae49" d="M392 352v120a16 16 0 01-16 16 16 16 0 01-16-16V352z"></path>
-      <path fill="#d7a145" d="M360 352h32v24h-32z"></path>
-      <rect width="64" height="32" x="344" y="328" fill="#d08b29" rx="16"></rect>
-      <circle cx="376" cy="216" r="80" fill="#7fcbe5"></circle>
-      <path fill="#d08b29" d="M360 456h32v16a16 16 0 01-16 16 16 16 0 01-16-16v-16z"></path>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <path
+        fill="#d7e6eb"
+        d="M80 24h248v48H80z"
+      ></path>
+      <path
+        fill="#ccdce4"
+        d="M112 24l32 32h88l-32-32z"
+      ></path>
+      <path
+        fill="#b4c2c9"
+        d="M56 24l32 32h88l-32-32z"
+      ></path>
+      <path
+        fill="#ecae49"
+        d="M24 456V24h56l32 32h216v400z"
+      ></path>
+      <path
+        fill="#ccdce4"
+        d="M67.136 160.762l233.52-55.2 75.44 319.144-233.52 55.2z"
+      ></path>
+      <path
+        fill="#7a8a9a"
+        d="M115.26 190.481l155.68-36.8 14.72 62.272-155.68 36.8z"
+      ></path>
+      <circle
+        cx="376"
+        cy="216"
+        r="112"
+        fill="#0093ba"
+      ></circle>
+      <path
+        fill="#ecae49"
+        d="M392 352v120a16 16 0 01-16 16 16 16 0 01-16-16V352z"
+      ></path>
+      <path
+        fill="#d7a145"
+        d="M360 352h32v24h-32z"
+      ></path>
+      <rect
+        width="64"
+        height="32"
+        x="344"
+        y="328"
+        fill="#d08b29"
+        rx="16"
+      ></rect>
+      <circle
+        cx="376"
+        cy="216"
+        r="80"
+        fill="#7fcbe5"
+      ></circle>
+      <path
+        fill="#d08b29"
+        d="M360 456h32v16a16 16 0 01-16 16 16 16 0 01-16-16v-16z"
+      ></path>
       <path d="M376 128a88 88 0 1088 88 88.1 88.1 0 00-88-88zm0 160a72 72 0 1172-72 72.081 72.081 0 01-72 72z"></path>
       <path d="M496 216a120 120 0 10-155.851 114.529A23.979 23.979 0 00352 366.624V472a24 24 0 0048 0V366.624a23.979 23.979 0 0011.851-36.1A120.215 120.215 0 00496 216zM384 368v80h-16v-80zm-8 112a8.009 8.009 0 01-8-8v-8h16v8a8.009 8.009 0 01-8 8zm16-144a8 8 0 010 16h-32a8 8 0 010-16zm-16-16a104 104 0 11104-104 104.118 104.118 0 01-104 104z"></path>
       <path d="M32 32h44.687l29.656 29.657A8 8 0 00112 64h208v24h16V24a8 8 0 00-8-8H24a8 8 0 00-8 8v432a8 8 0 008 8h88v-16H32zm67.314 0h41.372l16 16h-41.373zm64 0h33.372l16 16h-33.372zM320 48h-84.686l-16-16H320z"></path>

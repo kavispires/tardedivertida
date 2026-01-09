@@ -69,21 +69,38 @@ export function StepResolution({
   }, [timeLeft]);
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Resultado" en="Results" />
+        <Translate
+          pt="Resultado"
+          en="Results"
+        />
       </StepTitle>
 
       {step === 0 && <RoundType roundType={roundType} />}
 
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         <Step key={0}>
-          <RankingBoard ranking={ranking} players={players} hideGainedPoints delay={1} />
+          <RankingBoard
+            ranking={ranking}
+            players={players}
+            hideGainedPoints
+            delay={1}
+          />
         </Step>
 
         <Step key={1}>
           {showAnnounceSave && (
-            <Instruction contained className={clsx('m-save-card', getAnimationClass('zoomInDown'))}>
+            <Instruction
+              contained
+              className={clsx('m-save-card', getAnimationClass('zoomInDown'))}
+            >
               <HeartFilled style={{ color: 'red' }} />{' '}
               <Translate
                 pt="Vamos dar uma última chance para a pobre ovelhinha que

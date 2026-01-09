@@ -6,5 +6,10 @@ import { DailyVitrais } from './components/DailyVitrais';
 import './utils/styles.scss';
 
 export function DailyVitraisGame() {
-  return <DailyGame gameName="vitrais" GameComponent={DailyVitrais} />;
+  return (
+    <DailyGame
+      gameName="vitrais"
+      GameComponent={DailyVitrais}
+    />
+  );
 }

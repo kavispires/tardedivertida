@@ -34,7 +34,12 @@ export function History({
   const panels: CollapseProps['items'] = [
     {
       key: 'inquiries',
-      label: <Translate pt="Histórico de Perguntas dos Humanos" en="Human Inquiry History" />,
+      label: (
+        <Translate
+          pt="Histórico de Perguntas dos Humanos"
+          en="Human Inquiry History"
+        />
+      ),
       children: (
         <>
           <InquiryHistory
@@ -45,13 +50,23 @@ export function History({
             showIntention={showIntention}
             debugMode={debugMode}
           />
-          {inquiryHistory.length === 0 && <Translate pt="Nenhuma pergunta ainda." en="No questions yet." />}
+          {inquiryHistory.length === 0 && (
+            <Translate
+              pt="Nenhuma pergunta ainda."
+              en="No questions yet."
+            />
+          )}
         </>
       ),
     },
     {
       key: 'requests',
-      label: <Translate pt="Histórico de Pedidos dos Alienígenas" en="Alien Request History" />,
+      label: (
+        <Translate
+          pt="Histórico de Pedidos dos Alienígenas"
+          en="Alien Request History"
+        />
+      ),
       children: (
         <>
           <RequestHistory
@@ -62,7 +77,12 @@ export function History({
             showIntention={showIntention || debugMode}
             attributes={attributes}
           />
-          {requestHistory.length === 0 && <Translate pt="Nenhum pedido ainda." en="No requests yet." />}
+          {requestHistory.length === 0 && (
+            <Translate
+              pt="Nenhum pedido ainda."
+              en="No requests yet."
+            />
+          )}
         </>
       ),
     },

@@ -50,7 +50,10 @@ export function StepSelectWords({ hand, onSubmitBadWords }: StepSelectWordsProps
   return (
     <Step fullWidth>
       <StepTitle>
-        <Translate pt="As Palavras do Trevo" en="The Clover Words" />
+        <Translate
+          pt="As Palavras do Trevo"
+          en="The Clover Words"
+        />
       </StepTitle>
       <Instruction contained>
         <Translate
@@ -61,7 +64,10 @@ export function StepSelectWords({ hand, onSubmitBadWords }: StepSelectWordsProps
 
       <ul className="y-words-list">
         {alphabeticalHand.map((card) => (
-          <li className={clsx('y-words-list__word')} key={card.id}>
+          <li
+            className={clsx('y-words-list__word')}
+            key={card.id}
+          >
             <TransparentButton
               onClick={() => updateSelectedCard(card.id)}
               active={selectedCards[card.id]}
@@ -74,15 +80,26 @@ export function StepSelectWords({ hand, onSubmitBadWords }: StepSelectWordsProps
       </ul>
 
       <SpaceContainer align="center">
-        <Button type="primary" size="large" onClick={onSubmit} disabled={!isComplete || isLoading}>
+        <Button
+          type="primary"
+          size="large"
+          onClick={onSubmit}
+          disabled={!isComplete || isLoading}
+        >
           <Translate
             pt={<>Enviar Palavras ({selectedCount} de 6)</>}
             en={<>Submit Words ({selectedCount} of 6)</>}
           />
         </Button>
 
-        <Button size="large" onClick={onSubmitMock}>
-          <Translate pt="Selecione pra mim" en="Select for me" />
+        <Button
+          size="large"
+          onClick={onSubmitMock}
+        >
+          <Translate
+            pt="Selecione pra mim"
+            en="Select for me"
+          />
         </Button>
       </SpaceContainer>
     </Step>

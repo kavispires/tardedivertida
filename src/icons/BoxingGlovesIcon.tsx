@@ -1,6 +1,10 @@
 export function BoxingGlovesIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#ffdc00"
         d="M102.9 451.23s102.4-102.4 153.6 34.13c51.2-136.53 153.6-34.13 153.6-34.13l-3.41-325.63a84.93 84.93 0 013.41-69.63s-102.4 102.4-153.6-34.14c-51.2 136.54-153.6 34.14-153.6 34.14a84.93 84.93 0 013.41 69.63z"

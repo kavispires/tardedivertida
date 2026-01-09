@@ -29,7 +29,12 @@ export function PhaseReveal({ state, players, user }: PhaseProps) {
     mistake: (
       <PhaseAnnouncement
         icon={<TomatoIcon />}
-        title={<Translate pt="Ah Não!" en="No this one!" />}
+        title={
+          <Translate
+            pt="Ah Não!"
+            en="No this one!"
+          />
+        }
         currentRound={state?.round?.current}
         type="overlay"
         duration={3}
@@ -38,7 +43,12 @@ export function PhaseReveal({ state, players, user }: PhaseProps) {
     lose: (
       <PhaseAnnouncement
         icon={<ScaredIcon />}
-        title={<Translate pt="Nãaaao!" en="Nooooo!" />}
+        title={
+          <Translate
+            pt="Nãaaao!"
+            en="Nooooo!"
+          />
+        }
         currentRound={state?.round?.current}
         type="overlay"
         duration={3}
@@ -48,16 +58,25 @@ export function PhaseReveal({ state, players, user }: PhaseProps) {
       <PhaseAnnouncement
         icon={<MovieTheaterIcon />}
         title={
-          <Translate pt="Até que enfim podemos assistir ao filme!" en="Finally! We can watch a movie!" />
+          <Translate
+            pt="Até que enfim podemos assistir ao filme!"
+            en="Finally! We can watch a movie!"
+          />
         }
         currentRound={state?.round?.current}
         type="overlay"
         duration={7}
       >
         <Instruction>
-          <Translate pt={<>E o filme é: </>} en={<>And the movie is: </>} />
+          <Translate
+            pt={<>E o filme é: </>}
+            en={<>And the movie is: </>}
+          />
           <br />
-          <MovieHighlight movies={state.movies} movieId={state.finalMovieId} />
+          <MovieHighlight
+            movies={state.movies}
+            movieId={state.finalMovieId}
+          />
         </Instruction>
       </PhaseAnnouncement>
     ),
@@ -65,8 +84,14 @@ export function PhaseReveal({ state, players, user }: PhaseProps) {
   };
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={VAMOS_AO_CINEMA_PHASES.REVEAL}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={VAMOS_AO_CINEMA_PHASES.REVEAL}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepReveal
           players={players}

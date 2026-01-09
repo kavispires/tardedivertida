@@ -51,8 +51,14 @@ export function StepWaitPlaceItem({
   const [width, ref] = useCardWidthByContainerRef(2, { maxWidth: 1000 });
 
   return (
-    <Step fullWidth announcement={announcement}>
-      <div ref={ref} style={{ width: '100%' }} />
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
+      <div
+        ref={ref}
+        style={{ width: '100%' }}
+      />
       <StepTitle wait>
         <Translate
           pt={
@@ -72,14 +78,29 @@ export function StepWaitPlaceItem({
 
       <DiagramRules examples={examples} />
 
-      <DiagramSection width={width} diagrams={diagrams} items={items} />
+      <DiagramSection
+        width={width}
+        diagrams={diagrams}
+        items={items}
+      />
 
-      {!isJudge && <MyThings hand={user.hand ?? []} items={items} total={targetItemCount} />}
+      {!isJudge && (
+        <MyThings
+          hand={user.hand ?? []}
+          items={items}
+          total={targetItemCount}
+        />
+      )}
 
       {isJudge && (
         <TitledContainer
           contained
-          title={<Translate pt="As Regras Secretas" en="The Secret Rules" />}
+          title={
+            <Translate
+              pt="As Regras Secretas"
+              en="The Secret Rules"
+            />
+          }
           contentProps={{ direction: 'vertical' }}
         >
           <Translate

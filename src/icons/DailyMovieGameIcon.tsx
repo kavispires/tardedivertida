@@ -1,6 +1,10 @@
 export function DailyMovieGameIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#666"
         d="M44.63 215.21L467.16 81.32c6.85-2.49 12.46-6.23 9.34-17.44L468.41 39A44.23 44.23 0 00413 10.32L39.33 128.65a44.2 44.2 0 00-28.64 55.42l7.16 23c3.11 8.72 9.34 13.7 26.78 8.1z"
@@ -13,7 +17,10 @@ export function DailyMovieGameIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#55a1ff"
         d="M22.52 240.12v218.27a44.19 44.19 0 0044.21 44.22h392.34a44.19 44.19 0 0044.21-44.22V241.05c0-12.45-10-25.53-24.6-25.53H47.12c-12.46 0-24.6 6.23-24.6 24.6z"
       ></path>
-      <path fill="#488bff" d="M112.19 285.89c-21.79 0-21.79 33 0 33h391.4v-33z"></path>
+      <path
+        fill="#488bff"
+        d="M112.19 285.89c-21.79 0-21.79 33 0 33h391.4v-33z"
+      ></path>
       <path
         fill="#666"
         d="M503.59 292.12v-50.75a24.91 24.91 0 00-24.27-25.54H47.12c-16.19 0-24.6 10-24.6 24.6v51.69z"

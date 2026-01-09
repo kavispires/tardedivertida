@@ -20,7 +20,11 @@ export const Canvas = ({ drawing = '[]', className = '' }: CanvasProps) => {
   const lines = typeof drawing === 'string' ? JSON.parse(drawing) : drawing;
 
   return (
-    <Stage width={500} height={500} className={clsx('canvas', className)}>
+    <Stage
+      width={500}
+      height={500}
+      className={clsx('canvas', className)}
+    >
       <Layer>
         {lines.map((line: CanvasLine, i: number) => (
           <Line

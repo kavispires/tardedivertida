@@ -33,11 +33,17 @@ export function ItemsBoard({ items, selectedItems = [], onSelectItem, currentAge
   const columnsCount = Math.min(12, Math.floor(orderedItems.length / 6));
 
   return (
-    <div className="idade-items-board" style={{ gridTemplateColumns: `repeat(${columnsCount}, 1fr)` }}>
+    <div
+      className="idade-items-board"
+      style={{ gridTemplateColumns: `repeat(${columnsCount}, 1fr)` }}
+    >
       {orderedItems.map((item, index) => {
         const newItem = item.decks?.includes(`age${currentAge}`);
         return (
-          <TransparentButton key={item.id} onClick={() => onSelectItem(item.id)}>
+          <TransparentButton
+            key={item.id}
+            onClick={() => onSelectItem(item.id)}
+          >
             <motion.div
               {...getAnimation(newItem ? 'bounceIn' : 'flipInX', {
                 delay: (newItem ? 1 : 0) + 0.1 * (Math.floor(index / columnsCount) + (index % columnsCount)),

@@ -18,7 +18,11 @@ import { achievementsReference } from './utils/achievements';
 
 export function PhaseGameOver({ state, players }: PhaseProps) {
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<CrownIcon />}>
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<CrownIcon />}
+    >
       {!isEqual(state.winners, state.fairWinners) && (
         <TitledContainer
           title={
@@ -32,8 +36,14 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
             <ul className="game-over__winners">
               {state.fairWinners.map((winner: GamePlayer) => {
                 return (
-                  <li className="game-over__winner" key={`winner-${winner.name}`}>
-                    <PlayerAvatar className="game-over__avatar" avatarId={winner.avatarId ?? 25} />
+                  <li
+                    className="game-over__winner"
+                    key={`winner-${winner.name}`}
+                  >
+                    <PlayerAvatar
+                      className="game-over__avatar"
+                      avatarId={winner.avatarId ?? 25}
+                    />
                     <div className="game-over__winner-name">
                       <strong>{winner.name ?? '?'}</strong>,{' '}
                       <DualTranslate>{AVATARS[winner.avatarId].description}</DualTranslate>
@@ -46,7 +56,11 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
         </TitledContainer>
       )}
 
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
     </GameOverWrapper>
   );
 }

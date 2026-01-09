@@ -31,18 +31,38 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
   const Icon = Icons?.[movieId] ?? MovieGenreIcon;
 
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<CrownIcon />}>
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<CrownIcon />}
+    >
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
 
       <TitledContainer
-        title={<Translate pt="O Filme" en="The Movie" />}
+        title={
+          <Translate
+            pt="O Filme"
+            en="The Movie"
+          />
+        }
         contentProps={{ className: 'final-gallery' }}
       >
-        <Space className="role" orientation="vertical" align="center">
+        <Space
+          className="role"
+          orientation="vertical"
+          align="center"
+        >
           {movie && (
             <>
               <Icon width={75} />
-              <Title size="small" className="role__title">
+              <Title
+                size="small"
+                className="role__title"
+              >
                 {movie.movieTitle}
               </Title>
               <TextHighlight>
@@ -57,14 +77,29 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
                 if (role.cast && role.actor) {
                   const actor = role.candidates[role.actor];
                   return (
-                    <RoleBoard activeRole={role} instruction="CAST" key={roleId}>
-                      <SuspectCard suspect={actor} width={100} />
+                    <RoleBoard
+                      activeRole={role}
+                      instruction="CAST"
+                      key={roleId}
+                    >
+                      <SuspectCard
+                        suspect={actor}
+                        width={100}
+                      />
                     </RoleBoard>
                   );
                 }
                 return (
-                  <RoleBoard activeRole={role} instruction="CAST" key={roleId}>
-                    <ImageCard cardId="us-unknown" cardWidth={120} preview={false} />
+                  <RoleBoard
+                    activeRole={role}
+                    instruction="CAST"
+                    key={roleId}
+                  >
+                    <ImageCard
+                      cardId="us-unknown"
+                      cardWidth={120}
+                      preview={false}
+                    />
                   </RoleBoard>
                 );
               })}

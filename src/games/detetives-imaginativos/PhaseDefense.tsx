@@ -31,12 +31,22 @@ export function PhaseDefense({ state, players, user }: PhaseProps<PhaseDefenseSt
   const announcement = (
     <PhaseAnnouncement
       icon={<DefenseIcon />}
-      title={<Translate pt="Defensa" en="Defense" />}
+      title={
+        <Translate
+          pt="Defensa"
+          en="Defense"
+        />
+      }
       currentRound={state?.round?.current}
       duration={5}
       type="overlay"
     >
-      <Flex className="d-secret-clue-announcement" justify="center" align="center" gap={8}>
+      <Flex
+        className="d-secret-clue-announcement"
+        justify="center"
+        align="center"
+        gap={8}
+      >
         <RevealedClueTitle clue={state.clue} />
       </Flex>
 
@@ -55,7 +65,10 @@ export function PhaseDefense({ state, players, user }: PhaseProps<PhaseDefenseSt
       allowedPhase={DETETIVES_IMAGINATIVOS_PHASES.DEFENSE}
       className="d-defense-phase"
     >
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepDefending
           clue={state.clue}

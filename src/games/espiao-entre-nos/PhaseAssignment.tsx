@@ -28,7 +28,10 @@ export function PhaseAssignment({ state, players, user }: PhaseProps) {
       allowedPhase={ESPIAO_ENTRE_NOS_PHASES.ASSIGNMENT}
       className="e-phase"
     >
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <RoundAnnouncement
           round={state.round}
@@ -37,14 +40,22 @@ export function PhaseAssignment({ state, players, user }: PhaseProps) {
           className="e-round-announcement"
         >
           <Instruction className="e-phase-instruction">
-            <Translate pt="Há um espião entre nós!" en="There's a spy among us!" />
+            <Translate
+              pt="Há um espião entre nós!"
+              en="There's a spy among us!"
+            />
           </Instruction>
         </RoundAnnouncement>
 
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<SpyNewspaperIcon />}
-          title={<Translate pt="Prólogo" en="Prologue" />}
+          title={
+            <Translate
+              pt="Prólogo"
+              en="Prologue"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           buttonText=""
@@ -80,7 +91,12 @@ export function PhaseAssignment({ state, players, user }: PhaseProps) {
         {/* Step 3 */}
         <PhaseAnnouncement
           icon={<SecretIcon />}
-          title={<Translate pt="Você tem uma missão" en="You have one mission" />}
+          title={
+            <Translate
+              pt="Você tem uma missão"
+              en="You have one mission"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           buttonText=""
@@ -114,7 +130,12 @@ export function PhaseAssignment({ state, players, user }: PhaseProps) {
         {/* Step 5 */}
         <PhaseAnnouncement
           icon={<PassportIcon />}
-          title={<Translate pt="Mais detalhes" en="More details" />}
+          title={
+            <Translate
+              pt="Mais detalhes"
+              en="More details"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           buttonText=""
@@ -156,7 +177,11 @@ export function PhaseAssignment({ state, players, user }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 6 */}
-        <StepAssignment user={user} isUserTheSpy={isUserTheSpy} locations={state.locations} />
+        <StepAssignment
+          user={user}
+          isUserTheSpy={isUserTheSpy}
+          locations={state.locations}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

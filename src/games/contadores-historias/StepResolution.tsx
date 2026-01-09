@@ -44,9 +44,15 @@ export function StepResolution({
   const otherCards = table.filter((entry) => entry.playerId !== storyteller.id);
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Solução" en="Solution" />
+        <Translate
+          pt="Solução"
+          en="Solution"
+        />
       </StepTitle>
       <PopoverRule content={<ScoringRules storyteller={storyteller} />} />
 
@@ -56,7 +62,10 @@ export function StepResolution({
             <div className="c-story-book__selected-card">
               {solution && (
                 <>
-                  <ImageCard cardId={solution.cardId} cardWidth={160} />
+                  <ImageCard
+                    cardId={solution.cardId}
+                    cardWidth={160}
+                  />
                   <ImageBlurButton cardId={solution.cardId} />
                 </>
               )}
@@ -65,25 +74,37 @@ export function StepResolution({
           rightPage={
             <div className="c-story-book__solution">
               <p>
-                <Translate pt="Era uma vez..." en="Once upon a time..." />
+                <Translate
+                  pt="Era uma vez..."
+                  en="Once upon a time..."
+                />
               </p>
               <p className="c-story-book__story">{story}</p>
 
               <div>
-                <Translate pt="Votaram corretamente:" en="Voted correctly:" />
+                <Translate
+                  pt="Votaram corretamente:"
+                  en="Voted correctly:"
+                />
                 <ul className="c-story-book__correct-players">
                   {solution?.votes
                     ?.filter((entry) => entry !== storyteller.id)
                     .map((playerId) => {
                       return (
                         <li key={`correct-vote-player-${playerId}`}>
-                          <PlayerAvatarName player={players[playerId]} size="small" />
+                          <PlayerAvatarName
+                            player={players[playerId]}
+                            size="small"
+                          />
                         </li>
                       );
                     })}
                   {(solution?.votes?.length ?? 0) < 2 && (
                     <li className="c-story-book__nobody">
-                      <Translate pt="Vixi, ninguém acertou..." en="Well, nobody got it..." />
+                      <Translate
+                        pt="Vixi, ninguém acertou..."
+                        en="Well, nobody got it..."
+                      />
                     </li>
                   )}
                 </ul>
@@ -95,16 +116,26 @@ export function StepResolution({
       <ul className="c-other-cards">
         {otherCards.map((cardEntry: TableEntry, index) => {
           return (
-            <li className="c-other-cards__entry" key={`other-card-votes-${cardEntry.playerId}-${index}`}>
+            <li
+              className="c-other-cards__entry"
+              key={`other-card-votes-${cardEntry.playerId}-${index}`}
+            >
               <div className="c-other-cards__player">
                 {cardEntry.playerId === 'NPC' ? (
                   <NPCPlayerAvatar size="small" />
                 ) : (
-                  <PlayerAvatarName player={players[cardEntry.playerId]} size="small" />
+                  <PlayerAvatarName
+                    player={players[cardEntry.playerId]}
+                    size="small"
+                  />
                 )}
               </div>
 
-              <ImageCard cardId={cardEntry.cardId} cardWidth={cardWidth} className={'c-other-cards__card'} />
+              <ImageCard
+                cardId={cardEntry.cardId}
+                cardWidth={cardWidth}
+                className={'c-other-cards__card'}
+              />
               <ImageBlurButton cardId={cardEntry.cardId} />
 
               <div className="c-other-cards__votes">
@@ -124,8 +155,15 @@ export function StepResolution({
         })}
       </ul>
       <SpaceContainer>
-        <TimedButton onClick={goToNextStep} onExpire={goToNextStep} duration={20}>
-          <Translate pt="Continuar" en="Continue" />
+        <TimedButton
+          onClick={goToNextStep}
+          onExpire={goToNextStep}
+          duration={20}
+        >
+          <Translate
+            pt="Continuar"
+            en="Continue"
+          />
         </TimedButton>
       </SpaceContainer>
     </Step>

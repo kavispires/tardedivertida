@@ -24,7 +24,12 @@ export function PhaseEvaluation({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<ChoiceIcon />}
-      title={<Translate pt="Vote!" en="Vote!" />}
+      title={
+        <Translate
+          pt="Vote!"
+          en="Vote!"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -38,8 +43,14 @@ export function PhaseEvaluation({ state, players, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={RETRATO_FALADO_PHASES.EVALUATION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={RETRATO_FALADO_PHASES.EVALUATION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepVote
           isUserTheWitness={isUserTheWitness}

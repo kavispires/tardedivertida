@@ -75,11 +75,18 @@ export function StepResult({
   return (
     <Step announcement={announcement}>
       <StepTitle size="small">
-        <Translate pt="Resultado" en="Results" />: <TrackTitle track={track} />
+        <Translate
+          pt="Resultado"
+          en="Results"
+        />
+        : <TrackTitle track={track} />
       </StepTitle>
 
       <RuleInstruction type="event">
-        <IconAvatar icon={<DJIcon />} size="large" />
+        <IconAvatar
+          icon={<DJIcon />}
+          size="large"
+        />
         {scoringType === 'NORMAL' && (
           <Translate
             pt={<>Jogadores que votaram com a maioria entram ou continuam na Área VIP.</>}
@@ -105,16 +112,31 @@ export function StepResult({
         )}
       </RuleInstruction>
 
-      <div className="results" ref={resultRef as Ref<HTMLDivElement>}>
-        <div className="results__vip" id="area-w">
+      <div
+        className="results"
+        ref={resultRef as Ref<HTMLDivElement>}
+      >
+        <div
+          className="results__vip"
+          id="area-w"
+        >
           <span className="results__icon">
-            <IconAvatar icon={<VIPLineIcon />} size="large" />
+            <IconAvatar
+              icon={<VIPLineIcon />}
+              size="large"
+            />
           </span>
           <span className="results__label">
-            <Translate pt="Área VIP" en="VIP Lounge" />
+            <Translate
+              pt="Área VIP"
+              en="VIP Lounge"
+            />
           </span>
         </div>
-        <div className="results__values" ref={ref as Ref<HTMLDivElement>}>
+        <div
+          className="results__values"
+          ref={ref as Ref<HTMLDivElement>}
+        >
           <ResultValueDelegator
             track={track}
             winningValues={winningValues}
@@ -124,12 +146,21 @@ export function StepResult({
             containerWidth={resultsValueWidth}
           />
         </div>
-        <div className="results__gutter" id="area-l">
+        <div
+          className="results__gutter"
+          id="area-l"
+        >
           <span className="results__icon">
-            <IconAvatar icon={<GarbageIcon />} size="large" />
+            <IconAvatar
+              icon={<GarbageIcon />}
+              size="large"
+            />
           </span>
           <span className="results__label">
-            <Translate pt="Pista (Sarjeta)" en="GA (Scum)" />
+            <Translate
+              pt="Pista (Sarjeta)"
+              en="GA (Scum)"
+            />
           </span>
         </div>
 
@@ -158,12 +189,26 @@ export function StepResult({
 
       <SpaceContainer>
         {isFirstRunThrough ? (
-          <TimedButton onClick={onSeeRanking} onExpire={onSeeRanking} duration={20} icon={<TrophyOutlined />}>
-            <Translate pt="Ver Ranking" en="See Ranking" />
+          <TimedButton
+            onClick={onSeeRanking}
+            onExpire={onSeeRanking}
+            duration={20}
+            icon={<TrophyOutlined />}
+          >
+            <Translate
+              pt="Ver Ranking"
+              en="See Ranking"
+            />
           </TimedButton>
         ) : (
-          <Button onClick={onSeeRanking} icon={<TrophyOutlined />}>
-            <Translate pt="Ver Ranking" en="See Ranking" />
+          <Button
+            onClick={onSeeRanking}
+            icon={<TrophyOutlined />}
+          >
+            <Translate
+              pt="Ver Ranking"
+              en="See Ranking"
+            />
           </Button>
         )}
       </SpaceContainer>

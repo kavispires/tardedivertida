@@ -24,10 +24,22 @@ export function PhaseTrickOrTreat({ state, players, user }: PhaseProps) {
   const onSubmitDecision = useOnSubmitDecisionAPIRequest();
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={NA_RUA_DO_MEDO_PHASES.TRICK_OR_TREAT}>
-      <StepSwitcher step={step} players={players} waitingRoom={{ content: <PlayerStats user={user} /> }}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={NA_RUA_DO_MEDO_PHASES.TRICK_OR_TREAT}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+        waitingRoom={{ content: <PlayerStats user={user} /> }}
+      >
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} buttonText=" " onPressButton={goToNextStep} time={5}>
+        <RoundAnnouncement
+          round={state.round}
+          buttonText=" "
+          onPressButton={goToNextStep}
+          time={5}
+        >
           <Instruction contained>
             <Translate
               pt={`Vamos pegar doces na Rua do Medo ${state.round.current} de ${state.round.total}`}
@@ -40,7 +52,12 @@ export function PhaseTrickOrTreat({ state, players, user }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<StreetIcon />}
-          title={<Translate pt="Gostosuras ou Travessuras?" en="Trick or Treat?" />}
+          title={
+            <Translate
+              pt="Gostosuras ou Travessuras?"
+              en="Trick or Treat?"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={5}

@@ -16,7 +16,11 @@ type ThingProps = {
 
 export function Thing({ itemId, name, width = 50, className, minimize }: ThingProps) {
   return (
-    <Flex vertical align="center" className={clsx('thing', className)}>
+    <Flex
+      vertical
+      align="center"
+      className={clsx('thing', className)}
+    >
       {!minimize && (
         <DailyItem
           itemId={itemId}
@@ -26,7 +30,11 @@ export function Thing({ itemId, name, width = 50, className, minimize }: ThingPr
           title={countThing(name)}
         />
       )}
-      <Typography.Text code key={itemId} className="thing__name">
+      <Typography.Text
+        code
+        key={itemId}
+        className="thing__name"
+      >
         {name}
       </Typography.Text>
     </Flex>

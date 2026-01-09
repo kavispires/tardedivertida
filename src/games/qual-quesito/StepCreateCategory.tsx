@@ -51,9 +51,15 @@ export function StepCreateCategory({
   });
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt={<>Qual o quesito?</>} en={<>What is the category?</>} />
+        <Translate
+          pt={<>Qual o quesito?</>}
+          en={<>What is the category?</>}
+        />
       </StepTitle>
 
       <RuleInstruction type="action">
@@ -121,7 +127,10 @@ export function StepCreateCategory({
             });
           }}
         >
-          <Translate pt="Enviar categoria" en="Submit category" />
+          <Translate
+            pt="Enviar categoria"
+            en="Submit category"
+          />
         </SendButton>
 
         <Popconfirm
@@ -140,15 +149,29 @@ export function StepCreateCategory({
           onConfirm={onSkipTurn}
           type="yes-no"
         >
-          <Button size="large" disabled={isLoading} icon={<RedoOutlined />} type="dashed">
-            <Translate pt="Pular vez" en="Skip turn" />
+          <Button
+            size="large"
+            disabled={isLoading}
+            icon={<RedoOutlined />}
+            type="dashed"
+          >
+            <Translate
+              pt="Pular vez"
+              en="Skip turn"
+            />
           </Button>
         </Popconfirm>
       </SpaceContainer>
 
-      <ItemsHand hand={user.hand ?? []} cardsDict={cardsDict} />
+      <ItemsHand
+        hand={user.hand ?? []}
+        cardsDict={cardsDict}
+      />
 
-      <PlayersHandsCounts players={players} turnOrder={turnOrder} />
+      <PlayersHandsCounts
+        players={players}
+        turnOrder={turnOrder}
+      />
     </Step>
   );
 }

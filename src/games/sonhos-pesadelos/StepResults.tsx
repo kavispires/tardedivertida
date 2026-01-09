@@ -29,14 +29,30 @@ export function StepResults({ players, gallery, slideShowConfig, correctGuessPoi
   const activePlayer = players[galleryEntry.playerId];
 
   return (
-    <Step fullWidth className="s-results-step">
+    <Step
+      fullWidth
+      className="s-results-step"
+    >
       <StepTitle>
-        <Translate pt="Resultado" en="Results" />
+        <Translate
+          pt="Resultado"
+          en="Results"
+        />
       </StepTitle>
 
-      <SlideShow config={slideShowConfig} barColor={getAvatarColorById(activePlayer.avatarId)}>
-        <GalleryDreamDisplay entry={galleryEntry} activePlayer={activePlayer} />
-        <GalleryGuesses entry={galleryEntry} players={players} correctGuessPoints={correctGuessPoints} />
+      <SlideShow
+        config={slideShowConfig}
+        barColor={getAvatarColorById(activePlayer.avatarId)}
+      >
+        <GalleryDreamDisplay
+          entry={galleryEntry}
+          activePlayer={activePlayer}
+        />
+        <GalleryGuesses
+          entry={galleryEntry}
+          players={players}
+          correctGuessPoints={correctGuessPoints}
+        />
       </SlideShow>
     </Step>
   );

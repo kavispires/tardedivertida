@@ -23,20 +23,34 @@ export function PhaseReveal({ state, players, user }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<QualitySealIcon />}
-      title={<Translate pt="Resultado" en="Results" />}
+      title={
+        <Translate
+          pt="Resultado"
+          en="Results"
+        />
+      }
       currentRound={state?.round?.current}
       duration={5}
       type="overlay"
     >
       <Instruction>
-        <Translate pt={<>E o mais votado é...</>} en={<>And the one who got the most votes is...</>} />
+        <Translate
+          pt={<>E o mais votado é...</>}
+          en={<>And the one who got the most votes is...</>}
+        />
       </Instruction>
     </PhaseAnnouncement>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={RETRATO_FALADO_PHASES.REVEAL}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={RETRATO_FALADO_PHASES.REVEAL}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepResults
           witness={witness}

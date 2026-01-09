@@ -15,7 +15,10 @@ type StepBuildWaitProps = {
 
 export function StepBuildWait({ user, announcement, forest }: StepBuildWaitProps) {
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         <Translate
           pt="Todos os jogadores já descobriam seu mapa completamente"
@@ -30,7 +33,11 @@ export function StepBuildWait({ user, announcement, forest }: StepBuildWaitProps
         />
       </Instruction>
 
-      <Forest forest={forest} map={user.map} showPath />
+      <Forest
+        forest={forest}
+        map={user.map}
+        showPath
+      />
     </Step>
   );
 }

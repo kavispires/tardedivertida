@@ -25,7 +25,10 @@ export function BettingChipValue({ value, title }: BettingChipValueProps) {
   if (title) {
     return (
       <Tooltip title={title}>
-        <Avatar size="small" style={{ background: COLORS[value] }}>
+        <Avatar
+          size="small"
+          style={{ background: COLORS[value] }}
+        >
           {value ?? 0}
         </Avatar>
       </Tooltip>
@@ -33,7 +36,10 @@ export function BettingChipValue({ value, title }: BettingChipValueProps) {
   }
 
   return (
-    <Avatar size="small" style={{ background: COLORS[value] }}>
+    <Avatar
+      size="small"
+      style={{ background: COLORS[value] }}
+    >
       {value ?? 0}
     </Avatar>
   );

@@ -31,7 +31,13 @@ export function DailyGame({ gameName, GameComponent }: DailyGameProps) {
     return <DailyError />;
   }
 
-  return <GameComponent key={dailyData.id} data={dailyData} currentUser={currentUser} />;
+  return (
+    <GameComponent
+      key={dailyData.id}
+      data={dailyData}
+      currentUser={currentUser}
+    />
+  );
 }
 
 type DemoGameProps = {
@@ -75,7 +81,13 @@ export function DemoGame({ GameComponent, useDemoHook, lsKey }: DemoGameProps) {
     return <DailyError />;
   }
 
-  return <GameComponent key={demoData.id} data={demoData} currentUser={currentUser} />;
+  return (
+    <GameComponent
+      key={demoData.id}
+      data={demoData}
+      currentUser={currentUser}
+    />
+  );
 }
 
 /**
@@ -103,8 +115,20 @@ export function DailyGameBetaRelease({
   }
 
   if (!dailyData) {
-    return <DemoGame GameComponent={GameComponent} useDemoHook={useDemoHook} lsKey={lsKey} />;
+    return (
+      <DemoGame
+        GameComponent={GameComponent}
+        useDemoHook={useDemoHook}
+        lsKey={lsKey}
+      />
+    );
   }
 
-  return <GameComponent key={dailyData.id} data={dailyData} currentUser={currentUser} />;
+  return (
+    <GameComponent
+      key={dailyData.id}
+      data={dailyData}
+      currentUser={currentUser}
+    />
+  );
 }

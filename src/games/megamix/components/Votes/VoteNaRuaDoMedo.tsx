@@ -10,14 +10,24 @@ import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 export function VoteNaRuaDoMedo({ track, playersList }: VoteComponentProps) {
   if (track.variant === 'house') {
     return (
-      <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
+      <SpacePlayerCheckWrapper
+        playersList={playersList}
+        paths={['data.value']}
+      >
         {playersList.map((player) => {
           const house = track.data.options.find((entry: PlainObject) => entry.id === player.data.value);
           return (
-            <div key={`vote-${player.id}`} className="player-vote">
+            <div
+              key={`vote-${player.id}`}
+              className="player-vote"
+            >
               <PlayerAvatar avatarId={player.avatarId} />
               <div>{player.name}</div>
-              <HouseCard card={house} candyLeftover={0} preview={false} />
+              <HouseCard
+                card={house}
+                candyLeftover={0}
+                preview={false}
+              />
             </div>
           );
         })}
@@ -26,10 +36,16 @@ export function VoteNaRuaDoMedo({ track, playersList }: VoteComponentProps) {
   }
 
   return (
-    <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
+    <SpacePlayerCheckWrapper
+      playersList={playersList}
+      paths={['data.value']}
+    >
       {playersList.map((player) => {
         return (
-          <div key={`vote-${player.id}`} className="player-vote">
+          <div
+            key={`vote-${player.id}`}
+            className="player-vote"
+          >
             <PlayerAvatar avatarId={player.avatarId} />
             <div className="player-vote__name">{player.name}</div>
             <div className="player-vote__value">{LETTERS[player.data.value]}</div>

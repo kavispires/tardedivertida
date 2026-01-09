@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "teoria-de-conjuntos",
-  "version": "4.0.21",
+  "version": "4.0.22",
   "release": "stable",
   "available": true,
   "title": {

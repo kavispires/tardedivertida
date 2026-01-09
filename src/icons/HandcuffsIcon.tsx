@@ -1,6 +1,10 @@
 export function HandcuffsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#c3d3dd"
         d="M242 230a118 118 0 00-146-83c-60 17-97 79-83 140a118 118 0 00101 91l8 30a14 14 0 0017 9l58-15a14 14 0 0010-17l-8-30a118 118 0 0043-125zm-114 99a68 68 0 1168-68 68 68 0 01-68 68z"

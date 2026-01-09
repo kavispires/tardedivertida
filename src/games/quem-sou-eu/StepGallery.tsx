@@ -59,7 +59,10 @@ export function StepGallery({
   return (
     <Step className="l-step-album">
       <StepTitle>
-        <Translate pt="Galeria" en="Gallery" />
+        <Translate
+          pt="Galeria"
+          en="Gallery"
+        />
       </StepTitle>
 
       <PopoverRule content={<ScoringRules currentRound={round.current} />} />
@@ -71,8 +74,14 @@ export function StepGallery({
         rightClassName="q-gallery__info"
       >
         <div className="q-gallery__result-container">
-          <div className="q-gallery__player" style={{ backgroundColor: currentColor }}>
-            <PlayerAvatarName player={currentPlayer} size="large" />
+          <div
+            className="q-gallery__player"
+            style={{ backgroundColor: currentColor }}
+          >
+            <PlayerAvatarName
+              player={currentPlayer}
+              size="large"
+            />
           </div>
           <SpaceContainer vertical>
             <QSECard
@@ -80,7 +89,10 @@ export function StepGallery({
               width={characterWidth}
               imageCardMode={imageCardMode}
             />
-            <PlayerGlyphs player={currentPlayer} glyphWidth={glyphWidth} />
+            <PlayerGlyphs
+              player={currentPlayer}
+              glyphWidth={glyphWidth}
+            />
           </SpaceContainer>
         </div>
 

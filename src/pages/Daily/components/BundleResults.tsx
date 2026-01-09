@@ -50,21 +50,34 @@ export function BundleResults({ list }: BundleResultsProps) {
 
   return (
     <>
-      <Flex justify="center" align="center" className="my-6">
+      <Flex
+        justify="center"
+        align="center"
+        className="my-6"
+      >
         <Button
           ghost
           icon={<ShareAltOutlined />}
           onClick={() => setOpen(true)}
           disabled={playedGames.length === 0}
         >
-          <Translate en="Share Bundled Results" pt="Compartilhar Resultados" />
+          <Translate
+            en="Share Bundled Results"
+            pt="Compartilhar Resultados"
+          />
         </Button>
       </Flex>
       <Modal
         title={
           <Flex gap={4}>
-            <IconAvatar icon={<SpeechBubbleAcceptedIcon />} size="small" />
-            <Translate en="Bundled results" pt="Resultados agrupados" />
+            <IconAvatar
+              icon={<SpeechBubbleAcceptedIcon />}
+              size="small"
+            />
+            <Translate
+              en="Bundled results"
+              pt="Resultados agrupados"
+            />
           </Flex>
         }
         open={open}
@@ -77,7 +90,11 @@ export function BundleResults({ list }: BundleResultsProps) {
 
         <ul className="list-played-games">
           {playedGames.map((game) => (
-            <li key={game.KEY} className="list-played-games__item" style={{ backgroundColor: game.COLOR }}>
+            <li
+              key={game.KEY}
+              className="list-played-games__item"
+              style={{ backgroundColor: game.COLOR }}
+            >
               <Checkbox
                 checked={selected.includes(game.ROUTE)}
                 onChange={(e) => {
@@ -89,7 +106,10 @@ export function BundleResults({ list }: BundleResultsProps) {
                 }}
                 className="full-width"
               >
-                <IconAvatar icon={<game.HUB_ICON />} size="small" />
+                <IconAvatar
+                  icon={<game.HUB_ICON />}
+                  size="small"
+                />
                 <span className="ml-2">
                   <DualTranslate>{game.NAME}</DualTranslate>
                 </span>
@@ -98,9 +118,19 @@ export function BundleResults({ list }: BundleResultsProps) {
           ))}
         </ul>
 
-        <Flex justify="center" className="mt-4">
-          <Button type="primary" disabled={selected.length === 0} onClick={copyResults}>
-            <Translate en="Copy results" pt="Copiar resultados" />
+        <Flex
+          justify="center"
+          className="mt-4"
+        >
+          <Button
+            type="primary"
+            disabled={selected.length === 0}
+            onClick={copyResults}
+          >
+            <Translate
+              en="Copy results"
+              pt="Copiar resultados"
+            />
           </Button>
         </Flex>
       </Modal>

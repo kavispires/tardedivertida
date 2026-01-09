@@ -27,17 +27,32 @@ export function PhaseAlienSeeding({ players, state, user }: PhaseProps<PhaseAlie
   const announcement = (
     <PhaseAnnouncement
       icon={<BooksIcon />}
-      title={<Translate pt="Análise de Objetos" en="Objects analyses" />}
+      title={
+        <Translate
+          pt="Análise de Objetos"
+          en="Objects analyses"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     />
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={COMUNICACAO_ALIENIGENA_PHASES.ALIEN_SEEDING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={COMUNICACAO_ALIENIGENA_PHASES.ALIEN_SEEDING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
-        <StepSeedAlien onSubmitSeeds={onSubmitSeeds} announcement={announcement} user={user} />
+        <StepSeedAlien
+          onSubmitSeeds={onSubmitSeeds}
+          announcement={announcement}
+          user={user}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

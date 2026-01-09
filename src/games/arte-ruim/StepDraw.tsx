@@ -82,7 +82,10 @@ export function StepDraw({ secretCard, onSubmitDrawing, startDrawingTimer, annou
       {isTimesUp ? (
         <PanicIcon style={{ background: 'white', width: '500px', padding: '2em' }} />
       ) : (
-        <DrawingCanvas lines={lines} setLines={setLines} />
+        <DrawingCanvas
+          lines={lines}
+          setLines={setLines}
+        />
       )}
     </Step>
   );

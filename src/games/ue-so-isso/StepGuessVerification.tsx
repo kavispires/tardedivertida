@@ -62,9 +62,19 @@ export function StepGuessVerification({
   }, [isUserTheController, controller.id, translate, isLoading, message]);
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle className={getAnimationClass('heartBeat')}>
-        <PlayerAvatarName player={guesser} addressUser /> <Translate pt="disse" en="said" />{' '}
+        <PlayerAvatarName
+          player={guesser}
+          addressUser
+        />{' '}
+        <Translate
+          pt="disse"
+          en="said"
+        />{' '}
         <TextHighlight>{guess}</TextHighlight>
       </StepTitle>
 
@@ -92,15 +102,28 @@ export function StepGuessVerification({
       <SpaceContainer className="u-word-guess-phase__suggestions">
         {validSuggestions.map((suggestionEntry, index) => {
           const id = `${suggestionEntry.suggestion}-${index}`;
-          return <SuggestionEasel key={id} id={id} value={suggestionEntry.suggestion} />;
+          return (
+            <SuggestionEasel
+              key={id}
+              id={id}
+              value={suggestionEntry.suggestion}
+            />
+          );
         })}
       </SpaceContainer>
 
       <ViewIf condition={isUserTheController}>
         <RuleInstruction type="action">
-          <Translate pt="Aperte o botão correspondente" en="Press the corresponding button" />:
+          <Translate
+            pt="Aperte o botão correspondente"
+            en="Press the corresponding button"
+          />
+          :
         </RuleInstruction>
-        <ConfirmationButton onSubmitOutcome={onSubmitOutcome} isLoading={isLoading} />
+        <ConfirmationButton
+          onSubmitOutcome={onSubmitOutcome}
+          isLoading={isLoading}
+        />
       </ViewIf>
 
       {!isUserTheController && (
@@ -112,7 +135,10 @@ export function StepGuessVerification({
             />
           }
         >
-          <ConfirmationButton onSubmitOutcome={onSubmitOutcome} isLoading={isLoading} />
+          <ConfirmationButton
+            onSubmitOutcome={onSubmitOutcome}
+            isLoading={isLoading}
+          />
         </HostOnlyContainer>
       )}
     </Step>
@@ -134,7 +160,10 @@ function ConfirmationButton({ onSubmitOutcome, isLoading }: ConfirmationButtonPr
         onClick={() => onSubmitOutcome({ outcome: 'CORRECT' })}
         disabled={isLoading}
       >
-        <Translate pt="Acertou" en="Correct" />
+        <Translate
+          pt="Acertou"
+          en="Correct"
+        />
       </Button>
       <Button
         icon={<CloseOutlined />}
@@ -143,7 +172,10 @@ function ConfirmationButton({ onSubmitOutcome, isLoading }: ConfirmationButtonPr
         onClick={() => onSubmitOutcome({ outcome: 'WRONG' })}
         disabled={isLoading}
       >
-        <Translate pt="Errou" en="Wrong" />
+        <Translate
+          pt="Errou"
+          en="Wrong"
+        />
       </Button>
     </Space>
   );

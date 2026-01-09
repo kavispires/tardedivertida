@@ -23,9 +23,17 @@ export function ViewLastSeconds({ isUserTheWitness, remainingTime, lines, setLin
     <ViewOr condition={isUserTheWitness}>
       <div className="r-view">
         <Title>
-          <Translate pt="Pronto!" en="Done! " />
+          <Translate
+            pt="Pronto!"
+            en="Done! "
+          />
         </Title>
-        <TimerBar steps={TIMES.EXTRA} value={remainingTime} total={TIMES.EXTRA} strokeColor="red" />
+        <TimerBar
+          steps={TIMES.EXTRA}
+          value={remainingTime}
+          total={TIMES.EXTRA}
+          strokeColor="red"
+        />
         <RuleInstruction type="event">
           <Translate
             pt="Boca fechada! Aguarde os jogadores darem os últimos retoques."
@@ -36,13 +44,29 @@ export function ViewLastSeconds({ isUserTheWitness, remainingTime, lines, setLin
 
       <div className="r-view">
         <Title>
-          <Translate pt="Termine!" en="Finish it!" />
+          <Translate
+            pt="Termine!"
+            en="Finish it!"
+          />
         </Title>
         <RuleInstruction type="event">
-          <Translate pt="Últimos segundos para os retoques finais" en="A few seconds more to finish" />
+          <Translate
+            pt="Últimos segundos para os retoques finais"
+            en="A few seconds more to finish"
+          />
         </RuleInstruction>
-        <TimerBar steps={TIMES.EXTRA} value={remainingTime} total={TIMES.EXTRA} strokeColor="red" />
-        <DrawingCanvas lines={lines} setLines={setLines} showControls strokeWidth="small" />
+        <TimerBar
+          steps={TIMES.EXTRA}
+          value={remainingTime}
+          total={TIMES.EXTRA}
+          strokeColor="red"
+        />
+        <DrawingCanvas
+          lines={lines}
+          setLines={setLines}
+          showControls
+          strokeWidth="small"
+        />
       </div>
     </ViewOr>
   );

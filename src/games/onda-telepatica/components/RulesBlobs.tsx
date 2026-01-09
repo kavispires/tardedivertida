@@ -34,7 +34,16 @@ function RulesEn() {
 }
 
 export function ClueWritingRules() {
-  return <PopoverRule content={<Translate pt={<RulesPt />} en={<RulesEn />} />} />;
+  return (
+    <PopoverRule
+      content={
+        <Translate
+          pt={<RulesPt />}
+          en={<RulesEn />}
+        />
+      }
+    />
+  );
 }
 
 export function ScoringRules() {

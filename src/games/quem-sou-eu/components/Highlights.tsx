@@ -6,7 +6,12 @@ import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricH
 
 export function PositiveHighlight({ children, type, iconSize, className }: HighlightProps) {
   return (
-    <MetricHighlight icon={<YesIcon />} type={type} iconSize={iconSize} className={className}>
+    <MetricHighlight
+      icon={<YesIcon />}
+      type={type}
+      iconSize={iconSize}
+      className={className}
+    >
       {children}
     </MetricHighlight>
   );
@@ -14,7 +19,12 @@ export function PositiveHighlight({ children, type, iconSize, className }: Highl
 
 export function NegativeHighlight({ children, type, iconSize, className }: HighlightProps) {
   return (
-    <MetricHighlight icon={<NoIcon />} type={type} iconSize={iconSize} className={className}>
+    <MetricHighlight
+      icon={<NoIcon />}
+      type={type}
+      iconSize={iconSize}
+      className={className}
+    >
       {children}
     </MetricHighlight>
   );

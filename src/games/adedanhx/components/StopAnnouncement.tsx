@@ -18,7 +18,13 @@ type StopAnnouncementProps = {
 export function StopAnnouncement({ stopper, onSubmit }: StopAnnouncementProps) {
   return (
     <>
-      <PhaseAnnouncement icon={<StopIcon />} title="STOP!" currentRound={1} type="overlay" duration={4}>
+      <PhaseAnnouncement
+        icon={<StopIcon />}
+        title="STOP!"
+        currentRound={1}
+        type="overlay"
+        duration={4}
+      >
         <Instruction>
           <Translate
             pt={
@@ -38,7 +44,10 @@ export function StopAnnouncement({ stopper, onSubmit }: StopAnnouncementProps) {
           />
         </Instruction>
       </PhaseAnnouncement>
-      <TimedTimerBar duration={12} onExpire={onSubmit} />
+      <TimedTimerBar
+        duration={12}
+        onExpire={onSubmit}
+      />
     </>
   );
 }

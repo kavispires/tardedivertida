@@ -45,15 +45,25 @@ export function StepSelectTargetAndCard({
   });
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt={<>Prepare-se parar correr </>} en={<>Prepare to run</>} />!{' '}
+        <Translate
+          pt={<>Prepare-se parar correr </>}
+          en={<>Prepare to run</>}
+        />
+        !{' '}
         <TextHighlight>
           {round.current}/{round.total}
         </TextHighlight>
       </StepTitle>
 
-      <RaceTrack runActivity={race[0]} players={players} />
+      <RaceTrack
+        runActivity={race[0]}
+        players={players}
+      />
 
       <RuleInstruction type="action">
         <Translate
@@ -75,8 +85,14 @@ export function StepSelectTargetAndCard({
       </RuleInstruction>
 
       <Instruction contained>
-        <Flex align="center" gap={8}>
-          <Translate en="Target:" pt="Alvo:" />
+        <Flex
+          align="center"
+          gap={8}
+        >
+          <Translate
+            en="Target:"
+            pt="Alvo:"
+          />
           <PlayersSelect
             players={players}
             onChange={setSelectedPlayerId}
@@ -85,12 +101,19 @@ export function StepSelectTargetAndCard({
           />
         </Flex>
 
-        <Flex gap={12} className="my-4">
+        <Flex
+          gap={12}
+          className="my-4"
+        >
           {user.hand?.map((cardId: string) => {
             const card = cardsDict[cardId];
 
             return (
-              <Flex key={cardId} vertical gap={6}>
+              <Flex
+                key={cardId}
+                vertical
+                gap={6}
+              >
                 <RunCard card={card} />
                 <div>
                   <Button
@@ -98,7 +121,10 @@ export function StepSelectTargetAndCard({
                     icon={cardId === selectedCardId ? <CheckCircleFilled /> : <ArrowUpOutlined />}
                     type={cardId === selectedCardId ? 'primary' : 'default'}
                   >
-                    <Translate pt="essa" en="this" />
+                    <Translate
+                      pt="essa"
+                      en="this"
+                    />
                   </Button>
                 </div>
               </Flex>
@@ -110,7 +136,10 @@ export function StepSelectTargetAndCard({
           onClick={() => onSubmitCard({ cardId: String(selectedCardId), targetId: String(selectedPlayerId) })}
           disabled={!selectedCardId || !selectedPlayerId}
         >
-          <Translate en="Send" pt="Enviar" />
+          <Translate
+            en="Send"
+            pt="Enviar"
+          />
         </SendButton>
       </Instruction>
     </Step>

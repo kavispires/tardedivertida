@@ -23,10 +23,21 @@ export function PhaseDreamTelling({ state, players, user }: PhaseProps) {
   const onSubmitDream = useOnSubmitDreamAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={SONHOS_PESADELOS_PHASES.DREAM_TELLING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={SONHOS_PESADELOS_PHASES.DREAM_TELLING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} buttonText="" onPressButton={goToNextStep} time={5}>
+        <RoundAnnouncement
+          round={state.round}
+          buttonText=""
+          onPressButton={goToNextStep}
+          time={5}
+        >
           <Instruction contained>
             <Translate
               pt="Sabe quando você sonha com uma coisa, mas não consegue explicar? Então..."
@@ -38,7 +49,12 @@ export function PhaseDreamTelling({ state, players, user }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<DreamIcon />}
-          title={<Translate pt="Conte-nos sobre seu sonho" en="Tell us about your dream..." />}
+          title={
+            <Translate
+              pt="Conte-nos sobre seu sonho"
+              en="Tell us about your dream..."
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           type="block"
@@ -50,7 +66,11 @@ export function PhaseDreamTelling({ state, players, user }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 2 */}
-        <StepTellDream table={state.table} onSubmitDream={onSubmitDream} user={user} />
+        <StepTellDream
+          table={state.table}
+          onSubmitDream={onSubmitDream}
+          user={user}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -19,9 +19,16 @@ type StoryWaitingProps = {
 
 export function StoryWaiting({ storyteller, user, players, gameOrder, announcement }: StoryWaitingProps) {
   return (
-    <Step fullWidth className="c-story-waiting" announcement={announcement}>
+    <Step
+      fullWidth
+      className="c-story-waiting"
+      announcement={announcement}
+    >
       <StepTitle wait>
-        <Translate pt="Aguarde..." en="Please wait..." />
+        <Translate
+          pt="Aguarde..."
+          en="Please wait..."
+        />
       </StepTitle>
       <RuleInstruction type="wait">
         <PlayerAvatarName player={storyteller} />{' '}
@@ -45,7 +52,10 @@ export function StoryWaiting({ storyteller, user, players, gameOrder, announceme
       />
 
       <FloatingHand>
-        <ImageCardHand hand={user.hand} sizeRatio={user.hand?.length} />
+        <ImageCardHand
+          hand={user.hand}
+          sizeRatio={user.hand?.length}
+        />
       </FloatingHand>
     </Step>
   );

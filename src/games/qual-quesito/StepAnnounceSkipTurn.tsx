@@ -32,7 +32,10 @@ export function StepAnnounceSkipTurn({
   round,
 }: StepAnnounceSkipTurnProps) {
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         <Translate
           pt={
@@ -48,7 +51,11 @@ export function StepAnnounceSkipTurn({
         />
       </StepTitle>
 
-      <HostNextPhaseButton round={round} autoTriggerTime={10} withWaitingTimeBar />
+      <HostNextPhaseButton
+        round={round}
+        autoTriggerTime={10}
+        withWaitingTimeBar
+      />
 
       <RuleInstruction type="rule">
         <Translate
@@ -67,9 +74,15 @@ export function StepAnnounceSkipTurn({
         />
       </RuleInstruction>
 
-      <ItemsHand hand={user.hand ?? []} cardsDict={cardsDict} />
+      <ItemsHand
+        hand={user.hand ?? []}
+        cardsDict={cardsDict}
+      />
 
-      <PlayersHandsCounts players={players} turnOrder={turnOrder} />
+      <PlayersHandsCounts
+        players={players}
+        turnOrder={turnOrder}
+      />
     </Step>
   );
 }

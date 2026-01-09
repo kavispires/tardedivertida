@@ -82,7 +82,10 @@ export function StepGuess({
   return (
     <Step fullWidth>
       <StepTitle size="small">
-        <Translate pt="Qual a palavra secreta?" en="Which will be the secret word?" />
+        <Translate
+          pt="Qual a palavra secreta?"
+          en="Which will be the secret word?"
+        />
       </StepTitle>
 
       {isThePresenter ? (
@@ -96,7 +99,10 @@ export function StepGuess({
       ) : (
         <RuleInstruction type="action">
           {guesses.length === 0 && (
-            <Translate en="Select the secret word." pt="Selecione a palavra secreta." />
+            <Translate
+              en="Select the secret word."
+              pt="Selecione a palavra secreta."
+            />
           )}
           {guesses.length === 1 && (
             <Translate
@@ -123,7 +129,12 @@ export function StepGuess({
         </RuleInstruction>
       )}
 
-      <Flex wrap="wrap" gap={8} className="mb-4" justify="center">
+      <Flex
+        wrap="wrap"
+        gap={8}
+        className="mb-4"
+        justify="center"
+      >
         {poolIds.map((cardId) => (
           <TransparentButton
             key={cardId}
@@ -135,7 +146,10 @@ export function StepGuess({
             disabled={isLoading || user.ready || isThePresenter || guesses.length === 2}
             active={guesses.some((g) => g.cardId === cardId)}
           >
-            <Card key={cardId} hideHeader>
+            <Card
+              key={cardId}
+              hideHeader
+            >
               {wordsDict[cardId].text}
             </Card>
           </TransparentButton>
@@ -143,13 +157,27 @@ export function StepGuess({
       </Flex>
 
       <div className="m-guessing-board">
-        <MetricsBoard metricsDescriptors={metricsDescriptors} evaluations={metrics} level={level} />
-        <GuessBrackets players={players} pointsBrackets={pointsBrackets} />
+        <MetricsBoard
+          metricsDescriptors={metricsDescriptors}
+          evaluations={metrics}
+          level={level}
+        />
+        <GuessBrackets
+          players={players}
+          pointsBrackets={pointsBrackets}
+        />
       </div>
 
-      <TimerBar value={timeLeft} total={GUESSING_TIME} status="normal" />
+      <TimerBar
+        value={timeLeft}
+        total={GUESSING_TIME}
+        status="normal"
+      />
 
-      <NextPhaseIfAllPlayersHaveGuessed players={players} round={round} />
+      <NextPhaseIfAllPlayersHaveGuessed
+        players={players}
+        round={round}
+      />
     </Step>
   );
 }

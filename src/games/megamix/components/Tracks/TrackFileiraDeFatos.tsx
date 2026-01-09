@@ -67,9 +67,16 @@ export const TrackFileiraDeFatos = ({ track, onSubmitAnswer }: TrackProps) => {
   return (
     <>
       <MinigameTitle title={{ pt: 'Fileira de Fatos', en: 'Facts Lineup' }} />
-      <Space orientation="vertical" align="center" className="contained margin">
+      <Space
+        orientation="vertical"
+        align="center"
+        className="contained margin"
+      >
         <RuleInstruction type="action">
-          <Translate pt="Qual das situações é a pior?" en="Which of the following situations is the worst?" />
+          <Translate
+            pt="Qual das situações é a pior?"
+            en="Which of the following situations is the worst?"
+          />
         </RuleInstruction>
 
         <SpaceContainer>
@@ -85,7 +92,10 @@ export const TrackFileiraDeFatos = ({ track, onSubmitAnswer }: TrackProps) => {
                 <div className="scenario__tagline">
                   <DualTranslate>{reference[index].text}</DualTranslate>
                 </div>
-                <EmojiCard emojiId={reference[index].id} className="scenario__emoji" />
+                <EmojiCard
+                  emojiId={reference[index].id}
+                  className="scenario__emoji"
+                />
                 {entry && <div className="scenario__card">{entry.text}</div>}
               </div>
             </TransparentButton>

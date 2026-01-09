@@ -2,7 +2,11 @@ import type React from 'react';
 
 export function WarningSignBackgroundMask(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 500 500"
+      {...props}
+    >
       <rect
         width="370"
         height="370"

@@ -32,7 +32,10 @@ export function RulesWrapper({
       {demoVersion && <DemoBanner />}
       {isWeekend ? (
         <>
-          <Translate pt={<strong>Especial Fim de Semana</strong>} en={<strong>Weekend Special</strong>} />
+          <Translate
+            pt={<strong>Especial Fim de Semana</strong>}
+            en={<strong>Weekend Special</strong>}
+          />
           {weekendRules}
         </>
       ) : (

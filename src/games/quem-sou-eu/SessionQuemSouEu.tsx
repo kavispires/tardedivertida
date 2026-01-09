@@ -34,7 +34,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionQuemSouEu() {
-  return <Session gameCollection={GAME_COLLECTION.QUEM_SOU_EU} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.QUEM_SOU_EU}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionQuemSouEu;

@@ -21,7 +21,10 @@ export function StepWordSelection({ onSubmitWord, words }: StepWordSelectionProp
   return (
     <Step fullWidth>
       <Title>
-        <Translate pt="Selecione o tema da rodada" en="Select the theme for the round" />
+        <Translate
+          pt="Selecione o tema da rodada"
+          en="Select the theme for the round"
+        />
       </Title>
 
       <RuleInstruction type="rule">
@@ -45,8 +48,14 @@ export function StepWordSelection({ onSubmitWord, words }: StepWordSelectionProp
       <SpaceContainer>
         {words.map((word, index) => {
           return (
-            <TransparentButton key={word.id} onClick={() => onSubmitWord({ wordId: word.id })}>
-              <Card header={LETTERS[index]} color="purple">
+            <TransparentButton
+              key={word.id}
+              onClick={() => onSubmitWord({ wordId: word.id })}
+            >
+              <Card
+                header={LETTERS[index]}
+                color="purple"
+              >
                 {word.text}
               </Card>
             </TransparentButton>

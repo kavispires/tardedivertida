@@ -34,7 +34,10 @@ export function StepResults({ players, presenter, result, goToNextStep, announce
   });
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle size="small">
         <Translate
           pt={
@@ -79,7 +82,10 @@ export function StepResults({ players, presenter, result, goToNextStep, announce
       </RuleInstruction>
 
       <SpaceContainer>
-        <Card hideHeader size="large">
+        <Card
+          hideHeader
+          size="large"
+        >
           {result.cards[result.secretWordId].text}
         </Card>
       </SpaceContainer>
@@ -90,12 +96,24 @@ export function StepResults({ players, presenter, result, goToNextStep, announce
           evaluations={result.metrics}
           level={visible ? 5 : 0}
         />
-        <ResultBrackets brackets={result.brackets} players={players} cards={result.cards} />
+        <ResultBrackets
+          brackets={result.brackets}
+          players={players}
+          cards={result.cards}
+        />
       </div>
 
       <SpaceContainer className="mt-8">
-        <TimedButton duration={45} onExpire={goToNextStep} onClick={goToNextStep} icon={<TrophyOutlined />}>
-          <Translate pt="Ver Ranking" en="See Ranking" />
+        <TimedButton
+          duration={45}
+          onExpire={goToNextStep}
+          onClick={goToNextStep}
+          icon={<TrophyOutlined />}
+        >
+          <Translate
+            pt="Ver Ranking"
+            en="See Ranking"
+          />
         </TimedButton>
       </SpaceContainer>
     </Step>

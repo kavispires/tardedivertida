@@ -1,6 +1,10 @@
 export function ThiefIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#6f6571"
         d="M249.689 85.146S85.256 147.319 85.256 211.5s101.141 211.245 164.433 211.245 173.354-144 173.354-205.277S249.689 85.146 249.689 85.146z"

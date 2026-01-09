@@ -28,8 +28,14 @@ export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll, 
 
   return (
     <Space orientation="vertical">
-      <Title level={3} size="xx-small">
-        <Translate pt="Itens" en="Items" />
+      <Title
+        level={3}
+        size="xx-small"
+      >
+        <Translate
+          pt="Itens"
+          en="Items"
+        />
       </Title>
       <div className="objects-grid">
         {items.map((item) => (
@@ -41,7 +47,11 @@ export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll, 
               activeObjects?.includes(item.id) && 'objects-grid__item--ask',
             )}
           >
-            <Badge count={item.inquiries} color="orange" title={dualTranslate(BADGE_INSTRUCTION)}>
+            <Badge
+              count={item.inquiries}
+              color="orange"
+              title={dualTranslate(BADGE_INSTRUCTION)}
+            >
               <ItemCard
                 itemId={`${item.id}`}
                 className={clsx(item.offerings.length > 0 && 'objects-grid__item-offered')}

@@ -49,7 +49,10 @@ export function StepNameDrawing({
   return (
     <Step>
       <Title>
-        <Translate pt="O que é isso?" en="What is this?" />
+        <Translate
+          pt="O que é isso?"
+          en="What is this?"
+        />
       </Title>
       <RuleInstruction type="rule">
         <Translate
@@ -66,7 +69,11 @@ export function StepNameDrawing({
         />
       </RuleInstruction>
 
-      <CanvasSVG drawing={currentPrompt.content} className="l-drawing" width={300} />
+      <CanvasSVG
+        drawing={currentPrompt.content}
+        className="l-drawing"
+        width={300}
+      />
 
       <Input
         onChange={onTitleChange}
@@ -77,8 +84,15 @@ export function StepNameDrawing({
       />
 
       <SpaceContainer>
-        <SendButton onClick={onSubmitTitle} size="large" disabled={!title}>
-          <Translate pt="Enviar" en="Submit name" />
+        <SendButton
+          onClick={onSubmitTitle}
+          size="large"
+          disabled={!title}
+        >
+          <Translate
+            pt="Enviar"
+            en="Submit name"
+          />
         </SendButton>
       </SpaceContainer>
     </Step>

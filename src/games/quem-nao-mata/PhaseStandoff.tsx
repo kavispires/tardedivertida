@@ -16,12 +16,23 @@ export function PhaseStandoff({ state, players, user }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={QUEM_NAO_MATA_PHASES.STANDOFF}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={QUEM_NAO_MATA_PHASES.STANDOFF}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<TDIcon />}
-          title={<Translate pt="O pega pra capar!" en="Standoff Results" />}
+          title={
+            <Translate
+              pt="O pega pra capar!"
+              en="Standoff Results"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           type="block"

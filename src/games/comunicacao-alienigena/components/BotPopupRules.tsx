@@ -67,7 +67,12 @@ export function BotPopupRule() {
       position={1}
       icon={<RobotOutlined />}
       content={<BotsRules />}
-      label={<Translate pt=" Bots" en=" Bots" />}
+      label={
+        <Translate
+          pt=" Bots"
+          en=" Bots"
+        />
+      }
     />
   );
 }

@@ -1,6 +1,10 @@
 export function KnifeIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#b98080"
         d="M42.6 492.41a41.28 41.28 0 010-58.38l115.96-115.96L180 306.63l48.38 48.38-137.4 137.4c-16.12 16.12-32.26 16.12-48.38 0z"

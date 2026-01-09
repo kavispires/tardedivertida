@@ -20,12 +20,23 @@ export function PhaseMatching({ state, players, user }: PhaseProps) {
   const onSubmitVotes = useOnSubmitVotesAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={SONHOS_PESADELOS_PHASES.MATCHING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={SONHOS_PESADELOS_PHASES.MATCHING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<EvaluateIcon />}
-          title={<Translate pt="Combine os sonhos" en="Match the dreams" />}
+          title={
+            <Translate
+              pt="Combine os sonhos"
+              en="Match the dreams"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           type="block"

@@ -8,7 +8,11 @@ type MinigameTitleProps = {
 
 export function MinigameTitle({ title }: MinigameTitleProps) {
   return (
-    <Title size="small" level={2} className="minigame-title__number">
+    <Title
+      size="small"
+      level={2}
+      className="minigame-title__number"
+    >
       <DualTranslate>{title}</DualTranslate>
     </Title>
   );

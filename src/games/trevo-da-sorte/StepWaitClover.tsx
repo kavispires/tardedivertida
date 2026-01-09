@@ -60,7 +60,13 @@ export function StepWaitClover({ activeCloverPlayer, clover, leaves }: StepWaitC
         />
       </Instruction>
 
-      <Clover mode={mode} clover={clover} leaves={leaves} onRotate={onRotateClover} rotation={rotation} />
+      <Clover
+        mode={mode}
+        clover={clover}
+        leaves={leaves}
+        onRotate={onRotateClover}
+        rotation={rotation}
+      />
 
       <DetachedLeaves
         leaves={leaves}

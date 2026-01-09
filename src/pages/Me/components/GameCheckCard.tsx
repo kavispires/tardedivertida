@@ -42,7 +42,12 @@ export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
     <Modal
       open={!!activeGameId}
       title={<DualTranslate>{activeGame ? activeGame.title : { pt: '?', en: '?' }}</DualTranslate>}
-      cancelText={<Translate pt="Fechar" en="Close" />}
+      cancelText={
+        <Translate
+          pt="Fechar"
+          en="Close"
+        />
+      }
       onCancel={() => removeParam('game')}
       okButtonProps={{
         hidden: true,
@@ -59,7 +64,10 @@ export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
         />
       ) : (
         <div className="me-modal__content">
-          <IconAvatar icon={<AnimatedVideoConferenceIcon />} size={100} />
+          <IconAvatar
+            icon={<AnimatedVideoConferenceIcon />}
+            size={100}
+          />
         </div>
       )}
     </Modal>
@@ -69,7 +77,13 @@ export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
     <Row gutter={8}>
       {modal}
       {info.map((gameInfo) => (
-        <Col xs={12} sm={6} md={6} lg={3} key={`info-${gameInfo.gameName}`}>
+        <Col
+          xs={12}
+          sm={6}
+          md={6}
+          lg={3}
+          key={`info-${gameInfo.gameName}`}
+        >
           <TransparentButton onClick={() => addParam('game', gameInfo.gameName)}>
             <Badge
               count={

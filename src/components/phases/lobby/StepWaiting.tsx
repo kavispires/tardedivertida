@@ -91,12 +91,23 @@ export function StepWaiting({ players }: StepWaitingProps) {
 
   return (
     <>
-      <Title level={2} className="lobby-step__title" layoutId="lobby-step-title">
-        <Translate pt="Pronto!" en="Ready!" />
+      <Title
+        level={2}
+        className="lobby-step__title"
+        layoutId="lobby-step-title"
+      >
+        <Translate
+          pt="Pronto!"
+          en="Ready!"
+        />
       </Title>
 
       <SpaceContainer vertical>
-        <motion.svg viewBox="0 0 100 100" className="lobby-avatar" layoutId="avatar">
+        <motion.svg
+          viewBox="0 0 100 100"
+          className="lobby-avatar"
+          layoutId="avatar"
+        >
           <use href={`${avatars}#avatar-${userAvatarId}`}></use>
         </motion.svg>
 
@@ -108,7 +119,11 @@ export function StepWaiting({ players }: StepWaitingProps) {
         </div>
       </SpaceContainer>
 
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <Settings hasImages={info.tags.includes('images')} />
         <Paragraph className="lobby-heading">
           <Translate
@@ -116,13 +131,24 @@ export function StepWaiting({ players }: StepWaitingProps) {
             en="Please, wait while other players join..."
           />
         </Paragraph>
-        <HostOnlyContainer className="lobby-waiting__lock-button" orientation="vertical">
+        <HostOnlyContainer
+          className="lobby-waiting__lock-button"
+          orientation="vertical"
+        >
           <Typography.Text className="center padding">
-            <Translate pt="Jogadores necessários" en="Players needed" />:{' '}
+            <Translate
+              pt="Jogadores necessários"
+              en="Players needed"
+            />
+            :{' '}
             <Tag>
               {numPlayers}/{gameMeta.min}
             </Tag>{' '}
-            <Translate pt="Prontos" en="Ready" />:{' '}
+            <Translate
+              pt="Prontos"
+              en="Ready"
+            />
+            :{' '}
             <Tag>
               {readyPlayers}/{numPlayers}
             </Tag>
@@ -133,7 +159,10 @@ export function StepWaiting({ players }: StepWaitingProps) {
             loading={isLoading}
             block
           >
-            <Translate pt="Trancar e Iniciar Jogo" en="Lock and Start Game" />
+            <Translate
+              pt="Trancar e Iniciar Jogo"
+              en="Lock and Start Game"
+            />
           </HostButton>
         </HostOnlyContainer>
       </motion.div>

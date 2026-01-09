@@ -37,9 +37,16 @@ export function StepResolution({
   useTemporarilyHidePlayersBar();
 
   return (
-    <Step fullWidth className="p-step" announcement={announcement}>
+    <Step
+      fullWidth
+      className="p-step"
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Resultado" en="Results" />
+        <Translate
+          pt="Resultado"
+          en="Results"
+        />
       </StepTitle>
 
       <div className="p-tweet-container">
@@ -48,15 +55,26 @@ export function StepResolution({
             <Tweet tweet={customTweet ?? currentTweet?.text} />
           </div>
           <div className="p-tweet__actions">
-            <div className="p-tweet__action" style={{ color: totalLikes > 0 ? 'DodgerBlue' : 'gray' }}>
+            <div
+              className="p-tweet__action"
+              style={{ color: totalLikes > 0 ? 'DodgerBlue' : 'gray' }}
+            >
               <LikeFilled className="p-tweet__icon" />
               {totalLikes}
             </div>
             <div className="p-tweet__action p-tweet__action-active">
-              <CommentOutlined className="p-tweet__icon" /> <Translate pt="Comentários" en="Comments" />
+              <CommentOutlined className="p-tweet__icon" />{' '}
+              <Translate
+                pt="Comentários"
+                en="Comments"
+              />
             </div>
             <div className="p-tweet__action">
-              <ShareAltOutlined className="p-tweet__icon" /> <Translate pt="Compartilhar" en="Share" />
+              <ShareAltOutlined className="p-tweet__icon" />{' '}
+              <Translate
+                pt="Compartilhar"
+                en="Share"
+              />
             </div>
           </div>
         </div>
@@ -66,8 +84,14 @@ export function StepResolution({
             const key = `player-result-${player.id}`;
 
             return (
-              <li className="p-player-reaction" key={key}>
-                <TweetComment player={player} totalLikes={totalLikes} />
+              <li
+                className="p-player-reaction"
+                key={key}
+              >
+                <TweetComment
+                  player={player}
+                  totalLikes={totalLikes}
+                />
               </li>
             );
           })}
@@ -75,8 +99,16 @@ export function StepResolution({
       </div>
 
       <SpaceContainer>
-        <TimedButton duration={20} onExpire={goToNextStep} onClick={goToNextStep} icon={<TrophyOutlined />}>
-          <Translate pt="Ver Ranking" en="See Ranking" />
+        <TimedButton
+          duration={20}
+          onExpire={goToNextStep}
+          onClick={goToNextStep}
+          icon={<TrophyOutlined />}
+        >
+          <Translate
+            pt="Ver Ranking"
+            en="See Ranking"
+          />
         </TimedButton>
       </SpaceContainer>
     </Step>

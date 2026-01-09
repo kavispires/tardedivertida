@@ -5,7 +5,12 @@ import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricH
 
 export function MistakeCountHighlight({ children, iconSize, className }: HighlightProps) {
   return (
-    <MetricHighlight icon={<ScaredIcon />} type="negative" iconSize={iconSize} className={className}>
+    <MetricHighlight
+      icon={<ScaredIcon />}
+      type="negative"
+      iconSize={iconSize}
+      className={className}
+    >
       {children}
     </MetricHighlight>
   );

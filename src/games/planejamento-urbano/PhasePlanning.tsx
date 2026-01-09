@@ -30,7 +30,12 @@ export function PhasePlanning({ state, players }: PhaseProps<PhasePlanningState>
   const announcement = (
     <PhaseAnnouncement
       icon={<MapBlueprintIcon />}
-      title={<Translate pt="Planejamento" en="Planning" />}
+      title={
+        <Translate
+          pt="Planejamento"
+          en="Planning"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -40,12 +45,22 @@ export function PhasePlanning({ state, players }: PhaseProps<PhasePlanningState>
         <Translate
           pt={
             <>
-              Para essa rodada, <PlayerAvatarName player={architect} addressUser /> é o engenheiro chefe.
+              Para essa rodada,{' '}
+              <PlayerAvatarName
+                player={architect}
+                addressUser
+              />{' '}
+              é o engenheiro chefe.
             </>
           }
           en={
             <>
-              In this round, <PlayerAvatarName player={architect} addressUser /> is the lead engineer.
+              In this round,{' '}
+              <PlayerAvatarName
+                player={architect}
+                addressUser
+              />{' '}
+              is the lead engineer.
             </>
           }
         />
@@ -54,10 +69,20 @@ export function PhasePlanning({ state, players }: PhaseProps<PhasePlanningState>
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PLANEJAMENTO_URBANO_PHASES.PLANNING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={PLANEJAMENTO_URBANO_PHASES.PLANNING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={3}>
+        <RoundAnnouncement
+          round={state.round}
+          onPressButton={goToNextStep}
+          time={3}
+        >
           <Instruction contained>
             <Translate
               pt="Somos arquitetos e urbanistas, e estamos planejando a cidade!"

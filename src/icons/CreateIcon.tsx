@@ -1,21 +1,58 @@
 export function CreateIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <path fill="#d2cad0" d="m35.3 73.7 318-40.7 55 429.3-318 40.8z"></path>
-      <path fill="#e1dce0" d="m75.3 33 318.3 38.3L341.9 501 23.6 462.7 75.2 33Z"></path>
-      <path fill="#f0edef" d="M7.5 9h320.6v432.8H7.5V8.9Z"></path>
-      <path fill="#ffe06f" d="M224 209.3a56.1 56.1 0 1 0-80.2 50.7v29.5h48V260a56 56 0 0 0 32.1-50.7Z"></path>
-      <path fill="#ffcb0f" d="M167.8 289.5V252a56 56 0 0 1-5.2-98.5A56.1 56.1 0 0 0 143.8 260v29.5z"></path>
-      <path fill="#867383" d="M175.8 329.6h-16a24 24 0 0 1-24-24v-24.1h64v24a24 24 0 0 1-24 24Z"></path>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <path
+        fill="#d2cad0"
+        d="m35.3 73.7 318-40.7 55 429.3-318 40.8z"
+      ></path>
+      <path
+        fill="#e1dce0"
+        d="m75.3 33 318.3 38.3L341.9 501 23.6 462.7 75.2 33Z"
+      ></path>
+      <path
+        fill="#f0edef"
+        d="M7.5 9h320.6v432.8H7.5V8.9Z"
+      ></path>
+      <path
+        fill="#ffe06f"
+        d="M224 209.3a56.1 56.1 0 1 0-80.2 50.7v29.5h48V260a56 56 0 0 0 32.1-50.7Z"
+      ></path>
+      <path
+        fill="#ffcb0f"
+        d="M167.8 289.5V252a56 56 0 0 1-5.2-98.5A56.1 56.1 0 0 0 143.8 260v29.5z"
+      ></path>
+      <path
+        fill="#867383"
+        d="M175.8 329.6h-16a24 24 0 0 1-24-24v-24.1h64v24a24 24 0 0 1-24 24Z"
+      ></path>
       <path
         fill="#685064"
         d="M159.8 305.5v-24h-24v24a24 24 0 0 0 24 24h16c1.4 0 2.7 0 4-.3a24 24 0 0 1-20-23.7"
       ></path>
-      <path fill="#a79bed" d="M504.5 129.2v280.5h-48.1V129.2h48Z"></path>
-      <path fill="#6c58e0" d="M456.4 129.2h24v280.5h-24z"></path>
-      <path fill="#ffebd1" d="M504.5 129.2h-48.1l24-64.2 24 64.2Z"></path>
-      <path fill="#ffc475" d="m491.5 94.7-11-29.7-24.1 64.2h25.8l9.3-34.6Z"></path>
-      <path fill="#e1dce0" d="M456.4 433.8v-24h48v24a16 16 0 0 1-16 16h-16a16 16 0 0 1-16-16"></path>
+      <path
+        fill="#a79bed"
+        d="M504.5 129.2v280.5h-48.1V129.2h48Z"
+      ></path>
+      <path
+        fill="#6c58e0"
+        d="M456.4 129.2h24v280.5h-24z"
+      ></path>
+      <path
+        fill="#ffebd1"
+        d="M504.5 129.2h-48.1l24-64.2 24 64.2Z"
+      ></path>
+      <path
+        fill="#ffc475"
+        d="m491.5 94.7-11-29.7-24.1 64.2h25.8l9.3-34.6Z"
+      ></path>
+      <path
+        fill="#e1dce0"
+        d="M456.4 433.8v-24h48v24a16 16 0 0 1-16 16h-16a16 16 0 0 1-16-16"
+      ></path>
       <path
         fill="#c3b9c1"
         d="M480.4 433.8v-24h-24v24a16 16 0 0 0 16 16h16a16 16 0 0 0 4-.5 16 16 0 0 1-12-15.5"

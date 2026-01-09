@@ -1,6 +1,10 @@
 export function DiagramIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#fee45a"
         d="M362.5 193.75c0 79.4-52.14 146.63-124.05 169.31-16.87 5.32-32.61.7-51.24.7-98.03 0-167.49-71.98-167.49-170.01 0-49.15 9.04-93.03 41.32-125.18C67.34 62.3 80 50.63 80 50.63a176.71 176.71 0 01105-34.38c98.03 0 177.5 79.47 177.5 177.5z"

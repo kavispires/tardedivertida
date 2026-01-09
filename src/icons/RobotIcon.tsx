@@ -1,7 +1,17 @@
 export function RobotIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <circle cx="256" cy="33.02" r="25.52" fill="#6bc1dd" transform="rotate(-76.72 255.997 33.025)"></circle>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <circle
+        cx="256"
+        cy="33.02"
+        r="25.52"
+        fill="#6bc1dd"
+        transform="rotate(-76.72 255.997 33.025)"
+      ></circle>
       <path
         fill="#3d0072"
         d="M252 33a25.51 25.51 0 0114.74-23.13A25.52 25.52 0 10256 58.54a25.35 25.35 0 0010.74-2.37A25.51 25.51 0 01252 33z"
@@ -27,7 +37,10 @@ export function RobotIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#490089"
         opacity="0.15"
       ></path>
-      <path fill="#9ea7af" d="M222.81 309.62h66.38v22.57h-66.38z"></path>
+      <path
+        fill="#9ea7af"
+        d="M222.81 309.62h66.38v22.57h-66.38z"
+      ></path>
       <path
         style={{ isolation: 'isolate' }}
         fill="#490089"
@@ -66,16 +79,39 @@ export function RobotIcon(props: React.SVGProps<SVGSVGElement>) {
         d="M172 200.19a51.81 51.81 0 0151.81-51.81h-29.09a51.81 51.81 0 100 103.62h29.09A51.81 51.81 0 01172 200.19z"
         opacity="0.15"
       ></path>
-      <ellipse cx="189.55" cy="200.19" fill="#6bc1dd" rx="20.15" ry="20.23"></ellipse>
-      <ellipse cx="322.84" cy="200.19" fill="#6bc1dd" rx="20.15" ry="20.23"></ellipse>
+      <ellipse
+        cx="189.55"
+        cy="200.19"
+        fill="#6bc1dd"
+        rx="20.15"
+        ry="20.23"
+      ></ellipse>
+      <ellipse
+        cx="322.84"
+        cy="200.19"
+        fill="#6bc1dd"
+        rx="20.15"
+        ry="20.23"
+      ></ellipse>
       <path
         fill="#3d0072"
         d="M161.29 355.25h-28.65a15 15 0 00-15 15V504.5h28.65V370.25a15 15 0 0115-15z"
         opacity="0.15"
       ></path>
-      <path fill="#046699" d="M345.38 504.5v-87.18a10 10 0 00-10-10H176.62a10 10 0 00-10 10v87.18z"></path>
-      <path fill="#ffc502" d="M274 504.5v-28.12a3 3 0 00-3-3h-30a3 3 0 00-3 3v28.12z"></path>
-      <circle cx="308.82" cy="442.18" r="11.18" fill="#5dc647"></circle>
+      <path
+        fill="#046699"
+        d="M345.38 504.5v-87.18a10 10 0 00-10-10H176.62a10 10 0 00-10 10v87.18z"
+      ></path>
+      <path
+        fill="#ffc502"
+        d="M274 504.5v-28.12a3 3 0 00-3-3h-30a3 3 0 00-3 3v28.12z"
+      ></path>
+      <circle
+        cx="308.82"
+        cy="442.18"
+        r="11.18"
+        fill="#5dc647"
+      ></circle>
       <path
         fill="#6bc1dd"
         d="M274 450.35a3 3 0 01-3 3h-30a3 3 0 01-3-3V434a3 3 0 013-3h30a3 3 0 013 3z"

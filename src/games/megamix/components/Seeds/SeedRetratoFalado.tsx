@@ -60,7 +60,10 @@ export function SeedRetratoFalado({ seed, updateData }: SeedRetratoFaladoProps) 
 
   return (
     <div className="seed-container">
-      <Title size="xx-small" colorScheme="light">
+      <Title
+        size="xx-small"
+        colorScheme="light"
+      >
         <Translate
           pt="De repente, você se lembra de um evento muito traumático na sua vida, uma monstro te atacou uma vez..."
           en="Suddenly you have a glimpse of memory from the day a monster attacked you..."
@@ -86,8 +89,15 @@ export function SeedRetratoFalado({ seed, updateData }: SeedRetratoFaladoProps) 
             }
           />
         </Instruction>
-        <Button onClick={start} type="primary" disabled={isRunning}>
-          <Translate pt="Começar" en="Start" />
+        <Button
+          onClick={start}
+          type="primary"
+          disabled={isRunning}
+        >
+          <Translate
+            pt="Começar"
+            en="Start"
+          />
         </Button>
 
         {isRunning && audio}
@@ -103,9 +113,15 @@ export function SeedRetratoFalado({ seed, updateData }: SeedRetratoFaladoProps) 
           {isTimesUp ? (
             <PanicIcon style={{ background: 'white', width: '500px', padding: '2em' }} />
           ) : isRunning ? (
-            <DrawingCanvas lines={lines} setLines={setLines} />
+            <DrawingCanvas
+              lines={lines}
+              setLines={setLines}
+            />
           ) : (
-            <DrawingCanvas lines={[]} setLines={NOOP} />
+            <DrawingCanvas
+              lines={[]}
+              setLines={NOOP}
+            />
           )}
         </div>
       </Space>

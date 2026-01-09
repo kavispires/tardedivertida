@@ -29,12 +29,23 @@ export function PhaseDoorChoice({ state, players, meta, user }: PhaseProps<Phase
   const onConfirmDoor = useOnMakeReady(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={PORTA_DOS_DESESPERADOS_PHASES.DOOR_CHOICE}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={PORTA_DOS_DESESPERADOS_PHASES.DOOR_CHOICE}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<MagicDoorIcon />}
-          title={<Translate pt="Qual porta é a correta?" en="Which door is the correct one?" />}
+          title={
+            <Translate
+              pt="Qual porta é a correta?"
+              en="Which door is the correct one?"
+            />
+          }
           onClose={
             shouldAnnounceTrap(state.trap, PORTA_DOS_DESESPERADOS_PHASES.DOOR_CHOICE)
               ? goToNextStep
@@ -59,7 +70,10 @@ export function PhaseDoorChoice({ state, players, meta, user }: PhaseProps<Phase
         <PhaseTimerReset goToNextStep={goToNextStep} />
 
         {/* Step 2 */}
-        <TrapAnnouncement trapEntry={state.trapEntry} goToNextStep={goToNextStep} />
+        <TrapAnnouncement
+          trapEntry={state.trapEntry}
+          goToNextStep={goToNextStep}
+        />
 
         {/* Step 3 */}
         <ViewOr condition={isPossessed}>

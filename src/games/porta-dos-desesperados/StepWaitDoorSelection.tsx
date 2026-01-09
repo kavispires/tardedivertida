@@ -61,7 +61,10 @@ export function StepWaitDoorSelection({
 
       {botEnabled && <BotPopupRule />}
 
-      <RuleInstruction type="rule" className="i-sand-timer-container">
+      <RuleInstruction
+        type="rule"
+        className="i-sand-timer-container"
+      >
         <Translate
           pt={
             <>
@@ -107,7 +110,12 @@ export function StepWaitDoorSelection({
         />
       </RuleInstruction>
 
-      <Corridor doors={doors} trap={trap} players={players} answerDoorId={answerDoorId} />
+      <Corridor
+        doors={doors}
+        trap={trap}
+        players={players}
+        answerDoorId={answerDoorId}
+      />
 
       <Space className="i-book-container">
         <Image.PreviewGroup
@@ -118,7 +126,10 @@ export function StepWaitDoorSelection({
         >
           <Book>
             {Boolean(pages[0]) && (
-              <ImageBlurButtonContainer cardId={pages[0]} ghost={false}>
+              <ImageBlurButtonContainer
+                cardId={pages[0]}
+                ghost={false}
+              >
                 <ImageCard
                   cardId={pages[0]}
                   cardWidth={140}
@@ -128,7 +139,10 @@ export function StepWaitDoorSelection({
               </ImageBlurButtonContainer>
             )}
             {Boolean(pages[1]) && (
-              <ImageBlurButtonContainer cardId={pages[1]} ghost={false}>
+              <ImageBlurButtonContainer
+                cardId={pages[1]}
+                ghost={false}
+              >
                 <ImageCard
                   cardId={pages[1]}
                   cardWidth={140}
@@ -138,7 +152,10 @@ export function StepWaitDoorSelection({
               </ImageBlurButtonContainer>
             )}
             {Boolean(pages[2]) && (
-              <ImageBlurButtonContainer cardId={pages[2]} ghost={false}>
+              <ImageBlurButtonContainer
+                cardId={pages[2]}
+                ghost={false}
+              >
                 <ImageCard
                   cardId={pages[2]}
                   cardWidth={140}

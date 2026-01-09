@@ -13,7 +13,10 @@ export function DailyLoading() {
     <DailyChrome>
       <DailyContent className="daily-loading">
         <SpaceContainer>
-          <Loading message={translate('Carregando desafio...', 'Loading challenge...')} margin />
+          <Loading
+            message={translate('Carregando desafio...', 'Loading challenge...')}
+            margin
+          />
         </SpaceContainer>
       </DailyContent>
     </DailyChrome>

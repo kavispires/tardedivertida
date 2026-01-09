@@ -102,14 +102,20 @@ export function SlideShowControls({
         ></span>
       </div>
 
-      <Space style={{ opacity: disableControlsFlag ? 0 : 100 }} className={getAnimationClass('fadeIn')}>
+      <Space
+        style={{ opacity: disableControlsFlag ? 0 : 100 }}
+        className={getAnimationClass('fadeIn')}
+      >
         <Button
           size="large"
           icon={<StepBackwardOutlined />}
           onClick={goToPreviousSlide}
           disabled={disableControlsFlag || config.slideIndex === 0}
         >
-          <Translate pt="Anterior" en="Previous" />
+          <Translate
+            pt="Anterior"
+            en="Previous"
+          />
         </Button>
         <Button
           size="large"
@@ -121,7 +127,11 @@ export function SlideShowControls({
           onClick={goToNextSlide}
           disabled={disableControlsFlag || config.slideIndex === config.length - 1}
         >
-          <Translate pt="Próximo" en="Next" /> <StepForwardOutlined />
+          <Translate
+            pt="Próximo"
+            en="Next"
+          />{' '}
+          <StepForwardOutlined />
         </Button>
         <Button
           {...nextButtonProps}
@@ -130,7 +140,12 @@ export function SlideShowControls({
           icon={nextButtonProps?.icon ?? <TrophyOutlined />}
           disabled={disableControlsFlag}
         >
-          {nextButtonProps?.children ?? <Translate pt="Ver Ranking" en="See Ranking" />}
+          {nextButtonProps?.children ?? (
+            <Translate
+              pt="Ver Ranking"
+              en="See Ranking"
+            />
+          )}
         </Button>
       </Space>
     </div>

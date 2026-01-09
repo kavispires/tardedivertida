@@ -60,7 +60,12 @@ export function Keyboard({
   });
 
   return (
-    <Space orientation="vertical" align="center" className="daily-keyboard" size="small">
+    <Space
+      orientation="vertical"
+      align="center"
+      className="daily-keyboard"
+      size="small"
+    >
       {withNumbers && (
         <Flex className="daily-keyboard__row">
           {NUMBERS.map((letter) => (

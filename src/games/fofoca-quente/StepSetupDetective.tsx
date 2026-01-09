@@ -65,9 +65,15 @@ export function StepSetupDetective({
   const hasLocation = user.locationId !== null && user.locationId !== undefined;
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt={<>Preparando a escola</>} en={<>Setting up the school</>} />
+        <Translate
+          pt={<>Preparando a escola</>}
+          en={<>Setting up the school</>}
+        />
       </StepTitle>
 
       <Info />
@@ -82,12 +88,18 @@ export function StepSetupDetective({
 
       <Instruction contained>
         <Flex justify="center">
-          <BoardSummary students={students} socialGroups={socialGroups} />
+          <BoardSummary
+            students={students}
+            socialGroups={socialGroups}
+          />
 
           <div>
             <DetectiveGoals bestFriendId={bestFriendId} />
 
-            <RuleInstruction type="action" className="text-left">
+            <RuleInstruction
+              type="action"
+              className="text-left"
+            >
               <Translate
                 en="To start the game, first select which location on the school map you want to start."
                 pt="Para começar o jogo, primeiro selecione em qual localização do mapa da escola você quer começar."
@@ -96,15 +108,27 @@ export function StepSetupDetective({
               <Select
                 options={options}
                 onChange={setSelectedLocationIndex}
-                placeholder={<Translate en="Select a location" pt="Selecione um local" />}
+                placeholder={
+                  <Translate
+                    en="Select a location"
+                    pt="Selecione um local"
+                  />
+                }
                 style={{ width: 200 }}
                 disabled={hasLocation}
               />
 
               <br />
               {selectedLocationIndex !== null && (
-                <SendButton onClick={onSubmit} block disabled={hasLocation}>
-                  <Translate en="Submit" pt="Enviar" />
+                <SendButton
+                  onClick={onSubmit}
+                  block
+                  disabled={hasLocation}
+                >
+                  <Translate
+                    en="Submit"
+                    pt="Enviar"
+                  />
                 </SendButton>
               )}
             </RuleInstruction>

@@ -14,14 +14,31 @@ import { GalleryEntry } from './components/GalleryEntry';
 
 export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<TrophyIcon />}>
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<TrophyIcon />}
+    >
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
       <TitledContainer
-        title={<Translate pt="Galeria" en="Gallery" />}
+        title={
+          <Translate
+            pt="Galeria"
+            en="Gallery"
+          />
+        }
         contentProps={{ className: 'full-width' }}
       >
         {state.gallery.map((entry) => (
-          <GalleryEntry key={entry.playerId} entry={entry} players={players} />
+          <GalleryEntry
+            key={entry.playerId}
+            entry={entry}
+            players={players}
+          />
         ))}
       </TitledContainer>
     </GameOverWrapper>

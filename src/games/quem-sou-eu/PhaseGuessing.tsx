@@ -24,7 +24,10 @@ export function PhaseGuessing({ state, players, user }: PhaseProps) {
     <PhaseAnnouncement
       icon={<EvaluateIcon />}
       title={
-        <Translate pt="Pareie os personagens e símbolos" en="Pair characters with the players' glyphs" />
+        <Translate
+          pt="Pareie os personagens e símbolos"
+          en="Pair characters with the players' glyphs"
+        />
       }
       currentRound={state?.round?.current}
       type="overlay"
@@ -36,8 +39,14 @@ export function PhaseGuessing({ state, players, user }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={QUEM_SOU_EU_PHASES.GUESSING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={QUEM_SOU_EU_PHASES.GUESSING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepGuessing
           user={user}

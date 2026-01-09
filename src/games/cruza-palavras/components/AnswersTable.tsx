@@ -89,5 +89,12 @@ export function AnswersTable({ players, grid, correctCoordinatesPerPlayer }: Ans
     return orderBy(parsedData.flat(), ['playerName', 'guess'], ['asc', 'asc']);
   }, [players, grid, correctCoordinatesPerPlayer]);
 
-  return <Table size="small" columns={columns} dataSource={dataSource} pagination={false} />;
+  return (
+    <Table
+      size="small"
+      columns={columns}
+      dataSource={dataSource}
+      pagination={false}
+    />
+  );
 }

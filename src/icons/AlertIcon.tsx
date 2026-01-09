@@ -1,6 +1,10 @@
 export function AlertIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#f74c48"
         d="M256.001 188.375c-67.579 0-122.361 54.781-122.361 122.36v131.108h244.72V310.735c0-67.578-54.782-122.36-122.359-122.36z"

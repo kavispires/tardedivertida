@@ -6,5 +6,10 @@ import { DailyComunicacaoAlienigena } from './components/DailyComunicacaoAlienig
 import './utils/styles.scss';
 
 export function DailyComunicacaoAlienigenaGame() {
-  return <DailyGame gameName="comunicacao-alienigena" GameComponent={DailyComunicacaoAlienigena} />;
+  return (
+    <DailyGame
+      gameName="comunicacao-alienigena"
+      GameComponent={DailyComunicacaoAlienigena}
+    />
+  );
 }

@@ -33,7 +33,11 @@ export const TrackContadoresHistorias = ({ track, onSubmitAnswer, user }: TrackP
   return (
     <>
       <MinigameTitle title={{ pt: 'Contadores de Histórias', en: 'Storytellers' }} />
-      <SpaceContainer className="margin" vertical contained>
+      <SpaceContainer
+        className="margin"
+        vertical
+        contained
+      >
         <RuleInstruction type="action">
           <Translate
             pt="A dica abaixo se relaciona à uma das images, qual das cartas é correta?"
@@ -45,7 +49,10 @@ export const TrackContadoresHistorias = ({ track, onSubmitAnswer, user }: TrackP
           className="c-book-pages"
           leftPage={
             <SpaceContainer vertical>
-              <ImageCard cardId="back-question" cardWidth={100} />
+              <ImageCard
+                cardId="back-question"
+                cardWidth={100}
+              />
             </SpaceContainer>
           }
           rightPage={<div className="c-book-content">{track.data?.prompt ?? track.data?.options ?? '?'}</div>}
@@ -55,9 +62,15 @@ export const TrackContadoresHistorias = ({ track, onSubmitAnswer, user }: TrackP
           <SpaceContainer>
             {track.data.cards.map((cardId: ImageCardId) => {
               return (
-                <SpaceContainer key={cardId} vertical>
+                <SpaceContainer
+                  key={cardId}
+                  vertical
+                >
                   <ImageBlurButtonContainer cardId={cardId}>
-                    <ImageCard cardId={cardId} cardWidth={cardWidth} />
+                    <ImageCard
+                      cardId={cardId}
+                      cardWidth={cardWidth}
+                    />
                   </ImageBlurButtonContainer>
                   <Button
                     shape="round"
@@ -66,7 +79,10 @@ export const TrackContadoresHistorias = ({ track, onSubmitAnswer, user }: TrackP
                     loading={isLoading}
                     onClick={() => onSelect(cardId)}
                   >
-                    <Translate pt="Selecionar" en="Select" />
+                    <Translate
+                      pt="Selecionar"
+                      en="Select"
+                    />
                   </Button>
                 </SpaceContainer>
               );

@@ -58,7 +58,10 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyMovieGameIcon />} localStorageKey={SETTINGS.KEY}>
+      <Header
+        icon={<DailyMovieGameIcon />}
+        localStorageKey={SETTINGS.KEY}
+      >
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <DailyContent>
@@ -89,7 +92,12 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
         ) : (
           <Region className="center">
             <Typography.Text>
-              {isWin && <Translate pt="Você achou o culpado!" en="You found the culprit!" />}
+              {isWin && (
+                <Translate
+                  pt="Você achou o culpado!"
+                  en="You found the culprit!"
+                />
+              )}
               {isLose && (
                 <Translate
                   pt={
@@ -109,8 +117,15 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
                 />
               )}
             </Typography.Text>
-            <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
-              <Translate pt="Ver Resultado" en="Show Results" />
+            <Button
+              onClick={() => setShowResultModal(true)}
+              type="primary"
+              icon={<BarChartOutlined />}
+            >
+              <Translate
+                pt="Ver Resultado"
+                en="Show Results"
+              />
             </Button>
           </Region>
         )}
@@ -137,14 +152,22 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
                       })}
                       preview={false}
                     />
-                    <Button size="small" shape="round" block disabled={isReleased || isComplete}>
+                    <Button
+                      size="small"
+                      shape="round"
+                      block
+                      disabled={isReleased || isComplete}
+                    >
                       {isReleased ? (
                         <>
                           <CheckCircleOutlined />
                           {released.indexOf(suspect.id) + 1}
                         </>
                       ) : (
-                        <Translate pt="Liberar" en="Release" />
+                        <Translate
+                          pt="Liberar"
+                          en="Release"
+                        />
                       )}
                     </Button>
                   </MotionFlex>
@@ -156,7 +179,10 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
 
         <Region>
           <Typography.Text strong>
-            <Translate pt="Declarações" en="Statements" />
+            <Translate
+              pt="Declarações"
+              en="Statements"
+            />
           </Typography.Text>
           <Statements
             statements={data.statements}
@@ -175,7 +201,10 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
               block
               disabled={isComplete}
             >
-              <Translate pt="Preciso de mais dicas" en="I need more hints" />
+              <Translate
+                pt="Preciso de mais dicas"
+                en="I need more hints"
+              />
             </Button>
           )}
         </Region>
@@ -193,7 +222,11 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
           />
         )}
 
-        <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
+        <Modal
+          open={showResultModal}
+          onCancel={() => setShowResultModal(false)}
+          footer={null}
+        >
           <ResultsModalContent
             challengeNumber={data.number}
             win={isWin}

@@ -30,7 +30,10 @@ export function SectionSettings() {
     <div className="game-info-drawer__section-settings">
       <div className="game-info-drawer__settings-entry">
         <div className="game-info-drawer__switch-label">
-          <Translate pt="Idioma" en="Language" />{' '}
+          <Translate
+            pt="Idioma"
+            en="Language"
+          />{' '}
           <Tooltip
             title={
               <Translate
@@ -39,7 +42,12 @@ export function SectionSettings() {
               />
             }
           >
-            <Button type="text" shape="circle" icon={<InfoCircleOutlined />} size="small" />
+            <Button
+              type="text"
+              shape="circle"
+              icon={<InfoCircleOutlined />}
+              size="small"
+            />
           </Tooltip>
         </div>
 
@@ -48,11 +56,24 @@ export function SectionSettings() {
 
       <div className="game-info-drawer__settings-entry">
         <div className="game-info-drawer__switch-label">
-          <Translate pt="Som" en="Sound" />
+          <Translate
+            pt="Som"
+            en="Sound"
+          />
           <Tooltip
-            title={<Translate pt="Muda ou desmuda sons no aplicativo" en="Mute/Unmute sounds in the app" />}
+            title={
+              <Translate
+                pt="Muda ou desmuda sons no aplicativo"
+                en="Mute/Unmute sounds in the app"
+              />
+            }
           >
-            <Button type="text" shape="circle" icon={<InfoCircleOutlined />} size="small" />
+            <Button
+              type="text"
+              shape="circle"
+              icon={<InfoCircleOutlined />}
+              size="small"
+            />
           </Tooltip>
         </div>
 
@@ -66,7 +87,10 @@ export function SectionSettings() {
 
       <div className="game-info-drawer__settings-entry">
         <div className="game-info-drawer__switch-label">
-          <Translate pt="Botão Credo" en="Blur Button" />
+          <Translate
+            pt="Botão Credo"
+            en="Blur Button"
+          />
           <Tooltip
             title={
               <Translate
@@ -75,7 +99,12 @@ export function SectionSettings() {
               />
             }
           >
-            <Button type="text" shape="circle" icon={<InfoCircleOutlined />} size="small" />
+            <Button
+              type="text"
+              shape="circle"
+              icon={<InfoCircleOutlined />}
+              size="small"
+            />
           </Tooltip>
         </div>
 
@@ -104,7 +133,12 @@ export function SectionSettings() {
               />
             }
           >
-            <Button type="text" shape="circle" icon={<InfoCircleOutlined />} size="small" />
+            <Button
+              type="text"
+              shape="circle"
+              icon={<InfoCircleOutlined />}
+              size="small"
+            />
           </Tooltip>
         </div>
 
@@ -120,8 +154,20 @@ export function SectionSettings() {
         <div className="game-info-drawer__settings-entry">
           <div className="game-info-drawer__switch-label">
             Admin
-            <Tooltip title={<Translate pt="Ativa recursos para o administrador" en="Activate admin mode" />}>
-              <Button type="text" shape="circle" icon={<InfoCircleOutlined />} size="small" />
+            <Tooltip
+              title={
+                <Translate
+                  pt="Ativa recursos para o administrador"
+                  en="Activate admin mode"
+                />
+              }
+            >
+              <Button
+                type="text"
+                shape="circle"
+                icon={<InfoCircleOutlined />}
+                size="small"
+              />
             </Tooltip>
           </div>
 

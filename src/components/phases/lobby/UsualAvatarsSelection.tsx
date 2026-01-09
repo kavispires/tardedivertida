@@ -16,13 +16,22 @@ export function UsualAvatarsSelection({ avatarsIds, setSelectedAvatar }: UsualAv
     <div className="lobby-usual-avatar-selection">
       <div className="lobby-usual-avatar-selection__title">
         <small>
-          <Translate pt="Seus avatars mais usados" en="Frequently used avatars" />
+          <Translate
+            pt="Seus avatars mais usados"
+            en="Frequently used avatars"
+          />
         </small>
       </div>
       <ul className="lobby-usual-avatar-selection__list">
         {avatarsIds.map((avatarId) => (
-          <TransparentButton key={avatarId} onClick={() => setSelectedAvatar(avatarId)}>
-            <svg viewBox="0 0 100 100" className="lobby-usual-avatar-selection__avatar">
+          <TransparentButton
+            key={avatarId}
+            onClick={() => setSelectedAvatar(avatarId)}
+          >
+            <svg
+              viewBox="0 0 100 100"
+              className="lobby-usual-avatar-selection__avatar"
+            >
               <use href={`${avatars}#avatar-${avatarId}`}></use>
               <title>
                 <DualTranslate>{AVATARS[avatarId].description}</DualTranslate>

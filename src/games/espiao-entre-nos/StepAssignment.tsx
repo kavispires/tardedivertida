@@ -25,13 +25,22 @@ export function StepAssignment({ user, isUserTheSpy, locations }: StepAssignment
   return (
     <Step className="e-phase-step">
       <StepTitle className="e-phase-title">
-        <Translate pt="Você está no(a)..." en="We are in/at/on..." />
+        <Translate
+          pt="Você está no(a)..."
+          en="We are in/at/on..."
+        />
       </StepTitle>
 
-      <Card location={user.location} role={user.role} />
+      <Card
+        location={user.location}
+        role={user.role}
+      />
 
       <HostNextPhaseButton>
-        <Translate pt="Começar cronômetro" en="Start Timer" />
+        <Translate
+          pt="Começar cronômetro"
+          en="Start Timer"
+        />
       </HostNextPhaseButton>
 
       <Instruction className="e-phase-instruction">

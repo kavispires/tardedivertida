@@ -20,23 +20,41 @@ export function PhaseCloverWriting({ state, players, user }: PhaseProps) {
   const onSubmitClues = useOnSubmitCluesAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={TREVO_DA_SORTE_PHASES.CLOVER_WRITING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={TREVO_DA_SORTE_PHASES.CLOVER_WRITING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<WritingIcon />}
-          title={<Translate pt="Escreva as dicas" en="Write the clues" />}
+          title={
+            <Translate
+              pt="Escreva as dicas"
+              en="Write the clues"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           type="block"
         >
           <Instruction>
-            <Translate pt="Para cada par, escreva uma dica" en="For each pair, write a clue" />
+            <Translate
+              pt="Para cada par, escreva uma dica"
+              en="For each pair, write a clue"
+            />
           </Instruction>
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <StepWriteClues clover={user.clover} leaves={user.leaves} onSubmitClues={onSubmitClues} />
+        <StepWriteClues
+          clover={user.clover}
+          leaves={user.leaves}
+          onSubmitClues={onSubmitClues}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -1,6 +1,10 @@
 export function RevolverIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#d7d0d6"
         d="M160.7 143.3l-16.2-10.8a8.9 8.9 0 00-5-1.5H95.1a6.91 6.91 0 00-6.9 6.9v11.3a6.91 6.91 0 006.9 6.9h19.3l25.7 31.1s27.2 35.6 27.2 34.8 28.7-66.4 28.1-66.7-34.7-12-34.7-12z"
@@ -21,13 +25,22 @@ export function RevolverIcon(props: React.SVGProps<SVGSVGElement>) {
         fill="#efedef"
         d="M489.5 119.4a6.49 6.49 0 00-6.5-6.5h-31.9a6.47 6.47 0 00-5.4 2.9L431.2 138l-19.9 27.6h78.2z"
       ></path>
-      <path fill="#efedef" d="M419 214.8a7.13 7.13 0 007.1-7.1v-45.1H273.4v52.2z"></path>
+      <path
+        fill="#efedef"
+        d="M419 214.8a7.13 7.13 0 007.1-7.1v-45.1H273.4v52.2z"
+      ></path>
       <path
         fill="#f9f7f8"
         d="M312.6 183.8H496a8.49 8.49 0 008.5-8.5v-28.9a8.49 8.49 0 00-8.5-8.5H236.2v49.2z"
       ></path>
-      <path fill="#e5e1e5" d="M273.4 162.6h59.3v52.2h-59.3z"></path>
-      <path fill="#efedef" d="M332.6 183.8V138h-96.4v49.2l76.4-3.4z"></path>
+      <path
+        fill="#e5e1e5"
+        d="M273.4 162.6h59.3v52.2h-59.3z"
+      ></path>
+      <path
+        fill="#efedef"
+        d="M332.6 183.8V138h-96.4v49.2l76.4-3.4z"
+      ></path>
       <path
         fill="#efedef"
         d="M312.6 138v109.1a12 12 0 01-12 12h-33.7a8.1 8.1 0 01-7-4l-5.1-8.7a7.21 7.21 0 00-6.2-3.5h-56.8a84.24 84.24 0 00-13.3 1.1l-3.3.6-.1-1.8a56.17 56.17 0 00-8.3-29.4 56.9 56.9 0 00-22.5-20.7l-8.3-4.2 3.6-1.2a6.11 6.11 0 001.4-.7l13.2-9.7a16.62 16.62 0 006.7-13.3v-20.4a11.28 11.28 0 014.3-8.9l7.5-5.9a11.21 11.21 0 017-2.4h121a12 12 0 0111.9 12z"

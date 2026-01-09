@@ -124,11 +124,17 @@ export function StepEvaluation({
   }, []);
 
   return (
-    <Step announcement={announcement} fullWidth>
+    <Step
+      announcement={announcement}
+      fullWidth
+    >
       <PopoverRule content={<EvaluationRules />} />
       <CanvasResizer />
       <StepTitle>
-        <Translate pt="Adivinhação" en="Match the Pairs" />
+        <Translate
+          pt="Adivinhação"
+          en="Match the Pairs"
+        />
       </StepTitle>
 
       <RuleInstruction type="action">
@@ -166,7 +172,10 @@ export function StepEvaluation({
             onClick={() => resetVoting(selectOwnDrawing())}
             disabled={isLoading}
           >
-            <Translate pt="Limpar seleções" en="Clear selections" />
+            <Translate
+              pt="Limpar seleções"
+              en="Clear selections"
+            />
           </Button>
           <Button
             type="default"
@@ -174,13 +183,19 @@ export function StepEvaluation({
             onClick={onGuessForMe}
             disabled={isLoading || Object.values(votes).length === drawings.length}
           >
-            <Translate pt="Chutar restantes" en="Guess for me" />
+            <Translate
+              pt="Chutar restantes"
+              en="Guess for me"
+            />
           </Button>
           <SendButton
             onClick={() => onSubmitVoting({ votes: prepareVotes(votes), choseRandomly })}
             disabled={!isVotingComplete}
           >
-            <Translate pt="Enviar sua avaliação" en="Send evaluation" />
+            <Translate
+              pt="Enviar sua avaliação"
+              en="Send evaluation"
+            />
           </SendButton>
         </SpaceContainer>
 

@@ -24,7 +24,10 @@ export function EvaluationAllDescriptors({
   matchedItems,
 }: EvaluationAllDescriptorsProps) {
   return (
-    <SpaceContainer size="small" wrap>
+    <SpaceContainer
+      size="small"
+      wrap
+    >
       {descriptorsIds.map((descriptorId) => (
         <TransparentButton
           key={descriptorId}
@@ -33,7 +36,10 @@ export function EvaluationAllDescriptors({
           className="sda-word-button"
         >
           {matchedItems[descriptorId] && (
-            <IconAvatar icon={<CheckMarkIcon />} className="sda-word-button__matched" />
+            <IconAvatar
+              icon={<CheckMarkIcon />}
+              className="sda-word-button__matched"
+            />
           )}
           <Card hideHeader>{cards[descriptorId].text}</Card>
         </TransparentButton>

@@ -16,10 +16,23 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
   const gallery = state.gallery ?? [];
 
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<TrophyIcon />}>
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<TrophyIcon />}
+    >
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
       <TitledContainer
-        title={<Translate pt="Montanhas Pares" en="Best Pairs" />}
+        title={
+          <Translate
+            pt="Montanhas Pares"
+            en="Best Pairs"
+          />
+        }
         className="mt-4"
         contentProps={{ direction: 'vertical' }}
       >

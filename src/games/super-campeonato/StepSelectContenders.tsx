@@ -33,9 +33,15 @@ export function StepSelectContenders({
   });
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Quem pode ganhar esse desafio?" en="Who can win this challenge?" />
+        <Translate
+          pt="Quem pode ganhar esse desafio?"
+          en="Who can win this challenge?"
+        />
       </StepTitle>
 
       <Challenge challenge={challenge} />
@@ -49,7 +55,10 @@ export function StepSelectContenders({
 
       <ul className="w-contenders-hand">
         {userContenders.map((contender) => (
-          <li key={contender.id} className="w-contenders-hand__entry">
+          <li
+            key={contender.id}
+            className="w-contenders-hand__entry"
+          >
             <SendButton
               onClick={() => onSubmitContender({ contendersId: contender.id })}
               shape="round"
@@ -57,10 +66,17 @@ export function StepSelectContenders({
               ghost
               className="w-contenders-hand__button"
             >
-              <Translate pt="Selecionar" en="Select" />
+              <Translate
+                pt="Selecionar"
+                en="Select"
+              />
             </SendButton>
 
-            <CharacterCard character={contender} overlayColor="gray" size={cardWidth} />
+            <CharacterCard
+              character={contender}
+              overlayColor="gray"
+              size={cardWidth}
+            />
           </li>
         ))}
       </ul>

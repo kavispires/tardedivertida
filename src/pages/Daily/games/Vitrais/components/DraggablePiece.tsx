@@ -57,7 +57,13 @@ export const DraggablePiece = ({
   };
 
   return (
-    <div className="vitrais-piece-dnd" ref={setNodeRef} style={dndStyle} {...listeners} {...attributes}>
+    <div
+      className="vitrais-piece-dnd"
+      ref={setNodeRef}
+      style={dndStyle}
+      {...listeners}
+      {...attributes}
+    >
       <motion.div
         className="vitrais-piece"
         animate={{

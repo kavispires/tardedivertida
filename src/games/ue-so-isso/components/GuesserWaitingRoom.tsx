@@ -64,14 +64,30 @@ export function GuesserWaitingRoom({
   );
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <WaitingRoom
         players={players}
         title={`${instructionPrefix} ${instructionSuffix[language]}.`}
-        instruction={<Translate pt="Você é o(a) adivinhador(a)" en="You're the guesser" />}
+        instruction={
+          <Translate
+            pt="Você é o(a) adivinhador(a)"
+            en="You're the guesser"
+          />
+        }
       >
-        <TurnOrder players={players} order={turnOrder} activePlayerId={guesser.id} />
-        <Progress percent={initialProgress + additionalPercentage} status="active" showInfo={false} />
+        <TurnOrder
+          players={players}
+          order={turnOrder}
+          activePlayerId={guesser.id}
+        />
+        <Progress
+          percent={initialProgress + additionalPercentage}
+          status="active"
+          showInfo={false}
+        />
       </WaitingRoom>
     </Step>
   );

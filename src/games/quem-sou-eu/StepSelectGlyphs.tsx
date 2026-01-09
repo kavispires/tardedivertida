@@ -73,7 +73,10 @@ export function StepSelectGlyphs({
   });
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         <Translate
           pt={<>Descreva seu personagem com ícones</>}
@@ -146,7 +149,10 @@ export function StepSelectGlyphs({
             const id = positiveSelections[entry];
 
             return (
-              <div className="q-selections__positive" key={`pos-${entry}-${id}`}>
+              <div
+                className="q-selections__positive"
+                key={`pos-${entry}-${id}`}
+              >
                 <div className="q-selections__entry">
                   <IconAvatar icon={<YesIcon />} />
                   {id !== undefined ? (
@@ -154,8 +160,18 @@ export function StepSelectGlyphs({
                       onClick={() => updatePositive(id)}
                       title={translate('Remover', 'Remove')}
                     >
-                      <Tooltip title={<Translate pt="Remover" en="Remove" />}>
-                        <GlyphCard width={selectedWidth} glyphId={id} />
+                      <Tooltip
+                        title={
+                          <Translate
+                            pt="Remover"
+                            en="Remove"
+                          />
+                        }
+                      >
+                        <GlyphCard
+                          width={selectedWidth}
+                          glyphId={id}
+                        />
                       </Tooltip>
                     </TransparentButton>
                   ) : (
@@ -173,13 +189,27 @@ export function StepSelectGlyphs({
           {SELECTIONS_PLACEHOLDER.map((entry) => {
             const id = negativeSelections[entry];
             return (
-              <div className="q-selections__positive" key={`neg-${entry}-${id}`}>
+              <div
+                className="q-selections__positive"
+                key={`neg-${entry}-${id}`}
+              >
                 <div className="q-selections__entry">
                   <IconAvatar icon={<NoIcon />} />
                   {id !== undefined ? (
                     <TransparentButton onClick={() => updateNegative(id)}>
-                      <Tooltip title={<Translate pt="Remover" en="Remove" />} trigger="hover">
-                        <GlyphCard width={selectedWidth} glyphId={id} />
+                      <Tooltip
+                        title={
+                          <Translate
+                            pt="Remover"
+                            en="Remove"
+                          />
+                        }
+                        trigger="hover"
+                      >
+                        <GlyphCard
+                          width={selectedWidth}
+                          glyphId={id}
+                        />
                       </Tooltip>
                     </TransparentButton>
                   ) : (
@@ -195,7 +225,10 @@ export function StepSelectGlyphs({
         </div>
       </SpaceContainer>
 
-      <Space className="glyphs" wrap>
+      <Space
+        className="glyphs"
+        wrap
+      >
         {glyphs.map((glyphId: string) => (
           <Popover
             key={glyphId}
@@ -208,11 +241,19 @@ export function StepSelectGlyphs({
                 disableNegative={negativeSelections.length === 3}
               />
             }
-            title={<Translate pt="Positivo ou Negativo?" en="Positive or Negative" />}
+            title={
+              <Translate
+                pt="Positivo ou Negativo?"
+                en="Positive or Negative"
+              />
+            }
             trigger="click"
           >
             <TransparentButton>
-              <GlyphCard width={glyphWidth} glyphId={glyphId} />
+              <GlyphCard
+                width={glyphWidth}
+                glyphId={glyphId}
+              />
             </TransparentButton>
           </Popover>
         ))}
@@ -224,7 +265,10 @@ export function StepSelectGlyphs({
           onClick={() => onSelectGlyphs({ glyphs: prepareGlyphs(positiveSelection, negativeSelection) })}
           disabled={user.ready || (positiveSelections.length < 1 && negativeSelections.length < 1)}
         >
-          <Translate pt={<>Enviar ícones</>} en={<>Submit glyphs</>} />
+          <Translate
+            pt={<>Enviar ícones</>}
+            en={<>Submit glyphs</>}
+          />
         </SendButton>
       </SpaceContainer>
     </Step>
@@ -248,11 +292,23 @@ function PopoverGlyph({
 }: PopoverGlyphProps) {
   return (
     <Space>
-      <TransparentButton onClick={() => updatePositive(id)} disabled={disablePositive}>
-        <IconAvatar icon={<YesIcon />} size="large" />
+      <TransparentButton
+        onClick={() => updatePositive(id)}
+        disabled={disablePositive}
+      >
+        <IconAvatar
+          icon={<YesIcon />}
+          size="large"
+        />
       </TransparentButton>
-      <TransparentButton onClick={() => updateNegative(id)} disabled={disableNegative}>
-        <IconAvatar icon={<NoIcon />} size="large" />
+      <TransparentButton
+        onClick={() => updateNegative(id)}
+        disabled={disableNegative}
+      >
+        <IconAvatar
+          icon={<NoIcon />}
+          size="large"
+        />
       </TransparentButton>
     </Space>
   );

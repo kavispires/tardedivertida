@@ -23,7 +23,11 @@ export function StockingBoard({ warehouse, onPlaceGood, width, lastPlacedGoodId 
       {warehouse.map((goodId, index) => {
         if (!goodId) {
           return (
-            <div key={index} className={clsx('shelves-board__empty-shelf')} style={size}>
+            <div
+              key={index}
+              className={clsx('shelves-board__empty-shelf')}
+              style={size}
+            >
               <button
                 type="button"
                 className="shelves-board__empty-shelf-button"
@@ -48,8 +52,16 @@ export function StockingBoard({ warehouse, onPlaceGood, width, lastPlacedGoodId 
         }
 
         return (
-          <div key={index} className={clsx('shelves-board__shelf')} style={size}>
-            <WarehouseGoodCard goodId={goodId} width={width - 12} className={getAnimationClass('bounce')} />
+          <div
+            key={index}
+            className={clsx('shelves-board__shelf')}
+            style={size}
+          >
+            <WarehouseGoodCard
+              goodId={goodId}
+              width={width - 12}
+              className={getAnimationClass('bounce')}
+            />
           </div>
         );
       })}

@@ -23,7 +23,10 @@ export function OutcomeOptions({ outcome, onSubmitOutcome, finalAnswersLeft }: O
             showIcon
             title={
               <>
-                <PlayerAvatar avatarId="A" size="small" />{' '}
+                <PlayerAvatar
+                  avatarId="A"
+                  size="small"
+                />{' '}
                 <Translate
                   pt="Meu algorítimo me diz que um dos casos abaixo aconteceu, selecione o apropriado:"
                   en="According to my calculations, one of the cases below happened, select the appropriate case:"
@@ -56,7 +59,10 @@ export function OutcomeOptions({ outcome, onSubmitOutcome, finalAnswersLeft }: O
               })
             }
           >
-            <Translate pt="Ganhamos!" en="Win!" />
+            <Translate
+              pt="Ganhamos!"
+              en="Win!"
+            />
           </Button>
         </div>
         <div className="v-case">
@@ -75,7 +81,10 @@ export function OutcomeOptions({ outcome, onSubmitOutcome, finalAnswersLeft }: O
               })
             }
           >
-            <Translate pt="Perdermos" en="Lose" />
+            <Translate
+              pt="Perdermos"
+              en="Lose"
+            />
           </Button>
         </div>
         <div className="v-case">
@@ -97,7 +106,10 @@ export function OutcomeOptions({ outcome, onSubmitOutcome, finalAnswersLeft }: O
             }
             disabled={finalAnswersLeft >= 0}
           >
-            <Translate pt="Perdermos" en="Lose" />
+            <Translate
+              pt="Perdermos"
+              en="Lose"
+            />
           </Button>
         </div>
       </div>

@@ -34,23 +34,47 @@ export function PlayerMapResultsSummary({ players, forest, currentPlayer }: Play
         const tree = segment.passed ? forest[segment.treeId] : null;
 
         return (
-          <div className="player-map__segment" key={`map-${segment.index}`}>
+          <div
+            className="player-map__segment"
+            key={`map-${segment.index}`}
+          >
             <div className="player-map__top">
               {tree ? (
-                <TreeImage id={tree.treeType} text={tree.card.text} className="player-map__tree" width={75} />
+                <TreeImage
+                  id={tree.treeType}
+                  text={tree.card.text}
+                  className="player-map__tree"
+                  width={75}
+                />
               ) : (
-                <TreeCard treeId="1" className="player-map__tree-invisible" text="" width={75} />
+                <TreeCard
+                  treeId="1"
+                  className="player-map__tree-invisible"
+                  text=""
+                  width={75}
+                />
               )}
 
-              <IconAvatar icon={<MapIcon />} size="large" className="player-map__icon" />
+              <IconAvatar
+                icon={<MapIcon />}
+                size="large"
+                className="player-map__icon"
+              />
 
               <div>
                 {segment.clues.map((clue) => {
                   return (
-                    <div className="player-map__clue" key={`clue-${segment.index}-${clue.id}`}>
+                    <div
+                      className="player-map__clue"
+                      key={`clue-${segment.index}-${clue.id}`}
+                    >
                       {clue.text}
                       {clue?.negate && (
-                        <IconAvatar icon={<NoIcon />} size="small" className="player-map__clue-no" />
+                        <IconAvatar
+                          icon={<NoIcon />}
+                          size="small"
+                          className="player-map__clue-no"
+                        />
                       )}
                     </div>
                   );
@@ -58,11 +82,19 @@ export function PlayerMapResultsSummary({ players, forest, currentPlayer }: Play
               </div>
 
               {segment.index === 0 && (
-                <IconAvatar icon={<FlagIcon />} size="small" className="player-map__starting-flag" />
+                <IconAvatar
+                  icon={<FlagIcon />}
+                  size="small"
+                  className="player-map__starting-flag"
+                />
               )}
 
               {arr.length - 1 !== index && (
-                <IconAvatar icon={<ArrowIcon />} size="small" className="player-map__arrow" />
+                <IconAvatar
+                  icon={<ArrowIcon />}
+                  size="small"
+                  className="player-map__arrow"
+                />
               )}
             </div>
 
@@ -72,15 +104,24 @@ export function PlayerMapResultsSummary({ players, forest, currentPlayer }: Play
                   {segment.playersIds.map((playerId) => {
                     const player = players[playerId];
                     return (
-                      <Tooltip title={player.name} key={`player-${playerId}`}>
-                        <PlayerAvatar size="small" avatarId={player.avatarId} />
+                      <Tooltip
+                        title={player.name}
+                        key={`player-${playerId}`}
+                      >
+                        <PlayerAvatar
+                          size="small"
+                          avatarId={player.avatarId}
+                        />
                       </Tooltip>
                     );
                   })}
                 </div>
               ) : (
                 <div className="player-map__no-players">
-                  <Translate pt="Nenhum jogador" en="No players" />
+                  <Translate
+                    pt="Nenhum jogador"
+                    en="No players"
+                  />
                 </div>
               )}
 

@@ -1,6 +1,10 @@
 export function DailyJudgingGameIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#a9f7ff"
         d="M505.5 118.5v-108a3 3 0 0 0-3-3h-108a3 3 0 0 0-3 3V24l6.2 12.1a3 3 0 0 0 3 3l72-1.8a3 3 0 0 1 3 3l-.5 76.3a3 3 0 0 0 3 3l10.8 2h13.5a3 3 0 0 0 3-3z"
@@ -54,15 +58,51 @@ export function DailyJudgingGameIcon(props: React.SVGProps<SVGSVGElement>) {
         d="m358.2 317.5-63.3 52a40 40 0 0 1-25.3 9h-27.1a40 40 0 0 1-25.4-9l-63.3-52V157.8c0-27 27.7-45 52.4-34.2l1.7.8a119.8 119.8 0 0 0 96.2 0l1.7-.8a37.3 37.3 0 0 1 52.4 34.2z"
       />
       <g fill="#a9f7ff">
-        <circle cx="256.5" cy="134.5" r="17" />
-        <circle cx="256.5" cy="199.5" r="17" />
-        <circle cx="205" cy="266.5" r="17" />
-        <circle cx="308" cy="266.5" r="17" />
-        <circle cx="256.5" cy="378.5" r="17" />
-        <circle cx="153.5" cy="199.5" r="17" />
-        <circle cx="153.5" cy="317.5" r="17" />
-        <circle cx="358.5" cy="317.5" r="17" />
-        <circle cx="359.5" cy="199.5" r="17" />
+        <circle
+          cx="256.5"
+          cy="134.5"
+          r="17"
+        />
+        <circle
+          cx="256.5"
+          cy="199.5"
+          r="17"
+        />
+        <circle
+          cx="205"
+          cy="266.5"
+          r="17"
+        />
+        <circle
+          cx="308"
+          cy="266.5"
+          r="17"
+        />
+        <circle
+          cx="256.5"
+          cy="378.5"
+          r="17"
+        />
+        <circle
+          cx="153.5"
+          cy="199.5"
+          r="17"
+        />
+        <circle
+          cx="153.5"
+          cy="317.5"
+          r="17"
+        />
+        <circle
+          cx="358.5"
+          cy="317.5"
+          r="17"
+        />
+        <circle
+          cx="359.5"
+          cy="199.5"
+          r="17"
+        />
       </g>
       <path
         fill="#dbd2ff"

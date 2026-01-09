@@ -22,7 +22,10 @@ function Me() {
   }, [currentUser.language]);
 
   return (
-    <MeContent user={currentUser} additionalContent={<LoginModal isAuthenticated={isAuthenticated} />} />
+    <MeContent
+      user={currentUser}
+      additionalContent={<LoginModal isAuthenticated={isAuthenticated} />}
+    />
   );
 }
 

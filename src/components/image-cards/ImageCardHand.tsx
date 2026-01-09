@@ -97,8 +97,14 @@ export function ImageCardHand({
   });
 
   return (
-    <Image.PreviewGroup preview={imageGroupPreview} classNames={imageGroupPreviewClassNames}>
-      <Space className={clsx('image-card-hand', className)} ref={containerRef as Ref<HTMLDivElement>}>
+    <Image.PreviewGroup
+      preview={imageGroupPreview}
+      classNames={imageGroupPreviewClassNames}
+    >
+      <Space
+        className={clsx('image-card-hand', className)}
+        ref={containerRef as Ref<HTMLDivElement>}
+      >
         {hand.map((cardId, index) => {
           return (
             <motion.div

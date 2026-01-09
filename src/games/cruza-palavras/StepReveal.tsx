@@ -90,9 +90,15 @@ export function StepReveal({
   }, [players, correctCoordinatesPerPlayer, colorCodedCluesPerPlayer]);
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Resultado" en="Results" />
+        <Translate
+          pt="Resultado"
+          en="Results"
+        />
       </StepTitle>
 
       <PopoverRule content={<ScoringRule playerCount={playerCount} />} />
@@ -138,11 +144,21 @@ export function StepReveal({
           onExpire={goToNextStep}
           onClick={goToNextStep}
         >
-          <Translate pt="Ver Ranking" en="See Ranking" />
+          <Translate
+            pt="Ver Ranking"
+            en="See Ranking"
+          />
         </TimedButton>
       </SpaceContainer>
 
-      <TitledContainer title={<Translate pt="Todas as respostas" en="All Answers" />}>
+      <TitledContainer
+        title={
+          <Translate
+            pt="Todas as respostas"
+            en="All Answers"
+          />
+        }
+      >
         <AnswersTable
           correctCoordinatesPerPlayer={correctCoordinatesPerPlayer}
           players={players}

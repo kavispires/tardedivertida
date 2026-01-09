@@ -31,7 +31,12 @@ export function PhaseSecretClue({ state, players, user }: PhaseProps<PhaseSecret
   const announcement = (
     <PhaseAnnouncement
       icon={<SecretIcon />}
-      title={<Translate pt="Pista Secreta" en="Secret Clue" />}
+      title={
+        <Translate
+          pt="Pista Secreta"
+          en="Secret Clue"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -39,12 +44,22 @@ export function PhaseSecretClue({ state, players, user }: PhaseProps<PhaseSecret
         <Translate
           pt={
             <>
-              Para essa rodada, <PlayerAvatarName player={leader} addressUser /> será o(a) Detetive Líder.
+              Para essa rodada,{' '}
+              <PlayerAvatarName
+                player={leader}
+                addressUser
+              />{' '}
+              será o(a) Detetive Líder.
             </>
           }
           en={
             <>
-              For this round, <PlayerAvatarName player={leader} addressUser /> will be the Lead Detective.
+              For this round,{' '}
+              <PlayerAvatarName
+                player={leader}
+                addressUser
+              />{' '}
+              will be the Lead Detective.
             </>
           }
         />
@@ -59,7 +74,10 @@ export function PhaseSecretClue({ state, players, user }: PhaseProps<PhaseSecret
       allowedPhase={DETETIVES_IMAGINATIVOS_PHASES.SECRET_CLUE}
       className="d-secret-clue-phase"
     >
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <RoundAnnouncement
           round={state.round}
@@ -71,7 +89,11 @@ export function PhaseSecretClue({ state, players, user }: PhaseProps<PhaseSecret
 
         {/* Step 1 */}
         <ViewOr condition={isUserTheLeader}>
-          <StepSecretClueWrite user={user} onSubmitClue={onSubmitSecretClue} announcement={announcement} />
+          <StepSecretClueWrite
+            user={user}
+            onSubmitClue={onSubmitSecretClue}
+            announcement={announcement}
+          />
 
           <StepSecretClueWaiting
             user={user}

@@ -6,7 +6,11 @@ import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricH
 
 export function CircleHighlight({ children, type, color }: HighlightProps & { color: string }) {
   return (
-    <MetricHighlight icon={<CircleIcon mainColor={color} />} type={type} iconPlacement="before">
+    <MetricHighlight
+      icon={<CircleIcon mainColor={color} />}
+      type={type}
+      iconPlacement="before"
+    >
       {children}
     </MetricHighlight>
   );
@@ -14,7 +18,11 @@ export function CircleHighlight({ children, type, color }: HighlightProps & { co
 
 export function OutsideHighlight({ children, type }: HighlightProps) {
   return (
-    <MetricHighlight icon={<XIcon mainColor="#736357" />} type={type} iconPlacement="before">
+    <MetricHighlight
+      icon={<XIcon mainColor="#736357" />}
+      type={type}
+      iconPlacement="before"
+    >
       {children}
     </MetricHighlight>
   );

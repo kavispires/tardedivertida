@@ -22,7 +22,12 @@ export function PhaseResolution({ state, players }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<SealIcon />}
-      title={<Translate pt="Solução" en="Solution" />}
+      title={
+        <Translate
+          pt="Solução"
+          en="Solution"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -31,8 +36,14 @@ export function PhaseResolution({ state, players }: PhaseProps) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={CONTADORES_HISTORIAS_PHASES.RESOLUTION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={CONTADORES_HISTORIAS_PHASES.RESOLUTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepResolution
           players={players}

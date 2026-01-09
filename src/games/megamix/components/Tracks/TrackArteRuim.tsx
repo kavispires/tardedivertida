@@ -73,7 +73,11 @@ export const TrackArteRuim = ({ track, onSubmitAnswer, user }: TrackProps) => {
         </RuleInstruction>
 
         <SpaceContainer>
-          <CanvasSVG drawing={track.data.option.drawing} width={cardWidth} className="a-drawing" />
+          <CanvasSVG
+            drawing={track.data.option.drawing}
+            width={cardWidth}
+            className="a-drawing"
+          />
         </SpaceContainer>
 
         <SpaceContainer>
@@ -87,7 +91,10 @@ export const TrackArteRuim = ({ track, onSubmitAnswer, user }: TrackProps) => {
                 })
               }
             >
-              <Card header={LETTERS[index]} color={getColorFromIndex(index)}>
+              <Card
+                header={LETTERS[index]}
+                color={getColorFromIndex(index)}
+              >
                 {card.text}
               </Card>
             </TransparentButton>
@@ -124,15 +131,25 @@ export const TrackArteRuim = ({ track, onSubmitAnswer, user }: TrackProps) => {
       </RuleInstruction>
 
       <SpaceContainer>
-        <Card header="A" color={getColorFromIndex(0)}>
+        <Card
+          header="A"
+          color={getColorFromIndex(0)}
+        >
           {track.data.cards[1].text}
         </Card>
       </SpaceContainer>
 
       <div className="a-drawings">
         {track.data.options.map((entry: PlainObject) => (
-          <div key={String(entry)} className="a-drawings__entry">
-            <CanvasSVG drawing={entry.drawing} width={cardWidth} className="a-drawing" />
+          <div
+            key={String(entry)}
+            className="a-drawings__entry"
+          >
+            <CanvasSVG
+              drawing={entry.drawing}
+              width={cardWidth}
+              className="a-drawing"
+            />
 
             <SpaceContainer>
               <Button
@@ -142,7 +159,10 @@ export const TrackArteRuim = ({ track, onSubmitAnswer, user }: TrackProps) => {
                 loading={isLoading}
                 onClick={() => onSelect(entry.playerId)}
               >
-                <Translate pt="Selecionar" en="Select" />
+                <Translate
+                  pt="Selecionar"
+                  en="Select"
+                />
               </Button>
             </SpaceContainer>
           </div>

@@ -18,9 +18,19 @@ type GameOverGalleryProps = {
 
 export function GameOverGallery({ gallery, players }: GameOverGalleryProps) {
   return (
-    <TitledContainer title={<Translate pt="Galeria de Captchas" en="Captcha Gallery" />}>
+    <TitledContainer
+      title={
+        <Translate
+          pt="Galeria de Captchas"
+          en="Captcha Gallery"
+        />
+      }
+    >
       {gallery.map((entry) => (
-        <div key={entry.round} className="game-over-captcha">
+        <div
+          key={entry.round}
+          className="game-over-captcha"
+        >
           <div className="game-over-captcha__squares">
             {entry.options.map((option) => (
               <ImageCard

@@ -62,17 +62,26 @@ export const TrackLabirintoSecreto = ({ track, onSubmitAnswer, user }: TrackProp
 
       <div className="cm-trees">
         <div className="cm-trees__tree">
-          <IconAvatar icon={<TreeOneIcon />} size={84} />
+          <IconAvatar
+            icon={<TreeOneIcon />}
+            size={84}
+          />
           <div className="cm-trees__text">{track.data.trees[0].text}</div>
         </div>
 
         <div className="cm-trees__tree">
-          <IconAvatar icon={<TreeTwoIcon />} size={84} />
+          <IconAvatar
+            icon={<TreeTwoIcon />}
+            size={84}
+          />
           <div className="cm-trees__text">{track.data.trees[1].text}</div>
         </div>
 
         <div className="cm-trees__tree">
-          <IconAvatar icon={<TreeThreeIcon />} size={84} />
+          <IconAvatar
+            icon={<TreeThreeIcon />}
+            size={84}
+          />
           <div className="cm-trees__text">{track.data.trees[2].text}</div>
         </div>
       </div>
@@ -84,7 +93,10 @@ export const TrackLabirintoSecreto = ({ track, onSubmitAnswer, user }: TrackProp
           onClick={() => onSelect(0)}
         >
           {'A'}
-          <IconAvatar icon={<MapIcon />} size={48} />
+          <IconAvatar
+            icon={<MapIcon />}
+            size={48}
+          />
           {Object.values<PlainObject>(track.data.options[0]).map((option, index, arr) => {
             return (
               <Fragment key={`${option.playerId}-${index}`}>
@@ -100,7 +112,10 @@ export const TrackLabirintoSecreto = ({ track, onSubmitAnswer, user }: TrackProp
           onClick={() => onSelect(1)}
         >
           {'B'}
-          <IconAvatar icon={<MapIcon />} size={48} />
+          <IconAvatar
+            icon={<MapIcon />}
+            size={48}
+          />
           {Object.values<PlainObject>(track.data.options[1]).map((option, index, arr) => {
             return (
               <Fragment key={`${option.playerId}-${index}`}>
@@ -116,7 +131,10 @@ export const TrackLabirintoSecreto = ({ track, onSubmitAnswer, user }: TrackProp
           onClick={() => onSelect(2)}
         >
           {'C'}
-          <IconAvatar icon={<MapIcon />} size={48} />
+          <IconAvatar
+            icon={<MapIcon />}
+            size={48}
+          />
           {Object.values<PlainObject>(track.data.options[2]).map((option, index, arr) => {
             return (
               <Fragment key={`${option.playerId}-${index}`}>

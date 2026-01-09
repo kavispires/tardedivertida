@@ -34,7 +34,10 @@ export function TrapAnnouncement({ trapEntry, goToNextStep }: TrapAnnouncementPr
         <DualTranslate>{trapEntry.description}</DualTranslate>
       </Instruction>
       <Flex justify="center">
-        <TrapLevel level={trapEntry.level} count={3} />
+        <TrapLevel
+          level={trapEntry.level}
+          count={3}
+        />
       </Flex>
     </PhaseAnnouncement>
   );

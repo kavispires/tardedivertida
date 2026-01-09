@@ -78,7 +78,12 @@ export function StepNewScene({
           items={[
             {
               key: 'weapons-evidences',
-              label: <Translate pt="Clique para ver todas as cartas" en="Click to see all cards" />,
+              label: (
+                <Translate
+                  pt="Clique para ver todas as cartas"
+                  en="Click to see all cards"
+                />
+              ),
               children: (
                 <GroupedItemsBoard
                   groupedItems={groupedItems}
@@ -109,7 +114,11 @@ export function StepNewScene({
             isVictimGame={isVictimGame}
           />
         )}
-        <SceneTile tile={sceneTile} onSelectValue={onSelectItem} index={sceneMarkIndex} />
+        <SceneTile
+          tile={sceneTile}
+          onSelectValue={onSelectItem}
+          index={sceneMarkIndex}
+        />
       </SpaceContainer>
 
       <SpaceContainer>
@@ -122,7 +131,10 @@ export function StepNewScene({
             }
           }}
         >
-          <Translate pt="Enviar" en="Send" />
+          <Translate
+            pt="Enviar"
+            en="Send"
+          />
         </SendButton>
       </SpaceContainer>
     </Step>

@@ -27,18 +27,30 @@ export function Page({ slide, players, albumColor, currentPage, totalSlides }: P
   const animationClass = useMemo(() => getAnimationClass('flipInY'), []);
 
   return (
-    <div className="l-page" style={{ background: slide.type === 'cover' ? albumColor : 0 }}>
+    <div
+      className="l-page"
+      style={{ background: slide.type === 'cover' ? albumColor : 0 }}
+    >
       <div className="l-page__pagination">
         <Avatar style={{ backgroundColor: albumColor }}>{currentPage + 1}</Avatar>
         <span className="l-page__pagination-of">
-          <Translate pt="de" en="of" />
+          <Translate
+            pt="de"
+            en="of"
+          />
         </span>
         <Avatar style={{ backgroundColor: albumColor }}>{totalSlides}</Avatar>
       </div>
 
       {slide.type === 'cover' && (
-        <div className={clsx('l-page__container', animationClass)} style={{ backgroundColor: albumColor }}>
-          <PlayerAvatar avatarId={author.avatarId} size={96} />
+        <div
+          className={clsx('l-page__container', animationClass)}
+          style={{ backgroundColor: albumColor }}
+        >
+          <PlayerAvatar
+            avatarId={author.avatarId}
+            size={96}
+          />
         </div>
       )}
 
@@ -61,8 +73,14 @@ export function Page({ slide, players, albumColor, currentPage, totalSlides }: P
 
       {slide.type !== 'cover' && (
         <div className="l-page__author">
-          <Translate pt="por " en="by " />
-          <PlayerAvatarName player={author} addressUser />
+          <Translate
+            pt="por "
+            en="by "
+          />
+          <PlayerAvatarName
+            player={author}
+            addressUser
+          />
         </div>
       )}
     </div>

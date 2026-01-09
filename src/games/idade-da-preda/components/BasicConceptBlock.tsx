@@ -26,8 +26,16 @@ export function BasicConceptBlock({
   const { dualTranslate } = useLanguage();
 
   return (
-    <Card size="small" className="concept-block" style={{ width: itemWidth * 3 }}>
-      <Flex className="concept-block__header" justify="space-between" align="center">
+    <Card
+      size="small"
+      className="concept-block"
+      style={{ width: itemWidth * 3 }}
+    >
+      <Flex
+        className="concept-block__header"
+        justify="space-between"
+        align="center"
+      >
         <div className="concept-block__sound">
           <SpeakButton text={concept.syllable} />
           <DivButton

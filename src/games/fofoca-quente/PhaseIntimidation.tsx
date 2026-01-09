@@ -27,7 +27,12 @@ export function PhaseIntimidation({ state, players, user }: PhaseProps<PhaseInti
   const announcement = (
     <PhaseAnnouncement
       icon={<TDIcon />}
-      title={<Translate pt="Intimidação" en="Intimidation" />}
+      title={
+        <Translate
+          pt="Intimidação"
+          en="Intimidation"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -41,8 +46,14 @@ export function PhaseIntimidation({ state, players, user }: PhaseProps<PhaseInti
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={FOFOCA_QUENTE_PHASES.INTIMIDATION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={FOFOCA_QUENTE_PHASES.INTIMIDATION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepIntimidation
           user={user}

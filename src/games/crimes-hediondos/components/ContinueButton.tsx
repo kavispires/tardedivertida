@@ -12,10 +12,21 @@ interface ContinueButtonProps extends ButtonProps {
 
 export function ContinueButton({ onClick, children, disabled = false, ...props }: ContinueButtonProps) {
   return (
-    <Button type="primary" size="large" disabled={disabled} onClick={onClick} {...props}>
+    <Button
+      type="primary"
+      size="large"
+      disabled={disabled}
+      onClick={onClick}
+      {...props}
+    >
       {children ?? (
         <>
-          »» <Translate pt="Próximo" en="Next" /> »»
+          »»{' '}
+          <Translate
+            pt="Próximo"
+            en="Next"
+          />{' '}
+          »»
         </>
       )}
     </Button>

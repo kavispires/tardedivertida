@@ -21,7 +21,10 @@ export function StepPsychicGuess({ currentCategory, onSendGuess, announcement }:
   }, []);
 
   return (
-    <Step className="o-dial-guess-selection" announcement={announcement}>
+    <Step
+      className="o-dial-guess-selection"
+      announcement={announcement}
+    >
       <StepTitle size="small">
         <Translate
           pt="Quantos jogadores vão ganhar pontos com sua dica?"
@@ -61,15 +64,33 @@ export function StepPsychicGuess({ currentCategory, onSendGuess, announcement }:
       </RuleInstruction>
 
       <SpaceContainer>
-        <SendButton type="primary" onClick={() => onSendGuess({ guess: false })} size="large">
-          <Translate pt="Menos da metade" en="Less than half" />
+        <SendButton
+          type="primary"
+          onClick={() => onSendGuess({ guess: false })}
+          size="large"
+        >
+          <Translate
+            pt="Menos da metade"
+            en="Less than half"
+          />
         </SendButton>
-        <SendButton type="primary" onClick={() => onSendGuess({ guess: true })} size="large">
-          <Translate pt="A metade ou mais" en="Half or more" />
+        <SendButton
+          type="primary"
+          onClick={() => onSendGuess({ guess: true })}
+          size="large"
+        >
+          <Translate
+            pt="A metade ou mais"
+            en="Half or more"
+          />
         </SendButton>
       </SpaceContainer>
 
-      <Dial card={currentCategory} target={currentCategory.target} showTarget />
+      <Dial
+        card={currentCategory}
+        target={currentCategory.target}
+        showTarget
+      />
     </Step>
   );
 }

@@ -31,7 +31,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionOndaTelepatica() {
-  return <Session gameCollection={GAME_COLLECTION.ONDA_TELEPATICA} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.ONDA_TELEPATICA}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionOndaTelepatica;

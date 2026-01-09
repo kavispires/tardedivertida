@@ -40,7 +40,12 @@ export function PlayersDecisionState({
         players={players}
         playersInSection={alreadyAtHomePlayerIds}
         icon={<HouseIcon />}
-        title={<Translate pt="Em Casa" en="At Home" />}
+        title={
+          <Translate
+            pt="Em Casa"
+            en="At Home"
+          />
+        }
         description={
           <Translate
             pt="Você se lembra quantos doces eles levaram?"
@@ -53,18 +58,31 @@ export function PlayersDecisionState({
         players={players}
         playersInSection={goingHomePlayerIds}
         icon={<WalkIcon className="svg-mirror" />}
-        title={<Translate pt="Voltando pra Casa" en="Going Home" />}
+        title={
+          <Translate
+            pt="Voltando pra Casa"
+            en="Going Home"
+          />
+        }
         description={
           <Translate
             pt={
               <>
-                Cada um levou {candyInHand + cashedInCandy} <IconAvatar icon={<CandyIcon />} size="small" />{' '}
+                Cada um levou {candyInHand + cashedInCandy}{' '}
+                <IconAvatar
+                  icon={<CandyIcon />}
+                  size="small"
+                />{' '}
                 pra casa.
               </>
             }
             en={
               <>
-                Each one took {candyInHand + cashedInCandy} <IconAvatar icon={<CandyIcon />} size="small" />{' '}
+                Each one took {candyInHand + cashedInCandy}{' '}
+                <IconAvatar
+                  icon={<CandyIcon />}
+                  size="small"
+                />{' '}
                 home.
               </>
             }
@@ -79,10 +97,23 @@ export function PlayersDecisionState({
         title={
           <>
             {phase === 'TRICK_OR_TREAT' && (
-              <Translate pt="Continua ou Volta?" en="Continuing or Going Home?" />
+              <Translate
+                pt="Continua ou Volta?"
+                en="Continuing or Going Home?"
+              />
             )}
-            {phase === 'RESULT' && <Translate pt="Continuando" en="Continuing" />}
-            {phase === 'STREET_END' && <Translate pt="Continuariam" en="Would continue" />}
+            {phase === 'RESULT' && (
+              <Translate
+                pt="Continuando"
+                en="Continuing"
+              />
+            )}
+            {phase === 'STREET_END' && (
+              <Translate
+                pt="Continuariam"
+                en="Would continue"
+              />
+            )}
           </>
         }
         description={
@@ -90,12 +121,22 @@ export function PlayersDecisionState({
             <Translate
               pt={
                 <>
-                  Perderam {candyInHand} <IconAvatar icon={<CandyIcon />} size="small" />.
+                  Perderam {candyInHand}{' '}
+                  <IconAvatar
+                    icon={<CandyIcon />}
+                    size="small"
+                  />
+                  .
                 </>
               }
               en={
                 <>
-                  Lost {candyInHand} <IconAvatar icon={<CandyIcon />} size="small" /> .
+                  Lost {candyInHand}{' '}
+                  <IconAvatar
+                    icon={<CandyIcon />}
+                    size="small"
+                  />{' '}
+                  .
                 </>
               }
             />
@@ -103,12 +144,22 @@ export function PlayersDecisionState({
             <Translate
               pt={
                 <>
-                  Cada um tem {candyInHand} <IconAvatar icon={<CandyIcon />} size="small" /> na sacolinha.
+                  Cada um tem {candyInHand}{' '}
+                  <IconAvatar
+                    icon={<CandyIcon />}
+                    size="small"
+                  />{' '}
+                  na sacolinha.
                 </>
               }
               en={
                 <>
-                  Each one has {candyInHand} <IconAvatar icon={<CandyIcon />} size="small" /> in their bag.
+                  Each one has {candyInHand}{' '}
+                  <IconAvatar
+                    icon={<CandyIcon />}
+                    size="small"
+                  />{' '}
+                  in their bag.
                 </>
               }
             />
@@ -147,8 +198,14 @@ function DecisionSection({ players, playersInSection, icon, title, description }
           playersInSection.map((playerId) => {
             const player = players[playerId];
             return (
-              <span key={`going-home-player-${player.id}`} className="n-players-decision__player">
-                <CostumeAvatar avatarId={player.avatarId} id={player.costumeId} />
+              <span
+                key={`going-home-player-${player.id}`}
+                className="n-players-decision__player"
+              >
+                <CostumeAvatar
+                  avatarId={player.avatarId}
+                  id={player.costumeId}
+                />
                 {player.name}
               </span>
             );

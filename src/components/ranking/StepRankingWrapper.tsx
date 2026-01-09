@@ -82,7 +82,10 @@ export function StepRankingWrapper({
         victoryIndex={victoryIndex}
         delay={delay}
       />
-      <Instruction className="step-ranking-wrapper-gained-points-instruction" colorScheme={scheme}>
+      <Instruction
+        className="step-ranking-wrapper-gained-points-instruction"
+        colorScheme={scheme}
+      >
         <CaretUpOutlined />
         <Translate
           pt="Passe o mouse em cada um dos pontos para saber como eles foram distribuídos"

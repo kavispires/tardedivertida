@@ -22,15 +22,26 @@ export function PhaseWordsSelection({ players, state, user }: PhaseProps<PhaseWo
   const announcement = (
     <PhaseAnnouncement
       icon={<VerifyListIcon />}
-      title={<Translate pt="Palavras da Rodada" en="Round Words" />}
+      title={
+        <Translate
+          pt="Palavras da Rodada"
+          en="Round Words"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     />
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={COLEGAS_DE_QUARTO_PHASES.WORDS_SELECTION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={COLEGAS_DE_QUARTO_PHASES.WORDS_SELECTION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 1 */}
         <StepSelectWords
           pool={state.pool}

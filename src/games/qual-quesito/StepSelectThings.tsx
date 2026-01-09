@@ -90,9 +90,15 @@ export function StepSelectThings({
   );
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle size="small">
-        <Translate pt={<>O quesito é:</>} en={<>And the category is:</>} />
+        <Translate
+          pt={<>O quesito é:</>}
+          en={<>And the category is:</>}
+        />
       </StepTitle>
 
       <SpaceContainer>
@@ -173,7 +179,10 @@ export function StepSelectThings({
       )}
 
       <SpaceContainer className="my-6">
-        <Badge count={selectedItemsIds.length} showZero>
+        <Badge
+          count={selectedItemsIds.length}
+          showZero
+        >
           <SendButton
             size="large"
             disabled={isTheCreator ? selectedItemsIds.length < 2 : selectedItemsIds.length < 1 || isLoading}
@@ -183,7 +192,10 @@ export function StepSelectThings({
               });
             }}
           >
-            <Translate pt="Enviar coisas" en="Submit things" />
+            <Translate
+              pt="Enviar coisas"
+              en="Submit things"
+            />
           </SendButton>
         </Badge>
 
@@ -196,13 +208,24 @@ export function StepSelectThings({
               />
             }
             description={
-              <Translate pt="Não há penalidade em pular agora." en="There is no penalty for skipping now." />
+              <Translate
+                pt="Não há penalidade em pular agora."
+                en="There is no penalty for skipping now."
+              />
             }
             onConfirm={() => onSubmitCards({ cardsIds: [] })}
             type="yes-no"
           >
-            <Button size="large" disabled={isLoading} icon={<RedoOutlined />} type="dashed">
-              <Translate pt="Pular vez" en="Skip turn" />
+            <Button
+              size="large"
+              disabled={isLoading}
+              icon={<RedoOutlined />}
+              type="dashed"
+            >
+              <Translate
+                pt="Pular vez"
+                en="Skip turn"
+              />
             </Button>
           </Popconfirm>
         )}
@@ -215,7 +238,10 @@ export function StepSelectThings({
         onSelectItem={handleSelectItem}
       />
 
-      <PlayersHandsCounts players={players} turnOrder={turnOrder} />
+      <PlayersHandsCounts
+        players={players}
+        turnOrder={turnOrder}
+      />
     </Step>
   );
 }

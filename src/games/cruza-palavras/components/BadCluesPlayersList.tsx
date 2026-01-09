@@ -12,7 +12,11 @@ export function BadCluesPlayersList({ badCluesPlayersList }: BadCluesPlayersList
     <span>
       {badCluesPlayersList.map((player, index) => (
         <span key={`bad-clue-${player.id}-${index}`}>
-          <PlayerAvatarName player={player} key={`bad-clue-${player.id}`} size="small" />
+          <PlayerAvatarName
+            player={player}
+            key={`bad-clue-${player.id}`}
+            size="small"
+          />
           {badCluesPlayersList.length > 0 && index < badCluesPlayersList.length - 1 ? ', ' : ''}
         </span>
       ))}

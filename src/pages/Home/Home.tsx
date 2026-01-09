@@ -136,8 +136,14 @@ function Home() {
                 <LanguageSwitch />
               </SpaceContainer>
 
-              <Title level={2} size="xx-small">
-                <Translate pt="Digite o código do jogo" en="Enter the game code" />
+              <Title
+                level={2}
+                size="xx-small"
+              >
+                <Translate
+                  pt="Digite o código do jogo"
+                  en="Enter the game code"
+                />
               </Title>
 
               <SpaceContainer>
@@ -163,15 +169,29 @@ function Home() {
                     exit={{ opacity: 0, y: 20 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <Translate pt="Entrar" en="Enter" />
+                    <Translate
+                      pt="Entrar"
+                      en="Enter"
+                    />
                   </MotionButton>
                 )}
               </AnimatePresence>
 
-              <Flex gap={8} className="home__buttons" justify="center" wrap="wrap">
+              <Flex
+                gap={8}
+                className="home__buttons"
+                justify="center"
+                wrap="wrap"
+              >
                 {isAuthenticated && (
-                  <Button onClick={() => navigate(language === 'pt' ? '/eu' : '/me')} icon={<UserOutlined />}>
-                    <Translate pt="Página de Usuário" en="User page" />
+                  <Button
+                    onClick={() => navigate(language === 'pt' ? '/eu' : '/me')}
+                    icon={<UserOutlined />}
+                  >
+                    <Translate
+                      pt="Página de Usuário"
+                      en="User page"
+                    />
                   </Button>
                 )}
 
@@ -180,7 +200,10 @@ function Home() {
                     onClick={() => navigate(language === 'pt' ? '/diario' : '/daily')}
                     icon={<CalendarOutlined />}
                   >
-                    <Translate pt="Desafio Diário" en="Daily Challenge" />
+                    <Translate
+                      pt="Desafio Diário"
+                      en="Daily Challenge"
+                    />
                   </Button>
                 )}
 

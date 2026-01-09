@@ -28,7 +28,12 @@ function PhaseTrial({ state, players }: PhaseProps<PhaseTrialState>) {
   const announcement = (
     <PhaseAnnouncement
       icon={<LawIcon />}
-      title={<Translate pt="Julgamento" en="Trial" />}
+      title={
+        <Translate
+          pt="Julgamento"
+          en="Trial"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -40,8 +45,11 @@ function PhaseTrial({ state, players }: PhaseProps<PhaseTrialState>) {
               Lembre-se que estamos tentando liberar testemunhas. Desvendamos o caso se o último suspeito for
               o criminoso!
               <br />
-              <PlayerAvatarName player={questioner} addressUser /> está encarregado(a) de selecionar os
-              inocentes.
+              <PlayerAvatarName
+                player={questioner}
+                addressUser
+              />{' '}
+              está encarregado(a) de selecionar os inocentes.
             </>
           }
           en={
@@ -59,8 +67,15 @@ function PhaseTrial({ state, players }: PhaseProps<PhaseTrialState>) {
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={TESTEMUNHA_OCULAR_PHASES.TRIAL} className="t-phase">
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={TESTEMUNHA_OCULAR_PHASES.TRIAL}
+      className="t-phase"
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepSuspectElimination
           suspectsDict={state.suspectsDict}

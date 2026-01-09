@@ -29,7 +29,12 @@ export function PhaseCardPlay({ state, players, user }: PhaseProps<PhaseCardPlay
   const announcement = (
     <PhaseAnnouncement
       icon={<HangingPhotographIcon />}
-      title={<Translate pt="Apresentação das Evidências" en="Evidence" />}
+      title={
+        <Translate
+          pt="Apresentação das Evidências"
+          en="Evidence"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -60,7 +65,10 @@ export function PhaseCardPlay({ state, players, user }: PhaseProps<PhaseCardPlay
       allowedPhase={DETETIVES_IMAGINATIVOS_PHASES.CARD_PLAY}
       className="d-phase d-play-card-phase"
     >
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepPlayCard
           clue={state.clue}

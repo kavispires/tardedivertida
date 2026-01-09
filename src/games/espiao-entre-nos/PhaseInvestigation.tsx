@@ -59,12 +59,20 @@ export function PhaseInvestigation({ state, players, user }: PhaseProps) {
       allowedPhase={ESPIAO_ENTRE_NOS_PHASES.INVESTIGATION}
       className="e-phase"
     >
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         {state?.outcome?.type !== 'VOTE_FAIL' ? (
           <PhaseAnnouncement
             icon={<LoupeIcon />}
-            title={<Translate pt="Investigação" en="Investigation" />}
+            title={
+              <Translate
+                pt="Investigação"
+                en="Investigation"
+              />
+            }
             onClose={goToNextStep}
             currentRound={state?.round?.current}
             buttonText=""
@@ -75,7 +83,12 @@ export function PhaseInvestigation({ state, players, user }: PhaseProps) {
         ) : (
           <PhaseAnnouncement
             icon={<OpinionsIcon />}
-            title={<Translate pt="A investigação continua" en="The investigation continues" />}
+            title={
+              <Translate
+                pt="A investigação continua"
+                en="The investigation continues"
+              />
+            }
             onClose={goToNextStep}
             currentRound={state?.round?.current}
             buttonText=""
@@ -84,7 +97,10 @@ export function PhaseInvestigation({ state, players, user }: PhaseProps) {
             type="block"
           >
             <Instruction>
-              <Translate pt="A votação não foi unanime" en="The vote wasn't unanimous" />
+              <Translate
+                pt="A votação não foi unanime"
+                en="The vote wasn't unanimous"
+              />
             </Instruction>
           </PhaseAnnouncement>
         )}
@@ -106,7 +122,12 @@ export function PhaseInvestigation({ state, players, user }: PhaseProps) {
         {/* Step 2 */}
         <PhaseAnnouncement
           icon={<TimerIcon />}
-          title={<Translate pt="O tempo acabou!!!" en="Time's up!!!" />}
+          title={
+            <Translate
+              pt="O tempo acabou!!!"
+              en="Time's up!!!"
+            />
+          }
           unskippable
           duration={300}
           onClose={() => {}}
@@ -116,9 +137,15 @@ export function PhaseInvestigation({ state, players, user }: PhaseProps) {
           type="block"
         >
           <Instruction>
-            <Translate pt="Preparado para a avaliação final?" en="Are you ready for the final assessment?" />
+            <Translate
+              pt="Preparado para a avaliação final?"
+              en="Are you ready for the final assessment?"
+            />
           </Instruction>
-          <FinalAssessmentPreparationModal onSendLastQuestioner={onSendLastQuestioner} players={players} />
+          <FinalAssessmentPreparationModal
+            onSendLastQuestioner={onSendLastQuestioner}
+            players={players}
+          />
         </PhaseAnnouncement>
       </StepSwitcher>
     </PhaseContainer>

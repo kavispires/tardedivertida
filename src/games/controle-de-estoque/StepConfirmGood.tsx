@@ -73,7 +73,10 @@ export function StepConfirmGood({
 
   if (isUserTheSupervisor) {
     return (
-      <Step fullWidth ref={ref}>
+      <Step
+        fullWidth
+        ref={ref}
+      >
         <StepTitle size="small">
           <Translate
             pt={<>Estão todos de acordo com esse local?</>}
@@ -113,7 +116,10 @@ export function StepConfirmGood({
   }
 
   return (
-    <Step fullWidth ref={ref}>
+    <Step
+      fullWidth
+      ref={ref}
+    >
       <StepTitle>
         <Translate
           pt={<>Concorda com o local escolhido?</>}
@@ -126,8 +132,11 @@ export function StepConfirmGood({
           <Translate
             pt={
               <>
-                <PlayerAvatarName player={supervisor} size="small" /> é o(a) supervisor(a) do dia e colocou a
-                mercadoria no galpão.
+                <PlayerAvatarName
+                  player={supervisor}
+                  size="small"
+                />{' '}
+                é o(a) supervisor(a) do dia e colocou a mercadoria no galpão.
               </>
             }
             en={
@@ -165,7 +174,10 @@ export function StepConfirmGood({
           disabled={user.ready}
           duration={40}
         >
-          <Translate pt="Confirmar" en="Confirm" />
+          <Translate
+            pt="Confirmar"
+            en="Confirm"
+          />
         </TimedButton>
       </Instruction>
 

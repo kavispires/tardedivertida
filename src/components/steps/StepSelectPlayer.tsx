@@ -35,13 +35,23 @@ export function StepSelectPlayer({
   const isHost = useHost();
 
   return (
-    <Step fullWidth announcement={announcement}>
-      <StepTitle wait {...titleProps} />
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
+      <StepTitle
+        wait
+        {...titleProps}
+      />
 
       <RuleInstruction {...ruleInstructionProps} />
 
       <Instruction contained>
-        <Flex className="div-container" wrap="wrap" gap={8}>
+        <Flex
+          className="div-container"
+          wrap="wrap"
+          gap={8}
+        >
           {sortPlayers(players).map((player) => {
             if (isHost) {
               return (
@@ -82,13 +92,19 @@ export function StepSelectPlayer({
             onClick={() => onSubmitPlayer(sample(Object.keys(players)) ?? shuffle(Object.keys(players))[0])}
             disabled={isLoading}
           >
-            <Translate pt="Qualquer um" en="Any player" />
+            <Translate
+              pt="Qualquer um"
+              en="Any player"
+            />
           </SendButton>
         </SpaceContainer>
       )}
 
       <RuleInstruction type="event">
-        <Translate pt="O anfitrião selecionará o jogador" en="The host will select the player" />
+        <Translate
+          pt="O anfitrião selecionará o jogador"
+          en="The host will select the player"
+        />
       </RuleInstruction>
     </Step>
   );

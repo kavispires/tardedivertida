@@ -42,18 +42,30 @@ export function StepTweetSelection({
   };
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Selecione um assunto" en="Select one tweet" />
+        <Translate
+          pt="Selecione um assunto"
+          en="Select one tweet"
+        />
       </StepTitle>
 
       <RuleInstruction type="action">
-        <ScoringRules round={round} isFixedRounds={isFixedRounds} />
+        <ScoringRules
+          round={round}
+          isFixedRounds={isFixedRounds}
+        />
       </RuleInstruction>
 
       <ul className="p-tweets-card">
         {currentTweets.map((tweet) => (
-          <li className="p-tweets-card__item" key={tweet.id}>
+          <li
+            className="p-tweets-card__item"
+            key={tweet.id}
+          >
             <button
               type="button"
               onClick={() => onSubmitTweet({ tweetId: tweet.id })}
@@ -64,7 +76,10 @@ export function StepTweetSelection({
           </li>
         ))}
         <li className="p-tweets-card__item p-tweets-card__item--or">
-          <Translate pt="ou" en="or" />
+          <Translate
+            pt="ou"
+            en="or"
+          />
         </li>
         <li className="p-tweets-card__item p-tweets-card__item--custom">
           <div className="p-tweet">{currentCustomTweet.text}</div>
@@ -75,8 +90,14 @@ export function StepTweetSelection({
             onPressEnter={onSubmitCustomTweet}
           />
           {Boolean(customTweet) && (
-            <SendButton onClick={onSubmitCustomTweet} className="p-custom-tweet__button">
-              <Translate pt="Enviar sugestão" en="Send suggestion" />
+            <SendButton
+              onClick={onSubmitCustomTweet}
+              className="p-custom-tweet__button"
+            >
+              <Translate
+                pt="Enviar sugestão"
+                en="Send suggestion"
+              />
             </SendButton>
           )}
         </li>

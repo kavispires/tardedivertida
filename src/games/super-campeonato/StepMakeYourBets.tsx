@@ -33,16 +33,29 @@ export function StepMakeYourBets({
   });
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Faça suas apostas!" en="Make your bets!" />
+        <Translate
+          pt="Faça suas apostas!"
+          en="Make your bets!"
+        />
       </StepTitle>
 
       <Challenge challenge={challenge} />
 
-      <BetsForm brackets={brackets} onSubmitBets={onSubmitBets} />
+      <BetsForm
+        brackets={brackets}
+        onSubmitBets={onSubmitBets}
+      />
 
-      <Brackets brackets={brackets} activeTier="quarter" players={players} />
+      <Brackets
+        brackets={brackets}
+        activeTier="quarter"
+        players={players}
+      />
     </Step>
   );
 }

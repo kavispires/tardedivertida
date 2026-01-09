@@ -16,7 +16,13 @@ export function WaitingRoomSuggestions({ user }: WaitingRoomSuggestionsProps) {
   return (
     <SpaceContainer>
       {user.suggestions.map((suggestion: string) => {
-        return <SuggestionEasel value={suggestion} key={suggestion} id={suggestion} />;
+        return (
+          <SuggestionEasel
+            value={suggestion}
+            key={suggestion}
+            id={suggestion}
+          />
+        );
       })}
     </SpaceContainer>
   );

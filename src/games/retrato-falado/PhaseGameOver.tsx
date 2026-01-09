@@ -21,11 +21,22 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
   });
 
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<TrophyIcon />}>
-      <Achievements achievements={state.achievements} players={players} reference={achievementsReference} />
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<TrophyIcon />}
+    >
+      <Achievements
+        achievements={state.achievements}
+        players={players}
+        reference={achievementsReference}
+      />
       <div>
         <Title level={2}>
-          <Translate pt="Desenhos" en="Sketches" />
+          <Translate
+            pt="Desenhos"
+            en="Sketches"
+          />
         </Title>
         <div className="r-gallery">
           <MonsterSketches

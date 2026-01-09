@@ -172,11 +172,20 @@ export function StepGuessing({
   );
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
-        <Translate pt="Decifre as dicas!" en="Guess the cells!" />
+        <Translate
+          pt="Decifre as dicas!"
+          en="Guess the cells!"
+        />
       </StepTitle>
-      <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
+      <DndContext
+        sensors={sensors}
+        onDragEnd={handleDragEnd}
+      >
         <Clues
           clues={clues}
           onActivateClue={onActivateClue}
@@ -194,15 +203,26 @@ export function StepGuessing({
         </RuleInstruction>
 
         <SpaceContainer align="center">
-          <Button size="large" type="dashed" onClick={randomGuessThem} icon={<ThunderboltOutlined />}>
-            <Translate pt="Desistir" en="Give up" />
+          <Button
+            size="large"
+            type="dashed"
+            onClick={randomGuessThem}
+            icon={<ThunderboltOutlined />}
+          >
+            <Translate
+              pt="Desistir"
+              en="Give up"
+            />
           </Button>
           <SendButton
             size="large"
             onClick={prepareSubmitGuesses}
             disabled={Object.keys(guesses).length !== clues.length}
           >
-            <Translate pt="Enviar respostas" en="Send guesses" />
+            <Translate
+              pt="Enviar respostas"
+              en="Send guesses"
+            />
           </SendButton>
         </SpaceContainer>
 

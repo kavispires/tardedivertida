@@ -61,7 +61,10 @@ export function StepResults({
           <>
             <br />
             <strong>
-              <Translate pt="Essa rodada usou o dobro de mágica!!!" en="This round used double magic!" />
+              <Translate
+                pt="Essa rodada usou o dobro de mágica!!!"
+                en="This round used double magic!"
+              />
             </strong>
           </>
         )}
@@ -96,15 +99,39 @@ export function StepResults({
         />
       </RuleInstruction>
 
-      <OutcomeAlert outcome={outcome} doorIndex={doors.indexOf(answerDoorId)} />
+      <OutcomeAlert
+        outcome={outcome}
+        doorIndex={doors.indexOf(answerDoorId)}
+      />
 
-      <Corridor doors={doors} trap={trap} players={players} answerDoorId={answerDoorId} disableTrap />
+      <Corridor
+        doors={doors}
+        trap={trap}
+        players={players}
+        answerDoorId={answerDoorId}
+        disableTrap
+      />
 
       <Space className="i-book-container">
         <Book>
-          {Boolean(pages[0]) && <ImageCard cardId={pages[0]} cardWidth={140} />}
-          {Boolean(pages[1]) && <ImageCard cardId={pages[1]} cardWidth={140} />}
-          {Boolean(pages[2]) && <ImageCard cardId={pages[2]} cardWidth={140} />}
+          {Boolean(pages[0]) && (
+            <ImageCard
+              cardId={pages[0]}
+              cardWidth={140}
+            />
+          )}
+          {Boolean(pages[1]) && (
+            <ImageCard
+              cardId={pages[1]}
+              cardWidth={140}
+            />
+          )}
+          {Boolean(pages[2]) && (
+            <ImageCard
+              cardId={pages[2]}
+              cardWidth={140}
+            />
+          )}
         </Book>
       </Space>
 
@@ -122,10 +149,20 @@ type OutcomeProps = {
 
 function OutcomeTitle({ outcome }: OutcomeProps) {
   if (outcome === OUTCOME.SUCCESS || outcome === OUTCOME.WIN) {
-    return <Translate pt="Porta Correta!" en="Correct Door!" />;
+    return (
+      <Translate
+        pt="Porta Correta!"
+        en="Correct Door!"
+      />
+    );
   }
 
-  return <Translate pt="Porta Errada" en="Wrong Door" />;
+  return (
+    <Translate
+      pt="Porta Errada"
+      en="Wrong Door"
+    />
+  );
 }
 
 function OutcomeInstruction({ outcome }: OutcomeProps) {
@@ -139,7 +176,10 @@ function OutcomeInstruction({ outcome }: OutcomeProps) {
   }
 
   return (
-    <Translate pt="Nenhum jogador entrou na porta correta." en="No player has entered the correct door." />
+    <Translate
+      pt="Nenhum jogador entrou na porta correta."
+      en="No player has entered the correct door."
+    />
   );
 }
 

@@ -20,10 +20,28 @@ export function LanguageSwitch() {
   return (
     <Switch
       checkedChildren={
-        <IconAvatar icon={<BrazilFlag width="1em" height="1em" />} size="small" alt="Português-BR" />
+        <IconAvatar
+          icon={
+            <BrazilFlag
+              width="1em"
+              height="1em"
+            />
+          }
+          size="small"
+          alt="Português-BR"
+        />
       }
       unCheckedChildren={
-        <IconAvatar icon={<UnitedStatesFlag width="1em" height="1em" />} size="small" alt="English-US" />
+        <IconAvatar
+          icon={
+            <UnitedStatesFlag
+              width="1em"
+              height="1em"
+            />
+          }
+          size="small"
+          alt="English-US"
+        />
       }
       checked={language === 'pt'}
       onClick={onSwitchClick}

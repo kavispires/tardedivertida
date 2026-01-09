@@ -19,7 +19,10 @@ export function SpecialRule({ children, className }: SpecialRuleProps) {
   return (
     <span className={className}>
       <span className="special-rule-highlight">
-        <Translate pt="Regra Especial" en="Special Rule" />
+        <Translate
+          pt="Regra Especial"
+          en="Special Rule"
+        />
       </span>
       {children}
     </span>

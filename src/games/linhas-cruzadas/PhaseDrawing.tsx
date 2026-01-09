@@ -22,15 +22,31 @@ export function PhaseDrawing({ state, players, user }: PhaseProps) {
   const onSubmitDrawing = useOnSubmitDrawingAPIRequest(setStep);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={LINHAS_CRUZADAS_PHASES.DRAWING}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={LINHAS_CRUZADAS_PHASES.DRAWING}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<DrawingIcon />}
-          title={<Translate pt="Desenhe" en="Draw" />}
+          title={
+            <Translate
+              pt="Desenhe"
+              en="Draw"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
-          buttonText={<Translate pt="Um dó, lá, si... vamos e... já!" en="Ready! Set! Go!" />}
+          buttonText={
+            <Translate
+              pt="Um dó, lá, si... vamos e... já!"
+              en="Ready! Set! Go!"
+            />
+          }
           withoutTimer
           type="block"
         >
@@ -55,7 +71,12 @@ export function PhaseDrawing({ state, players, user }: PhaseProps) {
             />
 
             <TurnOrder
-              title={<Translate pt="Ordem dos Álbuns" en="Albums' Order" />}
+              title={
+                <Translate
+                  pt="Ordem dos Álbuns"
+                  en="Albums' Order"
+                />
+              }
               players={players}
               order={state.gameOrder}
               className="l-turn-order"

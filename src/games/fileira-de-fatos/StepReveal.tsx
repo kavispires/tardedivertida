@@ -50,7 +50,10 @@ export function StepReveal({
   const result = (activePlayer.currentOrder ?? []).map((id: CardId) => scenarioDictionary[id]);
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         <Translate
           pt={
@@ -86,7 +89,11 @@ export function StepReveal({
 
       {roundType !== 'NORMAL' && <RoundTypeExplanation roundType={roundType} />}
 
-      <Scenarios scenarios={result} reference={getReference('negative')} player={activePlayer} />
+      <Scenarios
+        scenarios={result}
+        reference={getReference('negative')}
+        player={activePlayer}
+      />
 
       <Results
         players={players}
@@ -97,8 +104,16 @@ export function StepReveal({
       />
 
       <SpaceContainer>
-        <TimedButton duration={40} onExpire={goToNextStep} onClick={goToNextStep} icon={<TrophyOutlined />}>
-          <Translate pt="Ver Ranking" en="See Ranking" />
+        <TimedButton
+          duration={40}
+          onExpire={goToNextStep}
+          onClick={goToNextStep}
+          icon={<TrophyOutlined />}
+        >
+          <Translate
+            pt="Ver Ranking"
+            en="See Ranking"
+          />
         </TimedButton>
       </SpaceContainer>
     </Step>

@@ -1,6 +1,10 @@
 export function ArrowIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#f5f5f5"
         d="M318.4 412.8c-24 0-43.3-19.3-43.3-43.3v-12H52.7c-25 0-45.2-20.1-45.2-45v-113c0-24.9 20.2-45 45.2-45H275v-12a43.4 43.4 0 0 1 70.2-34l142.8 113.6a43 43 0 0 1 0 67.8L345.3 403.4c-7.6 6.1-17.2 9.4-26.9 9.4z"

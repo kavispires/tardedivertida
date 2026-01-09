@@ -20,9 +20,15 @@ export function PlayerRecentClue({ user, grid }: PlayerRecentClueProps) {
   }
 
   return (
-    <SpaceContainer orientation="vertical" className="mb-10">
+    <SpaceContainer
+      orientation="vertical"
+      className="mb-10"
+    >
       <Title size="xx-small">
-        <Translate pt="Sua dica" en="Your clue" />
+        <Translate
+          pt="Sua dica"
+          en="Your clue"
+        />
       </Title>
       <span>
         <TextHighlight>{cell.xText}</TextHighlight> + <TextHighlight>{cell.yText}</TextHighlight> ={' '}

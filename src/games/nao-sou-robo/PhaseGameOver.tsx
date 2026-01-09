@@ -22,11 +22,26 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
   }?.[state.outcome as string] ?? <BadgeIcon />;
 
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={announcementIcon}>
-      <FinalOutcome players={players} outcome={state.outcome} robot={state.robot} />
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={announcementIcon}
+    >
+      <FinalOutcome
+        players={players}
+        outcome={state.outcome}
+        robot={state.robot}
+      />
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
 
-      <GameOverGallery gallery={state.gallery} players={players} />
+      <GameOverGallery
+        gallery={state.gallery}
+        players={players}
+      />
     </GameOverWrapper>
   );
 }

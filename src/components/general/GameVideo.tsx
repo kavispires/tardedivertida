@@ -62,8 +62,17 @@ export function GameVideo({
         height: `${backgroundHeight}px`,
       }}
     >
-      <video autoPlay muted loop playsInline className="game-video__video">
-        <source src={`${PUBLIC_URL.VIDEOS}${gameName}.mp4`} type="video/mp4" />
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="game-video__video"
+      >
+        <source
+          src={`${PUBLIC_URL.VIDEOS}${gameName}.mp4`}
+          type="video/mp4"
+        />
       </video>
 
       {showLogo && (

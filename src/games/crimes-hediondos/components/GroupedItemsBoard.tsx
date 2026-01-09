@@ -17,10 +17,16 @@ export function GroupedItemsBoard({ items, weaponId, evidenceId, groupedItems }:
   return (
     <ul className="h-grouped-items-board">
       {Object.keys(groupedItems).map((groupKey) => (
-        <li key={`group-${groupKey}`} className="reset-li">
+        <li
+          key={`group-${groupKey}`}
+          className="reset-li"
+        >
           <ul className="h-grouped-items-board__group">
             {groupedItems[groupKey].map((itemId) => (
-              <li key={itemId} className="reset-li">
+              <li
+                key={itemId}
+                className="reset-li"
+              >
                 <CrimeItemCard
                   item={items[itemId]}
                   cardWidth={cardWidth}

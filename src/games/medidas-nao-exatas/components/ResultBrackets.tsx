@@ -27,7 +27,10 @@ export function ResultBrackets({ brackets, players, cards }: ResultBracketsProps
   return (
     <div className="m-guessing-board__points-brackets">
       {brackets.map((bracket, index) => (
-        <div key={`${bracket.score}-${index}`} className="m-guessing-board__points-bracket">
+        <div
+          key={`${bracket.score}-${index}`}
+          className="m-guessing-board__points-bracket"
+        >
           <BracketPointsBox width="48px">
             <span className="m-guessing-board__points-bracket-label">{bracket.score}</span>
           </BracketPointsBox>
@@ -49,10 +52,19 @@ export function ResultBrackets({ brackets, players, cards }: ResultBracketsProps
             <Flex vertical>
               {bracket.wrongGuesses.map((guess) => {
                 return (
-                  <Flex key={guess.playerId} align="center">
-                    <IconAvatar icon={<XIcon />} size={16} />{' '}
+                  <Flex
+                    key={guess.playerId}
+                    align="center"
+                  >
+                    <IconAvatar
+                      icon={<XIcon />}
+                      size={16}
+                    />{' '}
                     <PlayerAvatarTooltip player={players[guess.playerId]} />
-                    <Card hideHeader size="small">
+                    <Card
+                      hideHeader
+                      size="small"
+                    >
                       {cards[guess.cardId]?.text || '???'}
                     </Card>
                   </Flex>

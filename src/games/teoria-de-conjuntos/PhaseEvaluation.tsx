@@ -23,8 +23,14 @@ export function PhaseEvaluation({ state, players, user }: PhaseProps) {
   const currentGuess: Guess = state.currentGuess;
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={TEORIA_DE_CONJUNTOS_PHASES.EVALUATION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={TEORIA_DE_CONJUNTOS_PHASES.EVALUATION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <StepEvaluate
           players={players}

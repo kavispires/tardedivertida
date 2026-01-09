@@ -18,7 +18,10 @@ export function VoteCrimesHediondos({ playersList, track }: VoteComponentProps) 
   });
 
   return (
-    <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
+    <SpacePlayerCheckWrapper
+      playersList={playersList}
+      paths={['data.value']}
+    >
       {playersList.map((player) => {
         const item = track.data.cards.find((card: CrimesHediondosCard) => card.id === player.data.value);
 
@@ -27,11 +30,18 @@ export function VoteCrimesHediondos({ playersList, track }: VoteComponentProps) 
         }
 
         return (
-          <div key={`vote-${player.id}`} className="player-vote">
+          <div
+            key={`vote-${player.id}`}
+            className="player-vote"
+          >
             <PlayerAvatar avatarId={player.avatarId} />
             <div className="player-vote__name">{player.name}</div>
 
-            <CrimeItemCard item={item} cardWidth={width} className="d-table__image-card" />
+            <CrimeItemCard
+              item={item}
+              cardWidth={width}
+              className="d-table__image-card"
+            />
           </div>
         );
       })}

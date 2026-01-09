@@ -6,5 +6,10 @@ import { DailyEspionagem } from './components/DailyEspionagem';
 import './utils/styles.scss';
 
 export function DailyEspionagemGame() {
-  return <DailyGame gameName="espionagem" GameComponent={DailyEspionagem} />;
+  return (
+    <DailyGame
+      gameName="espionagem"
+      GameComponent={DailyEspionagem}
+    />
+  );
 }

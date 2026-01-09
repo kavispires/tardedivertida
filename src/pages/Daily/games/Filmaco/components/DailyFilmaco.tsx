@@ -40,7 +40,10 @@ export function DailyFilmaco({ data }: DailyFilmacoProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyMovieGameIcon />} localStorageKey={SETTINGS.KEY}>
+      <Header
+        icon={<DailyMovieGameIcon />}
+        localStorageKey={SETTINGS.KEY}
+      >
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <DailyContent>
@@ -54,32 +57,62 @@ export function DailyFilmaco({ data }: DailyFilmacoProps) {
         <Region>
           {data?.isDoubleFeature ? (
             <Typography.Text strong>
-              <Translate pt="Sessão Dupla" en="Double Feature" /> {data.year}
+              <Translate
+                pt="Sessão Dupla"
+                en="Double Feature"
+              />{' '}
+              {data.year}
             </Typography.Text>
           ) : (
             <Typography.Text strong>
-              <Translate pt="Ano de Lançamento" en="Release Year" />: {data.year}
+              <Translate
+                pt="Ano de Lançamento"
+                en="Release Year"
+              />
+              : {data.year}
             </Typography.Text>
           )}
         </Region>
 
         <SpaceContainer wrap>
           {data.itemsIds.map((itemId, index) => (
-            <DailyItem key={`${itemId}-${index}`} itemId={itemId} width={width} />
+            <DailyItem
+              key={`${itemId}-${index}`}
+              itemId={itemId}
+              width={width}
+            />
           ))}
         </SpaceContainer>
 
-        <Prompt text={data.title} guesses={guesses} />
+        <Prompt
+          text={data.title}
+          guesses={guesses}
+        />
 
         {isComplete && (
-          <Space className="results-container" orientation="vertical" align="center">
-            <Button onClick={() => setShowResultModal(true)} type="primary" icon={<BarChartOutlined />}>
-              <Translate pt="Ver Resultado" en="Show Results" />
+          <Space
+            className="results-container"
+            orientation="vertical"
+            align="center"
+          >
+            <Button
+              onClick={() => setShowResultModal(true)}
+              type="primary"
+              icon={<BarChartOutlined />}
+            >
+              <Translate
+                pt="Ver Resultado"
+                en="Show Results"
+              />
             </Button>
           </Space>
         )}
 
-        <Modal open={showResultModal} onCancel={() => setShowResultModal(false)} footer={null}>
+        <Modal
+          open={showResultModal}
+          onCancel={() => setShowResultModal(false)}
+          footer={null}
+        >
           <ResultsModalContent
             challengeNumber={data.number}
             win={isWin}
@@ -89,7 +122,12 @@ export function DailyFilmaco({ data }: DailyFilmacoProps) {
           />
         </Modal>
 
-        <Keyboard lettersState={guesses} onLetterClick={guessLetter} disabled={isComplete} withNumbers />
+        <Keyboard
+          lettersState={guesses}
+          onLetterClick={guessLetter}
+          disabled={isComplete}
+          withNumbers
+        />
       </DailyContent>
     </Layout>
   );

@@ -17,12 +17,27 @@ import { WordGrid } from './components/WordGrid';
 
 export function PhaseGameOver({ state, players, user }: PhaseProps<PhaseGameOverState>) {
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<TrophyIcon />}>
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<TrophyIcon />}
+    >
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
 
       <Divider />
 
-      <TitledContainer title={<Translate en="The Final Grid" pt="A Grade Final" />}>
+      <TitledContainer
+        title={
+          <Translate
+            en="The Final Grid"
+            pt="A Grade Final"
+          />
+        }
+      >
         <WordGrid
           grid={state.grid}
           gridType={state.gameType}

@@ -9,5 +9,11 @@ import './ClubberAvatar.scss';
  * Clubber Avatar
  */
 export const SuperHeroAvatar = (props: CustomAvatarProps) => {
-  return <CustomAvatarWrapper sprite={superHeroes} prefix="super-hero" {...props} />;
+  return (
+    <CustomAvatarWrapper
+      sprite={superHeroes}
+      prefix="super-hero"
+      {...props}
+    />
+  );
 };

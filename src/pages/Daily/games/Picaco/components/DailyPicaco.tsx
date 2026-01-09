@@ -51,17 +51,31 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
 
   return (
     <Layout className="app">
-      <Header icon={<DailyDrawingGameIcon />} localStorageKey={SETTINGS.KEY}>
+      <Header
+        icon={<DailyDrawingGameIcon />}
+        localStorageKey={SETTINGS.KEY}
+      >
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
       <DailyContent ref={contentRef}>
         <div ref={headerRef}>
-          <Menu hearts={0} total={0} openRules rules={<Rules date={data.id} />} />
+          <Menu
+            hearts={0}
+            total={0}
+            openRules
+            rules={<Rules date={data.id} />}
+          />
           {alreadyPlayed && (
             <Instruction className="info-screen">
               <IconAvatar icon={<ThumbsUpIcon />} />
-              <Translate pt="Você já jogou hoje!" en="You've already played today!" />
-              <Translate pt="Volte amanhã para jogar novamente!" en="Come back tomorrow to play again!" />
+              <Translate
+                pt="Você já jogou hoje!"
+                en="You've already played today!"
+              />
+              <Translate
+                pt="Volte amanhã para jogar novamente!"
+                en="Come back tomorrow to play again!"
+              />
               <Divider />
               <NextGameSuggestion />
             </Instruction>
@@ -85,14 +99,21 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
 
         {isPlaying && (
           <SpaceContainer>
-            <Canvas key={card.id} maxWidth={maxWidth} onNextCard={onNextCard} />
+            <Canvas
+              key={card.id}
+              maxWidth={maxWidth}
+              onNextCard={onNextCard}
+            />
           </SpaceContainer>
         )}
 
         {isSaving && (
           <Instruction className="info-screen">
             <IconAvatar icon={<AnimatedProcessingIcon />} />
-            <Translate pt="Salvando" en="Saving" />
+            <Translate
+              pt="Salvando"
+              en="Saving"
+            />
           </Instruction>
         )}
 
@@ -122,8 +143,23 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
                   }
                 />
               </Instruction>
-              <Button type="primary" size="large" onClick={onStart} disabled={alreadyPlayed}>
-                {isSaving ? <Translate pt="Salvando" en="Saving" /> : <Translate pt="Começar" en="Start" />}
+              <Button
+                type="primary"
+                size="large"
+                onClick={onStart}
+                disabled={alreadyPlayed}
+              >
+                {isSaving ? (
+                  <Translate
+                    pt="Salvando"
+                    en="Saving"
+                  />
+                ) : (
+                  <Translate
+                    pt="Começar"
+                    en="Start"
+                  />
+                )}
               </Button>
             </SpaceContainer>
           </SpaceContainer>

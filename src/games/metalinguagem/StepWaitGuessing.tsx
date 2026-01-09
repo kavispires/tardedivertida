@@ -35,7 +35,10 @@ export function StepWaitGuessing({
   endsWith,
 }: StepWaitGuessingProps) {
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle wait>
         <Translate
           pt={<>Aguarde enquanto os jogadores adivinham os itens que criaram a palavra-valise</>}
@@ -44,16 +47,29 @@ export function StepWaitGuessing({
       </StepTitle>
 
       <SpaceContainer>
-        <Card size="large" hideHeader>
+        <Card
+          size="large"
+          hideHeader
+        >
           {newWord}
         </Card>
       </SpaceContainer>
 
-      <ItemsGrid items={items} targets={[beginsWith, endsWith]} />
+      <ItemsGrid
+        items={items}
+        targets={[beginsWith, endsWith]}
+      />
 
-      <WordLengths wordLengths={wordLengths} highlightLength={newWord.length} />
+      <WordLengths
+        wordLengths={wordLengths}
+        highlightLength={newWord.length}
+      />
 
-      <TurnOrder players={players} order={turnOrder} activePlayerId={creator.id} />
+      <TurnOrder
+        players={players}
+        order={turnOrder}
+        activePlayerId={creator.id}
+      />
     </Step>
   );
 }

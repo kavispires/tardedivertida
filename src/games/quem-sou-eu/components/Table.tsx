@@ -45,7 +45,10 @@ export function Table({
   }
 
   return (
-    <SpaceContainer className="q-table" wrap>
+    <SpaceContainer
+      className="q-table"
+      wrap
+    >
       <SpaceContainer wrap>
         {topKeys.map((key) => (
           <QSECard

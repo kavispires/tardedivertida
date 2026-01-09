@@ -20,8 +20,14 @@ export function Menu({ hearts, total, openRules, rules }: MenuProps) {
   return (
     <div className="menu">
       <DailyHubLink />
-      <Hearts remaining={hearts} total={total} />
-      <RulesModal defaultOpen={openRules} rules={rules} />
+      <Hearts
+        remaining={hearts}
+        total={total}
+      />
+      <RulesModal
+        defaultOpen={openRules}
+        rules={rules}
+      />
     </div>
   );
 }
@@ -67,12 +73,20 @@ function RulesModal({ rules, defaultOpen }: RulesModalProps) {
         onClick={() => setOpen(true)}
       />
       <Drawer
-        title={<Translate pt="Regras" en="Rules" />}
+        title={
+          <Translate
+            pt="Regras"
+            en="Rules"
+          />
+        }
         placement="bottom"
         open={open}
         onClose={() => setOpen(false)}
       >
-        <Space orientation="vertical" size="small">
+        <Space
+          orientation="vertical"
+          size="small"
+        >
           <ul className="list">{rules}</ul>
         </Space>
       </Drawer>
@@ -83,7 +97,11 @@ function RulesModal({ rules, defaultOpen }: RulesModalProps) {
 function DailyHubLink() {
   return (
     <Link to="/diario/hub">
-      <Button type="text" style={{ color: 'white' }} icon={<AppstoreFilled />} />
+      <Button
+        type="text"
+        style={{ color: 'white' }}
+        icon={<AppstoreFilled />}
+      />
     </Link>
   );
 }

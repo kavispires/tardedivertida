@@ -55,7 +55,10 @@ export function StepWriteClues({ clover, leaves, onSubmitClues }: StepWriteClues
   return (
     <Step fullWidth>
       <StepTitle>
-        <Translate pt="Escreva as dicas" en="Write clues" />
+        <Translate
+          pt="Escreva as dicas"
+          en="Write clues"
+        />
       </StepTitle>
 
       <WritingRules />
@@ -63,8 +66,16 @@ export function StepWriteClues({ clover, leaves, onSubmitClues }: StepWriteClues
       <PopoverRule content={<WritingRules />} />
 
       <SpaceContainer align="center">
-        <Button type="default" size="large" onClick={onRandomizeLeafRotations} disabled={isLoading}>
-          <Translate pt="Chacoalhar cartas" en="Randomize rotations" />
+        <Button
+          type="default"
+          size="large"
+          onClick={onRandomizeLeafRotations}
+          disabled={isLoading}
+        >
+          <Translate
+            pt="Chacoalhar cartas"
+            en="Randomize rotations"
+          />
         </Button>
       </SpaceContainer>
 
@@ -81,7 +92,14 @@ export function StepWriteClues({ clover, leaves, onSubmitClues }: StepWriteClues
 
       <SpaceContainer align="center">
         <Popconfirm
-          title={<ConfirmClues clover={clover} leaves={leaves} clues={clues} rotations={rotations} />}
+          title={
+            <ConfirmClues
+              clover={clover}
+              leaves={leaves}
+              clues={clues}
+              rotations={rotations}
+            />
+          }
           disabled={!areCluesComplete || isLoading}
           onConfirm={onSubmit}
         >
@@ -91,12 +109,18 @@ export function StepWriteClues({ clover, leaves, onSubmitClues }: StepWriteClues
             disabled={!areCluesComplete || isLoading}
             onClick={() => onRotateClover((rotation / 90) * -1)}
           >
-            <Translate pt="Enviar dicas" en="Submit clues" />
+            <Translate
+              pt="Enviar dicas"
+              en="Submit clues"
+            />
           </Button>
         </Popconfirm>
 
         <DebugOnly devOnly>
-          <Button size="large" onClick={onSubmitMock}>
+          <Button
+            size="large"
+            onClick={onSubmitMock}
+          >
             Mock clues
           </Button>
         </DebugOnly>

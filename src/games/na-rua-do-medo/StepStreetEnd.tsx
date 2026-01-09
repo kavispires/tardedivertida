@@ -49,7 +49,10 @@ export function StepStreetEnd({
   const monsterName = currentCard?.name?.[language] ?? '';
 
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
       <StepTitle>
         {isDoubleHorror ? (
           <Translate
@@ -57,7 +60,10 @@ export function StepStreetEnd({
             en={<>A second {monsterName} came out of nowhere!</>}
           />
         ) : (
-          <Translate pt="Todo mundo voltou pra casa..." en="Everybody went back home for now..." />
+          <Translate
+            pt="Todo mundo voltou pra casa..."
+            en="Everybody went back home for now..."
+          />
         )}
       </StepTitle>
 
@@ -89,7 +95,10 @@ export function StepStreetEnd({
             en="And the night is over... Time to eat candy!"
           />
         ) : (
-          <Translate pt="Próxima rua?" en="Let's hit the next street?" />
+          <Translate
+            pt="Próxima rua?"
+            en="Let's hit the next street?"
+          />
         )}
       </RuleInstruction>
 
@@ -103,10 +112,21 @@ export function StepStreetEnd({
         phase="STREET_END"
       />
 
-      <Street street={street} currentCard={currentCard} candySidewalk={candySidewalk} />
+      <Street
+        street={street}
+        currentCard={currentCard}
+        candySidewalk={candySidewalk}
+      />
 
       <HostNextPhaseButton>
-        {round.current < round.total ? <Translate pt="Próxima Casa" en="Next House" /> : 'Game Over'}
+        {round.current < round.total ? (
+          <Translate
+            pt="Próxima Casa"
+            en="Next House"
+          />
+        ) : (
+          'Game Over'
+        )}
       </HostNextPhaseButton>
 
       <PlayerStats user={user} />

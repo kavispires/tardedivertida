@@ -1,6 +1,10 @@
 export function DetectiveIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#ffdfb8"
         d="M325.65 323.79c-11.28-2.27-19.4-19.16-19.4-30.67v-22.9h-100.5v22.9c0 11.5-8.11 28.4-19.39 30.67l-15.9 3.2v87.42h171.1v-87.43l-15.9-3.2z"

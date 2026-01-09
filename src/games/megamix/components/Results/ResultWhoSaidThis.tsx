@@ -11,9 +11,15 @@ export function ResultWhoSaidThis({ track, winningValues, players }: ResultCompo
     <>
       <Instruction>
         {winningValues.length > 1 ? (
-          <Translate pt="Os votadas foram" en="Most voted ones are" />
+          <Translate
+            pt="Os votadas foram"
+            en="Most voted ones are"
+          />
         ) : (
-          <Translate pt="O mais votada foi" en="Most voted one is" />
+          <Translate
+            pt="O mais votada foi"
+            en="Most voted one is"
+          />
         )}
         :
       </Instruction>
@@ -21,12 +27,19 @@ export function ResultWhoSaidThis({ track, winningValues, players }: ResultCompo
       <div className="track-result-values__cards">
         {winningValues.map((value) => (
           <div key={value}>
-            <PlayerAvatarCard player={players[value]} withName size="small" />
+            <PlayerAvatarCard
+              player={players[value]}
+              withName
+              size="small"
+            />
           </div>
         ))}
       </div>
       <div className="track-result-values__cards">
-        <Card size="small" hideHeader>
+        <Card
+          size="small"
+          hideHeader
+        >
           "{track.data.card.text}"
         </Card>
       </div>

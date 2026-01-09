@@ -20,26 +20,50 @@ type PlayerStatsProps = {
 
 export function PlayerStats({ user, omitDecision = false }: PlayerStatsProps) {
   return (
-    <FloatingHand title={<Translate pt="Informações" en="Stats" />} icon={<TrickOrTreatIcon />}>
+    <FloatingHand
+      title={
+        <Translate
+          pt="Informações"
+          en="Stats"
+        />
+      }
+      icon={<TrickOrTreatIcon />}
+    >
       <div className="n-player-stats">
-        <PlayerAvatarStrip player={user} withName size="small" />
+        <PlayerAvatarStrip
+          player={user}
+          withName
+          size="small"
+        />
         <div className="n-player-stats__decision">
-          <DecisionIcon decision={user.decision} omitDecision={omitDecision} />
+          <DecisionIcon
+            decision={user.decision}
+            omitDecision={omitDecision}
+          />
         </div>
         <div className="n-player-stats__container n-player-stats__container--candy">
           <span className="n-player-stats__title">
-            <Translate pt="Doces" en="Candy" />
+            <Translate
+              pt="Doces"
+              en="Candy"
+            />
           </span>
           <div className="n-player-stats__count">
             <span className="n-player-stats__count-label">
-              <Translate pt="Em mão" en="In hand" />
+              <Translate
+                pt="Em mão"
+                en="In hand"
+              />
             </span>
             <span className="n-player-stats__count-value">{user.hand}</span>
           </div>
 
           <div className="n-player-stats__count">
             <span className="n-player-stats__count-label">
-              <Translate pt="Em casa (pontos)" en="At home (points)" />
+              <Translate
+                pt="Em casa (pontos)"
+                en="At home (points)"
+              />
             </span>
             <span className="n-player-stats__count-value">{user.totalCandy}</span>
           </div>
@@ -47,7 +71,10 @@ export function PlayerStats({ user, omitDecision = false }: PlayerStatsProps) {
 
         <div className="n-player-stats__container">
           <span className="n-player-stats__title">
-            <Translate pt="Boladas" en="Jackpots" />
+            <Translate
+              pt="Boladas"
+              en="Jackpots"
+            />
           </span>
           {user.jackpots?.length > 0 ? (
             <ul className="n-player-stats__jackpots">
@@ -83,8 +110,14 @@ function DecisionIcon({ decision, omitDecision }: DecisionIconProps) {
   if (omitDecision) {
     return (
       <>
-        <IconAvatar icon={<QuestionIcon />} shape="square" />
-        <Translate pt="Decida" en="Decide" />
+        <IconAvatar
+          icon={<QuestionIcon />}
+          shape="square"
+        />
+        <Translate
+          pt="Decida"
+          en="Decide"
+        />
       </>
     );
   }
@@ -92,12 +125,18 @@ function DecisionIcon({ decision, omitDecision }: DecisionIconProps) {
   return decision === 'CONTINUE' ? (
     <>
       <IconAvatar icon={<WalkIcon />} />
-      <Translate pt="Continuando" en="Continuing" />
+      <Translate
+        pt="Continuando"
+        en="Continuing"
+      />
     </>
   ) : (
     <>
       <IconAvatar icon={<HouseIcon />} />
-      <Translate pt="Em casa" en="At home" />
+      <Translate
+        pt="Em casa"
+        en="At home"
+      />
     </>
   );
 }

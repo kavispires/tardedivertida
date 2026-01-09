@@ -41,14 +41,20 @@ export function SchoolBoard({ schoolBoard, students, socialGroups, selectStudent
         }}
       >
         {schoolBoard.map((location) => (
-          <div key={location.id} className="school-location">
+          <div
+            key={location.id}
+            className="school-location"
+          >
             <div className="school-location__header">
               <div className="school-location__name">
                 <DualTranslate>{location.name}</DualTranslate>
               </div>
               {location.staff && (
                 <div className="school-location__staff-member">
-                  <StaffMemberEntry id={location.staff} staffMembers={staff} />{' '}
+                  <StaffMemberEntry
+                    id={location.staff}
+                    staffMembers={staff}
+                  />{' '}
                 </div>
               )}
             </div>

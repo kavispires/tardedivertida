@@ -31,7 +31,12 @@ function getActiveComponent(state: GameState) {
 }
 
 function SessionVamosAoCinema() {
-  return <Session gameCollection={GAME_COLLECTION.VAMOS_AO_CINEMA} getActiveComponent={getActiveComponent} />;
+  return (
+    <Session
+      gameCollection={GAME_COLLECTION.VAMOS_AO_CINEMA}
+      getActiveComponent={getActiveComponent}
+    />
+  );
 }
 
 export default SessionVamosAoCinema;

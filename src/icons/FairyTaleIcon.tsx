@@ -1,7 +1,14 @@
 export function FairyTaleIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
-      <path fill="#ffcd69" d="M10 229h492v273H10z"></path>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <path
+        fill="#ffcd69"
+        d="M10 229h492v273H10z"
+      ></path>
       <path
         fill="#fff3da"
         d="M256 502c0-26.51-21.49-48-48-48H64V167.5h144c26.51 0 48 21.49 48 48zm0 0c0-26.51 21.49-48 48-48h144V167.5H304c-26.51 0-48 21.49-48 48z"

@@ -13,7 +13,10 @@ export function GalleryWindowCredits({ artist }: GalleryWindowCreditsProps) {
   return (
     <div className="sda-gallery__credits">
       <SlideShowLabel>
-        <Translate pt="Criador" en="Creator" />
+        <Translate
+          pt="Criador"
+          en="Creator"
+        />
       </SlideShowLabel>
       <span className="uppercase">
         <PlayerAvatarEntry player={artist} />

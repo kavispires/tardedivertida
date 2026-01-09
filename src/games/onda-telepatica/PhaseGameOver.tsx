@@ -27,21 +27,41 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
         />
       }
     >
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
 
       <Divider />
 
       {Boolean(state.pastCategories) && (
         <>
-          <Title size="x-small" level={3}>
-            <Translate pt="Galeria" en="Gallery" />
+          <Title
+            size="x-small"
+            level={3}
+          >
+            <Translate
+              pt="Galeria"
+              en="Gallery"
+            />
           </Title>
 
-          <Space wrap align="center" className="o-past-category">
+          <Space
+            wrap
+            align="center"
+            className="o-past-category"
+          >
             {state.pastCategories.map((category: any) => {
               return (
-                <div key={category.id} className="o-past-category-entry">
-                  <IconAvatar icon={<WavelengthDeviceIcon />} size={48} />
+                <div
+                  key={category.id}
+                  className="o-past-category-entry"
+                >
+                  <IconAvatar
+                    icon={<WavelengthDeviceIcon />}
+                    size={48}
+                  />
                   <header className="o-past-category-entry__category">
                     {category.target < 0 && category.left}
                     {category.target > 0 && category.right}

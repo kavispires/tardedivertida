@@ -29,7 +29,12 @@ export function PhaseCategoryCreation({ players, state, user }: PhaseProps<Phase
   const announcement = (
     <PhaseAnnouncement
       icon={<WriteIdeaIcon />}
-      title={<Translate pt="Novo Quesito" en="New Category" />}
+      title={
+        <Translate
+          pt="Novo Quesito"
+          en="New Category"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -37,12 +42,21 @@ export function PhaseCategoryCreation({ players, state, user }: PhaseProps<Phase
         <Translate
           pt={
             <>
-              É a vez de <PlayerAvatarName player={creator} addressUser /> criar a categoria
+              É a vez de{' '}
+              <PlayerAvatarName
+                player={creator}
+                addressUser
+              />{' '}
+              criar a categoria
             </>
           }
           en={
             <>
-              It's <PlayerAvatarName player={creator} addressUser />
+              It's{' '}
+              <PlayerAvatarName
+                player={creator}
+                addressUser
+              />
               's turn to create the category
             </>
           }
@@ -52,8 +66,14 @@ export function PhaseCategoryCreation({ players, state, user }: PhaseProps<Phase
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={QUAL_QUESITO_PHASES.CATEGORY_CREATION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={QUAL_QUESITO_PHASES.CATEGORY_CREATION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <ViewOr condition={isTheCreator}>
           <StepCreateCategory

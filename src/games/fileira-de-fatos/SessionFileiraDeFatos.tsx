@@ -29,7 +29,10 @@ function getActiveComponent(state: GameState) {
 
 function SessionFileiraDeFatos() {
   return (
-    <Session gameCollection={GAME_COLLECTION.FILEIRA_DE_FATOS} getActiveComponent={getActiveComponent} />
+    <Session
+      gameCollection={GAME_COLLECTION.FILEIRA_DE_FATOS}
+      getActiveComponent={getActiveComponent}
+    />
   );
 }
 

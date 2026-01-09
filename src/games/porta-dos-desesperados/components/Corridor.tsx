@@ -139,7 +139,10 @@ export function Corridor({
                 )}
               >
                 {isConcealed || blindDoor === index ? (
-                  <ImageCardBack cardWidth={150} cardId="back-lockedDoor" />
+                  <ImageCardBack
+                    cardWidth={150}
+                    cardId="back-lockedDoor"
+                  />
                 ) : (
                   <ImageCard
                     cardId={doorId}
@@ -164,11 +167,18 @@ export function Corridor({
                     ghost
                     icon={''}
                   >
-                    <Translate pt="Selecionar" en="Select" />
+                    <Translate
+                      pt="Selecionar"
+                      en="Select"
+                    />
                   </SendButton>
                 )}
 
-                <Avatar.Group max={{ count: 7 }} size="small" className="i-door__votes">
+                <Avatar.Group
+                  max={{ count: 7 }}
+                  size="small"
+                  className="i-door__votes"
+                >
                   {voteMap[doorId] && !hideVotes ? (
                     voteMap[doorId].map((playerId) => (
                       <PlayerAvatar

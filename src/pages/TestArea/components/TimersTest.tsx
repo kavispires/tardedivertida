@@ -10,19 +10,44 @@ import type { TestStepProps } from '../TestArea';
 
 export function TimersTest({ onResult, step }: TestStepProps) {
   return (
-    <SpaceContainer className="full-width" vertical>
-      <Title level={2} size="small">
-        <Translate pt="Cronômetros" en="Timers" />
+    <SpaceContainer
+      className="full-width"
+      vertical
+    >
+      <Title
+        level={2}
+        size="small"
+      >
+        <Translate
+          pt="Cronômetros"
+          en="Timers"
+        />
       </Title>
 
       <Instruction contained>
-        <Translate pt="Vários jogos tem cronômetros:" en="Many games have timers in different types:" />
+        <Translate
+          pt="Vários jogos tem cronômetros:"
+          en="Many games have timers in different types:"
+        />
       </Instruction>
 
-      <SpaceContainer wrap className="full-width" vertical>
-        <TimedTimerBar duration={120} onExpire={() => {}} />
-        <TimedTimerClock duration={120} onExpire={() => {}} />
-        <TimedButton duration={120} onExpire={() => {}}>
+      <SpaceContainer
+        wrap
+        className="full-width"
+        vertical
+      >
+        <TimedTimerBar
+          duration={120}
+          onExpire={() => {}}
+        />
+        <TimedTimerClock
+          duration={120}
+          onExpire={() => {}}
+        />
+        <TimedButton
+          duration={120}
+          onExpire={() => {}}
+        >
           Testando...
         </TimedButton>
       </SpaceContainer>

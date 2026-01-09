@@ -29,7 +29,12 @@ export function PhaseObjectFeatureElimination({ state, players, user }: PhasePro
   const announcement = (
     <PhaseAnnouncement
       icon={<WritingIcon />}
-      title={<Translate pt="Objeto e característica" en="Object vs Feature" />}
+      title={
+        <Translate
+          pt="Objeto e característica"
+          en="Object vs Feature"
+        />
+      }
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -52,7 +57,10 @@ export function PhaseObjectFeatureElimination({ state, players, user }: PhasePro
   );
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={MESMICE_PHASES.OBJECT_FEATURE_ELIMINATION}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={MESMICE_PHASES.OBJECT_FEATURE_ELIMINATION}
+    >
       <StepSwitcher
         step={step}
         players={players}
@@ -69,7 +77,12 @@ export function PhaseObjectFeatureElimination({ state, players, user }: PhasePro
         }}
       >
         {/* Step 0 */}
-        <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5}>
+        <RoundAnnouncement
+          round={state?.round}
+          onPressButton={goToNextStep}
+          buttonText=" "
+          time={5}
+        >
           <Translate
             pt={
               <>
@@ -83,7 +96,11 @@ export function PhaseObjectFeatureElimination({ state, players, user }: PhasePro
               </>
             }
           />
-          <TurnOrder players={players} order={state.turnOrder} activePlayerId={state.activePlayerId} />
+          <TurnOrder
+            players={players}
+            order={state.turnOrder}
+            activePlayerId={state.activePlayerId}
+          />
         </RoundAnnouncement>
 
         {/* Step 1 */}

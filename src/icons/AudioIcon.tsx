@@ -1,6 +1,10 @@
 export function AudioIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      {...props}
+    >
       <path
         fill="#b6c4cf"
         d="m280 60-141.6 98.6-2.8 7.5h-28.1v178.7H136l2.4 8.7L280 452c7.8 5.5 18.5-.1 18.5-9.6V69.7c0-9.5-10.7-15-18.5-9.7"

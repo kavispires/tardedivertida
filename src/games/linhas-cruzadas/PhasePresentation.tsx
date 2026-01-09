@@ -18,12 +18,23 @@ export function PhasePresentation({ state, players }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);
 
   return (
-    <PhaseContainer phase={state?.phase} allowedPhase={LINHAS_CRUZADAS_PHASES.PRESENTATION}>
-      <StepSwitcher step={step} players={players}>
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={LINHAS_CRUZADAS_PHASES.PRESENTATION}
+    >
+      <StepSwitcher
+        step={step}
+        players={players}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<PhotoAlbumIcon />}
-          title={<Translate pt="Álbum de Fotos" en="Photo Album" />}
+          title={
+            <Translate
+              pt="Álbum de Fotos"
+              en="Photo Album"
+            />
+          }
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           unskippable
@@ -31,13 +42,22 @@ export function PhasePresentation({ state, players }: PhaseProps) {
           type="block"
         >
           <Instruction>
-            <Translate pt="A ordem dos albums será:" en="The albums' order will be:" />
-            <TurnOrder players={players} order={state.gameOrder} />
+            <Translate
+              pt="A ordem dos albums será:"
+              en="The albums' order will be:"
+            />
+            <TurnOrder
+              players={players}
+              order={state.gameOrder}
+            />
           </Instruction>
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <StepAlbum players={players} album={state.album} />
+        <StepAlbum
+          players={players}
+          album={state.album}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

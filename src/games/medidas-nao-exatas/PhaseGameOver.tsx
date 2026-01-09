@@ -19,11 +19,32 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
   const gallery: GalleryEntry[] = state.gallery ?? [];
 
   return (
-    <GameOverWrapper state={state} players={players} announcementIcon={<TrophyIcon />}>
-      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
-      <TitledContainer title={<Translate pt="Métricas" en="Metrics" />} className="mt-4">
+    <GameOverWrapper
+      state={state}
+      players={players}
+      announcementIcon={<TrophyIcon />}
+    >
+      <Achievements
+        players={players}
+        achievements={state.achievements}
+        reference={achievementsReference}
+      />
+      <TitledContainer
+        title={
+          <Translate
+            pt="Métricas"
+            en="Metrics"
+          />
+        }
+        className="mt-4"
+      >
         {gallery.map((entry) => (
-          <Flex key={entry.secretWordId} vertical align="center" justify="center">
+          <Flex
+            key={entry.secretWordId}
+            vertical
+            align="center"
+            justify="center"
+          >
             <Card hideHeader>{entry.cards[entry.secretWordId]?.text || '???'}</Card>
             <MetricsBoard
               metricsDescriptors={entry.metricsDescriptors}

@@ -60,7 +60,10 @@ export function StepWriteClue({
   return (
     <Step fullWidth>
       <StepTitle>
-        <Translate pt={<>Escreva sua dica</>} en={<>Write Your Clue</>} />
+        <Translate
+          pt={<>Escreva sua dica</>}
+          en={<>Write Your Clue</>}
+        />
       </StepTitle>
 
       <RuleInstruction type="action">
@@ -94,7 +97,11 @@ export function StepWriteClue({
           }}
         >
           {listOfFeatures.map((feature) => (
-            <ObjectFeature key={feature.id} feature={feature} highlight={user.target === feature.id} />
+            <ObjectFeature
+              key={feature.id}
+              feature={feature}
+              highlight={user.target === feature.id}
+            />
           ))}
         </div>
       </div>
@@ -136,11 +143,20 @@ export function StepWriteClue({
       </SpaceContainer>
 
       <SpaceContainer>
-        <Button onClick={goToPreviousStep} disabled={isLoading}>
-          <Translate pt="Voltar" en="Back" />
+        <Button
+          onClick={goToPreviousStep}
+          disabled={isLoading}
+        >
+          <Translate
+            pt="Voltar"
+            en="Back"
+          />
         </Button>
         <SendButton onClick={handleSubmitClue}>
-          <Translate pt="Enviar" en="Submit" />
+          <Translate
+            pt="Enviar"
+            en="Submit"
+          />
         </SendButton>
       </SpaceContainer>
     </Step>

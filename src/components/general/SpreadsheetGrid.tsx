@@ -56,7 +56,10 @@ type SpreadsheetCellProps = {
 
 export function SpreadsheetCell({ children, header, className }: SpreadsheetCellProps) {
   return (
-    <span className={clsx('spreadsheet-cell', header && 'spreadsheet-cell--header', className)} role="cell">
+    <span
+      className={clsx('spreadsheet-cell', header && 'spreadsheet-cell--header', className)}
+      role="cell"
+    >
       {children}
     </span>
   );
