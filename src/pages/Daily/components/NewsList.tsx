@@ -17,6 +17,22 @@ type NewsItem = {
 
 export const NEWS_LIST: NewsItem[] = [
   {
+    date: '2026-01-09',
+    content: (
+      <>
+        <IconAvatar
+          icon={<NewFeatureIcon />}
+          size="small"
+        />{' '}
+        Para ficar mais interessante ative o modo <strong>Com Voz</strong> no jogo{' '}
+        <strong>
+          <DualTranslate>{ALL_SETTINGS.AQUI_O.NAME}</DualTranslate>
+        </strong>
+        , e toda vez que você acertar um item, ele será anunciado em voz alta!
+      </>
+    ),
+  },
+  {
     date: '2025-12-25',
     content: (
       <>

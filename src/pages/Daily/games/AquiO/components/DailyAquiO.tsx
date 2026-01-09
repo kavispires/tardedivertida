@@ -46,6 +46,8 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
     timeLeft,
     mode,
     onModeChange,
+    voice,
+    onVoiceChange,
     discA,
     discB,
     result,
@@ -154,6 +156,23 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
                 }
                 value={mode === 'challenge'}
                 onChange={(checked) => onModeChange(checked ? 'challenge' : 'normal')}
+              />
+
+              <Switch
+                unCheckedChildren={
+                  <Translate
+                    pt="Sem Voz"
+                    en="Voice Off"
+                  />
+                }
+                checkedChildren={
+                  <Translate
+                    pt="Com Voz"
+                    en="Voice On"
+                  />
+                }
+                value={voice === 'on'}
+                onChange={(checked) => onVoiceChange(checked ? 'on' : 'off')}
               />
 
               <PreloadItems items={data.itemsIds} />

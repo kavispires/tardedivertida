@@ -7,7 +7,9 @@ import { useCountdown } from 'hooks/useCountdown';
 import { logAnalyticsEvent } from 'services/firebase';
 // Utils
 import { inNSeconds } from 'utils/helpers';
+import { speak } from 'utils/speech';
 // Pages
+import { useDailyChallenge } from 'pages/Daily/hooks/useDailyChallenge';
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
@@ -21,9 +23,11 @@ import { SETTINGS } from './settings';
 import type { DailyAquiOEntry, GameState, SessionState } from './types';
 
 export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
+  const { itemsDictionary } = useDailyChallenge();
   const [timesUp, setTimesUp] = useState(false);
 
   const [mode, setMode] = useLocalStorage(SETTINGS.TD_DAILY_AQUI_O_MODE, 'normal');
+  const [voice, setVoice] = useLocalStorage(SETTINGS.TD_DAILY_AQUI_O_VOICE, 'off');
 
   const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
   const { session, setSession, updateSession } = useDailySessionState<SessionState>({
@@ -76,6 +80,20 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
     restart(inNSeconds(SETTINGS.DURATION), true);
   };
 
+  const callOutItemName = (itemId: string) => {
+    if (voice === 'on') {
+      const itemName = itemsDictionary[itemId];
+      speak(
+        {
+          en: itemName,
+          pt: itemName,
+        },
+        'pt',
+        1,
+      );
+    }
+  };
+
   const onSelect = (itemId: string) => {
     // If correct
     if (itemId === result) {
@@ -89,6 +107,9 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
         pause();
         setTimesUp(true);
         playSFX('win');
+
+        callOutItemName(itemId);
+
         logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'win'));
         return;
       }
@@ -99,6 +120,8 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
         maxProgress: Math.max(nextDiscIndex, state.maxProgress),
       });
       playSFX('correct');
+
+      callOutItemName(itemId);
       return;
     }
 
@@ -124,6 +147,10 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
   const onModeChange = (newMode: 'normal' | 'challenge') => {
     updateState({ hardMode: newMode === 'challenge' });
     setMode(newMode);
+  };
+
+  const onVoiceChange = (newVoice: 'on' | 'off') => {
+    setVoice(newVoice);
   };
 
   // CONDITIONS
@@ -154,6 +181,8 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
     timeLeft,
     mode,
     onModeChange,
+    voice,
+    onVoiceChange,
     discA,
     discB,
     result,
