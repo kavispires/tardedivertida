@@ -1,1 +1,0 @@
-import{r as o}from"./index-xtuthYNa.js";import{u as t}from"./useTDBaseUrl-BF9foKiS.js";function n(r,e="images"){const s=t(e),a=o.useMemo(()=>r.replace(/-/g,"/"),[r]);return`${s}/${a}.jpg`}export{n as u};
