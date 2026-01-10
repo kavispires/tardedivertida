@@ -561,7 +561,6 @@ export function DailyDemoContent({ data }: DailyDemoProps) {
     gap: 0,
     maxWidth: 512,
     minWidth: 256,
-    aspectRatio: 2 / 3,
   });
   return (
     <Layout className="app">
