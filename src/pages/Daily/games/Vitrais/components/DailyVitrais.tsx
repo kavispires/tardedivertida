@@ -1,8 +1,7 @@
 import { DndContext, DragOverlay } from '@dnd-kit/core';
 import { useState } from 'react';
 // Ant Design Resources
-import { BarChartOutlined } from '@ant-design/icons';
-import { Button, Layout, Modal, Space, Typography } from 'antd';
+import { Layout, Modal, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
@@ -10,18 +9,19 @@ import { useTDImageCardUrl } from 'hooks/useTDImageCardUrl';
 // Icons
 import { DailyPuzzleGameIcon } from 'icons/DailyPuzzleGameIcon';
 // Components
-import { DualTranslate, Translate } from 'components/language';
+import { DualTranslate } from 'components/language';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
+import { Header } from 'pages/Daily/components/Header';
+import { Menu } from 'pages/Daily/components/Menu';
 import { Region } from 'pages/Daily/components/Region';
+import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import type { DailyVitraisEntry } from '../utils/types';
 import { useVitraisEngine } from '../utils/useVitraisEngine';
 import { COLS, getPieceStyle } from '../utils/puzzleUtils';
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
 import { DraggablePiece } from './DraggablePiece';
@@ -85,24 +85,10 @@ export function DailyVitrais({ data }: DailyVitraisProps) {
           </Typography.Text>
         </Region>
 
-        {isComplete && (
-          <Space
-            className="results-container"
-            orientation="vertical"
-            align="center"
-          >
-            <Button
-              onClick={() => setShowResultModal(true)}
-              type="primary"
-              icon={<BarChartOutlined />}
-            >
-              <Translate
-                pt="Ver Resultado"
-                en="Show Results"
-              />
-            </Button>
-          </Space>
-        )}
+        <ShowResultsButton
+          isComplete={isComplete}
+          setShowResultModal={setShowResultModal}
+        />
 
         <div
           style={{

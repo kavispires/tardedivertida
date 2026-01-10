@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { motion } from 'motion/react';
 import { useState } from 'react';
 // Ant Design Resources
-import { BarChartOutlined, BulbOutlined, CheckCircleOutlined } from '@ant-design/icons';
+import { BulbOutlined, CheckCircleOutlined } from '@ant-design/icons';
 import { Button, Flex, Image, Layout, Modal, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
@@ -18,14 +18,15 @@ import { ImageCard } from 'components/image-cards';
 import { DualTranslate, Translate } from 'components/language';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
+import { Header } from 'pages/Daily/components/Header';
+import { Menu } from 'pages/Daily/components/Menu';
 import { Region } from 'pages/Daily/components/Region';
+import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import type { DailyEspionagemEntry } from '../utils/types';
 import { useEspionagemEngine } from '../utils/useEspionagemEngine';
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
 import { ReleaseModal } from './ReleaseModal';
@@ -117,16 +118,10 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
                 />
               )}
             </Typography.Text>
-            <Button
-              onClick={() => setShowResultModal(true)}
-              type="primary"
-              icon={<BarChartOutlined />}
-            >
-              <Translate
-                pt="Ver Resultado"
-                en="Show Results"
-              />
-            </Button>
+            <ShowResultsButton
+              isComplete={isComplete}
+              setShowResultModal={setShowResultModal}
+            />
           </Region>
         )}
 

@@ -32,6 +32,7 @@ export type GameState = {
   timeElapsed: number;
   piecesOrder: number[];
   score: number;
+  swapCount: number;
 };
 
 export type SessionState = {

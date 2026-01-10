@@ -1,8 +1,7 @@
 import clsx from 'clsx';
 import { useState } from 'react';
 // Ant Design Resources
-import { BarChartOutlined } from '@ant-design/icons';
-import { Button, Flex, Layout, Modal, Space } from 'antd';
+import { Button, Flex, Layout, Modal } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
@@ -17,14 +16,15 @@ import { DualTranslate, Translate } from 'components/language';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { DailyItem } from 'pages/Daily/components/DailyItem';
+import { Header } from 'pages/Daily/components/Header';
+import { Menu } from 'pages/Daily/components/Menu';
 import { Region, RegionHint, RegionText } from 'pages/Daily/components/Region';
+import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import type { DailyQuartetosEntry } from '../utils/types';
 import { useQuartetosEngine } from '../utils/useQuartetosEngine';
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
 // Icons
@@ -126,25 +126,12 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
           </div>
         </Region>
 
-        {isComplete ? (
-          <Space
-            className="results-container"
-            orientation="vertical"
-            align="center"
-            size="large"
-          >
-            <Button
-              onClick={() => setShowResultModal(true)}
-              type="primary"
-              icon={<BarChartOutlined />}
-            >
-              <Translate
-                pt="Ver Resultado"
-                en="Show Results"
-              />
-            </Button>
-          </Space>
-        ) : (
+        <ShowResultsButton
+          isComplete={isComplete}
+          setShowResultModal={setShowResultModal}
+        />
+
+        {isComplete && (
           <Region>
             <Flex
               justify="center"

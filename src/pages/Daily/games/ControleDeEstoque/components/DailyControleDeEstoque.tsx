@@ -11,14 +11,14 @@ import { Popconfirm } from 'components/general/Popconfirm';
 import { DualTranslate, Translate } from 'components/language';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
+import { Header } from 'pages/Daily/components/Header';
+import { Menu } from 'pages/Daily/components/Menu';
 import { Region } from 'pages/Daily/components/Region';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { PHASES, SETTINGS } from '../utils/settings';
 import type { DailyControleDeEstoqueEntry } from '../utils/types';
 import { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
 import { FulfillingPhase } from './FulfillingPhase';
 import { PreloadItems } from './PreloadItems';
 import { ResultsModalContent } from './ResultsModalContent';

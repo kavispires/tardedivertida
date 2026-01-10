@@ -1,7 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { BarChartOutlined } from '@ant-design/icons';
-import { Button, Layout, Modal, Space } from 'antd';
+import { Layout, Modal } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Icons
@@ -10,15 +9,16 @@ import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
 import { DualTranslate, Translate } from 'components/language';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
+import { Header } from 'pages/Daily/components/Header';
 import { Keyboard } from 'pages/Daily/components/Keyboard';
+import { Menu } from 'pages/Daily/components/Menu';
 import { RegionText } from 'pages/Daily/components/Region';
+import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import type { DailyArteRuimEntry } from '../utils/types';
 import { useArteRuimEngine } from '../utils/useArteRuimEngine';
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
 import { DrawingCarousel } from './DrawingCarousel';
 import { Prompt } from './Prompt';
 import { ResultsModalContent } from './ResultsModalContent';
@@ -64,24 +64,10 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
           guesses={guesses}
         />
 
-        {isComplete && (
-          <Space
-            className="results-container"
-            orientation="vertical"
-            align="center"
-          >
-            <Button
-              onClick={() => setShowResultModal(true)}
-              type="primary"
-              icon={<BarChartOutlined />}
-            >
-              <Translate
-                pt="Ver Resultado"
-                en="Show Results"
-              />
-            </Button>
-          </Space>
-        )}
+        <ShowResultsButton
+          isComplete={isComplete}
+          setShowResultModal={setShowResultModal}
+        />
 
         <Modal
           open={showResultModal}
