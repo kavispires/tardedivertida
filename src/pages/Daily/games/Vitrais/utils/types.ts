@@ -3,26 +3,25 @@ import type { DateKey } from 'pages/Daily/utils/types';
 
 export type Point = { x: number; y: number };
 
-export type Piece = {
-  id: string;
-  correctPos: number; // what grid index it belongs to
-  shape: Point[];
+export type PieceData = {
+  id: number;
 };
 
-export type PieceState = Point & {
-  isLocked: boolean;
-};
+export type GridState = (PieceData | null)[];
+
+export type ActiveDrag = {
+  pieceId: number;
+  originIndex: number;
+  groupIndices: number[];
+} | null;
 
 export type DailyVitraisEntry = {
-  id: DateKey; // YYYY-MM-DD string
-  number: number; // number of the puzzle, use 0
+  id: string;
+  number: number;
   type: 'vitrais';
   title: string;
-  cardId: string; // the id of the card that will generate the imageUrl
-  gridCols: number;
-  gridRows: number;
-  startingPieceId: string; // the piece that starts locked in place
-  pieces: Piece[];
+  cardId: string;
+  pieces: number[]; // shuffled array of pieces ids. Each id is composed of a number that represents the piece index (0-N) of the puzzle in the correct order
 };
 
 export type GameState = {
@@ -31,18 +30,12 @@ export type GameState = {
   status: string;
   hearts: number;
   timeElapsed: number;
-  lockedPieces: string[]; // piece ids
+  piecesOrder: number[];
   score: number;
 };
 
 export type SessionState = {
-  piecesState: Dictionary<PieceState>; // pieceId -> {x, y}
+  grid: GridState; // pieceId -> {x, y}
+  justDroppedIds: number[];
+  activeDrag: ActiveDrag;
 };
-
-// export type ActivePiece = Piece & {
-//   currentPos: { x: number; y: number };
-//   isLocked: boolean;
-//   // We need helper coordinates derived from 'correctPos' (index)
-//   gridX: number;
-//   gridY: number;
-// };
