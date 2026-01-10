@@ -1,111 +1,88 @@
 import { useDraggable } from '@dnd-kit/core';
+import { CSS } from '@dnd-kit/utilities';
 import { motion } from 'motion/react';
-import type React from 'react';
-import { useEffect, useRef } from 'react';
-// Pages
-import { playSFX } from 'pages/Daily/utils/soundEffects';
 // Internal
-import type { Piece, Point } from '../utils/types';
+import { COLS, getPieceStyle } from '../utils/puzzleUtils';
+// Ant Design Resources
+// Hooks
+// Icons
+// Components
 
 type DraggablePieceProps = {
-  pieceData: Piece;
-  imageUrl: string;
-  totalCols: number;
+  pieceId: number;
+  currentSlotIndex: number;
   totalRows: number;
-  blockSize: number;
-  isLocked?: boolean;
-  pieceState: Point & { isLocked: boolean };
+  imageUrl: string | undefined;
+  isHidden?: boolean;
+  disabled?: boolean;
+  isJustDropped?: boolean; // New prop to control animation
+  borders?: { top: boolean; right: boolean; bottom: boolean; left: boolean };
 };
+
 export const DraggablePiece = ({
-  pieceData,
-  pieceState,
-  imageUrl,
-  totalCols,
+  pieceId,
+  currentSlotIndex,
   totalRows,
-  blockSize,
+  imageUrl,
+  isHidden,
+  disabled,
+  isJustDropped,
+  borders = { top: true, right: true, bottom: true, left: true },
 }: DraggablePieceProps) => {
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
-    id: pieceData.id,
-    disabled: pieceState.isLocked,
-    data: { ...pieceData, ...pieceState }, // Pass combined data for sensors if needed
+    id: `piece-${pieceId}`,
+    data: { piece: { id: pieceId }, originIndex: currentSlotIndex },
+    disabled: disabled,
   });
 
-  const targetScale = pieceState.isLocked ? 1 : isDragging ? 1 : 0.85;
-  const zIndex = isDragging ? 9999 : pieceState.isLocked ? 1 : 100;
+  const col = currentSlotIndex % COLS;
+  const row = Math.floor(currentSlotIndex / COLS);
+  const left = `${col * (100 / COLS)}%`;
+  const top = `${row * (100 / totalRows)}%`;
+  const width = `${100 / COLS}%`;
+  const height = `${100 / totalRows}%`;
 
-  // Helper: Derive grid coordinates from index
-  const gridX = pieceData.correctPos % totalCols;
-  const gridY = Math.floor(pieceData.correctPos / totalCols);
+  const borderStyle = '0.5px solid rgba(0,0,0,0.5)';
 
-  const wasDraggingRef = useRef(false);
-
-  useEffect(() => {
-    if (isDragging && !wasDraggingRef.current) {
-      playSFX('bubbleIn');
-      wasDraggingRef.current = true;
-    } else if (!isDragging) {
-      wasDraggingRef.current = false;
-    }
-  }, [isDragging]);
-
-  const dndStyle: React.CSSProperties = {
-    left: pieceState.x,
-    top: pieceState.y,
-    transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)` : undefined,
-    zIndex,
-    cursor: pieceState.isLocked ? 'default' : 'grab',
-  };
+  // Conditional transition:
+  // If it was just dropped, snap instantly (duration 0).
+  // Otherwise, use the spring animation for smooth swapping.
+  const transition = isJustDropped
+    ? { duration: 0 }
+    : { type: 'spring' as const, stiffness: 350, damping: 25 };
 
   return (
-    <div
-      className="vitrais-piece-dnd"
+    <motion.div
       ref={setNodeRef}
-      style={dndStyle}
+      initial={false}
+      animate={{ top, left }}
+      transition={transition}
+      style={{
+        position: 'absolute',
+        width,
+        height,
+        transform: CSS.Translate.toString(transform),
+        zIndex: isDragging ? 50 : 10,
+        opacity: isHidden ? 0 : 1,
+        touchAction: 'none',
+        cursor: disabled ? 'default' : 'grab',
+      }}
       {...listeners}
       {...attributes}
     >
-      <motion.div
-        className="vitrais-piece"
-        animate={{
-          scale: targetScale,
-          opacity: 1,
-          filter: pieceState.isLocked ? 'brightness(1)' : isDragging ? 'brightness(1.1)' : 'brightness(1)',
-          boxShadow: pieceState.isLocked ? 'none' : '0 10px 15px -3px rgba(0, 0, 0, 0.3)',
-        }}
-        transition={{
-          duration: 0.4,
-          type: 'spring',
-          stiffness: 250,
-          damping: 25,
-        }}
-        whileHover={!pieceState.isLocked && !isDragging ? { scale: 0.9 } : undefined}
-        whileTap={!pieceState.isLocked ? { cursor: 'grabbing' } : undefined}
-      >
-        {pieceData.shape.map((block, i) => {
-          // pieceData.gridX/gridY is the anchor position. block.x/y is relative offset.
-          const bgX = -(gridX + block.x) * blockSize;
-          const bgY = -(gridY + block.y) * blockSize;
+      <div style={getPieceStyle(pieceId, imageUrl, totalRows)} />
 
-          return (
-            <motion.div
-              className="vitrais-piece-image-block"
-              key={i}
-              style={{
-                left: block.x * blockSize,
-                top: block.y * blockSize,
-                width: blockSize,
-                height: blockSize,
-                backgroundImage: `url(${imageUrl})`,
-                backgroundSize: `${totalCols * blockSize}px ${totalRows * blockSize}px`,
-                backgroundPosition: `${bgX}px ${bgY}px`,
-              }}
-              animate={{
-                border: pieceState.isLocked ? '0px solid transparent' : '1px solid rgba(255,255,255,0.6)',
-              }}
-            />
-          );
-        })}
-      </motion.div>
-    </div>
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          pointerEvents: 'none',
+          borderTop: borders.top ? borderStyle : 'none',
+          borderRight: borders.right ? borderStyle : 'none',
+          borderBottom: borders.bottom ? borderStyle : 'none',
+          borderLeft: borders.left ? borderStyle : 'none',
+        }}
+      />
+    </motion.div>
   );
 };

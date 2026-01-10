@@ -1,13 +1,11 @@
-import { DndContext } from '@dnd-kit/core';
-import { motion } from 'motion/react';
+import { DndContext, DragOverlay } from '@dnd-kit/core';
 import { useState } from 'react';
 // Ant Design Resources
 import { BarChartOutlined } from '@ant-design/icons';
-import { Button, Flex, Layout, Modal, Space, Typography } from 'antd';
+import { Button, Layout, Modal, Space, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
-import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { useTDImageCardUrl } from 'hooks/useTDImageCardUrl';
 // Icons
 import { DailyPuzzleGameIcon } from 'icons/DailyPuzzleGameIcon';
@@ -21,11 +19,13 @@ import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import type { DailyVitraisEntry } from '../utils/types';
 import { useVitraisEngine } from '../utils/useVitraisEngine';
+import { COLS, getPieceStyle } from '../utils/puzzleUtils';
 import { Header } from '../../../components/Header';
 import { Menu } from '../../../components/Menu';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
 import { DraggablePiece } from './DraggablePiece';
+import { GridSlot } from './GridSlot';
 
 type DailyVitraisProps = {
   data: DailyVitraisEntry;
@@ -41,23 +41,21 @@ export function DailyVitrais({ data }: DailyVitraisProps) {
     isWin,
     isComplete,
     time,
+    handleDragStart,
     handleDragEnd,
-    resetUnlockedPieces,
-    piecesState,
-    lockedPieces,
-    blockSize,
     sensors,
     containerRef,
-    boardOffset,
+    measures,
     score,
     totalTime,
+    justDroppedIds,
+    activeDrag,
+    allPieceIds,
+    grid,
+    getBorders,
+    correctPieces,
   } = useVitraisEngine(data, initialState);
   const imageUrl = useTDImageCardUrl(data.cardId);
-
-  const boardPixelHeight = data.gridRows * blockSize;
-  const boardPixelWidth = data.gridCols * blockSize;
-
-  const [width, ref] = useCardWidthByContainerRef(1, { margin: 72, gap: 0, maxWidth: 512, minWidth: 256 });
 
   return (
     <Layout className="app">
@@ -67,7 +65,7 @@ export function DailyVitrais({ data }: DailyVitraisProps) {
       >
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
-      <DailyContent ref={ref}>
+      <DailyContent ref={containerRef}>
         <Menu
           hearts={hearts}
           total={SETTINGS.HEARTS}
@@ -83,7 +81,7 @@ export function DailyVitrais({ data }: DailyVitraisProps) {
         <Region>
           <Typography.Text className="center">{data.title}</Typography.Text>
           <Typography.Text className="center">
-            {lockedPieces.length}/{data.pieces.length} - {time} - {score} pts
+            {correctPieces}/{data.pieces.length} - {time} - {score} pts
           </Typography.Text>
         </Region>
 
@@ -106,78 +104,135 @@ export function DailyVitrais({ data }: DailyVitraisProps) {
           </Space>
         )}
 
-        <DndContext
-          sensors={sensors}
-          onDragEnd={handleDragEnd}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            width: measures.width,
+            margin: '12px auto',
+            userSelect: 'none',
+          }}
         >
-          <Region className="full-width">
-            <div
-              className="vitrais-dnd-area"
-              ref={containerRef}
-              style={{
-                width,
-                height: width * 2,
-              }}
+          <div
+            style={{
+              position: 'relative',
+              width: measures.width,
+              height: measures.height,
+              backgroundColor: '#1f1f1f',
+              boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)',
+              border: isComplete ? '2px solid #4ade80' : 'none',
+              transition: 'border 0.3s ease',
+            }}
+          >
+            <DndContext
+              sensors={sensors}
+              onDragStart={handleDragStart}
+              onDragEnd={handleDragEnd}
             >
-              {blockSize > 0 && (
-                <>
-                  <motion.div
-                    className="vitrais-board-guide"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    style={{
-                      top: boardOffset.y,
-                      left: boardOffset.x,
-                      width: boardPixelWidth,
-                      height: boardPixelHeight,
-                    }}
-                  >
-                    <div
-                      className="vitrais-board-grid"
-                      style={{
-                        backgroundSize: `${blockSize}px ${blockSize}px`,
-                      }}
+              <div
+                style={{
+                  display: 'grid',
+                  width: '100%',
+                  height: '100%',
+                  gridTemplateColumns: `repeat(${COLS}, 1fr)`,
+                  gridTemplateRows: `repeat(${measures.rows}, 1fr)`,
+                  position: 'absolute',
+                  inset: 0,
+                  pointerEvents: 'none',
+                }}
+              >
+                {Array.from({ length: measures.totalSlots }).map((_, index) => (
+                  <GridSlot
+                    key={index}
+                    index={index}
+                  />
+                ))}
+              </div>
+
+              <div style={{ position: 'absolute', inset: 0, pointerEvents: 'auto' }}>
+                {allPieceIds.map((pieceId) => {
+                  const currentSlotIndex = grid.findIndex((p) => p?.id === pieceId);
+
+                  if (currentSlotIndex === -1) return null;
+
+                  let isHidden = false;
+                  if (activeDrag) {
+                    const offset = currentSlotIndex - activeDrag.originIndex;
+                    if (activeDrag.groupIndices.includes(offset)) {
+                      isHidden = true;
+                    }
+                  }
+
+                  const borders = getBorders(currentSlotIndex, grid);
+                  const isJustDropped = justDroppedIds.includes(pieceId);
+
+                  return (
+                    <DraggablePiece
+                      key={pieceId}
+                      pieceId={pieceId}
+                      currentSlotIndex={currentSlotIndex}
+                      totalRows={measures.rows}
+                      imageUrl={imageUrl}
+                      isHidden={isHidden}
+                      disabled={isComplete}
+                      borders={borders}
+                      isJustDropped={isJustDropped}
                     />
-                  </motion.div>
+                  );
+                })}
+              </div>
 
-                  {/* Pieces */}
-                  {data.pieces.map((piece) => {
-                    const state = piecesState[piece.id];
-                    if (!state) return null; // Should not happen if ready
-
-                    return (
-                      <DraggablePiece
-                        key={piece.id}
-                        pieceData={piece}
-                        pieceState={state}
-                        imageUrl={imageUrl}
-                        totalCols={data.gridCols}
-                        totalRows={data.gridRows}
-                        blockSize={blockSize}
-                      />
-                    );
-                  })}
-
-                  <Flex
-                    style={{ position: 'absolute', bottom: 16, right: 16 }}
-                    gap={8}
+              <DragOverlay dropAnimation={null}>
+                {activeDrag ? (
+                  <div
+                    style={{ position: 'relative', width: measures.cellWidth, height: measures.cellHeight }}
                   >
-                    <Button
-                      size="small"
-                      onClick={resetUnlockedPieces}
-                    >
-                      <Translate
-                        pt="Resetar"
-                        en="Reset"
-                      />
-                    </Button>
-                  </Flex>
-                </>
-              )}
-            </div>
-          </Region>
-        </DndContext>
+                    {activeDrag.groupIndices.map((offset) => {
+                      const originalIndex = activeDrag.originIndex + offset;
+                      const piece = grid[originalIndex];
+                      if (!piece) return null;
 
+                      const colOffset = (originalIndex % COLS) - (activeDrag.originIndex % COLS);
+                      const rowOffset =
+                        Math.floor(originalIndex / COLS) - Math.floor(activeDrag.originIndex / COLS);
+
+                      const borders = getBorders(originalIndex, grid);
+
+                      return (
+                        <div
+                          key={piece.id}
+                          style={{
+                            position: 'absolute',
+                            width: '100%',
+                            height: '100%',
+                            left: `${colOffset * 100}%`,
+                            top: `${rowOffset * 100}%`,
+                            zIndex: 999,
+                            filter: 'drop-shadow(0px 5px 10px rgba(0,0,0,0.5))',
+                          }}
+                        >
+                          <div style={getPieceStyle(piece.id, imageUrl, measures.rows)} />
+                          <div
+                            style={{
+                              position: 'absolute',
+                              inset: 0,
+                              pointerEvents: 'none',
+                              borderTop: borders.top ? '0.5px solid rgba(255,255,255,0.8)' : 'none',
+                              borderRight: borders.right ? '0.5px solid rgba(255,255,255,0.8)' : 'none',
+                              borderBottom: borders.bottom ? '0.5px solid rgba(255,255,255,0.8)' : 'none',
+                              borderLeft: borders.left ? '0.5px solid rgba(255,255,255,0.8)' : 'none',
+                            }}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : null}
+              </DragOverlay>
+            </DndContext>
+          </div>
+        </div>
         <Modal
           open={showResultModal}
           onCancel={() => setShowResultModal(false)}

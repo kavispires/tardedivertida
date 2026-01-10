@@ -1,6 +1,13 @@
-import { type DragEndEvent, useSensor, useSensors, PointerSensor } from '@dnd-kit/core';
+import {
+  type DragStartEvent,
+  type DragEndEvent,
+  MouseSensor,
+  TouchSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
 import moment from 'moment';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useStopwatch } from 'react-timer-hook';
 // Pages
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
@@ -11,83 +18,8 @@ import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 // Internal
 import { SETTINGS } from './settings';
-import type { DailyVitraisEntry, GameState, Piece, PieceState, SessionState } from './types';
-
-const generateRepackedState = (
-  currentDict: Dictionary<PieceState>,
-  staticPieces: Piece[],
-  blockSize: number,
-  cWidth: number,
-  bOffset: { x: number; y: number },
-  data: DailyVitraisEntry,
-  lockedPieces: string[],
-): Dictionary<PieceState> => {
-  const boardHeight = data.gridRows * blockSize;
-
-  // Count unlocked pieces to determine bank size
-  // If state is empty (first load), check static data for starter piece
-  let looseCount = 0;
-  const isInit = Object.keys(currentDict).length === 0;
-
-  if (isInit) {
-    looseCount = staticPieces.length - 1; // All loose except starting piece
-  } else {
-    looseCount = Object.values(currentDict).filter((p) => !p.isLocked).length;
-  }
-
-  const bankWidth = Math.max(200, looseCount * 80);
-
-  const newState: Dictionary<PieceState> = {};
-
-  const yPositions = [5, 15, 25, 15, 35, 25, 15, 20, 15, 5];
-
-  staticPieces.forEach((p, i) => {
-    // Decode Grid Position
-    const gridX = p.correctPos % data.gridCols;
-    const gridY = Math.floor(p.correctPos / data.gridCols);
-
-    const correctPixelX = bOffset.x + gridX * blockSize;
-    const correctPixelY = bOffset.y + gridY * blockSize;
-
-    // Check if locked (either in current state OR it's the starter piece on init)
-    const isLocked = currentDict[p.id]?.isLocked || (isInit && p.id === data.startingPieceId);
-
-    if (isLocked || lockedPieces.includes(p.id)) {
-      // Force locked pieces to exact grid position (handles window resize adjustments)
-      newState[p.id] = {
-        x: correctPixelX,
-        y: correctPixelY,
-        isLocked: true,
-      };
-    } else {
-      // Calculate Scatter Bounds
-
-      // Always place unlocked pieces below the board guide
-      const minX = Math.max(0, bOffset.x);
-      const maxX = Math.max(cWidth - blockSize * 1.5, minX + bankWidth);
-
-      const xWidth = maxX - minX;
-      const xUnit = xWidth / (data.gridCols - 1);
-
-      // const randomX = xWidth / 4 + random(-(minX + blockSize), maxX - blockSize);
-      const xPositions = [5, xUnit, xUnit * 2, xUnit / 2, xUnit * 1.5, xUnit];
-      const randomX = minX + xPositions[i % xPositions.length];
-      const randomY = blockSize / 2 + boardHeight + yPositions[i % yPositions.length];
-
-      // If we already have a position and we are NOT repacking specifically (e.g. just resizing),
-      // we might want to keep it?
-      // For this implementation, "generateRepackedState" implies we WANT to move them to the new bank.
-      // So we overwrite with new random positions.
-      newState[p.id] = {
-        x: randomX,
-        y: randomY,
-        isLocked: false,
-      };
-    }
-  });
-
-  return newState;
-};
+import type { DailyVitraisEntry, GameState, GridState, PieceData, SessionState } from './types';
+import { arePiecesConnectable, COLS } from './puzzleUtils';
 
 export function useVitraisEngine(data: DailyVitraisEntry, initialState: GameState) {
   const { state, updateState } = useDailyGameState<GameState>(initialState);
@@ -97,6 +29,11 @@ export function useVitraisEngine(data: DailyVitraisEntry, initialState: GameStat
     autoStart: true,
     offsetTimestamp: moment(new Date()).add(state.timeElapsed, 'seconds').toDate(),
   });
+
+  const allPieceIds = useMemo(() => {
+    if (!data.pieces) return [];
+    return Array.from({ length: data.pieces.length }, (_, i) => i);
+  }, [data.pieces]);
 
   const { updateLocalStorage } = useDailyLocalToday<GameState>({
     key: SETTINGS.KEY,
@@ -159,221 +96,278 @@ export function useVitraisEngine(data: DailyVitraisEntry, initialState: GameStat
   // RESULTS MODAL
   const { showResultModal, setShowResultModal } = useShowResultModal(isWin || isLose || isComplete);
 
-  // GEMINI STUFF
-  // const [pieces, setPieces] = useState<ActivePiece[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
-
   // Layout State
-  const [blockSize, setBlockSize] = useState(0);
-  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
-  const [boardOffset, setBoardOffset] = useState({ x: 0, y: 20 });
-
-  const { session, setSession } = useDailySessionState<SessionState>({
-    piecesState: generateRepackedState(
-      {}, // Empty dict triggers init logic (checking startingPieceId)
-      data.pieces,
-      blockSize,
-      containerSize.width,
-      boardOffset,
-      data,
-      state.lockedPieces,
-    ),
+  const [measures, setMeasures] = useState({
+    width: 0,
+    height: 0,
+    cellWidth: 0,
+    cellHeight: 0,
+    rows: 0,
+    totalSlots: 0,
   });
 
-  const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: { distance: 5 },
-    }),
-  );
+  const { session, setSession } = useDailySessionState<SessionState>({
+    grid: state.piecesOrder.map((id) => ({ id })),
+    justDroppedIds: [],
+    activeDrag: null,
+  });
 
   // 1. Handle Window Resize
   useEffect(() => {
     const handleResize = () => {
       if (!containerRef.current) return;
-      const width = containerRef.current.offsetWidth;
-      const height = window.innerHeight - 200;
+      const totalSlots = data.pieces ? data.pieces.length : 0;
+      const rows = Math.max(1, Math.ceil(totalSlots / COLS));
+      const maxWidth = containerRef.current.offsetWidth - 36;
+      const maxHeight = window.innerHeight - 200;
 
-      const maxBlockWidth = (width - 32) / data.gridCols;
-      const newBlockSize = Math.min(50, Math.floor(maxBlockWidth));
+      // Calculate dimensions respecting 2:3 aspect ratio and max constraints
+      let safeWidth = maxWidth > 0 ? maxWidth : 300;
+      let totalHeight = safeWidth * 1.5; // 2:3 aspect ratio
 
-      const boardWidth = data.gridCols * newBlockSize;
-      const offsetX = (width - boardWidth) / 2;
+      // If height exceeds maxHeight, recalculate based on height constraint
+      if (totalHeight > maxHeight) {
+        totalHeight = maxHeight;
+        safeWidth = totalHeight / 1.5; // Maintain 2:3 aspect ratio
+      }
 
-      setBlockSize(newBlockSize);
-      setContainerSize({ width, height });
-      setBoardOffset({ x: offsetX, y: 20 });
+      const cellWidth = safeWidth / COLS;
+      const cellHeight = totalHeight / rows;
+      setMeasures({ width: safeWidth, height: totalHeight, cellWidth, cellHeight, rows, totalSlots });
     };
 
     handleResize();
     const resizeObserver = new ResizeObserver(() => handleResize());
     if (containerRef.current) resizeObserver.observe(containerRef.current);
     return () => resizeObserver.disconnect();
-  }, [data.gridCols]);
+  }, [data.pieces]);
 
-  // 2. Reposition pieces when layout is ready
-  // biome-ignore lint/correctness/useExhaustiveDependencies: intentional reposition on layout change
-  useEffect(() => {
-    if (blockSize === 0 || containerSize.width === 0) return;
+  // --- Group Logic ---
 
-    // Check if starting piece is at correct position
-    const startingPiece = data.pieces.find((p) => p.id === data.startingPieceId);
-    if (!startingPiece) return;
+  const countConnections = (gridState: GridState): number => {
+    let connections = 0;
+    for (let idx = 0; idx < gridState.length; idx++) {
+      const piece = gridState[idx];
+      if (!piece) continue;
 
-    const gridX = startingPiece.correctPos % data.gridCols;
-    const gridY = Math.floor(startingPiece.correctPos / data.gridCols);
-    const expectedX = boardOffset.x + gridX * blockSize;
-    const expectedY = boardOffset.y + gridY * blockSize;
+      // Check right neighbor (horizontal)
+      const rightIdx = idx + 1;
+      if (rightIdx < gridState.length && Math.floor(idx / COLS) === Math.floor(rightIdx / COLS)) {
+        const rightPiece = gridState[rightIdx];
+        if (rightPiece && arePiecesConnectable(piece.id, rightPiece.id, true)) {
+          connections++;
+        }
+      }
 
-    const currentState = session.piecesState[data.startingPieceId];
-    const needsRepositioning = !currentState || currentState.x !== expectedX || currentState.y !== expectedY;
-
-    if (needsRepositioning) {
-      setSession({
-        ...session,
-        piecesState: generateRepackedState(
-          session.piecesState,
-          data.pieces,
-          blockSize,
-          containerSize.width,
-          boardOffset,
-          data,
-          state.lockedPieces,
-        ),
-      });
+      // Check bottom neighbor (vertical)
+      const bottomIdx = idx + COLS;
+      if (bottomIdx < gridState.length) {
+        const bottomPiece = gridState[bottomIdx];
+        if (bottomPiece && arePiecesConnectable(piece.id, bottomPiece.id, false)) {
+          connections++;
+        }
+      }
     }
-  }, [blockSize, boardOffset.x, containerSize.width]);
-
-  // Reset unlocked pieces to their initial positions
-  const resetUnlockedPieces = () => {
-    if (blockSize === 0 || containerSize.width === 0) return;
-
-    setSession({
-      ...session,
-      piecesState: generateRepackedState(
-        session.piecesState,
-        data.pieces,
-        blockSize,
-        containerSize.width,
-        boardOffset,
-        data,
-        state.lockedPieces,
-      ),
-    });
-    playSFX('shuffle');
+    return connections;
   };
 
-  // 3. Drag Logic
-  const handleDragEnd = (event: DragEndEvent) => {
-    const { active, delta } = event;
-    const pieceId = active.id as string;
+  const getConnectedGroupIndices = (gridState: GridState, startIndex: number): number[] => {
+    const startPiece = gridState[startIndex];
+    if (!startPiece) return [];
 
-    setSession((prev) => {
-      const currentState = prev.piecesState[pieceId];
-      if (!currentState) return prev; // Should not happen
+    const group = new Set<number>();
+    const queue = [startIndex];
+    group.add(startIndex);
 
-      // Find static data to get correct grid position
-      const pieceStatic = data.pieces.find((p) => p.id === pieceId);
-      if (!pieceStatic) return prev;
+    while (queue.length > 0) {
+      const currentIdx = queue.shift();
+      if (currentIdx === undefined) continue;
+      const currentPiece = gridState[currentIdx];
+      if (!currentPiece) continue;
 
-      const gridX = pieceStatic.correctPos % data.gridCols;
-      const gridY = Math.floor(pieceStatic.correctPos / data.gridCols);
+      const neighbors = [
+        { idx: currentIdx - 1, dir: 'horizontal' },
+        { idx: currentIdx + 1, dir: 'horizontal' },
+        { idx: currentIdx - COLS, dir: 'vertical' },
+        { idx: currentIdx + COLS, dir: 'vertical' },
+      ];
 
-      // New Raw Position
-      let newX = currentState.x + delta.x;
-      let newY = currentState.y + delta.y;
+      for (const { idx, dir } of neighbors) {
+        if (idx < 0 || idx >= measures.totalSlots) continue;
 
-      // Calculate piece bounds based on shape
-      const minBlockX = Math.min(...pieceStatic.shape.map((b) => b.x));
-      const maxBlockX = Math.max(...pieceStatic.shape.map((b) => b.x));
-      const minBlockY = Math.min(...pieceStatic.shape.map((b) => b.y));
-      const maxBlockY = Math.max(...pieceStatic.shape.map((b) => b.y));
-
-      const pieceLeftEdge = newX + minBlockX * blockSize;
-      const pieceRightEdge = newX + (maxBlockX + 1) * blockSize;
-      const pieceTopEdge = newY + minBlockY * blockSize;
-      const pieceBottomEdge = newY + (maxBlockY + 1) * blockSize;
-
-      // Check if piece is fully out of bounds
-      const isFullyOutOfBounds =
-        pieceRightEdge < 0 ||
-        pieceLeftEdge > containerSize.width ||
-        pieceBottomEdge < 0 ||
-        pieceTopEdge > containerSize.height;
-
-      // If fully out of bounds, reset to center of container
-      if (isFullyOutOfBounds) {
-        const pieceWidth = (maxBlockX - minBlockX + 1) * blockSize;
-        const pieceHeight = (maxBlockY - minBlockY + 1) * blockSize;
-        newX = (containerSize.width - pieceWidth) / 2 - minBlockX * blockSize;
-        newY = (containerSize.height - pieceHeight) / 2 - minBlockY * blockSize;
-      }
-
-      // Calculate Snap Target
-      const targetX = boardOffset.x + gridX * blockSize;
-      const targetY = boardOffset.y + gridY * blockSize;
-
-      const dist = Math.sqrt((newX - targetX) ** 2 + (newY - targetY) ** 2);
-      const snapDist = blockSize * 0.45;
-
-      let justLocked = false;
-      let isLocked = false;
-
-      if (dist < snapDist) {
-        newX = targetX;
-        newY = targetY;
-        isLocked = true;
-        justLocked = true;
-      }
-
-      // Update this specific piece
-      const updatedPiecesState = {
-        ...prev.piecesState,
-        [pieceId]: { x: newX, y: newY, isLocked },
-      };
-      let score = state.score;
-      let status = state.status;
-
-      // Auto-Repack Trigger
-      if (justLocked) {
-        // If we locked a piece, reshuffle the REMAINING unlocked pieces
-        const allLocked = Object.values(updatedPiecesState).every((p) => p.isLocked);
-        if (allLocked) {
-          playSFX('win');
-          status = STATUSES.WIN;
-        } else {
-          playSFX('yes');
-          score += 1 + state.hearts;
+        if (dir === 'horizontal') {
+          const currentRow = Math.floor(currentIdx / COLS);
+          const neighborRow = Math.floor(idx / COLS);
+          if (currentRow !== neighborRow) continue;
         }
-        const lockedPiecesIds = Object.entries(updatedPiecesState)
-          .filter(([_, pState]) => pState.isLocked)
-          .map(([pId, _]) => pId);
 
-        updateState({
-          lockedPieces: lockedPiecesIds,
-          score,
-          status,
-        });
+        if (group.has(idx)) continue;
 
-        return {
-          ...prev,
-          piecesState: generateRepackedState(
-            updatedPiecesState,
-            data.pieces,
-            blockSize,
-            containerSize.width,
-            boardOffset,
-            data,
-            lockedPiecesIds,
-          ),
-        };
+        const neighborPiece = gridState[idx];
+        if (neighborPiece) {
+          let connected = false;
+          if (dir === 'horizontal') {
+            if (idx > currentIdx) connected = arePiecesConnectable(currentPiece.id, neighborPiece.id, true);
+            else connected = arePiecesConnectable(neighborPiece.id, currentPiece.id, true);
+          } else {
+            if (idx > currentIdx) connected = arePiecesConnectable(currentPiece.id, neighborPiece.id, false);
+            else connected = arePiecesConnectable(neighborPiece.id, currentPiece.id, false);
+          }
+
+          if (connected) {
+            group.add(idx);
+            queue.push(idx);
+          }
+        }
       }
+    }
+    return Array.from(group).sort((a, b) => a - b);
+  };
 
+  const getBorders = (index: number, currentGrid: GridState) => {
+    const piece = currentGrid[index];
+    if (!piece) return { top: true, right: true, bottom: true, left: true };
+
+    const checkConnection = (neighborIdx: number, dir: 'horizontal' | 'vertical') => {
+      if (neighborIdx < 0 || neighborIdx >= measures.totalSlots) return false;
+      const neighbor = currentGrid[neighborIdx];
+      if (!neighbor) return false;
+
+      if (dir === 'horizontal') {
+        return (
+          arePiecesConnectable(piece.id, neighbor.id, true) ||
+          arePiecesConnectable(neighbor.id, piece.id, true)
+        );
+      }
+      return (
+        arePiecesConnectable(piece.id, neighbor.id, false) ||
+        arePiecesConnectable(neighbor.id, piece.id, false)
+      );
+    };
+
+    const topIdx = index - COLS;
+    const bottomIdx = index + COLS;
+    const leftIdx = index - 1;
+    const rightIdx = index + 1;
+
+    const hasTop = topIdx >= 0 && checkConnection(topIdx, 'vertical');
+    const hasBottom = bottomIdx < measures.totalSlots && checkConnection(bottomIdx, 'vertical');
+    const hasLeft = index % COLS !== 0 && checkConnection(leftIdx, 'horizontal');
+    const hasRight = index % COLS !== 2 && checkConnection(rightIdx, 'horizontal');
+
+    return { top: !hasTop, right: !hasRight, bottom: !hasBottom, left: !hasLeft };
+  };
+
+  // --- DND Handlers ---
+
+  const sensors = useSensors(
+    useSensor(MouseSensor, {
+      activationConstraint: { distance: 5 },
+    }),
+    useSensor(TouchSensor, {
+      // Changed delay to 0 for instant response
+      // Kept tolerance: 5 to allow a tiny bit of finger slip before dragging starts (prevents accidental clicks)
+      activationConstraint: { delay: 10, tolerance: 5 },
+    }),
+  );
+
+  const handleDragStart = (event: DragStartEvent) => {
+    if (isComplete) return;
+    const { active } = event;
+    const { piece, originIndex } = active.data.current as { piece: PieceData; originIndex: number };
+    const groupIndices = getConnectedGroupIndices(session.grid, originIndex);
+    const relativeGroup = groupIndices.map((idx) => idx - originIndex);
+    playSFX('bubbleIn');
+    setSession((prev) => ({
+      ...prev,
+      activeDrag: { pieceId: piece.id, originIndex, groupIndices: relativeGroup },
+      justDroppedIds: [],
+    }));
+  };
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { over } = event;
+    const dragData = session.activeDrag;
+
+    if (!over || !dragData || isComplete) return;
+
+    const targetAnchorIndex = over.data.current?.index as number;
+    const sourceAnchorIndex = dragData.originIndex;
+
+    if (targetAnchorIndex === sourceAnchorIndex) {
       playSFX('bubbleOut');
-      return {
-        ...prev,
-        piecesState: updatedPiecesState,
-      };
+      setSession((prev) => ({ ...prev, activeDrag: null }));
+      return;
+    }
+
+    const sourceIndices = dragData.groupIndices.map((offset) => sourceAnchorIndex + offset);
+    const targetIndices = dragData.groupIndices.map((offset) => targetAnchorIndex + offset);
+
+    const isValidMove = targetIndices.every((idx) => idx >= 0 && idx < measures.totalSlots);
+    if (!isValidMove) {
+      playSFX('bubbleOut');
+      setSession((prev) => ({ ...prev, activeDrag: null }));
+      return;
+    }
+
+    // 1. Identify which pieces are being "dropped" by the user
+    const draggedPieceIds = sourceIndices
+      .map((idx) => session.grid[idx]?.id)
+      .filter((id) => id !== undefined) as number[];
+
+    // Count connections before the swap
+    const connectionsBefore = countConnections(session.grid);
+
+    playSFX('swap');
+    // 2. Perform the swap
+    let nextGrid: GridState = [];
+    setSession((prev) => {
+      nextGrid = [...prev.grid];
+      const sourceSet = new Set(sourceIndices);
+      const targetSet = new Set(targetIndices);
+
+      const displacedValues = targetIndices.filter((idx) => !sourceSet.has(idx)).map((idx) => prev.grid[idx]);
+
+      const vacatedSlots = sourceIndices.filter((idx) => !targetSet.has(idx));
+
+      vacatedSlots.forEach((slotIndex, i) => {
+        if (i < displacedValues.length) {
+          nextGrid[slotIndex] = displacedValues[i];
+        }
+      });
+
+      targetIndices.forEach((targetIdx, i) => {
+        const sourceIdx = sourceIndices[i];
+        nextGrid[targetIdx] = prev.grid[sourceIdx];
+      });
+
+      return { ...prev, grid: nextGrid, activeDrag: null, justDroppedIds: draggedPieceIds };
     });
+
+    // Count connections after the swap and only add score if new connections were made
+    const connectionsAfter = countConnections(nextGrid);
+    const newConnections = connectionsAfter - connectionsBefore;
+
+    // Calculate total possible connections: horizontal + vertical
+    // Horizontal: rows × (COLS - 1), Vertical: COLS × (rows - 1)
+    const totalPossibleConnections = measures.rows * (COLS - 1) + COLS * (measures.rows - 1);
+
+    const newStatus = connectionsAfter === totalPossibleConnections ? STATUSES.WIN : state.status;
+    if (newStatus === STATUSES.WIN) {
+      playSFX('win');
+    }
+
+    updateState({
+      swapCount: state.swapCount + 1,
+      score: state.score + (newConnections > 0 ? newConnections * state.hearts : 0),
+      status: newStatus,
+    });
+
+    // 3. Clear the "just dropped" flag after a short delay so future auto-moves animate
+    setTimeout(() => {
+      setSession((prev) => ({ ...prev, justDroppedIds: [] }));
+    }, 250);
   };
 
   return {
@@ -384,15 +378,20 @@ export function useVitraisEngine(data: DailyVitraisEntry, initialState: GameStat
     isLose,
     isComplete,
     time: `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`,
+    handleDragStart,
     handleDragEnd,
-    resetUnlockedPieces,
     sensors,
     containerRef,
-    piecesState: session.piecesState,
-    lockedPieces: state.lockedPieces,
-    blockSize,
-    boardOffset,
+    piecesOrder: state.piecesOrder,
+    measures,
     totalTime: totalSeconds,
     score: state.score,
+    getBorders,
+    allPieceIds,
+    justDroppedIds: session.justDroppedIds,
+    activeDrag: session.activeDrag,
+    grid: session.grid,
+    swapCount: state.swapCount,
+    correctPieces: session.grid.filter((piece, index) => piece?.id === index).length,
   };
 }

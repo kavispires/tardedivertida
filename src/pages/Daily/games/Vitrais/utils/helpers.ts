@@ -13,8 +13,9 @@ const DEFAULT_LOCAL_TODAY: GameState = {
   status: STATUSES.IN_PROGRESS,
   hearts: SETTINGS.HEARTS,
   timeElapsed: 0,
-  lockedPieces: [],
+  piecesOrder: [],
   score: 0,
+  swapCount: 0,
 };
 
 /**
@@ -26,10 +27,7 @@ export const getInitialState = (data: DailyVitraisEntry): GameState => {
   const localToday = loadLocalToday({
     key: SETTINGS.KEY,
     gameId: data.id,
-    defaultValue: {
-      ...cloneDeep(DEFAULT_LOCAL_TODAY),
-      lockedPieces: [data.startingPieceId],
-    },
+    defaultValue: cloneDeep(DEFAULT_LOCAL_TODAY),
   });
 
   const state: GameState = {
@@ -38,8 +36,9 @@ export const getInitialState = (data: DailyVitraisEntry): GameState => {
     status: localToday.status,
     hearts: localToday.hearts,
     timeElapsed: localToday.timeElapsed,
-    lockedPieces: localToday.lockedPieces,
+    piecesOrder: localToday.piecesOrder?.length === data.pieces.length ? localToday.piecesOrder : data.pieces,
     score: localToday.score,
+    swapCount: localToday.swapCount || 0,
   };
 
   return state;
@@ -56,12 +55,6 @@ export function writeResult({
   timeElapsed: number;
   score: number;
 }): string {
-  // const correctItems = itemsIds.map((itemId) =>
-  //   foundCount[itemId] === Object.keys(foundCount).length ? itemId : null,
-  // );
-
-  // const additionalLines = [correctItems.map((item) => (item ? '🟢' : '◼️')).join('')];
-
   return generateShareableResult({
     heartsSuffix: ` (${score} pts em ${Math.floor(timeElapsed / 60)}:${(timeElapsed % 60).toString().padStart(2, '0')})`,
     additionalLines: [''],
