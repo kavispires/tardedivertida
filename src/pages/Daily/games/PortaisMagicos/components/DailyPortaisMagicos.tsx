@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 // Ant Design Resources
-import { BarChartOutlined, SendOutlined } from '@ant-design/icons';
-import { Button, Flex, Layout, Modal, Space, Typography } from 'antd';
+import { SendOutlined } from '@ant-design/icons';
+import { Button, Flex, Layout, Modal, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
@@ -12,14 +12,15 @@ import { DailyImagesGameIcon } from 'icons/DailyImagesGameIcon';
 import { DualTranslate, Translate } from 'components/language';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
+import { Header } from 'pages/Daily/components/Header';
+import { Menu } from 'pages/Daily/components/Menu';
 import { Region, RegionText } from 'pages/Daily/components/Region';
+import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import type { DailyPortaisMagicosEntry } from '../utils/types';
 import { usePortaisMagicosEngine } from '../utils/usePortaisMagicosEngine';
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
 import { Passcode } from './Passcode';
@@ -156,25 +157,10 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
             );
           })}
 
-        {isComplete && (
-          <Space
-            className="results-container"
-            orientation="vertical"
-            align="center"
-            size="large"
-          >
-            <Button
-              onClick={() => setShowResultModal(true)}
-              type="primary"
-              icon={<BarChartOutlined />}
-            >
-              <Translate
-                pt="Ver Resultado"
-                en="Show Results"
-              />
-            </Button>
-          </Space>
-        )}
+        <ShowResultsButton
+          isComplete={isComplete}
+          setShowResultModal={setShowResultModal}
+        />
 
         <Modal
           open={showResultModal}

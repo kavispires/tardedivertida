@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import { useState } from 'react';
 // Ant Design Resources
-import { BarChartOutlined } from '@ant-design/icons';
 import { Button, Divider, Flex, Layout, Modal, Space, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
@@ -11,14 +10,15 @@ import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
 import { DualTranslate, Translate } from 'components/language';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
+import { Header } from 'pages/Daily/components/Header';
+import { Menu } from 'pages/Daily/components/Menu';
 import { Region } from 'pages/Daily/components/Region';
+import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import type { DailyPalavreadoEntry } from '../utils/types';
 import { usePalavreadoEngine } from '../utils/usePalavreadoEngine';
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
 import { Board } from './Board';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
@@ -81,19 +81,13 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
           />
         </Region>
 
-        <Region>
-          {isComplete ? (
-            <Button
-              onClick={() => setShowResultModal(true)}
-              type="primary"
-              icon={<BarChartOutlined />}
-            >
-              <Translate
-                pt="Ver Resultado"
-                en="Show Results"
-              />
-            </Button>
-          ) : (
+        <ShowResultsButton
+          isComplete={isComplete}
+          setShowResultModal={setShowResultModal}
+        />
+
+        {!isComplete && (
+          <Region>
             <Button
               type="primary"
               onClick={submitGrid}
@@ -105,8 +99,8 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
                 en="Submit"
               />
             </Button>
-          )}
-        </Region>
+          </Region>
+        )}
 
         <Region
           orientation="vertical"

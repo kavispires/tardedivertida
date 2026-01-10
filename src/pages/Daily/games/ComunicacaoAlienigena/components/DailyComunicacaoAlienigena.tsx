@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
-import { ArrowRightOutlined, BarChartOutlined } from '@ant-design/icons';
+import { ArrowRightOutlined } from '@ant-design/icons';
 import { Avatar, Button, Flex, Layout, Modal, Space, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
@@ -20,14 +20,15 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { DailyItem } from 'pages/Daily/components/DailyItem';
+import { Header } from 'pages/Daily/components/Header';
+import { Menu } from 'pages/Daily/components/Menu';
 import { Region } from 'pages/Daily/components/Region';
+import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import type { DailyComunicacaoAlienigenaEntry } from '../utils/types';
 import { useComunicacaoAlienigenaEngine } from '../utils/useComunicacaoAlienigenaEngine';
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
 import { RulesHints } from './RulesHints';
@@ -118,20 +119,10 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
           </Space>
         </Region>
 
-        {isComplete && (
-          <Region>
-            <Button
-              onClick={() => setShowResultModal(true)}
-              type="primary"
-              icon={<BarChartOutlined />}
-            >
-              <Translate
-                pt="Ver Resultado"
-                en="Show Results"
-              />
-            </Button>
-          </Region>
-        )}
+        <ShowResultsButton
+          isComplete={isComplete}
+          setShowResultModal={setShowResultModal}
+        />
 
         <Region
           key={latestAttempt}

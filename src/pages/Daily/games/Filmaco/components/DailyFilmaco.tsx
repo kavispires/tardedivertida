@@ -1,7 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { BarChartOutlined } from '@ant-design/icons';
-import { Button, Layout, Modal, Space, Typography } from 'antd';
+import { Layout, Modal, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
@@ -14,15 +13,16 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { DailyItem } from 'pages/Daily/components/DailyItem';
+import { Header } from 'pages/Daily/components/Header';
 import { Keyboard } from 'pages/Daily/components/Keyboard';
+import { Menu } from 'pages/Daily/components/Menu';
 import { Region } from 'pages/Daily/components/Region';
+import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import type { DailyFilmacoEntry } from '../utils/types';
 import { useFilmacoEngine } from '../utils/useFilmacoEngine';
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
 import { Prompt } from './Prompt';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
@@ -89,24 +89,10 @@ export function DailyFilmaco({ data }: DailyFilmacoProps) {
           guesses={guesses}
         />
 
-        {isComplete && (
-          <Space
-            className="results-container"
-            orientation="vertical"
-            align="center"
-          >
-            <Button
-              onClick={() => setShowResultModal(true)}
-              type="primary"
-              icon={<BarChartOutlined />}
-            >
-              <Translate
-                pt="Ver Resultado"
-                en="Show Results"
-              />
-            </Button>
-          </Space>
-        )}
+        <ShowResultsButton
+          isComplete={isComplete}
+          setShowResultModal={setShowResultModal}
+        />
 
         <Modal
           open={showResultModal}

@@ -30,6 +30,8 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction } from 'components/text';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
+import { Header } from 'pages/Daily/components/Header';
+import { Menu } from 'pages/Daily/components/Menu';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { Region } from 'pages/Daily/components/Region';
 import { StepDots } from 'pages/Daily/components/StepDots';
@@ -38,8 +40,6 @@ import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import type { DailyTaNaCaraEntry } from '../utils/types';
 import { useTaNaCaraEngine } from '../utils/useTaNaCaraEngine';
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
 import { Rules } from './Rules';
 
 type DailyTaNaCaraProps = {

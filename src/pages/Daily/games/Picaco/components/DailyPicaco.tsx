@@ -19,14 +19,14 @@ import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { Instruction } from 'components/text';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
+import { Header } from 'pages/Daily/components/Header';
+import { Menu } from 'pages/Daily/components/Menu';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import type { DailyPicacoEntry } from '../utils/types';
 import { usePicacoEngine } from '../utils/usePicacoEngine';
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
 import { Canvas } from './Canvas';
 import { Rules } from './Rules';
 

@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
-import { Button, FloatButton, Layout, Modal, Space, Switch, Typography } from 'antd';
+import { Button, FloatButton, Layout, Modal, Switch, Typography } from 'antd';
 // Utils
 import { getAnimation } from 'utils/animations';
 import { isDevEnv } from 'utils/helpers';
@@ -14,13 +14,14 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TimerBar } from 'components/timers';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
+import { Header } from 'pages/Daily/components/Header';
+import { Menu } from 'pages/Daily/components/Menu';
+import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
 // Internal
 import { SETTINGS } from '../utils/settings';
 import type { DailyAquiOEntry } from '../utils/types';
 import { useAquiOEngine } from '../utils/useAquiOEngine';
 import { getInitialState } from '../utils/helpers';
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
 import { Disc } from './Disc';
 import { PreloadItems } from './PreloadItems';
 import { ResultsModalContent } from './ResultsModalContent';
@@ -105,20 +106,10 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
           </div>
         </div>
 
-        {isComplete && (
-          <Space
-            className="results-container"
-            align="center"
-            orientation="vertical"
-          >
-            <Button onClick={() => setShowResultModal(true)}>
-              <Translate
-                pt="Ver Resultado"
-                en="Show Results"
-              />
-            </Button>
-          </Space>
-        )}
+        <ShowResultsButton
+          isComplete={isComplete}
+          setShowResultModal={setShowResultModal}
+        />
 
         <SpaceContainer orientation="vertical">
           {!isPlaying && (

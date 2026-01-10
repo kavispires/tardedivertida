@@ -2,8 +2,7 @@ import clsx from 'clsx';
 import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
-import { BarChartOutlined } from '@ant-design/icons';
-import { Button, Layout, Modal, Rate, Tooltip, Typography } from 'antd';
+import { Layout, Modal, Rate, Tooltip, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Utils
@@ -15,14 +14,15 @@ import { TransparentButton } from 'components/buttons';
 import { DualTranslate, Translate } from 'components/language';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
+import { Header } from 'pages/Daily/components/Header';
+import { Menu } from 'pages/Daily/components/Menu';
 import { Region, RegionText } from 'pages/Daily/components/Region';
+import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import type { DailyTeoriaDeConjuntosEntry } from '../utils/types';
 import { useTeoriaDeConjuntosEngine } from '../utils/useTeoriaDeConjuntosEngine';
-import { Header } from '../../../components/Header';
-import { Menu } from '../../../components/Menu';
 import { Diagram } from './Diagram';
 import { InDiagramThings } from './InDiagramThings';
 import { PlacementModal } from './PlacementModal';
@@ -182,20 +182,10 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
           </RegionText>
         )}
 
-        {isComplete && (
-          <Region>
-            <Button
-              onClick={() => setShowResultModal(true)}
-              type="primary"
-              icon={<BarChartOutlined />}
-            >
-              <Translate
-                pt="Ver Resultado"
-                en="Show Results"
-              />
-            </Button>
-          </Region>
-        )}
+        <ShowResultsButton
+          isComplete={isComplete}
+          setShowResultModal={setShowResultModal}
+        />
 
         <Region
           className="space-center"
