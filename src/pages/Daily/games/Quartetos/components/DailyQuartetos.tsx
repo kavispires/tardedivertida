@@ -131,7 +131,7 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
           setShowResultModal={setShowResultModal}
         />
 
-        {isComplete && (
+        {!isComplete && (
           <Region>
             <Flex
               justify="center"
