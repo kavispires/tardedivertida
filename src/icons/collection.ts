@@ -300,3 +300,7 @@ export * from './WriteIdeaIcon';
 export * from './WritingIcon';
 export * from './XIcon';
 export * from './YesIcon';
+export * from './BombIcon';
+export * from './WireIcon';
+export * from './WalkieTalkieIcon';
+export * from './SecurityIcon';

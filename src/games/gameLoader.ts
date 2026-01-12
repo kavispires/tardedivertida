@@ -12,6 +12,7 @@ type GameSessionMap = {
 export const gameSessions: GameSessionMap = {
   [GAME_COLLECTION.ADEDANHX]: lazy(() => import('games/adedanhx/SessionAdedanhx')),
   [GAME_COLLECTION.ARTE_RUIM]: lazy(() => import('games/arte-ruim/SessionArteRuim')),
+  [GAME_COLLECTION.BOMBA_RELOGIO]: lazy(() => import('games/bomba-relogio/SessionBombaRelogio')),
   [GAME_COLLECTION.COLEGAS_DE_QUARTO]: lazy(() => import('games/colegas-de-quarto/SessionColegasDeQuarto')),
   [GAME_COLLECTION.COMUNICACAO_ALIENIGENA]: lazy(
     () => import('games/comunicacao-alienigena/SessionComunicacaoAlienigena'),
