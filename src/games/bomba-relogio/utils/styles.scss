@@ -1,0 +1,14 @@
+@use "styles/sass" as *;
+
+.current-target-player {
+  border: get-unit(1) solid get-color("white");
+}
+
+.player-entry-mini-card.image-card {
+  margin: 1px;
+}
+
+.player-entry-mini-card .ant-image-img {
+  border-radius: get-unit(1);
+  border: 1px solid get-color("white");
+}

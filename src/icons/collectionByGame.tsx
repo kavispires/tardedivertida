@@ -107,6 +107,15 @@ export const collectionByCategory: Record<string, string[]> = {
 export const collectionByGame: Record<string, string[]> = {
   adedanhx: ['TimeWritingIcon', 'LockIcon', 'StopIcon'],
   'arte-ruim': ['PaintingIcon', 'PictureIcon'],
+  'bomba-relogio': [
+    'BuildingIcon',
+    'PliersIcon',
+    'BombIcon',
+    'WireIcon',
+    'WalkieTalkieIcon',
+    'SecurityIcon',
+    'TraitorIcon',
+  ],
   'comunicacao-alienigena': [
     'AlienCommunicationIcon',
     'BooksIcon',
@@ -277,7 +286,6 @@ export const collectionByGame: Record<string, string[]> = {
     'NuclearExplosionIcon',
     'HandcuffsIcon',
   ],
-  'bomba-relogio': ['BuildingIcon', 'PliersIcon'],
   'ta-na-cara': ['ChatIcon', 'ChoiceIcon', 'SpotlightIcon'],
   'trevo-da-sorte': ['CloverIcon'],
   esquiadores: ['SkiingIcon', 'SnowHillIcon', 'GamblingChipIcon', 'LodgeIcon', 'SkierIcon'],
