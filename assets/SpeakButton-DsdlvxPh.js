@@ -1,1 +1,0 @@
-import{J as r,f as u,j as o,B as i,I as m}from"./index-vXfL0IKv.js";import{s as c}from"./speech-Btqwe8RX.js";import{A as l}from"./AudioIcon-_9ZO6y-o.js";function g({text:s,icon:a,...t}){const[n]=r("volume"),{language:e}=u();return o.jsx(i,{onClick:()=>c(s,e,n||.5),icon:o.jsx(m,{size:"small",icon:a??o.jsx(l,{})}),...t})}export{g as S};
