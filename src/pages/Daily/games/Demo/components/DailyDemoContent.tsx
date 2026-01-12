@@ -11,11 +11,12 @@ import {
   useSensors,
 } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
+import { useQueryClient } from '@tanstack/react-query';
 import { motion } from 'motion/react';
 import type React from 'react';
 import { useEffect, useState, useMemo } from 'react';
 // Ant Design Resources
-import { Layout } from 'antd';
+import { Button, Flex, Layout } from 'antd';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { useTDImageCardUrl } from 'hooks/useTDImageCardUrl';
@@ -206,6 +207,7 @@ interface VitraisPuzzleProps {
 
 export const VitraisPuzzle: React.FC<VitraisPuzzleProps> = ({ data, onSaveProgress, width }) => {
   const imageUrl = useTDImageCardUrl(data.cardId);
+  const queryClient = useQueryClient();
 
   const totalSlots = data.pieces ? data.pieces.length : 0;
   const rows = Math.max(1, Math.ceil(totalSlots / COLS));
@@ -547,6 +549,21 @@ export const VitraisPuzzle: React.FC<VitraisPuzzleProps> = ({ data, onSaveProgre
       {isSolved && (
         <div style={{ marginTop: '1rem', color: '#4ade80', fontWeight: 'bold' }}>Puzzle Completed!</div>
       )}
+
+      <Flex
+        justify="center"
+        className="mt-6"
+      >
+        <Button
+          onClick={() =>
+            queryClient.refetchQueries({
+              queryKey: ['demo-vitrais'],
+            })
+          }
+        >
+          Outra imagem
+        </Button>
+      </Flex>
     </div>
   );
 };
