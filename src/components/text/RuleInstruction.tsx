@@ -46,7 +46,7 @@ export type RuleInstructionProps = {
    * Optional sound effect played when the component is rendered
    */
   sfx?: ReactNode;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
 /**
  * Typography container for rules instructions, if multiple lines, use <br /> to break lines
@@ -59,6 +59,7 @@ export const RuleInstruction = ({
   fullWidth,
   type = 'rule',
   sfx,
+  ...rest
 }: RuleInstructionProps) => {
   const baseClass = 'rule-instruction';
 
@@ -93,6 +94,7 @@ export const RuleInstruction = ({
     <div
       className={clsx(baseClass, fullWidth && `${baseClass}--full-width`, className)}
       data-testid="rule-instruction"
+      {...rest}
     >
       <div
         className={clsx(`${baseClass}__icon`, `${baseClass}__icon--${type}`)}

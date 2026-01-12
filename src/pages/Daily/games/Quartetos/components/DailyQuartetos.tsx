@@ -27,7 +27,6 @@ import type { DailyQuartetosEntry } from '../utils/types';
 import { useQuartetosEngine } from '../utils/useQuartetosEngine';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
-// Icons
 
 type DailyQuartetosProps = {
   data: DailyQuartetosEntry;

@@ -83,6 +83,6 @@ export function useGameMeta(): { meta: GameMeta; dataUpdatedAt: number } {
       replay: 0,
       options: {},
     }) as GameMeta,
-    dataUpdatedAt: query.dataUpdatedAt,
+    dataUpdatedAt: query.isLoading ? 0 : query.dataUpdatedAt,
   };
 }

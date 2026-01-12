@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import type { ReactNode } from 'react';
+import { Children, type ReactNode } from 'react';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
@@ -64,6 +64,7 @@ export const PlayerAvatarCard = ({
   withName = false,
   withDescription = false,
   withRoundCorners = false,
+  children,
 }: PlayerAvatarCardProps) => {
   const [userId] = useGlobalState('userId');
   const { language, translate } = useLanguage();
@@ -106,6 +107,7 @@ export const PlayerAvatarCard = ({
           )}
         </>
       )}
+      {children}
     </div>
   );
 };
