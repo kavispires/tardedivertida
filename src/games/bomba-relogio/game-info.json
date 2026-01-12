@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "bomba-relogio",
-  "version": "0.0.4",
-  "release": "planned",
-  "available": false,
+  "version": "0.0.6",
+  "release": "dev",
+  "available": true,
   "title": {
     "pt": "Bomba Relógio",
     "en": "Time Bomb"
@@ -23,7 +23,7 @@
     "cloudsAnimationType": "flow",
     "primaryColor": "",
     "colorScheme": "light",
-    "videoBackground": false
+    "videoBackground": true
   },
   "rules": {
     "pt": [
