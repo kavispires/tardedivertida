@@ -1,9 +1,10 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useGameId } from 'hooks/useGameId';
+import { useGameMeta } from 'hooks/useGameMeta';
 // Utils
 import { PHASES } from 'utils/phases';
 // Icons
@@ -20,13 +21,12 @@ import { ImageBackground } from './lobby/ImageBackground';
 export function PhaseSetup({ state }: PhaseProps) {
   const gameId = useGameId();
   const queryClient = useQueryClient();
-  const hasInvalidated = useRef(false);
+  const { dataUpdatedAt } = useGameMeta();
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: only the id matters
   useEffect(() => {
-    if (!hasInvalidated.current && gameId) {
+    if (dataUpdatedAt > 0 && gameId) {
       queryClient.invalidateQueries({ queryKey: ['meta', gameId] });
-      hasInvalidated.current = true;
     }
   }, [gameId]);
 

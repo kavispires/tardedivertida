@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { get } from 'lodash';
+import { useMemo } from 'react';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Utils
@@ -14,20 +15,17 @@ import { useGlobalState } from './useGlobalState';
  * @returns a player instance, a boolean if the player is assigned to given property
  */
 export function useWhichPlayerIsThe(
-  propertyName = 'activePlayer',
+  propertyName = 'activePlayerId',
   state: PlainObject = {},
   players: GamePlayers = {},
 ): [GamePlayer, boolean] {
   const [userId] = useGlobalState('userId');
-  const [activePlayer, setActivePlayer] = useState<GamePlayer>(PLACEHOLDER_PLAYER);
-  const [isUser, setIsUser] = useState(false);
 
   // Determine if user is active as the guesser, the clue giver, the psychic, the storyteller, etc
-  useEffect(() => {
-    const activePlayer = state?.[propertyName];
-    setActivePlayer(players?.[activePlayer] ?? {});
-    setIsUser(state?.[propertyName] === userId);
+  return useMemo(() => {
+    const activePlayerId = get(state, propertyName);
+    const player = players?.[activePlayerId] ?? PLACEHOLDER_PLAYER;
+    const userIsActive = activePlayerId === userId;
+    return [player, userIsActive];
   }, [players, propertyName, state, userId]);
-
-  return [activePlayer, isUser];
 }

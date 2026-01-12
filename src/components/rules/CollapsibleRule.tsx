@@ -14,8 +14,9 @@ type CollapsibleRuleProps = {
    * The title of the panel (default: Rules/Regras)
    */
   title?: ReactNode;
-};
-export function CollapsibleRule({ children, title }: CollapsibleRuleProps) {
+} & Omit<CollapseProps, 'items'>;
+
+export function CollapsibleRule({ children, title, ghost = true, ...rest }: CollapsibleRuleProps) {
   const panels: CollapseProps['items'] = [
     {
       key: '1',
@@ -33,8 +34,9 @@ export function CollapsibleRule({ children, title }: CollapsibleRuleProps) {
   return (
     <Instruction contained>
       <Collapse
-        ghost
+        ghost={ghost}
         items={panels}
+        {...rest}
       />
     </Instruction>
   );

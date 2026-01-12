@@ -93,7 +93,7 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
   return (
     <PageLayout>
       <GameInfoProvider gameCollection={gameCollection}>
-        <SessionConfigWrapper key={dataUpdatedAt}>
+        <SessionConfigWrapper key={state.phase !== PHASES.DEFAULT.SETUP ? dataUpdatedAt : undefined}>
           <GameInfoDrawer
             players={players}
             state={state}
