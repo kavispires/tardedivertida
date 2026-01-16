@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Children, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Types
 import type { GamePlayer } from 'types/player';
 // Hooks
@@ -7,6 +7,8 @@ import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { AVATARS } from 'utils/avatars';
+// Components
+import { Translate } from 'components/language/Translate';
 // Internal
 import { PlayerAvatar } from './PlayerAvatar';
 // Sass
@@ -67,12 +69,9 @@ export const PlayerAvatarCard = ({
   children,
 }: PlayerAvatarCardProps) => {
   const [userId] = useGlobalState('userId');
-  const { language, translate } = useLanguage();
+  const { language } = useLanguage();
 
   const baseClass = 'avatar-card';
-
-  const isUser = player.id === userId;
-  const addressedUser = translate('Você', 'You');
 
   const sizes = getSize(size);
 
@@ -82,9 +81,11 @@ export const PlayerAvatarCard = ({
     <div
       className={clsx(
         baseClass,
-        uppercase && `${baseClass}--uppercase`,
+        {
+          [`${baseClass}--uppercase`]: uppercase,
+          [`${baseClass}--round-corners`]: withRoundCorners,
+        },
         `${baseClass}--${size}`,
-        withRoundCorners && `${baseClass}--round-corners`,
         className,
       )}
       style={{ backgroundColor: avatar?.color, width: sizes.width }}
@@ -101,7 +102,16 @@ export const PlayerAvatarCard = ({
       )}
       {withName && (
         <>
-          <div className="avatar-card__name">{addressUser && isUser ? addressedUser : player.name}</div>
+          <div className="avatar-card__name">
+            {addressUser && player.id === userId ? (
+              <Translate
+                en="You"
+                pt="Você"
+              />
+            ) : (
+              player.name
+            )}
+          </div>
           {size !== 'small' && withDescription && (
             <div className="avatar-card__description">{avatar.description[language]}</div>
           )}
