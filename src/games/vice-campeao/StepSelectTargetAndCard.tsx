@@ -88,10 +88,11 @@ export function StepSelectTargetAndCard({
         <Flex
           align="center"
           gap={8}
+          vertical
         >
           <Translate
-            en="Target:"
-            pt="Alvo:"
+            en="Who will be affected by the card (Target):"
+            pt="Quem vai ser afetado(a) pela carta (Alvo):"
           />
           <PlayersSelect
             players={players}
