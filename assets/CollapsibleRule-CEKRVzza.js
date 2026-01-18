@@ -1,1 +1,0 @@
-import{j as s,T as n}from"./index-BdPlBFur.js";import{I as l}from"./useDevFeatures-6-g3VM2D.js";import{C as i}from"./Collapse-D_y6gBFp.js";function c({children:e,title:t,ghost:r=!0,...o}){const a=[{key:"1",label:s.jsx(n,{pt:"Regras",en:"Rules",custom:t}),children:e}];return s.jsx(l,{contained:!0,children:s.jsx(i,{ghost:r,items:a,...o})})}export{c as C};
