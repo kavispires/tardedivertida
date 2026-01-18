@@ -1,1 +1,0 @@
-import{j as r}from"./index-fRiT8rzz.js";import{P as m}from"./PlayersIcon-Csj_x-hr.js";import{M as a}from"./MetricHighlight-BHRl99lr.js";function x({children:i,type:o,iconSize:t,className:s}){return r.jsx(a,{icon:r.jsx(m,{}),type:o,iconSize:t,className:s,children:i})}export{x as P};

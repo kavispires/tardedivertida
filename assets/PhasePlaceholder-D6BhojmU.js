@@ -1,1 +1,0 @@
-import{j as a}from"./index-fRiT8rzz.js";import{P as s}from"./Session-DTbD9-x6.js";function h({state:e}){return a.jsx(s,{phase:"ANY",allowedPhase:"ANY",className:"phase-placeholder",children:e?.phase??"Unknown Phase"})}export{h as P};
