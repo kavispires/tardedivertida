@@ -46,7 +46,7 @@ export function GalleryCategoryEntry({ entry, cardsDict, players }: GalleryCateg
           >
             <ThingCard
               itemId={tableEntry.cardId}
-              name={cardsDict[tableEntry.cardId].name}
+              name={cardsDict?.[tableEntry.cardId]?.name ?? { pt: '', en: '' }}
               width={100}
             />
             <PlayerAvatarName player={players[tableEntry.playerId]} />
