@@ -14,7 +14,7 @@ import { CrownIcon } from 'icons/CrownIcon';
 import { XIcon } from 'icons/XIcon';
 // Components
 import { IconAvatar, PlayerAvatarName } from 'components/avatars';
-import { Translate } from 'components/language';
+import { DualTranslate, Translate } from 'components/language';
 import { StarPoints } from 'components/points';
 import {
   SlideShow,
@@ -25,6 +25,7 @@ import {
 } from 'components/slide-show';
 import { Step } from 'components/steps';
 import { StepTitle } from 'components/text';
+import { gridMapUtils } from 'components/toolKits/GridMap';
 // Internal
 import type { City, CityLocationsDict, GalleryEntry } from './utils/types';
 import { getConeColor } from './utils/helpers';
@@ -39,6 +40,7 @@ type StepGalleryProps = {
   gallery: GalleryEntry[];
   slideShowConfig: SlideShowConfig;
   players: GamePlayers;
+  coneCellIds: Dictionary<string>;
 };
 
 export function StepGallery({
@@ -49,6 +51,7 @@ export function StepGallery({
   gallery,
   slideShowConfig,
   players,
+  coneCellIds,
 }: StepGalleryProps) {
   useTemporarilyHidePlayersBar();
   const [ref, { width, height }] = useMeasure<HTMLDivElement>();
@@ -171,6 +174,28 @@ export function StepGallery({
 
               {Object.entries(galleryEntry.playersSay).map(([coneId, playersIds]) => {
                 const color = getConeColor(coneId as GalleryEntry['coneId']);
+                const coneCoordinate = coneCellIds?.[coneId];
+
+                // Get orthogonally adjacent locations
+                const adjacentLocationNames: DualLanguageValue[] = [];
+                if (coneCoordinate) {
+                  const adjacentCellIds = gridMapUtils.getAdjacentIdsToCellId(
+                    city,
+                    coneCoordinate,
+                    'orthogonal',
+                  );
+
+                  adjacentCellIds.forEach((cellId) => {
+                    const cell = gridMapUtils.getCellById(city, cellId);
+                    if (cell?.data && 'locationId' in cell.data && cell.data.locationId) {
+                      const locationName = cityLocationsDict[cell.data.locationId]?.name;
+                      if (locationName) {
+                        adjacentLocationNames.push(locationName);
+                      }
+                    }
+                  });
+                }
+
                 return (
                   <div
                     key={coneId}
@@ -189,14 +214,23 @@ export function StepGallery({
                       }
                     >
                       <Translate
-                        pt="Prefiro construir no local"
-                        en="I prefer building in the site"
+                        pt="Prefiro construir no cone"
+                        en="I prefer building in cone site"
                       />
                       :{' '}
                       <ConeIcon
                         color={color}
                         width={16}
                       />
+                      {adjacentLocationNames.map((name, index, arr) => (
+                        <span
+                          key={name.en}
+                          className="italic"
+                        >
+                          <DualTranslate key={index}>{name}</DualTranslate>
+                          {index < arr.length - 1 ? ', ' : ''}
+                        </span>
+                      ))}
                     </SlideShowBubbleValue>
 
                     <SlideShowPlayersList
