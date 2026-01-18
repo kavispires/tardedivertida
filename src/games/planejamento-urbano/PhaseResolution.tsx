@@ -92,6 +92,7 @@ export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionSt
           architect={architect}
           city={state.city}
           cityLocationsDict={state.cityLocationsDict}
+          coneCellIds={state.coneCellIds}
           gallery={state.gallery}
           slideShowConfig={slideShowConfig}
           placements={Object.keys(state.coneCellIds).length}
