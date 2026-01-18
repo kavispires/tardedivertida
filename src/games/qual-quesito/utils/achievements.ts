@@ -16,7 +16,7 @@ const ACHIEVEMENTS = {
 
 export const achievementsReference: AchievementReference = {
   [ACHIEVEMENTS.MOST_CREATOR_EXTRA_CARDS]: {
-    icon: 'question',
+    icon: 'light-bulb',
     title: {
       pt: 'Super Criativo',
       en: 'Super Creative',
@@ -27,7 +27,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.MOST_PARTICIPATION]: {
-    icon: 'question',
+    icon: 'earth',
     title: {
       pt: 'Mais participante',
       en: 'Most Participant',
@@ -38,7 +38,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.LEAST_PARTICIPATION]: {
-    icon: 'question',
+    icon: 'glasses',
     title: {
       pt: 'Mais Solitário',
       en: 'Most Solitary',
@@ -49,7 +49,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.MOST_REJECTIONS]: {
-    icon: 'question',
+    icon: 'difference',
     title: {
       pt: 'Mais Adicionador Divergente',
       en: 'Most Divergent Adder',
@@ -60,7 +60,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.FEWEST_REJECTIONS]: {
-    icon: 'question',
+    icon: 'recycle',
     title: {
       pt: 'Mais Adicionador Sábio',
       en: 'Most Wise Adder',
@@ -71,7 +71,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.BEST_CREATOR]: {
-    icon: 'question',
+    icon: 'brain',
     title: {
       pt: 'Melhor Criador',
       en: 'Best Creator',
@@ -82,7 +82,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.WORST_CREATOR]: {
-    icon: 'question',
+    icon: 'face-smiley',
     title: {
       pt: 'Senhor Óbvio',
       en: 'Mister Obvious',
@@ -93,7 +93,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.MOST_SKIPS]: {
-    icon: 'question',
+    icon: 'double-arrow-right',
     title: {
       pt: 'Mestre do Desistência',
       en: 'Master of Skipping',
@@ -104,7 +104,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.MOST_ACCEPTING]: {
-    icon: 'question',
+    icon: 'plus',
     title: {
       pt: 'Espírito Bondoso',
       en: 'Kind Spirit',
@@ -115,7 +115,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.MOST_DECLINING]: {
-    icon: 'question',
+    icon: 'x',
     title: {
       pt: 'Crítico Ácido',
       en: 'Acidic Critic',

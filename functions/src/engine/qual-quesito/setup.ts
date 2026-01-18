@@ -53,6 +53,7 @@ export const prepareSetupPhase = async (
         deckKeys,
         achievements,
         gallery: [],
+        cardsDict: {},
       },
       state: {
         phase: QUAL_QUESITO_PHASES.SETUP,
@@ -86,6 +87,12 @@ export const prepareCategoryCreationPhase = async (
   // Save
   return {
     update: {
+      store: {
+        cardsDict: {
+          ...store.cardsDict,
+          ...cardsDict,
+        },
+      },
       state: {
         phase: QUAL_QUESITO_PHASES.CATEGORY_CREATION,
         players,
@@ -132,6 +139,11 @@ export const prepareSkipAnnouncementPhase = async (
   players[creatorId].hand.push(...utils.game.dealItems(store.deckKeys, 1));
 
   const cardsDict = buildCardsDictFromPlayersHands(players, store.deckDict);
+
+  store.cardsDict = {
+    ...store.cardsDict,
+    ...cardsDict,
+  };
 
   utils.achievements.increase(store, creatorId, 'skipTurn', 1);
 
@@ -353,6 +365,7 @@ export const prepareGameOverPhase = async (
   });
 
   const gallery = store.gallery;
+  const cardsDict = store.cardsDict;
 
   // Save
   return {
@@ -368,7 +381,7 @@ export const prepareGameOverPhase = async (
         winners,
         achievements,
         gallery,
-        cardsDict: state.cardsDict,
+        cardsDict,
       },
     },
   };
