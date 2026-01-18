@@ -16,7 +16,7 @@ export const handleSubmitWordSelectionVotes = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  votes: PlainObject,
+  votes: string[],
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -41,7 +41,7 @@ export const handleSubmitSuggestions = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  suggestions: PlainObject,
+  suggestions: string[],
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

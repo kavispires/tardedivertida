@@ -124,6 +124,7 @@ export const tallyVotes = (currentWords: UsedWords, players: Players): UsedWords
       });
     }
   });
+
   return currentWordsCopy;
 };
 
