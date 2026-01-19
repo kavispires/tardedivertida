@@ -2,15 +2,15 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "qual-quesito",
-  "version": "1.0.6",
-  "release": "beta",
+  "version": "1.0.7",
+  "release": "stable",
   "available": true,
   "title": {
     "pt": "Qual O Quesito?",
     "en": "And The Category Is"
   },
   "popularName": {
-    "pt": "",
+    "pt": "O da passista",
     "en": ""
   },
   "inspiredBy": "gnihT gnihT",
@@ -30,16 +30,16 @@
       "Em cada rodada, um jogador cria uma categoria que conecte pelo menos 2 coisas de sua mão.",
       "Todos os outros jogadores tentam adicionar suas próprias coisas à categoria.",
       "O grupo vota se cada coisa se encaixa ou não na categoria.",
-      "O criador ganha pontos por cada coisa adicionada por outros. Outros jogadores ganham pontos por coisas aceitas.",
-      "Coisas rejeitadas por 2 rodadas consecutivas resultam em penalidade.",
+      "O criador ganha 2 pontos por uma de suas coisas aceitas. Outros jogadores ganham 3 pontos por coisas aceitas.",
+      "Coisas rejeitadas por 2 rodadas consecutivas resultam na perda de 1 ponto.",
       "O jogo termina quando um jogador se livra de todas as suas coisas, mas o jogador com mais pontos vence."
     ],
     "en": [
       "Each round, one player creates a category that connects at least 2 things from their hand.",
       "All other players try to add their own things to the category.",
       "The group votes whether each thing fits the category or not.",
-      "The creator earns points for each thing added by others. Other players earn points for accepted things.",
-      "Things rejected for 2 consecutive rounds result in a penalty.",
+      "The creator earns 2 points for each of their accepted things. Other players earn 3 points for accepted things.",
+      "Things rejected for 2 consecutive rounds result in a 1 negative point penalty.",
       "The game ends when a player gets rid of all their things, but the player with the most points wins."
     ]
   },
