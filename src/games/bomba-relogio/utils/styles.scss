@@ -1,5 +1,10 @@
 @use "styles/sass" as *;
 
+.background {
+  background: linear-gradient(-45deg, #272a36, #4c525c, #121529);
+  background-size: 1000% 1000%;
+}
+
 .current-target-player {
   border: get-unit(1) solid get-color("white");
 }
@@ -11,4 +16,13 @@
 .player-entry-mini-card .ant-image-img {
   border-radius: get-unit(1);
   border: 1px solid get-color("white");
+}
+
+.b-card-target-glow {
+  filter: drop-shadow(0 0 5px get-color("white", 2));
+}
+
+.b-target-hand {
+  padding: get-unit(2);
+  border-radius: get-unit(2);
 }

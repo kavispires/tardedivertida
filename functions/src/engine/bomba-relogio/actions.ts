@@ -1,5 +1,3 @@
-// Helpers
-import { arrayUnion } from 'firebase/firestore';
 import utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
@@ -51,8 +49,8 @@ export const handleSubmitTarget = async (
     playerId,
     actionText: 'submit your target',
     change: {
-      'status.cut': arrayUnion(target.targetCard),
-      'status.activePlayerIds': arrayUnion(target.playerId),
+      [`status.cut.${target.targetCardIndex}`]: target.targetCard,
+      [`status.activePlayerIds.${target.playerIndex}`]: target.playerId,
     },
     nextPhaseFunction: getNextPhase,
   });

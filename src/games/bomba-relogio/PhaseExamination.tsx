@@ -29,7 +29,7 @@ import { StepExamine } from './StepExamine';
 export function PhaseExamination({ players, state, user }: PhaseProps<PhaseExaminationState>) {
   const { step, goToNextStep, setStep } = useStep();
 
-  const onTarget = useOnSubmitTargetAPIRequest(setStep);
+  const onTarget = useOnSubmitTargetAPIRequest();
   const onUpdate = useOnUpdateTargetPlayerAPIRequest();
   const [currentInvestigator, isTheCurrentInvestigator] = useActiveInvestigator(state.status, players);
   const [targetPlayer, isTheTargetPlayer] = useTargetedPlayer(state.status, players);
@@ -38,15 +38,15 @@ export function PhaseExamination({ players, state, user }: PhaseProps<PhaseExami
     targetPlayer,
   });
 
-  const isFirstInvestigation = state.status.cut.length === 0;
+  const isFirstInvestigation = Object.values(state.status.cut).length === 0;
 
   const announcement = (
     <PhaseAnnouncement
       icon={<BuildingIcon />}
       title={
         <Translate
-          pt="Encontre os fios!"
-          en="Find the wires!"
+          pt="Encontre os fios vermelhos!"
+          en="Find the red wires!"
         />
       }
       currentRound={state?.round?.current}

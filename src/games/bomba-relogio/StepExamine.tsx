@@ -8,7 +8,7 @@ import type { GamePlayers, GamePlayer } from 'types/player';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
-import { pluralize, sortPlayers } from 'utils/helpers';
+import { getAvatarColorById, pluralize, sortPlayers } from 'utils/helpers';
 // Icons
 import { BombIcon } from 'icons/BombIcon';
 import { WireIcon } from 'icons/WireIcon';
@@ -18,7 +18,7 @@ import { IconAvatar } from 'components/avatars/IconAvatar';
 import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { RuleInstruction, StepTitle, TextHighlight } from 'components/text';
 // Internal
 import type {
   DataCount,
@@ -81,13 +81,17 @@ export function StepExamine({
             pt={
               <>
                 <PlayerAvatarName player={currentInvestigator} />, escolha uma das cartas de{' '}
-                <PlayerAvatarName player={targetPlayer} />
+                <TextHighlight>
+                  <PlayerAvatarName player={targetPlayer} />
+                </TextHighlight>
               </>
             }
             en={
               <>
                 <PlayerAvatarName player={currentInvestigator} />, choose one of{' '}
-                <PlayerAvatarName player={targetPlayer} />
+                <TextHighlight>
+                  <PlayerAvatarName player={targetPlayer} />
+                </TextHighlight>
                 's cards.
               </>
             }
@@ -142,6 +146,7 @@ export function StepExamine({
             key={player.id}
             player={player}
             currentTargetPlayerId={currentTargetPlayerId}
+            disabled={player.id === user.id}
             onSelect={
               isTheCurrentInvestigator
                 ? () => onUpdateTargetPlayerId({ targetPlayerId: player.id })
@@ -151,17 +156,32 @@ export function StepExamine({
         ))}
       </Flex>
 
-      {targetPlayer && <HandTarget hand={targetPlayer.hand} />}
+      {targetPlayer && (
+        <HandTarget
+          hand={targetPlayer.hand}
+          activeColor={getAvatarColorById(targetPlayer.avatarId)}
+          onSelectCard={
+            isTheCurrentInvestigator
+              ? (card) =>
+                  onTargetCard({
+                    target: {
+                      playerId: targetPlayer.id,
+                      playerIndex: Object.keys(status.activePlayerIds).length,
+                      targetCard: card,
+                      targetCardIndex: Object.keys(status.cut).length,
+                    },
+                  })
+              : undefined
+          }
+        />
+      )}
 
-      {/* <RoleCard
-        role={user?.role}
-        dataCount={dataCount}
-      />
-      <Hand
-        hand={user.hand}
-        dataCount={dataCount}
-      /> */}
-      <Tips />
+      <Tips>
+        <RoleCard
+          role={user?.role}
+          dataCount={dataCount}
+        />
+      </Tips>
     </Step>
   );
 }
