@@ -15,8 +15,8 @@ export function useActiveInvestigator(
   const [userId] = useGlobalState('userId');
 
   return useMemo(() => {
-    if (status.activePlayerIds?.length > 1) {
-      const activePlayerId = status.activePlayerIds[status.activePlayerIds.length - 2];
+    if (Object.keys(status.activePlayerIds)?.length > 1) {
+      const activePlayerId = status.activePlayerIds[Object.keys(status.activePlayerIds).length - 2];
       const player = players?.[activePlayerId] ?? PLACEHOLDER_PLAYER;
       const userIsActive = activePlayerId === userId;
       return [player, userIsActive];
@@ -36,8 +36,8 @@ export function useTargetedPlayer(
   const [userId] = useGlobalState('userId');
 
   return useMemo(() => {
-    if (status.activePlayerIds?.length > 1) {
-      const targetPlayerId = status.activePlayerIds[status.activePlayerIds.length - 1];
+    if (Object.keys(status.activePlayerIds ?? []).length > 1) {
+      const targetPlayerId = status.activePlayerIds[Object.keys(status.activePlayerIds).length - 1];
       const player = players?.[targetPlayerId] ?? PLACEHOLDER_PLAYER;
       const userIsTarget = targetPlayerId === userId;
       return [player, userIsTarget];

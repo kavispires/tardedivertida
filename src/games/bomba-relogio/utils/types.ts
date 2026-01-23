@@ -16,18 +16,20 @@ export type Declaration = {
 };
 
 export type TimeBombCard = {
-  id: string;
+  id: CardId;
   type: (typeof CARD_TYPES)[keyof typeof CARD_TYPES];
 };
 
 export type Target = {
   playerId: PlayerId;
+  playerIndex: number;
   targetCard: TimeBombCard;
+  targetCardIndex: number;
 };
 
 export type Status = {
-  activePlayerIds: PlayerId[]; // when more than 1 value, last is target, and second to last is active
-  cut: TimeBombCard[];
+  activePlayerIds: Dictionary<PlayerId>; // when more than 1 value, last is target, and second to last is active
+  cut: Dictionary<TimeBombCard>;
   revealed: number;
   outcome: (typeof OUTCOME)[keyof typeof OUTCOME];
   updatedAt: number;

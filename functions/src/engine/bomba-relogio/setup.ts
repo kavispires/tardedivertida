@@ -112,8 +112,8 @@ export const prepareDeclarationPhase = async (
   });
 
   status.outcome = OUTCOME.CONTINUE;
-  status.cut = [];
-  status.activePlayerIds = [status.activePlayerIds[0]];
+  status.cut = {};
+  status.activePlayerIds = { 0: status.activePlayerIds[0] };
 
   // Save
   return {
@@ -135,7 +135,6 @@ export const prepareExaminationPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
 
   const round: Round = state.round;
 
@@ -145,34 +144,44 @@ export const prepareExaminationPhase = async (
   const status: Status = state.status;
   status.updatedAt = Date.now();
 
-  const targetPlayerId =
-    status.activePlayerIds.length > 1 ? status.activePlayerIds[status.activePlayerIds.length - 1] : null;
-  const activePlayerId =
-    status.activePlayerIds.length > 1
-      ? status.activePlayerIds[status.activePlayerIds.length - 2]
-      : status.activePlayerIds[0];
+  const activePlayerIdsLength = Object.keys(status.activePlayerIds).length;
 
-  utils.helpers.print({ 'Target Player ID': targetPlayerId });
-  utils.helpers.print({ 'Active Player ID': activePlayerId });
+  const targetPlayerId = activePlayerIdsLength > 1 ? status.activePlayerIds[activePlayerIdsLength - 1] : null;
+  const activePlayerId =
+    activePlayerIdsLength > 1 ? status.activePlayerIds[activePlayerIdsLength - 2] : status.activePlayerIds[0];
+
+  utils.players.readyPlayers(players, activePlayerId);
+
+  utils.helpers.print({ '📊 status': status });
+
+  utils.helpers.print({ '🎯 Target Player ID': targetPlayerId });
+  utils.helpers.print({ '⚡ Active Player ID': activePlayerId });
+
+  const cutsLength = Object.keys(status.cut).length;
 
   // Remove the card from the player
-  if (status.cut.length > 0) {
-    const latestCut = status.cut[status.cut.length - 1];
-    players[latestCut.id].hand = players[latestCut.id].hand.filter(
+  if (cutsLength > 0 && targetPlayerId) {
+    const latestCut = status.cut[cutsLength - 1];
+    console.log('✂️ Latest cut:', latestCut);
+    players[targetPlayerId].hand = players[targetPlayerId].hand.filter(
       (card: TimeBombCard) => card.id !== latestCut.id,
     );
   }
 
   // Update revealed count
-  status.revealed = status.cut.filter((card) => card.type === CARD_TYPES.WIRE).length;
+  status.revealed = Object.values(status.cut).filter((card) => card.type === CARD_TYPES.WIRE).length;
+
+  utils.helpers.print({ '📊 status': status, '✂️ cutsLength': cutsLength, '🎯 targetCuts': targetCuts });
 
   // IF THE BOMB WAS CUT
-  if (status.cut.find((card) => card.type === CARD_TYPES.BOMB)) {
+  if (Object.values(status.cut).find((card) => card.type === CARD_TYPES.BOMB)) {
     // Do achievements and shit
 
     // Update state
     status.outcome = OUTCOME.BOMB;
     // TODO: Achievements
+
+    console.log('💣 Bomb was cut!');
 
     // Call game over phase
     return await prepareGameOverPhase(gameId, store, state, players);
@@ -186,23 +195,29 @@ export const prepareExaminationPhase = async (
     status.outcome = OUTCOME.AGENTS_WIN;
     // TODO: Achievements
 
+    console.log('✅ All wires were cut!');
+
     // Call game over phase
     return await prepareGameOverPhase(gameId, store, state, players);
   }
 
   // IF THE LAST CUT WAS DONE
-  if (status.cut.length >= targetCuts) {
+  if (cutsLength >= targetCuts) {
     // FINAL ROUND TRIGGERS END GAME
     if (round.current === round.total) {
       // Update state
       status.outcome = OUTCOME.TERRORISTS_WIN;
       // TODO: Achievements
 
+      console.log('🏁 Final round reached! Terrorists win.');
+
       return await prepareGameOverPhase(gameId, store, state, players);
     }
 
     // IF NOT FINAL ROUND, DECLARATION
     status.outcome = OUTCOME.END;
+
+    console.log('🔚 The round has ended.');
     // TODO: Achievements
   }
 
