@@ -33,8 +33,6 @@ export function useOnUpdateTargetPlayerAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'update-target-player',
-    // onSuccess: () => setStep(1),
-    // onError: () => setStep(0),
     successMessage: translate('Jogador alvo atualizado com sucesso', 'Target player updated successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar atualizar o jogador alvo',
@@ -50,13 +48,11 @@ export function useOnUpdateTargetPlayerAPIRequest() {
   };
 }
 
-export function useOnSubmitTargetAPIRequest(setStep: UseStep['setStep']) {
+export function useOnSubmitTargetAPIRequest() {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
     actionName: 'submit-target',
-    onSuccess: () => setStep(2),
-    onError: () => setStep(0),
     successMessage: translate('Alvo submetido com sucesso', 'Target submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu alvo',

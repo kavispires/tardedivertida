@@ -19,11 +19,17 @@ import { BombHighlight, RedWireHighlight } from './Highlights';
 
 type PlayerTableEntryProps = {
   player: GamePlayer;
-  onSelect?: (playerId: PlayerId) => void;
   currentTargetPlayerId?: PlayerId;
+  onSelect?: (playerId: PlayerId) => void;
+  disabled?: boolean;
 };
 
-export function PlayerTableEntry({ player, onSelect, currentTargetPlayerId }: PlayerTableEntryProps) {
+export function PlayerTableEntry({
+  player,
+  onSelect,
+  currentTargetPlayerId,
+  disabled,
+}: PlayerTableEntryProps) {
   const { notes, setPlayerNote } = useNotesStore();
 
   return (
@@ -132,6 +138,7 @@ export function PlayerTableEntry({ player, onSelect, currentTargetPlayerId }: Pl
           <Button
             shape="round"
             onClick={() => onSelect(player.id)}
+            disabled={disabled}
           >
             <Translate
               pt="Selecionar"

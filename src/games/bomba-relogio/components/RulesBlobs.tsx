@@ -1,14 +1,13 @@
-// Ant Design Resources
-import { Flex, Popover, Tooltip, Typography } from 'antd';
-// Icons
-import { BombIcon } from 'icons/BombIcon';
-import { BoxBlankIcon } from 'icons/collection';
+import type { ReactNode } from 'react';
 // Components
-import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { CollapsibleRule } from 'components/rules';
 
-export function Tips() {
+type TipsProps = {
+  children?: ReactNode;
+};
+
+export function Tips({ children }: TipsProps) {
   return (
     <CollapsibleRule
       title={
@@ -17,8 +16,10 @@ export function Tips() {
           en="Tips"
         />
       }
-      style={{ minWidth: '320px', textAlign: 'left' }}
+      className="container-width"
+      style={{ textAlign: 'left' }}
     >
+      {children}
       <Translate
         pt={
           <>
@@ -30,7 +31,7 @@ export function Tips() {
             Nunca declare que você tem a bomba! Se você é um agente e um outro jogador estiver prestes a
             examinar uma de suas cartas, aí sim, você pode declarar verbalmente que tem a bomba.
             <br />
-            Agentes sempre devem ser verdadeiros (a não ser que você tenha a carta da Bomba).
+            Agentes normalmente são verdadeiros (a não ser que você tenha a carta da Bomba).
             <br />
             Se você quiser ser o alvo de investigação, declare que tem mais fios vermelhos do que realmente
             tem. (isso tanto para agentes quanto para terroristas).

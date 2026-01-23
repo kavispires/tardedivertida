@@ -208,3 +208,9 @@ body {
 .no-padding.no-padding {
   padding: 0;
 }
+
+.container-width {
+  max-width: var(--max-width);
+  min-width: calc(var(--max-width) / 2);
+  width: 64vw;
+}
