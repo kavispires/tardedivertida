@@ -1,3 +1,4 @@
+import type { Dictionary } from 'lodash';
 import type { BOMBA_RELOGIO_ACHIEVEMENTS, BOMBA_RELOGIO_ACTIONS, CARD_TYPES, OUTCOME } from './constants';
 
 export type DataCount = {
@@ -21,12 +22,14 @@ export type TimeBombCard = {
 
 export type Target = {
   playerId: PlayerId;
+  playerIndex: number;
   targetCard: TimeBombCard;
+  targetCardIndex: number;
 };
 
 export type Status = {
-  activePlayerIds: PlayerId[]; // when more than 1 value, last is target, and second to last is active
-  cut: TimeBombCard[];
+  activePlayerIds: Dictionary<PlayerId>; // when more than 1 value, last is target, and second to last is active
+  cut: Dictionary<TimeBombCard>;
   revealed: number;
   outcome: (typeof OUTCOME)[keyof typeof OUTCOME];
   updatedAt: number;

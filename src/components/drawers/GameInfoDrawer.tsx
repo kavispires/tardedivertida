@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useToggle } from 'react-use';
 // Ant Design Resources
 import { FireOutlined, SettingOutlined } from '@ant-design/icons';
-import { Avatar, Badge, Button, Divider, Drawer, Space } from 'antd';
+import { Avatar, Badge, Button, Divider, Drawer, Flex, Space, Tag, Tooltip, Typography } from 'antd';
 // Types
 import type { GameState } from 'types/game';
 import type { GamePlayers } from 'types/player';
@@ -48,8 +48,20 @@ export function GameInfoDrawer({ players, state, userId }: GameInfoDrawerProps) 
         onClick={toggleDrawer}
       >
         <span className="game-info-drawer-button__game-title">
-          {info.title?.[language] ?? '?'}
-          <DebugOnly devOnly>({players?.[userId]?.name})</DebugOnly>
+          <Tooltip
+            title={
+              <Translate
+                pt="Você está jogando este jogo. Clique para mais informações."
+                en="You are playing this game. Click for more info."
+              />
+            }
+          >
+            {info.title?.[language] ?? '?'}
+          </Tooltip>
+          <DebugOnly devOnly>
+            {' '}
+            <Tag>{players?.[userId]?.name}</Tag>
+          </DebugOnly>
         </span>
         <Avatar
           icon={<SettingOutlined />}
@@ -62,13 +74,18 @@ export function GameInfoDrawer({ players, state, userId }: GameInfoDrawerProps) 
 
       <Drawer
         title={
-          <GameStrip
-            title={info?.title}
-            gameName={info.gameName}
-            className="round-corners"
-            width={256}
-            static
-          />
+          <Flex vertical>
+            <GameStrip
+              title={info?.title}
+              gameName={info.gameName}
+              className="round-corners mb-0"
+              width={256}
+              static
+            />
+            <Typography.Text type="secondary">
+              Inspired by: {info.inspiredBy.split('').reverse().join('')}
+            </Typography.Text>
+          </Flex>
         }
         placement="right"
         closable={false}

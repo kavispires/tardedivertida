@@ -17,7 +17,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
   if (currentPhase === EXAMINATION) {
     return round.forceLastRound || (round.current > 0 && round.current === round.total)
       ? GAME_OVER
-      : DECLARATION;
+      : EXAMINATION;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);
