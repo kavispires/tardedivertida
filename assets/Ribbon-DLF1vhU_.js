@@ -1,0 +1,1 @@
+import{j as n,c as r,bu as t,bW as i}from"./index-COXNih-K.js";function e({label:o,position:s="absolute"}){return n.jsx("div",{className:r("ribbon",`ribbon--${s}`),children:n.jsx("div",{className:r("ribbon__content",`ribbon__content--${o}`,`color-background--${i(o)}`,t("bounceIn")),children:o})})}export{e as R};
