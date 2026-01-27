@@ -35,7 +35,7 @@ $colors: (#44bba4, #3a7ca5, #f2e863, #f45b69);
         animation-delay: calc(math.random(math.div(($animationDuration + 10s) * 10, 1s)) * -1s);
         transform-origin: (math.random(50) - 25) * 1vw (math.random(50) - 25) * 1vh;
         $blurRadius: (math.random() + 0.5) * $particleSize * 0.5;
-        $x: if(sass(math.random() > 0.5), -1, 1);
+        $x: list.nth((-1, 1), math.random(2));
         box-shadow: ($particleSize * 2 * $x) 0 $blurRadius currentColor;
       }
     }
