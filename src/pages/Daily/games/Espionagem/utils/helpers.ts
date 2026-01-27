@@ -110,6 +110,7 @@ export const FEATURE_PT_TRANSLATIONS: Dictionary<string> = {
   longHair: 'tem cabelo longo',
   greyHair: 'tem cabelo grisalho',
   bald: 'é careca',
+  suspenders: 'está usando suspensório',
   mustache: 'tem bigode',
   goatee: 'tem cavanhaque',
   muscular: 'é sarado(a)',
