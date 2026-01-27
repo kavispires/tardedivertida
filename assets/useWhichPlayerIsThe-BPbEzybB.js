@@ -1,0 +1,1 @@
+import{ar as o,r as c,v as u,b_ as n}from"./index-COXNih-K.js";function d(e="activePlayerId",s={},r={}){const[t]=o("userId");return c.useMemo(()=>{const a=u.get(s,e);return[r?.[a]??n,a===t]},[r,e,s,t])}export{d as u};
