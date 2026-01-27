@@ -360,8 +360,15 @@ export function useVitraisEngine(data: DailyVitraisEntry, initialState: GameStat
 
     updateState({
       swapCount: state.swapCount + 1,
-      score: state.score + (newConnections > 0 ? newConnections * state.hearts : 0),
+      score: Math.max(
+        state.score +
+          (newConnections > 0 ? newConnections * state.hearts : 0) -
+          // When done, reduce the score based on time taken (in seconds)
+          (newStatus === STATUSES.WIN ? totalSeconds : 0),
+        0,
+      ),
       status: newStatus,
+      piecesOrder: nextGrid.map((piece) => (piece ? piece.id : -1)),
     });
 
     // 3. Clear the "just dropped" flag after a short delay so future auto-moves animate
