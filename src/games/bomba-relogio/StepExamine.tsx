@@ -95,24 +95,28 @@ export function StepExamine({
             </>
           }
         />
-        <br />
-        <Flex
-          justify="center"
-          align="center"
-        >
-          {roundCuts.map((card) => {
-            return (
-              <ImageCard
-                key={card.id}
-                cardWidth={32}
-                cardId={CARD_IMAGE_NAMES[card.type]}
-                preview={false}
-                className="examined-mini-card"
-              />
-            );
-          })}{' '}
-          <strong>/ {dataCounts.wires}</strong>
-        </Flex>
+        {roundCuts.length > 0 && (
+          <>
+            <br />
+            <Flex
+              justify="center"
+              align="center"
+            >
+              {roundCuts.map((card) => {
+                return (
+                  <ImageCard
+                    key={card.id}
+                    cardWidth={32}
+                    cardId={CARD_IMAGE_NAMES[card.type]}
+                    preview={false}
+                    className="examined-mini-card"
+                  />
+                );
+              })}{' '}
+              <strong>/ {dataCounts.wires}</strong>
+            </Flex>
+          </>
+        )}
       </RuleInstruction>
 
       <Flex
