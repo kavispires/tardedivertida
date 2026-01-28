@@ -1,5 +1,6 @@
 import ADEDANHX from 'games/adedanhx/utils/achievements';
 import ARTE_RUIM from 'games/arte-ruim/utils/achievements';
+import BOMBA_RELOGIO from 'games/bomba-relogio/utils/achievements';
 import COMUNICACAO_ALIENIGENA from 'games/comunicacao-alienigena/utils/achievements';
 import COMUNICACAO_DUO from 'games/comunicacao-duo/utils/achievements';
 import CONTADORES_HISTORIAS from 'games/contadores-historias/utils/achievements';
@@ -34,7 +35,6 @@ import VAMOS_AO_CINEMA from 'games/vamos-ao-cinema/utils/achievements';
 import VICE_CAMPEAO from 'games/vice-campeao/utils/achievements';
 // Types
 import type { AchievementReference } from 'types/achievements';
-// import BOMBA_RELOGIO from 'games/bomba-relogio/utils/achievements';
 // import CINEGRAFISTAS_AMADORES from 'games/cinegrafistas-amadores/utils/achievements';
 // import ESPIAO_ENTRE_NOS from 'games/espiao-entre-nos/utils/achievements';
 // import INSTRUMENTOS_CODIFICADOS from 'games/instrumentos-codificados/utils/achievements';
@@ -49,7 +49,7 @@ import type { AchievementReference } from 'types/achievements';
 export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = {
   adedanhx: ADEDANHX,
   'arte-ruim': ARTE_RUIM,
-  'bomba-relogio': null,
+  'bomba-relogio': BOMBA_RELOGIO,
   'cinegrafistas-amadores': null,
   'comunicacao-alienigena': COMUNICACAO_ALIENIGENA,
   'comunicacao-duo': COMUNICACAO_DUO,

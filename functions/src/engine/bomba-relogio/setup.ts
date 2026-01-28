@@ -6,7 +6,14 @@ import type { DataCounts, FirebaseStateData, FirebaseStoreData, Status, TimeBomb
 // Utils
 import utils from '../../utils';
 // Internal
-import { sample, shuffle, sortBy } from 'lodash';
+import { shuffle, sortBy } from 'lodash';
+import {
+  buildDeck,
+  determineRoles,
+  getAchievements,
+  getStartingAchievements,
+  getStartingStatus,
+} from './helpers';
 
 /**
  * Setup
@@ -19,28 +26,13 @@ export const prepareSetupPhase = async (
   _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const achievements = utils.achievements.setup(players, {});
+  const achievements = utils.achievements.setup(players, getStartingAchievements());
 
   const playerCount = utils.players.getPlayerCount(players);
   const dataCounts = DATA_COUNTS[playerCount] || DATA_COUNTS[4];
 
   // Create roles array
-  const deck: TimeBombCard[] = shuffle([
-    ...utils.game.makeArray(dataCounts.bomb).map(() => ({
-      id: 'card-0',
-      type: CARD_TYPES.BOMB,
-    })),
-    ...utils.game.makeArray(dataCounts.wires).map((v) => ({
-      id: `card-${v + dataCounts.bomb}`,
-      type: CARD_TYPES.WIRE,
-    })),
-    ...utils.game.makeArray(dataCounts.blank).map((v) => ({
-      id: `card-${v + dataCounts.bomb + dataCounts.wires}`,
-      type: CARD_TYPES.BLANK,
-    })),
-  ]);
-
-  const activePlayerId = sample(utils.players.getListOfPlayers(players))?.id;
+  const deck = buildDeck(dataCounts);
 
   // Save
   return {
@@ -57,13 +49,7 @@ export const prepareSetupPhase = async (
           forceLastRound: false,
         },
         dataCounts,
-        status: {
-          cut: [],
-          revealed: 0,
-          outcome: OUTCOME.START,
-          updatedAt: Date.now(),
-          activePlayerIds: { 0: activePlayerId },
-        },
+        status: getStartingStatus(players),
       },
     },
   };
@@ -77,31 +63,31 @@ export const prepareDeclarationPhase = async (
   // Unready players
   utils.players.unReadyPlayers(players);
 
-  const status: Status = state.status;
+  const status: Status = state.status.outcome === OUTCOME.RESTART ? getStartingStatus(players) : state.status;
   const dataCounts: DataCounts = state.dataCounts;
   const listOfPlayers = utils.players.getListOfPlayers(players);
 
-  // ASSIGN ROLES IF STARTING NEW GAME
-  if (status.outcome === OUTCOME.START) {
-    // Create roles array
-    const allRoles = shuffle([
-      ...utils.game.makeArray(dataCounts.agents).map(() => ROLES.AGENT),
-      ...utils.game.makeArray(dataCounts.terrorists).map(() => ROLES.TERRORIST),
-    ]);
+  const isNewGame = status.outcome === OUTCOME.START || status.outcome === OUTCOME.RESTART;
 
-    // Assign roles to players
-    listOfPlayers.forEach((player, index) => {
-      player.role = allRoles[index];
-    });
+  const storeUpdate: Partial<FirebaseStoreData> = {
+    achievements: store.achievements,
+  };
+  if (isNewGame) {
+    storeUpdate.achievements = utils.achievements.setup(players, getStartingAchievements());
+    storeUpdate.deck = buildDeck(dataCounts);
+  }
+
+  // ASSIGN ROLES IF STARTING NEW GAME
+  if (isNewGame) {
+    determineRoles(players, dataCounts, storeUpdate);
   }
 
   const playerCount = utils.players.getPlayerCount(players);
 
   // USE PLAYERS HANDS AS DECK IF NOT STARTING A NEW GAME
-  const deck: TimeBombCard[] =
-    status.outcome === OUTCOME.START
-      ? shuffle(store.deck)
-      : shuffle(listOfPlayers.flatMap((player) => player.hand));
+  const deck: TimeBombCard[] = isNewGame
+    ? shuffle(storeUpdate.deck)
+    : shuffle(listOfPlayers.flatMap((player) => player.hand));
   const deckChunks = utils.game.sliceInParts(deck, playerCount);
 
   // Assign roles to players
@@ -120,6 +106,9 @@ export const prepareDeclarationPhase = async (
   // Save
   return {
     update: {
+      store: {
+        ...storeUpdate,
+      },
       state: {
         phase: BOMBA_RELOGIO_PHASES.DECLARATION,
         players,
@@ -164,6 +153,14 @@ export const prepareExaminationPhase = async (
     players[targetPlayerId].hand = players[targetPlayerId].hand.filter(
       (card: TimeBombCard) => card.id !== latestCut.id,
     );
+    // Achievements for cutting wires and blanks
+    if (latestCut.type === CARD_TYPES.WIRE) {
+      utils.achievements.increase(store, activePlayerId, 'wires', 1);
+    } else if (latestCut.type === CARD_TYPES.BLANK) {
+      utils.achievements.increase(store, activePlayerId, 'blank', 1);
+    }
+    // Achievement for being picked
+    utils.achievements.increase(store, targetPlayerId, 'picked', 1);
   }
 
   // Update revealed count
@@ -175,7 +172,14 @@ export const prepareExaminationPhase = async (
 
     // Update state
     status.outcome = OUTCOME.BOMB;
-    // TODO: Achievements
+
+    // Achievement: Determine if it is stupid bomber or best terrorist
+    const activePlayer = players[activePlayerId];
+    if (activePlayer.role === ROLES.TERRORIST) {
+      utils.achievements.increase(store, activePlayerId, 'terroristBomb', 1);
+    } else {
+      utils.achievements.increase(store, activePlayerId, 'agentBomb', 1);
+    }
 
     // Call game over phase
     return await prepareGameOverPhase(gameId, store, state, players);
@@ -187,7 +191,6 @@ export const prepareExaminationPhase = async (
 
     // Update state
     status.outcome = OUTCOME.AGENTS_WIN;
-    // TODO: Achievements
 
     // Call game over phase
     return await prepareGameOverPhase(gameId, store, state, players);
@@ -199,7 +202,6 @@ export const prepareExaminationPhase = async (
     if (round.current === round.total) {
       // Update state
       status.outcome = OUTCOME.TERRORISTS_WIN;
-      // TODO: Achievements
 
       return await prepareGameOverPhase(gameId, store, state, players);
     }
@@ -240,8 +242,7 @@ export const prepareGameOverPhase = async (
     winners = Object.values(players).filter((player) => player.role === ROLES.TERRORIST);
   }
 
-  // const achievements = getAchievements(store);
-  const achievements = [];
+  const achievements = getAchievements(store);
 
   await utils.firestore.markGameAsComplete(gameId);
 
