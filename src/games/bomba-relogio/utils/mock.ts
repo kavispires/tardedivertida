@@ -1,6 +1,8 @@
+// Types
+import type { GameRound } from 'types/game';
 // Internal
 import type { ROLES } from './constants';
-import type { DataCount, Declaration, Status, TimeBombCard } from './types';
+import type { DataCounts, Declaration, Status, TimeBombCard } from './types';
 
 /**
  * Generates the best declaration for a player based on their role and cards
@@ -9,14 +11,15 @@ export function mockDeclaration(
   playerId: PlayerId,
   role: (typeof ROLES)[keyof typeof ROLES],
   hand: TimeBombCard[],
-  dataCount: DataCount,
+  dataCounts: DataCounts,
   status: Status,
+  round: GameRound,
 ): Declaration {
   // If status.revealed is 0, it's the first round
   const isFirstRound = status.revealed === 0;
-  const isSecondRound = status.revealed === 1;
+  const finalRound = round.current === round.total;
   // Max red wires left
-  const maxWiresLeft = dataCount.wires - status.revealed;
+  const maxWiresLeft = dataCounts.wires - status.revealed;
 
   // Rules
   // There's a maximum of 1 bomb
@@ -42,7 +45,7 @@ export function mockDeclaration(
     if (actualBombs > 0) {
       declaredWires = 0;
       // Don't declare bomb in first or second round
-      if (!isFirstRound && !isSecondRound) {
+      if (finalRound) {
         declaredBombs = actualBombs;
       }
     }
@@ -52,7 +55,7 @@ export function mockDeclaration(
       // When terrorist has the bomb, declare 1 wire per actual red wire
       declaredWires = actualWires;
       // Don't declare bomb in first or second round
-      if (!isFirstRound && !isSecondRound) {
+      if (finalRound) {
         declaredBombs = actualBombs;
       }
     } else if (actualWires === 0) {

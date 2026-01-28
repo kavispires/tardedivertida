@@ -1,47 +1,35 @@
-import { useMemo, useState } from 'react';
+import { sortBy } from 'lodash';
+import { useMemo } from 'react';
 // Ant Design Resources
-import { Flex, InputNumber, Space, Switch, Tooltip } from 'antd';
+import { Flex } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { GamePlayers, GamePlayer } from 'types/player';
-// Hooks
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
 // Utils
-import { getAvatarColorById, pluralize, sortPlayers } from 'utils/helpers';
-// Icons
-import { BombIcon } from 'icons/BombIcon';
-import { WireIcon } from 'icons/WireIcon';
+import { getAvatarColorById, sortPlayers } from 'utils/helpers';
 // Components
-import { PlayerAvatarCard, PlayerAvatarName } from 'components/avatars';
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { SendButton } from 'components/buttons';
+import { PlayerAvatarName } from 'components/avatars';
+import { HostNextPhaseButton } from 'components/host';
+import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle, TextHighlight } from 'components/text';
 // Internal
-import type {
-  DataCount,
-  Status,
-  SubmitDeclarationPayload,
-  SubmitTargetPayload,
-  UpdateTargetPlayerPayload,
-} from './utils/types';
-import { mockDeclaration } from './utils/mock';
+import type { DataCounts, Status, SubmitTargetPayload, UpdateTargetPlayerPayload } from './utils/types';
+import { CARD_IMAGE_NAMES, OUTCOME } from './utils/constants';
 import { RoleCard } from './components/RoleCard';
 import { Tips } from './components/RulesBlobs';
-import { Hand } from './components/Hand';
-import { BombHighlight, RedWireHighlight } from './components/Highlights';
+import { RedWireHighlight } from './components/Highlights';
 import { PlayerTableEntry } from './components/PlayerTableEntry';
 import { HandTarget } from './components/HandTarget';
+// Hooks
+// Icons
 
 type StepDeclarationProps = {
   players: GamePlayers;
   user: GamePlayer;
-  dataCount: DataCount;
+  dataCounts: DataCounts;
   status: Status;
-  // nextInvestigator: GamePlayer;
-  // isTheNextInvestigator: boolean;
   round: GameRound;
   currentTargetPlayerId?: PlayerId;
   currentInvestigator: GamePlayer;
@@ -54,7 +42,7 @@ export function StepExamine({
   announcement,
   user,
   players,
-  dataCount,
+  dataCounts,
   // nextInvestigator,
   onUpdateTargetPlayerId,
   onTargetCard,
@@ -62,10 +50,11 @@ export function StepExamine({
   status,
   currentTargetPlayerId,
   currentInvestigator,
+  round,
 }: StepDeclarationProps) {
-  const { isLoading } = useLoading();
+  const neededWires = dataCounts.wires - (status.revealed ?? 0);
 
-  const neededWires = dataCount.wires - (status.revealed ?? 0);
+  const roundCuts = sortBy(Object.keys(status.cut)).map((key) => status.cut[key]);
 
   const playersList = useMemo(() => sortPlayers(players), [players]);
   const targetPlayer = currentTargetPlayerId ? players[currentTargetPlayerId] : null;
@@ -75,44 +64,15 @@ export function StepExamine({
       fullWidth
       announcement={announcement}
     >
-      <StepTitle>
-        {targetPlayer ? (
-          <Translate
-            pt={
-              <>
-                <PlayerAvatarName player={currentInvestigator} />, escolha uma das cartas de{' '}
-                <TextHighlight>
-                  <PlayerAvatarName player={targetPlayer} />
-                </TextHighlight>
-              </>
-            }
-            en={
-              <>
-                <PlayerAvatarName player={currentInvestigator} />, choose one of{' '}
-                <TextHighlight>
-                  <PlayerAvatarName player={targetPlayer} />
-                </TextHighlight>
-                's cards.
-              </>
-            }
-          />
-        ) : (
-          <Translate
-            pt={
-              <>
-                <PlayerAvatarName player={currentInvestigator} />, escolha um jogador para examinar uma de
-                suas cartas.
-              </>
-            }
-            en={
-              <>
-                <PlayerAvatarName player={currentInvestigator} />, choose a player to examine one of their
-                cards.
-              </>
-            }
-          />
-        )}
-      </StepTitle>
+      <StepTitle>{getTitle(status.outcome, currentInvestigator, targetPlayer)}</StepTitle>
+
+      {status.outcome === OUTCOME.END && (
+        <HostNextPhaseButton
+          withWaitingTimeBar
+          round={round}
+          autoTriggerTime={10}
+        />
+      )}
 
       <RuleInstruction type="action">
         <Translate
@@ -135,6 +95,24 @@ export function StepExamine({
             </>
           }
         />
+        <br />
+        <Flex
+          justify="center"
+          align="center"
+        >
+          {roundCuts.map((card) => {
+            return (
+              <ImageCard
+                key={card.id}
+                cardWidth={32}
+                cardId={CARD_IMAGE_NAMES[card.type]}
+                preview={false}
+                className="examined-mini-card"
+              />
+            );
+          })}{' '}
+          <strong>/ {dataCounts.wires}</strong>
+        </Flex>
       </RuleInstruction>
 
       <Flex
@@ -148,7 +126,7 @@ export function StepExamine({
             currentTargetPlayerId={currentTargetPlayerId}
             disabled={player.id === user.id}
             onSelect={
-              isTheCurrentInvestigator
+              isTheCurrentInvestigator && status.outcome === OUTCOME.CONTINUE
                 ? () => onUpdateTargetPlayerId({ targetPlayerId: player.id })
                 : undefined
             }
@@ -162,15 +140,19 @@ export function StepExamine({
           activeColor={getAvatarColorById(targetPlayer.avatarId)}
           onSelectCard={
             isTheCurrentInvestigator
-              ? (card) =>
+              ? (card) => {
+                  const activePlayerIdsArray = sortBy(Object.keys(status.activePlayerIds)).map(
+                    (key) => status.activePlayerIds[key],
+                  );
                   onTargetCard({
                     target: {
                       playerId: targetPlayer.id,
-                      playerIndex: Object.keys(status.activePlayerIds).length,
+                      playerIndex: activePlayerIdsArray.indexOf(null),
                       targetCard: card,
                       targetCardIndex: Object.keys(status.cut).length,
                     },
-                  })
+                  });
+                }
               : undefined
           }
         />
@@ -179,9 +161,64 @@ export function StepExamine({
       <Tips>
         <RoleCard
           role={user?.role}
-          dataCount={dataCount}
+          dataCounts={dataCounts}
         />
       </Tips>
     </Step>
+  );
+}
+
+function getTitle(
+  outcome: (typeof OUTCOME)[keyof typeof OUTCOME],
+  currentInvestigator: GamePlayer,
+  targetPlayer: GamePlayer | null,
+) {
+  if (outcome === OUTCOME.END) {
+    return (
+      <Translate
+        pt={<>Todas as cartas para a rodada foram examinadas.</>}
+        en={<>All cards for the round have been examined.</>}
+      />
+    );
+  }
+
+  if (targetPlayer) {
+    return (
+      <Translate
+        pt={
+          <>
+            <PlayerAvatarName player={currentInvestigator} />, escolha uma das cartas de{' '}
+            <TextHighlight>
+              <PlayerAvatarName player={targetPlayer} />
+            </TextHighlight>
+          </>
+        }
+        en={
+          <>
+            <PlayerAvatarName player={currentInvestigator} />, choose one of{' '}
+            <TextHighlight>
+              <PlayerAvatarName player={targetPlayer} />
+            </TextHighlight>
+            's cards.
+          </>
+        }
+      />
+    );
+  }
+
+  return (
+    <Translate
+      pt={
+        <>
+          <PlayerAvatarName player={currentInvestigator} />, escolha um jogador para examinar uma de suas
+          cartas.
+        </>
+      }
+      en={
+        <>
+          <PlayerAvatarName player={currentInvestigator} />, choose a player to examine one of their cards.
+        </>
+      }
+    />
   );
 }

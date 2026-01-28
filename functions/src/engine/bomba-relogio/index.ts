@@ -64,7 +64,7 @@ export const getNextPhase = async (
   >(gameName, gameId, 'prepare next phase', currentState);
 
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, state?.round);
+  const nextPhase = determineNextPhase(state?.phase, state?.round, state.status);
 
   // LOBBY -> SETUP
   if (nextPhase === BOMBA_RELOGIO_PHASES.SETUP) {

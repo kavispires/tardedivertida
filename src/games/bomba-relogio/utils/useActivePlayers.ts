@@ -1,3 +1,4 @@
+import { sortBy } from 'lodash';
 import { useMemo } from 'react';
 // Types
 import type { GamePlayers } from 'types/player';
@@ -8,41 +9,48 @@ import { PLACEHOLDER_PLAYER } from 'utils/constants';
 // Internal
 import type { Status } from './types';
 
-export function useActiveInvestigator(
+type APlayer = GamePlayers[keyof GamePlayers];
+
+export function useActivePlayers(
   status: Status,
   players: GamePlayers,
-): [GamePlayers[keyof GamePlayers], boolean] {
+): {
+  previousInvestigator: APlayer | null;
+  isThePreviousInvestigator: boolean;
+  previousTargetPlayer: APlayer | null;
+  isThePreviousTargetPlayer: boolean;
+  currentInvestigator: APlayer;
+  isTheCurrentInvestigator: boolean;
+  targetPlayer: APlayer | null;
+  isTheTargetPlayer: boolean;
+} {
   const [userId] = useGlobalState('userId');
 
   return useMemo(() => {
-    if (Object.keys(status.activePlayerIds)?.length > 1) {
-      const activePlayerId = status.activePlayerIds[Object.keys(status.activePlayerIds).length - 2];
-      const player = players?.[activePlayerId] ?? PLACEHOLDER_PLAYER;
-      const userIsActive = activePlayerId === userId;
-      return [player, userIsActive];
-    }
+    const activePlayerIdsArray = sortBy(Object.keys(status.activePlayerIds)).map(
+      (key) => status.activePlayerIds[key],
+    );
 
-    const activePlayerId = status.activePlayerIds[0];
-    const player = players?.[activePlayerId] ?? PLACEHOLDER_PLAYER;
-    const userIsActive = activePlayerId === userId;
-    return [player, userIsActive];
-  }, [players, status, userId]);
-}
+    const currentInvestigatorId = activePlayerIdsArray.at(-2);
+    const targetPlayerId = activePlayerIdsArray.at(-1) ?? null;
+    const previousInvestigatorId = targetPlayerId ? null : (activePlayerIdsArray.at(-3) ?? null);
+    const previousTargetPlayerId = targetPlayerId ? null : (activePlayerIdsArray.at(-2) ?? null);
 
-export function useTargetedPlayer(
-  status: Status,
-  players: GamePlayers,
-): [GamePlayers[keyof GamePlayers] | null, boolean] {
-  const [userId] = useGlobalState('userId');
-
-  return useMemo(() => {
-    if (Object.keys(status.activePlayerIds ?? []).length > 1) {
-      const targetPlayerId = status.activePlayerIds[Object.keys(status.activePlayerIds).length - 1];
-      const player = players?.[targetPlayerId] ?? PLACEHOLDER_PLAYER;
-      const userIsTarget = targetPlayerId === userId;
-      return [player, userIsTarget];
-    }
-
-    return [null, false];
+    return {
+      previousInvestigator: previousInvestigatorId
+        ? (players?.[previousInvestigatorId] ?? PLACEHOLDER_PLAYER)
+        : null,
+      isThePreviousInvestigator: previousInvestigatorId === userId,
+      previousTargetPlayer: previousTargetPlayerId
+        ? (players?.[previousTargetPlayerId] ?? PLACEHOLDER_PLAYER)
+        : null,
+      isThePreviousTargetPlayer: previousTargetPlayerId === userId,
+      currentInvestigator: currentInvestigatorId
+        ? (players?.[currentInvestigatorId] ?? PLACEHOLDER_PLAYER)
+        : PLACEHOLDER_PLAYER,
+      isTheCurrentInvestigator: currentInvestigatorId === userId,
+      targetPlayer: targetPlayerId ? (players?.[targetPlayerId] ?? PLACEHOLDER_PLAYER) : null,
+      isTheTargetPlayer: targetPlayerId === userId,
+    };
   }, [players, status, userId]);
 }

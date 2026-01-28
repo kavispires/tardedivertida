@@ -1,7 +1,9 @@
+// Types
+import type { Achievement } from 'types/achievements';
 // Internal
 import type { CARD_TYPES, OUTCOME } from './constants';
 
-export type DataCount = {
+export type DataCounts = {
   agents: number;
   terrorists: number;
   bomb: number;
@@ -28,7 +30,7 @@ export type Target = {
 };
 
 export type Status = {
-  activePlayerIds: Dictionary<PlayerId>; // when more than 1 value, last is target, and second to last is active
+  activePlayerIds: Dictionary<PlayerId | null>; // when more than 1 value, last is target, and second to last is active
   cut: Dictionary<TimeBombCard>;
   revealed: number;
   outcome: (typeof OUTCOME)[keyof typeof OUTCOME];
@@ -48,21 +50,18 @@ export type SubmitTargetPayload = {
 };
 
 export type PhaseDeclarationState = {
-  dataCount: DataCount;
+  dataCounts: DataCounts;
   status: Status;
 };
 
 export type PhaseExaminationState = {
-  dataCount: DataCount;
+  dataCounts: DataCounts;
   status: Status;
   currentTargetPlayerId?: PlayerId;
 };
 
 export type PhaseGameOverState = {
-  dataCount: DataCount;
+  dataCounts: DataCounts;
   status: Status;
-};
-
-export type PhaseTemplateState = {
-  something: string;
+  achievements: Achievement[];
 };

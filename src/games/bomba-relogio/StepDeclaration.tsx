@@ -18,16 +18,17 @@ import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { DataCount, Status, SubmitDeclarationPayload } from './utils/types';
+import type { DataCounts, Status, SubmitDeclarationPayload } from './utils/types';
 import { mockDeclaration } from './utils/mock';
 import { RoleCard } from './components/RoleCard';
 import { Tips } from './components/RulesBlobs';
 import { Hand } from './components/Hand';
+import { RedWireHighlight } from './components/Highlights';
 
 type StepDeclarationProps = {
   players: GamePlayers;
   user: GamePlayer;
-  dataCount: DataCount;
+  dataCounts: DataCounts;
   status: Status;
   nextInvestigator: GamePlayer;
   isTheNextInvestigator: boolean;
@@ -38,17 +39,18 @@ type StepDeclarationProps = {
 export function StepDeclaration({
   announcement,
   user,
-  dataCount,
+  dataCounts,
   nextInvestigator,
   onDeclare,
   status,
+  round,
 }: StepDeclarationProps) {
   const { isLoading } = useLoading();
   const [bombsDeclared, setBombsDeclared] = useState<number>(0);
   const [wiresDeclared, setWiresDeclared] = useState<number>(0);
 
   useMock(() => {
-    onDeclare({ declarations: mockDeclaration(user.id, user.role, user.hand, dataCount, status) });
+    onDeclare({ declarations: mockDeclaration(user.id, user.role, user.hand, dataCounts, status, round) });
   });
 
   return (
@@ -65,7 +67,7 @@ export function StepDeclaration({
 
       <RoleCard
         role={user?.role ?? ''}
-        dataCount={dataCount}
+        dataCounts={dataCounts}
       />
 
       <RuleInstruction type="action">
@@ -82,6 +84,14 @@ export function StepDeclaration({
                 addressUser
               />{' '}
               será o próximo investigador (caso isso influencie sua decisão).
+              {status.revealed > 0 && (
+                <>
+                  <br />
+                  <strong>
+                    Já encontramos <RedWireHighlight>{status.revealed} fios vermelhos</RedWireHighlight>.
+                  </strong>
+                </>
+              )}
             </>
           }
           en={
@@ -180,7 +190,7 @@ export function StepDeclaration({
 
       <Hand
         hand={user.hand}
-        dataCount={dataCount}
+        dataCounts={dataCounts}
       />
 
       <Tips />

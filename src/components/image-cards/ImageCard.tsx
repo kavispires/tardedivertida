@@ -46,6 +46,10 @@ export type ImageCardProps = {
    * Use classic image library
    */
   classic?: boolean;
+  /**
+   * Card type for a better placeholder loading experience
+   */
+  type?: 'portrait' | 'landscape' | 'square';
 } & ElementProps;
 
 /**
@@ -60,6 +64,7 @@ export const ImageCard = ({
   fileExtension = 'jpg',
   square = false,
   classic = false,
+  type = 'portrait',
   ...rest
 }: ImageCardProps) => {
   const { shouldBeBlurred } = useBlurCards();
@@ -67,7 +72,7 @@ export const ImageCard = ({
 
   const baseClass = 'image-card';
 
-  const { imageURL, fallbackName } = useMemo(() => {
+  const { imageURL, fallbackName, placeholderHeight } = useMemo(() => {
     const imageURL = cardId.replace(/-/g, '/');
     const numId = Number(imageURL?.split('/')?.at(-1) ?? cardId[cardId.length - 1]) % 12;
 
@@ -75,8 +80,10 @@ export const ImageCard = ({
     return {
       imageURL,
       fallbackName,
+      placeholderHeight:
+        type === 'portrait' ? cardWidth * 1.5 : type === 'landscape' ? cardWidth * (2 / 3) : cardWidth,
     };
-  }, [cardId]);
+  }, [cardId, cardWidth, type]);
 
   const isBlurred = shouldBeBlurred(cardId);
 
@@ -101,6 +108,7 @@ export const ImageCard = ({
             preview={false}
             src={placeholder}
             width={cardWidth}
+            height={placeholderHeight}
           />
         }
         fallback={`${PUBLIC_URL.CARDS}${fallbackName}.jpg`}

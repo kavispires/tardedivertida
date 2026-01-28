@@ -7,16 +7,16 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { ImageCard } from 'components/image-cards/ImageCard';
 import { Translate } from 'components/language';
 // Internal
-import type { DataCount, TimeBombCard } from '../utils/types';
+import type { DataCounts, TimeBombCard } from '../utils/types';
 import { CARD_IMAGE_NAMES } from '../utils/constants';
 import { BlankHighlight, BombHighlight, RedWireHighlight } from './Highlights';
 
 type HandProps = {
   hand: TimeBombCard[];
-  dataCount: DataCount;
+  dataCounts: DataCounts;
 };
 
-export function Hand({ hand, dataCount }: HandProps) {
+export function Hand({ hand, dataCounts }: HandProps) {
   const cardWidth = useCardWidth(5, {
     minWidth: 100,
     maxWidth: 150,
@@ -35,7 +35,7 @@ export function Hand({ hand, dataCount }: HandProps) {
           />
           <CardDescription
             type={card.type}
-            dataCount={dataCount}
+            dataCounts={dataCounts}
           />
         </Flex>
       ))}
@@ -45,10 +45,10 @@ export function Hand({ hand, dataCount }: HandProps) {
 
 type CardDescriptionProps = {
   type: TimeBombCard['type'];
-  dataCount: DataCount;
+  dataCounts: DataCounts;
 };
 
-export function CardDescription({ type, dataCount }: CardDescriptionProps) {
+export function CardDescription({ type, dataCounts }: CardDescriptionProps) {
   if (type === 'bomb') {
     return (
       <Flex
@@ -102,12 +102,12 @@ export function CardDescription({ type, dataCount }: CardDescriptionProps) {
               <Translate
                 pt={
                   <>
-                    Os agentes devem achar {dataCount.wires} desses no total. Por enquanto acharam {0}.
+                    Os agentes devem achar {dataCounts.wires} desses no total. Por enquanto acharam {0}.
                   </>
                 }
                 en={
                   <>
-                    Agents must find {dataCount.wires} of these in total. So far they have found {0}.
+                    Agents must find {dataCounts.wires} of these in total. So far they have found {0}.
                   </>
                 }
               />
