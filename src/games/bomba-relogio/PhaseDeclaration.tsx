@@ -16,14 +16,15 @@ import { Instruction } from 'components/text';
 import type { PhaseDeclarationState } from './utils/types';
 import { BOMBA_RELOGIO_PHASES } from './utils/constants';
 import { useOnSubmitDeclarationAPIRequest } from './utils/api-requests';
-import { useActiveInvestigator } from './utils/useActivePlayers';
+import { useActivePlayers } from './utils/useActivePlayers';
 import { StepDeclaration } from './StepDeclaration';
 
 export function PhaseDeclaration({ players, state, user }: PhaseProps<PhaseDeclarationState>) {
   const { step, goToNextStep, setStep } = useStep();
 
   const onDeclare = useOnSubmitDeclarationAPIRequest(setStep);
-  const [nextInvestigator, isTheNextInvestigator] = useActiveInvestigator(state.status, players);
+  const { currentInvestigator: nextInvestigator, isTheCurrentInvestigator: isTheNextInvestigator } =
+    useActivePlayers(state.status, players);
 
   const announcement = (
     <PhaseAnnouncement
@@ -47,11 +48,6 @@ export function PhaseDeclaration({ players, state, user }: PhaseProps<PhaseDecla
     </PhaseAnnouncement>
   );
 
-  // Round 1 - Tell the story
-  // Round 2 - Continue the story
-  // Round 3 - Finish the story
-  // Round 4 - Final
-
   return (
     <PhaseContainer
       phase={state?.phase}
@@ -74,13 +70,13 @@ export function PhaseDeclaration({ players, state, user }: PhaseProps<PhaseDecla
               pt={
                 <>
                   Há uma bomba no prédio! E um terrorista entre nós! Precisamos cortar todos os{' '}
-                  {state.dataCount.wires} fios vermelhos!!!
+                  {state.dataCounts.wires} fios vermelhos!!!
                 </>
               }
               en={
                 <>
                   There's a bom in the building! And a terrorist among us! We need to cut all{' '}
-                  {state.dataCount.wires} red wires!!!
+                  {state.dataCounts.wires} red wires!!!
                 </>
               }
             />
@@ -92,7 +88,7 @@ export function PhaseDeclaration({ players, state, user }: PhaseProps<PhaseDecla
           user={user}
           players={players}
           announcement={announcement}
-          dataCount={state.dataCount}
+          dataCounts={state.dataCounts}
           nextInvestigator={nextInvestigator}
           isTheNextInvestigator={isTheNextInvestigator}
           onDeclare={onDeclare}

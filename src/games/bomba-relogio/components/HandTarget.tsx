@@ -1,8 +1,7 @@
-import { orderBy } from 'lodash';
 import { motion } from 'motion/react';
 import { useState, useEffect } from 'react';
 // Ant Design Resources
-import { Flex, Popover, Tag, Typography } from 'antd';
+import { Flex, Tag } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
@@ -13,13 +12,11 @@ import { PliersIcon } from 'icons/PliersIcon';
 import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { ImageCard } from 'components/image-cards/ImageCard';
-import { Translate } from 'components/language';
 import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
 import { ViewOr } from 'components/views';
 // Internal
-import type { DataCount, TimeBombCard } from '../utils/types';
+import type { TimeBombCard } from '../utils/types';
 import { CARD_IMAGE_NAMES } from '../utils/constants';
-import { BlankHighlight, BombHighlight, RedWireHighlight } from './Highlights';
 
 type HandTargetProps = {
   hand: TimeBombCard[];

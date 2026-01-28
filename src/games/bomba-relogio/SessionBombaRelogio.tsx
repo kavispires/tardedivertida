@@ -4,12 +4,13 @@ import type { GameState } from 'types/game';
 import { GAME_COLLECTION } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
-import { PhaseError, PhasePlaceholder } from 'components/phases';
+import { PhaseError } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
 import { BOMBA_RELOGIO_PHASES } from './utils/constants';
 import { PhaseDeclaration } from './PhaseDeclaration';
 import { PhaseExamination } from './PhaseExamination';
+import { PhaseGameOver } from './PhaseGameOver';
 // Sass
 import './utils/styles.scss';
 
@@ -19,10 +20,8 @@ function getActiveComponent(state: GameState) {
       return PhaseDeclaration;
     case BOMBA_RELOGIO_PHASES.EXAMINATION:
       return PhaseExamination;
-    case PHASES.TEMPLATE.UNKNOWN:
-      return PhasePlaceholder;
     case PHASES.DEFAULT.GAME_OVER:
-      return PhasePlaceholder;
+      return PhaseGameOver;
     default:
       return PhaseError;
   }

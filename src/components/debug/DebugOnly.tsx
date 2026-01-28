@@ -3,8 +3,17 @@ import type { ReactNode } from 'react';
 import { useDevFeatures } from 'hooks/useDevFeatures';
 
 type DebugOnlyProps = {
+  /**
+   * Enables debug mode only in development environment
+   */
   dev?: boolean;
+  /**
+   * During development, it will always be visible
+   */
   devOnly?: boolean;
+  /**
+   * Wraps content in a div
+   */
   div?: boolean;
   /**
    * The content of the component

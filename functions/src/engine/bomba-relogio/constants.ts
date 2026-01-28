@@ -1,4 +1,4 @@
-import type { DataCount } from './types';
+import type { DataCounts } from './types';
 
 export const BOMBA_RELOGIO_PHASES = {
   LOBBY: 'LOBBY',
@@ -31,7 +31,7 @@ export const PLAYER_COUNTS = {
 
 export const TOTAL_ROUNDS = 4;
 
-export const DATA_COUNTS: Dictionary<DataCount> = {
+export const DATA_COUNTS: Dictionary<DataCounts> = {
   4: {
     agents: 3,
     terrorists: 2,

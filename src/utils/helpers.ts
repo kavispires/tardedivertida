@@ -507,7 +507,7 @@ export const truncateRecommended = (recommended: number[]): string => {
 /**
  * Sort players by name, optionally putting a specific player first
  * @param players - The players to sort
- * @param by - The sort criteria functions
+ * @param by - The sort criteria functions (default: name lowercase)
  * @param orders - The sort orders
  * @param userId - If provided, the player with this ID will be placed first in the result
  * @returns Sorted array of players

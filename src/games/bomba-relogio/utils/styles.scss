@@ -18,6 +18,10 @@
   border: 1px solid get-color("white");
 }
 
+.examined-mini-card .ant-image-img {
+  border-radius: get-unit(2);
+}
+
 .b-card-target-glow {
   filter: drop-shadow(0 0 5px get-color("white", 2));
 }
