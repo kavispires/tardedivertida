@@ -44,6 +44,7 @@ export type GalleryEntry = {
 
 export type HouseHappiness = {
   gained: number[];
+  goal: number;
   total: number;
 };
 

@@ -49,6 +49,7 @@ export * from './CalendarIcon';
 export * from './CandyIcon';
 export * from './CaptchaIcon';
 export * from './CardboardBoxIcon';
+export * from './CashRegisterIcon';
 export * from './CatalogIcon';
 export * from './ChatIcon';
 export * from './CheckMarkIcon';

@@ -1,4 +1,5 @@
 // Types
+import type { Achievement } from 'types/achievements';
 import type { GameRanking } from 'types/game';
 import type { TextCard } from 'types/tdr';
 
@@ -27,6 +28,15 @@ export type PlayerAssignedPair = {
   clue: string;
 };
 
+export type GuessedPair = PlayerAssignedPair & {
+  playerId: string;
+  playerName: string;
+  avatarId: string;
+  color: string;
+  index: number;
+  guesses: string[];
+};
+
 export type GalleryEntry = {
   id: string;
   ids: string[];
@@ -42,6 +52,7 @@ export type GalleryEntry = {
 
 export type HouseHappiness = {
   gained: number[];
+  goal: number;
   total: number;
 };
 
@@ -57,16 +68,19 @@ export type PhaseClueWritingState = {
 
 export type PhaseGuessingState = {
   happiness: HouseHappiness;
-  gallery: GalleryEntry[];
+  board: BoardEntry[];
 };
 
 export type PhaseRevealState = {
+  board: BoardEntry[];
   happiness: HouseHappiness;
   gallery: GalleryEntry[];
   ranking: GameRanking;
   foundTarget: PlayerId[];
+  targetId: string;
 };
 
-export type PhaseTemplateState = {
-  something: string;
+export type PhaseGameOverState = {
+  achievements: Achievement[];
+  purchases: Dictionary<BoardEntry>;
 };

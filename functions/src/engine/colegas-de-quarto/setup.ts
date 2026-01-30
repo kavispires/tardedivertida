@@ -45,6 +45,7 @@ export const prepareSetupPhase = async (
       store: {
         deck: resourceData.deck,
         pastClues: {},
+        purchases: {},
         achievements,
       },
       state: {
@@ -55,7 +56,7 @@ export const prepareSetupPhase = async (
           forceLastRound: false,
         },
         happiness: {
-          gained: 0,
+          gained: [],
           total: 0,
           goal: SETTINGS_PER_PLAYER_COUNT[playerCount]?.happinessGoal || 0,
         },
@@ -221,7 +222,7 @@ export const prepareRevealPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Gather votes
-  const { ranking, happiness, gallery, foundTarget } = buildRanking(
+  const { ranking, happiness, gallery, foundTarget, targetId } = buildRanking(
     store,
     players,
     state.board,
@@ -230,11 +231,17 @@ export const prepareRevealPhase = async (
 
   utils.players.unReadyPlayers(players);
 
+  const purchases = store.purchases || {};
+  if (foundTarget.length > 0) {
+    purchases[state.round.current] = state.board.find((entry: BoardEntry) => entry.id === targetId);
+  }
+
   // Save
   return {
     update: {
       store: {
         achievements: store.achievements,
+        purchases,
       },
       state: {
         phase: COLEGAS_DE_QUARTO_PHASES.REVEAL,
@@ -243,6 +250,7 @@ export const prepareRevealPhase = async (
         happiness,
         players,
         foundTarget,
+        targetId,
       },
     },
   };
@@ -287,9 +295,8 @@ export const prepareGameOverPhase = async (
         winners,
         players,
         achievements,
-        grid: state.grid,
-        gridSize: state.gridSize,
-        gameType: state.gameType,
+        purchases: store.purchases,
+        gallery: store.pastClues,
       },
     },
   };

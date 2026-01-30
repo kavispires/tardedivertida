@@ -5,6 +5,7 @@ import type {
   FirebaseStoreData,
   GalleryEntry,
   HouseHappiness,
+  PlayerAssignedPair,
 } from './types';
 // Constants
 import { SEPARATOR } from '../../utils/constants';
@@ -48,45 +49,49 @@ export function buildRanking(
   // Gained Points: [from guesses, from others, target]
   const scores = new utils.players.Scores(players, [0, 0, 0]);
 
-  const gallery: GalleryEntry[] = utils.players.getListOfPlayers(players).map((player) => {
-    let atLeastOneGuessed = false;
-    const result: GalleryEntry = {
-      id: player.assignedPairs.id,
-      ids: player.assignedPairs.ids,
-      words: board
-        .filter((entry) => player.assignedPairs.ids.includes(entry.cardId))
-        .map((entry) => entry.text),
-      playerId: player.id,
-      clue: player.assignedPairs.clue || null,
-      correct: [],
-      misses: [],
-    };
+  const gallery: GalleryEntry[] = [];
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    const assignedPairs: PlayerAssignedPair[] = player.assignedPairs;
 
-    utils.players.getListOfPlayers(players).forEach((guesser) => {
-      const guess: string[] = guesser.guesses[result.id].sort();
-      if (!guess) return;
+    assignedPairs.forEach((pair) => {
+      let atLeastOneGuessed = false;
+      const result: GalleryEntry = {
+        id: pair.id,
+        ids: pair.ids ?? [],
+        words: board.filter((entry) => pair.ids.includes(entry.id)).map((entry) => entry.text),
+        playerId: player.id,
+        clue: pair.clue || null,
+        correct: [],
+        misses: [],
+      };
 
-      const guessId = guess.join(SEPARATOR);
-      // Is correct?
-      if (guessId === result.id) {
-        result.correct.push(guesser.id);
-        scores.add(guesser.id, POINTS.CORRECT_GUESS, 0); // 2 points for correct guess
-        scores.add(player.id, 0, POINTS.GUESSED); // 1 point for being guessed
-        atLeastOneGuessed = true;
-      } else {
-        result.misses.push({ guesserId: guesser.id, guesses: guess });
+      utils.players.getListOfPlayers(players).forEach((guesser) => {
+        const guess: string[] | undefined = guesser.guesses[result.id];
+        if (!guess) return;
+
+        const sortedGuess = guess.sort();
+        const guessId = sortedGuess.join(SEPARATOR);
+        // Is correct?
+        if (guessId === result.id) {
+          result.correct.push(guesser.id);
+          scores.add(guesser.id, POINTS.CORRECT_GUESS, 0); // 2 points for correct guess
+          scores.add(player.id, POINTS.GUESSED, 1); // 1 point for being guessed
+          atLeastOneGuessed = true;
+        } else {
+          result.misses.push({ guesserId: guesser.id, guesses: sortedGuess });
+        }
+      });
+
+      if (atLeastOneGuessed) {
+        gainedHappiness += 1;
       }
+
+      gallery.push(result);
     });
-
-    if (atLeastOneGuessed) {
-      gainedHappiness += 1;
-    }
-
-    return result;
   });
 
   // If the target
-  const targetId = board.find((entry) => entry.id === TARGET_ID)?.id ?? 'ERROR';
+  const targetId = board.find((entry) => entry.playerId === TARGET_ID)?.id ?? 'ERROR';
   const foundTarget: PlayerId[] = [];
   utils.players.getListOfPlayers(players).forEach((player) => {
     const guesses: string[] = Object.values<string[]>(player.guesses).flat();
@@ -101,10 +106,11 @@ export function buildRanking(
     gallery,
     happiness: {
       ...happiness,
-      gained: happiness.gained.push(gainedHappiness),
+      gained: [...happiness.gained, gainedHappiness],
       total: happiness.total + gainedHappiness,
     },
     ranking: scores.rank(players),
+    targetId,
     foundTarget,
   };
 }

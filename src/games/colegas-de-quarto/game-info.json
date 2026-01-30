@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "colegas-de-quarto",
-  "version": "0.0.8",
-  "release": "dev",
-  "available": false,
+  "version": "0.9.0",
+  "release": "beta",
+  "available": true,
   "title": {
     "pt": "Colegas de Quarto",
     "en": "Roommates"
@@ -26,8 +26,18 @@
     "en": "A game about communal living and the interactions between roommates."
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "Vocês são colegas de quarto que acabaram de se mudar juntos e estão tentando decorar a casa.",
+      "Em cada uma das 3 rodadas, vocês recebem pares de itens na grade que não querem na casa, e devem escrever uma pista de uma única palavra que conecte os dois.",
+      "Depois que todas as pistas são escritas, vocês devem combiná-las com as coisas corretas. A última coisa sem uma pista combinada é o que mantemos na casa.",
+      "O objetivo do jogo é alcançar um nível de felicidade (pontos) juntos fazendo as combinações corretas."
+    ],
+    "en": [
+      "You are roommates that just moved in together trying to decorate the house.",
+      "Each of the 3 rounds, you are given pairs of items on the grid that you do not want in the house, and must write a single word clue that connects the two.",
+      "After all clues are written, you must match them with the correct things. The last thing without a matched clue is what we keep in the house.",
+      "The goal of the game is reach a level of happiness (points) together by making the correct matches"
+    ]
   },
   "playerCount": {
     "recommended": [4, 5, 6],
