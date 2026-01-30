@@ -76,7 +76,7 @@ export function RedirectSession({ state }: RedirectSessionProps) {
           />
         </Flex>
 
-        <Title>{redirect.gameId}</Title>
+        <Title colorScheme="light">{redirect.gameId}</Title>
       </Modal>
     );
   }

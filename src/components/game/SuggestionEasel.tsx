@@ -13,11 +13,11 @@ type SuggestionEaselProps = {
   /**
    * Function to be called when the input changes
    */
-  onChangeInput?: GenericFunction;
+  onChangeInput?: React.ChangeEventHandler<HTMLInputElement, HTMLInputElement>;
   /**
    * Function to be called when the user presses enter
    */
-  onPressEnter?: GenericFunction;
+  onPressEnter?: React.KeyboardEventHandler<HTMLInputElement>;
   /**
    * Value of the input
    */

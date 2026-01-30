@@ -19,7 +19,10 @@ import { SignUpForm } from './SignUp';
 import logo from 'assets/images/tarde-divertida-logo.svg?url';
 
 type ConvertGuestToAccountProps = {
-  onSuccess: GenericFunction;
+  /**
+   * Function to be called on successful conversion
+   */
+  onSuccess: () => void;
 };
 
 export function ConvertGuestToAccount({ onSuccess }: ConvertGuestToAccountProps) {

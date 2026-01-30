@@ -18,7 +18,10 @@ import { Title } from 'components/text';
 import logo from 'assets/images/tarde-divertida-logo.svg?url';
 
 type SignInProps = {
-  onSuccess: GenericFunction;
+  /**
+   * Function to be called on successful sign-in
+   */
+  onSuccess: () => void;
 };
 
 export function SignIn({ onSuccess }: SignInProps) {

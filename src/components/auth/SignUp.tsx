@@ -11,7 +11,10 @@ import { Translate } from 'components/language';
 import logo from 'assets/images/tarde-divertida-logo.svg?url';
 
 type SignUpProps = {
-  onSuccess: GenericFunction;
+  /**
+   * Function to be called on successful sign-up
+   */
+  onSuccess: () => void;
 };
 
 export function SignUp({ onSuccess }: SignUpProps) {
@@ -50,7 +53,7 @@ export function SignUp({ onSuccess }: SignUpProps) {
 
 type SignUpFormProps = {
   form: FormInstance<any>;
-  onFinish: GenericFunction;
+  onFinish: () => void;
   isError: boolean;
   isLoading: boolean;
 };

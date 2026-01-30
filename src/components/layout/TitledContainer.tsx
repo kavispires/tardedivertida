@@ -33,7 +33,7 @@ export function TitledContainer({
   const {
     className: childrenClassName,
     wrap = true,
-    direction: childrenDirection = 'horizontal',
+    orientation: childrenOrientation = 'horizontal',
     ...restChildrenContainerProps
   } = contentProps ?? {};
 
@@ -52,7 +52,7 @@ export function TitledContainer({
       </Title>
 
       <Space
-        orientation={childrenDirection}
+        orientation={childrenOrientation}
         wrap={wrap}
         className={clsx(
           'container-wrapper__children',
