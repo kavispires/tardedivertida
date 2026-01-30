@@ -1,6 +1,7 @@
 import ADEDANHX from 'games/adedanhx/utils/achievements';
 import ARTE_RUIM from 'games/arte-ruim/utils/achievements';
 import BOMBA_RELOGIO from 'games/bomba-relogio/utils/achievements';
+import COLEGAS_DE_QUARTO from 'games/colegas-de-quarto/utils/achievements';
 import COMUNICACAO_ALIENIGENA from 'games/comunicacao-alienigena/utils/achievements';
 import COMUNICACAO_DUO from 'games/comunicacao-duo/utils/achievements';
 import CONTADORES_HISTORIAS from 'games/contadores-historias/utils/achievements';
@@ -51,6 +52,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'arte-ruim': ARTE_RUIM,
   'bomba-relogio': BOMBA_RELOGIO,
   'cinegrafistas-amadores': null,
+  'colegas-de-quarto': COLEGAS_DE_QUARTO,
   'comunicacao-alienigena': COMUNICACAO_ALIENIGENA,
   'comunicacao-duo': COMUNICACAO_DUO,
   'contadores-historias': CONTADORES_HISTORIAS,

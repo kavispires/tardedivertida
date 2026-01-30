@@ -30,11 +30,11 @@ export const prepareSetupPhase = async (
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   const achievements = utils.achievements.setup(players, {
-    clues: 0,
-    badClues: 0,
-    guesses: 0,
+    guessed: 0,
+    soloGuessed: 0,
+    soloGuess: 0,
+    finalItems: 0,
     wordLength: 0,
-    savior: 0,
   });
 
   const playerCount = utils.players.getPlayerCount(players);
@@ -190,6 +190,8 @@ export const prepareGuessingPhase = async (
   utils.players.getListOfPlayers(players).forEach((player) => {
     player.assignedPairs.forEach((pair, index) => {
       pair.clue = player.clues?.[index] || 'ERROR';
+      // Achievement: Word length
+      utils.achievements.increase(store, player.id, 'wordLength', pair.clue.length);
       pair.ids.forEach((id: string) => {
         const cardId = board.find((entry) => entry.id === id)?.cardId || 'ERROR';
         playerClues[cardId] = playerClues[cardId] || [];
@@ -206,7 +208,7 @@ export const prepareGuessingPhase = async (
           ...store.pastClues,
           ...playerClues,
         },
-        // achievements: store.achievements,
+        achievements: store.achievements,
       },
       state: {
         phase: COLEGAS_DE_QUARTO_PHASES.GUESSING,

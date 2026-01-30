@@ -2,19 +2,105 @@
 import type { AchievementReference } from 'types/achievements';
 
 const ACHIEVEMENTS = {
-  UNKNOWN: 'UNKNOWN',
+  BEST_CLUES: 'BEST_CLUES', // most guessed by others
+  WORST_CLUES: 'WORST_CLUES',
+  SOLO_GUESSER: 'SOLO_GUESSER',
+  SOLO_GUESSED: 'SOLO_GUESSED',
+  MOST_FINAL_ITEMS: 'MOST_FINAL_ITEMS',
+  FEWEST_FINAL_ITEMS: 'FEWEST_FINAL_ITEMS',
+  SHORTEST_WORDS: 'SHORTEST_WORDS',
+  LONGEST_WORDS: 'LONGEST_WORDS',
 };
 
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.UNKNOWN]: {
-    icon: 'question',
+  [ACHIEVEMENTS.BEST_CLUES]: {
+    icon: 'trophy',
     title: {
-      pt: 'Desconhecido',
-      en: 'Unknown',
+      pt: 'Mais Direto ao Ponto',
+      en: 'Right on Target',
     },
     description: {
-      pt: 'Desconhecido',
-      en: 'Unknown',
+      pt: 'Deu as melhores pistas que todos adivinharam',
+      en: 'Gave the best clues that everyone guessed',
+    },
+  },
+  [ACHIEVEMENTS.WORST_CLUES]: {
+    icon: 'thought',
+    title: {
+      pt: 'Pensador Abstrato',
+      en: 'Abstract Thinker',
+    },
+    description: {
+      pt: 'Suas pistas eram tão únicas que ninguém conseguiu adivinhar',
+      en: 'Your clues were so unique that no one could guess them',
+    },
+  },
+  [ACHIEVEMENTS.SOLO_GUESSER]: {
+    icon: 'loupe',
+    title: {
+      pt: 'Investigador Solitário',
+      en: 'Lone Investigator',
+    },
+    description: {
+      pt: 'Foi o único a adivinhar a pista com o par mais vezes',
+      en: 'Was the only one to guess the clue with the pair the most times',
+    },
+  },
+  [ACHIEVEMENTS.SOLO_GUESSED]: {
+    icon: 'target',
+    title: {
+      pt: 'Alvo Exclusivo',
+      en: 'Exclusive Target',
+    },
+    description: {
+      pt: 'Suas pistas foram adivinhadas por apenas uma pessoa mais vezes',
+      en: 'Your clues were guessed by only one person the most times',
+    },
+  },
+  [ACHIEVEMENTS.MOST_FINAL_ITEMS]: {
+    icon: 'box',
+    title: {
+      pt: 'Colecionador Compulsivo',
+      en: 'Compulsive Collector',
+    },
+    description: {
+      pt: 'Acertou o item final a ser comprado mais vezes',
+      en: 'Got the final item to be purchased right the most times',
+    },
+  },
+  [ACHIEVEMENTS.FEWEST_FINAL_ITEMS]: {
+    icon: 'empty-box',
+    title: {
+      pt: 'Minimalista',
+      en: 'Minimalist',
+    },
+    description: {
+      pt: 'Acertou o item a ser comprado menos vezes',
+      en: 'Guessed the item to be purchased the fewest times',
+    },
+  },
+  [ACHIEVEMENTS.SHORTEST_WORDS]: {
+    icon: 'speedometer',
+    title: {
+      pt: 'Mestre da Brevidade',
+      en: 'Master of Brevity',
+    },
+    description: {
+      pt: 'Usou as palavras mais curtas como pistas',
+      en: 'Used the shortest words as clues',
+    },
+  },
+  [ACHIEVEMENTS.LONGEST_WORDS]: {
+    icon: 'pencil',
+    title: {
+      pt: 'Escritor Verboso',
+      en: 'Verbose Writer',
+    },
+    description: {
+      pt: 'Usou as palavras mais longas como pistas',
+      en: 'Used the longest words as clues',
     },
   },
 };
+
+export default achievementsReference;

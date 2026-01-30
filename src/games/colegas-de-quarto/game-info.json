@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "colegas-de-quarto",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "release": "beta",
   "available": true,
   "title": {
@@ -49,7 +49,7 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["cooperative", "guessing"],
+  "tags": ["cooperative", "writing", "guessing", "achievements"],
   "options": [
     {
       "key": "wordsSource",
@@ -65,22 +65,6 @@
         {
           "label": "Properties",
           "value": "properties"
-        }
-      ]
-    },
-    {
-      "key": "nsfw",
-      "kind": "switch",
-      "label": "NSFW Items",
-      "description": "Allow NSFW items (only if playing with Items)",
-      "values": [
-        {
-          "label": "Off",
-          "value": false
-        },
-        {
-          "label": "On",
-          "value": true
         }
       ]
     }

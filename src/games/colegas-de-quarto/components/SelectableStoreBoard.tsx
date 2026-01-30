@@ -63,16 +63,11 @@ export function SelectableStoreBoard({
                 />
               </Badge.Ribbon>
             ) : (
-              <div
-                key={entry.id}
-                className="store-board__item"
-              >
-                <HouseItem
-                  index={index}
-                  setId={round.current}
-                  text={entry.text}
-                />
-              </div>
+              <HouseItem
+                index={index}
+                setId={round.current}
+                text={entry.text}
+              />
             )}
           </TransparentButton>
         ))}
