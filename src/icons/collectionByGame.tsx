@@ -116,6 +116,7 @@ export const collectionByGame: Record<string, string[]> = {
     'SecurityIcon',
     'TraitorIcon',
   ],
+  'colegas-de-quarto': ['StoreIcon'],
   'comunicacao-alienigena': [
     'AlienCommunicationIcon',
     'BooksIcon',
