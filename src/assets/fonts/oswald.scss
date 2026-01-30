@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap");
 
+// 'Alternate Gothic' sans serif typefaces
+// https://fonts.google.com/specimen/Oswald
 @mixin font-oswald {
   font-family: "Oswald", sans-serif;
   font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }

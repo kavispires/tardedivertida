@@ -1,1 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+
+// Bangers is a comic book style font which packs a punch
+// https://fonts.google.com/specimen/Bangers
+@mixin font-bangers {
+  font-family: "Bangers", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}

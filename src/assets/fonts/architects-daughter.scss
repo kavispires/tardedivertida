@@ -1,1 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap");
+
+// Natural feel of a hand-drawn font by a girl
+// https://fonts.google.com/specimen/Architects+Daughter
+@mixin font-architects-daughter {
+  font-family: "Architects Daughter", cursive;
+  font-weight: 400;
+  font-style: normal;
+}

@@ -1,1 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+
+// Dancing Script is a lively casual script where the letters bounce and change size slightly. Caps are big, and goes below the baseline.
+// https://fonts.google.com/specimen/Dancing+Script
+@mixin font-dancing-script {
+  font-family: "Dancing Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
