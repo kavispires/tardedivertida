@@ -5,9 +5,9 @@ import type { Item } from 'types/tdr';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
+import { PlayerAvatarName } from 'components/player';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { StepTitle } from 'components/text';

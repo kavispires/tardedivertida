@@ -6,8 +6,8 @@ import { Avatar } from 'antd';
 import { LETTERS } from 'utils/constants';
 import { getColorFromIndex } from 'utils/helpers';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { Card } from 'components/cards';
+import { PlayerAvatar } from 'components/player';
 
 type SuggestionCardProps = {
   avatarId: string;

@@ -7,11 +7,11 @@ import type { UseStep } from 'hooks/useStep';
 // Utils
 import { pluralize } from 'utils/helpers';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PlayerAvatarName } from 'components/player';
 import { TurnOrder } from 'components/players';
 import { ListOfPlayers } from 'components/players/ListOfPlayers';
 import { Step, type StepProps } from 'components/steps';

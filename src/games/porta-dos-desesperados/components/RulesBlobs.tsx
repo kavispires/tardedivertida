@@ -5,9 +5,9 @@ import type { GamePlayers } from 'types/player';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { FixedMenuButton } from 'components/buttons';
 import { DualTranslate, Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { Instruction, Title } from 'components/text';
 // Internal
 import { TOTAL_DOORS } from '../utils/constants';

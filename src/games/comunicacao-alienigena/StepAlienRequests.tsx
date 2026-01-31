@@ -7,9 +7,9 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';

@@ -6,9 +6,9 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { SleepIcon } from 'icons/SleepIcon';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { PlayerAvatarName } from 'components/player';
 import { WaitingRoom } from 'components/players';
 import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';

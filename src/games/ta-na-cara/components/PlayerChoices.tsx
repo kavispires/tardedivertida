@@ -8,11 +8,11 @@ import { useLoading } from 'hooks/useLoading';
 import { LETTERS } from 'utils/constants';
 import { getColorFromLetter, sortPlayers } from 'utils/helpers';
 // Components
-import { PlayerAvatarCard } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatarCard } from 'components/player';
 import { Instruction } from 'components/text';
 // Internal
 import type { QuestionsDictionary } from '../utils/types';

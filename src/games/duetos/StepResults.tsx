@@ -7,11 +7,11 @@ import type { GamePlayers } from 'types/player';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PlayerAvatar } from 'components/player';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle, Title } from 'components/text';
 // Internal

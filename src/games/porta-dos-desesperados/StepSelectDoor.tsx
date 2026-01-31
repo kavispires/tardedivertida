@@ -11,10 +11,10 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { getAnimationClass, removeDuplicates } from 'utils/helpers';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { SendButton } from 'components/buttons';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { Step } from 'components/steps';
 import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 // Internal

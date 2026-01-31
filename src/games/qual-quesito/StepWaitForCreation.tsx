@@ -2,8 +2,8 @@
 import type { GamePlayers, GamePlayer } from 'types/player';
 import type { Item } from 'types/tdr';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal

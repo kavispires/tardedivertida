@@ -22,9 +22,10 @@ import { getAvatarColorById } from 'utils/helpers';
 // Icons
 import { BoxBlankIcon } from 'icons/BoxBlankIcon';
 // Components
-import { PlayerAvatar, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 import { Translate } from 'components/language';
+import { PlayerAvatar } from 'components/player';
 // Internal
 import type { Crime, GuessHistoryEntry, ItemsDict, ScenesDict } from '../utils/types';
 import { ItemCardEmpty } from './ItemCardEmpty';

@@ -6,12 +6,12 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PlayerAvatarName } from 'components/player';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal

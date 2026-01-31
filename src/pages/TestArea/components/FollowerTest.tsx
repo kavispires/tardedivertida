@@ -7,10 +7,11 @@ import type { GamePlayer } from 'types/player';
 // Icons
 import { EarthIcon } from 'icons/EarthIcon';
 // Components
-import { PlayerAvatarName, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
+import { PlayerAvatarName } from 'components/player';
 import { Instruction, Title } from 'components/text';
 // Internal
 import { DecisionButtons } from './DecisionButtons';

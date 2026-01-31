@@ -3,11 +3,11 @@ import type { GamePlayer } from 'types/player';
 // Utils
 import { pluralize } from 'utils/helpers';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PlayerHighlight } from 'components/metrics/PlayerHighlight';
 import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PlayerAvatarName } from 'components/player';
 import { StarPoints } from 'components/points';
 import { FireworksEffect } from 'components/visual-effects/FireworksEffect';
 

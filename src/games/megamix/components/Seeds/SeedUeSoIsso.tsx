@@ -8,9 +8,9 @@ import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatar } from 'components/player';
 import { Title } from 'components/text';
 // Internal
 import type { SeedEntryUeSoIsso } from '../../utils/types';

@@ -1,7 +1,7 @@
 // Components
-import { PlayerAvatarCard } from 'components/avatars';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
+import { PlayerAvatarCard } from 'components/player';
 import { Instruction } from 'components/text';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';

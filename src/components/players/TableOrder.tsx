@@ -9,8 +9,8 @@ import { getAvatarColorById } from 'utils/helpers';
 // Icons
 import { TableIcon } from 'icons/TableIcon';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 // Internal
 import { reorder } from './reorder';
 // Sass

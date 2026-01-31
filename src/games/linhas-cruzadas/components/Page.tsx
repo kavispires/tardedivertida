@@ -7,10 +7,10 @@ import type { GamePlayers } from 'types/player';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { PlayerAvatar, PlayerAvatarName } from 'components/avatars';
 import { CanvasSVG } from 'components/canvas';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
+import { PlayerAvatar, PlayerAvatarName } from 'components/player';
 // Internal
 import type { Slide } from '../utils/types';
 

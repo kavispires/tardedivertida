@@ -12,11 +12,12 @@ import type { UseStep } from 'hooks/useStep';
 import { LodgeIcon } from 'icons/LodgeIcon';
 import { QualitySealIcon } from 'icons/QualitySealIcon';
 // Components
-import { PlayerAvatarName, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TitledContainer } from 'components/layout/TitledContainer';
+import { PlayerAvatarName } from 'components/player';
 import { Step } from 'components/steps';
 import { StepTitle } from 'components/text';
 // Internal

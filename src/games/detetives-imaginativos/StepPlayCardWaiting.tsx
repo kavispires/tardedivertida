@@ -3,10 +3,10 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { TurnOrder } from 'components/players';
 import { StepTitle, RuleInstruction } from 'components/text';
 // Internal

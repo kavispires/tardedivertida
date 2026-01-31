@@ -10,10 +10,10 @@ import type { GamePlayers } from 'types/player';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { DebugOnly } from 'components/debug';
 import { GameStrip } from 'components/general/GameBanner';
 import { Translate } from 'components/language';
+import { PlayerAvatar } from 'components/player';
 import { PlayersStatusBar } from 'components/players/PlayersStatusBar';
 import { RulesModal } from 'components/rules';
 import { useGameInfoContext } from 'components/session/GameInfoContext';

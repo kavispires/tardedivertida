@@ -10,9 +10,10 @@ import { BombIcon, BoxBlankIcon } from 'icons/collection';
 import { WalkieTalkieIcon } from 'icons/WalkieTalkieIcon';
 import { WireIcon } from 'icons/WireIcon';
 // Components
-import { IconAvatar, PlayerAvatarName } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { PlayerAvatarName } from 'components/player';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal

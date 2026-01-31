@@ -11,12 +11,12 @@ import { useMock } from 'hooks/useMock';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { Card } from 'components/cards';
 import { SuspectCard } from 'components/cards/SuspectCard';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatar } from 'components/player';
 import { RuleInstruction } from 'components/text';
 import { SpeechBubble } from 'components/text/SpeechBubble';
 // Internal

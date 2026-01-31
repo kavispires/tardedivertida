@@ -5,7 +5,7 @@ import { Avatar, type AvatarProps, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/player';
 // Internal
-import { PlayerAvatar } from './PlayerAvatar';
+import { PlayerAvatar } from '../player/PlayerAvatar';
 
 type AvatarGroupProps = {
   list: GamePlayer[];

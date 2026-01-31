@@ -8,11 +8,12 @@ import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { FlagIcon } from 'icons/FlagIcon';
 // Components
-import { PlayerAvatar, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
+import { PlayerAvatar } from 'components/player';
 // Internal
 import type { GalleryEntry } from './utils/types';
 import achievementsReference from './utils/achievements';

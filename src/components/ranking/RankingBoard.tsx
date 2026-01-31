@@ -13,8 +13,8 @@ import { useCountdown } from 'hooks/useCountdown';
 // Utils
 import { getAnimationClass, removeDuplicates } from 'utils/helpers';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatar } from 'components/player';
 
 type GainedPointProps = {
   gainedPoint: number;

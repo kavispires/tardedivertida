@@ -9,10 +9,10 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { AVATARS, BOTS_LIST } from 'utils/avatars';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatar } from 'components/player';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { TrackProps } from '../../utils/types';

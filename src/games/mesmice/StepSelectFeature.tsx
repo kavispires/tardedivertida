@@ -12,10 +12,11 @@ import { useMock } from 'hooks/useMock';
 // Icons
 import { XIcon } from 'icons/XIcon';
 // Components
-import { PlayerAvatarName, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Popconfirm } from 'components/general/Popconfirm';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewOr } from 'components/views';

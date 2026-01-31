@@ -1,8 +1,8 @@
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
-import { PlayerAvatarEntry } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatarEntry } from 'components/player';
 import { SlideShowLabel } from 'components/slide-show';
 
 type GalleryWindowCreditsProps = {

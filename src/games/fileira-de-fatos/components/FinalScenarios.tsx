@@ -6,9 +6,9 @@ import type { TextCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { PlayerAvatarStrip } from 'components/avatars';
 import { EmojiCard } from 'components/cards/EmojiCard';
 import { DualTranslate } from 'components/language';
+import { PlayerAvatarStrip } from 'components/player';
 // Internal
 import type { ScaleEntry } from '../utils/types';
 

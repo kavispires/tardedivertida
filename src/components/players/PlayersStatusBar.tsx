@@ -8,8 +8,8 @@ import { useGlobalState } from 'hooks/useGlobalState';
 // Utils
 import { getAnimationClass, sortPlayers } from 'utils/helpers';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatar } from 'components/player';
 // Sass
 import './PlayersStatusBar.scss';
 

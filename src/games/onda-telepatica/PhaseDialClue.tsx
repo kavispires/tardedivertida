@@ -6,9 +6,9 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { TurbanIcon } from 'icons/TurbanIcon';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { PlayerAvatarName } from 'components/player';
 import { TurnOrder } from 'components/players';
 import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';

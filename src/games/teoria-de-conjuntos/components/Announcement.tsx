@@ -13,10 +13,11 @@ import { DiagramIcon } from 'icons/DiagramIcon';
 import { GarbageIcon } from 'icons/GarbageIcon';
 import { SkullIcon } from 'icons/SkullIcon';
 // Components
-import { PlayerAvatarName, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement } from 'components/phases';
+import { PlayerAvatarName } from 'components/player';
 import { Instruction } from 'components/text';
 // Internal
 import { OUTCOME } from '../utils/constants';

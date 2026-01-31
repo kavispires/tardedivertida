@@ -11,12 +11,12 @@ import { useVotingMatch } from 'hooks/useVotingMatch';
 // Utils
 import { getEntryId, parseEntryId } from 'utils/helpers';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { SendButton, TransparentButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatar } from 'components/player';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle, TextHighlight } from 'components/text';
 import { SpeechBubble } from 'components/text/SpeechBubble';

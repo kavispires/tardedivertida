@@ -5,9 +5,9 @@ import type { SlideShowConfig } from 'hooks/useSlideShow';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PlayerAvatarName } from 'components/player';
 import { SlideShowControls } from 'components/slide-show/SlideShowControls';
 import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';

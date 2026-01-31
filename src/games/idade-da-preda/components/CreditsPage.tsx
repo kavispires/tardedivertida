@@ -7,9 +7,10 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Icons
 import { StarIcon } from 'icons/StarIcon';
 // Components
-import { PlayerAvatarEntry, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
+import { PlayerAvatarEntry } from 'components/player';
 import {
   SlideShowBubbleValue,
   SlideShowLabel,

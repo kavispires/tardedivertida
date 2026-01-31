@@ -12,10 +12,10 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 // Utils
 import { getMeanDuration } from 'utils/helpers';
 // Components
-import { PlayerAvatar, PlayerAvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatar, PlayerAvatarName } from 'components/player';
 import { StarPoints } from 'components/points';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';

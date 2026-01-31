@@ -14,10 +14,10 @@ import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { AVATARS } from 'utils/avatars';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { GameStrip } from 'components/general/GameBanner';
 import { HostOnlyButton } from 'components/host';
 import { Translate } from 'components/language';
+import { PlayerAvatar } from 'components/player';
 import { useGameInfoContext } from 'components/session/GameInfoContext';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction } from 'components/text';

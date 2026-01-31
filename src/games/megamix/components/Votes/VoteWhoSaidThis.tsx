@@ -1,10 +1,10 @@
 // Components
-import { PlayerAvatar, PlayerAvatarCard } from 'components/avatars';
+import { PlayerAvatar, PlayerAvatarCard } from 'components/player';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 
-export function VoteWhoSaidThis({ track, playersList, players }: VoteComponentProps) {
+export function VoteWhoSaidThis({ playersList, players }: VoteComponentProps) {
   return (
     <SpacePlayerCheckWrapper
       playersList={playersList}

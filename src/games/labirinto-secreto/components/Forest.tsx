@@ -18,9 +18,9 @@ import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
 import { ArrowIcon } from 'icons/ArrowIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { AvatarGroup } from 'components/avatars/PlayerAvatarGroup';
 import { DivButton } from 'components/buttons/DivButton';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { AvatarGroup } from 'components/players/PlayerAvatarGroup';
 import { ViewIf } from 'components/views';
 // Internal
 import type { MapSegment, PlayerMapping, Tree, TreeId } from '../utils/types';

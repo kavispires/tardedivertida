@@ -1,9 +1,9 @@
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PlayerAvatarName } from 'components/player';
 import { Instruction } from 'components/text';
 
 type GamePremiseRulesProps = {

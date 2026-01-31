@@ -6,10 +6,10 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { MonsterIcon } from 'icons/MonsterIcon';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { PlayerAvatarName } from 'components/player';
 import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';

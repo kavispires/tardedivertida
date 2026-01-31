@@ -6,9 +6,9 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { BarChartIcon } from 'icons/BarChartIcon';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { PlayerAvatarName } from 'components/player';
 import { TurnOrder } from 'components/players';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';

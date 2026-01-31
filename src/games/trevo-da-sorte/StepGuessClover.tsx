@@ -5,10 +5,10 @@ import type { GamePlayer } from 'types/player';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatarName } from 'components/player';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
 import { StepTitle } from 'components/text';

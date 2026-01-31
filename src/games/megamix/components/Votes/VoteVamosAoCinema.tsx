@@ -1,5 +1,5 @@
 // Components
-import { PlayerAvatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/player';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
 import { getMovieTitles } from '../../utils/helpers';

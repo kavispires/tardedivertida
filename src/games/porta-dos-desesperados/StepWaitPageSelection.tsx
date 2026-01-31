@@ -8,8 +8,8 @@ import { getAnimationClass } from 'utils/helpers';
 // Icons
 import { PanicIcon } from 'icons/PanicIcon';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { WaitingRoom } from 'components/players';
 import { Step } from 'components/steps';
 // Internal

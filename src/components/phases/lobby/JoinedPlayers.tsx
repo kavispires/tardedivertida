@@ -7,8 +7,8 @@ import { Badge } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatar } from 'components/player';
 
 type JoinedPlayersProps = {
   players: GamePlayers;

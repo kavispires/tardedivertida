@@ -11,10 +11,10 @@ import { useMock } from 'hooks/useMock';
 import { BombIcon } from 'icons/BombIcon';
 import { WireIcon } from 'icons/WireIcon';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal

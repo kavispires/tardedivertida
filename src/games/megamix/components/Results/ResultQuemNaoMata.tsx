@@ -1,6 +1,6 @@
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { Instruction } from 'components/text';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';

@@ -7,8 +7,8 @@ import type { TextCard } from 'types/tdr';
 // Utils
 import { getAnimation } from 'utils/animations';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { TurnOrder, WaitingRoom } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 

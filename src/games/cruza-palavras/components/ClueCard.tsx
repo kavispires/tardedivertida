@@ -4,7 +4,7 @@ import { CheckCircleFilled, PlusCircleFilled } from '@ant-design/icons';
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
-import { PlayerAvatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/player';
 
 type ClueCardProps = {
   isMatched?: boolean;

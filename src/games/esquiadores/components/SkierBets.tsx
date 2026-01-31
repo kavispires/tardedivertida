@@ -5,10 +5,10 @@ import { InputNumber } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatarName } from 'components/player';
 // Internal
 import type { SubmitBetsPayload } from '../utils/types';
 import { SKIER_BET_TYPES } from '../utils/constants';

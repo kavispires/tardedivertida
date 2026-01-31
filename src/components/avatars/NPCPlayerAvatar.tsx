@@ -4,7 +4,7 @@ import { Avatar } from 'antd';
 // Components
 import { Translate } from 'components/language';
 // Sass
-import './PLayerAvatarName.scss';
+import './NPCPlayerAvatar.scss';
 
 type AvatarNPCProps = {
   /**

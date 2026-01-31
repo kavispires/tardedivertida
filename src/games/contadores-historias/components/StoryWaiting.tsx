@@ -1,10 +1,10 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { TableOrder } from 'components/players/TableOrder';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';

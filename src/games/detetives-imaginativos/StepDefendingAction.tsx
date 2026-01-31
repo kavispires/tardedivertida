@@ -9,9 +9,9 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { getAnimationClass, getRandomItem } from 'utils/helpers';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatarName } from 'components/player';
 import { TurnOrder } from 'components/players';
 import { messageContent } from 'components/pop-up';
 import { StepTitle, RuleInstruction } from 'components/text';

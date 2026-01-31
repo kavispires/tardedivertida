@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/player';
 
 type ListPlayersProps = {
   listPlayers: GamePlayer[];

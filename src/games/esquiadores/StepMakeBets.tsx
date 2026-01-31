@@ -3,10 +3,10 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PlayerAvatarName } from 'components/player';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';

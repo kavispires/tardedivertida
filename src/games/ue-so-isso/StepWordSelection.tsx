@@ -5,9 +5,9 @@ import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
 import type { GamePlayers, GamePlayer } from 'types/player';
 import type { TextCard } from 'types/tdr';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';

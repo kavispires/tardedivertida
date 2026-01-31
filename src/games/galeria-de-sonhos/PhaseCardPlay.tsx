@@ -9,11 +9,11 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { DoorSignIcon } from 'icons/DoorSignIcon';
 import { NightmareIcon } from 'icons/NightmareIcon';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { CardHighlight } from 'components/metrics/CardHighlight';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
+import { PlayerAvatarName } from 'components/player';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal

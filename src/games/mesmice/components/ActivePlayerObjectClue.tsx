@@ -3,8 +3,9 @@ import type { GamePlayer } from 'types/player';
 // Icons
 import { BoxPlusIcon } from 'icons/BoxPlusIcon';
 // Components
-import { PlayerAvatarStrip, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { Card } from 'components/cards';
+import { PlayerAvatarStrip } from 'components/player';
 // Internal
 import type { ObjectCardObj } from '../utils/types';
 import { ObjectCard } from './ObjectCard';

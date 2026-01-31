@@ -6,9 +6,9 @@ import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Icons
 import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { CanvasSVG } from 'components/canvas';
+import { PlayerAvatarName } from 'components/player';
 // Internal
 import type { ArteRuimCard, ArteRuimDrawing } from '../utils/types';
 

@@ -11,11 +11,11 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { FixedMenuButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PlayerAvatarName } from 'components/player';
 import { TurnOrder } from 'components/players';
 import { messageContent } from 'components/pop-up';
 import { PopoverRule } from 'components/rules';

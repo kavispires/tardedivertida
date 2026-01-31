@@ -9,9 +9,10 @@ import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
+// Components
+import { IconAvatar } from 'components/avatars';
 // Internal
 import { PlayerAvatar } from './PlayerAvatar';
-import { IconAvatar } from './IconAvatar';
 // Sass
 import './PlayerAvatarStrip.scss';
 

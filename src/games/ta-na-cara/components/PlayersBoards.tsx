@@ -8,10 +8,11 @@ import { getAvatarColorById, sortPlayers } from 'utils/helpers';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
-import { PlayerAvatarCard, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { ImageCard } from 'components/image-cards';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PlayerAvatarCard } from 'components/player';
 // Internal
 import type { QuestionsDictionary } from '../utils/types';
 // Hook

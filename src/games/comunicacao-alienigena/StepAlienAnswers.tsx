@@ -8,12 +8,12 @@ import { useLoading } from 'hooks/useLoading';
 // Utils
 import { getAnimationClass, pluralize } from 'utils/helpers';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { SendButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatarName } from 'components/player';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';

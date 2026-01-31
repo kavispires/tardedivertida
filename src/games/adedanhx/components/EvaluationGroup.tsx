@@ -14,10 +14,11 @@ import { getAnimationClass } from 'utils/helpers';
 // Icons
 import { NoIcon } from 'icons/NoIcon';
 // Components
-import { PlayerAvatarName, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
+import { PlayerAvatarName } from 'components/player';
 import { TimedTimerBar } from 'components/timers';
 // Internal
 import type { GroupAnswerEvaluationEntry, SubmitRejectedAnswers } from '../utils/types';
@@ -43,7 +44,7 @@ export function EvaluationGroup({
   const [groupId, setGroupId] = useState<string>('');
   const [rejections, setRejections] = useState<BooleanDictionary>({});
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only run on answersGroup.id change
   useEffect(() => {
     if (groupId !== answersGroup.id) {
       setRejections({});

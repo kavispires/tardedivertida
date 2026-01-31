@@ -8,10 +8,10 @@ import type { GamePlayers, GamePlayer } from 'types/player';
 // Utils
 import { getAvatarColorById, sortPlayers } from 'utils/helpers';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { HostNextPhaseButton } from 'components/host';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle, TextHighlight } from 'components/text';
 // Internal

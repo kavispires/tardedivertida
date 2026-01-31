@@ -9,12 +9,12 @@ import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import type { UseStep } from 'hooks/useStep';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { MonsterCard } from 'components/cards/MonsterCard';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PlayerAvatarName } from 'components/player';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal

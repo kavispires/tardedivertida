@@ -11,8 +11,9 @@ import { getContrastColor, getPlayerNamesFromIds } from 'utils/helpers';
 // Icons
 import { GarbageIcon } from 'icons/GarbageIcon';
 // Components
-import { PlayerAvatar, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatar } from 'components/player';
 
 /**
  * A functional component that renders a label for the slide show.

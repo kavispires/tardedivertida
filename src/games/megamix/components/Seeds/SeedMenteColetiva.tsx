@@ -7,10 +7,10 @@ import { useLanguage } from 'hooks/useLanguage';
 // Icons
 import { SixPackIcon } from 'icons/SixPackIcon';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatar } from 'components/player';
 import { Title } from 'components/text';
 // Internal
 import type { SeedEntryMenteColetiva } from '../../utils/types';

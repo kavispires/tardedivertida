@@ -13,8 +13,9 @@ import { ConeIcon } from 'icons/ConeIcon';
 import { CrownIcon } from 'icons/CrownIcon';
 import { XIcon } from 'icons/XIcon';
 // Components
-import { IconAvatar, PlayerAvatarName } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { StarPoints } from 'components/points';
 import {
   SlideShow,

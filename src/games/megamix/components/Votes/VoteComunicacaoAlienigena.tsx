@@ -1,6 +1,6 @@
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
+import { PlayerAvatar } from 'components/player';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';

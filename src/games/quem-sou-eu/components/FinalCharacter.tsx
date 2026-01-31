@@ -5,8 +5,9 @@ import type { GamePlayers } from 'types/player';
 import { NoIcon } from 'icons/NoIcon';
 import { YesIcon } from 'icons/YesIcon';
 // Components
-import { PlayerAvatarStrip, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { GlyphCard } from 'components/cards/GlyphCard';
+import { PlayerAvatarStrip } from 'components/player';
 // Internal
 import type { FinalCharacterEntry } from '../utils/types';
 import { parseSelectedGlyphs } from '../utils/helpers';

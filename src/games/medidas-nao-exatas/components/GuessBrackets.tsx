@@ -4,7 +4,7 @@ import type { GamePlayers } from 'types/player';
 // Utils
 import { removeDuplicates } from 'utils/helpers';
 // Components
-import { PlayerAvatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/player';
 // Internal
 import type { Guess } from '../utils/types';
 import { BracketPointsBox } from './BracketPointsBox';

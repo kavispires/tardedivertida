@@ -4,10 +4,10 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useMock } from 'hooks/useMock';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { SendButton } from 'components/buttons';
 import { DevButton } from 'components/debug/DevButton';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';

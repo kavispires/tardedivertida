@@ -6,7 +6,7 @@ import type { GamePlayer } from 'types/player';
 // Utils
 import { getAnimationClass, getAvatarColorById } from 'utils/helpers';
 // Components
-import { PlayerAvatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/player';
 
 type RibbonProps = {
   player: GamePlayer;

@@ -8,7 +8,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
+import { PlayerAvatarName } from 'components/player';
 // Internal
 import type { Grid } from '../utils/types';
 

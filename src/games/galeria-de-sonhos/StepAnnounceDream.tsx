@@ -12,11 +12,11 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 import { getAnimation } from 'utils/animations';
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { HostNextPhaseButton } from 'components/host';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { TurnOrder } from 'components/players';
 import { Step } from 'components/steps';
 // Internal

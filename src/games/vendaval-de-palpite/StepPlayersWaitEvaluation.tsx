@@ -3,8 +3,8 @@ import { Alert } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Components
-import { PlayerAvatar, PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatar, PlayerAvatarName } from 'components/player';
 import { Step } from 'components/steps';
 import { Instruction, StepTitle } from 'components/text';
 // Internal

@@ -3,12 +3,12 @@ import { random } from 'lodash';
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
-import { PlayerAvatarCard, PlayerAvatarName, PlayerAvatarStrip } from 'components/avatars';
 import { ClubberAvatar } from 'components/avatars/ClubberAvatar';
 import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
 import { SuperHeroAvatar } from 'components/avatars/SuperHeroAvatar';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatarCard, PlayerAvatarName, PlayerAvatarStrip } from 'components/player';
 import { Instruction, Title } from 'components/text';
 // Internal
 import { DecisionButtons } from './DecisionButtons';

@@ -3,8 +3,8 @@ import type { CrimesHediondosCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { CrimeItemCard } from 'components/cards/CrimeItemCard';
+import { PlayerAvatar } from 'components/player';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';

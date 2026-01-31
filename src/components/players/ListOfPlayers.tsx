@@ -4,8 +4,8 @@ import { Tooltip } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Components
-import { PlayerAvatar, PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatar, PlayerAvatarName } from 'components/player';
 
 type ListOfPlayersProps = {
   /**

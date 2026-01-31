@@ -7,8 +7,8 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 // Internal
 import { reorder } from './reorder';
 // Sass

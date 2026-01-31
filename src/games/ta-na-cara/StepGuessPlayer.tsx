@@ -5,10 +5,10 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { pluralize } from 'utils/helpers';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PlayerAvatarName } from 'components/player';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, StepTitle } from 'components/text';

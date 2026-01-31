@@ -2,7 +2,7 @@ import moment from 'moment';
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
-import { PlayerAvatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/player';
 // Internal
 import { CommentText } from './CommentText';
 

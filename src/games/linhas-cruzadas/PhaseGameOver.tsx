@@ -7,10 +7,10 @@ import { getAvatarColorById } from 'utils/helpers';
 // Icons
 import { TheEndIcon } from 'icons/TheEndIcon';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { CanvasSVG } from 'components/canvas';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
+import { PlayerAvatarName } from 'components/player';
 // Internal
 import type { AlbumEntry } from './utils/types';
 import achievementsReference from './utils/achievements';

@@ -7,8 +7,8 @@ import type { GamePlayers } from 'types/player';
 // Utils
 import { getAnimationClass, getAvatarColorById, sortPlayers } from 'utils/helpers';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatar } from 'components/player';
 // Internal
 import type { CardInHand } from '../utils/types';
 

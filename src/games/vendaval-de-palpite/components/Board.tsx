@@ -6,8 +6,9 @@ import type { GamePlayers } from 'types/player';
 // Icons
 import { QuestionIcon } from 'icons/QuestionIcon';
 // Components
-import { PlayerAvatarName, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 // Internal
 import type { BoardObject, Clue, Clues } from '../utils/types';
 

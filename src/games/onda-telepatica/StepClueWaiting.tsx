@@ -2,9 +2,9 @@
 import type { GamePlayer, GamePlayers } from 'types/player';
 import type { SpectrumCard } from 'types/tdr';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatarName } from 'components/player';
 import { WaitingRoom } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, TextHighlight } from 'components/text';

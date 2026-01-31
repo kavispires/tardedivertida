@@ -8,9 +8,9 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatarName } from 'components/player';
 import { PopoverRule } from 'components/rules';
 import { SlideShow } from 'components/slide-show';
 import { Step } from 'components/steps';

@@ -7,11 +7,12 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import type { UseStep } from 'hooks/useStep';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
-import { PlayerAvatar, PlayerAvatarName, NPCPlayerAvatar } from 'components/avatars';
+import { NPCPlayerAvatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { ImageBlurButton, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatar, PlayerAvatarName } from 'components/player';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { StepTitle } from 'components/text';

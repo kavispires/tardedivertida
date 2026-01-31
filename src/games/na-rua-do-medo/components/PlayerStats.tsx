@@ -6,10 +6,11 @@ import { QuestionIcon } from 'icons/QuestionIcon';
 import { TrickOrTreatIcon } from 'icons/TrickOrTreatIcon';
 import { WalkIcon } from 'icons/WalkIcon';
 // Components
-import { PlayerAvatarStrip, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { PlayerAvatarStrip } from 'components/player';
 // Internal
 import type { Decision, StreetCard } from '../utils/types';
 

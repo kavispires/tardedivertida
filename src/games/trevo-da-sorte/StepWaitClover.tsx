@@ -1,8 +1,8 @@
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { Step } from 'components/steps';
 import { Instruction, StepTitle } from 'components/text';
 // Internal

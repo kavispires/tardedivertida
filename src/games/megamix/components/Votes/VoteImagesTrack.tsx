@@ -1,8 +1,8 @@
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
+import { PlayerAvatar } from 'components/player';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';

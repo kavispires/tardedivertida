@@ -2,10 +2,10 @@
 import type { GamePlayer } from 'types/player';
 import type { MonsterImage } from 'types/tdr';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { DrawingCanvas } from 'components/canvas';
 import { MonsterCard } from 'components/cards/MonsterCard';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { RuleInstruction, Title } from 'components/text';
 import { TimerBar } from 'components/timers';
 import { ViewOr } from 'components/views';

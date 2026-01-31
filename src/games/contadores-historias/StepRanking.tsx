@@ -7,11 +7,11 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 import { useLanguage } from 'hooks/useLanguage';
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PlayerAvatarName } from 'components/player';
 import { StepRankingWrapper } from 'components/ranking';
 import { PopoverRule } from 'components/rules';
 import { RuleInstruction } from 'components/text';

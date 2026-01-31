@@ -5,10 +5,10 @@ import { Button, type ButtonProps } from 'antd';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { SpreadsheetCell, SpreadsheetGrid } from 'components/general/SpreadsheetGrid';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatar } from 'components/player';
 import { RuleInstruction } from 'components/text';
 import { SpeechBubble } from 'components/text/SpeechBubble';
 // Internal

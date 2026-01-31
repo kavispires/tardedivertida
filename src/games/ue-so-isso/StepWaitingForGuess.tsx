@@ -5,10 +5,10 @@ import type { GamePlayer } from 'types/player';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PlayerAvatarName } from 'components/player';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 import { TimerBar } from 'components/timers';

@@ -11,12 +11,12 @@ import { useCache } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { SpeakButton } from 'components/audio/SpeakButton';
-import { PlayerAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { DivButton } from 'components/buttons/DivButton';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Popconfirm } from 'components/general/Popconfirm';
 import { DualTranslate } from 'components/language';
+import { PlayerAvatar } from 'components/player';
 // Internal
 import type { Concept } from '../utils/types';
 import { useSpriteWidth } from '../utils/useSpriteWidth';

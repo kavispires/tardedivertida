@@ -12,11 +12,11 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { SendButton } from 'components/buttons';
 import { DoorFrame } from 'components/game/DoorFrame';
 import { ImageBlurButton, ImageCard, ImageCardBack } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { PlayerAvatar } from 'components/player';
 // Internal
 import { TRAPS } from '../utils/constants';
 import type { SubmitDoorPayload } from '../utils/types';

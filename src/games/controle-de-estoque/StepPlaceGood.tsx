@@ -11,9 +11,9 @@ import { useLoading } from 'hooks/useLoading';
 import { BossIdeaIcon } from 'icons/BossIdeaIcon';
 import { MysteryBoxIcon } from 'icons/MysteryBoxIcon';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
 import { DualTranslate, Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 // Internal

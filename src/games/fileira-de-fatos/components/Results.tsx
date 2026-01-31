@@ -12,9 +12,10 @@ import { getAvatarColorById, sortPlayers } from 'utils/helpers';
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { StarIcon } from 'icons/StarIcon';
 // Components
-import { PlayerAvatar, PlayerAvatarName, PlayerAvatarStrip, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatar, PlayerAvatarName, PlayerAvatarStrip } from 'components/player';
 
 type ResultsProps = {
   players: GamePlayers;

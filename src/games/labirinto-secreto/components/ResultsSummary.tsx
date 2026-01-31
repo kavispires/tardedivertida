@@ -8,10 +8,11 @@ import { FlagIcon } from 'icons/FlagIcon';
 import { MapIcon } from 'icons/MapIcon';
 import { NoIcon } from 'icons/NoIcon';
 // Components
-import { PlayerAvatar, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { TreeCard } from 'components/cards/TreeCard';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PlayerAvatar } from 'components/player';
 // Internal
 import type { MapSegment, Tree } from '../utils/types';
 import { TreeImage } from './TreeImage';

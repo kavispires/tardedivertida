@@ -2,7 +2,7 @@ import { HouseCard } from 'games/na-rua-do-medo/components/HouseCard';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
-import { PlayerAvatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/player';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';

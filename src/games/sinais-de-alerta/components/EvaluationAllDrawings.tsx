@@ -8,10 +8,11 @@ import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Icons
 import { CheckMarkIcon } from 'icons/CheckMarkIcon';
 // Components
-import { PlayerAvatarName, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
+import { PlayerAvatarName } from 'components/player';
 // Internal
 import type { DrawingEntry } from '../utils/types';
 import { WarningDrawing } from './WarningDrawing';

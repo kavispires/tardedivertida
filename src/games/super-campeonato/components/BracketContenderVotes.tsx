@@ -3,7 +3,7 @@ import { Avatar } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Components
-import { PlayerAvatar } from 'components/avatars';
+import { PlayerAvatar } from 'components/player';
 // Internal
 import type { Bracket } from '../utils/type';
 

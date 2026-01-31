@@ -16,8 +16,9 @@ import { BoxPlusIcon } from 'icons/BoxPlusIcon';
 import { CrownIcon } from 'icons/CrownIcon';
 import { XIcon } from 'icons/XIcon';
 // Components
-import { IconAvatar, PlayerAvatarCard } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatarCard } from 'components/player';
 import { StarPoints } from 'components/points';
 import { SlideShow, SlideShowBubbleValue, SlideShowLabel, SlideShowPlayersList } from 'components/slide-show';
 import { Step } from 'components/steps';

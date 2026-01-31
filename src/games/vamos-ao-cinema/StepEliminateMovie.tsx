@@ -7,8 +7,9 @@ import { getAnimationClass } from 'utils/helpers';
 import { StarIcon } from 'icons/StarIcon';
 import { TomatoIcon } from 'icons/TomatoIcon';
 // Components
-import { PlayerAvatarName, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { TurnOrder } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';

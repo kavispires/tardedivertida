@@ -7,11 +7,11 @@ import { getAvatarColorById, sortPlayers } from 'utils/helpers';
 // Icons
 import { FlagIcon } from 'icons/FlagIcon';
 // Components
-import { PlayerAvatarStrip } from 'components/avatars';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
+import { PlayerAvatarStrip } from 'components/player';
 // Internal
 import type { MapSegment, Tree } from './utils/types';
 import { achievementsReference } from './utils/achievements';

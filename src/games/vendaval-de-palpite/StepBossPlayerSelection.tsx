@@ -6,9 +6,9 @@ import type { GamePlayers } from 'types/player';
 import { useHost } from 'hooks/useHost';
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { PlayerAvatarCard } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { PlayerAvatarCard } from 'components/player';
 import { Step } from 'components/steps';
 import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 

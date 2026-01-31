@@ -10,12 +10,12 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { PlayerSpace } from 'components/avatars';
 import { SendButton, TransparentButton } from 'components/buttons';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PlayerSpace } from 'components/player';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle, TextHighlight } from 'components/text';
 // Internal

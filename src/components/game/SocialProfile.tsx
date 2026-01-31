@@ -4,8 +4,8 @@ import type { ReactNode } from 'react';
 import { CheckCircleFilled, DislikeFilled, LikeFilled } from '@ant-design/icons';
 import { Button } from 'antd';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatar } from 'components/player';
 // Sass
 import './SocialProfile.scss';
 

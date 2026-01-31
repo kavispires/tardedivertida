@@ -4,9 +4,9 @@ import { Space, Table } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 // Internal
 import type { Offer, PhaseBasicState, RequestHistoryEntry } from '../utils/types';
 import { ItemResolution } from './ItemResolution';

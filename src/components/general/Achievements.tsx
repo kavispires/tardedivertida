@@ -10,9 +10,9 @@ import type { GamePlayers } from 'types/player';
 import { getAnimation } from 'utils/animations';
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
+import { PlayerAvatar } from 'components/player';
 import { Instruction } from 'components/text';
 // Internal
 import { Medal } from './Medal';

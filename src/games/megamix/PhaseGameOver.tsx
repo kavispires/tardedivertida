@@ -7,11 +7,11 @@ import { AVATARS } from 'utils/avatars';
 // Icons
 import { CrownIcon } from 'icons/CrownIcon';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { DualTranslate, Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
+import { PlayerAvatar } from 'components/player';
 import { Instruction } from 'components/text';
 // Internal
 import { achievementsReference } from './utils/achievements';

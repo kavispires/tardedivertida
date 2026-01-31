@@ -11,12 +11,13 @@ import { CrownIcon } from 'icons/CrownIcon';
 import { SecurityIcon } from 'icons/SecurityIcon';
 import { TraitorIcon } from 'icons/TraitorIcon';
 // Components
-import { IconAvatar, PlayerAvatarCard } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
+import { PlayerAvatarCard } from 'components/player';
 import { Instruction } from 'components/text/Instruction';
 import { ConfettiEffect } from 'components/visual-effects/ConfettiEffect';
 // Internal

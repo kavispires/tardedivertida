@@ -10,8 +10,9 @@ import { AVATARS } from 'utils/avatars';
 // Icons
 import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
-import { PlayerAvatar, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
+import { PlayerAvatar } from 'components/player';
 // Internal
 import type { CardEntry } from '../utils/types';
 

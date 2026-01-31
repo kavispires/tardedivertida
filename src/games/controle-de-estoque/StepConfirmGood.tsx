@@ -9,9 +9,9 @@ import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { DualTranslate, Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { Step } from 'components/steps';
 import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 // Internal

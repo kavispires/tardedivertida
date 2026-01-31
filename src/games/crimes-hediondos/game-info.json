@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "H",
   "gameName": "crimes-hediondos",
-  "version": "3.0.14",
+  "version": "3.0.15",
   "release": "stable",
   "available": true,
   "title": {

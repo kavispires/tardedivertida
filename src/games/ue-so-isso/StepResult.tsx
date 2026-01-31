@@ -3,12 +3,12 @@ import type { GamePlayer } from 'types/player';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PlayerAvatarName } from 'components/player';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle, TextHighlight, Title } from 'components/text';
 // Internal

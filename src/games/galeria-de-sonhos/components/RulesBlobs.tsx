@@ -2,13 +2,13 @@
 import type { GameRound } from 'types/game';
 import type { GamePlayer } from 'types/player';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';
 import { BotHighlight } from 'components/metrics/BotHighlight';
 import { CardHighlight } from 'components/metrics/CardHighlight';
 import { PlayerHighlight } from 'components/metrics/PlayerHighlight';
 import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PlayerAvatarName } from 'components/player';
 import { Instruction, RuleInstruction } from 'components/text';
 
 type WordSelectionRulesProps = {

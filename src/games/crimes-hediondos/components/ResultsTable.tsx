@@ -11,7 +11,8 @@ import { BoxThreeIcon } from 'icons/BoxThreeIcon';
 import { BoxTwoIcon } from 'icons/BoxTwoIcon';
 import { BoxXIcon } from 'icons/BoxXIcon';
 // Components
-import { PlayerAvatarName, PlayerAvatar, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
+import { PlayerAvatarName, PlayerAvatar } from 'components/player';
 // Internal
 import type { Results } from '../utils/types';
 import { GUESS_STATUS } from '../utils/constants';

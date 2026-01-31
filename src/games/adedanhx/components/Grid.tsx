@@ -15,9 +15,10 @@ import { NoIcon } from 'icons/NoIcon';
 import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
 import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 // Components
-import { PlayerAvatar, PlayerAvatarName, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PlayerAvatar, PlayerAvatarName } from 'components/player';
 // Internal
 import type {
   AdedanhxGrid,

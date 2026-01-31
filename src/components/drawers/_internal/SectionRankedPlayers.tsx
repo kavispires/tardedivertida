@@ -10,8 +10,8 @@ import { useUser } from 'hooks/useUser';
 // Utils
 import { AVATARS } from 'utils/avatars';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatar } from 'components/player';
 
 type SectionRankedPlayersProps = {
   players: GamePlayers;

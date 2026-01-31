@@ -6,9 +6,9 @@ import type { GamePlayers } from 'types/player';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { SuspectCard } from 'components/cards/SuspectCard';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatar } from 'components/player';
 // Internal
 import type { ActingRole } from '../utils/types';
 

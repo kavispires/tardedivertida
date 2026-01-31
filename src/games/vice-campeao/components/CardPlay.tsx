@@ -8,8 +8,9 @@ import { getAnimationClass } from 'utils/helpers';
 import { ArrowIcon } from 'icons/ArrowIcon';
 import { NoIcon } from 'icons/NoIcon';
 // Components
-import { PlayerAvatarCard, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatarCard } from 'components/player';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { RunActivity, RunnerCard } from '../utils/types';

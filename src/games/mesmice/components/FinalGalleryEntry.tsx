@@ -4,8 +4,9 @@ import type { GamePlayers } from 'types/player';
 import { BoxEqualIcon } from 'icons/BoxEqualIcon';
 import { BoxPlusIcon } from 'icons/BoxPlusIcon';
 // Components
-import { PlayerAvatarStrip, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { Card } from 'components/cards';
+import { PlayerAvatarStrip } from 'components/player';
 // Internal
 import type { ExtendedObjectFeatureCard, MesmiceGalleryEntry } from '../utils/types';
 import { ObjectCard } from './ObjectCard';

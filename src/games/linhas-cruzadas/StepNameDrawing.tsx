@@ -8,11 +8,11 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { SendButton } from 'components/buttons';
 import { CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatarName } from 'components/player';
 import { Step } from 'components/steps';
 import { RuleInstruction, Title } from 'components/text';
 // Internal

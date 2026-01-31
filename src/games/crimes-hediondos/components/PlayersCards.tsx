@@ -7,8 +7,9 @@ import { sortPlayers } from 'utils/helpers';
 import { KnifeIcon } from 'icons/KnifeIcon';
 import { LockIcon } from 'icons/LockIcon';
 // Components
-import { PlayerAvatarCard, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
+import { PlayerAvatarCard } from 'components/player';
 // Internal
 import type { History } from '../utils/types';
 import { isHistoryLocked } from '../utils/helpers';

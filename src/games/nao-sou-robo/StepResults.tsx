@@ -11,11 +11,12 @@ import type { UseStep } from 'hooks/useStep';
 import { RobotIcon } from 'icons/RobotIcon';
 import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 // Components
-import { PlayerAvatar, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
+import { PlayerAvatar } from 'components/player';
 import { Step, type StepProps } from 'components/steps';
 import { StepTitle } from 'components/text';
 // Internal

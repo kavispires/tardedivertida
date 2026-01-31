@@ -2,10 +2,10 @@ import moment from 'moment';
 // Ant Design Resources
 import { Button } from 'antd';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatar } from 'components/player';
 import { Instruction, Title } from 'components/text';
 // Internal
 import type { SeedEntryContadoresHistorias } from '../../utils/types';

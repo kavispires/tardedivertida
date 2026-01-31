@@ -9,7 +9,8 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { IconAvatar, PlayerAvatar, type PlayerAvatarProps } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
+import { PlayerAvatar, type PlayerAvatarProps } from 'components/player';
 // Sass
 import './PlayerCounts.scss';
 

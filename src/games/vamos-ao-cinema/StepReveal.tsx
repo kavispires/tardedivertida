@@ -8,13 +8,13 @@ import { useLoading } from 'hooks/useLoading';
 // Utils
 import { getAnimationClass, pluralize } from 'utils/helpers';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { HostNextPhaseButton } from 'components/host';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PlayerAvatarName } from 'components/player';
 import { TurnOrder } from 'components/players';
 import { ListOfPlayers } from 'components/players/ListOfPlayers';
 import { Step, type StepProps } from 'components/steps';

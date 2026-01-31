@@ -2,8 +2,8 @@
 import type { GameRound } from 'types/game';
 import type { GamePlayers } from 'types/player';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 // Internal
 import type { Summary } from '../utils/types';
 

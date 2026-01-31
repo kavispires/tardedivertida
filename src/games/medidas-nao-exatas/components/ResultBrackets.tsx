@@ -11,8 +11,8 @@ import { BoxXIcon } from 'icons/collection';
 import { XIcon } from 'icons/XIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { PlayerAvatarTooltip } from 'components/avatars/PlayerAvatarTooltip';
 import { Card } from 'components/cards';
+import { PlayerAvatarTooltip } from 'components/player';
 // Internal
 import type { GalleryBracket } from '../utils/types';
 import { BracketPointsBox } from './BracketPointsBox';

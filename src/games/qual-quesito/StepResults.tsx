@@ -7,11 +7,12 @@ import type { Item } from 'types/tdr';
 // Icons
 import { SpeechBubbleAcceptedIcon, SpeechBubbleDeclinedIcon } from 'icons/collection';
 // Components
-import { IconAvatar, PlayerAvatarName } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons/TimedButton';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { PlayerAvatarName } from 'components/player';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal

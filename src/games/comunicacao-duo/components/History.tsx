@@ -6,8 +6,8 @@ import { Collapse, Table, type TableProps, type CollapseProps, Flex } from 'antd
 import type { GamePlayers } from 'types/player';
 // Components
 import { AlienText } from 'components/alien/AlienText';
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PlayerAvatarName } from 'components/player';
 import { Instruction } from 'components/text';
 // Internal
 import type { DeckEntry, HistoryEntry } from '../utils/types';

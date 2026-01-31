@@ -4,9 +4,9 @@ import { Avatar } from 'antd';
 import type { MostVotesResult } from 'types/game';
 import type { GamePlayers } from 'types/player';
 // Components
-import { PlayerAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
+import { PlayerAvatar } from 'components/player';
 // Internal
 import type { ExtendedObjectFeatureCard } from '../utils/types';
 import { ObjectFeature } from './ObjectFeature';

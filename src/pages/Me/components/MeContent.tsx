@@ -20,9 +20,10 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 import { UserStatsIcon } from 'icons/UserStatsIcon';
 // Components
 import { LogoutButton } from 'components/auth/LogoutButton';
-import { PlayerAvatar, IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars';
 import { LanguageSwitch, Translate } from 'components/language';
 import { PageLayout } from 'components/layout/PageLayout';
+import { PlayerAvatar } from 'components/player';
 import { Title } from 'components/text';
 // Internal
 import { availableGamesCount, durationToHours, playableGames, timestampToDate } from '../utils';

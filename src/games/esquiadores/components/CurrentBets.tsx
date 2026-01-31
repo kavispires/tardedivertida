@@ -5,9 +5,9 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 // Icons
 import { LodgeIcon } from 'icons/LodgeIcon';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
+import { PlayerAvatarName } from 'components/player';
 // Internal
 import type { Lodge } from '../utils/types';
 import { LODGE_COLORS } from '../utils/constants';

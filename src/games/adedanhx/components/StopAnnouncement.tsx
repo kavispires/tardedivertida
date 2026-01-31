@@ -3,10 +3,10 @@ import type { GamePlayer } from 'types/player';
 // Icons
 import { StopIcon } from 'icons/StopIcon';
 // Components
-import { PlayerAvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { PhaseAnnouncement } from 'components/phases';
+import { PlayerAvatarName } from 'components/player';
 import { Instruction } from 'components/text';
 import { TimedTimerBar } from 'components/timers';
 
