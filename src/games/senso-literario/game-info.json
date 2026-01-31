@@ -2,8 +2,8 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "senso-literario",
-  "version": "0.0.5",
-  "release": "dev",
+  "version": "0.9.1",
+  "release": "beta",
   "available": true,
   "title": {
     "pt": "Senso Literário",
