@@ -59,6 +59,7 @@ export const gameSessions: GameSessionMap = {
   [GAME_COLLECTION.QUEM_NAO_MATA]: lazy(() => import('games/quem-nao-mata/SessionQuemNaoMata')),
   [GAME_COLLECTION.QUEM_SOU_EU]: lazy(() => import('games/quem-sou-eu/SessionQuemSouEu')),
   [GAME_COLLECTION.RETRATO_FALADO]: lazy(() => import('games/retrato-falado/SessionRetratoFalado')),
+  [GAME_COLLECTION.SENSO_LITERARIO]: lazy(() => import('games/senso-literario/SessionSensoLiterario')),
   [GAME_COLLECTION.SINAIS_DE_ALERTA]: lazy(() => import('games/sinais-de-alerta/SessionSinaisDeAlerta')),
   [GAME_COLLECTION.SONHOS_PESADELOS]: lazy(() => import('games/sonhos-pesadelos/SessionSonhosPesadelos')),
   [GAME_COLLECTION.SUPER_CAMPEONATO]: lazy(() => import('games/super-campeonato/SessionSuperCampeonato')),

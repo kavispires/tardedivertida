@@ -298,6 +298,7 @@ export const GAME_COLLECTION = {
   QUEM_NAO_MATA: 'quem-nao-mata',
   QUEM_SOU_EU: 'quem-sou-eu',
   RETRATO_FALADO: 'retrato-falado',
+  SENSO_LITERARIO: 'senso-literario',
   SINAIS_DE_ALERTA: 'sinais-de-alerta',
   SONHINHO_BOM: 'sonhinho-bom', // upcoming
   SONHOS_PESADELOS: 'sonhos-pesadelos',

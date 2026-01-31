@@ -229,6 +229,7 @@ export const collectionByGame: Record<string, string[]> = {
   ],
   'quem-sou-eu': ['PlayerIconsIcon', 'FilterIcon', 'MirrorIcon'],
   'retrato-falado': ['MonsterIcon', 'ChoiceIcon', 'QualitySealIcon', 'SketchIcon'],
+  'senso-literario': ['BooksIcon', 'BookPatternIcon'],
   'sinais-de-alerta': ['WarningSignIcon'],
   'super-campeonato': ['BoxingGlovesIcon', 'GamblingChipIcon', 'TournamentIcon'],
   'teoria-de-conjuntos': ['ApplauseIcon', 'DiagramIcon', 'SkullIcon', 'CircleIcon'],

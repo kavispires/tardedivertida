@@ -32,7 +32,7 @@ type ListOfPlayersProps = {
    * Flag indicating if only the avatars should be listed
    */
   avatarsOnly?: boolean;
-};
+} & React.HTMLAttributes<HTMLSpanElement>;
 
 /**
  * Renders player names from a list of playerIds
@@ -46,6 +46,7 @@ export function ListOfPlayers({
   prefix,
   className,
   avatarsOnly,
+  ...rest
 }: ListOfPlayersProps) {
   if (namesOnly) {
     return <span className={className}>{list.map((playerId) => players[playerId].name).join(',')}</span>;
@@ -53,7 +54,10 @@ export function ListOfPlayers({
 
   if (avatarsOnly) {
     return (
-      <span className={className}>
+      <span
+        className={className}
+        {...rest}
+      >
         {list.map((playerId) => (
           <Tooltip
             key={playerId}
@@ -67,7 +71,10 @@ export function ListOfPlayers({
   }
 
   return (
-    <span className={className}>
+    <span
+      className={className}
+      {...rest}
+    >
       {list.map((playerId, index) => (
         <Fragment key={`${prefix}-${playerId}`}>
           <PlayerAvatarName player={players[playerId]} />

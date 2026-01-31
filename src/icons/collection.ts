@@ -26,6 +26,7 @@ export * from './BarChartIcon';
 export * from './BellIcon';
 export * from './BikiniModelIcon';
 export * from './BombIcon';
+export * from './BookshelfIcon';
 export * from './BooksIcon';
 export * from './BossIcon';
 export * from './BossIdeaIcon';

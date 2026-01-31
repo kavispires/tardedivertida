@@ -27,6 +27,7 @@ import PORTA_DOS_DESESPERADOS from 'games/porta-dos-desesperados/utils/achieveme
 import QUAL_QUESITO from 'games/qual-quesito/utils/achievements';
 import QUEM_SOU_EU from 'games/quem-sou-eu/utils/achievements';
 import RETRATO_FALADO from 'games/retrato-falado/utils/achievements';
+import SENSO_LITERARIO from 'games/senso-literario/utils/achievements';
 import SINAIS_DE_ALERTA from 'games/sinais-de-alerta/utils/achievements';
 import SUPER_CAMPEONATO from 'games/super-campeonato/utils/achievements';
 import TESTE_DE_ELENCO from 'games/teste-de-elenco/utils/achievements';
@@ -83,6 +84,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'quem-sou-eu': QUEM_SOU_EU,
   'qual-quesito': QUAL_QUESITO,
   'retrato-falado': RETRATO_FALADO,
+  'senso-literario': SENSO_LITERARIO,
   'sinais-de-alerta': SINAIS_DE_ALERTA,
   'sonhos-pesadelos': null,
   'super-campeonato': SUPER_CAMPEONATO,
