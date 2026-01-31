@@ -7,7 +7,7 @@ When suggesting code:
 - Prefer `Dictionary` type from common types over Record<string, T> for object types
 - Use functional React components with hooks, not class components
 - Follow existing patterns for Firebase data operations
-- Include JSDoc comments for functions with complex logic but do not include types nor examples
+- Include JSDoc comments for functions with complex logic but exclude types and exclude examples
 - For component props, add comments for each prop
 - Use Ant Design components for UI elements
 - Consider performance with useMemo/useCallback where appropriate

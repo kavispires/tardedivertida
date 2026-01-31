@@ -1,0 +1,168 @@
+// Constants
+import { SENSO_LITERARIO_PHASES, TOTAL_ROUNDS } from './constants';
+import { GAME_NAMES } from '../../utils/constants';
+// Types
+import type { FirebaseStateData, FirebaseStoreData } from './types';
+// Utils
+import utils from '../../utils';
+// Internal
+import { buildDeck, buildRanking, buildSequence, getAchievements } from './helpers';
+
+/**
+ * Setup
+ * Build the card deck
+ * Resets previous changes to the store
+ */
+export const prepareSetupPhase = async (
+  _store: FirebaseStoreData,
+  _state: FirebaseStateData,
+  players: Players,
+): Promise<SaveGamePayload> => {
+  // Build deck
+  const deck = buildDeck();
+
+  const achievements = utils.achievements.setup(players, {
+    childrens: 0,
+    romance: 0,
+    technical: 0,
+    blue: 0,
+    yellow: 0,
+    red: 0,
+    A: 0,
+    B: 0,
+    C: 0,
+    D: 0,
+    E: 0,
+    noMatches: 0,
+    fullMatches: 0,
+  });
+
+  const round: Round = {
+    current: 0,
+    total: TOTAL_ROUNDS,
+    forceLastRound: false,
+  };
+
+  // Save
+  return {
+    update: {
+      store: {
+        deck,
+        achievements,
+        gallery: [],
+      },
+      state: {
+        phase: SENSO_LITERARIO_PHASES.SETUP,
+        players,
+        round,
+      },
+    },
+  };
+};
+
+/**
+ * Prepare pattern creation phase
+ */
+export const preparePatternCreationPhase = async (
+  store: FirebaseStoreData,
+  state: FirebaseStateData,
+  players: Players,
+): Promise<SaveGamePayload> => {
+  const round = utils.helpers.increaseRound(state.round);
+
+  // Unready players
+  utils.players.unReadyPlayers(players);
+  utils.players.removePropertiesFromPlayers(players, ['patternId']);
+
+  // Build sequence
+  const sequence = buildSequence(store.deck, round.current);
+
+  // Save
+  return {
+    update: {
+      state: {
+        phase: SENSO_LITERARIO_PHASES.PATTERN_CREATION,
+        players,
+        round,
+        sequence,
+      },
+      stateCleanup: ['gallery', 'ranking'],
+    },
+  };
+};
+
+/**
+ * Prepare result phase
+ */
+export const prepareResultPhase = async (
+  store: FirebaseStoreData,
+  state: FirebaseStateData,
+  players: Players,
+): Promise<SaveGamePayload> => {
+  // Unready players
+  utils.players.unReadyPlayers(players);
+
+  const { gallery, ranking } = buildRanking(store, players, state.sequence);
+
+  // Save
+  return {
+    update: {
+      store: {
+        gallery: [...(store.gallery || []), gallery],
+        achievements: store.achievements,
+      },
+      state: {
+        phase: SENSO_LITERARIO_PHASES.RESULT,
+        players,
+        gallery,
+        ranking,
+      },
+    },
+  };
+};
+
+/**
+ * Prepare game over phase
+ */
+export const prepareGameOverPhase = async (
+  gameId: GameId,
+  store: FirebaseStoreData,
+  state: FirebaseStateData,
+  players: Players,
+): Promise<SaveGamePayload> => {
+  const winners = utils.players.determineWinners(players);
+
+  await utils.firestore.markGameAsComplete(gameId);
+
+  const achievements = getAchievements(store);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.SENSO_LITERARIO,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners,
+    achievements,
+    language: store.language,
+  });
+
+  utils.players.cleanup(players, []);
+
+  // Save
+  return {
+    update: {
+      storeCleanup: utils.firestore.cleanupStore(store, []),
+    },
+    set: {
+      state: {
+        phase: SENSO_LITERARIO_PHASES.GAME_OVER,
+        players,
+        round: state.round,
+        gameEndedAt: Date.now(),
+        winners,
+        achievements,
+        gallery: store.gallery,
+      },
+    },
+  };
+};

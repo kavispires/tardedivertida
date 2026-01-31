@@ -35,6 +35,7 @@ import * as retratoFaladoEngine from '../engine/retrato-falado';
 import * as qualQuesitoEngine from '../engine/qual-quesito';
 import * as quemNaoMataEngine from '../engine/quem-nao-mata';
 import * as quemSouEuEngine from '../engine/quem-sou-eu';
+import * as sensoLiterarioEngine from '../engine/senso-literario';
 import * as sinaisDeAlertaEngine from '../engine/sinais-de-alerta';
 import * as sonhosPesadelosEngine from '../engine/sonhos-pesadelos';
 import * as superCampeonatoEngine from '../engine/super-campeonato';
@@ -85,6 +86,7 @@ const engines = {
   [GAME_NAMES.QUEM_NAO_MATA]: quemNaoMataEngine,
   [GAME_NAMES.QUEM_SOU_EU]: quemSouEuEngine,
   [GAME_NAMES.RETRATO_FALADO]: retratoFaladoEngine,
+  [GAME_NAMES.SENSO_LITERARIO]: sensoLiterarioEngine,
   [GAME_NAMES.SINAIS_DE_ALERTA]: sinaisDeAlertaEngine,
   [GAME_NAMES.SONHOS_PESADELOS]: sonhosPesadelosEngine,
   [GAME_NAMES.SUPER_CAMPEONATO]: superCampeonatoEngine,

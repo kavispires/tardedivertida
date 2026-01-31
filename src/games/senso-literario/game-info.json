@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "senso-literario",
-  "version": "0.0.1",
-  "release": "planned",
-  "available": false,
+  "version": "0.0.3",
+  "release": "dev",
+  "available": true,
   "title": {
     "pt": "Senso Literário",
     "en": "Book Sense"
@@ -21,7 +21,8 @@
   "appearance": {
     "clouds": "cloud",
     "cloudsAnimationType": "flow",
-    "primaryColor": "",
+    "primaryColor": "#704214",
+    "surfaceColor": "#FAF6F0",
     "colorScheme": "light",
     "videoBackground": true
   },
@@ -39,5 +40,5 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive"]
+  "tags": ["competitive", "brain-burner", "achievements"]
 }
