@@ -1,0 +1,43 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "P",
+  "gameName": "pique-pega",
+  "version": "0.0.1",
+  "release": "planned",
+  "available": false,
+  "title": {
+    "pt": "Pique-Pega",
+    "en": "The Chase"
+  },
+  "popularName": {
+    "pt": "",
+    "en": ""
+  },
+  "inspiredBy": "sroolF emosraeF",
+  "summary": {
+    "pt": "Corra do pegador e tente escapar!",
+    "en": "Run from the chaser and try to escape!"
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "cloudsAnimationType": "flow",
+    "primaryColor": "",
+    "colorScheme": "light",
+    "videoBackground": true
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 10,
+    "best": 5
+  },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
+  "tags": ["competitive"]
+}

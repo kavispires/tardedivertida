@@ -34,6 +34,7 @@ import NAO_SOU_ROBO from 'games/nao-sou-robo/game-info.json';
 import NAUFRAGOS from 'games/naufragos/game-info.json';
 import ONDA_TELEPATICA from 'games/onda-telepatica/game-info.json';
 import PALHETA_DE_CORES from 'games/palheta-de-cores/game-info.json';
+import PIQUE_PEGA from 'games/pique-pega/game-info.json';
 import PLANEJAMENTO_URBANO from 'games/planejamento-urbano/game-info.json';
 import POLEMICA_DA_VEZ from 'games/polemica-da-vez/game-info.json';
 import PORTA_DOS_DESESPERADOS from 'games/porta-dos-desesperados/game-info.json';
@@ -41,6 +42,7 @@ import QUAL_QUESITO from 'games/qual-quesito/game-info.json';
 import QUEM_NAO_MATA from 'games/quem-nao-mata/game-info.json';
 import QUEM_SOU_EU from 'games/quem-sou-eu/game-info.json';
 import RETRATO_FALADO from 'games/retrato-falado/game-info.json';
+import SENSO_LITERARIO from 'games/senso-literario/game-info.json';
 import SINAIS_DE_ALERTA from 'games/sinais-de-alerta/game-info.json';
 import SONHINHO_BOM from 'games/sonhinho-bom/game-info.json';
 import SONHOS_PESADELOS from 'games/sonhos-pesadelos/game-info.json';
@@ -96,12 +98,14 @@ export const GAME_LIST: Record<GameName, GameInfo> = {
   'onda-telepatica': ONDA_TELEPATICA,
   'palheta-de-cores': PALHETA_DE_CORES,
   'planejamento-urbano': PLANEJAMENTO_URBANO,
+  'pique-pega': PIQUE_PEGA,
   'polemica-da-vez': POLEMICA_DA_VEZ,
   'porta-dos-desesperados': PORTA_DOS_DESESPERADOS,
   'qual-quesito': QUAL_QUESITO,
   'quem-nao-mata': QUEM_NAO_MATA,
   'quem-sou-eu': QUEM_SOU_EU,
   'retrato-falado': RETRATO_FALADO,
+  'senso-literario': SENSO_LITERARIO,
   'sinais-de-alerta': SINAIS_DE_ALERTA,
   'sonhinho-bom': SONHINHO_BOM,
   'sonhos-pesadelos': SONHOS_PESADELOS,
