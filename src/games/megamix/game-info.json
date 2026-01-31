@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "megamix",
-  "version": "4.0.93",
+  "version": "4.0.94",
   "release": "stable",
+  "releaseDate": "2022-12-17",
   "available": true,
   "title": {
     "pt": "Megamix",

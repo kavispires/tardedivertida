@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vendaval-de-palpite",
-  "version": "0.9.65",
+  "version": "0.9.66",
   "release": "paused",
+  "releaseDate": "2022-05-29",
   "available": true,
   "title": {
     "pt": "Vendaval de Palpite",

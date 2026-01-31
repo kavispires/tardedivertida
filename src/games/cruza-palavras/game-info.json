@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "X",
   "gameName": "cruza-palavras",
-  "version": "7.0.10",
+  "version": "7.0.11",
   "release": "stable",
+  "releaseDate": "2021-12-20",
   "available": true,
   "title": {
     "pt": "Cruza Palavras",

@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vice-campeao",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "release": "stable",
+  "releaseDate": "2025-04-08",
   "available": true,
   "title": {
     "pt": "Vice-Campeão",

@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "R",
   "gameName": "namoro-ou-amizade",
-  "version": "0.0.2",
-  "release": "cancelled",
+  "version": "0.0.3",
+  "release": "planned",
+  "releaseDate": "0000-00-00",
   "available": false,
   "title": {
     "pt": "Namoro ou Amizade",

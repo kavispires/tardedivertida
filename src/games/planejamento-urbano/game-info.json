@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "planejamento-urbano",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "release": "stable",
+  "releaseDate": "2024-11-11",
   "available": true,
   "title": {
     "pt": "Planejamento Urbano",

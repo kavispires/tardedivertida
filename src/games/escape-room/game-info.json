@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "escape-room",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "release": "planned",
+  "releaseDate": "0000-00-00",
   "available": false,
   "title": {
     "pt": "Escape Room",

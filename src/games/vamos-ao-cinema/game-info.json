@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vamos-ao-cinema",
-  "version": "2.0.19",
+  "version": "2.0.20",
   "release": "stable",
+  "releaseDate": "2023-01-14",
   "available": true,
   "title": {
     "pt": "Vamos Ao Cinema",

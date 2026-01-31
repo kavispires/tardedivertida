@@ -9,6 +9,10 @@
       "type": "string",
       "enum": ["dev", "beta", "stable", "planned", "cancelled", "deprecated", "paused"]
     },
+    "releaseDate": {
+      "type": "string",
+      "pattern": "^(\\d{4}-\\d{2}-\\d{2}|0000-00-00)$"
+    },
     "available": { "type": "boolean" },
     "title": {
       "type": "object",
@@ -153,6 +157,7 @@
     "gameName",
     "version",
     "release",
+    "releaseDate",
     "available",
     "title",
     "popularName",

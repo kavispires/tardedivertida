@@ -2,8 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "R",
   "gameName": "megarobos",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "release": "cancelled",
+  "releaseDate": "0000-00-00",
   "available": false,
   "title": {
     "pt": "Megarobos",
