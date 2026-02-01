@@ -4,6 +4,7 @@ import {
   HARD_MODE_EXTRA_SUSPECT_COUNT,
   MAX_ROUNDS,
   OUTCOME,
+  QUESTION_COUNT,
   SUSPECT_COUNT,
   TESTEMUNHA_OCULAR_ACHIEVEMENTS,
   TESTEMUNHA_OCULAR_PHASES,
@@ -11,7 +12,7 @@ import {
 // Utils
 import utils from '../../utils';
 import type { FirebaseStoreData, TestemunhaOcularAchievement } from './types';
-import { orderBy, random } from 'lodash';
+import { orderBy, random, shuffle } from 'lodash';
 
 /**
  * Determine the next phase based on the current one
@@ -89,17 +90,69 @@ export const getPoolOfSuspects = (
   return orderBy(orderedPool.slice(startIndex, startIndex + poolSize), [`name.${language}`], ['asc']);
 };
 
+export function buildQuestionsDeck(allQuestions: TestimonyQuestionCard[]): TestimonyQuestionCard[] {
+  // Separate the questions by level
+  const questionsByLevel: Dictionary<TestimonyQuestionCard[]> = {};
+  shuffle(allQuestions).forEach((question) => {
+    if (!questionsByLevel[question.level]) {
+      questionsByLevel[question.level] = [];
+    }
+    questionsByLevel[question.level].push(question);
+  });
+
+  // Sort levels from highest to lowest
+  const levels = Object.keys(questionsByLevel).sort((a, b) => Number(b) - Number(a));
+
+  // Shuffle questions within each level
+  levels.forEach((level) => {
+    questionsByLevel[level] = shuffle(questionsByLevel[level]);
+  });
+
+  // Get 2 questions from the highest level as starting questions
+  const firstTwoQuestions = questionsByLevel[levels[0]].slice(0, 2);
+
+  // Track remaining questions per level (excluding the first two)
+  const remainingQuestionsByLevel: Dictionary<TestimonyQuestionCard[]> = {};
+  levels.forEach((level, index) => {
+    remainingQuestionsByLevel[level] =
+      index === 0 ? questionsByLevel[level].slice(2) : [...questionsByLevel[level]];
+  });
+
+  // Calculate how many questions we need (excluding the first two)
+  const questionsNeeded = QUESTION_COUNT - 2;
+  const questionsPerLevel = Math.floor(questionsNeeded / levels.length);
+
+  // Collect questions evenly from each level
+  const selectedQuestions: TestimonyQuestionCard[] = [];
+  levels.forEach((level) => {
+    selectedQuestions.push(...remainingQuestionsByLevel[level].slice(0, questionsPerLevel));
+  });
+
+  // Fill remaining slots with any leftover questions
+  const remainingSlots = questionsNeeded - selectedQuestions.length;
+  if (remainingSlots > 0) {
+    const leftoverQuestions: TestimonyQuestionCard[] = [];
+    levels.forEach((level) => {
+      leftoverQuestions.push(...remainingQuestionsByLevel[level].slice(questionsPerLevel));
+    });
+    selectedQuestions.push(...shuffle(leftoverQuestions).slice(0, remainingSlots));
+  }
+
+  // Shuffle the selected questions and combine with the first two
+  return [...firstTwoQuestions, ...shuffle(selectedQuestions)];
+}
+
 /**
- * Get two questions from the deck
- * @param questions
- * @param questionIndex
+ * Get a new question
+ * @param questionsDeck - full deck of questions
+ * @param totalQuestionsSoFar - number of questions already drawn
  * @returns
  */
-export const getQuestions = (
-  questions: TestimonyQuestionCard[],
-  questionIndex: number,
+export const getNewQuestions = (
+  questionsDeck: TestimonyQuestionCard[],
+  totalQuestionsSoFar: number,
 ): TestimonyQuestionCard[] => {
-  return [questions[questionIndex], questions[questionIndex + 1]];
+  return questionsDeck.slice(totalQuestionsSoFar * 2, totalQuestionsSoFar * 2 + 2);
 };
 
 /**

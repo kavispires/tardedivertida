@@ -35,7 +35,7 @@ export const SUSPECT_COUNT = 12;
 
 export const HARD_MODE_EXTRA_SUSPECT_COUNT = 6;
 
-export const QUESTION_COUNT = 24;
+export const QUESTION_COUNT = 20;
 
 export const OUTCOME = {
   CONTINUE: 'CONTINUE',

@@ -7,10 +7,16 @@ import type {
   TestemunhaOcularHistoryEntry,
 } from './types';
 // Constants
-import { MAX_ROUNDS, OUTCOME, QUESTION_COUNT, TESTEMUNHA_OCULAR_PHASES } from './constants';
+import { MAX_ROUNDS, OUTCOME, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Helpers
 import utils from '../../utils';
-import { calculateScore, getAchievements, getPoolOfSuspects, getQuestions } from './helpers';
+import {
+  buildQuestionsDeck,
+  calculateScore,
+  getAchievements,
+  getNewQuestions,
+  getPoolOfSuspects,
+} from './helpers';
 import { GAME_NAMES } from '../../utils/constants';
 import { difference, keyBy } from 'lodash';
 import { saveData } from './data';
@@ -43,10 +49,8 @@ export const prepareSetupPhase = async (
 
   const perpetratorId = utils.game.getRandomItem(suspects).id;
 
-  const shuffledAvailableCards = utils.game.shuffle(additionalData.allCards);
-
   // Build deck
-  const deck = utils.game.getRandomItems(shuffledAvailableCards, QUESTION_COUNT);
+  const deck = buildQuestionsDeck(additionalData.allCards);
 
   const achievements = utils.achievements.setup(players, {
     witness: 0,
@@ -59,7 +63,6 @@ export const prepareSetupPhase = async (
     update: {
       store: {
         deck,
-        questionIndex: -2,
         questionerIndex: -1,
         turnOrder: [],
         gameOrder: [],
@@ -81,6 +84,7 @@ export const prepareSetupPhase = async (
           released: 0,
           score: 0,
         },
+        questions: [],
         history: [],
       },
     },
@@ -124,8 +128,7 @@ export const prepareQuestionSelectionPhase = async (
   const questionerIndex = (store.questionerIndex ?? -1) + 1;
   const questionerId = turnOrder[questionerIndex % turnOrder.length];
   // Determine questions
-  const questionIndex = (store.questionIndex ?? -2) + 2;
-  const questions = getQuestions(store.deck, questionIndex);
+  const questions = [...getNewQuestions(store.deck, state.status.questions), ...state.questions].slice(0, 4);
 
   // Calculate score and move eliminated suspects
   const previouslyEliminatedSuspects: CardId[] = [
@@ -155,7 +158,7 @@ export const prepareQuestionSelectionPhase = async (
         turnOrder,
         gameOrder: turnOrder,
         questionerIndex,
-        questionIndex,
+
         achievements: store.achievements,
       },
       state: {
@@ -186,6 +189,7 @@ export const prepareQuestioningPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   const question = store.deck.find((card: TestimonyQuestionCard) => card.id === state.questionId);
+  const questions = (state.questions || []).filter((q: TestimonyQuestionCard) => q.id !== state.questionId);
 
   utils.players.readyPlayers(players, state.witnessId);
 
@@ -196,8 +200,8 @@ export const prepareQuestioningPhase = async (
         phase: TESTEMUNHA_OCULAR_PHASES.QUESTIONING,
         players,
         question,
+        questions,
       },
-      stateCleanup: ['questions'],
     },
   };
 };

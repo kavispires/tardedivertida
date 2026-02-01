@@ -36,7 +36,7 @@ export function PhaseTrial({ state, players }: PhaseProps<PhaseTrialState>) {
       }
       currentRound={state?.round?.current}
       type="overlay"
-      duration={state?.round?.current === 1 ? 15 : 4}
+      duration={state?.round?.current === 1 ? 15 : 3}
     >
       <Instruction>
         <Translate

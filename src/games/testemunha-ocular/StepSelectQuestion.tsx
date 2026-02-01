@@ -74,7 +74,10 @@ export function StepSelectQuestion({
         />
       </RuleInstruction>
 
-      <SpaceContainer align="center">
+      <SpaceContainer
+        align="center"
+        wrap
+      >
         {questions.map(({ question, id, level }, index) => {
           return (
             <TransparentButton
@@ -84,7 +87,7 @@ export function StepSelectQuestion({
             >
               <Card
                 header={LETTERS[index]}
-                color={['blue', 'teal'][index % 2]}
+                color={['blue', 'teal', 'purple', 'gray'][index % 4]}
                 className="t-card"
                 footer={Array(level).fill('•').join('')}
               >
