@@ -84,6 +84,7 @@
   margin: get-unit(2 3);
   padding: get-unit(2);
   min-width: 120px;
+  aspect-ratio: 16 / 9;
   position: relative;
 
   &--achieved {

@@ -132,7 +132,7 @@ export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
           value={order}
           onChange={(value) => setOrder(value)}
           defaultValue="gameName"
-          style={{ width: 150 }}
+          style={{ width: 175 }}
         />
         <Switch
           checked={orderDirection === 'asc'}

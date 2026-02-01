@@ -12,6 +12,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import ACHIEVEMENTS_DICT from 'utils/achievements';
 import GAME_LIST from 'utils/info';
 // Components
+import { VirtualizationWrapper } from 'components/general/VirtualizationWrapper';
 import { Translate } from 'components/language';
 // Internal
 import { playableGames } from '../utils';
@@ -131,18 +132,23 @@ export function AchievementsCompleteList({ playedGames }: AchievementsCompleteLi
           unCheckedChildren="Z-A"
         />
       </Flex>
-      <Row gutter={8}>
+      <Row gutter={16}>
         {sortedAchievements.map((entry) => {
           const { gameName } = entry;
           return (
-            <AchievementCard
+            <VirtualizationWrapper
               key={`${gameName}-${entry.achievementId}`}
-              gameName={gameName}
-              gameTitle={GAME_LIST[gameName].title}
-              achievement={entry.achievement}
-              value={entry.count}
               width={cardWidth}
-            />
+              aspectRatio="9:16"
+            >
+              <AchievementCard
+                gameName={gameName}
+                gameTitle={GAME_LIST[gameName].title}
+                achievement={entry.achievement}
+                value={entry.count}
+                width={cardWidth}
+              />
+            </VirtualizationWrapper>
           );
         })}
       </Row>
