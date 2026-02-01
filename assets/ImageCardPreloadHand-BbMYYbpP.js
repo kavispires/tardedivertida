@@ -1,0 +1,1 @@
+import{j as r}from"./index-n7RP6ikT.js";import{I as s}from"./ImageCard-a1w3a1yf.js";/* empty css                             */function p({hand:a}){return a?r.jsx("div",{className:"image-card-preload-hand",children:a.map(e=>r.jsx(s,{cardId:e,cardWidth:1,preview:!1},`pre-load-${e}`))}):r.jsx("span",{})}export{p as I};
