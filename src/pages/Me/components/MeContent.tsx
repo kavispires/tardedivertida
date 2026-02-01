@@ -48,7 +48,7 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
     [language],
   );
 
-  const items: TabsProps['items'] = [
+  const tabItems: TabsProps['items'] = [
     {
       key: '1',
       icon: (
@@ -157,7 +157,7 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
 
         <Tabs
           defaultActiveKey="1"
-          items={items}
+          items={tabItems}
           size="large"
           type="card"
         />
