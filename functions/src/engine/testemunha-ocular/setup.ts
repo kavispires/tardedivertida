@@ -18,7 +18,7 @@ import {
   getPoolOfSuspects,
 } from './helpers';
 import { GAME_NAMES } from '../../utils/constants';
-import { difference, keyBy } from 'lodash';
+import { difference, keyBy, sample } from 'lodash';
 import { saveData } from './data';
 
 /**
@@ -58,6 +58,16 @@ export const prepareSetupPhase = async (
     foundThePerpetrator: 0,
   });
 
+  // Determine the reason
+  const perpetratorGender = suspectsDict[perpetratorId].gender;
+  const reason = sample(
+    Object.values(additionalData.allReasons).filter((reason) => {
+      if (perpetratorGender === 'male' && reason.feature === 'female') return false;
+      if (perpetratorGender === 'female' && reason.feature === 'male') return false;
+      return true;
+    }),
+  );
+
   // Save
   return {
     update: {
@@ -67,6 +77,7 @@ export const prepareSetupPhase = async (
         turnOrder: [],
         gameOrder: [],
         achievements,
+        reason,
       },
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.SETUP,
@@ -374,6 +385,7 @@ export const prepareGameOverPhase = async (
         witnessId,
         winners,
         previouslyEliminatedSuspects: previouslyEliminatedSuspects,
+        reason: store.reason,
       },
     },
   };

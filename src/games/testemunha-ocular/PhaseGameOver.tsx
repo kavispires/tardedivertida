@@ -1,7 +1,5 @@
 // Types
 import type { PhaseProps } from 'types/game';
-// Hooks
-import { useLanguage } from 'hooks/useLanguage';
 // Icons
 import { CriminalIcon } from 'icons/CriminalIcon';
 import { NewspaperIcon } from 'icons/NewspaperIcon';
@@ -9,7 +7,7 @@ import { NewspaperIcon } from 'icons/NewspaperIcon';
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { ImageCard } from 'components/image-cards';
-import { Translate } from 'components/language';
+import { DualTranslate, Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { Instruction } from 'components/text';
@@ -22,8 +20,6 @@ import { QuestionsHistory } from './components/QuestionsHistory';
 import { Suspects } from './components/Suspects';
 
 export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
-  const { language } = useLanguage();
-
   const didUserWin = state.outcome === OUTCOME.WIN;
   const perpetrator = state.suspectsDict[state.perpetratorId];
 
@@ -74,9 +70,18 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
             className="t-suspects-table__suspect-image"
             cardWidth={150}
           />
-          <div className="t-suspects-table__suspect-name">{perpetrator.name[language]}</div>
+          <div className="t-suspects-table__suspect-name">
+            <DualTranslate>{perpetrator.name}</DualTranslate>
+          </div>
         </div>
       </SpaceContainer>
+      <Instruction colorScheme="dark">
+        <Translate
+          pt="Crime:"
+          en="Crime:"
+        />{' '}
+        <DualTranslate>{state.reason.title}</DualTranslate>
+      </Instruction>
 
       <Achievements
         achievements={state.achievements}

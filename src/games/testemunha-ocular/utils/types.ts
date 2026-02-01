@@ -1,7 +1,7 @@
 // Types
 import type { Achievement } from 'types/achievements';
 import type { GamePlayer } from 'types/player';
-import type { SuspectCard, TestimonyQuestionCard } from 'types/tdr';
+import type { CrimeReason, SuspectCard, TestimonyQuestionCard } from 'types/tdr';
 // Internal
 import type { OUTCOME } from './constants';
 
@@ -111,4 +111,5 @@ export type PhaseGameOverState = {
   suspectsIds: CardId[];
   witnessId: PlayerId;
   previouslyEliminatedSuspects: CardId[];
+  reason: CrimeReason;
 };

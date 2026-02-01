@@ -1,5 +1,5 @@
 // Types
-import type { SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
+import type { CrimeReason, SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
 import type { ResourceData, TestemunhaOcularHistoryEntry, TestemunhaOcularOptions } from './types';
 // Constants
 import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
@@ -30,9 +30,14 @@ export const getQuestionsAndSuspects = async (
 
   const allSuspects = await resourceUtils.fetchResource<Dictionary<SuspectCard>>(TDR_RESOURCES.SUSPECTS);
 
+  const crimeReasons = await resourceUtils.fetchResource<Dictionary<CrimeReason>>(
+    TDR_RESOURCES.CRIME_REASONS,
+  );
+
   return {
     allCards: availableCards,
     allSuspects: utils.tdr.modifySuspectIdsByOptions(Object.values(allSuspects), options, true),
+    allReasons: crimeReasons,
   };
 };
 

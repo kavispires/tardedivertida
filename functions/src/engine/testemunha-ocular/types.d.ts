@@ -1,4 +1,4 @@
-import type { SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
+import type { CrimeReason, SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
 import type { OUTCOME, TESTEMUNHA_OCULAR_ACHIEVEMENTS, TESTEMUNHA_OCULAR_ACTIONS } from './constants';
 
 export type TestemunhaOcularOptions = {
@@ -36,6 +36,7 @@ export type TestemunhaOcularHistoryEntry = {
 export interface ResourceData {
   allCards: TestimonyQuestionCard[];
   allSuspects: SuspectCard[];
+  allReasons: Dictionary<CrimeReason>;
 }
 
 export type Status = {
