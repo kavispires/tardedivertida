@@ -115,8 +115,8 @@ const joinGame = async (data: JoinGamePayload, auth: FirebaseAuth) => {
  * @param data
  * @returns
  */
-const makeMeReady = async (data: Payload) => {
-  const { gameId, gameName, playerId } = data;
+const makeMeReady = async (data: Payload<{ onlyReady?: boolean }>) => {
+  const { gameId, gameName, playerId, onlyReady } = data;
 
   const actionText = 'make you ready';
   utils.firebase.verifyPayload(gameId, 'gameId', actionText);
@@ -133,7 +133,7 @@ const makeMeReady = async (data: Payload) => {
   const players = state?.players ?? {};
   const updatedPlayers = utils.players.readyPlayer(players, playerId);
 
-  if (!utils.players.isEverybodyReady(updatedPlayers)) {
+  if (onlyReady || !utils.players.isEverybodyReady(updatedPlayers)) {
     try {
       const path = `players.${playerId}.ready`;
       await sessionRef.doc('state').update({ [path]: true });
@@ -141,6 +141,10 @@ const makeMeReady = async (data: Payload) => {
     } catch (error) {
       utils.firebase.throwException(error, actionText);
     }
+  }
+
+  if (onlyReady) {
+    return true;
   }
 
   const { getNextPhase } = delegatorUtils.getEngine(gameName);

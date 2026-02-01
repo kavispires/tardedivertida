@@ -93,7 +93,7 @@ export function LobbyReadyButtons({ players }: LobbyReadyButtonsProps) {
         size="small"
         icon={user.isReady ? <CheckCircleFilled /> : <SmileFilled />}
         disabled={isLoading || user.isReady || isHost}
-        onClick={() => onBeReady({ action: GAME_API_COMMON_ACTIONS.MAKE_ME_READY })}
+        onClick={() => onBeReady({ action: GAME_API_COMMON_ACTIONS.MAKE_ME_READY, onlyReady: true })}
         loading={isLoading}
       >
         <Translate
@@ -105,7 +105,7 @@ export function LobbyReadyButtons({ players }: LobbyReadyButtonsProps) {
         size="small"
         icon={user.isReady ? <CheckCircleFilled /> : <MehFilled />}
         disabled={isLoading || user.isReady || isHost}
-        onClick={() => onBeReadyIDK({ action: GAME_API_COMMON_ACTIONS.MAKE_ME_READY })}
+        onClick={() => onBeReadyIDK({ action: GAME_API_COMMON_ACTIONS.MAKE_ME_READY, onlyReady: true })}
         loading={isLoading}
       >
         <Translate
@@ -119,7 +119,7 @@ export function LobbyReadyButtons({ players }: LobbyReadyButtonsProps) {
         danger
         icon={user.isReady ? <CheckCircleFilled /> : <RobotFilled />}
         disabled={isLoading || user.isReady || isHost}
-        onClick={() => onBeReadyQue({ action: GAME_API_COMMON_ACTIONS.MAKE_ME_READY })}
+        onClick={() => onBeReadyQue({ action: GAME_API_COMMON_ACTIONS.MAKE_ME_READY, onlyReady: true })}
         loading={isLoading}
       >
         <Translate

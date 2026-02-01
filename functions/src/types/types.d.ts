@@ -199,12 +199,11 @@ interface Player {
 
 type Players = Record<PlayerId, Player>;
 
-interface Payload {
+type Payload<T = PlainObject> = {
   gameId: GameId;
   gameName: GameName;
   playerId: PlayerId;
-  [key: string]: any;
-}
+} & T;
 
 interface ExtendedPayload {
   gameId: GameId;
