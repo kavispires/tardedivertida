@@ -1,5 +1,7 @@
 // Types
 import type { SuspectCard } from 'types/tdr';
+// Hooks
+import { useMock } from 'hooks/useMock';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
@@ -10,7 +12,9 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { Question, SelectQuestionPayload, Status, THistoryEntry } from './utils/types';
+import type { Outcome, Question, SelectQuestionPayload, Status, THistoryEntry } from './utils/types';
+import { OUTCOME } from './utils/constants';
+import { mockQuestionSelection } from './utils/mock';
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Summary } from './components/Summary';
@@ -24,6 +28,7 @@ type StepSelectQuestionProps = {
   previouslyEliminatedSuspects: string[];
   history: THistoryEntry[];
   status: Status;
+  outcome: Outcome;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepSelectQuestion({
@@ -36,14 +41,30 @@ export function StepSelectQuestion({
   history,
   announcement,
   status,
+  outcome,
 }: StepSelectQuestionProps) {
+  useMock(
+    () => {
+      onSelectQuestion({ questionId: mockQuestionSelection(questions) });
+    },
+    [questions],
+    7,
+  );
+
   return (
     <Step announcement={announcement}>
       <StepTitle>
-        <Translate
-          pt="Selecione uma pergunta"
-          en="Select a question"
-        />
+        {outcome === OUTCOME.FINAL_SHOWDOWN ? (
+          <Translate
+            pt="Escolha a pergunta final!"
+            en="Choose the final question!"
+          />
+        ) : (
+          <Translate
+            pt={<>Escolha uma pergunta</>}
+            en={<>Choose a question</>}
+          />
+        )}
       </StepTitle>
 
       <RuleInstruction type="action">
@@ -54,7 +75,7 @@ export function StepSelectQuestion({
       </RuleInstruction>
 
       <SpaceContainer align="center">
-        {questions.map(({ question, id }, index) => {
+        {questions.map(({ question, id, level }, index) => {
           return (
             <TransparentButton
               key={id}
@@ -63,8 +84,9 @@ export function StepSelectQuestion({
             >
               <Card
                 header={LETTERS[index]}
-                color="blue"
+                color={['blue', 'teal'][index % 2]}
                 className="t-card"
+                footer={Array(level).fill('•').join('')}
               >
                 {question}
               </Card>

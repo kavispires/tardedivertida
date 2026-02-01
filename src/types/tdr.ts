@@ -733,6 +733,35 @@ export type SuspectExtendedInfo = {
   personalityTraits: string[];
 };
 
+export type MBTIType = 'E' | 'I' | 'N' | 'S' | 'F' | 'T' | 'J' | 'P';
+export type ZodiacSign =
+  | 'Aries'
+  | 'Taurus'
+  | 'Gemini'
+  | 'Cancer'
+  | 'Leo'
+  | 'Virgo'
+  | 'Libra'
+  | 'Scorpio'
+  | 'Sagittarius'
+  | 'Capricorn'
+  | 'Aquarius'
+  | 'Pisces';
+export type AlignmentType =
+  | 'lawful-good'
+  | 'neutral-good'
+  | 'chaotic-good'
+  | 'lawful-neutral'
+  | 'neutral-neutral'
+  | 'chaotic-neutral'
+  | 'lawful-evil'
+  | 'neutral-evil'
+  | 'chaotic-evil';
+export type DualRelation<T> = {
+  related: T[];
+  unrelated: T[];
+};
+
 /**
  * Testimony Question Card
  * Used for: testimony-questions
@@ -751,9 +780,25 @@ export type TestimonyQuestionCard = {
    */
   answer: string;
   /**
+   * The level of difficulty
+   */
+  level: number;
+  /**
    * Flag indicating if it's nsfw
    */
   nsfw?: boolean;
+  /**
+   * Personality types related to the question
+   */
+  mbti?: DualRelation<MBTIType>;
+  /**
+   * Zodiac signs related to the question
+   */
+  zodiac?: DualRelation<ZodiacSign>;
+  /**
+   * Alignment types related to the question
+   */
+  alignment?: DualRelation<AlignmentType>;
 };
 
 /**

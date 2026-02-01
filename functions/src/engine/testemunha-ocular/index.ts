@@ -21,7 +21,13 @@ import {
   prepareTrialPhase,
   prepareWitnessSelectionPhase,
 } from './setup';
-import { handleElimination, handleExtraAction } from './actions';
+import {
+  handleElimination,
+  handleFinalElimination,
+  handleGiveTestimony,
+  handleSelectQuestion,
+  handleSelectWitness,
+} from './actions';
 import { getQuestionsAndSuspects } from './data';
 
 /**
@@ -64,7 +70,7 @@ export const getNextPhase = async (
   gameName: string,
   gameId: string,
   currentState?: FirebaseStateData,
-  additionalPayload?: PlainObject,
+  // additionalPayload?: PlainObject,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
     FirebaseStateData,
@@ -72,12 +78,7 @@ export const getNextPhase = async (
   >(gameName, gameId, 'prepare next phase', currentState);
 
   // Determine next phase
-  const nextPhase = determineNextPhase(
-    state?.phase,
-    state?.round,
-    additionalPayload?.lose,
-    additionalPayload?.win,
-  );
+  const nextPhase = determineNextPhase(state?.phase, state?.round, state?.outcome);
 
   // LOBBY -> SETUP
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.SETUP) {
@@ -99,25 +100,25 @@ export const getNextPhase = async (
 
   // * -> QUESTION_SELECTION
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.QUESTION_SELECTION) {
-    const newPhase = await prepareQuestionSelectionPhase(store, state, players, additionalPayload ?? {});
+    const newPhase = await prepareQuestionSelectionPhase(store, state, players);
     return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // QUESTION_SELECTION -> QUESTIONING
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.QUESTIONING) {
-    const newPhase = await prepareQuestioningPhase(store, state, players, additionalPayload ?? {});
+    const newPhase = await prepareQuestioningPhase(store, state, players);
     return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // QUESTIONING -> TRIAL
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.TRIAL) {
-    const newPhase = await prepareTrialPhase(store, state, players, additionalPayload ?? {});
+    const newPhase = await prepareTrialPhase(store, state, players);
     return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
   // TRIAL -> GAME_OVER
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.GAME_OVER) {
-    const newPhase = await prepareGameOverPhase(gameId, store, state, players, additionalPayload ?? {});
+    const newPhase = await prepareGameOverPhase(gameId, store, state, players);
 
     return utils.firestore.saveGame(sessionRef, newPhase);
   }
@@ -141,26 +142,29 @@ export const submitAction = async (data: TestemunhaOcularSubmitAction) => {
     case TESTEMUNHA_OCULAR_ACTIONS.SELECT_WITNESS:
       actionText = 'select witness';
       utils.firebase.validateSubmitActionProperties(data, ['witnessId'], actionText);
-      return handleExtraAction(gameName, gameId, actionText, { playerId, witnessId: data.witnessId });
+      return handleSelectWitness(gameName, gameId, playerId, data.witnessId);
 
     case TESTEMUNHA_OCULAR_ACTIONS.SELECT_QUESTION:
       actionText = 'select question';
       utils.firebase.validateSubmitActionProperties(data, ['questionId'], actionText);
-      return handleExtraAction(gameName, gameId, actionText, { playerId, questionId: data.questionId });
+      return handleSelectQuestion(gameName, gameId, playerId, data.questionId);
 
     case TESTEMUNHA_OCULAR_ACTIONS.GIVE_TESTIMONY:
       actionText = 'give testimony';
       utils.firebase.validateSubmitActionProperties(data, ['testimony'], actionText);
-      return handleExtraAction(gameName, gameId, actionText, { playerId, testimony: data.testimony });
+      return handleGiveTestimony(gameName, gameId, playerId, data.testimony);
 
     case TESTEMUNHA_OCULAR_ACTIONS.ELIMINATE_SUSPECT:
       actionText = 'eliminate suspect';
       utils.firebase.validateSubmitActionProperties(data, ['suspectId', 'pass'], actionText);
       return handleElimination(gameName, gameId, actionText, {
-        playerId,
         suspectId: data?.suspectId,
         pass: data?.pass,
       });
+    case TESTEMUNHA_OCULAR_ACTIONS.FINAL_ELIMINATION:
+      actionText = 'final elimination';
+      utils.firebase.validateSubmitActionProperties(data, ['suspectId'], actionText);
+      return handleFinalElimination(gameName, gameId, playerId, data.suspectId);
 
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`, action);

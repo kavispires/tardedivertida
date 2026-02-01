@@ -3,6 +3,7 @@ import type { SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
 import {
   HARD_MODE_EXTRA_SUSPECT_COUNT,
   MAX_ROUNDS,
+  OUTCOME,
   SUSPECT_COUNT,
   TESTEMUNHA_OCULAR_ACHIEVEMENTS,
   TESTEMUNHA_OCULAR_PHASES,
@@ -21,18 +22,21 @@ import { orderBy, random } from 'lodash';
  * @param triggerLastRound
  * @returns
  */
-export const determineNextPhase = (
-  currentPhase: string,
-  round: Round,
-  lose?: boolean,
-  win?: boolean,
-): string => {
-  const { LOBBY, SETUP, WITNESS_SELECTION, QUESTION_SELECTION, QUESTIONING, TRIAL, GAME_OVER } =
+export const determineNextPhase = (currentPhase: string, round: Round, outcome: Outcome): string => {
+  const { LOBBY, SETUP, WITNESS_SELECTION, QUESTION_SELECTION, QUESTIONING, TRIAL, FINAL_TRIAL, GAME_OVER } =
     TESTEMUNHA_OCULAR_PHASES;
   const order = [LOBBY, SETUP, WITNESS_SELECTION, QUESTION_SELECTION, QUESTIONING, TRIAL];
 
-  if (currentPhase === TRIAL && (lose || win)) {
+  if (currentPhase === FINAL_TRIAL) {
     return GAME_OVER;
+  }
+
+  if (currentPhase === TRIAL && (outcome === OUTCOME.LOSE || outcome === OUTCOME.WIN)) {
+    return GAME_OVER;
+  }
+
+  if (currentPhase === TRIAL && outcome === OUTCOME.FINAL_SHOWDOWN) {
+    return QUESTION_SELECTION;
   }
 
   if (currentPhase === TRIAL) {
@@ -153,6 +157,19 @@ export const getAchievements = (store: FirebaseStoreData, witnessId: PlayerId) =
       value: fewerReleases.value,
     });
   }
+
+  const playersWithFoundThePerpetrator = utils.achievements.getPlayersWithTruthyAchievement(
+    store,
+    'foundThePerpetrator',
+  );
+
+  playersWithFoundThePerpetrator.forEach((playerId) => {
+    achievements.push({
+      type: TESTEMUNHA_OCULAR_ACHIEVEMENTS.FOUND_THE_PERPETRATOR,
+      playerId,
+      value: 1,
+    });
+  });
 
   return achievements;
 };

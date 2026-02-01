@@ -16,12 +16,12 @@ import { Instruction } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
 import { useOnSelectQuestionAPIRequest } from './utils/api-requests';
-import { TESTEMUNHA_OCULAR_PHASES } from './utils/constants';
+import { OUTCOME, TESTEMUNHA_OCULAR_PHASES } from './utils/constants';
 import type { PhaseQuestionSelectionState } from './utils/types';
 import { StepQuestionWaiting } from './StepQuestionWaiting';
 import { StepSelectQuestion } from './StepSelectQuestion';
 
-function PhaseQuestionSelection({ state, players }: PhaseProps<PhaseQuestionSelectionState>) {
+export function PhaseQuestionSelection({ state, players }: PhaseProps<PhaseQuestionSelectionState>) {
   const { isLoading } = useLoading();
   const { step } = useStep(0);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
@@ -29,40 +29,66 @@ function PhaseQuestionSelection({ state, players }: PhaseProps<PhaseQuestionSele
   const onSelectQuestion = useOnSelectQuestionAPIRequest();
 
   const roundsLeft = (state?.round?.total ?? 0) - (state?.round?.current ?? 0) + 1 || 11;
+  const isFinalQuestion = state.outcome === OUTCOME.FINAL_SHOWDOWN;
 
   const announcement = (
     <PhaseAnnouncement
       icon={<InvestigationIcon />}
       title={
-        <Translate
-          pt="Seleção da Pergunta"
-          en="Question Selection"
-        />
+        isFinalQuestion ? (
+          <Translate
+            pt="A Pergunta Final"
+            en="Final Question"
+          />
+        ) : (
+          <Translate
+            pt="Seleção da Pergunta"
+            en="Question Selection"
+          />
+        )
       }
       currentRound={state?.round?.current}
       type="overlay"
+      duration={state?.round?.current === 1 ? 10 : 4}
     >
       <Instruction>
-        <Translate
-          pt={
-            <>
-              Agora que encontramos nossa testemunha (<PlayerAvatarName player={witness} />) é hora de
-              questioná-la.
-              <br />
-              Só temos tempo para <TimeHighlight>{roundsLeft}</TimeHighlight> perguntas. Portanto,{' '}
-              <PlayerAvatarName player={questioner} />, escolha a pergunta certa.
-            </>
-          }
-          en={
-            <>
-              Now that we have a Witness (<PlayerAvatarName player={witness} />
-              ), it's time to choose the question to ask them.
-              <br />
-              We can only have time for <TimeHighlight>{roundsLeft}</TimeHighlight> questions. So{' '}
-              <PlayerAvatarName player={questioner} />, choose a question
-            </>
-          }
-        />
+        {isFinalQuestion ? (
+          <Translate
+            pt={
+              <>
+                Só faltam dois suspeitos e para isso precisamos fazer uma pergunta final.
+                <PlayerAvatarName player={questioner} />, escolha a pergunta certa.
+              </>
+            }
+            en={
+              <>
+                There are only two suspects left and for that we need to ask a final question.
+                <PlayerAvatarName player={questioner} />, choose the right question.
+              </>
+            }
+          />
+        ) : (
+          <Translate
+            pt={
+              <>
+                Agora que encontramos nossa testemunha (<PlayerAvatarName player={witness} />) é hora de
+                questioná-la.
+                <br />
+                Só temos tempo para <TimeHighlight>{roundsLeft}</TimeHighlight> perguntas. Portanto,{' '}
+                <PlayerAvatarName player={questioner} />, escolha a pergunta certa.
+              </>
+            }
+            en={
+              <>
+                Now that we have a Witness (<PlayerAvatarName player={witness} />
+                ), it's time to choose the question to ask them.
+                <br />
+                We can only have time for <TimeHighlight>{roundsLeft}</TimeHighlight> questions. So{' '}
+                <PlayerAvatarName player={questioner} />, choose a question
+              </>
+            }
+          />
+        )}
       </Instruction>
     </PhaseAnnouncement>
   );
@@ -89,6 +115,7 @@ function PhaseQuestionSelection({ state, players }: PhaseProps<PhaseQuestionSele
             history={state.history}
             announcement={announcement}
             status={state.status}
+            outcome={state.outcome}
           />
 
           <StepQuestionWaiting
@@ -101,11 +128,10 @@ function PhaseQuestionSelection({ state, players }: PhaseProps<PhaseQuestionSele
             history={state.history}
             announcement={announcement}
             status={state.status}
+            outcome={state.outcome}
           />
         </ViewOr>
       </StepSwitcher>
     </PhaseContainer>
   );
 }
-
-export default PhaseQuestionSelection;

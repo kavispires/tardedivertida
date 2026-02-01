@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "testemunha-ocular",
-  "version": "5.0.13",
+  "version": "6.0.0",
   "release": "stable",
   "releaseDate": "2021-08-01",
   "available": true,
@@ -32,7 +32,7 @@
       "Um jogador será a testemunha de um crime horrível, os outros, detetive.",
       "Em cada rodada pergunta-se uma pergunta à testemunha que deve responder sim ou não",
       "Então, os detetive devem libertar pelo menos um dos suspeitos, de um a um.",
-      "Se os detetives liberarem o criminoso, todos perdem. Se o último suspeito é o criminoso, todos ganham",
+      "Se os detetives liberarem o criminoso, todos perdem. Quando dois suspeitos restarem, o grupo tenta adivinhar quem é o criminoso. Se acertarem, todos ganham",
       "Mas há um porém! A testemunha não fala nada sobre a aparência, simplesmente julga o criminoso"
     ],
     "en": [
@@ -40,7 +40,7 @@
       "One player will be the witness of a horrible crime, the others, detectives.",
       "In each round, a question is asked to the witness, who must answer yes or no",
       "Then, the detectives must release at least one of the suspects, one by one.",
-      "If the detectives release the criminal, everyone loses. If the last suspect is the criminal, everyone wins",
+      "If the detectives release the criminal, everyone loses. When two suspects remain, the group tries to guess who the criminal is. If they get it right, everyone wins",
       "But there is a catch! The witness says nothing about the appearance, simply judges the criminal"
     ]
   },

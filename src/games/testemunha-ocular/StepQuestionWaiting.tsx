@@ -7,7 +7,8 @@ import { PlayerAvatarName } from 'components/player';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { Status, THistoryEntry } from './utils/types';
+import type { Outcome, Status, THistoryEntry } from './utils/types';
+import { OUTCOME } from './utils/constants';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Suspects } from './components/Suspects';
 import { Summary } from './components/Summary';
@@ -21,6 +22,7 @@ type StepQuestionWaitingProps = {
   isUserTheWitness: boolean;
   history: THistoryEntry[];
   status: Status;
+  outcome: Outcome;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepQuestionWaiting({
@@ -33,14 +35,22 @@ export function StepQuestionWaiting({
   history,
   announcement,
   status,
+  outcome,
 }: StepQuestionWaitingProps) {
   return (
     <Step announcement={announcement}>
       <StepTitle wait>
-        <Translate
-          pt={<>Examine os suspeitos</>}
-          en={<>Examine the suspects</>}
-        />
+        {outcome === OUTCOME.FINAL_SHOWDOWN ? (
+          <Translate
+            pt="Prepare-se para a decisão final!"
+            en="Get ready for the final decision!"
+          />
+        ) : (
+          <Translate
+            pt={<>Examine os suspeitos</>}
+            en={<>Examine the suspects</>}
+          />
+        )}
       </StepTitle>
       <RuleInstruction type="wait">
         <Translate

@@ -16,7 +16,7 @@ import { useOnSelectWitnessAPIRequest } from './utils/api-requests';
 import { TESTEMUNHA_OCULAR_PHASES } from './utils/constants';
 import type { PhaseWitnessSelectionState } from './utils/types';
 
-function PhaseWitnessSelection({ state, players }: PhaseProps<PhaseWitnessSelectionState>) {
+export function PhaseWitnessSelection({ state, players }: PhaseProps<PhaseWitnessSelectionState>) {
   const { step } = useStep(0);
   const suspectCount = state?.suspectsIds.length ?? '?';
 
@@ -108,5 +108,3 @@ function PhaseWitnessSelection({ state, players }: PhaseProps<PhaseWitnessSelect
     </PhaseContainer>
   );
 }
-
-export default PhaseWitnessSelection;

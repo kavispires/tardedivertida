@@ -1,5 +1,5 @@
 import type { SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
-import type { TESTEMUNHA_OCULAR_ACHIEVEMENTS, TESTEMUNHA_OCULAR_ACTIONS } from './constants';
+import type { OUTCOME, TESTEMUNHA_OCULAR_ACHIEVEMENTS, TESTEMUNHA_OCULAR_ACTIONS } from './constants';
 
 export type TestemunhaOcularOptions = {
   /**
@@ -22,11 +22,7 @@ export type TestemunhaOcularOptions = {
 
 export type SuspectId = CardId;
 
-// export interface TestemunhaOcularEntry {
-//   id: string;
-//   question: string;
-//   unfit?: SuspectId[];
-// }
+export type Outcome = (typeof OUTCOME)[keyof typeof OUTCOME];
 
 export type TestemunhaOcularHistoryEntry = {
   id: CardId;

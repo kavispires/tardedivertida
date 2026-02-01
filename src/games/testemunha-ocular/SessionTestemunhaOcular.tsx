@@ -8,11 +8,12 @@ import { PhaseError } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
 import { TESTEMUNHA_OCULAR_PHASES } from './utils/constants';
-import PhaseWitnessSelection from './PhaseWitnessSelection';
-import PhaseQuestionSelection from './PhaseQuestionSelection';
-import PhaseQuestioning from './PhaseQuestioning';
-import PhaseTrial from './PhaseTrial';
-import PhaseGameOver from './PhaseGameOver';
+import { PhaseWitnessSelection } from './PhaseWitnessSelection';
+import { PhaseQuestionSelection } from './PhaseQuestionSelection';
+import { PhaseQuestioning } from './PhaseQuestioning';
+import { PhaseTrial } from './PhaseTrial';
+import { PhaseGameOver } from './PhaseGameOver';
+import { PhaseFinalTrial } from './PhaseFinalTrial';
 // Sass
 import 'assets/fonts/architects-daughter.scss';
 import './utils/styles.scss';
@@ -27,6 +28,8 @@ function getActiveComponent(state: GameState) {
       return PhaseQuestioning;
     case TESTEMUNHA_OCULAR_PHASES.TRIAL:
       return PhaseTrial;
+    case TESTEMUNHA_OCULAR_PHASES.FINAL_TRIAL:
+      return PhaseFinalTrial;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;
     default:

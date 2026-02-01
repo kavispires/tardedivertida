@@ -18,7 +18,7 @@ import { TESTEMUNHA_OCULAR_PHASES } from './utils/constants';
 import type { PhaseQuestioningState } from './utils/types';
 import { StepQuestioning } from './StepQuestioning';
 
-function PhaseQuestioning({ state, players }: PhaseProps<PhaseQuestioningState>) {
+export function PhaseQuestioning({ state, players }: PhaseProps<PhaseQuestioningState>) {
   const { isLoading } = useLoading();
   const { step } = useStep(0);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
@@ -31,6 +31,7 @@ function PhaseQuestioning({ state, players }: PhaseProps<PhaseQuestioningState>)
       title={state.question.question}
       currentRound={state?.round?.current}
       type="overlay"
+      duration={state?.round?.current === 1 ? 7 : 3}
     >
       <Instruction>
         <Translate
@@ -76,10 +77,9 @@ function PhaseQuestioning({ state, players }: PhaseProps<PhaseQuestioningState>)
           history={state.history}
           announcement={announcement}
           status={state.status}
+          outcome={state.outcome}
         />
       </StepSwitcher>
     </PhaseContainer>
   );
 }
-
-export default PhaseQuestioning;

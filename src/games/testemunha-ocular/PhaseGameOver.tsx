@@ -10,19 +10,21 @@ import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { Instruction } from 'components/text';
 // Internal
 import achievementsReference from './utils/achievements';
 import type { PhaseGameOverState } from './utils/types';
+import { OUTCOME } from './utils/constants';
 import { AnnouncementContent } from './components/TextBlobs';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Suspects } from './components/Suspects';
 
-function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
+export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   const { language } = useLanguage();
 
-  const didUserWin = state.outcome === 'WIN';
+  const didUserWin = state.outcome === OUTCOME.WIN;
   const perpetrator = state.suspectsDict[state.perpetratorId];
 
   return (
@@ -46,7 +48,7 @@ function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
       }
       announcementContent={<AnnouncementContent didUserWin={didUserWin} />}
     >
-      <Instruction contained>
+      <Instruction colorScheme="dark">
         <Translate
           pt={
             <>
@@ -64,7 +66,8 @@ function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
           pt="O criminoso era:"
           en="The perpetrator was:"
         />
-
+      </Instruction>
+      <SpaceContainer>
         <div className="t-suspects-table__suspect">
           <ImageCard
             cardId={perpetrator.id}
@@ -73,7 +76,7 @@ function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
           />
           <div className="t-suspects-table__suspect-name">{perpetrator.name[language]}</div>
         </div>
-      </Instruction>
+      </SpaceContainer>
 
       <Achievements
         achievements={state.achievements}
@@ -89,9 +92,8 @@ function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
       <Suspects
         suspectsIds={state.suspectsIds}
         suspectsDict={state.suspectsDict}
+        perpetratorId={state.perpetratorId}
       />
     </GameOverWrapper>
   );
 }
-
-export default PhaseGameOver;

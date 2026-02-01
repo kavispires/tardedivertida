@@ -9,7 +9,6 @@ import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
-import { SendButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -17,54 +16,48 @@ import { PlayerAvatarName } from 'components/player';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, TextHighlight, StepTitle } from 'components/text';
 // Internal
-import type { EliminatePayload, Status, THistoryEntry } from './utils/types';
+import type { FinalEliminationPayload, Status, THistoryEntry } from './utils/types';
+import { buildAnswer } from './utils/helpers';
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Summary } from './components/Summary';
 
-type StepSuspectEliminationProps = {
+type StepVoteForFinalEliminationProps = {
   suspectsDict: Dictionary<SuspectCard>;
   suspectsIds: CardId[];
   previouslyEliminatedSuspects: string[];
   eliminatedSuspects: string[];
   perpetratorId: CardId;
   isUserTheWitness: boolean;
-  isUserTheQuestioner: boolean;
   witness: GamePlayer;
-  questioner: GamePlayer;
-  onEliminate: (payload: EliminatePayload) => void;
+  onSelectCriminal: (payload: FinalEliminationPayload) => void;
   question: TestimonyQuestionCard;
   testimony: boolean;
   history: THistoryEntry[];
   status: Status;
 } & Pick<StepProps, 'announcement'>;
 
-export function StepSuspectElimination({
+export function StepVoteForFinalElimination({
   suspectsDict,
   suspectsIds,
   previouslyEliminatedSuspects,
   eliminatedSuspects,
   perpetratorId,
   isUserTheWitness,
-  isUserTheQuestioner,
   witness,
-  onEliminate,
+  onSelectCriminal,
   question,
   testimony,
   history,
-  questioner,
   announcement,
   status,
-}: StepSuspectEliminationProps) {
+}: StepVoteForFinalEliminationProps) {
   const { translate, language } = useLanguage();
 
-  const onEliminateSuspect = (suspectId: string) => onEliminate({ suspectId, pass: false });
-  const onPass = () => onEliminate({ suspectId: '', pass: true });
+  const handleSelectCriminal = (suspectId: string) => onSelectCriminal({ suspectId });
 
-  const { answer, oppositeAction } = useMemo(() => {
-    const answer = buildAnswer(question, testimony, language);
-    const oppositeAction = buildAnswer(question, !testimony, language);
-    return { answer, oppositeAction };
+  const answer = useMemo(() => {
+    return buildAnswer(question, testimony, language);
   }, [question, testimony, language]);
 
   return (
@@ -112,41 +105,56 @@ export function StepSuspectElimination({
         </Card>
       </SpaceContainer>
 
-      {isUserTheQuestioner ? (
+      {!isUserTheWitness ? (
         <RuleInstruction type="action">
           <Translate
-            pt="Clique em um suspeito para liberá-lo(a)."
-            en="Click on a suspect card to release it."
+            en={
+              <>
+                In a crazy turn of events, every detective needs to evaluate the two final suspects.
+                <br /> And now{' '}
+                <TextHighlight style={{ fontStyle: 'italic', fontSize: '1.2em' }}>
+                  SELECT THE CRIMINAL
+                </TextHighlight>
+                !
+                <br />
+                In case of a tie, both are released and the group loses the game.
+              </>
+            }
+            pt={
+              <>
+                Em uma reviravolta maluca, todos os detetives precisam avaliar os dois suspeitos finais.
+                <br /> E agora{' '}
+                <TextHighlight style={{ fontStyle: 'italic', fontSize: '1.2em' }}>
+                  SELECIONE O CRIMINOSO
+                </TextHighlight>
+                !
+                <br />
+                Em caso de empate, ambos são liberados e o grupo perde o jogo.
+              </>
+            }
           />
-          <br />
-          <Translate
-            pt="Selecione alguém que"
-            en="Select someone that "
-          />{' '}
-          <TextHighlight>{oppositeAction}</TextHighlight>
-          <br />
-          {Boolean(eliminatedSuspects?.length && isUserTheQuestioner) && (
-            <SendButton onClick={onPass}>
-              <Translate
-                pt="Parar de eliminar e ir para a próxima pergunta"
-                en="Stop releasing suspects and go to next question"
-              />
-            </SendButton>
-          )}
         </RuleInstruction>
       ) : (
         <RuleInstruction type="wait">
-          <PlayerAvatarName player={questioner} />{' '}
           <Translate
-            pt="é quem libera os suspeitos e ele(a) precisa liberar pelo menos um."
-            en="is the one who is releasing the suspects and they must release at least one."
+            pt={
+              <>
+                Os jogadores agora devem individualmente votar pra quem é o criminoso!
+                <br />O suspeito mais votado será preso.
+                <br />
+                Em caso de empate, ambos são liberados.
+              </>
+            }
+            en={
+              <>
+                Players must now individually vote for who the criminal is!
+                <br />
+                The suspect with the most votes will be arrested!
+                <br />
+                In case of a tie, both are released.
+              </>
+            }
           />
-          <br />
-          <Translate
-            pt="E deve ser alguém que"
-            en="It must someone that "
-          />{' '}
-          <TextHighlight>{oppositeAction}</TextHighlight>
         </RuleInstruction>
       )}
 
@@ -154,7 +162,7 @@ export function StepSuspectElimination({
         suspectsDict={suspectsDict}
         suspectsIds={suspectsIds}
         perpetratorId={isUserTheWitness ? perpetratorId : undefined}
-        onCardClick={isUserTheQuestioner ? onEliminateSuspect : undefined}
+        onCardClick={!isUserTheWitness ? handleSelectCriminal : undefined}
         eliminatedSuspects={[...(eliminatedSuspects ?? []), ...(previouslyEliminatedSuspects ?? [])]}
       />
 
@@ -169,27 +177,3 @@ export function StepSuspectElimination({
     </Step>
   );
 }
-
-const buildAnswer = (question: TestimonyQuestionCard, testimony: boolean, language: string) => {
-  if (language === 'pt') {
-    if (testimony) {
-      return question.answer;
-    }
-    if (question.answer.startsWith('Já')) {
-      return `nunca ${question.answer.slice(3)}`;
-    }
-    return `não ${question.answer}`;
-  }
-
-  if (language === 'en') {
-    if (testimony) {
-      return question.answer;
-    }
-    if (question.question.includes('ever')) {
-      return `haver never ${question.answer.slice(5)}`;
-    }
-    return `does not ${question.answer}`;
-  }
-
-  return '';
-};

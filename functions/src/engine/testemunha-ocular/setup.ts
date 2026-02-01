@@ -7,7 +7,7 @@ import type {
   TestemunhaOcularHistoryEntry,
 } from './types';
 // Constants
-import { MAX_ROUNDS, QUESTION_COUNT, TESTEMUNHA_OCULAR_PHASES } from './constants';
+import { MAX_ROUNDS, OUTCOME, QUESTION_COUNT, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Helpers
 import utils from '../../utils';
 import { calculateScore, getAchievements, getPoolOfSuspects, getQuestions } from './helpers';
@@ -51,6 +51,7 @@ export const prepareSetupPhase = async (
   const achievements = utils.achievements.setup(players, {
     witness: 0,
     releases: [],
+    foundThePerpetrator: 0,
   });
 
   // Save
@@ -104,9 +105,8 @@ export const prepareQuestionSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  additionalPayload: PlainObject,
 ): Promise<SaveGamePayload> => {
-  const witnessId = additionalPayload?.witnessId ?? state.witnessId;
+  const witnessId = state.witnessId;
 
   utils.achievements.increase(store, witnessId, 'witness', 1);
 
@@ -173,8 +173,9 @@ export const prepareQuestionSelectionPhase = async (
           released: previouslyEliminatedSuspects.length,
         },
         history,
+        outcome: state.outcome ?? OUTCOME.CONTINUE,
       },
-      stateCleanup: ['question', 'testimony', 'eliminatedSuspects'],
+      stateCleanup: ['question', 'questionId', 'testimony', 'eliminatedSuspects'],
     },
   };
 };
@@ -183,9 +184,8 @@ export const prepareQuestioningPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  additionalPayload: PlainObject,
 ): Promise<SaveGamePayload> => {
-  const question = store.deck.find((card: TestimonyQuestionCard) => card.id === additionalPayload.questionId);
+  const question = store.deck.find((card: TestimonyQuestionCard) => card.id === state.questionId);
 
   utils.players.readyPlayers(players, state.witnessId);
 
@@ -206,9 +206,8 @@ export const prepareTrialPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  additionalPayload: PlainObject,
 ): Promise<SaveGamePayload> => {
-  const testimony = additionalPayload?.testimony ?? state.testimony;
+  const testimony: boolean = state.testimony;
 
   const history: TestemunhaOcularHistoryEntry[] = state.history ?? [];
   history.unshift({
@@ -221,15 +220,31 @@ export const prepareTrialPhase = async (
     ...state.question,
   });
 
-  utils.players.readyPlayers(players, state.questionerId);
+  // In final showdown, skip to FINAL_TRIAL phase
+  if (state.outcome === OUTCOME.FINAL_SHOWDOWN) {
+    utils.players.unReadyPlayers(players, state.witnessId);
 
+    return {
+      update: {
+        state: {
+          phase: TESTEMUNHA_OCULAR_PHASES.FINAL_TRIAL,
+          players,
+          testimony,
+          history,
+        },
+        stateCleanup: ['questionerId'],
+      },
+    };
+  }
+
+  utils.players.readyPlayers(players, state.questionerId);
   // Save
   return {
     update: {
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.TRIAL,
         players,
-        testimony: additionalPayload?.testimony ?? state.testimony,
+        testimony,
         history,
       },
     },
@@ -241,12 +256,55 @@ export const prepareGameOverPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  additionalPayload: PlainObject,
 ): Promise<SaveGamePayload> => {
   await utils.firestore.markGameAsComplete(gameId);
 
-  const isWin = additionalPayload?.win ?? false;
+  const perpetratorId: CardId = state.perpetratorId ?? '';
+  const witnessId: PlayerId = state.witnessId;
+  const listOfPlayers = utils.players.getListOfPlayers(players);
 
+  // Determine what suspect got the most votes
+  const suspectVoteCount: NumberDictionary = {};
+  listOfPlayers.forEach((player) => {
+    if (player.suspectId) {
+      suspectVoteCount[player.suspectId] = (suspectVoteCount[player.suspectId] || 0) + 1;
+    }
+  });
+  // Find suspect with most votes
+  let maxVotes = 0;
+  let votedSuspectIds: CardId[] = [];
+  Object.entries(suspectVoteCount).forEach(([suspectId, count]) => {
+    if (count > maxVotes) {
+      maxVotes = count;
+      votedSuspectIds = [suspectId];
+    } else if (count === maxVotes) {
+      votedSuspectIds.push(suspectId);
+    }
+  });
+  // Players lose if it's a tie or the perpetrator is not among the voted suspects
+  const isTie = votedSuspectIds.length > 1;
+  const isPerpetratorVoted = votedSuspectIds.includes(perpetratorId);
+  if (isTie || !isPerpetratorVoted) {
+    state.outcome = OUTCOME.LOSE;
+  } else {
+    state.outcome = OUTCOME.WIN;
+  }
+
+  // What's the released suspect (not voted, or least voted)
+  const newlyReleasedSuspects: CardId[] = difference(state.suspectsIds, [
+    ...state.previouslyEliminatedSuspects,
+    ...votedSuspectIds,
+  ]);
+
+  if (newlyReleasedSuspects.length > 0) {
+    state.eliminatedSuspects = newlyReleasedSuspects;
+    state.status = {
+      ...state.status,
+      released: state.status.released + newlyReleasedSuspects.length,
+    };
+  }
+
+  const isWin = state.outcome === OUTCOME.WIN;
   const previouslyEliminatedSuspects: CardId[] = [
     ...(state?.previouslyEliminatedSuspects ?? []),
     ...(state?.eliminatedSuspects ?? []),
@@ -260,9 +318,22 @@ export const prepareGameOverPhase = async (
     history[0].remaining = remainingSuspects;
   }
 
-  const winners = additionalPayload?.win ? utils.players.getListOfPlayers(players) : [];
+  const winners = isWin
+    ? listOfPlayers.filter((player) => {
+        if (witnessId === player.id) return true;
+        return player.suspectId === perpetratorId;
+      })
+    : [];
 
-  const achievements = getAchievements(store, state.witnessId ?? '');
+  if (!isWin) {
+    listOfPlayers.forEach((player) => {
+      if (player.suspectId === perpetratorId) {
+        utils.achievements.increase(store, player.id, 'foundThePerpetrator', 1);
+      }
+    });
+  }
+
+  const achievements = getAchievements(store, witnessId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.TESTEMUNHA_OCULAR,
@@ -274,12 +345,10 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  const perpetratorId = state.perpetratorId ?? '';
-
   // Save Data (usedSuspects, usedQuestions, relationships)
   await saveData(gameId, history, isWin, perpetratorId, utils.players.getPlayerCount(players));
 
-  utils.players.cleanup(players, []);
+  utils.players.cleanup(players, ['suspectId']);
 
   return {
     update: {
@@ -292,13 +361,14 @@ export const prepareGameOverPhase = async (
         players,
         gameEndedAt: Date.now(),
         status: state.status,
-        outcome: isWin ? 'WIN' : 'LOSE',
+        outcome: isWin ? OUTCOME.WIN : OUTCOME.LOSE,
         history,
         suspectsDict: state.suspectsDict,
         suspectsIds: state.suspectsIds,
-        perpetratorId: state.perpetratorId,
+        perpetratorId,
         achievements,
-        witnessId: state.witnessId,
+        witnessId,
+        winners,
         previouslyEliminatedSuspects: previouslyEliminatedSuspects,
       },
     },

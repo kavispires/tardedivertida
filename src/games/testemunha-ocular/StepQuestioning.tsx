@@ -5,6 +5,7 @@ import type { GamePlayer } from 'types/player';
 import type { SuspectCard, TestimonyQuestionCard } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+import { useMock } from 'hooks/useMock';
 // Components
 import { AnswerNoButton, AnswerYesButton } from 'components/buttons/AnswerButtons';
 import { Card } from 'components/cards';
@@ -15,11 +16,11 @@ import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
-import type { Status, SubmitTestimonyPayload, THistoryEntry } from './utils/types';
+import type { Outcome, Status, SubmitTestimonyPayload, THistoryEntry } from './utils/types';
+import { mockWitnessTestimony } from './utils/mock';
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Summary } from './components/Summary';
-// Icons
 
 type StepQuestioningProps = {
   suspectsDict: Dictionary<SuspectCard>;
@@ -33,6 +34,7 @@ type StepQuestioningProps = {
   question: TestimonyQuestionCard;
   history: THistoryEntry[];
   status: Status;
+  outcome: Outcome;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepQuestioning({
@@ -50,6 +52,12 @@ export function StepQuestioning({
   status,
 }: StepQuestioningProps) {
   const { translate } = useLanguage();
+
+  useMock(() => {
+    if (isUserTheWitness) {
+      onAnswer({ testimony: mockWitnessTestimony() });
+    }
+  });
 
   return (
     <Step announcement={announcement}>
@@ -83,6 +91,7 @@ export function StepQuestioning({
             color="blue"
             className="t-card"
             size="large"
+            footer={Array(question.level).fill('•').join('')}
           >
             {question.question}
           </Card>
@@ -119,6 +128,7 @@ export function StepQuestioning({
             color="blue"
             className="t-card"
             size="large"
+            footer={Array(question.level).fill('•').join('')}
           >
             {question.question}
           </Card>

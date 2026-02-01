@@ -1,10 +1,12 @@
 // Hooks
 import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
+import type { UseStep } from 'hooks/useStep';
 // Internal
 import { TESTEMUNHA_OCULAR_ACTIONS } from './constants';
 import type {
   EliminatePayload,
+  FinalEliminationPayload,
   SelectQuestionPayload,
   SelectWitnessPayload,
   SubmitTestimonyPayload,
@@ -75,9 +77,9 @@ export function useOnEliminateSuspectAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'eliminate-suspect',
-    successMessage: translate('Suspeito eliminado com sucesso', 'Suspect release submitted successfully'),
+    successMessage: translate('Suspeito liberado com sucesso', 'Suspect release submitted successfully'),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar eliminar o suspeito',
+      'Vixi, o aplicativo encontrou um erro ao tentar liberar um suspeito',
       'Oops, the application found an error while trying to release the suspect',
     ),
   });
@@ -85,6 +87,27 @@ export function useOnEliminateSuspectAPIRequest() {
   return (payload: EliminatePayload) => {
     request({
       action: TESTEMUNHA_OCULAR_ACTIONS.ELIMINATE_SUSPECT,
+      ...payload,
+    });
+  };
+}
+
+export function useOnChooseTheCriminalAPIRequest(setStep: UseStep['setStep']) {
+  const { translate } = useLanguage();
+
+  const request = useGameActionRequest({
+    actionName: 'final-elimination',
+    onSuccess: () => setStep(1),
+    successMessage: translate('Criminoso escolhido com sucesso', 'Criminal chosen successfully'),
+    errorMessage: translate(
+      'Vixi, o aplicativo encontrou um erro ao tentar escolher o criminoso',
+      'Oops, the application found an error while trying to choose the criminal',
+    ),
+  });
+
+  return (payload: FinalEliminationPayload) => {
+    request({
+      action: TESTEMUNHA_OCULAR_ACTIONS.FINAL_ELIMINATION,
       ...payload,
     });
   };

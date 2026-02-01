@@ -276,6 +276,27 @@ export const getOnlyExactMatch = (
 };
 
 /**
+ * Retrieves all player IDs that have a truthy value for the specified achievement property,
+ * excluding ineligible players.
+ *
+ * @param store - The store containing achievements
+ * @param property - The property to check for truthy values
+ * @param ineligiblePlayers - An optional array of player IDs to exclude from the results
+ * @returns An array of player IDs that have a truthy value for the specified property
+ */
+export const getPlayersWithTruthyAchievement = (
+  store: PlainObject,
+  property: string,
+  ineligiblePlayers: PlayerId[] = [],
+): PlayerId[] => {
+  const achievements = Object.values<StoreAchievement>(store.achievements).filter(
+    (a) => !ineligiblePlayers.includes(a.playerId),
+  );
+
+  return achievements.filter((achievement) => Boolean(achievement[property])).map((a) => a.playerId);
+};
+
+/**
  * Retrieves the highest and lowest occurrences of a specified property from a store of achievements,
  * excluding ineligible players.
  *

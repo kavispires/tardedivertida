@@ -5,6 +5,7 @@ export const ACHIEVEMENTS = {
   PLAYED_AS_WITNESS: 'PLAYED_AS_WITNESS',
   BEST_QUESTIONS: 'BEST_QUESTIONS',
   MOST_USELESS_QUESTIONS: 'MOST_USELESS_QUESTIONS',
+  FOUND_THE_PERPETRATOR: 'FOUND_THE_PERPETRATOR',
 };
 
 export const achievementsReference: AchievementReference = {
@@ -39,6 +40,17 @@ export const achievementsReference: AchievementReference = {
     description: {
       pt: 'Suas perguntas eliminaram menos suspeitos',
       en: 'Your questions eliminated fewer suspects',
+    },
+  },
+  [ACHIEVEMENTS.FOUND_THE_PERPETRATOR]: {
+    icon: 'brain',
+    title: {
+      pt: 'Caçador de Criminosos',
+      en: 'Criminal Hunter',
+    },
+    description: {
+      pt: 'Você descobriu quem era o criminoso quando ninguém mais conseguiu',
+      en: 'You found out who the perpetrator was when no one else could',
     },
   },
 };

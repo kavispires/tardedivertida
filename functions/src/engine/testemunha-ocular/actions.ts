@@ -1,37 +1,61 @@
 // Utils
 import utils from '../../utils';
+import { OUTCOME } from './constants';
 import { getNextPhase } from './index';
 import type { FirebaseStateData } from './types';
 
-/**
- * Handles an extra action within the game by saving the card to the store and transitioning to the next phase.
- *
- * @param gameName - The name of the game.
- * @param gameId - The unique identifier of the game.
- * @param actionText - A description of the action being performed.
- * @param additionalPayload - Any additional data required for the action.
- * @returns A promise that resolves to the next phase of the game or throws an exception if the action fails.
- */
-export const handleExtraAction = async (
+export const handleSelectWitness = async (
   gameName: GameName,
   gameId: GameId,
-  actionText: string,
-  additionalPayload: PlainObject,
+  playerId: PlayerId,
+  witnessId: PlayerId,
 ) => {
-  // Save card to store
-  try {
-    const { state } = await utils.firestore.getStateReferences<FirebaseStateData>(
-      gameName,
-      gameId,
-      actionText,
-    );
+  return await utils.firestore.updateState({
+    gameName,
+    gameId,
+    playerId,
+    actionText: 'select witness',
+    change: {
+      witnessId,
+    },
+    nextPhaseFunction: getNextPhase,
+  });
+};
 
-    return getNextPhase(gameName, gameId, state, additionalPayload);
-  } catch (error) {
-    utils.firebase.throwException(error, `Failed to ${actionText}`);
-  }
+export const handleSelectQuestion = async (
+  gameName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  questionId: PlayerId,
+) => {
+  return await utils.firestore.updateState({
+    gameName,
+    gameId,
+    playerId,
+    actionText: 'select question',
+    change: {
+      questionId,
+    },
+    nextPhaseFunction: getNextPhase,
+  });
+};
 
-  return true;
+export const handleGiveTestimony = async (
+  gameName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  testimony: boolean,
+) => {
+  return await utils.firestore.updateState({
+    gameName,
+    gameId,
+    playerId,
+    actionText: 'give testimony',
+    change: {
+      testimony,
+    },
+    nextPhaseFunction: getNextPhase,
+  });
 };
 
 /**
@@ -55,7 +79,10 @@ export const handleElimination = async (
   gameName: GameName,
   gameId: GameId,
   actionText: string,
-  additionalPayload: PlainObject,
+  additionalPayload: {
+    pass?: boolean;
+    suspectId?: CardId;
+  },
 ) => {
   const { sessionRef, state } = await utils.firestore.getStateReferences<FirebaseStateData>(
     gameName,
@@ -64,8 +91,7 @@ export const handleElimination = async (
   );
 
   let shouldGoToNextPhase = false;
-  let lose = false;
-  let win = false;
+  state.outcome = OUTCOME.CONTINUE;
 
   // If pass and at least one
   if (additionalPayload.pass && state?.eliminatedSuspects?.length) {
@@ -77,7 +103,7 @@ export const handleElimination = async (
   if (suspectId) {
     if (suspectId === state.perpetratorId) {
       shouldGoToNextPhase = true;
-      lose = true;
+      state.outcome = OUTCOME.LOSE;
     } else {
       const eliminatedSuspects = state?.eliminatedSuspects || [];
       eliminatedSuspects.push(suspectId);
@@ -100,19 +126,45 @@ export const handleElimination = async (
         suspectsIds.length - (state.previouslyEliminatedSuspects.length + eliminatedSuspects.length) === 1
       ) {
         shouldGoToNextPhase = true;
-        win = true;
+        state.outcome = OUTCOME.WIN;
+      }
+
+      if (
+        suspectsIds &&
+        suspectsIds.length - (state.previouslyEliminatedSuspects.length + eliminatedSuspects.length) === 2
+      ) {
+        state.outcome = OUTCOME.FINAL_SHOWDOWN;
+        shouldGoToNextPhase = true;
       }
     }
   }
-
   // In case of a pass or win (found all) or a lose (clicked on perpetrator)
   if (shouldGoToNextPhase) {
     try {
-      return getNextPhase(gameName, gameId, state, { lose, win });
+      return getNextPhase(gameName, gameId, state);
     } catch (error) {
       utils.firebase.throwException(error, `Failed to ${actionText}`);
     }
   }
 
   return true;
+};
+
+export const handleFinalElimination = async (
+  gameName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  suspectId: boolean,
+) => {
+  return await utils.firestore.updatePlayer({
+    gameName,
+    gameId,
+    playerId,
+    actionText: 'declare the criminal',
+    shouldReady: true,
+    change: {
+      suspectId,
+    },
+    nextPhaseFunction: getNextPhase,
+  });
 };

@@ -229,6 +229,14 @@ export const saveGame = async (
   const hasStoreUpdate = !isEmpty(saveContent?.update?.store);
   const hasStateSet = !isEmpty(saveContent?.set?.state);
 
+  if (saveContent?.set?.state?.phase || saveContent?.update?.state?.phase) {
+    utils.helpers.print(
+      `➡️ Saving game state phase: ${
+        (saveContent?.set?.state?.phase ?? saveContent?.update?.state?.phase) as string
+      }`,
+    );
+  }
+
   if (isEmulatingEnvironment()) {
     const undefinedValues = verifyUndefinedValues(saveContent);
     if (undefinedValues) {
