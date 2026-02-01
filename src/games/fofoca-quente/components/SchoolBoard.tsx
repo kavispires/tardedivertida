@@ -1,23 +1,30 @@
+// Ant Design Resources
+import { CompassOutlined } from '@ant-design/icons';
+import { Button, Tooltip } from 'antd';
 // Components
 import { TransparentButton } from 'components/buttons';
-import { DualTranslate } from 'components/language';
+import { DualTranslate, Translate } from 'components/language';
 import { ZoomPanPinchContainer } from 'components/layout/ZoomPanPinchContainer';
 // Internal
 import type { FofocaQuenteDefaultState } from '../utils/types';
 import { StudentCard } from './StudentCard';
 import { StaffMemberEntry } from './StaffMember';
+import { DetectiveToken } from './DetectiveToken';
+import { useFofocaQuenteContext } from './FofocaQuenteContext';
 // Images
 import bgImage from '../assets/school-board.jpg';
 
 type SchoolBoardProps = {
-  selectStudent: (studentId: string) => void;
   schoolBoard: FofocaQuenteDefaultState['schoolBoard'];
   students: FofocaQuenteDefaultState['students'];
   socialGroups: FofocaQuenteDefaultState['socialGroups'];
   staff: FofocaQuenteDefaultState['staff'];
 };
 
-export function SchoolBoard({ schoolBoard, students, socialGroups, selectStudent, staff }: SchoolBoardProps) {
+export function SchoolBoard({ schoolBoard, students, socialGroups, staff }: SchoolBoardProps) {
+  const { onOpenStudentModal, detectiveLocationIndex, onSetDetectiveLocation, permissions } =
+    useFofocaQuenteContext();
+
   const size = 256;
   return (
     <ZoomPanPinchContainer
@@ -36,11 +43,11 @@ export function SchoolBoard({ schoolBoard, students, socialGroups, selectStudent
           backgroundPosition: 'center',
           width: 4 * size,
           height: 4 * size,
-          gridTemplateColumns: `repeat(4, ${size - 6}px)`,
-          gridTemplateRows: `repeat(4, ${size - 6}px)`,
+          gridTemplateColumns: `repeat(4, ${size}px)`,
+          gridTemplateRows: `repeat(4, ${size}px)`,
         }}
       >
-        {schoolBoard.map((location) => (
+        {schoolBoard.map((location, index) => (
           <div
             key={location.id}
             className="school-location"
@@ -48,6 +55,24 @@ export function SchoolBoard({ schoolBoard, students, socialGroups, selectStudent
             <div className="school-location__header">
               <div className="school-location__name">
                 <DualTranslate>{location.name}</DualTranslate>
+                {permissions.canMoveDetective && (
+                  <Tooltip
+                    title={
+                      <Translate
+                        pt="Clique para selecionar este local"
+                        en="Click to select this location"
+                      />
+                    }
+                  >
+                    <Button
+                      size="small"
+                      shape="circle"
+                      onClick={() => onSetDetectiveLocation(index)}
+                      icon={<CompassOutlined />}
+                      className="ml-2"
+                    />
+                  </Tooltip>
+                )}
               </div>
               {location.staff && (
                 <div className="school-location__staff-member">
@@ -62,7 +87,7 @@ export function SchoolBoard({ schoolBoard, students, socialGroups, selectStudent
               {location.students.map((studentId) => (
                 <TransparentButton
                   key={studentId}
-                  onClick={() => selectStudent(studentId)}
+                  onClick={() => onOpenStudentModal(studentId)}
                   hoverType="tint"
                   className="school-location__student-button"
                 >
@@ -76,7 +101,9 @@ export function SchoolBoard({ schoolBoard, students, socialGroups, selectStudent
               ))}
             </div>
 
-            <div className="school-location__footer">D</div>
+            <div className="school-location__footer">
+              - {detectiveLocationIndex === index && <DetectiveToken />} -
+            </div>
           </div>
         ))}
       </div>

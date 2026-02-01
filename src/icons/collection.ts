@@ -265,6 +265,7 @@ export * from './TabletIcon';
 export * from './TalkIcon';
 export * from './TargetIcon';
 export * from './TDIcon';
+export * from './TeenDetectiveIcon';
 export * from './TheEndIcon';
 export * from './ThiefIcon';
 export * from './ThinkingIcon';

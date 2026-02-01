@@ -1,23 +1,24 @@
-import { orderBy } from 'lodash';
-import { useState } from 'react';
 // Ant Design Resources
-import { Flex, Select } from 'antd';
+import { CompassOutlined } from '@ant-design/icons';
+import { Alert, Flex } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
-// Hooks
-import { useLanguage } from 'hooks/useLanguage';
+// Icons
+import { TeenDetectiveIcon } from 'icons/TeenDetectiveIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
 import { SendButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { DualTranslate, Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { FofocaQuenteDefaultState, SubmitDetectiveLocationPayload } from './utils/types';
 import { SchoolBoard } from './components/SchoolBoard';
-import { StudentModal } from './components/StudentModal';
 import { BoardSummary } from './components/BoardSummary';
 import { DetectiveGoals } from './components/DetectiveGoals';
 import { Info } from './components/Info';
+import { useFofocaQuenteContext } from './components/FofocaQuenteContext';
+// Hooks
 
 type StepSetupDetectiveProps = {
   players: GamePlayers;
@@ -34,33 +35,21 @@ export function StepSetupDetective({
   schoolBoard,
   socialGroups,
   students,
-  gossiperId,
   bestFriendId,
   staff,
   onSubmitDetectiveLocation,
   // motivations,
 }: StepSetupDetectiveProps) {
-  const { dualTranslate } = useLanguage();
-  const [selectedStudentId, setSelectedStudentId] = useState<string | null>(null);
-
-  const [selectedLocationIndex, setSelectedLocationIndex] = useState<number | null>(null);
+  const { detectiveLocationIndex } = useFofocaQuenteContext();
 
   const onSubmit = () => {
-    if (selectedLocationIndex !== null) {
+    if (detectiveLocationIndex !== null) {
       onSubmitDetectiveLocation({
-        locationId: selectedLocationIndex,
+        locationId: detectiveLocationIndex,
         shouldReady: true,
       });
     }
   };
-
-  const options = orderBy(
-    schoolBoard.map((location, index) => ({
-      label: dualTranslate(location.name),
-      value: index,
-    })),
-    'label',
-  );
 
   const hasLocation = user.locationId !== null && user.locationId !== undefined;
 
@@ -82,7 +71,6 @@ export function StepSetupDetective({
         schoolBoard={schoolBoard}
         students={students}
         socialGroups={socialGroups}
-        selectStudent={setSelectedStudentId}
         staff={staff}
       />
 
@@ -101,25 +89,40 @@ export function StepSetupDetective({
               className="text-left"
             >
               <Translate
-                en="To start the game, first select which location on the school map you want to start."
-                pt="Para começar o jogo, primeiro selecione em qual localização do mapa da escola você quer começar."
-              />
-              <br />
-              <Select
-                options={options}
-                onChange={setSelectedLocationIndex}
-                placeholder={
-                  <Translate
-                    en="Select a location"
-                    pt="Selecione um local"
-                  />
+                en={
+                  <>
+                    To start the game, first select which location on the school map you want to start.
+                    <br />
+                    On the school map, click on the compass icon <CompassOutlined /> next to the location name
+                    to select it, then come back here to confirm.
+                    <br />
+                    Your position on the map will be represented by the icon{' '}
+                    <IconAvatar
+                      icon={<TeenDetectiveIcon />}
+                      size="small"
+                    />{' '}
+                    and the gossiper will be able to see where you are at all times.
+                  </>
                 }
-                style={{ width: 200 }}
-                disabled={hasLocation}
+                pt={
+                  <>
+                    Para começar o jogo, primeiro selecione qual local no mapa da escola você quer começar.
+                    <br />
+                    No mapa da escola, clique no ícone de bússola <CompassOutlined /> ao lado do nome do local
+                    para selecioná-lo, depois volte aqui para confirmar.
+                    <br />
+                    Sua posição no mapa será representada pelo ícone{' '}
+                    <IconAvatar
+                      icon={<TeenDetectiveIcon />}
+                      size="small"
+                    />{' '}
+                    e o fofoqueiro poderá ver onde você está o tempo todo.
+                  </>
+                }
               />
-
               <br />
-              {selectedLocationIndex !== null && (
+
+              {detectiveLocationIndex !== null && (
                 <SendButton
                   onClick={onSubmit}
                   block
@@ -128,24 +131,31 @@ export function StepSetupDetective({
                   <Translate
                     en="Submit"
                     pt="Enviar"
-                  />
+                  />{' '}
+                  {detectiveLocationIndex !== null && (
+                    <strong>
+                      <DualTranslate>{schoolBoard[detectiveLocationIndex].name}</DualTranslate>
+                    </strong>
+                  )}
                 </SendButton>
+              )}
+              {hasLocation && (
+                <Alert
+                  className="mt-2"
+                  type="success"
+                  showIcon
+                  title={
+                    <Translate
+                      en="All set! Let's wait for the gossiper to be ready."
+                      pt="Tudo certo! Vamos aguardar o fofoqueiro ficar pronto."
+                    />
+                  }
+                />
               )}
             </RuleInstruction>
           </div>
         </Flex>
       </Instruction>
-
-      {selectedStudentId && (
-        <StudentModal
-          student={students[selectedStudentId]}
-          socialGroups={socialGroups}
-          gossiperId={gossiperId}
-          bestFriendId={bestFriendId}
-          closeModal={() => setSelectedStudentId(null)}
-          showSecrets={user.role === 'gossiper'}
-        />
-      )}
     </Step>
   );
 }

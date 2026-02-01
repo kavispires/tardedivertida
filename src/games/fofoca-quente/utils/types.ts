@@ -1,5 +1,9 @@
 // Types
 import type { TeenageMotivation, TeenageRumor, TeenageStudent } from 'types/tdr';
+// Internal
+import type { FOFOCA_QUENTE_PHASES } from './constants';
+
+export type FofocaQuentePhase = keyof typeof FOFOCA_QUENTE_PHASES;
 
 export type SubmitPlayersRoles = {
   gossiperPlayerId: PlayerId;
@@ -59,6 +63,7 @@ export type SocialGroup = {
 };
 
 export type FofocaQuenteDefaultState = {
+  phase: FofocaQuentePhase;
   schoolBoard: SchoolLocation[];
   students: Dictionary<Student>;
   staff: Dictionary<StaffMember>;
@@ -75,7 +80,3 @@ export type FofocaQuenteDefaultState = {
   // detectivePossibleMovements?: number[];
   // associatedSocialGroup?: string;
 };
-
-export type PhaseBoardSetupState = FofocaQuenteDefaultState & {};
-
-export type PhaseIntimidationState = FofocaQuenteDefaultState & {};

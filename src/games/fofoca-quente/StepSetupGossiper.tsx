@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Avatar, Button, Flex } from 'antd';
+import { Alert, Avatar, Button, Flex } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Icons
@@ -15,7 +15,6 @@ import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 import type { FofocaQuenteDefaultState, SubmitAssociatedSocialGroupPayload } from './utils/types';
 import { useBoardSummary } from './utils/hooks';
 import { SchoolBoard } from './components/SchoolBoard';
-import { StudentModal } from './components/StudentModal';
 import { BoardSummary } from './components/BoardSummary';
 import { StudentIcon } from './components/StudentIcon';
 import { GossiperGoals } from './components/GossiperGoals';
@@ -43,8 +42,6 @@ export function StepSetupGossiper({
   gossiperMotivationIndex,
   onSubmitAssociatedSocialGroup,
 }: StepSetupGossiperProps) {
-  const [selectedStudentId, setSelectedStudentId] = useState<string | null>(null);
-
   const motivation = motivations[gossiperMotivationIndex];
   const [selectedSocialGroupId, setSelectedSocialGroupId] = useState<string | null>(null);
   const summaryDicts = useBoardSummary(students);
@@ -70,7 +67,6 @@ export function StepSetupGossiper({
         schoolBoard={schoolBoard}
         students={students}
         socialGroups={socialGroups}
-        selectStudent={setSelectedStudentId}
         staff={staff}
       />
 
@@ -87,7 +83,6 @@ export function StepSetupGossiper({
               students={students}
               gossiperId={gossiperId}
               bestFriendId={bestFriendId}
-              onOpenStudentModal={setSelectedSocialGroupId}
             />
 
             <RuleInstruction
@@ -95,8 +90,8 @@ export function StepSetupGossiper({
               className="text-left"
             >
               <Translate
-                en="To help you with your chaos, select one of these social groups to be associated with you. They also will be able to lie for you. The numbers are how many students are in each group."
-                pt="Para te ajudar com seu caos, selecione um desses grupos sociais para ser associado a você. Eles também poderão mentir por você. Os números são quantos alunos estão em cada grupo."
+                en="To help you with your chaos, select one of these social groups to be associated with you. They also will be able to lie for you. The numbers in the circles are how many students are in each group."
+                pt="Para te ajudar com seu caos, selecione um desses grupos sociais para ser associado a você. Eles também poderão mentir por você. Os números nos círculos são quantos alunos estão em cada grupo."
               />
               <br />
               <Flex gap={8}>
@@ -120,6 +115,7 @@ export function StepSetupGossiper({
                       background: socialGroups[socialGroupId].colors.primary,
                       color: 'white',
                     }}
+                    disabled={!!user.associatedSocialGroupId}
                   >
                     <DualTranslate>{socialGroups[socialGroupId].name}</DualTranslate>{' '}
                     <Avatar size="small">{summaryDicts.socialGroupsDict[socialGroupId]}</Avatar>
@@ -139,21 +135,23 @@ export function StepSetupGossiper({
                   />
                 </SendButton>
               )}
+              {!!user.associatedSocialGroupId && (
+                <Alert
+                  className="mt-2"
+                  type="success"
+                  showIcon
+                  title={
+                    <Translate
+                      en="All set! Let's wait for the detective to be ready."
+                      pt="Tudo certo! Vamos aguardar o detetive ficar pronto."
+                    />
+                  }
+                />
+              )}
             </RuleInstruction>
           </div>
         </Flex>
       </Instruction>
-
-      {selectedStudentId && (
-        <StudentModal
-          student={students[selectedStudentId]}
-          socialGroups={socialGroups}
-          gossiperId={gossiperId}
-          bestFriendId={bestFriendId}
-          closeModal={() => setSelectedStudentId(null)}
-          showSecrets={user.role === 'gossiper'}
-        />
-      )}
     </Step>
   );
 }

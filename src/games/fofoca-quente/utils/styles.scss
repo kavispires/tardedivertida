@@ -1,11 +1,14 @@
 @use "styles/sass" as *;
 @use "../../../assets/fonts/oswald.scss" as *;
 
+.background {
+  background: linear-gradient(-45deg, #eceded, #e1e8ce, #d8dae6);
+  background-size: 1000% 1000%;
+}
+
 .school-board {
   background-color: get-color("white");
   display: grid;
-  gap: get-unit(2);
-  padding: get-unit(1);
   border-radius: var(--border-radius);
   @include font-oswald;
 }
@@ -109,6 +112,10 @@
     color: get-color("black", 5, 0.75);
   }
 
+  &__social-group-icon {
+    z-index: 7;
+  }
+
   &__social-group-name {
     text-transform: uppercase;
     margin-left: get-unit(-2);
@@ -176,5 +183,19 @@
   &__label {
     font-size: 1rem;
     font-weight: bold;
+  }
+}
+
+.detective-token {
+  font-size: 1em;
+  max-width: 1em;
+  position: relative;
+
+  &__avatar {
+    position: absolute;
+    z-index: 10;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
   }
 }

@@ -13,19 +13,19 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { ViewOr } from 'components/views';
 // Internal
-import type { PhaseBoardSetupState } from './utils/types';
+import type { FofocaQuenteDefaultState } from './utils/types';
 import {
   useOnSubmitSocialGroupAPIRequest,
   useOnUpdateDetectiveLocationAPIRequest,
 } from './utils/api-requests';
 import { FOFOCA_QUENTE_PHASES } from './utils/constants';
+import { FofocaQuenteProvider } from './components/FofocaQuenteContext';
 import { StepSetupGossiper } from './StepSetupGossiper';
 import { StepSetupDetective } from './StepSetupDetective';
 
-export function PhaseBoardSetup({ players, state, user }: PhaseProps<PhaseBoardSetupState>) {
+export function PhaseBoardSetup({ players, state, user }: PhaseProps<FofocaQuenteDefaultState>) {
   const { step } = useStep();
   const [, isTheGossiperPlayer] = useWhichPlayerIsThe('gossiperPlayerId', state, players);
-  // const [, isTheDetectivePlayer] = useWhichPlayerIsThe('detectivePlayerId', state, players);
 
   const onSubmitAssociatedSocialGroup = useOnSubmitSocialGroupAPIRequest();
   const onSubmitDetectiveLocation = useOnUpdateDetectiveLocationAPIRequest();
@@ -77,42 +77,48 @@ export function PhaseBoardSetup({ players, state, user }: PhaseProps<PhaseBoardS
       phase={state?.phase}
       allowedPhase={FOFOCA_QUENTE_PHASES.BOARD_SETUP}
     >
-      <StepSwitcher
-        step={step}
+      <FofocaQuenteProvider
+        state={state}
         players={players}
+        user={user}
       >
-        {/* Step 0 */}
-        <ViewOr condition={isTheGossiperPlayer}>
-          <StepSetupGossiper
-            user={user}
-            players={players}
-            announcement={gossiperAnnouncement}
-            schoolBoard={state.schoolBoard}
-            students={state.students}
-            socialGroups={state.socialGroups}
-            gossiperId={state.gossiperId}
-            bestFriendId={state.bestFriendId}
-            staff={state.staff}
-            motivations={state.motivations}
-            gossiperMotivationIndex={state.gossiperMotivationIndex}
-            onSubmitAssociatedSocialGroup={onSubmitAssociatedSocialGroup}
-          />
+        <StepSwitcher
+          step={step}
+          players={players}
+        >
+          {/* Step 0 */}
+          <ViewOr condition={isTheGossiperPlayer}>
+            <StepSetupGossiper
+              user={user}
+              players={players}
+              announcement={gossiperAnnouncement}
+              schoolBoard={state.schoolBoard}
+              students={state.students}
+              socialGroups={state.socialGroups}
+              gossiperId={state.gossiperId}
+              bestFriendId={state.bestFriendId}
+              staff={state.staff}
+              motivations={state.motivations}
+              gossiperMotivationIndex={state.gossiperMotivationIndex}
+              onSubmitAssociatedSocialGroup={onSubmitAssociatedSocialGroup}
+            />
 
-          <StepSetupDetective
-            user={user}
-            players={players}
-            announcement={detectiveAnnouncement}
-            schoolBoard={state.schoolBoard}
-            students={state.students}
-            socialGroups={state.socialGroups}
-            gossiperId={state.gossiperId}
-            bestFriendId={state.bestFriendId}
-            staff={state.staff}
-            motivations={state.motivations}
-            onSubmitDetectiveLocation={onSubmitDetectiveLocation}
-          />
-        </ViewOr>
-      </StepSwitcher>
+            <StepSetupDetective
+              user={user}
+              players={players}
+              announcement={detectiveAnnouncement}
+              schoolBoard={state.schoolBoard}
+              students={state.students}
+              socialGroups={state.socialGroups}
+              gossiperId={state.gossiperId}
+              bestFriendId={state.bestFriendId}
+              staff={state.staff}
+              motivations={state.motivations}
+              onSubmitDetectiveLocation={onSubmitDetectiveLocation}
+            />
+          </ViewOr>
+        </StepSwitcher>
+      </FofocaQuenteProvider>
     </PhaseContainer>
   );
 }

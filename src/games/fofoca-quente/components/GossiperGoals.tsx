@@ -8,22 +8,17 @@ import { DualTranslate, Translate } from 'components/language';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { FofocaQuenteDefaultState } from '../utils/types';
+import { useFofocaQuenteContext } from './FofocaQuenteContext';
 
 type GossiperGoalsProps = {
   students: FofocaQuenteDefaultState['students'];
   gossiperId: string;
   bestFriendId?: string;
   motivation: TeenageMotivation;
-  onOpenStudentModal: (studentId: string) => void;
 };
 
-export function GossiperGoals({
-  students,
-  gossiperId,
-  bestFriendId,
-  motivation,
-  onOpenStudentModal,
-}: GossiperGoalsProps) {
+export function GossiperGoals({ students, gossiperId, bestFriendId, motivation }: GossiperGoalsProps) {
+  const { onOpenStudentModal } = useFofocaQuenteContext();
   return (
     <>
       <RuleInstruction
@@ -32,7 +27,7 @@ export function GossiperGoals({
       >
         <Translate
           en="You are the gossiper and must spread rumors about 5 of your classmates, one round at a time."
-          pt="Você é o fofoqueiro e deve espalhar boatos sobre 5 de seus colegas de classe, uma vez por rodada."
+          pt="Você é o fofoqueiro e deve espalhar boatos sobre 5 de seus colegas de classe, um boato por rodada."
         />
         <br />
         <Tag color="red">

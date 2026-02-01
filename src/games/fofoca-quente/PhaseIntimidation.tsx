@@ -11,13 +11,14 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
-import type { PhaseIntimidationState } from './utils/types';
+import type { FofocaQuenteDefaultState } from './utils/types';
 import { useOnSubmitIntimidationAPIRequest } from './utils/api-requests';
 import { FOFOCA_QUENTE_PHASES } from './utils/constants';
+import { FofocaQuenteProvider } from './components/FofocaQuenteContext';
 import { StepIntimidation } from './StepIntimidation';
 // Icons
 
-export function PhaseIntimidation({ state, players, user }: PhaseProps<PhaseIntimidationState>) {
+export function PhaseIntimidation({ state, players, user }: PhaseProps<FofocaQuenteDefaultState>) {
   const { step } = useStep();
   const [, isTheGossiperPlayer] = useWhichPlayerIsThe('gossiperPlayerId', state, players);
   const [, isTheDetectivePlayer] = useWhichPlayerIsThe('detectivePlayerId', state, players);
@@ -50,27 +51,33 @@ export function PhaseIntimidation({ state, players, user }: PhaseProps<PhaseInti
       phase={state?.phase}
       allowedPhase={FOFOCA_QUENTE_PHASES.INTIMIDATION}
     >
-      <StepSwitcher
-        step={step}
+      <FofocaQuenteProvider
+        state={state}
         players={players}
+        user={user}
       >
-        {/* Step 0 */}
-        <StepIntimidation
-          user={user}
+        <StepSwitcher
+          step={step}
           players={players}
-          announcement={announcement}
-          schoolBoard={state.schoolBoard}
-          students={state.students}
-          socialGroups={state.socialGroups}
-          gossiperId={state.gossiperId}
-          bestFriendId={state.bestFriendId}
-          staff={state.staff}
-          motivations={state.motivations}
-          onSubmitIntimidation={onSubmitIntimidation}
-          isTheGossiperPlayer={isTheGossiperPlayer}
-          isTheDetectivePlayer={isTheDetectivePlayer}
-        />
-      </StepSwitcher>
+        >
+          {/* Step 0 */}
+          <StepIntimidation
+            user={user}
+            players={players}
+            announcement={announcement}
+            schoolBoard={state.schoolBoard}
+            students={state.students}
+            socialGroups={state.socialGroups}
+            gossiperId={state.gossiperId}
+            bestFriendId={state.bestFriendId}
+            staff={state.staff}
+            motivations={state.motivations}
+            onSubmitIntimidation={onSubmitIntimidation}
+            isTheGossiperPlayer={isTheGossiperPlayer}
+            isTheDetectivePlayer={isTheDetectivePlayer}
+          />
+        </StepSwitcher>
+      </FofocaQuenteProvider>
     </PhaseContainer>
   );
 }

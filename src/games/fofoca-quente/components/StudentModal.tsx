@@ -64,6 +64,7 @@ export function StudentModal({
                     style={{ backgroundColor: socialGroup.colors.primary }}
                     shape="circle"
                     size="large"
+                    className="student-details__social-group-icon"
                   />
                   <Tag
                     color={socialGroup.colors.primary}

@@ -73,7 +73,6 @@ export function StepIntimidation({
         schoolBoard={schoolBoard}
         students={students}
         socialGroups={socialGroups}
-        selectStudent={setSelectedStudentId}
         staff={staff}
       />
 
