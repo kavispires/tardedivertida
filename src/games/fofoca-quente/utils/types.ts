@@ -25,6 +25,12 @@ export type SubmitIntimidationPayload = {
   intimidatedStudentsIds?: string[];
 };
 
+export type SubmitRumorPayload = {
+  rumoredStudentId?: string;
+  rumorIndex?: number;
+  skipRumor: boolean;
+};
+
 export type StaffMember = {
   id: string;
   type: string;
@@ -41,8 +47,9 @@ export type Student = TeenageStudent & {
   canLie: boolean;
   // Changeable properties
   locationId: string;
-  intimidated: boolean;
   canBeIntimidated: boolean;
+  intimidated: boolean;
+  canBeRumored: boolean;
   rumored?: boolean;
   rumorSlot?: number;
 };
@@ -64,6 +71,12 @@ export type SocialGroup = {
   };
 };
 
+export type RumorTrackerEntry = {
+  rumorSlot: number;
+  studentId: string;
+  rumorText: DualLanguageValue;
+};
+
 export type FofocaQuenteDefaultState = {
   phase: FofocaQuentePhase;
   schoolBoard: SchoolLocation[];
@@ -71,17 +84,22 @@ export type FofocaQuenteDefaultState = {
   staff: Dictionary<StaffMember>;
   motivations: TeenageMotivation[];
   socialGroups: Dictionary<SocialGroup>;
-  rumors: TeenageRumor[];
   detectivePlayerId: PlayerId;
   gossiperPlayerId: PlayerId;
   gossiperId: CardId;
   motiveId: CardId;
   bestFriendId?: CardId;
   gossiperMotivationIndex: number;
+  maySkipRumor: boolean;
+  rumorTracker: RumorTrackerEntry[];
   /**
    * Number of intimidations to be done during the intimidation phase
    */
   maxIntimidations?: number;
+  /**
+   * Available rumors during the rumor phase
+   */
+  possibleRumors?: TeenageRumor[];
   // detectivePosition?: number;
   // detectivePossibleMovements?: number[];
   // associatedSocialGroup?: string;

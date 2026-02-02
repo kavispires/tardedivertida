@@ -27,6 +27,7 @@ export * from './BellIcon';
 export * from './BikiniModelIcon';
 export * from './BombIcon';
 export * from './BlackmailIcon';
+export * from './CyberBullyingIcon';
 export * from './BookshelfIcon';
 export * from './BooksIcon';
 export * from './BossIcon';

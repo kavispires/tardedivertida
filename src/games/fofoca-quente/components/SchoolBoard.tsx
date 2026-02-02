@@ -28,6 +28,7 @@ export function SchoolBoard({ schoolBoard, students, socialGroups, staff }: Scho
   const size = 256;
   return (
     <ZoomPanPinchContainer
+      lockControlsOnInit
       maxWidth={size * 4}
       transformWrapperProps={{
         minScale: 0.5,

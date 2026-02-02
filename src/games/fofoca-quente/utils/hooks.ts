@@ -1,6 +1,7 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 // Internal
-import type { Student } from './types';
+import type { Student, SubmitIntimidationPayload } from './types';
+import { useOnSubmitIntimidationAPIRequest, useOnSubmitRumorAPIRequest } from './api-requests';
 
 export function useBoardSummary(students: Dictionary<Student>) {
   return useMemo(() => {
@@ -25,4 +26,47 @@ export function useBoardSummary(students: Dictionary<Student>) {
       socialGroupsDict,
     };
   }, [students]);
+}
+
+export function useIntimidate(maxIntimidations: number) {
+  const onSubmitIntimidationAPI = useOnSubmitIntimidationAPIRequest();
+  const [currentIntimidations, setIntimidations] = useState<string[]>([]);
+  const onSubmitIntimidation = (studentId: string) => {
+    setIntimidations((prevIntimidations) => {
+      const newIntimidations = [...prevIntimidations, studentId];
+      const shouldGoToTheNextPhase = newIntimidations.length >= maxIntimidations;
+      const payload: SubmitIntimidationPayload = {
+        intimidatedStudentId: studentId,
+        shouldGoToTheNextPhase,
+      };
+
+      if (shouldGoToTheNextPhase) {
+        payload.intimidatedStudentsIds = [...newIntimidations];
+      }
+
+      onSubmitIntimidationAPI(payload);
+
+      return newIntimidations;
+    });
+  };
+
+  return {
+    currentIntimidations,
+    onSubmitIntimidation,
+  };
+}
+
+export function useRumoring() {
+  const onSubmitRumorAPI = useOnSubmitRumorAPIRequest();
+  const onSubmitRumor = (studentId: string, rumorIndex: number) => {
+    onSubmitRumorAPI({
+      rumoredStudentId: studentId,
+      rumorIndex,
+      skipRumor: false,
+    });
+  };
+
+  return {
+    onSubmitRumor,
+  };
 }

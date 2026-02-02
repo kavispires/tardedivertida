@@ -1,7 +1,11 @@
+import { useState } from 'react';
 // Ant Design Resources
-import { Alert, Card, Divider, Flex, Tag } from 'antd';
+import { Alert, Card, Divider, Flex, Radio, Tag, Typography } from 'antd';
+// Types
+import type { TeenageRumor } from 'types/tdr';
 // Icons
 import { BlackmailIcon } from 'icons/BlackmailIcon';
+import { CyberBullyingIcon } from 'icons/CyberBullyingIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { SendButton } from 'components/buttons';
@@ -14,7 +18,7 @@ import { ACTION_TYPES, AGE_NUMBER, BUILD, GENDER, HEIGHT } from '../utils/consta
 import { StudentCard } from './StudentCard';
 import { AgeIcon, BuildIcon, GenderIcon, HeightIcon, StudentIcon } from './StudentIcon';
 
-type StudentModalProps = {
+type StudentModalProps<T extends PlainObject = PlainObject> = {
   student: Student;
   socialGroups: Dictionary<SocialGroup>;
   gossiperId: string;
@@ -22,7 +26,8 @@ type StudentModalProps = {
   closeModal: () => void;
   showSecrets?: boolean;
   actionType?: keyof typeof ACTION_TYPES | string;
-  onPerformAction?: (studentId: string) => void;
+  onPerformAction?: (studentId: string, additionalData?: T) => void;
+  actionData?: PlainObject;
 };
 
 export function StudentModal({
@@ -34,6 +39,7 @@ export function StudentModal({
   showSecrets,
   actionType,
   onPerformAction,
+  actionData,
 }: StudentModalProps) {
   const socialGroup = socialGroups[student.socialGroupId];
 
@@ -144,7 +150,7 @@ export function StudentModal({
                         pt="Esse estudante é o fofoqueiro"
                       />
                     }
-                    type="error"
+                    type="info"
                     showIcon
                     banner
                   />
@@ -157,7 +163,7 @@ export function StudentModal({
                         pt="Esse estudante é o melhor amigo"
                       />
                     }
-                    type="warning"
+                    type="info"
                     showIcon
                     banner
                   />
@@ -171,7 +177,7 @@ export function StudentModal({
                         pt="Esse estudante pode mentir"
                       />
                     }
-                    type="warning"
+                    type="info"
                     showIcon
                     banner
                   />
@@ -183,45 +189,143 @@ export function StudentModal({
               gap={3}
               className="student-details__secrets"
             >
-              {!student.canBeIntimidated && (
-                <Alert
-                  title={
-                    <Translate
-                      en="This student can not be intimidated"
-                      pt="Esse estudante não pode ser intimidado"
-                    />
-                  }
-                  type="info"
-                  showIcon
-                  banner
+              {actionType === ACTION_TYPES.INTIMIDATE && onPerformAction && (
+                <IntimidationFlow
+                  student={student}
+                  onPerformAction={onPerformAction}
+                />
+              )}
+
+              {actionType === ACTION_TYPES.RUMOR && onPerformAction && (
+                <RumorFlow
+                  student={student}
+                  onPerformAction={onPerformAction}
+                  actionData={actionData}
                 />
               )}
             </Flex>
-
-            {actionType === ACTION_TYPES.INTIMIDATE && student.canBeIntimidated && !student.intimidated && (
-              <Flex justify="center">
-                <SendButton
-                  onClick={() => onPerformAction?.(student.id)}
-                  type="primary"
-                  size="large"
-                  block
-                  icon={
-                    <IconAvatar
-                      icon={<BlackmailIcon />}
-                      size="small"
-                    />
-                  }
-                >
-                  <Translate
-                    en="Intimidate"
-                    pt="Intimidar"
-                  />
-                </SendButton>
-              </Flex>
-            )}
           </div>
         </div>
       </Card>
     </ModalOverlay>
+  );
+}
+
+function IntimidationFlow({
+  student,
+  onPerformAction,
+}: Pick<StudentModalProps, 'student' | 'onPerformAction'>) {
+  if (student.intimidated) {
+    return null;
+  }
+
+  if (!student.canBeIntimidated) {
+    return (
+      <Alert
+        title={
+          <Translate
+            en="This student cannot be intimidated"
+            pt="Esse estudante não pode ser intimidado"
+          />
+        }
+        type="error"
+        showIcon
+        banner
+      />
+    );
+  }
+  return (
+    <Flex justify="center">
+      <SendButton
+        onClick={() => onPerformAction?.(student.id)}
+        type="primary"
+        size="large"
+        block
+        icon={
+          <IconAvatar
+            icon={<BlackmailIcon />}
+            size="small"
+          />
+        }
+      >
+        <Translate
+          en="Intimidate"
+          pt="Intimidar"
+        />
+      </SendButton>
+    </Flex>
+  );
+}
+
+function RumorFlow({
+  student,
+  onPerformAction,
+  actionData,
+}: Pick<StudentModalProps, 'student' | 'onPerformAction' | 'actionData'>) {
+  const [rumorIndex, setRumorIndex] = useState<number | null>(null);
+
+  if (!student.canBeRumored) {
+    return (
+      <Alert
+        type="error"
+        showIcon
+        banner
+        title={
+          <Translate
+            en="This student cannot be rumored"
+            pt="Esse estudante não pode ser alvo de boatos"
+          />
+        }
+      />
+    );
+  }
+  const possibleRumors = actionData?.possibleRumors as TeenageRumor[];
+  return (
+    <Flex
+      vertical
+      gap={6}
+    >
+      <Typography.Text>
+        <Translate
+          en="Select a rumor then click the button"
+          pt="Selecione um boato então clique no botão"
+        />
+      </Typography.Text>
+      <Radio.Group
+        onChange={(e) => setRumorIndex(e.target.value)}
+        value={rumorIndex}
+        size="small"
+      >
+        <Flex vertical>
+          {possibleRumors?.map((rumor, index) => (
+            <Radio
+              key={`rumor-${index}`}
+              value={index}
+            >
+              <DualTranslate>{rumor.text}</DualTranslate>
+            </Radio>
+          ))}
+        </Flex>
+      </Radio.Group>
+
+      <SendButton
+        onClick={() => onPerformAction?.(student.id, rumorIndex !== null ? { rumorIndex } : {})}
+        type="primary"
+        size="large"
+        disabled={rumorIndex === null}
+        block
+        icon={
+          <IconAvatar
+            icon={<CyberBullyingIcon />}
+            size="small"
+          />
+        }
+      >
+        <Translate
+          en="Spread Rumor"
+          pt="Espalhar Boato"
+        />
+      </SendButton>
+    </Flex>
   );
 }

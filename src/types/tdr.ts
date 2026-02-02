@@ -1274,7 +1274,7 @@ export type TeenageRumor = {
    */
   text: DualLanguageValue;
   /**
-   * If the rumour is exclusive to a student type
+   * If the rumor is exclusive to a student type
    */
   exclusive: string;
 };

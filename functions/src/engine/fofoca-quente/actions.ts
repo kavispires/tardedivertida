@@ -86,3 +86,34 @@ export const handleSubmitIntimidation = async (
     nextPhaseFunction: shouldGoToTheNextPhase ? getNextPhase : undefined,
   });
 };
+
+export const handleSubmitRumor = async (
+  gameName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  skipRumor: boolean,
+  rumoredStudentId?: string,
+  rumorIndex?: number,
+) => {
+  const update: PlainObject = {};
+
+  if (rumoredStudentId && rumorIndex) {
+    update.rumoredStudentId = rumoredStudentId;
+    update.rumorIndex = rumorIndex;
+  } else {
+    update.skipRumor = skipRumor;
+  }
+
+  return await utils.firestore.updatePlayer({
+    gameName,
+    gameId,
+    playerId,
+    actionText: 'intimidated a student',
+    shouldReady: true,
+    change: {
+      ...update,
+    },
+    nextPhaseFunction: getNextPhase,
+    shouldGoToNextPhase: true,
+  });
+};

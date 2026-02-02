@@ -1,8 +1,14 @@
 import clsx from 'clsx';
-import { type CSSProperties, Fragment, type ComponentProps, type ReactNode } from 'react';
+import { type CSSProperties, Fragment, type ComponentProps, type ReactNode, useState } from 'react';
 import { TransformWrapper, TransformComponent, useControls } from 'react-zoom-pan-pinch';
 // Ant Design Resources
-import { FullscreenExitOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';
+import {
+  FullscreenExitOutlined,
+  LockFilled,
+  UnlockOutlined,
+  ZoomInOutlined,
+  ZoomOutOutlined,
+} from '@ant-design/icons';
 import { Button, Space } from 'antd';
 // Sass
 import './ZoomPanPinchContainer.scss';
@@ -16,6 +22,7 @@ type ZoomPanPinchContainerProps = {
   contentStyle?: CSSProperties;
   wrapperClassName?: string;
   contentClassName?: string;
+  lockControlsOnInit?: boolean;
 };
 
 export function ZoomPanPinchContainer({
@@ -27,7 +34,10 @@ export function ZoomPanPinchContainer({
   contentStyle = {},
   wrapperClassName,
   contentClassName,
+  lockControlsOnInit = false,
 }: ZoomPanPinchContainerProps) {
+  const [isLocked, setIsLocked] = useState(lockControlsOnInit);
+
   const {
     initialScale = 1,
     minScale = 0.25,
@@ -44,10 +54,19 @@ export function ZoomPanPinchContainer({
       maxScale={maxScale}
       wheel={wheel}
       centerOnInit={centerOnInit}
+      // 2. Pass the locked state to the disabled prop
+      disabled={isLocked}
       {...restTransformWrapperProps}
     >
       <Fragment>
-        {!hideControls && <Controls position="top" />}
+        {/* 3. Pass state and toggle handler to Controls */}
+        {!hideControls && (
+          <Controls
+            position="top"
+            isLocked={isLocked}
+            onToggleLock={() => setIsLocked(!isLocked)}
+          />
+        )}
 
         <TransformComponent
           wrapperClass={clsx('zoom-pan-pinch-wrapper', wrapperClassName)}
@@ -57,7 +76,14 @@ export function ZoomPanPinchContainer({
         >
           <div style={{ maxWidth, maxHeight }}>{children}</div>
         </TransformComponent>
-        {!hideControls && <Controls position="bottom" />}
+
+        {!hideControls && (
+          <Controls
+            position="bottom"
+            isLocked={isLocked}
+            onToggleLock={() => setIsLocked(!isLocked)}
+          />
+        )}
       </Fragment>
     </TransformWrapper>
   );
@@ -65,23 +91,43 @@ export function ZoomPanPinchContainer({
 
 type ControlsProps = {
   position: 'top' | 'bottom';
+  isLocked: boolean;
+  onToggleLock: () => void;
 };
 
-function Controls({ position }: ControlsProps) {
+function Controls({ position, isLocked, onToggleLock }: ControlsProps) {
   const { zoomIn, zoomOut, resetTransform } = useControls();
+
   return (
     <Space.Compact
       size="small"
       className={clsx('zoom-pan-pinch-controls', `zoom-pan-pinch-controls--${position}`)}
     >
-      <Button onClick={() => zoomIn()}>
+      {/* Optional: You can disable zoom buttons when locked by adding
+         disabled={isLocked} to these buttons if desired.
+      */}
+      <Button
+        onClick={() => zoomIn()}
+        title="Zoom In"
+      >
         <ZoomInOutlined />
       </Button>
-      <Button onClick={() => zoomOut()}>
+      <Button
+        onClick={() => zoomOut()}
+        title="Zoom Out"
+      >
         <ZoomOutOutlined />
       </Button>
       <Button onClick={() => resetTransform()}>
         <FullscreenExitOutlined />
+      </Button>
+
+      {/* 4. Update the Lock button to toggle and show status */}
+      <Button
+        onClick={onToggleLock}
+        title={isLocked ? 'Unlock View' : 'Lock View'}
+      >
+        {isLocked ? <LockFilled /> : <UnlockOutlined />}
       </Button>
     </Space.Compact>
   );

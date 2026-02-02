@@ -7,7 +7,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Internal
 import type { FofocaQuenteDefaultState } from '../utils/types';
 import { ACTION_TYPES, FOFOCA_QUENTE_PHASES } from '../utils/constants';
-import { useIntimidate } from '../utils/useIntimidate';
+import { useIntimidate, useRumoring } from '../utils/hooks';
 import { StudentModal } from './StudentModal';
 
 type FofocaQuenteContextType = {
@@ -52,7 +52,7 @@ type FofocaQuenteProviderProps = {
 /**
  * Provider component for Fofoca Quente game context
  */
-export function FofocaQuenteProvider({ state, players, user, children }: FofocaQuenteProviderProps) {
+export function FofocaQuenteProvider({ state, players, user: _user, children }: FofocaQuenteProviderProps) {
   const [_gossiper, isTheGossiperPlayer] = useWhichPlayerIsThe('gossiperPlayerId', state, players);
   const [detective, isTheDetectivePlayer] = useWhichPlayerIsThe('detectivePlayerId', state, players);
 
@@ -64,6 +64,7 @@ export function FofocaQuenteProvider({ state, players, user, children }: FofocaQ
   // ACTION: INTIMIDATION
   const intimidation = useIntimidate(state.maxIntimidations ?? 0);
   // ACTION: RUMOR
+  const rumor = useRumoring();
 
   // ACTION: INVESTIGATION
 
@@ -73,7 +74,7 @@ export function FofocaQuenteProvider({ state, players, user, children }: FofocaQ
   };
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: only the phase is needed
-  const { actionType, onPerformAction } = useMemo(() => {
+  const actionObject = useMemo(() => {
     if (state.phase === FOFOCA_QUENTE_PHASES.INTIMIDATION) {
       if (isTheGossiperPlayer) {
         return {
@@ -81,15 +82,29 @@ export function FofocaQuenteProvider({ state, players, user, children }: FofocaQ
           onPerformAction: intimidation.onSubmitIntimidation,
         };
       }
-      return {
-        actionType: undefined,
-        onPerformAction: undefined,
-      };
+      return {};
     }
-    return {
-      actionType: undefined,
-      onPerformAction: undefined,
-    };
+    if (state.phase === FOFOCA_QUENTE_PHASES.RUMOR) {
+      if (isTheGossiperPlayer) {
+        return {
+          actionType: ACTION_TYPES.RUMOR,
+          onPerformAction: (studentId: string, additionalData?: PlainObject) => {
+            const rumorIndex = additionalData?.rumorIndex;
+            if (typeof rumorIndex !== 'number') {
+              console.error('Invalid rumor index');
+              return;
+            }
+            rumor.onSubmitRumor(studentId, rumorIndex);
+          },
+          actionData: {
+            possibleRumors: state.possibleRumors || [],
+          },
+        };
+      }
+      return {};
+    }
+
+    return {};
   }, [state.phase, isTheGossiperPlayer]);
 
   return (
@@ -115,8 +130,7 @@ export function FofocaQuenteProvider({ state, players, user, children }: FofocaQ
           bestFriendId={state.bestFriendId}
           closeModal={() => onOpenStudentModal(null)}
           showSecrets={isTheGossiperPlayer}
-          actionType={actionType}
-          onPerformAction={onPerformAction}
+          {...actionObject}
         />
       )}
     </FofocaQuenteContext.Provider>

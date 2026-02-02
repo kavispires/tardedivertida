@@ -24,6 +24,7 @@ export type ResourceData = {
 export type FofocaQuenteAchievement = keyof typeof FOFOCA_QUENTE_ACHIEVEMENTS;
 
 export interface FofocaQuenteStore extends DefaultStore<FofocaQuenteOptions> {
+  rumors?: TeenageRumor[];
   [key: string]: any;
 }
 
@@ -34,7 +35,6 @@ export interface FofocaQuenteState extends DefaultState {
   staff?: Dictionary<StaffMember>;
   motivations?: TeenageMotivation[];
   socialGroups?: string[];
-  rumors?: TeenageRumor[];
   detectivePlayerId?: PlayerId;
   detectivePosition?: number;
   detectivePossibleMovements?: number[];
@@ -43,6 +43,13 @@ export interface FofocaQuenteState extends DefaultState {
   motiveId?: CardId;
   bestFriendId?: CardId;
   associatedSocialGroup?: string;
+  maySkipRumor?: boolean;
+  rumorTracker?: RumorTrackerEntry[];
+  // Intimidation phase
+  maxIntimidations?: number;
+  // Rumor phase
+  possibleRumors?: TeenageRumor[];
+  // Response phase
 }
 
 export interface FofocaQuenteInitialState extends InitialState {
@@ -101,4 +108,10 @@ export type SocialGroup = {
     primary: string;
     accent: string;
   };
+};
+
+export type RumorTrackerEntry = {
+  rumorSlot: number;
+  studentId: string;
+  rumorText: DualLanguageValue;
 };

@@ -1,8 +1,9 @@
 // Ant Design Resources
-import { Alert, Flex } from 'antd';
+import { Alert, Button, Flex } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
 // Components
+import { Popconfirm } from 'components/general/Popconfirm';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, StepTitle } from 'components/text';
@@ -15,7 +16,7 @@ import { DetectiveGoals } from './components/DetectiveGoals';
 import { GossiperGoals } from './components/GossiperGoals';
 import { useFofocaQuenteContext } from './components/FofocaQuenteContext';
 
-type StepIntimidationProps = {
+type StepRumorProps = {
   players: GamePlayers;
   user: GamePlayer;
   gossiperId: string;
@@ -23,10 +24,16 @@ type StepIntimidationProps = {
 } & Pick<StepProps, 'announcement'> &
   Pick<
     FofocaQuenteDefaultState,
-    'schoolBoard' | 'students' | 'socialGroups' | 'staff' | 'motivations' | 'gossiperMotivationIndex'
+    | 'schoolBoard'
+    | 'students'
+    | 'socialGroups'
+    | 'staff'
+    | 'motivations'
+    | 'gossiperMotivationIndex'
+    | 'maySkipRumor'
   >;
 
-export function StepIntimidation({
+export function StepRumor({
   announcement,
   schoolBoard,
   socialGroups,
@@ -37,7 +44,8 @@ export function StepIntimidation({
   motivations,
   gossiperMotivationIndex,
   user,
-}: StepIntimidationProps) {
+  maySkipRumor,
+}: StepRumorProps) {
   const { intimidation, isTheDetectivePlayer, isTheGossiperPlayer } = useFofocaQuenteContext();
 
   return (
@@ -47,8 +55,8 @@ export function StepIntimidation({
     >
       <StepTitle>
         <Translate
-          pt={<>Intimidação de dois estudantes</>}
-          en={<>Intimidating two students</>}
+          pt={<>Espalhe um boato maldoso</>}
+          en={<>Spread a nasty rumor</>}
         />
       </StepTitle>
 
@@ -84,27 +92,19 @@ export function StepIntimidation({
                   en={
                     <>
                       Now you should spread the nastiest rumor possible to drive that student to leave the
-                      school!
+                      school! Remember, you win if you can spread 5 rumors before getting caught.
                       <br />
                       <strong>Click</strong> on the student you want to spread the rumor about and that
                       follows your motivation, select a rumor then submit!
-                      <br />
-                      Remember, you win if you can spread 5 rumors before getting caught.
-                      <br />
-                      TODO: Can skip option once per game
                     </>
                   }
                   pt={
                     <>
-                      Hora de deixar um bilhete maldoso no armário de 2 estudantes! Eles ficarão com medo e
-                      não poderão responder a nenhuma pergunta do detetive nesta rodada.
+                      Agora você deve espalhar o boato mais maldoso possível para fazer com que esse estudante
+                      saia da escola! Lembre-se, você vence se conseguir espalhar 5 boatos antes de ser pego.
                       <br />
-                      <strong>Clique</strong> nos estudantes que você quer intimidar e o botão estará
-                      disponível se possível.
-                      <br />
-                      Você não pode intimidar nenhum estudante que esteja na mesma localização que o detetive
-                      ou que já esteja intimidado, mas você pode até mesmo se intimidar (é só fingir se ele te
-                      perguntar algo).
+                      <strong>Clique</strong> no estudante sobre o qual você deseja espalhar o boato e que
+                      siga sua motivação, selecione um boato e envie!
                     </>
                   }
                 />
@@ -122,6 +122,34 @@ export function StepIntimidation({
                       />
                     }
                   />
+                )}
+                {maySkipRumor && (
+                  <>
+                    <br />
+                    <Translate
+                      en=" If you can't find any suitable student, you may choose to skip spreading a rumor this
+                    round."
+                      pt=" Se você não encontrar nenhum estudante adequado, você pode optar por pular o boato desta rodada."
+                    />
+                    <Popconfirm
+                      title={
+                        <Translate
+                          pt="Tem certeza que quer pular o boato desta rodada?"
+                          en="Are you sure you want to skip spreading a rumor this round?"
+                        />
+                      }
+                    >
+                      <Button
+                        block
+                        type="dashed"
+                      >
+                        <Translate
+                          en="(Click here to skip)"
+                          pt="(Clique aqui para pular)"
+                        />
+                      </Button>
+                    </Popconfirm>
+                  </>
                 )}
               </RuleInstruction>
             </div>

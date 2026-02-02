@@ -11,6 +11,7 @@ import { FOFOCA_QUENTE_PHASES } from './utils/constants';
 import { PhaseRolesSelection } from './PhaseRolesSelection';
 import { PhaseBoardSetup } from './PhaseBoardSetup';
 import { PhaseIntimidation } from './PhaseIntimidation';
+import { PhaseRumor } from './PhaseRumor';
 // Sass
 import './utils/styles.scss';
 
@@ -22,6 +23,8 @@ function getActiveComponent(state: GameState) {
       return PhaseBoardSetup;
     case FOFOCA_QUENTE_PHASES.INTIMIDATION:
       return PhaseIntimidation;
+    case FOFOCA_QUENTE_PHASES.RUMOR:
+      return PhaseRumor;
     case PHASES.DEFAULT.GAME_OVER:
       return PhasePlaceholder;
     default:

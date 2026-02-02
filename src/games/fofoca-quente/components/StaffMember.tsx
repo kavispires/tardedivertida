@@ -57,7 +57,10 @@ function StaffMemberModal({ staffMember, open, onClose }: StaffMemberModalProps)
             </div>
 
             <div className="student-details__title">
-              <Tag color="blue-inverse">
+              <Tag
+                color="blue"
+                variant="solid"
+              >
                 <Translate
                   en="Action for the Detective"
                   pt="Ação para o Detetive"

@@ -1,10 +1,13 @@
 import { motion } from 'motion/react';
+// Ant Design Resources
+import { Tooltip } from 'antd';
 // Utils
 import { getAnimation } from 'utils/animations';
 // Icons
 import { TeenDetectiveIcon } from 'icons/TeenDetectiveIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
+import { Translate } from 'components/language/Translate';
 
 export function DetectiveToken() {
   return (
@@ -12,11 +15,20 @@ export function DetectiveToken() {
       className="detective-token"
       {...getAnimation('bounceIn')}
     >
-      <IconAvatar
-        icon={<TeenDetectiveIcon />}
-        size={48}
-        className="detective-token__avatar"
-      />
+      <Tooltip
+        title={
+          <Translate
+            en="The detective is here"
+            pt="O detetive está aqui"
+          />
+        }
+      >
+        <IconAvatar
+          icon={<TeenDetectiveIcon />}
+          size={48}
+          className="detective-token__avatar"
+        />
+      </Tooltip>
     </motion.div>
   );
 }

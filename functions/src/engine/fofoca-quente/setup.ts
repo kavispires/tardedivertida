@@ -11,6 +11,7 @@ import type {
   SchoolLocation,
   Student,
 } from './types';
+import { determineStudentsThatCanBeRumored } from './helpers';
 
 /**
  * Setup
@@ -83,6 +84,7 @@ export const prepareSetupPhase = async (
     update: {
       store: {
         achievements,
+        rumors: resourceData.rumors,
       },
       state: {
         phase: FOFOCA_QUENTE_PHASES.SETUP,
@@ -97,10 +99,11 @@ export const prepareSetupPhase = async (
         staff,
         motivations,
         gossiperMotivationIndex: random(0, TOTAL_MOTIVATIONS - 1),
-        rumours: resourceData.rumors,
         socialGroups: resourceData.socialGroups,
         gossiperId: gossiper.id,
         bestFriendId: options.includeBestFriend ? bestFriend.id : utils.firestore.deleteValue(),
+        maySkipRumor: true,
+        rumorTracker: [],
       },
     },
   };
@@ -156,9 +159,6 @@ export const prepareIntimidationPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  // Unready players
-  utils.players.unReadyPlayers(players);
-
   const detectivePlayerId = state.detectivePlayerId || '';
   const detective = players[detectivePlayerId];
 
@@ -176,6 +176,9 @@ export const prepareIntimidationPhase = async (
   // Set the number of required intimidations (0-2)
   const maxIntimidations = Math.min(2, totalPossibleIntimidations);
 
+  // Unready player to has the action
+  utils.players.unReadyPlayers(players, detectivePlayerId);
+
   return {
     update: {
       state: {
@@ -183,13 +186,14 @@ export const prepareIntimidationPhase = async (
         players,
         students,
         maxIntimidations,
+        intimidatedStudentsIds: [],
       },
     },
   };
 };
 
 export const prepareRumorPhase = async (
-  _store: FirebaseStoreData,
+  store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
@@ -198,15 +202,21 @@ export const prepareRumorPhase = async (
 
   // const gossiperPlayerId = state.gossiperPlayerId || '';
   // const gossiper = players[gossiperPlayerId];
-
   const students: Dictionary<Student> = state.students ?? {};
-  Object.values(students).forEach((student) => {
-    student.canBeRumored = false;
-    student.canBeRumored =
-      !student.rumored && student.locationId !== detective.locationId && student.id !== state.gossiperId;
-  });
+  const motivations = state.motivations || [];
 
-  const rumorOptions = utils.game.getRandomItems(state.rumors ?? [], 3);
+  determineStudentsThatCanBeRumored(
+    students ?? {},
+    state.schoolBoard ?? [],
+    `location-${detective.locationId}`,
+    state.gossiperId || '',
+    motivations[state.gossiperMotivationIndex || 0].id,
+  );
+
+  const possibleRumors = utils.game.getRandomItems(store.rumors ?? [], 3);
+
+  // Unready player to has the action
+  utils.players.unReadyPlayers(players, detectivePlayerId);
 
   return {
     update: {
@@ -214,9 +224,33 @@ export const prepareRumorPhase = async (
         phase: FOFOCA_QUENTE_PHASES.RUMOR,
         players,
         students,
-        rumorOptions,
+        possibleRumors,
       },
       stateCleanup: ['maxIntimidations'],
+    },
+  };
+};
+
+export const prepareResponsePhase = async (
+  _store: FirebaseStoreData,
+  state: FirebaseStateData,
+  players: Players,
+): Promise<SaveGamePayload> => {
+  // const detectivePlayerId = state.detectivePlayerId || '';
+  // const detective = players[detectivePlayerId];
+  const gossiperPlayerId = state.gossiperPlayerId || '';
+  // const gossiper = players[gossiperPlayerId];
+
+  // Unready player to has the action
+  utils.players.unReadyPlayers(players, gossiperPlayerId);
+
+  return {
+    update: {
+      state: {
+        phase: FOFOCA_QUENTE_PHASES.RESPONSE,
+        players,
+      },
+      stateCleanup: ['possibleRumors'],
     },
   };
 };

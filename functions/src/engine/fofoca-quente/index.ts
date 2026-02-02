@@ -19,6 +19,7 @@ import {
   prepareBoardSetupPhase,
   prepareIntimidationPhase,
   prepareRumorPhase,
+  prepareResponsePhase,
 } from './setup';
 import { getData } from './data';
 import {
@@ -26,6 +27,7 @@ import {
   handleSubmitAssociatedSocialGroup,
   handleSubmitDetectiveLocation,
   handleSubmitIntimidation,
+  handleSubmitRumor,
 } from './actions';
 
 /**
@@ -104,19 +106,19 @@ export const getNextPhase = async (
     return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
-  // * -> RUMOR
+  // INTIMIDATION -> RUMOR
   if (nextPhase === FOFOCA_QUENTE_PHASES.RUMOR) {
     const newPhase = await prepareRumorPhase(store, state, players);
     return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
-  // // * -> RESPONSE
-  // if (nextPhase === FOFOCA_QUENTE_PHASES.RESPONSE) {
-  //   const newPhase = await preparePhase(store, state, players);
-  //   return utils.firestore.saveGame(sessionRef, newPhase);
-  // }
+  // RUMOR -> RESPONSE
+  if (nextPhase === FOFOCA_QUENTE_PHASES.RESPONSE) {
+    const newPhase = await prepareResponsePhase(store, state, players);
+    return utils.firestore.saveGame(sessionRef, newPhase);
+  }
 
-  // // * -> INVESTIGATION
+  // // RESPONSE -> INVESTIGATION
   // if (nextPhase === FOFOCA_QUENTE_PHASES.INVESTIGATION) {
   //   const newPhase = await preparePhase(store, state, players);
   //   return utils.firestore.saveGame(sessionRef, newPhase);
@@ -185,6 +187,16 @@ export const submitAction = async (data: FofocaQuenteSubmitAction) => {
         data.intimidatedStudentId,
         data.intimidatedStudentsIds,
         data.shouldGoToTheNextPhase,
+      );
+    case FOFOCA_QUENTE_ACTIONS.SUBMIT_RUMOR:
+      utils.firebase.validateSubmitActionProperties(data, ['skipRumor'], 'submit rumor');
+      return handleSubmitRumor(
+        gameName,
+        gameId,
+        playerId,
+        data.skipRumor,
+        data.rumoredStudentId,
+        data.rumorIndex,
       );
 
     default:

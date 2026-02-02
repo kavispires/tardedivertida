@@ -8,6 +8,7 @@ import type {
   SubmitDetectiveLocationPayload,
   SubmitIntimidationPayload,
   SubmitPlayersRoles,
+  SubmitRumorPayload,
 } from './types';
 import { FOFOCA_QUENTE_ACTIONS } from './constants';
 
@@ -87,6 +88,26 @@ export function useOnSubmitIntimidationAPIRequest() {
   return (payload: SubmitIntimidationPayload) => {
     request({
       action: FOFOCA_QUENTE_ACTIONS.SUBMIT_INTIMIDATION,
+      ...payload,
+    });
+  };
+}
+
+export function useOnSubmitRumorAPIRequest() {
+  const { translate } = useLanguage();
+
+  const request = useGameActionRequest({
+    actionName: 'submit-rumor',
+    successMessage: translate('Boato submetido com sucesso', 'Rumor submitted successfully'),
+    errorMessage: translate(
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      'Oops, the application found an error while trying to submit your action',
+    ),
+  });
+
+  return (payload: SubmitRumorPayload) => {
+    request({
+      action: FOFOCA_QUENTE_ACTIONS.SUBMIT_RUMOR,
       ...payload,
     });
   };
