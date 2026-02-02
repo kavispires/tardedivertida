@@ -1,7 +1,11 @@
 // Ant Design Resources
 import { Alert, Card, Divider, Flex, Tag } from 'antd';
+// Icons
+import { BlackmailIcon } from 'icons/BlackmailIcon';
 // Components
+import { IconAvatar } from 'components/avatars';
 import { SendButton } from 'components/buttons';
+import { DebugOnly } from 'components/debug';
 import { ModalOverlay } from 'components/general/ModalOverlay';
 import { DualTranslate, Translate } from 'components/language';
 // Internal
@@ -52,7 +56,7 @@ export function StudentModal({
                   <DualTranslate>{student.name}</DualTranslate>
                 </div>
                 <div className="student-details__title">
-                  <DualTranslate>{student.title}</DualTranslate>
+                  <DualTranslate>{student.title}</DualTranslate> <DebugOnly dev>({student.id})</DebugOnly>
                 </div>
                 <Flex
                   align="center"
@@ -167,21 +171,46 @@ export function StudentModal({
                         pt="Esse estudante pode mentir"
                       />
                     }
-                    type="info"
+                    type="warning"
                     showIcon
                     banner
                   />
                 )}
               </Flex>
             )}
+            <Flex
+              vertical
+              gap={3}
+              className="student-details__secrets"
+            >
+              {!student.canBeIntimidated && (
+                <Alert
+                  title={
+                    <Translate
+                      en="This student can not be intimidated"
+                      pt="Esse estudante não pode ser intimidado"
+                    />
+                  }
+                  type="info"
+                  showIcon
+                  banner
+                />
+              )}
+            </Flex>
 
-            {actionType === ACTION_TYPES.INTIMIDATE && canStudentBeIntimidated(student) && (
+            {actionType === ACTION_TYPES.INTIMIDATE && student.canBeIntimidated && !student.intimidated && (
               <Flex justify="center">
                 <SendButton
                   onClick={() => onPerformAction?.(student.id)}
                   type="primary"
                   size="large"
                   block
+                  icon={
+                    <IconAvatar
+                      icon={<BlackmailIcon />}
+                      size="small"
+                    />
+                  }
                 >
                   <Translate
                     en="Intimidate"
@@ -196,5 +225,3 @@ export function StudentModal({
     </ModalOverlay>
   );
 }
-
-const canStudentBeIntimidated = (student: Student) => !student.rumored && !student.intimidated;

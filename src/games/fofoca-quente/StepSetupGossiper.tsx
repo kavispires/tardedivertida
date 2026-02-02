@@ -83,6 +83,7 @@ export function StepSetupGossiper({
               students={students}
               gossiperId={gossiperId}
               bestFriendId={bestFriendId}
+              associatedSocialGroup={null}
             />
 
             <RuleInstruction

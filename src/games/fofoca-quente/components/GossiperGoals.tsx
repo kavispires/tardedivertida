@@ -7,17 +7,25 @@ import type { TeenageMotivation } from 'types/tdr';
 import { DualTranslate, Translate } from 'components/language';
 import { RuleInstruction } from 'components/text';
 // Internal
-import type { FofocaQuenteDefaultState } from '../utils/types';
+import type { FofocaQuenteDefaultState, SocialGroup } from '../utils/types';
 import { useFofocaQuenteContext } from './FofocaQuenteContext';
+import { SocialGroupIcon } from './StudentIcon';
 
 type GossiperGoalsProps = {
   students: FofocaQuenteDefaultState['students'];
   gossiperId: string;
   bestFriendId?: string;
   motivation: TeenageMotivation;
+  associatedSocialGroup: SocialGroup | null;
 };
 
-export function GossiperGoals({ students, gossiperId, bestFriendId, motivation }: GossiperGoalsProps) {
+export function GossiperGoals({
+  students,
+  gossiperId,
+  bestFriendId,
+  motivation,
+  associatedSocialGroup,
+}: GossiperGoalsProps) {
   const { onOpenStudentModal } = useFofocaQuenteContext();
   return (
     <>
@@ -26,8 +34,8 @@ export function GossiperGoals({ students, gossiperId, bestFriendId, motivation }
         className="text-left"
       >
         <Translate
-          en="You are the gossiper and must spread rumors about 5 of your classmates, one round at a time."
-          pt="Você é o fofoqueiro e deve espalhar boatos sobre 5 de seus colegas de classe, um boato por rodada."
+          en="You are the gossiper and must spread rumors about 5 students, one round at a time."
+          pt="Você é o fofoqueiro e deve espalhar boatos sobre 5 alunos, um boato por rodada."
         />
         <br />
         <Tag color="red">
@@ -66,8 +74,27 @@ export function GossiperGoals({ students, gossiperId, bestFriendId, motivation }
             </Button>
           </>
         )}
-        {/* {socialGroup} */}
-        {/* // TODO Add allied social group */}
+        {associatedSocialGroup && (
+          <>
+            <br />
+            <Translate
+              en="You have a social group that can lie for you if needed."
+              pt="Você tem um grupo social que pode mentir por você se necessário."
+            />
+            <br />
+            <Tag color="grey">
+              <Translate
+                en="Allied Social Group"
+                pt="Grupo Social Aliado"
+              />
+            </Tag>
+            <SocialGroupIcon
+              socialGroup={associatedSocialGroup}
+              size="small"
+            />{' '}
+            <DualTranslate>{associatedSocialGroup.name}</DualTranslate>
+          </>
+        )}
       </RuleInstruction>
 
       <RuleInstruction

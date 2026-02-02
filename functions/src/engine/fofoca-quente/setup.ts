@@ -167,14 +167,14 @@ export const prepareIntimidationPhase = async (
   const students: Dictionary<Student> = state.students ?? {};
   Object.values(students).forEach((student) => {
     student.canBeIntimidated =
-      !student.rumored && !student.intimidated && student.locationId !== detective.locationId;
+      !student.rumored && !student.intimidated && student.locationId !== `location-${detective.locationId}`;
     if (student.canBeIntimidated) {
       totalPossibleIntimidations++;
     }
   });
 
   // Set the number of required intimidations (0-2)
-  const intimidations = Math.min(2, totalPossibleIntimidations);
+  const maxIntimidations = Math.min(2, totalPossibleIntimidations);
 
   return {
     update: {
@@ -182,7 +182,7 @@ export const prepareIntimidationPhase = async (
         phase: FOFOCA_QUENTE_PHASES.INTIMIDATION,
         players,
         students,
-        intimidations,
+        maxIntimidations,
       },
     },
   };
@@ -211,11 +211,12 @@ export const prepareRumorPhase = async (
   return {
     update: {
       state: {
-        phase: FOFOCA_QUENTE_PHASES.INTIMIDATION,
+        phase: FOFOCA_QUENTE_PHASES.RUMOR,
         players,
         students,
         rumorOptions,
       },
+      stateCleanup: ['maxIntimidations'],
     },
   };
 };

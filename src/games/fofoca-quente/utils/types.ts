@@ -22,6 +22,7 @@ export type SubmitDetectiveLocationPayload = {
 export type SubmitIntimidationPayload = {
   intimidatedStudentId: string;
   shouldGoToTheNextPhase: boolean;
+  intimidatedStudentsIds?: string[];
 };
 
 export type StaffMember = {
@@ -41,6 +42,7 @@ export type Student = TeenageStudent & {
   // Changeable properties
   locationId: string;
   intimidated: boolean;
+  canBeIntimidated: boolean;
   rumored?: boolean;
   rumorSlot?: number;
 };
@@ -76,6 +78,10 @@ export type FofocaQuenteDefaultState = {
   motiveId: CardId;
   bestFriendId?: CardId;
   gossiperMotivationIndex: number;
+  /**
+   * Number of intimidations to be done during the intimidation phase
+   */
+  maxIntimidations?: number;
   // detectivePosition?: number;
   // detectivePossibleMovements?: number[];
   // associatedSocialGroup?: string;

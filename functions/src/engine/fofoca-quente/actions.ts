@@ -69,8 +69,11 @@ export const handleSubmitIntimidation = async (
   gameId: GameId,
   playerId: PlayerId,
   intimidatedStudentId: string,
+  intimidatedStudentsIds?: string[],
   shouldGoToTheNextPhase = false,
 ) => {
+  const update = intimidatedStudentsIds ? { intimidatedStudentsIds } : {};
+
   return await utils.firestore.updateState({
     gameName,
     gameId,
@@ -78,6 +81,7 @@ export const handleSubmitIntimidation = async (
     actionText: 'intimidated a student',
     change: {
       [`students.${intimidatedStudentId}.intimidated`]: true,
+      ...update,
     },
     nextPhaseFunction: shouldGoToTheNextPhase ? getNextPhase : undefined,
   });

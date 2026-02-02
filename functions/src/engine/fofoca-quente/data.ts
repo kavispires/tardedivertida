@@ -59,21 +59,21 @@ export const getData = async (): Promise<ResourceData> => {
 
 const LOCATIONS = [
   {
-    id: 'location-1',
+    id: 'location-0',
     name: {
       en: 'Gymnasium',
       pt: 'Quadra',
     },
   },
   {
-    id: 'location-2',
+    id: 'location-1',
     name: {
       en: 'Locker Room',
       pt: 'Vestiário',
     },
   },
   {
-    id: 'location-3',
+    id: 'location-2',
     name: {
       // eslint-disable-next-line quotes
       en: "Guidance Counselor's Office",
@@ -81,21 +81,21 @@ const LOCATIONS = [
     },
   },
   {
-    id: 'location-4',
+    id: 'location-3',
     name: {
       en: 'Computer Lab',
       pt: 'Laboratório de Informática',
     },
   },
   {
-    id: 'location-5',
+    id: 'location-4',
     name: {
       en: 'Swimming Pool',
       pt: 'Piscina',
     },
   },
   {
-    id: 'location-6',
+    id: 'location-5',
     name: {
       // eslint-disable-next-line quotes
       en: "Principal's Office",
@@ -103,21 +103,21 @@ const LOCATIONS = [
     },
   },
   {
-    id: 'location-7',
+    id: 'location-6',
     name: {
       en: 'Library',
       pt: 'Biblioteca',
     },
   },
   {
-    id: 'location-8',
+    id: 'location-7',
     name: {
       en: 'Cafeteria',
       pt: 'Lanchonete',
     },
   },
   {
-    id: 'location-9',
+    id: 'location-8',
     name: {
       // eslint-disable-next-line quotes
       en: "Teacher's Lounge",
@@ -125,28 +125,28 @@ const LOCATIONS = [
     },
   },
   {
-    id: 'location-10',
+    id: 'location-9',
     name: {
       en: 'Art Studio',
       pt: 'Ateliê de Arte',
     },
   },
   {
-    id: 'location-11',
+    id: 'location-10',
     name: {
       en: 'Music Room',
       pt: 'Sala de Música',
     },
   },
   {
-    id: 'location-12',
+    id: 'location-11',
     name: {
       en: 'Classroom',
       pt: 'Sala de aula',
     },
   },
   {
-    id: 'location-13',
+    id: 'location-12',
     name: {
       // eslint-disable-next-line quotes
       en: "Nurse's Office",
@@ -154,21 +154,21 @@ const LOCATIONS = [
     },
   },
   {
-    id: 'location-14',
+    id: 'location-13',
     name: {
       en: 'Science Lab',
       pt: 'Laboratório',
     },
   },
   {
-    id: 'location-15',
+    id: 'location-14',
     name: {
       en: 'Auditorium',
       pt: 'Auditório',
     },
   },
   {
-    id: 'location-16',
+    id: 'location-15',
     name: {
       en: 'Playground',
       pt: 'Parquinho',

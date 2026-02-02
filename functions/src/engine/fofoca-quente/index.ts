@@ -183,6 +183,7 @@ export const submitAction = async (data: FofocaQuenteSubmitAction) => {
         gameId,
         playerId,
         data.intimidatedStudentId,
+        data.intimidatedStudentsIds,
         data.shouldGoToTheNextPhase,
       );
 
