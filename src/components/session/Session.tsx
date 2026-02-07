@@ -40,13 +40,9 @@ type SessionProps = {
    * Optional provider component to wrap ActiveComponent with game data
    */
   provider?: ComponentType<PhaseProviderProps<UnknownWorkaround>>;
-  /**
-   * Optional function called once during the setup phase to refresh state (local game store and/or game localStorage)
-   */
-  setup?: () => void;
 };
 
-export function Session({ gameCollection, getActiveComponent, provider, setup }: SessionProps) {
+export function Session({ gameCollection, getActiveComponent, provider }: SessionProps) {
   const { meta, dataUpdatedAt } = useGameMeta();
   const { language } = useLanguage();
   const state = useGameState(meta.gameId, gameCollection);
@@ -95,12 +91,7 @@ export function Session({ gameCollection, getActiveComponent, provider, setup }:
     }
 
     if (state.phase === PHASES.DEFAULT.SETUP) {
-      return () => (
-        <PhaseSetup
-          setup={setup}
-          {...defaultProps}
-        />
-      );
+      return PhaseSetup;
     }
 
     return getActiveComponent(state);

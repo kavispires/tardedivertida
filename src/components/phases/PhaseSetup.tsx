@@ -1,6 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
-import { useEffectOnce } from 'react-use';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -19,11 +18,7 @@ import { PhaseContainer } from './PhaseContainer';
 import { VideoBackground } from './lobby/VideoBackground';
 import { ImageBackground } from './lobby/ImageBackground';
 
-type PhaseSetupProps = {
-  setup?: () => Promise<void> | void;
-};
-
-export function PhaseSetup({ state, setup }: PhaseProps & PhaseSetupProps) {
+export function PhaseSetup({ state }: PhaseProps) {
   const gameId = useGameId();
   const queryClient = useQueryClient();
   const { dataUpdatedAt } = useGameMeta();
@@ -34,12 +29,6 @@ export function PhaseSetup({ state, setup }: PhaseProps & PhaseSetupProps) {
       queryClient.invalidateQueries({ queryKey: ['meta', gameId] });
     }
   }, [gameId]);
-
-  useEffectOnce(() => {
-    if (setup) {
-      setup();
-    }
-  });
 
   return (
     <PhaseContainer
