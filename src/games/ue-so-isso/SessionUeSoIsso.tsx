@@ -18,8 +18,6 @@ import { PhaseVerifyGuess } from './PhaseVerifyGuess';
 // Sass
 import 'assets/fonts/architects-daughter.scss';
 import './utils/styles.scss';
-// Fonts
-// Session
 
 function getActiveComponent(state: GameState) {
   switch (state.phase) {

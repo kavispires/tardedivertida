@@ -16,7 +16,6 @@ import { PhaseGameOver } from './PhaseGameOver';
 // Sass
 import 'assets/fonts/architects-daughter.scss';
 import './utils/styles.scss';
-// Fonts
 
 function getActiveComponent(state: GameState) {
   switch (state.phase) {
