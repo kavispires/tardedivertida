@@ -40,39 +40,45 @@ type SessionProps = {
    * Optional provider component to wrap ActiveComponent with game data
    */
   provider?: ComponentType<PhaseProviderProps<UnknownWorkaround>>;
+  /**
+   * Optional function called once during the setup phase to refresh state (local game store and/or game localStorage)
+   */
+  setup?: () => void;
 };
 
-export function Session({ gameCollection, getActiveComponent, provider }: SessionProps) {
-  const { meta: gameMeta, dataUpdatedAt } = useGameMeta();
+export function Session({ gameCollection, getActiveComponent, provider, setup }: SessionProps) {
+  const { meta, dataUpdatedAt } = useGameMeta();
   const { language } = useLanguage();
-  const state = useGameState(gameMeta.gameId, gameCollection);
+  const state = useGameState(meta.gameId, gameCollection);
   const [userId] = useGlobalState('userId');
   const [, setLanguage] = useGlobalLocalStorage('language');
   const user = useUser(state?.players, state);
 
   const players = state.players ?? {};
 
+  const defaultProps = {
+    state,
+    players,
+    meta,
+    user,
+  };
+
   useIdleRedirect();
 
   // Update session language to match the game
   // biome-ignore lint/correctness/useExhaustiveDependencies: only update then receiving the game language
   useEffect(() => {
-    if (language !== gameMeta.language) {
-      setLanguage(gameMeta.language);
+    if (language !== meta.language) {
+      setLanguage(meta.language);
     }
-  }, [gameMeta.language]);
+  }, [meta.language]);
 
   if (!userId || !players[userId]) {
     return (
       <GameInfoProvider gameCollection={gameCollection}>
         <SessionConfigWrapper>
           <RedirectSession state={state} />
-          <PhaseLobby
-            state={state}
-            players={players}
-            meta={gameMeta}
-            user={user}
-          />
+          <PhaseLobby {...defaultProps} />
         </SessionConfigWrapper>
       </GameInfoProvider>
     );
@@ -89,7 +95,12 @@ export function Session({ gameCollection, getActiveComponent, provider }: Sessio
     }
 
     if (state.phase === PHASES.DEFAULT.SETUP) {
-      return PhaseSetup;
+      return () => (
+        <PhaseSetup
+          setup={setup}
+          {...defaultProps}
+        />
+      );
     }
 
     return getActiveComponent(state);
@@ -98,14 +109,7 @@ export function Session({ gameCollection, getActiveComponent, provider }: Sessio
   const ActiveComponent = getContentComponent() || PhaseError;
   const Provider = provider;
 
-  const activeComponentElement = (
-    <ActiveComponent
-      players={players}
-      state={state}
-      meta={gameMeta}
-      user={user}
-    />
-  );
+  const activeComponentElement = <ActiveComponent {...defaultProps} />;
 
   return (
     <PageLayout>
@@ -118,14 +122,7 @@ export function Session({ gameCollection, getActiveComponent, provider }: Sessio
           />
           <RedirectSession state={state} />
           {Provider ? (
-            <Provider
-              players={players}
-              state={state}
-              meta={gameMeta}
-              user={user}
-            >
-              {activeComponentElement}
-            </Provider>
+            <Provider {...defaultProps}>{activeComponentElement}</Provider>
           ) : (
             activeComponentElement
           )}
