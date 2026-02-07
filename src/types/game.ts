@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 // Internal
 import type { GamePlayer, GamePlayers } from './player';
 
@@ -41,11 +42,16 @@ export type PhaseProps<TState = PlainObject, TPlayer = PlainObject> = {
   user: GamePlayer<TPlayer>;
 };
 
+export type PhaseProviderProps<TState = PlainObject, TPlayer = PlainObject> = PhaseProps<TState, TPlayer> & {
+  children: ReactNode;
+};
+
 export type GameRanking = {
   playerId: string;
   previousScore: number;
   gainedPoints: number | number[];
   newScore: number;
+  // biome-ignore lint/suspicious/noExplicitAny:on purpose
   [key: string]: any;
 }[];
 

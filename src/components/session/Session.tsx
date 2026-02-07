@@ -3,7 +3,7 @@ import { type ReactNode, useEffect, useMemo, type ComponentType } from 'react';
 // Ant Design Resources
 import { ConfigProvider } from 'antd';
 // Types
-import type { GameState, PhaseProps } from 'types/game';
+import type { GameState, PhaseProps, PhaseProviderProps } from 'types/game';
 // Hooks
 import { useGameMeta } from 'hooks/useGameMeta';
 import { useGameState } from 'hooks/useGameState';
@@ -24,6 +24,9 @@ import { PhaseError, PhaseLoading, PhaseLobby, PhaseSetup } from 'components/pha
 import { RedirectSession } from './RedirectSession';
 import { GameInfoProvider, useGameAppearance } from './GameInfoContext';
 
+// biome-ignore lint/suspicious/noExplicitAny: unknown breaks everything
+type UnknownWorkaround = any;
+
 type SessionProps = {
   /**
    * The game collection name
@@ -32,10 +35,14 @@ type SessionProps = {
   /**
    * The active component to be rendered, usually a Phase... component
    */
-  getActiveComponent: (args: GameState) => ComponentType<PhaseProps<any>>;
+  getActiveComponent: (args: GameState) => ComponentType<PhaseProps<UnknownWorkaround>>;
+  /**
+   * Optional provider component to wrap ActiveComponent with game data
+   */
+  provider?: ComponentType<PhaseProviderProps<UnknownWorkaround>>;
 };
 
-export function Session({ gameCollection, getActiveComponent }: SessionProps) {
+export function Session({ gameCollection, getActiveComponent, provider }: SessionProps) {
   const { meta: gameMeta, dataUpdatedAt } = useGameMeta();
   const { language } = useLanguage();
   const state = useGameState(gameMeta.gameId, gameCollection);
@@ -89,6 +96,16 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
   };
 
   const ActiveComponent = getContentComponent() || PhaseError;
+  const Provider = provider;
+
+  const activeComponentElement = (
+    <ActiveComponent
+      players={players}
+      state={state}
+      meta={gameMeta}
+      user={user}
+    />
+  );
 
   return (
     <PageLayout>
@@ -100,12 +117,18 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
             userId={userId}
           />
           <RedirectSession state={state} />
-          <ActiveComponent
-            players={players}
-            state={state}
-            meta={gameMeta}
-            user={user}
-          />
+          {Provider ? (
+            <Provider
+              players={players}
+              state={state}
+              meta={gameMeta}
+              user={user}
+            >
+              {activeComponentElement}
+            </Provider>
+          ) : (
+            activeComponentElement
+          )}
           <AutoNextPhase players={players} />
           <AdminMenuDrawer
             state={state}
