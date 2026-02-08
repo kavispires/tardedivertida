@@ -1,8 +1,18 @@
 @use "styles/sass" as *;
 
+.background {
+  background: linear-gradient(-45deg, #98b9fe, #c2d5ff, #a1b9ec);
+  background-size: 1000% 1000%;
+}
+
+.city-map {
+  background: get-color("white", 5, 0.85);
+  border-radius: get-unit(2);
+}
+
 .city-site {
   overflow: hidden;
-  background: get-color("blue", 3);
+  background: get-color("blue", 4);
   margin: get-unit(1);
   padding: get-unit(2);
   border-radius: var(--border-radius);
