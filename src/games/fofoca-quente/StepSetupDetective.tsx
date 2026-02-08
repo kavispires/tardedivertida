@@ -13,11 +13,11 @@ import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 // Internal
 import type { FofocaQuenteDefaultState, SubmitDetectiveLocationPayload } from './utils/types';
+import { useFofocaQuenteContext } from './utils/FofocaQuenteContext';
 import { SchoolBoard } from './components/SchoolBoard';
 import { BoardSummary } from './components/BoardSummary';
 import { DetectiveGoals } from './components/DetectiveGoals';
 import { Info } from './components/Info';
-import { useFofocaQuenteContext } from './components/FofocaQuenteContext';
 // Hooks
 
 type StepSetupDetectiveProps = {
@@ -45,13 +45,13 @@ export function StepSetupDetective({
   const onSubmit = () => {
     if (detectiveLocationIndex !== null) {
       onSubmitDetectiveLocation({
-        locationId: detectiveLocationIndex,
+        locationIndex: detectiveLocationIndex,
         shouldReady: true,
       });
     }
   };
 
-  const hasLocation = user.locationId !== null && user.locationId !== undefined;
+  const hasLocation = !!user.locationIndexes?.at(-1);
 
   return (
     <Step
@@ -64,8 +64,6 @@ export function StepSetupDetective({
           en={<>Setting up the school</>}
         />
       </StepTitle>
-
-      <Info />
 
       <SchoolBoard
         schoolBoard={schoolBoard}

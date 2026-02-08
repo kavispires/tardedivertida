@@ -1,22 +1,29 @@
-import { createContext, type ReactNode, useContext, useMemo, useState } from 'react';
+import { createContext, useContext, useMemo, useState } from 'react';
 // Types
-import type { GameState } from 'types/game';
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { PhaseProviderProps } from 'types/game';
 // Hooks
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Internal
-import type { FofocaQuenteDefaultState } from '../utils/types';
-import { ACTION_TYPES, FOFOCA_QUENTE_PHASES } from '../utils/constants';
-import { useIntimidate, useRumoring } from '../utils/hooks';
-import { StudentModal } from './StudentModal';
+import { StudentModal } from '../components/StudentModal';
+import { Info } from '../components/Info';
+import type { FofocaQuenteDefaultState } from './types';
+import { ACTION_TYPES, FOFOCA_QUENTE_PHASES } from './constants';
+import { useIntimidate, useRumoring } from './hooks';
 
 type FofocaQuenteContextType = {
+  students: FofocaQuenteDefaultState['students'];
+  schoolBoard: FofocaQuenteDefaultState['schoolBoard'];
+  socialGroups: FofocaQuenteDefaultState['socialGroups'];
+  staff: FofocaQuenteDefaultState['staff'];
+  motivations: FofocaQuenteDefaultState['motivations'];
+  gossiperId: string;
+  bestFriendId: string;
   isTheGossiperPlayer: boolean;
   isTheDetectivePlayer: boolean;
   activeModalStudentId: string | null;
   onOpenStudentModal: (studentId: string | null) => void;
   detectiveLocationIndex: number | null;
-  onSetDetectiveLocation: (locationId: number) => void;
+  onSetDetectiveLocation: (locationIndex: number) => void;
   intimidation: {
     currentIntimidations: string[];
     onSubmitIntimidation: (studentId: string) => void;
@@ -27,6 +34,13 @@ type FofocaQuenteContextType = {
 };
 
 const FofocaQuenteContext = createContext<FofocaQuenteContextType>({
+  students: {},
+  schoolBoard: [],
+  socialGroups: {},
+  staff: {},
+  motivations: [],
+  gossiperId: '',
+  bestFriendId: '',
   isTheGossiperPlayer: false,
   isTheDetectivePlayer: false,
   activeModalStudentId: null,
@@ -42,30 +56,27 @@ const FofocaQuenteContext = createContext<FofocaQuenteContextType>({
   },
 });
 
-type FofocaQuenteProviderProps = {
-  state: GameState<FofocaQuenteDefaultState>;
-  players: GamePlayers;
-  user: GamePlayer;
-  children: ReactNode;
-};
-
 /**
  * Provider component for Fofoca Quente game context
  */
-export function FofocaQuenteProvider({ state, players, user: _user, children }: FofocaQuenteProviderProps) {
+export function FofocaQuenteProvider({
+  state,
+  players,
+  user: _user,
+  children,
+}: PhaseProviderProps<FofocaQuenteDefaultState>) {
   const [_gossiper, isTheGossiperPlayer] = useWhichPlayerIsThe('gossiperPlayerId', state, players);
   const [detective, isTheDetectivePlayer] = useWhichPlayerIsThe('detectivePlayerId', state, players);
 
   const [activeModalStudentId, onOpenStudentModal] = useState<string | null>(null);
   const [detectiveLocationIndex, onSetDetectiveLocation] = useState<number | null>(
-    detective?.locationId ?? null,
+    detective?.locationIndexes?.at(-1) ?? null,
   );
 
   // ACTION: INTIMIDATION
   const intimidation = useIntimidate(state.maxIntimidations ?? 0);
   // ACTION: RUMOR
   const rumor = useRumoring();
-
   // ACTION: INVESTIGATION
 
   const permissions = {
@@ -110,6 +121,13 @@ export function FofocaQuenteProvider({ state, players, user: _user, children }: 
   return (
     <FofocaQuenteContext.Provider
       value={{
+        students: state.students ?? {},
+        schoolBoard: state.schoolBoard ?? [],
+        socialGroups: state.socialGroups ?? [],
+        staff: state.staff ?? [],
+        motivations: state.motivations ?? [],
+        gossiperId: state.gossiperId || '',
+        bestFriendId: state.bestFriendId || '',
         isTheGossiperPlayer,
         isTheDetectivePlayer,
         activeModalStudentId,
@@ -133,6 +151,13 @@ export function FofocaQuenteProvider({ state, players, user: _user, children }: 
           {...actionObject}
         />
       )}
+
+      <Info
+        students={state.students}
+        socialGroups={state.socialGroups}
+        motivations={state.motivations ?? []}
+        phase={state.phase}
+      />
     </FofocaQuenteContext.Provider>
   );
 }

@@ -19,7 +19,6 @@ import {
   useOnUpdateDetectiveLocationAPIRequest,
 } from './utils/api-requests';
 import { FOFOCA_QUENTE_PHASES } from './utils/constants';
-import { FofocaQuenteProvider } from './components/FofocaQuenteContext';
 import { StepSetupGossiper } from './StepSetupGossiper';
 import { StepSetupDetective } from './StepSetupDetective';
 
@@ -77,48 +76,42 @@ export function PhaseBoardSetup({ players, state, user }: PhaseProps<FofocaQuent
       phase={state?.phase}
       allowedPhase={FOFOCA_QUENTE_PHASES.BOARD_SETUP}
     >
-      <FofocaQuenteProvider
-        state={state}
+      <StepSwitcher
+        step={step}
         players={players}
-        user={user}
       >
-        <StepSwitcher
-          step={step}
-          players={players}
-        >
-          {/* Step 0 */}
-          <ViewOr condition={isTheGossiperPlayer}>
-            <StepSetupGossiper
-              user={user}
-              players={players}
-              announcement={gossiperAnnouncement}
-              schoolBoard={state.schoolBoard}
-              students={state.students}
-              socialGroups={state.socialGroups}
-              gossiperId={state.gossiperId}
-              bestFriendId={state.bestFriendId}
-              staff={state.staff}
-              motivations={state.motivations}
-              gossiperMotivationIndex={state.gossiperMotivationIndex}
-              onSubmitAssociatedSocialGroup={onSubmitAssociatedSocialGroup}
-            />
+        {/* Step 0 */}
+        <ViewOr condition={isTheGossiperPlayer}>
+          <StepSetupGossiper
+            user={user}
+            players={players}
+            announcement={gossiperAnnouncement}
+            schoolBoard={state.schoolBoard}
+            students={state.students}
+            socialGroups={state.socialGroups}
+            gossiperId={state.gossiperId}
+            bestFriendId={state.bestFriendId}
+            staff={state.staff}
+            motivations={state.motivations}
+            gossiperMotivationIndex={state.gossiperMotivationIndex}
+            onSubmitAssociatedSocialGroup={onSubmitAssociatedSocialGroup}
+          />
 
-            <StepSetupDetective
-              user={user}
-              players={players}
-              announcement={detectiveAnnouncement}
-              schoolBoard={state.schoolBoard}
-              students={state.students}
-              socialGroups={state.socialGroups}
-              gossiperId={state.gossiperId}
-              bestFriendId={state.bestFriendId}
-              staff={state.staff}
-              motivations={state.motivations}
-              onSubmitDetectiveLocation={onSubmitDetectiveLocation}
-            />
-          </ViewOr>
-        </StepSwitcher>
-      </FofocaQuenteProvider>
+          <StepSetupDetective
+            user={user}
+            players={players}
+            announcement={detectiveAnnouncement}
+            schoolBoard={state.schoolBoard}
+            students={state.students}
+            socialGroups={state.socialGroups}
+            gossiperId={state.gossiperId}
+            bestFriendId={state.bestFriendId}
+            staff={state.staff}
+            motivations={state.motivations}
+            onSubmitDetectiveLocation={onSubmitDetectiveLocation}
+          />
+        </ViewOr>
+      </StepSwitcher>
     </PhaseContainer>
   );
 }

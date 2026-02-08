@@ -12,9 +12,7 @@ import { Instruction } from 'components/text';
 // Internal
 import type { FofocaQuenteDefaultState } from './utils/types';
 import { FOFOCA_QUENTE_PHASES } from './utils/constants';
-import { FofocaQuenteProvider } from './components/FofocaQuenteContext';
 import { StepIntimidation } from './StepIntimidation';
-// Icons
 
 export function PhaseIntimidation({ state, players, user }: PhaseProps<FofocaQuenteDefaultState>) {
   const { step } = useStep();
@@ -45,31 +43,25 @@ export function PhaseIntimidation({ state, players, user }: PhaseProps<FofocaQue
       phase={state?.phase}
       allowedPhase={FOFOCA_QUENTE_PHASES.INTIMIDATION}
     >
-      <FofocaQuenteProvider
-        state={state}
+      <StepSwitcher
+        step={step}
         players={players}
-        user={user}
       >
-        <StepSwitcher
-          step={step}
+        {/* Step 0 */}
+        <StepIntimidation
+          user={user}
           players={players}
-        >
-          {/* Step 0 */}
-          <StepIntimidation
-            user={user}
-            players={players}
-            announcement={announcement}
-            schoolBoard={state.schoolBoard}
-            students={state.students}
-            socialGroups={state.socialGroups}
-            gossiperId={state.gossiperId}
-            bestFriendId={state.bestFriendId}
-            staff={state.staff}
-            motivations={state.motivations}
-            gossiperMotivationIndex={state.gossiperMotivationIndex}
-          />
-        </StepSwitcher>
-      </FofocaQuenteProvider>
+          announcement={announcement}
+          schoolBoard={state.schoolBoard}
+          students={state.students}
+          socialGroups={state.socialGroups}
+          gossiperId={state.gossiperId}
+          bestFriendId={state.bestFriendId}
+          staff={state.staff}
+          motivations={state.motivations}
+          gossiperMotivationIndex={state.gossiperMotivationIndex}
+        />
+      </StepSwitcher>
     </PhaseContainer>
   );
 }

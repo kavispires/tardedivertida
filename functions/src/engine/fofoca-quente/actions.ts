@@ -48,7 +48,7 @@ export const handleSubmitDetectiveLocation = async (
   gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  locationId: number,
+  locationIndex: number,
   shouldReady = false,
 ) => {
   return await utils.firestore.updatePlayer({
@@ -57,7 +57,7 @@ export const handleSubmitDetectiveLocation = async (
     playerId,
     actionText: 'moved the detective',
     change: {
-      locationId,
+      locationIndexes: utils.firestore.pushValue(locationIndex),
     },
     shouldReady,
     nextPhaseFunction: getNextPhase,

@@ -15,7 +15,7 @@ export type SubmitAssociatedSocialGroupPayload = {
 };
 
 export type SubmitDetectiveLocationPayload = {
-  locationId: number;
+  locationIndex: number;
   shouldReady: boolean;
 };
 

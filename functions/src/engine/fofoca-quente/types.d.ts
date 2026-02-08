@@ -86,6 +86,7 @@ export type Student = TeenageStudent & {
   canBeRumored: boolean;
   rumored?: boolean;
   rumorSlot?: number;
+  mustBeMoved?: boolean;
 };
 
 export type SchoolLocationBase = {
@@ -98,7 +99,7 @@ export type SchoolLocation = {
   name: DualLanguageValue;
   staff?: CardId;
   students: CardId[];
-  rumorScene?: number;
+  rumorSlot?: number;
 };
 
 export type SocialGroup = {

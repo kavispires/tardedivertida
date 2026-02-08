@@ -9,11 +9,11 @@ import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
 import type { FofocaQuenteDefaultState } from './utils/types';
+import { useFofocaQuenteContext } from './utils/FofocaQuenteContext';
 import { SchoolBoard } from './components/SchoolBoard';
 import { BoardSummary } from './components/BoardSummary';
 import { DetectiveGoals } from './components/DetectiveGoals';
 import { GossiperGoals } from './components/GossiperGoals';
-import { useFofocaQuenteContext } from './components/FofocaQuenteContext';
 
 type StepIntimidationProps = {
   players: GamePlayers;

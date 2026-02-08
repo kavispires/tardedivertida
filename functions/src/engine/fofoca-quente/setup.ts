@@ -8,10 +8,12 @@ import type {
   FirebaseStoreData,
   FofocaQuenteOptions,
   ResourceData,
+  RumorTrackerEntry,
   SchoolLocation,
   Student,
 } from './types';
 import { determineStudentsThatCanBeRumored } from './helpers';
+import type { TeenageRumor } from '../../types/tdr';
 
 /**
  * Setup
@@ -136,12 +138,17 @@ export const prepareBoardSetupPhase = async (
   utils.players.unReadyPlayers(players);
 
   const gossiperPlayerId = state.gossiperPlayerId || '';
+  const detectivePlayerId = state.detectivePlayerId || '';
 
   // Give 3 options of social group to choose from
   players[gossiperPlayerId].socialGroupOptions = utils.game.getRandomItems(
     Object.keys(state.socialGroups ?? {}),
     3,
   );
+
+  players[detectivePlayerId].locationIndexes = [];
+
+  utils.players.unReadyPlayers(players);
 
   return {
     update: {
@@ -167,7 +174,9 @@ export const prepareIntimidationPhase = async (
   const students: Dictionary<Student> = state.students ?? {};
   Object.values(students).forEach((student) => {
     student.canBeIntimidated =
-      !student.rumored && !student.intimidated && student.locationId !== `location-${detective.locationId}`;
+      !student.rumored &&
+      !student.intimidated &&
+      student.locationId !== `location-${detective.locationIndexes.at(-1)}`;
     if (student.canBeIntimidated) {
       totalPossibleIntimidations++;
     }
@@ -200,15 +209,13 @@ export const prepareRumorPhase = async (
   const detectivePlayerId = state.detectivePlayerId || '';
   const detective = players[detectivePlayerId];
 
-  // const gossiperPlayerId = state.gossiperPlayerId || '';
-  // const gossiper = players[gossiperPlayerId];
   const students: Dictionary<Student> = state.students ?? {};
   const motivations = state.motivations || [];
 
   determineStudentsThatCanBeRumored(
     students ?? {},
     state.schoolBoard ?? [],
-    `location-${detective.locationId}`,
+    detective.locationIndexes ?? [],
     state.gossiperId || '',
     motivations[state.gossiperMotivationIndex || 0].id,
   );
@@ -217,6 +224,8 @@ export const prepareRumorPhase = async (
 
   // Unready player to has the action
   utils.players.unReadyPlayers(players, detectivePlayerId);
+
+  utils.players.removePropertiesFromPlayers(players, ['skipRumor']);
 
   return {
     update: {
@@ -232,23 +241,93 @@ export const prepareRumorPhase = async (
 };
 
 export const prepareResponsePhase = async (
-  _store: FirebaseStoreData,
+  store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  // const detectivePlayerId = state.detectivePlayerId || '';
-  // const detective = players[detectivePlayerId];
+  const detectivePlayerId = state.detectivePlayerId || '';
+  const detective = players[detectivePlayerId];
   const gossiperPlayerId = state.gossiperPlayerId || '';
-  // const gossiper = players[gossiperPlayerId];
+  const gossiper = players[gossiperPlayerId];
+
+  const students: Dictionary<Student> = state.students ?? {};
+  const schoolBoard: SchoolLocation[] = state.schoolBoard || [];
 
   // Unready player to has the action
   utils.players.unReadyPlayers(players, gossiperPlayerId);
 
+  const rumorTracker: RumorTrackerEntry[] = state.rumorTracker || [];
+  let maySkipRumor = state.maySkipRumor || false;
+
+  if (gossiper.skipRumor) {
+    if (maySkipRumor === false) {
+      // TODO: If it's the second skip, game over
+    } else {
+      maySkipRumor = false;
+    }
+  } else {
+    const possibleRumors: TeenageRumor[] = state.possibleRumors || [];
+    const rumoredStudentId: string = gossiper.rumoredStudentId || '';
+    const rumoredStudent = students[rumoredStudentId];
+
+    if (!rumoredStudent || !possibleRumors[gossiper.rumorIndex || 0]) {
+      throw new Error('Invalid rumored student or rumor index');
+    }
+
+    const selectedRumor = possibleRumors[gossiper.rumorIndex || 0];
+
+    // Create record
+    rumorTracker.push({
+      rumorSlot: rumorTracker.length,
+      studentId: rumoredStudentId,
+      rumorText: selectedRumor?.text || { en: 'Error', pt: 'Erro' },
+    });
+    // Remove rumor from the rumor deck in store
+    store.rumors = store.rumors?.filter((rumor) => rumor.id !== selectedRumor.id);
+
+    if (!students[rumoredStudentId]) {
+      throw new Error('Rumored student not found');
+    }
+    // Update student as rumored
+    students[rumoredStudentId].rumored = true;
+    students[rumoredStudentId].rumorSlot = rumorTracker.length - 1;
+
+    const rumoredLocation = schoolBoard.find((location) => location.students.includes(rumoredStudentId));
+
+    if (!rumoredLocation) {
+      throw new Error('Rumored student location not found');
+    }
+    // If other students are in the same location they must be moved
+    Object.values(students).forEach((student) => {
+      if (!student.rumored) {
+        if (student.locationId === rumoredLocation.id) {
+          // Student must be moved
+          student.mustBeMoved = true;
+        }
+      }
+    });
+
+    // Move the detective where the rumor happened
+    detective.locationIndexes.push(Number(rumoredLocation.id.split('-')[1]));
+
+    // Update the location's rumorSlot
+    schoolBoard[detective.locationIndexes.at(-1)].rumorSlot = rumorTracker.length - 1;
+  }
+
+  utils.players.removePropertiesFromPlayers(players, ['rumoredStudentId', 'rumorIndex']);
+
   return {
     update: {
+      store: {
+        rumors: store.rumors,
+      },
       state: {
         phase: FOFOCA_QUENTE_PHASES.RESPONSE,
         players,
+        rumorTracker,
+        maySkipRumor,
+        students,
+        schoolBoard,
       },
       stateCleanup: ['possibleRumors'],
     },

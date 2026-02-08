@@ -8,7 +8,7 @@ import { DualTranslate, Translate } from 'components/language';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { FofocaQuenteDefaultState, SocialGroup } from '../utils/types';
-import { useFofocaQuenteContext } from './FofocaQuenteContext';
+import { useFofocaQuenteContext } from '../utils/FofocaQuenteContext';
 import { SocialGroupIcon } from './StudentIcon';
 
 type GossiperGoalsProps = {

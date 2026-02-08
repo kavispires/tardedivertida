@@ -16,7 +16,7 @@ import { BoardSummary } from './components/BoardSummary';
 import { DetectiveGoals } from './components/DetectiveGoals';
 import { GossiperGoals } from './components/GossiperGoals';
 
-type StepRumorProps = {
+type StepResponseProps = {
   players: GamePlayers;
   user: GamePlayer;
   gossiperId: string;
@@ -24,16 +24,10 @@ type StepRumorProps = {
 } & Pick<StepProps, 'announcement'> &
   Pick<
     FofocaQuenteDefaultState,
-    | 'schoolBoard'
-    | 'students'
-    | 'socialGroups'
-    | 'staff'
-    | 'motivations'
-    | 'gossiperMotivationIndex'
-    | 'maySkipRumor'
+    'schoolBoard' | 'students' | 'socialGroups' | 'staff' | 'motivations' | 'gossiperMotivationIndex'
   >;
 
-export function StepRumor({
+export function StepResponse({
   announcement,
   schoolBoard,
   socialGroups,
@@ -44,8 +38,7 @@ export function StepRumor({
   motivations,
   gossiperMotivationIndex,
   user,
-  maySkipRumor,
-}: StepRumorProps) {
+}: StepResponseProps) {
   const { intimidation, isTheDetectivePlayer, isTheGossiperPlayer } = useFofocaQuenteContext();
 
   return (
@@ -55,8 +48,8 @@ export function StepRumor({
     >
       <StepTitle>
         <Translate
-          pt={<>Espalhe um boato maldoso</>}
-          en={<>Spread a nasty rumor</>}
+          pt={<>Reagindo ao boato...</>}
+          en={<>Reacting to the rumor...</>}
         />
       </StepTitle>
 
@@ -122,35 +115,6 @@ export function StepRumor({
                       />
                     }
                   />
-                )}
-                {/* TODO: On a second skip rumor, the gossiper loses */}
-                {maySkipRumor && (
-                  <>
-                    <br />
-                    <Translate
-                      en=" If you can't find any suitable student, you may choose to skip spreading a rumor this
-                    round."
-                      pt=" Se você não encontrar nenhum estudante adequado, você pode optar por pular o boato desta rodada."
-                    />
-                    <Popconfirm
-                      title={
-                        <Translate
-                          pt="Tem certeza que quer pular o boato desta rodada?"
-                          en="Are you sure you want to skip spreading a rumor this round?"
-                        />
-                      }
-                    >
-                      <Button
-                        block
-                        type="dashed"
-                      >
-                        <Translate
-                          en="(Click here to skip)"
-                          pt="(Clique aqui para pular)"
-                        />
-                      </Button>
-                    </Popconfirm>
-                  </>
                 )}
               </RuleInstruction>
             </div>

@@ -176,8 +176,8 @@ export const submitAction = async (data: FofocaQuenteSubmitAction) => {
       );
       return handleSubmitAssociatedSocialGroup(gameName, gameId, playerId, data.associatedSocialGroupId);
     case FOFOCA_QUENTE_ACTIONS.UPDATE_DETECTIVE_POSITION:
-      utils.firebase.validateSubmitActionProperties(data, ['locationId'], 'submit detective position');
-      return handleSubmitDetectiveLocation(gameName, gameId, playerId, data.locationId, data.shouldReady);
+      utils.firebase.validateSubmitActionProperties(data, ['locationIndex'], 'submit detective position');
+      return handleSubmitDetectiveLocation(gameName, gameId, playerId, data.locationIndex, data.shouldReady);
     case FOFOCA_QUENTE_ACTIONS.SUBMIT_INTIMIDATION:
       utils.firebase.validateSubmitActionProperties(data, ['intimidatedStudentId'], 'submit intimidation');
       return handleSubmitIntimidation(

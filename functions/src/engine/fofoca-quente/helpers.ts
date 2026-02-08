@@ -59,10 +59,11 @@ export const determineNextPhase = (
 export const determineStudentsThatCanBeRumored = (
   students: Dictionary<Student>,
   schoolBoard: SchoolLocation[],
-  detectiveLocationId: string,
+  detectiveLocationIndexes: number[],
   gossiperId: string,
   motivationId: string,
 ) => {
+  const detectiveLocationId = `location-${detectiveLocationIndexes.at(-1)}`;
   // Previously rumored students
   const previouslyRumoredStudents = Object.values(students)
     .filter((student) => student.rumored)

@@ -302,7 +302,7 @@ function RumorFlow({
               key={`rumor-${index}`}
               value={index}
             >
-              <DualTranslate>{rumor.text}</DualTranslate>
+              "<DualTranslate>{rumor.text}</DualTranslate>"
             </Radio>
           ))}
         </Flex>

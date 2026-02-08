@@ -7,10 +7,10 @@ import { DualTranslate, Translate } from 'components/language';
 import { ZoomPanPinchContainer } from 'components/layout/ZoomPanPinchContainer';
 // Internal
 import type { FofocaQuenteDefaultState } from '../utils/types';
+import { useFofocaQuenteContext } from '../utils/FofocaQuenteContext';
 import { StudentCard } from './StudentCard';
 import { StaffMemberEntry } from './StaffMember';
 import { DetectiveToken } from './DetectiveToken';
-import { useFofocaQuenteContext } from './FofocaQuenteContext';
 // Images
 import bgImage from '../assets/school-board.jpg';
 
@@ -19,9 +19,16 @@ type SchoolBoardProps = {
   students: FofocaQuenteDefaultState['students'];
   socialGroups: FofocaQuenteDefaultState['socialGroups'];
   staff: FofocaQuenteDefaultState['staff'];
+  hideDetectiveLocation?: boolean;
 };
 
-export function SchoolBoard({ schoolBoard, students, socialGroups, staff }: SchoolBoardProps) {
+export function SchoolBoard({
+  schoolBoard,
+  students,
+  socialGroups,
+  staff,
+  hideDetectiveLocation = false,
+}: SchoolBoardProps) {
   const { onOpenStudentModal, detectiveLocationIndex, onSetDetectiveLocation, permissions } =
     useFofocaQuenteContext();
 
@@ -103,7 +110,7 @@ export function SchoolBoard({ schoolBoard, students, socialGroups, staff }: Scho
             </div>
 
             <div className="school-location__footer">
-              - {detectiveLocationIndex === index && <DetectiveToken />} -
+              - {!hideDetectiveLocation && detectiveLocationIndex === index && <DetectiveToken />} -
             </div>
           </div>
         ))}

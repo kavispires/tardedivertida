@@ -160,7 +160,7 @@ export const collectionByGame: Record<string, string[]> = {
     'UnderConstructionIcon',
   ],
   'fileira-de-fatos': ['BarChartIcon', 'QueueIcon'],
-  'fofoca-quente': ['TeenDetectiveIcon', 'BlackmailIcon', 'CyberBullyingIcon'],
+  'fofoca-quente': ['TeenDetectiveIcon', 'BlackmailIcon', 'CyberBullyingIcon', 'BullyingIcon'],
   'galeria-de-sonhos': [
     'DoorSignIcon',
     'NightmareIcon',

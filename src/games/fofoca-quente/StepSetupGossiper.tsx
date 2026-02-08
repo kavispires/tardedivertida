@@ -68,6 +68,7 @@ export function StepSetupGossiper({
         students={students}
         socialGroups={socialGroups}
         staff={staff}
+        hideDetectiveLocation
       />
 
       <Instruction contained>

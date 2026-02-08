@@ -8,10 +8,12 @@ import { PhaseError, PhasePlaceholder } from 'components/phases';
 import { Session } from 'components/session';
 // Internal
 import { FOFOCA_QUENTE_PHASES } from './utils/constants';
+import { FofocaQuenteProvider } from './utils/FofocaQuenteContext';
 import { PhaseRolesSelection } from './PhaseRolesSelection';
 import { PhaseBoardSetup } from './PhaseBoardSetup';
 import { PhaseIntimidation } from './PhaseIntimidation';
 import { PhaseRumor } from './PhaseRumor';
+import { PhaseResponse } from './PhaseResponse';
 // Sass
 import './utils/styles.scss';
 
@@ -25,6 +27,8 @@ function getActiveComponent(state: GameState) {
       return PhaseIntimidation;
     case FOFOCA_QUENTE_PHASES.RUMOR:
       return PhaseRumor;
+    case FOFOCA_QUENTE_PHASES.RESPONSE:
+      return PhaseResponse;
     case PHASES.DEFAULT.GAME_OVER:
       return PhasePlaceholder;
     default:
@@ -37,6 +41,7 @@ function SessionFofocaQuente() {
     <Session
       gameCollection={GAME_COLLECTION.FOFOCA_QUENTE}
       getActiveComponent={getActiveComponent}
+      provider={FofocaQuenteProvider}
     />
   );
 }
