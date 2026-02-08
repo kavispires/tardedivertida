@@ -143,11 +143,13 @@ export function StepEliminationSuspect({
             en="is the one who is releasing the suspects and they must release at least one."
           />
           <br />
-          <Translate
-            pt="E deve ser alguém que"
-            en="It must someone that "
-          />{' '}
-          <TextHighlight>{oppositeAction}</TextHighlight>
+          <TextHighlight>
+            <Translate
+              pt="Quem"
+              en="Who"
+            />{' '}
+            {oppositeAction}?
+          </TextHighlight>
         </RuleInstruction>
       )}
 
