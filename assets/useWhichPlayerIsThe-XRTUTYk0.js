@@ -1,0 +1,1 @@
+import{ar as o,r as c,s as u,bZ as n}from"./index-C45LgaM9.js";function d(s="activePlayerId",e={},r={}){const[t]=o("userId");return c.useMemo(()=>{const a=u.get(e,s);return[r?.[a]??n,a===t]},[r,s,e,t])}export{d as u};

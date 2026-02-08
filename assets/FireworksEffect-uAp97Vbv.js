@@ -1,1 +1,0 @@
-import{j as r}from"./index-n7RP6ikT.js";function e(){return r.jsxs("div",{className:"fireworks",children:[r.jsx("div",{className:"fireworks__before"}),r.jsx("div",{className:"fireworks__after"})]})}export{e as FireworksEffect};
