@@ -23,5 +23,6 @@
 }
 
 .zoom-pan-pinch-content {
-  background: green;
+  // Use as an indicator that something is wrong and the content is not being rendered properly
+  background: get-color("gray", 5, 0.2);
 }

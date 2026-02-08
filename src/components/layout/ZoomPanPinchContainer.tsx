@@ -21,11 +21,13 @@ import {
   ZoomInOutlined,
   ZoomOutOutlined,
 } from '@ant-design/icons';
-import { Button, Space } from 'antd';
+import { Button, Space, Tooltip } from 'antd';
+// Components
+import { Translate } from 'components/language/Translate';
 // Sass
 import './ZoomPanPinchContainer.scss';
 
-type ZoomPanPinchContainerProps = {
+export type ZoomPanPinchContainerProps = {
   /**
    * Maximum width of the container in pixels.
    */
@@ -201,32 +203,68 @@ function Controls({ position, isLocked, onToggleLock }: ControlsProps) {
   return (
     <Space.Compact
       size="small"
-      className={clsx('zoom-pan-pinch-controls', `zoom-pan-pinch-controls--${position}`)}
+      className={clsx('grid-map-controls', `grid-map-controls--${position}`)}
     >
-      <Button
-        onClick={() => zoomIn(0.125, 0)}
-        title="Zoom In"
+      <Tooltip
+        title={
+          <Translate
+            en="Zoom In"
+            pt="Aproximar"
+          />
+        }
+        placement={position}
       >
-        <ZoomInOutlined />
-      </Button>
+        <Button onClick={() => zoomIn(0.125, 0)}>
+          <ZoomInOutlined />
+        </Button>
+      </Tooltip>
 
-      <Button
-        onClick={() => zoomOut(0.125, 0)}
-        title="Zoom Out"
+      <Tooltip
+        title={
+          <Translate
+            en="Zoom Out"
+            pt="Afastar"
+          />
+        }
+        placement={position}
       >
-        <ZoomOutOutlined />
-      </Button>
+        <Button onClick={() => zoomOut(0.125, 0)}>
+          <ZoomOutOutlined />
+        </Button>
+      </Tooltip>
 
-      <Button onClick={() => resetTransform(0)}>
-        <FullscreenExitOutlined />
-      </Button>
-
-      <Button
-        onClick={onToggleLock}
-        title={isLocked ? 'Unlock View' : 'Lock View'}
+      <Tooltip
+        title={
+          <Translate
+            en="Reset View"
+            pt="Resetar"
+          />
+        }
+        placement={position}
       >
-        {isLocked ? <LockFilled /> : <UnlockOutlined />}
-      </Button>
+        <Button onClick={() => resetTransform(0)}>
+          <FullscreenExitOutlined />
+        </Button>
+      </Tooltip>
+
+      <Tooltip
+        title={
+          isLocked ? (
+            <Translate
+              en="Unlock View"
+              pt="Destravar Visualização"
+            />
+          ) : (
+            <Translate
+              en="Lock View"
+              pt="Travar Visualização"
+            />
+          )
+        }
+        placement={position}
+      >
+        <Button onClick={onToggleLock}>{isLocked ? <LockFilled /> : <UnlockOutlined />}</Button>
+      </Tooltip>
     </Space.Compact>
   );
 }

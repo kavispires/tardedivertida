@@ -1,29 +1,8 @@
 @use "styles/sass" as *;
 
 .grid-map-container {
-  min-width: 500px;
-  min-height: 500px;
-  position: relative;
-  background-color: get-color("white", 5, 0.85);
-  padding: get-unit(10 1);
-  border-radius: var(--border-radius);
-  margin: get-unit(2);
-}
-
-.grid-map-controls {
-  position: absolute;
-  z-index: 10;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-
-  &--top {
-    top: get-unit(1);
-  }
-
-  &--bottom {
-    bottom: get-unit(1);
-  }
+  display: grid;
+  justify-items: center;
 }
 
 .grid-map {

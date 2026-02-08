@@ -1,147 +1,106 @@
 import clsx from 'clsx';
 import type React from 'react';
-import { type ComponentProps, Fragment } from 'react';
-import { TransformWrapper, TransformComponent, useControls } from 'react-zoom-pan-pinch';
-// Ant Design Resources
-import { FullscreenExitOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';
-import { Button, Space, Tooltip } from 'antd';
+// Components
+import {
+  ZoomPanPinchContainer,
+  type ZoomPanPinchContainerProps,
+} from 'components/layout/ZoomPanPinchContainer';
 // Internal
 import type { GridMapType, GridMapCellType } from './grid-map';
 // Sass
 import './GridMap.scss';
 
 export type GridMapCellComponentProps<TCellData, TCellAdditionalProps = any> = {
+  /**
+   * The current cell data.
+   */
   cell: GridMapCellType<TCellData | null>;
+  /**
+   * The full grid data.
+   */
   grid: GridMapType<TCellData>;
+  /**
+   * Additional props passed to the cell component.
+   */
   cellProps?: TCellAdditionalProps;
 };
 
-export type GridMapProps<TCellData, TCellAdditionalProps = any> = {
-  maxWidth: number;
-  maxHeight?: number | 'auto';
+export type GridMapProps<TCellData, TCellAdditionalProps = any> = Omit<
+  ZoomPanPinchContainerProps,
+  'children' | 'wrapperClassName' | 'contentClassName' | 'contentStyle'
+> & {
+  /**
+   * Additional className for the wrapper element.
+   */
   className?: string;
+  /**
+   * Additional className for the content element.
+   */
   contentClassName?: string;
+  /**
+   * Additional CSS styles for the content.
+   */
   contentStyle?: React.CSSProperties;
+  /**
+   * The grid data structure containing cells.
+   */
   grid: GridMapType<TCellData>;
+  /**
+   * Component to render each cell.
+   */
   cellComponent: React.ComponentType<GridMapCellComponentProps<TCellData, TCellAdditionalProps>>;
+  /**
+   * Additional props passed to each cell component.
+   */
   cellProps?: any;
-  transformWrapperProps?: ComponentProps<typeof TransformWrapper>;
-  hideControls?: boolean;
+  /**
+   * Additional content to render above the grid.
+   */
   additionalContent?: React.ReactNode;
 };
 
+/**
+ * A grid map component that provides zoom, pan, and pinch functionality.
+ * The container dynamically adjusts its size based on the zoom level and content dimensions.
+ */
 export function GridMap<TCellData, TCellAdditionalProps = any>({
-  maxWidth,
-  maxHeight,
   grid,
   cellComponent,
   className,
   contentClassName,
   contentStyle = {},
   cellProps,
-  transformWrapperProps,
-  hideControls = false,
   additionalContent,
+  ...zoomPanPinchProps
 }: GridMapProps<TCellData, TCellAdditionalProps>) {
   const CellComponent = cellComponent;
 
-  const {
-    initialScale = 1,
-    minScale = 0.25,
-    maxScale = 4,
-    wheel = { step: 0.5 },
-    centerOnInit = true,
-    centerZoomedOut = true,
-    ...restTransformWrapperProps
-  } = transformWrapperProps ?? {};
-
   return (
-    <div className={clsx('grid-map-container')}>
-      <TransformWrapper
-        initialScale={initialScale}
-        minScale={minScale}
-        maxScale={maxScale}
-        wheel={wheel}
-        centerOnInit={centerOnInit}
-        centerZoomedOut={centerZoomedOut}
-        {...restTransformWrapperProps}
+    <div className="grid-map-container">
+      <ZoomPanPinchContainer
+        wrapperClassName={clsx('grid-map-outer-window', className)}
+        contentClassName={clsx('grid-map', contentClassName)}
+        {...zoomPanPinchProps}
       >
-        {/** biome-ignore lint/complexity/noUselessFragments: it is necessary */}
-        <Fragment>
-          {!hideControls && <GridMapControls position="top" />}
-          {additionalContent}
-
-          <TransformComponent
-            wrapperClass={clsx('grid-map-wrapper', className)}
-            wrapperStyle={{ maxWidth, maxHeight }}
-            contentClass={clsx('grid-map', contentClassName)}
-            contentStyle={{
-              display: 'grid',
-              gridTemplateColumns: `repeat(${grid.width}, 1fr)`,
-              gridTemplateRows: `repeat(${grid.height}, 1fr)`,
-              ...contentStyle,
-            }}
-          >
-            {grid.cells.map((cell: GridMapCellType<TCellData | null>) => (
-              <CellComponent
-                key={cell.id}
-                cell={cell}
-                grid={grid}
-                cellProps={cellProps}
-              />
-            ))}
-          </TransformComponent>
-
-          {!hideControls && <GridMapControls position="bottom" />}
-        </Fragment>
-      </TransformWrapper>
-    </div>
-  );
-}
-
-type GridMapControlsProps = {
-  position: 'top' | 'bottom';
-};
-
-function GridMapControls({ position }: GridMapControlsProps) {
-  const { zoomIn, zoomOut, resetTransform, centerView } = useControls();
-
-  return (
-    <Space.Compact
-      size="small"
-      className={clsx('grid-map-controls', `grid-map-controls--${position}`)}
-    >
-      <Tooltip
-        title="Zoom In"
-        placement={position}
-      >
-        <Button onClick={() => zoomIn()}>
-          <ZoomInOutlined />
-        </Button>
-      </Tooltip>
-      <Tooltip
-        title="Zoom Out"
-        placement={position}
-      >
-        <Button onClick={() => zoomOut()}>
-          <ZoomOutOutlined />
-        </Button>
-      </Tooltip>
-      <Tooltip
-        title="Reset"
-        placement={position}
-      >
-        <Button
-          onClick={() => {
-            resetTransform();
-            setTimeout(() => {
-              centerView();
-            }, 200);
+        {additionalContent}
+        <div
+          style={{
+            display: 'grid',
+            width: 'fit-content',
+            gridTemplateColumns: `repeat(${grid.width}, 1fr)`,
+            gridTemplateRows: `repeat(${grid.height}, 1fr)`,
           }}
         >
-          <FullscreenExitOutlined />
-        </Button>
-      </Tooltip>
-    </Space.Compact>
+          {grid.cells.map((cell) => (
+            <CellComponent
+              key={cell.id}
+              cell={cell}
+              grid={grid}
+              cellProps={cellProps}
+            />
+          ))}
+        </div>
+      </ZoomPanPinchContainer>
+    </div>
   );
 }
