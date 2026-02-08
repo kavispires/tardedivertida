@@ -1,1 +1,6 @@
-@use 'styles/sass' as *;
+@use "styles/sass" as *;
+
+.background {
+  background: linear-gradient(-45deg, #6d4e36, #6f4e37, #a0826d);
+  background-size: 1000% 1000%;
+}

@@ -69,8 +69,9 @@ export function buildDeck() {
 export function buildSequence(deck: CardId[], currentRound: number) {
   const sequence: CardId[] = [];
   // Get 4 cards for the sequence (it should get a chunk from the deck based on the round)
-  const startIndex = (currentRound - 1) * 4;
-  const endIndex = startIndex + 4;
+  const cardsInRound = currentRound < 4 ? 4 : 5;
+  const startIndex = (currentRound - 1) * cardsInRound;
+  const endIndex = startIndex + cardsInRound;
   const roundCards = deck.slice(startIndex, endIndex);
   sequence.push(...roundCards);
 
@@ -145,7 +146,7 @@ export function buildRanking(store: FirebaseStoreData, players: Players, sequenc
       // Some matched this part
       playerIds.forEach((playerId) => {
         gotMatches[playerId] = true;
-        scores.add(playerId, POINTS_PER_GUESS, 1);
+        scores.add(playerId, POINTS_PER_GUESS, 0);
         // Achievement for part use
         utils.achievements.increase(store, playerId, part, 1);
       });

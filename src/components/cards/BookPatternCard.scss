@@ -7,15 +7,21 @@
   &__letter {
     @include flex-center;
     position: absolute;
-    top: 1px;
+    top: 0.5rem;
     left: 50%;
-    transform: translateX(-25%);
+    transform: translateX(-50%);
     display: flex;
     justify-content: center;
     font-size: 1.2rem;
+    line-height: 1.2rem;
     font-family: "Courier New", Courier, monospace;
     font-weight: bold;
     color: get-color("white");
+    background: get-color("gray", 5);
+    padding: 0.1rem 1rem;
+    text-align: center;
+    width: 2.5rem;
+    border-radius: 1rem;
 
     z-index: 1;
   }

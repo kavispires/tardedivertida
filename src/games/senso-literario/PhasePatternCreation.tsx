@@ -31,12 +31,12 @@ export function PhasePatternCreation({ players, state, user }: PhaseProps<PhaseP
         <Translate
           pt={
             <>
-              Qual carta vai no lugar do <TextHighlight>?</TextHighlight> ?
+              Qual livro vai no lugar do <TextHighlight>?</TextHighlight> ?
             </>
           }
           en={
             <>
-              Which card goes in the <TextHighlight>?</TextHighlight> spot?
+              Which book goes in the <TextHighlight>?</TextHighlight> spot?
             </>
           }
         />
@@ -46,8 +46,8 @@ export function PhasePatternCreation({ players, state, user }: PhaseProps<PhaseP
     >
       <Instruction>
         <Translate
-          pt={<>Use seu senso comum para desvendar qual a carta obedece a sequência</>}
-          en={<>Use your common sense to figure out which card follows the sequence</>}
+          pt={<>Use seu senso comum para desvendar qual a livro obedece a sequência</>}
+          en={<>Use your common sense to figure out which book follows the sequence</>}
         />
       </Instruction>
     </PhaseAnnouncement>

@@ -1,6 +1,7 @@
 import { sample } from 'lodash';
 import { useState } from 'react';
 // Ant Design Resources
+import { EllipsisOutlined, StarFilled } from '@ant-design/icons';
 import { Flex, Segmented } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/player';
@@ -20,7 +21,6 @@ import { RuleInstruction, StepTitle, TextHighlight } from 'components/text';
 import { COLORS, GENRES, LETTERS } from './utils/constants';
 import type { SubmitPatternPayload } from './utils/types';
 import { mockBookPattern } from './utils/mock';
-// Hooks
 
 type StepCreatePatternProps = {
   players: GamePlayers;
@@ -51,12 +51,12 @@ export function StepCreatePattern({ announcement, sequence, onSubmitPattern }: S
         <Translate
           pt={
             <>
-              Qual carta vai no lugar do <TextHighlight>?</TextHighlight> ?
+              Qual livro vai no lugar do <TextHighlight>?</TextHighlight> ?
             </>
           }
           en={
             <>
-              Which card goes in the <TextHighlight>?</TextHighlight> spot?
+              Which book goes in the <TextHighlight>?</TextHighlight> spot?
             </>
           }
         />
@@ -67,9 +67,9 @@ export function StepCreatePattern({ announcement, sequence, onSubmitPattern }: S
           pt={
             <>
               A sequência abaixo é formata de cartas que tem 3 atributos diferentes:
-              <br />O gênero do livro: Romance, Infantil ou Técnico.
-              <br />A cor da capa: Vermelha, Azul ou Amarela.
-              <br />A letra inicial do título: A, B, C, D ou E.
+              <br />O <TextHighlight>gênero</TextHighlight> do livro: Romance, Infantil ou Técnico.
+              <br />A <TextHighlight>cor</TextHighlight> da capa: Vermelha, Azul ou Amarela.
+              <br />A <TextHighlight>letra</TextHighlight> inicial do título: A, B, C, D ou E.
               <br />
               Porém um livro está faltando!
             </>
@@ -104,14 +104,14 @@ export function StepCreatePattern({ announcement, sequence, onSubmitPattern }: S
         <Translate
           en={
             <>
-              Craft your card by selecting a color, a gender, and a letter. The goal is to match what other
-              players are thinking by doing a card pattern that best matches theirs.
+              Craft your book cover by selecting a color, a genre, and a letter. The goal is to match what
+              other players are thinking by doing a book cover pattern that best matches theirs.
             </>
           }
           pt={
             <>
-              Monte sua carta escolhendo uma cor, um gênero e uma letra. O objetivo é combinar com o que os
-              outros jogadores estão pensando, fazendo um padrão de carta que mais se aproxime do deles.
+              Monte sua capa escolhendo uma cor, um gênero e uma letra. O objetivo é combinar com o que os
+              outros jogadores estão pensando, fazendo um padrão de capa que mais se aproxime do deles.
             </>
           }
         />
@@ -123,17 +123,32 @@ export function StepCreatePattern({ announcement, sequence, onSubmitPattern }: S
           gap={12}
         >
           <Segmented
-            options={COLORS.map((entry) => ({ label: entry[language], value: entry.key }))}
+            options={COLORS.map((entry) => ({
+              label: entry[language],
+              value: entry.key,
+              icon:
+                entry.key === color ? <StarFilled /> : <EllipsisOutlined style={{ color: 'transparent' }} />,
+            }))}
             value={color}
             onChange={setColor}
           />
           <Segmented
-            options={GENRES.map((entry) => ({ label: entry[language], value: entry.key }))}
+            options={GENRES.map((entry) => ({
+              label: entry[language],
+              value: entry.key,
+              icon:
+                entry.key === genre ? <StarFilled /> : <EllipsisOutlined style={{ color: 'transparent' }} />,
+            }))}
             value={genre}
             onChange={setGenre}
           />
           <Segmented
-            options={LETTERS.map((letter) => ({ label: letter, value: letter }))}
+            options={LETTERS.map((l) => ({
+              label: l,
+              value: l,
+              icon: l === letter ? <StarFilled /> : <EllipsisOutlined style={{ color: 'transparent' }} />,
+            }))}
+            block
             value={letter}
             onChange={setLetter}
           />
