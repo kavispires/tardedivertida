@@ -20,19 +20,26 @@ import type { SubmitWordsPayload } from './utils/types';
 type StepSelectWordsProps = {
   user: GamePlayer;
   pool: TextCard[];
+  requiredWords: number;
   onSubmitWords: (payload: SubmitWordsPayload) => void;
 } & Pick<StepProps, 'announcement'>;
 
-export function StepSelectWords({ pool, onSubmitWords, user, announcement }: StepSelectWordsProps) {
+export function StepSelectWords({
+  pool,
+  onSubmitWords,
+  user,
+  announcement,
+  requiredWords,
+}: StepSelectWordsProps) {
   const { updateDict, length, keys, setDict } = useBooleanDictionary({});
 
   useMock(() => {
-    onSubmitWords({ selectedWordsIds: sampleSize(pool, 12).map((c) => c.id) });
+    onSubmitWords({ selectedWordsIds: sampleSize(pool, requiredWords).map((c) => c.id) });
   });
 
   const onRandomSelection = () => {
     setDict(
-      sampleSize(pool, 10).reduce((acc: BooleanDictionary, c) => {
+      sampleSize(pool, requiredWords).reduce((acc: BooleanDictionary, c) => {
         acc[c.id] = true;
         return acc;
       }, {}),
@@ -55,16 +62,16 @@ export function StepSelectWords({ pool, onSubmitWords, user, announcement }: Ste
         <Translate
           pt={
             <>
-              <strong>Selecione</strong> pelo menos 10 cartas para estar no jogo.
+              <strong>Selecione</strong> pelo menos {requiredWords} cartas para estar no jogo.
               <br />
-              Quanto mais melhor!
+              Prefira substantivos concretos. Mas quanto mais melhor!
             </>
           }
           en={
             <>
-              <strong>Select</strong> at least 10 cards to be in the game.
+              <strong>Select</strong> at least {requiredWords} cards to be in the game.
               <br />
-              The more the merrier!
+              Prefer concrete nouns. But the more the merrier!
             </>
           }
         />
@@ -84,7 +91,7 @@ export function StepSelectWords({ pool, onSubmitWords, user, announcement }: Ste
           <SendButton
             onClick={() => onSubmitWords({ selectedWordsIds: keys })}
             size="large"
-            disabled={length < 10 || user.ready}
+            disabled={length < requiredWords || user.ready}
           >
             <Translate
               pt="Enviar cartas"
@@ -98,17 +105,19 @@ export function StepSelectWords({ pool, onSubmitWords, user, announcement }: Ste
         className="max-width"
         wrap
       >
-        {pool.map((card) => {
-          return (
-            <TransparentButton
-              key={card.id}
-              onClick={() => updateDict(card.id)}
-              active={keys.includes(card.id)}
-            >
-              <Card hideHeader>{card.text}</Card>
-            </TransparentButton>
-          );
-        })}
+        <div className="c-word-pool">
+          {pool.map((card) => {
+            return (
+              <TransparentButton
+                key={card.id}
+                onClick={() => updateDict(card.id)}
+                active={keys.includes(card.id)}
+              >
+                <Card hideHeader>{card.text}</Card>
+              </TransparentButton>
+            );
+          })}
+        </div>
       </SpaceContainer>
     </Step>
   );

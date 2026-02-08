@@ -59,6 +59,7 @@ export type HouseHappiness = {
 export type PhaseWordsSelectionState = {
   happiness: HouseHappiness;
   pool: TextCard[];
+  requiredWords: number;
 };
 
 export type PhaseClueWritingState = {

@@ -24,7 +24,7 @@ export function PhaseReveal({ players, state }: PhaseProps<PhaseRevealState>) {
 
   const slideShowConfig = useSlideShow({
     length: state.gallery.length,
-    slideDuration: 5,
+    slideDuration: 8,
     onExpire: goToNextStep,
   });
 
@@ -61,22 +61,22 @@ export function PhaseReveal({ players, state }: PhaseProps<PhaseRevealState>) {
             <Translate
               pt={
                 <>
-                  Para cada par que você acerta você ganha <PointsHighlight>2 pontos</PointsHighlight> e o
-                  criador da pista ganha <PointsHighlight>1 ponto</PointsHighlight>.
-                  <br />
                   Se pelo menos 1 jogador acerta uma pista, a casa ganha{' '}
                   <HappinessHighlight>1 ponto</HappinessHighlight> e para cada jogador que acerta a coisa
                   final, a casa ganha <HappinessHighlight>3 pontos</HappinessHighlight>.
+                  <br />
+                  Para cada par que você acerta você ganha <PointsHighlight>2 pontos</PointsHighlight> e o
+                  criador da pista ganha <PointsHighlight>1 ponto</PointsHighlight>.
                 </>
               }
               en={
                 <>
-                  For each pair you get right you earn <PointsHighlight>2 points</PointsHighlight> and the
-                  clue creator earns <PointsHighlight>1 point</PointsHighlight>.
-                  <br />
                   If at least 1 player gets a clue right, the house earns{' '}
                   <HappinessHighlight>1 point</HappinessHighlight> and for each player who gets the final
                   thing right, the house earns <HappinessHighlight>3 points</HappinessHighlight>.
+                  <br />
+                  For each pair you get right you earn <PointsHighlight>2 points</PointsHighlight> and the
+                  clue creator earns <PointsHighlight>1 point</PointsHighlight>.
                 </>
               }
             />

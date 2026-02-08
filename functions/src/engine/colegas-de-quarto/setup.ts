@@ -1,10 +1,10 @@
 // Constants
 import {
   COLEGAS_DE_QUARTO_PHASES,
-  EXTRA_WORDS_IN_POOL,
   SETTINGS_PER_PLAYER_COUNT,
   TARGET_ID,
   TOTAL_ROUNDS,
+  WORDS_IN_POOL,
 } from './constants';
 import { GAME_NAMES, SEPARATOR } from '../../utils/constants';
 // Types
@@ -73,14 +73,12 @@ export const prepareWordsSelectionPhase = async (
   // Unready players
   utils.players.unReadyPlayers(players);
 
-  const playerCount = utils.players.getPlayerCount(players);
-
   const pool: TextCard[] = [];
-  new Array((SETTINGS_PER_PLAYER_COUNT[playerCount]?.totalWords ?? 13) + EXTRA_WORDS_IN_POOL)
-    .fill(null)
-    .forEach(() => {
-      pool.push(store.deck.pop() as TextCard);
-    });
+  new Array(WORDS_IN_POOL).fill(null).forEach(() => {
+    pool.push(store.deck.pop() as TextCard);
+  });
+
+  const requiredWords = SETTINGS_PER_PLAYER_COUNT[utils.players.getPlayerCount(players)]?.totalWords || 0;
 
   // Save
   return {
@@ -93,6 +91,7 @@ export const prepareWordsSelectionPhase = async (
         players,
         pool,
         round: utils.helpers.increaseRound(state?.round),
+        requiredWords,
       },
       stateCleanup: ['table', 'gallery', 'ranking'],
     },
@@ -264,7 +263,9 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const happiness = state.happiness;
+  const win = happiness.total >= happiness.goal;
+  const winners = win ? utils.players.getListOfPlayers(players) : utils.players.determineWinners(players);
 
   const achievements = getAchievements(store);
 
@@ -294,6 +295,7 @@ export const prepareGameOverPhase = async (
         phase: COLEGAS_DE_QUARTO_PHASES.GAME_OVER,
         round: state.round,
         gameEndedAt: Date.now(),
+        happiness: state.happiness,
         winners,
         players,
         achievements,

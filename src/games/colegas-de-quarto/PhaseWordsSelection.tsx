@@ -47,6 +47,7 @@ export function PhaseWordsSelection({ players, state, user }: PhaseProps<PhaseWo
           pool={state.pool}
           onSubmitWords={onSubmitWords}
           user={user}
+          requiredWords={state.requiredWords}
           announcement={announcement}
         />
       </StepSwitcher>

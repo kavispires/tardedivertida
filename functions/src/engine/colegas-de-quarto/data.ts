@@ -6,7 +6,7 @@ import * as dataUtils from '../collections';
 import utils from '../../utils';
 import * as resourceUtils from '../resource';
 import { TDR_RESOURCES } from '../../utils/constants';
-import { EXTRA_WORDS_IN_POOL, SETTINGS_PER_PLAYER_COUNT, TOTAL_ROUNDS } from './constants';
+import { TOTAL_ROUNDS, WORDS_IN_POOL } from './constants';
 
 /**
  * Get words resource based on the game's language
@@ -15,11 +15,9 @@ import { EXTRA_WORDS_IN_POOL, SETTINGS_PER_PLAYER_COUNT, TOTAL_ROUNDS } from './
  */
 export const getWords = async (
   language: Language,
-  playerCount: number,
   options?: ColegasDeQuartoOptions,
 ): Promise<ResourceData> => {
-  const quantityNeeded =
-    ((SETTINGS_PER_PLAYER_COUNT[playerCount]?.totalWords ?? 13) + EXTRA_WORDS_IN_POOL) * TOTAL_ROUNDS;
+  const quantityNeeded = WORDS_IN_POOL * TOTAL_ROUNDS;
 
   if (options?.wordsSource === 'properties') {
     const allCards = await resourceUtils.fetchResource<Dictionary<TextCard>>(

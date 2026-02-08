@@ -32,7 +32,7 @@ export const PLAYER_COUNTS = {
 
 export const TOTAL_ROUNDS = 3;
 
-export const EXTRA_WORDS_IN_POOL = 5;
+export const WORDS_IN_POOL = 20;
 
 export const SETTINGS_PER_PLAYER_COUNT = {
   2: {

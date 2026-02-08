@@ -83,11 +83,7 @@ export const getNextPhase = async (
     await utils.firestore.triggerSetupPhase(sessionRef);
 
     // Request data
-    const additionalData = await getWords(
-      store.language,
-      utils.players.getPlayerCount(players),
-      store.options,
-    );
+    const additionalData = await getWords(store.language, store.options);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firestore.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);

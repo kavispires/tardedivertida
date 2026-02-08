@@ -1,6 +1,17 @@
 @use "styles/sass" as *;
 @use "../../../assets/fonts/architects-daughter.scss" as *;
 
+.background {
+  background: linear-gradient(-45deg, #f9c5d1, #fcd9e3, #f9c5d1);
+  background-size: 1000% 1000%;
+}
+
+.c-word-pool {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: get-unit(1);
+}
+
 .store-board {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
