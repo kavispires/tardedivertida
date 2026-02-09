@@ -7,7 +7,7 @@ export function useEndlessVitrais() {
     queryFn: async () => {
       await new Promise((resolve) => setTimeout(resolve, 1500));
       const num = random(1, 252);
-      const deck = `d${random(13, 14)}`;
+      const deck = `d${random(13, 16)}`;
       return {
         id: 'endless-vitrais',
         number: 0,

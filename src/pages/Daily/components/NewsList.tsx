@@ -17,7 +17,7 @@ type NewsItem = {
 
 export const NEWS_LIST: NewsItem[] = [
   {
-    date: '2025-12-24',
+    date: '2026-02-09',
     content: (
       <>
         <em>Nova sessão de jogos infinitos:</em>
