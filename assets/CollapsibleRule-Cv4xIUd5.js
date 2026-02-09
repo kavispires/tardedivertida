@@ -1,0 +1,1 @@
+import{j as s,T as n}from"./index-B_9Wsy5U.js";import{I as l}from"./useDevFeatures-Cb73VtPt.js";import{C as i}from"./Collapse-CQsEHrEI.js";function c({children:e,title:t,ghost:r=!0,...o}){const a=[{key:"1",label:s.jsx(n,{pt:"Regras",en:"Rules",custom:t}),children:e}];return s.jsx(l,{contained:!0,children:s.jsx(i,{ghost:r,items:a,...o})})}export{c as C};
