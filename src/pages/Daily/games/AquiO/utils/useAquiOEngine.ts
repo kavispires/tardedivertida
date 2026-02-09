@@ -76,6 +76,16 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
     }));
     updateSession({ discIndex: 0 });
     playSFX('addCorrect');
+    if (voice === 'on') {
+      speak(
+        {
+          en: 'Go!',
+          pt: 'Já!',
+        },
+        'pt',
+        1,
+      );
+    }
     logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'played'));
     restart(inNSeconds(SETTINGS.DURATION), true);
   };
