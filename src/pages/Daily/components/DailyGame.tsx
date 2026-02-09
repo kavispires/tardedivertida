@@ -132,3 +132,43 @@ export function DailyGameBetaRelease({
     />
   );
 }
+
+type EndlessGameProps = {
+  GameComponent: React.ComponentType<{ data: any; currentUser: Me; isLoading?: boolean }>;
+  useGameHook: () => any;
+};
+
+/**
+ * Renders an endless game component by loading challenge data using a custom hook,
+ * resetting relevant local storage on mount, and handling loading and error states.
+ *
+ * @param GameComponent - The React component to render for the game, which receives `data` and `currentUser` as props.
+ * @param useGameHook - A custom hook that fetches the demo challenge data and returns loading, error, and data states.
+ *
+ * @returns The loading, error, or game component based on the current state of the demo data.
+ */
+export function EndlessGame({ GameComponent, useGameHook }: EndlessGameProps) {
+  const { currentUser } = useCurrentUserContext();
+
+  // Load challenge
+  const game = useGameHook();
+
+  if (game.isLoading) {
+    return <DailyLoading />;
+  }
+
+  const gameData = game?.data;
+
+  if (game.isError || !gameData || typeof gameData !== 'object') {
+    return <DailyError />;
+  }
+
+  return (
+    <GameComponent
+      key={gameData.id}
+      data={gameData}
+      currentUser={currentUser}
+      isLoading={game.isRefetching}
+    />
+  );
+}

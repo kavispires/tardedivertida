@@ -27,6 +27,7 @@ import { DailyEspionagemGame } from './games/Espionagem/DailyEspionagemGame';
 import { DailyOrganikuGame } from './games/Organiku/DailyOrganikuGame';
 import { DailyVitraisGame } from './games/Vitrais/DailyVitraisGame';
 import { DailyDemoPage } from './games/Demo/DailyDemoPage';
+import { InfiniteVitraisPage } from './games/VitraisInfinitos/InfiniteVitrais';
 // Sass
 import './utils/daily.scss';
 
@@ -79,6 +80,9 @@ function DailyPage() {
       picaco: DailyPicacoGame,
       'ta-na-cara': DailyTaNaCaraGame,
       demo: DailyDemoPage,
+      // Endless games
+      'vitrais-infinitos': InfiniteVitraisPage,
+      // TODO
       // Dev
       debug: DebugPage,
     }?.[subPath] ?? Hub;

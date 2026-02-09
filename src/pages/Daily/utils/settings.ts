@@ -13,6 +13,7 @@ import { SETTINGS as QUARTETOS } from '../games/Quartetos/utils/settings';
 import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/utils/settings';
 import { SETTINGS as TA_NA_CARA } from '../games/TaNaCara/utils/settings';
 import { SETTINGS as VITRAIS } from '../games/Vitrais/utils/settings';
+import { SETTINGS as ENDLESS_VITRAIS } from '../games/VitraisInfinitos/utils/settings';
 
 export const ALL_SETTINGS = {
   AQUI_O,
@@ -29,6 +30,7 @@ export const ALL_SETTINGS = {
   TEORIA_DE_CONJUNTOS,
   TA_NA_CARA,
   VITRAIS,
+  ENDLESS_VITRAIS,
 };
 
 type GameKey = keyof typeof ALL_SETTINGS;

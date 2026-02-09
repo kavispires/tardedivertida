@@ -1,7 +1,9 @@
 import { type JSX, lazy, Suspense, useMemo, type ComponentProps } from 'react';
 import { useLocation } from 'react-router-dom';
 // Ant Design Resources
-import { Layout } from 'antd';
+import { Flex, Layout } from 'antd';
+// Icons
+import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
 
 const { Content } = Layout;
 
@@ -86,9 +88,10 @@ function getActiveEffect(): DateRangeEffect | null {
 
 type DailyContentProps = {
   children: React.ReactNode;
+  isLoading?: boolean;
 } & ComponentProps<typeof Content>;
 
-export function DailyContent({ children, ...props }: DailyContentProps) {
+export function DailyContent({ children, isLoading, ...props }: DailyContentProps) {
   const { pathname } = useLocation();
 
   const activeEffect = useMemo(() => getActiveEffect(), []);
@@ -116,6 +119,23 @@ export function DailyContent({ children, ...props }: DailyContentProps) {
 
     return {};
   }, [activeEffect]);
+
+  if (isLoading) {
+    return (
+      <Content
+        {...props}
+        style={{ ...backgroundOverride, ...props.style }}
+      >
+        <Flex
+          justify="center"
+          align="center"
+          style={{ height: '100%' }}
+        >
+          <AnimatedProcessingIcon style={{ width: 64 }} />
+        </Flex>
+      </Content>
+    );
+  }
 
   return (
     <Content

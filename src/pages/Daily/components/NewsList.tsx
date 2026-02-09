@@ -17,6 +17,24 @@ type NewsItem = {
 
 export const NEWS_LIST: NewsItem[] = [
   {
+    date: '2025-12-24',
+    content: (
+      <>
+        <em>Nova sessão de jogos infinitos:</em>
+        <br />
+        Jogue quantas vezes quiser o jogo{' '}
+        <IconAvatar
+          icon={<ALL_SETTINGS.ENDLESS_VITRAIS.HUB_ICON />}
+          size="small"
+        />{' '}
+        <strong>
+          <DualTranslate>{ALL_SETTINGS.ENDLESS_VITRAIS.HUB_NAME}</DualTranslate>
+        </strong>{' '}
+        com uma imagem diferente a cada partida!
+      </>
+    ),
+  },
+  {
     date: '2026-01-09',
     content: (
       <>

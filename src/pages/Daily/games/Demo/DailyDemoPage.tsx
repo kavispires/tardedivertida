@@ -16,8 +16,8 @@ function useDemoHook() {
         id: 'example',
         number: 1,
         type: 'vitrais',
-        title: 'Example Puzzle',
-        cardId: `td-d${random(1, 12)}-${random(10, 252)}`,
+        title: 'Demo Vitrais',
+        cardId: `td-d${random(13, 14)}-${random(10, 252)}`,
         pieces: shuffle(Array.from({ length: sample([12, 15, 18, 21, 24, 27, 30]) }, (_, i) => i)),
       };
     },

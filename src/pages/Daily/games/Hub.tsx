@@ -18,7 +18,7 @@ import { getAnimation } from 'utils/animations';
 import { isDevEnv } from 'utils/helpers';
 // Icons
 import { DailyContributionGame } from 'icons/DailyContributionGame';
-import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
+// import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
@@ -87,6 +87,8 @@ const DEMOS: Entry[] = [
   // },
 ];
 
+const ENDLESS: Entry[] = [ALL_SETTINGS.ENDLESS_VITRAIS];
+
 export function Hub() {
   const { isAdmin } = useCurrentUserContext();
   const [width, ref] = useCardWidthByContainerRef(3, { maxWidth: 128, minWidth: 48, gap: 16 });
@@ -116,6 +118,9 @@ export function Hub() {
           startingIndex={0}
         />
       </div>
+
+      <BundleResults list={GAMES} />
+
       <div className="hub">
         <Typography.Title level={5}>
           <Translate
@@ -148,7 +153,22 @@ export function Hub() {
         </div>
       )}
 
-      <BundleResults list={GAMES} />
+      {ENDLESS.length > 0 && (
+        <div className="hub">
+          <Typography.Title level={5}>
+            <Translate
+              pt="Infinitos"
+              en="Endless"
+            />
+          </Typography.Title>
+
+          <HubList
+            list={ENDLESS}
+            width={width}
+            startingIndex={GAMES.length}
+          />
+        </div>
+      )}
 
       {isAdmin && (
         <Alert
