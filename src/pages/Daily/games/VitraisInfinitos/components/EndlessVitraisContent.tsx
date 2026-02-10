@@ -26,8 +26,16 @@ import { DualTranslate, Translate } from 'components/language';
 import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { Header } from 'pages/Daily/components/Header';
 import { Menu } from 'pages/Daily/components/Menu';
+import { RegionText } from 'pages/Daily/components/Region';
 // Internal
 import { SETTINGS } from '../utils/settings';
+import {
+  getEndlessVitraisPiecesIndex,
+  getNextEndlessVitraisPiecesIndex,
+  PIECES_OPTIONS,
+  setEndlessVitraisPiecesIndex,
+} from '../utils/useEndlessVitrais';
+import { Rules } from './Rules';
 
 export type InfiniteVitraisEntry = {
   id: string;
@@ -562,16 +570,30 @@ export const InfiniteVitraisPuzzle: React.FC<InfiniteVitraisPuzzleProps> = ({
         className="mt-6"
       >
         <Button
-          onClick={() =>
+          onClick={() => {
+            // Only advance to next piece count if current puzzle is completed
+            if (isSolved) {
+              const currentIndex = getEndlessVitraisPiecesIndex();
+              const nextIndex = getNextEndlessVitraisPiecesIndex(currentIndex);
+              setEndlessVitraisPiecesIndex(nextIndex);
+            }
+
             queryClient.refetchQueries({
               queryKey: ['endless-vitrais'],
-            })
-          }
+            });
+          }}
         >
-          <Translate
-            pt="Outra imagem"
-            en="Another image"
-          />
+          {isSolved ? (
+            <Translate
+              pt="Próximo nível"
+              en="Next level"
+            />
+          ) : (
+            <Translate
+              pt={`Outra imagem (${data.pieces.length})`}
+              en={<>Another image ({data.pieces.length})</>}
+            />
+          )}
         </Button>
       </Flex>
     </div>
@@ -606,32 +628,12 @@ export function EndlessVitraisContent({ data, isLoading }: EndlessVitraisDemoPro
         <Menu
           hearts={1}
           total={1}
-          openRules={true}
-          rules={
-            <Translate
-              pt={
-                <>
-                  Monte o quebra-cabeça arrastando as peças para o lugar correto. As peças conectadas se movem
-                  juntas!
-                  <br />
-                  Cada vez que você abre o jogo, uma nova imagem é gerada para você montar.
-                  <br />
-                  Quer de novo? Clique no botão "Outra imagem" para receber um novo vitral!
-                </>
-              }
-              en={
-                <>
-                  Solve the puzzle by dragging the pieces to the correct spot. Connected pieces move together!
-                  <br />
-                  Each time you open the game, a new image is generated for you to solve.
-                  <br />
-                  Want another? Click the "Another image" button to get a new stained glass!
-                </>
-              }
-            />
-          }
+          openRules={data.pieces.length === PIECES_OPTIONS[0]} // Only show rules button on first level
+          rules={<Rules />}
         />
-
+        <RegionText>
+          {PIECES_OPTIONS.indexOf(data.pieces.length) + 1} / {PIECES_OPTIONS.length}
+        </RegionText>
         <InfiniteVitraisPuzzle
           data={data}
           width={width}
