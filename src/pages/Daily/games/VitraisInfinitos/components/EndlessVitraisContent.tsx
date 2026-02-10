@@ -27,7 +27,7 @@ import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { Header } from 'pages/Daily/components/Header';
 import { Menu } from 'pages/Daily/components/Menu';
 // Internal
-import { SETTINGS } from '../../VitraisInfinitos/utils/settings';
+import { SETTINGS } from '../utils/settings';
 
 export type InfiniteVitraisEntry = {
   id: string;
@@ -578,12 +578,12 @@ export const InfiniteVitraisPuzzle: React.FC<InfiniteVitraisPuzzleProps> = ({
   );
 };
 
-type InfiniteVitraisDemoProps = {
+type EndlessVitraisDemoProps = {
   data: InfiniteVitraisEntry;
   isLoading?: boolean;
 };
 
-export function InfiniteVitraisContent({ data, isLoading }: InfiniteVitraisDemoProps) {
+export function EndlessVitraisContent({ data, isLoading }: EndlessVitraisDemoProps) {
   const [width, ref] = useCardWidthByContainerRef(1, {
     margin: 72,
     gap: 0,
