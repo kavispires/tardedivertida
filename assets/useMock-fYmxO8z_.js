@@ -1,1 +1,0 @@
-import{as as s,r,c3 as a}from"./index-Dh9yi3a0.js";import{u as n}from"./speech-LkPpq9oq.js";import{h as u}from"./Session-DMBVEnGf.js";function l(m,c=[],e){u(),s("userId");const[t,i]=r.useState(!1),o=e??a([3,4,4,5,6]);return n({duration:o,onExpire:()=>{},disabled:t})}export{l as u};
