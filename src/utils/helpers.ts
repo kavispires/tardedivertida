@@ -79,8 +79,8 @@ export const inNTime = (time: number): Date => {
  * Flag indicating if the environment is for development
  */
 export const isDevEnv: boolean = import.meta.env.MODE === 'development';
-export const isDevMocking = isDevEnv && USE_MOCKS;
 // export const isDevEnv = false;
+export const isDevMocking = isDevEnv && USE_MOCKS;
 
 const methods = {
   // biome-ignore lint/suspicious/noConsole: on purpose

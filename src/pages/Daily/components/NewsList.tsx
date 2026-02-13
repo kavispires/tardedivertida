@@ -17,6 +17,21 @@ type NewsItem = {
 
 export const NEWS_LIST: NewsItem[] = [
   {
+    date: '2026-02-14',
+    content: (
+      <>
+        <IconAvatar
+          icon={<WeekendIcon />}
+          size="small"
+        />{' '}
+        <strong>
+          <DualTranslate>{ALL_SETTINGS.ESPIONAGEM.NAME}</DualTranslate>
+        </strong>{' '}
+        é mais desafiante nos fins de semana com 16 suspeitos para investigar!
+      </>
+    ),
+  },
+  {
     date: '2026-02-09',
     content: (
       <>

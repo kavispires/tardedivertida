@@ -132,21 +132,25 @@ function Hub() {
     [filters],
   );
 
-  const { availableGames, comingSoonGames, devGames } = useMemo(() => {
+  const { stableGames, betaGames, devGames, comingSoonGames } = useMemo(() => {
     const sortedGameList = orderBy(gameList, [`title.[${language}]`], ['asc']);
 
     return sortedGameList.reduce(
       (
         acc: {
-          availableGames: GameInfo[];
+          stableGames: GameInfo[];
+          betaGames: GameInfo[];
           devGames: GameInfo[];
           comingSoonGames: GameInfo[];
         },
         game,
       ) => {
-        if (['stable'].includes(game.release)) {
-          acc.availableGames.push(game);
-        } else if (['dev', 'beta'].includes(game.release)) {
+        if (game.release === 'stable') {
+          acc.stableGames.push(game);
+        } else if (game.release === 'beta' && game.available === true) {
+          acc.betaGames.push(game);
+        } else if (game.release === 'dev' || game.release === 'beta') {
+          // Dev games and beta games that are not available go to Under Development
           acc.devGames.push(game);
         } else {
           acc.comingSoonGames.push(game);
@@ -154,12 +158,22 @@ function Hub() {
         return acc;
       },
       {
-        availableGames: [],
+        stableGames: [],
+        betaGames: [],
         devGames: [],
         comingSoonGames: [],
       },
     );
   }, [gameList, language]);
+
+  // Check if there's an active search
+  const hasActiveSearch = Boolean(filters.search);
+
+  // Helper to sort games by title in the active language
+  const sortGamesByLanguage = (games: GameInfo[]) => {
+    return orderBy(games, [`title.${language}`], ['asc']);
+  };
+
   return (
     <PageLayout className="dev-layout">
       <DevHeader
@@ -190,14 +204,26 @@ function Hub() {
       <Filters
         filters={filters}
         setFilters={setFilters}
-        availabilityCount={availableGames.length}
+        availabilityCount={stableGames.length}
       />
 
       <Layout.Content
         className="container"
         id="main-container"
       >
-        {isDevEnv && (
+        {hasActiveSearch ? (
+          // Show only search results when there's an active search
+          <>
+            <Typography.Title level={2}>
+              <Translate
+                pt="Resultados da Busca"
+                en="Search Results"
+              />
+            </Typography.Title>
+            <RowOfGames games={sortGamesByLanguage(gameList)} />
+          </>
+        ) : isDevEnv ? (
+          // Development environment order
           <>
             <Typography.Title level={2}>
               <Translate
@@ -216,39 +242,73 @@ function Hub() {
                 ))}
               </Flex>
             </Typography.Paragraph>
-            <RowOfGames games={devGames} />
+            <RowOfGames games={sortGamesByLanguage([...betaGames, ...devGames])} />
             <Divider />
-          </>
-        )}
-        <Typography.Title level={2}>
-          <Translate
-            pt="Disponíveis"
-            en="Available"
-          />
-        </Typography.Title>
-        <RowOfGames games={availableGames} />
 
-        <Divider />
-        {!isDevEnv && (
-          <>
             <Typography.Title level={2}>
               <Translate
-                pt="Em Desenvolvimento"
-                en="Under Development"
+                pt="Lançamentos Estáveis"
+                en="Stable Releases"
               />
             </Typography.Title>
-            <RowOfGames games={devGames} />
-
+            <RowOfGames games={sortGamesByLanguage(stableGames)} />
             <Divider />
+
+            <Typography.Title level={2}>
+              <Translate
+                pt="Em Breve"
+                en="Coming Soon"
+              />
+            </Typography.Title>
+            <RowOfGames games={sortGamesByLanguage(comingSoonGames)} />
+          </>
+        ) : (
+          // Production environment order
+          <>
+            {betaGames.length > 0 && (
+              <>
+                <Typography.Title level={2}>
+                  <Translate
+                    pt="Beta"
+                    en="Beta"
+                  />
+                </Typography.Title>
+                <RowOfGames games={sortGamesByLanguage(betaGames)} />
+                <Divider />
+              </>
+            )}
+
+            <Typography.Title level={2}>
+              <Translate
+                pt="Lançamentos Estáveis"
+                en="Stable Releases"
+              />
+            </Typography.Title>
+            <RowOfGames games={sortGamesByLanguage(stableGames)} />
+            <Divider />
+
+            {devGames.length > 0 && (
+              <>
+                <Typography.Title level={2}>
+                  <Translate
+                    pt="Em Desenvolvimento"
+                    en="Under Development"
+                  />
+                </Typography.Title>
+                <RowOfGames games={sortGamesByLanguage(devGames)} />
+                <Divider />
+              </>
+            )}
+
+            <Typography.Title level={2}>
+              <Translate
+                pt="Em Breve"
+                en="Coming Soon"
+              />
+            </Typography.Title>
+            <RowOfGames games={sortGamesByLanguage(comingSoonGames)} />
           </>
         )}
-        <Typography.Title level={2}>
-          <Translate
-            pt="Em Breve"
-            en="Coming Soon"
-          />
-        </Typography.Title>
-        <RowOfGames games={comingSoonGames} />
       </Layout.Content>
     </PageLayout>
   );
