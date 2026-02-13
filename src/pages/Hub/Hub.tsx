@@ -21,7 +21,7 @@ import { DevHeader } from 'pages/Dev/DevHeader';
 // Internal
 import { GameCard } from './components/GameCard';
 import { DevEmulatorAlert } from './components/DevEmulatorAlert';
-import { Filters } from './components/Filters';
+import { Filters, type FilterState } from './components/Filters';
 
 const statsCountsArray = orderBy(
   Object.entries(
@@ -38,32 +38,53 @@ const statsCountsArray = orderBy(
 function Hub() {
   useTitle('Hub - Tarde Divertida');
   const { language } = useLanguage();
-  const [tagFilters, setTagFilters] = useState<string[]>([]);
-  const [numberFilters, setNumberFilters] = useState<NumberDictionary>({});
+  const [filters, setFilters] = useState<FilterState>({
+    search: '',
+    tags: [],
+    players: 0,
+    recommendedWith: false,
+    bestWith: false,
+    duration: 0,
+    releaseStatus: [],
+  });
 
   const gameList = useMemo(
     () =>
       Object.values(GAME_LIST).filter((game) => {
         const result = [];
 
-        // Check player count
-        if (numberFilters.players) {
-          result.push(
-            game.playerCount.min <= numberFilters.players && game.playerCount.max >= numberFilters.players,
-          );
+        // Search by title (PT/EN) or game name
+        if (filters.search) {
+          const searchLower = filters.search.toLowerCase();
+          const matchesTitle =
+            game.title.pt.toLowerCase().includes(searchLower) ||
+            game.title.en.toLowerCase().includes(searchLower);
+          const matchesGameName = game.gameName.toLowerCase().includes(searchLower);
+          const matchesPopularName =
+            game.popularName.pt.toLowerCase().includes(searchLower) ||
+            game.popularName.en.toLowerCase().includes(searchLower);
+          const matchesGameCode = game.gameCode.toLowerCase().includes(searchLower);
 
-          if (numberFilters.bestWith) {
-            result.push(numberFilters.players === game.playerCount.best);
+          if (!matchesTitle && !matchesGameName && !matchesPopularName && !matchesGameCode) {
+            return false;
+          }
+        }
+
+        // Check player count
+        if (filters.players) {
+          result.push(game.playerCount.min <= filters.players && game.playerCount.max >= filters.players);
+
+          if (filters.bestWith) {
+            result.push(filters.players === game.playerCount.best);
           }
 
-          if (numberFilters.recommendedWith) {
-            result.push(game.playerCount.recommended.includes(numberFilters.players));
+          if (filters.recommendedWith) {
+            result.push(game.playerCount.recommended.includes(filters.players));
           }
         }
 
         // Check tags
-        // TODO: this does not account for tagGroups and concurrent tags
-        tagFilters.forEach((tagKey) => {
+        filters.tags.forEach((tagKey) => {
           const [tagGroup, tag] = tagKey.split(SEPARATOR);
 
           if (tagGroup && tag && TAG_RULES?.[tagGroup] === 'exclusive') {
@@ -74,22 +95,41 @@ function Hub() {
         });
 
         // Check time
-        if (numberFilters.duration) {
-          const duration = calculateGameAverageDuration(game, numberFilters.players ?? 0);
+        if (filters.duration) {
+          const duration = calculateGameAverageDuration(game, filters.players ?? 0);
 
-          if (numberFilters.players) {
+          if (filters.players) {
             result.push(
-              numberFilters.duration >= duration.customTime - 10 &&
-                numberFilters.duration <= duration.customTime + 10,
+              filters.duration >= duration.customTime - 10 && filters.duration <= duration.customTime + 10,
             );
           } else {
-            result.push(numberFilters.duration >= duration.min && numberFilters.duration <= duration.max);
+            result.push(filters.duration >= duration.min && filters.duration <= duration.max);
+          }
+        }
+
+        // Check release status
+        if (filters.releaseStatus.length > 0) {
+          const matchesStatus = filters.releaseStatus.some((status) => {
+            if (status === 'stable') {
+              return game.release === 'stable';
+            }
+            if (status === 'dev') {
+              return ['dev', 'beta'].includes(game.release);
+            }
+            if (status === 'soon') {
+              return !['stable', 'dev', 'beta'].includes(game.release);
+            }
+            return false;
+          });
+
+          if (!matchesStatus) {
+            return false;
           }
         }
 
         return result.every(Boolean);
       }),
-    [tagFilters, numberFilters],
+    [filters],
   );
 
   const { availableGames, comingSoonGames, devGames } = useMemo(() => {
@@ -148,8 +188,8 @@ function Hub() {
       <DevEmulatorAlert />
 
       <Filters
-        setTagFilters={setTagFilters}
-        setNumberFilters={setNumberFilters}
+        filters={filters}
+        setFilters={setFilters}
         availabilityCount={availableGames.length}
       />
 

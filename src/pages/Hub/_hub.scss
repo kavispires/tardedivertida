@@ -149,25 +149,52 @@
 }
 
 .hub-filters {
-  margin: 0;
+  margin: 0 0 get-unit(3) 0;
   font-size: 14px;
-  display: flex;
-  align-items: center;
-  padding: 8px 15px;
-  // word-wrap: break-word;
+  padding: get-unit(2 3);
   background-color: get-color("white", 4);
+  border-radius: get-unit(1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 
   label {
     margin: get-unit(0 1);
     color: get-color("gray", 6);
+    font-weight: 500;
   }
 
   &__entry {
     display: flex;
     align-items: center;
+    gap: get-unit(1);
   }
 
   &__input-number {
     width: 7ch;
+  }
+
+  // Collapse panel customization
+  .ant-collapse {
+    background-color: transparent;
+    border: none;
+    margin-top: get-unit(2);
+
+    .ant-collapse-item {
+      border: 1px solid get-color("gray", 3);
+      border-radius: get-unit(1);
+      margin-bottom: get-unit(2);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .ant-collapse-header {
+      font-weight: 600;
+      padding: get-unit(1.5 2);
+    }
+
+    .ant-collapse-content-box {
+      padding: get-unit(2);
+    }
   }
 }
