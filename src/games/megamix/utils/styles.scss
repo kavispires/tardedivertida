@@ -68,7 +68,9 @@
     background-color: get-color("black", 5, 0.5);
     display: inline-block;
     margin-bottom: get-unit(4);
-    animation: title-lights 1s infinite alternate, glow 1s infinite alternate;
+    animation:
+      title-lights 1s infinite alternate,
+      glow 1s infinite alternate;
   }
 }
 
@@ -86,7 +88,9 @@
     box-shadow: 0 0 10px get-color("yellow", 2);
   }
   100% {
-    box-shadow: 0 0 5px get-color("yellow", 2), 0 0 10px get-color("yellow", 2),
+    box-shadow:
+      0 0 5px get-color("yellow", 2),
+      0 0 10px get-color("yellow", 2),
       0 0 15px get-color("yellow", 2);
   }
 }
@@ -1093,6 +1097,53 @@ $o-card-width: 300px;
     white-space: nowrap;
     text-overflow: ellipsis;
     max-width: 20ch;
+  }
+}
+
+.vote-groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: get-unit(4);
+  justify-content: center;
+
+  &__group {
+    max-width: min(384px, 50vw);
+    display: flex;
+    flex-direction: column;
+    gap: get-unit(2);
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: get-color("white", 5, 0.6);
+    padding: get-unit(2 6);
+    border-radius: var(--border-radius);
+  }
+
+  &__target {
+    display: flex;
+    flex-wrap: wrap;
+    gap: get-unit(4);
+    justify-content: center;
+  }
+
+  &__voters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    max-width: 350px;
+    gap: get-unit(2);
+    justify-items: center;
+  }
+
+  &__voter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: get-unit(1);
+  }
+
+  &__voter-name {
+    font-size: 0.85rem;
+    color: get-color("gray");
+    text-align: center;
   }
 }
 

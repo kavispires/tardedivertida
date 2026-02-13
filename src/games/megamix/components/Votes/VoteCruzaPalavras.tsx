@@ -1,8 +1,9 @@
-// Components
-import { PlayerAvatar } from 'components/player';
+import { groupBy } from 'lodash';
+import { useMemo } from 'react';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
+import { Voters } from '../Voters';
 
 export function VoteCruzaPalavras({ track, playersList }: VoteComponentProps) {
   const cheatSheet: PlainObject = {
@@ -12,26 +13,31 @@ export function VoteCruzaPalavras({ track, playersList }: VoteComponentProps) {
     3: [track.data.cards[1].text, track.data.cards[3].text],
   };
 
+  const groupedVotes = useMemo(() => {
+    return groupBy(playersList, (player) => player.data.value);
+  }, [playersList]);
+
   return (
     <SpacePlayerCheckWrapper
       playersList={playersList}
       paths={['data.value']}
     >
-      {playersList.map((player) => (
-        <div
-          key={`vote-${player.id}`}
-          className="player-vote"
-        >
-          <PlayerAvatar avatarId={player.avatarId} />
-          <div>{player.name}</div>
+      <div className="vote-groups">
+        {Object.entries(groupedVotes).map(([voteValue, voters]) => (
           <div
-            key={player.data.value}
-            className="track-result-values__text-value"
+            key={`vote-group-${voteValue}`}
+            className="vote-groups__group"
           >
-            {cheatSheet[player.data.value][0]} {'+'} {cheatSheet[player.data.value][1]}
+            <div className="vote-groups__target">
+              <div className="track-result-values__text-value">
+                {cheatSheet[voteValue][0]} {'+'} {cheatSheet[voteValue][1]}
+              </div>
+            </div>
+
+            <Voters voters={voters} />
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </SpacePlayerCheckWrapper>
   );
 }

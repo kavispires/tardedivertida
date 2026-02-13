@@ -1,12 +1,14 @@
+import { groupBy } from 'lodash';
+import { useMemo } from 'react';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { ImageBlurButtonContainer } from 'components/image-cards';
-import { PlayerAvatar } from 'components/player';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
+import { Voters } from '../Voters';
 
 export function VoteCharacterTrack({ playersList }: VoteComponentProps) {
   const width = useCardWidth(playersList.length + 4, {
@@ -16,29 +18,37 @@ export function VoteCharacterTrack({ playersList }: VoteComponentProps) {
     margin: 8,
   });
 
+  const groupedVotes = useMemo(() => {
+    return groupBy(playersList, (player) => player.data.value);
+  }, [playersList]);
+
   return (
     <SpacePlayerCheckWrapper
       playersList={playersList}
       paths={['data.value']}
     >
-      {playersList.map((player) => (
-        <div
-          key={`vote-${player.id}`}
-          className="player-vote"
-        >
-          <PlayerAvatar avatarId={player.avatarId} />
-          <div className="player-vote__name">{player.name}</div>
-          <ImageBlurButtonContainer cardId={player.data.value}>
-            <CharacterCard
-              size={width}
-              character={{
-                id: player.data.value,
-                name: { pt: '', en: '' },
-              }}
-            />
-          </ImageBlurButtonContainer>
-        </div>
-      ))}
+      <div className="vote-groups">
+        {Object.entries(groupedVotes).map(([characterId, voters]) => (
+          <div
+            key={`vote-group-${characterId}`}
+            className="vote-groups__group"
+          >
+            <div className="vote-groups__target">
+              <ImageBlurButtonContainer cardId={characterId}>
+                <CharacterCard
+                  size={width}
+                  character={{
+                    id: characterId,
+                    name: { pt: '', en: '' },
+                  }}
+                />
+              </ImageBlurButtonContainer>
+            </div>
+
+            <Voters voters={voters} />
+          </div>
+        ))}
+      </div>
     </SpacePlayerCheckWrapper>
   );
 }

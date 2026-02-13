@@ -20,7 +20,6 @@ import { ResultPalhetaDeCores } from './Results/ResultPalhetaDeCores';
 import { ResultQuemNaoMata } from './Results/ResultQuemNaoMata';
 import { ResultWhoSaidThis } from './Results/ResultWhoSaidThis';
 import { ResultCrimesHediondos } from './Results/ResultCrimesHediondos';
-// Type
 
 export const ResultValueDelegator = (props: ResultComponentProps) => {
   const ResultComponent =

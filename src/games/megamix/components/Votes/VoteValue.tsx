@@ -1,29 +1,38 @@
+import { groupBy } from 'lodash';
+import { useMemo } from 'react';
 // Ant Design Resources
 import { Tooltip } from 'antd';
-// Components
-import { PlayerAvatar } from 'components/player';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
+import { Voters } from '../Voters';
 
 export function VoteValue({ playersList }: VoteComponentProps) {
+  const groupedVotes = useMemo(() => {
+    return groupBy(playersList, (player) => player.data.value);
+  }, [playersList]);
+
   return (
     <SpacePlayerCheckWrapper
       playersList={playersList}
       paths={['data.value']}
     >
-      {playersList.map((player) => (
-        <div
-          key={`vote-${player.id}`}
-          className="player-vote"
-        >
-          <PlayerAvatar avatarId={player.avatarId} />
-          <div className="player-vote__name">{player.name}</div>
-          <Tooltip title={player.data.value}>
-            <div className="player-vote__value">{player.data.value}</div>
-          </Tooltip>
-        </div>
-      ))}
+      <div className="vote-groups">
+        {Object.entries(groupedVotes).map(([voteValue, voters]) => (
+          <div
+            key={`vote-group-${voteValue}`}
+            className="vote-groups__group"
+          >
+            <div className="vote-groups__target">
+              <Tooltip title={voteValue}>
+                <div className="player-vote__value">{voteValue}</div>
+              </Tooltip>
+            </div>
+
+            <Voters voters={voters} />
+          </div>
+        ))}
+      </div>
     </SpacePlayerCheckWrapper>
   );
 }

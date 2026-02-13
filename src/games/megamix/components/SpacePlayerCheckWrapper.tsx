@@ -3,7 +3,8 @@ import type { ReactNode } from 'react';
 // Types
 import type { GamePlayer } from 'types/player';
 // Components
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { Translate } from 'components/language/Translate';
+import { TitledContainer } from 'components/layout/TitledContainer';
 
 type SpacePlayerCheckWrapperProps = {
   playersList: GamePlayer[];
@@ -18,7 +19,20 @@ export function SpacePlayerCheckWrapper({ playersList, paths, children }: SpaceP
   });
 
   if (okToProceed) {
-    return <SpaceContainer wrap>{children}</SpaceContainer>;
+    return (
+      <TitledContainer
+        wrap
+        title={
+          <Translate
+            en="Individual votes"
+            pt="Votos individuais"
+          />
+        }
+        titleProps={{ size: 'xx-small' }}
+      >
+        {children}
+      </TitledContainer>
+    );
   }
 
   return null;

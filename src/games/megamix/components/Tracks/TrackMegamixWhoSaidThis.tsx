@@ -1,5 +1,3 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -40,29 +38,24 @@ export const TrackMegamixWhoSaidThis = ({ track, onSubmitAnswer, user, players }
       </RuleInstruction>
       <Card hideHeader>"{track.data.card.text}"</Card>
 
-      <Space
-        orientation="vertical"
-        align="center"
-        className="contained margin"
-      >
-        <SpaceContainer>
-          {track.data.card.options.map((playerId: PlayerId) => {
-            const player = players[playerId];
-            return (
-              <TransparentButton
-                key={playerId}
-                onClick={() => onSelect(playerId)}
-                disabled={isLoading || user.ready}
-              >
-                <PlayerAvatarCard
-                  player={player}
-                  withName
-                />
-              </TransparentButton>
-            );
-          })}
-        </SpaceContainer>
-      </Space>
+      <SpaceContainer>
+        {track.data.card.options.map((playerId: PlayerId) => {
+          const player = players[playerId];
+          return (
+            <TransparentButton
+              key={playerId}
+              onClick={() => onSelect(playerId)}
+              disabled={isLoading || user.ready}
+            >
+              <PlayerAvatarCard
+                player={player}
+                withName
+                withRoundCorners
+              />
+            </TransparentButton>
+          );
+        })}
+      </SpaceContainer>
     </>
   );
 };

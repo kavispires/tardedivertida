@@ -41,15 +41,23 @@ export function SeedParty({ seed, updateData }: SeedPartyProps) {
             pt={
               <>
                 Seja criativo nas respostas, porém evite palavras que possam entregar sua identidade.
-                <br />
-                Nem todas as repostar serão utilizadas no jogo.
+                {seed.cards.length > 1 && (
+                  <>
+                    <br />
+                    Nem todas as repostar serão utilizadas no jogo.
+                  </>
+                )}
               </>
             }
             en={
               <>
                 Be creative, but avoid words that may give away your identity.
-                <br />
-                Not all answers will be used in the game.
+                {seed.cards.length > 1 && (
+                  <>
+                    <br />
+                    Not all answers will be used in the game.
+                  </>
+                )}
               </>
             }
           />

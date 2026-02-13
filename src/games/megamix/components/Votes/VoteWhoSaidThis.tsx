@@ -1,32 +1,41 @@
+import { groupBy } from 'lodash';
+import { useMemo } from 'react';
 // Components
-import { PlayerAvatar, PlayerAvatarCard } from 'components/player';
+import { PlayerAvatarCard } from 'components/player';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
+import { Voters } from '../Voters';
 
 export function VoteWhoSaidThis({ playersList, players }: VoteComponentProps) {
+  const groupedVotes = useMemo(() => {
+    return groupBy(playersList, (player) => player.data.value);
+  }, [playersList]);
+
   return (
     <SpacePlayerCheckWrapper
       playersList={playersList}
       paths={['data.value']}
     >
-      {playersList.map((player) => (
-        <div
-          key={`vote-${player.id}`}
-          className="player-vote"
-        >
-          <PlayerAvatar avatarId={player.avatarId} />
-          <div className="player-vote__name">{player.name}</div>
+      <div className="vote-groups">
+        {Object.entries(groupedVotes).map(([votedPlayerId, voters]) => (
+          <div
+            key={`vote-group-${votedPlayerId}`}
+            className="vote-groups__group"
+          >
+            <div className="vote-groups__target">
+              <PlayerAvatarCard
+                player={players[votedPlayerId]}
+                withName
+                withRoundCorners
+                size="small"
+              />
+            </div>
 
-          <div className="player-vote__value">
-            <PlayerAvatarCard
-              player={players[player.data.value]}
-              withName
-              size="small"
-            />
+            <Voters voters={voters} />
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </SpacePlayerCheckWrapper>
   );
 }
