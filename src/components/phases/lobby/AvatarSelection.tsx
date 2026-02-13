@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { useMemo } from 'react';
 import { useToggle } from 'react-use';
 // Ant Design Resources
-import { Button, Popover, Tooltip } from 'antd';
+import { Button, Popover, Tooltip, Typography } from 'antd';
 // Types
 import type { GamePlayers } from 'types/player';
 // Utils
@@ -94,47 +94,55 @@ function AvatarOptions({ players, setSelectedAvatar, selectedAvatar, userId }: A
   }, [players, userId]);
 
   return (
-    <div className="avatar-selection-options">
-      {AVAILABLE_AVATAR_IDS.map((avatarId) => {
-        const avatar = AVATARS[avatarId];
-        const isUsed = !!usedAvatars[avatarId];
+    <div className="avatar-selection-options-container ">
+      <div className="avatar-selection-options">
+        {AVAILABLE_AVATAR_IDS.map((avatarId) => {
+          const avatar = AVATARS[avatarId];
+          const isUsed = !!usedAvatars[avatarId];
 
-        return (
-          <Tooltip
-            key={avatarId}
-            title={
-              isUsed ? (
-                <Translate
-                  pt={`Usado por ${usedAvatars[avatarId]}`}
-                  en={`Used by ${usedAvatars[avatarId]}`}
-                />
-              ) : (
-                <DualTranslate>{avatar.description}</DualTranslate>
-              )
-            }
-          >
-            <TransparentButton
-              onClick={() => setSelectedAvatar(avatarId)}
-              disabled={isUsed}
-              className={clsx(
-                'avatar-selection-options__avatar',
-                avatarId === selectedAvatar && 'avatar-selection-options__avatar--selected',
-                isUsed && 'avatar-selection-options__avatar--used',
-              )}
-            >
-              <svg
-                viewBox="0 0 100 100"
-                className="avatar-selection-options__avatar-svg"
-              >
-                <use href={`${avatars}#avatar-${avatarId}`}></use>
-                <title>
+          return (
+            <Tooltip
+              key={avatarId}
+              title={
+                isUsed ? (
+                  <Translate
+                    pt={`Usado por ${usedAvatars[avatarId]}`}
+                    en={`Used by ${usedAvatars[avatarId]}`}
+                  />
+                ) : (
                   <DualTranslate>{avatar.description}</DualTranslate>
-                </title>
-              </svg>
-            </TransparentButton>
-          </Tooltip>
-        );
-      })}
+                )
+              }
+            >
+              <TransparentButton
+                onClick={() => setSelectedAvatar(avatarId)}
+                disabled={isUsed}
+                className={clsx(
+                  'avatar-selection-options__avatar',
+                  avatarId === selectedAvatar && 'avatar-selection-options__avatar--selected',
+                  isUsed && 'avatar-selection-options__avatar--used',
+                )}
+              >
+                <svg
+                  viewBox="0 0 100 100"
+                  className="avatar-selection-options__avatar-svg"
+                >
+                  <use href={`${avatars}#avatar-${avatarId}`}></use>
+                  <title>
+                    <DualTranslate>{avatar.description}</DualTranslate>
+                  </title>
+                </svg>
+              </TransparentButton>
+            </Tooltip>
+          );
+        })}
+      </div>
+      <Typography.Text italic>
+        <Translate
+          en="If two or more players happen to select the same avatar, the engine will randomly assign a new one."
+          pt="Se dois ou mais jogadores escolherem o mesmo avatar, o motor atribuirá aleatoriamente um novo."
+        />
+      </Typography.Text>
     </div>
   );
 }
