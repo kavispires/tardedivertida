@@ -427,8 +427,6 @@ export const InfiniteVitraisPuzzle: React.FC<InfiniteVitraisPuzzleProps> = ({
     }, 250);
   };
 
-  // --- Rendering ---
-
   return (
     <div
       style={{
@@ -590,8 +588,8 @@ export const InfiniteVitraisPuzzle: React.FC<InfiniteVitraisPuzzleProps> = ({
             />
           ) : (
             <Translate
-              pt={`Outra imagem (${data.pieces.length})`}
-              en={<>Another image ({data.pieces.length})</>}
+              pt={`Outra imagem (${data.pieces.length} peças)`}
+              en={<>Another image ({data.pieces.length} pieces)</>}
             />
           )}
         </Button>

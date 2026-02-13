@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "bomba-relogio",
-  "version": "0.9.5",
+  "version": "0.9.6",
   "release": "beta",
   "releaseDate": "2026-01-11",
   "available": true,
@@ -45,9 +45,9 @@
     ]
   },
   "playerCount": {
-    "recommended": [5, 6],
+    "recommended": [5, 6, 7],
     "min": 4,
-    "max": 19,
+    "max": 10,
     "best": 6
   },
   "tags": ["cooperative", "turn-based", "traitor", "discussion"],

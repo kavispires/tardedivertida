@@ -56,7 +56,7 @@ export function useEndlessVitrais() {
     queryFn: async () => {
       await new Promise((resolve) => setTimeout(resolve, 300));
       const num = random(1, 252);
-      const deck = `d${random(13, 16)}`;
+      const deck = `d${random(1, 16)}`;
       const piecesIndex = getEndlessVitraisPiecesIndex();
       const piecesCount = PIECES_OPTIONS[piecesIndex] ?? PIECES_OPTIONS[0];
       return {
