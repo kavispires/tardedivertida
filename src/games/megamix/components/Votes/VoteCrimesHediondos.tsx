@@ -1,5 +1,3 @@
-import { groupBy } from 'lodash';
-import { useMemo } from 'react';
 // Types
 import type { CrimesHediondosCard } from 'types/tdr';
 // Hooks
@@ -8,6 +6,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
+import { useGroupedVotes } from '../../utils/useGroupedVotes';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 import { Voters } from '../Voters';
 
@@ -19,9 +18,7 @@ export function VoteCrimesHediondos({ playersList, track }: VoteComponentProps) 
     margin: 8,
   });
 
-  const groupedVotes = useMemo(() => {
-    return groupBy(playersList, (player) => player.data.value);
-  }, [playersList]);
+  const groupedVotes = useGroupedVotes(playersList);
 
   return (
     <SpacePlayerCheckWrapper
@@ -29,7 +26,7 @@ export function VoteCrimesHediondos({ playersList, track }: VoteComponentProps) 
       paths={['data.value']}
     >
       <div className="vote-groups">
-        {Object.entries(groupedVotes).map(([cardId, voters]) => {
+        {groupedVotes.map(([cardId, voters]) => {
           const item = track.data.cards.find((card: CrimesHediondosCard) => card.id === cardId);
 
           if (!item) {

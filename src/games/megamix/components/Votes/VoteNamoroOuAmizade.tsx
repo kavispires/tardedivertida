@@ -1,15 +1,12 @@
-import { groupBy } from 'lodash';
-import { useMemo } from 'react';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
+import { useGroupedVotes } from '../../utils/useGroupedVotes';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 import { Candidate } from '../Candidate';
 import { Voters } from '../Voters';
 
 export function VoteNamoroOuAmizade({ track, playersList }: VoteComponentProps) {
-  const groupedVotes = useMemo(() => {
-    return groupBy(playersList, (player) => player.data.value);
-  }, [playersList]);
+  const groupedVotes = useGroupedVotes(playersList);
 
   return (
     <SpacePlayerCheckWrapper
@@ -17,7 +14,7 @@ export function VoteNamoroOuAmizade({ track, playersList }: VoteComponentProps) 
       paths={['data.value']}
     >
       <div className="vote-groups">
-        {Object.entries(groupedVotes).map(([candidateId, voters]) => {
+        {groupedVotes.map(([candidateId, voters]) => {
           const index = track.data.heads.findIndex((head: PlainObject) => head.id === candidateId);
 
           if (index === -1) {

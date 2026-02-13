@@ -1,7 +1,6 @@
-import { groupBy } from 'lodash';
-import { useMemo } from 'react';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
+import { useGroupedVotes } from '../../utils/useGroupedVotes';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 import { Voters } from '../Voters';
 
@@ -13,9 +12,7 @@ export function VoteCruzaPalavras({ track, playersList }: VoteComponentProps) {
     3: [track.data.cards[1].text, track.data.cards[3].text],
   };
 
-  const groupedVotes = useMemo(() => {
-    return groupBy(playersList, (player) => player.data.value);
-  }, [playersList]);
+  const groupedVotes = useGroupedVotes(playersList);
 
   return (
     <SpacePlayerCheckWrapper
@@ -23,7 +20,7 @@ export function VoteCruzaPalavras({ track, playersList }: VoteComponentProps) {
       paths={['data.value']}
     >
       <div className="vote-groups">
-        {Object.entries(groupedVotes).map(([voteValue, voters]) => (
+        {groupedVotes.map(([voteValue, voters]) => (
           <div
             key={`vote-group-${voteValue}`}
             className="vote-groups__group"

@@ -1,16 +1,13 @@
-import { groupBy } from 'lodash';
-import { useMemo } from 'react';
 // Components
 import { Translate } from 'components/language';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
+import { useGroupedVotes } from '../../utils/useGroupedVotes';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 import { Voters } from '../Voters';
 
 export function VoteOndaTelepatica({ playersList }: VoteComponentProps) {
-  const groupedVotes = useMemo(() => {
-    return groupBy(playersList, (player) => player.data.value);
-  }, [playersList]);
+  const groupedVotes = useGroupedVotes(playersList);
 
   const getLabel = (value: string) => {
     if (value === 'center') {
@@ -46,7 +43,7 @@ export function VoteOndaTelepatica({ playersList }: VoteComponentProps) {
       paths={['data.value']}
     >
       <div className="vote-groups">
-        {Object.entries(groupedVotes).map(([voteValue, voters]) => (
+        {groupedVotes.map(([voteValue, voters]) => (
           <div
             key={`vote-group-${voteValue}`}
             className="vote-groups__group"

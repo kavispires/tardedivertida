@@ -1,7 +1,6 @@
-import { groupBy } from 'lodash';
-import { useMemo } from 'react';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
+import { useGroupedVotes } from '../../utils/useGroupedVotes';
 import { getMovieTitles } from '../../utils/helpers';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 import { Voters } from '../Voters';
@@ -9,9 +8,7 @@ import { Voters } from '../Voters';
 export function VoteVamosAoCinema({ track, playersList }: VoteComponentProps) {
   const movies: StringDictionary = getMovieTitles(track.data.movies);
 
-  const groupedVotes = useMemo(() => {
-    return groupBy(playersList, (player) => player.data.value);
-  }, [playersList]);
+  const groupedVotes = useGroupedVotes(playersList);
 
   return (
     <SpacePlayerCheckWrapper
@@ -19,7 +16,7 @@ export function VoteVamosAoCinema({ track, playersList }: VoteComponentProps) {
       paths={['data.value']}
     >
       <div className="vote-groups">
-        {Object.entries(groupedVotes).map(([movieId, voters]) => (
+        {groupedVotes.map(([movieId, voters]) => (
           <div
             key={`vote-group-${movieId}`}
             className="vote-groups__group"

@@ -1,16 +1,13 @@
-import { groupBy } from 'lodash';
-import { useMemo } from 'react';
 // Ant Design Resources
 import { Tooltip } from 'antd';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
+import { useGroupedVotes } from '../../utils/useGroupedVotes';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 import { Voters } from '../Voters';
 
 export function VoteMegamix({ track, playersList }: VoteComponentProps) {
-  const groupedVotes = useMemo(() => {
-    return groupBy(playersList, (player) => player.data.value);
-  }, [playersList]);
+  const groupedVotes = useGroupedVotes(playersList);
 
   return (
     <SpacePlayerCheckWrapper
@@ -18,7 +15,7 @@ export function VoteMegamix({ track, playersList }: VoteComponentProps) {
       paths={['data.value']}
     >
       <div className="vote-groups">
-        {Object.entries(groupedVotes).map(([voteValue, voters]) => {
+        {groupedVotes.map(([voteValue, voters]) => {
           const optionText = track.data.card.options[Number(voteValue)];
           return (
             <div

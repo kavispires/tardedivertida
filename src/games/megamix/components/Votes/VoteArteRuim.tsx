@@ -1,11 +1,10 @@
-import { groupBy } from 'lodash';
-import { useMemo } from 'react';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { CanvasSVG } from 'components/canvas';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
+import { useGroupedVotes } from '../../utils/useGroupedVotes';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 import { Voters } from '../Voters';
 
@@ -16,9 +15,7 @@ export function VoteArteRuim({ track, playersList }: VoteComponentProps) {
     maxWidth: 200,
   });
 
-  const groupedVotes = useMemo(() => {
-    return groupBy(playersList, (player) => player.data.value);
-  }, [playersList]);
+  const groupedVotes = useGroupedVotes(playersList);
 
   if (track.variant === 'drawings') {
     return (
@@ -27,7 +24,7 @@ export function VoteArteRuim({ track, playersList }: VoteComponentProps) {
         paths={['data.value']}
       >
         <div className="vote-groups">
-          {Object.entries(groupedVotes).map(([playerId, voters]) => {
+          {groupedVotes.map(([playerId, voters]) => {
             const drawing = track.data.options.find((entry: PlainObject) => entry.playerId === playerId);
             return (
               <div
@@ -59,7 +56,7 @@ export function VoteArteRuim({ track, playersList }: VoteComponentProps) {
       paths={['data.value']}
     >
       <div className="vote-groups">
-        {Object.entries(groupedVotes).map(([cardId, voters]) => {
+        {groupedVotes.map(([cardId, voters]) => {
           const card = track.data.cards.find((entry: PlainObject) => entry.id === cardId);
           return (
             <div

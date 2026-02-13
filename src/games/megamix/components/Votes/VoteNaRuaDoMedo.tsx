@@ -1,17 +1,14 @@
 import { HouseCard } from 'games/na-rua-do-medo/components/HouseCard';
-import { groupBy } from 'lodash';
-import { useMemo } from 'react';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
+import { useGroupedVotes } from '../../utils/useGroupedVotes';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 import { Voters } from '../Voters';
 
 export function VoteNaRuaDoMedo({ track, playersList }: VoteComponentProps) {
-  const groupedVotes = useMemo(() => {
-    return groupBy(playersList, (player) => player.data.value);
-  }, [playersList]);
+  const groupedVotes = useGroupedVotes(playersList);
 
   if (track.variant === 'house') {
     return (
@@ -20,7 +17,7 @@ export function VoteNaRuaDoMedo({ track, playersList }: VoteComponentProps) {
         paths={['data.value']}
       >
         <div className="vote-groups">
-          {Object.entries(groupedVotes).map(([houseId, voters]) => {
+          {groupedVotes.map(([houseId, voters]) => {
             const house = track.data.options.find((entry: PlainObject) => entry.id === houseId);
             return (
               <div
@@ -50,7 +47,7 @@ export function VoteNaRuaDoMedo({ track, playersList }: VoteComponentProps) {
       paths={['data.value']}
     >
       <div className="vote-groups">
-        {Object.entries(groupedVotes).map(([letterIndex, voters]) => (
+        {groupedVotes.map(([letterIndex, voters]) => (
           <div
             key={`vote-group-${letterIndex}`}
             className="vote-groups__group"

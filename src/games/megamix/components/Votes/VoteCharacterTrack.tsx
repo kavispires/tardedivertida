@@ -1,5 +1,3 @@
-import { groupBy } from 'lodash';
-import { useMemo } from 'react';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
@@ -7,6 +5,7 @@ import { CharacterCard } from 'components/cards/CharacterCard';
 import { ImageBlurButtonContainer } from 'components/image-cards';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
+import { useGroupedVotes } from '../../utils/useGroupedVotes';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 import { Voters } from '../Voters';
 
@@ -18,9 +17,7 @@ export function VoteCharacterTrack({ playersList }: VoteComponentProps) {
     margin: 8,
   });
 
-  const groupedVotes = useMemo(() => {
-    return groupBy(playersList, (player) => player.data.value);
-  }, [playersList]);
+  const groupedVotes = useGroupedVotes(playersList);
 
   return (
     <SpacePlayerCheckWrapper
@@ -28,7 +25,7 @@ export function VoteCharacterTrack({ playersList }: VoteComponentProps) {
       paths={['data.value']}
     >
       <div className="vote-groups">
-        {Object.entries(groupedVotes).map(([characterId, voters]) => (
+        {groupedVotes.map(([characterId, voters]) => (
           <div
             key={`vote-group-${characterId}`}
             className="vote-groups__group"
