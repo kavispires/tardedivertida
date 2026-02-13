@@ -303,8 +303,8 @@ export const PARTY_TRACKS: PartyTrackCandidate[] = [
     card: {
       id: 'bad-food',
       text: {
-        en: 'Food you dislike',
-        pt: 'Comida que você não gosta',
+        en: 'Food you dislike but others generally like',
+        pt: 'Comida que você não gosta, mas que outros geralmente gostam',
       },
     },
   },
@@ -317,8 +317,8 @@ export const PARTY_TRACKS: PartyTrackCandidate[] = [
     card: {
       id: 'object',
       text: {
-        en: 'Favorite object',
-        pt: 'Objeto favorito',
+        en: 'Favorite object that you have but others might not find it interesting',
+        pt: 'Objeto favorito que você possui, mas que outros podem não achar interessante',
       },
     },
   },
@@ -331,8 +331,8 @@ export const PARTY_TRACKS: PartyTrackCandidate[] = [
     card: {
       id: 'sport',
       text: {
-        en: 'Favorite sport',
-        pt: 'Esporte favorito',
+        en: 'Favorite sport you prefer watching over playing',
+        pt: 'Esporte favorito que você prefere assistir do que praticar',
       },
     },
   },
@@ -345,8 +345,8 @@ export const PARTY_TRACKS: PartyTrackCandidate[] = [
     card: {
       id: 'skill',
       text: {
-        en: 'A skill you have',
-        pt: 'Uma habilidade que você tem',
+        en: 'A skill you have that would make others surprised',
+        pt: 'Uma habilidade que você tem que surpreenderia os outros',
       },
     },
   },
@@ -359,8 +359,8 @@ export const PARTY_TRACKS: PartyTrackCandidate[] = [
     card: {
       id: 'hobby',
       text: {
-        en: 'A unique hobby',
-        pt: 'Hobby favorito',
+        en: 'A unique hobby you have that others might not know about',
+        pt: 'Hobby único que outros podem não conhecer',
       },
     },
   },

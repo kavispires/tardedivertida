@@ -234,8 +234,8 @@ export const distributeSeeds = (
         return;
       }
 
-      // Skip other party games if player count is over 10
-      if (playerCount > 10) {
+      // Skip other party games if player count is over 8
+      if (playerCount > 8) {
         return;
       }
 
@@ -806,12 +806,12 @@ const buildLabirintoSecretoOptions = (players: Players, track: Track) => {
 
 /**
  * Builds an array of party game tracks from player answers.
- * 
+ *
  * Collects answers from all players' party responses and organizes them into game tracks.
  * Handles two types of tracks:
  * - "Who Said This" tracks for 'fact' answers, matching them with player IDs
  * - Multiple choice tracks for other answer types, shuffling and deduplicating options
- * 
+ *
  * @param players - The collection of players with their party answers
  * @param language - The language used for generating question text
  * @returns An array of Track objects ready for party game play, with shuffled options and no duplicate answers (case and accent-insensitive)
