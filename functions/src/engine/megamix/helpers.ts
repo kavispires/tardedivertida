@@ -199,6 +199,9 @@ export const distributeSeeds = (
     player.seeds = [];
   });
 
+  utils.helpers.print({ individualSeeds });
+  utils.helpers.print({ groupSeeds });
+
   // Party mode
   // Count players and distribute the questions, each question should go to 3 players, and each player should get a maximum of 5 questions
 
@@ -228,6 +231,11 @@ export const distributeSeeds = (
         customIndividualTracks.forEach((customTrack) => {
           customTrack.cards.push(track.card);
         });
+        return;
+      }
+
+      // Skip other party games if player count is over 10
+      if (playerCount > 10) {
         return;
       }
 
@@ -796,6 +804,18 @@ const buildLabirintoSecretoOptions = (players: Players, track: Track) => {
   };
 };
 
+/**
+ * Builds an array of party game tracks from player answers.
+ * 
+ * Collects answers from all players' party responses and organizes them into game tracks.
+ * Handles two types of tracks:
+ * - "Who Said This" tracks for 'fact' answers, matching them with player IDs
+ * - Multiple choice tracks for other answer types, shuffling and deduplicating options
+ * 
+ * @param players - The collection of players with their party answers
+ * @param language - The language used for generating question text
+ * @returns An array of Track objects ready for party game play, with shuffled options and no duplicate answers (case and accent-insensitive)
+ */
 const buildPartyOptions = (players: Players, language: Language) => {
   const options: Record<string, string[]> = {};
   const whoOptions: { text: string; playerId: string }[] = [];

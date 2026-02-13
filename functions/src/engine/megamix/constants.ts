@@ -359,7 +359,7 @@ export const PARTY_TRACKS: PartyTrackCandidate[] = [
     card: {
       id: 'hobby',
       text: {
-        en: 'A hobby',
+        en: 'A unique hobby',
         pt: 'Hobby favorito',
       },
     },
@@ -373,8 +373,9 @@ export const PARTY_TRACKS: PartyTrackCandidate[] = [
     card: {
       id: 'fact',
       text: {
-        en: 'A fact about yourself',
-        pt: 'Um fato sobre você',
+        // eslint-disable-next-line quotes
+        en: "Write a curious fact about yourself that others generally don't know. It can be something related to your personality, your past, or even a secret talent. Try to be gender neutral.",
+        pt: 'Um fato curioso sobre você que os outros geralmente não sabem pode ser algo relacionado à sua personalidade, seu passado ou até mesmo um talento secreto. Tente ser neutro em relação ao gênero.',
       },
     },
   },
