@@ -4,19 +4,19 @@ import { Instruction } from 'components/text';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';
 
-export function ResultOndaTelepatica({ winningTeam, winningValues, playersList }: ResultComponentProps) {
+export function ResultOndaTelepatica({ winningValues }: ResultComponentProps) {
   return (
     <>
       <Instruction>
         {winningValues.length > 1 ? (
           <Translate
             pt="As votadas foram"
-            en="Most voted ones are"
+            en="Most voted options are"
           />
         ) : (
           <Translate
             pt="A mais votada foi"
-            en="Most voted one is"
+            en="Most voted option is"
           />
         )}
         :

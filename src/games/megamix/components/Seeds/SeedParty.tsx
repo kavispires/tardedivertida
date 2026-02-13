@@ -31,7 +31,7 @@ export function SeedParty({ seed, updateData }: SeedPartyProps) {
       >
         <Translate
           pt="Responda as perguntas a seguir"
-          en="Answer the following prompts"
+          en="Answer the prompts below"
         />
       </Title>
 

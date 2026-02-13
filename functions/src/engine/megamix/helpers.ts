@@ -199,15 +199,10 @@ export const distributeSeeds = (
     player.seeds = [];
   });
 
-  utils.helpers.print({ individualSeeds });
-  utils.helpers.print({ groupSeeds });
-
   // Party mode
   // Count players and distribute the questions, each question should go to 3 players, and each player should get a maximum of 5 questions
-
   if (partyMode) {
     const customQuestionLimit = playerCount * 3;
-
     let customQuestionCount = playerCount;
     let customSeedIndex = 0;
 
@@ -291,6 +286,70 @@ export const distributeSeeds = (
 };
 
 /**
+ * Distributes tracks evenly by game type
+ * @param tracks - all available tracks
+ * @param count - number of tracks needed
+ * @param playerCount - number of players in the game
+ * @returns evenly distributed tracks with the last track not being a party track (unless 15 players)
+ */
+const distributeTracksEvenly = (tracks: Track[], count: number, playerCount: number): Track[] => {
+  // Group tracks by game type
+  const tracksByGame: Record<string, Track[]> = {};
+
+  tracks.forEach((track) => {
+    if (!tracksByGame[track.game]) {
+      tracksByGame[track.game] = [];
+    }
+    tracksByGame[track.game].push(track);
+  });
+
+  // Shuffle each group internally for variety
+  Object.keys(tracksByGame).forEach((gameType) => {
+    tracksByGame[gameType] = utils.game.shuffle(tracksByGame[gameType]);
+  });
+
+  const gameTypes = Object.keys(tracksByGame);
+  const result: Track[] = [];
+  let currentGameIndex = 0;
+
+  // Distribute evenly in round-robin fashion
+  while (result.length < count) {
+    const gameType = gameTypes[currentGameIndex % gameTypes.length];
+
+    if (tracksByGame[gameType] && tracksByGame[gameType].length > 0) {
+      const track = tracksByGame[gameType].shift();
+      if (track) {
+        result.push(track);
+      }
+    }
+
+    currentGameIndex++;
+
+    // Safety check to prevent infinite loop if we run out of tracks
+    if (gameTypes.every((gt) => !tracksByGame[gt] || tracksByGame[gt].length === 0)) {
+      break;
+    }
+  }
+
+  // Ensure last track is not WHO_SAID_THIS unless there are 15 players
+  if (result.length > 0 && playerCount < 15) {
+    const lastTrack = result[result.length - 1];
+    const whoSaidThisName = PARTY_GAMES_NAMES[PARTY_GAMES.WHO_SAID_THIS];
+
+    if (lastTrack.game === whoSaidThisName) {
+      // Find a non-WHO_SAID_THIS track to swap with (preferably from earlier positions)
+      const swapIndex = result.findIndex((track) => track.game !== whoSaidThisName);
+      if (swapIndex !== -1) {
+        // Swap the tracks
+        [result[swapIndex], result[result.length - 1]] = [result[result.length - 1], result[swapIndex]];
+      }
+    }
+  }
+
+  return result;
+};
+
+/**
  * Parse seeds into game track data
  * @param tracks
  * @param players
@@ -349,6 +408,7 @@ export const handleSeedingData = (
     }
   });
 
+  const playerCount = utils.players.getPlayerCount(players);
   // Build party tracks
   if (partyMode) {
     const partyTracks = buildPartyOptions(players, language);
@@ -358,9 +418,9 @@ export const handleSeedingData = (
       partyTracks.push(tracks[i]);
     }
 
-    return utils.game.getRandomItems(partyTracks, TOTAL_ROUNDS);
+    return distributeTracksEvenly(partyTracks, TOTAL_ROUNDS, playerCount);
   }
-  return tracks;
+  return distributeTracksEvenly(tracks, TOTAL_ROUNDS, playerCount);
 };
 
 export const parseCrimeTiles = (sceneTiles: CrimeSceneTile[]) => {
@@ -672,7 +732,7 @@ const buildPolemicaDaVezOptions = (players: Players) => {
     .map((player) => player.data.likeTweet)
     .reduce((acc: number, like) => {
       if (like) {
-        acc += 1;
+        return acc + 1;
       }
       return acc;
     }, 0);
@@ -856,7 +916,10 @@ const buildPartyOptions = (players: Players, language: Language) => {
           options: utils.game.removeDuplicates(
             utils.game.shuffle([
               option.playerId,
-              ...utils.game.getRandomItems(utils.players.getListOfPlayersIds(players), 2),
+              ...utils.game.getRandomItems(
+                utils.players.getListOfPlayersIds(players, false, [option.playerId]),
+                2,
+              ),
             ]),
           ),
         },

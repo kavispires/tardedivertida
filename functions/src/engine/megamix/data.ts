@@ -670,29 +670,6 @@ export const getData = async (
    * vendaval-de-palpite
    */
 
-  // // ESPIAO_ENTRE_NOS
-  // const hasEspiaoEntreNos = getGameOnList(availableTracks, GAME_NAMES.ESPIAO_ENTRE_NOS);
-  // if (hasEspiaoEntreNos.length > 0) {
-  //   const spyLocations = Object.values(
-  //     await resourceUtils.fetchResource(TDR_RESOURCES.SPY_LOCATIONS,language)
-  //   );
-  //   const spyQuestions = Object.values(
-  //     await resourceUtils.fetchResource(TDR_RESOURCES.SPY_QUESTIONS,language)
-  //   );
-  //   const location = utils.game.getRandomItem(spyLocations) as SpyLocation;
-  //   hasEspiaoEntreNos.forEach(() => {
-  //     customTracks.push({
-  //       game: GAME_NAMES.ESPIAO_ENTRE_NOS,
-  //       condition: WINNING_CONDITION.STRING_MATCH,
-  //       data: {
-  //         location: location,
-  //         question: utils.game.getRandomItem(spyQuestions),
-  //         roleIndex: utils.game.getRandomNumber(0, location.roles.length - 1),
-  //       },
-  //     });
-  //   });
-  // }
-
   // Get full deck
   return {
     tracks,

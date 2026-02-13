@@ -12,13 +12,13 @@ export function ResultWhoSaidThis({ track, winningValues, players }: ResultCompo
       <Instruction>
         {winningValues.length > 1 ? (
           <Translate
-            pt="Os votadas foram"
-            en="Most voted ones are"
+            pt="O(a)s mais votado(a)s foram"
+            en="Most voted players are"
           />
         ) : (
           <Translate
-            pt="O mais votada foi"
-            en="Most voted one is"
+            pt="O(a) mais votado(a) foi"
+            en="Most voted player is"
           />
         )}
         :
