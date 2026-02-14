@@ -53,8 +53,9 @@ export function ResultsModalContent({
         remainingHearts: hearts,
         totalHearts: SETTINGS.HEARTS,
         released,
+        totalSuspects: suspects.length,
       }),
-    [language, challengeNumber, hearts, released],
+    [language, challengeNumber, hearts, released, suspects.length],
   );
 
   return (

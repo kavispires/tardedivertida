@@ -162,17 +162,20 @@ export const FEATURE_PT_TRANSLATIONS: Dictionary<string> = {
  * @param options - The options for generating the result.
  */
 export function writeResult({
+  totalSuspects,
   released,
   remainingHearts,
   totalHearts,
   ...rest
 }: BasicResultsOptions & {
   released: string[];
+  totalSuspects: number;
 }): string {
-  const winIcon = released.length === 11 ? '🏆' : '☠️';
+  const releaseGoal = totalSuspects - 1; // The goal is to release all but one suspect (the culprit)
+  const winIcon = released.length === releaseGoal ? '🏆' : '☠️';
 
   // Calculate percentage based on how many suspects were released (0-11)
-  const progress = released ? Math.round((released.length / 11) * 100) : 0;
+  const progress = released ? Math.round((released.length / releaseGoal) * 100) : 0;
 
   return generateShareableResult({
     additionalLines: [`${winIcon} ${writeHeartResultString(remainingHearts, totalHearts)} (${progress}%)`],
@@ -198,5 +201,6 @@ export function getWrittenResult({ data, language }: { data: DailyEspionagemEntr
     totalHearts: SETTINGS.HEARTS,
     remainingHearts: state.hearts,
     released: state.released,
+    totalSuspects: data.suspects.length,
   });
 }
