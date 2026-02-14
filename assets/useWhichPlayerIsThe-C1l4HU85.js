@@ -1,1 +1,0 @@
-import{as as c,r as o,s as u,c0 as n}from"./index-DcGVDF5l.js";function d(s="activePlayerId",e={},r={}){const[t]=c("userId");return o.useMemo(()=>{const a=u.get(e,s);return[r?.[a]??n,a===t]},[r,s,e,t])}export{d as u};
