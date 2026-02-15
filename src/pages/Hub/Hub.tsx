@@ -46,6 +46,7 @@ function Hub() {
     bestWith: false,
     duration: 0,
     releaseStatus: [],
+    sortBy: 'title',
   });
 
   const gameList = useMemo(
@@ -169,8 +170,11 @@ function Hub() {
   // Check if there's an active search
   const hasActiveSearch = Boolean(filters.search);
 
-  // Helper to sort games by title in the active language
+  // Helper to sort games by title in the active language or by release date
   const sortGamesByLanguage = (games: GameInfo[]) => {
+    if (filters.sortBy === 'release-date') {
+      return orderBy(games, ['releaseDate'], ['desc']); // Most recent first
+    }
     return orderBy(games, [`title.${language}`], ['asc']);
   };
 

@@ -39,6 +39,10 @@ export type FilterState = {
    * Release status filter
    */
   releaseStatus: string[];
+  /**
+   * Sort by (title or release date)
+   */
+  sortBy: 'title' | 'release-date';
 };
 
 type FiltersProps = {
@@ -84,6 +88,7 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
       bestWith: false,
       duration: 0,
       releaseStatus: [],
+      sortBy: 'title',
     });
   };
 
@@ -124,6 +129,17 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
     },
   ];
 
+  const sortOptions = [
+    {
+      label: translate('Título', 'Title'),
+      value: 'title',
+    },
+    {
+      label: translate('Data de Lançamento', 'Release Date'),
+      value: 'release-date',
+    },
+  ];
+
   const getCurrentPlayingValue = () => {
     if (filters.recommendedWith) return 'recommended';
     if (filters.bestWith) return 'best';
@@ -151,6 +167,24 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
           style={{ minWidth: 300, maxWidth: 400 }}
           allowClear
         />
+
+        {/* Sort Selector */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <label
+            htmlFor="sort-by"
+            style={{ fontSize: 14 }}
+          >
+            {translate('Ordenar por:', 'Sort by:')}
+          </label>
+          <Select
+            id="sort-by"
+            value={filters.sortBy}
+            style={{ minWidth: 180 }}
+            size="small"
+            onChange={(value) => updateFilter('sortBy', value as 'title' | 'release-date')}
+            options={sortOptions}
+          />
+        </div>
 
         {/* Clear All Button */}
         {hasActiveFilters && (
