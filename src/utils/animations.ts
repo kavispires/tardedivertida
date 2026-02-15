@@ -104,25 +104,14 @@ const getAnimation = (type: AnimationType, options: AnimationOptions = {}): Vari
 
     [AnimationTypes.BOUNCE]: {
       animate: {
-        transform: [
-          'translateZ(0)',
-          'translate3d(0, -30px, 0) scaleY(1.1)',
-          'translateZ(0)',
-          'translate3d(0, -15px, 0) scaleY(1.05)',
-          'translateZ(0) scaleY(0.95)',
-          'translate3d(0, -4px, 0) scaleY(1.02)',
-          'translateZ(0)',
-        ],
+        y: [0, -30, 0, -15, 0, -4, 0, 0],
+        scaleY: [1, 1.1, 0.95, 1.05, 0.95, 1.02, 1, 1],
         transition: {
-          ease: ease ?? [
-            [0.215, 0.61, 0.355, 1],
-            [0.755, 0.05, 0.855, 0.06],
-            [0.755, 0.05, 0.855, 0.06],
-            [0.215, 0.61, 0.355, 1],
-          ],
+          ease: ease ?? ['easeOut', 'easeIn', 'easeOut', 'easeIn', 'easeOut', 'easeIn'],
           delay,
           duration: resolvedDuration,
           repeat: repeatValue,
+          times: [0, 0.2, 0.4, 0.6, 0.75, 0.9, 2, 2],
         },
       },
     },

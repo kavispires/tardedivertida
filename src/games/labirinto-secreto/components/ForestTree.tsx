@@ -9,9 +9,30 @@ import { FlagIcon } from 'icons/FlagIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 // Internal
-import type { MapSegment, Tree, TreeId } from '../utils/types';
+import type { Direction, MapSegment, Tree, TreeId } from '../utils/types';
 import { getOriginDirection } from '../utils/helpers';
 import { TreeImage } from './TreeImage';
+
+/**
+ * Determines the direction FROM which the segment is coming (where the previous tree is)
+ */
+const getIncomingDirection = (currentTreeId: TreeId, previousTreeId: TreeId | null): Direction | null => {
+  if (previousTreeId === null || previousTreeId === undefined) return null;
+
+  const difference = currentTreeId - previousTreeId;
+
+  // The direction calculated is where the previous tree is positioned relative to current
+  if (difference === 1) return 'LEFT'; // Previous tree is to the left
+  if (difference === -1) return 'RIGHT'; // Previous tree is to the right
+  if (difference === 7) return 'UP'; // Previous tree is above (7 = forest width)
+  if (difference === -7) return 'DOWN'; // Previous tree is below
+  if (difference === 6) return 'UP_RIGHT'; // Previous tree is up-left diagonal
+  if (difference === 8) return 'UP_LEFT'; // Previous tree is up-right diagonal
+  if (difference === -6) return 'DOWN_LEFT'; // Previous tree is down-right diagonal
+  if (difference === -8) return 'DOWN_RIGHT'; // Previous tree is down-left diagonal
+
+  return null;
+};
 
 type ForestTreeProps = {
   segment: MapSegment;
@@ -45,6 +66,11 @@ export function ForestTree({
   const isCurrentTree = currentTreeId === tree.id;
   const isPassed = (segment?.passed && !isCurrentTree) ?? false;
 
+  // For the final point, determine which direction the path is coming from
+  const finishLineDirection = isFinalPoint
+    ? getIncomingDirection(segment.treeId, segment.previousTree)
+    : null;
+
   return (
     <div
       className={clsx(
@@ -69,8 +95,8 @@ export function ForestTree({
       {showPath && isFinalPoint && (
         <IconAvatar
           icon={<FinishLineIcon />}
-          size="large"
-          className={`forest__end forest__end--${segment.direction}`}
+          // size="large"
+          className={`forest__end forest__end--${finishLineDirection}`}
         />
       )}
 

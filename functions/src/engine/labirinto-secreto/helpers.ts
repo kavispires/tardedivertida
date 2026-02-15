@@ -116,34 +116,32 @@ const getEntryPoints = () => {
   const maxX = FOREST_WIDTH - 1;
   const maxY = FOREST_HEIGHT - 1;
 
-  // Define forbidden corners: corner itself and adjacent cells on x and y axes
+  // Define forbidden corners (corners + adjacent)
   const forbiddenCorners: Point[] = [
-    // Top-left corner and adjacent cells
     [0, 0],
     [1, 0],
-    [0, 1],
-    // Top-right corner and adjacent cells
+    [0, 1], // Top-Left
     [maxX, 0],
     [maxX - 1, 0],
-    [maxX, 1],
-    // Bottom-left corner and adjacent cells
+    [maxX, 1], // Top-Right
     [0, maxY],
     [0, maxY - 1],
-    [1, maxY],
-    // Bottom-right corner and adjacent cells
+    [1, maxY], // Bottom-Left
     [maxX, maxY],
     [maxX - 1, maxY],
-    [maxX, maxY - 1],
+    [maxX, maxY - 1], // Bottom-Right
   ];
 
   for (let x = 0; x < FOREST_WIDTH; x++) {
     for (let y = 0; y < FOREST_HEIGHT; y++) {
       const point: Point = [x, y];
       const isEdge = checkEdge(point);
-      const index = getIndex(point);
+
+      // REMOVED: index % 2 === 1 check.
+      // This increases valid start points from 4 to 12.
       const isForbidden = forbiddenCorners.some(([fx, fy]) => fx === x && fy === y);
 
-      if (isEdge && index % 2 === 1 && !isForbidden) {
+      if (isEdge && !isForbidden) {
         entryPoints.push(point);
       }
     }
@@ -165,106 +163,54 @@ const getAvailableNextStep = (
   usedIndexes: number[],
   startingPoints: Point[],
   isLastStep: boolean,
-): Point => {
+  avoidIndexes: number[] = [], // New parameter
+): Point | null => {
   const [x, y] = point;
-  const available: Point[] = [];
-  // Top
-  const top: Point = [x, y - 1];
-  const topIndex = getIndex(top);
-  if (
-    top[1] >= 0 &&
-    !usedIndexes.includes(topIndex) &&
-    !isForbiddenCell(top) &&
-    (!isLastStep || !startingPoints.some(([sx, sy]) => sx === top[0] && sy === top[1]))
-  ) {
-    available.push(top);
-  }
-  // Right
-  const right: Point = [x + 1, y];
-  const rightIndex = getIndex(right);
-  if (
-    right[0] < FOREST_WIDTH &&
-    !usedIndexes.includes(rightIndex) &&
-    !isForbiddenCell(right) &&
-    (!isLastStep || !startingPoints.some(([sx, sy]) => sx === right[0] && sy === right[1]))
-  ) {
-    available.push(right);
-  }
-  // Down
-  const down: Point = [x, y + 1];
-  const downIndex = getIndex(down);
-  if (
-    down[1] < FOREST_HEIGHT &&
-    !usedIndexes.includes(downIndex) &&
-    !isForbiddenCell(down) &&
-    (!isLastStep || !startingPoints.some(([sx, sy]) => sx === down[0] && sy === down[1]))
-  ) {
-    available.push(down);
-  }
-  // Left
-  const left: Point = [x - 1, y];
-  const leftIndex = getIndex(left);
-  if (
-    left[0] >= 0 &&
-    !usedIndexes.includes(leftIndex) &&
-    !isForbiddenCell(left) &&
-    (!isLastStep || !startingPoints.some(([sx, sy]) => sx === left[0] && sy === left[1]))
-  ) {
-    available.push(left);
-  }
-  // Top-Left
-  const topLeft: Point = [x - 1, y - 1];
-  const topLeftIndex = getIndex(topLeft);
-  if (
-    topLeft[0] >= 0 &&
-    topLeft[1] >= 0 &&
-    !usedIndexes.includes(topLeftIndex) &&
-    !isForbiddenCell(topLeft) &&
-    (!isLastStep || !startingPoints.some(([sx, sy]) => sx === topLeft[0] && sy === topLeft[1]))
-  ) {
-    available.push(topLeft);
-  }
-  // Top-Right
-  const topRight: Point = [x + 1, y - 1];
-  const topRightIndex = getIndex(topRight);
-  if (
-    topRight[0] < FOREST_WIDTH &&
-    topRight[1] >= 0 &&
-    !usedIndexes.includes(topRightIndex) &&
-    !isForbiddenCell(topRight) &&
-    (!isLastStep || !startingPoints.some(([sx, sy]) => sx === topRight[0] && sy === topRight[1]))
-  ) {
-    available.push(topRight);
-  }
-  // Down-Left
-  const downLeft: Point = [x - 1, y + 1];
-  const downLeftIndex = getIndex(downLeft);
-  if (
-    downLeft[0] >= 0 &&
-    downLeft[1] < FOREST_HEIGHT &&
-    !usedIndexes.includes(downLeftIndex) &&
-    !isForbiddenCell(downLeft) &&
-    (!isLastStep || !startingPoints.some(([sx, sy]) => sx === downLeft[0] && sy === downLeft[1]))
-  ) {
-    available.push(downLeft);
-  }
-  // Down-Right
-  const downRight: Point = [x + 1, y + 1];
-  const downRightIndex = getIndex(downRight);
-  if (
-    downRight[0] < FOREST_WIDTH &&
-    downRight[1] < FOREST_HEIGHT &&
-    !usedIndexes.includes(downRightIndex) &&
-    !isForbiddenCell(downRight) &&
-    (!isLastStep || !startingPoints.some(([sx, sy]) => sx === downRight[0] && sy === downRight[1]))
-  ) {
-    available.push(downRight);
-  }
 
+  // Helper to check if a point is valid
+  const isValid = (p: Point) => {
+    const [px, py] = p;
+    const pIndex = getIndex(p);
+
+    // Basic bounds and forbidden cell checks
+    if (px < 0 || px >= FOREST_WIDTH || py < 0 || py >= FOREST_HEIGHT) return false;
+    if (isForbiddenCell(p)) return false;
+
+    // 1. Self-collision check (standard)
+    if (usedIndexes.includes(pIndex)) return false;
+
+    // 2. Start point blocking check (standard)
+    if (!isLastStep && startingPoints.some(([sx, sy]) => sx === px && sy === py)) return false;
+
+    // 3. NEW: Dynamic collision check (other players)
+    if (avoidIndexes.includes(pIndex)) return false;
+
+    return true;
+  };
+
+  const available: Point[] = [];
+
+  // Check all 8 directions
+  const candidates: Point[] = [
+    [x, y - 1], // Up
+    [x + 1, y], // Right
+    [x, y + 1], // Down
+    [x - 1, y], // Left
+    [x - 1, y - 1], // Top-Left
+    [x + 1, y - 1], // Top-Right
+    [x - 1, y + 1], // Down-Left
+    [x + 1, y + 1], // Down-Right
+  ];
+
+  candidates.forEach((cand) => {
+    if (isValid(cand)) available.push(cand);
+  });
+
+  if (available.length === 0) return null;
   return utils.game.getRandomItem(available);
 };
 
-const WHILE_THRESHOLD = 150;
+const WHILE_THRESHOLD = 300;
 
 /**
  * Build a path through the forest. The path never loops back on itself.
@@ -273,30 +219,58 @@ const WHILE_THRESHOLD = 150;
  * @param length - length of the path
  * @returns - array of points representing the path
  */
-const buildPath = (startingPoint: Point, startingPoints: Point[], length = PATH_DISTANCE): Point[] => {
+const buildPath = (
+  startingPoint: Point,
+  startingPoints: Point[],
+  existingOccupiedIndexes: number[] = [], // New parameter
+  length = PATH_DISTANCE,
+): Point[] => {
   let segments: Point[] = [startingPoint];
   let usedIndexes: number[] = [getIndex(startingPoint)];
-  let limit = 0;
+  let attempts = 0;
 
-  while (segments.length < length && limit < WHILE_THRESHOLD) {
-    for (let s = 0; s < length; s++) {
-      const isLastStep = segments.length === length - 1;
-      const availableSegment = getAvailableNextStep(segments[s], usedIndexes, startingPoints, isLastStep);
-      if (availableSegment) {
-        segments.push(availableSegment);
-        usedIndexes.push(getIndex(availableSegment));
-      } else {
-        segments = [startingPoint];
-        usedIndexes = [getIndex(startingPoint)];
-        limit++;
+  // Threshold for "giving up" on avoiding other players
+  // If we try 75 times and fail, we allow crossing over.
+  const STRICT_MODE_THRESHOLD = WHILE_THRESHOLD / 2;
 
-        break;
-      }
+  while (segments.length < length && attempts < WHILE_THRESHOLD) {
+    const currentPoint = segments[segments.length - 1];
+    const isLastStep = segments.length === length - 1;
+
+    // LOGIC: If we are under 50% tries, strictly avoid existing paths.
+    // If we are over 50%, send an empty array [] to allow crossing.
+    const currentAvoidList = attempts < STRICT_MODE_THRESHOLD ? existingOccupiedIndexes : [];
+
+    const availableSegment = getAvailableNextStep(
+      currentPoint,
+      usedIndexes,
+      startingPoints,
+      isLastStep,
+      currentAvoidList,
+    );
+
+    if (availableSegment) {
+      segments.push(availableSegment);
+      usedIndexes.push(getIndex(availableSegment));
+    } else {
+      // Dead end: Reset
+      segments = [startingPoint];
+      usedIndexes = [getIndex(startingPoint)];
+      attempts++;
     }
   }
 
-  if (limit >= WHILE_THRESHOLD) {
-    return DEFAULT_PATHS[getIndex(startingPoint)];
+  // Fallback to defaults if generation failed completely
+  if (segments.length < length) {
+    const startIndex = getIndex(startingPoint);
+    const defaultPathIndices = DEFAULT_PATHS[startIndex];
+
+    if (defaultPathIndices) {
+      return defaultPathIndices.map((p) => [p[0], p[1]] as Point);
+    }
+
+    // Last resort safety
+    return utils.game.makeArray(length).map(() => startingPoint);
   }
 
   return segments;
@@ -337,34 +311,77 @@ export const buildForest = (cards: TextCard[], isItemsForest: boolean): Tree[] =
  * @param players
  */
 export const buildPaths = (players: Players) => {
-  // Get entry points
   const entryPoints = getEntryPoints();
-  // For each point, build a full path of 10 segments
-  const paths = entryPoints.map((entryPoint) => buildPath(entryPoint, entryPoints));
 
-  const shuffledPaths = utils.game.shuffle(paths);
+  // We need to store all cells used by ALL generated paths so far
+  let globalUsedIndexes: number[] = [];
+  const generatedPaths: Point[][] = [];
+
+  // Shuffle entry points so we don't always prioritize the top-left player for the "cleanest" path
+  const shuffledEntries = utils.game.shuffle(entryPoints);
+
+  // Generate paths sequentially
+  shuffledEntries.forEach((entryPoint) => {
+    const path = buildPath(entryPoint, entryPoints, globalUsedIndexes);
+
+    if (path && path.length >= PATH_DISTANCE) {
+      generatedPaths.push(path);
+      // Add this path's cells to the global block list
+      // We map to indices and filter out duplicates to keep the array clean
+      const pathIndices = path.map((p) => getIndex(p));
+      globalUsedIndexes = [...new Set([...globalUsedIndexes, ...pathIndices])];
+    }
+  });
+
+  // Assign to players
+  if (generatedPaths.length < utils.players.getPlayerCount(players)) {
+    utils.helpers.print(
+      `Warning: Only generated ${generatedPaths.length} valid paths for ${utils.players.getPlayerCount(players)} players.`,
+    );
+  }
+
+  // Shuffle the valid paths again before assigning to ensure fairness
+  const finalPaths = utils.game.shuffle(generatedPaths);
 
   utils.players.getListOfPlayers(players).forEach((player, playerIndex) => {
-    const path = shuffledPaths[playerIndex];
-    player.map = utils.game.makeArray(PATH_DISTANCE).map((index) => {
-      const point = path[index];
-      const nextTree = getIndex(path[index + 1]);
-      const treeId = getIndex(point);
-      const segment: MapSegment = {
-        index,
-        playerId: player.id,
-        treeId,
-        passed: index === 0,
-        score: 0,
-        previousTree: index > 0 ? getIndex(path[index - 1]) : null,
-        nextTree,
-        direction: determineDirection(treeId, nextTree),
-        clues: [],
-        playersIds: [],
-        active: false,
-      };
-      return segment;
-    });
+    const path = finalPaths[playerIndex];
+
+    // Safety check if we have more players than paths
+    if (!path) {
+      player.map = []; // Or handle error
+      return;
+    }
+
+    player.map = utils.game
+      .makeArray(PATH_DISTANCE)
+      .map((_, index) => {
+        // Safety: Ensure current point exists
+        if (!path[index]) return null;
+
+        const treeId = getIndex(path[index]);
+
+        const nextPoint = path[index + 1];
+        const nextTree = nextPoint ? getIndex(nextPoint) : null;
+
+        const prevPoint = path[index - 1];
+        const previousTree = prevPoint ? getIndex(prevPoint) : null;
+
+        const segment: MapSegment = {
+          index,
+          playerId: player.id,
+          treeId,
+          passed: index === 0,
+          score: 0,
+          previousTree,
+          nextTree,
+          direction: determineDirection(treeId, nextTree),
+          clues: [],
+          playersIds: [],
+          active: false,
+        };
+        return segment;
+      })
+      .filter((s): s is MapSegment => s !== null);
   });
 };
 

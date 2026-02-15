@@ -18,6 +18,9 @@
 
 .forest-container-area {
   position: relative;
+
+  display: grid;
+  justify-items: center;
 }
 
 .forest-container-controls {
@@ -344,55 +347,53 @@
   &__end {
     position: absolute;
     z-index: 201;
-
+    // Position opposite to the direction (if direction is UP, position at bottom)
     &--UP {
-      top: 0;
-      transform: translate(0, -50%);
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 0%);
     }
 
     &--RIGHT {
-      right: 0;
-      transform: translate(10%, 0);
+      left: 0;
+      top: 50%;
+      transform: translate(15%, -50%);
     }
 
     &--DOWN {
-      bottom: 0;
-      transform: translate(0, 0);
-    }
-
-    &--LEFT {
-      left: 0;
-      transform: translate(-10%, 0);
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, 0%);
     }
 
     &--LEFT {
       right: 0;
       top: 50%;
-      transform: translate(50%, -50%) rotate(180deg);
+      transform: translate(15%, -50%);
     }
 
     &--UP_LEFT {
-      top: 0;
-      left: 0;
-      transform: translate(0%, 0%) rotate(-45deg);
+      bottom: 0;
+      right: 0;
+      transform: translate(50%, 50%);
     }
 
     &--UP_RIGHT {
-      top: 0;
-      right: 0;
-      transform: translate(0%, 0%) rotate(45deg);
+      bottom: 0;
+      left: 0;
+      // transform: translate(-50%, 50%);
     }
 
     &--DOWN_LEFT {
-      bottom: 0;
-      left: 0;
-      transform: translate(0, 0%) rotate(-135deg);
+      top: 0;
+      right: 0;
+      transform: translate(50%, -50%);
     }
 
     &--DOWN_RIGHT {
-      bottom: 0;
-      right: 0;
-      transform: translate(0, 0%) rotate(135deg);
+      top: 0;
+      left: 0;
+      transform: translate(-50%, -50%);
     }
   }
 

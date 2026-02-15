@@ -21,8 +21,6 @@ import { TextHighlight } from 'components/text';
 import type { ExtendedTextCard, MapSegment, OnSubmitMapFunction, Tree } from '../utils/types';
 import { getPossibleTreeIds } from '../utils/helpers';
 import { TreeImage } from './TreeImage';
-// Utils
-// import { getAnimationClass } from 'utils/helpers';
 
 const MotionIconAvatar = motion.create(IconAvatar);
 const MotionTextHighlight = motion.create(TextHighlight);
@@ -114,10 +112,6 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
                 <div className="map-builder__caret">
                   <MotionIconAvatar
                     icon={<LocationIcon />}
-                    // className={getAnimationClass('bounce', {
-                    //   speed: 'slow',
-                    //   infinite: true,
-                    // })}
                     size="small"
                     {...getAnimation('bounce', { speed: 'slow', infinite: true })}
                   />

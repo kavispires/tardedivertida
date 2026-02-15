@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "labirinto-secreto",
-  "version": "3.0.5",
+  "version": "3.1.1",
   "release": "stable",
   "releaseDate": "2023-06-24",
   "available": true,
@@ -11,7 +11,7 @@
     "en": "Secret Labyrinth"
   },
   "popularName": {
-    "pt": "Das árvores",
+    "pt": "Das árvores/floresta",
     "en": "The trees game"
   },
   "inspiredBy": "shtaP citsyM",
