@@ -1,5 +1,6 @@
 import clsx from 'clsx';
-import { type ReactNode, useEffect, useRef } from 'react';
+import { motion, useMotionValue, useSpring } from 'motion/react';
+import { type ReactNode, useEffect } from 'react';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Sass
@@ -52,14 +53,16 @@ function MouseFollowingContentInternal({
   contained,
   className = '',
 }: Partial<MouseTrackedContentProps>) {
-  const divRef = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springX = useSpring(mouseX, { stiffness: 300, damping: 30 });
+  const springY = useSpring(mouseY, { stiffness: 300, damping: 30 });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      if (divRef.current) {
-        divRef.current.style.left = `${e.clientX + 16}px`;
-        divRef.current.style.top = `${e.clientY + 16}px`;
-      }
+      mouseX.set(e.clientX + 16);
+      mouseY.set(e.clientY + 16);
     };
 
     document.addEventListener('mousemove', handleMouseMove);
@@ -67,11 +70,11 @@ function MouseFollowingContentInternal({
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [mouseX, mouseY]);
 
   return (
-    <div
-      ref={divRef}
+    <motion.div
+      style={{ left: springX, top: springY }}
       className={clsx(
         'mouse-following-content',
         contained && 'mouse-following-content--contained',
@@ -80,6 +83,6 @@ function MouseFollowingContentInternal({
       )}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
