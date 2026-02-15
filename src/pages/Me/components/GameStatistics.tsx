@@ -28,7 +28,7 @@ import { DualTranslate, Translate } from 'components/language';
 import { RulesModal } from 'components/rules';
 import { Title } from 'components/text';
 // Internal
-import { durationToHours, timestampToDate } from '../utils';
+import { formatDurationToHoursAndMinutes, timestampToDate } from '../utils';
 import { InfoCard } from './InfoCard';
 import { StatisticCard } from './StatisticCard';
 import { UserAchievements } from './UserAchievements';
@@ -233,15 +233,8 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
                   en="Play Duration"
                 />
               }
-              value={durationToHours(game.totalPlayDuration)}
+              value={formatDurationToHoursAndMinutes(game.totalPlayDuration)}
               icon={<ClockIcon />}
-              suffix={
-                <Translate
-                  pt="horas"
-                  en="hours"
-                />
-              }
-              precision={1}
             />
 
             <StatisticCard

@@ -38,6 +38,28 @@ export function durationToHours(duration: number): number {
   return hours;
 }
 
+/**
+ * Converts a duration in milliseconds to a formatted string with hours and minutes.
+ *
+ * @param duration - The duration to convert, in milliseconds.
+ * @returns A formatted string like "2h 30m" or "45m" if less than an hour.
+ */
+export function formatDurationToHoursAndMinutes(duration: number): string {
+  const totalMinutes = Math.floor(duration / 60000);
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+
+  if (hours < 1) {
+    return `${minutes}m`;
+  }
+
+  if (minutes === 0) {
+    return `${hours}h`;
+  }
+
+  return `${hours}h ${minutes}m`;
+}
+
 export const playableGames = Object.entries(GAME_LIST).reduce(
   (acc: Record<GameName, GameInfo>, [gameName, info]) => {
     if (['stable', 'beta'].includes(info.release)) {
