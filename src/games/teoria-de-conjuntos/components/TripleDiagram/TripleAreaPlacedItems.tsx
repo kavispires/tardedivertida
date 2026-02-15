@@ -185,8 +185,8 @@ export function TripleAreaPlacedItems({ areaKey, diagramArea, containerWidth }: 
   const { itemsIds } = diagramArea;
 
   const elements = useMemo(() => {
-    return [...itemsIds]
-      .reverse()
+    return itemsIds
+      .toReversed()
       .map((itemId, index) => {
         // If more than boundaries list, don't render
         if (index >= boundaries.length) return null;

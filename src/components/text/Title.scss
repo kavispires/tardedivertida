@@ -67,5 +67,6 @@
   &__icon {
     margin-right: get-unit(2);
     transform: translateY(-0.1em);
+    display: inline-flex;
   }
 }

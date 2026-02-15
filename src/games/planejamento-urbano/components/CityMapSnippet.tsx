@@ -28,24 +28,32 @@ export function CityMapSnippet({
   const sizes = useWindowSize();
   const cellWidth = useLocationWidth(city.width);
 
+  const maxHeight = Math.min(height, sizes.height / 2);
+  const maxWidth = Math.min(width, sizes.width / 2);
+
   return (
     <GridMap
-      maxWidth={Math.min(height, sizes.width / 2)}
-      maxHeight={Math.min(width, sizes.height / 2)}
+      maxWidth={maxWidth}
+      maxHeight={maxHeight}
       grid={city}
       cellComponent={MapSlot}
       cellProps={{ cellWidth, cityLocationsDict, mapEvaluations }}
       additionalContent={<ZoomToLocation focusedCellId={focusedCellId} />}
+      hideControls
     />
   );
 }
 
 function ZoomToLocation({ focusedCellId }: Pick<CityMapSnippetProps, 'focusedCellId'>) {
   const { zoomToElement } = useControls();
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: We only want to trigger this effect when the focusedCellId changes, not when zoomToElement changes.
   useEffect(() => {
     if (focusedCellId) {
-      zoomToElement(`cell-${focusedCellId}`, 1.1);
+      const timeoutId = setTimeout(() => {
+        zoomToElement(`cell-${focusedCellId}`, 1.1);
+      }, 500);
+
+      return () => clearTimeout(timeoutId);
     }
   }, [focusedCellId]);
 

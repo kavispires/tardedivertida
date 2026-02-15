@@ -27,6 +27,7 @@ export function CityMap({ city, cityLocationsDict, mapEvaluations, dragAndDropEn
       cellComponent={MapSlot}
       cellProps={{ cellWidth, cityLocationsDict, mapEvaluations, dragAndDropEnabled }}
       contentClassName="city-map"
+      lockControlsOnInit
     />
   );
 }

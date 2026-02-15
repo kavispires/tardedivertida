@@ -159,7 +159,7 @@ export function ZoomPanPinchContainer({
         <TransformComponent
           wrapperStyle={{
             width: maxWidth,
-            height: fixedCanvasHeight ?? maxHeight ?? 'auto',
+            height: !hideControls ? (fixedCanvasHeight ?? maxHeight ?? 'auto') : (maxHeight ?? 'auto'),
           }}
           contentClass={clsx('zoom-pan-pinch-content', contentClassName)}
           contentStyle={contentStyle}
