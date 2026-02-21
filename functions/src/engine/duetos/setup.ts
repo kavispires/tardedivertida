@@ -1,5 +1,5 @@
 // Constants
-import { CARDS_PER_HARD_ROUND, CARDS_PER_NORMAL_ROUND, DUETOS_PHASES } from './constants';
+import { CARDS_PER_HARD_ROUND, CARDS_PER_NORMAL_ROUND, DUETOS_PHASES, TOTAL_ROUNDS } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
@@ -91,6 +91,10 @@ export const prepareSetupPhase = async (
       state: {
         phase: DUETOS_PHASES.SETUP,
         players,
+        round: {
+          current: 0,
+          total: TOTAL_ROUNDS,
+        },
       },
     },
   };
