@@ -43,7 +43,7 @@ export const clearPlayerNote = (playerId: PlayerId) => {
  * Clear all notes
  */
 export const clearAllNotes = () => {
-  notesStore.setState(() => ({ notes: {} }));
+  notesStore.setState({ notes: {} });
 };
 
 /**

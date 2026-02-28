@@ -1,4 +1,3 @@
-/** biome-ignore-all lint/correctness/noUnusedVariables: is globally available with .d.ts */
 type GameId = string;
 type GameName = string;
 type GameCode = string;
@@ -185,7 +184,7 @@ interface Round {
   forceLastRound?: boolean;
 }
 
-type Player<T = PlainObject> = {
+interface Player {
   id: PlayerId;
   avatarId: PlayerAvatarId;
   name: PlayerName;
@@ -194,9 +193,11 @@ type Player<T = PlainObject> = {
   updatedAt?: DateMilliseconds;
   // Bots only
   type: 'player' | 'bot' | 'audience';
-} & T;
+  // Extra keys
+  [key: string]: any;
+}
 
-type Players<T = PlainObject> = Record<PlayerId, Player<T>>;
+type Players = Record<PlayerId, Player>;
 
 type Payload<T = PlainObject> = {
   gameId: GameId;
