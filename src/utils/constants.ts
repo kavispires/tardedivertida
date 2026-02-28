@@ -12,16 +12,28 @@ export const DEFAULT_PADDING = UNIT_SIZE * 2;
  */
 export const PUBLIC_URL = {
   BANNERS: 'images/banners/',
-  CARDS: 'images/cards/',
-  CLOUDS: 'images/clouds/',
-  EXAMPLES: 'images/examples/',
-  IN_GAME: 'images/in-game/',
-  RULES: 'images/rules/',
-  ROOT: 'images/',
-  RESOURCES: 'resources/',
   LOGOS: 'images/logos/',
+  CARDS: 'images/cards/',
+  /**
+   * @deprecated use td-assets instead
+   */
+  CLOUDS: 'images/clouds/',
+  /**
+   * @deprecated use td-assets instead
+   */
+  EXAMPLES: 'images/examples/',
+  /**
+   * @deprecated use td-assets instead
+   */
+  IN_GAME: 'images/in-game/',
+  /**
+   * @deprecated use td-assets instead
+   */
+  RULES: 'images/rules/',
+  /**
+   * @deprecated use td-assets instead
+   */
   STRIPS: 'images/strips/',
-  VIDEOS: 'videos/',
 };
 
 /**
