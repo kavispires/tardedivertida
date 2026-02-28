@@ -30,10 +30,6 @@ export const PUBLIC_URL = {
    * @deprecated use td-assets instead
    */
   RULES: 'images/rules/',
-  /**
-   * @deprecated use td-assets instead
-   */
-  STRIPS: 'images/strips/',
 };
 
 /**

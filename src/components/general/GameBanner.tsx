@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import type { ReactNode } from 'react';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
 // Sass
@@ -141,6 +142,7 @@ export function GameStrip({
   static: isStatic = false,
 }: GameStripProps) {
   const { language, dualTranslate } = useLanguage();
+  const baseUrl = useTDBaseUrl('assets');
 
   const logoHeight = width / 1.5; // Logo width/height ratio is 1.5
   const backgroundHeight = logoHeight;
@@ -155,9 +157,9 @@ export function GameStrip({
       }}
     >
       <img
-        src={`${PUBLIC_URL.STRIPS}strip-${gameName}.jpg`}
+        src={`${baseUrl}/strips/strip-${gameName}.jpg`}
         onError={(e) => {
-          (e.target as HTMLImageElement).src = `${PUBLIC_URL.STRIPS}/strip-em-breve.jpg`;
+          (e.target as HTMLImageElement).src = `${baseUrl}/strips/strip-em-breve.jpg`;
         }}
         alt={`${dualTranslate(title)} background`}
         className="game-strip__image"
