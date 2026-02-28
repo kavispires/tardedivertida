@@ -14,10 +14,6 @@ export const PUBLIC_URL = {
   BANNERS: 'images/banners/',
   LOGOS: 'images/logos/',
   CARDS: 'images/cards/',
-  /**
-   * @deprecated use td-assets instead
-   */
-  EXAMPLES: 'images/examples/',
 };
 
 /**
