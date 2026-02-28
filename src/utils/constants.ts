@@ -17,10 +17,6 @@ export const PUBLIC_URL = {
   /**
    * @deprecated use td-assets instead
    */
-  CLOUDS: 'images/clouds/',
-  /**
-   * @deprecated use td-assets instead
-   */
   EXAMPLES: 'images/examples/',
   /**
    * @deprecated use td-assets instead

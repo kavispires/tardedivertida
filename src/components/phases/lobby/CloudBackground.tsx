@@ -2,19 +2,19 @@ import clsx from 'clsx';
 import { sampleSize } from 'lodash';
 import { motion, type MotionProps } from 'motion/react';
 import { useMemo } from 'react';
-// Utils
-import { PUBLIC_URL } from 'utils/constants';
+// Hooks
+import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Components
 import { useGameAppearance } from 'components/session/GameInfoContext';
 // Sass
 import './CloudBackground.scss';
 
-function SingleCloud({ type }: { type: string; index?: number }) {
+function SingleCloud({ type, baseUrl }: { type: string; baseUrl: string; index?: number }) {
   return (
     <div
       className="cloud-background__cloud"
       style={{
-        backgroundImage: `url('${PUBLIC_URL.CLOUDS}${type}.png')`,
+        backgroundImage: `url('${baseUrl}/clouds/${type}.png')`,
         backgroundPositionX: '0',
       }}
     ></div>
@@ -39,12 +39,12 @@ const cloudData = [
   },
 ];
 
-function MultiCloud({ type, index }: { type: string; index: number }) {
+function MultiCloud({ type, index, baseUrl }: { type: string; index: number; baseUrl: string }) {
   return (
     <div
       className="cloud-background__cloud"
       style={{
-        backgroundImage: `url('${PUBLIC_URL.CLOUDS}${type}.png')`,
+        backgroundImage: `url('${baseUrl}/clouds/${type}.png')`,
         ...cloudData[index],
       }}
     ></div>
@@ -80,6 +80,7 @@ type AnimationConfig = {
 };
 
 export function CloudBackground() {
+  const BASE_URL = useTDBaseUrl('assets');
   const gameAppearance = useGameAppearance();
   const cloudType = gameAppearance.clouds ?? 'cloud';
   const cloudAnimationType = gameAppearance.cloudsAnimationType ?? 'flow';
@@ -107,6 +108,7 @@ export function CloudBackground() {
             <CloudTypeComponent
               index={id}
               type={cloudType}
+              baseUrl={BASE_URL}
             />
           </motion.div>
         );
