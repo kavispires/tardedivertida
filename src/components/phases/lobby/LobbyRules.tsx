@@ -5,9 +5,9 @@ import { Flex, Image, Space, Typography } from 'antd';
 import type { GamePlayers } from 'types/player';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Utils
 import { getAnimation } from 'utils/animations';
-import { PUBLIC_URL } from 'utils/constants';
 // Components
 import { GameTags } from 'components/general/GameTags';
 import { Translate } from 'components/language';
@@ -23,6 +23,7 @@ type LobbyRulesProps = {
 };
 
 export function LobbyRules({ players }: LobbyRulesProps) {
+  const BASE_URL = useTDBaseUrl('assets');
   const info = useGameInfoContext();
   const { language } = useLanguage();
   return (
@@ -54,7 +55,7 @@ export function LobbyRules({ players }: LobbyRulesProps) {
           tags={info.tags}
         />
         <Image.PreviewGroup
-          fallback={`${PUBLIC_URL.RULES}no-rules.jpg`}
+          fallback={`${BASE_URL}/rules/no-rules.jpg`}
           preview={{
             countRender: (current, total) => (
               <Space
@@ -81,10 +82,10 @@ export function LobbyRules({ players }: LobbyRulesProps) {
               >
                 {index > 0 && (
                   <Image
-                    src={`${PUBLIC_URL.RULES}game-rule-${info.gameName}-${index}.jpg`}
+                    src={`${BASE_URL}/rules/game-rule-${info.gameName}-${index}.jpg`}
                     width={96}
                     className="border-radius"
-                    fallback={`${PUBLIC_URL.RULES}no-rules.jpg`}
+                    fallback={`${BASE_URL}/rules/no-rules.jpg`}
                   />
                 )}
                 <Typography.Paragraph style={{ marginBottom: 0 }}>{rule}</Typography.Paragraph>

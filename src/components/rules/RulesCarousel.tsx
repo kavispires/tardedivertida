@@ -9,6 +9,7 @@ import { Typography, Image, Carousel, Button } from 'antd';
 import type { GameInfo } from 'types/game-info';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
 // Components
@@ -37,6 +38,7 @@ export function RulesCarousel({
   ruleClassName = '',
   actionsClassName,
 }: RulesCarouselProps) {
+  const BASE_URL = useTDBaseUrl('assets');
   const { language } = useLanguage();
   const ref = createRef<CarouselRef>();
 
@@ -68,9 +70,9 @@ export function RulesCarousel({
               src={
                 index === 0
                   ? `${PUBLIC_URL.BANNERS}${info.gameName}.jpg`
-                  : `${PUBLIC_URL.RULES}game-rule-${info.gameName}-${index}.jpg`
+                  : `${BASE_URL}/rules/game-rule-${info.gameName}-${index}.jpg`
               }
-              fallback={`${PUBLIC_URL.RULES}no-rules.jpg`}
+              fallback={`${BASE_URL}/rules/no-rules.jpg`}
               alt={rule}
             />
             <Typography.Paragraph className={clsx('rules-carousel__rule-text', ruleClassName)}>
