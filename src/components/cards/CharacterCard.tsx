@@ -7,8 +7,6 @@ import type { ContenderCard } from 'types/tdr';
 import { useBlurCards } from 'hooks/useBlurCards';
 import { useLanguage } from 'hooks/useLanguage';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
-// Utils
-import { PUBLIC_URL } from 'utils/constants';
 // Components
 import { ImageBlurButtonContainer } from 'components/image-cards';
 import { DualTranslate } from 'components/language';
@@ -68,7 +66,7 @@ export function CharacterCard({ size, overlayColor, character, className, hideNa
           )}
           {overlayColor && (
             <img
-              src={`${PUBLIC_URL.IN_GAME}/w-overlay-${overlayColor}.png`}
+              src={`${baseUrl}/game/w-overlay-${overlayColor}.png`}
               className="character-card__overlay"
               alt="character"
               style={{ width: `${size}px` }}
@@ -78,7 +76,7 @@ export function CharacterCard({ size, overlayColor, character, className, hideNa
             src={`${baseUrl}/${imageURL}.jpg`}
             width={size}
             className={clsx('character-card__image', isBlurred && 'character-card__image--blur')}
-            fallback={`${PUBLIC_URL.IN_GAME}/w-no-image.jpg`}
+            fallback={`${baseUrl}/game/w-no-image.jpg`}
             alt={dualTranslate(character.name)}
             preview={false}
             title={dualTranslate(character.name)}

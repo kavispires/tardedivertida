@@ -18,14 +18,6 @@ export const PUBLIC_URL = {
    * @deprecated use td-assets instead
    */
   EXAMPLES: 'images/examples/',
-  /**
-   * @deprecated use td-assets instead
-   */
-  IN_GAME: 'images/in-game/',
-  /**
-   * @deprecated use td-assets instead
-   */
-  RULES: 'images/rules/',
 };
 
 /**

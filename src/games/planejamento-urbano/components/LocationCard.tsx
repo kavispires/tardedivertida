@@ -16,8 +16,8 @@ import {
   TruckFilled,
 } from '@ant-design/icons';
 import { Typography } from 'antd';
-// Utils
-import { PUBLIC_URL } from 'utils/constants';
+// Hooks
+import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Components
 import { DualTranslate } from 'components/language';
 // Internal
@@ -38,6 +38,7 @@ export function LocationCard({
   className,
   fontSize,
 }: LocationCardProps) {
+  const BASE_URL = useTDBaseUrl('assets');
   const location = cityLocationsDict?.[locationId];
   return (
     <div
@@ -45,7 +46,7 @@ export function LocationCard({
       style={{
         width,
         height: width,
-        backgroundImage: `url('${PUBLIC_URL.IN_GAME}city-image.jpg')`,
+        backgroundImage: `url('${BASE_URL}/game/city-image.jpg')`,
       }}
     >
       <span>

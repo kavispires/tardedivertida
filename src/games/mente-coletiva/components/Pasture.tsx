@@ -3,8 +3,8 @@ import { useMemo } from 'react';
 import { useWindowSize } from 'react-use';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/player';
-// Utils
-import { PUBLIC_URL } from 'utils/constants';
+// Hooks
+import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Internal
 import { RoundType } from './RoundType';
 import { SheepAvatar } from './SheepAvatar';
@@ -16,6 +16,7 @@ type PastureProps = {
 };
 
 export function Pasture({ players, pastureSize = 5, roundType }: PastureProps) {
+  const BASE_URL = useTDBaseUrl('assets');
   const { width } = useWindowSize();
   const isShortPasture = pastureSize === 3;
 
@@ -56,7 +57,7 @@ export function Pasture({ players, pastureSize = 5, roundType }: PastureProps) {
         style={{ height: `${pastureHeight}px` }}
       >
         <img
-          src={`${PUBLIC_URL.IN_GAME}m-pasture-${pastureSize}.png`}
+          src={`${BASE_URL}/game/m-pasture-${pastureSize}.png`}
           alt="pasture background"
           className="m-pasture__background"
         />
@@ -100,7 +101,7 @@ export function Pasture({ players, pastureSize = 5, roundType }: PastureProps) {
         </div>
 
         <img
-          src={`${PUBLIC_URL.IN_GAME}m-fence-${pastureSize}.svg`}
+          src={`${BASE_URL}/game/m-fence-${pastureSize}.svg`}
           alt="fence"
           className="m-pasture__fence"
         />

@@ -1,7 +1,8 @@
 import clsx from 'clsx';
 import { useEffect } from 'react';
+// Hooks
+import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Utils
-import { PUBLIC_URL } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
 // Internal
 import type { CandySidewalk, StreetCard } from '../utils/types';
@@ -14,6 +15,7 @@ type StreetProps = {
 };
 
 export function Street({ street, currentCard, candySidewalk }: StreetProps) {
+  const BASE_URL = useTDBaseUrl('assets');
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     const streetEl = document.getElementById('street');
@@ -29,7 +31,7 @@ export function Street({ street, currentCard, candySidewalk }: StreetProps) {
       className="n-street"
       id="street"
       style={{
-        backgroundImage: `url('${PUBLIC_URL.IN_GAME}n-street.png')`,
+        backgroundImage: `url('${BASE_URL}/game/n-street.png')`,
       }}
     >
       {street.map((card, index) => {

@@ -5,8 +5,6 @@ import { Image, Tooltip } from 'antd';
 import { useBlurCards } from 'hooks/useBlurCards';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
-// Utils
-import { PUBLIC_URL } from 'utils/constants';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
@@ -56,7 +54,7 @@ function WordGridHeaderContender({ cell }: WordGridHeaderProps) {
         src={`${baseUrl}/${imageURL}.jpg`}
         width={cardWidth}
         className={clsx('w-contender-image', isBlurred && 'w-contender-image--blur')}
-        fallback={`${PUBLIC_URL.IN_GAME}/w-no-image.jpg`}
+        fallback={`${baseUrl}/game/w-no-image.jpg`}
         alt={cell.text}
       />
     </div>
