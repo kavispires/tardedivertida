@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import type { ReactNode } from 'react';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
 // Sass
@@ -49,6 +50,7 @@ export function GameVideo({
   static: isStatic = false,
 }: GameVideoProps) {
   const { language, dualTranslate } = useLanguage();
+  const BASE_URL = useTDBaseUrl('assets');
 
   const logoHeight = width / 1.5; // Logo width/height ratio is 1.5
   const backgroundHeight = logoHeight;
@@ -70,7 +72,7 @@ export function GameVideo({
         className="game-video__video"
       >
         <source
-          src={`${PUBLIC_URL.VIDEOS}${gameName}.mp4`}
+          src={`${BASE_URL}/videos/${gameName}.mp4`}
           type="video/mp4"
         />
       </video>

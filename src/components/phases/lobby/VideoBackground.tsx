@@ -1,11 +1,12 @@
-// Utils
-import { PUBLIC_URL } from 'utils/constants';
+// Hooks
+import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Components
 import { useGameAppearance, useGameInfoContext } from 'components/session/GameInfoContext';
 // Sass
 import './VideoBackground.scss';
 
 export function VideoBackground() {
+  const BASE_URL = useTDBaseUrl('assets');
   const info = useGameInfoContext();
   const gameAppearance = useGameAppearance();
 
@@ -22,7 +23,7 @@ export function VideoBackground() {
         playsInline
       >
         <source
-          src={`${PUBLIC_URL.VIDEOS}${info.gameName}.mp4`}
+          src={`${BASE_URL}/videos/${info.gameName}.mp4`}
           type="video/mp4"
         />
       </video>
