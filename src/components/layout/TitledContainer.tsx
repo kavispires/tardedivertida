@@ -8,11 +8,29 @@ import { Title, type TitleProps } from 'components/text';
 import styles from './TitledContainer.module.scss';
 
 type TitledContainerProps = {
+  /**
+   * The title of the container
+   */
   title: ReactNode;
+  /**
+   * The content to render inside the container
+   */
   children: ReactNode;
+  /**
+   * Whether to contain the children in a bordered box
+   */
   contained?: boolean;
+  /**
+   * Optional custom class name
+   */
   className?: string;
+  /**
+   * Props to pass to the Title component
+   */
   titleProps?: Omit<TitleProps, 'children'>;
+  /**
+   * Props to pass to the content Space component
+   */
   contentProps?: SpaceProps;
 } & Omit<SpaceProps, 'title' | 'children'>;
 

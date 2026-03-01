@@ -3,6 +3,9 @@ import { useEffect, useRef } from 'react';
 import type { UseStep } from 'hooks/useStep';
 
 type PhaseTimerResetProps = {
+  /**
+   * Function to transition to the next step
+   */
   goToNextStep: UseStep['goToNextStep'];
 };
 

@@ -7,12 +7,21 @@ import { Translate } from 'components/language';
 import styles from './StarPoints.module.scss';
 
 type StarPointsProps = {
+  /**
+   * A unique key prefix for star elements
+   */
   keyPrefix: string;
+  /**
+   * The number of star points (negative values show as red)
+   */
   quantity?: number;
   /**
    * Optional custom class name
    */
   className?: string;
+  /**
+   * Whether to hide the numeric text
+   */
   hideText?: boolean;
 };
 

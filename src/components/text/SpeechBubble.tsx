@@ -4,9 +4,21 @@ import type { ComponentProps, ReactNode } from 'react';
 import styles from './SpeechBubble.module.scss';
 
 type SpeechBubbleProps = {
+  /**
+   * The content to display inside the speech bubble
+   */
   children: ReactNode;
+  /**
+   * The direction the speech bubble points
+   */
   direction?: 'left' | 'right' | 'top' | 'bottom';
+  /**
+   * Whether to apply a shadow effect
+   */
   shadow?: boolean;
+  /**
+   * The size of the speech bubble
+   */
   size?: 'small' | 'medium' | 'large';
 } & ComponentProps<'div'>;
 

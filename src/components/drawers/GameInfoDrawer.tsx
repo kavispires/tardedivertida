@@ -26,8 +26,17 @@ import styles from './drawers.module.scss';
 // Styles
 
 type GameInfoDrawerProps = {
+  /**
+   * The game players object
+   */
   players: GamePlayers;
+  /**
+   * The current game state
+   */
   state: GameState;
+  /**
+   * The current user's ID
+   */
   userId: string;
 };
 

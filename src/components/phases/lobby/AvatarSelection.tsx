@@ -16,9 +16,21 @@ import avatars from 'assets/images/avatars.svg?url';
 // Sass
 import styles from '../PhaseLobby.module.scss';
 type AvatarSelectionProps = {
+  /**
+   * The game players object
+   */
   players: GamePlayers;
+  /**
+   * The currently selected avatar ID
+   */
   selectedAvatar: string;
+  /**
+   * Callback function to update the selected avatar
+   */
   setSelectedAvatar: GenericFunction;
+  /**
+   * The current user's ID
+   */
   userId: PlayerId;
 };
 

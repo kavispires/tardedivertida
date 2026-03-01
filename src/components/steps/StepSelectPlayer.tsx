@@ -18,9 +18,21 @@ import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, StepTitle, type RuleInstructionProps } from 'components/text';
 
 type StepSelectPlayerProps = {
+  /**
+   * The game players object
+   */
   players: GamePlayers;
+  /**
+   * Callback function when a player is selected and submitted
+   */
   onSubmitPlayer: (playerId: PlayerId) => void;
+  /**
+   * Props to pass to the StepTitle component
+   */
   titleProps: ComponentProps<typeof StepTitle>;
+  /**
+   * Props to pass to the RuleInstruction component
+   */
   ruleInstructionProps: RuleInstructionProps;
 } & Pick<StepProps, 'announcement'>;
 

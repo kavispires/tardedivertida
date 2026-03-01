@@ -6,7 +6,13 @@ import { Translate } from 'components/language';
 import { PageLayout } from 'components/layout/PageLayout';
 
 type PageErrorProps = {
+  /**
+   * The error message to display
+   */
   message?: string;
+  /**
+   * Additional description or details about the error
+   */
   description?: string;
 };
 

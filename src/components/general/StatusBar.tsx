@@ -11,7 +11,13 @@ export type StatusEntry = {
 };
 
 type StatusBarProps = {
+  /**
+   * Array of status entries to display
+   */
   entries: StatusEntry[];
+  /**
+   * Optional title for the status bar
+   */
   title?: ReactNode;
 };
 

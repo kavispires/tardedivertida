@@ -3,6 +3,9 @@ import clsx from 'clsx';
 // import './DivButton.scss';
 
 type DivButtonProps = {
+  /**
+   * Optional custom class name
+   */
   className?: string;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 

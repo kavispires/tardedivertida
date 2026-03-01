@@ -13,7 +13,13 @@ import { PlayerAvatar } from 'components/player';
 import styles from '../PhaseLobby.module.scss';
 
 type JoinedPlayersProps = {
+  /**
+   * The game players object
+   */
   players: GamePlayers;
+  /**
+   * The orientation of the player list
+   */
   orientation: 'horizontal' | 'vertical';
 };
 

@@ -11,6 +11,9 @@ import { AudioIcon } from 'icons/AudioIcon';
 import { IconAvatar } from 'components/avatars';
 
 type SpeakButtonProps = {
+  /**
+   * The text to be spoken in both languages
+   */
   text: DualLanguageValue;
 } & ButtonProps;
 

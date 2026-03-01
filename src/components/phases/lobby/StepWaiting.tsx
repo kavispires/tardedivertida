@@ -30,6 +30,9 @@ const Title = motion.create(Typography.Title);
 const Paragraph = motion.create(Typography.Paragraph);
 
 type StepWaitingProps = {
+  /**
+   * The game players object
+   */
   players: GamePlayers;
 };
 

@@ -1,9 +1,14 @@
+import type { ReactNode } from 'react';
+
 type ViewSwitchProps = {
+  /**
+   * Array of boolean conditions to determine which child to render
+   */
   cases: boolean[];
   /**
    * The content of the component
    */
-  children: any;
+  children: ReactNode[];
 };
 
 export function ViewSwitch({ cases, children }: ViewSwitchProps) {
@@ -30,6 +35,7 @@ export function ViewSwitch({ cases, children }: ViewSwitchProps) {
   if (cases[4] && children[4]) {
     return children[4];
   }
-  console.warn('Rendering all children in the ViewSwitch');
+  // biome-ignore lint/suspicious/noConsole: on purpose for debugging
+  console.error('Rendering all children in the ViewSwitch');
   return children;
 }

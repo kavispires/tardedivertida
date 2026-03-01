@@ -5,10 +5,25 @@ import type { MovieCard as MovieCardType } from 'types/tdr';
 import styles from './MovieCard.module.scss';
 
 type MovieCardProps = {
+  /**
+   * The movie card data object
+   */
   movie: MovieCardType;
+  /**
+   * Whether to disable the suffix portion of the card
+   */
   disableSuffix?: boolean;
+  /**
+   * Custom color for the suffix
+   */
   suffixColor?: string;
+  /**
+   * Whether to disable the prefix portion of the card
+   */
   disablePrefix?: boolean;
+  /**
+   * Custom color for the prefix
+   */
   prefixColor?: string;
 };
 

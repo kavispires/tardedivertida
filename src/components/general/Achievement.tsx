@@ -12,7 +12,13 @@ import { Medal } from './Medal';
 import styles from './Achievement.module.scss';
 
 type AchievementProps = {
+  /**
+   * The achievement information object
+   */
   achievement: AchievementInfo;
+  /**
+   * The achievement value (number of times achieved)
+   */
   value?: number;
 };
 

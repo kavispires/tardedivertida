@@ -10,7 +10,13 @@ import styles from './loaders.module.scss';
 // Styles
 
 type LoadingProps = {
+  /**
+   * Optional loading message to display
+   */
   message?: string;
+  /**
+   * Whether to add margin around the loading component
+   */
   margin?: boolean;
 };
 export function Loading({ message, margin = false }: LoadingProps) {
