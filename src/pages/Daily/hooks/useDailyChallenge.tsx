@@ -7,10 +7,10 @@ import { useLanguage } from 'hooks/useLanguage';
 import { DAILY_API, DAILY_API_ACTIONS } from 'services/adapters';
 import { logAnalyticsEvent } from 'services/firebase';
 // Utils
-import { print } from 'utils/helpers';
+import { getToday, print } from 'utils/helpers';
 // Internal
 import type { DailyResponse } from '../utils/types';
-import { getSourceName, getToday } from '../utils';
+import { getSourceName } from '../utils';
 
 export type DailyContextType = Pick<
   UseQueryResult<DailyResponse, Error>,

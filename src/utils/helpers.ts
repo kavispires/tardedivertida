@@ -1,5 +1,6 @@
-import { USE_MOCKS } from 'dev-configs';
+import { USE_FIRESTORE_EMULATOR, USE_MOCKS } from 'dev-configs';
 import { camelCase, orderBy, startCase } from 'lodash';
+import moment from 'moment';
 // Types
 import type { GameInfo } from 'types/game-info';
 import type { GamePlayers, GamePlayer } from 'types/player';
@@ -81,6 +82,16 @@ export const inNTime = (time: number): Date => {
 export const isDevEnv: boolean = import.meta.env.MODE === 'development';
 // export const isDevEnv = false;
 export const isDevMocking = isDevEnv && USE_MOCKS;
+
+/**
+ * Returns the current date in the format 'YYYY-MM-DD'.
+ *
+ * @returns The current date in 'YYYY-MM-DD' format.
+ */
+export function getToday(): string {
+  if (isDevEnv && USE_FIRESTORE_EMULATOR) return '2023-10-31';
+  return moment().format('YYYY-MM-DD');
+}
 
 const methods = {
   // biome-ignore lint/suspicious/noConsole: on purpose

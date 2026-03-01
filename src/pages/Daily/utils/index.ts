@@ -1,20 +1,9 @@
-import { USE_FIRESTORE_EMULATOR } from 'dev-configs';
 import moment from 'moment';
 // Utils
-import { isDevEnv } from 'utils/helpers';
+import { getToday } from 'utils/helpers';
 // Internal
 import type { BasicResultsOptions, WithRequiredId } from './types';
 import { getSettings } from './settings';
-
-/**
- * Returns the current date in the format 'YYYY-MM-DD'.
- *
- * @returns The current date in 'YYYY-MM-DD' format.
- */
-export function getToday(): string {
-  if (isDevEnv && USE_FIRESTORE_EMULATOR) return '2023-10-31';
-  return moment().format('YYYY-MM-DD');
-}
 
 /**
  * Checks if a given date is a Saturday or Sunday.

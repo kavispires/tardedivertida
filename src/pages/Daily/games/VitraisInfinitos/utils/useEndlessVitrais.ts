@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { random, shuffle } from 'lodash';
-// Pages
-import { getToday } from 'pages/Daily/utils';
+// Utils
+import { getToday } from 'utils/helpers';
 
 export const PIECES_OPTIONS = [6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 40];
 const PIECES_INDEX_STORAGE_KEY = 'TD_DAILY_endless-vitrais-pieces-index';
