@@ -42,13 +42,23 @@ export function LobbyRules({ players }: LobbyRulesProps) {
       >
         <Typography.Title
           level={4}
-          style={{ marginTop: 0 }}
+          style={{ marginTop: 0, marginBottom: 0 }}
         >
           <Translate
             pt="Revise as regras"
             en="Review the rules"
           />
         </Typography.Title>
+        <Typography.Text
+          italic
+          type="secondary"
+        >
+          <Translate
+            pt="Inspirado em"
+            en="Inspired by"
+          />{' '}
+          {info.inspiredBy.split('').reverse().join('')}
+        </Typography.Text>
         <GameTags
           wrap
           size={[1, 10]}
