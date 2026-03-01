@@ -11,7 +11,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { WaitingRoom } from 'components/players';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitValidationsAPIRequest, useOnValidateSuggestionAPIRequest } from './utils/api-requests';
 import { UE_SO_ISSO_PHASES } from './utils/constants';
@@ -62,7 +62,7 @@ export function PhaseCompare({ state, players }: PhaseProps) {
         players={players}
       >
         {/* Step 0 */}
-        <ViewOr condition={isUserTheGuesser}>
+        <ViewIf condition={isUserTheGuesser}>
           <GuesserWaitingRoom
             players={players}
             instructionSuffix={{
@@ -73,7 +73,8 @@ export function PhaseCompare({ state, players }: PhaseProps) {
             guesser={guesser}
             turnOrder={state.gameOrder}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isUserTheGuesser}>
           <StepCompareSuggestions
             controller={controller}
             isUserTheController={isUserTheController}
@@ -84,7 +85,7 @@ export function PhaseCompare({ state, players }: PhaseProps) {
             onUpdateSuggestions={onUpdateSuggestions}
             announcement={announcement}
           />
-        </ViewOr>
+        </ViewIf>
 
         {/* Step 1 */}
         <WaitingRoom

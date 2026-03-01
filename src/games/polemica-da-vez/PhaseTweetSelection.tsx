@@ -13,7 +13,7 @@ import { TurnOrder, WaitingRoom } from 'components/players';
 import { RoundAnnouncement } from 'components/round';
 import { Step, StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitTweetAPIRequest } from './utils/api-requests';
 import { mockTweetSelection } from './utils/mock';
@@ -86,7 +86,7 @@ export function PhaseTweetSelection({ state, players, meta }: PhaseProps) {
         </RoundAnnouncement>
 
         {/* Step 1 */}
-        <ViewOr condition={isUserTheActivePlayer}>
+        <ViewIf condition={isUserTheActivePlayer}>
           <StepTweetSelection
             currentTweets={state.currentTweets}
             currentCustomTweet={state.currentCustomTweet}
@@ -95,7 +95,8 @@ export function PhaseTweetSelection({ state, players, meta }: PhaseProps) {
             round={state.round}
             isFixedRounds={isFixedRounds}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isUserTheActivePlayer}>
           <Step
             fullWidth
             announcement={announcement}
@@ -126,7 +127,7 @@ export function PhaseTweetSelection({ state, players, meta }: PhaseProps) {
               players={players}
             />
           </Step>
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

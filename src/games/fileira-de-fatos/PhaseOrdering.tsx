@@ -12,7 +12,7 @@ import { PlayerAvatarName } from 'components/player';
 import { TurnOrder } from 'components/players';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitOrderingAPIRequest } from './utils/api-requests';
 import { FILEIRA_DE_FATOS_PHASES } from './utils/constants';
@@ -82,14 +82,15 @@ export function PhaseOrdering({ state, players }: PhaseProps) {
         players={players}
       >
         {/* Step 0 */}
-        <ViewOr condition={isTheActivePlayer}>
+        <ViewIf condition={isTheActivePlayer}>
           <StepJudgeScenarios
             scenarios={state.scenarios}
             roundType={state.roundType}
             onSubmitOrder={onSubmitOrder}
             announcement={announcement}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isTheActivePlayer}>
           <StepOrderScenarios
             activePlayer={activePlayer}
             scenarios={state.scenarios}
@@ -97,7 +98,7 @@ export function PhaseOrdering({ state, players }: PhaseProps) {
             onSubmitOrder={onSubmitOrder}
             announcement={announcement}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

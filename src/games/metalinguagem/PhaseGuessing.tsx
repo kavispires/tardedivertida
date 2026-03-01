@@ -10,7 +10,7 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import type { PhaseGuessingState } from './utils/types';
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
@@ -64,7 +64,7 @@ export function PhaseGuessing({ state, players, user }: PhaseProps<PhaseGuessing
         }}
       >
         {/* Step 0 */}
-        <ViewOr condition={isTheCreator}>
+        <ViewIf condition={isTheCreator}>
           <StepWaitGuessing
             players={players}
             creator={creator}
@@ -76,7 +76,8 @@ export function PhaseGuessing({ state, players, user }: PhaseProps<PhaseGuessing
             beginsWith={state.beginsWith}
             endsWith={state.endsWith}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isTheCreator}>
           <StepGuessItems
             announcement={announcement}
             items={state.items}
@@ -88,7 +89,7 @@ export function PhaseGuessing({ state, players, user }: PhaseProps<PhaseGuessing
             beginsWith={state.beginsWith}
             endsWith={state.endsWith}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

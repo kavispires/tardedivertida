@@ -9,7 +9,7 @@ import { GuessIcon } from 'icons/GuessIcon';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSendGuessAPIRequest, useOnSubmitOutcomeAPIRequest } from './utils/api-requests';
 import { UE_SO_ISSO_PHASES } from './utils/constants';
@@ -52,7 +52,7 @@ export function PhaseGuess({ state, players, meta }: PhaseProps) {
         players={players}
       >
         {/* Step 0 */}
-        <ViewOr condition={isUserTheGuesser}>
+        <ViewIf condition={isUserTheGuesser}>
           <StepGuessing
             guesser={guesser}
             secretWord={state.secretWord}
@@ -63,7 +63,8 @@ export function PhaseGuess({ state, players, meta }: PhaseProps) {
             timerEnabled={Boolean(meta.options?.withTimer)}
             hintsEnabled={Boolean(meta.options?.withHints)}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isUserTheGuesser}>
           <StepWaitingForGuess
             guesser={guesser}
             validSuggestions={state.validSuggestions}
@@ -72,7 +73,7 @@ export function PhaseGuess({ state, players, meta }: PhaseProps) {
             timerEnabled={Boolean(meta.options?.withTimer)}
             hintsEnabled={Boolean(meta.options?.withHints)}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

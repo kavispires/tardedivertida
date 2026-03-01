@@ -11,7 +11,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { PlayerAvatarName } from 'components/player';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitPromptAPIRequest, useOnSubmitTargetAPIRequest } from './utils/api-requests';
 import { TA_NA_CARA_PHASES } from './utils/constants';
@@ -72,7 +72,7 @@ export function PhasePrompt({ state, players, user }: PhaseProps) {
         players={players}
       >
         {/* Step 0 */}
-        <ViewOr condition={isUserTheActivePlayer}>
+        <ViewIf condition={isUserTheActivePlayer}>
           <StepSelectPrompt
             announcement={announcement}
             players={players}
@@ -85,7 +85,8 @@ export function PhasePrompt({ state, players, user }: PhaseProps) {
             onSubmitTarget={onSubmitTarget}
             activePlayerId={state.activePlayerId}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isUserTheActivePlayer}>
           <StepWaitingForPrompt
             announcement={announcement}
             players={players}
@@ -97,7 +98,7 @@ export function PhasePrompt({ state, players, user }: PhaseProps) {
             activePlayer={activePlayer}
             activePlayerId={state.activePlayerId}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -14,7 +14,7 @@ import { TurnOrder } from 'components/players';
 import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitStoryAPIRequest } from './utils/api-requests';
 import { CONTADORES_HISTORIAS_PHASES } from './utils/constants';
@@ -91,12 +91,14 @@ export function PhaseStory({ state, players, user }: PhaseProps) {
         />
 
         {/* Step 1 */}
-        <ViewOr condition={isUserTheStoryTeller}>
+        <ViewIf condition={isUserTheStoryTeller}>
           <StoryWriting
             user={user}
             onSubmitStory={onSubmitStory}
             announcement={announcement}
           />
+        </ViewIf>
+        <ViewIf condition={!isUserTheStoryTeller}>
           <StoryWaiting
             user={user}
             storyteller={storyteller}
@@ -104,7 +106,7 @@ export function PhaseStory({ state, players, user }: PhaseProps) {
             gameOrder={state.gameOrder}
             announcement={announcement}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

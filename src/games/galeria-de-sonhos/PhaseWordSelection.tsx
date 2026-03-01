@@ -13,7 +13,7 @@ import { WaitingRoom } from 'components/players';
 import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitWordAPIRequest } from './utils/api-requests';
 import { GALERIA_DE_SONHOS_PHASES } from './utils/constants';
@@ -69,12 +69,13 @@ export function PhaseWordSelection({ state, players }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 2 */}
-        <ViewOr condition={isUserTheScout}>
+        <ViewIf condition={isUserTheScout}>
           <StepWordSelection
             onSubmitWord={onSubmitWord}
             words={state.words}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isUserTheScout}>
           <WaitingRoom
             players={players}
             title={
@@ -100,7 +101,7 @@ export function PhaseWordSelection({ state, players }: PhaseProps) {
           >
             <GeneralRules />
           </WaitingRoom>
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

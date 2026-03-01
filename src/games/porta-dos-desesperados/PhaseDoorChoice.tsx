@@ -11,7 +11,7 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { shouldAnnounceTrap } from './utils/helpers';
 import { useOnMakeReady, useOnSubmitDoorAPIRequest } from './utils/api-requests';
@@ -76,7 +76,7 @@ export function PhaseDoorChoice({ state, players, meta, user }: PhaseProps<Phase
         />
 
         {/* Step 3 */}
-        <ViewOr condition={isPossessed}>
+        <ViewIf condition={isPossessed}>
           <StepWaitDoorSelection
             doors={state.doors}
             pages={state.selectedPagesIds}
@@ -88,7 +88,8 @@ export function PhaseDoorChoice({ state, players, meta, user }: PhaseProps<Phase
             answerDoorId={state.answerDoorId}
             botEnabled={Boolean(meta?.options?.withBots)}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isPossessed}>
           <StepSelectDoor
             doors={state.doors}
             pages={state.selectedPagesIds}
@@ -104,7 +105,7 @@ export function PhaseDoorChoice({ state, players, meta, user }: PhaseProps<Phase
             answerDoorId={state.answerDoorId}
             botEnabled={Boolean(meta?.options?.withBots)}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

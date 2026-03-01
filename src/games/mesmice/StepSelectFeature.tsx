@@ -19,7 +19,7 @@ import { Translate } from 'components/language';
 import { PlayerAvatarName } from 'components/player';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { mockFeatureSelection } from './utils/mock';
 import type {
@@ -86,7 +86,7 @@ export function StepSelectFeature({
         playerScore={user.score}
       />
 
-      <ViewOr condition={isUserTheActivePlayer}>
+      <ViewIf condition={isUserTheActivePlayer}>
         <RuleInstruction type="wait">
           <Translate
             pt={
@@ -135,7 +135,31 @@ export function StepSelectFeature({
             }
           />
         </RuleInstruction>
-      </ViewOr>
+      </ViewIf>
+
+      <ViewIf condition={!isUserTheActivePlayer}>
+        <RuleInstruction type="action">
+          <Translate
+            pt={
+              <>
+                Qual característica menos combina os dois objetos?
+                <br />
+                Discuta com os outros jogadores para chegar a um consenso, mas a decisão final é sua.
+                <br />A característica mais votada será eliminada.
+              </>
+            }
+            en={
+              <>
+                Which feature least connects the two objects?
+                <br />
+                Discuss with the other players to reach a consensus, but the final decision is yours.
+                <br />
+                The most voted feature will be eliminated.
+              </>
+            }
+          />
+        </RuleInstruction>
+      </ViewIf>
 
       <div className="game-container">
         <div className="selections-container">

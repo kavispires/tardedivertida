@@ -12,7 +12,7 @@ import { PlayerAvatarName } from 'components/player';
 import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import type { PhaseMetricsBuildingState } from './utils/types';
 import { MEDIDAS_NAO_EXATAS_PHASES } from './utils/constants';
@@ -73,7 +73,7 @@ export function PhaseMetricsBuilding({ state, players }: PhaseProps<PhaseMetrics
         />
 
         {/* Step 0 */}
-        <ViewOr condition={isThePresenter}>
+        <ViewIf condition={isThePresenter}>
           <StepBuildMetrics
             announcement={announcement}
             wordsDict={state.wordsDict}
@@ -85,7 +85,8 @@ export function PhaseMetricsBuilding({ state, players }: PhaseProps<PhaseMetrics
             onSubmitMetrics={onSubmitMetrics}
             onSubmitPool={onSubmitPool}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isThePresenter}>
           <StepWaitForPresenter
             announcement={announcement}
             players={players}
@@ -94,7 +95,7 @@ export function PhaseMetricsBuilding({ state, players }: PhaseProps<PhaseMetrics
             wordsDict={state.wordsDict}
             poolIds={state.poolIds}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -11,7 +11,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { PlayerAvatarName } from 'components/player';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 import { TA_NA_CARA_PHASES } from './utils/constants';
@@ -70,7 +70,7 @@ export function PhaseGuessing({ state, players, user }: PhaseProps) {
         players={players}
       >
         {/* Step 0 */}
-        <ViewOr condition={!isUserTheTargetedPlayer}>
+        <ViewIf condition={!isUserTheTargetedPlayer}>
           <StepGuessPlayer
             announcement={announcement}
             players={players}
@@ -84,7 +84,8 @@ export function PhaseGuessing({ state, players, user }: PhaseProps) {
             targetedPlayer={targetedPlayer}
             points={state.points ?? 1}
           />
-
+        </ViewIf>
+        <ViewIf condition={isUserTheTargetedPlayer}>
           <StepWaitingForGuesses
             announcement={announcement}
             players={players}
@@ -95,7 +96,7 @@ export function PhaseGuessing({ state, players, user }: PhaseProps) {
             questionsDict={state.questionsDict}
             activePlayerId={state.activePlayerId}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

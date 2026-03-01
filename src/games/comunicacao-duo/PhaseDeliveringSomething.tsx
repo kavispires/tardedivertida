@@ -11,7 +11,7 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction, TextHighlight } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnStopDeliveryAPIRequest, useOnSubmitDeliveryAPIRequest } from './utils/api-requests';
 import { COMUNICACAO_DUO_PHASES } from './utils/constants';
@@ -48,11 +48,12 @@ export function PhaseDeliveringSomething({ players, state, user }: PhaseProps) {
       duration={3}
     >
       <Instruction>
-        <ViewOr condition={state.clueInputType === 'alien-keyboard'}>
+        <ViewIf condition={state.clueInputType === 'alien-keyboard'}>
           <AlienText value={state.clue ?? ''} />
-
+        </ViewIf>
+        <ViewIf condition={state.clueInputType !== 'alien-keyboard'}>
           <TextHighlight style={{ fontSize: '1.5rem' }}>{state.clue}</TextHighlight>
-        </ViewOr>
+        </ViewIf>
       </Instruction>
     </PhaseAnnouncement>
   );

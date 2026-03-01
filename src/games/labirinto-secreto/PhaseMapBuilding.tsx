@@ -9,7 +9,7 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import type { MapSegment, PhaseMapBuildingState } from './utils/types';
 import { useOnSubmitMapAPIRequest } from './utils/api-requests';
@@ -72,13 +72,14 @@ export function PhaseMapBuilding({ state, players, user }: PhaseProps<PhaseMapBu
         }}
       >
         {/* Step 0 */}
-        <ViewOr condition={isUserMapComplete}>
+        <ViewIf condition={isUserMapComplete}>
           <StepBuildWait
             user={user}
             announcement={announcement}
             forest={state.forest}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isUserMapComplete}>
           <StepBuildMap
             players={players}
             user={user}
@@ -87,7 +88,7 @@ export function PhaseMapBuilding({ state, players, user }: PhaseProps<PhaseMapBu
             currentRound={state.round.current}
             onSubmitMap={onSubmitMap}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -13,7 +13,7 @@ import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle, TextHighlight } from 'components/text';
-import { ViewIf, ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import type { DeckEntry, HistoryEntry, SubmitDeliveryPayload, Summary } from './utils/types';
 import { Board } from './components/Board';
@@ -155,13 +155,15 @@ export function StepDeliver({
         className="mb-4"
       >
         <div className="cd-clue-quantity">{clueQuantity}</div>
-        <ViewOr condition={clueInputType === 'alien-keyboard'}>
+        <ViewIf condition={clueInputType === 'alien-keyboard'}>
           <AlienText
             value={clue}
             withTranslation
           />
+        </ViewIf>
+        <ViewIf condition={clueInputType !== 'alien-keyboard'}>
           <TextHighlight style={{ fontSize: '1.5rem', background: 'white' }}>{clue}</TextHighlight>
-        </ViewOr>
+        </ViewIf>
       </Flex>
 
       <Flex

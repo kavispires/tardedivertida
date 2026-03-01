@@ -7,7 +7,7 @@ import type { Item } from 'types/tdr';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 
 type MyThingsProps = {
   hand: string[];
@@ -49,7 +49,7 @@ export function MyThings({ hand = [], items, total }: MyThingsProps) {
         en="These are your items that you will be able to place when it's your turn."
       />
 
-      <ViewOr condition={hand.length > 0}>
+      <ViewIf condition={hand.length > 0}>
         <Flex
           gap={8}
           justify="center"
@@ -63,14 +63,15 @@ export function MyThings({ hand = [], items, total }: MyThingsProps) {
             />
           ))}
         </Flex>
-
+      </ViewIf>
+      <ViewIf condition={hand.length === 0}>
         <p>
           <Translate
             en="You don't have any items yet"
             pt="Você ainda não tem itens."
           />
         </p>
-      </ViewOr>
+      </ViewIf>
     </TitledContainer>
   );
 }
