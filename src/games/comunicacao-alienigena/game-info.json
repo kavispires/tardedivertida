@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "comunicacao-alienigena",
-  "version": "5.0.27",
+  "version": "5.0.28",
   "release": "stable",
   "releaseDate": "2023-02-12",
   "available": true,
@@ -48,7 +48,10 @@
     ]
   },
   "playerCount": {
-    "recommended": [2, 3],
+    "recommended": [
+      2,
+      3
+    ],
     "min": 1,
     "max": 4,
     "best": 3
@@ -57,7 +60,17 @@
     "base": 20,
     "perPlayer": 7
   },
-  "tags": ["cooperative", "turn-based", "drawing", "guessing", "brain-burner", "bots", "achievements"],
+  "mechanics": [
+    "cooperative",
+    "turn-based",
+    "drawing",
+    "guessing",
+    "brain-burner"
+  ],
+  "features": [
+    "bots",
+    "achievements"
+  ],
   "options": [
     {
       "key": "nsfw",

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "linhas-cruzadas",
-  "version": "1.2.79",
+  "version": "1.2.80",
   "release": "stable",
   "releaseDate": "2022-02-13",
   "available": true,
@@ -36,7 +36,13 @@
     ]
   },
   "playerCount": {
-    "recommended": [6, 7, 8, 9, 10],
+    "recommended": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
     "min": 4,
     "max": 10,
     "best": 7
@@ -45,7 +51,16 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["cooperative", "drawing", "guessing", "writing", "achievements", "mobile-friendly"],
+  "mechanics": [
+    "cooperative",
+    "drawing",
+    "guessing",
+    "writing"
+  ],
+  "features": [
+    "achievements",
+    "mobile-friendly"
+  ],
   "options": [
     {
       "key": "singleWordOnly",

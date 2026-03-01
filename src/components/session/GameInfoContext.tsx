@@ -35,7 +35,8 @@ const PLACEHOLDER_GAME_INFO: GameInfo = {
     min: 0,
     max: 0,
   },
-  tags: [''],
+  mechanics: [''],
+  features: [''],
 };
 
 export const GameInfoContext = createContext<GameInfo>(PLACEHOLDER_GAME_INFO);

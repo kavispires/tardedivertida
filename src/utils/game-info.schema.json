@@ -92,7 +92,7 @@
       },
       "required": ["base", "perPlayer"]
     },
-    "tags": {
+    "mechanics": {
       "type": "array",
       "items": {
         "type": "string",
@@ -113,11 +113,15 @@
           "timed",
           "images",
           "betting",
-          "traitor",
-          "achievements",
-          "bots",
-          "mobile-friendly"
+          "traitor"
         ]
+      }
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["achievements", "audience", "bots", "mobile-friendly", "player-drop", "sound-effects"]
       }
     },
     "options": {
@@ -165,8 +169,9 @@
     "summary",
     "rules",
     "playerCount",
-    "tags",
+    "mechanics",
     "appearance",
-    "duration"
+    "duration",
+    "features"
   ]
 }

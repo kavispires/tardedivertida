@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "X",
   "gameName": "cruza-palavras",
-  "version": "7.0.12",
+  "version": "7.0.13",
   "release": "stable",
   "releaseDate": "2021-12-20",
   "available": true,
@@ -47,7 +47,11 @@
   },
   "playerCount": {
     "best": 4,
-    "recommended": [4, 5, 6],
+    "recommended": [
+      4,
+      5,
+      6
+    ],
     "min": 3,
     "max": 8
   },
@@ -55,7 +59,16 @@
     "base": 10,
     "perPlayer": 5
   },
-  "tags": ["competitive", "same-time", "writing", "pairing", "brain-burner", "achievements"],
+  "mechanics": [
+    "competitive",
+    "same-time",
+    "writing",
+    "pairing",
+    "brain-burner"
+  ],
+  "features": [
+    "achievements"
+  ],
   "options": [
     {
       "key": "gridType",

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "H",
   "gameName": "crimes-hediondos",
-  "version": "3.0.17",
+  "version": "3.0.18",
   "release": "stable",
   "releaseDate": "2021-12-30",
   "available": true,
@@ -44,7 +44,11 @@
   },
   "playerCount": {
     "best": 4,
-    "recommended": [3, 4, 5],
+    "recommended": [
+      3,
+      4,
+      5
+    ],
     "min": 2,
     "max": 10
   },
@@ -52,7 +56,15 @@
     "base": 15,
     "perPlayer": 6
   },
-  "tags": ["competitive", "same-time", "pairing", "bots", "achievements"],
+  "mechanics": [
+    "competitive",
+    "same-time",
+    "pairing"
+  ],
+  "features": [
+    "bots",
+    "achievements"
+  ],
   "options": [
     {
       "key": "withBots",

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "M",
   "gameName": "medidas-nao-exatas",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "release": "stable",
   "releaseDate": "2025-07-06",
   "available": true,
@@ -45,7 +45,11 @@
     ]
   },
   "playerCount": {
-    "recommended": [4, 5, 6],
+    "recommended": [
+      4,
+      5,
+      6
+    ],
     "min": 2,
     "max": 10,
     "best": 5
@@ -54,5 +58,13 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive", "guessing", "timed", "achievements", "turn-based"]
+  "mechanics": [
+    "competitive",
+    "guessing",
+    "timed",
+    "turn-based"
+  ],
+  "features": [
+    "achievements"
+  ]
 }

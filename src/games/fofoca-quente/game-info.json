@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "F",
   "gameName": "fofoca-quente",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "release": "dev",
   "releaseDate": "0000-00-00",
   "available": true,
@@ -27,11 +27,17 @@
     "videoBackground": true
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "TBD"
+    ],
+    "en": [
+      "TBD"
+    ]
   },
   "playerCount": {
-    "recommended": [2],
+    "recommended": [
+      2
+    ],
     "best": 2,
     "min": 2,
     "max": 2
@@ -40,7 +46,10 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive"],
+  "mechanics": [
+    "competitive"
+  ],
+  "features": [],
   "options": [
     {
       "key": "beginnerGame",

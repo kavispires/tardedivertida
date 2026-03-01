@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "W",
   "gameName": "super-campeonato",
-  "version": "2.3.69",
+  "version": "2.3.70",
   "release": "stable",
   "releaseDate": "2022-02-06",
   "available": true,
@@ -46,7 +46,13 @@
   },
   "playerCount": {
     "best": 8,
-    "recommended": [4, 5, 6, 7, 8],
+    "recommended": [
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
     "min": 3,
     "max": 30
   },
@@ -54,7 +60,15 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive", "betting", "discussion", "voting", "achievements"],
+  "mechanics": [
+    "competitive",
+    "betting",
+    "discussion",
+    "voting"
+  ],
+  "features": [
+    "achievements"
+  ],
   "options": [
     {
       "key": "nsfw",
@@ -78,23 +92,74 @@
       "label": "Contender Decks",
       "description": "Base deck is always included. Recommended to choose 3+",
       "values": [
-        { "value": "anime", "label": "Anime" },
-        { "value": "art", "label": "Art" },
-        { "value": "cartoon", "label": "Cartoon" },
-        { "value": "comics", "label": "Comics" },
-        { "value": "games", "label": "Games" },
-        { "value": "history", "label": "History" },
-        { "value": "internet", "label": "Internet" },
-        { "value": "literature", "label": "Literature" },
-        { "value": "movies", "label": "Movies" },
-        { "value": "music", "label": "Music" },
-        { "value": "mythology", "label": "Mythology" },
-        { "value": "pop-culture", "label": "Pop Culture" },
-        { "value": "random", "label": "Random" },
-        { "value": "sports", "label": "Sports" },
-        { "value": "television", "label": "Television" },
-        { "value": "special-td", "label": "Special TD" },
-        { "value": "special-td-bg", "label": "Special TD BG" }
+        {
+          "value": "anime",
+          "label": "Anime"
+        },
+        {
+          "value": "art",
+          "label": "Art"
+        },
+        {
+          "value": "cartoon",
+          "label": "Cartoon"
+        },
+        {
+          "value": "comics",
+          "label": "Comics"
+        },
+        {
+          "value": "games",
+          "label": "Games"
+        },
+        {
+          "value": "history",
+          "label": "History"
+        },
+        {
+          "value": "internet",
+          "label": "Internet"
+        },
+        {
+          "value": "literature",
+          "label": "Literature"
+        },
+        {
+          "value": "movies",
+          "label": "Movies"
+        },
+        {
+          "value": "music",
+          "label": "Music"
+        },
+        {
+          "value": "mythology",
+          "label": "Mythology"
+        },
+        {
+          "value": "pop-culture",
+          "label": "Pop Culture"
+        },
+        {
+          "value": "random",
+          "label": "Random"
+        },
+        {
+          "value": "sports",
+          "label": "Sports"
+        },
+        {
+          "value": "television",
+          "label": "Television"
+        },
+        {
+          "value": "special-td",
+          "label": "Special TD"
+        },
+        {
+          "value": "special-td-bg",
+          "label": "Special TD BG"
+        }
       ]
     }
   ]

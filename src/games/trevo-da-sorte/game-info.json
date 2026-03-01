@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Y",
   "gameName": "trevo-da-sorte",
-  "version": "0.0.35",
+  "version": "0.0.36",
   "release": "paused",
   "releaseDate": "0000-00-00",
   "available": false,
@@ -45,7 +45,11 @@
     ]
   },
   "playerCount": {
-    "recommended": [5, 6, 7],
+    "recommended": [
+      5,
+      6,
+      7
+    ],
     "min": 2,
     "max": 10,
     "best": 0
@@ -54,8 +58,14 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["cooperative", "guessing", "writing", "brain-burner"],
+  "mechanics": [
+    "cooperative",
+    "guessing",
+    "writing",
+    "brain-burner"
+  ],
   "cooperative": true,
+  "features": [],
   "options": [
     {
       "key": "hardGame",

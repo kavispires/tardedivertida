@@ -34,7 +34,8 @@ export type GameInfo = {
     base: number;
     perPlayer: number;
   };
-  tags: string[];
+  mechanics: string[];
+  features: string[];
   options?: GameInfoOption[];
 };
 

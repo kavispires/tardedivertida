@@ -129,7 +129,7 @@ export function StepInfo({ players, setStep }: StepInfoProps) {
           value={name || randomName}
         />
 
-        <Settings hasImages={info.tags.includes('images')} />
+        <Settings hasImages={info.mechanics.includes('images')} />
 
         <Button
           block
