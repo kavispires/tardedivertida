@@ -1,125 +1,204 @@
-import ADEDANHX from 'games/adedanhx/game-info.json';
-import ARTE_RUIM from 'games/arte-ruim/game-info.json';
-import BARRADOS_NA_ALFANDEGA from 'games/barrados-na-alfandega/game-info.json';
-import BOMBA_RELOGIO from 'games/bomba-relogio/game-info.json';
-import CINEGRAFISTAS_AMADORES from 'games/cinegrafistas-amadores/game-info.json';
-import COLEGAS_DE_QUARTO from 'games/colegas-de-quarto/game-info.json';
-import COMUNICACAO_ALIENIGENA from 'games/comunicacao-alienigena/game-info.json';
-import COMUNICACAO_DUO from 'games/comunicacao-duo/game-info.json';
-import CONTADORES_HISTORIAS from 'games/contadores-historias/game-info.json';
-import CONTROLE_DE_ESTOQUE from 'games/controle-de-estoque/game-info.json';
-import CRIMES_HEDIONDOS from 'games/crimes-hediondos/game-info.json';
-import CRUZA_PALAVRAS from 'games/cruza-palavras/game-info.json';
-import DETETIVES_IMAGINATIVOS from 'games/detetives-imaginativos/game-info.json';
-import DUETOS from 'games/duetos/game-info.json';
-import ESCAPE_ROOM from 'games/escape-room/game-info.json';
-import ESPIAO_ENTRE_NOS from 'games/espiao-entre-nos/game-info.json';
-import ESQUIADORES from 'games/esquiadores/game-info.json';
-import FILEIRA_DE_FATOS from 'games/fileira-de-fatos/game-info.json';
-import FOFOCA_QUENTE from 'games/fofoca-quente/game-info.json';
-import GALERIA_DE_SONHOS from 'games/galeria-de-sonhos/game-info.json';
-import IDADE_DA_PREDA from 'games/idade-da-preda/game-info.json';
-import INSTRUMENTOS_CODIFICADOS from 'games/instrumentos-codificados/game-info.json';
-import LABIRINTO_SECRETO from 'games/labirinto-secreto/game-info.json';
-import LINHAS_CRUZADAS from 'games/linhas-cruzadas/game-info.json';
-import MEDIDAS_NAO_EXATAS from 'games/medidas-nao-exatas/game-info.json';
-import MEGAMIX from 'games/megamix/game-info.json';
-import MEGAROBOS from 'games/megarobos/game-info.json';
-import MENTE_COLETIVA from 'games/mente-coletiva/game-info.json';
-import MESMICE from 'games/mesmice/game-info.json';
-import METALINGUAGEM from 'games/metalinguagem/game-info.json';
-import NA_RUA_DO_MEDO from 'games/na-rua-do-medo/game-info.json';
-import NAMORO_OU_AMIZADE from 'games/namoro-ou-amizade/game-info.json';
-import NAO_SOU_ROBO from 'games/nao-sou-robo/game-info.json';
-import NAUFRAGOS from 'games/naufragos/game-info.json';
-import ONDA_TELEPATICA from 'games/onda-telepatica/game-info.json';
-import PALHETA_DE_CORES from 'games/palheta-de-cores/game-info.json';
-import PIQUE_PEGA from 'games/pique-pega/game-info.json';
-import PLANEJAMENTO_URBANO from 'games/planejamento-urbano/game-info.json';
-import POLEMICA_DA_VEZ from 'games/polemica-da-vez/game-info.json';
-import PORTA_DOS_DESESPERADOS from 'games/porta-dos-desesperados/game-info.json';
-import QUAL_QUESITO from 'games/qual-quesito/game-info.json';
-import QUEM_NAO_MATA from 'games/quem-nao-mata/game-info.json';
-import QUEM_SOU_EU from 'games/quem-sou-eu/game-info.json';
-import RETRATO_FALADO from 'games/retrato-falado/game-info.json';
-import SENSO_LITERARIO from 'games/senso-literario/game-info.json';
-import SINAIS_DE_ALERTA from 'games/sinais-de-alerta/game-info.json';
-import SONHINHO_BOM from 'games/sonhinho-bom/game-info.json';
-import SONHOS_PESADELOS from 'games/sonhos-pesadelos/game-info.json';
-import SUPER_CAMPEONATO from 'games/super-campeonato/game-info.json';
-import TA_NA_CARA from 'games/ta-na-cara/game-info.json';
-import TEORIA_DE_CONJUNTOS from 'games/teoria-de-conjuntos/game-info.json';
-import TESTE_DE_ELENCO from 'games/teste-de-elenco/game-info.json';
-import TESTEMUNHA_OCULAR from 'games/testemunha-ocular/game-info.json';
-import TREVO_DA_SORTE from 'games/trevo-da-sorte/game-info.json';
-import UE_SO_ISSO from 'games/ue-so-isso/game-info.json';
-import VAMOS_AO_CINEMA from 'games/vamos-ao-cinema/game-info.json';
-import VENDAVAL_DE_PALPITE from 'games/vendaval-de-palpite/game-info.json';
-import VICE_CAMPEAO from 'games/vice-campeao/game-info.json';
-import VINGATIVOS from 'games/vingativos/game-info.json';
 // Types
 import type { GameInfo } from 'types/game-info';
 
-export const GAME_LIST: Record<GameName, GameInfo> = {
-  adedanhx: ADEDANHX,
-  'arte-ruim': ARTE_RUIM,
-  'barrados-na-alfandega': BARRADOS_NA_ALFANDEGA,
-  'bomba-relogio': BOMBA_RELOGIO,
-  'cinegrafistas-amadores': CINEGRAFISTAS_AMADORES,
-  'colegas-de-quarto': COLEGAS_DE_QUARTO,
-  'comunicacao-alienigena': COMUNICACAO_ALIENIGENA,
-  'comunicacao-duo': COMUNICACAO_DUO,
-  'contadores-historias': CONTADORES_HISTORIAS,
-  'controle-de-estoque': CONTROLE_DE_ESTOQUE,
-  'crimes-hediondos': CRIMES_HEDIONDOS,
-  'cruza-palavras': CRUZA_PALAVRAS,
-  'detetives-imaginativos': DETETIVES_IMAGINATIVOS,
-  esquiadores: ESQUIADORES,
-  duetos: DUETOS,
-  'escape-room': ESCAPE_ROOM,
-  'espiao-entre-nos': ESPIAO_ENTRE_NOS,
-  'fileira-de-fatos': FILEIRA_DE_FATOS,
-  'fofoca-quente': FOFOCA_QUENTE,
-  'galeria-de-sonhos': GALERIA_DE_SONHOS,
-  'idade-da-preda': IDADE_DA_PREDA,
-  'instrumentos-codificados': INSTRUMENTOS_CODIFICADOS,
-  'labirinto-secreto': LABIRINTO_SECRETO,
-  'linhas-cruzadas': LINHAS_CRUZADAS,
-  'medidas-nao-exatas': MEDIDAS_NAO_EXATAS,
-  megamix: MEGAMIX,
-  megarobos: MEGAROBOS,
-  'mente-coletiva': MENTE_COLETIVA,
-  mesmice: MESMICE,
-  metalinguagem: METALINGUAGEM,
-  'na-rua-do-medo': NA_RUA_DO_MEDO,
-  'namoro-ou-amizade': NAMORO_OU_AMIZADE,
-  'nao-sou-robo': NAO_SOU_ROBO,
-  naufragos: NAUFRAGOS,
-  'onda-telepatica': ONDA_TELEPATICA,
-  'palheta-de-cores': PALHETA_DE_CORES,
-  'planejamento-urbano': PLANEJAMENTO_URBANO,
-  'pique-pega': PIQUE_PEGA,
-  'polemica-da-vez': POLEMICA_DA_VEZ,
-  'porta-dos-desesperados': PORTA_DOS_DESESPERADOS,
-  'qual-quesito': QUAL_QUESITO,
-  'quem-nao-mata': QUEM_NAO_MATA,
-  'quem-sou-eu': QUEM_SOU_EU,
-  'retrato-falado': RETRATO_FALADO,
-  'senso-literario': SENSO_LITERARIO,
-  'sinais-de-alerta': SINAIS_DE_ALERTA,
-  'sonhinho-bom': SONHINHO_BOM,
-  'sonhos-pesadelos': SONHOS_PESADELOS,
-  'super-campeonato': SUPER_CAMPEONATO,
-  'ta-na-cara': TA_NA_CARA,
-  'teoria-de-conjuntos': TEORIA_DE_CONJUNTOS,
-  'testemunha-ocular': TESTEMUNHA_OCULAR,
-  'teste-de-elenco': TESTE_DE_ELENCO,
-  'trevo-da-sorte': TREVO_DA_SORTE,
-  'ue-so-isso': UE_SO_ISSO,
-  'vamos-ao-cinema': VAMOS_AO_CINEMA,
-  'vendaval-de-palpite': VENDAVAL_DE_PALPITE,
-  'vice-campeao': VICE_CAMPEAO,
-  vingativos: VINGATIVOS,
+/**
+ * Lazy loads all game info JSON files
+ * Using dynamic imports to prevent loading all game-info.json files on the home page
+ */
+export const getGameList = async (): Promise<Record<GameName, GameInfo>> => {
+  const [
+    ADEDANHX,
+    ARTE_RUIM,
+    BARRADOS_NA_ALFANDEGA,
+    BOMBA_RELOGIO,
+    CINEGRAFISTAS_AMADORES,
+    COLEGAS_DE_QUARTO,
+    COMUNICACAO_ALIENIGENA,
+    COMUNICACAO_DUO,
+    CONTADORES_HISTORIAS,
+    CONTROLE_DE_ESTOQUE,
+    CRIMES_HEDIONDOS,
+    CRUZA_PALAVRAS,
+    DETETIVES_IMAGINATIVOS,
+    DUETOS,
+    ESCAPE_ROOM,
+    ESPIAO_ENTRE_NOS,
+    ESQUIADORES,
+    FILEIRA_DE_FATOS,
+    FOFOCA_QUENTE,
+    GALERIA_DE_SONHOS,
+    IDADE_DA_PREDA,
+    INSTRUMENTOS_CODIFICADOS,
+    LABIRINTO_SECRETO,
+    LINHAS_CRUZADAS,
+    MEDIDAS_NAO_EXATAS,
+    MEGAMIX,
+    MEGAROBOS,
+    MENTE_COLETIVA,
+    MESMICE,
+    METALINGUAGEM,
+    NA_RUA_DO_MEDO,
+    NAMORO_OU_AMIZADE,
+    NAO_SOU_ROBO,
+    NAUFRAGOS,
+    ONDA_TELEPATICA,
+    PALHETA_DE_CORES,
+    PIQUE_PEGA,
+    PLANEJAMENTO_URBANO,
+    POLEMICA_DA_VEZ,
+    PORTA_DOS_DESESPERADOS,
+    QUAL_QUESITO,
+    QUEM_NAO_MATA,
+    QUEM_SOU_EU,
+    RETRATO_FALADO,
+    SENSO_LITERARIO,
+    SINAIS_DE_ALERTA,
+    SONHINHO_BOM,
+    SONHOS_PESADELOS,
+    SUPER_CAMPEONATO,
+    TA_NA_CARA,
+    TEORIA_DE_CONJUNTOS,
+    TESTE_DE_ELENCO,
+    TESTEMUNHA_OCULAR,
+    TREVO_DA_SORTE,
+    UE_SO_ISSO,
+    VAMOS_AO_CINEMA,
+    VENDAVAL_DE_PALPITE,
+    VICE_CAMPEAO,
+    VINGATIVOS,
+  ] = await Promise.all([
+    import('games/adedanhx/game-info.json'),
+    import('games/arte-ruim/game-info.json'),
+    import('games/barrados-na-alfandega/game-info.json'),
+    import('games/bomba-relogio/game-info.json'),
+    import('games/cinegrafistas-amadores/game-info.json'),
+    import('games/colegas-de-quarto/game-info.json'),
+    import('games/comunicacao-alienigena/game-info.json'),
+    import('games/comunicacao-duo/game-info.json'),
+    import('games/contadores-historias/game-info.json'),
+    import('games/controle-de-estoque/game-info.json'),
+    import('games/crimes-hediondos/game-info.json'),
+    import('games/cruza-palavras/game-info.json'),
+    import('games/detetives-imaginativos/game-info.json'),
+    import('games/duetos/game-info.json'),
+    import('games/escape-room/game-info.json'),
+    import('games/espiao-entre-nos/game-info.json'),
+    import('games/esquiadores/game-info.json'),
+    import('games/fileira-de-fatos/game-info.json'),
+    import('games/fofoca-quente/game-info.json'),
+    import('games/galeria-de-sonhos/game-info.json'),
+    import('games/idade-da-preda/game-info.json'),
+    import('games/instrumentos-codificados/game-info.json'),
+    import('games/labirinto-secreto/game-info.json'),
+    import('games/linhas-cruzadas/game-info.json'),
+    import('games/medidas-nao-exatas/game-info.json'),
+    import('games/megamix/game-info.json'),
+    import('games/megarobos/game-info.json'),
+    import('games/mente-coletiva/game-info.json'),
+    import('games/mesmice/game-info.json'),
+    import('games/metalinguagem/game-info.json'),
+    import('games/na-rua-do-medo/game-info.json'),
+    import('games/namoro-ou-amizade/game-info.json'),
+    import('games/nao-sou-robo/game-info.json'),
+    import('games/naufragos/game-info.json'),
+    import('games/onda-telepatica/game-info.json'),
+    import('games/palheta-de-cores/game-info.json'),
+    import('games/pique-pega/game-info.json'),
+    import('games/planejamento-urbano/game-info.json'),
+    import('games/polemica-da-vez/game-info.json'),
+    import('games/porta-dos-desesperados/game-info.json'),
+    import('games/qual-quesito/game-info.json'),
+    import('games/quem-nao-mata/game-info.json'),
+    import('games/quem-sou-eu/game-info.json'),
+    import('games/retrato-falado/game-info.json'),
+    import('games/senso-literario/game-info.json'),
+    import('games/sinais-de-alerta/game-info.json'),
+    import('games/sonhinho-bom/game-info.json'),
+    import('games/sonhos-pesadelos/game-info.json'),
+    import('games/super-campeonato/game-info.json'),
+    import('games/ta-na-cara/game-info.json'),
+    import('games/teoria-de-conjuntos/game-info.json'),
+    import('games/teste-de-elenco/game-info.json'),
+    import('games/testemunha-ocular/game-info.json'),
+    import('games/trevo-da-sorte/game-info.json'),
+    import('games/ue-so-isso/game-info.json'),
+    import('games/vamos-ao-cinema/game-info.json'),
+    import('games/vendaval-de-palpite/game-info.json'),
+    import('games/vice-campeao/game-info.json'),
+    import('games/vingativos/game-info.json'),
+  ]);
+
+  return {
+    adedanhx: ADEDANHX.default,
+    'arte-ruim': ARTE_RUIM.default,
+    'barrados-na-alfandega': BARRADOS_NA_ALFANDEGA.default,
+    'bomba-relogio': BOMBA_RELOGIO.default,
+    'cinegrafistas-amadores': CINEGRAFISTAS_AMADORES.default,
+    'colegas-de-quarto': COLEGAS_DE_QUARTO.default,
+    'comunicacao-alienigena': COMUNICACAO_ALIENIGENA.default,
+    'comunicacao-duo': COMUNICACAO_DUO.default,
+    'contadores-historias': CONTADORES_HISTORIAS.default,
+    'controle-de-estoque': CONTROLE_DE_ESTOQUE.default,
+    'crimes-hediondos': CRIMES_HEDIONDOS.default,
+    'cruza-palavras': CRUZA_PALAVRAS.default,
+    'detetives-imaginativos': DETETIVES_IMAGINATIVOS.default,
+    esquiadores: ESQUIADORES.default,
+    duetos: DUETOS.default,
+    'escape-room': ESCAPE_ROOM.default,
+    'espiao-entre-nos': ESPIAO_ENTRE_NOS.default,
+    'fileira-de-fatos': FILEIRA_DE_FATOS.default,
+    'fofoca-quente': FOFOCA_QUENTE.default,
+    'galeria-de-sonhos': GALERIA_DE_SONHOS.default,
+    'idade-da-preda': IDADE_DA_PREDA.default,
+    'instrumentos-codificados': INSTRUMENTOS_CODIFICADOS.default,
+    'labirinto-secreto': LABIRINTO_SECRETO.default,
+    'linhas-cruzadas': LINHAS_CRUZADAS.default,
+    'medidas-nao-exatas': MEDIDAS_NAO_EXATAS.default,
+    megamix: MEGAMIX.default,
+    megarobos: MEGAROBOS.default,
+    'mente-coletiva': MENTE_COLETIVA.default,
+    mesmice: MESMICE.default,
+    metalinguagem: METALINGUAGEM.default,
+    'na-rua-do-medo': NA_RUA_DO_MEDO.default,
+    'namoro-ou-amizade': NAMORO_OU_AMIZADE.default,
+    'nao-sou-robo': NAO_SOU_ROBO.default,
+    naufragos: NAUFRAGOS.default,
+    'onda-telepatica': ONDA_TELEPATICA.default,
+    'palheta-de-cores': PALHETA_DE_CORES.default,
+    'planejamento-urbano': PLANEJAMENTO_URBANO.default,
+    'pique-pega': PIQUE_PEGA.default,
+    'polemica-da-vez': POLEMICA_DA_VEZ.default,
+    'porta-dos-desesperados': PORTA_DOS_DESESPERADOS.default,
+    'qual-quesito': QUAL_QUESITO.default,
+    'quem-nao-mata': QUEM_NAO_MATA.default,
+    'quem-sou-eu': QUEM_SOU_EU.default,
+    'retrato-falado': RETRATO_FALADO.default,
+    'senso-literario': SENSO_LITERARIO.default,
+    'sinais-de-alerta': SINAIS_DE_ALERTA.default,
+    'sonhinho-bom': SONHINHO_BOM.default,
+    'sonhos-pesadelos': SONHOS_PESADELOS.default,
+    'super-campeonato': SUPER_CAMPEONATO.default,
+    'ta-na-cara': TA_NA_CARA.default,
+    'teoria-de-conjuntos': TEORIA_DE_CONJUNTOS.default,
+    'testemunha-ocular': TESTEMUNHA_OCULAR.default,
+    'teste-de-elenco': TESTE_DE_ELENCO.default,
+    'trevo-da-sorte': TREVO_DA_SORTE.default,
+    'ue-so-isso': UE_SO_ISSO.default,
+    'vamos-ao-cinema': VAMOS_AO_CINEMA.default,
+    'vendaval-de-palpite': VENDAVAL_DE_PALPITE.default,
+    'vice-campeao': VICE_CAMPEAO.default,
+    vingativos: VINGATIVOS.default,
+  };
 };
 
-export default GAME_LIST;
+/**
+ * Loads a single game info by game name
+ */
+export const getGameInfo = async (gameName: GameName): Promise<GameInfo> => {
+  const gameList = await getGameList();
+  return gameList[gameName];
+};
+
+// Deprecated: Use getGameList() instead
+// This is kept for backwards compatibility but will load all games
+export default getGameList;

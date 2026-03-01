@@ -3,9 +3,10 @@ import { useTitle } from 'react-use';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
+import { useGameList } from 'hooks/useGameList';
 import { useLanguage } from 'hooks/useLanguage';
-// Utils
-import GAME_LIST from 'utils/info';
+// Components
+import { LoadingPage } from 'components/loaders';
 
 const PLACEHOLDER_GAME_INFO: GameInfo = {
   gameCode: ' ',
@@ -52,11 +53,17 @@ type GameInfoContextType = {
  */
 export const GameInfoProvider = ({ gameCollection, children }: GameInfoContextType) => {
   const { dualTranslate } = useLanguage();
+  const { data: gameList, isLoading } = useGameList();
+
   const info =
-    gameCollection && GAME_LIST[gameCollection] ? GAME_LIST[gameCollection] : PLACEHOLDER_GAME_INFO;
+    gameCollection && gameList?.[gameCollection] ? gameList[gameCollection] : PLACEHOLDER_GAME_INFO;
   const gameName = dualTranslate(info?.title ?? PLACEHOLDER_GAME_INFO.title);
 
   useTitle(`${gameName ? `${gameName} | ` : ''}Tarde Divertida`);
+
+  if (isLoading) {
+    return <LoadingPage message={{ pt: 'Carregando dados do jogo...', en: 'Loading game data...' }} />;
+  }
 
   return <GameInfoContext.Provider value={info}>{children}</GameInfoContext.Provider>;
 };

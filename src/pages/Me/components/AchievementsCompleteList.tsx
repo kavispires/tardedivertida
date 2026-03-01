@@ -7,15 +7,14 @@ import type { AchievementInfo } from 'types/achievements';
 import type { GameUserStatistics } from 'types/user';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
+import { useGameList, usePlayableGames } from 'hooks/useGameList';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import ACHIEVEMENTS_DICT from 'utils/achievements';
-import GAME_LIST from 'utils/info';
 // Components
 import { VirtualizationWrapper } from 'components/general/VirtualizationWrapper';
 import { Translate } from 'components/language';
 // Internal
-import { playableGames } from '../utils';
 import { AchievementCard } from './AchievementCard';
 
 type AchievementEntry = {
@@ -25,19 +24,6 @@ type AchievementEntry = {
   count: number;
 };
 
-const ALL_ACHIEVEMENTS: AchievementEntry[] = Object.keys(playableGames).flatMap((gameName) => {
-  const gameAchievements = ACHIEVEMENTS_DICT?.[gameName] || {};
-
-  return Object.keys(gameAchievements).map((achievementId) => {
-    return {
-      gameName,
-      achievementId,
-      achievement: gameAchievements[achievementId],
-      count: 0,
-    };
-  });
-});
-
 type AchievementsCompleteListProps = {
   playedGames: Record<string, GameUserStatistics>;
 };
@@ -45,12 +31,29 @@ type AchievementsCompleteListProps = {
 export function AchievementsCompleteList({ playedGames }: AchievementsCompleteListProps) {
   const { language } = useLanguage();
   const cardWidth = useCardWidth(8, { maxWidth: 256, minWidth: 128 });
+  const { data: gameList = {} } = useGameList();
+  const { data: playableGames = {} } = usePlayableGames();
   const [order, setOrder] = useState('gameName');
   const [orderDirection, setOrderDirection] = useState<'asc' | 'desc'>('asc');
 
+  const allAchievements = useMemo(() => {
+    return Object.keys(playableGames).flatMap((gameName) => {
+      const gameAchievements = ACHIEVEMENTS_DICT?.[gameName] || {};
+
+      return Object.keys(gameAchievements).map((achievementId) => {
+        return {
+          gameName,
+          achievementId,
+          achievement: gameAchievements[achievementId],
+          count: 0,
+        };
+      });
+    });
+  }, [playableGames]);
+
   const sortedAchievements = useMemo(() => {
     return orderBy(
-      ALL_ACHIEVEMENTS.map((achievement) => {
+      allAchievements.map((achievement) => {
         const gameStats = playedGames[achievement.gameName];
 
         const count = gameStats?.achievements?.[achievement.achievementId] || 0;
@@ -62,7 +65,7 @@ export function AchievementsCompleteList({ playedGames }: AchievementsCompleteLi
       [
         (o: AchievementEntry) => {
           if (order === 'gameName') {
-            return GAME_LIST[o.gameName].title[language].toLowerCase();
+            return gameList[o.gameName]?.title[language].toLowerCase() || '';
           }
           if (order === 'count') {
             return o.count;
@@ -73,7 +76,7 @@ export function AchievementsCompleteList({ playedGames }: AchievementsCompleteLi
       ],
       [orderDirection],
     );
-  }, [playedGames, orderDirection, order, language]);
+  }, [playedGames, orderDirection, order, language, allAchievements, gameList]);
 
   return (
     <Flex
@@ -143,7 +146,7 @@ export function AchievementsCompleteList({ playedGames }: AchievementsCompleteLi
             >
               <AchievementCard
                 gameName={gameName}
-                gameTitle={GAME_LIST[gameName].title}
+                gameTitle={gameList[gameName]?.title || { en: '', pt: '' }}
                 achievement={entry.achievement}
                 value={entry.count}
                 width={cardWidth}

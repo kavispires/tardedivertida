@@ -5,6 +5,7 @@ import { Layout, Row, Divider, Space, Switch, type TabsProps, Tabs } from 'antd'
 // Types
 import type { Me } from 'types/user';
 // Hooks
+import { usePlayableGames } from 'hooks/useGameList';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import ACHIEVEMENTS_DICT from 'utils/achievements';
@@ -26,7 +27,7 @@ import { PageLayout } from 'components/layout/PageLayout';
 import { PlayerAvatar } from 'components/player';
 import { Title } from 'components/text';
 // Internal
-import { availableGamesCount, durationToHours, playableGames, timestampToDate } from '../utils';
+import { durationToHours, timestampToDate } from '../utils';
 import { UserName } from './UserName';
 import { StatisticCard } from './StatisticCard';
 import { InfoCard } from './InfoCard';
@@ -42,10 +43,13 @@ type MeContentProps = {
 
 export function MeContent({ user, additionalContent }: MeContentProps) {
   const { language } = useLanguage();
+  const { data: playableGames = {} } = usePlayableGames();
+
+  const availableGamesCount = Object.keys(playableGames).length;
 
   const alphabetizedPlayableGames = useMemo(
     () => orderBy(Object.values(playableGames), `title.${language}`),
-    [language],
+    [language, playableGames],
   );
 
   const tabItems: TabsProps['items'] = [
@@ -153,7 +157,10 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
 
         <Divider />
 
-        <Summary user={user} />
+        <Summary
+          user={user}
+          availableGamesCount={availableGamesCount}
+        />
 
         <Tabs
           defaultActiveKey="1"
@@ -166,7 +173,10 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
   );
 }
 
-function Summary({ user }: Pick<MeContentProps, 'user'>) {
+function Summary({
+  user,
+  availableGamesCount,
+}: Pick<MeContentProps, 'user'> & { availableGamesCount: number }) {
   const [today, setToday] = useState(false);
   // Count achievable achievements only from the games the user has played
   const achievementsCount = useMemo(() => {
