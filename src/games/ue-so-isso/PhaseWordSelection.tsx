@@ -13,7 +13,7 @@ import { PlayerAvatarName } from 'components/player';
 import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
 import { UE_SO_ISSO_PHASES } from './utils/constants';
@@ -142,7 +142,7 @@ export function PhaseWordSelection({ state, players }: PhaseProps) {
         </RoundAnnouncement>
 
         {/* Step 1 */}
-        <ViewOr condition={isUserTheGuesser}>
+        <ViewIf condition={isUserTheGuesser}>
           <GuesserWaitingRoom
             players={players}
             instructionSuffix={{
@@ -154,7 +154,8 @@ export function PhaseWordSelection({ state, players }: PhaseProps) {
             guesser={guesser}
             turnOrder={state.gameOrder}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isUserTheGuesser}>
           <StepWordSelection
             words={state?.words}
             onSendSelectedWords={onSendSelectedWords}
@@ -163,7 +164,7 @@ export function PhaseWordSelection({ state, players }: PhaseProps) {
             turnOrder={state.gameOrder}
             players={players}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

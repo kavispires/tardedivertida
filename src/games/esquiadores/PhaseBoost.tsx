@@ -10,7 +10,7 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import type { PhaseBetsState } from './utils/types';
 import { useOnSubmitBetsAPIRequest } from './utils/api-requests';
@@ -87,7 +87,7 @@ export function PhaseBoost({ players, state, user }: PhaseProps<PhaseBetsState>)
         }}
       >
         {/* Step 1 */}
-        <ViewOr condition={isUserSkier}>
+        <ViewIf condition={isUserSkier}>
           <StepChoosePlayers
             announcement={announcement}
             players={players}
@@ -102,7 +102,8 @@ export function PhaseBoost({ players, state, user }: PhaseProps<PhaseBetsState>)
             animateTo={state.animateTo}
             playerBetType="skiersBets"
           />
-
+        </ViewIf>
+        <ViewIf condition={!isUserSkier}>
           <StepMakeBets
             announcement={announcement}
             players={players}
@@ -116,7 +117,7 @@ export function PhaseBoost({ players, state, user }: PhaseProps<PhaseBetsState>)
             animateFrom={state.animateFrom}
             animateTo={state.animateTo}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

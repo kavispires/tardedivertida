@@ -16,7 +16,7 @@ import { TurnOrder } from 'components/players';
 import { ListOfPlayers } from 'components/players/ListOfPlayers';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, StepTitle } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 import { CharactersBoard } from './components/CharactersBoard';
@@ -60,7 +60,7 @@ export function StepReveal({
       announcement={announcement}
     >
       <StepTitle>
-        <ViewOr condition={isCorrect}>
+        <ViewIf condition={isCorrect}>
           <Translate
             pt={
               <>
@@ -73,16 +73,17 @@ export function StepReveal({
               </>
             }
           />
-
+        </ViewIf>
+        <ViewIf condition={!isCorrect}>
           <Translate
             pt="Vixi, ninguém acertou"
             en="Oh no! Nobody got it right"
           />
-        </ViewOr>
+        </ViewIf>
       </StepTitle>
 
       <Instruction contained>
-        <ViewOr condition={isCorrect}>
+        <ViewIf condition={isCorrect}>
           <>
             <ListOfPlayers
               players={players}
@@ -109,7 +110,8 @@ export function StepReveal({
               }
             />
           </>
-
+        </ViewIf>
+        <ViewIf condition={!isCorrect}>
           <Translate
             pt={
               <>
@@ -124,7 +126,7 @@ export function StepReveal({
               </>
             }
           />
-        </ViewOr>
+        </ViewIf>
       </Instruction>
 
       {!!result && (

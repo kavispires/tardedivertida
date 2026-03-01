@@ -10,7 +10,7 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitSuggestionsAPIRequest } from './utils/api-requests';
 import { UE_SO_ISSO_PHASES } from './utils/constants';
@@ -66,7 +66,7 @@ export function PhaseSuggest({ state, players, user }: PhaseProps) {
         waitingRoom={{ content: <WaitingRoomSuggestions user={user} /> }}
       >
         {/* Step 0 */}
-        <ViewOr condition={isUserTheGuesser}>
+        <ViewIf condition={isUserTheGuesser}>
           <GuesserWaitingRoom
             players={players}
             instructionSuffix={{
@@ -77,7 +77,8 @@ export function PhaseSuggest({ state, players, user }: PhaseProps) {
             guesser={guesser}
             turnOrder={state.gameOrder}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isUserTheGuesser}>
           <StepSuggestion
             guesser={guesser}
             isUserTheGuesser={isUserTheGuesser}
@@ -86,7 +87,7 @@ export function PhaseSuggest({ state, players, user }: PhaseProps) {
             suggestionsNumber={state.suggestionsNumber}
             announcement={announcement}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

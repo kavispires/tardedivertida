@@ -13,7 +13,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { PlayerAvatarName } from 'components/player';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSelectQuestionAPIRequest } from './utils/api-requests';
 import { OUTCOME, TESTEMUNHA_OCULAR_PHASES } from './utils/constants';
@@ -104,7 +104,7 @@ export function PhaseQuestionSelection({ state, players }: PhaseProps<PhaseQuest
         players={players}
       >
         {/* Step 0 */}
-        <ViewOr condition={isUserTheQuestioner}>
+        <ViewIf condition={isUserTheQuestioner}>
           <StepSelectQuestion
             isLoading={isLoading}
             onSelectQuestion={onSelectQuestion}
@@ -117,7 +117,8 @@ export function PhaseQuestionSelection({ state, players }: PhaseProps<PhaseQuest
             status={state.status}
             outcome={state.outcome}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isUserTheQuestioner}>
           <StepQuestionWaiting
             isUserTheWitness={isUserTheWitness}
             perpetratorId={state.perpetratorId}
@@ -130,7 +131,7 @@ export function PhaseQuestionSelection({ state, players }: PhaseProps<PhaseQuest
             status={state.status}
             outcome={state.outcome}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

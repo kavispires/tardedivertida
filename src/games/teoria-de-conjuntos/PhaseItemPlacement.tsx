@@ -6,7 +6,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Components
 import { PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitEvaluationFixAPIRequest, useOnSubmitItemPlacementAPIRequest } from './utils/api-requests';
 import type { Guess } from './utils/types';
@@ -50,7 +50,7 @@ export function PhaseItemPlacement({ state, players, user }: PhaseProps) {
         players={players}
       >
         {/* Step 0 */}
-        <ViewOr condition={isTheActivePlayer}>
+        <ViewIf condition={isTheActivePlayer}>
           <StepPlaceItem
             players={players}
             user={user}
@@ -67,7 +67,8 @@ export function PhaseItemPlacement({ state, players, user }: PhaseProps) {
             isJudge={isTheJudge}
             solutions={state.solutions}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isTheActivePlayer}>
           <StepWaitPlaceItem
             players={players}
             user={user}
@@ -82,7 +83,7 @@ export function PhaseItemPlacement({ state, players, user }: PhaseProps) {
             targetItemCount={state.targetItemsCount}
             round={state.round}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -13,7 +13,7 @@ import { TurnOrder } from 'components/players';
 import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitCategoryAPIRequest, useOnSubmitClueAPIRequest } from './utils/api-requests';
 import { ONDA_TELEPATICA_PHASES } from './utils/constants';
@@ -92,20 +92,24 @@ export function PhaseDialClue({ state, players }: PhaseProps) {
         />
 
         {/* Step 1 */}
-        <ViewOr condition={isUserThePsychic}>
-          <ViewOr condition={!state.currentCategoryId}>
+        <ViewIf condition={isUserThePsychic}>
+          <ViewIf condition={!state.currentCategoryId}>
             <StepCategorySelection
               currentCategories={state.currentCategories}
               onSendChosenSide={onSendChosenSide}
               announcement={announcement}
             />
+          </ViewIf>
+          <ViewIf condition={state.currentCategoryId}>
             <StepClueWriting
               currentCategories={state.currentCategories}
               currentCategoryId={state.currentCategoryId}
               target={state.target}
               onSendClue={onSendClue}
             />
-          </ViewOr>
+          </ViewIf>
+        </ViewIf>
+        <ViewIf condition={!isUserThePsychic}>
           <StepClueWaiting
             players={players}
             psychic={psychic}
@@ -113,7 +117,7 @@ export function PhaseDialClue({ state, players }: PhaseProps) {
             currentCategoryId={state.currentCategoryId}
             announcement={announcement}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

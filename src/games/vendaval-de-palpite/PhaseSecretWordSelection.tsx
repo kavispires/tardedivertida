@@ -11,7 +11,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { PlayerAvatarName } from 'components/player';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitSecretWordAPIRequest } from './utils/api-requests';
 import { VENDAVAL_DE_PALPITE_PHASES } from './utils/constants';
@@ -64,13 +64,14 @@ export function PhaseSecretWordSelection({ state, players }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <ViewOr condition={isUserTheBoss}>
+        <ViewIf condition={isUserTheBoss}>
           <StepSecretWordSelection
             words={state.words}
             categories={state.categories}
             onSubmitSecretWord={onSubmitSecretWord}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isUserTheBoss}>
           <StepWaiting
             players={players}
             instruction={
@@ -89,7 +90,7 @@ export function PhaseSecretWordSelection({ state, players }: PhaseProps) {
               />
             }
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

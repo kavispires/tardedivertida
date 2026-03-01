@@ -13,7 +13,7 @@ import { IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { ImageCard } from 'components/image-cards/ImageCard';
 import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import type { TimeBombCard } from '../utils/types';
 import { CARD_IMAGE_NAMES } from '../utils/constants';
@@ -56,7 +56,7 @@ export function HandTarget({ hand, activeColor, onSelectCard }: HandTargetProps)
       vertical
       style={{ backgroundColor: activeColor }}
     >
-      <ViewOr condition={!!onSelectCard}>
+      <ViewIf condition={!!onSelectCard}>
         <div>
           <MouseFollowingContent active>
             <motion.div
@@ -101,7 +101,8 @@ export function HandTarget({ hand, activeColor, onSelectCard }: HandTargetProps)
             })}
           </Flex>
         </div>
-
+      </ViewIf>
+      <ViewIf condition={!onSelectCard}>
         <div>
           <motion.div
             animate={{ x: [0, totalWidth - 64, 0] }}
@@ -138,7 +139,7 @@ export function HandTarget({ hand, activeColor, onSelectCard }: HandTargetProps)
             })}
           </Flex>
         </div>
-      </ViewOr>
+      </ViewIf>
     </Flex>
   );
 }

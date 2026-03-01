@@ -12,7 +12,7 @@ import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Step, StepSwitcher } from 'components/steps';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitOutcomeAPIRequest } from './utils/api-requests';
 import { UE_SO_ISSO_PHASES } from './utils/constants';
@@ -55,12 +55,13 @@ export function PhaseVerifyGuess({ state, players }: PhaseProps) {
         players={players}
       >
         {/* Step 0 */}
-        <ViewOr condition={['CONTINUE', 'WIN'].includes(state.group.outcome)}>
+        <ViewIf condition={['CONTINUE', 'WIN'].includes(state.group.outcome)}>
           <Step announcement={announcement}>
             <HostNextPhaseButton autoTriggerTime={2} />
           </Step>
-
-          <ViewOr condition={isActionable}>
+        </ViewIf>
+        <ViewIf condition={!['CONTINUE', 'WIN'].includes(state.group.outcome)}>
+          <ViewIf condition={isActionable}>
             <StepGuessVerification
               guesser={guesser}
               guess={state.guess || '?'}
@@ -72,12 +73,13 @@ export function PhaseVerifyGuess({ state, players }: PhaseProps) {
               isLoading={isLoading}
               announcement={announcement}
             />
-
+          </ViewIf>
+          <ViewIf condition={!isActionable}>
             <Step announcement={announcement}>
               <div>{/* Users will just see the announcement */}</div>
             </Step>
-          </ViewOr>
-        </ViewOr>
+          </ViewIf>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

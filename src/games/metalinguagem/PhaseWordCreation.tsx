@@ -12,7 +12,7 @@ import { PlayerAvatarName } from 'components/player';
 import { TurnOrder } from 'components/players';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import type { PhaseWordCreationState } from './utils/types';
 import { useOnSubmitNewWordAPIRequest } from './utils/api-requests';
@@ -81,7 +81,7 @@ export function PhaseWordCreation({ state, players, user }: PhaseProps<PhaseWord
         players={players}
       >
         {/* Step 0 */}
-        <ViewOr condition={isTheCreator}>
+        <ViewIf condition={isTheCreator}>
           <StepCreateWord
             user={user}
             players={players}
@@ -92,7 +92,8 @@ export function PhaseWordCreation({ state, players, user }: PhaseProps<PhaseWord
             wordLengths={state.wordLengths}
             onSubmitWord={onSubmitWord}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isTheCreator}>
           <StepWaitWordCreation
             players={players}
             announcement={announcement}
@@ -101,7 +102,7 @@ export function PhaseWordCreation({ state, players, user }: PhaseProps<PhaseWord
             creator={creator}
             turnOrder={state.turnOrder}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

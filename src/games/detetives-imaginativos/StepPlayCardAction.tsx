@@ -20,7 +20,7 @@ import { TurnOrder } from 'components/players';
 import { messageContent } from 'components/pop-up';
 import { StepTitle, RuleInstruction } from 'components/text';
 import { TimedTimerClock, WaitingTime } from 'components/timers';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import type { CardEntry, SubmitPlayCardPayload } from './utils/types';
 import { isEarliestPlayerWithFewestCards } from './utils/helpers';
@@ -112,7 +112,7 @@ export function StepPlayCardAction({
       </StepTitle>
 
       <RuleInstruction type="action">
-        <ViewOr condition={isUserTheImpostor}>
+        <ViewIf condition={isUserTheImpostor}>
           {/** biome-ignore lint/complexity/noUselessFragments: View Container TODO: could it be a div? */}
           <>
             <IconAvatar
@@ -126,7 +126,8 @@ export function StepPlayCardAction({
               en="Select a card that best fits with what others are playing."
             />
           </>
-
+        </ViewIf>
+        <ViewIf condition={!isUserTheImpostor}>
           {/** biome-ignore lint/complexity/noUselessFragments: View Container TODO: could it be a div? */}
           <>
             <IconAvatar
@@ -139,7 +140,7 @@ export function StepPlayCardAction({
               en="Select a card that best fits the secret clue."
             />
           </>
-        </ViewOr>
+        </ViewIf>
         <TimedTimerClock
           duration={75}
           onExpire={() => onSelectCard('back-default')}

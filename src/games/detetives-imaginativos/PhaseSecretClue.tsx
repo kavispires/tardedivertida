@@ -13,7 +13,7 @@ import { PlayerAvatarName } from 'components/player';
 import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitSecretClueAPIRequest } from './utils/api-requests';
 import { DETETIVES_IMAGINATIVOS_PHASES } from './utils/constants';
@@ -88,13 +88,14 @@ export function PhaseSecretClue({ state, players, user }: PhaseProps<PhaseSecret
         />
 
         {/* Step 1 */}
-        <ViewOr condition={isUserTheLeader}>
+        <ViewIf condition={isUserTheLeader}>
           <StepSecretClueWrite
             user={user}
             onSubmitClue={onSubmitSecretClue}
             announcement={announcement}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isUserTheLeader}>
           <StepSecretClueWaiting
             user={user}
             leader={leader}
@@ -102,7 +103,7 @@ export function PhaseSecretClue({ state, players, user }: PhaseProps<PhaseSecret
             turnOrder={state.turnOrder}
             announcement={announcement}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -13,7 +13,7 @@ import { TurnOrder } from 'components/players';
 import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import type { PhaseBetsState } from './utils/types';
 import { useOnSubmitBetsAPIRequest, useOnSubmitChoicesAPIRequest } from './utils/api-requests';
@@ -105,7 +105,7 @@ export function PhaseBets({ state, players, user }: PhaseProps<PhaseBetsState>) 
         </RoundAnnouncement>
 
         {/* Step 1 */}
-        <ViewOr condition={isUserSkier}>
+        <ViewIf condition={isUserSkier}>
           <StepMakeChoices
             announcement={announcement}
             players={players}
@@ -114,7 +114,8 @@ export function PhaseBets({ state, players, user }: PhaseProps<PhaseBetsState>) 
             mountain={state.mountain}
             onSubmitChoices={onSubmitChoices}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isUserSkier}>
           <StepMakeBets
             announcement={announcement}
             players={players}
@@ -129,7 +130,7 @@ export function PhaseBets({ state, players, user }: PhaseProps<PhaseBetsState>) 
             animateTo={state.animateTo}
             catchUp={state.catchUp}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

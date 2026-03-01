@@ -11,7 +11,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitCustomQuestionAPIRequest, useOnSubmitQuestionAPIRequest } from './utils/api-requests';
 import { MENTE_COLETIVA_PHASES } from './utils/constants';
@@ -68,7 +68,7 @@ export function PhaseQuestionSelection({ state, players, user }: PhaseProps) {
         </RoundAnnouncement>
 
         {/* Step 1 */}
-        <ViewOr condition={isUserTheActivePlayer}>
+        <ViewIf condition={isUserTheActivePlayer}>
           <StepQuestionSelection
             players={players}
             currentQuestions={state.currentQuestions}
@@ -80,7 +80,8 @@ export function PhaseQuestionSelection({ state, players, user }: PhaseProps) {
             user={user}
             announcement={announcement}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isUserTheActivePlayer}>
           <StepQuestionSelectionWaiting
             activePlayer={activePlayer}
             players={players}
@@ -88,7 +89,7 @@ export function PhaseQuestionSelection({ state, players, user }: PhaseProps) {
             pastureSize={state.pastureSize}
             announcement={announcement}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

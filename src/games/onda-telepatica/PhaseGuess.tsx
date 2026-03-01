@@ -10,7 +10,7 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 import { ONDA_TELEPATICA_PHASES } from './utils/constants';
@@ -66,18 +66,20 @@ export function PhaseGuess({ state, players, user }: PhaseProps) {
         }}
       >
         {/* Step 0 */}
-        <ViewOr condition={isUserThePsychic}>
+        <ViewIf condition={isUserThePsychic}>
           <StepPsychicGuess
             currentCategory={state.currentCategory}
             onSendGuess={onSendGuess}
             announcement={announcement}
           />
+        </ViewIf>
+        <ViewIf condition={!isUserThePsychic}>
           <StepGuess
             currentCategory={state.currentCategory}
             onSendGuess={onSendGuess}
             announcement={announcement}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

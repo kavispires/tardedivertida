@@ -9,7 +9,7 @@ import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { mockPlayCard } from './utils/mock';
 import type { PlayCardPayload } from './utils/types';
@@ -64,12 +64,13 @@ export function StepPlayCard({
       </StepTitle>
 
       <RuleInstruction type={isUserTheStoryTeller ? 'wait' : 'action'}>
-        <ViewOr condition={isUserTheStoryTeller}>
+        <ViewIf condition={isUserTheStoryTeller}>
           <Translate
-            pt="Agora, cada jogador escolherá uma carta em mão que mais combine com a história que você escreveu."
+            pt="Agora, cada jogador escolhará uma carta em mão que mais combine com a história que você escreveu."
             en="Now every other player will play a card that best matches the story you wrote."
           />
-
+        </ViewIf>
+        <ViewIf condition={!isUserTheStoryTeller}>
           <Translate
             pt={
               <>
@@ -87,7 +88,7 @@ export function StepPlayCard({
               </>
             }
           />
-        </ViewOr>
+        </ViewIf>
       </RuleInstruction>
 
       <TableFaceDown

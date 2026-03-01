@@ -12,7 +12,7 @@ import { PlayerAvatarName } from 'components/player';
 import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitPlanningAPIRequest } from './utils/api-requests';
 import { PLANEJAMENTO_URBANO_PHASES } from './utils/constants';
@@ -92,7 +92,7 @@ export function PhasePlanning({ state, players }: PhaseProps<PhasePlanningState>
         </RoundAnnouncement>
 
         {/* Step 1 */}
-        <ViewOr condition={isTheArchitect}>
+        <ViewIf condition={isTheArchitect}>
           <StepPlanLocations
             announcement={announcement}
             players={players}
@@ -104,7 +104,8 @@ export function PhasePlanning({ state, players }: PhaseProps<PhasePlanningState>
             availableProjectsIds={state.availableProjectsIds}
             onSubmitPlanning={onSubmitPlanning}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isTheArchitect}>
           <StepWaitForPlanning
             announcement={announcement}
             players={players}
@@ -114,7 +115,7 @@ export function PhasePlanning({ state, players }: PhaseProps<PhasePlanningState>
             cityLocationsDict={state.cityLocationsDict}
             placements={Object.keys(state.coneCellIds).length}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

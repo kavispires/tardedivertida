@@ -10,7 +10,7 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitEvaluationAPIRequest, useOnSubmitOutcomeAPIRequest } from './utils/api-requests';
 import { VENDAVAL_DE_PALPITE_PHASES } from './utils/constants';
@@ -56,7 +56,7 @@ export function PhaseClueEvaluations({ state, players }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <ViewOr condition={isUserTheBoss}>
+        <ViewIf condition={isUserTheBoss}>
           <StepBossEvaluation
             secretWord={state.secretWord}
             board={state.board}
@@ -69,7 +69,8 @@ export function PhaseClueEvaluations({ state, players }: PhaseProps) {
             round={state.round}
             outcome={state.outcome}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isUserTheBoss}>
           <StepPlayersWaitEvaluation
             board={state.board}
             clues={state.clues}
@@ -78,7 +79,7 @@ export function PhaseClueEvaluations({ state, players }: PhaseProps) {
             finalAnswersLeft={state.finalAnswersLeft}
             players={players}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

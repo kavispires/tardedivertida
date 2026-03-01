@@ -11,7 +11,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { PlayerAvatarName } from 'components/player';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import type { PhaseCategoryCreationState } from './utils/types';
 import { QUAL_QUESITO_PHASES } from './utils/constants';
@@ -75,7 +75,7 @@ export function PhaseCategoryCreation({ players, state, user }: PhaseProps<Phase
         players={players}
       >
         {/* Step 0 */}
-        <ViewOr condition={isTheCreator}>
+        <ViewIf condition={isTheCreator}>
           <StepCreateCategory
             user={user}
             players={players}
@@ -85,7 +85,8 @@ export function PhaseCategoryCreation({ players, state, user }: PhaseProps<Phase
             onSkipTurn={onSkipTurn}
             turnOrder={state.turnOrder}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isTheCreator}>
           <StepWaitForCreation
             user={user}
             players={players}
@@ -94,7 +95,7 @@ export function PhaseCategoryCreation({ players, state, user }: PhaseProps<Phase
             creator={creator}
             turnOrder={state.turnOrder}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

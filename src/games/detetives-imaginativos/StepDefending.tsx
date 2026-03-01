@@ -4,7 +4,7 @@ import type { GamePlayer, GamePlayers } from 'types/player';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { Step, type StepProps } from 'components/steps';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import type { CardEntry, SubmitDefensePayload } from './utils/types';
 import { StepDefendingAction } from './StepDefendingAction';
@@ -40,7 +40,7 @@ export function StepDefending({
 
   return (
     <Step announcement={announcement}>
-      <ViewOr condition={isUserTheCurrentPlayer}>
+      <ViewIf condition={isUserTheCurrentPlayer}>
         <StepDefendingAction
           clue={clue}
           currentPlayer={currentPlayer}
@@ -52,7 +52,8 @@ export function StepDefending({
           players={players}
           turnOrder={turnOrder}
         />
-
+      </ViewIf>
+      <ViewIf condition={!isUserTheCurrentPlayer}>
         <StepDefendingWaiting
           clue={clue}
           currentPlayer={currentPlayer}
@@ -62,7 +63,7 @@ export function StepDefending({
           players={players}
           turnOrder={turnOrder}
         />
-      </ViewOr>
+      </ViewIf>
     </Step>
   );
 }

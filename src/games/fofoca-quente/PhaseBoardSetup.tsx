@@ -11,7 +11,7 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import type { FofocaQuenteDefaultState } from './utils/types';
 import {
@@ -81,7 +81,7 @@ export function PhaseBoardSetup({ players, state, user }: PhaseProps<FofocaQuent
         players={players}
       >
         {/* Step 0 */}
-        <ViewOr condition={isTheGossiperPlayer}>
+        <ViewIf condition={isTheGossiperPlayer}>
           <StepSetupGossiper
             user={user}
             players={players}
@@ -96,7 +96,8 @@ export function PhaseBoardSetup({ players, state, user }: PhaseProps<FofocaQuent
             gossiperMotivationIndex={state.gossiperMotivationIndex}
             onSubmitAssociatedSocialGroup={onSubmitAssociatedSocialGroup}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isTheGossiperPlayer}>
           <StepSetupDetective
             user={user}
             players={players}
@@ -110,7 +111,7 @@ export function PhaseBoardSetup({ players, state, user }: PhaseProps<FofocaQuent
             motivations={state.motivations}
             onSubmitDetectiveLocation={onSubmitDetectiveLocation}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

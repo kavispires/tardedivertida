@@ -11,7 +11,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction, RoundsLeftInstruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitPlayerCluesAPIRequest } from './utils/api-requests';
 import { VENDAVAL_DE_PALPITE_PHASES } from './utils/constants';
@@ -82,7 +82,7 @@ export function PhasePlayersClues({ state, players }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <ViewOr condition={isUserTheBoss}>
+        <ViewIf condition={isUserTheBoss}>
           <StepBossWaiting
             secretWord={state.secretWord}
             board={state.board}
@@ -90,7 +90,8 @@ export function PhasePlayersClues({ state, players }: PhaseProps) {
             categories={state.categories}
             players={players}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isUserTheBoss}>
           <StepPlayerClue
             secretWord={state.secretWord}
             board={state.board}
@@ -103,7 +104,7 @@ export function PhasePlayersClues({ state, players }: PhaseProps) {
             players={players}
             round={state.round}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

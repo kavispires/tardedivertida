@@ -11,7 +11,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { TurnOrder } from 'components/players';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitPathAPIRequest } from './utils/api-requests';
 import { LABIRINTO_SECRETO_PHASES } from './utils/constants';
@@ -63,14 +63,15 @@ export function PhasePathFollowing({ state, players, user }: PhaseProps<PhasePat
         players={players}
       >
         {/* Step 0 */}
-        <ViewOr condition={isTheActivePlayer}>
+        <ViewIf condition={isTheActivePlayer}>
           <StepPathWaiting
             players={players}
             announcement={announcement}
             forest={state.forest}
             activePlayer={activePlayer}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isTheActivePlayer}>
           <StepFollowPath
             players={players}
             user={user}
@@ -80,7 +81,7 @@ export function PhasePathFollowing({ state, players, user }: PhaseProps<PhasePat
             activePlayer={activePlayer}
             isTheActivePlayer={isTheActivePlayer}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

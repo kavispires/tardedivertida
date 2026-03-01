@@ -17,7 +17,7 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import type { Sketch, SubmitVotePayload } from './utils/types';
 
@@ -46,7 +46,7 @@ export function StepVote({
   });
   const [canvasSize, setCanvasSize] = useGlobalLocalStorage('canvasSize');
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: no need to depend of functions
   useEffect(() => {
     if (!canvasSize) {
       // Round to increments of 50
@@ -83,7 +83,7 @@ export function StepVote({
           }
         />
         <br />
-        <ViewOr condition={isUserTheWitness}>
+        <ViewIf condition={isUserTheWitness}>
           <Translate
             pt={
               <>
@@ -98,12 +98,13 @@ export function StepVote({
               </>
             }
           />
-
+        </ViewIf>
+        <ViewIf condition={!isUserTheWitness}>
           <Translate
             pt={<strong>Você não pode votar em si mesmo.</strong>}
             en={<strong>You cannot vote for yourself.</strong>}
           />
-        </ViewOr>
+        </ViewIf>
       </RuleInstruction>
 
       <CanvasResizer />

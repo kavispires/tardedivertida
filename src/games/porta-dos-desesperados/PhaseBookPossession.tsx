@@ -15,7 +15,7 @@ import { TurnOrder } from 'components/players';
 import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitPagesAPIRequest } from './utils/api-requests';
 import { PORTA_DOS_DESESPERADOS_PHASES, TRAPS } from './utils/constants';
@@ -139,7 +139,7 @@ export function PhaseBookPossession({ state, players }: PhaseProps<PhaseBookPoss
         />
 
         {/* Step 4 */}
-        <ViewOr condition={isPossessed}>
+        <ViewIf condition={isPossessed}>
           <StepSelectPages
             pages={state.pages}
             currentCorridor={state.currentCorridor}
@@ -148,7 +148,8 @@ export function PhaseBookPossession({ state, players }: PhaseProps<PhaseBookPoss
             trapEntry={state.trapEntry}
             onSubmitPages={onSubmitPages}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isPossessed}>
           <StepWaitPageSelection
             players={players}
             currentCorridor={state.currentCorridor}
@@ -156,7 +157,7 @@ export function PhaseBookPossession({ state, players }: PhaseProps<PhaseBookPoss
             trapEntry={state.trapEntry}
             possessed={possessed}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -11,7 +11,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { TurnOrder } from 'components/players';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 import { TREVO_DA_SORTE_PHASES } from './utils/constants';
@@ -61,13 +61,14 @@ export function PhaseCloverGuessing({ state, players }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <ViewOr condition={isUserTheCloverPlayer}>
+        <ViewIf condition={isUserTheCloverPlayer}>
           <StepWaitClover
             activeCloverPlayer={activeCloverPlayer}
             clover={state.clover}
             leaves={state.leaves}
           />
-
+        </ViewIf>
+        <ViewIf condition={!isUserTheCloverPlayer}>
           <StepGuessClover
             clover={state.clover}
             leaves={state.leaves}
@@ -75,7 +76,7 @@ export function PhaseCloverGuessing({ state, players }: PhaseProps) {
             activeCloverPlayer={activeCloverPlayer}
             isUserTheCloverPlayer={isUserTheCloverPlayer}
           />
-        </ViewOr>
+        </ViewIf>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -13,7 +13,7 @@ import { ThiefIcon } from 'icons/ThiefIcon';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
-import { ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 // Internal
 import { useOnProgressGameAPIRequest } from './utils/api-requests';
 import { determineView } from './utils/helpers';
@@ -44,7 +44,7 @@ export function PhaseResolution({ state, players }: PhaseProps) {
         players={players}
       >
         {/* Step 0 */}
-        <ViewOr condition={resolutionStatus.didSpyGuess}>
+        <ViewIf condition={resolutionStatus.didSpyGuess}>
           <PhaseAnnouncement
             icon={<MapLocationIcon />}
             title={
@@ -60,7 +60,8 @@ export function PhaseResolution({ state, players }: PhaseProps) {
             duration={5}
             type="block"
           />
-
+        </ViewIf>
+        <ViewIf condition={!resolutionStatus.didSpyGuess}>
           <PhaseAnnouncement
             icon={<ThiefIcon />}
             title={
@@ -76,7 +77,7 @@ export function PhaseResolution({ state, players }: PhaseProps) {
             duration={5}
             type="block"
           />
-        </ViewOr>
+        </ViewIf>
 
         {/* Step 1 */}
         <PhaseTimerReset goToNextStep={goToNextStep} />
