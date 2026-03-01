@@ -11,9 +11,7 @@ import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Utils
-import { print } from 'utils/helpers';
-// Pages
-import { getToday } from 'pages/Daily/utils';
+import { getToday, print } from 'utils/helpers';
 // Internal
 import { auth } from './firebase';
 import { USER_API, USER_API_ACTIONS } from './adapters';

@@ -1,7 +1,7 @@
 import { useStore } from '@tanstack/react-store';
 import { Store } from '@tanstack/store';
-// Internal
-import { getToday } from '../utils';
+// Utils
+import { getToday } from 'utils/helpers';
 
 /**
  * Global state for the Daily game with values that should be shared across components during the daily session.

@@ -15,10 +15,9 @@ import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { getFirestoreConsoleUrl, logAnalyticsEvent } from 'services/firebase';
 // Utils
 import { getAnimation } from 'utils/animations';
-import { isDevEnv } from 'utils/helpers';
+import { getToday, isDevEnv } from 'utils/helpers';
 // Icons
 import { DailyContributionGame } from 'icons/DailyContributionGame';
-// import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
@@ -30,7 +29,8 @@ import { ALL_SETTINGS } from '../utils/settings';
 import { DailyChrome } from '../components/DailyChrome';
 import { News } from '../components/News';
 import { BundleResults } from '../components/BundleResults';
-import { checkWasPlayedToday, daysSinceRelease, getToday, hasBeenReleased } from '../utils';
+import { checkWasPlayedToday, daysSinceRelease, hasBeenReleased } from '../utils';
+// import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
 
 type Entry = GameSettings & {
   disabled?: boolean;
