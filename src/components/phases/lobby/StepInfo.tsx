@@ -104,6 +104,7 @@ export function StepInfo({ players, setStep }: StepInfoProps) {
         setSelectedAvatar={setSelectedAvatar}
         selectedAvatar={selectedAvatar}
         userId={currentUser.id}
+        maxPlayers={info.playerCount.max ?? 10}
       />
 
       <motion.div

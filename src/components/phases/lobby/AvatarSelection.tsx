@@ -15,6 +15,7 @@ import { DualTranslate, Translate } from 'components/language';
 import avatars from 'assets/images/avatars.svg?url';
 // Sass
 import styles from '../PhaseLobby.module.scss';
+
 type AvatarSelectionProps = {
   /**
    * The game players object
@@ -32,6 +33,10 @@ type AvatarSelectionProps = {
    * The current user's ID
    */
   userId: PlayerId;
+  /**
+   * The maximum number of players allowed in the game, used to determine avatar availability and neighbor disabling logic
+   */
+  maxPlayers: number;
 };
 
 export function AvatarSelection({
@@ -39,6 +44,7 @@ export function AvatarSelection({
   setSelectedAvatar,
   selectedAvatar,
   userId,
+  maxPlayers,
 }: AvatarSelectionProps) {
   const [open, setOpen] = useToggle(false);
 
@@ -54,6 +60,7 @@ export function AvatarSelection({
               setSelectedAvatar={setSelectedAvatar}
               selectedAvatar={selectedAvatar}
               userId={userId}
+              maxPlayers={maxPlayers}
             />
           }
           title={
@@ -97,15 +104,63 @@ export function AvatarSelection({
   );
 }
 
-function AvatarOptions({ players, setSelectedAvatar, selectedAvatar, userId }: AvatarSelectionProps) {
-  const usedAvatars = useMemo(() => {
-    return Object.values(players).reduce((acc: StringDictionary, { name, avatarId, id }) => {
-      if (id !== userId) {
-        acc[avatarId] = name;
+function AvatarOptions({
+  players,
+  setSelectedAvatar,
+  selectedAvatar,
+  userId,
+  maxPlayers,
+}: AvatarSelectionProps) {
+  const { usedAvatars, disabledAvatars } = useMemo(() => {
+    const used: StringDictionary = Object.values(players).reduce(
+      (acc: StringDictionary, { name, avatarId, id }) => {
+        if (id !== userId) {
+          acc[avatarId] = name;
+        }
+        return acc;
+      },
+      {},
+    );
+
+    // Disable neighbors of used avatars based on maxPlayers
+    const usedAvatarIds = Object.keys(used);
+    const disabled: Set<string> = new Set(usedAvatarIds);
+
+    // Calculate how many neighbors to disable on each side
+    const totalAvatars = AVAILABLE_AVATAR_IDS.length;
+    const neighborsToDisable = Math.floor(totalAvatars / maxPlayers) - 1;
+    const leftNeighbors = Math.floor(neighborsToDisable / 2);
+    const rightNeighbors = Math.ceil(neighborsToDisable / 2);
+
+    usedAvatarIds.forEach((avatarId) => {
+      const currentIndex = AVAILABLE_AVATAR_IDS.indexOf(avatarId);
+      const lastIndex = totalAvatars - 1;
+
+      // Disable left neighbors
+      for (let i = 1; i <= leftNeighbors; i++) {
+        let neighborIndex = currentIndex - i;
+        // Wrap around if necessary
+        if (neighborIndex < 0) {
+          neighborIndex = totalAvatars + neighborIndex;
+        }
+        const neighborId = AVAILABLE_AVATAR_IDS[neighborIndex];
+        disabled.add(neighborId);
       }
-      return acc;
-    }, {});
-  }, [players, userId]);
+
+      // Disable right neighbors
+      for (let i = 1; i <= rightNeighbors; i++) {
+        let neighborIndex = currentIndex + i;
+        // Wrap around if necessary
+        if (neighborIndex > lastIndex) {
+          neighborIndex = neighborIndex - totalAvatars;
+        }
+        const neighborId = AVAILABLE_AVATAR_IDS[neighborIndex];
+        disabled.add(neighborId);
+      }
+    });
+
+    return { usedAvatars: used, disabledAvatars: disabled };
+  }, [players, userId, maxPlayers]);
 
   return (
     <div className={styles.avatarSelectionOptionsContainer}>
@@ -113,6 +168,7 @@ function AvatarOptions({ players, setSelectedAvatar, selectedAvatar, userId }: A
         {AVAILABLE_AVATAR_IDS.map((avatarId) => {
           const avatar = AVATARS[avatarId];
           const isUsed = !!usedAvatars[avatarId];
+          const isDisabled = disabledAvatars.has(avatarId);
 
           return (
             <Tooltip
@@ -130,11 +186,11 @@ function AvatarOptions({ players, setSelectedAvatar, selectedAvatar, userId }: A
             >
               <TransparentButton
                 onClick={() => setSelectedAvatar(avatarId)}
-                disabled={isUsed}
+                disabled={isDisabled}
                 className={clsx(
                   styles.avatarSelectionOptionsAvatar,
                   avatarId === selectedAvatar && styles.avatarSelectionOptionsAvatarSelected,
-                  isUsed && styles.avatarSelectionOptionsAvatarUsed,
+                  isDisabled && styles.avatarSelectionOptionsAvatarUsed,
                 )}
               >
                 <svg
@@ -153,8 +209,8 @@ function AvatarOptions({ players, setSelectedAvatar, selectedAvatar, userId }: A
       </div>
       <Typography.Text italic>
         <Translate
-          en="If two or more players happen to select the same avatar, the engine will randomly assign a new one."
-          pt="Se dois ou mais jogadores escolherem o mesmo avatar, o motor atribuirá aleatoriamente um novo."
+          en="If two or more players happen to select the same avatar, the game engine will randomly assign a new one."
+          pt="Se dois ou mais jogadores escolherem o mesmo avatar, o servidor atribuirá aleatoriamente um novo."
         />
       </Typography.Text>
     </div>
