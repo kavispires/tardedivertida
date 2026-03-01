@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "contadores-historias",
-  "version": "4.1.26",
+  "version": "4.1.27",
   "release": "stable",
   "releaseDate": "2021-08-28",
   "available": true,
@@ -46,7 +46,11 @@
   },
   "playerCount": {
     "best": 6,
-    "recommended": [4, 5, 6],
+    "recommended": [
+      4,
+      5,
+      6
+    ],
     "min": 3,
     "max": 10
   },
@@ -54,7 +58,17 @@
     "base": 10,
     "perPlayer": 5
   },
-  "tags": ["competitive", "turn-based", "images", "writing", "guessing", "mobile-friendly", "achievements"],
+  "mechanics": [
+    "competitive",
+    "turn-based",
+    "images",
+    "writing",
+    "guessing"
+  ],
+  "features": [
+    "mobile-friendly",
+    "achievements"
+  ],
   "options": [
     {
       "key": "fixedRounds",

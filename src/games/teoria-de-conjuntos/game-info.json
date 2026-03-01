@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "teoria-de-conjuntos",
-  "version": "4.0.27",
+  "version": "4.0.28",
   "release": "stable",
   "releaseDate": "2024-03-22",
   "available": true,
@@ -43,7 +43,12 @@
     ]
   },
   "playerCount": {
-    "recommended": [3, 4, 5, 6],
+    "recommended": [
+      3,
+      4,
+      5,
+      6
+    ],
     "best": 4,
     "min": 2,
     "max": 10
@@ -52,7 +57,15 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive", "turn-based", "guessing", "brain-burner", "achievements"],
+  "mechanics": [
+    "competitive",
+    "turn-based",
+    "guessing",
+    "brain-burner"
+  ],
+  "features": [
+    "achievements"
+  ],
   "options": [
     {
       "key": "nsfw",

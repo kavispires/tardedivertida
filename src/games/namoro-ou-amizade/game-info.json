@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "R",
   "gameName": "megarobos",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "release": "cancelled",
   "releaseDate": "0000-00-00",
   "available": false,
@@ -27,11 +27,19 @@
     "videoBackground": false
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "TBD"
+    ],
+    "en": [
+      "TBD"
+    ]
   },
   "playerCount": {
-    "recommended": [4, 5, 6],
+    "recommended": [
+      4,
+      5,
+      6
+    ],
     "min": 2,
     "max": 8,
     "best": 0
@@ -40,5 +48,11 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["cooperative", "competitive", "guessing", "images"]
+  "mechanics": [
+    "cooperative",
+    "competitive",
+    "guessing",
+    "images"
+  ],
+  "features": []
 }

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vingativos",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "release": "planned",
   "releaseDate": "0000-00-00",
   "available": false,
@@ -27,12 +27,20 @@
     "en": "Players are super heroes trying to uncover the super villains secret plans"
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "TBD"
+    ],
+    "en": [
+      "TBD"
+    ]
   },
   "playerCount": {
     "best": 5,
-    "recommended": [4, 5, 6],
+    "recommended": [
+      4,
+      5,
+      6
+    ],
     "min": 2,
     "max": 10
   },
@@ -40,5 +48,12 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["cooperative", "images", "pairing", "discussion", "voting"]
+  "mechanics": [
+    "cooperative",
+    "images",
+    "pairing",
+    "discussion",
+    "voting"
+  ],
+  "features": []
 }

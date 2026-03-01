@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "ta-na-cara",
-  "version": "1.1.87",
+  "version": "1.1.88",
   "release": "deprecated",
   "releaseDate": "2023-03-25",
   "available": false,
@@ -27,11 +27,19 @@
     "en": "Can you guess who is who based on subjective questions?"
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "TBD"
+    ],
+    "en": [
+      "TBD"
+    ]
   },
   "playerCount": {
-    "recommended": [4, 5, 6],
+    "recommended": [
+      4,
+      5,
+      6
+    ],
     "best": 5,
     "min": 4,
     "max": 10
@@ -40,7 +48,12 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive", "turn-based", "guessing"],
+  "mechanics": [
+    "competitive",
+    "turn-based",
+    "guessing"
+  ],
+  "features": [],
   "options": [
     {
       "key": "nsfw",

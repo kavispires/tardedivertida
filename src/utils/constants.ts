@@ -226,16 +226,6 @@ export const TAG_DICT: Record<
   },
 };
 
-export const TAG_RULES: Record<string, 'concurrent' | 'exclusive'> = {
-  dynamics: 'exclusive',
-  turns: 'exclusive',
-  skills: 'concurrent',
-  actions: 'concurrent',
-  emotions: 'concurrent',
-  features: 'concurrent',
-  other: 'concurrent',
-};
-
 export const LETTERS: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 export const SEPARATOR: string = ';;';

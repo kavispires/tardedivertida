@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "detetives-imaginativos",
-  "version": "4.0.17",
+  "version": "4.0.18",
   "release": "stable",
   "releaseDate": "2021-07-10",
   "available": true,
@@ -53,7 +53,11 @@
     ]
   },
   "playerCount": {
-    "recommended": [5, 6, 7],
+    "recommended": [
+      5,
+      6,
+      7
+    ],
     "min": 3,
     "max": 10,
     "best": 6
@@ -62,14 +66,16 @@
     "base": 5,
     "perPlayer": 6
   },
-  "tags": [
+  "mechanics": [
     "competitive",
     "turn-based",
     "traitor",
     "discussion",
     "images",
     "writing",
-    "voting",
+    "voting"
+  ],
+  "features": [
     "achievements"
   ],
   "options": []

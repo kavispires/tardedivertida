@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "O",
   "gameName": "onda-telepatica",
-  "version": "4.0.80",
+  "version": "4.0.81",
   "releaseDate": "2021-05-18",
   "release": "stable",
   "available": true,
@@ -47,7 +47,11 @@
     ]
   },
   "playerCount": {
-    "recommended": [4, 5, 6],
+    "recommended": [
+      4,
+      5,
+      6
+    ],
     "best": 5,
     "min": 3,
     "max": 20
@@ -56,7 +60,16 @@
     "base": 25,
     "perPlayer": 2
   },
-  "tags": ["competitive", "turn-based", "writing", "guessing", "brain-burner", "achievements"],
+  "mechanics": [
+    "competitive",
+    "turn-based",
+    "writing",
+    "guessing",
+    "brain-burner"
+  ],
+  "features": [
+    "achievements"
+  ],
   "options": [
     {
       "key": "fixedRounds",

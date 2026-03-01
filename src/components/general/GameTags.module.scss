@@ -1,5 +1,19 @@
 @use "styles/sass" as *;
 
+.gameTagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: get-unit(2);
+  width: 100%;
+}
+
+.gameTagsSection {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: get-unit(1);
+}
+
 .gameTagsGroup {
   display: flex;
   flex-wrap: wrap;

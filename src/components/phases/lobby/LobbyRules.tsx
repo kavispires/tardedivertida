@@ -64,7 +64,8 @@ export function LobbyRules({ players }: LobbyRulesProps) {
           size={[1, 10]}
           style={{ display: 'flex' }}
           gameCode={info.gameCode}
-          tags={info.tags}
+          mechanics={info.mechanics}
+          features={info.features}
         />
         <Image.PreviewGroup
           fallback={`${BASE_URL}/rules/no-rules.jpg`}

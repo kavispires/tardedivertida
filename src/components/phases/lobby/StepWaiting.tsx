@@ -129,7 +129,7 @@ export function StepWaiting({ players }: StepWaitingProps) {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        <Settings hasImages={info.tags.includes('images')} />
+        <Settings hasImages={info.mechanics.includes('images')} />
         <Paragraph className={styles.lobbyHeading}>
           <Translate
             pt="Aguarde os outros jogadores entrarem."

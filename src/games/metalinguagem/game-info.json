@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "metalinguagem",
-  "version": "1.0.29",
+  "version": "1.0.30",
   "release": "stable",
   "releaseDate": "2025-03-21",
   "available": true,
@@ -45,7 +45,12 @@
     ]
   },
   "playerCount": {
-    "recommended": [3, 4, 5, 6],
+    "recommended": [
+      3,
+      4,
+      5,
+      6
+    ],
     "best": 3,
     "min": 2,
     "max": 10
@@ -54,7 +59,15 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["cooperative", "writing", "guessing", "brain-burner", "achievements"],
+  "mechanics": [
+    "cooperative",
+    "writing",
+    "guessing",
+    "brain-burner"
+  ],
+  "features": [
+    "achievements"
+  ],
   "options": [
     {
       "key": "nsfw",

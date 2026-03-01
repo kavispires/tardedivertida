@@ -53,38 +53,38 @@ const getVersionColor = (version: string) => {
 };
 
 type GameCardProps = {
-  game: GameInfo;
+  info: GameInfo;
   isAdmin?: boolean;
 };
 
-export function GameCard({ game, isAdmin = true }: GameCardProps) {
+export function GameCard({ info, isAdmin = true }: GameCardProps) {
   const { language, translate } = useLanguage();
 
-  const duration = calculateGameAverageDuration(game);
+  const duration = calculateGameAverageDuration(info);
 
   return (
     <Card
-      key={game.gameName}
+      key={info.gameName}
       className="game-card"
       cover={
         <Badge.Ribbon
-          text={game.version}
-          color={getVersionColor(game.version)}
+          text={info.version}
+          color={getVersionColor(info.version)}
         >
           <div className="game-card__image">
             <GameStrip
-              gameName={game.gameName}
+              gameName={info.gameName}
               width={256}
-              title={game.title}
+              title={info.title}
             />
             <span
               className="game-card__title"
-              title={game.title[language]}
+              title={info.title[language]}
             >
-              <span className="game-card__title-text">{game.title[language]}</span>{' '}
+              <span className="game-card__title-text">{info.title[language]}</span>{' '}
               <span>
                 <Tooltip title={translate('Código do jogo começará com', 'The game id will start with')}>
-                  <Tag>{game.gameCode}</Tag>
+                  <Tag>{info.gameCode}</Tag>
                 </Tooltip>
               </span>
             </span>
@@ -98,7 +98,7 @@ export function GameCard({ game, isAdmin = true }: GameCardProps) {
           className="full-width"
         >
           <Card.Meta
-            description={`${translate('Inspirado por', 'Inspired by')} ${game.inspiredBy
+            description={`${translate('Inspirado por', 'Inspired by')} ${info.inspiredBy
               .split('')
               .reverse()
               .join('')}`}
@@ -106,12 +106,12 @@ export function GameCard({ game, isAdmin = true }: GameCardProps) {
 
           <Card.Meta
             className="game-card__description"
-            description={game.summary[language]}
+            description={info.summary[language]}
           />
 
-          {Boolean(game.rules?.[language]?.length > 1) && (
+          {Boolean(info.rules?.[language]?.length > 1) && (
             <RulesModal
-              gameInfo={game}
+              gameInfo={info}
               buttonProps={{
                 size: 'small',
                 className: 'game-card__margin-bottom',
@@ -123,14 +123,15 @@ export function GameCard({ game, isAdmin = true }: GameCardProps) {
             wrap
             size={[1, 6]}
             style={{ display: 'flex' }}
-            gameCode={game.gameCode}
-            tags={game.tags}
+            gameCode={info.gameCode}
+            mechanics={info.mechanics}
+            features={info.features}
           />
         </Space>
       </div>
 
       <div className="game-card__actions">
-        {game.duration && (
+        {info.duration && (
           <Card.Meta
             description={
               <>
@@ -145,31 +146,31 @@ export function GameCard({ game, isAdmin = true }: GameCardProps) {
         <Space orientation="vertical">
           <Card.Meta
             description={translate(
-              `Para ${game.playerCount.min}-${game.playerCount.max} jogadores`,
-              `For ${game.playerCount.min}-${game.playerCount.max} players`,
+              `Para ${info.playerCount.min}-${info.playerCount.max} jogadores`,
+              `For ${info.playerCount.min}-${info.playerCount.max} players`,
             )}
           />
 
           <Card.Meta
             className="game-card__player-count"
             description={translate(
-              `Melhor com ${game.playerCount.best || '?'} jogadores`,
-              `Best wih ${game.playerCount.best || '?'} players`,
+              `Melhor com ${info.playerCount.best || '?'} jogadores`,
+              `Best wih ${info.playerCount.best || '?'} players`,
             )}
           />
 
           <Card.Meta
             className="game-card__player-count game-card__margin-bottom"
             description={translate(
-              `Recomendado jogar com ${truncateRecommended(game.playerCount.recommended)}`,
-              `Recommended with ${truncateRecommended(game.playerCount.recommended)}`,
+              `Recomendado jogar com ${truncateRecommended(info.playerCount.recommended)}`,
+              `Recommended with ${truncateRecommended(info.playerCount.recommended)}`,
             )}
           />
         </Space>
 
         {isAdmin && (
           <div style={{ marginTop: '1rem' }}>
-            {['dev', 'beta', 'stable'].includes(game.release) && <CreateGameFlow gameInfo={game} />}
+            {['dev', 'beta', 'stable'].includes(info.release) && <CreateGameFlow gameInfo={info} />}
           </div>
         )}
       </div>

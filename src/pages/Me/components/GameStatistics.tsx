@@ -113,13 +113,12 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
           )}
           <br />
           <GameTags
-            tags={info.tags}
+            mechanics={info.mechanics}
             gameCode={info.gameCode}
+            features={info.features}
           />
         </InfoCard>
-        {/* <InfoCard title={<Translate pt="Sua avaliação" en="Your Rating" />} {...leftColProps}>
-            <Rate value={game?.rating} />
-          </InfoCard> */}
+
         <InfoCard
           title={
             <Translate
@@ -210,7 +209,7 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
               />
             )}
 
-            {game.isWinnable && info.tags.includes('competitive') && (
+            {game.isWinnable && info.mechanics.includes('competitive') && (
               <StatisticCard
                 title={
                   <Translate

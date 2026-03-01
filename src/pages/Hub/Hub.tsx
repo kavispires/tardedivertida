@@ -10,7 +10,7 @@ import type { GameInfo } from 'types/game-info';
 import { useGameList } from 'hooks/useGameList';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
-import { SEPARATOR, TAG_RULES } from 'utils/constants';
+import { SEPARATOR } from 'utils/constants';
 import { calculateGameAverageDuration, isDevEnv } from 'utils/helpers';
 // Components
 import { LogoutButton } from 'components/auth/LogoutButton';
@@ -23,6 +23,16 @@ import { DevHeader } from 'pages/Dev/DevHeader';
 import { GameCard } from './components/GameCard';
 import { DevEmulatorAlert } from './components/DevEmulatorAlert';
 import { Filters, type FilterState } from './components/Filters';
+
+const MECHANICS_RULES: Record<string, 'concurrent' | 'exclusive'> = {
+  dynamics: 'exclusive',
+  turns: 'exclusive',
+  skills: 'concurrent',
+  actions: 'concurrent',
+  emotions: 'concurrent',
+  features: 'concurrent',
+  other: 'concurrent',
+};
 
 function Hub() {
   useTitle('Hub - Tarde Divertida');
@@ -92,10 +102,10 @@ function Hub() {
         filters.tags.forEach((tagKey) => {
           const [tagGroup, tag] = tagKey.split(SEPARATOR);
 
-          if (tagGroup && tag && TAG_RULES?.[tagGroup] === 'exclusive') {
-            result.push(game.tags.includes(tag));
+          if (tagGroup && tag && MECHANICS_RULES?.[tagGroup] === 'exclusive') {
+            result.push(game.mechanics.includes(tag));
           } else if (tag) {
-            result.push(game.tags.includes(tag));
+            result.push(game.mechanics.includes(tag));
           }
         });
 
@@ -359,7 +369,7 @@ function RowOfGames({ games }: RowOfGamesProps) {
           xxl={4}
         >
           <GameCard
-            game={game}
+            info={game}
             isAdmin={['dev', 'beta', 'stable'].includes(game.release)}
           />
         </Col>

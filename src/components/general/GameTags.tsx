@@ -8,6 +8,7 @@ import { TAG_DICT } from 'utils/constants';
 // Icons
 import { BrainIcon } from 'icons/BrainIcon';
 import { CloverIcon } from 'icons/CloverIcon';
+import { AudienceIcon, PlayerDropIcon, SoundEffectsIcon } from 'icons/collection';
 import { CompetitiveGameIcon } from 'icons/CompetitiveGameIcon';
 import { CooperativeGameIcon } from 'icons/CooperativeGameIcon';
 import { DrawingIcon } from 'icons/DrawingIcon';
@@ -62,63 +63,111 @@ const icons: Dictionary<React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
   traitor: TraitorIcon,
   images: ImageCardsIcon,
   betting: GamblingChipIcon,
+  puzzle: PuzzleIcon,
+  // Technical Features
   achievements: MedalIcon,
+  audience: AudienceIcon,
   bots: RobotIcon,
   'mobile-friendly': SmartphoneIcon,
-  puzzle: PuzzleIcon,
+  'player-drop': PlayerDropIcon,
+  'sound-effects': SoundEffectsIcon,
 };
 
-type GameTagsProps = {
-  tags: string[];
+type GameMechanicTagsProps = {
+  mechanics?: string[];
+  features?: string[];
   gameCode: GameCode;
 } & SpaceProps;
 
-export function GameTags({ tags, gameCode, ...rest }: GameTagsProps) {
+export function GameTags({ mechanics = [], features = [], gameCode, ...rest }: GameMechanicTagsProps) {
   const { language } = useLanguage();
 
-  const { buttonTags, otherTags } = useMemo(() => {
-    const sortedTags = sortTags(tags);
+  const { mechanicButtonTags, mechanicOtherTags, featureButtonTags, featureOtherTags } = useMemo(() => {
+    const sortedMechanics = sortTags(mechanics);
+    const sortedFeatures = sortTags(features);
 
-    const buttonTags = sortedTags.filter((tag) => icons[tag]);
+    const mechanicButtonTags = sortedMechanics.filter((tag) => icons[tag]);
+    const mechanicOtherTags = sortedMechanics.filter((tag) => !icons[tag]);
 
-    const otherTags = sortedTags.filter((tag) => !icons[tag]);
+    const featureButtonTags = sortedFeatures.filter((tag) => icons[tag]);
+    const featureOtherTags = sortedFeatures.filter((tag) => !icons[tag]);
 
-    return { buttonTags, otherTags };
-  }, [tags]);
+    return { mechanicButtonTags, mechanicOtherTags, featureButtonTags, featureOtherTags };
+  }, [mechanics, features]);
 
   return (
     <Space
       wrap
       {...rest}
-      orientation="vertical"
+      className={styles.gameTagsContainer}
     >
-      <div className={styles.gameTagsGroup}>
-        {buttonTags.map((tag) => {
-          const Icon = icons[tag];
+      {/* Mechanics Section */}
+      <div className={styles.gameTagsSection}>
+        {mechanicButtonTags.length > 0 && (
+          <div className={styles.gameTagsGroup}>
+            {mechanicButtonTags.map((tag) => {
+              const Icon = icons[tag];
 
-          return (
-            <Tooltip
-              key={`${gameCode}-${tag}`}
-              title={TAG_DICT[tag]?.label[language]}
-            >
-              <Icon
-                style={{ width: 36 }}
-                className={styles.gameTagsGroupIcon}
-              />
-            </Tooltip>
-          );
-        })}
+              return (
+                <Tooltip
+                  key={`${gameCode}-${tag}`}
+                  title={TAG_DICT[tag]?.label[language]}
+                >
+                  <Icon
+                    style={{ width: 36 }}
+                    className={styles.gameTagsGroupIcon}
+                  />
+                </Tooltip>
+              );
+            })}
+          </div>
+        )}
+
+        {mechanicOtherTags.map((tag) => (
+          <Tag
+            key={`${gameCode}-${tag}`}
+            color={TAG_DICT[tag]?.color}
+            style={{ marginRight: 6 }}
+          >
+            {TAG_DICT[tag]?.label[language]}
+          </Tag>
+        ))}
       </div>
 
-      {otherTags.map((tag) => (
-        <Tag
-          key={`${gameCode}-${tag}`}
-          color={TAG_DICT[tag]?.color}
-          style={{ marginRight: 6 }}
-        >
-          {TAG_DICT[tag]?.label[language]}
-        </Tag>
-      ))}
+      {/* Features Section */}
+      {(featureButtonTags.length > 0 || featureOtherTags.length > 0) && (
+        <div className={styles.gameTagsSection}>
+          {featureButtonTags.length > 0 && (
+            <div className={styles.gameTagsGroup}>
+              {featureButtonTags.map((tag) => {
+                const Icon = icons[tag];
+
+                return (
+                  <Tooltip
+                    key={`${gameCode}-${tag}`}
+                    title={TAG_DICT[tag]?.label[language]}
+                  >
+                    <Icon
+                      style={{ width: 36 }}
+                      className={styles.gameTagsGroupIcon}
+                    />
+                  </Tooltip>
+                );
+              })}
+            </div>
+          )}
+
+          {featureOtherTags.map((tag) => (
+            <Tag
+              key={`${gameCode}-${tag}`}
+              color={TAG_DICT[tag]?.color}
+              style={{ marginRight: 6 }}
+            >
+              {TAG_DICT[tag]?.label[language]}
+            </Tag>
+          ))}
+        </div>
+      )}
     </Space>
   );
 }

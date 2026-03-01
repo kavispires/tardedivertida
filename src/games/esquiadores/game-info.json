@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "esquiadores",
-  "version": "1.0.29",
+  "version": "1.0.30",
   "release": "stable",
   "releaseDate": "2025-01-20",
   "available": true,
@@ -45,7 +45,11 @@
     ]
   },
   "playerCount": {
-    "recommended": [4, 5, 6],
+    "recommended": [
+      4,
+      5,
+      6
+    ],
     "best": 5,
     "min": 2,
     "max": 10
@@ -54,7 +58,13 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive", "same-time", "betting", "voting"],
+  "mechanics": [
+    "competitive",
+    "same-time",
+    "betting",
+    "voting"
+  ],
+  "features": [],
   "options": [
     {
       "key": "nsfw",

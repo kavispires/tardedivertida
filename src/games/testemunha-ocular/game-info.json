@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "testemunha-ocular",
-  "version": "6.1.3",
+  "version": "6.1.4",
   "release": "stable",
   "releaseDate": "2021-08-01",
   "available": true,
@@ -46,7 +46,11 @@
   },
   "playerCount": {
     "best": 3,
-    "recommended": [2, 3, 4],
+    "recommended": [
+      2,
+      3,
+      4
+    ],
     "min": 2,
     "max": 10
   },
@@ -54,7 +58,15 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["cooperative", "turn-based", "guessing", "discussion", "achievements"],
+  "mechanics": [
+    "cooperative",
+    "turn-based",
+    "guessing",
+    "discussion"
+  ],
+  "features": [
+    "achievements"
+  ],
   "options": [
     {
       "key": "largePool",

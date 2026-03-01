@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "megamix",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "release": "stable",
   "releaseDate": "2022-12-17",
   "available": true,
@@ -45,7 +45,11 @@
     ]
   },
   "playerCount": {
-    "recommended": [5, 7, 9],
+    "recommended": [
+      5,
+      7,
+      9
+    ],
     "best": 7,
     "min": 4,
     "max": 25
@@ -54,7 +58,7 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": [
+  "mechanics": [
     "competitive",
     "images",
     "drawing",
@@ -62,7 +66,9 @@
     "pairing",
     "same-time",
     "writing",
-    "voting",
+    "voting"
+  ],
+  "features": [
     "achievements"
   ],
   "options": [

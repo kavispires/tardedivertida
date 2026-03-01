@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vice-campeao",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "release": "stable",
   "releaseDate": "2025-04-08",
   "available": true,
@@ -41,7 +41,11 @@
     ]
   },
   "playerCount": {
-    "recommended": [4, 5, 6],
+    "recommended": [
+      4,
+      5,
+      6
+    ],
     "best": 5,
     "min": 2,
     "max": 8
@@ -50,5 +54,12 @@
     "base": 5,
     "perPlayer": 4
   },
-  "tags": ["competitive", "same-time", "push-your-luck", "achievements"]
+  "mechanics": [
+    "competitive",
+    "same-time",
+    "push-your-luck"
+  ],
+  "features": [
+    "achievements"
+  ]
 }
