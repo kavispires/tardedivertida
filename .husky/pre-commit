@@ -32,14 +32,8 @@ function update_package_version {
 
   # Check if the version property has been modified
   if ! git diff --unified=0 HEAD~1..HEAD package.json | grep -qE '^\+[[:space:]]*"version":\s*"[^"]+"' ; then
-      # Determine the version increment based on modified_game_count
-      if (($1 > 4)); then
-          # Increment the minor version
-          npm version minor --no-git-tag-version
-      else
-          # Increment the patch version
-          npm version patch --no-git-tag-version
-      fi
+      # Always increment the patch version
+      npm version patch --no-git-tag-version
 
       git add package.json
 
