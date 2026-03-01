@@ -4,7 +4,7 @@ import { DEFAULT_PADDING } from 'utils/constants';
 // Components
 import { DEFAULT_SPRITE_SIZE, Sprite } from 'components/sprites';
 // Sass
-import './SignCard.scss';
+import styles from './SignCard.module.scss';
 
 type SignCardProps = {
   /**
@@ -40,7 +40,7 @@ export function SignCard({
   return (
     <div
       {...rest}
-      className={clsx('sign-card', className)}
+      className={clsx(styles.signCard, className)}
       style={{ ...rest.style, width: `${width}px`, height: `${width}px`, ...divPadding }}
     >
       <Sprite

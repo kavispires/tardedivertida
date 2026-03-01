@@ -5,6 +5,8 @@ import { TransparentButton } from 'components/buttons';
 import { DualTranslate, Translate } from 'components/language';
 // Images
 import avatars from 'assets/images/avatars.svg?url';
+// Sass
+import styles from '../PhaseLobby.module.scss';
 
 type UsualAvatarsSelectionProps = {
   setSelectedAvatar: GenericFunction;
@@ -13,8 +15,8 @@ type UsualAvatarsSelectionProps = {
 
 export function UsualAvatarsSelection({ avatarsIds, setSelectedAvatar }: UsualAvatarsSelectionProps) {
   return (
-    <div className="lobby-usual-avatar-selection">
-      <div className="lobby-usual-avatar-selection__title">
+    <div className={styles.lobbyUsualAvatarSelection}>
+      <div className={styles.lobbyUsualAvatarSelectionTitle}>
         <small>
           <Translate
             pt="Seus avatars mais usados"
@@ -22,7 +24,7 @@ export function UsualAvatarsSelection({ avatarsIds, setSelectedAvatar }: UsualAv
           />
         </small>
       </div>
-      <ul className="lobby-usual-avatar-selection__list">
+      <ul className={styles.lobbyUsualAvatarSelectionList}>
         {avatarsIds.map((avatarId) => (
           <TransparentButton
             key={avatarId}
@@ -30,7 +32,7 @@ export function UsualAvatarsSelection({ avatarsIds, setSelectedAvatar }: UsualAv
           >
             <svg
               viewBox="0 0 100 100"
-              className="lobby-usual-avatar-selection__avatar"
+              className={styles.lobbyUsualAvatarSelectionAvatar}
             >
               <use href={`${avatars}#avatar-${avatarId}`}></use>
               <title>

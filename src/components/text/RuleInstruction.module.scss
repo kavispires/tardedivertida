@@ -1,0 +1,58 @@
+@use "styles/sass" as *;
+
+.ruleInstruction {
+  $self: &;
+
+  background-color: rgba($color: white, $alpha: 0.85);
+  border-radius: var(--border-radius);
+  max-width: var(--max-width);
+  min-width: calc(var(--max-width) / 2);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  margin: get-unit(5);
+  font-size: 1em;
+
+  & > .ant-typography {
+    margin-bottom: 0;
+  }
+}
+
+.ruleInstructionIcon {
+  background: get-color("gray", 5, 0.5);
+  color: get-color("white");
+  padding: get-unit(2 3);
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+
+  &:global(.ruleInstructionIconAction) {
+    opacity: 0.85;
+  }
+
+  &:global(.ruleInstructionIconAlert) {
+    background: get-color("red", 5, 0.65);
+  }
+
+  &:global(.ruleInstructionIconEvent) {
+    background: get-color("orange", 4, 0.5);
+  }
+
+  &:global(.ruleInstructionIconLore) {
+    background: get-color("purple", 4, 0.5);
+  }
+
+  &:global(.ruleInstructionIconRule) {
+    background: get-color("gray", 5, 0.5);
+  }
+
+  &:global(.ruleInstructionIconTip) {
+    background: get-color("gray", 3, 0.5);
+  }
+
+  &:global(.ruleInstructionIconScoring) {
+    background: get-color("yellow", 5, 0.5);
+  }
+}
+
+.ruleInstructionContent {
+  padding: get-unit(2);
+  text-wrap: wrap;
+}

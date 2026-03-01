@@ -3,7 +3,7 @@ import type { ComponentProps, ReactNode } from 'react';
 // Ant Design Resources
 import { Typography } from 'antd';
 // Sass
-import './Instruction.scss';
+import styles from './Instruction.module.scss';
 
 type InstructionsProps = {
   /**
@@ -50,17 +50,15 @@ export const Instruction = ({
   colorScheme,
   ...rest
 }: InstructionsProps) => {
-  const baseClass = 'instruction';
-
   return (
     <Typography.Text
       className={clsx(
-        baseClass,
-        contained && `${baseClass}--contained`,
-        colorScheme === 'dark' && `${baseClass}--dark`,
-        white && `${baseClass}--white`,
-        fullWidth && `${baseClass}--full-width`,
-        noMargin && `${baseClass}--no-margin`,
+        styles.instruction,
+        contained && styles.instructionContained,
+        colorScheme === 'dark' && styles.instructionDark,
+        white && styles.instructionWhite,
+        fullWidth && `${styles.instruction}--full-width`,
+        noMargin && styles.instructionNoMargin,
         className,
       )}
       data-testid="instruction"

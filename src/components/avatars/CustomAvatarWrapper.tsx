@@ -4,7 +4,7 @@ import { getAvatarColorById } from 'utils/helpers';
 // Images
 import avatars from 'assets/images/avatars.svg?url';
 // Sass
-import './ClubberAvatar.scss';
+import styles from './ClubberAvatar.module.scss';
 
 export type CustomAvatarProps = {
   /**
@@ -61,10 +61,24 @@ export const CustomAvatarWrapper = ({
   const color = getAvatarColorById(avatarId ?? '0');
   const hasAvatar = Boolean(avatarId);
 
+  const getAvatarClass = () => {
+    const classMap: Record<string, string> = {
+      clubber: styles.clubberAvatar,
+      costume: styles.costumeAvatar,
+      'super-hero': styles.superHeroAvatar,
+    };
+    const animatedMap: Record<string, string> = {
+      clubber: styles.clubberAvatarAnimated,
+      costume: styles.costumeAvatarAnimated,
+      'super-hero': styles.superHeroAvatarAnimated,
+    };
+    return clsx(classMap[prefix], animate && animatedMap[prefix], className);
+  };
+
   return (
     <svg
       viewBox={`0 0 100 ${hasAvatar ? 200 : 100}`}
-      className={clsx(`${prefix}-avatar`, animate && `${prefix}-avatar--animated`, className)}
+      className={getAvatarClass()}
       style={{
         animationDuration: `${500 + (Math.random() + Number(id)) * 53}ms`,
         width: `${width}px`,

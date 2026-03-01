@@ -23,7 +23,8 @@ import { AdminPerformActionButton } from './_internal/AdminPerformActionButton';
 import { ForceStateForm } from './_internal/ForceStateForm';
 import { PlayersReadyState } from './_internal/PlayersReadyState';
 // Sass
-import './AdminMenuDrawer.scss';
+import styles from './AdminMenuDrawer.module.scss';
+// Styles
 
 type AdminMenuDrawerProps = {
   /**
@@ -61,7 +62,7 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
   if (!isAdmin || !isAdminEnabled || !state.phase) return <span></span>;
 
   return (
-    <div className="admin-menu-drawer">
+    <div className={styles.adminMenuDrawer}>
       <FixedMenuButton
         position={-1}
         icon={<FireFilled />}
@@ -90,7 +91,7 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
           <li>
             <hr />
           </li>
-          <li className="admin-menu-drawer__buttons">
+          <li className={styles.buttons}>
             <h3>Actions</h3>
             <Popconfirm
               placement="right"
@@ -100,7 +101,7 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
               <AdminPerformActionButton
                 disabled={isLoading || state.phase === 'GAME_OVER'}
                 label="Force Next Phase"
-                className="admin-menu-drawer__button"
+                className={styles.button}
               />
             </Popconfirm>
             <Popconfirm
@@ -113,7 +114,7 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
                 // disabled={isLoading || !(state.phase === 'GAME_OVER')}
                 disabled
                 label="Play Again"
-                className="admin-menu-drawer__button"
+                className={styles.button}
               />
             </Popconfirm>
             <Popconfirm
@@ -130,7 +131,7 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
                     ? 'This is already set as the last round'
                     : 'Make this the last round'
                 }
-                className="admin-menu-drawer__button"
+                className={styles.button}
               />
             </Popconfirm>
             <Popconfirm
@@ -141,7 +142,7 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
               <AdminPerformActionButton
                 disabled={state?.phase === 'LOBBY'}
                 label="Reset and restart"
-                className="admin-menu-drawer__button"
+                className={styles.button}
               />
             </Popconfirm>
           </li>

@@ -10,6 +10,9 @@ import { useGlobalState } from 'hooks/useGlobalState';
 import { LanguageSwitch, Translate } from 'components/language';
 // Internal
 import { BlurOptions } from './BlurOptions';
+// Sass
+import styles from '../drawers.module.scss';
+// Styles
 
 export function SectionSettings() {
   const { isAdmin } = useCurrentUserContext();
@@ -27,9 +30,9 @@ export function SectionSettings() {
   };
 
   return (
-    <div className="game-info-drawer__section-settings">
-      <div className="game-info-drawer__settings-entry">
-        <div className="game-info-drawer__switch-label">
+    <div className={styles.gameInfoDrawer__sectionSettings}>
+      <div className={styles.gameInfoDrawer__settingsEntry}>
+        <div className={styles.gameInfoDrawer__switchLabel}>
           <Translate
             pt="Idioma"
             en="Language"
@@ -54,8 +57,8 @@ export function SectionSettings() {
         <LanguageSwitch />
       </div>
 
-      <div className="game-info-drawer__settings-entry">
-        <div className="game-info-drawer__switch-label">
+      <div className={styles.gameInfoDrawer__settingsEntry}>
+        <div className={styles.gameInfoDrawer__switchLabel}>
           <Translate
             pt="Som"
             en="Sound"
@@ -117,13 +120,13 @@ export function SectionSettings() {
       </div>
 
       {blurEnabled && (
-        <div className="game-info-drawer__settings-entry">
+        <div className={styles.gameInfoDrawer__settingsEntry}>
           <BlurOptions />
         </div>
       )}
 
-      <div className="game-info-drawer__settings-entry">
-        <div className="game-info-drawer__switch-label">
+      <div className={styles.gameInfoDrawer__settingsEntry}>
+        <div className={styles.gameInfoDrawer__switchLabel}>
           Debug
           <Tooltip
             title={
@@ -151,8 +154,8 @@ export function SectionSettings() {
       </div>
 
       {isAdmin && (
-        <div className="game-info-drawer__settings-entry">
-          <div className="game-info-drawer__switch-label">
+        <div className={styles.gameInfoDrawer__settingsEntry}>
+          <div className={styles.gameInfoDrawer__switchLabel}>
             Admin
             <Tooltip
               title={

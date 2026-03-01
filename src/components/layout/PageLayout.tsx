@@ -4,7 +4,7 @@ import type { ComponentProps } from 'react';
 // Ant Design Resources
 import { Layout } from 'antd';
 // Sass
-import './PageLayout.scss';
+import styles from './PageLayout.module.scss';
 
 const MotionLayout = motion.create(Layout);
 
@@ -35,7 +35,7 @@ export const PageLayout = ({ className, ...props }: ComponentProps<typeof Motion
           clipPath: CLOSE,
         },
       }}
-      className={clsx('page-layout', className)}
+      className={clsx(styles.pageLayout, className)}
       {...props}
     />
   );

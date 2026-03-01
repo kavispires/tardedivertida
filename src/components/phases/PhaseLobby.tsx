@@ -28,7 +28,7 @@ import { LobbyRules } from './lobby/LobbyRules';
 import { ImageBackground } from './lobby/ImageBackground';
 import { VideoBackground } from './lobby/VideoBackground';
 // Sass
-import './PhaseLobby.scss';
+import styles from './PhaseLobby.module.scss';
 
 const Paragraph = motion.create(Typography.Paragraph);
 
@@ -74,23 +74,23 @@ export function PhaseLobby({ players, meta }: PhaseProps) {
     <PhaseContainer
       phase="LOBBY"
       allowedPhase={PHASES.DEFAULT.LOBBY}
-      className="lobby"
+      className={styles.lobby}
     >
       <AnimatePresence>
         <motion.div
-          className="lobby-step"
+          className={styles.lobbyStep}
           layout
         >
-          <motion.div className="lobby-step__card">
+          <motion.div className={styles.lobbyStepCard}>
             <GameStrip
               width={340}
               title={info?.title}
               gameName={info?.gameName}
-              className="lobby-step__banner"
+              className={styles.lobbyStepBanner}
             />
-            <div className="lobby-step__content">
+            <div className={styles.lobbyStepContent}>
               <Paragraph
-                className="lobby-step__summary italic"
+                className={`${styles.lobbyStepSummary} italic`}
                 layoutId="lobby-step-summary"
               >
                 <DualTranslate>{info.summary}</DualTranslate>
@@ -98,7 +98,7 @@ export function PhaseLobby({ players, meta }: PhaseProps) {
 
               {meta.isLocked ? (
                 <>
-                  <Typography.Title className="lobby-step__title">
+                  <Typography.Title className={styles.lobbyStepTitle}>
                     <Translate
                       pt="Esse jogo está trancado"
                       en="This session is locked"
@@ -144,7 +144,7 @@ export function PhaseLobby({ players, meta }: PhaseProps) {
               )}
             </div>
           </motion.div>
-          <div className="lobby-step__waiting">
+          <div className={styles.lobbyStepWaiting}>
             {step === 2 && <LobbyRules players={players} />}
 
             <JoinedPlayers

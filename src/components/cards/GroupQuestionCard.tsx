@@ -1,7 +1,7 @@
 // Types
 import type { GroupQuestionCard as GroupQuestionCardType } from 'types/tdr';
 // Sass
-import './GroupQuestionCard.scss';
+import styles from './GroupQuestionCard.module.scss';
 // Type
 
 type GroupQuestionCardProps = {
@@ -17,10 +17,10 @@ type GroupQuestionCardProps = {
 
 export function GroupQuestionCard({ question, overrideNumber }: GroupQuestionCardProps) {
   return (
-    <span className="group-question-card group-question-card--span">
-      <span className="group-question-card__prefix">{question.prefix}</span>
-      <span className="group-question-card__number">{overrideNumber ?? question.number}</span>
-      <span className="group-question-card__suffix">{question.suffix}</span>
+    <span className={`${styles.groupQuestionCard} ${styles.groupQuestionCardSpan}`}>
+      <span className={styles.groupQuestionCardPrefix}>{question.prefix}</span>
+      <span className={styles.groupQuestionCardNumber}>{overrideNumber ?? question.number}</span>
+      <span className={styles.groupQuestionCardSuffix}>{question.suffix}</span>
     </span>
   );
 }

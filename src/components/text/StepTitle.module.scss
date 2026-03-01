@@ -1,0 +1,52 @@
+@use "styles/sass" as *;
+
+.stepTitle {
+  $self: &;
+
+  max-width: var(--max-width);
+  display: flex;
+  justify-content: center;
+  text-wrap: balance;
+  text-align: center;
+
+  &.ant-typography {
+    margin-bottom: get-unit(1);
+    font-size: 2.25rem;
+    margin-right: auto;
+    margin-left: auto;
+
+    @include md {
+      font-size: 2rem;
+    }
+
+    @include xs {
+      font-size: 1.75rem;
+    }
+  }
+
+  &#{$self}Light {
+    color: get-color("black");
+  }
+
+  &#{$self}Dark {
+    color: get-color("white");
+  }
+
+  &#{$self}Large {
+    font-size: 2.25rem;
+  }
+
+  &#{$self}Default {
+    font-size: 2rem;
+  }
+
+  &#{$self}Small {
+    font-size: 1.75rem;
+  }
+}
+
+.stepTitleIcon {
+  display: inline-block;
+  margin-right: get-unit(2);
+  transform: translateY(-0.1em);
+}

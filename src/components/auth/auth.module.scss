@@ -1,0 +1,35 @@
+@use "styles/sass" as *;
+
+.signIn {
+  &__logo {
+    background: rgb(8, 12, 42);
+    display: flex;
+    justify-content: center;
+    padding: get-unit(5);
+    border-radius: var(--border-radius);
+    margin: get-unit(2);
+  }
+}
+
+.signUp {
+  &__logo {
+    background: rgb(8, 12, 42);
+    background: radial-gradient(
+      circle,
+      rgba(164, 0, 121, 1) 0%,
+      rgba(164, 0, 121, 1) 65%,
+      rgba(164, 0, 121, 0) 100%
+    );
+    display: flex;
+    justify-content: center;
+    padding: get-unit(5);
+    border-radius: var(--border-radius);
+    margin: get-unit(2);
+  }
+}
+
+.convertGuestInstruction {
+  width: 50vw;
+  min-width: 400px;
+  max-width: 500px;
+}

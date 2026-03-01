@@ -12,7 +12,8 @@ import { getAvatarColorById } from 'utils/helpers';
 import { IconAvatar } from 'components/avatars';
 import { PlayerAvatar, type PlayerAvatarProps } from 'components/player';
 // Sass
-import './PlayerCounts.scss';
+import styles from './PlayerCounts.module.scss';
+// Styles
 
 type PlayerCountsProps = {
   players: GamePlayers;
@@ -66,12 +67,12 @@ export function PlayerCounts({
 
   return (
     <div
-      className={clsx('player-counts', className)}
+      className={clsx(styles.playerCounts, className)}
       {...rest}
     >
-      <ol className="player-counts__players">
+      <ol className={styles.playerCountsPlayers}>
         {title && (
-          <div className="player-counts__title">
+          <div className={styles.playerCountsTitle}>
             <Tooltip title={title}>
               <IconAvatar
                 size={size}
@@ -84,7 +85,7 @@ export function PlayerCounts({
           return (
             <span
               key={`player-counts-player-${player.id}`}
-              className={clsx('player-counts__player')}
+              className={styles.playerCountsPlayer}
               style={{ backgroundColor: getAvatarColorById(player.avatarId) }}
             >
               <Tooltip title={player.name}>

@@ -1,0 +1,51 @@
+@use "styles/sass" as *;
+
+.alienText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: get-color("white");
+  padding: get-unit(2);
+  min-width: 300px;
+  border-radius: var(--border-radius);
+  min-height: 56px;
+}
+
+.character {
+  border: 4px solid transparent;
+  border-radius: var(--border-radius);
+
+  &Not {
+    border-top-color: get-color("black");
+  }
+
+  &Very {
+    border-bottom-color: get-color("black");
+  }
+
+  &Sorta {
+    border-bottom-color: get-color("gray");
+    border-top-color: get-color("gray");
+    border-style: dotted;
+  }
+}
+
+.alienTextTranslation {
+  margin-top: get-unit(1);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background: get-color("white");
+  padding: get-unit(2);
+  min-width: 300px;
+  border-radius: var(--border-radius);
+  gap: 1ch;
+}
+
+.text {
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: get-color("blue");
+  }
+}

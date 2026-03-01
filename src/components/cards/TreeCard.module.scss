@@ -1,0 +1,22 @@
+@use "styles/sass" as *;
+
+.treeCard {
+  padding: get-unit(2);
+  border-radius: var(--border-radius);
+
+  position: relative;
+}
+
+.treeCardText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  color: get-color("white");
+  text-transform: uppercase;
+  font-family: "Ubuntu Mono", monospace;
+  text-align: center;
+  font-size: 1.25em;
+  @include text-stroke;
+}

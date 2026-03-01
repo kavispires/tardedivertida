@@ -3,7 +3,8 @@ import { CheckCircleFilled, MinusCircleFilled } from '@ant-design/icons';
 // Types
 import type { GamePlayers } from 'types/player';
 // Sass
-import './PlayersReadyState.scss';
+import styles from './PlayersReadyState.module.scss';
+// Styles
 
 type PlayersReadyStateProps = {
   /**
@@ -35,34 +36,34 @@ export function PlayersReadyState({ players }: PlayersReadyStateProps) {
   );
 
   return (
-    <li className="admin-players-ready-state">
+    <li className={styles.adminPlayersReadyState}>
       <h3>Players Ready State</h3>
-      <div className="admin-players-ready-state__entry">
+      <div className={styles.entry}>
         <CheckCircleFilled
           style={{ color: 'green' }}
           title="Ready:"
         />
-        <ul className="admin-players-ready-state__list">
+        <ul className={styles.list}>
           {readyPlayers.map((playerName) => (
             <li
               key={`admin-player-${playerName}`}
-              className="admin-players-ready-state__item"
+              className={styles.item}
             >
               {playerName}
             </li>
           ))}
         </ul>
       </div>
-      <div className="admin-players-ready-state__entry">
+      <div className={styles.entry}>
         <MinusCircleFilled
           style={{ color: 'orange' }}
           title="Ready:"
         />
-        <ul className="admin-players-ready-state__list">
+        <ul className={styles.list}>
           {pendingPlayers.map((playerName) => (
             <li
               key={`admin-player-${playerName}`}
-              className="admin-players-ready-state__item"
+              className={styles.item}
             >
               {playerName}
             </li>

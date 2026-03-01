@@ -1,7 +1,7 @@
 // Internal
 import { ImageCard } from './ImageCard';
 // Sass
-import './ImageCardPreloadHand.scss';
+import styles from './ImageCardPreloadHand.module.scss';
 
 type ImageCardPreloadHandProps = {
   hand: string[];
@@ -9,7 +9,7 @@ type ImageCardPreloadHandProps = {
 export function ImageCardPreloadHand({ hand }: ImageCardPreloadHandProps) {
   if (!hand) return <span></span>;
   return (
-    <div className="image-card-preload-hand">
+    <div className={styles.imageCardPreloadHand}>
       {hand.map((cardId) => (
         <ImageCard
           cardId={cardId}

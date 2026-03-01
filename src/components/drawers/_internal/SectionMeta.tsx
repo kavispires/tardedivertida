@@ -4,6 +4,9 @@ import { Avatar } from 'antd';
 import type { GameRound } from 'types/game';
 // Components
 import { Translate } from 'components/language';
+// Sass
+import styles from '../drawers.module.scss';
+// Styles
 
 type SectionMetaProps = {
   round: GameRound;
@@ -12,28 +15,28 @@ type SectionMetaProps = {
 
 export function SectionMeta({ round, groupScore }: SectionMetaProps) {
   return (
-    <ul className="game-info-drawer__meta">
+    <ul className={styles.gameInfoDrawer__meta}>
       <li>
-        <div className="game-info-drawer__label-inline">
+        <div className={styles.gameInfoDrawer__labelInline}>
           <Translate
             pt="Rodada:"
             en="Round:"
           />
         </div>
         <Avatar
-          className="game-info-drawer__round"
+          className={styles.gameInfoDrawer__round}
           size="small"
         >
           {round.current}
         </Avatar>
-        <span className="game-info-drawer__inline-separator">
+        <span className={styles.gameInfoDrawer__inlineSeparator}>
           <Translate
             pt="de"
             en="out of"
           />
         </span>
         <Avatar
-          className="game-info-drawer__round"
+          className={styles.gameInfoDrawer__round}
           size="small"
         >
           {round.total}
@@ -42,14 +45,14 @@ export function SectionMeta({ round, groupScore }: SectionMetaProps) {
 
       {Boolean(groupScore) && (
         <li>
-          <div className="game-info-drawer__label-inline">
+          <div className={styles.gameInfoDrawer__labelInline}>
             <Translate
               pt="Pontos:"
               en="Points:"
             />
           </div>
           <Avatar
-            className="game-info-drawer__round"
+            className={styles.gameInfoDrawer__round}
             size="default"
             style={{ backgroundColor: 'gold', color: 'black' }}
           >

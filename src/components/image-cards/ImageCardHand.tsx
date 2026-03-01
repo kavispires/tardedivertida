@@ -9,7 +9,7 @@ import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 // Utils
 import { getAnimation } from 'utils/animations';
 // Sass
-import './ImageCardHand.scss';
+import styles from './ImageCardHand.module.scss';
 
 type ImageCardHandProps = {
   /**
@@ -102,14 +102,14 @@ export function ImageCardHand({
       classNames={imageGroupPreviewClassNames}
     >
       <Space
-        className={clsx('image-card-hand', className)}
+        className={clsx(styles.imageCardHand, className)}
         ref={containerRef as Ref<HTMLDivElement>}
       >
         {hand.map((cardId, index) => {
           return (
             <motion.div
               key={`hand-${cardId}`}
-              className="image-card-hand__card-container"
+              className={styles.cardContainer}
               {...getAnimation('slideInUp', { delay: index / 10, ease: 'easeOut', duration: 0.5 })}
             >
               <ImageCardButton
@@ -124,7 +124,7 @@ export function ImageCardHand({
                 <ImageCard
                   cardId={cardId}
                   cardWidth={cardSize || cardWidth}
-                  className={clsx(selectedCards[cardId] && 'image-card-hand__selected', cardClassName)}
+                  className={clsx(selectedCards[cardId] && styles.selected, cardClassName)}
                   preview={preview}
                 />
               </ImageCardButton>

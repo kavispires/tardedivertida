@@ -12,7 +12,7 @@ import { useGlobalState } from 'hooks/useGlobalState';
 import { ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
 // Sass
-import './MonsterCard.scss';
+import styles from './MonsterCard.module.scss';
 
 interface MonsterCardProps extends SpaceProps {
   currentMonster: MonsterImage;
@@ -35,7 +35,6 @@ export function MonsterCard({ currentMonster, showControls = true, cardWidth, ..
     setMonsterOrientation(newOrientation);
   };
 
-  const baseClass = 'monster-card';
   return (
     <Space
       orientation="vertical"
@@ -47,8 +46,8 @@ export function MonsterCard({ currentMonster, showControls = true, cardWidth, ..
         cardId={currentMonster.id}
         cardWidth={cardWidth || defaultCardWidth}
         className={clsx(
-          baseClass,
-          monsterOrientation === 'vertical' ? `${baseClass}--vertical` : `${baseClass}--horizontal`,
+          styles.monsterCard,
+          monsterOrientation === 'vertical' ? styles.monsterCardVertical : styles.monsterCardHorizontal,
         )}
       />
       {showControls && (

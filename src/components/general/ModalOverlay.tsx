@@ -11,7 +11,7 @@ import {
 } from '@ant-design/icons';
 import { Button, Space } from 'antd';
 // Sass
-import './ModalOverlay.scss';
+import styles from './ModalOverlay.module.scss';
 
 type ModalOverlayProps = {
   children: React.ReactNode;
@@ -50,7 +50,7 @@ export const ModalOverlay: React.FC<ModalOverlayProps> = ({ children, onClose, o
   return (
     <AnimatePresence>
       <motion.div
-        className="simple-modal-overlay"
+        className={styles.simpleModalOverlay}
         onClick={handleOverlayClick}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -59,7 +59,7 @@ export const ModalOverlay: React.FC<ModalOverlayProps> = ({ children, onClose, o
       >
         <AnimatePresence>
           <motion.div
-            className="simple-modal-overlay__content"
+            className={styles.simpleModalOverlayContent}
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.3 }}
@@ -70,20 +70,20 @@ export const ModalOverlay: React.FC<ModalOverlayProps> = ({ children, onClose, o
               size="large"
               ghost
               variant="outlined"
-              className="simple-modal-overlay__close"
+              className={styles.simpleModalOverlayClose}
               onClick={onClose}
               icon={<CloseOutlined />}
             />
             <div
-              className="simple-modal-overlay__body"
+              className={styles.simpleModalOverlayBody}
               style={{
                 transform: `scale(${scale}) rotate(${rotation}deg) scaleX(${flipX ? -1 : 1}) scaleY(${flipY ? -1 : 1})`,
               }}
             >
               {children}
             </div>
-            <div className="simple-modal-overlay__controls-container">
-              <Space.Compact className="simple-modal-overlay__controls">
+            <div className={styles.simpleModalOverlayControlsContainer}>
+              <Space.Compact className={styles.simpleModalOverlayControls}>
                 <Button
                   onClick={zoomIn}
                   ghost

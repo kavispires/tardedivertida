@@ -3,7 +3,7 @@ import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Components
 import { useGameAppearance, useGameInfoContext } from 'components/session/GameInfoContext';
 // Sass
-import './ImageBackground.scss';
+import styles from './ImageBackground.module.scss';
 
 export function ImageBackground() {
   const info = useGameInfoContext();
@@ -16,7 +16,7 @@ export function ImageBackground() {
 
   return (
     <div
-      className="lobby-image-background"
+      className={styles.lobbyImageBackground}
       style={{
         backgroundImage: `url('${baseUrl}/strips/strip-${info.gameName}.jpg')`,
       }}

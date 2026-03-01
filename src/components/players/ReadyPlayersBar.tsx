@@ -7,7 +7,8 @@ import type { GamePlayers, GamePlayer } from 'types/player';
 import { Translate } from 'components/language';
 import { PlayerAvatar } from 'components/player';
 // Sass
-import './ReadyPlayersBar.scss';
+import styles from './ReadyPlayersBar.module.scss';
+// Styles
 
 type ReadyPlayersBarProps = {
   players: GamePlayers;
@@ -43,8 +44,8 @@ export function ReadyPlayersBar({
   }
 
   return (
-    <div className="ready-player-bar">
-      <div className="ready-player-bar__bar">
+    <div className={styles.readyPlayerBar}>
+      <div className={styles.readyPlayerBarBar}>
         <Avatar.Group size="small">
           {readyPlayers.map((player) => (
             <PlayerAvatar
@@ -53,7 +54,7 @@ export function ReadyPlayersBar({
             />
           ))}
         </Avatar.Group>
-        <span className="ready-player-bar__speech-bubble">
+        <span className={styles.readyPlayerBarSpeechBubble}>
           <Typography.Text>
             {readyPlayers.length > 1 ? (
               <Translate
@@ -69,11 +70,11 @@ export function ReadyPlayersBar({
               />
             )}
           </Typography.Text>
-          <LikeFilled className="ready-player-bar__speech-bubble-icon" />
+          <LikeFilled className={styles.readyPlayerBarSpeechBubbleIcon} />
         </span>
       </div>
       {!hideNames && notReadyPlayers.length > 0 && (
-        <span className="ready-player-bar__names">
+        <span className={styles.readyPlayerBarNames}>
           <Translate
             pt="Esperando"
             en="Waiting for"

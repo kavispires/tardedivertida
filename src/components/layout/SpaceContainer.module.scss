@@ -1,0 +1,8 @@
+@use "styles/sass" as *;
+
+.spaceContainer {
+  margin: get-unit(2 0);
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}

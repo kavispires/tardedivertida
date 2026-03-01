@@ -7,7 +7,7 @@ import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { FixedMenuButton } from 'components/buttons';
 import { Translate } from 'components/language';
 // Sass
-import './CanvasResizer.scss';
+import styles from './CanvasResizer.module.scss';
 
 /**
  * Fixed Menu Button for resizing canvas
@@ -22,10 +22,10 @@ export const CanvasResizer = () => {
       icon={<DragOutlined />}
       label={labelText}
       content={
-        <div className="canvas-resizer">
-          <div className="canvas-resizer__label">{labelText}</div>
+        <div className={styles.canvasResizer}>
+          <div className={styles.label}>{labelText}</div>
           <Slider
-            className="canvas-resizer__slider"
+            className={styles.slider}
             value={canvasSize ?? 100}
             min={150}
             max={500}

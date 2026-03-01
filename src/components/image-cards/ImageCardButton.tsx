@@ -10,7 +10,7 @@ import { Translate } from 'components/language';
 // Internal
 import { ImageBlurButtonContainer } from './ImageBlurButtonContainer';
 // Sass
-import './ImageCardButton.scss';
+import styles from './ImageCardButton.module.scss';
 
 type ImageCardButtonProps = {
   /**
@@ -113,9 +113,10 @@ export function ImageCardButton({
         size="small"
         ghost={over}
         className={clsx(
-          'image-card-button__button',
-          over && 'image-card-button__button--over',
-          over && `image-card-button__button--over-${buttonPosition}`,
+          styles.button,
+          over && styles.buttonOver,
+          over && buttonPosition === 'top' && styles.buttonOverTop,
+          over && buttonPosition === 'bottom' && styles.buttonOverBottom,
           buttonClassName,
         )}
         onClick={handleClick}
@@ -134,7 +135,7 @@ export function ImageCardButton({
     ) : null;
 
   return (
-    <div className={clsx('image-card-button', className)}>
+    <div className={clsx(styles.imageCardButton, className)}>
       {isTop && button}
       <ImageBlurButtonContainer
         cardId={cardId}
@@ -143,7 +144,7 @@ export function ImageCardButton({
         <DebugOnly>
           <Typography.Text code>{cardId}</Typography.Text>
         </DebugOnly>
-        <div className="image-card-button__container">{children}</div>
+        <div className={styles.container}>{children}</div>
       </ImageBlurButtonContainer>
       {!isTop && button}
     </div>

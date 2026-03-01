@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import { sampleSize } from 'lodash';
 import { motion, type MotionProps } from 'motion/react';
 import { useMemo } from 'react';
@@ -7,12 +6,12 @@ import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Components
 import { useGameAppearance } from 'components/session/GameInfoContext';
 // Sass
-import './CloudBackground.scss';
+import styles from './CloudBackground.module.scss';
 
 function SingleCloud({ type, baseUrl }: { type: string; baseUrl: string; index?: number }) {
   return (
     <div
-      className="cloud-background__cloud"
+      className={styles.cloudBackgroundCloud}
       style={{
         backgroundImage: `url('${baseUrl}/clouds/${type}.png')`,
         backgroundPositionX: '0',
@@ -42,7 +41,7 @@ const cloudData = [
 function MultiCloud({ type, index, baseUrl }: { type: string; index: number; baseUrl: string }) {
   return (
     <div
-      className="cloud-background__cloud"
+      className={styles.cloudBackgroundCloud}
       style={{
         backgroundImage: `url('${baseUrl}/clouds/${type}.png')`,
         ...cloudData[index],
@@ -98,7 +97,7 @@ export function CloudBackground() {
   }, []);
 
   return (
-    <div className={clsx('cloud-background', `cloud-background--${cloudType}`)}>
+    <div className={styles.cloudBackground}>
       {CLOUDS.map((id) => {
         return (
           <motion.div

@@ -9,7 +9,7 @@ import { AVATARS } from 'utils/avatars';
 // Internal
 import { PlayerAvatar } from './PlayerAvatar';
 // Sass
-import './PlayerAvatarName.scss';
+import styles from './PlayerAvatarName.module.scss';
 
 export type PlayerAvatarNameProps = {
   /**
@@ -55,29 +55,22 @@ export const PlayerAvatarName = ({
   const [userId] = useGlobalState('userId');
   const { language, translate } = useLanguage();
 
-  const baseClass = 'avatar-name';
-
   const isUser = player.id === userId;
   const addressedUser = translate('VOCÊ', 'YOU');
 
   return (
     <span
       {...rest}
-      className={clsx(
-        baseClass,
-        uppercase && `${baseClass}--uppercase`,
-        upright && `${baseClass}--upright`,
-        className,
-      )}
+      className={clsx(styles.avatarName, uppercase && styles.uppercase, upright && styles.upright, className)}
     >
       <PlayerAvatar
         avatarId={player.avatarId}
-        className="avatar-name__avatar"
+        className={styles.avatar}
         size={size}
       />
-      <span className="avatar-name__name">{addressUser && isUser ? addressedUser : player.name}</span>
+      <span className={styles.name}>{addressUser && isUser ? addressedUser : player.name}</span>
       {withDescription && (
-        <span className="avatar-name__name">, {AVATARS[player.avatarId].description[language]}</span>
+        <span className={styles.name}>, {AVATARS[player.avatarId].description[language]}</span>
       )}
     </span>
   );

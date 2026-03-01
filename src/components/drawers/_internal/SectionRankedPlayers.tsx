@@ -12,6 +12,9 @@ import { AVATARS } from 'utils/avatars';
 // Components
 import { Translate } from 'components/language';
 import { PlayerAvatar } from 'components/player';
+// Sass
+import styles from '../drawers.module.scss';
+// Styles
 
 type SectionRankedPlayersProps = {
   players: GamePlayers;
@@ -30,13 +33,13 @@ export function SectionRankedPlayers({ players }: SectionRankedPlayersProps) {
       {rankedPlayers.map((player, index) => {
         return (
           <div
-            className="game-info-drawer__ranked-player"
+            className={styles.gameInfoDrawer__rankedPlayer}
             key={`ranked-${player.name}`}
           >
             {index + 1}.{' '}
             <Badge
               count={player.score}
-              className="game-info-drawer__avatar-with-badge"
+              className={styles.gameInfoDrawer__avatarWithBadge}
             >
               <PlayerAvatar
                 avatarId={player.avatarId}
@@ -47,7 +50,7 @@ export function SectionRankedPlayers({ players }: SectionRankedPlayersProps) {
             {player.id === user.id && (
               <Tag
                 color={AVATARS[player.avatarId].color}
-                className="game-info-drawer__avatar-tag"
+                className={styles.gameInfoDrawer__avatarTag}
               >
                 <Translate
                   pt="VOCÊ"

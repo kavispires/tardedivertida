@@ -16,6 +16,8 @@ import { PlayerAvatar } from 'components/player';
 import { Instruction } from 'components/text';
 // Internal
 import { Medal } from './Medal';
+// Sass
+import styles from './Achievements.module.scss';
 
 type AchievementsProps = {
   /**
@@ -51,7 +53,7 @@ export function Achievements({ players, achievements, reference, colorScheme }: 
         colorScheme,
         size: 'small',
       }}
-      className={clsx('achievements', getAnimationClass('fadeIn'))}
+      className={clsx(styles.achievements, getAnimationClass('fadeIn'))}
     >
       {achievements.length === 0 && (
         <Instruction contained>
@@ -73,31 +75,31 @@ export function Achievements({ players, achievements, reference, colorScheme }: 
           />
         </Instruction>
       )}
-      <ul className="achievements-list">
+      <ul className={styles.achievementsList}>
         {achievements.map((achievement, index) => {
           const { icon = 'star', ...achievementObj } = reference[achievement.type] ?? {};
           const player = players[achievement.playerId];
           return (
             <motion.li
               key={`achievement-${achievement.type}`}
-              className={'achievements-entry'}
+              className={styles.achievementsEntry}
               {...getAnimation('flipInY', {
                 duration: 2,
                 delay: (index < achievements.length / 2 ? index : achievements.length - 1 - index) + 2.5,
               })}
             >
-              <div className="achievement__medal">
+              <div className={styles.achievementMedal}>
                 <Medal id={icon} />
               </div>
-              <h4 className="achievement__title">
+              <h4 className={styles.achievementTitle}>
                 <DualTranslate>{achievementObj.title ?? unknownText}</DualTranslate>
               </h4>
-              <div className="achievement__avatar">
+              <div className={styles.achievementAvatar}>
                 <PlayerAvatar avatarId={player.avatarId} />
               </div>
-              <div className="achievement__name">{player.name}</div>
+              <div className={styles.achievementName}>{player.name}</div>
               {Boolean(achievementObj.description) && (
-                <div className="achievement__description">
+                <div className={styles.achievementDescription}>
                   <Popover
                     content={
                       <span>

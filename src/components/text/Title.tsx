@@ -7,7 +7,7 @@ import { Typography } from 'antd';
 import { IconAvatar } from 'components/avatars';
 import { useGameAppearance } from 'components/session/GameInfoContext';
 // Sass
-import './Title.scss';
+import styles from './Title.module.scss';
 
 export type TitleProps = Omit<AntdTitleProps, 'level'> & {
   /**
@@ -53,14 +53,34 @@ export const Title = ({
   const appearance = useGameAppearance();
   const color = colorScheme ?? appearance.colorScheme ?? 'light';
 
+  const sizeClass = {
+    'xx-small': styles.titleXxSmall,
+    'x-small': styles.titleXSmall,
+    small: styles.titleSmall,
+    medium: styles.titleMedium,
+    large: styles.titleLarge,
+  }[size];
+
+  const alignClass = {
+    left: styles.titleAlignLeft,
+    right: styles.titleAlignRight,
+    center: '',
+  }[align];
+
+  const colorClass = {
+    light: styles.titleLight,
+    dark: styles.titleDark,
+    white: styles.titleWhite,
+  }[color];
+
   return (
     <Typography.Title
       level={level}
-      className={clsx('title', `title--${size}`, `title--align-${align}`, `title--${color}`, className)}
+      className={clsx(styles.title, sizeClass, alignClass, colorClass, className)}
       {...props}
     >
       {Boolean(icon) && (
-        <span className="title__icon">
+        <span className={styles.titleIcon}>
           <IconAvatar icon={icon} />
         </span>
       )}

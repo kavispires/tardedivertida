@@ -10,7 +10,7 @@ import { Button } from 'antd';
 // Hooks
 import { useQueryParams } from 'hooks/useQueryParams';
 // Sass
-import './Window.scss';
+import styles from './Window.module.scss';
 
 type WindowProps = {
   /**
@@ -161,35 +161,35 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({ windowId, state, titl
     <div
       ref={setNodeRef}
       style={style}
-      className="window"
+      className={styles.window}
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
         transition={{ duration: 0.2, ease: 'easeOut' }}
-        className="window__container"
+        className={styles.windowContainer}
       >
-        <div className="window__header">
+        <div className={styles.windowHeader}>
           <div
             {...listeners}
             {...attributes}
-            className="window__header-drag"
+            className={styles.windowHeaderDrag}
           >
-            <DragOutlined className="window__drag-icon" />
-            <span className="window__title">{title}</span>
+            <DragOutlined className={styles.windowDragIcon} />
+            <span className={styles.windowTitle}>{title}</span>
           </div>
           <Button
             type="text"
             size="small"
             shape="circle"
-            icon={<CloseOutlined className="window__close-icon" />}
+            icon={<CloseOutlined className={styles.windowCloseIcon} />}
             onClick={onClose}
             onPointerDown={(e) => e.stopPropagation()}
           />
         </div>
 
-        <div className="window__content">{children}</div>
+        <div className={styles.windowContent}>{children}</div>
       </motion.div>
     </div>
   );

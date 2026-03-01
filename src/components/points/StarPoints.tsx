@@ -4,7 +4,7 @@ import { StarFilled } from '@ant-design/icons';
 // Components
 import { Translate } from 'components/language';
 // Sass
-import './StarPoints.scss';
+import styles from './StarPoints.module.scss';
 
 type StarPointsProps = {
   keyPrefix: string;
@@ -27,8 +27,8 @@ export const StarPoints = ({ keyPrefix, quantity, className, hideText }: StarPoi
   const StarsArray = Array.from({ length: num }, (_, i) => <StarFilled key={`${keyPrefix}-${i}`} />);
 
   return (
-    <span className={clsx('star-points', isNegative && 'star-points--negative', className)}>
-      {isNegative ? '-' : '+'} <span className="star-points__stars">{StarsArray}</span>
+    <span className={clsx(styles.starPoints, isNegative && styles.starPointsNegative, className)}>
+      {isNegative ? '-' : '+'} <span className={styles.stars}>{StarsArray}</span>
       {!hideText && (
         <>
           <Translate

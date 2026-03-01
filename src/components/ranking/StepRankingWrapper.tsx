@@ -13,6 +13,9 @@ import { Step } from 'components/steps';
 import { Instruction, StepTitle } from 'components/text';
 // Internal
 import { RankingBoard } from './RankingBoard';
+// Sass
+import styles from './ranking.module.scss';
+// Styles
 
 type StepRankingWrapperProps = {
   /**
@@ -83,7 +86,7 @@ export function StepRankingWrapper({
         delay={delay}
       />
       <Instruction
-        className="step-ranking-wrapper-gained-points-instruction"
+        className={styles.stepRankingWrapperGainedPointsInstruction}
         colorScheme={scheme}
       >
         <CaretUpOutlined />

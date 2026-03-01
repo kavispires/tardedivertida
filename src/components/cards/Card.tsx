@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 // Utils
 import { getColorFromLetter } from 'utils/helpers';
 // Sass
-import './Card.scss';
+import styles from './Card.module.scss';
 
 type CardProps = {
   /**
@@ -62,8 +62,6 @@ export const Card = ({
   footerClassName = '',
   hideHeader = false,
 }: CardProps) => {
-  const baseClass = 'card';
-
   const bgColor = randomColor
     ? getColorFromLetter(
         typeof children === 'string'
@@ -75,17 +73,44 @@ export const Card = ({
     : color;
 
   return (
-    <div className={clsx(baseClass, `${baseClass}--${size}`, className)}>
+    <div
+      className={clsx(
+        styles.card,
+        size === 'small' && styles.cardSmall,
+        size === 'large' && styles.cardLarge,
+        className,
+      )}
+    >
       {!hideHeader && (
         <span
-          className={clsx(`${baseClass}__header`, `color-background--${bgColor}`, headerClassName)}
+          className={clsx(
+            styles.cardHeader,
+            size === 'large' && styles.cardHeaderLarge,
+            size === 'small' && styles.cardHeaderSmall,
+            `color-background--${bgColor}`,
+            headerClassName,
+          )}
           style={color.startsWith('#') ? { backgroundColor: color } : {}}
         >
           {header}
         </span>
       )}
-      <span className={`${baseClass}__text`}>{children}</span>
-      {footer && <span className={clsx(`${baseClass}__footer`, footerClassName)}>{footer}</span>}
+      <span
+        className={clsx(
+          styles.cardText,
+          size === 'large' && styles.cardTextLarge,
+          size === 'small' && styles.cardTextSmall,
+        )}
+      >
+        {children}
+      </span>
+      {footer && (
+        <span
+          className={clsx(styles.cardFooter, size === 'large' && styles.cardFooterLarge, footerClassName)}
+        >
+          {footer}
+        </span>
+      )}
     </div>
   );
 };

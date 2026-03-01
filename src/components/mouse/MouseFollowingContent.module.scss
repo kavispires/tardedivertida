@@ -1,0 +1,12 @@
+@use "styles/sass" as *;
+
+.mouseFollowingContent {
+  position: fixed;
+  padding: get-unit(3);
+  border-radius: get-unit(2);
+  z-index: 300;
+
+  &Contained {
+    @include contained;
+  }
+}

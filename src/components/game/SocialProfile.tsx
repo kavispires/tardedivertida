@@ -7,7 +7,7 @@ import { Button } from 'antd';
 import { Translate } from 'components/language';
 import { PlayerAvatar } from 'components/player';
 // Sass
-import './SocialProfile.scss';
+import styles from './SocialProfile.module.scss';
 
 type SocialProfileProps = {
   /**
@@ -37,16 +37,16 @@ type SocialProfileProps = {
  */
 export function SocialProfile({ avatarId, name, handle, verified, className }: SocialProfileProps) {
   return (
-    <div className={clsx('profile', className)}>
+    <div className={clsx(styles.profile, className)}>
       <PlayerAvatar
         avatarId={avatarId}
         size="large"
-        className="profile__avatar"
+        className={styles.profileAvatar}
       />
-      <span className="profile__name">
+      <span className={styles.profileName}>
         {name} {verified && <CheckCircleFilled style={{ color: 'dodgerBlue' }} />}
       </span>
-      <span className="profile__handle">{handle}</span>
+      <span className={styles.profileHandle}>{handle}</span>
     </div>
   );
 }
@@ -82,15 +82,15 @@ export function Tweet({
   disabled,
 }: TweetProps) {
   return (
-    <div className={clsx('tweet', className)}>
+    <div className={clsx(styles.tweet, className)}>
       <SocialProfile
         avatarId={avatarId}
         name={name}
         handle={handle}
         verified={verified}
       />
-      <span className="tweet__text">{children}</span>
-      <div className="tweet__buttons">
+      <span className={styles.tweetText}>{children}</span>
+      <div className={styles.tweetButtons}>
         <Button
           block
           icon={<LikeFilled />}

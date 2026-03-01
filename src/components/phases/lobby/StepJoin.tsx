@@ -12,6 +12,8 @@ import { signInAsGuest } from 'services/firebase';
 import { SignIn, SignInWithGoogle } from 'components/auth/SignIn';
 import { SignUp } from 'components/auth/SignUp';
 import { Translate } from 'components/language';
+// Sass
+import styles from '../PhaseLobby.module.scss';
 
 const Title = motion.create(Typography.Title);
 
@@ -38,7 +40,7 @@ export function StepJoin({ setStep }: StepJoinProps) {
     <>
       <Title
         level={2}
-        className="lobby-step__title"
+        className={styles.lobbyStepTitle}
         layoutId="lobby-step-title"
       >
         <Translate

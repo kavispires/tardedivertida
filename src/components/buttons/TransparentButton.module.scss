@@ -1,0 +1,49 @@
+@use "styles/sass" as *;
+
+.transparentButton {
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  border: 2px solid transparent;
+  transition: transform 250ms;
+
+  &:disabled {
+    filter: grayscale(0.9);
+    cursor: not-allowed;
+  }
+}
+
+.scale {
+  &:hover {
+    transform: scale(1.1);
+
+    &:disabled {
+      transform: none;
+    }
+  }
+}
+
+.sepia {
+  &:hover {
+    filter: sepia(100%);
+
+    &:disabled {
+      filter: grayscale(0.9);
+    }
+  }
+}
+
+.tint {
+  &:hover {
+    filter: grayscale(35%) brightness(1.3);
+
+    &:disabled {
+      filter: grayscale(0.9);
+    }
+  }
+}
+
+.active {
+  border: 2px solid get-color("white");
+}

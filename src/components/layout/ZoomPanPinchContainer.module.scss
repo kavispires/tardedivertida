@@ -1,0 +1,28 @@
+@use "styles/sass" as *;
+
+.zoomPanPinchWrapper {
+  min-width: 500px;
+  min-height: 500px;
+  background-color: get-color("white", 5, 0.15);
+  border-radius: var(--border-radius);
+}
+
+.zoomPanPinchControls {
+  z-index: 10;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.zoomPanPinchControlsTop {
+  top: get-unit(1);
+}
+
+.zoomPanPinchControlsBottom {
+  bottom: get-unit(1);
+}
+
+.zoomPanPinchContent {
+  // Use as an indicator that something is wrong and the content is not being rendered properly
+  background: get-color("gray", 5, 0.2);
+}

@@ -3,7 +3,7 @@ import { type ReactNode, useState, useEffect } from 'react';
 // Ant Design Resources
 import { Button, type ButtonProps, Popover } from 'antd';
 // Sass
-import './FixedMenuButton.scss';
+import styles from './FixedMenuButton.module.scss';
 
 type FixedMenuButtonDefaultProps = {
   /**
@@ -81,9 +81,11 @@ type FixedMenuButtonProps = FixedMenuButtonPopoverProps | FixedMenuButtonButtonO
  * Button position on the top left of the screen to display rules, admin button and other features
  */
 export function FixedMenuButton({ type, position, content, className, open, ...rest }: FixedMenuButtonProps) {
+  const positionClass =
+    position === -1 ? styles.positionNeg1 : styles[`position${position}` as keyof typeof styles];
   // In React 19, the positioning container is critical for Popover
   return (
-    <div className={clsx('fixed-menu-button', `fixed-menu-button--${position}`, className)}>
+    <div className={clsx(styles.fixedMenuButton, positionClass, className)}>
       {type === 'popover' ? (
         <Popover
           placement="bottomLeft"
@@ -130,7 +132,7 @@ function FixedMenuButtonContent({
       type="primary"
       {...buttonProps}
     >
-      {isActive && hasLabel && <span className="fixed-menu-button__label">{label}</span>}
+      {isActive && hasLabel && <span className={styles.label}>{label}</span>}
     </Button>
   );
 }

@@ -4,7 +4,7 @@ import { Avatar } from 'antd';
 // Components
 import { Translate } from 'components/language';
 // Sass
-import './NPCPlayerAvatar.scss';
+import styles from './NPCPlayerAvatar.module.scss';
 
 type AvatarNPCProps = {
   /**
@@ -31,10 +31,8 @@ export const NPCPlayerAvatar = ({
   withDescription = false,
   uppercase = false,
 }: AvatarNPCProps) => {
-  const baseClass = 'avatar-name';
-
   return (
-    <span className={clsx(baseClass, uppercase && `${baseClass}--uppercase`, className)}>
+    <span className={clsx(styles.avatarName, uppercase && styles.avatarNameUppercase, className)}>
       <Avatar
         src={
           <svg
@@ -55,13 +53,13 @@ export const NPCPlayerAvatar = ({
         }
         size={size}
       />
-      <span className="avatar-name__name">
+      <span className={styles.avatarName__name}>
         <Translate
           pt="Computador"
           en="NPC"
         />
       </span>
-      {withDescription && <span className="avatar-name__name">, o robô</span>}
+      {withDescription && <span className={styles.avatarName__name}>, o robô</span>}
     </span>
   );
 };

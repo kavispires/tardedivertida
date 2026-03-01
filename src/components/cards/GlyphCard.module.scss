@@ -1,0 +1,6 @@
+@use "styles/sass" as *;
+
+.glyphCard {
+  background: get-color("white");
+  border-radius: var(--border-radius);
+}

@@ -21,6 +21,8 @@ import { useGameInfoContext } from 'components/session/GameInfoContext';
 import { AvatarSelection } from './AvatarSelection';
 import { Settings } from './Settings';
 import { UsualAvatarsSelection } from './UsualAvatarsSelection';
+// Sass
+import styles from '../PhaseLobby.module.scss';
 
 const Title = motion.create(Typography.Title);
 
@@ -69,7 +71,7 @@ export function StepInfo({ players, setStep }: StepInfoProps) {
     <>
       <Title
         level={2}
-        className="lobby-step__title"
+        className={styles.lobbyStepTitle}
         layoutId="lobby-step-title"
       >
         <Translate
@@ -117,7 +119,7 @@ export function StepInfo({ players, setStep }: StepInfoProps) {
         )}
 
         <AutoComplete
-          className="lobby-step__name-input"
+          className={styles.lobbyStepNameInput}
           options={nameOptions}
           onChange={(value) => setName(value.trim())}
           onSelect={(value) => setName(value.trim())}

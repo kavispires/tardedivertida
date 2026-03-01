@@ -16,7 +16,7 @@ import { Typography, theme } from 'antd';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Sass
-import './RuleInstruction.scss';
+import styles from './RuleInstruction.module.scss';
 
 export type RuleInstructionProps = {
   /**
@@ -61,8 +61,6 @@ export const RuleInstruction = ({
   sfx,
   ...rest
 }: RuleInstructionProps) => {
-  const baseClass = 'rule-instruction';
-
   const icon = {
     action: <PlayCircleFilled />,
     alert: <AlertFilled />,
@@ -90,20 +88,26 @@ export const RuleInstruction = ({
   const { token } = theme.useToken();
   const color = type === 'action' ? { background: token.colorPrimary } : {};
 
+  const iconTypeClass = `ruleInstructionIcon${type.charAt(0).toUpperCase() + type.slice(1)}`;
+
   return (
     <div
-      className={clsx(baseClass, fullWidth && `${baseClass}--full-width`, className)}
+      className={clsx(
+        styles.ruleInstruction,
+        fullWidth && `${styles.ruleInstruction}--full-width`,
+        className,
+      )}
       data-testid="rule-instruction"
       {...rest}
     >
       <div
-        className={clsx(`${baseClass}__icon`, `${baseClass}__icon--${type}`)}
+        className={clsx(styles.ruleInstructionIcon, iconTypeClass)}
         style={color}
       >
         <div className={animationClass}>{icon}</div>
       </div>
       {sfx}
-      <Typography.Paragraph className={clsx(`${baseClass}__content`)}>{children}</Typography.Paragraph>
+      <Typography.Paragraph className={styles.ruleInstructionContent}>{children}</Typography.Paragraph>
     </div>
   );
 };

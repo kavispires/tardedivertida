@@ -12,7 +12,8 @@ import { PlayerAvatarName } from 'components/player';
 // Internal
 import { reorder } from './reorder';
 // Sass
-import './TurnOrder.scss';
+import styles from './TurnOrder.module.scss';
+// Styles
 
 type TurnOrderProps = {
   /**
@@ -60,29 +61,29 @@ export function TurnOrder({
   );
 
   return (
-    <div className={clsx('turn-order', className)}>
-      <header className="turn-order__title">
+    <div className={clsx(styles.turnOrder, className)}>
+      <header className={styles.turnOrderTitle}>
         <Translate
           en="Player Order"
           pt="Ordem dos Jogadores"
           custom={title}
         />
       </header>
-      <ol className="turn-order__players">
+      <ol className={styles.turnOrderPlayers}>
         {orderList.map((playerId, index) => {
           const player = players[playerId];
           const isActive = activePlayerId === playerId;
           return (
             <Fragment key={`turn-order-player-${playerId}`}>
               <span
-                className={clsx('turn-order__player', isActive && 'turn-order__player--active')}
+                className={clsx(styles.turnOrderPlayer, isActive && styles.turnOrderPlayerActive)}
                 style={isActive ? { backgroundColor: getAvatarColorById(player.avatarId) } : undefined}
               >
                 <PlayerAvatarName player={player} />
                 {!!additionalInfoParser && additionalInfoParser(player)}
               </span>
               {index < order.length - 1 && (
-                <span className="turn-order__arrow">
+                <span className={styles.turnOrderArrow}>
                   <ForwardFilled />
                 </span>
               )}

@@ -16,6 +16,9 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Title } from 'components/text';
 // Images
 import logo from 'assets/images/tarde-divertida-logo.svg?url';
+// Sass
+import styles from './auth.module.scss';
+// Styles
 
 type SignInProps = {
   /**
@@ -28,8 +31,8 @@ export function SignIn({ onSuccess }: SignInProps) {
   const [view, setView] = useState('google');
 
   return (
-    <div className="sign-in">
-      <div className="sign-in__logo">
+    <div className={styles.signIn}>
+      <div className={styles.signIn__logo}>
         <Image
           src={logo}
           preview={false}
@@ -85,7 +88,6 @@ export function SignInWithGoogle({ onSuccess, ...buttonProps }: SignInProps & Bu
           }
           type="error"
           showIcon
-          className="sign-in__error-alert"
         />
       )}
       <Button

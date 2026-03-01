@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Space, type SpaceProps } from 'antd';
 // Sass
-import './SpaceContainer.scss';
+import styles from './SpaceContainer.module.scss';
 
 type SpaceContainerProps = {
   /**
@@ -34,7 +34,7 @@ export function SpaceContainer({
 }: SpaceContainerProps) {
   return (
     <Space
-      className={clsx('space-container', contained && 'contained', fullWidth && 'full-width', className)}
+      className={clsx(styles.spaceContainer, contained && 'contained', fullWidth && 'full-width', className)}
       orientation={vertical ? 'vertical' : direction}
       align={align ?? 'center'}
       {...props}

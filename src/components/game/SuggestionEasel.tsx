@@ -3,7 +3,7 @@ import { Input } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Sass
-import './SuggestionEasel.scss';
+import styles from './SuggestionEasel.module.scss';
 
 type SuggestionEaselProps = {
   /**
@@ -35,7 +35,7 @@ export function SuggestionEasel({ id, onChangeInput, onPressEnter, value }: Sugg
       viewBox="0 0 230 60"
       overflow="visible"
       width="230"
-      className="suggestion-easel"
+      className={styles.suggestionEasel}
     >
       <path
         fill="#fff"
@@ -62,7 +62,7 @@ export function SuggestionEasel({ id, onChangeInput, onPressEnter, value }: Sugg
             id={id}
             value={value}
             onChange={onChangeInput}
-            className="suggestion-easel__input"
+            className={styles.suggestionEaselInput}
             variant="borderless"
             onPressEnter={onPressEnter}
             autoComplete="off"

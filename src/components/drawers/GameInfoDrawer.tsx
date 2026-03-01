@@ -21,6 +21,9 @@ import { useGameInfoContext } from 'components/session/GameInfoContext';
 import { SectionMeta } from './_internal/SectionMeta';
 import { SectionRankedPlayers } from './_internal/SectionRankedPlayers';
 import { SectionSettings } from './_internal/SectionSettings';
+// Sass
+import styles from './drawers.module.scss';
+// Styles
 
 type GameInfoDrawerProps = {
   players: GamePlayers;
@@ -41,13 +44,13 @@ export function GameInfoDrawer({ players, state, userId }: GameInfoDrawerProps) 
   }
 
   return (
-    <div className="game-info-drawer-container">
+    <div className={styles.gameInfoDrawerContainer}>
       <button
         type="button"
-        className="game-info-drawer-button"
+        className={styles.gameInfoDrawerButton}
         onClick={toggleDrawer}
       >
-        <span className="game-info-drawer-button__game-title">
+        <span className={styles.gameInfoDrawerButton__gameTitle}>
           <Tooltip
             title={
               <Translate
@@ -67,7 +70,7 @@ export function GameInfoDrawer({ players, state, userId }: GameInfoDrawerProps) 
           icon={<SettingOutlined />}
           size="small"
         />
-        <div className="game-info-drawer-button__player-status-bar">
+        <div className={styles.gameInfoDrawerButton__playerStatusBar}>
           <PlayersStatusBar players={players} />
         </div>
       </button>

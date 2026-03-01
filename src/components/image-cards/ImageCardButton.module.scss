@@ -1,0 +1,38 @@
+@use "styles/sass" as *;
+
+.imageCardButton {
+  isolation: isolate;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  position: relative;
+}
+
+.button {
+  z-index: 1;
+  margin: get-unit(1 auto);
+}
+
+.buttonOver {
+  position: absolute;
+
+  &:hover.ant-btn {
+    background-color: get-color("white");
+  }
+}
+
+.buttonOverTop {
+  top: get-unit(2);
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.buttonOverBottom {
+  bottom: get-unit(2);
+  left: 50%;
+  transform: translate(-50%, 0);
+}

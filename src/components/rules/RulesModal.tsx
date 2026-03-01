@@ -9,6 +9,9 @@ import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language';
 import { RulesCarousel } from 'components/rules';
+// Sass
+import styles from './rules.module.scss';
+// Styles
 
 type RulesModalProps = {
   gameInfo: GameInfo;
@@ -41,7 +44,7 @@ export function RulesModal({ gameInfo, buttonProps }: RulesModalProps) {
           title={`${translate('Regras', 'Rules')}: ${gameInfo.title[language]}`}
           open={isVisible}
           onCancel={onCloseModal}
-          className="rules-modal"
+          className={styles.rulesModal}
           footer={[
             <Button
               key="close"
@@ -54,7 +57,7 @@ export function RulesModal({ gameInfo, buttonProps }: RulesModalProps) {
             </Button>,
           ]}
         >
-          <div className="rules-modal-content">
+          <div className={styles.rulesModalContent}>
             <RulesCarousel info={gameInfo} />
           </div>
         </Modal>

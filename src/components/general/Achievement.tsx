@@ -8,6 +8,8 @@ import type { AchievementInfo } from 'types/achievements';
 import { DualTranslate } from 'components/language';
 // Internal
 import { Medal } from './Medal';
+// Sass
+import styles from './Achievement.module.scss';
 
 type AchievementProps = {
   achievement: AchievementInfo;
@@ -18,19 +20,19 @@ const unknownText = { pt: 'Desconhecido', en: 'Unknown' };
 
 export function Achievement({ achievement, value }: AchievementProps) {
   return (
-    <div className={clsx('achievement', Boolean(value) && 'achievement--achieved')}>
-      <div className="achievement__medal">
+    <div className={clsx(styles.achievement, Boolean(value) && styles.achievementAchieved)}>
+      <div className={styles.achievementMedal}>
         <Medal
           id={achievement.icon}
-          className={clsx(!value && 'achievement__disabled-icon')}
+          className={clsx(!value && styles.achievementDisabledIcon)}
         />
       </div>
-      <h4 className="achievement__title">
+      <h4 className={styles.achievementTitle}>
         <DualTranslate>{achievement.title ?? unknownText}</DualTranslate>
       </h4>
 
       {Boolean(achievement.description) && (
-        <div className="achievement__description">
+        <div className={styles.achievementDescription}>
           <Popover
             content={
               <>

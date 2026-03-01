@@ -1,0 +1,211 @@
+@use "styles/sass" as *;
+
+.lobby {
+  flex: 1;
+  display: grid;
+  place-items: center;
+}
+
+.lobbyStep {
+  display: grid;
+  width: 90vw;
+  grid-template-columns: 360px minmax(0, 720px);
+  gap: get-unit(2);
+  margin: get-unit(0);
+  z-index: 3;
+}
+
+.lobbyStepCard {
+  background-color: get-color("white");
+  width: 360px;
+  @include box-shadow;
+  padding: get-unit(3);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lobbyStepBanner {
+  max-width: 360px;
+  border-radius: get-unit(2);
+}
+
+.lobbyStepTitle {
+  text-align: center;
+  margin-top: 0 !important;
+}
+
+.lobbyStepSummary {
+  text-align: center;
+  color: get-color("black", 3);
+}
+
+.lobbyStepContent {
+  width: 100%;
+}
+
+.lobbyStepAvatarSelection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 250px;
+  margin: 0 auto;
+}
+
+.lobbyStepDescription {
+  text-align: center;
+}
+
+.lobbyStepNameInput {
+  margin: get-unit(2 0);
+  width: 100%;
+}
+
+.lobbyStepSettings {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  margin: get-unit(4 0);
+}
+
+.lobbyStepSettingsEntry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lobbyStepSwitchLabel {
+  font-size: 0.95em;
+}
+
+.lobbyStepWaiting {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  flex-direction: column;
+}
+
+.lobbyStepRules {
+  background-color: get-color("white", 5, 0.9);
+  min-width: 360px;
+  height: 100%;
+  flex: 1;
+  @include box-shadow;
+  padding: get-unit(3);
+  border-radius: var(--border-radius);
+  gap: get-unit(2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: get-unit(10);
+}
+
+.lobbyStepRuleList {
+  max-height: 60vh;
+  overflow: auto;
+}
+
+.lobbyStepRule {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: get-unit(2);
+  margin-bottom: get-unit(2);
+}
+
+.lobbyAvatar {
+  width: 120px;
+  border-radius: get-unit(2);
+  margin: get-unit(0 2);
+}
+
+.lobbyHeading {
+  text-align: center;
+  margin: get-unit(2 1);
+}
+
+.lobbyUsualAvatarSelection {
+  border: 1px solid get-color("gray", 3, 0.5);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  padding: get-unit(1 1 2);
+}
+
+.lobbyUsualAvatarSelectionTitle {
+  text-align: center;
+}
+
+.lobbyUsualAvatarSelectionList {
+  display: flex;
+  justify-content: center;
+}
+
+.lobbyUsualAvatarSelectionAvatar {
+  width: 40px;
+  border-radius: var(--border-radius);
+  margin: get-unit(0 1);
+}
+
+.avatarSelectionOptionsContainer {
+  width: 360px;
+  max-width: 90vw;
+}
+
+.avatarSelectionOptions {
+  width: 360px;
+  max-width: 90vw;
+  max-height: 70vh;
+  display: flex;
+  flex-wrap: wrap;
+  gap: get-unit(1);
+}
+
+.avatarSelectionOptionsAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--border-radius);
+  margin: 0;
+  border: 2px solid transparent;
+}
+
+.avatarSelectionOptionsAvatarSelected {
+  border: 2px solid get-color("pink");
+}
+
+.avatarSelectionOptionsAvatarUsed {
+  filter: grayscale(100%);
+  opacity: 0.1;
+}
+
+.avatarSelectionOptionsAvatarSvg {
+  width: 44px;
+  border-radius: var(--border-radius);
+}
+
+.joinedPlayers {
+  display: flex;
+  flex-direction: column;
+  gap: get-unit(1);
+  margin: get-unit(2);
+}
+
+.joinedPlayersHorizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.joinedPlayersPlayer {
+  display: flex;
+  align-items: center;
+  gap: get-unit(1);
+}
+
+.joinedPlayersAvatarName {
+  background-color: get-color("white");
+  padding: get-unit(1 4 1 6);
+  margin-left: get-unit(-5);
+  border-radius: get-unit(0 4 4 0);
+  white-space: nowrap;
+  z-index: -1;
+}

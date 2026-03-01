@@ -7,7 +7,7 @@ import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
 // Sass
-import './GameBanner.scss';
+import styles from './GameBanner.module.scss';
 
 type BannerProps = {
   /**
@@ -55,7 +55,7 @@ export function GameBanner({
 
   return (
     <figure
-      className={clsx('game-banner', className)}
+      className={clsx(styles.gameBanner, className)}
       style={{
         width,
         minWidth: `${width}px`,
@@ -68,7 +68,7 @@ export function GameBanner({
         onError={(e) => {
           (e.target as HTMLImageElement).src = `${PUBLIC_URL.BANNERS}/em-breve.jpg`;
         }}
-        className="game-banner__image"
+        className={styles.gameBannerImage}
       />
 
       <motion.img
@@ -77,7 +77,7 @@ export function GameBanner({
           (e.target as HTMLImageElement).src = `${PUBLIC_URL.LOGOS}/logo-em-breve-${language}.svg`;
         }}
         alt={`${dualTranslate(title ?? { en: '', pt: '' })} logo`}
-        className={clsx('game-banner__logo', !showLogo && 'game-banner__logo--hidden')}
+        className={clsx(styles.gameBannerLogo, !showLogo && styles.gameBannerLogoHidden)}
         style={{
           width: `${width}px`,
           height: `${logoHeight}px`,
@@ -149,7 +149,7 @@ export function GameStrip({
 
   return (
     <figure
-      className={clsx('game-strip', className)}
+      className={clsx(styles.gameStrip, className)}
       style={{
         width: typeof stripWidth === 'number' ? `${stripWidth}px` : stripWidth,
         minWidth: `${width}px`,
@@ -162,7 +162,7 @@ export function GameStrip({
           (e.target as HTMLImageElement).src = `${baseUrl}/strips/strip-em-breve.jpg`;
         }}
         alt={`${dualTranslate(title)} background`}
-        className="game-strip__image"
+        className={styles.gameStripImage}
       />
       <motion.img
         src={`${PUBLIC_URL.LOGOS}logo-${gameName}-${language}.svg`}
@@ -170,7 +170,7 @@ export function GameStrip({
           (e.target as HTMLImageElement).src = `${PUBLIC_URL.LOGOS}/logo-em-breve-${language}.svg`;
         }}
         alt={`${dualTranslate(title)} logo`}
-        className={clsx('game-strip__logo', !showLogo && 'game-strip__logo--hidden')}
+        className={clsx(styles.gameStripLogo, !showLogo && styles.gameStripLogoHidden)}
         style={{
           width: `${width}px`,
           height: `${logoHeight}px`,

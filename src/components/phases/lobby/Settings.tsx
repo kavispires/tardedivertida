@@ -5,6 +5,8 @@ import { Button, Divider, Space, Switch, Tooltip } from 'antd';
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
 import { Translate } from 'components/language';
+// Sass
+import styles from '../PhaseLobby.module.scss';
 
 type SettingsProps = {
   hasImages: boolean;
@@ -24,11 +26,11 @@ export function Settings({ hasImages }: SettingsProps) {
 
   return (
     <Space
-      className="lobby-step__settings"
+      className={styles.lobbyStepSettings}
       separator={<Divider orientation="vertical" />}
     >
-      <div className="lobby-step__settings-entry">
-        <div className="lobby-step__switch-label">
+      <div className={styles.lobbyStepSettingsEntry}>
+        <div className={styles.lobbyStepSwitchLabel}>
           <Translate
             pt="Som"
             en="Sound"
@@ -58,8 +60,8 @@ export function Settings({ hasImages }: SettingsProps) {
         />
       </div>
 
-      <div className="lobby-step__settings-entry">
-        <div className="lobby-step__switch-label">
+      <div className={styles.lobbyStepSettingsEntry}>
+        <div className={styles.lobbyStepSwitchLabel}>
           <Translate
             pt="Efeitos"
             en="Effects"
@@ -88,8 +90,8 @@ export function Settings({ hasImages }: SettingsProps) {
         />
       </div>
 
-      <div className="lobby-step__settings-entry">
-        <div className="lobby-step__switch-label">
+      <div className={styles.lobbyStepSettingsEntry}>
+        <div className={styles.lobbyStepSwitchLabel}>
           <Translate
             pt="Credo"
             en="Blur"

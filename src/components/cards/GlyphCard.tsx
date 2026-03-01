@@ -4,7 +4,7 @@ import { DEFAULT_PADDING } from 'utils/constants';
 // Components
 import { DEFAULT_SPRITE_SIZE, Sprite } from 'components/sprites';
 // Sass
-import './GlyphCard.scss';
+import styles from './GlyphCard.module.scss';
 
 type GlyphCardProps = {
   /**
@@ -57,7 +57,7 @@ export function GlyphCard({
   return (
     <div
       {...rest}
-      className={clsx('glyph-card', className)}
+      className={clsx(styles.glyphCard, className)}
       style={{ ...rest.style, width: `${width}px`, height: `${width}px`, ...divPadding }}
     >
       <Sprite

@@ -7,7 +7,10 @@ import { useBlurCards } from 'hooks/useBlurCards';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Components
 import { Translate } from 'components/language';
+// Sass
+import styles from '../drawers.module.scss';
 // Ant Design Resource
+// Styles
 
 export function BlurOptions() {
   const { message } = App.useApp();
@@ -57,7 +60,7 @@ export function BlurOptions() {
 
   if (isLoading) {
     return (
-      <div className="blur-options">
+      <div className={styles.blurOptions}>
         <Spin />
       </div>
     );
@@ -65,7 +68,7 @@ export function BlurOptions() {
 
   if (isError) {
     return (
-      <div className="blur-options">
+      <div className={styles.blurOptions}>
         <Alert
           type="error"
           title={
@@ -80,7 +83,7 @@ export function BlurOptions() {
   }
 
   return (
-    <div className="blur-options">
+    <div className={styles.blurOptions}>
       <p>
         <Translate
           pt="Você pode embaçar cartas automaticamente por tema"
@@ -93,7 +96,7 @@ export function BlurOptions() {
         checked={selected.aliens}
         disabled={!data.aliens}
         onChange={(e) => onUpdateSelected('aliens', e.target.checked)}
-        className="blur-options__checkbox"
+        className={styles.blurOptions__checkbox}
       >
         <Translate
           pt="alienígenas"
@@ -105,7 +108,7 @@ export function BlurOptions() {
         checked={selected.cockroaches}
         disabled={!data.cockroaches}
         onChange={(e) => onUpdateSelected('cockroaches', e.target.checked)}
-        className="blur-options__checkbox"
+        className={styles.blurOptions__checkbox}
       >
         <Translate
           pt="baratas"
@@ -117,7 +120,7 @@ export function BlurOptions() {
         checked={selected.scorpions}
         disabled={!data.scorpions}
         onChange={(e) => onUpdateSelected('scorpions', e.target.checked)}
-        className="blur-options__checkbox"
+        className={styles.blurOptions__checkbox}
       >
         <Translate
           pt="escorpiões"
@@ -129,7 +132,7 @@ export function BlurOptions() {
         checked={selected.snakes}
         disabled={!data.snakes}
         onChange={(e) => onUpdateSelected('snakes', e.target.checked)}
-        className="blur-options__checkbox"
+        className={styles.blurOptions__checkbox}
       >
         <Translate
           pt="cobras"
@@ -141,7 +144,7 @@ export function BlurOptions() {
         checked={selected.spiders}
         disabled={!data.spiders}
         onChange={(e) => onUpdateSelected('spiders', e.target.checked)}
-        className="blur-options__checkbox"
+        className={styles.blurOptions__checkbox}
       >
         <Translate
           pt="aranhas"

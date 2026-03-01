@@ -10,7 +10,8 @@ import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';
 import { Instruction, Title } from 'components/text';
 // Sass
-import './WaitingRoom.scss';
+import styles from './WaitingRoom.module.scss';
+// Styles
 
 type WaitingRoomProps = {
   /**
@@ -39,7 +40,7 @@ export function WaitingRoom({ players, title, instruction, children, icon }: Wai
   useTemporarilyHidePlayersBar();
 
   return (
-    <div className="waiting-room">
+    <div className={styles.waitingRoom}>
       <Title colorScheme="light">
         <Translate
           pt="Pronto!"
@@ -48,7 +49,7 @@ export function WaitingRoom({ players, title, instruction, children, icon }: Wai
         />
       </Title>
       {icon ?? <WaitingRoomIcon style={{ width: '6rem' }} />}
-      <div className="waiting-room__content">
+      <div className={styles.waitingRoomContent}>
         <Instruction>
           {instruction ? (
             instruction

@@ -8,6 +8,9 @@ import { AnimatedVideoConferenceIcon } from 'icons/AnimatedVideoConferenceIcon';
 // Components
 import { DualTranslate } from 'components/language';
 import { LoadingPageLayout } from 'components/layout/PageLayout';
+// Sass
+import styles from './loaders.module.scss';
+// Styles
 
 const Text = motion.create(Typography.Text);
 
@@ -20,7 +23,7 @@ type LoadingPageProps = {
 
 export function LoadingPage({ message }: LoadingPageProps) {
   return (
-    <LoadingPageLayout className="loading-page">
+    <LoadingPageLayout className={styles.loadingPage}>
       <AnimatedVideoConferenceIcon style={{ width: '120px' }} />
       {message && (
         <Text {...getAnimation('blink', { infinite: true })}>

@@ -6,7 +6,7 @@ import { Translate } from 'components/language';
 // Internal
 import { PlayerAvatar } from './PlayerAvatar';
 // Sass
-import './PlayerAvatarEntry.scss';
+import styles from './PlayerAvatarEntry.module.scss';
 
 type PlayerAvatarEntryProps = {
   /**
@@ -31,16 +31,16 @@ export const PlayerAvatarEntry = ({
 }: PlayerAvatarEntryProps) => {
   return (
     <div
-      className={clsx('avatar-entry', animate && 'avatar-entry--floating', className)}
+      className={clsx(styles.avatarEntry, animate && styles.floating, className)}
       {...rest}
     >
       <PlayerAvatar
         avatarId={player?.avatarId}
-        className="avatar-entry__avatar"
+        className={styles.avatar}
         size="large"
       />
 
-      <div className="avatar-entry__name">
+      <div className={styles.name}>
         <Translate
           pt="Fulano"
           en="John Doe"

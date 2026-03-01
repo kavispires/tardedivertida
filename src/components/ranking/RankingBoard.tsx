@@ -15,6 +15,9 @@ import { getAnimationClass, removeDuplicates } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
 import { PlayerAvatar } from 'components/player';
+// Sass
+import styles from './ranking.module.scss';
+// Styles
 
 type GainedPointProps = {
   gainedPoint: number;
@@ -28,10 +31,10 @@ function GainedPoint({ gainedPoint, order, description }: GainedPointProps) {
   return (
     <li
       className={clsx(
-        'ranking-board__gained-point',
-        isPositive && 'ranking-board__gained-point--plus',
-        isNegative && 'ranking-board__gained-point--minus',
-        `ranking-board__gained-point--${order}`,
+        styles.rankingBoard__gainedPoint,
+        isPositive && styles['rankingBoard__gainedPoint--plus'],
+        isNegative && styles['rankingBoard__gainedPoint--minus'],
+        styles[`rankingBoard__gainedPoint--${order}`],
       )}
     >
       <Tooltip
@@ -61,7 +64,7 @@ type GainedPointsProps = {
 function GainedPoints({ gainedPoints, playerId, gainedPointsDescriptions = [] }: GainedPointsProps) {
   const points = Array.isArray(gainedPoints) ? gainedPoints : [gainedPoints];
   return (
-    <ul className="ranking-board__cell-gained-points">
+    <ul className={styles.rankingBoard__cellGainedPoints}>
       {points.map((gainedPoint, index) => (
         <GainedPoint
           key={`gained-point-${playerId}-${index}`}
@@ -166,8 +169,8 @@ export function RankingBoard({
   return (
     <div
       className={clsx(
-        'ranking-board',
-        seconds > 4 && 'ranking-board--hidden',
+        styles.rankingBoard,
+        seconds > 4 && styles['rankingBoard--hidden'],
         seconds === 4 && getAnimationClass('fadeIn'),
       )}
       style={{
@@ -175,20 +178,20 @@ export function RankingBoard({
       }}
     >
       <div
-        className="ranking-board__row"
+        className={styles.rankingBoard__row}
         id={`ranking-row-${id}-placeholder`}
         style={{ opacity: 0 }}
         ref={ref as Ref<HTMLDivElement>}
       >
-        <div className="ranking-board__cell-crown">
-          <CrownFilled className="ranking-board__crown-icon" />
+        <div className={styles.rankingBoard__cellCrown}>
+          <CrownFilled className={styles.rankingBoard__crownIcon} />
         </div>
-        <div className="ranking-board__cell-position">#0</div>
-        <div className="ranking-board__cell-player">
-          <div className="ranking-board__avatar">
+        <div className={styles.rankingBoard__cellPosition}>#0</div>
+        <div className={styles.rankingBoard__cellPlayer}>
+          <div className={styles.rankingBoard__avatar}>
             <PlayerAvatar avatarId="A" />
           </div>
-          <div className="ranking-board__name">Placeholder</div>
+          <div className={styles.rankingBoard__name}>Placeholder</div>
         </div>
         <Tooltip
           title={
@@ -199,7 +202,7 @@ export function RankingBoard({
           }
           color="gray"
         >
-          <div className="ranking-board__cell-points">0</div>
+          <div className={styles.rankingBoard__cellPoints}>0</div>
         </Tooltip>
 
         <GainedPoints
@@ -211,7 +214,7 @@ export function RankingBoard({
           title="Total"
           color="gold"
         >
-          <span className="ranking-board__cell-points-total">0</span>
+          <span className={styles.rankingBoard__cellPointsTotal}>0</span>
         </Tooltip>
       </div>
 
@@ -221,22 +224,22 @@ export function RankingBoard({
 
         return (
           <div
-            className={`ranking-board__row ranking-board__row--${index}`}
+            className={`${styles.rankingBoard__row} ${styles[`rankingBoard__row--${index}`]}`}
             key={`ranking-${playerId}`}
             // id={`ranking-row-${index}`}
             style={{ top: `${hPosition}px` }}
           >
-            <div className="ranking-board__cell-crown">
+            <div className={styles.rankingBoard__cellCrown}>
               {orderedPoints[victoryIndex] === newScore && displayStep >= 3 && (
-                <CrownFilled className="ranking-board__crown-icon" />
+                <CrownFilled className={styles.rankingBoard__crownIcon} />
               )}
             </div>
-            <div className="ranking-board__cell-position">#{position[reRank] ?? ''}</div>
-            <div className="ranking-board__cell-player">
-              <div className="ranking-board__avatar">
+            <div className={styles.rankingBoard__cellPosition}>#{position[reRank] ?? ''}</div>
+            <div className={styles.rankingBoard__cellPlayer}>
+              <div className={styles.rankingBoard__avatar}>
                 <PlayerAvatar avatarId={players[playerId].avatarId} />
               </div>
-              <div className="ranking-board__name">{players[playerId].name}</div>
+              <div className={styles.rankingBoard__name}>{players[playerId].name}</div>
             </div>
             <Tooltip
               title={
@@ -247,7 +250,7 @@ export function RankingBoard({
               }
               color="gray"
             >
-              <div className="ranking-board__cell-points">{previousScore}</div>
+              <div className={styles.rankingBoard__cellPoints}>{previousScore}</div>
             </Tooltip>
             {!hideGainedPoints && displayStep >= 1 && gainedPoints !== undefined && (
               <GainedPoints
@@ -262,9 +265,9 @@ export function RankingBoard({
               color="gold"
             >
               {displayStep >= 2 ? (
-                <span className="ranking-board__cell-points-total">{newScore}</span>
+                <span className={styles.rankingBoard__cellPointsTotal}>{newScore}</span>
               ) : (
-                <span className="ranking-board__cell-points-total-preliminary">{newScore}</span>
+                <span className={styles.rankingBoard__cellPointsTotalPreliminary}>{newScore}</span>
               )}
             </Tooltip>
           </div>

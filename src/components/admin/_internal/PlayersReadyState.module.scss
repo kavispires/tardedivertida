@@ -1,0 +1,24 @@
+@use "styles/sass" as *;
+
+.adminPlayersReadyState {
+  // No styles for root container
+}
+
+.entry {
+  display: flex;
+  margin: get-unit(1 0);
+  border-bottom: 1px get-color("gray", 1) dashed;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 1rem;
+}
+
+.item {
+  background-color: get-color("gray", 1);
+  padding: get-unit(0 1);
+  margin: get-unit(0 1);
+  border-radius: var(--border-radius);
+}

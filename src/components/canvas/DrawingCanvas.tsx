@@ -7,7 +7,7 @@ import { Button, Flex, Space } from 'antd';
 // Components
 import { Translate } from 'components/language';
 // Sass
-import './DrawingCanvas.scss';
+import styles from './DrawingCanvas.module.scss';
 
 type DrawingCanvasProps = {
   /**
@@ -238,7 +238,7 @@ export const DrawingCanvas = ({
         onTouchEnd={handleMouseUp}
         onMouseLeave={handleMouseLeave}
         onMouseEnter={handleMouseEnter}
-        className={clsx('drawing-canvas', className)}
+        className={clsx(styles.drawingCanvas, className)}
         style={{
           width: `${width}px`,
           height: `${height || width}px`,

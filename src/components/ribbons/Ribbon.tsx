@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 // Utils
 import { getAnimationClass, getColorFromLetter } from 'utils/helpers';
+// Sass
+import styles from './Ribbons.module.scss';
 
 type RibbonProps = {
   label: string;
@@ -9,10 +11,10 @@ type RibbonProps = {
 
 export function Ribbon({ label, position = 'absolute' }: RibbonProps) {
   return (
-    <div className={clsx('ribbon', `ribbon--${position}`)}>
+    <div className={clsx(styles.ribbon, position === 'absolute' && styles.ribbonAbsolute)}>
       <div
         className={clsx(
-          'ribbon__content',
+          styles.ribbonContent,
           `ribbon__content--${label}`,
           `color-background--${getColorFromLetter(label)}`,
           getAnimationClass('bounceIn'),

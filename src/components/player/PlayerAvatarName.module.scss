@@ -1,0 +1,38 @@
+@use "styles/sass" as *;
+
+.avatarName {
+  display: inline-block;
+  padding: get-unit(0 1);
+  font-weight: bolder;
+  font-size: inherit;
+
+  &.uppercase {
+    text-transform: uppercase;
+  }
+
+  &.upright {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &.small {
+    font-size: 0.75em;
+  }
+
+  &.default {
+    font-size: 1em;
+  }
+
+  &.large {
+    font-size: 1.5em;
+  }
+}
+
+.avatar {
+  margin-right: get-unit(1);
+}
+
+.name {
+  display: inline-block;
+}

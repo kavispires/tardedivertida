@@ -1,0 +1,58 @@
+@use "styles/sass" as *;
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Oswald&display=swap");
+
+.crimeItemCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: get-unit(1) solid transparent;
+  aspect-ratio: 3 / 5;
+  position: relative;
+  border-radius: var(--border-radius);
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.85) saturate(50%) drop-shadow(5px 5px 3px get-color("black", 5, 0.5));
+}
+
+.crimeItemCardWeapon {
+  background-color: get-color("blue", 7);
+  border: 2px solid get-color("blue", 9);
+}
+
+.crimeItemCardEvidence {
+  background-color: get-color("red", 6);
+  border: 2px solid get-color("red", 8);
+}
+
+.crimeItemCardSelected {
+  border: get-unit(1) dashed get-color("yellow");
+  background-color: get-color("yellow", 6);
+  border-radius: var(--border-radius);
+}
+
+.crimeItemCardName {
+  position: absolute;
+  color: get-color("white");
+  top: 0;
+  left: 0;
+  z-index: 1;
+  font-family: "Oswald", serif;
+  background: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 0;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  width: 100%;
+  padding: get-unit(0 1);
+  height: 4em;
+  display: grid;
+  place-items: center;
+}
+
+.crimeItemCardItemContainer {
+  display: grid;
+  place-items: center;
+  margin-top: 2em;
+}

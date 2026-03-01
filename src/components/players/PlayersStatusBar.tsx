@@ -11,7 +11,8 @@ import { getAnimationClass, sortPlayers } from 'utils/helpers';
 import { Translate } from 'components/language';
 import { PlayerAvatar } from 'components/player';
 // Sass
-import './PlayersStatusBar.scss';
+import styles from './PlayersStatusBar.module.scss';
+// Styles
 
 type PlayersStatusBarProps = {
   players: GamePlayers;
@@ -25,12 +26,12 @@ export function PlayersStatusBar({ players }: PlayersStatusBarProps) {
   }
 
   return (
-    <div className={clsx('players-status-bar', getAnimationClass('slideInRight'))}>
-      <ul className="players-status-bar__list">
+    <div className={clsx(styles.playersStatusBar, getAnimationClass('slideInRight'))}>
+      <ul className={styles.playersStatusBarList}>
         {sortPlayers(players).map((player) => {
           return (
             <li
-              className="players-status-bar__player"
+              className={styles.playersStatusBarPlayer}
               key={`players-status-bar-${player.id}`}
             >
               <Tooltip
@@ -46,13 +47,13 @@ export function PlayersStatusBar({ players }: PlayersStatusBarProps) {
                     avatarId={player.avatarId}
                     alt={player.name}
                     size="small"
-                    className={clsx(!player.ready && 'players-status-bar__avatar-not-ready')}
+                    className={clsx(!player.ready && styles.playersStatusBarAvatarNotReady)}
                   />
                 </Badge>
               </Tooltip>
               {player.ready && (
-                <div className="players-status-bar__ready">
-                  <div className="players-status-bar__ready-speech">
+                <div className={styles.playersStatusBarReady}>
+                  <div className={styles.playersStatusBarReadySpeech}>
                     <Translate
                       pt="Pronto!"
                       en="I'm ready!"

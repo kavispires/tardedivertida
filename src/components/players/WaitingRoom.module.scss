@@ -1,0 +1,16 @@
+@use "styles/sass" as *;
+
+.waitingRoom {
+  width: 70%;
+  min-width: 50vw;
+  background-color: rgba($color: #fff, $alpha: 0.5);
+  border-radius: get-unit(2);
+  padding: get-unit(6 2);
+  text-align: center;
+}
+
+.waitingRoomContent {
+  display: grid;
+  width: 100%;
+  place-items: center;
+}

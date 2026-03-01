@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Sass
-import './TextHighlight.scss';
+import styles from './TextHighlight.module.scss';
 
 type TextHighlightProps = {
   /**
@@ -12,7 +12,7 @@ type TextHighlightProps = {
 export function TextHighlight({ children, className, dark, ...props }: TextHighlightProps) {
   return (
     <span
-      className={clsx('text-highlight', dark && 'text-highlight--dark', className)}
+      className={clsx(styles.textHighlight, dark && styles.textHighlightDark, className)}
       {...props}
     >
       {children}

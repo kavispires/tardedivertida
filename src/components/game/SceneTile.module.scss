@@ -1,0 +1,123 @@
+@use "styles/sass" as *;
+
+.sceneTile {
+  $self: &;
+
+  background-color: get-color("black");
+  padding: get-unit(2);
+  border-radius: get-unit(2);
+  margin: get-unit(2);
+
+  &Title {
+    text-align: center;
+  }
+
+  &Button {
+    color: get-color("white");
+
+    &Inactive {
+      opacity: 0.25;
+    }
+  }
+
+  &Options {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    li {
+      margin-bottom: get-unit(1);
+      width: 100%;
+
+      #{ $self }Button {
+        width: 100%;
+      }
+    }
+  }
+
+  &Cause {
+    border: 5px solid get-color("violet", 6);
+
+    #{ $self }Title {
+      color: get-color("violet", 5);
+    }
+
+    #{ $self }Button {
+      background-color: get-color("violet", 7);
+      border-color: get-color("violet", 7);
+    }
+
+    #{ $self }Icon {
+      color: get-color("violet", 5);
+    }
+  }
+
+  &Evidence {
+    border: 5px solid get-color("red", 8);
+
+    #{ $self }Title {
+      color: get-color("red", 5);
+    }
+
+    #{ $self }Button {
+      background-color: get-color("red", 7);
+      border-color: get-color("red", 7);
+    }
+
+    #{ $self }Icon {
+      color: get-color("red", 5);
+    }
+  }
+
+  &Victim {
+    border: 5px solid get-color("yellow", 8);
+
+    #{ $self }Title {
+      color: get-color("yellow", 5);
+    }
+
+    #{ $self }Button {
+      background-color: get-color("yellow", 7);
+      border-color: get-color("yellow", 7);
+    }
+
+    #{ $self }Icon {
+      color: get-color("yellow", 5);
+    }
+  }
+
+  &Location {
+    border: 5px solid get-color("green", 8);
+
+    #{ $self }Title {
+      color: get-color("green", 5);
+    }
+
+    #{ $self }Button {
+      background-color: get-color("green", 7);
+      border-color: get-color("green", 7);
+    }
+
+    #{ $self }Icon {
+      color: get-color("green", 5);
+    }
+  }
+
+  &Scene {
+    border: 5px solid get-color("orange", 8);
+
+    #{ $self }Title {
+      color: get-color("orange", 5);
+    }
+
+    #{ $self }Button {
+      background-color: get-color("orange", 7);
+      border-color: get-color("orange", 7);
+    }
+
+    #{ $self }Icon {
+      color: get-color("orange", 5);
+    }
+  }
+}

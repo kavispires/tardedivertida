@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 // Internal
 import { ImageBlurButton } from './ImageBlurButton';
 // Sass
-import './ImageBlurButtonContainer.scss';
+import styles from './ImageBlurButtonContainer.module.scss';
 
 interface ImageBlurButtonContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -38,7 +38,7 @@ export function ImageBlurButtonContainer({
 }: ImageBlurButtonContainerProps) {
   return (
     <div
-      className={clsx('image-blur-button-container', className)}
+      className={clsx(styles.imageBlurButtonContainer, className)}
       {...rest}
     >
       {position === 'top' && (

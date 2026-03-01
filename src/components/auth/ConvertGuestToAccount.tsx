@@ -17,6 +17,9 @@ import { Instruction, Title } from 'components/text';
 import { SignUpForm } from './SignUp';
 // Images
 import logo from 'assets/images/tarde-divertida-logo.svg?url';
+// Sass
+import styles from './auth.module.scss';
+// Styles
 
 type ConvertGuestToAccountProps = {
   /**
@@ -42,8 +45,8 @@ export function ConvertGuestToAccount({ onSuccess }: ConvertGuestToAccountProps)
   };
 
   return (
-    <div className="sign-up">
-      <div className="sign-up__logo">
+    <div className={styles.signUp}>
+      <div className={styles.signUp__logo}>
         <Image
           src={logo}
           preview={false}
@@ -95,7 +98,7 @@ export function ConvertGuestToAccountModal() {
 
       <Instruction
         contained
-        className="convert-guest-instruction"
+        className={styles.convertGuestInstruction}
       >
         <Title
           size="xx-small"

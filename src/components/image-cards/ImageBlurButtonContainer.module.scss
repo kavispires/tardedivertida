@@ -1,0 +1,7 @@
+@use "styles/sass" as *;
+
+.imageBlurButtonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
