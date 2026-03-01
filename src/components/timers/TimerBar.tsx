@@ -2,8 +2,17 @@
 import { Progress, type ProgressProps } from 'antd';
 
 interface TimerBarProps extends ProgressProps {
+  /**
+   * Number of steps to divide the progress into
+   */
   steps?: number;
+  /**
+   * The current value of the timer
+   */
   value: number;
+  /**
+   * The total value of the timer
+   */
   total: number;
 }
 

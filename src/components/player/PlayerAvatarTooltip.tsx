@@ -6,7 +6,13 @@ import type { GamePlayer } from 'types/player';
 import { PlayerAvatar } from './PlayerAvatar';
 
 type PlayerAvatarTooltipProps = {
+  /**
+   * The player object containing avatar and name information
+   */
   player: GamePlayer;
+  /**
+   * Additional props to pass to the Tooltip component
+   */
   tooltipProps?: TooltipProps;
 } & AvatarProps;
 

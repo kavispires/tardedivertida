@@ -4,6 +4,9 @@ import { Stage, Layer, Line } from 'react-konva';
 import styles from './Canvas.module.scss';
 
 type CanvasProps = {
+  /**
+   * The drawing data (JSON string or array of canvas lines)
+   */
   drawing?: string | CanvasLine[];
   /**
    * Optional custom class name

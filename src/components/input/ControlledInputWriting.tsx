@@ -7,13 +7,37 @@ import { useLoading } from 'hooks/useLoading';
 import { SEPARATOR } from 'utils/constants';
 
 type ControlledInputWritingProps = {
+  /**
+   * Callback function when the form is submitted
+   */
   onSubmit: GenericComponent;
+  /**
+   * The key used to store the value
+   */
   valueKey: string;
+  /**
+   * Number of input fields to render
+   */
   inputQuantity?: number;
+  /**
+   * Whether to restrict to maximum input quantity
+   */
   restrictMax?: boolean;
+  /**
+   * The input component to render
+   */
   inputComponent: GenericComponent;
+  /**
+   * Props to pass to the input component
+   */
   inputComponentProps?: PlainObject;
+  /**
+   * Props to pass to the submit button
+   */
   submitButtonProps?: ButtonProps;
+  /**
+   * Label for the submit button
+   */
   submitButtonLabel: ReactNode;
 };
 

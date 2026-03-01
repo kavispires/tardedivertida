@@ -129,6 +129,9 @@ export function Session({ gameCollection, getActiveComponent, provider }: Sessio
 }
 
 type SessionConfigWrapperProps = {
+  /**
+   * The child components to render
+   */
   children: ReactNode;
 };
 

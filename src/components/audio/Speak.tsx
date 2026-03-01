@@ -6,6 +6,9 @@ import { useLanguage } from 'hooks/useLanguage';
 import { speak } from 'utils/speech';
 
 type SpeakProps = {
+  /**
+   * The text to be spoken in both languages
+   */
   text: DualLanguageValue;
 };
 

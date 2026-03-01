@@ -4,6 +4,9 @@ import { App } from 'antd';
 import { useLanguage } from 'hooks/useLanguage';
 
 type DualTransLateProps = {
+  /**
+   * The dual language text object
+   */
   children: DualLanguageValue;
 };
 

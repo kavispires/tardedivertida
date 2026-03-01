@@ -11,9 +11,21 @@ import styles from './ReadyPlayersBar.module.scss';
 // Styles
 
 type ReadyPlayersBarProps = {
+  /**
+   * The game players object
+   */
   players: GamePlayers;
+  /**
+   * Text to display for ready status (singular)
+   */
   readyText?: string;
+  /**
+   * Text to display for ready status (plural)
+   */
   readyTextPlural?: string;
+  /**
+   * Whether to hide player names
+   */
   hideNames?: boolean;
 };
 

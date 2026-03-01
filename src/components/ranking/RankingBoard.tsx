@@ -20,8 +20,17 @@ import styles from './ranking.module.scss';
 // Styles
 
 type GainedPointProps = {
+  /**
+   * The number of points gained or lost
+   */
   gainedPoint: number;
+  /**
+   * The order index of this gained point
+   */
   order: number;
+  /**
+   * Optional description to display in tooltip
+   */
   description?: ReactNode;
 };
 
@@ -56,8 +65,17 @@ function GainedPoint({ gainedPoint, order, description }: GainedPointProps) {
 }
 
 type GainedPointsProps = {
+  /**
+   * Array of gained points or a single number
+   */
   gainedPoints: number[] | number;
+  /**
+   * The player ID for whom the points are displayed
+   */
   playerId: PlayerId;
+  /**
+   * Optional array of descriptions for each gained point
+   */
   gainedPointsDescriptions?: ReactNode[];
 };
 

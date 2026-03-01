@@ -9,7 +9,13 @@ import { useGameInfoContext } from 'components/session/GameInfoContext';
 import styles from '../PhaseLobby.module.scss';
 
 type LobbyStepProps = {
+  /**
+   * The child components to render
+   */
   children: ReactNode;
+  /**
+   * Whether the lobby is locked from new players
+   */
   isLocked: boolean;
 };
 

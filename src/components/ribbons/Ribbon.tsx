@@ -5,7 +5,13 @@ import { getAnimationClass, getColorFromLetter } from 'utils/helpers';
 import styles from './Ribbons.module.scss';
 
 type RibbonProps = {
+  /**
+   * The text label to display on the ribbon
+   */
   label: string;
+  /**
+   * The CSS position of the ribbon
+   */
   position?: 'absolute' | 'static';
 };
 

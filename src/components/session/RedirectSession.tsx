@@ -12,6 +12,9 @@ import { Translate } from 'components/language';
 import { Title } from 'components/text';
 
 type RedirectSessionProps = {
+  /**
+   * The current game state
+   */
   state: GameState;
 };
 

@@ -5,8 +5,17 @@ import styles from './timers.module.scss';
 // Styles
 
 type TimeForActionProps = {
+  /**
+   * The duration of the countdown in seconds
+   */
   duration: number;
+  /**
+   * Callback function to be called when the timer expires
+   */
   onExpire?: () => void;
+  /**
+   * The time left in seconds (optional, for controlled countdown)
+   */
   timeLeft?: number;
 };
 

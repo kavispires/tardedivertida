@@ -25,6 +25,9 @@ import {
 import { Translate } from 'components/language';
 
 type LobbyReadyButtonsProps = {
+  /**
+   * The game players object
+   */
   players: GamePlayers;
 };
 

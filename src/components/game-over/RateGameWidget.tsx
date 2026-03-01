@@ -23,6 +23,9 @@ import { Translate } from 'components/language';
 const { TextArea } = Input;
 
 type RateGameWidgetProps = {
+  /**
+   * Optional custom text to display in the widget
+   */
   customText?: ReactNode;
 };
 
