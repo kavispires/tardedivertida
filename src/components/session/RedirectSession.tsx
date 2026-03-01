@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { Flex, Modal } from 'antd';
 // Types
 import type { GameState } from 'types/game';
-// Utils
-import GAME_LIST from 'utils/info';
+// Hooks
+import { useGameList } from 'hooks/useGameList';
 // Components
 import { GameStrip } from 'components/general/GameBanner';
 import { Translate } from 'components/language';
@@ -20,17 +20,19 @@ type RedirectSessionProps = {
 
 export function RedirectSession({ state }: RedirectSessionProps) {
   const navigate = useNavigate();
+  const { data: gameList } = useGameList();
 
   const [open, setOpen] = useState<boolean | null>(null);
   const [isLoading, setLoading] = useState(false);
+
+  const redirect = state.redirect;
+  const gameInfo = redirect && gameList ? gameList[redirect.gameName] : null;
 
   const hideModal = () => {
     setOpen(false);
   };
 
-  const redirect = state.redirect;
-
-  if (redirect) {
+  if (redirect && gameInfo) {
     const twoHoursInMilliseconds = 2 * 60 * 60 * 1000; // 2 hours
     const currentMilliseconds = Date.now();
 
@@ -38,7 +40,6 @@ export function RedirectSession({ state }: RedirectSessionProps) {
       return null;
     }
 
-    const gameInfo = GAME_LIST[redirect.gameName];
     return (
       <Modal
         title={

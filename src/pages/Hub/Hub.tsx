@@ -7,15 +7,16 @@ import { Typography, Layout, Divider, Row, Col, Tag, Flex } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
+import { useGameList } from 'hooks/useGameList';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { SEPARATOR, TAG_RULES } from 'utils/constants';
 import { calculateGameAverageDuration, isDevEnv } from 'utils/helpers';
-import GAME_LIST from 'utils/info';
 // Components
 import { LogoutButton } from 'components/auth/LogoutButton';
 import { LanguageSwitch, Translate } from 'components/language';
 import { PageLayout } from 'components/layout/PageLayout';
+import { LoadingPage } from 'components/loaders';
 // Pages
 import { DevHeader } from 'pages/Dev/DevHeader';
 // Internal
@@ -23,21 +24,10 @@ import { GameCard } from './components/GameCard';
 import { DevEmulatorAlert } from './components/DevEmulatorAlert';
 import { Filters, type FilterState } from './components/Filters';
 
-const statsCountsArray = orderBy(
-  Object.entries(
-    Object.values(GAME_LIST).reduce((acc: Record<string, number>, game) => {
-      if (acc[game.gameCode] === undefined) {
-        acc[game.gameCode] = 0;
-      }
-      acc[game.gameCode]++;
-      return acc;
-    }, {}),
-  ).map(([gameCode, count]) => `${gameCode}: ${count}`),
-);
-
 function Hub() {
   useTitle('Hub - Tarde Divertida');
   const { language } = useLanguage();
+  const { data: gameListData = {}, isLoading } = useGameList();
   const [filters, setFilters] = useState<FilterState>({
     search: '',
     tags: [],
@@ -49,9 +39,23 @@ function Hub() {
     sortBy: 'title',
   });
 
+  const statsCountsArray = useMemo(() => {
+    return orderBy(
+      Object.entries(
+        Object.values(gameListData).reduce((acc: Record<string, number>, game) => {
+          if (acc[game.gameCode] === undefined) {
+            acc[game.gameCode] = 0;
+          }
+          acc[game.gameCode]++;
+          return acc;
+        }, {}),
+      ).map(([gameCode, count]) => `${gameCode}: ${count}`),
+    );
+  }, [gameListData]);
+
   const gameList = useMemo(
     () =>
-      Object.values(GAME_LIST).filter((game) => {
+      Object.values(gameListData).filter((game) => {
         const result = [];
 
         // Search by title (PT/EN) or game name
@@ -130,7 +134,7 @@ function Hub() {
 
         return result.every(Boolean);
       }),
-    [filters],
+    [filters, gameListData],
   );
 
   const { stableGames, betaGames, devGames, comingSoonGames } = useMemo(() => {
@@ -177,6 +181,14 @@ function Hub() {
     }
     return orderBy(games, [`title.${language}`], ['asc']);
   };
+
+  if (isLoading) {
+    return (
+      <PageLayout className="dev-layout">
+        <LoadingPage message={{ pt: 'Carregando lista de jogos...', en: 'Loading game list...' }} />
+      </PageLayout>
+    );
+  }
 
   return (
     <PageLayout className="dev-layout">
