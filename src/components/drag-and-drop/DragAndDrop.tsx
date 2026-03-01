@@ -1,6 +1,8 @@
 import { useDraggable, useDroppable } from '@dnd-kit/core';
 import clsx from 'clsx';
 import type { CSSProperties, ReactNode } from 'react';
+// Sass
+import styles from './DragAndDrop.module.scss';
 
 /**
  * Props for the DroppableArea component
@@ -108,11 +110,11 @@ export function DroppableArea({
 
   // Build the combined class names
   const combinedClassName = clsx(
-    'droppable-area',
+    styles.droppableArea,
     className,
-    isOver && !disabled && 'droppable-area--active',
+    isOver && !disabled && styles.droppableAreaActive,
     isOver && !disabled && overClassName,
-    disabled && 'droppable-area--disabled',
+    disabled && styles.droppableAreaDisabled,
   );
 
   // Prepare any data attributes
@@ -239,10 +241,10 @@ export function DraggableItem({
 
   // Build the combined class names
   const combinedClassName = clsx(
-    'draggable-item',
+    styles.draggableItem,
     className,
     isDragging && dragClassName,
-    isDragging && 'draggable-item--dragging',
+    isDragging && styles.draggableItemDragging,
   );
 
   // Handle click events
@@ -262,7 +264,7 @@ export function DraggableItem({
     // With custom drag handle
     return (
       <div
-        className={clsx('draggable-item-wrapper', wrapperClassName)}
+        className={clsx(styles.draggableItemWrapper, wrapperClassName)}
         style={wrapperStyleObj}
       >
         <button
@@ -275,12 +277,12 @@ export function DraggableItem({
           {...attributes}
         >
           <span
-            className="draggable-item-handle"
+            className={styles.draggableItemHandle}
             {...listeners}
           >
             {dragHandle}
           </span>
-          <span className="draggable-item-content">{children}</span>
+          <span className={styles.draggableItemContent}>{children}</span>
         </button>
       </div>
     );
@@ -289,7 +291,7 @@ export function DraggableItem({
   // Standard draggable (whole item is draggable)
   return (
     <div
-      className={clsx('draggable-item-wrapper', wrapperClassName)}
+      className={clsx(styles.draggableItemWrapper, wrapperClassName)}
       style={wrapperStyleObj}
     >
       <button

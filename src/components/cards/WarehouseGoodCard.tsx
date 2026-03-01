@@ -5,7 +5,7 @@ import { DEFAULT_PADDING } from 'utils/constants';
 import { DualTranslate } from 'components/language';
 import { DEFAULT_SPRITE_SIZE, Sprite } from 'components/sprites';
 // Sass
-import './WarehouseGoodCard.scss';
+import styles from './WarehouseGoodCard.module.scss';
 
 export type WarehouseGoodCardProps = {
   /**
@@ -69,7 +69,7 @@ export function WarehouseGoodCard({
 
   return (
     <div
-      className={clsx('warehouse-good-card', className)}
+      className={clsx(styles.warehouseGoodCard, className)}
       style={{ width: `${width}px`, height, ...divPadding }}
     >
       <Sprite
@@ -80,7 +80,7 @@ export function WarehouseGoodCard({
         padding={padding}
       />
       {!!text && (
-        <span className="warehouse-good-card__text">
+        <span className={styles.warehouseGoodCardText}>
           <DualTranslate>{text}</DualTranslate>
         </span>
       )}

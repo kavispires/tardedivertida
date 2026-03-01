@@ -25,7 +25,7 @@ import { Button, Space, Tooltip } from 'antd';
 // Components
 import { Translate } from 'components/language/Translate';
 // Sass
-import './ZoomPanPinchContainer.scss';
+import styles from './ZoomPanPinchContainer.module.scss';
 
 export type ZoomPanPinchContainerProps = {
   /**
@@ -161,7 +161,7 @@ export function ZoomPanPinchContainer({
             width: maxWidth,
             height: !hideControls ? (fixedCanvasHeight ?? maxHeight ?? 'auto') : (maxHeight ?? 'auto'),
           }}
-          contentClass={clsx('zoom-pan-pinch-content', contentClassName)}
+          contentClass={clsx(styles.zoomPanPinchContent, contentClassName)}
           contentStyle={contentStyle}
         >
           <div style={{ width: 'fit-content', height: 'fit-content' }}>{children}</div>
@@ -203,7 +203,10 @@ function Controls({ position, isLocked, onToggleLock }: ControlsProps) {
   return (
     <Space.Compact
       size="small"
-      className={clsx('grid-map-controls', `grid-map-controls--${position}`)}
+      className={clsx(
+        styles.zoomPanPinchControls,
+        position === 'top' ? styles.zoomPanPinchControlsTop : styles.zoomPanPinchControlsBottom,
+      )}
     >
       <Tooltip
         title={

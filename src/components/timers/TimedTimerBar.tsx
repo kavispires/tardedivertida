@@ -3,6 +3,9 @@ import clsx from 'clsx';
 import { useCountdown } from 'hooks/useCountdown';
 // Internal
 import { TimerBar } from './TimerBar';
+// Sass
+import styles from './timers.module.scss';
+// Styles
 
 type TimedTimerBarProps = {
   /**
@@ -35,7 +38,7 @@ export function TimedTimerBar({ duration, onExpire, type, steps = 10, className 
   });
 
   return (
-    <div className={clsx('timer-number', className)}>
+    <div className={clsx(styles.timerNumber, className)}>
       {timeLeft}{' '}
       <TimerBar
         steps={steps}

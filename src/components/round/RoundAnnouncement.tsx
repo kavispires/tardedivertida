@@ -17,7 +17,7 @@ import { useGameAppearance } from 'components/session/GameInfoContext';
 import roundTitleEn from 'assets/images/round-title-en.svg?url';
 import roundTitlePt from 'assets/images/round-title-pt.svg?url';
 // Sass
-import './RoundAnnouncement.scss';
+import styles from './RoundAnnouncement.module.scss';
 // Styles
 
 type RoundAnnouncementProps = {
@@ -68,34 +68,24 @@ export function RoundAnnouncement({
   const circleStyle = circleColor ? { borderColor: circleColor } : {};
 
   return (
-    <div className={clsx('round-announcement', className)}>
-      <div className="round-announcement__main">
-        <div
-          className={clsx(
-            'round-announcement__title',
-            appearance.colorScheme === 'dark' && 'round-announcement__title--dark',
-          )}
-        >
+    <div className={clsx(styles.roundAnnouncement, className)}>
+      <div className={styles.main}>
+        <div className={clsx(styles.title, appearance.colorScheme === 'dark' && styles.titleDark)}>
           <img
             src={translate(roundTitlePt, roundTitleEn)}
             alt={translate('Rodada', 'Round')}
           />
         </div>
-        <div className={clsx('round-announcement__round-wrapper', getAnimationClass('zoomIn'))}>
+        <div className={clsx(styles.roundWrapper, getAnimationClass('zoomIn'))}>
           <div
-            className="round-announcement__circle"
+            className={styles.circle}
             style={circleStyle}
           />
           <div
-            className="round-announcement__circle-2"
+            className={styles.circle2}
             style={circleStyle}
           />
-          <div
-            className={clsx(
-              'round-announcement__number',
-              appearance.colorScheme === 'dark' && 'round-announcement__number--dark',
-            )}
-          >
+          <div className={clsx(styles.number, appearance.colorScheme === 'dark' && styles.numberDark)}>
             {round?.current ?? round ?? 0}
           </div>
         </div>

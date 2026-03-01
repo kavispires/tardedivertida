@@ -4,19 +4,6 @@
 @use "./reset";
 @use "./global";
 
-// Shared Components
-@use "../components/auth/auth.scss";
-@use "../components/loaders/loaders.scss";
-@use "../components/rules/_rules.scss";
-@use "../components/metrics/MetricHighlight.scss";
-@use "../components/steps/Step.scss";
-@use "../components/ranking/ranking.scss";
-@use "../components/drawers/drawers.scss";
-@use "../components/slide-show/slide-show";
-@use "../components/game-over/game-over";
-@use "../components/timers/timers";
-@use "../components/general/Achievements.scss";
-
 // Pages
 @use "../pages/app";
 @use "../pages/Login/login";

@@ -2,8 +2,6 @@
 import { type CustomAvatarProps, CustomAvatarWrapper } from './CustomAvatarWrapper';
 // Images
 import superHeroes from 'assets/images/super-heroes.svg?url';
-// Sass
-import './ClubberAvatar.scss';
 
 /**
  * Clubber Avatar

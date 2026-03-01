@@ -1,0 +1,24 @@
+@use "styles/sass" as *;
+
+.warehouseGoodCard {
+  background: get-color("brown", 2);
+  border-radius: var(--border-radius);
+}
+
+.warehouseGoodCardLoading {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.warehouseGoodCardText {
+  text-transform: uppercase;
+  font-family: "Courier New", Courier, monospace;
+  margin: 0;
+  font-weight: bold;
+  text-align: center;
+  display: block;
+  width: 100%;
+  overflow-wrap: break-word;
+}

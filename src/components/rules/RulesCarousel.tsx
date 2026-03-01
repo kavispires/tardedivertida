@@ -15,6 +15,9 @@ import { PUBLIC_URL } from 'utils/constants';
 // Components
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+// Sass
+import styles from './rules.module.scss';
+// Styles
 
 type RulesCarouselProps = {
   info: GameInfo;
@@ -53,20 +56,20 @@ export function RulesCarousel({
   return (
     <div>
       <Carousel
-        className={clsx('rules-carousel', className)}
+        className={clsx(styles.rulesCarousel, className)}
         autoplay
         autoplaySpeed={15000}
         ref={ref}
       >
         {info.rules[language].map((rule, index) => (
           <div
-            className={clsx('rules-carousel__rule', className)}
+            className={clsx(styles.rulesCarousel__rule, className)}
             key={rule}
           >
-            <span className="rules-carousel__rule-number">{index + 1}</span>
+            <span className={styles.rulesCarousel__ruleNumber}>{index + 1}</span>
 
             <Image
-              className="rules-carousel__image"
+              className={styles.rulesCarousel__image}
               src={
                 index === 0
                   ? `${PUBLIC_URL.BANNERS}${info.gameName}.jpg`
@@ -75,7 +78,7 @@ export function RulesCarousel({
               fallback={`${BASE_URL}/rules/no-rules.jpg`}
               alt={rule}
             />
-            <Typography.Paragraph className={clsx('rules-carousel__rule-text', ruleClassName)}>
+            <Typography.Paragraph className={clsx(styles.rulesCarousel__ruleText, ruleClassName)}>
               {rule}
             </Typography.Paragraph>
           </div>

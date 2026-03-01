@@ -1,0 +1,6 @@
+@use "styles/sass" as *;
+
+.emojiCard {
+  background: get-color("white", 5, 0.1);
+  border-radius: var(--border-radius);
+}

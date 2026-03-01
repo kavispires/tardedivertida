@@ -3,7 +3,7 @@ import clsx from 'clsx';
 // Images
 import trees from 'assets/images/trees.svg?url';
 // Sass
-import './TreeCard.scss';
+import styles from './TreeCard.module.scss';
 
 type TreeCardProps = {
   /**
@@ -31,7 +31,7 @@ export function TreeCard({ treeId, width = 100, className = '', text = '', ...re
   return (
     <div
       {...rest}
-      className={clsx('tree-card', className)}
+      className={clsx(styles.treeCard, className)}
       style={{ ...rest.style, width: `${width}px` }}
     >
       <svg
@@ -41,7 +41,7 @@ export function TreeCard({ treeId, width = 100, className = '', text = '', ...re
         <use href={`${trees}#tree-${treeId}`}></use>
       </svg>
       <Tooltip title={text}>
-        <div className="tree-card__text">{text}</div>
+        <div className={styles.treeCardText}>{text}</div>
       </Tooltip>
     </div>
   );

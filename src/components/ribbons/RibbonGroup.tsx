@@ -1,8 +1,11 @@
+import clsx from 'clsx';
 // Types
 import type { GamePlayer } from 'types/player';
 // Internal
 import { PlayerRibbon } from './PlayerRibbon';
 import { Ribbon } from './Ribbon';
+// Sass
+import styles from './Ribbons.module.scss';
 
 type RibbonGroupProps = {
   labels: string[] | GamePlayer[];
@@ -10,7 +13,7 @@ type RibbonGroupProps = {
 
 export function RibbonGroup({ labels }: RibbonGroupProps) {
   return (
-    <div className="ribbon-group ribbon--absolute">
+    <div className={clsx(styles.ribbonGroup, styles.ribbonAbsolute)}>
       {labels.length > 0 &&
         labels.map((label) =>
           typeof labels[0] === 'string' ? (

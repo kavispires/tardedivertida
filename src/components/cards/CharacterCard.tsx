@@ -11,7 +11,7 @@ import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 import { ImageBlurButtonContainer } from 'components/image-cards';
 import { DualTranslate } from 'components/language';
 // Sass
-import './CharacterCard.scss';
+import styles from './CharacterCard.module.scss';
 
 export type OverlayColor = 'blue' | 'gray' | 'green' | 'orange' | 'pink' | 'purple' | 'red' | 'yellow';
 
@@ -56,18 +56,18 @@ export function CharacterCard({ size, overlayColor, character, className, hideNa
         placement="top"
       >
         <div
-          className={clsx('character-card', className)}
+          className={clsx(styles.characterCard, className)}
           style={{ width: `${size}px` }}
         >
           {!hideName && (
-            <span className="character-card__name">
+            <span className={styles.characterCardName}>
               <DualTranslate>{character.name}</DualTranslate>
             </span>
           )}
           {overlayColor && (
             <img
               src={`${baseUrl}/game/w-overlay-${overlayColor}.png`}
-              className="character-card__overlay"
+              className={styles.characterCardOverlay}
               alt="character"
               style={{ width: `${size}px` }}
             />
@@ -75,7 +75,7 @@ export function CharacterCard({ size, overlayColor, character, className, hideNa
           <Image
             src={`${baseUrl}/${imageURL}.jpg`}
             width={size}
-            className={clsx('character-card__image', isBlurred && 'character-card__image--blur')}
+            className={clsx(styles.characterCardImage, isBlurred && styles.characterCardImageBlur)}
             fallback={`${baseUrl}/game/w-no-image.jpg`}
             alt={dualTranslate(character.name)}
             preview={false}

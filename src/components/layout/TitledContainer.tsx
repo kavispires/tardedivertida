@@ -5,7 +5,7 @@ import { Space, type SpaceProps } from 'antd';
 // Components
 import { Title, type TitleProps } from 'components/text';
 // Sass
-import './TitledContainer.scss';
+import styles from './TitledContainer.module.scss';
 
 type TitledContainerProps = {
   title: ReactNode;
@@ -40,7 +40,7 @@ export function TitledContainer({
   return (
     <Space
       orientation="vertical"
-      className={clsx('container-wrapper', className)}
+      className={clsx(styles.containerWrapper, className)}
       {...spaceProps}
     >
       <Title
@@ -55,8 +55,8 @@ export function TitledContainer({
         orientation={childrenOrientation}
         wrap={wrap}
         className={clsx(
-          'container-wrapper__children',
-          contained && 'container-wrapper__children--contained',
+          styles.containerWrapperChildren,
+          contained && styles.containerWrapperChildrenContained,
           childrenClassName,
         )}
         {...restChildrenContainerProps}

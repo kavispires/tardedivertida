@@ -9,6 +9,9 @@ import { signUp } from 'services/firebase';
 import { Translate } from 'components/language';
 // Images
 import logo from 'assets/images/tarde-divertida-logo.svg?url';
+// Sass
+import styles from './auth.module.scss';
+// Styles
 
 type SignUpProps = {
   /**
@@ -33,8 +36,8 @@ export function SignUp({ onSuccess }: SignUpProps) {
   };
 
   return (
-    <div className="sign-up">
-      <div className="sign-up__logo">
+    <div className={styles.signUp}>
+      <div className={styles.signUp__logo}>
         <Image
           src={logo}
           preview={false}
@@ -137,7 +140,6 @@ export function SignUpForm({ form, onFinish, isError, isLoading }: SignUpFormPro
             }
             type="error"
             showIcon
-            className="sign-up__error-alert"
           />
         </Form.Item>
       )}

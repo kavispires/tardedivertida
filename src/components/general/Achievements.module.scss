@@ -1,0 +1,51 @@
+@use "styles/sass" as *;
+
+.achievements {
+  margin: get-unit(8 4);
+}
+
+.achievementsList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.achievementsEntry {
+  background-color: get-color("yellow", 2);
+  border: get-color("yellow") 5px solid;
+  display: flex;
+  border-radius: get-unit(2);
+  flex-direction: column;
+  align-items: center;
+  margin: get-unit(2 3);
+  padding: get-unit(2);
+  min-width: 120px;
+}
+
+.achievement {
+  background-color: get-color("gray", 1);
+  border: get-color("gray", 2) 5px solid;
+  color: get-color("gray", 3);
+  display: grid;
+  border-radius: get-unit(2);
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto;
+  align-items: center;
+  margin-bottom: get-unit(2);
+  padding: get-unit(2);
+  min-width: 80px;
+
+  width: 100%;
+  height: 100%;
+  text-align: center;
+
+  &.achievementAchieved {
+    background-color: get-color("yellow", 2);
+    border: get-color("yellow") 5px solid;
+    color: get-color("yellow", 8);
+  }
+}
+
+.achievementDisabledIcon {
+  filter: grayscale(100);
+}

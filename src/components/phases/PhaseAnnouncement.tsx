@@ -13,7 +13,7 @@ import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
 // Sass
-import './PhaseAnnouncement.scss';
+import styles from './PhaseAnnouncement.module.scss';
 // Design Resource
 
 type PhaseAnnouncementBasicProps = {
@@ -145,21 +145,21 @@ export function PhaseAnnouncement({
   return (
     <div
       className={clsx(
-        type === 'overlay' && 'phase-announcement-overlay',
+        type === 'overlay' && styles.phaseAnnouncementOverlay,
         !isActive && getAnimationClass('fadeOut', { speed: 'faster' }),
       )}
     >
-      <div className="phase-announcement-wrapper">
+      <div className={styles.phaseAnnouncementWrapper}>
         <div
           className={clsx(
-            'phase-announcement',
+            styles.phaseAnnouncement,
             isActive ? getAnimationClass(animationType, { speed: 'fast' }) : getAnimationClass('bounceOut'),
             className,
           )}
         >
           <Title colorScheme="light">{title}</Title>
 
-          <span className="phase-announcement__icon">{icon}</span>
+          <span className={styles.phaseAnnouncementIcon}>{icon}</span>
 
           {children}
 

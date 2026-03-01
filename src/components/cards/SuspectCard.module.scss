@@ -1,0 +1,40 @@
+@use "styles/sass" as *;
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap");
+
+.suspectCard {
+  position: relative;
+}
+
+.suspectCardImage {
+  margin: 0;
+
+  & > .ant-image {
+    max-width: 250px;
+  }
+
+  &:hover {
+    transform: scale(1);
+  }
+}
+
+.suspectCardImageActive {
+  border: 3px solid gold;
+  border-radius: get-unit(4);
+}
+
+.suspectCardImageDisabled {
+  cursor: not-allowed;
+}
+
+.suspectCardName {
+  font-family: "Architects Daughter", cursive;
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 1rem;
+  background: get-color("white", 5, 0.5);
+  padding: get-unit(0 1);
+  border-radius: var(--border-radius);
+}

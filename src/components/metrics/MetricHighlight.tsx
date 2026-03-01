@@ -3,6 +3,8 @@ import clsx from 'clsx';
 import type { ReactNode } from 'react';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
+// Sass
+import styles from './MetricHighlight.module.scss';
 
 export type MetricHighlightProps = {
   /**
@@ -40,7 +42,13 @@ export function MetricHighlight({
   iconPlacement = 'after',
 }: MetricHighlightProps) {
   return (
-    <span className={clsx('metric-highlight', type && `metric-highlight--${type}`, className)}>
+    <span
+      className={clsx(
+        styles.metricHighlight,
+        type && styles[`metricHighlight${type.charAt(0).toUpperCase() + type.slice(1)}`],
+        className,
+      )}
+    >
       {iconPlacement === 'before' && (
         <>
           <IconAvatar

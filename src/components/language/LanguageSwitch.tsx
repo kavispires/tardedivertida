@@ -8,7 +8,7 @@ import { IconAvatar } from 'components/avatars';
 // Internal
 import { BrazilFlag, UnitedStatesFlag } from './LanguageButtons';
 // Sass
-import './LanguageSwitch.scss';
+import styles from './LanguageSwitch.module.scss';
 
 export function LanguageSwitch() {
   const [language, setLanguage] = useGlobalLocalStorage('language');
@@ -45,7 +45,7 @@ export function LanguageSwitch() {
       }
       checked={language === 'pt'}
       onClick={onSwitchClick}
-      className={clsx(language === 'pt' ? 'language-switch-pt' : 'language-switch-en')}
+      className={clsx(language === 'pt' ? styles.languageSwitchPt : styles.languageSwitchEn)}
     />
   );
 }

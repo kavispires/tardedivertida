@@ -7,7 +7,7 @@ import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
 // Sass
-import './GameVideo.scss';
+import styles from './GameVideo.module.scss';
 
 type GameVideoProps = {
   /**
@@ -57,7 +57,7 @@ export function GameVideo({
 
   return (
     <figure
-      className={clsx('game-video', className)}
+      className={clsx(styles.gameVideo, className)}
       style={{
         width: `${width}px`,
         minWidth: `${width}px`,
@@ -69,7 +69,7 @@ export function GameVideo({
         muted
         loop
         playsInline
-        className="game-video__video"
+        className={styles.gameVideoVideo}
       >
         <source
           src={`${BASE_URL}/videos/${gameName}.mp4`}
@@ -84,7 +84,7 @@ export function GameVideo({
             (e.target as HTMLImageElement).src = `${PUBLIC_URL.LOGOS}/logo-em-breve-${language}.svg`;
           }}
           alt={`${dualTranslate(title ?? { en: '', pt: '' })} logo`}
-          className="game-video__logo"
+          className={styles.gameVideoLogo}
           style={{
             width: `${width}px`,
             height: `${logoHeight}px`,

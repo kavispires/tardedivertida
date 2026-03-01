@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { orderBy } from 'lodash';
 import debounce from 'lodash/debounce';
 import { useCallback, useMemo, useState } from 'react';
@@ -20,7 +21,7 @@ import { DualTranslate } from 'components/language';
 // Internal
 import { useAlienAttributes } from './useAlienAttributes';
 // Sass
-import './AlienKeyboard.scss';
+import styles from './AlienKeyboard.module.scss';
 
 type AlienKeyboardProps = {
   /**
@@ -86,15 +87,15 @@ export function AlienKeyboard({ value, onChange, availableAttributeKeys, disable
   return (
     <Spin spinning={isLoading}>
       <div
-        className="alien-keyboard"
+        className={styles.alienKeyboard}
         style={{ width: '100%' }}
       >
-        <div className="alien-keyboard__keys">
+        <div className={styles.keys}>
           {HELPER_KEYS.map((key) => {
             return (
               <button
                 type="button"
-                className="alien-keyboard__key alien-keyboard__key--helper"
+                className={clsx(styles.key, styles.keyHelper)}
                 key={key.id}
                 onClick={() => onTap(key.id, 'helper')}
                 disabled={disabled}
@@ -106,7 +107,7 @@ export function AlienKeyboard({ value, onChange, availableAttributeKeys, disable
               </button>
             );
           })}
-          <div className="alien-keyboard__search">
+          <div className={styles.search}>
             <Input.Search
               placeholder="Search"
               onChange={(e) => debouncedSearch(e.target.value)}
@@ -117,7 +118,7 @@ export function AlienKeyboard({ value, onChange, availableAttributeKeys, disable
             />
           </div>
         </div>
-        <div className="alien-keyboard__keys">
+        <div className={styles.keys}>
           {attributesList.map((attribute) => {
             return (
               <Tooltip
@@ -130,7 +131,7 @@ export function AlienKeyboard({ value, onChange, availableAttributeKeys, disable
               >
                 <button
                   type="button"
-                  className="alien-keyboard__key"
+                  className={styles.key}
                   onClick={() => onTap(attribute.id, 'attribute')}
                   disabled={disabled}
                 >

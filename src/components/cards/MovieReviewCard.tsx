@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Translate } from 'components/language';
 import { ParagraphHighlighter } from 'components/text/ParagraphHighlighter';
 // Sass
-import './MovieReviewCard.scss';
+import styles from './MovieReviewCard.module.scss';
 
 type MovieReviewCardProps = {
   /**
@@ -25,11 +25,20 @@ type MovieReviewCardProps = {
 };
 
 export const MovieReviewCard = ({ type, text, highlights = [], className = '' }: MovieReviewCardProps) => {
-  const baseClass = 'movie-review-card';
-
   return (
-    <div className={clsx(baseClass, `${baseClass}--${type}`, className)}>
-      <span className={`${baseClass}__header`}>
+    <div
+      className={clsx(
+        styles.movieReviewCard,
+        type === 'positive' ? styles.movieReviewCardPositive : styles.movieReviewCardNegative,
+        className,
+      )}
+    >
+      <span
+        className={clsx(
+          styles.movieReviewCardHeader,
+          type === 'positive' ? styles.movieReviewCardHeaderPositive : styles.movieReviewCardHeaderNegative,
+        )}
+      >
         {type === 'positive' ? (
           <Translate
             pt="Crítica Positiva"
@@ -43,12 +52,17 @@ export const MovieReviewCard = ({ type, text, highlights = [], className = '' }:
         )}
         {type === 'positive' ? ' 👏' : ' 🤮'}
       </span>
-      <div className={`${baseClass}__content`}>
+      <div className={styles.movieReviewCardContent}>
         <ParagraphHighlighter
           text={text}
           highlights={highlights}
-          className={`${baseClass}__text`}
-          highlightClassName={clsx(`${baseClass}__text-highlight`, `${baseClass}__text-highlight--${type}`)}
+          className={styles.movieReviewCardText}
+          highlightClassName={clsx(
+            styles.movieReviewCardTextHighlight,
+            type === 'positive'
+              ? styles.movieReviewCardTextHighlightPositive
+              : styles.movieReviewCardTextHighlightNegative,
+          )}
         />
       </div>
     </div>

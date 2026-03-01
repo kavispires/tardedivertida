@@ -3,7 +3,7 @@ import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Components
 import { useGameAppearance, useGameInfoContext } from 'components/session/GameInfoContext';
 // Sass
-import './VideoBackground.scss';
+import styles from './VideoBackground.module.scss';
 
 export function VideoBackground() {
   const BASE_URL = useTDBaseUrl('assets');
@@ -15,7 +15,7 @@ export function VideoBackground() {
   }
 
   return (
-    <div className="video-background">
+    <div className={styles.videoBackground}>
       <video
         autoPlay
         muted

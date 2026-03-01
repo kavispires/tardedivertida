@@ -13,6 +13,8 @@ import { TransparentButton } from 'components/buttons';
 import { DualTranslate, Translate } from 'components/language';
 // Images
 import avatars from 'assets/images/avatars.svg?url';
+// Sass
+import styles from '../PhaseLobby.module.scss';
 type AvatarSelectionProps = {
   players: GamePlayers;
   selectedAvatar: string;
@@ -30,7 +32,7 @@ export function AvatarSelection({
 
   return (
     <>
-      <div className="lobby-step__avatar-selection">
+      <div className={styles.lobbyStepAvatarSelection}>
         <Popover
           arrow
           placement="right"
@@ -54,7 +56,7 @@ export function AvatarSelection({
         >
           <motion.svg
             viewBox="0 0 100 100"
-            className="lobby-avatar"
+            className={styles.lobbyAvatar}
             layoutId="avatar"
           >
             <use href={`${avatars}#avatar-${selectedAvatar}`}></use>
@@ -64,7 +66,7 @@ export function AvatarSelection({
           </motion.svg>
         </Popover>
       </div>
-      <div className="lobby-step__description">
+      <div className={styles.lobbyStepDescription}>
         <small>
           <DualTranslate>{AVATARS[selectedAvatar].description}</DualTranslate>
         </small>
@@ -94,8 +96,8 @@ function AvatarOptions({ players, setSelectedAvatar, selectedAvatar, userId }: A
   }, [players, userId]);
 
   return (
-    <div className="avatar-selection-options-container ">
-      <div className="avatar-selection-options">
+    <div className={styles.avatarSelectionOptionsContainer}>
+      <div className={styles.avatarSelectionOptions}>
         {AVAILABLE_AVATAR_IDS.map((avatarId) => {
           const avatar = AVATARS[avatarId];
           const isUsed = !!usedAvatars[avatarId];
@@ -118,14 +120,14 @@ function AvatarOptions({ players, setSelectedAvatar, selectedAvatar, userId }: A
                 onClick={() => setSelectedAvatar(avatarId)}
                 disabled={isUsed}
                 className={clsx(
-                  'avatar-selection-options__avatar',
-                  avatarId === selectedAvatar && 'avatar-selection-options__avatar--selected',
-                  isUsed && 'avatar-selection-options__avatar--used',
+                  styles.avatarSelectionOptionsAvatar,
+                  avatarId === selectedAvatar && styles.avatarSelectionOptionsAvatarSelected,
+                  isUsed && styles.avatarSelectionOptionsAvatarUsed,
                 )}
               >
                 <svg
                   viewBox="0 0 100 100"
-                  className="avatar-selection-options__avatar-svg"
+                  className={styles.avatarSelectionOptionsAvatarSvg}
                 >
                   <use href={`${avatars}#avatar-${avatarId}`}></use>
                   <title>

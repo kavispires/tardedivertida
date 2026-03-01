@@ -1,0 +1,49 @@
+@use "styles/sass" as *;
+
+.readyPlayerBar {
+  display: flex;
+  margin: get-unit(3 auto);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.readyPlayerBarBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.readyPlayerBarNames {
+  color: get-color("gray", 8);
+  font-style: italic;
+  font-size: 80%;
+  margin-top: get-unit(1);
+}
+
+.readyPlayerBarSpeechBubble {
+  position: relative;
+  background-color: get-color("white");
+  border-radius: 0.4em;
+  padding: get-unit(2 4);
+  margin-left: get-unit(3);
+  box-shadow: 0 5px 7px 0px rgba($color: #000, $alpha: 0.1);
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: get-unit(2) solid transparent;
+    border-right-color: get-color("white");
+    border-left: 0;
+    margin-top: get-unit(-2);
+    margin-left: get-unit(-2);
+  }
+}
+
+.readyPlayerBarSpeechBubbleIcon {
+  margin-left: get-unit(2);
+}

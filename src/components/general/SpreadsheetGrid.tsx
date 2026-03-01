@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
 // Sass
-import './SpreadsheetGrid.scss';
+import styles from './SpreadsheetGrid.module.scss';
 
 type SpreadsheetGridProps = {
   /**
@@ -29,7 +29,7 @@ type SpreadsheetGridProps = {
 export function SpreadsheetGrid({ columns, rows, topLeftCorner, children, className }: SpreadsheetGridProps) {
   return (
     <div
-      className={clsx('spreadsheet-grid', className)}
+      className={clsx(styles.spreadsheetGrid, className)}
       style={{ gridTemplateColumns: `repeat(${columns}, 1fr)`, gridTemplateRows: `repeat(${rows}, auto)` }}
       role="table"
     >
@@ -57,7 +57,7 @@ type SpreadsheetCellProps = {
 export function SpreadsheetCell({ children, header, className }: SpreadsheetCellProps) {
   return (
     <span
-      className={clsx('spreadsheet-cell', header && 'spreadsheet-cell--header', className)}
+      className={clsx(styles.spreadsheetCell, header && styles.spreadsheetCellHeader, className)}
       role="cell"
     >
       {children}

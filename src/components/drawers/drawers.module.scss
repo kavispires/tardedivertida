@@ -1,0 +1,102 @@
+@use "styles/sass" as *;
+
+.gameInfoDrawerContainer {
+  position: fixed;
+  top: -1px;
+  right: 0;
+  z-index: 150;
+}
+
+.gameInfoDrawerButton {
+  @include box-shadow;
+
+  border: none;
+  border-radius: get-unit(0 0 0 4);
+  padding: get-unit(1 2 1 1);
+  background-color: get-color("white", 5, 0.9);
+  z-index: 155;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: get-color("white", 5, 1);
+  }
+
+  &__gameTitle {
+    padding: get-unit(0 4 0 4);
+  }
+
+  &__playerStatusBar {
+    position: relative;
+  }
+}
+
+.gameInfoDrawer {
+  &__inlineSeparator {
+    margin-left: get-unit(2);
+  }
+
+  &__meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    padding-left: 0;
+    gap: get-unit(2);
+  }
+
+  &__label {
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  &__labelInline {
+    font-weight: bold;
+    display: inline;
+  }
+
+  &__me {
+    margin-top: get-unit(2);
+    text-transform: uppercase;
+    font-weight: bolder;
+  }
+
+  &__avatarWithBadge {
+    margin-right: get-unit(2);
+  }
+
+  &__avatarTag {
+    transform: scale(0.75);
+  }
+
+  &__sectionSettings {
+    display: grid;
+    gap: get-unit(2);
+  }
+
+  &__settingsEntry {
+    margin-right: get-unit(1);
+  }
+
+  &__switchLabel {
+    font-size: 0.8em;
+    white-space: nowrap;
+  }
+
+  &__round {
+    font-weight: bolder;
+    background-color: get-color("gray", 4);
+    margin-left: get-unit(2);
+  }
+
+  &__rankedPlayer {
+    margin: get-unit(3 0);
+  }
+}
+
+.blurOptions {
+  font-size: 0.8em;
+
+  &__checkbox {
+    font-size: 1.05em;
+  }
+}

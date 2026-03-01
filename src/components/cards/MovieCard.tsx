@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Types
 import type { MovieCard as MovieCardType } from 'types/tdr';
 // Sass
-import './MovieCard.scss';
+import styles from './MovieCard.module.scss';
 
 type MovieCardProps = {
   movie: MovieCardType;
@@ -14,16 +14,16 @@ type MovieCardProps = {
 
 export function MovieCard({ movie, disableSuffix, disablePrefix, prefixColor, suffixColor }: MovieCardProps) {
   return (
-    <div className="movie-card">
+    <div className={styles.movieCard}>
       <div
-        className={clsx('movie-card__suffix', disableSuffix && 'movie-card__suffix--disabled')}
+        className={clsx(styles.movieCardSuffix, disableSuffix && styles.movieCardSuffixDisabled)}
         style={{ backgroundColor: !disableSuffix && suffixColor ? suffixColor : 'rgba(248, 248, 248, 0.6)' }}
       >
         <span style={{ fontSize: movie.suffix.length > 25 ? '0.8em' : '1em' }}>{movie.suffix}</span>
       </div>
 
       <div
-        className={clsx('movie-card__prefix', disablePrefix && 'movie-card__prefix--disabled')}
+        className={clsx(styles.movieCardPrefix, disablePrefix && styles.movieCardPrefixDisabled)}
         style={{ backgroundColor: !disablePrefix && prefixColor ? prefixColor : 'rgba(248, 248, 248, 0.6)' }}
       >
         <span style={{ fontSize: movie.prefix.length > 25 ? '0.8em' : '1em' }}>{movie.prefix}</span>

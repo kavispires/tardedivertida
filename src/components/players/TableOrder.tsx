@@ -14,7 +14,8 @@ import { PlayerAvatarName } from 'components/player';
 // Internal
 import { reorder } from './reorder';
 // Sass
-import './TableOrder.scss';
+import styles from './TableOrder.module.scss';
+// Styles
 
 type TableOrderProps = {
   /**
@@ -68,8 +69,8 @@ export function TableOrder({
   const doublePlayerCount = orderedList.length * 2;
 
   return (
-    <div className={clsx('table-order', size && `table-order--${size}`, className)}>
-      <ol className="table-order__players">
+    <div className={clsx(styles.tableOrder, size && styles.tableOrderSmall, className)}>
+      <ol className={styles.tableOrderPlayers}>
         {orderedList.map((playerId, index) => {
           const player = players[playerId];
           const isActive = activePlayerId === playerId;
@@ -79,10 +80,10 @@ export function TableOrder({
               <li
                 // @ts-expect-error
                 style={{ '--t': doublePlayerCount, '--i': index * 2 }}
-                className={clsx('table-order__player', isActive && 'table-order__player--active')}
+                className={clsx(styles.tableOrderPlayer, isActive && styles.tableOrderPlayerActive)}
               >
                 <span
-                  className="table-order__icon"
+                  className={styles.tableOrderIcon}
                   style={isActive ? { backgroundColor: color } : undefined}
                 >
                   <PlayerAvatarName
@@ -94,19 +95,19 @@ export function TableOrder({
               <li
                 // @ts-expect-error
                 style={{ '--t': doublePlayerCount, '--i': index * 2 + 1 }}
-                className="table-order__chevron"
+                className={styles.tableOrderChevron}
               >
-                <span className="table-order__icon">
+                <span className={styles.tableOrderIcon}>
                   <BackwardFilled />
                 </span>
               </li>
             </Fragment>
           );
         })}
-        <li className="table-order__center">
-          <div className="table-order__center-container">
+        <li className={styles.tableOrderCenter}>
+          <div className={styles.tableOrderCenterContainer}>
             <TableIcon style={{ width: '3rem', transform: 'scaleX(-1)' }} />
-            <header className="table-order__title">
+            <header className={styles.tableOrderTitle}>
               <Translate
                 en="Player Order"
                 pt="Ordem dos Jogadores"

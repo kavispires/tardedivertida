@@ -14,7 +14,7 @@ import { DualTranslate } from 'components/language';
 // Internal
 import { ItemSprite } from './ItemCard';
 // Sass
-import './CrimeItemCard.scss';
+import styles from './CrimeItemCard.module.scss';
 
 type CrimeItemCardProps = {
   /**
@@ -55,9 +55,10 @@ export function CrimeItemCard({
     <ImageBlurButtonContainer cardId={item.id}>
       <div
         className={clsx(
-          'crime-item-card',
-          `crime-item-card--${item.type}`,
-          isSelected && 'crime-item-card--selected',
+          styles.crimeItemCard,
+          item.type === 'weapon' && styles.crimeItemCardWeapon,
+          item.type === 'evidence' && styles.crimeItemCardEvidence,
+          isSelected && styles.crimeItemCardSelected,
           className,
         )}
         style={{
@@ -68,19 +69,24 @@ export function CrimeItemCard({
       >
         <Popover content={dualTranslate(item.name).toUpperCase()}>
           <div
-            className="crime-item-card__name"
+            className={styles.crimeItemCardName}
             style={{ maxWidth: `${cardWidth}px` }}
           >
             <span>{isDebugEnabled ? item.id : <DualTranslate>{item.name}</DualTranslate>}</span>
           </div>
         </Popover>
         <div
-          className={clsx('crime-item-card__item-container', `crime-item-card__item-container--${item.type}`)}
+          className={clsx(
+            styles.crimeItemCardItemContainer,
+            item.type === 'weapon'
+              ? styles.crimeItemCardItemContainerWeapon
+              : styles.crimeItemCardItemContainerEvidence,
+          )}
         >
           <ItemSprite
             itemId={item.itemId ?? '0'}
             width={cardWidth * 0.75}
-            className="crime-item-card__item"
+            className={styles.crimeItemCardItem}
           />
         </div>
       </div>
@@ -98,7 +104,12 @@ export function CrimeItemBackgroundCard({
 
   return (
     <div
-      className={clsx('crime-item-card', `crime-item-card--${id}`, className)}
+      className={clsx(
+        styles.crimeItemCard,
+        id === 'weapon' && styles.crimeItemCardWeapon,
+        id === 'evidence' && styles.crimeItemCardEvidence,
+        className,
+      )}
       style={{
         width: cardWidth,
         backgroundImage: `url(${baseUrl}/${backgroundImage}.jpg)`,

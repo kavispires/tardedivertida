@@ -11,7 +11,7 @@ import { Translate } from 'components/language';
 // Internal
 import { TransparentButton } from './TransparentButton';
 // Sass
-import './AnswerButtons.scss';
+import styles from './AnswerButtons.module.scss';
 
 type AnswerButtonProps = {
   /**
@@ -23,14 +23,14 @@ type AnswerButtonProps = {
 export function AnswerYesButton({ className, ...props }: AnswerButtonProps) {
   return (
     <TransparentButton
-      className={clsx('answer-button answer-button--yes', className)}
+      className={clsx(styles.answerButton, styles.yes, className)}
       {...props}
     >
       <IconAvatar
         icon={<BoxCheckMarkIcon />}
         size={64}
       />
-      <div className="answer-button__label">
+      <div className={styles.label}>
         <Translate
           pt="Sim"
           en="Yes"
@@ -43,14 +43,14 @@ export function AnswerYesButton({ className, ...props }: AnswerButtonProps) {
 export function AnswerNoButton({ className, ...props }: AnswerButtonProps) {
   return (
     <TransparentButton
-      className={clsx('answer-button answer-button--no', className)}
+      className={clsx(styles.answerButton, styles.no, className)}
       {...props}
     >
       <IconAvatar
         icon={<BoxXIcon />}
         size={64}
       />
-      <div className="answer-button__label">
+      <div className={styles.label}>
         <Translate
           pt="Não"
           en="No"
@@ -63,14 +63,14 @@ export function AnswerNoButton({ className, ...props }: AnswerButtonProps) {
 export function AnswerMaybeYesButton({ className, ...props }: AnswerButtonProps) {
   return (
     <TransparentButton
-      className={clsx('answer-button answer-button--maybe-yes', className)}
+      className={clsx(styles.answerButton, styles.maybeYes, className)}
       {...props}
     >
       <IconAvatar
         icon={<BoxPlusIcon color="#83d39c" />}
         size={64}
       />
-      <div className="answer-button__label">
+      <div className={styles.label}>
         <Translate
           pt="Meio Sim"
           en="Maybe Yes"
@@ -83,14 +83,14 @@ export function AnswerMaybeYesButton({ className, ...props }: AnswerButtonProps)
 export function AnswerKindaNoButton({ className, ...props }: AnswerButtonProps) {
   return (
     <TransparentButton
-      className={clsx('answer-button answer-button--kinda-no', className)}
+      className={clsx(styles.answerButton, styles.kindaNo, className)}
       {...props}
     >
       <IconAvatar
         icon={<BoxMinusIcon color="#e8818c" />}
         size={64}
       />
-      <div className="answer-button__label">
+      <div className={styles.label}>
         <Translate
           pt="Talvez Não"
           en="Kinda No"

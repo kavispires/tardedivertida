@@ -1,0 +1,29 @@
+@use "styles/sass" as *;
+
+.gameVideo {
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+}
+
+.gameVideoVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gameVideoLogo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  transition: opacity 0.5s;
+
+  &.gameVideoLogoHidden {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,6 @@
+@use "styles/sass" as *;
+
+.signCard {
+  background: get-color("teal", 2);
+  border-radius: var(--border-radius);
+}

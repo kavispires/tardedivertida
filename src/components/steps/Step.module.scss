@@ -1,0 +1,17 @@
+@use "styles/sass" as *;
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: get-unit(5);
+  border-radius: get-unit(2);
+
+  &FullWidth {
+    width: 100%;
+  }
+
+  &FullHeight {
+    flex: 1;
+  }
+}

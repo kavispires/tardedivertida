@@ -6,7 +6,7 @@ import { useBlurCards } from 'hooks/useBlurCards';
 // Components
 import { Translate } from 'components/language';
 // Sass
-import './ImageBlurButton.scss';
+import styles from './ImageBlurButton.module.scss';
 
 type ImageBlurButtonProps = {
   /**
@@ -36,7 +36,7 @@ export function ImageBlurButton({ cardId, ghost = true }: ImageBlurButtonProps) 
         ghost={ghost}
         onClick={() => blurCard(cardId)}
         size="small"
-        className="image-blur-button"
+        className={styles.imageBlurButton}
       >
         {shouldBeBlurred(cardId) ? (
           <>

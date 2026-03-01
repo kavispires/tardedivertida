@@ -5,6 +5,8 @@ import { Alert, Typography } from 'antd';
 import { GameStrip } from 'components/general/GameBanner';
 import { Translate } from 'components/language';
 import { useGameInfoContext } from 'components/session/GameInfoContext';
+// Sass
+import styles from '../PhaseLobby.module.scss';
 
 type LobbyStepProps = {
   children: ReactNode;
@@ -21,18 +23,18 @@ export function LobbyStep({ children, isLocked }: LobbyStepProps) {
   const info = useGameInfoContext();
 
   return (
-    <div className="lobby-step">
-      <div className="lobby-step__card">
+    <div className={styles.lobbyStep}>
+      <div className={styles.lobbyStepCard}>
         <GameStrip
           title={info?.title}
           gameName={info?.gameName}
-          className="lobby-step__banner"
+          className={styles.lobbyStepBanner}
           width={256}
         />
-        <div className="lobby-step__content">
+        <div className={styles.lobbyStepContent}>
           {isLocked ? (
             <>
-              <Typography.Title className="lobby-step__title">
+              <Typography.Title className={styles.lobbyStepTitle}>
                 <Translate
                   pt="Esse jogo está trancado"
                   en="This session is locked"

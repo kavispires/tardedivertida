@@ -14,7 +14,7 @@ import { IconAvatar } from 'components/avatars';
 // Internal
 import { PlayerAvatar } from './PlayerAvatar';
 // Sass
-import './PlayerAvatarStrip.scss';
+import styles from './PlayerAvatarStrip.module.scss';
 
 type PlayerAvatarStripProps = {
   /**
@@ -63,8 +63,6 @@ export const PlayerAvatarStrip = ({
   const [userId] = useGlobalState('userId');
   const { translate } = useLanguage();
 
-  const baseClass = 'avatar-strip';
-
   const isUser = player.id === userId;
   const addressedUser = translate('Você', 'You');
 
@@ -77,12 +75,7 @@ export const PlayerAvatarStrip = ({
     >
       <div
         {...rest}
-        className={clsx(
-          baseClass,
-          uppercase && `${baseClass}--uppercase`,
-          `${baseClass}--${size}`,
-          className,
-        )}
+        className={clsx(styles.avatarStrip, uppercase && styles.uppercase, styles[size], className)}
         style={{
           backgroundColor: getAvatarColorById(player.avatarId),
           width: sizes.width,
@@ -97,14 +90,12 @@ export const PlayerAvatarStrip = ({
         ) : (
           <PlayerAvatar
             avatarId={player.avatarId}
-            className="avatar-strip__avatar"
+            className={styles.avatar}
             shape="square"
             style={{ width: sizes.avatarSize, height: sizes.avatarSize }}
           />
         )}
-        {withName && (
-          <div className="avatar-strip__name">{addressUser && isUser ? addressedUser : player.name}</div>
-        )}
+        {withName && <div className={styles.name}>{addressUser && isUser ? addressedUser : player.name}</div>}
       </div>
     </Tooltip>
   );

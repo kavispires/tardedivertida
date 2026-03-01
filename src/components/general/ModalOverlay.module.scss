@@ -1,0 +1,41 @@
+@use "styles/sass" as *;
+
+.simpleModalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+.simpleModalOverlayContent {
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.simpleModalOverlayBody {
+  transition: all 250ms ease-in-out;
+}
+
+.simpleModalOverlayClose {
+  position: absolute;
+  right: get-unit(12);
+  top: get-unit(12);
+}
+
+.simpleModalOverlayControlsContainer {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: get-unit(6);
+  display: flex;
+  justify-content: center;
+}
+
+.simpleModalOverlayControls {
+  display: flex;
+  justify-content: space-between;
+}

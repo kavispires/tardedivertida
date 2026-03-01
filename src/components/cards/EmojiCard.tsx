@@ -4,7 +4,7 @@ import { DEFAULT_PADDING } from 'utils/constants';
 // Components
 import { DEFAULT_SPRITE_SIZE, Sprite } from 'components/sprites';
 // Sass
-import './EmojiCard.scss';
+import styles from './EmojiCard.module.scss';
 
 type EmojiCardProps = {
   /**
@@ -42,7 +42,7 @@ export function EmojiCard({
   return (
     <div
       {...rest}
-      className={clsx('emoji-card', className)}
+      className={clsx(styles.emojiCard, className)}
       style={{ ...rest.style, width: `${width}px`, height: `${width}px`, ...divPadding }}
     >
       <Sprite

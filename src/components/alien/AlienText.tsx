@@ -9,7 +9,7 @@ import { SignCard } from 'components/cards/SignCard';
 // Internal
 import { useAlienAttributes } from './useAlienAttributes';
 // Sass
-import './AlienText.scss';
+import styles from './AlienText.module.scss';
 
 type AlienTextProps = {
   /**
@@ -60,7 +60,7 @@ export function AlienText({ value, withTranslation = false, className, ...divPro
   return (
     <Spin spinning={isLoading}>
       <div
-        className={clsx('alien-text', className)}
+        className={clsx(styles.alienText, className)}
         {...divProps}
       >
         {characters.map((character) => {
@@ -69,7 +69,14 @@ export function AlienText({ value, withTranslation = false, className, ...divPro
               title={dualTranslate(character.name)}
               key={`${character.spriteId}-${character.variant}`}
             >
-              <div className={clsx('alien-text__character', `alien-text__character--${character.variant}`)}>
+              <div
+                className={clsx(
+                  styles.character,
+                  styles[
+                    `character${character.variant.charAt(0).toUpperCase() + character.variant.slice(1)}`
+                  ],
+                )}
+              >
                 <SignCard
                   width={48}
                   signId={`${character.spriteId.split('-')[1]}`}
@@ -81,14 +88,14 @@ export function AlienText({ value, withTranslation = false, className, ...divPro
         })}
       </div>
       {withTranslation && (
-        <div className="alien-text-translation">
+        <div className={styles.alienTextTranslation}>
           {characters.map((character) => {
             return (
               <Tooltip
                 title={dualTranslate(character.description)}
                 key={`${character.spriteId}-${character.variant}`}
               >
-                <span className="alien-text-translation__text">{dualTranslate(character.name)}</span>
+                <span className={styles.text}>{dualTranslate(character.name)}</span>
               </Tooltip>
             );
           })}

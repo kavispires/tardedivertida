@@ -12,7 +12,7 @@ import { Translate } from 'components/language/Translate';
 // Internal
 import { PlayerAvatar } from './PlayerAvatar';
 // Sass
-import './PlayerAvatarCard.scss';
+import styles from './PlayerAvatarCard.module.scss';
 
 type PlayerAvatarCardProps = {
   /**
@@ -71,8 +71,6 @@ export const PlayerAvatarCard = ({
   const [userId] = useGlobalState('userId');
   const { language } = useLanguage();
 
-  const baseClass = 'avatar-card';
-
   const sizes = getSize(size);
 
   const avatar = AVATARS[player.avatarId];
@@ -80,12 +78,10 @@ export const PlayerAvatarCard = ({
   return (
     <div
       className={clsx(
-        baseClass,
-        {
-          [`${baseClass}--uppercase`]: uppercase,
-          [`${baseClass}--round-corners`]: withRoundCorners,
-        },
-        `${baseClass}--${size}`,
+        styles.avatarCard,
+        uppercase && styles.uppercase,
+        withRoundCorners && styles.roundCorners,
+        styles[size],
         className,
       )}
       style={{ backgroundColor: avatar?.color, width: sizes.width }}
@@ -95,14 +91,14 @@ export const PlayerAvatarCard = ({
       ) : (
         <PlayerAvatar
           avatarId={player.avatarId}
-          className="avatar-card__avatar"
+          className={styles.avatar}
           shape="square"
           style={{ width: sizes.avatarSize, height: sizes.avatarSize }}
         />
       )}
       {withName && (
         <>
-          <div className="avatar-card__name">
+          <div className={styles.name}>
             {addressUser && player.id === userId ? (
               <Translate
                 en="You"
@@ -113,7 +109,7 @@ export const PlayerAvatarCard = ({
             )}
           </div>
           {size !== 'small' && withDescription && (
-            <div className="avatar-card__description">{avatar.description[language]}</div>
+            <div className={styles.description}>{avatar.description[language]}</div>
           )}
         </>
       )}

@@ -1,0 +1,14 @@
+@use "styles/sass" as *;
+
+.monsterCard {
+  transition: 500ms transform;
+  transform: rotate(0deg);
+}
+
+.monsterCardVertical {
+  transform: rotate(0deg);
+}
+
+.monsterCardHorizontal {
+  transform: rotate(90deg);
+}

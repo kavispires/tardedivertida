@@ -23,6 +23,8 @@ import { useGameInfoContext } from 'components/session/GameInfoContext';
 import { Settings } from './Settings';
 // Images
 import avatars from 'assets/images/avatars.svg?url';
+// Sass
+import styles from '../PhaseLobby.module.scss';
 
 const Title = motion.create(Typography.Title);
 const Paragraph = motion.create(Typography.Paragraph);
@@ -93,7 +95,7 @@ export function StepWaiting({ players }: StepWaitingProps) {
     <>
       <Title
         level={2}
-        className="lobby-step__title"
+        className={styles.lobbyStepTitle}
         layoutId="lobby-step-title"
       >
         <Translate
@@ -105,13 +107,13 @@ export function StepWaiting({ players }: StepWaitingProps) {
       <SpaceContainer vertical>
         <motion.svg
           viewBox="0 0 100 100"
-          className="lobby-avatar"
+          className={styles.lobbyAvatar}
           layoutId="avatar"
         >
           <use href={`${avatars}#avatar-${userAvatarId}`}></use>
         </motion.svg>
 
-        <div className="lobby-step__description">
+        <div className={styles.lobbyStepDescription}>
           <small>
             {username || translate('Fulano', 'Unknown')},{' '}
             <DualTranslate>{AVATARS[userAvatarId].description}</DualTranslate>
@@ -125,7 +127,7 @@ export function StepWaiting({ players }: StepWaitingProps) {
         exit={{ opacity: 0 }}
       >
         <Settings hasImages={info.tags.includes('images')} />
-        <Paragraph className="lobby-heading">
+        <Paragraph className={styles.lobbyHeading}>
           <Translate
             pt="Aguarde os outros jogadores entrarem."
             en="Please, wait while other players join..."

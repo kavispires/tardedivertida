@@ -4,7 +4,7 @@ import { Button, type ButtonProps } from 'antd';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 // Sass
-import './TimedButton.scss';
+import styles from './TimedButton.module.scss';
 // Hook and Utils
 
 interface TimedButtonProps extends Omit<ButtonProps, 'onClick'> {
@@ -46,17 +46,17 @@ export function TimedButton({
     disabled: hideTimer,
   });
 
-  const timeClass = 'timed-button__time';
+  const timeTypeClass = type ? styles[type as keyof typeof styles] : undefined;
 
   return (
     <Button
-      className={clsx('timed-button', className)}
+      className={clsx(styles.timedButton, className)}
       {...rest}
       type={type}
       onClick={() => (onClick ? onClick?.(timeLeft) : onExpire?.(timeLeft))}
     >
       {children}
-      {!hideTimer && <span className={clsx(timeClass, `${timeClass}--${type}`)}>{timeLeft}</span>}
+      {!hideTimer && <span className={clsx(styles.time, timeTypeClass)}>{timeLeft}</span>}
     </Button>
   );
 }

@@ -6,7 +6,7 @@ import { DEFAULT_PADDING } from 'utils/constants';
 import { DualTranslate } from 'components/language';
 import { DEFAULT_SPRITE_SIZE, Sprite } from 'components/sprites';
 // Sass
-import './ItemCard.scss';
+import styles from './ItemCard.module.scss';
 
 export type ItemCardProps = {
   /**
@@ -72,7 +72,7 @@ export function ItemCard({
   return (
     <div
       {...rest}
-      className={clsx('item-card', className)}
+      className={clsx(styles.itemCard, className)}
       style={{ ...rest.style, width: `${width}px`, height, ...divPadding }}
     >
       <Sprite
@@ -83,7 +83,7 @@ export function ItemCard({
         padding={padding}
       />
       {!!text && (
-        <span className="item-card__text">
+        <span className={styles.itemCardText}>
           <DualTranslate>{text}</DualTranslate>
         </span>
       )}

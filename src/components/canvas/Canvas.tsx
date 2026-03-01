@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { Stage, Layer, Line } from 'react-konva';
 // Sass
-import './Canvas.scss';
+import styles from './Canvas.module.scss';
 
 type CanvasProps = {
   drawing?: string | CanvasLine[];
@@ -23,12 +23,11 @@ export const Canvas = ({ drawing = '[]', className = '' }: CanvasProps) => {
     <Stage
       width={500}
       height={500}
-      className={clsx('canvas', className)}
+      className={clsx(styles.canvas, className)}
     >
       <Layer>
         {lines.map((line: CanvasLine, i: number) => (
           <Line
-            // biome-ignore lint/suspicious/noArrayIndexKey: there's no other unique key
             key={i}
             points={line}
             stroke="#222222"

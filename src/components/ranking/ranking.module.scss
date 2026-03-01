@@ -1,0 +1,138 @@
+@use "styles/sass" as *;
+
+.rankingBoard {
+  padding: get-unit(4);
+  border-radius: var(--border-radius);
+  width: 60vw;
+  min-width: 500px;
+  position: relative;
+  margin-bottom: get-unit(2);
+
+  &--hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @include md {
+    width: 80vw;
+  }
+
+  @include xs {
+    width: 90vw;
+  }
+
+  &__row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 50px;
+    background-color: get-color("white");
+    border-radius: var(--border-radius);
+    margin: get-unit(2 0);
+    padding: get-unit(2);
+    text-align: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    animation: fade-in 2s;
+    transition: all 1500ms;
+  }
+
+  &__cellCrown {
+    min-width: 50px;
+    text-align: center;
+  }
+
+  &__crownIcon {
+    font-size: 3em;
+    color: get-color("yellow");
+    animation: fade-in 500ms;
+  }
+
+  &__cellPosition {
+    font-size: 2em;
+    padding: get-unit(0 3);
+  }
+
+  &__cellPlayer {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+  }
+
+  &__name {
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin: get-unit(0 3);
+  }
+
+  &__cellPoints {
+    font-size: 1.5em;
+    min-width: 30px;
+    color: get-color("gray");
+  }
+
+  &__cellGainedPoints {
+    display: flex;
+  }
+
+  &__gainedPoint {
+    font-size: 1em;
+    min-width: 2em;
+    border-radius: get-unit(8);
+    background-color: get-color("gray", 1);
+    padding: get-unit(1);
+    align-self: flex-end;
+    margin: get-unit(0 2);
+    opacity: 0;
+    animation: fade-in 1000ms forwards;
+
+    &--plus {
+      background-color: get-color("yellow", 3);
+    }
+
+    &--minus {
+      background-color: get-color("red", 3);
+    }
+
+    &--0 {
+      animation-delay: 750ms;
+    }
+
+    &--1 {
+      animation-delay: 1000ms;
+    }
+
+    &--2 {
+      animation-delay: 1250ms;
+    }
+
+    &--3 {
+      animation-delay: 1500ms;
+    }
+  }
+
+  &__cellPointsTotal {
+    font-size: 1.5em;
+    min-width: 50px;
+    padding: get-unit(0 3);
+    font-weight: bolder;
+    transform: scale(1.5);
+    animation: fade-in 2500ms forwards;
+  }
+
+  &__cellPointsTotalPreliminary {
+    font-size: 1.5em;
+    min-width: 50px;
+    padding: get-unit(0 3);
+    font-weight: bolder;
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.stepRankingWrapperGainedPointsInstruction {
+  font-size: 0.75rem;
+  margin: get-unit(0 0 2 0);
+}

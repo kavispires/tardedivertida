@@ -2,7 +2,7 @@ import { Fragment, type ReactNode } from 'react';
 // Ant Design Resources
 import { Divider, Tooltip } from 'antd';
 // Sass
-import './StatusBar.scss';
+import styles from './StatusBar.module.scss';
 
 export type StatusEntry = {
   key: string;
@@ -17,8 +17,8 @@ type StatusBarProps = {
 
 export function StatusBar({ entries, title }: StatusBarProps) {
   return (
-    <div className="status-bar">
-      {title && <h3 className="status-bar__title">{title}</h3>}
+    <div className={styles.statusBar}>
+      {title && <h3 className={styles.statusBarTitle}>{title}</h3>}
       {entries.map((entry, index, arr) => (
         <Fragment key={entry.key}>
           <Tooltip title={entry.title}>

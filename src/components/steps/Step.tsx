@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 import { type ReactNode, forwardRef } from 'react';
+// Sass
+import styles from './Step.module.scss';
 
 export type StepProps = {
   /**
@@ -30,9 +32,9 @@ export const Step = forwardRef<HTMLDivElement, StepProps>(
       <div
         ref={ref}
         className={clsx(
-          'step',
-          fullWidth && 'step--full-width',
-          fullHeight && 'step--full-height',
+          styles.step,
+          fullWidth && styles.stepFullWidth,
+          fullHeight && styles.stepFullHeight,
           className,
         )}
       >

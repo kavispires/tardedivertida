@@ -6,7 +6,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
 // Sass
-import './PhaseContainer.scss';
+import styles from './PhaseContainer.module.scss';
 
 type PhaseContainerProps = {
   /**
@@ -56,11 +56,9 @@ export function PhaseContainer({
     );
   }
 
-  const baseClass = 'phase-container';
-
   return (
     <main
-      className={clsx(baseClass, fullScreen && `${baseClass}--full-screen`, className)}
+      className={clsx(styles.phaseContainer, fullScreen && styles.phaseContainerFullScreen, className)}
       id="screen"
       ref={screenRef}
     >

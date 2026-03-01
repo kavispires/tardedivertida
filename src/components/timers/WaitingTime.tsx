@@ -1,5 +1,8 @@
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
+// Sass
+import styles from './timers.module.scss';
+// Styles
 
 type TimeForActionProps = {
   duration: number;
@@ -17,10 +20,10 @@ export function WaitingTime({ duration, timeLeft, onExpire }: TimeForActionProps
   const percentage = ((timeLeft ?? privateTimeLeft) / duration) * 100;
 
   return (
-    <div className="timer-waiting-time-bar">
-      <span className="timer-waiting-time-bar__container">
+    <div className={styles.timerWaitingTimeBar}>
+      <span className={styles.timerWaitingTimeBar__container}>
         <span
-          className="timer-waiting-time-bar__left"
+          className={styles.timerWaitingTimeBar__left}
           style={{ width: `${percentage}%` }}
         />
       </span>

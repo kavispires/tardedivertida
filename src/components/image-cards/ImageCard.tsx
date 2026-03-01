@@ -10,7 +10,7 @@ import { PUBLIC_URL } from 'utils/constants';
 // Images
 import placeholder from 'assets/images/placeholder.jpg';
 // Sass
-import './ImageCard.scss';
+import styles from './ImageCard.module.scss';
 // Assets
 
 export type ImageCardProps = {
@@ -70,8 +70,6 @@ export const ImageCard = ({
   const { shouldBeBlurred } = useBlurCards();
   const baseUrl = useTDBaseUrl(classic ? 'classic' : 'images');
 
-  const baseClass = 'image-card';
-
   const { imageURL, fallbackName, placeholderHeight } = useMemo(() => {
     const imageURL = cardId.replace(/-/g, '/');
     const numId = Number(imageURL?.split('/')?.at(-1) ?? cardId[cardId.length - 1]) % 12;
@@ -92,12 +90,7 @@ export const ImageCard = ({
   return (
     <div
       {...rest}
-      className={clsx(
-        baseClass,
-        isBlurred && `${baseClass}--blur`,
-        square && `${baseClass}--square`,
-        className,
-      )}
+      className={clsx(styles.imageCard, isBlurred && styles.blur, square && styles.square, className)}
       style={{ ...rest.style, height: square ? `${cardWidth}px` : rest.style?.height }}
     >
       <Image
@@ -113,7 +106,7 @@ export const ImageCard = ({
         }
         fallback={`${PUBLIC_URL.CARDS}${fallbackName}.jpg`}
         classNames={{
-          cover: clsx(`${baseClass}__preview-mask`),
+          cover: clsx(styles.previewMask),
         }}
         preview={
           isBlurred || !preview

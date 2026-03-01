@@ -5,7 +5,7 @@ import type { SuspectCard as SuspectCardType, SuspectStyleVariant } from 'types/
 import { ImageCard } from 'components/image-cards';
 import { DualTranslate } from 'components/language';
 // Sass
-import './SuspectCard.scss';
+import styles from './SuspectCard.module.scss';
 
 type SuspectCardProps = {
   /**
@@ -50,17 +50,17 @@ export function SuspectCard({
   const imageId = getSuspectImageId(suspect.id, variant);
   return (
     <div
-      className={clsx('suspect-card', className)}
+      className={clsx(styles.suspectCard, className)}
       style={{ width: `${width}px`, ...style }}
     >
       <ImageCard
         cardId={imageId}
-        className="suspect-card__image"
+        className={styles.suspectCardImage}
         cardWidth={width}
         preview={preview}
       />
       {!hideName && (
-        <div className="suspect-card__name">
+        <div className={styles.suspectCardName}>
           <DualTranslate>{suspect.name}</DualTranslate>
         </div>
       )}

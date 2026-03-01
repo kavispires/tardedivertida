@@ -4,7 +4,7 @@ import { type ReactNode, useEffect } from 'react';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Sass
-import './MouseFollowingContent.scss';
+import styles from './MouseFollowingContent.module.scss';
 
 type MouseTrackedContentProps = {
   /**
@@ -76,8 +76,8 @@ function MouseFollowingContentInternal({
     <motion.div
       style={{ left: springX, top: springY }}
       className={clsx(
-        'mouse-following-content',
-        contained && 'mouse-following-content--contained',
+        styles.mouseFollowingContent,
+        contained && styles.mouseFollowingContentContained,
         getAnimationClass('bounceIn'),
         className,
       )}

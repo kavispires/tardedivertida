@@ -27,7 +27,7 @@ import { TurnBasedGameIcon } from 'icons/TurnBasedGameIcon';
 import { VoteIcon } from 'icons/VoteIcon';
 import { WritingIcon } from 'icons/WritingIcon';
 // Sass
-import './GameTags.scss';
+import styles from './GameTags.module.scss';
 
 const sortTags = (tags: string[]) => {
   const sortedTags: string[] = [];
@@ -92,7 +92,7 @@ export function GameTags({ tags, gameCode, ...rest }: GameTagsProps) {
       {...rest}
       orientation="vertical"
     >
-      <div className="game-tags-group">
+      <div className={styles.gameTagsGroup}>
         {buttonTags.map((tag) => {
           const Icon = icons[tag];
 
@@ -103,7 +103,7 @@ export function GameTags({ tags, gameCode, ...rest }: GameTagsProps) {
             >
               <Icon
                 style={{ width: 36 }}
-                className="game-tags-group__icon"
+                className={styles.gameTagsGroupIcon}
               />
             </Tooltip>
           );

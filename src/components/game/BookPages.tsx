@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
 // Sass
-import './BookPages.scss';
+import styles from './BookPages.module.scss';
 
 type BookPagesProps = {
   /**
@@ -22,7 +22,7 @@ export function BookPages({ leftPage, rightPage, className }: BookPagesProps) {
   return (
     <svg
       viewBox="0 0 590 320"
-      className={clsx('book-pages', className)}
+      className={clsx(styles.bookPages, className)}
     >
       <path
         d="M4 12.46s71.16 8 145.65 0S295 16 295 16s90.78-12.42 156 0S586 5.14 586 5.14v296s-43.23 24.6-158.29 8S295 314 295 314s-94.44-17.89-143.33-3.59c-29.88 8.74-147.64-4-147.64-4z"

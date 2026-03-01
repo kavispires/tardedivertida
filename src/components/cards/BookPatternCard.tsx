@@ -5,7 +5,7 @@ import { Flex, Tooltip } from 'antd';
 import { ImageCard } from 'components/image-cards';
 import { DualTranslate } from 'components/language';
 // Sass
-import './BookPatternCard.scss';
+import styles from './BookPatternCard.module.scss';
 
 type BookPatternCardProps = {
   patternId: string;
@@ -19,7 +19,7 @@ export function BookPatternCard({ patternId, cardWidth }: BookPatternCardProps) 
     return (
       <Tooltip title={<DualTranslate>{TRANSLATIONS.wildcard}</DualTranslate>}>
         <div
-          className={clsx('book-pattern-card')}
+          className={clsx(styles.bookPatternCard)}
           style={{ width: cardWidth }}
         >
           <ImageCard
@@ -47,10 +47,10 @@ export function BookPatternCard({ patternId, cardWidth }: BookPatternCardProps) 
       }
     >
       <div
-        className={clsx('book-pattern-card')}
+        className={clsx(styles.bookPatternCard)}
         style={{ width: cardWidth }}
       >
-        <div className="book-pattern-card__letter">{letter}</div>
+        <div className={styles.bookPatternCardLetter}>{letter}</div>
         <ImageCard
           cardId={cardId}
           cardWidth={cardWidth}

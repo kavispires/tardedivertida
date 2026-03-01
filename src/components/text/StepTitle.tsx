@@ -9,7 +9,7 @@ import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 import { IconAvatar } from 'components/avatars';
 import { useGameAppearance } from 'components/session/GameInfoContext';
 // Sass
-import './StepTitle.scss';
+import styles from './StepTitle.module.scss';
 
 export type StepTitleProps = {
   /**
@@ -51,14 +51,26 @@ export const StepTitle = ({
   const appearance = useGameAppearance();
   const color = colorScheme ?? appearance.colorScheme ?? 'light';
 
+  const sizeClass =
+    {
+      large: styles.stepTitleLarge,
+      default: styles.stepTitleDefault,
+      small: styles.stepTitleSmall,
+    }[size as string] || '';
+
+  const colorClass = {
+    light: styles.stepTitleLight,
+    dark: styles.stepTitleDark,
+  }[color];
+
   return (
     <Typography.Title
       level={level ?? 2}
-      className={clsx('step-title', `step-title--${size}`, `step-title--${color}`, className)}
+      className={clsx(styles.stepTitle, sizeClass, colorClass, className)}
       {...props}
     >
       {(!!icon || wait) && (
-        <span className="title__icon">
+        <span className={styles.stepTitleIcon}>
           <IconAvatar
             size={size}
             icon={wait ? <AnimatedClockIcon /> : icon}

@@ -7,7 +7,7 @@ import { useCountdown } from 'hooks/useCountdown';
 // Components
 import { SendButton } from 'components/buttons';
 // Sass
-import './HostButton.scss';
+import styles from './HostButton.module.scss';
 
 /**
  * Host Button (orange with rocket icon)
@@ -23,7 +23,7 @@ export function HostButton({
     <SendButton
       icon={icon ?? <RocketOutlined />}
       ghost={ghost}
-      className={clsx('host-button', className)}
+      className={clsx(styles.hostButton, className)}
       {...rest}
     />
   );
@@ -65,7 +65,7 @@ export function HostTimedButton({
   return (
     <HostButton {...rest}>
       {children}
-      {!hideTimer && <span className="host-button-timer">{timeLeft}</span>}
+      {!hideTimer && <span className={styles.hostButtonTimer}>{timeLeft}</span>}
     </HostButton>
   );
 }

@@ -12,7 +12,7 @@ import { IconAvatar } from 'components/avatars';
 import { DivButton } from 'components/buttons/DivButton';
 import { Translate } from 'components/language';
 // Sass
-import './FloatingHand.scss';
+import styles from './FloatingHand.module.scss';
 
 type FloatingHandProps = {
   /**
@@ -35,29 +35,29 @@ export function FloatingHand({ children, icon, title }: FloatingHandProps) {
 
   return (
     <>
-      <div className="floating-hand-added-white-space"></div>
+      <div className={styles.floatingHandAddedWhiteSpace}></div>
       <DivButton
-        className={clsx('floating-hand', isExpanded && 'floating-hand--expanded')}
+        className={clsx(styles.floatingHand, isExpanded && styles.floatingHandExpanded)}
         onMouseOver={() => setIsExpanded(true)}
         onMouseLeave={() => setIsExpanded(false)}
         onFocus={() => setIsExpanded(true)}
         onBlur={() => setIsExpanded(false)}
       >
-        <h3 className="floating-hand__label">
+        <h3 className={styles.floatingHandLabel}>
           <IconAvatar
             icon={icon ?? <HandOfCardsIcon />}
             size={isExpanded ? 30 : 40}
-            className="floating-hand__icon"
+            className={styles.floatingHandIcon}
             alt={translate('Mão de Cartas', 'Hand of Cards')}
           />
-          <span className="floating-hand__label-text">
+          <span className={styles.floatingHandLabelText}>
             {title ?? (
               <Translate
                 pt="Suas Cartas"
                 en="Your Cards"
               />
             )}
-            <span className="floating-hand__label-text-hint">
+            <span className={styles.floatingHandLabelTextHint}>
               (
               <Translate
                 pt="Passe o mouse para expandir"
@@ -67,7 +67,7 @@ export function FloatingHand({ children, icon, title }: FloatingHandProps) {
             </span>
           </span>
         </h3>
-        <div className="floating-hand__children">{children}</div>
+        <div className={styles.floatingHandChildren}>{children}</div>
       </DivButton>
     </>
   );
@@ -80,28 +80,28 @@ export function FloatingHandDrawer({ children, icon, title }: FloatingHandProps)
 
   return (
     <>
-      <div className="floating-hand-drawer__white-space" />
+      <div className={styles.floatingHandDrawerWhiteSpace} />
       <button
         type="button"
-        className="floating-hand-drawer__button"
+        className={styles.floatingHandDrawerButton}
         onClick={toggleDrawer}
         onMouseOver={() => toggleDrawer(true)}
         onFocus={() => toggleDrawer(true)}
       >
-        <span className="floating-hand-drawer__label">
+        <span className={styles.floatingHandDrawerLabel}>
           <IconAvatar
             icon={icon ?? <HandOfCardsIcon />}
-            className="floating-hand-drawer__icon"
+            className={styles.floatingHandDrawerIcon}
             alt={translate('Mão de Cartas', 'Hand of Cards')}
           />
-          <span className="floating-hand-drawer__label-text">
+          <span className={styles.floatingHandDrawerLabelText}>
             {title ?? (
               <Translate
                 pt="Suas Cartas"
                 en="Your Cards"
               />
             )}
-            <span className="floating-hand-drawer__label-text-hint">
+            <span className={styles.floatingHandDrawerLabelTextHint}>
               (
               <Translate
                 pt="Passe o mouse para expandir"
@@ -115,23 +115,23 @@ export function FloatingHandDrawer({ children, icon, title }: FloatingHandProps)
       <Drawer
         title={
           <DivButton
-            className="floating-hand-drawer__label floating-hand-drawer__label-open"
+            className={clsx(styles.floatingHandDrawerLabel, styles.floatingHandDrawerLabelOpen)}
             onClick={() => toggleDrawer(false)}
             onKeyDown={(e) => e.key === 'Enter' && toggleDrawer(false)}
           >
             <IconAvatar
               icon={icon ?? <HandOfCardsIcon />}
-              className="floating-hand-drawer__icon"
+              className={styles.floatingHandDrawerIcon}
               alt={translate('Mão de Cartas', 'Hand of Cards')}
             />
-            <span className="floating-hand-drawer__label-text">
+            <span className={styles.floatingHandDrawerLabelText}>
               {title ?? (
                 <Translate
                   pt="Suas Cartas"
                   en="Your Cards"
                 />
               )}
-              <span className="floating-hand-drawer__label-text-hint">
+              <span className={styles.floatingHandDrawerLabelTextHint}>
                 (
                 <Translate
                   pt="Clique aqui para fechar"

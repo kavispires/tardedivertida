@@ -1,0 +1,17 @@
+@use "styles/sass" as *;
+
+.canvasResizer {
+  width: 160px;
+  padding: get-unit(1 2);
+  border-radius: var(--border-radius);
+}
+
+.label {
+  font-size: 90%;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.slider {
+  display: block;
+}

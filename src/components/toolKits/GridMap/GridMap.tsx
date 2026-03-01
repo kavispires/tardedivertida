@@ -8,7 +8,7 @@ import {
 // Internal
 import type { GridMapType, GridMapCellType } from './grid-map';
 // Sass
-import './GridMap.scss';
+import styles from './GridMap.module.scss';
 
 export type GridMapCellComponentProps<TCellData, TCellAdditionalProps = any> = {
   /**
@@ -76,10 +76,10 @@ export function GridMap<TCellData, TCellAdditionalProps = any>({
   const CellComponent = cellComponent;
 
   return (
-    <div className="grid-map-container">
+    <div className={styles.gridMapContainer}>
       <ZoomPanPinchContainer
         wrapperClassName={clsx('grid-map-outer-window', className)}
-        contentClassName={clsx('grid-map', contentClassName)}
+        contentClassName={clsx(styles.gridMap, contentClassName)}
         {...zoomPanPinchProps}
       >
         {additionalContent}

@@ -1,0 +1,42 @@
+@use "styles/sass" as *;
+
+.turnOrder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  transform: scale(75%);
+  margin: get-unit(2 auto);
+}
+
+.turnOrderTitle {
+  background-color: rgba($color: white, $alpha: 0.6);
+  margin: 0;
+  padding: get-unit(1 2 0 2);
+  border-radius: get-unit(3 3 0 0);
+}
+
+.turnOrderPlayers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba($color: white, $alpha: 0.6);
+  padding: get-unit(1);
+  border-radius: get-unit(5);
+  flex-wrap: wrap;
+}
+
+.turnOrderPlayer {
+  background-color: rgba($color: white, $alpha: 0.6);
+  padding: get-unit(1 2);
+  border-radius: get-unit(5);
+  white-space: nowrap;
+}
+
+.turnOrderPlayerActive {
+  color: get-color("white");
+}
+
+.turnOrderArrow {
+  margin: get-unit(0 1);
+}

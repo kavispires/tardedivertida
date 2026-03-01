@@ -7,7 +7,8 @@ import { Space, type SpaceProps } from 'antd';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useGlobalState } from 'hooks/useGlobalState';
 // Sass
-import './AdminOnlyContainer.scss';
+import styles from './AdminOnlyContainer.module.scss';
+// Styles
 
 interface AdminOnlyContainerProps extends SpaceProps {
   /**
@@ -27,8 +28,8 @@ export const AdminOnlyContainer = ({ children, className = '', ...props }: Admin
   if (!isAdmin || !isAdminEnabled) return <span></span>;
 
   return (
-    <fieldset className={clsx('admin-only-container', className)}>
-      <legend className="admin-only-container__legend">
+    <fieldset className={clsx(styles.adminOnlyContainer, className)}>
+      <legend className={styles.legend}>
         <FireFilled /> Admin Controls
       </legend>
       <Space {...props}>{children}</Space>

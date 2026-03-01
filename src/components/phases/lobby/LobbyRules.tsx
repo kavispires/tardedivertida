@@ -14,6 +14,8 @@ import { Translate } from 'components/language';
 import { useGameInfoContext } from 'components/session/GameInfoContext';
 // Internal
 import { LobbyReadyButtons } from './LobbyReadyButtons';
+// Sass
+import styles from '../PhaseLobby.module.scss';
 
 type LobbyRulesProps = {
   /**
@@ -28,7 +30,7 @@ export function LobbyRules({ players }: LobbyRulesProps) {
   const { language } = useLanguage();
   return (
     <motion.div
-      className="lobby-step__rules"
+      className={styles.lobbyStepRules}
       initial={{ opacity: 0, width: 0 }}
       animate={{ opacity: 1, width: 'auto' }}
       exit={{ opacity: 0 }}

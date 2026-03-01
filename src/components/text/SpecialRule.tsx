@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 // Components
 import { Translate } from 'components/language';
 // Sass
-import './SpecialRule.scss';
+import styles from './SpecialRule.module.scss';
 
 type SpecialRuleProps = {
   /**
@@ -18,7 +18,7 @@ type SpecialRuleProps = {
 export function SpecialRule({ children, className }: SpecialRuleProps) {
   return (
     <span className={className}>
-      <span className="special-rule-highlight">
+      <span className={styles.specialRuleHighlight}>
         <Translate
           pt="Regra Especial"
           en="Special Rule"

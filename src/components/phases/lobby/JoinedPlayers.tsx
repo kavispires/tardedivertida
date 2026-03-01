@@ -9,6 +9,8 @@ import type { GamePlayers } from 'types/player';
 // Components
 import { Translate } from 'components/language';
 import { PlayerAvatar } from 'components/player';
+// Sass
+import styles from '../PhaseLobby.module.scss';
 
 type JoinedPlayersProps = {
   players: GamePlayers;
@@ -22,7 +24,9 @@ export function JoinedPlayers({ players, orientation }: JoinedPlayersProps) {
   );
 
   return (
-    <div className={clsx('joined-players', orientation === 'horizontal' && 'joined-players--horizontal')}>
+    <div
+      className={clsx(styles.joinedPlayers, orientation === 'horizontal' && styles.joinedPlayersHorizontal)}
+    >
       {orderedPlayers.map((player, index) => (
         <motion.div
           key={player.id}
@@ -32,7 +36,7 @@ export function JoinedPlayers({ players, orientation }: JoinedPlayersProps) {
         >
           <motion.div
             layoutId={`player-${player.id}`}
-            className="joined-players__player"
+            className={styles.joinedPlayersPlayer}
             animate={{
               y: [0, 5, 0], // Y-axis movement
               filter: [
@@ -56,7 +60,7 @@ export function JoinedPlayers({ players, orientation }: JoinedPlayersProps) {
                 size="large"
               />
             </Badge>
-            <div className="joined-players__avatar-name">
+            <div className={styles.joinedPlayersAvatarName}>
               <Translate
                 pt="Fulano"
                 en="John Doe"

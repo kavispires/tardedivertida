@@ -1,0 +1,16 @@
+@use "styles/sass" as *;
+
+.starPoints {
+  display: flex;
+  align-items: center;
+  color: get-color("yellow", 6);
+  margin: get-unit(0 1);
+
+  &Negative {
+    color: get-color("red", 6);
+  }
+}
+
+.stars {
+  margin: get-unit(0 1);
+}

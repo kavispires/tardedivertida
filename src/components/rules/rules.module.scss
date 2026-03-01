@@ -1,0 +1,88 @@
+@use "styles/sass" as *;
+
+.rulesCarousel {
+  display: flex;
+  justify-content: center;
+  border-radius: get-unit(2);
+  max-height: 70vh !important;
+
+  &__rule {
+    padding: get-unit(2);
+    text-align: center;
+    position: relative;
+  }
+
+  &__ruleNumber {
+    background-color: get-color("white");
+    position: absolute;
+    top: 0;
+    right: 50%;
+    font-size: 1.25em;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    @include box-shadow;
+
+    z-index: 3000;
+  }
+
+  &__ruleText {
+    text-align: center;
+    color: get-color("white");
+    background-color: rgba($color: black, $alpha: 0.8);
+    border-radius: get-unit(2);
+    padding: get-unit(1 2);
+    margin: get-unit(0 3);
+  }
+
+  &__image {
+    border-radius: get-unit(2);
+    box-shadow: 2px 2px 5px rgba($color: #000, $alpha: 0.3);
+    width: auto;
+    max-width: 90vw;
+    max-height: 60vh;
+  }
+
+  &__nav {
+    background-color: white;
+    padding: get-unit(4 2);
+    display: block;
+    border: 1px solid rgb(116, 83, 171);
+    color: black;
+    opacity: 1;
+
+    &--right {
+      transform: translateX(-40%);
+    }
+  }
+}
+
+.ant-carousel .slick-prev,
+.ant-carousel .slick-next,
+.ant-carousel .slick-prev:hover,
+.ant-carousel .slick-next:hover {
+  font-size: inherit;
+  color: currentColor;
+}
+
+.popoverRule {
+  position: absolute;
+  top: get-unit(1);
+  left: get-unit(1);
+}
+
+.rulesList {
+  list-style-type: disc;
+  padding-inline-start: get-unit(5);
+}
+
+.rulesModal {
+  width: 1280px;
+  max-width: 80vw;
+  min-width: 60vw;
+}
+
+.rulesModalContent {
+  background: get-color("black", 2);
+  border-radius: var(--border-radius);
+}
