@@ -1,0 +1,1 @@
+import{j as r}from"./index-BoyMrZ6N.js";const s="_fireworks_d5glw_168",o="_fireworksBefore_d5glw_168",f="_fireworksAfter_d5glw_169",e={fireworks:s,fireworksBefore:o,fireworksAfter:f};function t(){return r.jsxs("div",{className:e.fireworks,children:[r.jsx("div",{className:e.fireworksBefore}),r.jsx("div",{className:e.fireworksAfter})]})}export{t as FireworksEffect};

@@ -1,1 +1,0 @@
-import{at as c,r as o,v as u,c1 as n}from"./index-udqZgYTa.js";function d(e="activePlayerId",s={},r={}){const[t]=c("userId");return o.useMemo(()=>{const a=u.get(s,e);return[r?.[a]??n,a===t]},[r,e,s,t])}export{d as u};
