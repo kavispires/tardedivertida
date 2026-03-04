@@ -1,0 +1,1 @@
+import{j as t}from"./index-A-3A-svk.js";const o="_confetti_1qfbn_168",s={confetti:o};function i(){const n=Array.from({length:50},(c,e)=>t.jsx("span",{},e));return t.jsx("div",{className:s.confetti,children:n})}export{i as ConfettiEffect};

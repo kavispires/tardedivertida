@@ -1,1 +1,0 @@
-import{au as s,r,db as a}from"./index-BoyMrZ6N.js";import{u}from"./speech-Dv3l-wl_.js";import{h as n}from"./Session-Ce0UqPwr.js";function l(m,i=[],e){n(),s("userId");const[t,c]=r.useState(!1),o=e??a([3,4,4,5,6]);return u({duration:o,onExpire:()=>{},disabled:t})}export{l as u};
