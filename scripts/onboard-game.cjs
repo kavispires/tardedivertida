@@ -189,6 +189,7 @@ async function runBackendSetup() {
   console.log('   2. Add game-specific types to types.d.ts');
   console.log('   3. Implement setup logic in setup.ts');
   console.log('   4. Create game actions in actions.ts\n');
+  console.log ('After implementing the game logic, run the "Backend engine hookup" option in this CLI to connect your game engine to the backend delegators.\n');
 }
 
 async function runBackendEngineHookup() {
@@ -307,8 +308,194 @@ async function runBackendEngineHookup() {
   console.log(`\n✨ Engine hookup complete for '${gameName}'!\n`);
 }
 
+function updateInfoTs(gameName) {
+  const infoPath = path.resolve(__dirname, '../src/utils/info.ts');
+  if (!fs.existsSync(infoPath)) {
+    console.error('❌ Error: src/utils/info.ts not found');
+    return false;
+  }
+
+  const gameKey = convertNameToKey(gameName); // e.g., ARTE_RUIM
+  let content = fs.readFileSync(infoPath, 'utf-8');
+
+  // Check already exists
+  if (content.includes(`import('games/${gameName}/game-info.json')`)) {
+    console.log(`⚠️  Entry for '${gameName}' already exists in info.ts`);
+    return true;
+  }
+
+  const lines = content.split('\n');
+
+  // Collect destructuring variable lines and their indices
+  const varLineRegex = /^    ([A-Z][A-Z0-9_]+),?$/;
+  const importLineRegex = /^    import\('games\/([^']+)\/game-info\.json'\),?$/;
+  const returnLineRegex = /^    '?([a-z][a-z0-9-]*)'?:\s+[A-Z][A-Z0-9_]+\.default,?$/;
+
+  const varLines = [];
+  const importLines = [];
+  const returnLines = [];
+
+  lines.forEach((line, idx) => {
+    if (varLineRegex.test(line)) varLines.push({ idx, key: line.match(varLineRegex)[1] });
+    else if (importLineRegex.test(line)) importLines.push({ idx, name: line.match(importLineRegex)[1] });
+    else if (returnLineRegex.test(line)) returnLines.push({ idx, name: line.match(returnLineRegex)[1] });
+  });
+
+  if (varLines.length !== importLines.length) {
+    console.error('❌ Mismatch between destructuring variables and imports in info.ts');
+    return false;
+  }
+
+  // --- Insert destructuring variable and import (same index) ---
+  let insertVarBefore = varLines.findIndex((v) => v.key > gameKey);
+  if (insertVarBefore === -1) insertVarBefore = varLines.length;
+
+  const newVarLine = `    ${gameKey},`;
+  const newImportLine = `    import('games/${gameName}/game-info.json'),`;
+
+  // Work on a mutable array; insert from bottom-up to preserve indices
+  // First collect what we need to insert and where
+  const ops = [];
+
+  const varInsertIdx =
+    insertVarBefore < varLines.length ? varLines[insertVarBefore].idx : varLines[varLines.length - 1].idx + 1;
+  const importInsertIdx =
+    insertVarBefore < importLines.length
+      ? importLines[insertVarBefore].idx
+      : importLines[importLines.length - 1].idx + 1;
+
+  // --- Insert return object entry ---
+  let insertReturnBefore = returnLines.findIndex((r) => r.name > gameName);
+  if (insertReturnBefore === -1) insertReturnBefore = returnLines.length;
+
+  const needsQuotes = gameName.includes('-');
+  const returnKey = needsQuotes ? `'${gameName}'` : gameName;
+  const newReturnLine = `    ${returnKey}: ${gameKey}.default,`;
+  const returnInsertIdx =
+    insertReturnBefore < returnLines.length
+      ? returnLines[insertReturnBefore].idx
+      : returnLines[returnLines.length - 1].idx + 1;
+
+  ops.push({ idx: returnInsertIdx, line: newReturnLine });
+  ops.push({ idx: importInsertIdx, line: newImportLine });
+  ops.push({ idx: varInsertIdx, line: newVarLine });
+
+  // Sort descending by line index so earlier insertions don't shift later ones
+  ops.sort((a, b) => b.idx - a.idx);
+
+  for (const op of ops) {
+    lines.splice(op.idx, 0, op.line);
+  }
+
+  fs.writeFileSync(infoPath, lines.join('\n'), 'utf-8');
+  console.log(`✅ Updated src/utils/info.ts with '${gameName}' entry`);
+  return true;
+}
+
 async function runFrontendGameInfo() {
-  console.log('\nOk\n');
+  // Ask for game name
+  let gameName = '';
+  while (!gameName) {
+    const input = await prompt('Enter the game name (e.g., "arte-ruim"): ');
+    if (validateGameName(input)) {
+      gameName = input;
+    } else {
+      console.log('❌ Invalid game name. Please use lowercase letters and hyphens only.\n');
+    }
+  }
+
+  // Check if folder + game-info already exist
+  const gameFolderPath = path.resolve(__dirname, '../src/games', gameName);
+  const gameInfoDest = path.join(gameFolderPath, 'game-info.json');
+  if (fs.existsSync(gameFolderPath) && fs.existsSync(gameInfoDest)) {
+    console.error(`❌ Error: game-info.json already exists at src/games/${gameName}/game-info.json`);
+    return;
+  }
+
+  // Read template
+  const templatePath = path.resolve(__dirname, '../src/games/_template/game-info.json');
+  if (!fs.existsSync(templatePath)) {
+    console.error('❌ Error: Template game-info.json not found at src/games/_template/game-info.json');
+    return;
+  }
+  const gameInfo = JSON.parse(fs.readFileSync(templatePath, 'utf-8'));
+
+  // Resolve gameCode from constants.ts if possible
+  const constantsPath = path.resolve(__dirname, '../functions/src/utils/constants.ts');
+  let gameCode = null;
+  if (fs.existsSync(constantsPath)) {
+    const constantsContent = fs.readFileSync(constantsPath, 'utf-8');
+    const gameEntryRegex = new RegExp(`name:\\s*'${gameName}',[\\s\\S]*?code:\\s*'([^']+)'`, 'g');
+    const entryMatch = gameEntryRegex.exec(constantsContent);
+    if (entryMatch) {
+      gameCode = entryMatch[1];
+      console.log(`\n✅ Found game code '${gameCode}' in constants.ts`);
+    }
+  }
+
+  if (!gameCode) {
+    console.log('\n⚠️  Game not found in constants.ts.');
+    while (!gameCode) {
+      const input = await prompt('Enter the game code (single capital letter, e.g., "G"): ');
+      if (validateGameCode(input)) {
+        gameCode = input;
+      } else {
+        console.log('❌ Invalid game code. Please use a single capital letter (A-Z).\n');
+      }
+    }
+  }
+
+  // Ask for titles
+  const titlePt = await prompt('Enter the game title in Portuguese: ');
+  const titleEn = await prompt('Enter the game title in English: ');
+
+  // Ask for inspiredBy
+  const inspiredByInput = await prompt('Enter the game that inspired it (will be reversed, leave blank to skip): ');
+  const inspiredBy = inspiredByInput ? inspiredByInput.split('').reverse().join('') : gameInfo.inspiredBy;
+
+  // Try to read playerCounts from engine constants.ts
+  let playerMin = gameInfo.playerCount.min;
+  let playerMax = gameInfo.playerCount.max;
+  const engineConstantsPath = path.resolve(__dirname, `../functions/src/engine/${gameName}/constants.ts`);
+  if (fs.existsSync(engineConstantsPath)) {
+    const engineConstants = fs.readFileSync(engineConstantsPath, 'utf-8');
+    const minMatch = engineConstants.match(/PLAYER_COUNTS\s*=\s*\{[\s\S]*?MIN:\s*(\d+)/);
+    const maxMatch = engineConstants.match(/PLAYER_COUNTS\s*=\s*\{[\s\S]*?MAX:\s*(\d+)/);
+    if (minMatch && maxMatch) {
+      playerMin = parseInt(minMatch[1], 10);
+      playerMax = parseInt(maxMatch[1], 10);
+      console.log(`\n✅ Found player counts from engine: MIN=${playerMin}, MAX=${playerMax}`);
+    } else {
+      console.log('\n⚠️  Could not parse PLAYER_COUNTS from engine constants.ts, using template defaults.');
+    }
+  }
+
+  // Populate game-info
+  gameInfo.gameCode = gameCode;
+  gameInfo.gameName = gameName;
+  gameInfo.version = '0.0.0';
+  gameInfo.title.pt = titlePt || gameInfo.title.pt;
+  gameInfo.title.en = titleEn || gameInfo.title.en;
+  gameInfo.inspiredBy = inspiredBy;
+  gameInfo.playerCount.min = playerMin;
+  gameInfo.playerCount.max = playerMax;
+
+  // Create folder and write file
+  if (!fs.existsSync(gameFolderPath)) {
+    fs.mkdirSync(gameFolderPath, { recursive: true });
+    console.log(`\n✅ Created folder: src/games/${gameName}/`);
+  }
+  fs.writeFileSync(gameInfoDest, JSON.stringify(gameInfo, null, 2) + '\n', 'utf-8');
+  console.log(`✅ Created file: src/games/${gameName}/game-info.json`);
+
+  // Update info.ts
+  updateInfoTs(gameName);
+
+  console.log(`\n✨ Frontend game-info setup complete for '${gameName}'!\n`);
+  console.log('Next steps:');
+  console.log('   1. You must create and add the images for the banner, strip, and logo.');
+  console.log('   2. Create and add the video backend.');
+  console.log('   3. Implement the frontend game components in src/games/${gameName}/\n');
 }
 
 async function runFrontendSetup() {
