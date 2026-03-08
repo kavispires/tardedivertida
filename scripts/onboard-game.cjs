@@ -498,8 +498,316 @@ async function runFrontendGameInfo() {
   console.log('   3. Implement the frontend game components in src/games/${gameName}/\n');
 }
 
+function convertToPascalCase(name) {
+  return name
+    .split('-')
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join('');
+}
+
+function copyDirRecursive(src, dest, excludeFiles = []) {
+  if (!fs.existsSync(dest)) {
+    fs.mkdirSync(dest, { recursive: true });
+  }
+  for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
+    if (excludeFiles.includes(entry.name)) continue;
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
+    if (entry.isDirectory()) {
+      copyDirRecursive(srcPath, destPath, excludeFiles);
+    } else {
+      fs.copyFileSync(srcPath, destPath);
+    }
+  }
+}
+
+function updateGameCollection(gameName) {
+  const constantsPath = path.resolve(__dirname, '../src/utils/constants.ts');
+  if (!fs.existsSync(constantsPath)) {
+    console.error('❌ Error: src/utils/constants.ts not found');
+    return false;
+  }
+
+  const gameKey = convertNameToKey(gameName);
+  let content = fs.readFileSync(constantsPath, 'utf-8');
+
+  if (content.includes(`${gameKey}: '${gameName}'`)) {
+    console.log(`⚠️  GAME_COLLECTION.${gameKey} already exists in src/utils/constants.ts`);
+    return true;
+  }
+
+  // Find all existing entries like "  KEY: 'value'," within GAME_COLLECTION
+  const entryRegex = /^  ([A-Z][A-Z0-9_]+): '[^']+',?(?:\s*\/\/.*)?$/gm;
+  const entries = [];
+  let m;
+  while ((m = entryRegex.exec(content)) !== null) {
+    entries.push({ key: m[1], fullLine: m[0], index: m.index });
+  }
+
+  const newEntry = `  ${gameKey}: '${gameName}',`;
+  let insertAfter = null;
+  for (const entry of entries) {
+    if (entry.key < gameKey && entry.key !== '_TEMPLATE') {
+      insertAfter = entry;
+    }
+  }
+
+  if (insertAfter) {
+    const pos = insertAfter.index + insertAfter.fullLine.length;
+    content = content.slice(0, pos) + '\n' + newEntry + content.slice(pos);
+  } else {
+    // Insert after _TEMPLATE line
+    const templateMatch = content.match(/  _TEMPLATE: '[^']+',?\n/);
+    if (templateMatch) {
+      const pos = content.indexOf(templateMatch[0]) + templateMatch[0].length;
+      content = content.slice(0, pos) + newEntry + '\n' + content.slice(pos);
+    }
+  }
+
+  fs.writeFileSync(constantsPath, content, 'utf-8');
+  console.log(`✅ Added GAME_COLLECTION.${gameKey} to src/utils/constants.ts`);
+  return true;
+}
+
+function updateAchievementsDict(gameName) {
+  const achievementsPath = path.resolve(__dirname, '../src/utils/achievements.ts');
+  if (!fs.existsSync(achievementsPath)) {
+    console.error('❌ Error: src/utils/achievements.ts not found');
+    return false;
+  }
+
+  const needsQuotes = gameName.includes('-');
+  const returnKey = needsQuotes ? `'${gameName}'` : gameName;
+
+  let content = fs.readFileSync(achievementsPath, 'utf-8');
+
+  if (content.includes(`${returnKey}: `)) {
+    console.log(`⚠️  ACHIEVEMENTS_DICT entry for '${gameName}' already exists`);
+    return true;
+  }
+
+  // Find all existing entries like "  'game-name': VALUE," or "  gamename: VALUE,"
+  const entryRegex = /^  ('?[a-z][a-z0-9-]*'?): (?:null|[A-Z_]+),?$/gm;
+  const entries = [];
+  let m;
+  while ((m = entryRegex.exec(content)) !== null) {
+    const rawKey = m[1].replace(/'/g, '');
+    entries.push({ rawKey, fullLine: m[0], index: m.index });
+  }
+
+  const newEntry = `  ${returnKey}: null,`;
+  let insertAfter = null;
+  for (const entry of entries) {
+    if (entry.rawKey < gameName) {
+      insertAfter = entry;
+    }
+  }
+
+  if (insertAfter) {
+    const pos = insertAfter.index + insertAfter.fullLine.length;
+    content = content.slice(0, pos) + '\n' + newEntry + content.slice(pos);
+  } else if (entries.length > 0) {
+    const first = entries[0];
+    content = content.slice(0, first.index) + newEntry + '\n' + content.slice(first.index);
+  }
+
+  fs.writeFileSync(achievementsPath, content, 'utf-8');
+  console.log(`✅ Added '${gameName}' to ACHIEVEMENTS_DICT in src/utils/achievements.ts`);
+  return true;
+}
+
+function updateGameLoader(gameName) {
+  const loaderPath = path.resolve(__dirname, '../src/games/gameLoader.ts');
+  if (!fs.existsSync(loaderPath)) {
+    console.error('❌ Error: src/games/gameLoader.ts not found');
+    return false;
+  }
+
+  const gameKey = convertNameToKey(gameName);
+  const pascalName = convertToPascalCase(gameName);
+
+  let content = fs.readFileSync(loaderPath, 'utf-8');
+
+  if (content.includes(`games/${gameName}/Session${pascalName}`)) {
+    console.log(`⚠️  gameLoader entry for '${gameName}' already exists`);
+    return true;
+  }
+
+  const entryRegex = /^  \[GAME_COLLECTION\.([A-Z][A-Z0-9_]+)\]: lazy\(\(\) => import\('games\/([^']+)\/Session[^']+'\)\),$/gm;
+  const entries = [];
+  let m;
+  while ((m = entryRegex.exec(content)) !== null) {
+    entries.push({ key: m[1], gamePath: m[2], fullLine: m[0], index: m.index });
+  }
+
+  // Also match multi-line entries (wrapped with lazy())
+  const multiLineRegex = /  \[GAME_COLLECTION\.([A-Z][A-Z0-9_]+)\]: lazy\(\n.*?import\('games\/([^']+)\/Session[^']+'\),?\n  \),/gs;
+  while ((m = multiLineRegex.exec(content)) !== null) {
+    // avoid duplicates
+    if (!entries.find((e) => e.key === m[1])) {
+      entries.push({ key: m[1], gamePath: m[2], fullLine: m[0], index: m.index });
+    }
+  }
+
+  const newEntry = `  [GAME_COLLECTION.${gameKey}]: lazy(() => import('games/${gameName}/Session${pascalName}')),`;
+
+  let insertAfter = null;
+  for (const entry of entries) {
+    if (entry.key < gameKey) {
+      insertAfter = entry;
+    }
+  }
+
+  if (insertAfter) {
+    const pos = insertAfter.index + insertAfter.fullLine.length;
+    content = content.slice(0, pos) + '\n' + newEntry + content.slice(pos);
+  } else if (entries.length > 0) {
+    const first = entries[0];
+    content = content.slice(0, first.index) + newEntry + '\n' + content.slice(first.index);
+  }
+
+  fs.writeFileSync(loaderPath, content, 'utf-8');
+  console.log(`✅ Added '${gameName}' to src/games/gameLoader.ts`);
+  return true;
+}
+
 async function runFrontendSetup() {
-  console.log('\nOk\n');
+  // Ask for game name
+  let gameName = '';
+  while (!gameName) {
+    const input = await prompt('Enter the game name (e.g., "arte-ruim"): ');
+    if (validateGameName(input)) {
+      gameName = input;
+    } else {
+      console.log('❌ Invalid game name. Please use lowercase letters and hyphens only.\n');
+    }
+  }
+
+  // Check game folder exists (must have run step 3 first)
+  const gameFolderPath = path.resolve(__dirname, '../src/games', gameName);
+  if (!fs.existsSync(gameFolderPath)) {
+    console.error(`❌ Error: Folder src/games/${gameName} does not exist. Please run step 3 (Frontend game-info) first.`);
+    return;
+  }
+
+  const templatePath = path.resolve(__dirname, '../src/games/_template');
+  const pascalName = convertToPascalCase(gameName);
+  const gameKey = convertNameToKey(gameName);
+
+  // Try to detect phases and actions from engine constants
+  const engineConstantsPath = path.resolve(__dirname, `../functions/src/engine/${gameName}/constants.ts`);
+  let firstPhase = 'UNKNOWN';
+  let allPhases = [];
+  let firstAction = 'UNKNOWN';
+  if (fs.existsSync(engineConstantsPath)) {
+    const engineConstants = fs.readFileSync(engineConstantsPath, 'utf-8');
+    const phasesMatch = engineConstants.match(/PHASES\s*=\s*\{([\s\S]*?)\}/);
+    if (phasesMatch) {
+      const keyMatches = [...phasesMatch[1].matchAll(/([A-Z_]+)\s*:/g)];
+      allPhases = keyMatches.map((m) => m[1]);
+      if (allPhases.length > 0) {
+        firstPhase = allPhases[0];
+      }
+    }
+    const actionsMatch = engineConstants.match(/ACTIONS\s*=\s*\{([\s\S]*?)\}/);
+    if (actionsMatch) {
+      const firstActionMatch = actionsMatch[1].match(/([A-Z_]+)\s*:/);
+      if (firstActionMatch) {
+        firstAction = firstActionMatch[1];
+      }
+    }
+  }
+
+  // Copy all template files except game-info.json, renaming SessionTemplate
+  console.log('\n🔧 Copying template files...\n');
+  for (const entry of fs.readdirSync(templatePath, { withFileTypes: true })) {
+    if (entry.name === 'game-info.json') continue;
+
+    const srcPath = path.join(templatePath, entry.name);
+
+    if (entry.isDirectory()) {
+      const destDir = path.join(gameFolderPath, entry.name);
+      copyDirRecursive(srcPath, destDir);
+      console.log(`✅ Copied folder: ${entry.name}/`);
+      continue;
+    }
+
+    // Rename SessionTemplate.tsx
+    const destName = entry.name === 'SessionTemplate.tsx' ? `Session${pascalName}.tsx` : entry.name;
+    const destPath = path.join(gameFolderPath, destName);
+
+    if (fs.existsSync(destPath)) {
+      console.log(`⚠️  File already exists, skipping: ${destName}`);
+      continue;
+    }
+
+    let fileContent = fs.readFileSync(srcPath, 'utf-8');
+
+    // Replace references inside the session file
+    if (entry.name === 'SessionTemplate.tsx') {
+      fileContent = fileContent
+        .replace(/SessionTemplate/g, `Session${pascalName}`)
+        .replace(/GAME_COLLECTION\._TEMPLATE/g, `GAME_COLLECTION.${gameKey}`)
+        // Remove the PHASES import from utils/phases
+        .replace(/import \{ PHASES \} from 'utils\/phases';\n/, '')
+        // Add local phases import after GAME_COLLECTION import
+        .replace(
+          /import \{ GAME_COLLECTION \} from 'utils\/constants';/,
+          `import { GAME_COLLECTION } from 'utils/constants';\n// Internal\nimport { ${gameKey}_PHASES } from './utils/constants';`,
+        )
+        // Replace phase references
+        .replace(/PHASES\.TEMPLATE\.UNKNOWN/g, `${gameKey}_PHASES.${firstPhase}`)
+        .replace(/PHASES\.DEFAULT\.GAME_OVER/g, `${gameKey}_PHASES.GAME_OVER`);
+
+      // Add extra cases for all phases except LOBBY, RULES, GAME_OVER, and firstPhase (already present)
+      const skipPhases = new Set(['LOBBY', 'RULES', 'GAME_OVER', firstPhase]);
+      const extraPhases = allPhases.filter((p) => !skipPhases.has(p));
+      if (extraPhases.length > 0) {
+        const extraCases = extraPhases
+          .map((p) => `    case ${gameKey}_PHASES.${p}:\n      return PhasePlaceholder;`)
+          .join('\n');
+        fileContent = fileContent.replace(
+          /( *case [A-Z_]+_PHASES\.[A-Z_]+:\n *return PhasePlaceholder;)/,
+          `$1\n${extraCases}`,
+        );
+      }
+    }
+
+    // Replace references inside PhaseTemplate.tsx
+    if (entry.name === 'PhaseTemplate.tsx') {
+      fileContent = fileContent
+        .replace(/TEMPLATE_PHASES/g, `${gameKey}_PHASES`)
+        .replace(new RegExp(`${gameKey}_PHASES\\.UNKNOWN`, 'g'), `${gameKey}_PHASES.${firstPhase}`);
+    }
+
+    // Replace references inside api-requests.ts
+    if (entry.name === 'api-requests.ts') {
+      fileContent = fileContent
+        .replace(/TEMPLATE_ACTIONS/g, `${gameKey}_ACTIONS`)
+        .replace(new RegExp(`${gameKey}_ACTIONS\\.UNKNOWN`, 'g'), `${gameKey}_ACTIONS.${firstAction}`);
+    }
+
+    fs.writeFileSync(destPath, fileContent, 'utf-8');
+    console.log(`✅ Created file: ${destName}`);
+  }
+
+  // If engine constants exist, copy them to utils/constants.ts
+  if (fs.existsSync(engineConstantsPath)) {
+    const destConstantsPath = path.join(gameFolderPath, 'utils', 'constants.ts');
+    fs.copyFileSync(engineConstantsPath, destConstantsPath);
+    console.log(`✅ Copied engine constants.ts to src/games/${gameName}/utils/constants.ts`);
+  }
+
+  // Add to GAME_COLLECTION
+  updateGameCollection(gameName);
+
+  // Add to gameLoader.ts
+  updateGameLoader(gameName);
+
+  // Add to ACHIEVEMENTS_DICT
+  updateAchievementsDict(gameName);
+
+  console.log(`\n✨ Frontend setup complete for '${gameName}'!\n`);
 }
 
 async function main() {

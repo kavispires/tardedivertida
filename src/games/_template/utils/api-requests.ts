@@ -6,7 +6,7 @@ import type { UseStep } from 'hooks/useStep';
 import type { SubmitActionPayload } from './types';
 import { TEMPLATE_ACTIONS } from './constants';
 
-export function useOnSubmitVotingAPIRequest(setStep: UseStep['setStep']) {
+export function useOnSubmitActionAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({
