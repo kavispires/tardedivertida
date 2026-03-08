@@ -21,6 +21,10 @@ function convertNameToKey(name) {
   return name.toUpperCase().replace(/-/g, '_');
 }
 
+function convertToCamelCase(name) {
+  return name.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+}
+
 function validateGameName(name) {
   // Check if name is lowercase, single string with optional hyphens
   const regex = /^[a-z]+(-[a-z]+)*$/;
@@ -131,67 +135,219 @@ async function createGameFolder(gameName) {
   return true;
 }
 
+async function runBackendSetup() {
+  // Prompt for game name
+  let gameName = '';
+  while (!gameName) {
+    const input = await prompt('Enter the game name (lowercase, use hyphens for spaces, e.g., "my-game"): ');
+    if (validateGameName(input)) {
+      gameName = input;
+    } else {
+      console.log('❌ Invalid game name. Please use lowercase letters and hyphens only (e.g., "my-game").\n');
+    }
+  }
+
+  // Prompt for game code
+  let gameCode = '';
+  while (!gameCode) {
+    const input = await prompt('Enter the game code (single capital letter, e.g., "G"): ');
+    if (validateGameCode(input)) {
+      gameCode = input;
+    } else {
+      console.log('❌ Invalid game code. Please use a single capital letter (A-Z).\n');
+    }
+  }
+
+  console.log('\n📋 Summary:');
+  console.log(`   Name: ${gameName}`);
+  console.log(`   Code: ${gameCode}`);
+  console.log(`   Key:  ${convertNameToKey(gameName)}\n`);
+
+  const confirm = await prompt('Proceed with these settings? (yes/no): ');
+
+  if (confirm.toLowerCase() !== 'yes' && confirm.toLowerCase() !== 'y') {
+    console.log('\n❌ Operation cancelled.\n');
+    return;
+  }
+
+  console.log('\n🔧 Setting up the game backend...\n');
+
+  // Update GAMES constant
+  const constantsUpdated = await updateGamesConstant(gameName, gameCode);
+
+  if (!constantsUpdated) {
+    console.log('\n❌ Failed to update constants. Aborting.\n');
+    return;
+  }
+
+  // Create game folder and files
+  await createGameFolder(gameName);
+
+  console.log('\n✨ Game backend setup complete!\n');
+  console.log('Next steps:');
+  console.log(`   1. Implement the game logic in functions/src/engine/${gameName}/`);
+  console.log('   2. Add game-specific types to types.d.ts');
+  console.log('   3. Implement setup logic in setup.ts');
+  console.log('   4. Create game actions in actions.ts\n');
+}
+
+async function runBackendEngineHookup() {
+  // Ask for game name
+  let gameName = '';
+  while (!gameName) {
+    const input = await prompt('Enter the game name to hookup (e.g., "arte-ruim"): ');
+    if (validateGameName(input)) {
+      gameName = input;
+    } else {
+      console.log('❌ Invalid game name. Please use lowercase letters and hyphens only.\n');
+    }
+  }
+
+  // Check engine folder exists
+  const enginePath = path.resolve(__dirname, '../functions/src/engine', gameName);
+  if (!fs.existsSync(enginePath)) {
+    console.error(`❌ Error: Engine folder not found at functions/src/engine/${gameName}`);
+    return;
+  }
+
+  // Check index.ts exists
+  const indexPath = path.join(enginePath, 'index.ts');
+  if (!fs.existsSync(indexPath)) {
+    console.error(`❌ Error: index.ts not found in functions/src/engine/${gameName}`);
+    return;
+  }
+
+  // Validate required exports
+  const indexContent = fs.readFileSync(indexPath, 'utf-8');
+  const requiredExports = ['getInitialState', 'getPlayerCounts', 'getNextPhase', 'submitAction'];
+  const missingExports = requiredExports.filter(
+    (exp) => !indexContent.includes(`export const ${exp}`) && !indexContent.includes(`export function ${exp}`) && !indexContent.includes(`export async function ${exp}`)
+  );
+
+  if (missingExports.length > 0) {
+    console.error(`❌ Error: index.ts is missing required exports: ${missingExports.join(', ')}`);
+    return;
+  }
+
+  console.log(`\n✅ Engine for '${gameName}' found with all required exports.\n`);
+
+  const delegatorsPath = path.resolve(__dirname, '../functions/src/utils/delegators.ts');
+  if (!fs.existsSync(delegatorsPath)) {
+    console.error('❌ Error: delegators.ts not found');
+    return;
+  }
+
+  const camelCaseName = convertToCamelCase(gameName);
+  const engineVarName = `${camelCaseName}Engine`;
+  const gameKey = convertNameToKey(gameName);
+
+  let delegatorsContent = fs.readFileSync(delegatorsPath, 'utf-8');
+
+  // --- Insert import ---
+  if (delegatorsContent.includes(`from '../engine/${gameName}'`)) {
+    console.log(`⚠️  Import for '${gameName}' already exists in delegators.ts`);
+  } else {
+    const importRegex = /^import \* as (\w+) from '\.\.\/engine\/([^']+)';$/gm;
+    const importLines = [];
+    let m;
+    while ((m = importRegex.exec(delegatorsContent)) !== null) {
+      importLines.push({ varName: m[1], gamePath: m[2], fullLine: m[0], index: m.index });
+    }
+
+    const newImportLine = `import * as ${engineVarName} from '../engine/${gameName}';`;
+    let insertAfterImport = null;
+    for (const imp of importLines) {
+      if (imp.gamePath < gameName) {
+        insertAfterImport = imp;
+      }
+    }
+
+    if (insertAfterImport) {
+      const pos = insertAfterImport.index + insertAfterImport.fullLine.length;
+      delegatorsContent = delegatorsContent.slice(0, pos) + '\n' + newImportLine + delegatorsContent.slice(pos);
+    } else if (importLines.length > 0) {
+      const first = importLines[0];
+      delegatorsContent = delegatorsContent.slice(0, first.index) + newImportLine + '\n' + delegatorsContent.slice(first.index);
+    }
+
+    console.log(`✅ Added import for '${gameName}' engine`);
+  }
+
+  // --- Insert engines entry ---
+  if (delegatorsContent.includes(`[GAME_NAMES.${gameKey}]`)) {
+    console.log(`⚠️  Engines entry for '${gameName}' already exists in delegators.ts`);
+  } else {
+    const entryRegex = /^  \[GAME_NAMES\.(\w+)\]: (\w+),$/gm;
+    const entries = [];
+    let e;
+    while ((e = entryRegex.exec(delegatorsContent)) !== null) {
+      entries.push({ key: e[1], fullLine: e[0], index: e.index });
+    }
+
+    const newEntry = `  [GAME_NAMES.${gameKey}]: ${engineVarName},`;
+    let insertAfterEntry = null;
+    for (const entry of entries) {
+      if (entry.key < gameKey) {
+        insertAfterEntry = entry;
+      }
+    }
+
+    if (insertAfterEntry) {
+      const pos = insertAfterEntry.index + insertAfterEntry.fullLine.length;
+      delegatorsContent = delegatorsContent.slice(0, pos) + '\n' + newEntry + delegatorsContent.slice(pos);
+    } else if (entries.length > 0) {
+      const first = entries[0];
+      delegatorsContent = delegatorsContent.slice(0, first.index) + newEntry + '\n' + delegatorsContent.slice(first.index);
+    }
+
+    console.log(`✅ Added engines entry for '${gameName}'`);
+  }
+
+  fs.writeFileSync(delegatorsPath, delegatorsContent, 'utf-8');
+  console.log(`\n✨ Engine hookup complete for '${gameName}'!\n`);
+}
+
+async function runFrontendGameInfo() {
+  console.log('\nOk\n');
+}
+
+async function runFrontendSetup() {
+  console.log('\nOk\n');
+}
+
 async function main() {
   console.log('\n🎮 Welcome to the Game Onboarding CLI!\n');
-  console.log('This tool will help you set up the backend for a new game.\n');
+
+  const menuOptions = [
+    '1. Backend setup',
+    '2. Backend engine hookup',
+    '3. Frontend game-info',
+    '4. Frontend setup',
+  ];
+  console.log('What would you like to do?\n');
+  menuOptions.forEach((option) => console.log(`   ${option}`));
+  console.log();
+
+  let choice = '';
+  while (!choice) {
+    const input = await prompt('Enter your choice (1/2/3/4): ');
+    if (['1', '2', '3', '4'].includes(input)) {
+      choice = input;
+    } else {
+      console.log('❌ Invalid choice. Please enter 1, 2, 3, or 4.\n');
+    }
+  }
 
   try {
-    // Prompt for game name
-    let gameName = '';
-    while (!gameName) {
-      const input = await prompt('Enter the game name (lowercase, use hyphens for spaces, e.g., "my-game"): ');
-      if (validateGameName(input)) {
-        gameName = input;
-      } else {
-        console.log('❌ Invalid game name. Please use lowercase letters and hyphens only (e.g., "my-game").\n');
-      }
+    if (choice === '1') {
+      await runBackendSetup();
+    } else if (choice === '2') {
+      await runBackendEngineHookup();
+    } else if (choice === '3') {
+      await runFrontendGameInfo();
+    } else if (choice === '4') {
+      await runFrontendSetup();
     }
-
-    // Prompt for game code
-    let gameCode = '';
-    while (!gameCode) {
-      const input = await prompt('Enter the game code (single capital letter, e.g., "G"): ');
-      if (validateGameCode(input)) {
-        gameCode = input;
-      } else {
-        console.log('❌ Invalid game code. Please use a single capital letter (A-Z).\n');
-      }
-    }
-
-    console.log('\n📋 Summary:');
-    console.log(`   Name: ${gameName}`);
-    console.log(`   Code: ${gameCode}`);
-    console.log(`   Key:  ${convertNameToKey(gameName)}\n`);
-
-    const confirm = await prompt('Proceed with these settings? (yes/no): ');
-
-    if (confirm.toLowerCase() !== 'yes' && confirm.toLowerCase() !== 'y') {
-      console.log('\n❌ Operation cancelled.\n');
-      rl.close();
-      return;
-    }
-
-    console.log('\n🔧 Setting up the game backend...\n');
-
-    // Update GAMES constant
-    const constantsUpdated = await updateGamesConstant(gameName, gameCode);
-
-    if (!constantsUpdated) {
-      console.log('\n❌ Failed to update constants. Aborting.\n');
-      rl.close();
-      return;
-    }
-
-    // Create game folder and files
-    await createGameFolder(gameName);
-
-    console.log('\n✨ Game backend setup complete!\n');
-    console.log('Next steps:');
-    console.log(`   1. Implement the game logic in functions/src/engine/${gameName}/`);
-    console.log('   2. Add game-specific types to types.d.ts');
-    console.log('   3. Implement setup logic in setup.ts');
-    console.log('   4. Create game actions in actions.ts\n');
-
   } catch (error) {
     console.error('\n❌ An error occurred:', error.message);
   } finally {
