@@ -72,7 +72,7 @@ export function ItemCard({
   return (
     <div
       {...rest}
-      className={clsx(styles.itemCard, className)}
+      className={clsx(styles.itemCard, 'item-card', className)}
       style={{ ...rest.style, width: `${width}px`, height, ...divPadding }}
     >
       <Sprite

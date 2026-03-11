@@ -12,7 +12,7 @@
   margin: get-unit(5);
   font-size: 1em;
 
-  & > .ant-typography {
+  & > :global(.ant-typography) {
     margin-bottom: 0;
   }
 }

@@ -362,3 +362,8 @@
     padding: get-unit(1 2);
   }
 }
+
+.daily-item {
+  background: get-color("brown", 1, 0.35);
+  border-radius: var(--border-radius);
+}

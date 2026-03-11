@@ -104,7 +104,7 @@ export function DailyItem({
       trigger={[]}
     >
       <div
-        className={clsx('item-card', className)}
+        className={clsx('daily-item', className)}
         style={{ width: `${width}px`, height, ...divPadding }}
         ref={containerRef}
       >

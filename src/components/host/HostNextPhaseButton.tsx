@@ -19,7 +19,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { Translate } from 'components/language';
 import { WaitingTime } from 'components/timers';
 // Internal
-import { HostOnlyContainer } from './HostOnlyContainer';
+import { HostOnlyContainer, hostOnlyContainerStyles } from './HostOnlyContainer';
 import { HostButton } from './HostButton';
 
 function ButtonLabel({ round }: { round?: GameRound }) {
@@ -118,7 +118,7 @@ export function HostNextPhaseButton({
 
       <HostOnlyContainer
         label="Host Action"
-        className={clsx('host-only-container--float', getAnimationClass('slideInUp'))}
+        className={clsx(hostOnlyContainerStyles.hostOnlyContainerFloat, getAnimationClass('slideInUp'))}
       >
         <Tooltip title="Pause">
           <HostButton

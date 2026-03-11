@@ -265,7 +265,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
                 <DailyItem
                   itemId={itemId}
                   width={width}
-                  padding={0}
+                  padding={3}
                 />
               </TransparentButton>
             ))}

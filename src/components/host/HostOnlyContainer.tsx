@@ -8,6 +8,8 @@ import { useHost } from 'hooks/useHost';
 // Sass
 import styles from './HostOnlyContainer.module.scss';
 
+export { styles as hostOnlyContainerStyles };
+
 interface HostOnlyContainerProps extends SpaceProps {
   /**
    * The content of the component
