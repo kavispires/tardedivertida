@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "nao-sou-robo",
-  "version": "2.0.55",
+  "version": "2.0.56",
   "release": "stable",
   "releaseDate": "2023-11-12",
   "available": true,
@@ -47,26 +47,15 @@
     ]
   },
   "playerCount": {
-    "recommended": [
-      4,
-      5,
-      6
-    ],
+    "recommended": [4, 5, 6],
     "min": 2,
-    "max": 10,
+    "max": 8,
     "best": 5
   },
   "duration": {
     "base": 5,
     "perPlayer": 4
   },
-  "mechanics": [
-    "competitive",
-    "images",
-    "guessing",
-    "same-time"
-  ],
-  "features": [
-    "achievements"
-  ]
+  "mechanics": ["competitive", "images", "guessing", "same-time"],
+  "features": ["achievements"]
 }

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "ue-so-isso",
-  "version": "4.0.28",
+  "version": "4.0.29",
   "release": "stable",
   "releaseDate": "2021-05-18",
   "available": true,
@@ -47,12 +47,8 @@
     ]
   },
   "playerCount": {
-    "recommended": [
-      5,
-      6,
-      7
-    ],
-    "min": 4,
+    "recommended": [5, 6, 7],
+    "min": 3,
     "max": 10,
     "best": 6
   },
@@ -60,16 +56,9 @@
     "base": 15,
     "perPlayer": 3
   },
-  "mechanics": [
-    "cooperative",
-    "guessing",
-    "writing"
-  ],
+  "mechanics": ["cooperative", "guessing", "writing"],
   "cooperative": true,
-  "features": [
-    "mobile-friendly",
-    "achievements"
-  ],
+  "features": ["mobile-friendly", "achievements"],
   "options": [
     {
       "key": "fewerCards",

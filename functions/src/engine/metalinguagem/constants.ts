@@ -27,7 +27,7 @@ export const METALINGUAGEM_ACHIEVEMENTS = {
 
 export const PLAYER_COUNTS = {
   MIN: 2,
-  MAX: 8,
+  MAX: 6,
 } as const;
 
 export const MAX_ROUNDS = 12;
