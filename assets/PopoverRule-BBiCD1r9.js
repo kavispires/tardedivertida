@@ -1,0 +1,1 @@
+import{j as o,T as t}from"./index-DrvBR1Mm.js";import{F as n}from"./timers.module-sC8WWPXw.js";import{d as p}from"./RulesModal-CcMo1AAv.js";function u({content:e,label:s,showLabel:r=!1}){return o.jsx(n,{type:"popover",position:0,icon:o.jsx(p,{}),content:e,label:s||o.jsx(t,{pt:" Regras",en:" Rules"}),showLabel:r})}export{u as P};

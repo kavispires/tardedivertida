@@ -1,1 +1,0 @@
-import{j as r}from"./index-A-3A-svk.js";const s="_fireworks_qtukr_168",o="_fireworksBefore_qtukr_168",f="_fireworksAfter_qtukr_169",e={fireworks:s,fireworksBefore:o,fireworksAfter:f};function t(){return r.jsxs("div",{className:e.fireworks,children:[r.jsx("div",{className:e.fireworksBefore}),r.jsx("div",{className:e.fireworksAfter})]})}export{t as FireworksEffect};
