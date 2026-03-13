@@ -104,6 +104,7 @@ export function StepSelectThings({
       <SpaceContainer>
         <Card
           size="large"
+          hideHeader
           footer={
             <Translate
               pt={<>Categoria criada por {creator.name}</>}

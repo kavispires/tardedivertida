@@ -83,7 +83,7 @@ export function StepCreateCategory({
               Try to be very specific so that other players can't easily add things to your category!
               <br />• The category can't be "meta", like "things that other players don't have", "things I ate
               yesterday", etc.
-              <br />• It also has to be related to the meaning of the thing, not its image{' '}
+              <br />• The category also has to be related to the meaning of the thing, not its image{' '}
               <em>(during voting, only the name of the thing will be shown)</em>.
             </>
           }
