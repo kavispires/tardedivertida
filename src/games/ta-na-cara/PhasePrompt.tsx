@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -72,33 +73,35 @@ export function PhasePrompt({ state, players, user }: PhaseProps) {
         players={players}
       >
         {/* Step 0 */}
-        <ViewIf condition={isUserTheActivePlayer}>
-          <StepSelectPrompt
-            announcement={announcement}
-            players={players}
-            user={user}
-            turnOrder={state.turnOrder}
-            charactersDict={state.charactersDict}
-            charactersIds={state.charactersIds}
-            questionsDict={state.questionsDict}
-            onSubmitPrompt={onSubmitPrompt}
-            onSubmitTarget={onSubmitTarget}
-            activePlayerId={state.activePlayerId}
-          />
-        </ViewIf>
-        <ViewIf condition={!isUserTheActivePlayer}>
-          <StepWaitingForPrompt
-            announcement={announcement}
-            players={players}
-            user={user}
-            turnOrder={state.turnOrder}
-            charactersDict={state.charactersDict}
-            charactersIds={state.charactersIds}
-            questionsDict={state.questionsDict}
-            activePlayer={activePlayer}
-            activePlayerId={state.activePlayerId}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isUserTheActivePlayer}>
+            <StepSelectPrompt
+              announcement={announcement}
+              players={players}
+              user={user}
+              turnOrder={state.turnOrder}
+              charactersDict={state.charactersDict}
+              charactersIds={state.charactersIds}
+              questionsDict={state.questionsDict}
+              onSubmitPrompt={onSubmitPrompt}
+              onSubmitTarget={onSubmitTarget}
+              activePlayerId={state.activePlayerId}
+            />
+          </ViewIf>
+          <ViewIf condition={!isUserTheActivePlayer}>
+            <StepWaitingForPrompt
+              announcement={announcement}
+              players={players}
+              user={user}
+              turnOrder={state.turnOrder}
+              charactersDict={state.charactersDict}
+              charactersIds={state.charactersIds}
+              questionsDict={state.questionsDict}
+              activePlayer={activePlayer}
+              activePlayerId={state.activePlayerId}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

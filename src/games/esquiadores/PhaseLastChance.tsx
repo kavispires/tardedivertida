@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -87,37 +88,39 @@ export function PhaseLastChance({ players, state, user }: PhaseProps<PhaseBetsSt
         }}
       >
         {/* Step 1 */}
-        <ViewIf condition={isUserSkier}>
-          <StepChoosePlayers
-            announcement={announcement}
-            players={players}
-            turnOrder={state.turnOrder}
-            user={user}
-            skier={skier}
-            mountain={state.mountain}
-            lodges={state.lodges}
-            onSubmitBets={onSubmitBets}
-            betType="final"
-            animateFrom={state.animateFrom}
-            animateTo={state.animateTo}
-            playerBetType="skiersBoost"
-          />
-        </ViewIf>
-        <ViewIf condition={!isUserSkier}>
-          <StepMakeBets
-            announcement={announcement}
-            players={players}
-            turnOrder={state.turnOrder}
-            user={user}
-            skier={skier}
-            mountain={state.mountain}
-            lodges={state.lodges}
-            onSubmitBets={onSubmitBets}
-            betType="final"
-            animateFrom={state.animateFrom}
-            animateTo={state.animateTo}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isUserSkier}>
+            <StepChoosePlayers
+              announcement={announcement}
+              players={players}
+              turnOrder={state.turnOrder}
+              user={user}
+              skier={skier}
+              mountain={state.mountain}
+              lodges={state.lodges}
+              onSubmitBets={onSubmitBets}
+              betType="final"
+              animateFrom={state.animateFrom}
+              animateTo={state.animateTo}
+              playerBetType="skiersBoost"
+            />
+          </ViewIf>
+          <ViewIf condition={!isUserSkier}>
+            <StepMakeBets
+              announcement={announcement}
+              players={players}
+              turnOrder={state.turnOrder}
+              user={user}
+              skier={skier}
+              mountain={state.mountain}
+              lodges={state.lodges}
+              onSubmitBets={onSubmitBets}
+              betType="final"
+              animateFrom={state.animateFrom}
+              animateTo={state.animateTo}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

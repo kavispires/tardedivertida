@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -56,30 +57,32 @@ export function PhaseClueEvaluations({ state, players }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <ViewIf condition={isUserTheBoss}>
-          <StepBossEvaluation
-            secretWord={state.secretWord}
-            board={state.board}
-            clues={state.clues}
-            categories={state.categories}
-            onSubmitEvaluation={onSubmitEvaluation}
-            onSubmitOutcome={onSubmitOutcome}
-            finalAnswersLeft={state.finalAnswersLeft}
-            players={players}
-            round={state.round}
-            outcome={state.outcome}
-          />
-        </ViewIf>
-        <ViewIf condition={!isUserTheBoss}>
-          <StepPlayersWaitEvaluation
-            board={state.board}
-            clues={state.clues}
-            categories={state.categories}
-            boss={boss}
-            finalAnswersLeft={state.finalAnswersLeft}
-            players={players}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isUserTheBoss}>
+            <StepBossEvaluation
+              secretWord={state.secretWord}
+              board={state.board}
+              clues={state.clues}
+              categories={state.categories}
+              onSubmitEvaluation={onSubmitEvaluation}
+              onSubmitOutcome={onSubmitOutcome}
+              finalAnswersLeft={state.finalAnswersLeft}
+              players={players}
+              round={state.round}
+              outcome={state.outcome}
+            />
+          </ViewIf>
+          <ViewIf condition={!isUserTheBoss}>
+            <StepPlayersWaitEvaluation
+              board={state.board}
+              clues={state.clues}
+              categories={state.categories}
+              boss={boss}
+              finalAnswersLeft={state.finalAnswersLeft}
+              players={players}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

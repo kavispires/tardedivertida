@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -70,33 +71,35 @@ export function PhaseGuessing({ state, players, user }: PhaseProps) {
         players={players}
       >
         {/* Step 0 */}
-        <ViewIf condition={!isUserTheTargetedPlayer}>
-          <StepGuessPlayer
-            announcement={announcement}
-            players={players}
-            user={user}
-            turnOrder={state.turnOrder}
-            charactersDict={state.charactersDict}
-            charactersIds={state.charactersIds}
-            questionsDict={state.questionsDict}
-            onSubmitGuess={onSubmitGuess}
-            activePlayerId={state.activePlayerId}
-            targetedPlayer={targetedPlayer}
-            points={state.points ?? 1}
-          />
-        </ViewIf>
-        <ViewIf condition={isUserTheTargetedPlayer}>
-          <StepWaitingForGuesses
-            announcement={announcement}
-            players={players}
-            user={user}
-            turnOrder={state.turnOrder}
-            charactersDict={state.charactersDict}
-            charactersIds={state.charactersIds}
-            questionsDict={state.questionsDict}
-            activePlayerId={state.activePlayerId}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={!isUserTheTargetedPlayer}>
+            <StepGuessPlayer
+              announcement={announcement}
+              players={players}
+              user={user}
+              turnOrder={state.turnOrder}
+              charactersDict={state.charactersDict}
+              charactersIds={state.charactersIds}
+              questionsDict={state.questionsDict}
+              onSubmitGuess={onSubmitGuess}
+              activePlayerId={state.activePlayerId}
+              targetedPlayer={targetedPlayer}
+              points={state.points ?? 1}
+            />
+          </ViewIf>
+          <ViewIf condition={isUserTheTargetedPlayer}>
+            <StepWaitingForGuesses
+              announcement={announcement}
+              players={players}
+              user={user}
+              turnOrder={state.turnOrder}
+              charactersDict={state.charactersDict}
+              charactersIds={state.charactersIds}
+              questionsDict={state.questionsDict}
+              activePlayerId={state.activePlayerId}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -75,27 +76,29 @@ export function PhaseCategoryCreation({ players, state, user }: PhaseProps<Phase
         players={players}
       >
         {/* Step 0 */}
-        <ViewIf condition={isTheCreator}>
-          <StepCreateCategory
-            user={user}
-            players={players}
-            cardsDict={state?.cardsDict}
-            announcement={announcement}
-            onSubmitCategory={onSubmitCategory}
-            onSkipTurn={onSkipTurn}
-            turnOrder={state.turnOrder}
-          />
-        </ViewIf>
-        <ViewIf condition={!isTheCreator}>
-          <StepWaitForCreation
-            user={user}
-            players={players}
-            cardsDict={state?.cardsDict}
-            announcement={announcement}
-            creator={creator}
-            turnOrder={state.turnOrder}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isTheCreator}>
+            <StepCreateCategory
+              user={user}
+              players={players}
+              cardsDict={state?.cardsDict}
+              announcement={announcement}
+              onSubmitCategory={onSubmitCategory}
+              onSkipTurn={onSkipTurn}
+              turnOrder={state.turnOrder}
+            />
+          </ViewIf>
+          <ViewIf condition={!isTheCreator}>
+            <StepWaitForCreation
+              user={user}
+              players={players}
+              cardsDict={state?.cardsDict}
+              announcement={announcement}
+              creator={creator}
+              turnOrder={state.turnOrder}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

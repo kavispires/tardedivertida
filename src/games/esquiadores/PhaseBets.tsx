@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -105,32 +106,34 @@ export function PhaseBets({ state, players, user }: PhaseProps<PhaseBetsState>) 
         </RoundAnnouncement>
 
         {/* Step 1 */}
-        <ViewIf condition={isUserSkier}>
-          <StepMakeChoices
-            announcement={announcement}
-            players={players}
-            turnOrder={state.turnOrder}
-            user={user}
-            mountain={state.mountain}
-            onSubmitChoices={onSubmitChoices}
-          />
-        </ViewIf>
-        <ViewIf condition={!isUserSkier}>
-          <StepMakeBets
-            announcement={announcement}
-            players={players}
-            turnOrder={state.turnOrder}
-            user={user}
-            skier={skier}
-            mountain={state.mountain}
-            lodges={state.lodges}
-            onSubmitBets={onSubmitBets}
-            betType="initial"
-            animateFrom={state.animateFrom}
-            animateTo={state.animateTo}
-            catchUp={state.catchUp}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isUserSkier}>
+            <StepMakeChoices
+              announcement={announcement}
+              players={players}
+              turnOrder={state.turnOrder}
+              user={user}
+              mountain={state.mountain}
+              onSubmitChoices={onSubmitChoices}
+            />
+          </ViewIf>
+          <ViewIf condition={!isUserSkier}>
+            <StepMakeBets
+              announcement={announcement}
+              players={players}
+              turnOrder={state.turnOrder}
+              user={user}
+              skier={skier}
+              mountain={state.mountain}
+              lodges={state.lodges}
+              onSubmitBets={onSubmitBets}
+              betType="initial"
+              animateFrom={state.animateFrom}
+              animateTo={state.animateTo}
+              catchUp={state.catchUp}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -62,30 +63,32 @@ export function PhaseCompare({ state, players }: PhaseProps) {
         players={players}
       >
         {/* Step 0 */}
-        <ViewIf condition={isUserTheGuesser}>
-          <GuesserWaitingRoom
-            players={players}
-            instructionSuffix={{
-              pt: 'validam dicas',
-              en: 'validate the clues',
-            }}
-            phase={state.phase}
-            guesser={guesser}
-            turnOrder={state.gameOrder}
-          />
-        </ViewIf>
-        <ViewIf condition={!isUserTheGuesser}>
-          <StepCompareSuggestions
-            controller={controller}
-            isUserTheController={isUserTheController}
-            secretWord={state.secretWord}
-            suggestions={state.suggestions}
-            players={players}
-            onValidateSuggestions={onValidateSuggestions}
-            onUpdateSuggestions={onUpdateSuggestions}
-            announcement={announcement}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isUserTheGuesser}>
+            <GuesserWaitingRoom
+              players={players}
+              instructionSuffix={{
+                pt: 'validam dicas',
+                en: 'validate the clues',
+              }}
+              phase={state.phase}
+              guesser={guesser}
+              turnOrder={state.gameOrder}
+            />
+          </ViewIf>
+          <ViewIf condition={!isUserTheGuesser}>
+            <StepCompareSuggestions
+              controller={controller}
+              isUserTheController={isUserTheController}
+              secretWord={state.secretWord}
+              suggestions={state.suggestions}
+              players={players}
+              onValidateSuggestions={onValidateSuggestions}
+              onUpdateSuggestions={onUpdateSuggestions}
+              announcement={announcement}
+            />
+          </ViewIf>
+        </Fragment>
 
         {/* Step 1 */}
         <WaitingRoom

@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -52,28 +53,30 @@ export function PhaseGuess({ state, players, meta }: PhaseProps) {
         players={players}
       >
         {/* Step 0 */}
-        <ViewIf condition={isUserTheGuesser}>
-          <StepGuessing
-            guesser={guesser}
-            secretWord={state.secretWord}
-            onSubmitOutcome={onSubmitOutcome}
-            onSendGuess={onSendGuess}
-            validSuggestions={state.validSuggestions}
-            announcement={announcement}
-            timerEnabled={Boolean(meta.options?.withTimer)}
-            hintsEnabled={Boolean(meta.options?.withHints)}
-          />
-        </ViewIf>
-        <ViewIf condition={!isUserTheGuesser}>
-          <StepWaitingForGuess
-            guesser={guesser}
-            validSuggestions={state.validSuggestions}
-            secretWord={state.secretWord}
-            announcement={announcement}
-            timerEnabled={Boolean(meta.options?.withTimer)}
-            hintsEnabled={Boolean(meta.options?.withHints)}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isUserTheGuesser}>
+            <StepGuessing
+              guesser={guesser}
+              secretWord={state.secretWord}
+              onSubmitOutcome={onSubmitOutcome}
+              onSendGuess={onSendGuess}
+              validSuggestions={state.validSuggestions}
+              announcement={announcement}
+              timerEnabled={Boolean(meta.options?.withTimer)}
+              hintsEnabled={Boolean(meta.options?.withHints)}
+            />
+          </ViewIf>
+          <ViewIf condition={!isUserTheGuesser}>
+            <StepWaitingForGuess
+              guesser={guesser}
+              validSuggestions={state.validSuggestions}
+              secretWord={state.secretWord}
+              announcement={announcement}
+              timerEnabled={Boolean(meta.options?.withTimer)}
+              hintsEnabled={Boolean(meta.options?.withHints)}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );
