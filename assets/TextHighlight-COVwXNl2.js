@@ -1,0 +1,1 @@
+import{j as e,c as x}from"./index-COsPT6u_.js";const l="_textHighlight_1fdgh_168",a="_textHighlightDark_1fdgh_180",t={textHighlight:l,textHighlightDark:a};function H({children:i,className:g,dark:h,...s}){return e.jsx("span",{className:x(t.textHighlight,h&&t.textHighlightDark,g),...s,children:i})}export{H as T};

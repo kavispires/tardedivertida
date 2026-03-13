@@ -1,1 +1,0 @@
-import{j as r}from"./index-DrvBR1Mm.js";const s="_fireworks_1k1in_168",o="_fireworksBefore_1k1in_168",f="_fireworksAfter_1k1in_169",e={fireworks:s,fireworksBefore:o,fireworksAfter:f};function k(){return r.jsxs("div",{className:e.fireworks,children:[r.jsx("div",{className:e.fireworksBefore}),r.jsx("div",{className:e.fireworksAfter})]})}export{k as FireworksEffect};
