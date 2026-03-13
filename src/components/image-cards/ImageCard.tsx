@@ -11,7 +11,6 @@ import { PUBLIC_URL } from 'utils/constants';
 import placeholder from 'assets/images/placeholder.jpg';
 // Sass
 import styles from './ImageCard.module.scss';
-// Assets
 
 export type ImageCardProps = {
   /**

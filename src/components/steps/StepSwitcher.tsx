@@ -80,12 +80,6 @@ export function StepSwitcher({ children, step, conditions, players, waitingRoom 
     return (
       <WaitingRoom
         players={players}
-        title={
-          <Translate
-            pt="Pronto!"
-            en="Done!"
-          />
-        }
         instruction={waitingRoom.instruction ?? getWaitingRoomInstruction(waitingRoom.type ?? 'PLAYERS')}
       >
         {waitingRoom.content}

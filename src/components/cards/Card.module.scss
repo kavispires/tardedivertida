@@ -91,7 +91,7 @@
   left: 50%;
   transform: translateX(-50%);
 
-  &:hover.ant-btn {
+  &:hover:global(.ant-btn) {
     background-color: get-color("white");
     color: get-color("yellow");
     border-color: get-color("yellow");

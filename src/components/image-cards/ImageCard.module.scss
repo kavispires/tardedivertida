@@ -9,7 +9,7 @@
     transform: scale(1.05);
   }
 
-  .ant-image-img {
+  :global(.ant-image-img) {
     border-radius: get-unit(3);
   }
 }

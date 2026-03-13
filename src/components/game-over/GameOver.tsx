@@ -25,6 +25,8 @@ import { Instruction } from 'components/text';
 import { RateGameWidget } from './RateGameWidget';
 // Images
 import gameOverTitle from 'assets/images/game-over-title.svg?url';
+// Sass
+import styles from './gameOver.module.scss';
 
 const GameOverText = () => (
   <Translate
@@ -73,20 +75,20 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
       announcement={announcement}
       fullWidth
     >
-      <div className="game-over__banner">
+      <div className={styles.gameOver__banner}>
         <GameStrip
           gameName={info.gameName}
           width={400}
           title={info.title}
           stripWidth={window.innerWidth + 64}
           showLogo={hideGameOver}
-          className="game-over__strip"
+          className={styles.gameOver__strip}
         >
           {!hideGameOver && (
             <motion.img
               src={gameOverTitle}
               alt="Game Over"
-              className="game-over__title"
+              className={styles.gameOver__title}
               style={{ width: 400, transform: 'translate(-50%, -50%)' }}
               initial={{ opacity: 0, scale: 0.5, transform: 'translate(-50%, -50%)' }}
               animate={{ opacity: 1, scale: 1, transform: 'translate(-50%, -50%)' }}
@@ -100,8 +102,8 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
       {hasWinnerContent && state?.group?.outcome !== 'NON_WINNABLE_GAME' && (
         <Instruction contained>
           {Boolean(state.winners) && state.winners.length > 0 && (
-            <div className="game-over__winner-container">
-              <div className="game-over__text">
+            <div className={styles.gameOver__winnerContainer}>
+              <div className={styles.gameOver__text}>
                 <GameOverText />{' '}
                 {state.winners.length > 1 ? (
                   <Translate
@@ -116,18 +118,18 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
                 )}
                 :
               </div>
-              <ul className="game-over__winners">
+              <ul className={styles.gameOver__winners}>
                 {state.winners.map((winner: GamePlayer) => {
                   return (
                     <li
-                      className="game-over__winner"
+                      className={styles.gameOver__winner}
                       key={`winner-${winner.name}`}
                     >
                       <PlayerAvatar
-                        className="game-over__avatar"
+                        className={styles.gameOver__avatar}
                         avatarId={winner.avatarId ?? 25}
                       />
-                      <div className="game-over__winner-name">
+                      <div className={styles.gameOver__winnerName}>
                         <strong>{winner.name ?? '?'}</strong>,{' '}
                         {AVATARS[winner.avatarId].description[language]}
                       </div>
@@ -139,8 +141,8 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
           )}
 
           {Boolean(state.group) && (
-            <div className="game-over__winner">
-              <div className="game-over__text">
+            <div className={styles.gameOver__winner}>
+              <div className={styles.gameOver__text}>
                 <GameOverText />
               </div>
               <Progress
@@ -159,7 +161,7 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
                 }
                 percent={Math.round(((state.group.score ?? 0) * 100) / (state.group.goal ?? 1))}
               />
-              <div className="game-over__text">
+              <div className={styles.gameOver__text}>
                 {state.group.outcome === 'WIN' ? (
                   <Translate
                     pt="Parabéns, vocês ganharam!"
@@ -176,8 +178,8 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
           )}
 
           {Boolean(state.team) && (
-            <div className="game-over__winner">
-              <div className="game-over__text">
+            <div className={styles.gameOver__winner}>
+              <div className={styles.gameOver__text}>
                 <GameOverText />
               </div>
               <Progress
@@ -189,7 +191,7 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
                 }}
                 percent={state.team.score ?? 0}
               />
-              <div className="game-over__text">
+              <div className={styles.gameOver__text}>
                 {state.team.victory ? (
                   <Translate
                     pt="Parabéns, vocês ganharam!"
@@ -206,7 +208,7 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
           )}
 
           {!state.winners && !state.team && !state.group && (
-            <div className="game-over__text">
+            <div className={styles.gameOver__text}>
               <GameOverText />
             </div>
           )}

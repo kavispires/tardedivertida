@@ -6,6 +6,8 @@
   max-width: var(--max-width);
   text-wrap: balance;
   text-align: center;
+  margin-right: auto;
+  margin-left: auto;
 
   &.ant-typography {
     margin-bottom: get-unit(1);
