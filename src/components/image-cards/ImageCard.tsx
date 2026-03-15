@@ -95,6 +95,7 @@ export const ImageCard = ({
       <Image
         width={cardWidth}
         src={`${baseUrl}/${imageURL}.${fileExtension}`}
+        alt={cardId}
         placeholder={
           <Image
             preview={false}
