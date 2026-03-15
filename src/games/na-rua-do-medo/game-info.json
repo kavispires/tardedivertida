@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "N",
   "gameName": "na-rua-do-medo",
-  "version": "3.1.77",
+  "version": "3.1.78",
   "release": "stable",
   "releaseDate": "2022-02-09",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Na Rua do Medo",
     "en": "Fear Street"

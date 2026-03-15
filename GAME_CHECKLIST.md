@@ -14,563 +14,504 @@ Legend
 
 - Collection: `adedanhx`
 - Code: `K`
-- Availability: ✅
-- Rating: ⭐⭐⭐⭐
 - Rules: ✅
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules Images: 🔘
 - Bots: 🔘
-- Game Over flavor: 🔘
-- Color Scheme: 🔘
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Arte Ruim Pra Dedéu
 
 - Collection: `arte-ruim`
 - Code: `A`
-- Availability: ✅
-- Rating: ⭐⭐⭐⭐⭐
-- Rules: 🟡 (old images)
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules: ✅
+- Rules Images: ✅
 - Bots: 🟡 `(only extra cards on the table)`
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-- Color Scheme: ✅
 - Collects Data: ✅
+- Phases Refactor: 🔘
+- View Refactor: 🔘
+
+## Bomba Relógio
+
+- Collection: `bomba-relogio`
+- Code: `B`
+- Rules: ✅
+- Rules Images: 🔘
+- Bots: 🔘
+- Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
+
+## Colegas de Quarto
+
+- Collection: `colegas-de-quarto`
+- Code: `S`
+- Rules: ✅
+- Rules Images: 🔘
+- Bots: 🔘
+- Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Comunicação Alienígena
 
 - Collection: `comunicacao-alienigena`
-- Code: `?`
-- Availability: ✅
-- Rating: ⭐⭐⭐⭐
+- Code: `C`
 - Rules: ✅
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules Images: ✅
 - Bots: ✅
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-- Color Scheme: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
+
+## Comunicação Alienígena Duo
+
+- Collection: `comunicacao-duo`
+- Code: `D`
+- Rules: 🔘
+- Rules Images: 🔘
+- Bots: 🔘
+- Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Contadores de Histórias
 
 - Collection: `contadores-historias`
 - Code: `C`
-- Availability: ✅
-- Rating: ⭐⭐⭐
-- Rules: 🟡 `(text only)`
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules: ✅
+- Rules Images: 🔘
 - Bots: ⛔️ `(only extra cards on the table)`
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-- Color Scheme: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
+
+## Controle De Estoque
+
+- Collection: `controle-de-estoque`
+- Code: `C`
+- Rules: ✅
+- Rules Images: 🔘
+- Bots: 🔘
+- Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Crimes Hediondos
 
 - Collection: `crimes-hediondos`
 - Code: `H`
-- Availability: ✅
-- Rating: ⭐⭐
-- Rules: ❌
-- Achievements: ❌
-- Overlaid Phase Announcements: 🔸
+- Rules: ✅
+- Rules Images: 🔘
 - Bots: ✅
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-- Color Scheme: ❌
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Cruza Palavras
 
 - Collection: `cruza-palavras`
 - Code: `X`
-- Availability: ✅
-- Rating: ⭐⭐
-- Rules: 🟡 `(text only)`
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules: ✅
+- Rules Images: 🔘
 - Bots: ⛔️
-- Game Over flavor: ❌
-- Custom Clouds: ✅
-- Color Scheme: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Detetives Imaginativos
 
 - Collection: `detetives-imaginativos`
 - Code: `D`
-- Availability: ✅
-- Rating: ⭐⭐⭐
-- Rules: ❌
-- Achievements: ❌
-- Overlaid Phase Announcements: ❌
+- Rules: ✅
+- Rules Images: ✅
 - Bots: ⛔️
-- Game Over flavor: ❌
-- Custom Clouds: ✅
-- Color Scheme: ❌
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Duetos
 
 - Collection: `duetos`
 - Code: `D`
-- Availability: ✅
-- Rating: ✅✅✅✅
-- Rules: 🟡 `(text only)`
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules: ✅
+- Rules Images: ✅
 - Bots: ⛔️
-- Game Over flavor: ❌
-- Color Scheme: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Espião Entre Nós
 
 - Collection: `espiao-entre-nos`
 - Code: `E`
-- Availability: ✅
-- Rating: ⭐⭐
-- Rules: ❌
-- Achievements: ❌
-- Overlaid Phase Announcements: ❌
+- Rules: ✅
+- Rules Images: 🔘
 - Bots: ⛔️
-- Game Over flavor: 🟡
-- Custom Clouds: ✅
-- Color Scheme: ❌
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
+
+## Esquiadores
+
+- Collection: `esquiadores`
+- Code: `E`
+- Rules: ✅
+- Rules Images: ✅
+- Bots: 🔘
+- Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Eu Não Sou Um Robô
 
 - Collection: `nao-sou-robo`
-- Code: `N`
-- Availability: ✅
-- Rating: ⭐⭐⭐
-- Rules: 🔘
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Code: `B`
+- Rules: ✅
+- Rules Images: ✅
 - Bots: ⛔️
-- Game Over flavor: ✅ (lore)
-- Color Scheme: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
-## Fileira de Fatos
+## Fileira De Fatos
 
 - Collection: `fileira-de-fatos`
 - Code: `F`
-- Availability: ✅
-- Rating: ⭐⭐⭐
 - Rules: ✅
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules Images: ✅
 - Bots: ⛔️
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-- Color Scheme: ✅
 - Collects Data: ⛔️
+- Phases Refactor: 🔘
+- View Refactor: 🔘
+
+## Fofoca Quente
+
+- Collection: `fofoca-quente`
+- Code: `F`
+- Rules: ✅
+- Rules Images: 🔘
+- Bots: 🔘
+- Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Galeria de Sonhos
 
 - Collection: `galeria-de-sonhos`
 - Code: `G`
-- Availability: ✅
-- Rating: ⭐⭐⭐⭐
 - Rules: ✅
-- Achievements: ✅
-- Overlaid Phase Announcements: 🔘
+- Rules Images: 🔘
 - Bots: ✅
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-- Color Scheme: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
+
+## Idade da Preda
+
+- Collection: `idade-da-preda`
+- Code: `I`
+- Rules: ✅
+- Rules Images: 🔘
+- Bots: 🔘
+- Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
+
+## Instrumentos Codificados
+
+- Collection: `instrumentos-codificados`
+- Code: `I`
+- Rules: 🔘
+- Rules Images: 🔘
+- Bots: 🔘
+- Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Jogo da Mesmice
 
 - Collection: `mesmice`
 - Code: `J`
-- Availability: ✅
-- Rating: ⭐⭐
-- Rules: ❌
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules: ✅
+- Rules Images: 🔘
 - Bots: ⛔️
-- Game Over flavor: ✅
-- Color Scheme: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Labirinto Secreto
 
 - Collection: `labirinto-secreto`
 - Code: `Z`
-- Availability: ✅
-- Rating: ⭐⭐⭐⭐
 - Rules: ✅
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules Images: ✅
 - Bots: ⛔️
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-- Color Scheme: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Linhas Cruzadas
 
 - Collection: `linhas-cruzadas`
 - Code: `L`
-- Availability: ✅
-- Rating: ⭐⭐⭐⭐
-- Rules: 🟡 `(text only)`
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules: 🔘
+- Rules Images: 🔘
 - Bots: ⛔️
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-- Color Scheme: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
+
+## Medidas Não Exatas
+
+- Collection: `medidas-nao-exatas`
+- Code: `M`
+- Rules: ✅
+- Rules Images: ✅
+- Bots: 🔘
+- Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Megamix
 
 - Collection: `megamix`
-- Code: `?`
-- Availability: ✅
-- Rating: ⭐⭐⭐
-- Rules: 🔘
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
+- Code: `Z`
+- Rules: ✅
+- Rules Images: ✅
 - Bots: 🔘
-- Game Over flavor: 🔘
-- Custom Clouds: ✅
-- Color Scheme: ❌
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
+
+## Megarobos
+
+- Collection: `megarobos`
+- Code: `R`
+- Rules: ✅
+- Rules Images: 🔘
+- Bots: 🔘
+- Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Mente Coletiva
 
 - Collection: `mente-coletiva`
-- Code: `?`
-- Availability: ✅
-- Rating: ⭐⭐⭐⭐⭐
-- Rules: 🟡 (images are in portuguese)
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Code: `M`
+- Rules: ✅
+- Rules Images: 🔘
 - Bots: 🔘
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-- Color Scheme: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
+
+## Meta Linguagem
+
+- Collection: `metalinguagem`
+- Code: `L`
+- Rules: ✅
+- Rules Images: ✅
+- Bots: 🔘
+- Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Na Rua do Medo
 
 - Collection: `na-rua-do-medo`
 - Code: `N`
-- Availability: ✅
-- Rating: ⭐⭐
 - Rules: ✅
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules Images: ✅
 - Bots: 🔘
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-- Color Scheme: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
-## Onda Telepatica
+## Onda Telepática
 
 - Collection: `onda-telepatica`
 - Code: `O`
-- Availability: ✅
-- Rating: ⭐⭐⭐⭐
 - Rules: ✅
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules Images: ✅
 - Bots: 🔘
-- Game Over flavor: ✅
-- Custom Clouds: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Planejamento Urbano
 
 - Collection: `planejamento-urbano`
 - Code: `U`
-- Availability: ✅
-- Rating: ⭐⭐⭐
-- Rules: 🟡 (images are in portuguese)
-- Achievements: 🔘
-- Overlaid Phase Announcements: ✅
+- Rules: ✅
+- Rules Images: 🔘
 - Bots: 🔘
-- Game Over flavor: ✅
-- Color Scheme: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Polêmica da Vez
 
 - Collection: `polemica-da-vez`
 - Code: `P`
-- Availability: ✅
-- Rating: ⭐⭐⭐
 - Rules: ✅
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules Images: ✅
 - Bots: 🔘
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-- Color Scheme: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Porta dos Desesperados
 
 - Collection: `porta-dos-desesperados`
 - Code: `I`
-- Availability: ✅
-- Rating: ⭐⭐⭐⭐
 - Rules: ✅
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules Images: ✅
 - Bots: ✅
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-- Color Scheme: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
-## Quem Sou eu
+## Qual O Quesito?
+
+- Collection: `qual-quesito`
+- Code: `Q`
+- Rules: ✅
+- Rules Images: 🔘
+- Bots: 🔘
+- Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
+
+## Quem Sou Eu?
 
 - Collection: `quem-sou-eu`
 - Code: `Q`
-- Availability: ✅
-- Rating: ⭐⭐⭐⭐
 - Rules: ✅
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules Images: ✅
 - Bots: 🔘
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-- Color Scheme: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Retrato Falado Monstruoso
 
 - Collection: `retrato-falado`
 - Code: `R`
-- Availability: ✅
-- Rating: ⭐⭐⭐
-- Rules: 🟡 `(text only)`
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules: ✅
+- Rules Images: 🔘
 - Bots: 🔘
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-- Color Scheme: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
+
+## Senso Literário
+
+- Collection: `senso-literario`
+- Code: `L`
+- Rules: ✅
+- Rules Images: 🔘
+- Bots: 🔘
+- Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Sinais de Alerta
 
 - Collection: `sinais-de-alerta`
 - Code: `S`
-- Availability: ✅
-- Rating: 🔘
-- Rules: 🟡 `(text only)`
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules: ✅
+- Rules Images: 🔘
 - Bots: 🔘
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-- Color Scheme: ✅
 - Collects Data: ✅
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Super Campeonato
 
 - Collection: `super-campeonato`
 - Code: `W`
-- Availability: ✅
-- Rating: ⭐⭐⭐
 - Rules: ✅
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules Images: ✅
 - Bots: 🔘
-- Game Over flavor: ✅
-- Custom Clouds: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Teoria de Conjuntos
 
 - Collection: `teoria-de-conjuntos`
 - Code: `Q`
-- Availability: ✅
-- Rating: ⭐⭐⭐⭐
 - Rules: ✅
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules Images: ✅
 - Bots: 🔘
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-- Color Scheme: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
-## Teste de Elenco
+## Teste De Elenco
 
 - Collection: `teste-de-elenco`
 - Code: `T`
-- Availability: ✅
-- Rating: ⭐⭐⭐
 - Rules: ✅
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules Images: 🔘
 - Bots: 🔘
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-- Color Scheme: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Testemunha Ocular
 
 - Collection: `testemunha-ocular`
 - Code: `T`
-- Availability: ✅
-- Rating: ⭐⭐⭐⭐
-- Rules: 🟡 (text only)
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules: ✅
+- Rules Images: 🔘
 - Bots: 🔘
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-- Color Scheme: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
-## Ué Só Isso
+## Ué, Só Isso?
 
 - Collection: `ue-so-isso`
 - Code: `U`
-- Availability: ✅
-- Rating: ⭐⭐⭐
-- Rules: 🟡 (old images)
-- Achievements: ✅
-- Overlaid Phase Announcements: ✅
+- Rules: ✅
+- Rules Images: ✅
 - Bots: 🔘
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-- Color Scheme: ✅
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
 ## Vamos Ao Cinema
 
 - Collection: `vamos-ao-cinema`
 - Code: `V`
-- Availability: ✅
-- Rating: ⭐⭐⭐
-- Rules: 🔘
-- Achievements: ❌
-- Overlaid Phase Announcements: ✅
-- Bots: 🔘
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-- Color Scheme: ✅
-- Collects Data: 🔘
-
-## TBD
-
-- Collection: `aaa`
-- Code: `?`
-- Availability: ❌
-- Rating: 🔘
-- Rules: 🔘
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
-- Bots: 🔘
-- Game Over flavor: 🔘
-- Color Scheme: 🔘
-- Collects Data: 🔘
-
-# In Development Games
-
-## Escape Room
-
-- Collection: `aaa`
-- Code: `?`
-- Availability: ❌
-- Rating: 🔘
-- Rules: 🔘
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
-- Bots: 🔘
-- Game Over flavor: 🔘
-- Color Scheme: 🔘
-- Collects Data: 🔘
-
-## Quem Não Mata, Morre
-
-- Collection: `quem-nao-mata`
-- Code: `?`
-- Availability: ❌
-- Rating: 🔘
-- Rules: 🔘
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
-- Bots: 🔘
-- Game Over flavor: 🔘
-- Custom Clouds:
-- Color Scheme: ❌
-- Collects Data: 🔘
-
-## Sonhos & Pesadelos
-
-- Collection: `sonhos-pesadelos`
-- Code: `?`
-- Availability: ❌
-- Rating: ⭐
 - Rules: ✅
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
+- Rules Images: 🔘
 - Bots: 🔘
-- Game Over flavor: ❌
-- Custom Clouds: ✅
-- Color Scheme: ❌
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
-## Trevo da Sorte
+## Vendaval de Palpite
 
-- Collection: `trevo-da-sorte`
-- Code: `?`
-- Availability: ✴️
-- Rating: 🔘
-- Rules: 🔘
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
+- Collection: `vendaval-de-palpite`
+- Code: `V`
+- Rules: ✅
+- Rules Images: 🔘
 - Bots: 🔘
-- Game Over flavor: 🔘
-- Custom Clouds: ✅
-- Color Scheme: ❌
 - Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
 
-## Vendaval de Palpites
+## Vice-Campeão
 
-- Collection: `vendaval-de-palpites`
-- Code: `?`
-- Availability: ✴️
-- Rating: 🔘
-- Rules: 🔘
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
+- Collection: `vice-campeao`
+- Code: `V`
+- Rules: ✅
+- Rules Images: ✅
 - Bots: 🔘
-- Game Over flavor: 🔘
-- Custom Clouds: 🔘
-- Color Scheme: ❌
 - Collects Data: 🔘
-
-# Deprecated
-
-## Tá Na Cara
-
-- Collection: `ta-na-cara`
-- Code: `T`
-- Availability: ✅
-- Rating: ⭐⭐⭐
-- Rules: 🔘
-- Achievements: 🔘
-- Overlaid Phase Announcements: ✅
-- Bots: 🔘
-- Game Over flavor: ✅
-- Custom Clouds: ✅
-- Color Scheme: ❌
-- Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘

@@ -1,0 +1,1311 @@
+{
+  "totalGames": 59,
+  "validGames": 47,
+  "excludedGames": 12,
+  "gamesWithoutRules": 0,
+  "allGames": [
+    {
+      "gameName": "adedanhx",
+      "gameCode": "K",
+      "version": "2.0.50",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Adedanhx",
+        "en": "Stop-ish!"
+      }
+    },
+    {
+      "gameName": "arte-ruim",
+      "gameCode": "A",
+      "version": "6.0.61",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Arte Ruim Pra Dedéu",
+        "en": "Questionable Art"
+      }
+    },
+    {
+      "gameName": "barrados-na-alfandega",
+      "gameCode": "B",
+      "version": "0.0.6",
+      "release": "planned",
+      "hasRules": true,
+      "title": {
+        "pt": "Barrados Na Alfândega",
+        "en": "Stuck On Customs"
+      }
+    },
+    {
+      "gameName": "bomba-relogio",
+      "gameCode": "B",
+      "version": "0.9.10",
+      "release": "beta",
+      "hasRules": true,
+      "title": {
+        "pt": "Bomba Relógio",
+        "en": "Time Bomb"
+      }
+    },
+    {
+      "gameName": "cinegrafistas-amadores",
+      "gameCode": "C",
+      "version": "0.0.6",
+      "release": "planned",
+      "hasRules": true,
+      "title": {
+        "pt": "Cinegrafistas Amadores",
+        "en": "Amateur Cinematographers"
+      }
+    },
+    {
+      "gameName": "colegas-de-quarto",
+      "gameCode": "S",
+      "version": "1.0.1",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Colegas de Quarto",
+        "en": "Roommates"
+      }
+    },
+    {
+      "gameName": "comunicacao-alienigena",
+      "gameCode": "C",
+      "version": "5.0.28",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Comunicação Alienígena",
+        "en": "Alien Language"
+      }
+    },
+    {
+      "gameName": "comunicacao-duo",
+      "gameCode": "D",
+      "version": "1.0.28",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Comunicação Alienígena Duo",
+        "en": "Alien Communication Duo"
+      }
+    },
+    {
+      "gameName": "contadores-historias",
+      "gameCode": "C",
+      "version": "4.1.27",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Contadores de Histórias",
+        "en": "Storytellers"
+      }
+    },
+    {
+      "gameName": "controle-de-estoque",
+      "gameCode": "C",
+      "version": "0.0.36",
+      "release": "paused",
+      "hasRules": true,
+      "title": {
+        "pt": "Controle De Estoque",
+        "en": "Inventory Control"
+      }
+    },
+    {
+      "gameName": "crimes-hediondos",
+      "gameCode": "H",
+      "version": "3.0.18",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Crimes Hediondos",
+        "en": "Horrific Crimes"
+      }
+    },
+    {
+      "gameName": "cruza-palavras",
+      "gameCode": "X",
+      "version": "7.0.13",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Cruza Palavras",
+        "en": "Mixed Clues"
+      }
+    },
+    {
+      "gameName": "detetives-imaginativos",
+      "gameCode": "D",
+      "version": "4.0.19",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Detetives Imaginativos",
+        "en": "Detective Agency"
+      }
+    },
+    {
+      "gameName": "duetos",
+      "gameCode": "D",
+      "version": "1.1.89",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Duetos",
+        "en": "Duets"
+      }
+    },
+    {
+      "gameName": "escape-room",
+      "gameCode": "E",
+      "version": "0.0.7",
+      "release": "planned",
+      "hasRules": true,
+      "title": {
+        "pt": "Escape Room",
+        "en": "Escape Room"
+      }
+    },
+    {
+      "gameName": "espiao-entre-nos",
+      "gameCode": "E",
+      "version": "0.10.74",
+      "release": "paused",
+      "hasRules": true,
+      "title": {
+        "pt": "Espião Entre Nós",
+        "en": "Spy the Spies"
+      }
+    },
+    {
+      "gameName": "esquiadores",
+      "gameCode": "E",
+      "version": "1.0.32",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Esquiadores",
+        "en": "Ski Resort"
+      }
+    },
+    {
+      "gameName": "fileira-de-fatos",
+      "gameCode": "F",
+      "version": "1.0.28",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Fileira De Fatos",
+        "en": "Facts Lineup"
+      }
+    },
+    {
+      "gameName": "fofoca-quente",
+      "gameCode": "F",
+      "version": "0.0.28",
+      "release": "dev",
+      "hasRules": true,
+      "title": {
+        "pt": "Fofoca Quente",
+        "en": "Hot Gossip"
+      }
+    },
+    {
+      "gameName": "galeria-de-sonhos",
+      "gameCode": "G",
+      "version": "4.2.12",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Galeria de sonhos",
+        "en": "Dream Gallery"
+      }
+    },
+    {
+      "gameName": "idade-da-preda",
+      "gameCode": "I",
+      "version": "0.9.25",
+      "release": "beta",
+      "hasRules": true,
+      "title": {
+        "pt": "Idade da Preda",
+        "en": "Tongue Age"
+      }
+    },
+    {
+      "gameName": "instrumentos-codificados",
+      "gameCode": "I",
+      "version": "0.0.9",
+      "release": "cancelled",
+      "hasRules": true,
+      "title": {
+        "pt": "Instrumentos Codificados",
+        "en": "Instrumental Cyphers"
+      }
+    },
+    {
+      "gameName": "labirinto-secreto",
+      "gameCode": "Z",
+      "version": "3.1.3",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Labirinto Secreto",
+        "en": "Secret Labyrinth"
+      }
+    },
+    {
+      "gameName": "linhas-cruzadas",
+      "gameCode": "L",
+      "version": "1.2.80",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Linhas Cruzadas",
+        "en": "Mis...communication"
+      }
+    },
+    {
+      "gameName": "medidas-nao-exatas",
+      "gameCode": "M",
+      "version": "1.0.22",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Medidas Não Exatas",
+        "en": "Creative Metrics"
+      }
+    },
+    {
+      "gameName": "megamix",
+      "gameCode": "Z",
+      "version": "4.1.3",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Megamix",
+        "en": "Megamix"
+      }
+    },
+    {
+      "gameName": "megarobos",
+      "gameCode": "R",
+      "version": "0.0.4",
+      "release": "cancelled",
+      "hasRules": true,
+      "title": {
+        "pt": "Megarobos",
+        "en": "Megabots"
+      }
+    },
+    {
+      "gameName": "mente-coletiva",
+      "gameCode": "M",
+      "version": "5.2.79",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Mente Coletiva",
+        "en": "Herd Mind"
+      }
+    },
+    {
+      "gameName": "mesmice",
+      "gameCode": "J",
+      "version": "1.0.62",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Jogo da Mesmice",
+        "en": "Same But Different"
+      }
+    },
+    {
+      "gameName": "metalinguagem",
+      "gameCode": "L",
+      "version": "1.0.31",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Meta Linguagem",
+        "en": "Meta Language"
+      }
+    },
+    {
+      "gameName": "na-rua-do-medo",
+      "gameCode": "N",
+      "version": "3.1.77",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Na Rua do Medo",
+        "en": "Fear Street"
+      }
+    },
+    {
+      "gameName": "namoro-ou-amizade",
+      "gameCode": "R",
+      "version": "0.0.4",
+      "release": "planned",
+      "hasRules": true,
+      "title": {
+        "pt": "Namoro ou Amizade",
+        "en": "Megabots"
+      }
+    },
+    {
+      "gameName": "nao-sou-robo",
+      "gameCode": "B",
+      "version": "2.0.56",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Eu Não Sou Um Robô",
+        "en": "I'm Not A Robot"
+      }
+    },
+    {
+      "gameName": "naufragos",
+      "gameCode": "J",
+      "version": "0.0.6",
+      "release": "planned",
+      "hasRules": true,
+      "title": {
+        "pt": "Náufragos",
+        "en": "Castaways"
+      }
+    },
+    {
+      "gameName": "onda-telepatica",
+      "gameCode": "O",
+      "version": "4.0.81",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Onda Telepática",
+        "en": "Telepathic Waves"
+      }
+    },
+    {
+      "gameName": "palheta-de-cores",
+      "gameCode": "K",
+      "version": "0.0.4",
+      "release": "planned",
+      "hasRules": true,
+      "title": {
+        "pt": "Palheta de Cores",
+        "en": "Color Palette"
+      }
+    },
+    {
+      "gameName": "pique-pega",
+      "gameCode": "P",
+      "version": "0.0.3",
+      "release": "planned",
+      "hasRules": true,
+      "title": {
+        "pt": "Pique-Pega",
+        "en": "The Chase"
+      }
+    },
+    {
+      "gameName": "planejamento-urbano",
+      "gameCode": "U",
+      "version": "1.1.16",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Planejamento Urbano",
+        "en": "City Planning"
+      }
+    },
+    {
+      "gameName": "polemica-da-vez",
+      "gameCode": "P",
+      "version": "3.0.49",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Polêmica da Vez",
+        "en": "That's Polemic"
+      }
+    },
+    {
+      "gameName": "porta-dos-desesperados",
+      "gameCode": "I",
+      "version": "4.0.74",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Porta dos Desesperados",
+        "en": "Obscure Doors"
+      }
+    },
+    {
+      "gameName": "qual-quesito",
+      "gameCode": "Q",
+      "version": "1.0.14",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Qual O Quesito?",
+        "en": "And The Category Is"
+      }
+    },
+    {
+      "gameName": "quem-nao-mata",
+      "gameCode": "Q",
+      "version": "0.0.22",
+      "release": "planned",
+      "hasRules": true,
+      "title": {
+        "pt": "Quem não mata, morre",
+        "en": "Mortal Standoff"
+      }
+    },
+    {
+      "gameName": "quem-sou-eu",
+      "gameCode": "Q",
+      "version": "2.0.57",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Quem Sou Eu?",
+        "en": "Who Am I?"
+      }
+    },
+    {
+      "gameName": "retrato-falado",
+      "gameCode": "R",
+      "version": "2.1.55",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Retrato Falado Monstruoso",
+        "en": "Monster Sketch"
+      }
+    },
+    {
+      "gameName": "senso-literario",
+      "gameCode": "L",
+      "version": "1.0.2",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Senso Literário",
+        "en": "Book Sense"
+      }
+    },
+    {
+      "gameName": "sinais-de-alerta",
+      "gameCode": "S",
+      "version": "1.0.49",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Sinais de Alerta",
+        "en": "Warning Signs"
+      }
+    },
+    {
+      "gameName": "sonhinho-bom",
+      "gameCode": "S",
+      "version": "0.0.7",
+      "release": "planned",
+      "hasRules": true,
+      "title": {
+        "pt": "Sonhinho Bom",
+        "en": "Dream State"
+      }
+    },
+    {
+      "gameName": "sonhos-pesadelos",
+      "gameCode": "S",
+      "version": "0.11.73",
+      "release": "deprecated",
+      "hasRules": true,
+      "title": {
+        "pt": "Sonhos e Pesadelos",
+        "en": "Dreams and Nightmares"
+      }
+    },
+    {
+      "gameName": "super-campeonato",
+      "gameCode": "W",
+      "version": "2.3.70",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Super Campeonato",
+        "en": "Ultimate Championship"
+      }
+    },
+    {
+      "gameName": "ta-na-cara",
+      "gameCode": "T",
+      "version": "1.1.90",
+      "release": "deprecated",
+      "hasRules": true,
+      "title": {
+        "pt": "Tá Na Cara",
+        "en": "Guess Who What?"
+      }
+    },
+    {
+      "gameName": "teoria-de-conjuntos",
+      "gameCode": "Q",
+      "version": "4.0.28",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Teoria de Conjuntos",
+        "en": "Venn Diagram"
+      }
+    },
+    {
+      "gameName": "teste-de-elenco",
+      "gameCode": "T",
+      "version": "2.0.67",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Teste De Elenco",
+        "en": "Re-Casting Call"
+      }
+    },
+    {
+      "gameName": "testemunha-ocular",
+      "gameCode": "T",
+      "version": "6.1.4",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Testemunha Ocular",
+        "en": "Eye Witness"
+      }
+    },
+    {
+      "gameName": "trevo-da-sorte",
+      "gameCode": "Y",
+      "version": "0.0.36",
+      "release": "paused",
+      "hasRules": true,
+      "title": {
+        "pt": "Trevo da Sorte",
+        "en": "Clover Words"
+      }
+    },
+    {
+      "gameName": "ue-so-isso",
+      "gameCode": "U",
+      "version": "4.0.30",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Ué, Só Isso?",
+        "en": "That's It?"
+      }
+    },
+    {
+      "gameName": "vamos-ao-cinema",
+      "gameCode": "V",
+      "version": "2.0.21",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Vamos Ao Cinema",
+        "en": "Movie Night"
+      }
+    },
+    {
+      "gameName": "vendaval-de-palpite",
+      "gameCode": "V",
+      "version": "0.9.70",
+      "release": "paused",
+      "hasRules": true,
+      "title": {
+        "pt": "Vendaval de Palpite",
+        "en": "Brainy Storm"
+      }
+    },
+    {
+      "gameName": "vice-campeao",
+      "gameCode": "V",
+      "version": "1.0.25",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Vice-Campeão",
+        "en": "Runner-Up"
+      }
+    },
+    {
+      "gameName": "vingativos",
+      "gameCode": "V",
+      "version": "0.0.6",
+      "release": "planned",
+      "hasRules": true,
+      "title": {
+        "pt": "Os Vingativos",
+        "en": "Revengers vs Villainus"
+      }
+    }
+  ],
+  "validGamesList": [
+    {
+      "gameName": "adedanhx",
+      "gameCode": "K",
+      "version": "2.0.50",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Adedanhx",
+        "en": "Stop-ish!"
+      }
+    },
+    {
+      "gameName": "arte-ruim",
+      "gameCode": "A",
+      "version": "6.0.61",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Arte Ruim Pra Dedéu",
+        "en": "Questionable Art"
+      }
+    },
+    {
+      "gameName": "bomba-relogio",
+      "gameCode": "B",
+      "version": "0.9.10",
+      "release": "beta",
+      "hasRules": true,
+      "title": {
+        "pt": "Bomba Relógio",
+        "en": "Time Bomb"
+      }
+    },
+    {
+      "gameName": "colegas-de-quarto",
+      "gameCode": "S",
+      "version": "1.0.1",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Colegas de Quarto",
+        "en": "Roommates"
+      }
+    },
+    {
+      "gameName": "comunicacao-alienigena",
+      "gameCode": "C",
+      "version": "5.0.28",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Comunicação Alienígena",
+        "en": "Alien Language"
+      }
+    },
+    {
+      "gameName": "comunicacao-duo",
+      "gameCode": "D",
+      "version": "1.0.28",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Comunicação Alienígena Duo",
+        "en": "Alien Communication Duo"
+      }
+    },
+    {
+      "gameName": "contadores-historias",
+      "gameCode": "C",
+      "version": "4.1.27",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Contadores de Histórias",
+        "en": "Storytellers"
+      }
+    },
+    {
+      "gameName": "controle-de-estoque",
+      "gameCode": "C",
+      "version": "0.0.36",
+      "release": "paused",
+      "hasRules": true,
+      "title": {
+        "pt": "Controle De Estoque",
+        "en": "Inventory Control"
+      }
+    },
+    {
+      "gameName": "crimes-hediondos",
+      "gameCode": "H",
+      "version": "3.0.18",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Crimes Hediondos",
+        "en": "Horrific Crimes"
+      }
+    },
+    {
+      "gameName": "cruza-palavras",
+      "gameCode": "X",
+      "version": "7.0.13",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Cruza Palavras",
+        "en": "Mixed Clues"
+      }
+    },
+    {
+      "gameName": "detetives-imaginativos",
+      "gameCode": "D",
+      "version": "4.0.19",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Detetives Imaginativos",
+        "en": "Detective Agency"
+      }
+    },
+    {
+      "gameName": "duetos",
+      "gameCode": "D",
+      "version": "1.1.89",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Duetos",
+        "en": "Duets"
+      }
+    },
+    {
+      "gameName": "espiao-entre-nos",
+      "gameCode": "E",
+      "version": "0.10.74",
+      "release": "paused",
+      "hasRules": true,
+      "title": {
+        "pt": "Espião Entre Nós",
+        "en": "Spy the Spies"
+      }
+    },
+    {
+      "gameName": "esquiadores",
+      "gameCode": "E",
+      "version": "1.0.32",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Esquiadores",
+        "en": "Ski Resort"
+      }
+    },
+    {
+      "gameName": "fileira-de-fatos",
+      "gameCode": "F",
+      "version": "1.0.28",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Fileira De Fatos",
+        "en": "Facts Lineup"
+      }
+    },
+    {
+      "gameName": "fofoca-quente",
+      "gameCode": "F",
+      "version": "0.0.28",
+      "release": "dev",
+      "hasRules": true,
+      "title": {
+        "pt": "Fofoca Quente",
+        "en": "Hot Gossip"
+      }
+    },
+    {
+      "gameName": "galeria-de-sonhos",
+      "gameCode": "G",
+      "version": "4.2.12",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Galeria de sonhos",
+        "en": "Dream Gallery"
+      }
+    },
+    {
+      "gameName": "idade-da-preda",
+      "gameCode": "I",
+      "version": "0.9.25",
+      "release": "beta",
+      "hasRules": true,
+      "title": {
+        "pt": "Idade da Preda",
+        "en": "Tongue Age"
+      }
+    },
+    {
+      "gameName": "instrumentos-codificados",
+      "gameCode": "I",
+      "version": "0.0.9",
+      "release": "cancelled",
+      "hasRules": true,
+      "title": {
+        "pt": "Instrumentos Codificados",
+        "en": "Instrumental Cyphers"
+      }
+    },
+    {
+      "gameName": "labirinto-secreto",
+      "gameCode": "Z",
+      "version": "3.1.3",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Labirinto Secreto",
+        "en": "Secret Labyrinth"
+      }
+    },
+    {
+      "gameName": "linhas-cruzadas",
+      "gameCode": "L",
+      "version": "1.2.80",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Linhas Cruzadas",
+        "en": "Mis...communication"
+      }
+    },
+    {
+      "gameName": "medidas-nao-exatas",
+      "gameCode": "M",
+      "version": "1.0.22",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Medidas Não Exatas",
+        "en": "Creative Metrics"
+      }
+    },
+    {
+      "gameName": "megamix",
+      "gameCode": "Z",
+      "version": "4.1.3",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Megamix",
+        "en": "Megamix"
+      }
+    },
+    {
+      "gameName": "megarobos",
+      "gameCode": "R",
+      "version": "0.0.4",
+      "release": "cancelled",
+      "hasRules": true,
+      "title": {
+        "pt": "Megarobos",
+        "en": "Megabots"
+      }
+    },
+    {
+      "gameName": "mente-coletiva",
+      "gameCode": "M",
+      "version": "5.2.79",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Mente Coletiva",
+        "en": "Herd Mind"
+      }
+    },
+    {
+      "gameName": "mesmice",
+      "gameCode": "J",
+      "version": "1.0.62",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Jogo da Mesmice",
+        "en": "Same But Different"
+      }
+    },
+    {
+      "gameName": "metalinguagem",
+      "gameCode": "L",
+      "version": "1.0.31",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Meta Linguagem",
+        "en": "Meta Language"
+      }
+    },
+    {
+      "gameName": "na-rua-do-medo",
+      "gameCode": "N",
+      "version": "3.1.77",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Na Rua do Medo",
+        "en": "Fear Street"
+      }
+    },
+    {
+      "gameName": "nao-sou-robo",
+      "gameCode": "B",
+      "version": "2.0.56",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Eu Não Sou Um Robô",
+        "en": "I'm Not A Robot"
+      }
+    },
+    {
+      "gameName": "onda-telepatica",
+      "gameCode": "O",
+      "version": "4.0.81",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Onda Telepática",
+        "en": "Telepathic Waves"
+      }
+    },
+    {
+      "gameName": "planejamento-urbano",
+      "gameCode": "U",
+      "version": "1.1.16",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Planejamento Urbano",
+        "en": "City Planning"
+      }
+    },
+    {
+      "gameName": "polemica-da-vez",
+      "gameCode": "P",
+      "version": "3.0.49",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Polêmica da Vez",
+        "en": "That's Polemic"
+      }
+    },
+    {
+      "gameName": "porta-dos-desesperados",
+      "gameCode": "I",
+      "version": "4.0.74",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Porta dos Desesperados",
+        "en": "Obscure Doors"
+      }
+    },
+    {
+      "gameName": "qual-quesito",
+      "gameCode": "Q",
+      "version": "1.0.14",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Qual O Quesito?",
+        "en": "And The Category Is"
+      }
+    },
+    {
+      "gameName": "quem-sou-eu",
+      "gameCode": "Q",
+      "version": "2.0.57",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Quem Sou Eu?",
+        "en": "Who Am I?"
+      }
+    },
+    {
+      "gameName": "retrato-falado",
+      "gameCode": "R",
+      "version": "2.1.55",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Retrato Falado Monstruoso",
+        "en": "Monster Sketch"
+      }
+    },
+    {
+      "gameName": "senso-literario",
+      "gameCode": "L",
+      "version": "1.0.2",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Senso Literário",
+        "en": "Book Sense"
+      }
+    },
+    {
+      "gameName": "sinais-de-alerta",
+      "gameCode": "S",
+      "version": "1.0.49",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Sinais de Alerta",
+        "en": "Warning Signs"
+      }
+    },
+    {
+      "gameName": "super-campeonato",
+      "gameCode": "W",
+      "version": "2.3.70",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Super Campeonato",
+        "en": "Ultimate Championship"
+      }
+    },
+    {
+      "gameName": "teoria-de-conjuntos",
+      "gameCode": "Q",
+      "version": "4.0.28",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Teoria de Conjuntos",
+        "en": "Venn Diagram"
+      }
+    },
+    {
+      "gameName": "teste-de-elenco",
+      "gameCode": "T",
+      "version": "2.0.67",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Teste De Elenco",
+        "en": "Re-Casting Call"
+      }
+    },
+    {
+      "gameName": "testemunha-ocular",
+      "gameCode": "T",
+      "version": "6.1.4",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Testemunha Ocular",
+        "en": "Eye Witness"
+      }
+    },
+    {
+      "gameName": "trevo-da-sorte",
+      "gameCode": "Y",
+      "version": "0.0.36",
+      "release": "paused",
+      "hasRules": true,
+      "title": {
+        "pt": "Trevo da Sorte",
+        "en": "Clover Words"
+      }
+    },
+    {
+      "gameName": "ue-so-isso",
+      "gameCode": "U",
+      "version": "4.0.30",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Ué, Só Isso?",
+        "en": "That's It?"
+      }
+    },
+    {
+      "gameName": "vamos-ao-cinema",
+      "gameCode": "V",
+      "version": "2.0.21",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Vamos Ao Cinema",
+        "en": "Movie Night"
+      }
+    },
+    {
+      "gameName": "vendaval-de-palpite",
+      "gameCode": "V",
+      "version": "0.9.70",
+      "release": "paused",
+      "hasRules": true,
+      "title": {
+        "pt": "Vendaval de Palpite",
+        "en": "Brainy Storm"
+      }
+    },
+    {
+      "gameName": "vice-campeao",
+      "gameCode": "V",
+      "version": "1.0.25",
+      "release": "stable",
+      "hasRules": true,
+      "title": {
+        "pt": "Vice-Campeão",
+        "en": "Runner-Up"
+      }
+    }
+  ],
+  "excludedGamesList": [
+    {
+      "gameName": "barrados-na-alfandega",
+      "gameCode": "B",
+      "version": "0.0.6",
+      "release": "planned",
+      "hasRules": true,
+      "title": {
+        "pt": "Barrados Na Alfândega",
+        "en": "Stuck On Customs"
+      }
+    },
+    {
+      "gameName": "cinegrafistas-amadores",
+      "gameCode": "C",
+      "version": "0.0.6",
+      "release": "planned",
+      "hasRules": true,
+      "title": {
+        "pt": "Cinegrafistas Amadores",
+        "en": "Amateur Cinematographers"
+      }
+    },
+    {
+      "gameName": "escape-room",
+      "gameCode": "E",
+      "version": "0.0.7",
+      "release": "planned",
+      "hasRules": true,
+      "title": {
+        "pt": "Escape Room",
+        "en": "Escape Room"
+      }
+    },
+    {
+      "gameName": "namoro-ou-amizade",
+      "gameCode": "R",
+      "version": "0.0.4",
+      "release": "planned",
+      "hasRules": true,
+      "title": {
+        "pt": "Namoro ou Amizade",
+        "en": "Megabots"
+      }
+    },
+    {
+      "gameName": "naufragos",
+      "gameCode": "J",
+      "version": "0.0.6",
+      "release": "planned",
+      "hasRules": true,
+      "title": {
+        "pt": "Náufragos",
+        "en": "Castaways"
+      }
+    },
+    {
+      "gameName": "palheta-de-cores",
+      "gameCode": "K",
+      "version": "0.0.4",
+      "release": "planned",
+      "hasRules": true,
+      "title": {
+        "pt": "Palheta de Cores",
+        "en": "Color Palette"
+      }
+    },
+    {
+      "gameName": "pique-pega",
+      "gameCode": "P",
+      "version": "0.0.3",
+      "release": "planned",
+      "hasRules": true,
+      "title": {
+        "pt": "Pique-Pega",
+        "en": "The Chase"
+      }
+    },
+    {
+      "gameName": "quem-nao-mata",
+      "gameCode": "Q",
+      "version": "0.0.22",
+      "release": "planned",
+      "hasRules": true,
+      "title": {
+        "pt": "Quem não mata, morre",
+        "en": "Mortal Standoff"
+      }
+    },
+    {
+      "gameName": "sonhinho-bom",
+      "gameCode": "S",
+      "version": "0.0.7",
+      "release": "planned",
+      "hasRules": true,
+      "title": {
+        "pt": "Sonhinho Bom",
+        "en": "Dream State"
+      }
+    },
+    {
+      "gameName": "sonhos-pesadelos",
+      "gameCode": "S",
+      "version": "0.11.73",
+      "release": "deprecated",
+      "hasRules": true,
+      "title": {
+        "pt": "Sonhos e Pesadelos",
+        "en": "Dreams and Nightmares"
+      }
+    },
+    {
+      "gameName": "ta-na-cara",
+      "gameCode": "T",
+      "version": "1.1.90",
+      "release": "deprecated",
+      "hasRules": true,
+      "title": {
+        "pt": "Tá Na Cara",
+        "en": "Guess Who What?"
+      }
+    },
+    {
+      "gameName": "vingativos",
+      "gameCode": "V",
+      "version": "0.0.6",
+      "release": "planned",
+      "hasRules": true,
+      "title": {
+        "pt": "Os Vingativos",
+        "en": "Revengers vs Villainus"
+      }
+    }
+  ],
+  "gamesWithoutRulesList": []
+}

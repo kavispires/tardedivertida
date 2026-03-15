@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "qual-quesito",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "release": "stable",
   "releaseDate": "2026-01-01",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Qual O Quesito?",
     "en": "And The Category Is"

@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "G",
   "gameName": "galeria-de-sonhos",
-  "version": "4.2.12",
+  "version": "4.2.13",
   "release": "stable",
   "releaseDate": "2022-01-26",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Galeria de sonhos",
     "en": "Dream Gallery"

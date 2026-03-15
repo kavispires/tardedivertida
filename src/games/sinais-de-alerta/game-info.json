@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sinais-de-alerta",
-  "version": "1.0.49",
+  "version": "1.0.50",
   "release": "stable",
   "releaseDate": "2024-09-02",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Sinais de Alerta",
     "en": "Warning Signs"

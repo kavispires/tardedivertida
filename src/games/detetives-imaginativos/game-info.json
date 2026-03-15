@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "detetives-imaginativos",
-  "version": "4.0.19",
+  "version": "4.0.20",
   "release": "stable",
   "releaseDate": "2021-07-10",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Detetives Imaginativos",
     "en": "Detective Agency"

@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vendaval-de-palpite",
-  "version": "0.9.70",
+  "version": "0.9.71",
   "release": "paused",
   "releaseDate": "2022-05-29",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Vendaval de Palpite",
     "en": "Brainy Storm"
