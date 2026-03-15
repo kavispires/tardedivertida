@@ -11,6 +11,8 @@ import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { Header } from 'pages/Daily/components/Header';
 import { Menu } from 'pages/Daily/components/Menu';
 import { Region } from 'pages/Daily/components/Region';
+// Internal
+import KindergartenMystery from './FoiUmPirralhoDemo';
 
 type DailyDemoProps = {
   data: unknown;
@@ -40,7 +42,8 @@ export function DailyDemoContent({ data: _data }: DailyDemoProps) {
             <>Não escrevi regras, estou testando alguma coisa que pedi pra vc testar também. Adivinhe!</>
           }
         />
-        <Region>Não tem nada aqui</Region>
+        {/* <Region>Não tem nada aqui</Region> */}
+        <KindergartenMystery />
       </DailyContent>
     </Layout>
   );
