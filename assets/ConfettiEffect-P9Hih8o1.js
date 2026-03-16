@@ -1,1 +1,0 @@
-import{j as t}from"./index-COsPT6u_.js";const o="_confetti_ios04_168",s={confetti:o};function f(){const e=Array.from({length:50},(c,n)=>t.jsx("span",{},n));return t.jsx("div",{className:s.confetti,children:e})}export{f as ConfettiEffect};

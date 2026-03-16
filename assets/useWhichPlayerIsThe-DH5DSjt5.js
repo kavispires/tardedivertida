@@ -1,0 +1,1 @@
+import{au as o,r as u,v as c,eV as n}from"./index-hnCgXqnc.js";function d(e="activePlayerId",s={},r={}){const[t]=o("userId");return u.useMemo(()=>{const a=c.get(s,e);return[r?.[a]??n,a===t]},[r,e,s,t])}export{d as u};
