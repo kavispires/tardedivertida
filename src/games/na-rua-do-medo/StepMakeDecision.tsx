@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
@@ -34,8 +34,8 @@ type StepMakeDecisionProps = {
   street: StreetCard[];
   currentCard: StreetCard;
   onSubmitDecision: (payload: SubmitDecisionPayload) => void;
-  continuingPlayerIds: PlayerId[];
-  alreadyAtHomePlayerIds: PlayerId[];
+  continuingPlayerIds: UID[];
+  alreadyAtHomePlayerIds: UID[];
   candySidewalk: CandySidewalk;
   totalCandyInSidewalk: number;
   candyInHand: number;

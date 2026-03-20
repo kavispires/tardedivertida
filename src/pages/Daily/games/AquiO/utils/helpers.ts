@@ -81,7 +81,7 @@ const POSITIONS = Array(9)
   .map((_, i) => i);
 const SIZES = [100, 90, 110, 80, 105, 130, 120, 150, 115];
 
-const Z_INDEXES: NumberDictionary = {
+const Z_INDEXES: Dictionary<number> = {
   85: 8,
   80: 7,
   90: 6,

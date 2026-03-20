@@ -49,10 +49,10 @@ export function getInitialState(data: DailyArteRuimEntry): GameState {
  * @param text - The word to extract the letters from.
  * @returns An object with each letter in the word as a key and a boolean value indicating if the letter has been found.
  */
-export function getLettersInWord(text: string): BooleanDictionary {
+export function getLettersInWord(text: string): Dictionary<boolean> {
   const cleanedUpText = stringRemoveAccents(text).toLowerCase();
   const letters = cleanedUpText.split('');
-  const lettersInWord: BooleanDictionary = {};
+  const lettersInWord: Dictionary<boolean> = {};
 
   letters.forEach((letter) => {
     if (letter.match(/[a-zA-Z]/)) {
@@ -90,7 +90,7 @@ export function writeResult({
   solution,
   ...rest
 }: BasicResultsOptions & {
-  solution: BooleanDictionary;
+  solution: Dictionary<boolean>;
 }): string {
   const totalLetters = Object.keys(solution).length;
   const guessedLetters = Object.values(solution).filter(Boolean).length;

@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Components

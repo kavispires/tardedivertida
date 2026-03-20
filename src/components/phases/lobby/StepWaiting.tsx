@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 // Ant Design Resources
 import { App, Tag, Typography } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Hooks
 import { useGameMeta } from 'hooks/useGameMeta';
 import { useGlobalState } from 'hooks/useGlobalState';

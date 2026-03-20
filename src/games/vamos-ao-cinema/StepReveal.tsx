@@ -1,6 +1,5 @@
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 import type { MovieCard, MovieReviewCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
@@ -35,9 +34,9 @@ type StepRevealProps = {
   onEliminateMovie: GenericFunction;
   activePlayer: GamePlayer;
   eliminatedMovies: string[];
-  votedForSelectedMovie: PlayerId[];
-  turnOrder: PlayerId[];
-  mistakes: CardId[];
+  votedForSelectedMovie: UID[];
+  turnOrder: UID[];
+  mistakes: UID[];
   round: GameRound;
   outcome: string;
   currentMovieId: string;

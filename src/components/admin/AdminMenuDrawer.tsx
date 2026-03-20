@@ -3,8 +3,7 @@ import { useState } from 'react';
 import { FireFilled } from '@ant-design/icons';
 import { Button, Drawer } from 'antd';
 // Types
-import type { GameState } from 'types/game';
-import type { GamePlayers } from 'types/player';
+import type { GameState, GamePlayers } from 'types/game';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useGameMeta } from 'hooks/useGameMeta';

@@ -2,7 +2,7 @@ import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Segmented } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Utils

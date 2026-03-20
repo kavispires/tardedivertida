@@ -3,7 +3,7 @@ import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Button } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -25,7 +25,7 @@ import { DreamBoardVote } from './components/DreamBoardVote';
 type StepMatchDreamsProps = {
   onSubmitVotes: GenericFunction;
   players: GamePlayers;
-  table: ImageCardId[];
+  table: UID[];
   user: GamePlayer;
   dreams: Dream[];
 };
@@ -43,7 +43,7 @@ export function StepMatchDreams({ players, user, table, onSubmitVotes, dreams }:
   useEffectOnce(() => {
     const userClues = selectOwnVote(dreams, user);
     if (userClues) {
-      setVotes((s: StringDictionary) => ({ ...s, ...userClues }));
+      setVotes((s: Dictionary<string>) => ({ ...s, ...userClues }));
     }
   });
 

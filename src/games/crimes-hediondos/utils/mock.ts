@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Utils
 import { getRandomItem, shuffle } from 'utils/helpers';
 // Internal
@@ -37,8 +37,8 @@ export const mockGuesses = (
   user: GamePlayer,
   isVictimGame: boolean,
   isLocationGame: boolean,
-): Record<PlayerId, Guess> => {
-  return Object.values(players).reduce((acc: Record<PlayerId, Guess>, player) => {
+): Record<UID, Guess> => {
+  return Object.values(players).reduce((acc: Record<UID, Guess>, player) => {
     if (player.id !== user.id) {
       const history = user.history?.[player.id] ?? [];
       const triedGroups = new Set<number>();

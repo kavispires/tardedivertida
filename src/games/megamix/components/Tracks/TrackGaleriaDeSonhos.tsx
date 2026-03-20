@@ -61,7 +61,7 @@ export const TrackGaleriaDeSonhos = ({ track, onSubmitAnswer, user }: TrackProps
 
       <Image.PreviewGroup>
         <SpaceContainer>
-          {track.data.cards.map((cardId: ImageCardId) => {
+          {track.data.cards.map((cardId: UID) => {
             return (
               <SpaceContainer
                 key={cardId}

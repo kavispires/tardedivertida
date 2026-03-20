@@ -1,6 +1,5 @@
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 import type { GroupQuestionCard, SpectrumCard, TextCard } from 'types/tdr';
 
 export type Track = {
@@ -122,7 +121,7 @@ export type SeedEntryParty = {
   type: 'party';
   card: never;
   cards: {
-    id: CardId;
+    id: UID;
     text: DualLanguageValue;
   }[];
   outfits: never;
@@ -154,7 +153,7 @@ export type SeedEntry =
 export type VoteComponentProps = {
   track: Track;
   winningValues: string[];
-  winningTeam: PlayerId[];
+  winningTeam: UID[];
   players: GamePlayers;
   playersList: GamePlayer[];
 };

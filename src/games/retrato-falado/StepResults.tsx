@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { TrophyOutlined } from '@ant-design/icons';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 import type { MonsterImage } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
@@ -27,11 +27,11 @@ type StepResultsProps = {
   sketches: Sketch[];
   user: GamePlayer;
   players: GamePlayers;
-  witnessVote: PlayerId;
+  witnessVote: UID;
   witness: GamePlayer;
-  mostVotes: PlayerId[];
-  mostVoted: PlayerId;
-  votes: Record<PlayerId, PlayerId[]>;
+  mostVotes: UID[];
+  mostVoted: UID;
+  votes: Record<UID, UID[]>;
 } & Pick<StepProps, 'announcement'>;
 
 type Sketches = {

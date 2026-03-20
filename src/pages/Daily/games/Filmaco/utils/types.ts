@@ -6,7 +6,7 @@ export type GameState = {
   number: number;
   status: string;
   hearts: number;
-  solution: BooleanDictionary;
+  solution: Dictionary<boolean>;
   guesses: LettersDictionary;
 };
 

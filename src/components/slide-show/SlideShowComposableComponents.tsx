@@ -5,7 +5,7 @@ import { type ReactNode, useMemo } from 'react';
 import { CrownFilled, MessageFilled } from '@ant-design/icons';
 import { Avatar, Typography } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Utils
 import { getContrastColor, getPlayerNamesFromIds } from 'utils/helpers';
 // Icons
@@ -87,7 +87,7 @@ type SlideShowPlayersListProps = {
   /**
    * The player IDs to be displayed.
    */
-  playersIds: PlayerId[];
+  playersIds: UID[];
 } & ElementProps;
 
 /**

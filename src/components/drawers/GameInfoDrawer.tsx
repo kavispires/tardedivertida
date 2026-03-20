@@ -4,8 +4,7 @@ import { useToggle } from 'react-use';
 import { FireOutlined, SettingOutlined } from '@ant-design/icons';
 import { Avatar, Badge, Button, Divider, Drawer, Flex, Space, Tag, Tooltip, Typography } from 'antd';
 // Types
-import type { GameState } from 'types/game';
-import type { GamePlayers } from 'types/player';
+import type { GameState, GamePlayers } from 'types/game';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useLanguage } from 'hooks/useLanguage';

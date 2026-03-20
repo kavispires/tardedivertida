@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Col, Row } from 'antd';
 // Types
-import type { AchievementKey, AchievementReference } from 'types/achievements';
+import type { AchievementKey, AchievementReference } from 'types/game';
 // Components
 import { Achievement } from 'components/general/Achievement';
 

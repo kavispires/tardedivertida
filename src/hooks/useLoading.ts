@@ -2,7 +2,7 @@ import { useStore } from '@tanstack/react-store';
 import { Store } from '@tanstack/store';
 
 type LoadingState = {
-  loaders: BooleanDictionary;
+  loaders: Dictionary<boolean>;
 };
 
 const loadingStore = new Store<LoadingState>({

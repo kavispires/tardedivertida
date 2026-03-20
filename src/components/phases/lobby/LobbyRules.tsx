@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 // Ant Design Resources
 import { Flex, Image, Space, Typography } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';

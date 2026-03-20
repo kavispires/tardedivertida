@@ -5,7 +5,7 @@ import type { GameInfo } from 'types/game-info';
  * Lazy loads all game info JSON files
  * Using dynamic imports to prevent loading all game-info.json files on the home page
  */
-export const getGameList = async (): Promise<Record<GameName, GameInfo>> => {
+export const getGameList = async (): Promise<Record<string, GameInfo>> => {
   const [
     ADEDANHX,
     ARTE_RUIM,
@@ -194,7 +194,7 @@ export const getGameList = async (): Promise<Record<GameName, GameInfo>> => {
 /**
  * Loads a single game info by game name
  */
-export const getGameInfo = async (gameName: GameName): Promise<GameInfo> => {
+export const getGameInfo = async (gameName: string): Promise<GameInfo> => {
   const gameList = await getGameList();
   return gameList[gameName];
 };

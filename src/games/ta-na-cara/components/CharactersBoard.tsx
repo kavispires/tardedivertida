@@ -14,11 +14,11 @@ import { DualTranslate } from 'components/language';
 import type { CharactersDictionary } from '../utils/types';
 
 type CharactersBoardProps = {
-  charactersIds: CardId[];
+  charactersIds: UID[];
   charactersDict: CharactersDictionary;
-  userCharacterId: CardId;
+  userCharacterId: UID;
   onCardClick?: GenericFunction;
-  historyEntry?: PlayerId[];
+  historyEntry?: UID[];
 };
 
 export function CharactersBoard({

@@ -1,7 +1,7 @@
 import { SheepAvatar } from 'games/mente-coletiva/components/SheepAvatar';
 import { random } from 'lodash';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Components
 import { ClubberAvatar } from 'components/avatars/ClubberAvatar';
 import { CostumeAvatar } from 'components/avatars/CostumeAvatar';

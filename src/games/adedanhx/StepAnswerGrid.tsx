@@ -2,7 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useLoading } from 'hooks/useLoading';
@@ -34,7 +34,7 @@ type StepAnswerGridProps = {
   user: GamePlayer;
   grid: AdedanhxGrid;
   onSubmitAnswers: (payload: SubmitGridAnswersPayload) => void;
-  stoppedBy?: PlayerId | false;
+  stoppedBy?: UID | false;
 };
 
 export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy }: StepAnswerGridProps) {
@@ -43,7 +43,7 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
 
   const onSubmit = (stop?: boolean) => {
     onSubmitAnswers({
-      answers: Object.values(answers).reduce((acc: StringDictionary, curr) => {
+      answers: Object.values(answers).reduce((acc: Dictionary<string>, curr) => {
         if (curr.answer) {
           acc[curr.id] = `${curr.answer}${SEPARATOR}${curr.timestamp}`;
         }

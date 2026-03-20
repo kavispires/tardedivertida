@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex, Typography } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Utils
 import { getContrastColor } from 'utils/helpers';

@@ -19,7 +19,7 @@ const notesStore = new Store<NotesState>(initialState);
 /**
  * Set a note for a specific player
  */
-export const setPlayerNote = (playerId: PlayerId, note: PlayerNote) => {
+export const setPlayerNote = (playerId: UID, note: PlayerNote) => {
   notesStore.setState((prev) => ({
     notes: {
       ...prev.notes,
@@ -31,7 +31,7 @@ export const setPlayerNote = (playerId: PlayerId, note: PlayerNote) => {
 /**
  * Clear a note for a specific player
  */
-export const clearPlayerNote = (playerId: PlayerId) => {
+export const clearPlayerNote = (playerId: UID) => {
   notesStore.setState((prev) => {
     const newNotes = { ...prev.notes };
     delete newNotes[playerId];
@@ -51,15 +51,15 @@ export const clearAllNotes = () => {
  * Tracks whether each player is an agent or terrorist.
  * @returns An object containing:
  * - `notes` {Dictionary<PlayerNote>}: Dictionary of player notes indexed by playerId.
- * - `setPlayerNote` {(playerId: PlayerId, note: PlayerNote) => void}: Function to set a note for a specific player.
- * - `clearPlayerNote` {(playerId: PlayerId) => void}: Function to clear a note for a specific player.
+ * - `setPlayerNote` {(playerId: UID, note: PlayerNote) => void}: Function to set a note for a specific player.
+ * - `clearPlayerNote` {(playerId: UID) => void}: Function to clear a note for a specific player.
  * - `clearAllNotes` {() => void}: Function to clear all notes.
- * - `getPlayerNote` {(playerId: PlayerId) => PlayerNote}: Function to get a note for a specific player.
+ * - `getPlayerNote` {(playerId: UID) => PlayerNote}: Function to get a note for a specific player.
  */
 export function useNotesStore() {
   const { notes } = useStore(notesStore, () => notesStore.state);
 
-  const getPlayerNote = (playerId: PlayerId): PlayerNote => {
+  const getPlayerNote = (playerId: UID): PlayerNote => {
     return notes[playerId] ?? '';
   };
 

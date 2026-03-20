@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Utils
 import { isDevMocking, pluralize } from 'utils/helpers';
 // Components

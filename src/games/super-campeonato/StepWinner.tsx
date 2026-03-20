@@ -23,7 +23,7 @@ type StepWinnerProps = {
   brackets: Bracket[];
   bets: Bet;
   goToNextStep: UseStep['goToNextStep'];
-  selectedContenderId: CardId;
+  selectedContenderId: UID;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepWinner({

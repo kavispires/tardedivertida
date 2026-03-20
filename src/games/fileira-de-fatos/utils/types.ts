@@ -1,5 +1,5 @@
 export type SubmitScenarioOrderPayload = {
-  order: CardId[];
+  order: UID[];
 };
 
 export type ScaleEntry = {

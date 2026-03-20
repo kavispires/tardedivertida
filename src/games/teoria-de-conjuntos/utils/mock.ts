@@ -2,7 +2,7 @@ import { sample } from 'lodash';
 // Internal
 import type { DiagramArea } from './types';
 
-export const mockDiagramSelection = (hand: CardId[], diagrams: Dictionary<DiagramArea>) => {
+export const mockDiagramSelection = (hand: UID[], diagrams: Dictionary<DiagramArea>) => {
   const selectedItem = sample(hand);
 
   const counts = Object.values(diagrams).reduce((acc: Dictionary<string[]>, diagram) => {

@@ -2,7 +2,7 @@
 import { UserOutlined } from '@ant-design/icons';
 import { Button, Modal } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Hooks
 import { useHost } from 'hooks/useHost';
 // Components

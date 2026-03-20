@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Hooks
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Icons
@@ -13,7 +13,7 @@ import { PlayerAvatarName } from 'components/player';
 import type { ArteRuimCard, ArteRuimDrawing } from '../utils/types';
 
 type EvaluatedDrawingsProps = {
-  votes?: StringDictionary;
+  votes?: Dictionary<string>;
   cards: ArteRuimCard[];
   drawings: ArteRuimDrawing[];
   players: GamePlayers;

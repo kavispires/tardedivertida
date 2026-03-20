@@ -1,6 +1,5 @@
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayers } from 'types/player';
+import type { GameRound, GamePlayers } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import type { SlideShowConfig } from 'hooks/useSlideShow';

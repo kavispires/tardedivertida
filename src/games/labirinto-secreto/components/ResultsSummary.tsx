@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Tooltip } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Icons
 import { ArrowIcon } from 'icons/ArrowIcon';
 import { FlagIcon } from 'icons/FlagIcon';

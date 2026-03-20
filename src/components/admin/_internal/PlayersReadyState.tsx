@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { CheckCircleFilled, MinusCircleFilled } from '@ant-design/icons';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Sass
 import styles from './PlayersReadyState.module.scss';
 // Styles
@@ -14,8 +14,8 @@ type PlayersReadyStateProps = {
 };
 
 type PlayerStatus = {
-  readyPlayers: PlayerName[];
-  pendingPlayers: PlayerName[];
+  readyPlayers: string[];
+  pendingPlayers: string[];
 };
 
 export function PlayersReadyState({ players }: PlayersReadyStateProps) {

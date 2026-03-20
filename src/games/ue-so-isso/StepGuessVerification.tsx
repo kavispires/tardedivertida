@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { Button, App, Space } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils

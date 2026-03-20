@@ -2,7 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Input } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
@@ -18,7 +18,7 @@ import { mockDream } from './utils/mock';
 import { DreamBoard } from './components/DreamBoard';
 
 type StepTellDreamProps = {
-  table: ImageCardId[];
+  table: UID[];
   user: GamePlayer;
   onSubmitDream: GenericFunction;
 };

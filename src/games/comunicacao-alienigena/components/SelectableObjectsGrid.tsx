@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Badge, Space } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
@@ -21,7 +21,7 @@ import { ObjectsKey } from './ObjectsKey';
 type SelectableObjectsGridProps = {
   user: GamePlayer;
   items: PhaseBasicState['items'];
-  selectedObjects: BooleanDictionary;
+  selectedObjects: Dictionary<boolean>;
   selectObject: (id: string) => void;
   maxObjects?: number;
   hideKey?: boolean;

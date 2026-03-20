@@ -3,7 +3,7 @@ import { useMemo, useRef } from 'react';
 // Ant Design Resources
 import { Avatar, Flex, Image } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useCardWidth } from 'hooks/useCardWidth';

@@ -9,7 +9,7 @@ export type SubmitMapPayload = {
 export type OnSubmitMapFunction = (payload: SubmitMapPayload) => void;
 
 export type SubmitPathGuessPayload = {
-  pathId: PlayerId;
+  pathId: UID;
   guess: TreeId[];
   choseRandomly: boolean;
 };
@@ -65,7 +65,7 @@ export interface MapSegment {
   /**
    * Player map segment belongs to
    */
-  playerId: PlayerId;
+  playerId: UID;
   /**
    * Equivalent Forest segment
    */
@@ -101,17 +101,17 @@ export interface MapSegment {
   /**
    * List of players that are currently on this segment
    */
-  playersIds: PlayerId[];
+  playersIds: UID[];
 }
 
-export type PlayerMapping = Record<TreeId, PlayerId[]>;
+export type PlayerMapping = Record<TreeId, UID[]>;
 
 export type PhaseMapBuildingState = {
   forest: Tree[];
 };
 
 export type PhasePathFollowingState = {
-  activePlayerId: PlayerId;
+  activePlayerId: UID;
   forest: Tree[];
   turnOrder: TurnOrder;
 };

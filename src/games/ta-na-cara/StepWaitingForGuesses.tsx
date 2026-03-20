@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Icons
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
@@ -18,10 +18,10 @@ type StepWaitingForGuessesProps = {
   players: GamePlayers;
   user: GamePlayer;
   turnOrder: TurnOrder;
-  charactersIds: CardId[];
+  charactersIds: UID[];
   charactersDict: CharactersDictionary;
   questionsDict: QuestionsDictionary;
-  activePlayerId: PlayerId;
+  activePlayerId: UID;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepWaitingForGuesses({

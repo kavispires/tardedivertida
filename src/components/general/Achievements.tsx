@@ -4,8 +4,7 @@ import { motion } from 'motion/react';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Button, Popover } from 'antd';
 // Types
-import type { Achievement, AchievementReference } from 'types/achievements';
-import type { GamePlayers } from 'types/player';
+import type { Achievement, AchievementReference, GamePlayers } from 'types/game';
 // Utils
 import { getAnimation } from 'utils/animations';
 import { getAnimationClass } from 'utils/helpers';

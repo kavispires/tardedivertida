@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Icons
 import { HandOfCardsIcon } from 'icons/HandOfCardsIcon';
 // Components

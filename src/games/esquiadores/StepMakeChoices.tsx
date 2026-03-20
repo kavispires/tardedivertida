@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { Button, Steps } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';

@@ -1,18 +1,18 @@
 export type SubmitTargetPayload = {
-  targetId: PlayerId;
+  targetId: UID;
 };
 
 export type SubmitMessagePayload = {
-  targetId: PlayerId;
-  senderId: PlayerId;
-  recipientId?: PlayerId;
+  targetId: UID;
+  senderId: UID;
+  recipientId?: UID;
 };
 
 export type SubmitDecisionPayload = {
-  targetId: PlayerId;
+  targetId: UID;
 };
 
 export type Message = {
-  targetId: PlayerId;
-  recipientId: PlayerId | 'ALL';
+  targetId: UID;
+  recipientId: UID | 'ALL';
 };

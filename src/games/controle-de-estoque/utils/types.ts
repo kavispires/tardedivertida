@@ -38,7 +38,7 @@ export type WarehouseSlot = {
   /**
    * The player who fulfilled the order
    */
-  fulfillerId?: PlayerId;
+  fulfillerId?: UID;
   /**
    * The status of the order fulfillment
    */

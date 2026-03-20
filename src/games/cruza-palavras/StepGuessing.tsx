@@ -4,7 +4,7 @@ import { useState, useCallback, useMemo, useEffect } from 'react';
 import { ThunderboltOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Utils
 import { getColorFromIndex, shuffle } from 'utils/helpers';
 // Components
@@ -37,7 +37,7 @@ export function StepGuessing({
   announcement,
 }: StepGuessingProps) {
   const [active, setActive] = useState<Clue | number | null>(null);
-  const [guesses, setGuesses] = useState<NumberDictionary>({});
+  const [guesses, setGuesses] = useState<Dictionary<number>>({});
   const [choseRandomly, setChoseRandomly] = useState(false);
 
   const clueColors = useMemo(() => {

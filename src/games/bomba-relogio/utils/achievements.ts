@@ -1,5 +1,5 @@
 // Types
-import type { AchievementReference } from 'types/achievements';
+import type { AchievementReference } from 'types/game';
 
 const ACHIEVEMENTS = {
   SOLO_TERRORIST: 'SOLO_TERRORIST',

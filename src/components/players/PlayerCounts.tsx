@@ -5,7 +5,7 @@ import { type ReactNode, useMemo } from 'react';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { Avatar, Tooltip, type TooltipProps } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
@@ -38,7 +38,7 @@ export function PlayerCounts({
 }: PlayerCountsProps) {
   // biome-ignore lint/correctness/useExhaustiveDependencies: not the function
   const values = useMemo(() => {
-    return Object.values(players).reduce((acc: NumberDictionary, player) => {
+    return Object.values(players).reduce((acc: Dictionary<number>, player) => {
       const count = countGetter(player);
       acc[player.id] = count;
       return acc;

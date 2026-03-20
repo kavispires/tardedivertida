@@ -28,9 +28,9 @@ export function useVotingMatch(
   keyType: string,
   allowDuplicates = true,
   completeCount?: number,
-  initialState: StringDictionary = {},
+  initialState: Dictionary<string> = {},
 ) {
-  const [votes, setVotes] = useState<StringDictionary>({
+  const [votes, setVotes] = useState<Dictionary<string>>({
     ...initialState,
   });
   const [activeItem, setActiveItem] = useState<string>('');
@@ -52,7 +52,7 @@ export function useVotingMatch(
 
       // When new item type is a key
       if (type === keyType) {
-        setVotes((prevVotes: StringDictionary) => {
+        setVotes((prevVotes: Dictionary<string>) => {
           const copy = { ...prevVotes };
           // Find and clear any previous vote if uniqueOnly
           if (!allowDuplicates) {
@@ -68,7 +68,7 @@ export function useVotingMatch(
       }
 
       // When new item is a value
-      setVotes((prevVotes: StringDictionary) => {
+      setVotes((prevVotes: Dictionary<string>) => {
         const copy = { ...prevVotes };
         // Find and clear any previous vote if uniqueOnly
         if (!allowDuplicates) {
@@ -86,7 +86,7 @@ export function useVotingMatch(
     [activeItem, keyType, allowDuplicates],
   );
 
-  const resetVoting = (newInitialState: StringDictionary) => {
+  const resetVoting = (newInitialState: Dictionary<string>) => {
     setVotes(newInitialState ?? initialState);
     setActiveItem('');
   };

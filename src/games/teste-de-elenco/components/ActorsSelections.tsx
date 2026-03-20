@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Avatar, Space } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
@@ -13,9 +13,9 @@ import type { ActingRole } from '../utils/types';
 
 type ActorsSelectionsProps = {
   actors: ActingRole['candidates'];
-  selection: CardId[];
+  selection: UID[];
   players: GamePlayers;
-  playersSelections: Record<CardId, PlayerId[]>;
+  playersSelections: Record<UID, UID[]>;
 };
 
 export function ActorsSelections({ actors, players, selection, playersSelections }: ActorsSelectionsProps) {

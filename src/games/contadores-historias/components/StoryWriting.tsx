@@ -2,7 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Input } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';

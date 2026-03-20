@@ -35,7 +35,7 @@ type CloverProps = {
   rotation: number;
   onRotate: (direction: number) => void;
   onClueChange?: (targetIndex: LeafIndex, value: string) => void;
-  rotations?: NumberDictionary;
+  rotations?: Dictionary<number>;
   onLeafRotate?: GenericFunction;
   onLeafRemove?: GenericFunction;
   activeLeafId?: LeafId | null;
@@ -157,7 +157,7 @@ const getLeaf = (
   position: LeafPosition,
   cloverLeaf: CloverLeaf,
   guesses: Guesses,
-  rotations: NumberDictionary,
+  rotations: Dictionary<number>,
 ) => {
   let leafId = '';
   switch (mode) {

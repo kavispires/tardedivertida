@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useMock } from 'hooks/useMock';

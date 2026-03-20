@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Avatar, Button, Space, Spin } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 import type { MovieCard as MovieCardType } from 'types/tdr';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
@@ -22,9 +22,9 @@ type MoviesProps = {
   movies: MovieCardType[];
   user: GamePlayer;
   onSelect?: (movieId: string) => void;
-  eliminatedMovies?: CardId[];
-  playerMovie?: CardId;
-  mistakes?: CardId[];
+  eliminatedMovies?: UID[];
+  playerMovie?: UID;
+  mistakes?: UID[];
   players?: GamePlayers;
   showResults?: boolean;
   disableButtons?: boolean;
@@ -96,7 +96,7 @@ export function Movies({
   const leftMovies = movies.slice(0, movies.length / 2);
   const rightMovies = movies.slice(movies.length / 2);
 
-  const moviePlayerDict = Object.values(players).reduce((acc: Record<CardId, PlayerId[]>, player) => {
+  const moviePlayerDict = Object.values(players).reduce((acc: Record<UID, UID[]>, player) => {
     if (!acc[player.movieId]) {
       acc[player.movieId] = [];
     }
@@ -189,11 +189,11 @@ export function Movies({
 type MovieButtonProps = {
   entry: FakeMovie;
   disabled: boolean;
-  eliminatedMovies: CardId[];
-  mistakes: CardId[];
+  eliminatedMovies: UID[];
+  mistakes: UID[];
   isLoading: boolean;
   user: GamePlayer;
-  onSelect: (movieId: CardId) => void;
+  onSelect: (movieId: UID) => void;
 };
 
 function MovieButton({
@@ -295,9 +295,9 @@ function ButtonLabel({ isEliminated, isLoading, letter, isPlayerMovie, isWrong }
 type PlayersSelectionsProps = {
   side: 'left' | 'right';
   index: number;
-  moviePlayerDict: Record<CardId, PlayerId[]>;
+  moviePlayerDict: Record<UID, UID[]>;
   players: GamePlayers;
-  mistakes: CardId[];
+  mistakes: UID[];
   showAll: boolean;
 };
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 import type { MonsterImage } from 'types/tdr';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';

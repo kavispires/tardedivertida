@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Internal
 import * as utils from './helpers';
 

@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Components
 import { Translate } from 'components/language';
 import { PlayerAvatarName } from 'components/player';

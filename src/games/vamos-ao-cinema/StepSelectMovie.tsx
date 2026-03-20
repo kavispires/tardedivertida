@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 import type { MovieCard, MovieReviewCard } from 'types/tdr';
 // Components
 import { Translate } from 'components/language';

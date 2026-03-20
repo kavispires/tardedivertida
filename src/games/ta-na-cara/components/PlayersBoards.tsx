@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
@@ -49,9 +49,9 @@ export function PlayersBoards({ players, user, questionsDict }: PlayersBoardsPro
 type PlayerBoardProps = {
   player: GamePlayer;
   cardWidth: number;
-  userCharacterId?: CardId;
+  userCharacterId?: UID;
   questionsDict: QuestionsDictionary;
-  history?: CardId[];
+  history?: UID[];
 };
 
 export function PlayerBoard({
@@ -87,7 +87,7 @@ export function PlayerBoard({
       </div>
       <ul className="player-board__history">
         {Boolean(player?.answers?.length) &&
-          player.answers.map((entry: BooleanDictionary) => {
+          player.answers.map((entry: Dictionary<boolean>) => {
             const [questionId, answer] = Object.entries(entry)[0];
 
             return (

@@ -1,8 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 // Icons
@@ -49,7 +48,7 @@ type StepRevealProps = {
   requestHistory: RequestHistoryEntry[];
   inquiryHistory: InquiryHistoryEntry[];
   wasCurseSelected: boolean;
-  curses: Record<CardId, PlayerId[]>;
+  curses: Record<UID, UID[]>;
   round: GameRound;
   isAlienBot: boolean;
   debugMode: boolean;

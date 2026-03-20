@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { MinusOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useLanguage } from 'hooks/useLanguage';

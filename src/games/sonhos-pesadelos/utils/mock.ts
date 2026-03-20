@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Utils
 import { shuffle } from 'utils/helpers';
 // Internal
@@ -26,11 +26,11 @@ const mockedDreamClues = [
 
 export const mockDream = (): string => shuffle(mockedDreamClues)[0];
 
-export const mockVotes = (dreams: Dream[], table: ImageCardId[], user: GamePlayer): StringDictionary => {
+export const mockVotes = (dreams: Dream[], table: UID[], user: GamePlayer): Dictionary<string> => {
   const playersIds = shuffle(dreams.map((dream) => dream.id).filter((playerId) => playerId !== user.id));
   const shuffledTable = shuffle(table);
 
-  return playersIds.reduce((acc: StringDictionary, playerId, index) => {
+  return playersIds.reduce((acc: Dictionary<string>, playerId, index) => {
     acc[playerId] = shuffledTable[index];
     return acc;
   }, {});

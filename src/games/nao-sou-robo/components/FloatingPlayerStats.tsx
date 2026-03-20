@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Icons
 import { UserStatsIcon } from 'icons/UserStatsIcon';
 // Components

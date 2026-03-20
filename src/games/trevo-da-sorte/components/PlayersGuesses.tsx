@@ -2,7 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Tabs } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Components
@@ -18,7 +18,7 @@ type PlayersGuessesProps = {
   leaves: Leaves;
   rotation: number;
   onRotate: GenericFunction;
-  activeCloverId: PlayerId;
+  activeCloverId: UID;
 };
 
 export function PlayersGuesses({

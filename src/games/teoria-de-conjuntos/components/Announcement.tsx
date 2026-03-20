@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Flex } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 import type { Item } from 'types/tdr';
 // Icons
 import { ApplauseIcon } from 'icons/ApplauseIcon';
@@ -31,7 +31,7 @@ type AnnouncementProps = {
   previousGuess: Guess | null;
   currentRound: number;
   items: Dictionary<Item>;
-  judgeId: PlayerId;
+  judgeId: UID;
 };
 
 export function Announcement({

@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useMock } from 'hooks/useMock';
@@ -20,7 +20,7 @@ import { DragAndDropCityMap } from './components/DragAndDropCityMap';
 
 type StepPlanLocationsProps = {
   players: GamePlayers;
-  architectId: PlayerId;
+  architectId: UID;
   gameOrder: GameOrder;
   city: City;
   cityLocationsDict: CityLocationsDict;

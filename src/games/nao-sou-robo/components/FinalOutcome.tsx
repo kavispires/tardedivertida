@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Icons
 import { NuclearExplosionIcon } from 'icons/NuclearExplosionIcon';
 import { UnderConstructionIcon } from 'icons/UnderConstructionIcon';
@@ -25,7 +25,7 @@ export function FinalOutcome({ players, outcome, robot }: FinalOutcomeProps) {
   const mostSuspicious = useMemo(() => {
     let maxSuspicion = 0;
 
-    return Object.values(players).reduce((acc: PlayerId[], player) => {
+    return Object.values(players).reduce((acc: UID[], player) => {
       const suspicion = player.suspicion.filter(Boolean).length;
       if (suspicion > maxSuspicion) {
         maxSuspicion = suspicion;

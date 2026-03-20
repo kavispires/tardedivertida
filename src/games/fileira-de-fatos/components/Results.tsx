@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Space, Avatar, Tooltip } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
@@ -19,9 +19,9 @@ import { PlayerAvatar, PlayerAvatarName, PlayerAvatarStrip } from 'components/pl
 
 type ResultsProps = {
   players: GamePlayers;
-  activePlayerId: PlayerId;
-  correctOrder: CardId[];
-  scenarioDictionary: Record<CardId, TextCard>;
+  activePlayerId: UID;
+  correctOrder: UID[];
+  scenarioDictionary: Record<UID, TextCard>;
   roundType: string;
 };
 
@@ -43,7 +43,7 @@ export function Results({ players, activePlayerId, correctOrder, roundType }: Re
           key={player.id}
         >
           <PlayerAvatarStrip player={player} />
-          {player.currentOrder.map((cardId: CardId, index: number) => {
+          {player.currentOrder.map((cardId: UID, index: number) => {
             const isCorrect = correctOrder[index] === cardId;
             const backgroundColor = isCorrect ? { backgroundColor: getAvatarColorById(player.avatarId) } : {};
             return (

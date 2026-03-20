@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components

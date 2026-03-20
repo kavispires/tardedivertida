@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Components
 import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCardHand } from 'components/image-cards';
@@ -13,7 +13,7 @@ type StepSecretClueWaitingProps = {
   leader: GamePlayer;
   user: GamePlayer;
   players: GamePlayers;
-  turnOrder: PlayerId[];
+  turnOrder: UID[];
 } & Pick<StepProps, 'announcement'>;
 
 export function StepSecretClueWaiting({

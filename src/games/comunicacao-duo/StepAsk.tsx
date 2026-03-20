@@ -2,8 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Flex, Input, InputNumber } from 'antd';
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';

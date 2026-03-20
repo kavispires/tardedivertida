@@ -1,7 +1,5 @@
 // Types
-import type { Achievement } from 'types/achievements';
-import type { GameRanking } from 'types/game';
-import type { GamePlayer } from 'types/player';
+import type { Achievement, GameRanking, GamePlayer } from 'types/game';
 import type { DilemmaCard } from 'types/tdr';
 
 export type SubmitChoicesPayload = {
@@ -9,7 +7,7 @@ export type SubmitChoicesPayload = {
 };
 
 export type SubmitBetsPayload = {
-  bets: NumberDictionary;
+  bets: Dictionary<number>;
   betType: string;
 };
 
@@ -25,28 +23,28 @@ export type MountainDilemma = {
 export type Lodge = {
   id: number;
   selected: boolean;
-  playersIds: PlayerId[];
+  playersIds: UID[];
 };
 
 export type GalleryMountainEntry = {
   id: string;
   mountain: MountainDilemma[];
-  skierId: PlayerId;
+  skierId: UID;
 };
 
 export type PhaseBetsState = {
   turnOrder: GameOrder;
-  activeSkierId: PlayerId;
+  activeSkierId: UID;
   mountain: MountainDilemma[];
   mountainSection: string;
   lodges: Lodge[];
-  catchUp: PlayerId[];
+  catchUp: UID[];
   animateFrom: number;
   animateTo: 'left' | 'right' | null;
 };
 
 export type PhaseBetsPlayers = {
-  initial?: BooleanDictionary;
+  initial?: Dictionary<boolean>;
   chips: number;
 };
 

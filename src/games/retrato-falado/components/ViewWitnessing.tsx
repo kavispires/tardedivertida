@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 import type { MonsterImage } from 'types/tdr';
 // Components
 import { DrawingCanvas } from 'components/canvas';

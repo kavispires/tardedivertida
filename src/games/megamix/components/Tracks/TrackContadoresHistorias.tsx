@@ -60,7 +60,7 @@ export const TrackContadoresHistorias = ({ track, onSubmitAnswer, user }: TrackP
 
         <Image.PreviewGroup>
           <SpaceContainer>
-            {track.data.cards.map((cardId: ImageCardId) => {
+            {track.data.cards.map((cardId: UID) => {
               return (
                 <SpaceContainer
                   key={cardId}

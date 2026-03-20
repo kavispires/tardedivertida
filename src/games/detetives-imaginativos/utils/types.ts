@@ -1,16 +1,15 @@
 // Types
-import type { Achievement } from 'types/achievements';
-import type { GameRanking } from 'types/game';
+import type { Achievement, GameRanking } from 'types/game';
 
 export type CardEntry = {
-  playerId: PlayerId;
+  playerId: UID;
   cards: string[];
 };
 
 export type FinalGalleryEntry = {
-  cards: ImageCardId[];
+  cards: UID[];
   clue: string;
-  playerId: PlayerId;
+  playerId: UID;
   isLeader: boolean;
 };
 
@@ -27,20 +26,20 @@ export type SubmitDefensePayload = {
 };
 
 export type SubmitVotePayload = {
-  vote: PlayerId;
+  vote: UID;
 };
 
 export type PhaseSecretClueState = {
-  impostorId: PlayerId;
-  leaderId: PlayerId;
+  impostorId: UID;
+  leaderId: UID;
   turnOrder: GameOrder;
 };
 
 export type PhaseCardPlayState = {
   clue: string;
-  currentPlayerId: PlayerId;
-  impostorId: PlayerId;
-  leaderId: PlayerId;
+  currentPlayerId: UID;
+  impostorId: UID;
+  leaderId: UID;
   phaseIndex: number;
   phaseOrder: GameOrder;
   table: CardEntry[];
@@ -49,9 +48,9 @@ export type PhaseCardPlayState = {
 
 export type PhaseDefenseState = {
   clue: string;
-  currentPlayerId: PlayerId;
-  impostorId: PlayerId;
-  leaderId: PlayerId;
+  currentPlayerId: UID;
+  impostorId: UID;
+  leaderId: UID;
   phaseIndex: number;
   table: CardEntry[];
   turnOrder: GameOrder;
@@ -59,16 +58,16 @@ export type PhaseDefenseState = {
 
 export type PhaseVotingState = {
   clue: string;
-  impostorId: PlayerId;
-  leaderId: PlayerId;
+  impostorId: UID;
+  leaderId: UID;
   table: CardEntry[];
   turnOrder: GameOrder;
 };
 
 export type PhaseRevealState = {
   clue: string;
-  impostorId: PlayerId;
-  leaderId: PlayerId;
+  impostorId: UID;
+  leaderId: UID;
   table: CardEntry[];
   turnOrder: GameOrder;
   ranking: GameRanking;

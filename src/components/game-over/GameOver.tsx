@@ -6,8 +6,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRightOutlined } from '@ant-design/icons';
 import { Button, Progress, Space } from 'antd';
 // Types
-import type { GameState } from 'types/game';
-import type { GamePlayer } from 'types/player';
+import type { GameState, GamePlayer } from 'types/game';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useLanguage } from 'hooks/useLanguage';

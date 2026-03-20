@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Button } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Components

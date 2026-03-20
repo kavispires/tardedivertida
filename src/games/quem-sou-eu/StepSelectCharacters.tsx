@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Badge, Space } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 import type { ContenderCard } from 'types/tdr';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';

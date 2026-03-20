@@ -2,7 +2,7 @@
 import { Slider } from 'antd';
 import type { SliderSingleProps } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';

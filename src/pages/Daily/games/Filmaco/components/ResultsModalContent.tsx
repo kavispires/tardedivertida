@@ -23,7 +23,7 @@ type ResultsModalContentProps = {
   text: string;
   win: boolean;
   hearts: number;
-  solution: BooleanDictionary;
+  solution: Dictionary<boolean>;
 };
 
 export function ResultsModalContent({

@@ -1,6 +1,5 @@
 // Types
-import type { GameRanking, GameRound } from 'types/game';
-import type { GamePlayers } from 'types/player';
+import type { GameRanking, GameRound, GamePlayers } from 'types/game';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
@@ -17,7 +16,7 @@ type StepRankingProps = {
   round: GameRound;
   clover: CloverObject;
   leaves: Leaves;
-  activeCloverId: PlayerId;
+  activeCloverId: UID;
 };
 
 export function StepRanking({ players, ranking, round, clover, leaves, activeCloverId }: StepRankingProps) {

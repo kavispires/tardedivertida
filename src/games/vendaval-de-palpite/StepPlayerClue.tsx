@@ -3,8 +3,7 @@ import { useState } from 'react';
 import { CloudUploadOutlined } from '@ant-design/icons';
 import { Alert } from 'antd';
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useMock } from 'hooks/useMock';

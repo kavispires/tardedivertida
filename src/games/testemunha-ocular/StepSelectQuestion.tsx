@@ -24,7 +24,7 @@ type StepSelectQuestionProps = {
   onSelectQuestion: (payload: SelectQuestionPayload) => void;
   isLoading: boolean;
   suspectsDict: Dictionary<SuspectCard>;
-  suspectsIds: CardId[];
+  suspectsIds: UID[];
   previouslyEliminatedSuspects: string[];
   history: THistoryEntry[];
   status: Status;

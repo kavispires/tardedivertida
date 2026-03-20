@@ -12,11 +12,11 @@ import type { useOrganikuEngine } from '../utils/useOrganikuEngine';
 
 type TableGridProps = {
   grid: DailyOrganikuEntry['grid'];
-  revealed: BooleanDictionary;
+  revealed: Dictionary<boolean>;
   activeTileIndex: number | null;
   pairActiveTileIndex: number | null;
   onSelectTile?: (index: number) => void;
-  foundCount: NumberDictionary;
+  foundCount: Dictionary<number>;
   itemWidth: number;
   defaultRevealedIndexes: number[];
   tracker: ReturnType<typeof useOrganikuEngine>['tracker'];

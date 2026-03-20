@@ -2,8 +2,7 @@ import { sample } from 'lodash';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
@@ -32,8 +31,8 @@ type StepGuessProps = {
   isThePresenter: boolean;
   turnOrder: GameOrder;
   wordsDict: Dictionary<TextCard>;
-  poolIds: CardId[];
-  secretWordId: CardId;
+  poolIds: UID[];
+  secretWordId: UID;
   metricsDescriptors: Record<string, TextCard[]>;
   metrics: Record<string, number>;
   pointsBrackets: number[];

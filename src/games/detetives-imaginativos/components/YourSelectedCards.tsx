@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Components
 import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCardHand } from 'components/image-cards';

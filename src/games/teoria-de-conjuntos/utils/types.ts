@@ -4,11 +4,11 @@ import type { DiagramTopic } from 'types/tdr';
 import type { OUTCOME } from './constants';
 
 export type SubmitJudgePayload = {
-  judgeId: PlayerId;
+  judgeId: UID;
 };
 
 export type SubmitItemPlacementPayload = {
-  itemId: CardId;
+  itemId: UID;
   position: string;
 };
 
@@ -17,7 +17,7 @@ export type SubmitEvaluationPayload = {
 };
 
 export type SubmitEvaluationFixPayload = {
-  itemId: CardId;
+  itemId: UID;
   currentArea: string;
   newEvaluation: string;
 };
@@ -36,14 +36,14 @@ export type DiagramExamples = {
 
 export type DiagramArea = {
   key: string; // A | W | C | O and any combination
-  itemsIds: CardId[];
+  itemsIds: UID[];
 };
 
 export type Outcome = keyof typeof OUTCOME;
 
 export type Guess = {
-  itemId: CardId;
-  playerId: PlayerId;
+  itemId: UID;
+  playerId: UID;
   suggestedArea: string;
   correctArea: string | null;
   outcome: Outcome | string;

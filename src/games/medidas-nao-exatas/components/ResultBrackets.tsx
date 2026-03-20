@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 // Ant Design Resources
 import { Avatar, Divider, Flex } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Utils
 import { getAnimation } from 'utils/animations';

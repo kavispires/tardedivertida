@@ -2,7 +2,7 @@
 import { TrophyOutlined } from '@ant-design/icons';
 import { Flex } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 import type { Item } from 'types/tdr';
 // Icons
 import { SpeechBubbleAcceptedIcon, SpeechBubbleDeclinedIcon } from 'icons/collection';

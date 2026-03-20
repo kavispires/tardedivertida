@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Progress, Typography } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components

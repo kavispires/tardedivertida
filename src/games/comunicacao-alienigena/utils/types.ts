@@ -2,15 +2,15 @@
 import type { AlienAttribute, AlienItem } from 'components/toolKits/AlienAttributes';
 
 export type SubmitAlienPayload = {
-  alienId: PlayerId;
+  alienId: UID;
 };
 
 export type SubmitSeedingPayload = {
-  seeds: NumberDictionary;
+  seeds: Dictionary<number>;
 };
 
 export type SubmitHumanInquiryPayload = {
-  objectsIds: CardId[];
+  objectsIds: UID[];
   intention: string;
 };
 
@@ -24,7 +24,7 @@ export type SubmitAlienRequestPayload = {
 };
 
 export type SubmitOfferingsPayload = {
-  offeringsIds: CardId[];
+  offeringsIds: UID[];
 };
 
 export type SignId = string;
@@ -42,11 +42,11 @@ export interface InquiryHistoryEntry {
   /**
    * The objects the player asked about
    */
-  objectIds: CardId[];
+  objectIds: UID[];
   /**
    * The player who asked the question
    */
-  playerId: PlayerId;
+  playerId: UID;
   /**
    * The attributeId the player intended to ask
    */
@@ -58,14 +58,14 @@ export interface InquiryHistoryEntry {
 }
 
 export interface Offer {
-  objectId: CardId;
-  playerId: PlayerId;
+  objectId: UID;
+  playerId: UID;
 }
 
 export interface RequestHistoryEntry {
   request: string;
   offers: Offer[];
-  intention?: CardId | null;
+  intention?: UID | null;
 }
 
 export interface OfferingsStatus {
@@ -74,7 +74,7 @@ export interface OfferingsStatus {
   total: number;
   found: number;
   totalCurses: number;
-  curses: Record<string, PlayerId[]>;
+  curses: Record<string, UID[]>;
 }
 
 export type PhaseBasicState = {
@@ -85,7 +85,7 @@ export type PhaseBasicState = {
   status: OfferingsStatus;
   startingAttributesIds: string[];
   shouldPerformSeeding?: boolean;
-  alienId?: PlayerId | string;
+  alienId?: UID | string;
   alienBot?: boolean;
   debugMode?: boolean;
 };
@@ -98,13 +98,13 @@ export type PhaseAlienSeedingState = PhaseBasicState & {
 
 export type PhaseHumanAskState = PhaseBasicState & {
   turnOrder: TurnOrder;
-  humanId: PlayerId;
+  humanId: UID;
 };
 
 export type PhaseAlienAnswerState = PhaseBasicState & {
   turnOrder: TurnOrder;
-  humanId: PlayerId;
-  currentInquiry: CardId[];
+  humanId: UID;
+  currentInquiry: UID[];
   currentIntention: string;
   suggestions: AlienAttribute[];
   alienResponse?: string;
@@ -112,14 +112,14 @@ export type PhaseAlienAnswerState = PhaseBasicState & {
 
 export type PhaseOfferings = PhaseBasicState & {
   turnOrder: TurnOrder;
-  humanId: PlayerId;
-  currentInquiry: CardId[];
+  humanId: UID;
+  currentInquiry: UID[];
   currentIntention: string;
 };
 
 export type PhaseRevealState = PhaseBasicState & {
   turnOrder: TurnOrder;
-  humanId: PlayerId;
+  humanId: UID;
   wasCurseSelected: boolean;
-  curses: Record<CardId, PlayerId[]>;
+  curses: Record<UID, UID[]>;
 };

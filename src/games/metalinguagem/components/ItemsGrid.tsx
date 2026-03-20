@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Components
 import { DivButton } from 'components/buttons/DivButton';
 import { ItemCard } from 'components/cards/ItemCard';
@@ -12,7 +12,7 @@ type ItemsGridProps = {
   onItemSelect?: (item: string) => void;
   selectedItems?: string[];
   results?: {
-    guessPlayersPerItem: Record<string, PlayerId[]>;
+    guessPlayersPerItem: Record<string, UID[]>;
     players: GamePlayers;
   };
 };

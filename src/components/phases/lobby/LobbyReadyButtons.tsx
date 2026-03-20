@@ -3,7 +3,7 @@ import { useEffectOnce } from 'react-use';
 import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
 import { Button, Flex } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Hooks
 import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';

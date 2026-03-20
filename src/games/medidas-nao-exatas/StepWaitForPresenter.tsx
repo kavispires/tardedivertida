@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'motion/react';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Utils
 import { getAnimation } from 'utils/animations';
@@ -15,9 +15,9 @@ import { Step, type StepProps } from 'components/steps';
 type StepWaitForPresenterProps = {
   players: GamePlayers;
   presenter: GamePlayer;
-  turnOrder: PlayerId[];
+  turnOrder: UID[];
   wordsDict: Dictionary<TextCard>;
-  poolIds?: CardId[];
+  poolIds?: UID[];
 } & Pick<StepProps, 'announcement'>;
 
 export function StepWaitForPresenter({

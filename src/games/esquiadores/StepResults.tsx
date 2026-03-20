@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { UnorderedListOutlined } from '@ant-design/icons';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components

@@ -1,7 +1,7 @@
 export type TableEntry = {
-  playerId: PlayerId;
+  playerId: UID;
   cardId: string;
-  votes?: PlayerId[];
+  votes?: UID[];
 };
 
 export type SubmitStoryPayload = {

@@ -8,7 +8,7 @@ import type { DataCounts, Declaration, Status, TimeBombCard } from './types';
  * Generates the best declaration for a player based on their role and cards
  */
 export function mockDeclaration(
-  playerId: PlayerId,
+  playerId: UID,
   role: (typeof ROLES)[keyof typeof ROLES],
   hand: TimeBombCard[],
   dataCounts: DataCounts,

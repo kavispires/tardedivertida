@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Components
 import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCardHand } from 'components/image-cards';
@@ -14,7 +14,7 @@ type StoryWaitingProps = {
   storyteller: GamePlayer;
   user: GamePlayer;
   players: GamePlayers;
-  gameOrder: PlayerId[];
+  gameOrder: UID[];
 } & Pick<StepProps, 'announcement'>;
 
 export function StoryWaiting({ storyteller, user, players, gameOrder, announcement }: StoryWaitingProps) {

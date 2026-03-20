@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Components
 import { CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';

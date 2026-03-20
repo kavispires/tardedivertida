@@ -3,7 +3,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Space, Tooltip } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Utils
 import { getAnimation } from 'utils/animations';
 // Icons

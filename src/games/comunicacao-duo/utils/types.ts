@@ -12,11 +12,11 @@ export type DeckEntry = {
   affiliation: [string, string];
   status: string;
   data: any;
-  deliveredBy?: PlayerId[];
+  deliveredBy?: UID[];
 };
 
 export type HistoryEntry = {
-  requesterId: PlayerId;
+  requesterId: UID;
   clue: string;
   deliverables: string[];
 };

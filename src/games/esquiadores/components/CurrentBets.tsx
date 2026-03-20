@@ -1,7 +1,7 @@
 import { orderBy } from 'lodash';
 import { useMemo } from 'react';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Icons
 import { LodgeIcon } from 'icons/LodgeIcon';
 // Components

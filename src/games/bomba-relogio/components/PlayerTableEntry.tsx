@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Button, Flex, Switch, Tooltip } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Utils
 import { pluralize } from 'utils/helpers';
 // Icons
@@ -20,8 +20,8 @@ import { BombHighlight, RedWireHighlight } from './Highlights';
 
 type PlayerTableEntryProps = {
   player: GamePlayer;
-  currentTargetPlayerId?: PlayerId;
-  onSelect?: (playerId: PlayerId) => void;
+  currentTargetPlayerId?: UID;
+  onSelect?: (playerId: UID) => void;
   disabled?: boolean;
 };
 

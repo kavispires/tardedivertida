@@ -4,7 +4,7 @@ import { Fragment, useMemo } from 'react';
 import { LockFilled, UnlockFilled } from '@ant-design/icons';
 import { Divider, Input, Popover, Switch } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 import type { TopicCard } from 'types/tdr';
 // Utils
 import { NOOP } from 'utils/constants';

@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { TrophyOutlined } from '@ant-design/icons';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
@@ -35,7 +35,7 @@ type StepRevealProps = {
   user: GamePlayer;
   clues: Clue[];
   goToNextStep: UseStep['goToNextStep'];
-  whoGotNoPoints: PlayerId[];
+  whoGotNoPoints: UID[];
 } & Pick<StepProps, 'announcement'>;
 
 export function StepReveal({
@@ -59,7 +59,7 @@ export function StepReveal({
           }
           return acc;
         }, {}),
-        colorCodedCluesPerPlayer: clues.reduce((acc: StringDictionary, clue) => {
+        colorCodedCluesPerPlayer: clues.reduce((acc: Dictionary<string>, clue) => {
           if (clue.playerId) {
             acc[clue.playerId] = AVATARS[players[clue.playerId].avatarId].color;
           }

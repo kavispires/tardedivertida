@@ -1,6 +1,6 @@
 import { orderBy } from 'lodash';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Utils
 import { removeDuplicates } from 'utils/helpers';
 // Components

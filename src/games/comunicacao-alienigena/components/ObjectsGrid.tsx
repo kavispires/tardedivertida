@@ -17,7 +17,7 @@ import { ObjectsKey } from './ObjectsKey';
 type ObjectsGridProps = {
   items: PhaseBasicState['items'];
   showTypes?: boolean;
-  activeObjects?: CardId[];
+  activeObjects?: UID[];
   showAll?: boolean;
   status: OfferingsStatus;
 };

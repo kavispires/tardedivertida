@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Tooltip } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Utils
 import { getAnimationClass, getAvatarColorById } from 'utils/helpers';
 // Components

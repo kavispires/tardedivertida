@@ -1,6 +1,5 @@
 // Types
-import type { Achievement } from 'types/achievements';
-import type { GameRanking } from 'types/game';
+import type { Achievement, GameRanking } from 'types/game';
 import type { TextCard } from 'types/tdr';
 
 export type SubmitWordsPayload = {
@@ -41,11 +40,11 @@ export type GalleryEntry = {
   id: string;
   ids: string[];
   words: string[];
-  playerId: PlayerId;
+  playerId: UID;
   clue: string | null;
-  correct: PlayerId[];
+  correct: UID[];
   misses: {
-    guesserId: PlayerId;
+    guesserId: UID;
     guesses: string[];
   }[];
 };
@@ -77,7 +76,7 @@ export type PhaseRevealState = {
   happiness: HouseHappiness;
   gallery: GalleryEntry[];
   ranking: GameRanking;
-  foundTarget: PlayerId[];
+  foundTarget: UID[];
   targetId: string;
 };
 

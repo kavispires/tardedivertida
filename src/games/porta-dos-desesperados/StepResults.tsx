@@ -1,8 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayers } from 'types/player';
+import type { GameRound, GamePlayers } from 'types/game';
 // Utils
 import { LETTERS } from 'utils/constants';
 import { pluralize } from 'utils/helpers';
@@ -21,8 +20,8 @@ import { CrystalHighlight, DoorHighlight } from './components/Highlights';
 import { TrapPopupRule } from './components/RulesBlobs';
 
 type StepResultsProps = {
-  doors: CardId[];
-  pages: CardId[];
+  doors: UID[];
+  pages: UID[];
   currentCorridor: number;
   trap: string;
   trapEntry: TrapEntry | null;

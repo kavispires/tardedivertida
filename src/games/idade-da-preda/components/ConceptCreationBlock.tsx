@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { DeleteOutlined, EditOutlined, SaveOutlined } from '@ant-design/icons';
 import { Button, Card, Flex, Input, Tooltip } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 import type { Item } from 'types/tdr';
 // Hooks
 import { useCache } from 'hooks/useCache';
@@ -200,7 +200,7 @@ export function ConceptCreationBlock({
 
 type NoteProps = {
   concept: Concept;
-  userId?: PlayerId;
+  userId?: UID;
 };
 
 function Note({ concept, userId }: NoteProps) {

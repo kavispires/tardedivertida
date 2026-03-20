@@ -10,7 +10,7 @@ import { TRAPS } from './constants';
  * @param trap
  * @returns
  */
-export const mockPageSelection = (pages: CardId[], trap: string) => {
+export const mockPageSelection = (pages: UID[], trap: string) => {
   if (trap === TRAPS.MORE_CLUES) {
     return sampleSize(pages, 3);
   }
@@ -24,6 +24,6 @@ export const mockPageSelection = (pages: CardId[], trap: string) => {
  * @param answerDoor
  * @returns
  */
-export const mockDoorSelection = (doors: CardId[], answerDoor: CardId) => {
+export const mockDoorSelection = (doors: UID[], answerDoor: UID) => {
   return getRandomItem([...doors, answerDoor, answerDoor]);
 };

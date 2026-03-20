@@ -10,7 +10,7 @@ type RoundTypeProps = {
   roundType: string;
 };
 
-const POSITIONS: NumberDictionary = {
+const POSITIONS: Dictionary<number> = {
   CURSED_FIRST_POSITION: 1,
   SECOND_POSITION: 2,
   CENTER_POSITION: 3,

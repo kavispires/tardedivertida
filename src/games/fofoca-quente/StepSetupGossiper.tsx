@@ -2,7 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Alert, Avatar, Button, Flex } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Icons
 import { CheckMarkIcon } from 'icons/CheckMarkIcon';
 // Components

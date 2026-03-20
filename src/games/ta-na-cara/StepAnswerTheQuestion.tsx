@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -26,12 +26,12 @@ type StepAnswerTheQuestionProps = {
   players: GamePlayers;
   user: GamePlayer;
   turnOrder: TurnOrder;
-  charactersIds: CardId[];
+  charactersIds: UID[];
   charactersDict: CharactersDictionary;
-  questionId: CardId;
+  questionId: UID;
   questionsDict: QuestionsDictionary;
   onSubmitAnswer: GenericFunction;
-  activePlayerId: PlayerId;
+  activePlayerId: UID;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepAnswerTheQuestion({

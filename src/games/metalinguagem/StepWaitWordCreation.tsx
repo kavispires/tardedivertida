@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Components
 import { Translate } from 'components/language';
 import { PlayerAvatarName } from 'components/player';
@@ -16,7 +16,7 @@ type StepWaitWordCreationProps = {
   creator: GamePlayer;
   items: string[];
   wordLengths: WordLength[];
-  turnOrder: PlayerId[];
+  turnOrder: UID[];
 } & Pick<StepProps, 'announcement'>;
 
 export function StepWaitWordCreation({

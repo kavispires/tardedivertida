@@ -5,8 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { ThunderboltOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
@@ -33,7 +32,7 @@ type StepGuessingProps = {
   players: GamePlayers;
   onSubmitGuesses: (payload: SubmitGuessesPayload) => void;
   characters: Characters;
-  tableOrder: CardId[];
+  tableOrder: UID[];
   round: GameRound;
   imageCardMode: boolean;
 } & Pick<StepProps, 'announcement'>;
@@ -76,7 +75,7 @@ export function StepGuessing({
       .filter((key: string) => !usedPlayers.includes(key));
     const characterKeys = shuffle(
       Object.keys(characters)
-        .map((cardId: CardId) => getEntryId(['char', cardId]))
+        .map((cardId: UID) => getEntryId(['char', cardId]))
         .filter((key: string) => !usedCharacters.includes(key)),
     );
     const newVotes = { ...votes };

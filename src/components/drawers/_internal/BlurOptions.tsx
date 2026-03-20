@@ -25,7 +25,7 @@ export function BlurOptions() {
     },
   });
 
-  const [selected, setSelected] = useState<BooleanDictionary>({
+  const [selected, setSelected] = useState<Dictionary<boolean>>({
     aliens: false,
     cockroaches: false,
     scorpions: false,

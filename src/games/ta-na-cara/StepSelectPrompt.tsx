@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Components
@@ -19,12 +19,12 @@ type StepSelectPromptProps = {
   players: GamePlayers;
   user: GamePlayer;
   turnOrder: TurnOrder;
-  charactersIds: CardId[];
+  charactersIds: UID[];
   charactersDict: CharactersDictionary;
   questionsDict: QuestionsDictionary;
   onSubmitPrompt: GenericFunction;
   onSubmitTarget: GenericFunction;
-  activePlayerId: PlayerId;
+  activePlayerId: UID;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepSelectPrompt({

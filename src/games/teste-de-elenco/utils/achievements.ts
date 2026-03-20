@@ -1,5 +1,5 @@
 // Types
-import type { AchievementReference } from 'types/achievements';
+import type { AchievementReference } from 'types/game';
 
 export const ACHIEVEMENTS = {
   ALONE_VOTES: 'ALONE_VOTES',

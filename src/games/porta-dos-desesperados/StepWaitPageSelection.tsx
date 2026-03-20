@@ -2,7 +2,7 @@ import { type ReactNode, useMemo, useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Icons
@@ -72,7 +72,7 @@ export function StepWaitPageSelection({ possessed, players, trap, trapEntry }: S
 export function PossessionAnimation() {
   const [possessionLevel, setPossessionLevel] = useState(0);
 
-  const animation: StringDictionary = {
+  const animation: Dictionary<string> = {
     0: getAnimationClass('shakeX', { speed: 'fast', infinite: true }),
     1: 'super-possession',
     2: 'extreme-possession',

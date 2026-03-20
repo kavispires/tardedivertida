@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Button, Form, Popover, Select } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -13,7 +13,7 @@ import { PlayerAvatarName } from 'components/player';
 import type { Message } from '../utils/types';
 
 type MessageBoardProps = {
-  messages: Record<PlayerId, Message>;
+  messages: Record<UID, Message>;
   onSubmitMessage: GenericFunction;
   disabled: boolean;
   players: GamePlayers;

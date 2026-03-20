@@ -9,7 +9,7 @@ type ConfirmCluesProps = {
   clover: CloverObject;
   leaves: Leaves;
   clues: string[];
-  rotations: NumberDictionary;
+  rotations: Dictionary<number>;
 };
 
 export function ConfirmClues({ clover, leaves, clues, rotations }: ConfirmCluesProps) {
@@ -34,7 +34,7 @@ export function ConfirmClues({ clover, leaves, clues, rotations }: ConfirmCluesP
   );
 }
 
-const getWords = (clover: CloverObject, leaves: Leaves, rotations: NumberDictionary) => {
+const getWords = (clover: CloverObject, leaves: Leaves, rotations: Dictionary<number>) => {
   const leafA = leaves[clover.leaves.A.leafId];
   const leafARotation = parseRotation(rotations[leafA.id]);
   const leafB = leaves[clover.leaves.B.leafId];

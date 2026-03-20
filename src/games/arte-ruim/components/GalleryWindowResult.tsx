@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Components
 import { Translate } from 'components/language';
 import { StarPoints } from 'components/points';
@@ -16,7 +16,7 @@ type GalleryWindowResultProps = {
   playerArtist: GamePlayer;
   correctAnswerId: string;
   correctAnswerText: string;
-  playersPoints?: NumberDictionary;
+  playersPoints?: Dictionary<number>;
   playersSay: PlayersSay;
   players: GamePlayers;
 };

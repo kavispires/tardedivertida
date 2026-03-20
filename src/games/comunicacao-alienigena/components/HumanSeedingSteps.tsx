@@ -3,7 +3,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Flex, Steps, Switch } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useLoading } from 'hooks/useLoading';
@@ -28,7 +28,7 @@ type HumanSeedingStepsProps = {
 export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProps) {
   const { isLoading } = useLoading();
   const [currentStep, setCurrentStep] = useState(0);
-  const [seeds, setSeeds] = useState<NumberDictionary>({});
+  const [seeds, setSeeds] = useState<Dictionary<number>>({});
   const { dict: selected, updateDict: updateSelected, setDict, reset } = useBooleanDictionary({});
 
   const seeders = Object.values<Seed>(user?.seeds ?? {});
@@ -40,7 +40,7 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
   const seed = seeders[currentStep];
 
   const onAddSeeds = () => {
-    const values = seed.items.reduce((acc: NumberDictionary, item) => {
+    const values = seed.items.reduce((acc: Dictionary<number>, item) => {
       const key = `${item.id}${SEPARATOR}${seed.attribute.id}`;
       acc[key] = selected[key]
         ? alienAttributesUtils.ATTRIBUTE_VALUE_DICT.RELATED.value
@@ -62,7 +62,7 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
 
     const previousSeed = seeders[newStep];
 
-    const values = seeders[newStep].items.reduce((acc: BooleanDictionary, item) => {
+    const values = seeders[newStep].items.reduce((acc: Dictionary<boolean>, item) => {
       const key = `${item.id}${SEPARATOR}${previousSeed.attribute.id}`;
       if (seeds[key] === 3) {
         acc[key] = true;
@@ -74,7 +74,7 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
   };
 
   const onDoneSeeding = () => {
-    const values = seed.items.reduce((acc: NumberDictionary, item) => {
+    const values = seed.items.reduce((acc: Dictionary<number>, item) => {
       const key = `${item.id}${SEPARATOR}${seed.attribute.id}`;
       acc[key] = selected[key] ? 3 : -3;
       return acc;

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
@@ -14,7 +14,7 @@ import { DreamCard } from './DreamCard';
 // Components
 
 type DreamBoardVoteProps = {
-  table: ImageCardId[];
+  table: UID[];
   user: GamePlayer;
   activeItem: string;
   onActivateItem: GenericFunction;

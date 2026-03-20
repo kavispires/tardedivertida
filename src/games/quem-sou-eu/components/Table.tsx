@@ -10,8 +10,8 @@ import { QSECard } from './QSECard';
 
 type TableProps = {
   characters: Characters;
-  tableOrder: CardId[];
-  playerCharacterId: CardId;
+  tableOrder: UID[];
+  playerCharacterId: UID;
   showAll?: boolean;
   imageCardMode: boolean;
 };

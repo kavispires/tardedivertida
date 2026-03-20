@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Icons

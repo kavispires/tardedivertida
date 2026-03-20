@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { type AvatarProps, Tooltip, type TooltipProps } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Internal
 import { PlayerAvatar } from './PlayerAvatar';
 

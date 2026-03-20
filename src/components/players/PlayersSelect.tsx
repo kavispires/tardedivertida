@@ -2,7 +2,7 @@ import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Select, type SelectProps } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Components
 import { Translate } from 'components/language';
 import { PlayerAvatar } from 'components/player';

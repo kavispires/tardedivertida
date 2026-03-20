@@ -5,8 +5,7 @@ import { useMeasure } from 'react-use';
 import { TrophyOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
@@ -39,7 +38,7 @@ type StepResultProps = {
   isFirstRunThrough: boolean;
   track: Track;
   winningValues: string[];
-  winningTeam: PlayerId[];
+  winningTeam: UID[];
   scoringType: string;
 } & Pick<StepProps, 'announcement'>;
 

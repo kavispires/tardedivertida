@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 // Ant Design Resources
 import { Avatar, Tooltip } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Internal
 import type { RunActivity } from '../utils/types';
 import { RunnerAvatar } from './RunnerAvatar';

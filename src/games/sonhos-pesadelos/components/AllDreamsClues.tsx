@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Utils
 import { LETTERS } from 'utils/constants';
 import { getColorFromLetter, getEntryId } from 'utils/helpers';
@@ -15,7 +15,7 @@ type AllDreamsCluesProps = {
   dreams: Dream[];
   activeItem: string;
   onActivateItem: GenericFunction;
-  votes: StringDictionary;
+  votes: Dictionary<string>;
   players: GamePlayers;
 };
 

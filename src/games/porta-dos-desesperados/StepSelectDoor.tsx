@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { RadarChartOutlined } from '@ant-design/icons';
 import { Image, Space } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
@@ -29,8 +29,8 @@ import { BotPopupRule, TrapPopupRule } from './components/RulesBlobs';
 import { SandTimer } from './components/SandTimer';
 
 type StepSelectPagesProps = {
-  doors: CardId[];
-  pages: CardId[];
+  doors: UID[];
+  pages: UID[];
   currentCorridor: number;
   trap: string;
   trapEntry: TrapEntry | null;
@@ -41,7 +41,7 @@ type StepSelectPagesProps = {
   possessed: GamePlayer;
   magic: number;
   botEnabled?: boolean;
-  answerDoorId: ImageCardId;
+  answerDoorId: UID;
 };
 
 export function StepSelectDoor({

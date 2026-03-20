@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 
 /**
  * CSS unit size

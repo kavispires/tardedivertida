@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { TrophyOutlined } from '@ant-design/icons';
 import { Avatar, Flex, Space } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import type { UseStep } from 'hooks/useStep';

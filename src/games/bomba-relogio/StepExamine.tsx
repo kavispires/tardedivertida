@@ -3,8 +3,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 // Utils
 import { getAvatarColorById, sortPlayers } from 'utils/helpers';
 // Components
@@ -31,7 +30,7 @@ type StepDeclarationProps = {
   dataCounts: DataCounts;
   status: Status;
   round: GameRound;
-  currentTargetPlayerId?: PlayerId;
+  currentTargetPlayerId?: UID;
   currentInvestigator: GamePlayer;
   isTheCurrentInvestigator: boolean;
   onUpdateTargetPlayerId: (payload: UpdateTargetPlayerPayload) => void;

@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Avatar, type AvatarProps, Tooltip } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Internal
 import { PlayerAvatar } from '../player/PlayerAvatar';
 

@@ -2,7 +2,7 @@
 import { CompassOutlined } from '@ant-design/icons';
 import { Alert, Flex } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Icons
 import { TeenDetectiveIcon } from 'icons/TeenDetectiveIcon';
 // Components

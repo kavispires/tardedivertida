@@ -15,7 +15,7 @@ import { findBetContenders } from '../utils/helpers';
 type BetsFloatingHandProps = {
   bets: Bet;
   brackets: Bracket[];
-  selectedContenderId?: CardId;
+  selectedContenderId?: UID;
 };
 
 export function BetsFloatingHand({ bets, brackets, selectedContenderId = '' }: BetsFloatingHandProps) {

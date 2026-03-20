@@ -55,7 +55,7 @@ export function useRedirectToNewGame() {
     },
   });
 
-  const startRedirect = async (prevGameId: GameId, newGameId: GameId, newGameName: GameName) => {
+  const startRedirect = async (prevGameId: string, newGameId: string, newGameName: string) => {
     if (happenedOnce) {
       notification.error({
         title: 'Redirect has failed to trigger',

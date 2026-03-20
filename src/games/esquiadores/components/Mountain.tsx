@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { motion, useAnimation, useAnimate } from 'motion/react';
 import { forwardRef, useEffect, useRef } from 'react';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useMouseDirection } from 'hooks/useMouseDirection';

@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Utils
@@ -22,12 +22,12 @@ type StepGuessPlayerProps = {
   players: GamePlayers;
   user: GamePlayer;
   turnOrder: TurnOrder;
-  charactersIds: CardId[];
+  charactersIds: UID[];
   charactersDict: CharactersDictionary;
   questionsDict: QuestionsDictionary;
   onSubmitGuess: GenericFunction;
   targetedPlayer: GamePlayer;
-  activePlayerId: PlayerId;
+  activePlayerId: UID;
   points: number;
 } & Pick<StepProps, 'announcement'>;
 

@@ -17,14 +17,14 @@ export type WordLength = {
 };
 
 export type MetalinguagemGalleryEntry = {
-  itemsIds: CardId[];
+  itemsIds: UID[];
   name: string;
   names: string[];
   correct: boolean;
 };
 
 export type PhaseWordCreationState = {
-  creatorId: PlayerId;
+  creatorId: UID;
   items: string[];
   turnOrder: GameOrder;
   wordLengths: WordLength[];
@@ -33,7 +33,7 @@ export type PhaseWordCreationState = {
 };
 
 export type PhaseGuessingState = {
-  creatorId: PlayerId;
+  creatorId: UID;
   items: string[];
   turnOrder: GameOrder;
   wordLengths: WordLength[];
@@ -46,14 +46,14 @@ export type PhaseGuessingState = {
 };
 
 export type PhaseResultsState = {
-  creatorId: PlayerId;
+  creatorId: UID;
   items: string[];
   turnOrder: GameOrder;
   wordLengths: WordLength[];
   newWord: string;
   names: string[];
   namesIndexes: number[];
-  guessPlayersPerItem: Record<string, PlayerId[]>;
+  guessPlayersPerItem: Record<string, UID[]>;
   outcome: keyof typeof WORD_LENGTH_STATUS;
   beginsWith: string;
   endsWith: string;

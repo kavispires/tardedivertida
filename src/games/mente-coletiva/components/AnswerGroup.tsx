@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { LockFilled, QuestionCircleFilled } from '@ant-design/icons';
 import { Checkbox } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Hooks
 import { useHost } from 'hooks/useHost';
 import { useLanguage } from 'hooks/useLanguage';

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Button, Popover } from 'antd';
 // Types
-import type { AchievementInfo } from 'types/achievements';
+import type { AchievementInfo } from 'types/game';
 // Components
 import { DualTranslate } from 'components/language';
 // Internal

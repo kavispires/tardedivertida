@@ -3,7 +3,7 @@ import { Fragment, type ReactNode, useMemo } from 'react';
 // Ant Design Resources
 import { BackwardFilled } from '@ant-design/icons';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Icons
@@ -25,11 +25,11 @@ type TableOrderProps = {
   /**
    * The order array
    */
-  order: PlayerId[];
+  order: UID[];
   /**
    * The active player who should be highlighted
    */
-  activePlayerId?: PlayerId;
+  activePlayerId?: UID;
   /**
    * Optional custom title
    */
@@ -41,7 +41,7 @@ type TableOrderProps = {
   /**
    * Reorder turn order so it starts with given player
    */
-  reorderByUser?: PlayerId;
+  reorderByUser?: UID;
   /**
    * The size of the table order
    */

@@ -10,7 +10,7 @@ import { getMovieTitle } from '../utils/helpers';
 
 type MovieHighlightProps = {
   movies: MovieCard[];
-  movieId: CardId;
+  movieId: UID;
 };
 
 export function MovieHighlight({ movies, movieId }: MovieHighlightProps) {

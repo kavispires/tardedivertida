@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Icons
@@ -13,7 +13,7 @@ import { PlayerAvatarCard } from 'components/player';
 type PlayerTargetCardButtonProps = {
   player: GamePlayer;
   width: number;
-  target?: PlayerId;
+  target?: UID;
   onClick: GenericFunction;
   disabled?: boolean;
   isAmbush?: boolean;

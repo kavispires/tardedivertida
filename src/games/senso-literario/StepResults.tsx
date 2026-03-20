@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Divider, Flex } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components

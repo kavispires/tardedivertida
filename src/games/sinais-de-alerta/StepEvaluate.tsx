@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { ClearOutlined, CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
@@ -33,8 +33,8 @@ type StepEvaluateProps = {
   onSubmitGuesses: (payload: SubmitEvaluationPayload) => void;
   cards: Dictionary<TextCard>;
   drawings: DrawingEntry[];
-  subjectsIds: CardId[];
-  descriptorsIds: CardId[];
+  subjectsIds: UID[];
+  descriptorsIds: UID[];
   gameLanguage: Language;
 } & Pick<StepProps, 'announcement'>;
 
@@ -234,10 +234,10 @@ export function StepEvaluate({
 
 const prepareGuesses = (
   drawings: DrawingEntry[],
-  subjectGuesses: StringDictionary,
-  descriptorGuesses: StringDictionary,
+  subjectGuesses: Dictionary<string>,
+  descriptorGuesses: Dictionary<string>,
 ) => {
-  const guesses: ArrayDictionary<CardId> = {};
+  const guesses: Dictionary<UID[]> = {};
 
   drawings.forEach(({ playerId }) => {
     guesses[playerId] = [descriptorGuesses[playerId], subjectGuesses[playerId]];

@@ -111,7 +111,7 @@ export function QuestionsHistory({ history, suspectsDict }: QuestionsHistoryProp
 }
 
 type EliminatedSuspectsProps = {
-  eliminated: CardId[];
+  eliminated: UID[];
   suspectsDict: Dictionary<SuspectCard>;
 };
 

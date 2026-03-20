@@ -13,7 +13,7 @@ import {
 } from '@ant-design/icons';
 import { Button, Tooltip } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 import type { CrimeSceneTile } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
@@ -40,10 +40,10 @@ type CrimeSummaryProps = {
   player: GamePlayer;
   scenes: ScenesDict;
   scenesOrder: string[];
-  selectedWeaponId?: CardId;
-  selectedEvidenceId?: CardId;
-  selectedVictimId?: CardId;
-  selectedLocationId?: CardId;
+  selectedWeaponId?: UID;
+  selectedEvidenceId?: UID;
+  selectedVictimId?: UID;
+  selectedLocationId?: UID;
   isLocked?: boolean;
   isVictimGame: boolean;
   isLocationGame: boolean;

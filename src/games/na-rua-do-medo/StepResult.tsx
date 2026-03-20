@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
@@ -25,9 +25,9 @@ type StepResultProps = {
   candySidewalk: CandySidewalk;
   cashedInCandy: number;
   user: GamePlayer;
-  alreadyAtHomePlayerIds: PlayerId[];
-  continuingPlayerIds: PlayerId[];
-  goingHomePlayerIds: PlayerId[];
+  alreadyAtHomePlayerIds: UID[];
+  continuingPlayerIds: UID[];
+  goingHomePlayerIds: UID[];
   candyInHand: number;
 };
 

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Components
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language';

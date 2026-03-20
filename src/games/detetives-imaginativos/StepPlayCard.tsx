@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
@@ -21,7 +21,7 @@ type StepPlayCardProps = {
   onPlayCard: (payload: SubmitPlayCardPayload) => void;
   isLoading: boolean;
   turnOrder: TurnOrder;
-  leaderId: PlayerId;
+  leaderId: UID;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepPlayCard({

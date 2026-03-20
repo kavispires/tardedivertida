@@ -16,8 +16,8 @@ type ClueEvaluationProps = {
 };
 
 export function ClueEvaluation({ clues, latestBoardEntry, onSubmitEvaluation }: ClueEvaluationProps) {
-  const [evaluation, setEvaluation] = useState<BooleanDictionary>(
-    latestBoardEntry.clues.reduce((acc: BooleanDictionary, clueId) => {
+  const [evaluation, setEvaluation] = useState<Dictionary<boolean>>(
+    latestBoardEntry.clues.reduce((acc: Dictionary<boolean>, clueId) => {
       acc[clueId] = false;
       return acc;
     }, {}),

@@ -4,11 +4,11 @@ type UseBooleanDictionaryReturnValue = {
   /**
    * The dictionary
    */
-  dict: BooleanDictionary;
+  dict: Dictionary<boolean>;
   /**
    * Set the dictionary
    */
-  setDict: Dispatch<React.SetStateAction<BooleanDictionary>>;
+  setDict: Dispatch<React.SetStateAction<Dictionary<boolean>>>;
   /**
    * Add or remove an entry from the dictionary
    * @param key - The key to add or remove
@@ -35,7 +35,7 @@ type UseBooleanDictionaryReturnValue = {
  * @returns - A dictionary of booleans and its functions
  */
 export function useBooleanDictionary(
-  initialState: BooleanDictionary,
+  initialState: Dictionary<boolean>,
   validation?: (...args: any[]) => boolean,
 ): UseBooleanDictionaryReturnValue {
   const [dict, setDict] = useState(initialState);

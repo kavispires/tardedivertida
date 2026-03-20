@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { AimOutlined, ClearOutlined, IssuesCloseOutlined } from '@ant-design/icons';
 import { Button, Tooltip } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Hooks
 import { useCache } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';

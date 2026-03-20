@@ -3,7 +3,7 @@ import type { MonsterImage } from 'types/tdr';
 
 export type Sketch = {
   sketch: string;
-  playerId: PlayerId;
+  playerId: UID;
 } & MonsterImage;
 
 export type SubmitOrientationPayload = {
@@ -15,5 +15,5 @@ export type SubmitSketchPayload = {
 };
 
 export type SubmitVotePayload = {
-  vote: PlayerId;
+  vote: UID;
 };

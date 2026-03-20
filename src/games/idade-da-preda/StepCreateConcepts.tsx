@@ -3,8 +3,7 @@ import { useState } from 'react';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { Button, Flex } from 'antd';
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 import type { Item } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';

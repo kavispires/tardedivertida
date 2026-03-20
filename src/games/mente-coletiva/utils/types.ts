@@ -11,7 +11,7 @@ export type Question = {
 export type Answer = {
   id: string;
   isLocked: boolean;
-  playerId: PlayerId;
+  playerId: UID;
   answer: string;
   parsedAnswer: string;
 };
@@ -33,7 +33,7 @@ export type SubmitCustomQuestionPayload = {
 };
 
 export type SubmitAnswersPayload = {
-  answers: StringDictionary;
+  answers: Dictionary<string>;
 };
 
 export type SubmitNextAnswersPayload = {
@@ -51,7 +51,7 @@ export type NextAnswersPayload = {
 export type GalleryEntry = {
   question: GroupQuestionCard;
   answers: {
-    playerIds: PlayerId[];
+    playerIds: UID[];
     answer: string;
   }[];
 };

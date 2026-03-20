@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Icons
@@ -17,9 +17,9 @@ import { Translate } from 'components/language';
 
 type PlayersDecisionStateProps = {
   players: GamePlayers;
-  goingHomePlayerIds: PlayerId[];
-  continuingPlayerIds: PlayerId[];
-  alreadyAtHomePlayerIds: PlayerId[];
+  goingHomePlayerIds: UID[];
+  continuingPlayerIds: UID[];
+  alreadyAtHomePlayerIds: UID[];
   cashedInCandy: number;
   candyInHand: number;
   phase: 'TRICK_OR_TREAT' | 'RESULT' | 'STREET_END';
@@ -172,7 +172,7 @@ export function PlayersDecisionState({
 
 type DecisionSectionProps = {
   players: GamePlayers;
-  playersInSection: PlayerId[];
+  playersInSection: UID[];
   icon: ReactNode;
   title: ReactNode;
   description: ReactNode;

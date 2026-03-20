@@ -6,7 +6,7 @@ import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 import { Voters } from '../Voters';
 
 export function VoteVamosAoCinema({ track, playersList }: VoteComponentProps) {
-  const movies: StringDictionary = getMovieTitles(track.data.movies);
+  const movies: Dictionary<string> = getMovieTitles(track.data.movies);
 
   const groupedVotes = useGroupedVotes(playersList);
 

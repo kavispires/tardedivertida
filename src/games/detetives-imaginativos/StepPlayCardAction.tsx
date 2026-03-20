@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useLanguage } from 'hooks/useLanguage';
@@ -39,7 +39,7 @@ type StepPlayCardActionProps = {
   onPlayCard: (payload: SubmitPlayCardPayload) => void;
   isLoading: boolean;
   turnOrder: TurnOrder;
-  leaderId: PlayerId;
+  leaderId: UID;
 };
 
 export function StepPlayCardAction({

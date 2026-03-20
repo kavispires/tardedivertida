@@ -26,10 +26,10 @@ const TOTAL_WORDS = 4;
 
 type StepBuildMetricsProps = {
   wordsDict: Dictionary<TextCard>;
-  secretCardsOptionsIds: CardId[];
-  availablePoolCardsIds: CardId[];
-  poolIds?: CardId[];
-  secretWordId?: CardId;
+  secretCardsOptionsIds: UID[];
+  availablePoolCardsIds: UID[];
+  poolIds?: UID[];
+  secretWordId?: UID;
   metricsDescriptors: Record<string, TextCard[]>;
   onSubmitPool: (payload: SubmitPoolPayload) => void;
   onSubmitMetrics: (payload: SubmitMetricsPayload) => void;
@@ -48,8 +48,8 @@ export function StepBuildMetrics({
 }: StepBuildMetricsProps) {
   const { dualTranslate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(secretWordId ? 3 : 1);
-  const [selectedCardId, setSelectedCardId] = useState<CardId | null>(secretWordId || null);
-  const [selectedWords, setSelectedWords] = useState<CardId[]>([]);
+  const [selectedCardId, setSelectedCardId] = useState<UID | null>(secretWordId || null);
+  const [selectedWords, setSelectedWords] = useState<UID[]>([]);
   const [metrics, setMetrics] = useState<Record<string, number>>({
     1: 3,
     2: 3,
@@ -58,7 +58,7 @@ export function StepBuildMetrics({
     5: 3,
   });
 
-  const onSelectWord = (cardId: CardId) => {
+  const onSelectWord = (cardId: UID) => {
     setSelectedWords((prev) => {
       const newSelection = [...prev];
       if (newSelection.includes(cardId)) {

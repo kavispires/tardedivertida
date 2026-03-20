@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 import type { CrimeSceneTile } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';

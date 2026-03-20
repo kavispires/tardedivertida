@@ -1,6 +1,6 @@
 import type { ElementType } from 'react';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Components
 import { SpreadsheetCell, SpreadsheetGrid } from 'components/general/SpreadsheetGrid';
 // Internal

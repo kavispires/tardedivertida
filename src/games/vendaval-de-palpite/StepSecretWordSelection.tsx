@@ -28,11 +28,11 @@ export function StepSecretWordSelection({
   const { notification } = App.useApp();
   const { isLoading } = useLoading();
   const [secretWord, setSecretWord] = useState('');
-  const [selectedCategories, setSelectedCategories] = useState<BooleanDictionary>({});
+  const [selectedCategories, setSelectedCategories] = useState<Dictionary<boolean>>({});
   const isReadyToSend = Boolean(secretWord && Object.keys(selectedCategories).length > 0);
 
   const handleCategoryAdd = (category: string) => {
-    const categoriesCopy: BooleanDictionary = { ...selectedCategories };
+    const categoriesCopy: Dictionary<boolean> = { ...selectedCategories };
     if (categoriesCopy[category]) {
       delete categoriesCopy[category];
     } else {

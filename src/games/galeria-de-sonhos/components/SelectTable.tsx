@@ -17,7 +17,7 @@ import { BORDER_TOTAL_SIZE } from '../utils/constants';
 type SelectTableProps = {
   table: ImageCardObj[];
   onSelectCard: (cardId: string) => void;
-  selectedCards: BooleanDictionary;
+  selectedCards: Dictionary<boolean>;
 };
 
 export function SelectTable({ table, onSelectCard, selectedCards }: SelectTableProps) {

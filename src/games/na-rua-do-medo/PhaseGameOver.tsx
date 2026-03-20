@@ -1,7 +1,6 @@
 import { orderBy } from 'lodash';
 // Types
-import type { PhaseProps } from 'types/game';
-import type { GamePlayer } from 'types/player';
+import type { PhaseProps, GamePlayer } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils

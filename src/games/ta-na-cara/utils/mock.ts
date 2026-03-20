@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Utils
 import { getRandomItem } from 'utils/helpers';
 // Internal
@@ -30,7 +30,7 @@ export function mockAnswer() {
   return getRandomItem([true, false]);
 }
 
-export function mockGuess(charactersDict: CharactersDictionary, user: GamePlayer, targetId: PlayerId) {
+export function mockGuess(charactersDict: CharactersDictionary, user: GamePlayer, targetId: UID) {
   return getRandomItem(
     Object.values(charactersDict)
       .filter(

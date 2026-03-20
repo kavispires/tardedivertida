@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { TrophyOutlined } from '@ant-design/icons';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Components
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
@@ -18,9 +18,9 @@ type StepRaceProps = {
   cardsDict: Dictionary<RunnerCard>;
   race: RunActivity[];
   goToNextStep: () => void;
-  lockedPlayersIds: PlayerId[];
-  ongoingPlusOnePlayersIds: PlayerId[];
-  ongoingMinusOnePlayersIds: PlayerId[];
+  lockedPlayersIds: UID[];
+  ongoingPlusOnePlayersIds: UID[];
+  ongoingMinusOnePlayersIds: UID[];
 } & Pick<StepProps, 'announcement'>;
 
 export function StepRace({

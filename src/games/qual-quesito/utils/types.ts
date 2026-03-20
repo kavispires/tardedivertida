@@ -1,7 +1,5 @@
 // Types
-import type { Achievement } from 'types/achievements';
-import type { GameRanking } from 'types/game';
-import type { GamePlayer } from 'types/player';
+import type { Achievement, GameRanking, GamePlayer } from 'types/game';
 import type { Item } from 'types/tdr';
 
 export type SubmitCategoryPayload = {
@@ -11,7 +9,7 @@ export type SubmitCategoryPayload = {
 export type SubmitSkipTurnPayload = never;
 
 export type SubmitCardsPayload = {
-  cardsIds: CardId[];
+  cardsIds: UID[];
 };
 
 export type SubmitEvaluationsPayload = {
@@ -19,39 +17,39 @@ export type SubmitEvaluationsPayload = {
 };
 
 export type TableEntry = {
-  playerId: PlayerId;
-  cardId: CardId;
+  playerId: UID;
+  cardId: UID;
   accepted: boolean;
 };
 
 export type GalleryEntry = {
   category: string;
-  creatorId: PlayerId;
+  creatorId: UID;
   items: TableEntry[];
 };
 
 export type PhaseCategoryCreationState = {
   turnOrder: GameOrder;
-  creatorId: PlayerId;
+  creatorId: UID;
   cardsDict: Dictionary<Item>;
 };
 
 export type PhaseSkipAnnouncementState = {
   turnOrder: GameOrder;
-  creatorId: PlayerId;
+  creatorId: UID;
   cardsDict: Dictionary<Item>;
 };
 
 export type PhaseCardPlayState = {
   turnOrder: GameOrder;
-  creatorId: PlayerId;
+  creatorId: UID;
   cardsDict: Dictionary<Item>;
   category: string;
 };
 
 export type PhaseVerificationState = {
   turnOrder: GameOrder;
-  creatorId: PlayerId;
+  creatorId: UID;
   cardsDict: Dictionary<Item>;
   table: TableEntry[];
   category: string;
@@ -59,7 +57,7 @@ export type PhaseVerificationState = {
 
 export type PhaseResultsState = {
   turnOrder: GameOrder;
-  creatorId: PlayerId;
+  creatorId: UID;
   cardsDict: Dictionary<Item>;
   table: TableEntry[];
   ranking: GameRanking;

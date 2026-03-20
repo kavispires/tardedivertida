@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
@@ -31,7 +31,7 @@ export const TrackQuemSouEu = ({ track, onSubmitAnswer, user }: TrackProps) => {
   });
 
   const botPlayer: GamePlayer = useMemo(() => {
-    const selectedGlyphs: BooleanDictionary = {};
+    const selectedGlyphs: Dictionary<boolean> = {};
     track.data.positive.forEach((glyph: number) => {
       selectedGlyphs[glyph] = true;
     });

@@ -36,7 +36,7 @@ import UE_SO_ISSO from 'games/ue-so-isso/utils/achievements';
 import VAMOS_AO_CINEMA from 'games/vamos-ao-cinema/utils/achievements';
 import VICE_CAMPEAO from 'games/vice-campeao/utils/achievements';
 // Types
-import type { AchievementReference } from 'types/achievements';
+import type { AchievementReference } from 'types/game';
 // import CINEGRAFISTAS_AMADORES from 'games/cinegrafistas-amadores/utils/achievements';
 // import ESPIAO_ENTRE_NOS from 'games/espiao-entre-nos/utils/achievements';
 // import INSTRUMENTOS_CODIFICADOS from 'games/instrumentos-codificados/utils/achievements';
@@ -48,7 +48,7 @@ import type { AchievementReference } from 'types/achievements';
 // import TREVO_DA_SORTE from 'games/trevo-da-sorte/utils/achievements';
 // import VENDAVAL_DE_PALPITE from 'games/vendaval-de-palpite/utils/achievements';
 
-export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = {
+export const ACHIEVEMENTS_DICT: Record<string, AchievementReference | null> = {
   adedanhx: ADEDANHX,
   'arte-ruim': ARTE_RUIM,
   'bomba-relogio': BOMBA_RELOGIO,

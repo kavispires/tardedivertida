@@ -1,7 +1,5 @@
 // Types
-import type { Achievement } from 'types/achievements';
-import type { GameRanking } from 'types/game';
-import type { GamePlayer } from 'types/player';
+import type { Achievement, GameRanking, GamePlayer } from 'types/game';
 import type { CrimesHediondosCard, CrimeSceneTile } from 'types/tdr';
 
 export type SubmitCrimePayload = {
@@ -35,12 +33,12 @@ export type ItemsDict = Dictionary<CrimesHediondosCard>;
 export type ScenesDict = Dictionary<CrimeSceneTile>;
 
 export type Crime = {
-  playerId: PlayerId;
+  playerId: UID;
   weaponId: string;
   evidenceId: string;
   victimId?: string;
   locationId?: string;
-  scenes: NumberDictionary;
+  scenes: Dictionary<number>;
 };
 
 export type Guess = {
@@ -65,7 +63,7 @@ export type History = {
 };
 
 export type Results = {
-  [key: string]: StringDictionary;
+  [key: string]: Dictionary<string>;
 };
 
 export type PhaseCrimeSelectionState = {
@@ -90,7 +88,7 @@ export type PhaseGuessingState = BasicState;
 export type PhaseRevealState = BasicState & {
   results: Results;
   ranking: GameRanking;
-  winners: PlayerId[];
+  winners: UID[];
 };
 
 export type PhaseSceneMarkingState = BasicState & {

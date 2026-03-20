@@ -3,8 +3,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { App, Badge, Flex, Space } from 'antd';
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Utils

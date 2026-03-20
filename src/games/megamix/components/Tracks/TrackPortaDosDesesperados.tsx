@@ -73,7 +73,7 @@ export const TrackPortaDosDesesperados = ({ track, onSubmitAnswer, user }: Track
       </Space>
       <Image.PreviewGroup>
         <SpaceContainer>
-          {track.data.doors.map((cardId: ImageCardId) => {
+          {track.data.doors.map((cardId: UID) => {
             return (
               <SpaceContainer
                 vertical

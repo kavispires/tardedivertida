@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 import type { SpectrumCard } from 'types/tdr';
 // Components
 import { Translate } from 'components/language';

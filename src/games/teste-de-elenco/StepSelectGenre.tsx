@@ -1,7 +1,7 @@
 import { sampleSize } from 'lodash';
 import { useState } from 'react';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 import type { Item } from 'types/tdr';
 // Hooks
 import { useLoading } from 'hooks/useLoading';

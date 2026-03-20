@@ -22,7 +22,7 @@ export const FOFOCA_QUENTE_ACTIONS = {
   SUBMIT_INVESTIGATION: 'SUBMIT_INVESTIGATION',
 };
 
-export const AGE_NUMBER: NumberDictionary = {
+export const AGE_NUMBER: Dictionary<number> = {
   junior: 15,
   sophomore: 16,
   senior: 17,

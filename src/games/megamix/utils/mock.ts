@@ -34,7 +34,7 @@ export function mockSeeding(seeds: SeedEntry[]) {
         data.singleClue = mockClue('high');
         break;
       case 'party':
-        data.partyAnswers = seed.cards.reduce((acc: StringDictionary, card) => {
+        data.partyAnswers = seed.cards.reduce((acc: Dictionary<string>, card) => {
           acc[card.id] = mockClue('high');
           return acc;
         }, {});

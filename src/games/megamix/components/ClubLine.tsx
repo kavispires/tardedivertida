@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Tooltip } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Icons

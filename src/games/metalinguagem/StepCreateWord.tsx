@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { Button, Collapse, type CollapseProps, Flex, Input, Slider, Tag } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';

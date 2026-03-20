@@ -2,8 +2,8 @@
 import type { ContenderCard, TextCard } from 'types/tdr';
 
 export type FightingContender = {
-  playerId: PlayerId | 'CPU';
-  votes?: PlayerId[];
+  playerId: UID | 'CPU';
+  votes?: UID[];
 } & Pick<ContenderCard, 'id' | 'name' | 'description'>;
 
 export type BracketTier = 'quarter' | 'semi' | 'final' | 'winner';
@@ -12,7 +12,7 @@ export type Bracket = {
   position: number;
   win?: boolean;
   tier: BracketTier;
-  votes: PlayerId[];
+  votes: UID[];
 } & FightingContender;
 
 export type PastBattles = {
@@ -21,25 +21,25 @@ export type PastBattles = {
 }[];
 
 export type Bet = {
-  final: CardId;
-  semi: CardId;
-  quarter: CardId;
+  final: UID;
+  semi: UID;
+  quarter: UID;
 };
 
-export type ContenderByTier = Record<BracketTier | string, Record<CardId, boolean>>;
+export type ContenderByTier = Record<BracketTier | string, Record<UID, boolean>>;
 
 export type SubmitChallengePayload = {
-  challengeId: CardId;
+  challengeId: UID;
 };
 
 export type SubmitContendersPayload = {
-  contendersId: CardId;
+  contendersId: UID;
 };
 
 export type SubmitBetsPayload = Bet;
 
 export type SubmitBattleVotesPayload = {
-  votes: NumberDictionary;
+  votes: Dictionary<number>;
 };
 
 export type PhaseChallengeSelectionState = {

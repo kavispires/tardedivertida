@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 // Types
-import type { GameState } from 'types/game';
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GameState, GamePlayers, GamePlayer } from 'types/game';
 // Utils
 import { PLACEHOLDER_PLAYER, VIEWER_ID } from 'utils/constants';
 // Internal

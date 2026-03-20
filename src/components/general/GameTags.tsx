@@ -76,7 +76,7 @@ const icons: Dictionary<React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
 type GameMechanicTagsProps = {
   mechanics?: string[];
   features?: string[];
-  gameCode: GameCode;
+  gameCode: string;
 } & SpaceProps;
 
 export function GameTags({ mechanics = [], features = [], gameCode, ...rest }: GameMechanicTagsProps) {

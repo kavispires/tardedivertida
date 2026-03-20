@@ -1,7 +1,7 @@
 import { mockDrawing } from 'mock/drawing';
 import { useEffect, useState } from 'react';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';

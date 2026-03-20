@@ -23,7 +23,7 @@ import { Instruction, Title } from 'components/text';
 // Internal
 import { GameCustomizations } from './GameCustomizations';
 
-const updateLocal24hGameIds = (latestGameIds: NumberDictionary, newId: GameId) => {
+const updateLocal24hGameIds = (latestGameIds: Dictionary<number>, newId: string) => {
   const now = Date.now();
   const past24Hours = now - 1000 * 60 * 60 * 24;
   const cleanedUpIds = Object.entries(latestGameIds ?? {}).reduce((acc: PlainObject, [key, timestamp]) => {
@@ -38,7 +38,7 @@ const updateLocal24hGameIds = (latestGameIds: NumberDictionary, newId: GameId) =
   };
 };
 
-const latestGameBeforeNewOne = (latestGameIds: NumberDictionary) => {
+const latestGameBeforeNewOne = (latestGameIds: Dictionary<number>) => {
   const idsObjectList = Object.entries(latestGameIds).map(([gameId, createdAt]) => ({ gameId, createdAt }));
   if (idsObjectList.length < 2) {
     return null;

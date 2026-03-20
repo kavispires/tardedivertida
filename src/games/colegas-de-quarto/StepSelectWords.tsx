@@ -2,7 +2,7 @@ import { sampleSize } from 'lodash';
 // Ant Design Resources
 import { Badge, Button } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
@@ -39,7 +39,7 @@ export function StepSelectWords({
 
   const onRandomSelection = () => {
     setDict(
-      sampleSize(pool, requiredWords).reduce((acc: BooleanDictionary, c) => {
+      sampleSize(pool, requiredWords).reduce((acc: Dictionary<boolean>, c) => {
         acc[c.id] = true;
         return acc;
       }, {}),

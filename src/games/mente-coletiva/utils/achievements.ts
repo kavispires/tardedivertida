@@ -1,5 +1,5 @@
 // Types
-import type { AchievementReference } from 'types/achievements';
+import type { AchievementReference } from 'types/game';
 
 export const achievementsReference: AchievementReference = {
   MOST_MATCHES: {

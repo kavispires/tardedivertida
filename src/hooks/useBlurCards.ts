@@ -2,7 +2,7 @@
 import { useGlobalLocalStorage } from './useGlobalLocalStorage';
 
 type UseBlurCards = {
-  blurredCards: BooleanDictionary;
+  blurredCards: Dictionary<boolean>;
   shouldBeBlurred: (cardId?: string) => boolean;
   blurCard: (cardId: string) => void;
   isBlurEnabled: boolean;

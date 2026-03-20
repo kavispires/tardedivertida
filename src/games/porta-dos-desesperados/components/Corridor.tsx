@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 import { RadarChartOutlined } from '@ant-design/icons';
 import { Avatar, Image } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useCache } from 'hooks/useCache';
 import { useCardWidth } from 'hooks/useCardWidth';
@@ -22,10 +22,10 @@ import { TRAPS } from '../utils/constants';
 import type { SubmitDoorPayload } from '../utils/types';
 
 type CorridorProps = {
-  doors: CardId[];
+  doors: UID[];
   trap: string;
   onSubmitDoor?: (payload: SubmitDoorPayload) => void;
-  answerDoorId?: CardId;
+  answerDoorId?: UID;
   players: GamePlayers;
   user?: GamePlayer;
   hideVotes?: boolean;
@@ -55,7 +55,7 @@ export function Corridor({
 
   const voteMap = useMemo(
     () =>
-      Object.values(players).reduce((acc: Record<CardId, PlayerId[]>, player) => {
+      Object.values(players).reduce((acc: Record<UID, UID[]>, player) => {
         if (player.doorId) {
           if (acc[player.doorId] === undefined) {
             acc[player.doorId] = [];

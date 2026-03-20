@@ -1,14 +1,13 @@
 // Ant Design Resources
 import { Avatar } from 'antd';
 // Types
-import type { MostVotesResult } from 'types/game';
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Components
 import { Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
 import { PlayerAvatar } from 'components/player';
 // Internal
-import type { ExtendedObjectFeatureCard } from '../utils/types';
+import type { ExtendedObjectFeatureCard, MostVotesResult } from '../utils/types';
 import { ObjectFeature } from './ObjectFeature';
 
 type VotesProps = {

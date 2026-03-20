@@ -2,8 +2,8 @@ import { USE_FIRESTORE_EMULATOR, USE_MOCKS } from 'dev-configs';
 import { camelCase, orderBy, startCase } from 'lodash';
 import moment from 'moment';
 // Types
+import type { GamePlayers, GamePlayer } from 'types/game';
 import type { GameInfo } from 'types/game-info';
-import type { GamePlayers, GamePlayer } from 'types/player';
 // Utils
 import { AVATARS } from 'utils/avatars';
 // Internal
@@ -120,7 +120,7 @@ export const print = (message: any, method: keyof typeof methods = 'log') => {
  * @param gameId
  * @returns
  */
-export const isValidGameId = (gameId: GameId): boolean => {
+export const isValidGameId = (gameId: string): boolean => {
   return Boolean(gameId) && gameId.length === 4;
 };
 
@@ -198,7 +198,7 @@ export const getColorFromLetter = (letter: string): string => {
  * @param players - An object containing all players, indexed by their IDs.
  * @returns An array of GamePlayer objects corresponding to the provided player IDs.
  */
-export const getPlayersFromIds = (playerIds: PlayerId[], players: GamePlayers): GamePlayer[] => {
+export const getPlayersFromIds = (playerIds: UID[], players: GamePlayers): GamePlayer[] => {
   return playerIds.map((playerId) => players[playerId]);
 };
 
@@ -208,7 +208,7 @@ export const getPlayersFromIds = (playerIds: PlayerId[], players: GamePlayers): 
  * @param players - An object containing player information, where the key is the player ID and the value is the player details.
  * @returns An array of player names corresponding to the provided player IDs.
  */
-export const getPlayerNamesFromIds = (playerIds: PlayerId[], players: GamePlayers): string[] => {
+export const getPlayerNamesFromIds = (playerIds: UID[], players: GamePlayers): string[] => {
   return playerIds.map((playerId) => players[playerId].name);
 };
 
@@ -527,7 +527,7 @@ export const sortPlayers = (
   players: GamePlayers,
   by = [(o: GamePlayer) => o.name.toLowerCase()],
   orders: ('asc' | 'desc')[] = ['asc'],
-  userId?: PlayerId | null,
+  userId?: UID | null,
 ) => {
   const sortedPlayers = orderBy(Object.values(players), by, orders);
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Progress } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Components
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
@@ -16,9 +16,9 @@ type AnimatedRaceTrackProps = {
   race: RunActivity[];
   players: GamePlayers;
   cardsDict: Dictionary<RunnerCard>;
-  lockedPlayersIds?: PlayerId[];
-  ongoingPlusOnePlayersIds?: PlayerId[];
-  ongoingMinusOnePlayersIds?: PlayerId[];
+  lockedPlayersIds?: UID[];
+  ongoingPlusOnePlayersIds?: UID[];
+  ongoingMinusOnePlayersIds?: UID[];
 };
 
 export function AnimatedRaceTrack({

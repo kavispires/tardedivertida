@@ -9,7 +9,7 @@ import type { Bet, Bracket, BracketTier, ContenderByTier, FightingContender } fr
  * @param selectedContenderId
  * @returns
  */
-export const findBetContenders = (brackets: Bracket[], bets: Bet, selectedContenderId: CardId) => {
+export const findBetContenders = (brackets: Bracket[], bets: Bet, selectedContenderId: UID) => {
   return {
     quarterCard: brackets.find((bracket) => bracket.id === bets?.quarter),
     semiCard: brackets.find((bracket) => bracket.id === bets?.semi),

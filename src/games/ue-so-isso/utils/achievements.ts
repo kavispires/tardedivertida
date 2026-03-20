@@ -1,5 +1,5 @@
 // Types
-import type { AchievementReference } from 'types/achievements';
+import type { AchievementReference } from 'types/game';
 
 const ACHIEVEMENTS = {
   MOST_ELIMINATED_CLUES: 'MOST_ELIMINATED_CLUES',

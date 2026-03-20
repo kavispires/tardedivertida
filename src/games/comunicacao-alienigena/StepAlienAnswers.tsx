@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLoading } from 'hooks/useLoading';
@@ -51,7 +51,7 @@ type StepAlienAnswersProps = {
   suggestions: PhaseAlienAnswerState['suggestions'];
   startingAttributesIds: string[];
   status: OfferingsStatus;
-  currentInquiry: CardId[];
+  currentInquiry: UID[];
   alienResponse?: string;
   requestHistory: RequestHistoryEntry[];
   inquiryHistory: InquiryHistoryEntry[];

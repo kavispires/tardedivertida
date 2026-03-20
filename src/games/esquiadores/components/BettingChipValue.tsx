@@ -7,7 +7,7 @@ type BettingChipValueProps = {
   title?: ReactNode;
 };
 
-const COLORS: StringDictionary = {
+const COLORS: Dictionary<string> = {
   0: '#c3c3c3',
   1: '#d2bc6c',
   2: '#d4bb60',

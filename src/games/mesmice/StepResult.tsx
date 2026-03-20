@@ -5,8 +5,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Divider } from 'antd';
 // Types
-import type { GameRound, MostVotesResult } from 'types/game';
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -22,7 +21,7 @@ import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 import { ViewIf } from 'components/views';
 // Internal
-import type { ExtendedObjectFeatureCard, HistoryEntry, ObjectCardObj } from './utils/types';
+import type { ExtendedObjectFeatureCard, HistoryEntry, MostVotesResult, ObjectCardObj } from './utils/types';
 import { OUTCOME } from './utils/constants';
 import { ObjectFeature } from './components/ObjectFeature';
 import { ActivePlayerObjectClue } from './components/ActivePlayerObjectClue';

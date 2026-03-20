@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Avatar, Space } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Utils
@@ -56,7 +56,7 @@ export function PlayerChoices({
             />
           </Instruction>
         )}
-        {(user.questions ?? []).map((questionId: CardId, index: number) => {
+        {(user.questions ?? []).map((questionId: UID, index: number) => {
           return (
             <TransparentButton
               key={questionId}

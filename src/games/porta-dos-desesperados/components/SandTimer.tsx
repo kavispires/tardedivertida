@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Hooks
 import { useCache } from 'hooks/useCache';
 import { useCountdown } from 'hooks/useCountdown';

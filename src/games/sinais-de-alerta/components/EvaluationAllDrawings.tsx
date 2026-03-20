@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Typography } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
@@ -21,11 +21,11 @@ type EvaluationAllDrawingsProps = {
   players: GamePlayers;
   cards: Dictionary<TextCard>;
   drawings: DrawingEntry[];
-  onSelect: (cardId: CardId) => void;
-  subjectGuesses: StringDictionary;
-  descriptorGuesses: StringDictionary;
+  onSelect: (cardId: UID) => void;
+  subjectGuesses: Dictionary<string>;
+  descriptorGuesses: Dictionary<string>;
   gameLanguage: Language;
-  activeItem: CardId;
+  activeItem: UID;
 };
 
 export function EvaluationAllDrawings({

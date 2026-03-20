@@ -3,8 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 // Ant Design Resources
 import { HeartFilled } from '@ant-design/icons';
 // Types
-import type { GameRanking, GameRound } from 'types/game';
-import type { GamePlayers } from 'types/player';
+import type { GameRanking, GameRound, GamePlayers } from 'types/game';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';

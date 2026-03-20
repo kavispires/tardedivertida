@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Components
 import { Translate } from 'components/language';
 import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
@@ -16,7 +16,7 @@ import { VotingOptions } from './components/VotingOptions';
 type StepVotingProps = {
   isLoading: boolean;
   isUserTheLeader: boolean;
-  leaderId: PlayerId;
+  leaderId: UID;
   user: GamePlayer;
   players: GamePlayers;
   onVote: GenericFunction;

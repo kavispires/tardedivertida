@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';

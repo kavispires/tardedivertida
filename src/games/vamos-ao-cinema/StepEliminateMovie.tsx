@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 import type { MovieCard, MovieReviewCard } from 'types/tdr';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
@@ -29,8 +29,8 @@ type StepEliminateMovieProps = {
   activePlayer: GamePlayer;
   isActivePlayer: boolean;
   eliminatedMovies: string[];
-  turnOrder: PlayerId[];
-  mistakes: CardId[];
+  turnOrder: UID[];
+  mistakes: UID[];
 } & Pick<StepProps, 'announcement'>;
 
 export function StepEliminateMovie({

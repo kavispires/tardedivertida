@@ -7,11 +7,11 @@ import type { Bet, Bracket, FightingContender } from './type';
 import { DEFAULT_BETS, TIER_BY_STEP, voteTarget } from './constants';
 import { getSmartBetContenderOptions } from './helpers';
 
-export function mockSelectChallenge(challenges: TextCard[]): CardId {
+export function mockSelectChallenge(challenges: TextCard[]): UID {
   return getRandomItem(challenges).id;
 }
 
-export function mockSelectContender(contenders: FightingContender[]): CardId {
+export function mockSelectContender(contenders: FightingContender[]): UID {
   return getRandomItem(contenders).id;
 }
 
@@ -31,7 +31,7 @@ export function mockBets(brackets: Bracket[]) {
 
 export function mockVotes(bracketedContenders: Bracket[][], bets: Bet) {
   const betsList = Object.values(bets);
-  return bracketedContenders.reduce((acc: NumberDictionary, pair) => {
+  return bracketedContenders.reduce((acc: Dictionary<number>, pair) => {
     let vote = pair.find((entry) => betsList.includes(entry.id));
     if (!vote) {
       vote = getRandomItem(pair);

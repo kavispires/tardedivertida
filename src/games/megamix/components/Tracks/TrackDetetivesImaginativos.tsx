@@ -54,7 +54,7 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
 
         <Image.PreviewGroup>
           <ul className="d-table">
-            {track.data.table.map((cardId: ImageCardId, index: number) => {
+            {track.data.table.map((cardId: UID, index: number) => {
               const bot = BOTS_LIST[index];
               return (
                 <div
@@ -105,7 +105,7 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
 
         <Image.PreviewGroup>
           <SpaceContainer>
-            {track.data.cards.map((cardId: ImageCardId) => {
+            {track.data.cards.map((cardId: UID) => {
               return (
                 <div
                   className="d-table__player-entry"
@@ -177,7 +177,7 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
 
       <Image.PreviewGroup>
         <ul className="d-table">
-          {track.data.cards.map((cardId: ImageCardId, index: number) => {
+          {track.data.cards.map((cardId: UID, index: number) => {
             const bot = BOTS_LIST[index];
             return (
               <div

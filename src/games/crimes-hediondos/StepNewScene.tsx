@@ -2,7 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Collapse } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 import type { CrimeSceneTile } from 'types/tdr';
 // Components
 import { SendButton } from 'components/buttons';

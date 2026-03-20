@@ -40,7 +40,7 @@ type ImageCardButtonProps = {
   /**
    * The function to be called when the button is clicked
    */
-  onClick?: (cardId: CardId) => void;
+  onClick?: (cardId: UID) => void;
   /**
    * Disables the button (default: false)
    */

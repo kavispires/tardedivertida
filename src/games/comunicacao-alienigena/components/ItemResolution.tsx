@@ -10,7 +10,7 @@ import type { PhaseBasicState } from '../utils/types';
 import { ITEM_TYPES } from '../utils/constants';
 
 type ItemResolutionProps = {
-  itemId: CardId;
+  itemId: UID;
   items: PhaseBasicState['items'];
 };
 

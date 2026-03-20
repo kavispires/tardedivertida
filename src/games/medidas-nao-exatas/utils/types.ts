@@ -3,8 +3,8 @@ import type { GameRanking } from 'types/game';
 import type { TextCard } from 'types/tdr';
 
 export type SubmitPoolPayload = {
-  poolIds: CardId[];
-  secretWordId: CardId;
+  poolIds: UID[];
+  secretWordId: UID;
 };
 
 export type SubmitMetricsPayload = {
@@ -16,10 +16,10 @@ export type SubmitGuessPayload = {
 };
 
 export type Guess = {
-  cardId: CardId;
+  cardId: UID;
   level: number;
   timestamp: number;
-  playerId?: PlayerId;
+  playerId?: UID;
   score?: number;
   used?: boolean;
   retry?: boolean;
@@ -27,47 +27,47 @@ export type Guess = {
 
 export type GalleryBracket = {
   score: number;
-  playersIds: PlayerId[];
+  playersIds: UID[];
   wrongGuesses: {
-    playerId: PlayerId;
-    cardId: CardId;
+    playerId: UID;
+    cardId: UID;
     invalid?: boolean;
   }[];
 };
 
 export type GalleryEntry = {
-  secretWordId: CardId;
-  cards: Record<CardId, TextCard>;
+  secretWordId: UID;
+  cards: Record<UID, TextCard>;
   metricsDescriptors: Record<string, TextCard[]>;
-  metrics: Record<CardId, number>;
+  metrics: Record<UID, number>;
   brackets: GalleryBracket[];
 };
 
 export type PhaseMetricsBuildingState = {
-  presenterId: PlayerId;
+  presenterId: UID;
   turnOrder: GameOrder;
   wordsDict: Dictionary<TextCard>;
-  secretCardsOptionsIds: CardId[];
-  availablePoolCardsIds: CardId[];
-  poolIds?: CardId[];
-  secretWordId?: CardId;
+  secretCardsOptionsIds: UID[];
+  availablePoolCardsIds: UID[];
+  poolIds?: UID[];
+  secretWordId?: UID;
   metricsDescriptors: Record<string, TextCard[]>;
   pointsBrackets: number[];
 };
 
 export type PhaseGuessingState = {
-  presenterId: PlayerId;
+  presenterId: UID;
   turnOrder: GameOrder;
-  secretWordId: CardId;
+  secretWordId: UID;
   wordsDict: Dictionary<TextCard>;
-  poolIds: CardId[];
+  poolIds: UID[];
   metricsDescriptors: Record<string, TextCard[]>;
   metrics: Record<string, number>;
   pointsBrackets: number[];
 };
 
 export type PhaseResultsState = {
-  presenterId: PlayerId;
+  presenterId: UID;
   turnOrder: GameOrder;
   result: GalleryEntry;
   ranking: GameRanking;

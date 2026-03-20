@@ -1,6 +1,5 @@
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
@@ -24,9 +23,9 @@ type StepStreetEndProps = {
   isDoubleHorror: boolean;
   round: GameRound;
   players: GamePlayers;
-  alreadyAtHomePlayerIds: PlayerId[];
-  goingHomePlayerIds: PlayerId[];
-  continuingPlayerIds: PlayerId[];
+  alreadyAtHomePlayerIds: UID[];
+  goingHomePlayerIds: UID[];
+  continuingPlayerIds: UID[];
   candyInHand: number;
 } & Pick<StepProps, 'announcement'>;
 

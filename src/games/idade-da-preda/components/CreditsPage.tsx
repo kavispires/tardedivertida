@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Icons
 import { StarIcon } from 'icons/StarIcon';
 // Components

@@ -27,14 +27,20 @@ export const getInitialState = (data: DailyOrganikuEntry): GameState => {
     key: SETTINGS.KEY,
     gameId: data.id,
     defaultValue: merge(cloneDeep(DEFAULT_LOCAL_TODAY), {
-      revealed: data.defaultRevealedIndexes.reduce((acc, index) => {
-        acc[index] = true;
-        return acc;
-      }, {} as BooleanDictionary),
-      foundCount: data.itemsIds.reduce((acc, itemId) => {
-        acc[itemId] = data.defaultRevealedIndexes.filter((index) => data.grid[index] === itemId).length;
-        return acc;
-      }, {} as NumberDictionary),
+      revealed: data.defaultRevealedIndexes.reduce(
+        (acc, index) => {
+          acc[index] = true;
+          return acc;
+        },
+        {} as Dictionary<boolean>,
+      ),
+      foundCount: data.itemsIds.reduce(
+        (acc, itemId) => {
+          acc[itemId] = data.defaultRevealedIndexes.filter((index) => data.grid[index] === itemId).length;
+          return acc;
+        },
+        {} as Dictionary<number>,
+      ),
     }),
   });
 
@@ -82,7 +88,7 @@ export function writeResult({
   swapLimit,
   ...rest
 }: BasicResultsOptions & {
-  foundCount: NumberDictionary;
+  foundCount: Dictionary<number>;
   itemsIds: string[];
   flips: number;
   swapLimit: number;

@@ -2,8 +2,7 @@ import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Components
 import { ImageCard } from 'components/image-cards';
 import { DualTranslate, Translate } from 'components/language';
@@ -19,8 +18,8 @@ import type { Characters } from '../utils/types';
 
 type GalleryGuessesProps = {
   players: GamePlayers;
-  playersSay: Record<CardId, PlayerId[]>;
-  playersPoints: NumberDictionary;
+  playersSay: Record<UID, UID[]>;
+  playersPoints: Dictionary<number>;
   characters: Characters;
   currentColor: string;
   currentPlayer: GamePlayer;

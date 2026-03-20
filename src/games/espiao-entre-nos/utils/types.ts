@@ -8,7 +8,7 @@ export type GuessLocationPayload = {
 };
 
 export type MakeAccusationPayload = {
-  targetId: PlayerId;
+  targetId: UID;
 };
 
 export type SubmitVotePayload = {
@@ -16,7 +16,7 @@ export type SubmitVotePayload = {
 };
 
 export type SendLastQuestionerPayload = {
-  lastPlayerId: PlayerId;
+  lastPlayerId: UID;
 };
 
 export type GameProgressPayload = {
@@ -57,6 +57,6 @@ export type Resolution = {
 };
 
 export type FinalAssessment = {
-  playerOrder: PlayerId[];
+  playerOrder: UID[];
   playerOrderIndex: number;
 };

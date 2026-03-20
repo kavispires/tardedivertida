@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Badge, Tag } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useUser } from 'hooks/useUser';

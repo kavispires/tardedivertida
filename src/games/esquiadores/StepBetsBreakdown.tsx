@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 import { LeftOutlined, TrophyOutlined } from '@ant-design/icons';
 import { Button, Flex } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 // Icons

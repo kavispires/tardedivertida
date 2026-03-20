@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Utils
 import { getEntryId } from 'utils/helpers';
 // Components

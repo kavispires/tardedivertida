@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { Flex, Row, Select, Switch } from 'antd';
 // Types
-import type { AchievementInfo } from 'types/achievements';
+import type { AchievementInfo } from 'types/game';
 import type { GameUserStatistics } from 'types/user';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';

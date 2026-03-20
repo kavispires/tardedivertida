@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { RadarChartOutlined, RobotOutlined } from '@ant-design/icons';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Components

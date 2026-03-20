@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 import type { SuspectCard, TestimonyQuestionCard } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
@@ -24,10 +24,10 @@ import { Summary } from './components/Summary';
 
 type StepVoteForFinalEliminationProps = {
   suspectsDict: Dictionary<SuspectCard>;
-  suspectsIds: CardId[];
+  suspectsIds: UID[];
   previouslyEliminatedSuspects: string[];
   eliminatedSuspects: string[];
-  perpetratorId: CardId;
+  perpetratorId: UID;
   isUserTheWitness: boolean;
   witness: GamePlayer;
   onSelectCriminal: (payload: FinalEliminationPayload) => void;

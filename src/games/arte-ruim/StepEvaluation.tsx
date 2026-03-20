@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { ClearOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';

@@ -2,7 +2,7 @@ import { useMeasure } from 'react-use';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import type { SlideShowConfig } from 'hooks/useSlideShow';

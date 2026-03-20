@@ -2,7 +2,7 @@ import { groupBy } from 'lodash';
 import { orderBy } from 'lodash';
 import { useMemo } from 'react';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 
 export function useGroupedVotes(playersList: GamePlayer[]) {
   return useMemo(() => {

@@ -1,7 +1,6 @@
 import { isEqual } from 'lodash';
 // Types
-import type { PhaseProps } from 'types/game';
-import type { GamePlayer } from 'types/player';
+import type { PhaseProps, GamePlayer } from 'types/game';
 // Utils
 import { AVATARS } from 'utils/avatars';
 // Icons

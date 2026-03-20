@@ -66,7 +66,7 @@ export function AlienKeyboard({ value, onChange, availableAttributeKeys, disable
   }, [attributes, availableAttributeKeys, language]);
 
   const searchDict = useMemo(() => {
-    return allowedAttributes.reduce((acc: StringDictionary, attribute) => {
+    return allowedAttributes.reduce((acc: Dictionary<string>, attribute) => {
       acc[attribute.id] = stringRemoveAccents(
         `${attribute.name[language]} ${attribute.description[language]} ${attribute.keywords}`,
       ).toLowerCase();

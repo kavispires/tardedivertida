@@ -8,7 +8,7 @@ import type { CloverObject, Guesses, Leaves } from './types';
 import { ROTATIONS, WORST_TO_REMOVE } from './constants';
 import { getWord } from './helpers';
 
-export const mockSelectCards = (cards: TextCard[]): CardId[] =>
+export const mockSelectCards = (cards: TextCard[]): UID[] =>
   shuffle(cards)
     .slice(0, WORST_TO_REMOVE)
     .map((card) => card.id);
@@ -19,7 +19,7 @@ const glue2Words = (word1: string, word2: string) => {
   )}`;
 };
 
-export const mockClues = (clover: CloverObject, leaves: Leaves, rotations: NumberDictionary): string[] => {
+export const mockClues = (clover: CloverObject, leaves: Leaves, rotations: Dictionary<number>): string[] => {
   return [
     glue2Words(
       getWord(clover, leaves, rotations, 'A', 'top'),

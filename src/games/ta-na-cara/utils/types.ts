@@ -2,33 +2,33 @@
 import type { SuspectCard } from 'types/tdr';
 
 export type SubmitPromptPayload = {
-  questionId: CardId;
+  questionId: UID;
 };
 
 export type SubmitTargetPayload = {
-  targetId: PlayerId;
+  targetId: UID;
 };
 
 export type SubmitAnswerPayload = {
-  targetId: PlayerId;
+  targetId: UID;
 };
 
 export type SubmitGuessPayload = {
-  targetId: PlayerId;
+  targetId: UID;
 };
 
 export type CharacterFace = {
   revealed: boolean;
-  playerId?: PlayerId;
+  playerId?: UID;
 } & SuspectCard;
 
 export type Question = {
-  id: CardId;
+  id: UID;
   question: string;
   used: boolean;
-  yes: PlayerId[];
+  yes: UID[];
 };
 
 export type CharactersDictionary = Dictionary<CharacterFace>;
 export type QuestionsDictionary = Dictionary<Question>;
-export type GuessHistory = Record<PlayerId, CardId[]>;
+export type GuessHistory = Record<UID, UID[]>;

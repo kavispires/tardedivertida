@@ -2,11 +2,11 @@
 import type { TextCard } from 'types/tdr';
 
 export type SubmitRobotCardPayload = {
-  cardId: CardId;
+  cardId: UID;
 };
 
 export type SubmitRobotGuessPayload = {
-  guess: CardId[];
+  guess: UID[];
 };
 
 export type Robot = {
@@ -23,16 +23,16 @@ export type Captcha = {
 };
 
 export type CaptchaCard = {
-  id: CardId;
-  players: PlayerId[];
+  id: UID;
+  players: UID[];
   bot: boolean;
-  playerId?: PlayerId;
+  playerId?: UID;
 };
 
 export type RobotGalleryEntry = {
   options: CaptchaCard[];
   outcome: string;
-  beaters: PlayerId[];
+  beaters: UID[];
   score: number;
   suspicion: number;
 } & Captcha;

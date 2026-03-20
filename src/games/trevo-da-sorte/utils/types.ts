@@ -2,16 +2,16 @@
 import type { TextCard } from 'types/tdr';
 
 export type SubmitBadWordsPayload = {
-  cardsIds: CardId[];
+  cardsIds: UID[];
 };
 
 export type SubmitCluesPayload = {
   clues: string[];
-  rotations: NumberDictionary;
+  rotations: Dictionary<number>;
 };
 
 export type SubmitCloverGuessesPayload = {
-  activeCloverId: PlayerId;
+  activeCloverId: UID;
   guesses: Guesses;
 };
 
@@ -25,7 +25,7 @@ export type LeafPosition = 'A' | 'B' | 'C' | 'D';
 
 export type LeafId = string;
 
-export type LeafEvent = (e: ButtonEvent, leafId: LeafId) => void;
+export type LeafEvent = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, leafId: LeafId) => void;
 
 export interface CloverLeaf {
   leafId: LeafId;
@@ -34,7 +34,7 @@ export interface CloverLeaf {
 }
 
 export interface CloverObject {
-  cloverId: PlayerId;
+  cloverId: UID;
   leaves: {
     A: CloverLeaf;
     B: CloverLeaf;

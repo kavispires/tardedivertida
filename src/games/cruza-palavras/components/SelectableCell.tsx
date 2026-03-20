@@ -2,7 +2,7 @@
 import { MinusSquareOutlined, PlusCircleFilled } from '@ant-design/icons';
 import { Button, Flex, Tooltip } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Components
 import { Translate } from 'components/language';
 // Internal
@@ -17,7 +17,7 @@ type SelectableCellProps = {
   onActivateClue: (clue: Clue) => void;
   cell: GridCell;
   active: Clue | number | null;
-  guesses: NumberDictionary;
+  guesses: Dictionary<number>;
   clues: Clue[];
   clueColors: Dictionary<string>;
   user: GamePlayer;

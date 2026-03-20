@@ -12,7 +12,7 @@ import type { SubmitCustomQuestionPayload } from '../utils/types';
 
 type CustomQuestionProps = {
   onSubmit: (payload: SubmitCustomQuestionPayload) => void;
-  userId: PlayerId;
+  userId: UID;
 };
 
 export function CustomQuestion({ onSubmit, userId }: CustomQuestionProps) {

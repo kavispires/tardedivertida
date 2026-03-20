@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 import { TrophyOutlined } from '@ant-design/icons';
 import { Flex } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';

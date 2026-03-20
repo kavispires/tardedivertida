@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { TrophyOutlined } from '@ant-design/icons';
 import { Avatar, Space } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components

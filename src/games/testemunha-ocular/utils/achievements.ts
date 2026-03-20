@@ -1,5 +1,5 @@
 // Types
-import type { AchievementReference } from 'types/achievements';
+import type { AchievementReference } from 'types/game';
 
 export const ACHIEVEMENTS = {
   PLAYED_AS_WITNESS: 'PLAYED_AS_WITNESS',

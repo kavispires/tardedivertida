@@ -2,8 +2,7 @@
 import { PictureOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 // Types
-import type { GameRanking, GameRound } from 'types/game';
-import type { GamePlayers } from 'types/player';
+import type { GameRanking, GameRound, GamePlayers } from 'types/game';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';

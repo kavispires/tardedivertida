@@ -1,6 +1,5 @@
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayer } from 'types/player';
+import type { GameRound, GamePlayer } from 'types/game';
 // Components
 import { DualTranslate, Translate } from 'components/language';
 import { BotHighlight } from 'components/metrics/BotHighlight';

@@ -1,6 +1,5 @@
 // Types
-import type { PhaseProps } from 'types/game';
-import type { GamePlayer } from 'types/player';
+import type { PhaseProps, GamePlayer } from 'types/game';
 // Icons
 import { TheEndIcon } from 'icons/TheEndIcon';
 // Components

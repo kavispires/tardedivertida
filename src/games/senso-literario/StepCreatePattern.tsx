@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { EllipsisOutlined, StarFilled } from '@ant-design/icons';
 import { Flex, Segmented } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';

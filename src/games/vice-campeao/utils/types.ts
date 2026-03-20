@@ -1,6 +1,5 @@
 // Types
-import type { Achievement } from 'types/achievements';
-import type { GameRanking } from 'types/game';
+import type { Achievement, GameRanking } from 'types/game';
 
 export type SubmitCardPayload = {
   cardId: string;
@@ -8,7 +7,7 @@ export type SubmitCardPayload = {
 };
 
 export type RunnerCard = {
-  id: CardId;
+  id: UID;
   imageId: string;
   name: DualLanguageValue;
   type: 'movement-positive' | 'movement-negative' | 'movement-neutral' | 'ongoing' | 'effect';
@@ -21,9 +20,9 @@ export type RunnerCard = {
 
 export type RunActivity = {
   id: number; // index
-  cardId: CardId;
-  playerId: PlayerId;
-  targetId: PlayerId;
+  cardId: UID;
+  playerId: UID;
+  targetId: UID;
   newValue?: number;
   startingPositions: {
     [key: string]: number;
@@ -31,23 +30,23 @@ export type RunActivity = {
   endingPositions: {
     [key: string]: number;
   };
-  ongoingEffectCardId?: CardId;
+  ongoingEffectCardId?: UID;
 };
 
 export type PhaseCardSelectionState = {
   cardsDict: Dictionary<RunnerCard>;
-  turnOrder: PlayerId[];
+  turnOrder: UID[];
   race: RunActivity[];
 };
 
 export type PhaseRunState = {
   cardsDict: Dictionary<RunnerCard>;
-  turnOrder: PlayerId[];
+  turnOrder: UID[];
   race: RunActivity[];
   ranking: GameRanking;
-  lockedPlayersIds: PlayerId[];
-  ongoingPlusOnePlayersIds: PlayerId[];
-  ongoingMinusOnePlayersIds: PlayerId[];
+  lockedPlayersIds: UID[];
+  ongoingPlusOnePlayersIds: UID[];
+  ongoingMinusOnePlayersIds: UID[];
 };
 
 export type PhaseGameOverState = {

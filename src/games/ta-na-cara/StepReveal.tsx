@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { TrophyOutlined } from '@ant-design/icons';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 // Utils
@@ -26,13 +26,13 @@ type StepRevealProps = {
   players: GamePlayers;
   user: GamePlayer;
   turnOrder: TurnOrder;
-  charactersIds: CardId[];
+  charactersIds: UID[];
   charactersDict: CharactersDictionary;
   questionsDict: QuestionsDictionary;
   targetedPlayer: GamePlayer;
-  activePlayerId: PlayerId;
+  activePlayerId: UID;
   points: number;
-  correct: PlayerId[];
+  correct: UID[];
   goToNextStep: UseStep['goToNextStep'];
   result: GamePlayer | null;
 } & Pick<StepProps, 'announcement'>;

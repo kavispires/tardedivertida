@@ -4,10 +4,7 @@ import { getRandomItem } from 'utils/helpers';
 // Internal
 import type { SubmitGuessPayload, SubmitMetricsPayload, SubmitPoolPayload } from './types';
 
-export const mockPool = (
-  secretCardsOptionsIds: CardId[],
-  availablePoolCardsIds: CardId[],
-): SubmitPoolPayload => {
+export const mockPool = (secretCardsOptionsIds: UID[], availablePoolCardsIds: UID[]): SubmitPoolPayload => {
   const secretWordId = getRandomItem(secretCardsOptionsIds);
   return {
     secretWordId,
@@ -27,7 +24,7 @@ export const mockMetrics = (): SubmitMetricsPayload => {
   };
 };
 
-export const mockGuess = (poolIds: CardId[], secretWordId: CardId): SubmitGuessPayload => {
+export const mockGuess = (poolIds: UID[], secretWordId: UID): SubmitGuessPayload => {
   const doubleGuess = random(0, 100) < 45; // 45% chance of double guess
 
   const choices = [...poolIds, secretWordId];

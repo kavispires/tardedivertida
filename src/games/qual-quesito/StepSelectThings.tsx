@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { RedoOutlined } from '@ant-design/icons';
 import { Badge, Button } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 import type { Item } from 'types/tdr';
 // Hooks
 import { useLoading } from 'hooks/useLoading';

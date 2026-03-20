@@ -3,7 +3,7 @@ import { capitalize } from 'lodash';
 import { HeartOutlined, MessageOutlined, SendOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Icons
 import { BikiniModelIcon } from 'icons/BikiniModelIcon';
 // Components

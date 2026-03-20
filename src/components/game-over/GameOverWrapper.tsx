@@ -1,7 +1,6 @@
 import { type ReactNode, useState } from 'react';
 // Types
-import type { GameState } from 'types/game';
-import type { GamePlayers } from 'types/player';
+import type { GameState, GamePlayers } from 'types/game';
 // Utils
 import { PHASES } from 'utils/phases';
 // Icons

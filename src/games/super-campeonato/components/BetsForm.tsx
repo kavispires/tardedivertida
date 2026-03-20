@@ -41,7 +41,7 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
     setBets(DEFAULT_BETS);
   };
 
-  const updateBet = (value: StringDictionary) => {
+  const updateBet = (value: Dictionary<string>) => {
     setBets((s) => ({ ...s, ...value }));
   };
 

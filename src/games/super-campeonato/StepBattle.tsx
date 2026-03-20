@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Components
 import { ReadyPlayersBar } from 'components/players';
@@ -19,7 +19,7 @@ type StepBattleProps = {
   brackets: Bracket[];
   tier: BracketTier;
   bets: Bet;
-  selectedContenderId: CardId;
+  selectedContenderId: UID;
   players: GamePlayers;
 } & Pick<StepProps, 'announcement'>;
 

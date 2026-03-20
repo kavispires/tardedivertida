@@ -6,8 +6,8 @@ export type GameState = {
   number: number;
   status: string;
   hearts: number;
-  revealed: BooleanDictionary;
-  foundCount: NumberDictionary;
+  revealed: Dictionary<boolean>;
+  foundCount: Dictionary<number>;
   flips: number;
 };
 
@@ -17,8 +17,8 @@ export type DailyOrganikuEntry = {
   type: 'organiku';
   setId: string;
   title: string;
-  itemsIds: CardId[];
-  grid: CardId[];
+  itemsIds: UID[];
+  grid: UID[];
   defaultRevealedIndexes: number[];
 };
 

@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Button } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Components
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -11,7 +11,7 @@ import { PlayerAvatar, PlayerAvatarName } from 'components/player';
 
 type VotingOptionsProps = {
   isAllDisabled: boolean;
-  leaderId: PlayerId;
+  leaderId: UID;
   players: GamePlayers;
   user?: GamePlayer;
   onVote: GenericFunction;

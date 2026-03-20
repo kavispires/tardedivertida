@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { SendOutlined } from '@ant-design/icons';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Components

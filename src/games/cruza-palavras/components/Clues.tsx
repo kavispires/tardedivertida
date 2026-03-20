@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Internal
 import type { Clue } from '../utils/types';
 import { getClueKey } from '../utils/helpers';

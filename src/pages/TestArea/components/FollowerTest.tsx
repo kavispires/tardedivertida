@@ -3,7 +3,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Icons
 import { EarthIcon } from 'icons/EarthIcon';
 // Components

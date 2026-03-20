@@ -3,7 +3,7 @@ import { Fragment, type ReactNode, useMemo } from 'react';
 // Ant Design Resources
 import { ForwardFilled } from '@ant-design/icons';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
@@ -23,11 +23,11 @@ type TurnOrderProps = {
   /**
    * The order array
    */
-  order: PlayerId[];
+  order: UID[];
   /**
    * The active player who should be highlighted
    */
-  activePlayerId?: PlayerId;
+  activePlayerId?: UID;
   /**
    * Optional custom title
    */
@@ -39,7 +39,7 @@ type TurnOrderProps = {
   /**
    * Reorder turn order so it starts with given player
    */
-  reorderByUser?: PlayerId;
+  reorderByUser?: UID;
   /**
    *
    */

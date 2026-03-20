@@ -25,12 +25,12 @@ export function useGuessing({
   descriptorsIds,
 }: {
   drawings: DrawingEntry[];
-  userId: PlayerId;
-  subjectsIds: CardId[];
-  descriptorsIds: CardId[];
+  userId: UID;
+  subjectsIds: UID[];
+  descriptorsIds: UID[];
 }) {
   const getDefaultSubjects = () => {
-    return drawings.reduce((acc: StringDictionary, { playerId, subjectId }) => {
+    return drawings.reduce((acc: Dictionary<string>, { playerId, subjectId }) => {
       acc[playerId] = '';
       if (playerId === userId) {
         acc[playerId] = subjectId;
@@ -40,7 +40,7 @@ export function useGuessing({
   };
 
   const getDefaultDescriptors = () => {
-    return drawings.reduce((acc: StringDictionary, { playerId, descriptorId }) => {
+    return drawings.reduce((acc: Dictionary<string>, { playerId, descriptorId }) => {
       acc[playerId] = '';
       if (playerId === userId) {
         acc[playerId] = descriptorId;
@@ -50,8 +50,8 @@ export function useGuessing({
   };
 
   const [activeItem, setActiveItem] = useState('');
-  const [subjectGuesses, setSubjectGuesses] = useState<StringDictionary>(getDefaultSubjects());
-  const [descriptorGuesses, setDescriptorGuesses] = useState<StringDictionary>(getDefaultDescriptors());
+  const [subjectGuesses, setSubjectGuesses] = useState<Dictionary<string>>(getDefaultSubjects());
+  const [descriptorGuesses, setDescriptorGuesses] = useState<Dictionary<string>>(getDefaultDescriptors());
 
   const activateItem = (entryId: string) => {
     // If same select, deselect
@@ -97,7 +97,7 @@ export function useGuessing({
   };
 
   const matchedItems = useMemo(() => {
-    const result: BooleanDictionary = {};
+    const result: Dictionary<boolean> = {};
     Object.values(subjectGuesses).forEach((cardId) => {
       if (cardId) {
         result[cardId] = true;
@@ -118,7 +118,7 @@ export function useGuessing({
   const randomSelection = () => {
     const usedSubjects = Object.values(subjectGuesses);
     const availableSubjects = shuffle(subjectsIds.filter((id) => !usedSubjects.includes(id)));
-    const subjectVotes: StringDictionary = {};
+    const subjectVotes: Dictionary<string> = {};
     Object.keys(subjectGuesses).forEach((playerId) => {
       if (!subjectGuesses[playerId]) {
         subjectVotes[playerId] = availableSubjects.pop() ?? '';
@@ -127,7 +127,7 @@ export function useGuessing({
 
     const usedDescriptors = Object.values(descriptorGuesses);
     const availableDescriptors = shuffle(descriptorsIds.filter((id) => !usedDescriptors.includes(id)));
-    const descriptorVotes: StringDictionary = {};
+    const descriptorVotes: Dictionary<string> = {};
     Object.keys(descriptorGuesses).forEach((playerId) => {
       if (!descriptorGuesses[playerId]) {
         descriptorVotes[playerId] = availableDescriptors.pop() ?? '';

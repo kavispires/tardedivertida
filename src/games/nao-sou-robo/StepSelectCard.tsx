@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { Button, Flex, InputNumber, Space, Typography } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';

@@ -11,7 +11,7 @@ export function ResultVamosAoCinema({
   winningTeam,
   playersList,
 }: ResultComponentProps) {
-  const movies: StringDictionary = getMovieTitles(track.data.movies);
+  const movies: Dictionary<string> = getMovieTitles(track.data.movies);
 
   return (
     <>

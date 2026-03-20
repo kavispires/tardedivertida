@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Components
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
@@ -15,7 +15,7 @@ import { WordLengths } from './components/WordLengths';
 type StepWaitGuessingProps = {
   players: GamePlayers;
   creator: GamePlayer;
-  turnOrder: PlayerId[];
+  turnOrder: UID[];
   items: string[];
   wordLengths: WordLength[];
   newWord: string;

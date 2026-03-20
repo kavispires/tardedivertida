@@ -1,5 +1,5 @@
 // Types
-import type { AchievementReference } from 'types/achievements';
+import type { AchievementReference } from 'types/game';
 
 const ACHIEVEMENTS = {
   MOST_QUESTIONED_OBJECTS: 'MOST_QUESTIONED_OBJECTS',

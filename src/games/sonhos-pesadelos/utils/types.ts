@@ -3,21 +3,21 @@ export type SubmitDreamPayload = {
 };
 
 export type SubmitVotesPayload = {
-  votes: StringDictionary;
+  votes: Dictionary<string>;
 };
 
 export type Dream = {
-  id: PlayerId;
+  id: UID;
   dream: string;
 };
 
 export type GalleryEntry = {
-  playerId: PlayerId;
-  dreamId: ImageCardId;
+  playerId: UID;
+  dreamId: UID;
   dream: string;
   cards: {
-    cardId: ImageCardId;
-    votes: PlayerId[];
+    cardId: UID;
+    votes: UID[];
     isDream: boolean;
     isNightmare: boolean;
   }[];

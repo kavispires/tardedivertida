@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { TrophyOutlined } from '@ant-design/icons';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components

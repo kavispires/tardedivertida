@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Utils
 import { AVAILABLE_AVATAR_IDS } from 'utils/avatars';
 import { getRandomItem } from 'utils/helpers';
@@ -12,8 +12,8 @@ const DEV_NAMES: string[] =
     ',',
   );
 
-const cacheNames: BooleanDictionary = {};
-const cacheAvatars: BooleanDictionary = {};
+const cacheNames: Dictionary<boolean> = {};
+const cacheAvatars: Dictionary<boolean> = {};
 
 let cacheMockedPlayers: GamePlayers = {};
 
@@ -27,7 +27,7 @@ let cacheMockedPlayers: GamePlayers = {};
 const getRandomUniqueItemFromList = (
   source: string[],
   used: string[] = [],
-  cache: BooleanDictionary = {},
+  cache: Dictionary<boolean> = {},
 ) => {
   let randomItem = '';
   let tries = 0;
@@ -67,8 +67,8 @@ export function mockPlayers(
     };
   }
 
-  const usedNames: BooleanDictionary = {};
-  const usedAvatars: BooleanDictionary = {};
+  const usedNames: Dictionary<boolean> = {};
+  const usedAvatars: Dictionary<boolean> = {};
   Object.values(players).forEach((player) => {
     usedNames[player.name] = true;
     usedAvatars[player.avatarId] = true;

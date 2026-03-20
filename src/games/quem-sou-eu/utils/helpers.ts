@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Utils
 import { SEPARATOR } from 'utils/constants';
 
@@ -10,10 +10,10 @@ import { SEPARATOR } from 'utils/constants';
  * @returns
  */
 export const prepareGlyphs = (
-  positive: BooleanDictionary,
-  negative: BooleanDictionary,
-): BooleanDictionary => {
-  const dict: BooleanDictionary = {};
+  positive: Dictionary<boolean>,
+  negative: Dictionary<boolean>,
+): Dictionary<boolean> => {
+  const dict: Dictionary<boolean> = {};
   Object.keys(positive).forEach((key) => {
     dict[key] = true;
   });
@@ -24,7 +24,7 @@ export const prepareGlyphs = (
   return dict;
 };
 
-export const parseSelectedGlyphs = (glyphs: BooleanDictionary) => {
+export const parseSelectedGlyphs = (glyphs: Dictionary<boolean>) => {
   const positive: string[] = [];
   const negative: string[] = [];
 
@@ -53,7 +53,7 @@ export const parseSelectedGlyphs = (glyphs: BooleanDictionary) => {
  * @param votes
  * @returns
  */
-export const getRibbons = (players: GamePlayers, votes: StringDictionary): Record<string, GamePlayer[]> => {
+export const getRibbons = (players: GamePlayers, votes: Dictionary<string>): Record<string, GamePlayer[]> => {
   const votesDict: Record<string, GamePlayer[]> = {};
 
   Object.keys(votes).forEach((playerEntry) => {
@@ -75,8 +75,8 @@ export const getRibbons = (players: GamePlayers, votes: StringDictionary): Recor
  * @param votes
  * @returns
  */
-export const prepareGuesses = (votes: StringDictionary): StringDictionary => {
-  const result: StringDictionary = {};
+export const prepareGuesses = (votes: Dictionary<string>): Dictionary<string> => {
+  const result: Dictionary<string> = {};
 
   Object.keys(votes).forEach((playerEntry) => {
     const playerId = playerEntry.split(SEPARATOR)[1];

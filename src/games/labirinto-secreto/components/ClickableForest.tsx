@@ -1,7 +1,7 @@
 import { findLast } from 'lodash';
 import { useState } from 'react';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Utils
@@ -25,7 +25,7 @@ type ClickableForestProps = {
   forest: Tree[];
   map?: MapSegment[];
   onSubmitPath: OnSubmitPathGuessFunction;
-  pathId: PlayerId;
+  pathId: UID;
   user: GamePlayer;
   players: GamePlayers;
 };

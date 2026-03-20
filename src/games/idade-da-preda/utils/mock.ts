@@ -1,6 +1,6 @@
 import { random, sample, sampleSize, shuffle } from 'lodash';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 import type { Item } from 'types/tdr';
 // Internal
 import type { Concept, NewNameEntry, SubmitGuessesPayload } from './types';
@@ -16,7 +16,7 @@ export const mockConcept = (
   const newConcepts: Concept[] = [];
   let tries = 0;
 
-  const usedConcept: BooleanDictionary = {};
+  const usedConcept: Dictionary<boolean> = {};
   concepts.forEach((concept) => {
     usedConcept[concept.itemsIds.sort().join(',')] = true;
   });

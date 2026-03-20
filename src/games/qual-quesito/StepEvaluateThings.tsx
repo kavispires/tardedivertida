@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { Flex, Segmented } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 import type { Item } from 'types/tdr';
 // Hooks
 import { useMock } from 'hooks/useMock';

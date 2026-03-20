@@ -2,8 +2,7 @@ import type { ReactNode } from 'react';
 // Ant Design Resources
 import { CaretUpOutlined } from '@ant-design/icons';
 // Types
-import type { GameRanking } from 'types/game';
-import type { GamePlayers } from 'types/player';
+import type { GameRanking, GamePlayers } from 'types/game';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components

@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { Badge, Select, Space } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useCache } from 'hooks/useCache';

@@ -18,7 +18,7 @@ import { mockDreamSelection } from './utils/mock';
 import { BotsRules, DreamSelectionExtendedRules, DreamSelectionRules } from './components/RulesBlobs';
 import { SelectTable } from './components/SelectTable';
 
-const validateSelectedCards = (v: BooleanDictionary) => {
+const validateSelectedCards = (v: Dictionary<boolean>) => {
   return Object.keys(v).length < 10;
 };
 

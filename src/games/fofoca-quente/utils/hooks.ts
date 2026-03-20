@@ -5,11 +5,11 @@ import { useOnSubmitIntimidationAPIRequest, useOnSubmitRumorAPIRequest } from '.
 
 export function useBoardSummary(students: Dictionary<Student>) {
   return useMemo(() => {
-    const gendersDict: NumberDictionary = {};
-    const buildsDict: NumberDictionary = {};
-    const heightsDict: NumberDictionary = {};
-    const agesDict: NumberDictionary = {};
-    const socialGroupsDict: NumberDictionary = {};
+    const gendersDict: Dictionary<number> = {};
+    const buildsDict: Dictionary<number> = {};
+    const heightsDict: Dictionary<number> = {};
+    const agesDict: Dictionary<number> = {};
+    const socialGroupsDict: Dictionary<number> = {};
     Object.values(students).forEach(({ gender, age, build, height, socialGroupId }) => {
       gendersDict[gender] = (gendersDict[gender] ?? 0) + 1;
       buildsDict[build] = (buildsDict[build] ?? 0) + 1;

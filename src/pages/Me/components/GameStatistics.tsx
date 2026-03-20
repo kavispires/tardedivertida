@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { ClockCircleOutlined } from '@ant-design/icons';
 import { Col, Divider, Row } from 'antd';
 // Types
-import type { AchievementReference } from 'types/achievements';
+import type { AchievementReference } from 'types/game';
 import type { GameInfo } from 'types/game-info';
 import type { GameUserStatistics } from 'types/user';
 // Hooks

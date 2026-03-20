@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { Collapse, Flex, Radio, Typography, type CollapseProps } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 import type { Item } from 'types/tdr';
 // Hooks
 import { useCache } from 'hooks/useCache';

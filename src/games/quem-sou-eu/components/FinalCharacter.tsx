@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Icons
 import { NoIcon } from 'icons/NoIcon';
 import { YesIcon } from 'icons/YesIcon';

@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { CloseSquareOutlined } from '@ant-design/icons';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Components
 import { PlayerAvatarName } from 'components/player';
 // Internal
@@ -40,7 +40,7 @@ type ResultCellProps = {
   clues: Clue[];
   players: GamePlayers;
   playerPerVotedCell: Dictionary<ResultPlayerCell[]>;
-  colorCodedCluesPerPlayer: StringDictionary;
+  colorCodedCluesPerPlayer: Dictionary<string>;
 };
 
 export function ResultCell({

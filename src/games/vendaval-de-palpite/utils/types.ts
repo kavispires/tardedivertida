@@ -1,7 +1,7 @@
 type ClueId = string;
 
 export type SubmitBossPlayerPayload = {
-  bossId: PlayerId;
+  bossId: UID;
 };
 
 export type SubmitSecretWordPayload = {
@@ -28,7 +28,7 @@ export type SubmitHelpPayload = {
 
 export type Clue = {
   id: ClueId;
-  playerId: PlayerId;
+  playerId: UID;
   clue: string;
   /**
    * Indicates if the boss has already evaluated this clue against the secret word

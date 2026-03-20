@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Utils
 import { getAnimation } from 'utils/animations';
 // Components

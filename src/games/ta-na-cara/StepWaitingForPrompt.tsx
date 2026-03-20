@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Components
 import { Translate } from 'components/language';
 import { PlayerAvatarName } from 'components/player';
@@ -16,11 +16,11 @@ type StepWaitingForPromptProps = {
   players: GamePlayers;
   user: GamePlayer;
   turnOrder: TurnOrder;
-  charactersIds: CardId[];
+  charactersIds: UID[];
   charactersDict: CharactersDictionary;
   questionsDict: QuestionsDictionary;
   activePlayer: GamePlayer;
-  activePlayerId: PlayerId;
+  activePlayerId: UID;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepWaitingForPrompt({

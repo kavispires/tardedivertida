@@ -13,7 +13,7 @@ export const parseRotation = (value: number) => {
 export const prepareClueSubmission = (
   clues: string[],
   clover: CloverObject,
-  rotations: NumberDictionary,
+  rotations: Dictionary<number>,
 ): CloverLeaf[] => {
   return LEAVES_ORDER.map((position, index) => {
     const leafId = clover.leaves[position as LeafPosition].leafId;
@@ -38,7 +38,7 @@ export const cleanupGuesses = (guesses: Guesses) => {
 export const getWord = (
   clover: CloverObject,
   leaves: Leaves,
-  rotations: NumberDictionary,
+  rotations: Dictionary<number>,
   position: LeafPosition,
   direction: keyof typeof DIRECTIONS_INDEXES,
 ): string => {

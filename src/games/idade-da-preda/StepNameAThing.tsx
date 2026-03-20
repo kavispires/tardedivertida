@@ -4,8 +4,7 @@ import { useMemo, useState } from 'react';
 import { RollbackOutlined } from '@ant-design/icons';
 import { Button, Divider, Flex } from 'antd';
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 import type { Item } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';

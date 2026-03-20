@@ -2,8 +2,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Divider } from 'antd';
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayers } from 'types/player';
+import type { GameRound, GamePlayers } from 'types/game';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
@@ -23,7 +22,7 @@ import { HappinessTracker } from './components/HappinessTracker';
 type StepResultProps = {
   players: GamePlayers;
   board: BoardEntry[];
-  foundTarget: PlayerId[];
+  foundTarget: UID[];
   targetId: string;
   round: GameRound;
   happiness: HouseHappiness;

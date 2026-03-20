@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { CommentOutlined, LikeFilled, ShareAltOutlined, TrophyOutlined } from '@ant-design/icons';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
 import type { UseStep } from 'hooks/useStep';

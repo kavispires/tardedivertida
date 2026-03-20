@@ -116,8 +116,8 @@ export function useOrganikuEngine(data: DailyOrganikuEntry, initialState: GameSt
 
   const tracker = useMemo(() => {
     const completionGoal = data.itemsIds.length;
-    const completedItems: BooleanDictionary = {};
-    const remainingCounts: NumberDictionary = {};
+    const completedItems: Dictionary<boolean> = {};
+    const remainingCounts: Dictionary<number> = {};
     data.itemsIds.forEach((itemId) => {
       completedItems[itemId] = false;
       remainingCounts[itemId] = completionGoal;

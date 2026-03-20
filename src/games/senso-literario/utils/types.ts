@@ -1,16 +1,15 @@
 // Types
-import type { Achievement } from 'types/achievements';
-import type { GameRanking } from 'types/game';
+import type { Achievement, GameRanking } from 'types/game';
 
 export type SubmitPatternPayload = {
   patternId: string;
 };
 
 export type GalleryEntry = {
-  sequence: CardId[];
+  sequence: UID[];
   cards: {
-    playersIsd: PlayerId[];
-    patternId: CardId;
+    playersIsd: UID[];
+    patternId: UID;
   }[];
 };
 

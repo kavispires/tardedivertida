@@ -1,22 +1,51 @@
-// Singular
-type CardId = string;
-type ImageCardId = string;
-type AvatarId = string;
-type DateMilliseconds = number;
-type GameCode = string;
-type GameId = string;
-type GameName = string;
-type PlayerId = string;
-type PlayerName = string;
-type ColorScheme = 'light' | 'dark' | string;
+/**
+ * Unique identifier string used throughout the application for entities like games, players, and resources
+ */
+type UID = string;
 
-// Composed
+/**
+ * Timestamp in milliseconds since Unix epoch
+ */
+type DateMilliseconds = number;
+
+/**
+ * Supported languages in the application
+ */
+type Language = 'en' | 'pt';
+
+/**
+ * Basic primitive types in JavaScript
+ */
 type Primitive = string | number | boolean | symbol | null;
 
 /**
- * Represents a dictionary object with keys of type CardId and values of type T.
+ * Array of UIDs representing the order of games
  */
-type Dictionary<T> = Record<CardId, T>;
+type GameOrder = UID[];
+
+/**
+ * Array of UIDs representing the turn order of players
+ */
+type TurnOrder = UID[];
+
+/**
+ * Object containing translations in both supported languages
+ */
+type DualLanguageValue = {
+  /**
+   * English translation
+   */
+  en: string;
+  /**
+   * Portuguese translation
+   */
+  pt: string;
+};
+
+/**
+ * Represents a dictionary object with keys of type UID and values of type T.
+ */
+type Dictionary<T> = Record<UID, T>;
 
 /**
  * Represents a plain object with dynamic keys and any values.
@@ -25,44 +54,25 @@ type PlainObject = {
   [key: string]: any;
 };
 
-type BooleanDictionary = Dictionary<boolean>;
-
-type NumberDictionary = Dictionary<number>;
-
-type StringDictionary = Dictionary<string>;
-
-type ObjectDictionary = Dictionary<PlainObject>;
-
-type ArrayDictionary<T = string> = {
-  [key: string]: T[];
+/**
+ * Represents a plain object with dynamic keys and any values.
+ */
+type UnknownObject = {
+  [key: string]: any;
 };
 
 // Function compositions
 
+/**
+ * Generic component type that accepts any arguments and returns any value
+ */
 type GenericComponent = (...args: any) => any;
 
 /**
- * @deprecated
+ * Generic function type that accepts any arguments and returns void
+ * @deprecated Use more specific function types instead
  */
 type GenericFunction = (...args: any) => void;
-/**
- * @deprecated
- */
-type BooleanFunction = (...args: any) => boolean;
-
-type ButtonEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
-
-// Language
-type Language = 'en' | 'pt';
-type GameLanguage = Language;
-type DualLanguageValue = {
-  en: string;
-  pt: string;
-};
-
-// Player compositions
-type GameOrder = PlayerId[];
-type TurnOrder = PlayerId[];
 
 // Firebase
 
@@ -95,7 +105,14 @@ type CanvasLine = number[];
 type CanvasSetLine = React.Dispatch<React.SetStateAction<CanvasLine[]>>;
 
 // TD Specific
+/**
+ * Color scheme options for the application theme
+ */
+type ColorScheme = 'light' | 'dark' | string;
 
+/**
+ * Available color options used throughout the application for theming and styling
+ */
 type Color =
   | 'red'
   | 'blue'
@@ -136,20 +153,32 @@ type GroupProgress = {
  */
 type Redirect = {
   redirectAt: DateMilliseconds;
-  gameId: GameId;
-  gameName: GameName;
+  gameId: string;
+  gameName: string;
 };
 
+/**
+ * Standard HTML element props for React components
+ */
 type ElementProps<TElement = HTMLDivElement> = React.HTMLAttributes<TElement>;
 
+/**
+ * HTML element props with required children for React components
+ */
 type ElementPropsWithChildren<TElement = HTMLDivElement> = {
   children: React.ReactNode;
 } & React.HTMLAttributes<TElement>;
 
+/**
+ * Error response type that can either contain an error message or be null
+ */
 type ResponseError = {
   message: string;
 } | null;
 
+/**
+ * Utility type that flattens the TypeScript type representation for better readability in IDE tooltips
+ */
 type Prettify<T> = {
   [K in keyof T]: T[K];
 } & {};

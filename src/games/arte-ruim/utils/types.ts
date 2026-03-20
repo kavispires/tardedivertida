@@ -2,29 +2,29 @@ export type ArteRuimCard = {
   id: string;
   text: string;
   level: number;
-  playerId?: PlayerId;
+  playerId?: UID;
 };
 
 export type ArteRuimDrawing = {
   id: string;
   drawing: string;
-  playerId: PlayerId;
+  playerId: UID;
   text: string;
   successRate?: number;
   level: number;
 };
 
 export type PlayersSay = {
-  [key: string]: PlayerId[];
+  [key: string]: UID[];
 };
 
 export type ArteRuimWindow = {
-  artistId: PlayerId;
+  artistId: UID;
   correctAnswer: string;
   drawing: string;
   id: string;
   level: number;
-  playersPoints?: NumberDictionary;
+  playersPoints?: Dictionary<number>;
   playersSay: PlayersSay;
   text: string;
 };

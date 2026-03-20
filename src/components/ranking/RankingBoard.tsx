@@ -6,8 +6,7 @@ import { useEffectOnce, useMeasure } from 'react-use';
 import { CrownFilled } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 // Types
-import type { GameRanking } from 'types/game';
-import type { GamePlayers } from 'types/player';
+import type { GameRanking, GamePlayers } from 'types/game';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 // Utils
@@ -72,7 +71,7 @@ type GainedPointsProps = {
   /**
    * The player ID for whom the points are displayed
    */
-  playerId: PlayerId;
+  playerId: UID;
   /**
    * Optional array of descriptions for each gained point
    */

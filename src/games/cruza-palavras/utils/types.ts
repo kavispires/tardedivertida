@@ -1,13 +1,11 @@
 // Types
-import type { Achievement } from 'types/achievements';
-import type { GameRanking } from 'types/game';
-import type { GamePlayer } from 'types/player';
+import type { Achievement, GameRanking, GamePlayer } from 'types/game';
 import type { TextCard } from 'types/tdr';
 
 export type Clue = {
   coordinate: number;
   clue: string;
-  playerId?: PlayerId;
+  playerId?: UID;
 };
 
 export type GridCell = {
@@ -17,7 +15,7 @@ export type GridCell = {
   text: string;
   available: boolean;
   writable?: boolean;
-  playerId?: PlayerId | null;
+  playerId?: UID | null;
   xText?: string;
   yText?: string;
   x?: number;
@@ -35,7 +33,7 @@ export type PlayerCoordinate = {
 };
 
 export type ResultPlayerCell = {
-  playerId: PlayerId;
+  playerId: UID;
   isCorrect?: boolean;
   color?: string;
 };
@@ -81,7 +79,7 @@ export type PhaseRevealState = {
   grid: Grid;
   gridSize: number;
   ranking: GameRanking;
-  whoGotNoPoints: PlayerId[];
+  whoGotNoPoints: UID[];
 };
 
 export type PhaseGameOverState = {

@@ -6,7 +6,7 @@ export type GameState = {
   number: number;
   status: string;
   hearts: number;
-  solution: BooleanDictionary;
+  solution: Dictionary<boolean>;
   guesses: LettersDictionary;
 };
 
@@ -15,7 +15,7 @@ export type DailyArteRuimEntry = {
   number: number;
   type: 'arte-ruim';
   language: Language;
-  cardId: CardId;
+  cardId: UID;
   text: string;
   drawings: string[];
   dataIds: string[];

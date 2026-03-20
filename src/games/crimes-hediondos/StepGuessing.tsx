@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Utils
@@ -59,7 +59,7 @@ export function StepGuessing({
   isLocationGame,
 }: StepGuessingProps) {
   const [guesses, setGuesses] = useState<Dictionary<Guess>>({});
-  const [activePlayerId, setActivePlayerId] = useState<PlayerId>('');
+  const [activePlayerId, setActivePlayerId] = useState<UID>('');
 
   // DEV: Auto guesses
   useMock(() => {

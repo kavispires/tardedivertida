@@ -27,7 +27,7 @@ export type DrawingToSave = {
   drawing: string;
   cardId: string;
   level: number;
-  playerId: PlayerId;
+  playerId: UID;
   successRate: number;
   text: string;
 };

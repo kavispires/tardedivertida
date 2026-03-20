@@ -1,7 +1,6 @@
 import { sortBy } from 'lodash';
 // Types
-import type { GameRound, PhaseProps } from 'types/game';
-import type { GamePlayer } from 'types/player';
+import type { GameRound, PhaseProps, GamePlayer } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 // Icons

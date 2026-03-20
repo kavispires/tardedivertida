@@ -3,8 +3,7 @@ import { useState } from 'react';
 import { TrophyOutlined } from '@ant-design/icons';
 import { Button, Collapse } from 'antd';
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
@@ -61,7 +60,7 @@ export function StepReveal({
 }: StepRevealProps) {
   useTemporarilyHidePlayersBar();
 
-  const [activePlayerId, setActivePlayerId] = useState<PlayerId>('');
+  const [activePlayerId, setActivePlayerId] = useState<UID>('');
 
   const playerCount = Object.keys(players).length;
 

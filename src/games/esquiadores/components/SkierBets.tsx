@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { InputNumber } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Components
 import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
@@ -34,7 +34,7 @@ export function SkierBets({ players, user, onSubmitBets, betType }: SkierBetsPro
   );
 
   const [bets, setBets] = useState(
-    playersList.reduce((acc: NumberDictionary, player) => {
+    playersList.reduce((acc: Dictionary<number>, player) => {
       acc[player.id] = 0;
       return acc;
     }, {}),

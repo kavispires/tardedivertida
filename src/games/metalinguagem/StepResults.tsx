@@ -2,8 +2,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Badge, Flex, Tooltip } from 'antd';
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Icons
 import { SkullIcon } from 'icons/SkullIcon';
 import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
@@ -27,11 +26,11 @@ import { WordLengths } from './components/WordLengths';
 type StepResultsProps = {
   players: GamePlayers;
   creator: GamePlayer;
-  turnOrder: PlayerId[];
+  turnOrder: UID[];
   items: string[];
   wordLengths: WordLength[];
   newWord: string;
-  guessPlayersPerItem: Record<string, PlayerId[]>;
+  guessPlayersPerItem: Record<string, UID[]>;
   beginsWith: string;
   endsWith: string;
   names: string[];

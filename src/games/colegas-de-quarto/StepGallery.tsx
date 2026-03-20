@@ -3,8 +3,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayers } from 'types/player';
+import type { GameRound, GamePlayers } from 'types/game';
 // Hooks
 import type { SlideShowConfig } from 'hooks/useSlideShow';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';

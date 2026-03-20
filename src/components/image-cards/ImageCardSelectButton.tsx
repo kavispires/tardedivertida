@@ -9,12 +9,12 @@ type ImageCardSelectButtonProps = {
   /**
    * The id of the image
    */
-  cardId: ImageCardId;
+  cardId: UID;
   /**
    * Function to call when the button is clicked
    * @param id The id of the image
    */
-  onClick: (id: ImageCardId) => void;
+  onClick: (id: UID) => void;
   /**
    * If the card is currently selected
    */

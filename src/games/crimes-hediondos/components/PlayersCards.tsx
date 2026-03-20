@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Icons
@@ -15,7 +15,7 @@ import type { History } from '../utils/types';
 import { isHistoryLocked } from '../utils/helpers';
 
 type PlayersCardsProps = {
-  setActivePlayerId: (id: PlayerId) => void;
+  setActivePlayerId: (id: UID) => void;
   guesses: PlainObject;
   players: GamePlayers;
   user: GamePlayer;

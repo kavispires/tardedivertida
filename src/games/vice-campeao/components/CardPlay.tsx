@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Avatar, Flex } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Icons
@@ -20,9 +20,9 @@ type CardPlayProps = {
   runActivity: RunActivity;
   players: GamePlayers;
   cardsDict: Dictionary<RunnerCard>;
-  lockedPlayersIds?: PlayerId[];
-  ongoingPlusOnePlayersIds?: PlayerId[];
-  ongoingMinusOnePlayersIds?: PlayerId[];
+  lockedPlayersIds?: UID[];
+  ongoingPlusOnePlayersIds?: UID[];
+  ongoingMinusOnePlayersIds?: UID[];
 };
 
 export function CardPlay({

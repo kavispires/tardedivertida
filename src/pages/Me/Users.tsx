@@ -15,8 +15,8 @@ import './Me.scss';
 // Components
 
 interface GameUserEntry {
-  gameName?: GameName;
-  gameId: GameId;
+  gameName?: string;
+  gameId: string;
   startedAt: number;
   endedAt: number;
   playerCount: number;
@@ -26,9 +26,7 @@ interface GameUserEntry {
   achievements: AchievementKey[];
 }
 
-type AvatarId = string;
 type AchievementKey = string;
-type GameName = string;
 type DailyEntry = {
   id: string; // Format YYYY-MM-DD
   number: number;
@@ -47,11 +45,11 @@ interface FirebaseUserDB {
   preferredLanguage: Language;
   names: string[]; // unique list but most recent comes last
   gender?: string;
-  avatars: Record<AvatarId, number>;
-  ratings: Record<GameName, number>;
-  games: Record<GameName, Record<GameId, GameUserEntry>>;
-  blurredImages: Record<ImageCardId, true>;
-  daily: Record<CardId, DailyEntry>;
+  avatars: Dictionary<number>;
+  ratings: Dictionary<number>;
+  games: Record<string, Record<string, GameUserEntry>>;
+  blurredImages: Dictionary<true>;
+  daily: Dictionary<DailyEntry>;
 }
 
 const DEFAULT_FIREBASE_USER_DB: FirebaseUserDB = {

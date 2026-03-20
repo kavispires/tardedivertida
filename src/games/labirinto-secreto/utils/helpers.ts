@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Internal
 import type { Direction, MapSegment, PlayerMapping, Point, TreeId } from './types';
 import { DIRECTIONS, FOREST_HEIGHT, FOREST_WIDTH } from './constants';
@@ -198,7 +198,7 @@ export const buildPlayerMapping = (players: GamePlayers, activePlayer: GamePlaye
 export const buildUserMappingForLatestTree = (
   user: GamePlayer,
   currentMap: MapSegment[],
-  activePlayerId: PlayerId,
+  activePlayerId: UID,
 ): PlayerMapping => {
   // Segments that are active for the current player's map
 

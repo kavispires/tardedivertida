@@ -4,7 +4,7 @@ import { getEntryId, getRandomItem } from 'utils/helpers';
 // Internal
 import type { Question } from './types';
 
-export const mockAnswers = (userId: PlayerId, numAnswers: number) => {
+export const mockAnswers = (userId: UID, numAnswers: number) => {
   const list = ['agua', 'bola', 'coco', 'dedo', 'egua', 'flauta', 'gatilho', 'hélio', 'jaguar', 'pêssego'];
   const list2 = ['água', 'bola', 'cocô', 'dedo', 'égua', 'flauta', 'gatilho', 'helio', 'jipe'];
 

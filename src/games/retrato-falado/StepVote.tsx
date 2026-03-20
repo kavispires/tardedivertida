@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { CheckSquareOutlined } from '@ant-design/icons';
 import { Space } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 import type { MonsterImage } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';

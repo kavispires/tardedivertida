@@ -163,6 +163,77 @@ const sortImports = (imports) => {
   return newLines.join('\n');
 };
 
+// Combine duplicate imports from the same module
+const combineDuplicateImports = (importLines) => {
+  // Group imports by module path
+  const importsByModule = {};
+
+  importLines.forEach((line) => {
+    const match = line.match(/from\s+['"]([^'"]+)['"]/);
+    if (!match) return;
+
+    const modulePath = match[1];
+
+    if (!importsByModule[modulePath]) {
+      importsByModule[modulePath] = {
+        lines: [],
+        isType: line.includes('import type'),
+      };
+    }
+
+    importsByModule[modulePath].lines.push(line);
+  });
+
+  // Combine duplicates
+  const combinedImports = [];
+
+  Object.entries(importsByModule).forEach(([modulePath, { lines, isType }]) => {
+    if (lines.length === 1) {
+      combinedImports.push(lines[0]);
+      return;
+    }
+
+    // Extract all imported items from multiple imports
+    const allImports = [];
+
+    lines.forEach((line) => {
+      // Match named imports: import { A, B } or import type { A, B }
+      const namedMatch = line.match(/import\s+(?:type\s+)?\{\s*([^}]+)\s*\}/);
+      if (namedMatch) {
+        const items = namedMatch[1]
+          .split(',')
+          .map((item) => item.trim())
+          .filter(Boolean);
+        allImports.push(...items);
+      }
+      // Match default imports: import X from or import type X from
+      else {
+        const defaultMatch = line.match(/import\s+(?:type\s+)?([^\s{]+)\s+from/);
+        if (defaultMatch) {
+          allImports.push(defaultMatch[1]);
+        }
+      }
+    });
+
+    // Remove duplicates while preserving order
+    const seen = new Set();
+    const uniqueImports = [];
+    allImports.forEach((item) => {
+      if (!seen.has(item)) {
+        seen.add(item);
+        uniqueImports.push(item);
+      }
+    });
+
+    // Create combined import statement
+    const typeKeyword = isType ? 'type ' : '';
+    const combinedLine = `import ${typeKeyword}{ ${uniqueImports.join(', ')} } from '${modulePath}';`;
+    combinedImports.push(combinedLine);
+  });
+
+  return combinedImports;
+};
+
 // Process a single file
 const processFile = (filePath) => {
   const fileContents = fs.readFileSync(filePath, 'utf8');
@@ -214,7 +285,10 @@ const processFile = (filePath) => {
     }
   });
 
-  const sortedImports = sortImports(importLines);
+  // Combine duplicate imports from same modules
+  const deduplicatedImports = combineDuplicateImports(importLines);
+
+  const sortedImports = sortImports(deduplicatedImports);
 
   // Replace original imports with sorted imports
   const biomeIgnoreContent = biomeIgnoreLines.length > 0 ? biomeIgnoreLines.join('\n') + '\n' : '';

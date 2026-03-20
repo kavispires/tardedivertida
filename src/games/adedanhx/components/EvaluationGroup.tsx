@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { CheckOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Switch, Tooltip } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Utils
@@ -42,7 +42,7 @@ export function EvaluationGroup({
 }: EvaluationGroupProps) {
   const { isLoading } = useLoading();
   const [groupId, setGroupId] = useState<string>('');
-  const [rejections, setRejections] = useState<BooleanDictionary>({});
+  const [rejections, setRejections] = useState<Dictionary<boolean>>({});
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: only run on answersGroup.id change
   useEffect(() => {

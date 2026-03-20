@@ -42,7 +42,7 @@ const PLACEHOLDER_GAME_INFO: GameInfo = {
 export const GameInfoContext = createContext<GameInfo>(PLACEHOLDER_GAME_INFO);
 
 type GameInfoContextType = {
-  gameCollection: GameName;
+  gameCollection: string;
   children: ReactNode;
 };
 

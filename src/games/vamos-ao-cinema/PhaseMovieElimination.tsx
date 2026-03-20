@@ -132,7 +132,7 @@ export function PhaseMovieElimination({ state, players, user }: PhaseProps) {
   );
 }
 
-const getAnnouncementKey = (eliminatedMovies: CardId[], isActivePlayer: boolean) => {
+const getAnnouncementKey = (eliminatedMovies: UID[], isActivePlayer: boolean) => {
   if (eliminatedMovies.length === 0) return 'first';
   if (isActivePlayer) return 'active';
   return 'normal';

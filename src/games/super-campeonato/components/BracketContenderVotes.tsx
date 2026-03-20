@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Avatar } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Components
 import { PlayerAvatar } from 'components/player';
 // Internal

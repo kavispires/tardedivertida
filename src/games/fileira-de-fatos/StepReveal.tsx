@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { TrophyOutlined } from '@ant-design/icons';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
@@ -42,12 +42,12 @@ export function StepReveal({
           acc[scenario.id] = scenario;
           return acc;
         },
-        {} as Record<CardId, TextCard>,
+        {} as Record<UID, TextCard>,
       ),
     [scenarios],
   );
 
-  const result = (activePlayer.currentOrder ?? []).map((id: CardId) => scenarioDictionary[id]);
+  const result = (activePlayer.currentOrder ?? []).map((id: UID) => scenarioDictionary[id]);
 
   return (
     <Step

@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Components
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
 import { SpaceContainer } from 'components/layout/SpaceContainer';

@@ -4,7 +4,7 @@ import { useCounter, useEffectOnce } from 'react-use';
 import { ReadOutlined } from '@ant-design/icons';
 import { Button, App } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
@@ -26,7 +26,7 @@ type StepTargetingProps = {
   players: GamePlayers;
   onSubmitTarget: GenericFunction;
   onSubmitMessage: GenericComponent;
-  messages: Record<PlayerId, Message>;
+  messages: Record<UID, Message>;
 };
 
 export function StepTargeting({
@@ -56,8 +56,8 @@ export function StepTargeting({
 
   const { leftPlayersIds, rightPlayersIds } = useMemo(() => {
     const half = Math.ceil(playerIds.length / 2);
-    const left: PlayerId[] = [];
-    const right: PlayerId[] = [];
+    const left: UID[] = [];
+    const right: UID[] = [];
 
     playerIds.forEach((playerId, index) => {
       if (index < half) {
@@ -82,7 +82,7 @@ export function StepTargeting({
 
   useEffectOnce(() => popRule());
 
-  const onSelectTarget = (targetId: PlayerId) => {
+  const onSelectTarget = (targetId: UID) => {
     setVotingCount.dec();
     onSubmitTarget({ targetId });
   };

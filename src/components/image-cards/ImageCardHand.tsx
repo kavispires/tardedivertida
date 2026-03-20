@@ -15,11 +15,11 @@ type ImageCardHandProps = {
   /**
    * The list of card ids
    */
-  hand: ImageCardId[];
+  hand: UID[];
   /**
    * Function to trigger when clicking on the select button
    */
-  onSelectCard?: (cardId: ImageCardId) => void;
+  onSelectCard?: (cardId: UID) => void;
   /**
    * Select button custom label
    */
@@ -55,7 +55,7 @@ type ImageCardHandProps = {
   /**
    * Cache showing which cards have been selected and should be highlighted
    */
-  selectedCards?: BooleanDictionary;
+  selectedCards?: Dictionary<boolean>;
   /**
    * Custom card class
    */

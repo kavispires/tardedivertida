@@ -10,10 +10,10 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 
 type EvaluationAllSubjectsProps = {
   cards: Dictionary<TextCard>;
-  onSelect: (cardId: CardId) => void;
-  subjectsIds: CardId[];
-  activeItem: CardId;
-  matchedItems: BooleanDictionary;
+  onSelect: (cardId: UID) => void;
+  subjectsIds: UID[];
+  activeItem: UID;
+  matchedItems: Dictionary<boolean>;
 };
 
 export function EvaluationAllSubjects({

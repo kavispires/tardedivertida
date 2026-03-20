@@ -4,7 +4,7 @@ import type { Bracket, BracketTier } from './type';
 import { targetByTier, voteTarget } from './constants';
 
 export function useBracketVoting(tier: BracketTier) {
-  const [votes, setVotes] = useState<NumberDictionary>({});
+  const [votes, setVotes] = useState<Dictionary<number>>({});
 
   function updateVote(vote: Bracket) {
     setVotes((v) => ({ ...v, [voteTarget[vote.position]]: vote.position }));

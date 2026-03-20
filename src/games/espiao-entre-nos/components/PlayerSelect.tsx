@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Button, Select, Space } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
@@ -27,7 +27,7 @@ export function PlayerSelect({ players, onSend, isFinalAssessment = false }: Pla
 
   const playersWithoutMe = Object.values(players).filter((player) => player.id !== userId);
 
-  const onSelectPlayerId = (playerId: PlayerId) => setSelectedPlayerId(playerId);
+  const onSelectPlayerId = (playerId: UID) => setSelectedPlayerId(playerId);
 
   return (
     <Space>

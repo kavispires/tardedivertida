@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
@@ -9,7 +9,7 @@ import { Translate } from 'components/language';
 import { DreamCard } from './DreamCard';
 
 type DreamBoardProps = {
-  table: ImageCardId[];
+  table: UID[];
   user: GamePlayer;
   /**
    * Optional custom class name

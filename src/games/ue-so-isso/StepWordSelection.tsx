@@ -2,7 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Components
 import { TimedButton } from 'components/buttons';
@@ -30,7 +30,7 @@ export function StepWordSelection({
   players,
   turnOrder,
 }: StepWordSelectionProps) {
-  const [selectedWords, setSelectedWords] = useState<BooleanDictionary>({});
+  const [selectedWords, setSelectedWords] = useState<Dictionary<boolean>>({});
 
   const selectedWordsArray = Object.keys(selectedWords);
   const noSelection = selectedWordsArray.length === 0;
@@ -41,7 +41,7 @@ export function StepWordSelection({
   };
 
   const onSelectWord = (wordId: string) => {
-    setSelectedWords((s: BooleanDictionary) => {
+    setSelectedWords((s: Dictionary<boolean>) => {
       const newState = { ...s };
       if (newState[wordId]) {
         delete newState[wordId];

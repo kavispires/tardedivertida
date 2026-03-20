@@ -10,7 +10,7 @@ import { StarPoints } from 'components/points';
 type CommentTextProps = {
   reaction: boolean;
   likes: boolean;
-  playerId: PlayerId;
+  playerId: UID;
   points: number;
 };
 

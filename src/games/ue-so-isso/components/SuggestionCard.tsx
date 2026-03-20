@@ -12,7 +12,7 @@ import { PlayerAvatar } from 'components/player';
 type SuggestionCardProps = {
   avatarId: string;
   index: number;
-  playerName?: PlayerName;
+  playerName?: string;
   invalid?: boolean;
   suggestion: string;
 };

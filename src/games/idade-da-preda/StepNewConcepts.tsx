@@ -1,8 +1,7 @@
 // Ant Design Resources
 import { Flex } from 'antd';
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 import type { Item } from 'types/tdr';
 // Hooks
 import { useMock } from 'hooks/useMock';

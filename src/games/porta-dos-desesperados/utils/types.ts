@@ -1,15 +1,14 @@
 // Types
-import type { Achievement } from 'types/achievements';
-import type { GamePlayer } from 'types/player';
+import type { Achievement, GamePlayer } from 'types/game';
 // Internal
 import type { TRAPS } from './constants';
 
 export type SubmitPagesPayload = {
-  pageIds: CardId[];
+  pageIds: UID[];
 };
 
 export type SubmitDoorPayload = {
-  doorId: CardId;
+  doorId: UID;
   ready?: boolean;
 };
 
@@ -34,14 +33,14 @@ export type TrapEntry = {
 };
 
 export type PhaseBookPossessionState = {
-  answerDoorId: CardId;
+  answerDoorId: UID;
   currentCorridor: number;
   difficulty: number;
-  doors: CardId[];
+  doors: UID[];
   gameOrder: GameOrder;
   magic: number;
   pages: string[];
-  possessedId: PlayerId;
+  possessedId: UID;
   selectedPagesIds: string[];
   trap: Trap | 'NONE';
   trapEntry: TrapEntry | null;
@@ -50,14 +49,14 @@ export type PhaseBookPossessionState = {
 };
 
 export type PhaseDoorChoiceState = {
-  answerDoorId: CardId;
+  answerDoorId: UID;
   currentCorridor: number;
   difficulty: number;
-  doors: CardId[];
+  doors: UID[];
   gameOrder: GameOrder;
   magic: number;
   pages: string[];
-  possessedId: PlayerId;
+  possessedId: UID;
   selectedPagesIds: string[];
   trap: Trap | 'NONE';
   trapEntry: TrapEntry | null;
@@ -66,14 +65,14 @@ export type PhaseDoorChoiceState = {
 };
 
 export type PhaseResolutionState = {
-  answerDoorId: CardId;
+  answerDoorId: UID;
   currentCorridor: number;
   difficulty: number;
-  doors: CardId[];
+  doors: UID[];
   gameOrder: GameOrder;
   magic: number;
   pages: string[];
-  possessedId: PlayerId;
+  possessedId: UID;
   selectedPagesIds: string[];
   trap: Trap | 'NONE';
   trapEntry: TrapEntry | null;
@@ -88,5 +87,5 @@ export type PhaseGameOverState = {
   winCondition: string;
   currentCorridor: number;
   magic: number;
-  doors: CardId[];
+  doors: UID[];
 };

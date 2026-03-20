@@ -10,12 +10,12 @@ export type Item = {
 
 export type DuetosGalleryEntry = {
   pairId: string;
-  players: PlayerId[];
+  players: UID[];
   pair: Item[];
 };
 
 export type LefOutEntry = {
   id: string;
   item: Item;
-  players: PlayerId[];
+  players: UID[];
 };

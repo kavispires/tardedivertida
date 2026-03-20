@@ -27,9 +27,9 @@ import { BookHighlight, DoorHighlight } from './components/Highlights';
 import { DoorFrame } from '../../components/game/DoorFrame';
 
 type StepSelectPagesProps = {
-  pages: CardId[];
+  pages: UID[];
   currentCorridor: number;
-  answerDoorId: CardId;
+  answerDoorId: UID;
   trap: string;
   trapEntry: TrapEntry | null;
   onSubmitPages: (payload: SubmitPagesPayload) => void;
@@ -256,10 +256,10 @@ export function StepSelectPages({
 }
 
 type FlipBookHandProps = {
-  pages: CardId[];
-  onSelectPage: (pageId: CardId) => void;
+  pages: UID[];
+  onSelectPage: (pageId: UID) => void;
   disabledSelectButton?: boolean;
-  selectedCards: BooleanDictionary;
+  selectedCards: Dictionary<boolean>;
 };
 
 function FlipBookHand({ pages, onSelectPage, disabledSelectButton, selectedCards }: FlipBookHandProps) {

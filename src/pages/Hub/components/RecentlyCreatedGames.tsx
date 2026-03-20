@@ -23,7 +23,7 @@ export function RecentlyCreatedGames() {
     setIds(Object.keys(latestGameIds ?? {}).sort());
   };
 
-  const goTo = (gameId: GameId) => {
+  const goTo = (gameId: string) => {
     navigate(gameId);
   };
 

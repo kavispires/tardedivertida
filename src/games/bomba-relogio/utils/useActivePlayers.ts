@@ -1,7 +1,7 @@
 import { sortBy } from 'lodash';
 import { useMemo } from 'react';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 // Utils

@@ -2,7 +2,7 @@ import type { ColumnsType } from 'antd/es/table';
 // Ant Design Resources
 import { Space, Table } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';

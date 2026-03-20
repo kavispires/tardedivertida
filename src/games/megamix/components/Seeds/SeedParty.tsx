@@ -17,7 +17,7 @@ type SeedPartyProps = {
 
 export function SeedParty({ seed, updateData }: SeedPartyProps) {
   const { translate } = useLanguage();
-  const [answers, setAnswers] = useState<StringDictionary>({});
+  const [answers, setAnswers] = useState<Dictionary<string>>({});
 
   const updateAnswers = (key: string, value: string) => {
     setAnswers((v) => ({ ...v, [key]: value }));

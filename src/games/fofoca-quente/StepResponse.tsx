@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Alert, Button, Flex } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Components
 import { Popconfirm } from 'components/general/Popconfirm';
 import { Translate } from 'components/language';

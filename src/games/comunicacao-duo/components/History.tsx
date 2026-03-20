@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Collapse, Table, type TableProps, type CollapseProps, Flex } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Components
 import { AlienText } from 'components/alien/AlienText';
 import { Translate } from 'components/language';

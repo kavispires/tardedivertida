@@ -35,7 +35,7 @@ export type ActingRole = {
   actor?: ActorId;
   cast: boolean;
   round: number;
-  directors: PlayerId[];
+  directors: UID[];
   type: string;
 };
 

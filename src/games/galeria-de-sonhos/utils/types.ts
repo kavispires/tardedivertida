@@ -17,9 +17,9 @@ export type PlayCardPayload = {
 
 export type LatestInfo = {
   cardId: string;
-  completedPlayers: PlayerId[];
+  completedPlayers: UID[];
   matchCount: number;
-  matchedPlayers: PlayerId[];
+  matchedPlayers: UID[];
   cardsLeft: number;
   isPhaseOver?: boolean;
 };
@@ -27,13 +27,13 @@ export type LatestInfo = {
 export type CardInHand = {
   used: boolean;
   score: number;
-  matchedPlayers: PlayerId[];
-  cardId: CardId;
+  matchedPlayers: UID[];
+  cardId: UID;
 };
 
 export type ImageCardMatch = {
-  id: CardId;
+  id: UID;
   used: boolean;
   text: string;
-  matchedPlayers: PlayerId[];
+  matchedPlayers: UID[];
 };

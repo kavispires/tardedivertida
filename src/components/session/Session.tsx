@@ -31,7 +31,7 @@ type SessionProps = {
   /**
    * The game collection name
    */
-  gameCollection: GameName;
+  gameCollection: string;
   /**
    * The active component to be rendered, usually a Phase... component
    */

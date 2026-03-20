@@ -1,5 +1,5 @@
 // Types
-import type { Achievement } from 'types/achievements';
+import type { Achievement } from 'types/game';
 // Internal
 import type { CARD_TYPES, OUTCOME } from './constants';
 
@@ -12,25 +12,25 @@ export type DataCounts = {
 };
 
 export type Declaration = {
-  playerId: PlayerId;
+  playerId: UID;
   bombs: number;
   wires: number;
 };
 
 export type TimeBombCard = {
-  id: CardId;
+  id: UID;
   type: (typeof CARD_TYPES)[keyof typeof CARD_TYPES];
 };
 
 export type Target = {
-  playerId: PlayerId;
+  playerId: UID;
   playerIndex: number;
   targetCard: TimeBombCard;
   targetCardIndex: number;
 };
 
 export type Status = {
-  activePlayerIds: Dictionary<PlayerId | null>; // when more than 1 value, last is target, and second to last is active
+  activePlayerIds: Dictionary<UID | null>; // when more than 1 value, last is target, and second to last is active
   cut: Dictionary<TimeBombCard>;
   revealed: number;
   outcome: (typeof OUTCOME)[keyof typeof OUTCOME];
@@ -42,7 +42,7 @@ export type SubmitDeclarationPayload = {
 };
 
 export type UpdateTargetPlayerPayload = {
-  targetPlayerId: PlayerId;
+  targetPlayerId: UID;
 };
 
 export type SubmitTargetPayload = {
@@ -57,7 +57,7 @@ export type PhaseDeclarationState = {
 export type PhaseExaminationState = {
   dataCounts: DataCounts;
   status: Status;
-  currentTargetPlayerId?: PlayerId;
+  currentTargetPlayerId?: UID;
 };
 
 export type PhaseGameOverState = {

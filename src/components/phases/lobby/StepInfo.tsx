@@ -5,7 +5,7 @@ import { useLocalStorage } from 'react-use';
 // Ant Design Resources
 import { Alert, AutoComplete, Button, Typography } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Hooks
 import { useAddPlayer } from 'hooks/useAddPlayer';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';

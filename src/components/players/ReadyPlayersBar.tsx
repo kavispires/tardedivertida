@@ -2,7 +2,7 @@
 import { LikeFilled } from '@ant-design/icons';
 import { Avatar, Typography } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Components
 import { Translate } from 'components/language';
 import { PlayerAvatar } from 'components/player';

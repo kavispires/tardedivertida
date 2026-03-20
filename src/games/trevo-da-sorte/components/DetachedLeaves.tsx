@@ -12,7 +12,7 @@ import { Leaf } from './Leaf';
 type DetachedLeavesProps = {
   leaves: Leaves;
   usedLeavesIds: LeafId[];
-  rotations: NumberDictionary;
+  rotations: Dictionary<number>;
   onLeafRotate: LeafEvent;
   activeLeafId?: LeafId | null;
   onLeafGrab?: GenericFunction;

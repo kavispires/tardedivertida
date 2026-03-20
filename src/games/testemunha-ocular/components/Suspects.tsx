@@ -14,8 +14,8 @@ import { DualTranslate, Translate } from 'components/language';
 
 type SuspectsProps = {
   suspectsDict: Dictionary<SuspectCard>;
-  suspectsIds: CardId[];
-  perpetratorId?: CardId;
+  suspectsIds: UID[];
+  perpetratorId?: UID;
   onCardClick?: (suspectId: string) => void;
   eliminatedSuspects?: string[];
 };

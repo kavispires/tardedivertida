@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Popover, Space, Tooltip } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useCardWidth } from 'hooks/useCardWidth';
@@ -30,7 +30,7 @@ type StepSelectGlyphsProps = {
   user: GamePlayer;
   onSelectGlyphs: (payload: SubmitGlyphsPayload) => void;
   characters: Characters;
-  tableOrder: CardId[];
+  tableOrder: UID[];
   roundType: (typeof ROUND_TYPE)[keyof typeof ROUND_TYPE];
   imageCardMode: boolean;
 } & Pick<StepProps, 'announcement'>;
@@ -276,7 +276,7 @@ export function StepSelectGlyphs({
 }
 
 type PopoverGlyphProps = {
-  id: CardId;
+  id: UID;
   updatePositive: (key: string) => void;
   updateNegative: (key: string) => void;
   disablePositive: boolean;

@@ -1,6 +1,5 @@
 // Types
-import type { GameRound, GameRanking } from 'types/game';
-import type { GamePlayers } from 'types/player';
+import type { GameRound, GameRanking, GamePlayers } from 'types/game';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
@@ -18,7 +17,7 @@ type StepRankingProps = {
   isGameOver: boolean;
   round: GameRound;
   brackets: Bracket[];
-  selectedContenderId: CardId;
+  selectedContenderId: UID;
   bets: Bet;
 };
 

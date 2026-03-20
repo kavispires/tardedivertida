@@ -1,7 +1,7 @@
 import { useStore } from '@tanstack/react-store';
 import { Store } from '@tanstack/store';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Utils
 import { PLACEHOLDER_PLAYER } from 'utils/constants';
 

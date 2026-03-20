@@ -1,6 +1,5 @@
 // Types
-import type { GameRanking, GameRound } from 'types/game';
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GameRanking, GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
@@ -20,7 +19,7 @@ type StepRevealProps = {
   impostor: GamePlayer;
   impostorVotes: number;
   players: GamePlayers;
-  leaderId: PlayerId;
+  leaderId: UID;
   round: GameRound;
   ranking: GameRanking;
   table: CardEntry[];

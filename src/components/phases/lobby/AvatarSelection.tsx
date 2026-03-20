@@ -5,7 +5,7 @@ import { useToggle } from 'react-use';
 // Ant Design Resources
 import { Button, Popover, Tooltip, Typography } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Utils
 import { AVAILABLE_AVATAR_IDS, AVATARS } from 'utils/avatars';
 // Components
@@ -32,7 +32,7 @@ type AvatarSelectionProps = {
   /**
    * The current user's ID
    */
-  userId: PlayerId;
+  userId: UID;
   /**
    * The maximum number of players allowed in the game, used to determine avatar availability and neighbor disabling logic
    */
@@ -112,8 +112,8 @@ function AvatarOptions({
   maxPlayers,
 }: AvatarSelectionProps) {
   const { usedAvatars, disabledAvatars } = useMemo(() => {
-    const used: StringDictionary = Object.values(players).reduce(
-      (acc: StringDictionary, { name, avatarId, id }) => {
+    const used: Dictionary<string> = Object.values(players).reduce(
+      (acc: Dictionary<string>, { name, avatarId, id }) => {
         if (id !== userId) {
           acc[avatarId] = name;
         }

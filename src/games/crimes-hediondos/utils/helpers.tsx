@@ -36,11 +36,11 @@ export const splitWeaponsAndEvidence = (items: ItemsDict, language: Language): S
   };
 };
 
-export const getHistory = (playerHistory: History, activePlayerId: PlayerId) => {
+export const getHistory = (playerHistory: History, activePlayerId: UID) => {
   return playerHistory?.[activePlayerId] ?? [];
 };
 
-export const isHistoryLocked = (history: History, activePlayerId: PlayerId): boolean => {
+export const isHistoryLocked = (history: History, activePlayerId: UID): boolean => {
   const lastGuessHistory = getLastItem(getHistory(history, activePlayerId));
   return Boolean(['CORRECT', 'LOCKED'].includes(lastGuessHistory?.status));
 };

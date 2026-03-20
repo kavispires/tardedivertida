@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Utils
 import { AVATARS } from 'utils/avatars';
 // Icons

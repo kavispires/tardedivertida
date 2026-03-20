@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { motion } from 'motion/react';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils

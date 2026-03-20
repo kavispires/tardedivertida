@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Components
@@ -29,7 +29,7 @@ type StepMakeBetsProps = {
   betType: string;
   animateFrom: number;
   animateTo: 'left' | 'right' | null;
-  catchUp?: PlayerId[];
+  catchUp?: UID[];
 } & Pick<StepProps, 'announcement'>;
 
 export function StepMakeBets({

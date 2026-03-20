@@ -52,8 +52,8 @@ export function useCloverState(
     C: false,
     D: false,
   });
-  const [rotations, setRotations] = useState<NumberDictionary>(
-    Object.keys(leaves).reduce((acc: NumberDictionary, leafId) => {
+  const [rotations, setRotations] = useState<Dictionary<number>>(
+    Object.keys(leaves).reduce((acc: Dictionary<number>, leafId) => {
       acc[leafId] = 0;
       return acc;
     }, {}),
@@ -107,7 +107,7 @@ export function useCloverState(
    * @param leadId
    * @param quantity - how many times it should rotate
    */
-  const onLeafRotate = (e: ButtonEvent, leadId: LeafId, quantity = 1) => {
+  const onLeafRotate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, leadId: LeafId, quantity = 1) => {
     e.stopPropagation();
     const newRotation = onRotate(rotations[leadId], quantity);
     setRotations((prevState) => ({ ...prevState, [leadId]: newRotation }));

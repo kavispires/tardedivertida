@@ -2,12 +2,12 @@
 import type { TopicCard } from 'types/tdr';
 
 export type SubmitGridAnswersPayload = {
-  answers: StringDictionary;
-  stop?: PlayerId;
+  answers: Dictionary<string>;
+  stop?: UID;
 };
 
 export type SubmitRejectedAnswers = {
-  evaluations: BooleanDictionary;
+  evaluations: Dictionary<boolean>;
 };
 
 export type LetterEntry = {
@@ -48,11 +48,11 @@ export type GroupAnswerEvaluationEntry = {
 export type AnswerGridEntry = {
   id: string;
   main: {
-    playerId: PlayerId;
+    playerId: UID;
     score: number;
     answer: string;
   };
-  playerIds: PlayerId[];
+  playerIds: UID[];
   score: number;
 };
 

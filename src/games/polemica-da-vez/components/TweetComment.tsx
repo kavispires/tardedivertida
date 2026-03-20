@@ -1,6 +1,6 @@
 import moment from 'moment';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Components
 import { PlayerAvatar } from 'components/player';
 // Internal

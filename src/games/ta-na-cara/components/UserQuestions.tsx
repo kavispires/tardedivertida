@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Utils
 import { LETTERS } from 'utils/constants';
 import { getColorFromLetter } from 'utils/helpers';
@@ -28,7 +28,7 @@ export function UserQuestions({ user, questionsDict }: UserQuestionsProps) {
       }
     >
       <Space>
-        {(user.questions ?? []).map((questionId: CardId, index: number) => {
+        {(user.questions ?? []).map((questionId: UID, index: number) => {
           return (
             <Card
               key={questionId}

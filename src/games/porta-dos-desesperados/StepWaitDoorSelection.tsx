@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Image, Space } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Utils
 import { NOOP, PLACEHOLDER_PLAYER } from 'utils/constants';
 // Components
@@ -22,13 +22,13 @@ import { BotPopupRule, TrapPopupRule } from './components/RulesBlobs';
 import { SandTimer } from './components/SandTimer';
 
 type StepWaitDoorSelectionProps = {
-  doors: CardId[];
-  pages: CardId[];
+  doors: UID[];
+  pages: UID[];
   currentCorridor: number;
   trap: string;
   trapEntry: TrapEntry | null;
   players: GamePlayers;
-  answerDoorId: CardId;
+  answerDoorId: UID;
   magic: number;
   botEnabled?: boolean;
 };

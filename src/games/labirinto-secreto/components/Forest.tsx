@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { findLast } from 'lodash';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
@@ -230,7 +230,7 @@ export function Forest({
 
 type PlayerPositionsProps = {
   players: GamePlayers;
-  playerIds: PlayerId[];
+  playerIds: UID[];
   user?: GamePlayer;
 };
 

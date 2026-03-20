@@ -55,7 +55,7 @@ export function writeResult({
   sets: DailyQuartetosEntry['sets'];
 }): string {
   const EMOJIS = ['🟩', '🟨', '🟧', '🟪'];
-  const EMOJIS_MAP = sets.reduce((acc: StringDictionary, set) => {
+  const EMOJIS_MAP = sets.reduce((acc: Dictionary<string>, set) => {
     set.itemsIds.forEach((itemId) => {
       acc[itemId] = EMOJIS[set.level];
     });

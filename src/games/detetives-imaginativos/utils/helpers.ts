@@ -1,11 +1,7 @@
 // Internal
 import type { CardEntry } from './types';
 
-export function isEarliestPlayerWithFewestCards(
-  table: CardEntry[],
-  userId: PlayerId,
-  turnOrder: PlayerId[],
-): boolean {
+export function isEarliestPlayerWithFewestCards(table: CardEntry[], userId: UID, turnOrder: UID[]): boolean {
   for (let i = 0; i < Math.max(table.length, turnOrder.length); i++) {
     if (!table[i]) {
       return true;

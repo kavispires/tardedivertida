@@ -3,7 +3,7 @@ import type { ComponentProps } from 'react';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Hooks
 import { useHost } from 'hooks/useHost';
 import { useLoading } from 'hooks/useLoading';
@@ -25,7 +25,7 @@ type StepSelectPlayerProps = {
   /**
    * Callback function when a player is selected and submitted
    */
-  onSubmitPlayer: (playerId: PlayerId) => void;
+  onSubmitPlayer: (playerId: UID) => void;
   /**
    * Props to pass to the StepTitle component
    */

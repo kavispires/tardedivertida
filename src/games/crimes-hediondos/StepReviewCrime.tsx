@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 import type { CrimeSceneTile } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';

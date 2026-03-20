@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Space, Avatar } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Components
 import { CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';
@@ -14,7 +14,7 @@ type MonsterSketchesProps = {
   players: GamePlayers;
   canvasSize: number;
   canvasWidth: number;
-  votes?: Record<PlayerId, PlayerId[]>;
+  votes?: Record<UID, UID[]>;
 };
 
 export function MonsterSketches({

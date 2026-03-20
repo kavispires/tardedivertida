@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { RobotOutlined } from '@ant-design/icons';
 import { App } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
@@ -38,7 +38,7 @@ type StepDreamsSelectionProps = {
   players: GamePlayers;
   gameOrder: GameOrder;
   setLastTurnCount: React.Dispatch<React.SetStateAction<string>>;
-  playerInNightmareId?: PlayerId;
+  playerInNightmareId?: UID;
   botEnabled?: boolean;
 };
 

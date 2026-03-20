@@ -8,7 +8,7 @@ import type { BracketTier, FightingContender } from '../utils/type';
 
 type ContendersSelectProps = {
   contenders: FightingContender[];
-  updateBet: (value: StringDictionary) => void;
+  updateBet: (value: Dictionary<string>) => void;
   language: Language;
   betTier: BracketTier;
 };

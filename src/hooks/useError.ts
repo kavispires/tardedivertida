@@ -2,7 +2,7 @@ import { useStore } from '@tanstack/react-store';
 import { Store } from '@tanstack/store';
 
 type ErrorState = {
-  errors: StringDictionary;
+  errors: Dictionary<string>;
 };
 
 const errorsStore = new Store<ErrorState>({

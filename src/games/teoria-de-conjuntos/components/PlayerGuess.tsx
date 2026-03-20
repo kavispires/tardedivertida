@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Flex } from 'antd';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 import type { Item } from 'types/tdr';
 // Icons
 import { ArrowIcon } from 'icons/ArrowIcon';

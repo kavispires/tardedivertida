@@ -6,8 +6,8 @@ import type { FOFOCA_QUENTE_PHASES } from './constants';
 export type FofocaQuentePhase = keyof typeof FOFOCA_QUENTE_PHASES;
 
 export type SubmitPlayersRoles = {
-  gossiperPlayerId: PlayerId;
-  detectivePlayerId: PlayerId;
+  gossiperPlayerId: UID;
+  detectivePlayerId: UID;
 };
 
 export type SubmitAssociatedSocialGroupPayload = {
@@ -40,7 +40,7 @@ export type StaffMember = {
 };
 
 export type Student = TeenageStudent & {
-  id: CardId;
+  id: UID;
   // Fixed properties
   isGossiper: boolean;
   isBestFriend: boolean;
@@ -57,8 +57,8 @@ export type Student = TeenageStudent & {
 export type SchoolLocation = {
   id: string;
   name: DualLanguageValue;
-  staff?: CardId;
-  students: CardId[];
+  staff?: UID;
+  students: UID[];
   rumorScene?: number;
 };
 
@@ -84,11 +84,11 @@ export type FofocaQuenteDefaultState = {
   staff: Dictionary<StaffMember>;
   motivations: TeenageMotivation[];
   socialGroups: Dictionary<SocialGroup>;
-  detectivePlayerId: PlayerId;
-  gossiperPlayerId: PlayerId;
-  gossiperId: CardId;
-  motiveId: CardId;
-  bestFriendId?: CardId;
+  detectivePlayerId: UID;
+  gossiperPlayerId: UID;
+  gossiperId: UID;
+  motiveId: UID;
+  bestFriendId?: UID;
   gossiperMotivationIndex: number;
   maySkipRumor: boolean;
   rumorTracker: RumorTrackerEntry[];

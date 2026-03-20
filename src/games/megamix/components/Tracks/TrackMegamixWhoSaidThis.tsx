@@ -16,7 +16,7 @@ import { MinigameTitle } from '../MinigameTitle';
 export const TrackMegamixWhoSaidThis = ({ track, onSubmitAnswer, user, players }: TrackProps) => {
   const { isLoading } = useLoading();
 
-  const onSelect = (playerId: PlayerId) => {
+  const onSelect = (playerId: UID) => {
     onSubmitAnswer({
       data: { value: playerId },
     });
@@ -39,7 +39,7 @@ export const TrackMegamixWhoSaidThis = ({ track, onSubmitAnswer, user, players }
       <Card hideHeader>"{track.data.card.text}"</Card>
 
       <SpaceContainer>
-        {track.data.card.options.map((playerId: PlayerId) => {
+        {track.data.card.options.map((playerId: UID) => {
           const player = players[playerId];
           return (
             <TransparentButton

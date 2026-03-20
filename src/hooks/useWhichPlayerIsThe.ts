@@ -1,7 +1,7 @@
 import { get } from 'lodash';
 import { useMemo } from 'react';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Utils
 import { PLACEHOLDER_PLAYER } from 'utils/constants';
 // Internal

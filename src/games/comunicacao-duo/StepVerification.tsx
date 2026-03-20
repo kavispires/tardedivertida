@@ -2,8 +2,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Types
-import type { GameRound } from 'types/game';
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 // Components
 import { AlienKeyboard } from 'components/alien/AlienKeyboard';
 import { AlienText } from 'components/alien/AlienText';

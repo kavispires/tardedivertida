@@ -2,7 +2,7 @@ import { type ReactNode, useMemo } from 'react';
 // Ant Design Resources
 import { Progress } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components

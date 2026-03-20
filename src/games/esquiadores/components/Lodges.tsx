@@ -2,7 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { InputNumber, Tooltip } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Icons
@@ -31,7 +31,7 @@ type LodgesProps = {
 export function Lodges({ lodges, players, user, onSubmitBets, betType }: LodgesProps) {
   const lodgeWidth = useCardWidth(6, { gap: 32, margin: 64, maxWidth: 175 });
   const [bets, setBets] = useState(
-    lodges.reduce((acc: NumberDictionary, lodge) => {
+    lodges.reduce((acc: Dictionary<number>, lodge) => {
       acc[lodge.id] = 0;
       return acc;
     }, {}),

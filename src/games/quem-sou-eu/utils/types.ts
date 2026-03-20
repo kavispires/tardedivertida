@@ -2,36 +2,36 @@
 import type { ContenderCard } from 'types/tdr';
 
 export type SubmitCharactersPayload = {
-  characters: CardId[];
+  characters: UID[];
 };
 
 export type SubmitGlyphsPayload = {
-  glyphs: BooleanDictionary;
+  glyphs: Dictionary<boolean>;
 };
 
 export type SubmitGuessesPayload = {
-  guesses: StringDictionary;
+  guesses: Dictionary<string>;
   choseRandomly: boolean;
 };
 
 export type Character = ContenderCard & {
-  playerId?: PlayerId;
+  playerId?: UID;
 };
 
 export type Characters = Dictionary<Character>;
 
 export type GalleryEntry = {
-  playerId: PlayerId;
-  characterId: CardId;
-  glyphs: BooleanDictionary;
-  playersSay: Record<CardId, PlayerId[]>;
-  playersPoints: Record<PlayerId, number>;
+  playerId: UID;
+  characterId: UID;
+  glyphs: Dictionary<boolean>;
+  playersSay: Record<UID, UID[]>;
+  playersPoints: Record<UID, number>;
 };
 
 export type FinalCharacterEntry = {
-  id: CardId;
+  id: UID;
   name: DualLanguageValue;
   description: DualLanguageValue;
-  glyphs: BooleanDictionary;
-  playerId: PlayerId;
+  glyphs: Dictionary<boolean>;
+  playerId: UID;
 };

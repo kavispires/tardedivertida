@@ -8,7 +8,7 @@ import { print } from 'utils/helpers';
 // Internal
 import { useFirestoreDocument } from './useFirestoreDocument';
 
-export function useGameState(gameId: GameId, gameName: GameName): GameState {
+export function useGameState(gameId: string, gameName: string): GameState {
   const { notification } = App.useApp();
   const docPath = `games/${gameName}/${gameId}/state`;
 

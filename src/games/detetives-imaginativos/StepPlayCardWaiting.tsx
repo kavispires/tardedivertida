@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
@@ -24,7 +24,7 @@ type StepPlayCardWaitingProps = {
   user: GamePlayer;
   isLoading: boolean;
   turnOrder: TurnOrder;
-  leaderId: PlayerId;
+  leaderId: UID;
 };
 
 export function StepPlayCardWaiting({

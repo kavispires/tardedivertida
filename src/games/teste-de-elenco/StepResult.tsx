@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { TrophyOutlined } from '@ant-design/icons';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
@@ -29,7 +29,7 @@ type StepResultProps = {
 
 export function StepResult({ announcement, activeRole, goToNextStep, outcome, players }: StepResultProps) {
   const playersSelections = useMemo(() => {
-    return Object.values(players).reduce((acc: Record<CardId, PlayerId[]>, player) => {
+    return Object.values(players).reduce((acc: Record<UID, UID[]>, player) => {
       if (acc[player.actorId] === undefined) {
         acc[player.actorId] = [];
       }

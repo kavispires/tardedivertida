@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Divider } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/player';
+import type { GamePlayers, GamePlayer } from 'types/game';
 import type { BossIdeaCard } from 'types/tdr';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';

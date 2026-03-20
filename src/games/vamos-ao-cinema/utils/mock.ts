@@ -6,7 +6,7 @@ export const mockMovieSelection = () => {
   return getRandomItem(['A', 'A', 'A', 'A', 'A', 'A', 'A', 'B', 'F', 'G']);
 };
 
-export const mockMovieElimination = (ownMovieId: CardId, eliminatedMovies: CardId[]) => {
+export const mockMovieElimination = (ownMovieId: UID, eliminatedMovies: UID[]) => {
   const options = Array(10)
     .fill(0)
     .map((e, i) => LETTERS[e + i])

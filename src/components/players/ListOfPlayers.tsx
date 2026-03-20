@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 // Ant Design Resources
 import { Tooltip } from 'antd';
 // Types
-import type { GamePlayers } from 'types/player';
+import type { GamePlayers } from 'types/game';
 // Components
 import { Translate } from 'components/language';
 import { PlayerAvatar, PlayerAvatarName } from 'components/player';
@@ -15,7 +15,7 @@ type ListOfPlayersProps = {
   /**
    * The ordered subset of players to be listed
    */
-  list: PlayerId[];
+  list: UID[];
   /**
    * The key prefix
    */

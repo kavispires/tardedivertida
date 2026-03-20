@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { CheckCircleFilled, PlusCircleFilled } from '@ant-design/icons';
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Components
 import { PlayerAvatar } from 'components/player';
 

@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer } from 'types/player';
+import type { GamePlayer } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
@@ -14,7 +14,7 @@ import type { ActingRole, SubmitMovieActorPayload } from '../utils/types';
 
 type ActorsBoardProps = {
   actors: ActingRole['candidates'];
-  selection: CardId[];
+  selection: UID[];
   user: GamePlayer;
   onSubmitActor: (payload: SubmitMovieActorPayload) => void;
 };

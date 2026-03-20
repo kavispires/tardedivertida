@@ -4,13 +4,13 @@ import type { TextCard } from 'types/tdr';
 export type Suggestion = {
   suggestion: string;
   invalid: boolean;
-  playerId: PlayerId;
+  playerId: UID;
 };
 
 export type GalleryEntry = {
   suggestions: Suggestion[];
   votes: number;
-  guesserId: PlayerId;
+  guesserId: UID;
   outcome: string;
 } & TextCard;
 
@@ -41,7 +41,7 @@ export type SendGuessPayload = {
 export interface SecretWord {
   id: string;
   text: string;
-  // playerName?: PlayerName | null;
+  // playerName?: string | null;
   // uniqueSuggestions?: string[] | [];
   // commonSuggestions?: string[] | [];
   votes: 0;

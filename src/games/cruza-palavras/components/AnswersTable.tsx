@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { CheckSquareFilled, CloseSquareFilled } from '@ant-design/icons';
 import { Table, type TableProps } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/player';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
@@ -15,7 +15,7 @@ import type { Grid } from '../utils/types';
 type AnswersTableProps = {
   players: GamePlayers;
   grid: Grid;
-  correctCoordinatesPerPlayer: StringDictionary;
+  correctCoordinatesPerPlayer: Dictionary<string>;
 };
 
 type RowEntry = {
