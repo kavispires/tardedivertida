@@ -71,12 +71,14 @@ export function Session({ gameCollection, getActiveComponent, provider }: Sessio
 
   if (!userId || !players[userId]) {
     return (
-      <GameInfoProvider gameCollection={gameCollection}>
-        <SessionConfigWrapper>
-          <RedirectSession state={state} />
-          <PhaseLobby {...defaultProps} />
-        </SessionConfigWrapper>
-      </GameInfoProvider>
+      <PageLayout>
+        <GameInfoProvider gameCollection={gameCollection}>
+          <SessionConfigWrapper>
+            <RedirectSession state={state} />
+            <PhaseLobby {...defaultProps} />
+          </SessionConfigWrapper>
+        </GameInfoProvider>
+      </PageLayout>
     );
   }
 
@@ -105,7 +107,11 @@ export function Session({ gameCollection, getActiveComponent, provider }: Sessio
   return (
     <PageLayout>
       <GameInfoProvider gameCollection={gameCollection}>
-        <SessionConfigWrapper key={state.phase !== PHASES.DEFAULT.SETUP ? dataUpdatedAt : undefined}>
+        <SessionConfigWrapper
+          key={
+            ![PHASES.DEFAULT.LOBBY, PHASES.DEFAULT.SETUP].includes(state.phase) ? dataUpdatedAt : undefined
+          }
+        >
           <GameInfoDrawer
             players={players}
             state={state}

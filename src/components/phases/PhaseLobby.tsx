@@ -76,93 +76,119 @@ export function PhaseLobby({ players, meta }: PhaseProps) {
       allowedPhase={PHASES.DEFAULT.LOBBY}
       className={styles.lobby}
     >
-      <AnimatePresence>
-        <motion.div
-          className={styles.lobbyStep}
-          layout
-        >
-          <motion.div className={styles.lobbyStepCard}>
-            <GameStrip
-              width={340}
-              title={info?.title}
-              gameName={info?.gameName}
-              className={styles.lobbyStepBanner}
-            />
-            <div className={styles.lobbyStepContent}>
-              <Paragraph
-                className={`${styles.lobbyStepSummary} italic`}
-                layoutId="lobby-step-summary"
-              >
-                <DualTranslate>{info.summary}</DualTranslate>
-              </Paragraph>
+      <motion.div
+        className={styles.lobbyStep}
+        layout
+      >
+        <motion.div className={styles.lobbyStepCard}>
+          <GameStrip
+            width={340}
+            title={info?.title}
+            gameName={info?.gameName}
+            className={styles.lobbyStepBanner}
+          />
+          <div className={styles.lobbyStepContent}>
+            <Paragraph
+              className={`${styles.lobbyStepSummary} italic`}
+              layoutId="lobby-step-summary"
+            >
+              <DualTranslate>{info.summary}</DualTranslate>
+            </Paragraph>
 
-              {meta.isLocked ? (
-                <>
-                  <Typography.Title className={styles.lobbyStepTitle}>
-                    <Translate
-                      pt="Esse jogo está trancado"
-                      en="This session is locked"
-                    />
-                  </Typography.Title>
-
-                  <Alert
-                    type="warning"
-                    showIcon
-                    title={
-                      <Translate
-                        pt="O jogo já foi iniciado e novos jogadores não podem ser adicionados"
-                        en="The game has started and new players cannot be added at this time"
-                      />
-                    }
-                    action={
-                      <Button
-                        onClick={() =>
-                          queryClient.refetchQueries({
-                            queryKey: ['meta', meta.gameId],
-                          })
-                        }
-                      >
-                        <Translate
-                          pt="Recarregar jogo"
-                          en="Reload game"
-                        />
-                      </Button>
-                    }
+            {meta.isLocked ? (
+              <>
+                <Typography.Title className={styles.lobbyStepTitle}>
+                  <Translate
+                    pt="Esse jogo está trancado"
+                    en="This session is locked"
                   />
-                </>
-              ) : (
-                <>
-                  {step === 0 && <StepJoin setStep={setStep} />}
-                  {step === 1 && (
+                </Typography.Title>
+
+                <Alert
+                  type="warning"
+                  showIcon
+                  title={
+                    <Translate
+                      pt="O jogo já foi iniciado e novos jogadores não podem ser adicionados"
+                      en="The game has started and new players cannot be added at this time"
+                    />
+                  }
+                  action={
+                    <Button
+                      onClick={() =>
+                        queryClient.refetchQueries({
+                          queryKey: ['meta', meta.gameId],
+                        })
+                      }
+                    >
+                      <Translate
+                        pt="Recarregar jogo"
+                        en="Reload game"
+                      />
+                    </Button>
+                  }
+                />
+              </>
+            ) : (
+              <AnimatePresence mode="wait">
+                {step === 0 && (
+                  <motion.div
+                    key="step-join"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 1 }}
+                  >
+                    <StepJoin setStep={setStep} />
+                  </motion.div>
+                )}
+                {step === 1 && (
+                  <motion.div
+                    key="step-info"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 1 }}
+                  >
                     <StepInfo
                       players={players}
                       setStep={setStep}
                     />
-                  )}
-                  {step === 2 && <StepWaiting players={players} />}
-                </>
-              )}
-            </div>
-          </motion.div>
-          <div className={styles.lobbyStepWaiting}>
-            {step === 2 && <LobbyRules players={players} />}
-
-            <JoinedPlayers
-              players={players}
-              orientation={step === 1 ? 'vertical' : 'horizontal'}
-            />
+                  </motion.div>
+                )}
+                {step === 2 && (
+                  <motion.div
+                    key="step-waiting"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 1 }}
+                  >
+                    <StepWaiting players={players} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            )}
           </div>
-
-          <AdminMenuDrawer
-            state={{
-              phase: 'LOBBY',
-              round: { current: 0, total: 0, forceLastRound: false },
-              players: {},
-            }}
-            players={players}
-          />
         </motion.div>
-      </AnimatePresence>
+        <div className={styles.lobbyStepWaiting}>
+          {step === 2 && <LobbyRules players={players} />}
+
+          <JoinedPlayers
+            players={players}
+            orientation={step === 1 ? 'vertical' : 'horizontal'}
+          />
+        </div>
+
+        <AdminMenuDrawer
+          state={{
+            phase: 'LOBBY',
+            round: { current: 0, total: 0, forceLastRound: false },
+            players: {},
+          }}
+          players={players}
+        />
+      </motion.div>
       <VideoBackground />
       <CloudBackground />
       <ImageBackground />

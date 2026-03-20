@@ -1,4 +1,3 @@
-import { AnimatePresence } from 'motion/react';
 import { lazy, Suspense, useEffect, type ReactNode } from 'react';
 import { Navigate, Outlet, useLocation, type RouteObject } from 'react-router-dom';
 // Ant Design Resources
@@ -194,6 +193,7 @@ export const AnimatedRoutes = () => {
   useEffect(() => {
     if (usingFirestoreEmulator) {
       notification.warning({
+        key: 'firestore-emulator-warning',
         title: `Emulando Firestore para ${usingFirestoreEmulator}`,
         placement: 'topLeft',
       });
@@ -204,6 +204,7 @@ export const AnimatedRoutes = () => {
   useEffect(() => {
     if (usingFunctionsEmulator) {
       notification.warning({
+        key: 'functions-emulator-warning',
         title: `Emulando Functions para ${usingFunctionsEmulator}`,
         placement: 'topLeft',
       });
@@ -222,11 +223,7 @@ export const AnimatedRoutes = () => {
       <LoadingBar />
       {isError && <PageError description={Object.values(errors).join(', ')} />}
       {isLoading && <LoadingPage />}
-      {!isError && !isLoading && (
-        <AnimatePresence mode="wait">
-          <Outlet key={location.pathname} />
-        </AnimatePresence>
-      )}
+      {!isError && !isLoading && <Outlet key={location.pathname} />}
     </div>
   );
 };

@@ -21,7 +21,7 @@ export const PageLayout = ({ className, ...props }: ComponentProps<typeof Motion
       animate="animateState"
       exit="exitState"
       transition={{
-        duration: 0.25,
+        duration: 0.5,
         ease: 'easeOut',
       }}
       variants={{
@@ -52,7 +52,7 @@ export const LoadingPageLayout = (props: ComponentProps<typeof MotionLayout>) =>
       animate="animateState"
       exit="exitState"
       transition={{
-        duration: 0.25,
+        duration: 0.5,
         ease: 'easeOut',
       }}
       variants={{

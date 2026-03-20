@@ -40,25 +40,31 @@ export function LobbyRules({ players }: LobbyRulesProps) {
         vertical
         gap={6}
       >
-        <Typography.Title
-          level={4}
-          style={{ marginTop: 0, marginBottom: 0 }}
+        <Flex
+          justify="space-between"
+          align="center"
         >
-          <Translate
-            pt="Revise as regras"
-            en="Review the rules"
-          />
-        </Typography.Title>
-        <Typography.Text
-          italic
-          type="secondary"
-        >
-          <Translate
-            pt="Inspirado em"
-            en="Inspired by"
-          />{' '}
-          {info.inspiredBy.split('').reverse().join('')}
-        </Typography.Text>
+          <Typography.Title
+            level={4}
+            style={{ marginTop: 0, marginBottom: 0 }}
+          >
+            <Translate
+              pt="Revise as regras"
+              en="Review the rules"
+            />
+          </Typography.Title>
+          <Typography.Text
+            italic
+            type="secondary"
+          >
+            <Translate
+              pt="Inspirado em"
+              en="Inspired by"
+            />{' '}
+            {info.inspiredBy.split('').reverse().join('')}
+          </Typography.Text>
+        </Flex>
+
         <GameTags
           wrap
           size={[1, 10]}
@@ -84,11 +90,11 @@ export function LobbyRules({ players }: LobbyRulesProps) {
             ),
           }}
         >
-          <ul className="lobby-step__rule-list">
+          <ul className={styles.lobbyStepRuleList}>
             {info.rules[language].map((rule, index) => (
               <motion.li
                 key={rule}
-                className="lobby-step__rule"
+                className={styles.lobbyStepRule}
                 {...getAnimation('fadeIn', {
                   delay: 1 + index * 0.1,
                 })}
