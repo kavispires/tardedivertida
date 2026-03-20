@@ -2,7 +2,7 @@
 import * as functions from 'firebase-functions/v2';
 
 import type { GenericCallableFunction } from '../types/reference';
-import utils from '../utils';
+import utils from '.';
 
 export const isEmulatingFunctions = () => !!process.env.FUNCTIONS_EMULATOR;
 export const isEmulatingFirestore = () => !!process.env.FIRESTORE_EMULATOR_HOST;

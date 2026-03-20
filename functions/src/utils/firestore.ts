@@ -3,7 +3,7 @@ import * as functions from 'firebase-functions/v2';
 // eslint-disable-next-line
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 // Utils
-import utils from '../utils';
+import utils from '.';
 import { isEmpty } from 'lodash';
 import { isEmulatingEnvironment, throwException } from './firebase';
 import { print } from './helpers';
