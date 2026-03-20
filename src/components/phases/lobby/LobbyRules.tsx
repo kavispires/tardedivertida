@@ -96,7 +96,7 @@ export function LobbyRules({ players }: LobbyRulesProps) {
                 key={rule}
                 className={styles.lobbyStepRule}
                 {...getAnimation('fadeIn', {
-                  delay: 1 + index * 0.1,
+                  delay: 0.5 + index * 0.1,
                 })}
               >
                 {index > 0 && (

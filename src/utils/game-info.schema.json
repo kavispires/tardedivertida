@@ -53,7 +53,8 @@
           "type": "string",
           "enum": ["flow", "rising", "falling"]
         },
-        "videoBackground": { "type": "boolean" }
+        "videoBackground": { "type": "boolean" },
+        "imageBackground": { "type": "boolean" }
       },
       "required": ["primaryColor", "clouds", "cloudsAnimationType", "colorScheme", "videoBackground"]
     },

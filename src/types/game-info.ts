@@ -70,6 +70,10 @@ export type GameInfo = {
      * Whether to show video background
      */
     videoBackground: boolean;
+    /**
+     * Whether to show image background during the game main phases (not lobby, setup, or game_over)
+     */
+    imageBackground?: boolean;
   };
   /**
    * Game rules in multiple languages

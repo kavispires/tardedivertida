@@ -1,5 +1,5 @@
 import type { AliasToken } from 'antd/es/theme/internal';
-import { type ReactNode, useEffect, useMemo, type ComponentType } from 'react';
+import { type ReactNode, useEffect, useMemo, type ComponentType, type CSSProperties } from 'react';
 // Ant Design Resources
 import { ConfigProvider } from 'antd';
 // Types
@@ -11,6 +11,7 @@ import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useIdleRedirect } from 'hooks/useIdleRedirect';
 import { useLanguage } from 'hooks/useLanguage';
+import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 import { useUser } from 'hooks/useUser';
 // Utils
 import { PHASES } from 'utils/phases';
@@ -22,7 +23,7 @@ import { PageLayout } from 'components/layout/PageLayout';
 import { PhaseError, PhaseLoading, PhaseLobby, PhaseSetup } from 'components/phases';
 // Internal
 import { RedirectSession } from './RedirectSession';
-import { GameInfoProvider, useGameAppearance } from './GameInfoContext';
+import { GameInfoProvider, useGameAppearance, useGameInfoContext } from './GameInfoContext';
 
 // biome-ignore lint/suspicious/noExplicitAny: unknown breaks everything
 type UnknownWorkaround = any;
@@ -128,6 +129,7 @@ export function Session({ gameCollection, getActiveComponent, provider }: Sessio
             state={state}
             players={players}
           />
+          <SessionBackgroundImage phase={state.phase} />
         </SessionConfigWrapper>
       </GameInfoProvider>
     </PageLayout>
@@ -169,4 +171,55 @@ function useGetCustomTokens() {
     }
     return customTokens;
   }, [gameAppearance]);
+}
+
+type SessionBackgroundImageProps = {
+  /**
+   * The current game phase
+   */
+  phase: string;
+};
+
+/**
+ * Background cover image that displays during game phases (excludes lobby, setup, and game_over)
+ */
+/**
+ * Background cover image that displays during game phases (excludes lobby, setup, and game_over)
+ */
+function SessionBackgroundImage({ phase }: SessionBackgroundImageProps) {
+  const info = useGameInfoContext();
+  const gameAppearance = useGameAppearance();
+  const baseUrl = useTDBaseUrl('assets');
+
+  // 🧪 TEST IMAGE - Set to test image URL (e.g., `${import.meta.env.BASE_URL}images/test.jpg`) or empty string to use real images
+  const TEST_IMAGE_URL = '';
+
+  // Don't show background in these phases
+  const excludedPhases = [PHASES.DEFAULT.LOBBY, PHASES.DEFAULT.SETUP, PHASES.DEFAULT.GAME_OVER];
+
+  // Temporarily disable imageBackground check for testing
+  const isTestMode = Boolean(TEST_IMAGE_URL);
+
+  if (excludedPhases.includes(phase) || (!isTestMode && !gameAppearance.imageBackground)) {
+    return null;
+  }
+
+  const imageUrl = TEST_IMAGE_URL || `${baseUrl}/backgrounds/${info.gameName}.jpg`;
+
+  const backgroundStyle: CSSProperties = {
+    position: 'fixed',
+    top: '-5%',
+    left: '-5%',
+    width: '110%',
+    height: '110%',
+    backgroundImage: `url('${imageUrl}')`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    filter: 'blur(6px)',
+    opacity: 0.55,
+    zIndex: -1,
+    pointerEvents: 'none',
+  };
+
+  return <div style={backgroundStyle} />;
 }

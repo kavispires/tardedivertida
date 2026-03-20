@@ -25,6 +25,7 @@ const PLACEHOLDER_GAME_INFO: GameInfo = {
     primaryColor: '',
     colorScheme: 'light',
     videoBackground: false,
+    imageBackground: false,
   },
   rules: {
     pt: [''],
