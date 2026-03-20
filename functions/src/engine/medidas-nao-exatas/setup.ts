@@ -127,15 +127,15 @@ export const prepareGuessingPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready everyone
-  const presenterId: PlayerId = state.presenterId;
+  const presenterId: UID = state.presenterId;
   utils.players.unReadyPlayers(players, presenterId);
 
   // Remove any words in the wordsDict that are not in the pool
-  const poolIds: CardId[] = state.poolIds;
+  const poolIds: UID[] = state.poolIds;
   const wordsDict: Dictionary<TextCard> = state.wordsDict;
 
   Object.keys(wordsDict).forEach((wordId) => {
-    if (!poolIds.includes(wordId as CardId)) {
+    if (!poolIds.includes(wordId as UID)) {
       delete wordsDict[wordId];
     }
   });
@@ -194,7 +194,7 @@ export const prepareResultsPhase = async (
 };
 
 export const prepareGameOverPhase = async (
-  gameId: GameId,
+  gameId: UID,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,

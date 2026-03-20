@@ -8,13 +8,13 @@ export type ContadoresHistoriasOptions = {
 };
 
 export interface ResourceData {
-  cards: ImageCardId[];
+  cards: UID[];
 }
 
 export interface ContadoresHistoriasStore extends DefaultStore {
   options: ContadoresHistoriasOptions;
-  gameOrder: PlayerId[];
-  tableDeck: ImageCardId[];
+  gameOrder: UID[];
+  tableDeck: UID[];
   deckIndex: number;
   solutionCardId?: string;
   story?: string;
@@ -22,8 +22,8 @@ export interface ContadoresHistoriasStore extends DefaultStore {
 }
 
 export interface ContadoresHistoriasState extends DefaultState {
-  storytellerId?: PlayerId;
-  nextStorytellerId?: PlayerId;
+  storytellerId?: UID;
+  nextStorytellerId?: UID;
   story?: string;
   table?: any;
   outcome?: any;
@@ -38,9 +38,9 @@ export interface ContadoresHistoriasInitialState extends InitialState {
 }
 
 export interface TableEntry {
-  cardId: ImageCardId;
-  playerId: PlayerId;
-  votes: PlayerId[];
+  cardId: UID;
+  playerId: UID;
+  votes: UID[];
   isSolution: boolean;
 }
 

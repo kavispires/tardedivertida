@@ -27,7 +27,7 @@ export const prepareSetupPhase = async (
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Make deck dictionary
-  const deckIds: CardId[] = [];
+  const deckIds: UID[] = [];
   const deck = utils.game.shuffle(additionalData.items).reduce((acc: Dictionary<Item>, item) => {
     acc[item.id] = item;
     deckIds.push(item.id);
@@ -45,7 +45,7 @@ export const prepareSetupPhase = async (
       .map(() => deckIds.pop())
       .filter(Boolean);
 
-    player.hand.forEach((cardId: CardId) => {
+    player.hand.forEach((cardId: UID) => {
       items[cardId] = deck[cardId];
     });
   });
@@ -55,7 +55,7 @@ export const prepareSetupPhase = async (
     .fill('')
     .map(() => deckIds.pop())
     .filter(Boolean);
-  judgeHand.forEach((cardId: CardId | undefined) => {
+  judgeHand.forEach((cardId: UID | undefined) => {
     if (cardId) {
       items[cardId] = deck[cardId];
     }
@@ -153,7 +153,7 @@ export const prepareItemPlacementPhase = async (
 
   // Place item on diagram (and remove it from player)
   if (currentGuess.outcome !== OUTCOME.PENDING) {
-    const hand: CardId[] = players[state.activePlayerId].hand;
+    const hand: UID[] = players[state.activePlayerId].hand;
 
     const itemIndex = hand.indexOf(currentGuess.itemId ?? '-');
     const itemId = hand.splice(itemIndex, 1)[0];
@@ -274,7 +274,7 @@ export const prepareEvaluationPhase = async (
 };
 
 export const prepareGameOverPhase = async (
-  gameId: GameId,
+  gameId: UID,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
@@ -286,7 +286,7 @@ export const prepareGameOverPhase = async (
 
   // Place item on diagram (and remove it from player)
   if (currentGuess.outcome !== OUTCOME.PENDING) {
-    const hand: CardId[] = players[state.activePlayerId].hand;
+    const hand: UID[] = players[state.activePlayerId].hand;
 
     const itemIndex = hand.indexOf(currentGuess.itemId ?? '-');
     const itemId = hand.splice(itemIndex, 1)[0];

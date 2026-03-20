@@ -9,7 +9,7 @@ export type PortaDosDesesperadosOptions = {
 
 export type Trap = keyof typeof TRAPS;
 export interface ResourceData {
-  cards: ImageCardId[];
+  cards: UID[];
 }
 
 export type TrapEntry = {
@@ -32,7 +32,7 @@ export type TrapEntry = {
 
 export interface PortaDosDesesperadosStore extends DefaultStore {
   relationships?: ImageCardRelationship;
-  finalDoors?: ImageCardId[];
+  finalDoors?: UID[];
 }
 
 export interface PortaDosDesesperadosState extends DefaultState {
@@ -43,7 +43,7 @@ export interface PortaDosDesesperadosPlayer extends Player {
   [key: string]: any;
 }
 
-export type PortaDosDesesperadosPlayers = Record<PlayerId, PortaDosDesesperadosPlayer>;
+export type PortaDosDesesperadosPlayers = Record<UID, PortaDosDesesperadosPlayer>;
 
 export interface PortaDosDesesperadosInitialState extends InitialState {
   store: PortaDosDesesperadosStore;

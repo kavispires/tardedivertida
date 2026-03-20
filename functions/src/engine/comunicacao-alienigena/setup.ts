@@ -426,7 +426,7 @@ export const prepareRevealPhase = async (
   const items: AlienItem[] = state.items;
   const requestHistory: RequestHistoryEntry[] = state.requestHistory;
 
-  const curses: Record<string, PlayerId[]> = {};
+  const curses: Record<string, UID[]> = {};
   const found: Record<string, true> = {};
   utils.players.getListOfPlayers(players).forEach((player) => {
     const offeringsIds: string[] = player.offeringsIds ?? [];
@@ -501,7 +501,7 @@ export const prepareRevealPhase = async (
 };
 
 export const prepareGameOverPhase = async (
-  gameId: GameId,
+  gameId: UID,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,

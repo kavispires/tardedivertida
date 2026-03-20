@@ -40,7 +40,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome?:
   return PLAYERS_CLUES;
 };
 
-const buildClueId = (playerId: PlayerId, currentRound: number, index: number, guess = '') => {
+const buildClueId = (playerId: UID, currentRound: number, index: number, guess = '') => {
   return `${playerId}:${currentRound}:${index}${guess}`;
 };
 

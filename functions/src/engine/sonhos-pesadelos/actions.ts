@@ -12,9 +12,9 @@ import { getNextPhase } from './index';
  * @returns
  */
 export const handleSubmitDream = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   dream: string,
 ) => {
   return await utils.firestore.updatePlayer({
@@ -37,10 +37,10 @@ export const handleSubmitDream = async (
  * @returns
  */
 export const handleSubmitVoting = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  votes: StringDictionary,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  votes: Dictionary<string>,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

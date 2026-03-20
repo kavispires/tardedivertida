@@ -4,9 +4,9 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 export const handleSubmitRequest = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   clue: string,
   clueQuantity: number,
 ) => {
@@ -23,9 +23,9 @@ export const handleSubmitRequest = async (
 };
 
 export const handleSubmitDelivery = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   delivery: string,
 ) => {
   return await utils.firestore.updatePlayer({
@@ -40,7 +40,7 @@ export const handleSubmitDelivery = async (
   });
 };
 
-export const handleStopDelivering = async (gameName: GameName, gameId: GameId, playerId: PlayerId) => {
+export const handleStopDelivering = async (gameName: string, gameId: UID, playerId: UID) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,

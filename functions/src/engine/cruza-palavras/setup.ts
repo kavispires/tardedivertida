@@ -102,7 +102,7 @@ export const prepareClueWritingPhase = async (
 
   // If coming from the word selection, create the deck of selections
   if (state.phase === CRUZA_PALAVRAS_PHASES.WORDS_SELECTION) {
-    const deckDict: BooleanDictionary = {};
+    const deckDict: Dictionary<boolean> = {};
     utils.players.getListOfPlayers(players).forEach((player) => {
       player.selectedWordsIds.forEach((wordId: string) => {
         deckDict[wordId] = true;
@@ -234,7 +234,7 @@ export const prepareRevealPhase = async (
 };
 
 export const prepareGameOverPhase = async (
-  gameId: GameId,
+  gameId: UID,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,

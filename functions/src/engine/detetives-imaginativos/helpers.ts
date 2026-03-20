@@ -37,7 +37,7 @@ export const determineNextPhase = (
  */
 export const countImpostorVotes = (
   players: Players,
-  impostorId: PlayerId,
+  impostorId: UID,
   store: FirebaseStoreData,
 ): number =>
   utils.players.getListOfPlayers(players).reduce((total: number, player: Player) => {
@@ -70,8 +70,8 @@ export const countImpostorVotes = (
 export const calculateRanking = (
   players: Players,
   impostorVotes: number,
-  impostorId: PlayerId,
-  leaderId: PlayerId,
+  impostorId: UID,
+  leaderId: UID,
 ): PlainObject => {
   // Gained points: [player vote, being impostor/leader]
   const scores = new utils.players.Scores(players, [0, 0]);

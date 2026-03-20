@@ -5,10 +5,10 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 export const handleSubmitCard = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  cardId: CardId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  cardId: UID,
 ) => {
   // TODO: check if it's help or complete mission card and then use getNextPhase accordingly, cards Ids should be UIDs for those
   const isHelpCard = false; // Replace with actual check

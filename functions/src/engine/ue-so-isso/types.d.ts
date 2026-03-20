@@ -23,7 +23,7 @@ export type UeSoIssoGameOptions = {
 export interface UsedWord {
   id: string;
   text: string;
-  playerName?: PlayerName | null;
+  playerName?: string | null;
   uniqueSuggestions?: string[] | [];
   commonSuggestions?: string[] | [];
   votes: 0;
@@ -37,29 +37,29 @@ type Outcome = keyof typeof OUTCOME;
 
 export interface PlayerSuggestion {
   suggestion: string;
-  playerId: PlayerId;
+  playerId: UID;
   invalid: boolean;
 }
 
 export interface PastSuggestion extends TextCard {
   suggestions: PlayerSuggestion[];
-  guesserId: PlayerId;
+  guesserId: UID;
   outcome: Outcome;
 }
 
 export interface UeSoIssoStore extends DefaultStore {
   deck?: TextCard[];
-  turnOrder?: PlayerId[];
-  gameOrder?: PlayerId[];
+  turnOrder?: UID[];
+  gameOrder?: UID[];
   usedWords?: UsedWords;
   currentWords?: TextCard[];
   currentSuggestions?: PlainObject[];
 }
 
 export interface UeSoIssoState extends DefaultState {
-  gameOrder?: PlayerId[];
-  guesserId?: PlayerId;
-  controllerId?: PlayerId;
+  gameOrder?: UID[];
+  guesserId?: UID;
+  controllerId?: UID;
 }
 
 export type UeSoIssoAchievement = keyof typeof UE_SO_ISSO_ACHIEVEMENTS;

@@ -4,10 +4,10 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 export const handleSubmitScenarioOrder = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  order: CardId[],
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  order: UID[],
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

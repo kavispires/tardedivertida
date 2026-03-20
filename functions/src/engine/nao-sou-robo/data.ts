@@ -68,9 +68,9 @@ export const getResourceData = async (language: Language, playerCount: number): 
  * @returns
  */
 export const saveData = async (language: Language, gallery: GalleryEntry[]): Promise<boolean> => {
-  const usedImageCards: BooleanDictionary = {};
-  const usedAdjectives: BooleanDictionary = {};
-  const clues: Record<ImageCardId, string[]> = {};
+  const usedImageCards: Dictionary<boolean> = {};
+  const usedAdjectives: Dictionary<boolean> = {};
+  const clues: Record<UID, string[]> = {};
 
   gallery.forEach((entry) => {
     if (entry.roundType === 'adjectives') {

@@ -25,7 +25,7 @@ export const warnMissingPhase = (phase: string) => {
  * @returns
  */
 export const generateGameId = (
-  gameCode: GameCode,
+  gameCode: UID,
   language: Language,
   usedIds: string[] = [],
   length = 4,
@@ -40,7 +40,7 @@ export const generateGameId = (
    * @param length
    * @returns
    */
-  function generateId(gameCode: GameCode, length: number, language: Language): string {
+  function generateId(gameCode: UID, length: number, language: Language): string {
     let id = `${gameCode}`;
     // Add second character based on language
     id +=
@@ -194,13 +194,13 @@ export const forceWait = async (duration = 0) => {
 };
 
 /**
- * Builds a BooleanDictionary from a list of strings or objects with an 'id' property.
+ * Builds a Dictionary<boolean> from a list of strings or objects with an 'id' property.
  * @param list - Array of strings or objects with 'id' property
  * @param key - Optional key to extract from objects (defaults to 'id')
- * @returns BooleanDictionary
+ * @returns Dictionary<boolean>
  */
-export const buildBooleanDictionary = <T>(list: T[], key = 'id'): BooleanDictionary => {
-  return list.reduce((acc: BooleanDictionary, entry) => {
+export const buildBooleanDictionary = <T>(list: T[], key = 'id'): Dictionary<boolean> => {
+  return list.reduce((acc: Dictionary<boolean>, entry) => {
     const value = typeof entry === 'string' ? entry : entry[key];
     acc[value] = true;
     return acc;

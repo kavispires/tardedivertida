@@ -12,9 +12,9 @@ import { getNextPhase } from './index';
  * @returns
  */
 export const handleSubmitOrientation = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   orientation: string,
 ) => {
   return await utils.firestore.updateStore({
@@ -35,9 +35,9 @@ export const handleSubmitOrientation = async (
  * @returns
  */
 export const handleSubmitSketch = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   sketch: string,
 ) => {
   return await utils.firestore.updatePlayer({
@@ -60,10 +60,10 @@ export const handleSubmitSketch = async (
  * @returns
  */
 export const handleSubmitVote = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  vote: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  vote: UID,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

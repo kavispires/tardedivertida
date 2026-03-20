@@ -45,7 +45,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
   return CARD_SELECTION;
 };
 
-export const distributeCards = (store: FirebaseStoreData, players: Players, cards: ImageCardId[]) => {
+export const distributeCards = (store: FirebaseStoreData, players: Players, cards: UID[]) => {
   // Builds a 18 card deck per player
   utils.deck.setup(store, players, cards, DECK_PER_PLAYER);
   // Deals the first 7 cards

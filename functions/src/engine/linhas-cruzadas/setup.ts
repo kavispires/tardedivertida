@@ -186,7 +186,7 @@ export const preparePresentationPhase = async (
 
   utils.players.removePropertiesFromPlayers(players, ['guess']);
 
-  const orderedAlbum = state.gameOrder.map((playerId: PlayerId) => album[playerId]);
+  const orderedAlbum = state.gameOrder.map((playerId: UID) => album[playerId]);
 
   // Achievements: Writing
   utils.players.getListOfPlayers(players).forEach((player) => {
@@ -212,7 +212,7 @@ export const preparePresentationPhase = async (
 };
 
 export const prepareGameOverPhase = async (
-  gameId: GameId,
+  gameId: UID,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,

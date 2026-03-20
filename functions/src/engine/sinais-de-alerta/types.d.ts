@@ -14,25 +14,25 @@ export type ResourceData = {
 };
 
 export type DrawingEntry = {
-  playerId: PlayerId;
-  subjectId: CardId;
-  descriptorId: CardId;
+  playerId: UID;
+  subjectId: UID;
+  descriptorId: UID;
   drawing: string;
 };
 
 export type PlayersSay = {
-  playersIds: PlayerId[];
-  subjectId: CardId;
-  descriptorId: CardId;
+  playersIds: UID[];
+  subjectId: UID;
+  descriptorId: UID;
   score: number;
 };
 
 export type GalleryEntry = {
   id: string;
   title: string;
-  subjectId: CardId;
-  descriptorId: CardId;
-  artistId: PlayerId;
+  subjectId: UID;
+  descriptorId: UID;
+  artistId: UID;
   artistScore: number;
   drawing: string;
   playersSay: PlayersSay[];

@@ -4,11 +4,11 @@ import { getNextPhase } from './index';
 import type { FirebaseStateData } from './types';
 
 export const handleSubmitHint = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   hint: string,
-  targetId: PlayerId,
+  targetId: UID,
   position: number,
 ) => {
   const currentHint = {
@@ -29,9 +29,9 @@ export const handleSubmitHint = async (
 };
 
 export const handleSubmitConclusions = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   conclusions: PlainObject,
 ) => {
   const actionText = 'submit conclusions';
@@ -59,9 +59,9 @@ export const handleSubmitConclusions = async (
 };
 
 export const handleSubmitCode = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   code: string,
 ) => {
   const actionText = 'submit conclusions';

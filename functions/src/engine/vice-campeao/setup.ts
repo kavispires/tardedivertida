@@ -83,7 +83,7 @@ export const prepareCardSelectionPhase = async (
 
   const currentPositions = utils.players
     .getListOfPlayers(players)
-    .reduce((acc: Record<PlayerId, number>, { id, positions }) => {
+    .reduce((acc: Record<UID, number>, { id, positions }) => {
       acc[id] = positions.at(-1) || 0;
       return acc;
     }, {});
@@ -183,7 +183,7 @@ export const prepareRunPhase = async (
 };
 
 export const prepareGameOverPhase = async (
-  gameId: GameId,
+  gameId: UID,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,

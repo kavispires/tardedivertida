@@ -13,8 +13,8 @@ export const determineNextPhase = (
   currentPhase: string,
   round: Round,
   currentGuess: Partial<Guess>,
-  turnOrder: PlayerId[] = [],
-  activePlayerId: PlayerId = '',
+  turnOrder: UID[] = [],
+  activePlayerId: UID = '',
 ): string => {
   const { LOBBY, SETUP, JUDGE_SELECTION, ITEM_PLACEMENT, EVALUATION, GAME_OVER } = TEORIA_DE_CONJUNTOS_PHASES;
   const order = [LOBBY, SETUP, JUDGE_SELECTION, ITEM_PLACEMENT, EVALUATION, GAME_OVER];

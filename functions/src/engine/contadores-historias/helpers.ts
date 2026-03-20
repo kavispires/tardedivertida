@@ -42,15 +42,15 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
   return STORY;
 };
 
-export const buildTableDeck = (allCards: ImageCardId[], quantity: number): ImageCardId[] => {
+export const buildTableDeck = (allCards: UID[], quantity: number): UID[] => {
   return allCards.splice(0, quantity);
 };
 
 export const getTableCards = (
-  tableDeck: ImageCardId[],
+  tableDeck: UID[],
   deckIndex: number,
   quantity: number,
-): ImageCardId[] => {
+): UID[] => {
   return Array(quantity)
     .fill(1)
     .map((el, index) => {
@@ -58,7 +58,7 @@ export const getTableCards = (
     });
 };
 
-export const buildTable = (players: Players, tableCards: ImageCardId[], storyteller: PlayerId): Table => {
+export const buildTable = (players: Players, tableCards: UID[], storyteller: UID): Table => {
   const table: Table = [];
 
   utils.players.getListOfPlayers(players).forEach((player) => {
@@ -116,7 +116,7 @@ export const getRanking = (
   table: Table,
   players: Players,
   outcome: string,
-  storytellerId: PlayerId,
+  storytellerId: UID,
   store: FirebaseStoreData,
 ): NewScore[] => {
   // Gained points: [points depending on outcome, votes on card]
@@ -173,7 +173,7 @@ export const getRanking = (
 export const scoreRound = (
   players: Players,
   table: Table,
-  storyteller: PlayerId,
+  storyteller: UID,
   store: FirebaseStoreData,
 ) => {
   const { solutionIndex, cardIndexDictionary } = buildCardIndex(table);

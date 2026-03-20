@@ -27,7 +27,7 @@ export type ResourceData = {
 export type PastClues = Dictionary<string[]>;
 
 export type ClueEntry = {
-  playerId: PlayerId;
+  playerId: UID;
   clue: string;
   coordinate: number;
 };

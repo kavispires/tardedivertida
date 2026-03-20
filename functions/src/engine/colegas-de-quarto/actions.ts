@@ -4,10 +4,10 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 export const handleSubmitWords = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  words: CardId[],
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  words: UID[],
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -21,9 +21,9 @@ export const handleSubmitWords = async (
 };
 
 export const handleSubmitClues = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   clues: string[],
 ) => {
   return await utils.firestore.updatePlayer({
@@ -38,9 +38,9 @@ export const handleSubmitClues = async (
 };
 
 export const handleSubmitGuesses = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   guesses: Record<string, string[]>, // clueEntryId -> things ids[]
 ) => {
   return await utils.firestore.updatePlayer({

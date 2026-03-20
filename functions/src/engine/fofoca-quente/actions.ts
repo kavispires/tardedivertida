@@ -4,11 +4,11 @@ import utils from '../../utils';
 import { getNextPhase } from '.';
 
 export const handleSubmitPlayersRoles = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  gossiperPlayerId: PlayerId,
-  detectivePlayerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  gossiperPlayerId: UID,
+  detectivePlayerId: UID,
 ) => {
   return await utils.firestore.updateState({
     gameName,
@@ -26,9 +26,9 @@ export const handleSubmitPlayersRoles = async (
 };
 
 export const handleSubmitAssociatedSocialGroup = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   associatedSocialGroupId: string,
 ) => {
   return await utils.firestore.updatePlayer({
@@ -45,9 +45,9 @@ export const handleSubmitAssociatedSocialGroup = async (
 };
 
 export const handleSubmitDetectiveLocation = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   locationIndex: number,
   shouldReady = false,
 ) => {
@@ -65,9 +65,9 @@ export const handleSubmitDetectiveLocation = async (
 };
 
 export const handleSubmitIntimidation = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   intimidatedStudentId: string,
   intimidatedStudentsIds?: string[],
   shouldGoToTheNextPhase = false,
@@ -88,9 +88,9 @@ export const handleSubmitIntimidation = async (
 };
 
 export const handleSubmitRumor = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   skipRumor: boolean,
   rumoredStudentId?: string,
   rumorIndex?: number,

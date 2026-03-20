@@ -15,9 +15,9 @@ import type { AnswerEntry, AnswerGroupEntry, FirebaseStateData } from './types';
  * @returns
  */
 export const handleSubmitQuestion = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   questionId: string,
 ) => {
   return await utils.firestore.updateStore({
@@ -41,9 +41,9 @@ export const handleSubmitQuestion = async (
  * @returns
  */
 export const handleSubmitCustomQuestion = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   customQuestion: GroupQuestionCard,
 ) => {
   return await utils.firestore.updateStore({
@@ -67,10 +67,10 @@ export const handleSubmitCustomQuestion = async (
  * @returns
  */
 export const handleSubmitAnswers = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  answers: StringDictionary,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  answers: Dictionary<string>,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -92,9 +92,9 @@ export const handleSubmitAnswers = async (
  * @returns
  */
 export const handleNextAnswers = async (
-  gameName: GameName,
-  gameId: GameId,
-  _playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  _playerId: UID,
   allowedList: string[],
 ) => {
   const actionText = 'advance answers';
@@ -165,9 +165,9 @@ export const handleNextAnswers = async (
  * @returns
  */
 export const handleAddAnswer = async (
-  gameName: GameName,
-  gameId: GameId,
-  _playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  _playerId: UID,
   answer: AnswerEntry,
 ) => {
   const actionText = 'add answer';

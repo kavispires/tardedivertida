@@ -120,7 +120,7 @@ export const prepareDeclarationPhase = async (
 };
 
 export const prepareExaminationPhase = async (
-  gameId: GameId,
+  gameId: UID,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
@@ -231,7 +231,7 @@ export const prepareExaminationPhase = async (
 };
 
 export const prepareGameOverPhase = async (
-  gameId: GameId,
+  gameId: UID,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,

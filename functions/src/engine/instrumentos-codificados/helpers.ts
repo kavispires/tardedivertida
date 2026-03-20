@@ -53,7 +53,7 @@ export const buildCode = (players: Players, playerCount: number): string[] => {
   }, []);
 };
 
-export const buildTable = (cards: ImageCardId[]) => {
+export const buildTable = (cards: UID[]) => {
   return cards.map((cardId, index) => ({
     digit: index,
     cardId,

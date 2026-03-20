@@ -62,8 +62,8 @@ export function verifyPayload(property?: unknown, propertyName = 'unknown proper
  * @param actionText
  */
 export function validateActionPayload(
-  gameId: GameId,
-  gameName: GameName,
+  gameId: UID,
+  gameName: string,
   action: string,
   actionText: string,
 ) {
@@ -80,9 +80,9 @@ export function validateActionPayload(
  * @param action
  */
 export function validateSubmitActionPayload(
-  gameId: GameId,
-  gameName: GameName,
-  playerId: PlayerId,
+  gameId: UID,
+  gameName: string,
+  playerId: UID,
   action: string,
 ) {
   const actionText = 'submit action';

@@ -12,10 +12,10 @@ import { getNextPhase } from './index';
  * @returns
  */
 export const handleLastQuestioner = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  lastPlayerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  lastPlayerId: UID,
 ) => {
   return await utils.firestore.updateStore({
     gameName,
@@ -36,9 +36,9 @@ export const handleLastQuestioner = async (
  * @returns
  */
 export const handleGuessLocation = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   locationId: string,
 ) => {
   return await utils.firestore.updateStore({
@@ -60,10 +60,10 @@ export const handleGuessLocation = async (
  * @returns
  */
 export const handleMakeAccusation = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  targetId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  targetId: UID,
 ) => {
   return await utils.firestore.updateStore({
     gameName,
@@ -88,10 +88,10 @@ export const handleMakeAccusation = async (
  * @returns
  */
 export const handleSubmitVote = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  vote: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  vote: UID,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

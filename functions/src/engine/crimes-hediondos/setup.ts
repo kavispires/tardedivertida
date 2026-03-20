@@ -276,7 +276,7 @@ export const prepareRevealPhase = async (
 };
 
 export const prepareGameOverPhase = async (
-  gameId: GameId,
+  gameId: UID,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
@@ -285,7 +285,7 @@ export const prepareGameOverPhase = async (
   utils.players.unReadyPlayers(players);
 
   // Check if anybody has won, if so, from those, get the highest score, otherwise, any higher score
-  const winningPlayers = state.winners.map((playerId: PlayerId) => players[playerId]);
+  const winningPlayers = state.winners.map((playerId: UID) => players[playerId]);
 
   const winners = utils.players.determineWinners(
     Object.keys(winningPlayers).length > 0 ? winningPlayers : players,

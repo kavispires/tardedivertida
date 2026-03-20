@@ -66,9 +66,9 @@ const PAIR_SEPARATOR = '+';
 export const calculateResults = (players: Players, pool: ItemEntry[], store: FirebaseStoreData) => {
   const poolIds = pool.map((item) => item.id);
 
-  const pairsByPlayers: Record<string, PlayerId[]> = {};
+  const pairsByPlayers: Record<string, UID[]> = {};
 
-  const extra: Record<string, PlayerId[]> = {};
+  const extra: Record<string, UID[]> = {};
 
   utils.players.getListOfPlayers(players, true).forEach((player) => {
     for (let i = 0; i < player.pairs.length; i += 2) {

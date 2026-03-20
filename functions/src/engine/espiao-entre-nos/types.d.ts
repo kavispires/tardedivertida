@@ -17,8 +17,8 @@ export type Resolution = {
 };
 
 export interface EspiaoEntreNosStore extends DefaultStore {
-  gameOrder: PlayerId[];
-  turnOrder: PlayerId[];
+  gameOrder: UID[];
+  turnOrder: UID[];
   [key: string]: any;
 }
 

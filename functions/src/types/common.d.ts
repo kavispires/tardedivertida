@@ -1,133 +1,313 @@
 /** biome-ignore-all lint/correctness/noUnusedVariables: is globally available with .d.ts */
-type GameId = string;
-type GameName = string;
-type GameCode = string;
+
+/**
+ * Unique identifier string used throughout the application for entities like games, players, and resources
+ */
+type UID = string;
+
+/**
+ * Timestamp in milliseconds since Unix epoch
+ */
 type DateMilliseconds = number;
+
+/**
+ * Supported languages in the application
+ */
 type Language = 'en' | 'pt';
-type PlayerId = string;
-type PlayerName = string;
-type PlayerAvatarId = string;
+
+/**
+ * Basic primitive types in JavaScript
+ */
 type Primitive = string | number | boolean | symbol | null;
-type CardId = string;
-type ImageCardId = string;
-type GameOrder = PlayerId[];
-type TurnOrder = PlayerId[];
+
+/**
+ * Array of UIDs representing the order of games
+ */
+type GameOrder = UID[];
+
+/**
+ * Array of UIDs representing the turn order of players
+ */
+type TurnOrder = UID[];
+
+/**
+ * Object containing translations in both supported languages
+ */
 type DualLanguageValue = {
+  /**
+   * English translation
+   */
   en: string;
+  /**
+   * Portuguese translation
+   */
   pt: string;
 };
 
 // COMMON INTERFACES
 
+/**
+ * Generic object with string keys and any values
+ */
 interface PlainObject {
   [key: string]: any;
 }
 
-type BooleanDictionary = {
-  [key: string]: boolean;
-};
-
-type NumberDictionary = {
-  [key: string]: number;
-};
-
-type StringDictionary = {
-  [key: string]: string;
-};
-
-type ObjectDictionary = {
-  [key: string]: PlainObject;
-};
-
-type ArrayDictionary<T = string> = {
-  [key: string]: T[];
-};
-
+/**
+ * Firebase function context object
+ */
 type FirebaseContext = {
   [key: string]: any;
 };
 
-type Dictionary<T> = Record<CardId, T>;
+/**
+ * Generic dictionary type mapping UIDs to values of type T
+ */
+type Dictionary<T> = Record<UID, T>;
 
 /**
  * Used to wrap HttpsCallable functions groups
  */
 type CallablePayload<TPayload> = TPayload & { action: string };
 
+/**
+ * Configuration options for game instances
+ */
 interface GameOptions {
   [key: string]: boolean | string | string[] | number;
 }
 
+/**
+ * Payload structure for player actions in a game
+ */
 interface ActionPayload {
-  gameId: GameId;
-  gameName: GameName;
-  playerId: PlayerId;
+  /**
+   * The unique identifier of the game
+   */
+  gameId: UID;
+  /**
+   * The name of the game
+   */
+  gameName: string;
+  /**
+   * The unique identifier of the player performing the action
+   */
+  playerId: UID;
+  /**
+   * The type of action being performed
+   */
   action: string;
-  // Anything else in the payload
+  /**
+   * Additional action-specific properties
+   */
   [key: string]: any;
 }
 
+/**
+ * Game engine interface defining core game mechanics
+ */
 interface Engine {
+  /**
+   * Function to generate the initial state of the game
+   */
   getInitialState: any;
+  /**
+   * Function to determine the next phase of the game
+   */
   getNextPhase: any;
+  /**
+   * Function to get the minimum and maximum player counts
+   */
   getPlayerCounts: () => PlayerCounts;
+  /**
+   * Function to process player actions
+   */
   submitAction: any;
 }
 
+/**
+ * Payload for adding a player to a game
+ */
 interface AddPlayerPayload {
-  gameId: GameId;
-  gameName: GameName;
-  playerName: PlayerName;
-  playerAvatarId: PlayerAvatarId;
+  /**
+   * The unique identifier of the game
+   */
+  gameId: UID;
+  /**
+   * The name of the game
+   */
+  gameName: string;
+  /**
+   * The display name of the player
+   */
+  playerName: string;
+  /**
+   * The avatar identifier for the player
+   */
+  playerAvatarId: string;
+  /**
+   * Whether the player is joining as a guest
+   */
   isGuest?: boolean;
 }
 
+/**
+ * Metadata for a game instance
+ */
 interface Meta<TOptions = GameOptions> {
-  gameId: GameId;
-  gameName: GameName;
+  /**
+   * The unique identifier of the game
+   */
+  gameId: UID;
+  /**
+   * The name of the game
+   */
+  gameName: string;
+  /**
+   * Timestamp when the game was created
+   */
   createdAt: DateMilliseconds;
+  /**
+   * The UID of the user who created the game
+   */
   createdBy: string;
+  /**
+   * Minimum number of players required
+   */
   min: number;
+  /**
+   * Maximum number of players allowed
+   */
   max: number;
+  /**
+   * Whether the game is locked from new players joining
+   */
   isLocked: boolean;
+  /**
+   * Whether the game has been completed
+   */
   isComplete: boolean;
+  /**
+   * The language of the game
+   */
   language: string;
+  /**
+   * The version of the game engine
+   */
   version?: string;
+  /**
+   * The replay counter for games being replayed
+   */
   replay: number;
+  /**
+   * Game-specific configuration options
+   */
   options?: TOptions;
 }
 
+/**
+ * Minimum and maximum player counts for a game
+ */
 interface PlayerCounts {
+  /**
+   * Minimum number of players required to play
+   */
   MIN: number;
+  /**
+   * Maximum number of players allowed
+   */
   MAX: number;
 }
 
+/**
+ * Information for redirecting to another game
+ */
 interface Redirect {
+  /**
+   * Timestamp when the redirect should occur
+   */
   redirectAt: DateMilliseconds;
-  gameId: GameId;
-  gameName: GameName;
+  /**
+   * The unique identifier of the target game
+   */
+  gameId: UID;
+  /**
+   * The name of the target game
+   */
+  gameName: string;
 }
 
+/**
+ * The default game state structure shared across all games
+ */
 interface DefaultState {
+  /**
+   * The current phase of the game
+   */
   phase: string;
+  /**
+   * The current round information
+   */
   round: Round;
+  /**
+   * Timestamp of the last state update
+   */
   updatedAt: DateMilliseconds;
+  /**
+   * Timestamp when the game ended
+   */
   gameEndedAt?: DateMilliseconds;
+  /**
+   * Dictionary of all players in the game
+   */
   players: Players;
+  /**
+   * Optional redirect information for game transitions
+   */
   redirect?: Redirect;
+  /**
+   * Additional game-specific state properties
+   */
   [key: string]: any;
 }
 
+/**
+ * The default store structure for persistent game data
+ */
 interface DefaultStore<TOptions = GameOptions> {
+  /**
+   * Timestamp when the game was created
+   */
   createdAt: DateMilliseconds;
+  /**
+   * The language of the game
+   */
   language: Language;
+  /**
+   * Game-specific configuration options
+   */
   options: TOptions;
+  /**
+   * Additional game-specific store properties
+   */
   [key: string]: any;
 }
 
+/**
+ * The complete initial state of a new game
+ */
 interface InitialState {
+  /**
+   * Game metadata
+   */
   meta: Meta;
+  /**
+   * Persistent game store data
+   */
   store: any;
+  /**
+   * Current game state
+   */
   state: DefaultState;
 }
 
@@ -135,11 +315,11 @@ interface InitialStateArgs<TOptions = GameOptions> {
   /**
    * The game Id
    */
-  gameId: GameId;
+  gameId: UID;
   /**
    * The game name
    */
-  gameName: GameName;
+  gameName: string;
   /**
    * The creator uid
    */
@@ -179,136 +359,411 @@ interface InitialStateArgs<TOptions = GameOptions> {
   onCreate?: () => PlainObject;
 }
 
+/**
+ * Round tracking information for a game
+ */
 interface Round {
+  /**
+   * The current round number (1-indexed)
+   */
   current: number;
+  /**
+   * The total number of rounds in the game
+   */
   total: number;
+  /**
+   * Flag to force the game to end after the current round
+   */
   forceLastRound?: boolean;
 }
 
+/**
+ * Player object with default properties and extensible type
+ */
 type Player<T = PlainObject> = {
-  id: PlayerId;
-  avatarId: PlayerAvatarId;
-  name: PlayerName;
+  /**
+   * The unique identifier of the player
+   */
+  id: UID;
+  /**
+   * The avatar identifier for the player
+   */
+  avatarId: string;
+  /**
+   * The display name of the player
+   */
+  name: string;
+  /**
+   * Whether the player is ready for the next phase
+   */
   ready: boolean;
+  /**
+   * The player's current score
+   */
   score: number;
+  /**
+   * Timestamp of the last player update
+   */
   updatedAt?: DateMilliseconds;
-  // Bots only
+  /**
+   * The type of player (human, bot, or audience member)
+   */
   type: 'player' | 'bot' | 'audience';
 } & T;
 
-type Players<T = PlainObject> = Record<PlayerId, Player<T>>;
+/**
+ * Dictionary of players indexed by their UIDs
+ */
+type Players<T = PlainObject> = Record<UID, Player<T>>;
 
+/**
+ * Generic payload structure for game actions
+ */
 type Payload<T = PlainObject> = {
-  gameId: GameId;
-  gameName: GameName;
-  playerId: PlayerId;
+  /**
+   * The unique identifier of the game
+   */
+  gameId: UID;
+  /**
+   * The name of the game
+   */
+  gameName: string;
+  /**
+   * The unique identifier of the player
+   */
+  playerId: UID;
 } & T;
 
+/**
+ * Extended payload structure for game operations without player context
+ */
 interface ExtendedPayload {
-  gameId: GameId;
-  gameName: GameName;
+  /**
+   * The unique identifier of the game
+   */
+  gameId: UID;
+  /**
+   * The name of the game
+   */
+  gameName: string;
+  /**
+   * Additional action-specific properties
+   */
   [key: string]: any;
 }
 
+/**
+ * Payload for submitting a guess in a game
+ */
 interface SubmitGuessPayload extends Payload {
+  /**
+   * The player's guess (can be text or numeric)
+   */
   guess: string | number;
 }
 
+/**
+ * Payload for submitting multiple votes
+ */
 interface SubmitVotesPayload extends Payload {
+  /**
+   * Dictionary of votes with various structures
+   */
   votes: PlainObject;
 }
 
+/**
+ * Payload for submitting a single vote
+ */
 interface SubmitVotePayload extends Payload {
+  /**
+   * The vote value or selection
+   */
   vote: string;
 }
 
+/**
+ * Payload for setting (replacing) game data
+ */
 interface SetPayload {
+  /**
+   * State properties to completely replace
+   */
   state?: PlainObject;
 }
 
+/**
+ * Payload for updating (merging) game data
+ */
 interface UpdatePayload {
+  /**
+   * State properties to merge
+   */
   state?: PlainObject;
+  /**
+   * Store properties to merge
+   */
   store?: PlainObject;
+  /**
+   * Array of state property keys to remove
+   */
   stateCleanup?: string[];
+  /**
+   * Array of store property keys to remove
+   */
   storeCleanup?: string[];
 }
 
+/**
+ * Payload for saving game data to Firebase
+ */
 interface SaveGamePayload {
+  /**
+   * Data to set (replace completely)
+   */
   set?: SetPayload;
+  /**
+   * Data to update (merge)
+   */
   update?: UpdatePayload;
 }
 
+/**
+ * Arguments for updating a player in the game
+ */
 interface UpdatePlayerArgs {
-  gameName: GameName;
-  gameId: GameId;
-  playerId: PlayerId;
+  /**
+   * The name of the game
+   */
+  gameName: string;
+  /**
+   * The unique identifier of the game
+   */
+  gameId: UID;
+  /**
+   * The unique identifier of the player
+   */
+  playerId: UID;
+  /**
+   * Description of the action for logging
+   */
   actionText: string;
+  /**
+   * Whether to mark the player as ready
+   */
   shouldReady: boolean;
+  /**
+   * The changes to apply to the player object
+   */
   change: PlainObject;
+  /**
+   * Optional function to determine the next phase
+   */
   nextPhaseFunction?: any;
+  /**
+   * Whether to automatically progress to the next phase
+   */
   shouldGoToNextPhase?: boolean;
 }
 
+/**
+ * Arguments for updating the game store
+ */
 interface UpdateStoreArgs {
-  gameName: GameName;
-  gameId: GameId;
-  playerId: PlayerId;
+  /**
+   * The name of the game
+   */
+  gameName: string;
+  /**
+   * The unique identifier of the game
+   */
+  gameId: UID;
+  /**
+   * The unique identifier of the player making the change
+   */
+  playerId: UID;
+  /**
+   * Description of the action for logging
+   */
   actionText: string;
+  /**
+   * The changes to apply to the store
+   */
   change: PlainObject;
+  /**
+   * Optional function to determine the next phase
+   */
   nextPhaseFunction?: any;
 }
 
+/**
+ * Arguments for updating the game state
+ */
 interface UpdateStateArgs {
-  gameName: GameName;
-  gameId: GameId;
-  playerId: PlayerId;
+  /**
+   * The name of the game
+   */
+  gameName: string;
+  /**
+   * The unique identifier of the game
+   */
+  gameId: UID;
+  /**
+   * The unique identifier of the player making the change
+   */
+  playerId: UID;
+  /**
+   * Description of the action for logging
+   */
   actionText: string;
+  /**
+   * The changes to apply to the state
+   */
   change: PlainObject;
+  /**
+   * Optional function to determine the next phase
+   */
   nextPhaseFunction?: any;
 }
 
+/**
+ * Information about a word used in a game
+ */
 interface UsedWord {
+  /**
+   * The unique identifier or the word itself
+   */
   id: string;
-  playerName?: PlayerName | null;
+  /**
+   * The name of the player who used the word
+   */
+  playerName?: string | null;
+  /**
+   * Array of unique suggestions for the word
+   */
   uniqueSuggestions?: string[] | [];
+  /**
+   * Array of common suggestions for the word
+   */
   commonSuggestions?: string[] | [];
+  /**
+   * Number of votes received for the word
+   */
   votes: 0;
 }
 
+/**
+ * Score update information for a player
+ */
 interface NewScore {
-  playerId: PlayerId;
-  name: PlayerName;
+  /**
+   * The unique identifier of the player
+   */
+  playerId: UID;
+  /**
+   * The display name of the player
+   */
+  name: string;
+  /**
+   * The player's score before this update
+   */
   previousScore: number;
+  /**
+   * Array of points gained in this scoring round
+   */
   gainedPoints: number[];
+  /**
+   * The player's total score after this update
+   */
   newScore: number;
 }
 
-type NewScores = Record<PlayerId, NewScore>;
+/**
+ * Dictionary of score updates indexed by player UID
+ */
+type NewScores = Record<UID, NewScore>;
 
+/**
+ * Entry in the game ranking/leaderboard
+ */
 interface RankingEntry {
-  playerId: PlayerId;
-  name: PlayerName;
+  /**
+   * The unique identifier of the player
+   */
+  playerId: UID;
+  /**
+   * The display name of the player
+   */
+  name: string;
+  /**
+   * The player's score before this ranking
+   */
   previousScore: number;
+  /**
+   * Array of points gained
+   */
   gainedPoints: number[];
+  /**
+   * The player's current total score
+   */
   newScore: number;
 }
 
+/**
+ * Achievement earned by a player
+ */
 interface Achievement<T> {
+  /**
+   * The type or category of achievement
+   */
   type: T | string;
-  playerId: PlayerId;
+  /**
+   * The unique identifier of the player who earned the achievement
+   */
+  playerId: UID;
+  /**
+   * The value associated with the achievement
+   */
   value: Primitive;
 }
 
-type ImageCardRelationship = Record<ImageCardId, ImageCardId[]>;
+/**
+ * Mapping of image cards to related cards
+ */
+type ImageCardRelationship = Record<UID, UID[]>;
 
+/**
+ * String representing the outcome of a game action or round
+ */
 type Outcome = string;
 
+/**
+ * Progress tracking for group-based challenges
+ */
 interface GroupProgress {
+  /**
+   * Number of correct answers or successes
+   */
   correct: number;
+  /**
+   * Number of mistakes or failures
+   */
   mistakes: number;
+  /**
+   * The final outcome of the challenge
+   */
   outcome: Outcome;
+  /**
+   * Array of outcomes from each attempt
+   */
   attempts: Outcome[];
+  /**
+   * The current score
+   */
   score: number;
+  /**
+   * The target score or goal to achieve
+   */
   goal: number;
 }
 
@@ -319,8 +774,17 @@ type SuspectCardsOptions = {
   deckType: 'ghibli' | 'realistic' | 'pixar' | 'fox';
 };
 
+/**
+ * Options for games using contender decks
+ */
 type ContendersDecksOptions = {
+  /**
+   * Array of deck names to use in the game
+   */
   contenderDecks: string[];
 };
 
+/**
+ * Utility type to extract the value types from an object
+ */
 type ValueOf<T> = T[keyof T];

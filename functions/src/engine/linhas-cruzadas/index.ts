@@ -32,7 +32,7 @@ import { handleSubmitDrawing, handleSubmitGuess, handleSubmitPrompt } from './ac
  * @returns
  */
 export const getInitialState = (
-  gameId: GameId,
+  gameId: UID,
   uid: string,
   language: Language,
   version: string,

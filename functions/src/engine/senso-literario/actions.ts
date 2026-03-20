@@ -4,10 +4,10 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 export const handleSubmitPattern = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  patternId: CardId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  patternId: UID,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

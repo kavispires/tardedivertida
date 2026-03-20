@@ -18,28 +18,28 @@ export type AllWords = {
 
 export type ResourceData = {
   allWords: AllWords;
-  images: ImageCardId[];
+  images: UID[];
 };
 
 export type ImageCard = {
   id: string;
   used: boolean;
-  matchedPlayers?: PlayerId[];
+  matchedPlayers?: UID[];
   text?: string;
 };
 
 export type PlayerCard = {
   cardId: string;
   used: boolean;
-  matchedPlayers: PlayerId[];
+  matchedPlayers: UID[];
   score: number;
 };
 
 export type ImageCardMatch = {
-  id: CardId;
+  id: UID;
   used: boolean;
   text: string;
-  matchedPlayers: PlayerId[];
+  matchedPlayers: UID[];
 };
 
 export interface GaleriaDeSonhosStore extends DefaultStore {

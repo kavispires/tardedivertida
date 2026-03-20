@@ -45,7 +45,7 @@ export const getQuestions = async (language: string): Promise<ResourceData> => {
  * @param pastQuestions
  */
 export const saveData = async (pastQuestions: string[]) => {
-  const pastQuestionsObj = pastQuestions.reduce((acc: StringDictionary[], id: string) => {
+  const pastQuestionsObj = pastQuestions.reduce((acc: Dictionary<string>[], id: string) => {
     acc.push({ id });
     return acc;
   }, []);

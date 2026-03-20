@@ -5,10 +5,10 @@ import { getNextPhase } from './index';
 import type { FirebaseStateData } from './types';
 
 export const handleSelectWitness = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  witnessId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  witnessId: UID,
 ) => {
   return await utils.firestore.updateState({
     gameName,
@@ -23,10 +23,10 @@ export const handleSelectWitness = async (
 };
 
 export const handleSelectQuestion = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  questionId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  questionId: UID,
 ) => {
   return await utils.firestore.updateState({
     gameName,
@@ -41,9 +41,9 @@ export const handleSelectQuestion = async (
 };
 
 export const handleGiveTestimony = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   testimony: boolean,
 ) => {
   return await utils.firestore.updateState({
@@ -76,12 +76,12 @@ export const handleGiveTestimony = async (
  * 6. Proceeds to the next phase if necessary, handling any errors that occur.
  */
 export const handleElimination = async (
-  gameName: GameName,
-  gameId: GameId,
+  gameName: string,
+  gameId: UID,
   actionText: string,
   additionalPayload: {
     pass?: boolean;
-    suspectId?: CardId;
+    suspectId?: UID;
   },
 ) => {
   const { sessionRef, state } = await utils.firestore.getStateReferences<FirebaseStateData>(
@@ -120,7 +120,7 @@ export const handleElimination = async (
       });
 
       // If it was actually the final innocent person
-      const suspectsIds: CardId[] = state.suspectsIds ?? [];
+      const suspectsIds: UID[] = state.suspectsIds ?? [];
       if (
         suspectsIds &&
         suspectsIds.length - (state.previouslyEliminatedSuspects.length + eliminatedSuspects.length) === 1
@@ -151,9 +151,9 @@ export const handleElimination = async (
 };
 
 export const handleFinalElimination = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   suspectId: boolean,
 ) => {
   return await utils.firestore.updatePlayer({

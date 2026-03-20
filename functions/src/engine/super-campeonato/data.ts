@@ -53,8 +53,8 @@ export const getResourceData = async (
 };
 
 export const saveData = async (pastBattles: PastBattles) => {
-  const challengeIds: BooleanDictionary = {};
-  const contenderIds: BooleanDictionary = {};
+  const challengeIds: Dictionary<boolean> = {};
+  const contenderIds: Dictionary<boolean> = {};
 
   pastBattles.forEach((entry) => {
     challengeIds[entry.challenge.id] = true;

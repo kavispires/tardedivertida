@@ -28,7 +28,7 @@ export interface ResourceData {
 
 export interface Offer {
   objectId: ItemId;
-  playerId: PlayerId;
+  playerId: UID;
 }
 
 export interface InquiryHistoryEntry {
@@ -39,11 +39,11 @@ export interface InquiryHistoryEntry {
   /**
    * The objects the player asked about
    */
-  objectIds: CardId[];
+  objectIds: UID[];
   /**
    * The player who asked the question
    */
-  playerId: PlayerId;
+  playerId: UID;
   /**
    * The attributeId the player intended to ask
    */
@@ -65,7 +65,7 @@ export interface OfferingsStatus {
   total: number;
   found: number;
   totalCurses: number;
-  curses: Record<string, PlayerId[]>;
+  curses: Record<string, UID[]>;
 }
 
 export type ComunicacaoAlienigenaAchievement = keyof typeof COMUNICACAO_ALIENIGENA_ACHIEVEMENTS;

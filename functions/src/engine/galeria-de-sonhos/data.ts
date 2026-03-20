@@ -31,7 +31,7 @@ export const getWords = async (language: Language): Promise<ResourceData> => {
 };
 
 export const saveData = async (language: Language, bestMatches: ImageCardMatch[]) => {
-  const usedCardsIds: BooleanDictionary = {};
+  const usedCardsIds: Dictionary<boolean> = {};
   const clues = bestMatches.reduce((acc, entry) => {
     usedCardsIds[entry.id] = true;
     if (acc[entry.id] === undefined) {

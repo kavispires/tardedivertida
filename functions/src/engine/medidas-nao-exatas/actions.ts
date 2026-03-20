@@ -5,11 +5,11 @@ import { getNextPhase } from './index';
 import type { Guess } from './types';
 
 export const handleSubmitPool = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  poolIds: CardId[],
-  secretWordId: CardId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  poolIds: UID[],
+  secretWordId: UID,
 ) => {
   return await utils.firestore.updateState({
     gameName,
@@ -21,9 +21,9 @@ export const handleSubmitPool = async (
 };
 
 export const handleSubmitMetrics = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   metrics: Record<string, number>,
 ) => {
   return await utils.firestore.updateState({
@@ -37,9 +37,9 @@ export const handleSubmitMetrics = async (
 };
 
 export const handleSubmitGuess = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   guesses: Guess[],
 ) => {
   return await utils.firestore.updatePlayer({

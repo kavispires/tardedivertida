@@ -12,9 +12,9 @@ import { getNextPhase } from '.';
  * @returns
  */
 export const handleSubmitCategory = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   categoryId: string,
 ) => {
   return await utils.firestore.updateState({
@@ -37,9 +37,9 @@ export const handleSubmitCategory = async (
  * @returns
  */
 export const handleSubmitClue = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   clue: string,
 ) => {
   return await utils.firestore.updateStore({
@@ -63,9 +63,9 @@ export const handleSubmitClue = async (
  * @returns
  */
 export const handleSubmitGuess = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   guess: number | boolean,
 ) => {
   return await utils.firestore.updatePlayer({

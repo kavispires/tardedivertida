@@ -13,9 +13,9 @@ import { getNextPhase } from './index';
  * @returns
  */
 export const handleSubmitWord = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   names: string[],
   indexes: number[],
   newWord: string,
@@ -45,10 +45,10 @@ export const handleSubmitWord = async (
  * @returns
  */
 export const handleSubmitGuess = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  guesses: CardId[],
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  guesses: UID[],
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

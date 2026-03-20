@@ -167,8 +167,8 @@ export const calculateScore = (
   players: Players,
   isSpyGuess: boolean,
   isSpyWin: boolean,
-  currentSpyId: PlayerId,
-  accuserId: PlayerId,
+  currentSpyId: UID,
+  accuserId: UID,
 ) => {
   // Calculate Points
   utils.players.getListOfPlayers(players).forEach((player) => {
@@ -195,9 +195,9 @@ export const calculateScore = (
 };
 
 export const determineFinalAssessmentPlayerOrder = (
-  lastPlayerId: PlayerId,
-  gameOrder: PlayerId[],
-): PlayerId[] => {
+  lastPlayerId: UID,
+  gameOrder: UID[],
+): UID[] => {
   const lastPlayerIndex = gameOrder.indexOf(lastPlayerId);
 
   return [...gameOrder.slice(lastPlayerIndex), ...gameOrder.slice(0, lastPlayerIndex)];

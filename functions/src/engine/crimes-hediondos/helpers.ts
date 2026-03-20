@@ -239,7 +239,7 @@ export const updateOrCreateGuessHistory = (
     const history: GuessHistory = { ...(player.history ?? {}) };
     const wrongGroups: WrongGroups = { ...(player.wrongGroups ?? {}) };
     const wrongItems: WrongItems = { ...(player.wrongItems ?? {}) };
-    const result: StringDictionary = {};
+    const result: Dictionary<string> = {};
     // Count correct crimes
     player.correctCrimes = 0;
 
@@ -406,13 +406,13 @@ const findWhatGroupTheItemBelongsTo = (guess: Guess, groupedItems: GroupedItems)
 
 type BuiltRanking = {
   ranking: RankingEntry[];
-  winners: PlayerId[];
+  winners: UID[];
 };
 
-type HistoryEntry = [PlayerId, GuessHistoryEntry[]];
+type HistoryEntry = [UID, GuessHistoryEntry[]];
 
 export const buildRanking = (players: Players, currentRound: number): BuiltRanking => {
-  const winners: PlayerId[] = [];
+  const winners: UID[] = [];
   // Points granted in reverse round order 1:12, 2:11, 3:10, 4:9, 5:8, 7:6
   const pointMultiplier = TOTAL_ROUNDS + 4 - currentRound;
 

@@ -4,7 +4,7 @@ import utils from '../utils';
 import type { FirebaseAuth } from '../types/reference';
 
 type LoadGamePayload = {
-  gameId: GameId;
+  gameId: UID;
 };
 
 /**
@@ -33,10 +33,10 @@ const loadGame = async (data: LoadGamePayload) => {
 };
 
 interface JoinGamePayload {
-  gameId: GameId;
-  gameName: GameName;
-  playerName: PlayerName;
-  playerAvatarId: PlayerAvatarId;
+  gameId: UID;
+  gameName: string;
+  playerName: string;
+  playerAvatarId: string;
   isGuest?: boolean;
 }
 

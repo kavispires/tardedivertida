@@ -35,13 +35,13 @@ export interface FofocaQuenteState extends DefaultState {
   staff?: Dictionary<StaffMember>;
   motivations?: TeenageMotivation[];
   socialGroups?: string[];
-  detectivePlayerId?: PlayerId;
+  detectivePlayerId?: UID;
   detectivePosition?: number;
   detectivePossibleMovements?: number[];
-  gossiperId?: CardId;
-  gossiperPlayerId?: PlayerId;
-  motiveId?: CardId;
-  bestFriendId?: CardId;
+  gossiperId?: UID;
+  gossiperPlayerId?: UID;
+  motiveId?: UID;
+  bestFriendId?: UID;
   associatedSocialGroup?: string;
   maySkipRumor?: boolean;
   rumorTracker?: RumorTrackerEntry[];
@@ -74,7 +74,7 @@ export type StaffMember = {
 };
 
 export type Student = TeenageStudent & {
-  id: CardId;
+  id: UID;
   // Fixed properties
   isGossiper: boolean;
   isBestFriend: boolean;
@@ -97,8 +97,8 @@ export type SchoolLocationBase = {
 export type SchoolLocation = {
   id: string;
   name: DualLanguageValue;
-  staff?: CardId;
-  students: CardId[];
+  staff?: UID;
+  students: UID[];
   rumorSlot?: number;
 };
 

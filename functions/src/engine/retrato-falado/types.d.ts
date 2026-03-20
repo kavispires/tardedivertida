@@ -2,7 +2,7 @@ import type { MonsterImage } from '../../types/tdr';
 import type { RETRATO_FALADO_ACHIEVEMENTS, RETRATO_FALADO_ACTIONS } from './constants';
 
 export interface MonsterSketch extends MonsterImage {
-  playerId: PlayerId | null;
+  playerId: UID | null;
   sketch: string | null;
 }
 

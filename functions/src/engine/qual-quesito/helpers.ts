@@ -63,7 +63,7 @@ export const buildCardsDictFromPlayersHands = (
   );
 };
 
-// export const handleSkipTurn = (store: FirebaseStoreData, players: Players, creatorId: PlayerId) => {
+// export const handleSkipTurn = (store: FirebaseStoreData, players: Players, creatorId: UID) => {
 //   players[creatorId].hand.push(...utils.game.dealItems(store.deckKeys, 1));
 // };
 

@@ -38,7 +38,7 @@ export const getData = async (): Promise<ResourceData> => {
 
   // Build social groups
   const socialGroups = Object.keys(
-    teenagers.reduce((acc: BooleanDictionary, student) => {
+    teenagers.reduce((acc: Dictionary<boolean>, student) => {
       acc[student.socialGroupId] = true;
       return acc;
     }, {}),

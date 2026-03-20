@@ -111,7 +111,7 @@ export const getAchievements = (
   store: FirebaseStoreData,
   hasBot: boolean,
   playerCount: number,
-  alienId: PlayerId,
+  alienId: UID,
 ) => {
   const achievements: Achievement<ComunicacaoAlienigenaAchievement>[] = [];
 

@@ -58,7 +58,7 @@ export const determineOutcome = (state: FirebaseStateData): string => {
   return OUTCOME.CONTINUE;
 };
 
-export const getPhaseOutcome = (wasMistake: boolean, mistakes: CardId[], eliminatedMovies: CardId[]) => {
+export const getPhaseOutcome = (wasMistake: boolean, mistakes: UID[], eliminatedMovies: UID[]) => {
   if (eliminatedMovies.length === TOTAL_MOVIE_OPTIONS - 1) {
     return OUTCOME.DONE;
   }
@@ -75,7 +75,7 @@ export const getPhaseOutcome = (wasMistake: boolean, mistakes: CardId[], elimina
  * @param eliminatedMovies
  * @returns
  */
-export const getFinalMovieId = (eliminatedMovies: CardId[]) => {
+export const getFinalMovieId = (eliminatedMovies: UID[]) => {
   if (eliminatedMovies.length !== TOTAL_MOVIE_OPTIONS - 1) {
     return undefined;
   }
@@ -104,9 +104,9 @@ export const getMovieTitle = (movies: MovieCard[], letter: string) => {
 };
 
 type FinalMovie = {
-  id: CardId;
+  id: UID;
   title: string;
-  posterId: ImageCardId;
+  posterId: UID;
   session: number;
 };
 
@@ -130,7 +130,7 @@ const getMostFrequentElementFromList = (list: string[]) => {
 export const getFinalMovies = (
   movies: Record<string, FinalMovie>,
   players: Players,
-  posters: Record<number, ImageCardId[]>,
+  posters: Record<number, UID[]>,
 ): FinalMovie[] => {
   const finalMovies: FinalMovie[] = [];
 

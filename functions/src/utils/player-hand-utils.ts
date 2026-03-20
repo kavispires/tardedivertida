@@ -44,7 +44,7 @@ export const dealPlayersCard = (
   players: Players,
   handLimit: number,
   quantity?: number,
-  playerId?: PlayerId,
+  playerId?: UID,
   includeBots = false,
 ): Players => {
   const toPlayers = playerId ? [playerId] : getListOfPlayersIds(players, includeBots);
@@ -77,7 +77,7 @@ export const dealPlayersCard = (
 export const discardPlayerCard = (
   players: Players,
   cardId: string,
-  playerId: PlayerId,
+  playerId: UID,
   handLimit: number,
 ): PlainObject => {
   const player = players[playerId];

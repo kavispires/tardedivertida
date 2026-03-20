@@ -31,7 +31,7 @@ import { handleSubmitCategory, handleSubmitClue, handleSubmitGuess } from './act
  * @returns
  */
 export const getInitialState = (
-  gameId: GameId,
+  gameId: UID,
   uid: string,
   language: Language,
   version: string,

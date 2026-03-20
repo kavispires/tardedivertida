@@ -38,14 +38,14 @@ export const determineNextPhase = (state: TaNaCaraState, store: TaNaCaraStore): 
 
 export const buildRankingAndOutcome = (
   players: Players,
-  targetId: PlayerId,
+  targetId: UID,
   points: number,
   charactersDict: Dictionary<CharacterFace>,
 ) => {
   // Gained Points [correct guess, guesses on your character]
   const scores = new utils.players.Scores(players, [0, 0]);
 
-  const correct: PlayerId[] = [];
+  const correct: UID[] = [];
 
   const target = players[targetId];
 
@@ -102,7 +102,7 @@ export const buildRankingAndOutcome = (
 
 const assignNewCharacterToPlayer = (
   players: Players,
-  playerId: PlayerId,
+  playerId: UID,
   charactersDict: Dictionary<CharacterFace>,
 ) => {
   // Erase answers

@@ -107,7 +107,7 @@ export const prepareBetsPhase = async (
     selected: index === 0,
   }));
 
-  const catchUp: PlayerId[] = [];
+  const catchUp: UID[] = [];
   // Catch up mechanism: give last player(s) extra chips
   if (round.current > 1) {
     utils.players.determineLosers(players).forEach((player) => {
@@ -153,7 +153,7 @@ export const prepareStartingResultsPhase = async (
   // Unready players
   utils.players.unReadyPlayers(players);
 
-  const activeSkierId: PlayerId = state.activeSkierId;
+  const activeSkierId: UID = state.activeSkierId;
   const skier = players[activeSkierId];
   const choices: string[] = skier.choices;
   const mountain: MountainDilemma[] = state.mountain;
@@ -226,7 +226,7 @@ export const prepareBoostsPhase = async (
   // Unready players
   utils.players.unReadyPlayers(players);
 
-  const activeSkierId: PlayerId = state.activeSkierId;
+  const activeSkierId: UID = state.activeSkierId;
   // Give boost chips to players
   utils.players.addPropertiesToPlayers(players, {
     chips: BETTING_CHIPS.BOOST,
@@ -260,7 +260,7 @@ export const preparePreliminaryResultsPhase = async (
   // Unready players
   utils.players.unReadyPlayers(players);
 
-  const activeSkierId: PlayerId = state.activeSkierId;
+  const activeSkierId: UID = state.activeSkierId;
   const lodges: Lodge[] = state.lodges;
 
   // Add players to lodges
@@ -297,7 +297,7 @@ export const prepareLastChangePhase = async (
   // Unready players
   utils.players.unReadyPlayers(players);
 
-  const activeSkierId: PlayerId = state.activeSkierId;
+  const activeSkierId: UID = state.activeSkierId;
   // Give final chips to players
   utils.players.addPropertiesToPlayers(players, {
     chips: BETTING_CHIPS.FINAL,
@@ -331,7 +331,7 @@ export const prepareResultsPhase = async (
   // Unready players
   utils.players.unReadyPlayers(players);
 
-  const activeSkierId: PlayerId = state.activeSkierId;
+  const activeSkierId: UID = state.activeSkierId;
   const lodges: Lodge[] = state.lodges;
 
   // Add players to lodges
@@ -343,7 +343,7 @@ export const prepareResultsPhase = async (
   // Aggregate skier player bets
   const allPlayersBySkier = utils.players.getListOfPlayers(players, true, [activeSkierId]);
   const skier = players[activeSkierId];
-  skier.bets = allPlayersBySkier.reduce((acc: NumberDictionary, player) => {
+  skier.bets = allPlayersBySkier.reduce((acc: Dictionary<number>, player) => {
     acc[player.id] = 0;
     if (player[BET_TYPES.INITIAL][player.id]) acc[player.id] += player[BET_TYPES.INITIAL][player.id];
     if (player[BET_TYPES.BOOST][player.id]) acc[player.id] += player[BET_TYPES.BOOST][player.id];
@@ -387,7 +387,7 @@ export const prepareResultsPhase = async (
 };
 
 export const prepareGameOverPhase = async (
-  gameId: GameId,
+  gameId: UID,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,

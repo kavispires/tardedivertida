@@ -14,9 +14,9 @@ import type { FirebaseStateData } from './types';
  * @returns
  */
 export const handleSubmitClue = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   clue: string,
 ) => {
   return await utils.firestore.updatePlayer({
@@ -40,9 +40,9 @@ export const handleSubmitClue = async (
  * @returns
  */
 export const handlePlayCard = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   cardId: string,
 ) => {
   const actionText = 'play a card';
@@ -106,9 +106,9 @@ export const handlePlayCard = async (
 };
 
 export const handleDefend = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   defenseTime: number,
 ) => {
   const actionText = 'defend';
@@ -145,10 +145,10 @@ export const handleDefend = async (
 };
 
 export const handleSubmitVote = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  vote: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  vote: UID,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

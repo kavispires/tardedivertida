@@ -6,8 +6,8 @@ export interface NaoSouRoboOptions {
 }
 
 export interface ResourceData {
-  images: CardId[];
-  botCards: CardId[];
+  images: UID[];
+  botCards: UID[];
   emojis: number[];
   words: TextCard[];
   colors: TextCard[];
@@ -29,16 +29,16 @@ export interface Captcha {
 }
 
 export interface CaptchaCard {
-  id: CardId;
-  players: PlayerId[];
+  id: UID;
+  players: UID[];
   bot: boolean;
-  playerId?: PlayerId;
+  playerId?: UID;
 }
 
 export interface GalleryEntry extends Captcha {
   options: CaptchaCard[];
   outcome: string;
-  beaters: PlayerId[];
+  beaters: UID[];
   score: number;
   suspicion: number;
 }

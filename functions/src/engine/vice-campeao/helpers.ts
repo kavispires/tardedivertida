@@ -35,7 +35,7 @@ type OngoingPlayerEffectsType = Record<string, string | null>;
 export const buildRun = (
   players: Players,
   cardsDict: Dictionary<RunnerCard>,
-  turnOrder: PlayerId,
+  turnOrder: UID,
   store: FirebaseStoreData,
 ) => {
   // Ongoing cards tracking
@@ -62,7 +62,7 @@ export const buildRun = (
   // Get all players initial positions
   const initialPositions = utils.players
     .getListOfPlayers(players)
-    .reduce((acc: Record<PlayerId, number>, { id, positions }) => {
+    .reduce((acc: Record<UID, number>, { id, positions }) => {
       acc[id] = positions.at(-1) || 0;
       return acc;
     }, {});
@@ -299,7 +299,7 @@ const minMaxValue = (value: number) => {
   return Math.max(Math.min(value, 20), -10);
 };
 
-const getOngoingModifier = (ongoingPlayerEffects: OngoingPlayerEffectsType, targetId: PlayerId) => {
+const getOngoingModifier = (ongoingPlayerEffects: OngoingPlayerEffectsType, targetId: UID) => {
   if (ongoingPlayerEffects['ongoing-plus-one'] === targetId) {
     return 1;
   }
@@ -309,7 +309,7 @@ const getOngoingModifier = (ongoingPlayerEffects: OngoingPlayerEffectsType, targ
   return 0;
 };
 
-const triggerEffectFirstPlace = (endingPositions: Record<PlayerId, number>, targetId: PlayerId) => {
+const triggerEffectFirstPlace = (endingPositions: Record<UID, number>, targetId: UID) => {
   // Get the first place player
   const orderedPositions = Object.values(endingPositions).sort((a, b) => b - a);
   // Move the targetId to the first place
@@ -317,7 +317,7 @@ const triggerEffectFirstPlace = (endingPositions: Record<PlayerId, number>, targ
   return endingPositions;
 };
 
-const triggerEffectLastPlace = (endingPositions: Record<PlayerId, number>, targetId: PlayerId) => {
+const triggerEffectLastPlace = (endingPositions: Record<UID, number>, targetId: UID) => {
   // Get the last place player
   const orderedPositions = Object.values(endingPositions).sort((a, b) => a - b);
   // Move the targetId to the last place
@@ -325,7 +325,7 @@ const triggerEffectLastPlace = (endingPositions: Record<PlayerId, number>, targe
   return endingPositions;
 };
 
-const triggerEffectSwap = (endingPositions: Record<PlayerId, number>) => {
+const triggerEffectSwap = (endingPositions: Record<UID, number>) => {
   // Get the first place player
   const orderedPositions = utils.game.removeDuplicates(Object.values(endingPositions).sort((a, b) => b - a));
   const firstPlace = Object.keys(endingPositions).filter(
@@ -347,7 +347,7 @@ const triggerEffectSwap = (endingPositions: Record<PlayerId, number>) => {
   return endingPositions;
 };
 
-const triggerEffectTwist = (endingPositions: Record<PlayerId, number>) => {
+const triggerEffectTwist = (endingPositions: Record<UID, number>) => {
   // Order values
   const orderedPositions = utils.game.removeDuplicates(Object.values(endingPositions).sort((a, b) => a - b));
   const reversedPositions = [...orderedPositions].reverse();
@@ -360,8 +360,8 @@ const triggerEffectTwist = (endingPositions: Record<PlayerId, number>) => {
 };
 
 const triggerEffectEveryElseGo = (
-  endingPositions: Record<PlayerId, number>,
-  targetId: PlayerId,
+  endingPositions: Record<UID, number>,
+  targetId: UID,
   modifier: number,
 ) => {
   Object.keys(endingPositions).forEach((id) => {
@@ -373,8 +373,8 @@ const triggerEffectEveryElseGo = (
 };
 
 const triggerEffectEverybodyElseBack = (
-  endingPositions: Record<PlayerId, number>,
-  targetId: PlayerId,
+  endingPositions: Record<UID, number>,
+  targetId: UID,
   modifier: number,
 ) => {
   Object.keys(endingPositions).forEach((id) => {

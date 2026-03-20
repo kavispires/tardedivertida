@@ -102,7 +102,7 @@ export const getTableContenders = (contendersDeck: ContendersDeck, players: Play
 };
 
 export const getMostVotedChallenge = (players: Players, challenges: TextCard[]) => {
-  const votes: NumberDictionary = {};
+  const votes: Dictionary<number> = {};
 
   utils.players.getListOfPlayers(players).forEach((player) => {
     if (votes[player.challengeId] === undefined) {
@@ -206,7 +206,7 @@ export const updateBracketsWithVotes = (players: Players, brackets: Bracket[]) =
 
   // Count votes
   utils.players.getListOfPlayers(players).forEach((player) => {
-    const pVotes: NumberDictionary = player.votes;
+    const pVotes: Dictionary<number> = player.votes;
     Object.keys(pVotes).forEach((vote) => {
       const target = Number(vote);
       const voted = pVotes[vote];
@@ -320,14 +320,14 @@ export const makeFinalBrackets = (brackets: Bracket[]) => {
  * @return An object containing the challenge card and an array of contenders sorted by number of wins.
  */
 export const getPastBattle = (brackets: Bracket[], challenge: TextCard) => {
-  const winsByContender: NumberDictionary = {};
+  const winsByContender: Dictionary<number> = {};
 
   brackets.forEach((bracket) => {
     const currentWins = winsByContender[bracket.id] || 0;
     winsByContender[bracket.id] = currentWins + 1;
   });
 
-  const sortedWins: [CardId, number][] = Object.entries(winsByContender).sort(
+  const sortedWins: [UID, number][] = Object.entries(winsByContender).sort(
     ([, winsA], [, winsB]) => winsB - winsA,
   );
 

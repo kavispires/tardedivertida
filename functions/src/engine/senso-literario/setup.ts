@@ -125,7 +125,7 @@ export const prepareResultPhase = async (
  * Prepare game over phase
  */
 export const prepareGameOverPhase = async (
-  gameId: GameId,
+  gameId: UID,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,

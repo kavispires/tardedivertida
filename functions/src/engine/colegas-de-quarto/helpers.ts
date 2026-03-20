@@ -97,7 +97,7 @@ export function buildRanking(
 
   // If the target
   const targetId = board.find((entry) => entry.playerId === TARGET_ID)?.id ?? 'ERROR';
-  const foundTarget: PlayerId[] = [];
+  const foundTarget: UID[] = [];
   utils.players.getListOfPlayers(players).forEach((player) => {
     const guesses: string[] = Object.values<string[]>(player.guesses).flat();
     if (!guesses.includes(targetId)) {

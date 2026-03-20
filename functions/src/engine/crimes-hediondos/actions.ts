@@ -5,9 +5,9 @@ import { getNextPhase } from './index';
 import type { Guesses } from './types';
 
 export const handleSubmitCrime = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   data: {
     weaponId: string;
     evidenceId: string;
@@ -47,9 +47,9 @@ export const handleSubmitCrime = async (
 };
 
 export const handleSubmitMark = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   sceneIndex: number,
 ) => {
   return await utils.firestore.updatePlayer({
@@ -64,9 +64,9 @@ export const handleSubmitMark = async (
 };
 
 export const handleSubmitGuesses = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   guesses: Guesses,
 ) => {
   return await utils.firestore.updatePlayer({

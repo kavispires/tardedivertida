@@ -5,9 +5,9 @@ import { getNextPhase } from './index';
 // import { FirebaseStateData } from './types';
 
 export const handlePlaceGood = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   goodId: string,
   newWarehouseSlot: number,
   previousWarehouseSlot?: number | null,
@@ -41,9 +41,9 @@ export const handlePlaceGood = async (
 };
 
 export const handleFulfillOrders = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   fulfillments: Record<string, number>, // goodId: slotId
 ) => {
   return await utils.firestore.updatePlayer({

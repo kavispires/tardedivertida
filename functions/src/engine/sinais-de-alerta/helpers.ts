@@ -74,15 +74,10 @@ export const dealCardsToPlayers = (players: Players, store: FirebaseStoreData) =
   return cards;
 };
 
-const buildId = (descriptorId: CardId, subjectId: CardId, playerId: PlayerId) => {
+const buildId = (descriptorId: UID, subjectId: UID, playerId: UID) => {
   return `${descriptorId}-${subjectId}-${playerId}`;
 };
-const getTitle = (
-  cards: Dictionary<TextCard>,
-  descriptorId: CardId,
-  subjectId: CardId,
-  language: Language,
-) => {
+const getTitle = (cards: Dictionary<TextCard>, descriptorId: UID, subjectId: UID, language: Language) => {
   if (language === 'pt') {
     return `${cards[subjectId].text} ${cards[descriptorId].text}`;
   }

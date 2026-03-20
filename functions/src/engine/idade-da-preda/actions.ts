@@ -4,13 +4,13 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 export const handleSubmitConcepts = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   proposedConcepts: {
     meaning: string;
-    itemsIds: CardId[];
-    playerId: PlayerId;
+    itemsIds: UID[];
+    playerId: UID;
     age: number;
     soundId?: string;
     syllable?: DualLanguageValue;
@@ -29,10 +29,10 @@ export const handleSubmitConcepts = async (
 };
 
 export const handleDownvoteConcepts = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  conceptIds: CardId[],
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  conceptIds: UID[],
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -46,12 +46,12 @@ export const handleDownvoteConcepts = async (
 };
 
 export const handleSubmitName = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  itemId: CardId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  itemId: UID,
   name: string,
-  conceptsIds: CardId[],
+  conceptsIds: UID[],
 ) => {
   const proposedName = {
     name,
@@ -71,10 +71,10 @@ export const handleSubmitName = async (
 };
 
 export const handleSubmitGuesses = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  guesses: Record<PlayerId, CardId>,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  guesses: Record<UID, UID>,
   choseRandomly: boolean,
 ) => {
   return await utils.firestore.updatePlayer({

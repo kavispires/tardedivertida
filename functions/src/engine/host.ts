@@ -102,8 +102,8 @@ const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
 };
 
 export type BasicGamePayload = {
-  gameId: GameId;
-  gameName: GameName;
+  gameId: UID;
+  gameName: string;
   action: string;
   [key: string]: any;
 };

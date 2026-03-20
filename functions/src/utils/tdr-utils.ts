@@ -65,7 +65,7 @@ export const getItems = async (
   }
 
   // Get used items deck
-  const usedItems: BooleanDictionary = await getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.ITEMS, {});
+  const usedItems: Dictionary<boolean> = await getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.ITEMS, {});
 
   // Filter out used items
   let availableAlienItems = gameUtils.filterOutByIds(itemsObj, usedItems);
@@ -167,7 +167,7 @@ export const getSingleWords = async (language: Language, quantity?: number): Pro
  * @param usedWords
  * @returns
  */
-export const saveUsedSingleWords = async (usedWords: BooleanDictionary) => {
+export const saveUsedSingleWords = async (usedWords: Dictionary<boolean>) => {
   return updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.SINGLE_WORDS, usedWords);
 };
 
@@ -226,7 +226,7 @@ export const getContenders = async (
   }
 
   // Get used items deck
-  const usedContenders: BooleanDictionary = await getGlobalFirebaseDocData(
+  const usedContenders: Dictionary<boolean> = await getGlobalFirebaseDocData(
     GLOBAL_USED_DOCUMENTS.CONTENDERS,
     {},
   );
@@ -304,7 +304,7 @@ export const getUnusedResources = async <T extends { id: string; nsfw?: boolean 
   }
 
   // Get used resources
-  const usedResources: BooleanDictionary = await getGlobalFirebaseDocData(usedDocKey, {});
+  const usedResources: Dictionary<boolean> = await getGlobalFirebaseDocData(usedDocKey, {});
 
   // Filter out used resources
   let availableResources = gameUtils.filterOutByIds(safeResources, usedResources);
@@ -370,7 +370,7 @@ export const modifySuspectIdsByOptions = (
  * @param usedAdjectives
  * @returns
  */
-export const saveUsedAdjectives = async (usedAdjectives: BooleanDictionary) => {
+export const saveUsedAdjectives = async (usedAdjectives: Dictionary<boolean>) => {
   return updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ADJECTIVES, usedAdjectives);
 };
 
@@ -379,6 +379,6 @@ export const saveUsedAdjectives = async (usedAdjectives: BooleanDictionary) => {
  * @param items
  * @returns
  */
-export const savePairs = async (pairs: BooleanDictionary) => {
+export const savePairs = async (pairs: Dictionary<boolean>) => {
   return updateDataFirebaseDoc(DATA_DOCUMENTS.PAIRS, pairs);
 };

@@ -244,7 +244,7 @@ export const buildRanking = (players: Players, clues: ClueEntry[], store: Fireba
 
   const playerCount = utils.players.getPlayerCount(players);
 
-  const gotPassivePoints: Record<PlayerId, PlayerId[]> = {};
+  const gotPassivePoints: Record<UID, UID[]> = {};
 
   // Collect points
   utils.players.getListOfPlayers(players).forEach((player) => {
@@ -281,7 +281,7 @@ export const buildRanking = (players: Players, clues: ClueEntry[], store: Fireba
   });
 
   // 0 correct guesses on your clue gets minus player count in points
-  const whoGotNoPoints: PlayerId[] = utils.players.getListOfPlayersIds(players).filter((playerId) => {
+  const whoGotNoPoints: UID[] = utils.players.getListOfPlayersIds(players).filter((playerId) => {
     if (gotPassivePoints[playerId] === undefined || gotPassivePoints[playerId].length === 0) {
       return true;
     }

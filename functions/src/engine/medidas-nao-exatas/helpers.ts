@@ -34,12 +34,12 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
 
 export const determineResults = (
   players: Players,
-  presenterId: PlayerId,
-  secretWordId: CardId,
+  presenterId: UID,
+  secretWordId: UID,
   wordsDict: Dictionary<TextCard>,
   store: FirebaseStoreData,
   metricsDescriptors: Record<string, TextCard[]>,
-  metrics: Record<CardId, number>,
+  metrics: Record<UID, number>,
   pointsBrackets: number[],
 ) => {
   // Gained points: [correct, levels, presenter]

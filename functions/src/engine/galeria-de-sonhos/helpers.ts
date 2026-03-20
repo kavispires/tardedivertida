@@ -74,7 +74,7 @@ export const getRoundWords = (wordsDeck: TextCard[]): [TextCard[], TextCard[]] =
   return [wordsDeck, selectedWords];
 };
 
-export const buildRanking = (players: Players, store: FirebaseStoreData, playerInNightmareId?: PlayerId) => {
+export const buildRanking = (players: Players, store: FirebaseStoreData, playerInNightmareId?: UID) => {
   const listOfPlayers = utils.players.getListOfPlayers(players);
   // Gained points: super sparks, sparks, nightmare
   const scores = new utils.players.Scores(players, [0, 0, 0]);
@@ -135,7 +135,7 @@ export const getPlayersWithMaxDreams = (players: Players) => {
   // Count selected cards per player
   const cardCount = utils.players
     .getListOfPlayers(players)
-    .reduce((acc: NumberDictionary, player: PlainObject) => {
+    .reduce((acc: Dictionary<number>, player: PlainObject) => {
       acc[player.id] = Object.keys(player.cards).length;
       return acc;
     }, {});
@@ -143,7 +143,7 @@ export const getPlayersWithMaxDreams = (players: Players) => {
   // Check if anybody is having a nightmare (in the dark) (uniquely most cards)
   const maxDreamCount = Math.max(...Object.values(cardCount));
 
-  return Object.entries(cardCount).reduce((acc: PlayerId[], [playerId, quantity]: [PlayerId, number]) => {
+  return Object.entries(cardCount).reduce((acc: UID[], [playerId, quantity]: [UID, number]) => {
     if (quantity === maxDreamCount) {
       acc.push(playerId);
     }
@@ -169,7 +169,7 @@ export const getMostVotedCards = (table: ImageCard[], word: TextCard): ImageCard
  */
 export const simulateBotCards = (players: Players, table: ImageCard[]) => {
   const playersCount = utils.players.getListOfPlayers(players).length;
-  const cardMatches: Dictionary<PlayerId[]> = {};
+  const cardMatches: Dictionary<UID[]> = {};
 
   utils.players.getListOfPlayers(players).forEach((player) => {
     Object.keys(player.cards).forEach((cardId) => {
@@ -181,8 +181,8 @@ export const simulateBotCards = (players: Players, table: ImageCard[]) => {
   });
 
   let mostMatchCount = 1;
-  let mostMatchedCards: CardId[] = [];
-  const singleMatchedCards: Record<PlayerId, CardId> = {};
+  let mostMatchedCards: UID[] = [];
+  const singleMatchedCards: Record<UID, UID> = {};
   Object.keys(cardMatches).forEach((cardId) => {
     const entry = cardMatches[cardId];
     const count = entry.length;
@@ -208,7 +208,7 @@ export const simulateBotCards = (players: Players, table: ImageCard[]) => {
 
     bot.cards = utils.game
       .getRandomItems(singleMatchedCardIds, Math.min(singleMatchedCardIds.length, playersCount))
-      .reduce((acc: Dictionary<PlayerCard>, cardId: CardId) => {
+      .reduce((acc: Dictionary<PlayerCard>, cardId: UID) => {
         const entry: PlayerCard = {
           cardId,
           used: false,
@@ -226,7 +226,7 @@ export const simulateBotCards = (players: Players, table: ImageCard[]) => {
   if (bots[1] && mostMatchedCards.length >= 1) {
     const bot = bots[1];
 
-    bot.cards = mostMatchedCards.reduce((acc: Dictionary<PlayerCard>, cardId: CardId) => {
+    bot.cards = mostMatchedCards.reduce((acc: Dictionary<PlayerCard>, cardId: UID) => {
       const entry: PlayerCard = {
         cardId,
         used: false,

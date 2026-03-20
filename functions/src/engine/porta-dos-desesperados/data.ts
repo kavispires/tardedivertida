@@ -28,7 +28,7 @@ export const getData = async (): Promise<ResourceData> => {
  */
 export const saveData = async (relationships: ImageCardRelationship): Promise<void> => {
   // Collect all ids
-  const usedCardsIds: BooleanDictionary = utils.helpers.buildBooleanDictionary(Object.keys(relationships));
+  const usedCardsIds: Dictionary<boolean> = utils.helpers.buildBooleanDictionary(Object.keys(relationships));
 
   await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.IMAGE_CARDS, usedCardsIds);
 

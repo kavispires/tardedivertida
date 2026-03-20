@@ -4,9 +4,9 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 export const handleSubmitPlanning = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   planning: Dictionary<string>,
 ) => {
   return await utils.firestore.updatePlayer({
@@ -21,9 +21,9 @@ export const handleSubmitPlanning = async (
 };
 
 export const handleSubmitPlacements = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   evaluations: Dictionary<string>,
 ) => {
   return await utils.firestore.updatePlayer({

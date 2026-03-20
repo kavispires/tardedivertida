@@ -120,7 +120,7 @@ export const calculateDifficulty = (trapsKeys: string[]) => {
   return 5;
 };
 
-export const getDoorSet = (doorDeck: ImageCardId[], doorDeckIndex: number, trap: Trap) => {
+export const getDoorSet = (doorDeck: UID[], doorDeckIndex: number, trap: Trap) => {
   const quantity = trap === TRAPS.EXTRA_DOOR ? DOOR_OPTIONS_PER_ROUND + 1 : DOOR_OPTIONS_PER_ROUND;
 
   const selectedDoors = doorDeck.slice(doorDeckIndex, doorDeckIndex + quantity);
@@ -133,7 +133,7 @@ export const getDoorSet = (doorDeck: ImageCardId[], doorDeckIndex: number, trap:
   };
 };
 
-export const getBookPages = (pagesDeck: ImageCardId[], pagesDeckIndex: number, trap: Trap) => {
+export const getBookPages = (pagesDeck: UID[], pagesDeckIndex: number, trap: Trap) => {
   let quantity = trap === TRAPS.FEWER_PAGES ? PAGES_PER_ROUND / 2 : PAGES_PER_ROUND;
 
   if (trap === TRAPS.FLIP_BOOK) {
@@ -163,7 +163,7 @@ export const getBookPages = (pagesDeck: ImageCardId[], pagesDeckIndex: number, t
  * - Each bot is marked as ready after door selection
  * - This creates a more competitive experience as bots have a higher chance of selecting the correct door
  */
-export const botDoorSelection = (players: Players, doors: ImageCardId[], doorAnswerId: ImageCardId) => {
+export const botDoorSelection = (players: Players, doors: UID[], doorAnswerId: UID) => {
   // The bot pool is only half of the doors, but always has the answer
   const options = [...utils.game.getRandomItems(doors, 4), doorAnswerId];
 
@@ -351,8 +351,8 @@ export const getAchievements = (store: FirebaseStoreData) => {
  */
 export function mergeVisitedDoorsRelationships(
   relationships: ImageCardRelationship,
-  visitedDoors: ImageCardId[],
-  bookPages: ImageCardId[],
+  visitedDoors: UID[],
+  bookPages: UID[],
 ) {
   bookPages.forEach((pageId) => {
     if (relationships[pageId] === undefined) {

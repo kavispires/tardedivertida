@@ -10,7 +10,7 @@ export type TaNaCaraOptions = {
 
 export interface CharacterFace extends SuspectCard {
   revealed: boolean;
-  playerId?: PlayerId;
+  playerId?: UID;
 }
 
 export interface ResourceData {

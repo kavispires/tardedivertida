@@ -24,7 +24,7 @@ export type MountainDilemma = {
 export type Lodge = {
   id: number;
   selected: boolean;
-  playersIds: PlayerId[];
+  playersIds: UID[];
 };
 
 export type EsquiadoresAchievement = keyof typeof ESQUIADORES_ACHIEVEMENTS;

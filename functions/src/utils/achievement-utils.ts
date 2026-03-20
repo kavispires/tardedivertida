@@ -3,12 +3,12 @@ import { calculateAverage, removeDuplicates } from './game-utils';
 import { getListOfPlayers } from './players-utils';
 
 interface StoreAchievement {
-  playerId: PlayerId;
+  playerId: UID;
   [key: string]: any;
 }
 
 interface ResultAchievement {
-  playerId: PlayerId;
+  playerId: UID;
   value: number;
 }
 
@@ -41,7 +41,7 @@ export const setup = (players: Players, properties: PlainObject) => {
  * @param value the value to increase
  * @returns the achievements
  */
-export const increase = (store: PlainObject, playerId: PlayerId, property: string, value: number) => {
+export const increase = (store: PlainObject, playerId: UID, property: string, value: number) => {
   if (store.achievements[playerId] !== undefined) {
     store.achievements[playerId][property] = (store.achievements[playerId][property] || 0) + value;
   }
@@ -57,7 +57,7 @@ export const increase = (store: PlainObject, playerId: PlayerId, property: strin
  * @param value
  * @returns the achievements
  */
-export const push = (store: PlainObject, playerId: PlayerId, property: string, value: unknown) => {
+export const push = (store: PlainObject, playerId: UID, property: string, value: unknown) => {
   if (store.achievements[playerId] !== undefined) {
     store.achievements[playerId][property].push(value);
   }
@@ -76,7 +76,7 @@ export const push = (store: PlainObject, playerId: PlayerId, property: string, v
  */
 export const insert = (
   store: PlainObject,
-  playerId: PlayerId,
+  playerId: UID,
   property: string,
   value: unknown,
   index: number,
@@ -97,7 +97,7 @@ export const insert = (
  * @param value - The value to be added to the last element of the specified property array.
  * @returns The updated achievements object from the store.
  */
-export const addToLast = (store: PlainObject, playerId: PlayerId, property: string, value: number) => {
+export const addToLast = (store: PlainObject, playerId: UID, property: string, value: number) => {
   if (store.achievements[playerId] !== undefined) {
     store.achievements[playerId][property][store.achievements[playerId][property].length - 1] += value;
   }
@@ -129,7 +129,7 @@ const _getValue = (achievement: StoreAchievement, property: string): ResultAchie
 export const getMostAndLeastOf = (
   store: PlainObject,
   property: string,
-  ineligiblePlayers: PlayerId[] = [],
+  ineligiblePlayers: UID[] = [],
   condition: (args) => boolean = () => true,
 ): AchievementResult => {
   let most: StoreAchievement[] = [];
@@ -172,7 +172,7 @@ export const getMostAndLeastOf = (
 export const getMostAndLeastOfAverage = (
   store: PlainObject,
   property: string,
-  ineligiblePlayers: PlayerId[] = [],
+  ineligiblePlayers: UID[] = [],
 ): AchievementResult => {
   let most: StoreAchievement[] = [];
   let least: StoreAchievement[] = [];
@@ -219,7 +219,7 @@ export const getMostAndLeastOfAverage = (
 export const getMostAndLeastUniqueItemsOf = (
   store: PlainObject,
   property: string,
-  ineligiblePlayers: PlayerId[] = [],
+  ineligiblePlayers: UID[] = [],
 ): AchievementResult => {
   Object.values<StoreAchievement>(store.achievements).forEach((achievement) => {
     achievement[property] = removeDuplicates(achievement[property]).length;
@@ -239,7 +239,7 @@ export const getMostAndLeastUniqueItemsOf = (
 export const getEarliestAndLatestOccurrence = (
   store: PlainObject,
   property: string,
-  ineligiblePlayers: PlayerId[] = [],
+  ineligiblePlayers: UID[] = [],
 ): AchievementResult => {
   Object.values<StoreAchievement>(store.achievements).forEach((achievement) => {
     achievement[property] = achievement[property].findIndex(Boolean);
@@ -262,7 +262,7 @@ export const getOnlyExactMatch = (
   store: PlainObject,
   property: string,
   value: unknown,
-  ineligiblePlayers: PlayerId[] = [],
+  ineligiblePlayers: UID[] = [],
 ): ResultAchievement | null => {
   const eligibleAchievements = Object.values<StoreAchievement>(store.achievements).filter((achievement) => {
     return !ineligiblePlayers.includes(achievement.playerId);
@@ -287,8 +287,8 @@ export const getOnlyExactMatch = (
 export const getPlayersWithTruthyAchievement = (
   store: PlainObject,
   property: string,
-  ineligiblePlayers: PlayerId[] = [],
-): PlayerId[] => {
+  ineligiblePlayers: UID[] = [],
+): UID[] => {
   const achievements = Object.values<StoreAchievement>(store.achievements).filter(
     (a) => !ineligiblePlayers.includes(a.playerId),
   );
@@ -309,7 +309,7 @@ export const getPlayersWithTruthyAchievement = (
 export const getHighestAndLowestOccurrences = (
   store: PlainObject,
   property: string,
-  ineligiblePlayers: PlayerId[] = [],
+  ineligiblePlayers: UID[] = [],
 ): AchievementResult => {
   let highest: StoreAchievement[] = [];
   let lowest: StoreAchievement[] = [];

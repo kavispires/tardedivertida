@@ -176,7 +176,7 @@ export const calculateScore = (
  * Get achievements:
  * @param store
  */
-export const getAchievements = (store: FirebaseStoreData, witnessId: PlayerId) => {
+export const getAchievements = (store: FirebaseStoreData, witnessId: UID) => {
   const achievements: Achievement<TestemunhaOcularAchievement>[] = [];
 
   // Witness:

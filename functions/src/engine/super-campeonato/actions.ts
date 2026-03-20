@@ -12,10 +12,10 @@ import { getNextPhase } from '.';
  * @returns
  */
 export const handleSubmitChallenge = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  challengeId: CardId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  challengeId: UID,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -37,10 +37,10 @@ export const handleSubmitChallenge = async (
  * @returns
  */
 export const handleSubmitContenders = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  contendersId: CardId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  contendersId: UID,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -64,9 +64,9 @@ export const handleSubmitContenders = async (
  * @returns
  */
 export const handleSubmitBets = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   quarter: string,
   semi: string,
   final: string,
@@ -91,10 +91,10 @@ export const handleSubmitBets = async (
  * @returns
  */
 export const handleSubmitVotes = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  votes: NumberDictionary,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  votes: Dictionary<number>,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

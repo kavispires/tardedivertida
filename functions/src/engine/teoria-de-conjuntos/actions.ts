@@ -17,10 +17,10 @@ import { OUTCOME } from './constants';
  * @returns - A promise that resolves after the update is complete.
  */
 export const handleSubmitJudge = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  judgeId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  judgeId: UID,
 ) => {
   return await utils.firestore.updateState({
     gameName,
@@ -36,9 +36,9 @@ export const handleSubmitJudge = async (
 };
 
 export const handleSubmitItemDiagram = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   itemId: ItemId,
   position: string,
 ) => {
@@ -62,9 +62,9 @@ export const handleSubmitItemDiagram = async (
 };
 
 export const handleSubmitEvaluation = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   evaluation: string,
 ) => {
   return await utils.firestore.updateState({
@@ -80,9 +80,9 @@ export const handleSubmitEvaluation = async (
 };
 
 export const handleSubmitEvaluationFix = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   itemId: ItemId,
   currentArea: string,
   newEvaluation: string,

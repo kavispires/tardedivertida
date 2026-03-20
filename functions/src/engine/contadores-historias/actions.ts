@@ -12,9 +12,9 @@ import { getNextPhase } from './index';
  * @returns
  */
 export const handleSubmitStory = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   story: string,
   cardId: string,
 ) => {
@@ -42,9 +42,9 @@ export const handleSubmitStory = async (
  * @returns
  */
 export const handlePlayCard = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   cardId: string,
 ) => {
   const actionText = 'play a card';
@@ -71,10 +71,10 @@ export const handlePlayCard = async (
  * @returns
  */
 export const handleSubmitVote = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  vote: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  vote: UID,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

@@ -1,34 +1,34 @@
 import type { DETETIVES_IMAGINATIVOS_ACHIEVEMENTS, DETETIVES_IMAGINATIVOS_ACTIONS } from './constants';
 
 export interface ResourceData {
-  cards: ImageCardId[];
+  cards: UID[];
 }
 
 export interface UsedCards {
-  cards: ImageCardId[];
+  cards: UID[];
   clue: string;
-  playerId: PlayerId;
+  playerId: UID;
   isLeader: boolean;
 }
 
 export interface TableEntry {
-  playerId: PlayerId;
-  cards: ImageCardId[];
+  playerId: UID;
+  cards: UID[];
 }
 
 export interface DetetivesImaginativosStore extends DefaultStore {
   usedCards: UsedCards[];
-  gameOrder: PlayerId[];
-  turnOrder: PlayerId[];
+  gameOrder: UID[];
+  turnOrder: UID[];
   [key: string]: any;
 }
 
 export interface DetetivesImaginativosState extends DefaultState {
-  leaderId?: PlayerId;
-  impostorId?: PlayerId;
-  phaseOrder?: PlayerId[];
+  leaderId?: UID;
+  impostorId?: UID;
+  phaseOrder?: UID[];
   phaseIndex?: number;
-  currentPlayerId?: PlayerId;
+  currentPlayerId?: UID;
   table?: TableEntry;
   impostorVotes?: number;
   winners?: Player[];

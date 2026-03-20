@@ -46,20 +46,20 @@ export const getQuestionsAndSuspects = async (
  * @param pastQuestions
  */
 export const saveData = async (
-  gameId: GameId,
+  gameId: UID,
   history: TestemunhaOcularHistoryEntry[],
   win: boolean,
-  perpetratorId: CardId,
+  perpetratorId: UID,
   playerCount: number,
 ) => {
   try {
-    const usedQuestionsIds: BooleanDictionary = {};
-    const usedSuspectsIds: BooleanDictionary = {};
+    const usedQuestionsIds: Dictionary<boolean> = {};
+    const usedSuspectsIds: Dictionary<boolean> = {};
     // If the players lost, skip saving perpetrator answers and first entry.
     const pastQuestions = win ? history : history.slice(1);
 
     // testimonyAnswers[questionId][suspectId] = [array of -1 or 1 for false/true answers]
-    const testimonyAnswers: Record<CardId, Record<CardId, (-1 | 1)[]>> = {};
+    const testimonyAnswers: Record<UID, Record<UID, (-1 | 1)[]>> = {};
 
     pastQuestions.forEach((entry) => {
       usedQuestionsIds[entry.id] = true;

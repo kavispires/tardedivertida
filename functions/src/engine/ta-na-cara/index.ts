@@ -34,7 +34,7 @@ import {
  * @returns
  */
 export const getInitialState = (
-  gameId: GameId,
+  gameId: UID,
   uid: string,
   language: Language,
   version: string,

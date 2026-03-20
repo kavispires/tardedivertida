@@ -13,9 +13,9 @@ import type { PlayerSuggestion } from './types';
  * @returns
  */
 export const handleSubmitWordSelectionVotes = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   votes: string[],
 ) => {
   return await utils.firestore.updatePlayer({
@@ -38,9 +38,9 @@ export const handleSubmitWordSelectionVotes = async (
  * @returns
  */
 export const handleSubmitSuggestions = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   suggestions: string[],
 ) => {
   return await utils.firestore.updatePlayer({
@@ -63,9 +63,9 @@ export const handleSubmitSuggestions = async (
  * @returns
  */
 export const handleUpdateValidSuggestions = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   suggestions: PlainObject,
 ) => {
   return await utils.firestore.updateState({
@@ -88,9 +88,9 @@ export const handleUpdateValidSuggestions = async (
  * @returns
  */
 export const handleSubmitValidation = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   validSuggestions: PlayerSuggestion[],
 ) => {
   return await utils.firestore.updateStore({
@@ -114,9 +114,9 @@ export const handleSubmitValidation = async (
  * @returns
  */
 export const handleSendGuess = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   guess: string,
 ) => {
   return await utils.firestore.updateState({
@@ -140,9 +140,9 @@ export const handleSendGuess = async (
  * @returns
  */
 export const handleConfirmGuess = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   outcome: string,
 ) => {
   return await utils.firestore.updateStore({

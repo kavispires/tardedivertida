@@ -39,7 +39,7 @@ export type ResourceData = {
 };
 
 export interface ArteRuimDrawing extends ArteRuimCard {
-  playerId: PlayerId | null;
+  playerId: UID | null;
   drawing: string | null;
   successRate: number;
 }
@@ -58,7 +58,7 @@ export interface ArteRuimPlayer extends Player {
   votes: any;
 }
 
-export type ArteRuimPlayers = Record<PlayerId, ArteRuimPlayer>;
+export type ArteRuimPlayers = Record<UID, ArteRuimPlayer>;
 
 export type ArteRuimAchievement = keyof typeof ARTE_RUIM_ACHIEVEMENTS;
 

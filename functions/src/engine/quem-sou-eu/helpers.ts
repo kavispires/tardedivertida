@@ -72,10 +72,10 @@ export const buildRanking = (players: Players, currentRound: number) => {
 };
 
 type GalleryEntry = {
-  playerId: PlayerId;
-  characterId: CardId;
-  playersSay: Dictionary<PlayerId[]>;
-  playersPoints: Record<PlayerId, number>;
+  playerId: UID;
+  characterId: UID;
+  playersSay: Dictionary<UID[]>;
+  playersPoints: Record<UID, number>;
 };
 
 export const buildGallery = (store: PlainObject, players: Players, currentRound: number): GalleryEntry[] => {

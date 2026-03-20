@@ -41,7 +41,7 @@ export const getMonsterCards = async (): Promise<ResourceData> => {
  * @param pastSketches
  */
 export const saveData = async (sketches: MonsterSketch[], language: Language): Promise<void> => {
-  const usedIds: BooleanDictionary = {};
+  const usedIds: Dictionary<boolean> = {};
   const drawings = sketches.reduce((acc, entry) => {
     usedIds[entry.id] = true;
     const key = [entry.id, entry.playerId, Date.now()].join('::');

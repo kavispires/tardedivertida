@@ -156,7 +156,7 @@ export const prepareAreYouARobotPhase = async (
   const robotCardsNeeded = Math.max(MIN_ROUND_CARDS - playerCards.length, 1);
   const botCards: CaptchaCard[] = [];
   utils.game.makeArray(robotCardsNeeded).forEach(() => {
-    const cardId = store.botDeck.pop() as ImageCardId;
+    const cardId = store.botDeck.pop() as UID;
     botCards.push({
       id: cardId,
       players: [],
@@ -222,7 +222,7 @@ export const prepareResultsPhase = async (
 };
 
 export const prepareGameOverPhase = async (
-  gameId: GameId,
+  gameId: UID,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,

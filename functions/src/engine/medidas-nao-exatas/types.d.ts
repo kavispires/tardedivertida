@@ -7,29 +7,29 @@ export type ResourceData = {
 };
 
 export type Guess = {
-  cardId: CardId;
+  cardId: UID;
   level: number;
   timestamp: number;
-  playerId?: PlayerId;
+  playerId?: UID;
   used?: boolean;
   retry?: boolean;
 };
 
 export type GalleryBracket = {
   score: number;
-  playersIds: PlayerId[];
+  playersIds: UID[];
   wrongGuesses: {
-    playerId: PlayerId;
-    cardId: CardId;
+    playerId: UID;
+    cardId: UID;
     invalid?: boolean;
   }[];
 };
 
 export type GalleryEntry = {
-  secretWordId: CardId;
-  cards: Record<CardId, TextCard>;
+  secretWordId: UID;
+  cards: Record<UID, TextCard>;
   metricsDescriptors: Record<string, TextCard[]>;
-  metrics: Record<CardId, number>;
+  metrics: Record<UID, number>;
   brackets: GalleryBracket[];
 };
 

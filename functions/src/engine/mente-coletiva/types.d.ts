@@ -25,23 +25,23 @@ export type Deck = GroupQuestionCard[];
 export type GalleryEntry = {
   question: GroupQuestionCard;
   answers: {
-    playerIds: PlayerId[];
+    playerIds: UID[];
     answer: string;
   }[];
 };
 
 export interface MenteColetivaStore extends DefaultStore {
   deck: Deck;
-  gameOrder: PlayerId[];
+  gameOrder: UID[];
   pastQuestions: PastQuestions[];
   currentQuestion?: GroupQuestionCard;
   gallery?: GalleryEntry[];
 }
 
 export interface MenteColetivaState extends DefaultState {
-  gameOrder?: PlayerId[];
+  gameOrder?: UID[];
   roundType?: string;
-  activePlayerId?: PlayerId;
+  activePlayerId?: UID;
 }
 
 export interface MenteColetivaInitialState extends InitialState {
@@ -51,7 +51,7 @@ export interface MenteColetivaInitialState extends InitialState {
 
 export interface AnswerEntry {
   id: string;
-  playerId: PlayerId;
+  playerId: UID;
   answer: string;
   parsedAnswer: string;
   isLocked: boolean;
@@ -87,9 +87,9 @@ export type SheepAnimation = {
 };
 
 export interface PastureChangeEntry extends SheepAnimation {
-  id: PlayerId;
-  name: PlayerName;
-  avatarId: PlayerAvatarId;
+  id: UID;
+  name: string;
+  avatarId: string;
   level: number;
   [key: string]: any;
 }

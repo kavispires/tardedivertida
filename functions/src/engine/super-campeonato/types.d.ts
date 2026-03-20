@@ -22,7 +22,7 @@ export type ContendersDeck = ContenderCard[];
 export type ChallengesDeck = TextCard[];
 
 export type FightingContender = {
-  playerId: PlayerId | 'CPU';
+  playerId: UID | 'CPU';
 } & Pick<ContenderCard, 'id' | 'name' | 'description'>;
 
 export type PastBattles = {
@@ -36,7 +36,7 @@ export interface Bracket extends FightingContender {
   position: number;
   win?: boolean;
   tier: BracketTier;
-  votes: PlayerId[];
+  votes: UID[];
 }
 
 export interface SuperCampeonatoStore extends DefaultStore {

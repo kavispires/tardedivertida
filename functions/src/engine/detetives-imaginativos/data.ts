@@ -28,7 +28,7 @@ export const getData = async (players: Players): Promise<ResourceData> => {
 };
 
 export const saveData = async (usedCards: UsedCards[], language: Language) => {
-  const usedCardsIds: BooleanDictionary = {};
+  const usedCardsIds: Dictionary<boolean> = {};
   const clues = usedCards.reduce((acc, entry) => {
     (entry.cards ?? []).forEach((cardId) => {
       usedCardsIds[cardId] = true;

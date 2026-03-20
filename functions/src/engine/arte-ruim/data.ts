@@ -130,7 +130,7 @@ export const getCards = async (
   }
 
   // Get used deck
-  const usedCardsIds: BooleanDictionary = await globalUtils.getGlobalFirebaseDocData(
+  const usedCardsIds: Dictionary<boolean> = await globalUtils.getGlobalFirebaseDocData(
     GLOBAL_USED_DOCUMENTS.ARTE_RUIM,
     {},
   );

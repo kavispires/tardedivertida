@@ -14,10 +14,10 @@ import { getNextPhase } from '.';
  * @returns - it triggers the next state.
  */
 export const handleSubmitAlien = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  alienId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  alienId: UID,
 ) => {
   return await utils.firestore.updateState({
     gameName,
@@ -41,9 +41,9 @@ export const handleSubmitAlien = async (
  * @returns - it triggers the next state when all players are ready.
  */
 export const handleSubmitSeeds = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   seeds: Dictionary<number>,
 ) => {
   return await utils.firestore.updatePlayer({
@@ -68,11 +68,11 @@ export const handleSubmitSeeds = async (
  * @returns - it triggers the next state when all players are ready.
  */
 export const handleSubmitHumanInquiry = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  objectsIds: CardId[],
-  intention: CardId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  objectsIds: UID[],
+  intention: UID,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -94,9 +94,9 @@ export const handleSubmitHumanInquiry = async (
  * @returns - it updates the current state.
  */
 export const handleSubmitAlienResponse = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   alienResponse: string,
 ) => {
   return await utils.firestore.updateState({
@@ -120,11 +120,11 @@ export const handleSubmitAlienResponse = async (
  * @returns - it triggers the next phase.
  */
 export const handleSubmitAlienRequest = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   alienRequest: string,
-  intention: CardId,
+  intention: UID,
 ) => {
   return await utils.firestore.updateStore({
     gameName,
@@ -148,10 +148,10 @@ export const handleSubmitAlienRequest = async (
  * @returns - it triggers the next state when all players are ready.
  */
 export const handleSubmitOfferings = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  offeringsIds: CardId[],
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  offeringsIds: UID[],
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

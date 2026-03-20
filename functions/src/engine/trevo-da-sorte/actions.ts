@@ -13,10 +13,10 @@ import type { CloverLeaf, Guess, GuessPayload } from './types';
  * @returns
  */
 export const handleSubmitBadWords = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  cardsIds: CardId[],
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  cardsIds: UID[],
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -38,9 +38,9 @@ export const handleSubmitBadWords = async (
  * @returns
  */
 export const handleSubmitClues = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   clues: CloverLeaf[],
 ) => {
   const update = {
@@ -70,11 +70,11 @@ export const handleSubmitClues = async (
  * @returns
  */
 export const handleSubmitGuess = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   guesses: GuessPayload,
-  activeCloverId: PlayerId,
+  activeCloverId: UID,
 ) => {
   const guess: Guess = {
     cloverId: activeCloverId,

@@ -4,9 +4,9 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 export const handleSubmitDrawing = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   drawing: string,
 ) => {
   return await utils.firestore.updatePlayer({
@@ -21,10 +21,10 @@ export const handleSubmitDrawing = async (
 };
 
 export const handleSubmitEvaluation = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  guesses: ArrayDictionary<CardId>,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  guesses: Dictionary<UID[]>,
   choseRandomly: boolean,
 ) => {
   return await utils.firestore.updatePlayer({

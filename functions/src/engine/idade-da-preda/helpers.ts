@@ -59,7 +59,7 @@ export const gatherConcepts = (players: Players, store: FirebaseStoreData): Conc
     }
   });
 
-  const usedSounds: BooleanDictionary = {};
+  const usedSounds: Dictionary<boolean> = {};
   allConcepts.forEach((concept) => {
     if (concept.soundId) {
       usedSounds[concept.soundId] = true;

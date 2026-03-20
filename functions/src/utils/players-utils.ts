@@ -10,7 +10,7 @@ import { getRandomUniqueItem, shuffle } from './game-utils';
  * @param playerName
  * @returns
  */
-export function generatePlayerId(playerName: PlayerName): PlayerId {
+export function generatePlayerId(playerName: string): UID {
   return `_${playerName
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '') // Replace characters with accents
@@ -25,9 +25,9 @@ export function generatePlayerId(playerName: PlayerName): PlayerId {
  * @returns
  */
 export const createPlayer = (
-  id: PlayerId,
-  name: PlayerName,
-  avatarId: PlayerAvatarId,
+  id: UID,
+  name: string,
+  avatarId: string,
   players: Players = {},
   isGuest?: boolean,
 ): Player => {
@@ -55,7 +55,7 @@ export const createPlayer = (
  * @param playerId
  * @returns
  */
-export const readyPlayer = (players: Players, playerId: PlayerId): Players => {
+export const readyPlayer = (players: Players, playerId: UID): Players => {
   players[playerId].ready = true;
   players[playerId].updatedAt = Date.now();
   return players;
@@ -67,7 +67,7 @@ export const readyPlayer = (players: Players, playerId: PlayerId): Players => {
  * @param butThisOne
  * @returns
  */
-export const readyPlayers = (players: Players, butThisOne: PlayerId = ''): Players => {
+export const readyPlayers = (players: Players, butThisOne: UID = ''): Players => {
   for (const playerKey in players) {
     players[playerKey].ready = playerKey !== butThisOne;
   }
@@ -80,7 +80,7 @@ export const readyPlayers = (players: Players, butThisOne: PlayerId = ''): Playe
  * @param playerId
  * @returns
  */
-export const unReadyPlayer = (players: Players, playerId: PlayerId): Players => {
+export const unReadyPlayer = (players: Players, playerId: UID): Players => {
   players[playerId].ready = false;
   players[playerId].updatedAt = Date.now();
   return players;
@@ -92,8 +92,8 @@ export const unReadyPlayer = (players: Players, playerId: PlayerId): Players => 
  * @param butThisOne - playerId or list of player ids to be ignored
  * @returns
  */
-export const unReadyPlayers = (players: Players, butThisOne?: PlayerId | PlayerId[]): Players => {
-  const excludeList: PlayerId[] = butThisOne
+export const unReadyPlayers = (players: Players, butThisOne?: UID | UID[]): Players => {
+  const excludeList: UID[] = butThisOne
     ? typeof butThisOne === 'string'
       ? [butThisOne]
       : butThisOne
@@ -228,7 +228,7 @@ export const getActivePlayer = (turnOrder: GameOrder | TurnOrder, currentRound: 
  * @param activePlayerId
  * @returns
  */
-export const getNextPlayer = (turnOrder: GameOrder | TurnOrder, activePlayerId: PlayerId): PlayerId => {
+export const getNextPlayer = (turnOrder: GameOrder | TurnOrder, activePlayerId: UID): UID => {
   const index = turnOrder.indexOf(activePlayerId);
 
   if (index === -1) return turnOrder[0];
@@ -242,7 +242,7 @@ export const getNextPlayer = (turnOrder: GameOrder | TurnOrder, activePlayerId: 
  * @param activePlayerId
  * @returns
  */
-export const getPreviousPlayer = (turnOrder: GameOrder | TurnOrder, activePlayerId: PlayerId): PlayerId => {
+export const getPreviousPlayer = (turnOrder: GameOrder | TurnOrder, activePlayerId: UID): UID => {
   const index = turnOrder.indexOf(activePlayerId);
 
   if (index === -1 || index === 0) return turnOrder[turnOrder.length - 1];
@@ -363,7 +363,7 @@ export const addBots = (
 export const getListOfPlayers = (
   players: Players,
   includeBots = false,
-  butThese: PlayerId[] = [],
+  butThese: UID[] = [],
 ): Player[] => {
   const options = Object.values(players).filter((player) => !butThese.includes(player.id));
   if (includeBots) return options;
@@ -380,8 +380,8 @@ export const getListOfPlayers = (
 export const getListOfPlayersIds = (
   players: Players,
   includeBots = false,
-  butThese: PlayerId[] = [],
-): PlayerId[] => {
+  butThese: UID[] = [],
+): UID[] => {
   return orderBy(getListOfPlayers(players, includeBots, butThese), ['name'], ['asc']).map(
     (player) => player.id,
   );
@@ -393,7 +393,7 @@ export const getListOfPlayersIds = (
  * @param players - An object containing player information, where the key is the player ID and the value is the player object.
  * @returns A new array of player IDs sorted by the players' names in ascending order.
  */
-export const sortPlayerIdsByName = (playerIds: PlayerId[], players: Players): PlayerId[] => {
+export const sortPlayerIdsByName = (playerIds: UID[], players: Players): UID[] => {
   return orderBy(
     playerIds.map((id) => players[id]),
     ['name'],
@@ -432,8 +432,8 @@ export const buildGameOrder = (
   players: Players,
   doublingThreshold = 0,
   includeBots = false,
-  excludePlayersIds: PlayerId[] = [],
-): { gameOrder: PlayerId[]; playerIds: PlayerId[]; playerCount: number } => {
+  excludePlayersIds: UID[] = [],
+): { gameOrder: UID[]; playerIds: UID[]; playerCount: number } => {
   const playerIds = shuffle(getListOfPlayersIds(players, includeBots, excludePlayersIds));
   const gameOrder = playerIds.length < doublingThreshold ? [...playerIds, ...playerIds] : playerIds;
   return { gameOrder, playerIds, playerCount: playerIds.length };
@@ -445,7 +445,7 @@ export const buildGameOrder = (
  * @param startingPlayerId - the player to start the order
  * @returns
  */
-export const reorderGameOrder = (gameOrder: PlayerId[], startingPlayerId: PlayerId) => {
+export const reorderGameOrder = (gameOrder: UID[], startingPlayerId: UID) => {
   const index = gameOrder.indexOf(startingPlayerId);
   if (index === -1) {
     return gameOrder;
@@ -484,7 +484,7 @@ export class Scores {
    * @param value
    * @param gainedIndex
    */
-  add(playerId: PlayerId, value: number, gainedIndex = 0): void {
+  add(playerId: UID, value: number, gainedIndex = 0): void {
     this.scores[playerId].gainedPoints[gainedIndex] += value;
     this.scores[playerId].newScore += value;
   }
@@ -495,7 +495,7 @@ export class Scores {
    * @param value
    * @param gainedIndex
    */
-  addMultiple(playerIds: PlayerId[], value: number, gainedIndex = 0): void {
+  addMultiple(playerIds: UID[], value: number, gainedIndex = 0): void {
     playerIds.forEach((playerId) => {
       this.scores[playerId].gainedPoints[gainedIndex] += value;
       this.scores[playerId].newScore += value;
@@ -508,7 +508,7 @@ export class Scores {
    * @param value
    * @param gainedIndex
    */
-  subtract(playerId: PlayerId, value: number, gainedIndex = 0): void {
+  subtract(playerId: UID, value: number, gainedIndex = 0): void {
     this.scores[playerId].gainedPoints[gainedIndex] -= value;
     this.scores[playerId].newScore -= value;
   }
@@ -549,7 +549,7 @@ export class Scores {
    * @param playerId
    * @param index
    */
-  get(playerId: PlayerId): number {
+  get(playerId: UID): number {
     return this.scores[playerId]?.gainedPoints.reduce((acc, g) => acc + g, 0) ?? 0;
   }
 }
@@ -587,7 +587,7 @@ export type MostVotesResult = {
   /**
    * The players who voted for this result
    */
-  votes: PlayerId[];
+  votes: UID[];
   /**
    * How many players voted for this result
    */
@@ -646,8 +646,8 @@ export const getRankedVotes = (players: Players, property: string, winnerOnly = 
 
 export const getWinningRankedVote = (
   rankedVotes: MostVotesResult[],
-  turnOrder: PlayerId[],
-  activePlayerId: PlayerId,
+  turnOrder: UID[],
+  activePlayerId: UID,
 ): MostVotesResult => {
   // If there is only one entry in rankedVotes, that's the winner
   if (rankedVotes.length === 1) {

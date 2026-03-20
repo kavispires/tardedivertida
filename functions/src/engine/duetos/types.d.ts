@@ -24,7 +24,7 @@ export type ItemEntry = {
 
 export interface ResourceData {
   items: Item[];
-  images: CardId[];
+  images: UID[];
   emojis: number[];
   glyphs: number[];
   clubbers: number[];
@@ -39,7 +39,7 @@ export interface ResourceData {
 type GalleryItem = {
   pairId: string;
   pair: (ItemEntry | undefined)[];
-  players: PlayerId[];
+  players: UID[];
 };
 
 export type Gallery = GalleryItem[];

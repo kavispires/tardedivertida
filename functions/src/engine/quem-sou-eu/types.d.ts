@@ -22,10 +22,10 @@ export interface ResourceData {
 }
 
 export interface Character {
-  id: CardId;
+  id: UID;
   name: DualLanguageValue;
   description: DualLanguageValue;
-  playerId: PlayerId;
+  playerId: UID;
 }
 
 export interface QuemSouEuStore extends DefaultStore {

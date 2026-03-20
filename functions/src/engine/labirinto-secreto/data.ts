@@ -54,8 +54,8 @@ export const getData = async (
 
 // TODO: Add to game over
 export const saveData = async (
-  usedAdjectives: BooleanDictionary,
-  // usedTreeCards: BooleanDictionary,
+  usedAdjectives: Dictionary<boolean>,
+  // usedTreeCards: Dictionary<boolean>,
 ) => {
   await utils.tdr.saveUsedAdjectives(usedAdjectives);
 };

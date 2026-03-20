@@ -53,7 +53,7 @@ export const getResourceData = async (language: Language, options?: DuetosOption
     cleanUp: utils.tdr.itemUtils.cleanupDecks,
   });
 
-  let images: CardId[] = [];
+  let images: UID[] = [];
   if (specialDeckTypes.includes('images')) {
     images = await utils.imageCards.getImageCards(quantityNeeded);
   }

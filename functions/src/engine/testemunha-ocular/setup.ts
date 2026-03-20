@@ -129,7 +129,7 @@ export const prepareQuestionSelectionPhase = async (
 
   const turnOrder = store.turnOrder.length > 0 ? store.turnOrder : newTurnOrder;
 
-  const eliminatedSuspects: CardId[] = state?.eliminatedSuspects ?? [];
+  const eliminatedSuspects: UID[] = state?.eliminatedSuspects ?? [];
 
   if (state.questionerId) {
     utils.achievements.push(store, state.questionerId, 'releases', eliminatedSuspects.length);
@@ -142,11 +142,11 @@ export const prepareQuestionSelectionPhase = async (
   const questions = [...getNewQuestions(store.deck, state.status.questions), ...state.questions].slice(0, 4);
 
   // Calculate score and move eliminated suspects
-  const previouslyEliminatedSuspects: CardId[] = [
+  const previouslyEliminatedSuspects: UID[] = [
     ...(state?.previouslyEliminatedSuspects ?? []),
     ...(state?.eliminatedSuspects ?? []),
   ];
-  const suspectsIds: CardId[] = state.suspectsIds ?? [];
+  const suspectsIds: UID[] = state.suspectsIds ?? [];
 
   // Calculate score
   const score = calculateScore(state.status.score ?? 0, state.round.current, eliminatedSuspects.length);
@@ -267,19 +267,19 @@ export const prepareTrialPhase = async (
 };
 
 export const prepareGameOverPhase = async (
-  gameId: GameId,
+  gameId: UID,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   await utils.firestore.markGameAsComplete(gameId);
 
-  const perpetratorId: CardId = state.perpetratorId ?? '';
-  const witnessId: PlayerId = state.witnessId;
+  const perpetratorId: UID = state.perpetratorId ?? '';
+  const witnessId: UID = state.witnessId;
   const listOfPlayers = utils.players.getListOfPlayers(players);
 
   // Determine what suspect got the most votes
-  const suspectVoteCount: NumberDictionary = {};
+  const suspectVoteCount: Dictionary<number> = {};
   listOfPlayers.forEach((player) => {
     if (player.suspectId) {
       suspectVoteCount[player.suspectId] = (suspectVoteCount[player.suspectId] || 0) + 1;
@@ -287,7 +287,7 @@ export const prepareGameOverPhase = async (
   });
   // Find suspect with most votes
   let maxVotes = 0;
-  let votedSuspectIds: CardId[] = [];
+  let votedSuspectIds: UID[] = [];
   Object.entries(suspectVoteCount).forEach(([suspectId, count]) => {
     if (count > maxVotes) {
       maxVotes = count;
@@ -306,7 +306,7 @@ export const prepareGameOverPhase = async (
   }
 
   // What's the released suspect (not voted, or least voted)
-  const newlyReleasedSuspects: CardId[] = difference(state.suspectsIds, [
+  const newlyReleasedSuspects: UID[] = difference(state.suspectsIds, [
     ...state.previouslyEliminatedSuspects,
     ...votedSuspectIds,
   ]);
@@ -320,7 +320,7 @@ export const prepareGameOverPhase = async (
   }
 
   const isWin = state.outcome === OUTCOME.WIN;
-  const previouslyEliminatedSuspects: CardId[] = [
+  const previouslyEliminatedSuspects: UID[] = [
     ...(state?.previouslyEliminatedSuspects ?? []),
     ...(state?.eliminatedSuspects ?? []),
   ];

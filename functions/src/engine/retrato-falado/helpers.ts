@@ -50,7 +50,7 @@ export const buildDeck = (allMonsters: AllMonsters, playerCount: number) => {
 export const gatherSketches = (
   players: Players,
   currentMonster: MonsterImage,
-  witnessId: PlayerId,
+  witnessId: UID,
 ): MonsterSketch[] => {
   const gathering = utils.players.getListOfPlayers(players).reduce((acc: MonsterSketch[], player: Player) => {
     if (player.id !== witnessId) {
@@ -73,15 +73,15 @@ export const gatherSketches = (
  * @param witnessId
  * @param store
  */
-export const buildRanking = (players: Players, witnessId: PlayerId, store: FirebaseStoreData) => {
+export const buildRanking = (players: Players, witnessId: UID, store: FirebaseStoreData) => {
   // Gained points [Most Voted, votes, witness vote]
   const scores = new utils.players.Scores(players, [0, 0, 0]);
 
   // Count votes
-  const votes: Record<PlayerId, PlayerId[]> = {};
+  const votes: Record<UID, UID[]> = {};
   const votesCount = utils.players
     .getListOfPlayers(players)
-    .reduce((acc: NumberDictionary, player: Player) => {
+    .reduce((acc: Dictionary<number>, player: Player) => {
       if (player.id !== witnessId) {
         if (acc[player.vote] === undefined) {
           scores.add(player.vote, 1, 1);
@@ -100,13 +100,13 @@ export const buildRanking = (players: Players, witnessId: PlayerId, store: Fireb
   const max = Math.max(...Object.values(votesCount));
 
   const mostVotes = Object.entries(votesCount).reduce(
-    (acc: PlayerId[], [playerId, voteCount]: [PlayerId, number]) => {
+    (acc: UID[], [playerId, voteCount]: [UID, number]) => {
       if (voteCount === max) acc.push(playerId);
       return acc;
     },
     [],
   );
-  let mostVoted: PlayerId | null = null;
+  let mostVoted: UID | null = null;
 
   // Achievement: Group votes
   utils.players.getListOfPlayers(players).forEach((player: Player) => {

@@ -4,9 +4,9 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 export const handleSubmitCategory = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   category: string,
 ) => {
   return await utils.firestore.updateState({
@@ -19,7 +19,7 @@ export const handleSubmitCategory = async (
   });
 };
 
-export const handleSkipTurn = async (gameName: GameName, gameId: GameId, playerId: PlayerId) => {
+export const handleSkipTurn = async (gameName: string, gameId: UID, playerId: UID) => {
   return await utils.firestore.updateState({
     gameName,
     gameId,
@@ -33,10 +33,10 @@ export const handleSkipTurn = async (gameName: GameName, gameId: GameId, playerI
 };
 
 export const handleSubmitCards = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  cardsIds: CardId[],
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  cardsIds: UID[],
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -50,9 +50,9 @@ export const handleSubmitCards = async (
 };
 
 export const handleEvaluations = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   evaluations: Dictionary<boolean>,
 ) => {
   return await utils.firestore.updatePlayer({

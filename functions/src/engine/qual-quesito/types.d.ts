@@ -13,14 +13,14 @@ export type ResourceData = {
 };
 
 export type TableEntry = {
-  playerId: PlayerId;
-  cardId: CardId;
+  playerId: UID;
+  cardId: UID;
   accepted: boolean;
 };
 
 export type GalleryEntry = {
   category: string;
-  creatorId: PlayerId;
+  creatorId: UID;
   items: TableEntry[];
 };
 

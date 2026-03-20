@@ -4,10 +4,10 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 export const handleSubmitTarget = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  targetId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  targetId: UID,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -20,11 +20,11 @@ export const handleSubmitTarget = async (
 };
 
 export const handleSubmitMessage = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  targetId: PlayerId,
-  recipientId?: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  targetId: UID,
+  recipientId?: UID,
 ) => {
   // Handle player
   await utils.firestore.updateState({
@@ -49,9 +49,9 @@ export const handleSubmitMessage = async (
 };
 
 export const handleSubmitDecision = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   decision: string,
 ) => {
   return await utils.firestore.updatePlayer({

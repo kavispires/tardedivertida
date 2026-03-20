@@ -114,7 +114,7 @@ const determineScore = (guess: number, target: number): number => {
 export const buildRanking = (
   players: Players,
   currentCategory: CategoryCard,
-  psychicId: PlayerId,
+  psychicId: UID,
   store: PlainObject,
 ) => {
   // Gained Points [correct guesses, psychic points]

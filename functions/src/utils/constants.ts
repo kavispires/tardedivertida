@@ -262,19 +262,19 @@ const GAMES = [
   },
 ];
 
-const generateGameCodes = (): StringDictionary =>
+const generateGameCodes = (): Dictionary<string> =>
   GAMES.reduce((acc, entry) => {
     acc[entry.name] = entry.code;
     return acc;
   }, {});
 
-const generateGameKeys = (): StringDictionary =>
+const generateGameKeys = (): Dictionary<string> =>
   GAMES.reduce((acc, entry) => {
     acc[entry.key] = entry.key;
     return acc;
   }, {});
 
-const generateGameCollections = (): StringDictionary =>
+const generateGameCollections = (): Dictionary<string> =>
   GAMES.reduce((acc, entry) => {
     acc[entry.key] = entry.name;
     return acc;

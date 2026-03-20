@@ -783,7 +783,7 @@ const buildUeSoIssoOptions = (players: Players) => {
  * @returns
  */
 const buildArteRuimCardOptions = (players: Players, track: Track) => {
-  const cardIds: CardId[] = track.data.cards.map((card: TextCard) => card.id);
+  const cardIds: UID[] = track.data.cards.map((card: TextCard) => card.id);
   const drawing = {
     drawing: '[]',
     playerId: 'Bug!',
@@ -807,7 +807,7 @@ const buildArteRuimCardOptions = (players: Players, track: Track) => {
  * @returns
  */
 const buildArteRuimDrawingsOptions = (players: Players, track: Track) => {
-  const cardIds: CardId[] = track.data.cards.map((card: TextCard) => card.id);
+  const cardIds: UID[] = track.data.cards.map((card: TextCard) => card.id);
   const drawings: PlainObject[] = [];
 
   utils.players.getListOfPlayers(players).forEach((player) => {
@@ -831,7 +831,7 @@ const buildArteRuimDrawingsOptions = (players: Players, track: Track) => {
  * @returns
  */
 const buildLabirintoSecretoOptions = (players: Players, track: Track) => {
-  const treeIds: CardId[] = track.data.trees.map((tree: TextCard) => tree.id);
+  const treeIds: UID[] = track.data.trees.map((tree: TextCard) => tree.id);
 
   const clues: PlainObject[] = [];
   utils.players.getListOfPlayers(players).forEach((player) => {

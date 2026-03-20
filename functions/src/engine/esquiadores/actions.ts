@@ -4,9 +4,9 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 export const handleSubmitChoices = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   choices: string[],
 ) => {
   return await utils.firestore.updatePlayer({
@@ -21,10 +21,10 @@ export const handleSubmitChoices = async (
 };
 
 export const handleSubmitBets = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  bets: NumberDictionary,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  bets: Dictionary<number>,
   betType: string,
 ) => {
   return await utils.firestore.updatePlayer({

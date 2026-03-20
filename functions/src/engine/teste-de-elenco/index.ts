@@ -31,7 +31,7 @@ import { getData } from './data';
  * @returns
  */
 export const getInitialState = (
-  gameId: GameId,
+  gameId: UID,
   uid: string,
   language: string,
   version: string,

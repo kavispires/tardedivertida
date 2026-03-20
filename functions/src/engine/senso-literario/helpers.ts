@@ -44,7 +44,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
  * @returns A shuffled array of card IDs representing the complete deck
  */
 export function buildDeck() {
-  const deck: CardId[] = [];
+  const deck: UID[] = [];
   COLORS.forEach((color) => {
     GENRES.forEach((genre) => {
       LETTERS.forEach((letter) => {
@@ -66,8 +66,8 @@ export function buildDeck() {
  * @param currentRound - The current round number (1-indexed) used to determine which cards to select
  * @returns A shuffled array containing 4 round-specific cards plus one wildcard
  */
-export function buildSequence(deck: CardId[], currentRound: number) {
-  const sequence: CardId[] = [];
+export function buildSequence(deck: UID[], currentRound: number) {
+  const sequence: UID[] = [];
   // Get 4 cards for the sequence (it should get a chunk from the deck based on the round)
   const cardsInRound = currentRound < 4 ? 4 : 5;
   const startIndex = (currentRound - 1) * cardsInRound;
@@ -82,7 +82,7 @@ export function buildSequence(deck: CardId[], currentRound: number) {
   return shuffle(sequence);
 }
 
-export function buildRanking(store: FirebaseStoreData, players: Players, sequence: CardId[]) {
+export function buildRanking(store: FirebaseStoreData, players: Players, sequence: UID[]) {
   // Gained Points: [each part match, bonus for all match]
   const scores = new utils.players.Scores(players, [0, 0]);
 
@@ -91,8 +91,8 @@ export function buildRanking(store: FirebaseStoreData, players: Players, sequenc
     cards: [],
   };
 
-  const patternIdDictionary: Dictionary<PlayerId[]> = {};
-  const partsDictionary: Dictionary<PlayerId[]> = {};
+  const patternIdDictionary: Dictionary<UID[]> = {};
+  const partsDictionary: Dictionary<UID[]> = {};
 
   utils.players.getListOfPlayers(players).forEach((player) => {
     const patternId = player.patternId as string;
@@ -127,7 +127,7 @@ export function buildRanking(store: FirebaseStoreData, players: Players, sequenc
     });
   });
 
-  const gotMatches: BooleanDictionary = {};
+  const gotMatches: Dictionary<boolean> = {};
 
   Object.values(patternIdDictionary).forEach((playerIds) => {
     if (playerIds.length > 1) {

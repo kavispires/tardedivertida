@@ -219,7 +219,7 @@ export const dealItems = <T>(list: T[], quantity: number) => {
  * @param usedIds
  * @returns
  */
-export const filterOutByIds = <T>(dict: Record<string, T>, usedIds: BooleanDictionary): Record<string, T> => {
+export const filterOutByIds = <T>(dict: Record<string, T>, usedIds: Dictionary<boolean>): Record<string, T> => {
   return Object.keys(dict).reduce((acc: Record<string, T>, entryId: string) => {
     if (!usedIds[entryId]) {
       acc[entryId] = dict[entryId];
@@ -277,7 +277,7 @@ export const removeDuplicates = <T>(arr: T[]): T[] => {
  * @returns An array of unique items that are present in one of the arrays.
  */
 export function getUniqueItems(array1: any[], array2: any[]): any[] {
-  const counts: NumberDictionary = {};
+  const counts: Dictionary<number> = {};
 
   // Add the items from the first array to the map
   array1.forEach((item) => {

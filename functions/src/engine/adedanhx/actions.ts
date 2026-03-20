@@ -5,10 +5,10 @@ import { getNextPhase } from './index';
 import type { FirebaseStateData } from './types';
 
 export const handleSubmitAnswers = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  answers: StringDictionary,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  answers: Dictionary<string>,
   stop?: boolean,
 ) => {
   if (stop) {
@@ -32,7 +32,7 @@ export const handleSubmitAnswers = async (
   });
 };
 
-export const handleNextEvaluationGroup = async (gameName: GameName, gameId: GameId, playerId: PlayerId) => {
+export const handleNextEvaluationGroup = async (gameName: string, gameId: UID, playerId: UID) => {
   const actionText = 'play a card';
 
   const { state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
@@ -59,12 +59,12 @@ export const handleNextEvaluationGroup = async (gameName: GameName, gameId: Game
 };
 
 export const handleSubmitRejectAnswers = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  evaluations: BooleanDictionary,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  evaluations: Dictionary<boolean>,
 ) => {
-  const change = Object.keys(evaluations).reduce((acc: BooleanDictionary, evaluationKey) => {
+  const change = Object.keys(evaluations).reduce((acc: Dictionary<boolean>, evaluationKey) => {
     acc[`evaluations.${evaluationKey}`] = evaluations[evaluationKey];
     return acc;
   }, {});

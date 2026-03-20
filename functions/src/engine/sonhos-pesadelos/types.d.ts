@@ -3,7 +3,7 @@ import type { SONHOS_PESADELOS_ACTIONS } from './constants';
 
 export interface ResourceData {
   cards: SonhosPesadelosCards;
-  images: ImageCardId[];
+  images: UID[];
 }
 
 export type SonhosPesadelosCards = {
@@ -45,20 +45,20 @@ export interface SonhosPesadelosInitialState {
 }
 
 export interface TableEntry {
-  cardId: ImageCardId;
-  dreamer: PlayerId | null;
-  nightmares: PlayerId[];
+  cardId: UID;
+  dreamer: UID | null;
+  nightmares: UID[];
 }
 
 export type Table = TableEntry[];
 
 export type Result = {
-  playerId: PlayerId;
-  dreamId: ImageCardId;
+  playerId: UID;
+  dreamId: UID;
   dream: string;
   cards: {
-    cardId: ImageCardId;
-    votes: PlayerId[];
+    cardId: UID;
+    votes: UID[];
     isDream: boolean;
     isNightmare: boolean;
   }[];

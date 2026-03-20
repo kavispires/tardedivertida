@@ -30,7 +30,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
 
 export const buildRanking = (
   players: Players,
-  activePlayerId: PlayerId,
+  activePlayerId: UID,
   roundType: string,
   store: FirebaseStoreData,
 ) => {

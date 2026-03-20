@@ -149,7 +149,7 @@ export const preparePlanningPhase = async (
   // Get N new locations from the deck
   const availableProjectsIds = Array.from({ length: LOCATIONS_PER_ROUND }, () => deck.pop()).filter(
     Boolean,
-  ) as CardId[];
+  ) as UID[];
 
   // Save
   return {
@@ -232,9 +232,9 @@ export const prepareResolutionPhase = async (
   availableProjectsIds.forEach((projectId) => {
     const correctConeId = planning[projectId];
     let isCorrect = false;
-    const correctPlayersIds: PlayerId[] = [];
-    const playersSay: Dictionary<PlayerId[]> = {};
-    const playersPoints: Record<PlayerId, number> = {};
+    const correctPlayersIds: UID[] = [];
+    const playersSay: Dictionary<UID[]> = {};
+    const playersPoints: Record<UID, number> = {};
     let architectPoints = 0;
 
     // If at least one player guessed correctly, it's correct
@@ -360,7 +360,7 @@ export const prepareResolutionPhase = async (
 };
 
 export const prepareGameOverPhase = async (
-  gameId: GameId,
+  gameId: UID,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,

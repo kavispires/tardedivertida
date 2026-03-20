@@ -12,10 +12,10 @@ import { getNextPhase } from '.';
  * @returns
  */
 export const handleSelectMovie = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  movieId: CardId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  movieId: UID,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -37,10 +37,10 @@ export const handleSelectMovie = async (
  * @returns
  */
 export const handleEliminateMovie = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  movieId: CardId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  movieId: UID,
 ) => {
   return await utils.firestore.updateStore({
     gameName,
@@ -63,11 +63,11 @@ export const handleEliminateMovie = async (
  * @returns
  */
 export const handleVoteForPoster = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  movieId: CardId,
-  posterId: CardId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  movieId: UID,
+  posterId: UID,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

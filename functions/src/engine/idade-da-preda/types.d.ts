@@ -25,21 +25,21 @@ export type Concept = {
   syllable: DualLanguageValue;
   meaning: string;
   itemsIds: string[];
-  playerId: PlayerId;
+  playerId: UID;
   age: number;
 };
 
 export type NewNameEntry = {
   id: string;
-  playerId: PlayerId;
+  playerId: UID;
   name: string;
   itemId: string;
   conceptsIds: string[];
 };
 
 export type GalleryEntry = NewNameEntry & {
-  correctPlayersIds: PlayerId[];
-  guesses: Dictionary<PlayerId[]>;
+  correctPlayersIds: UID[];
+  guesses: Dictionary<UID[]>;
 };
 
 export type IdadeDaPredaPhase = keyof typeof IDADE_DA_PREDA_PHASES;

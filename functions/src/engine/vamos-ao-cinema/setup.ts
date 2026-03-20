@@ -178,7 +178,7 @@ export const prepareRevealPhase = async (
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
-  const activePlayerId: PlayerId = state.activePlayerId;
+  const activePlayerId: UID = state.activePlayerId;
 
   // Gather vote
   const { currentMovieId } = store;
@@ -233,7 +233,7 @@ export const prepareRevealPhase = async (
   }
 
   if (outcome !== OUTCOME.CONTINUE) {
-    const playersPerMovie: Record<string, PlayerId[]> = {};
+    const playersPerMovie: Record<string, UID[]> = {};
     utils.players.getListOfPlayers(players).forEach((player) => {
       if (!playersPerMovie[player.movieId]) {
         playersPerMovie[player.movieId] = [];
@@ -279,7 +279,7 @@ export const prepareRevealPhase = async (
 };
 
 export const prepareGameOverPhase = async (
-  gameId: GameId,
+  gameId: UID,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,

@@ -30,7 +30,7 @@ export const setup = <T>(store: PlainObject, players: Players, cards: T[], cards
  * @param [quantity=1] - The number of cards to draw.
  * @returns - it modifies store and players
  */
-export const draw = (store: PlainObject, players: Players, playerId: PlayerId, quantity = 1) => {
+export const draw = (store: PlainObject, players: Players, playerId: UID, quantity = 1) => {
   const cards = Array(quantity)
     .fill(0)
     .map(() => store.decks[playerId].deck.pop());
@@ -59,7 +59,7 @@ export const deal = (store: PlainObject, players: Players, quantity = 1) => {
  * @param cardId - The ID of the card to discard.
  * @returns - it modifies store and players
  */
-export const discard = (store: PlainObject, players: Players, playerId: PlayerId, cardId: CardId) => {
+export const discard = (store: PlainObject, players: Players, playerId: UID, cardId: UID) => {
   players[playerId].hand = players[playerId].hand.filter((card: any) => {
     if (typeof card === 'object' && card?.id) {
       if (card.id === cardId) {

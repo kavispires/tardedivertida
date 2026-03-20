@@ -20,7 +20,7 @@ export type MegamixGameOptions = {
 };
 
 export interface TrackCandidate {
-  game: GameName;
+  game: string;
   type: string;
   nsfw: boolean;
   variant: string;
@@ -30,7 +30,7 @@ export interface TrackCandidate {
 
 export interface PartyTrackCandidate extends TrackCandidate {
   card: {
-    id: CardId;
+    id: UID;
     text: DualLanguageValue;
   };
 }
@@ -58,8 +58,8 @@ export interface Track {
 
 export interface MostScoring {
   condition: string;
-  winningTeam: PlayerId[];
-  losingTeam: PlayerId[];
+  winningTeam: UID[];
+  losingTeam: UID[];
   winningValues: (string | number)[];
   scoringType: 'NORMAL' | 'TIE' | 'DRAW';
 }
@@ -73,7 +73,7 @@ export type ResourceData = {
 };
 
 export interface MegamixDrawing extends MegamixCard {
-  playerId: PlayerId | null;
+  playerId: UID | null;
   drawing: string | null;
   successRate: number;
 }
@@ -97,7 +97,7 @@ export interface MegamixPlayer extends Player {
   votes: any;
 }
 
-export type MegamixPlayers = Record<PlayerId, MegamixPlayer>;
+export type MegamixPlayers = Record<UID, MegamixPlayer>;
 
 export type MegamixAchievement = keyof typeof MEGAMIX_ACHIEVEMENTS;
 

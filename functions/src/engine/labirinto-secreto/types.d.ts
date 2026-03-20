@@ -57,7 +57,7 @@ export interface MapSegment {
   /**
    * Player map segment belongs to
    */
-  playerId: PlayerId;
+  playerId: UID;
   /**
    * Equivalent Forest segment
    */
@@ -93,7 +93,7 @@ export interface MapSegment {
   /**
    * List of players that are currently on this segment
    */
-  playersIds: PlayerId[];
+  playersIds: UID[];
 }
 
 export interface LabirintoSecretoStore extends DefaultStore {
@@ -108,7 +108,7 @@ export interface LabirintoSecretoPlayer extends Player {
   votes: any;
 }
 
-export type LabirintoSecretoPlayers = Record<PlayerId, LabirintoSecretoPlayer>;
+export type LabirintoSecretoPlayers = Record<UID, LabirintoSecretoPlayer>;
 
 export type LabirintoSecretoAchievement = keyof typeof LABIRINTO_SECRETO_ACHIEVEMENTS;
 

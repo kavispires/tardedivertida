@@ -10,11 +10,11 @@ export type MetalinguagemOptions = {
 export type MetalinguagemAchievement = keyof typeof METALINGUAGEM_ACHIEVEMENTS;
 
 export type ResourceData = {
-  items: CardId[];
+  items: UID[];
 };
 
 export type GalleryEntry = {
-  itemsIds: CardId[];
+  itemsIds: UID[];
   name: string;
   names: string[];
   correct: boolean;

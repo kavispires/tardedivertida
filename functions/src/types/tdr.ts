@@ -7,7 +7,7 @@ export type TextCard = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * The text of the card
    */
@@ -30,7 +30,7 @@ export type ArteRuimCard = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * the text of the card
    */
@@ -157,7 +157,7 @@ export type Concept = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * The name of the concept
    */
@@ -188,7 +188,7 @@ export type ContenderCard = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * The name of the contender
    */
@@ -219,7 +219,7 @@ export type CrimesHediondosCard = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * The type of the card
    */
@@ -300,7 +300,7 @@ export type DatingCandidateCard = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * The text of the card
    */
@@ -319,7 +319,7 @@ export type DatingCandidateImageCard = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * The name of the image
    */
@@ -334,7 +334,7 @@ export type DiagramTopic = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * The text of the card
    */
@@ -357,7 +357,7 @@ export type DilemmaCard = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * The prompt of the card (usually a prefix)
    */
@@ -386,7 +386,7 @@ export type GroupQuestionCard = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * The prefix in the question
    */
@@ -424,7 +424,7 @@ export type MovieCard = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * The prefix of the title of the movie
    */
@@ -443,7 +443,7 @@ export type MovieReviewCard = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * the text of the card
    */
@@ -468,7 +468,7 @@ export type NamingPromptCard = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * the text of the card
    */
@@ -487,7 +487,7 @@ export type ObjectFeatureCard = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * The text of the feature
    */
@@ -510,7 +510,7 @@ export type QuantitativeQuestionCard = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * The question of the card
    */
@@ -530,7 +530,7 @@ export type SpectrumCard = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * The left side of the spectrum (usually negative)
    */
@@ -549,7 +549,7 @@ export type SpyLocation = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * The name of the location
    */
@@ -573,7 +573,7 @@ export type SuspectCard = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * The name of the suspect
    */
@@ -638,7 +638,7 @@ export type SuspectExtendedInfo = {
   /**
    * Unique identifier for the card that matches its SuspectCard equivalent
    */
-  id: CardId;
+  id: UID;
   /**
    * Descriptive label of the suspect representing their persona
    */
@@ -770,7 +770,7 @@ export type TestimonyQuestionCard = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * The testimony question text
    */
@@ -809,7 +809,7 @@ export type ThingPromptCard = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * The text of the card
    */
@@ -828,7 +828,7 @@ export type TopicCard = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * The topic label
    */
@@ -855,7 +855,7 @@ export type Tweet = {
   /**
    * Unique identifier for the card
    */
-  id: CardId;
+  id: UID;
   /**
    * the text of the card
    */
@@ -1330,7 +1330,7 @@ export type DrawingData = {
   /**
    * The unique identifier of the card. (same as ArteRuimCard.id).
    */
-  id: CardId;
+  id: UID;
   /**
    * The text of the card. (same as ArteRuimCard.text).
    */

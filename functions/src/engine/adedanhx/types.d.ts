@@ -59,11 +59,11 @@ export type GroupAnswerEvaluationEntry = {
 export type AnswerGridEntry = {
   id: string;
   main: {
-    playerId: PlayerId;
+    playerId: UID;
     score: number;
     answer: string;
   };
-  playerIds: PlayerId[];
+  playerIds: UID[];
   score: number;
 };
 

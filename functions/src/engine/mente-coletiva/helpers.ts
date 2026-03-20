@@ -101,7 +101,7 @@ export const buildDeck = (allQuestions: AllQuestions): Deck => {
 export const gatherAllAnswers = (players: Players): AnswerEntry[] => {
   const answersArr: AnswerEntry[] = [];
   utils.players.getListOfPlayers(players).forEach((player) => {
-    const answers: StringDictionary = player.answers;
+    const answers: Dictionary<string> = player.answers;
     Object.entries(answers).forEach(([key, answer]) => {
       answersArr.push({
         id: key,
@@ -196,7 +196,7 @@ export const buildRanking = (players: Players, store: PlainObject): RankingEntry
  * @returns
  */
 export const determineLowestScores = (ranking: RankingEntry[], roundType: number) => {
-  const scores = ranking.reduce((acc: PlayerId[][], entry) => {
+  const scores = ranking.reduce((acc: UID[][], entry) => {
     if (acc[entry.newScore] === undefined) {
       acc[entry.newScore] = [];
     }
@@ -230,7 +230,7 @@ export const determineLowestScores = (ranking: RankingEntry[], roundType: number
 export const determineHighestScores = (ranking: RankingEntry[], roundType: number) => {
   if (roundType > 0) return [];
 
-  const scores = ranking.reduce((acc: PlayerId[][], entry) => {
+  const scores = ranking.reduce((acc: UID[][], entry) => {
     if (acc[entry.newScore] === undefined) {
       acc[entry.newScore] = [];
     }
@@ -248,7 +248,7 @@ export const determineHighestScores = (ranking: RankingEntry[], roundType: numbe
  * @param highestScores
  * @returns
  */
-export const buildPastureChange = (players: Players, lowestScores: PlayerId[], highestScores: PlayerId[]) => {
+export const buildPastureChange = (players: Players, lowestScores: UID[], highestScores: UID[]) => {
   const change: PastureChangeEntry[][] = [];
 
   // First change: previous levels
@@ -304,9 +304,9 @@ export const recalculateLastPasture = (pastureChange: PastureChangeEntry[][], pa
  * @returns
  */
 const determineAnimation = (
-  playerId: PlayerId,
-  lowestScores: PlayerId[],
-  highestScores: PlayerId[],
+  playerId: UID,
+  lowestScores: UID[],
+  highestScores: UID[],
   level: number,
 ): SheepAnimation => {
   const isLowest = lowestScores.includes(playerId);
@@ -339,9 +339,9 @@ const determineAnimation = (
  * @returns
  */
 const getNewLevel = (
-  playerId: PlayerId,
-  lowestScores: PlayerId[],
-  highestScores: PlayerId[],
+  playerId: UID,
+  lowestScores: UID[],
+  highestScores: UID[],
   level: number,
 ): number => {
   const isLowest = lowestScores.includes(playerId);
@@ -417,7 +417,7 @@ export const shouldSaveSheep = (
  * @param players
  */
 export const getAchievements = (players: Players, store: FirebaseStoreData) => {
-  const pasturesCount: PlayerId[][] = [];
+  const pasturesCount: UID[][] = [];
 
   utils.players.getListOfPlayers(players).forEach((player) => {
     if (pasturesCount[player.level]) {

@@ -153,7 +153,7 @@ export const buildRanking = (
   // Gained Points: [correct order, wrong order, out of stock]
   const scores = new utils.players.Scores(players, [0, 0, 0]);
 
-  // Dictionary of players and the corrected filled orders: PlayerId: OrderId[]
+  // Dictionary of players and the corrected filled orders: UID: OrderId[]
   const gallery: Dictionary<string[]> = {};
 
   // For each player, check their orders and fulfillments

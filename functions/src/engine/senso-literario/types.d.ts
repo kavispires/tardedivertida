@@ -7,17 +7,17 @@ export type Pattern = {
 };
 
 export type GalleryEntry = {
-  sequence: CardId[];
+  sequence: UID[];
   cards: {
-    playersIsd: PlayerId[];
-    patternId: CardId;
+    playersIsd: UID[];
+    patternId: UID;
   }[];
 };
 
 export type SensoLiterarioAchievement = keyof typeof SENSO_LITERARIO_ACHIEVEMENTS;
 
 export interface SensoLiterarioStore extends DefaultStore<unknown> {
-  deck: CardId[]; // The card id for this game is formatted as `${color}-${genre}-${letter}`
+  deck: UID[]; // The card id for this game is formatted as `${color}-${genre}-${letter}`
 }
 
 export interface SensoLiterarioState extends DefaultState {

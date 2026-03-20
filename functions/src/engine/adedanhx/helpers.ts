@@ -311,7 +311,7 @@ export const evaluateAnswers = (
   const playerCount = utils.players.getPlayerCount(players);
   const acceptableRejections = playerCount > 4 ? 2 : 1;
 
-  const rejections: NumberDictionary = {};
+  const rejections: Dictionary<number> = {};
   // Verify rejections and reject any answer that has been rejected by the acceptableRejections value
   utils.players.getListOfPlayers(players).forEach((player) => {
     Object.keys(player.evaluations).forEach((answerId) => {

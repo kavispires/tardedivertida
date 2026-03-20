@@ -18,9 +18,9 @@ export type GalleryEntry = {
   architectId: string;
   coneId: string;
   correctCellId: string;
-  correctPlayersIds: PlayerId[];
-  playersSay: Dictionary<PlayerId[]>;
-  playersPoints: Record<PlayerId, number>;
+  correctPlayersIds: UID[];
+  playersSay: Dictionary<UID[]>;
+  playersPoints: Record<UID, number>;
   architectPoints: number;
   finalCellId: string;
 };
@@ -28,7 +28,7 @@ export type GalleryEntry = {
 export type PlanejamentoUrbanoAchievement = keyof typeof PLANEJAMENTO_URBANO_ACHIEVEMENTS;
 
 export interface PlanejamentoUrbanoStore extends DefaultStore<PlanejamentoUrbanoOptions> {
-  deck: CardId[];
+  deck: UID[];
   [key: string]: any;
 }
 
@@ -48,7 +48,7 @@ export interface PlanejamentoUrbanoState extends DefaultState {
   // placements?: number;
   // cityLocationsDict?: Dictionary<CityLocation>;
   // city?: Site[];
-  // gameOrder?: PlayerId[];
+  // gameOrder?: UID[];
   [key: string]: any;
 }
 

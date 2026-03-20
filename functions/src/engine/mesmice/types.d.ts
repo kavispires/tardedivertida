@@ -24,17 +24,17 @@ export type ResourceData = {
 export type ObjectCardObj = Pick<Item, 'id' | 'name'>;
 
 export type HistoryEntry = {
-  featureId: CardId;
+  featureId: UID;
   pass: boolean;
-  votes: PlayerId[];
+  votes: UID[];
   score: number;
 };
 
 export type MesmiceGalleryEntry = {
-  playerId: PlayerId;
+  playerId: UID;
   item: ObjectCardObj;
   clue: string;
-  featureId: CardId;
+  featureId: UID;
   history: HistoryEntry[];
 };
 

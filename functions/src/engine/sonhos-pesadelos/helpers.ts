@@ -80,7 +80,7 @@ export const getThemeDeck = (cards: SonhosPesadelosCards): ThemeDeck => {
  * @param imagesIds
  * @returns
  */
-export const buildTable = (imagesIds: ImageCardId[]): ImageCardId[] =>
+export const buildTable = (imagesIds: UID[]): UID[] =>
   imagesIds.splice(0, IMAGE_CARDS_PER_ROUND);
 
 /**
@@ -95,22 +95,22 @@ export const buildTable = (imagesIds: ImageCardId[]): ImageCardId[] =>
 export const determineDreamsNightmaresAndThemes = (
   players: Players,
   themesDeck: ThemeDeck,
-  table: ImageCardId[],
+  table: UID[],
   currentRound: number,
 ) => {
   const roundThemesDeck: NamingPromptCard[] = themesDeck[currentRound];
 
   const shuffledThemes: NamingPromptCard[] = utils.game.shuffle(roundThemesDeck).slice(0, 3);
-  const shuffledImageCards: ImageCardId[] = utils.game.shuffle(table);
+  const shuffledImageCards: UID[] = utils.game.shuffle(table);
 
-  const dictionaryPair: [NamingPromptCard, ImageCardId][] = [];
+  const dictionaryPair: [NamingPromptCard, UID][] = [];
   shuffledThemes.forEach((theme) => {
     shuffledImageCards.forEach((imageCardId) => {
       dictionaryPair.push([theme, imageCardId]);
     });
   });
 
-  const shufflePairs: [NamingPromptCard, ImageCardId][] = utils.game.shuffle(dictionaryPair);
+  const shufflePairs: [NamingPromptCard, UID][] = utils.game.shuffle(dictionaryPair);
 
   utils.players.getListOfPlayers(players).forEach((player, index) => {
     const dreamSelection = shufflePairs[index];
@@ -155,7 +155,7 @@ export const buildRanking = (players: Players) => {
 
   utils.players.getListOfPlayers(players).forEach((player) => {
     const points: number = player.theme.level;
-    Object.entries(<StringDictionary>player.votes).forEach(([playerId, vote]) => {
+    Object.entries(<Dictionary<string>>player.votes).forEach(([playerId, vote]) => {
       const correctDreamId: string = players[playerId].dreamId;
       const nightmareId: string = players[playerId].nightmareId;
 
@@ -178,7 +178,7 @@ export const buildRanking = (players: Players) => {
  * @param table
  * @returns
  */
-export const buildGallery = (players: Players, table: ImageCardId[]): PlainObject[] => {
+export const buildGallery = (players: Players, table: UID[]): PlainObject[] => {
   return orderBy(utils.players.getListOfPlayers(players), 'name', 'asc').map((player) => {
     return {
       playerId: player.id,

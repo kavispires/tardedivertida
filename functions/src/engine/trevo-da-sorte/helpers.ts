@@ -13,8 +13,8 @@ import { getRandomItems } from '../../utils/game-utils';
  */
 export const determineNextPhase = (
   currentPhase: string,
-  gameOrder?: PlayerId[],
-  activeCloverId?: PlayerId,
+  gameOrder?: UID[],
+  activeCloverId?: UID,
 ): string => {
   const { LOBBY, SETUP, WORD_SELECTION, CLOVER_WRITING, CLOVER_GUESSING, RESULTS, GAME_OVER } =
     TREVO_DA_SORTE_PHASES;
@@ -132,7 +132,7 @@ export const buildGuesses = (players: Players) => {
   });
 };
 
-export const buildRanking = (players: Players, activeCloverId: PlayerId) => {
+export const buildRanking = (players: Players, activeCloverId: UID) => {
   // Gained Points: [First try, second try, granted by other players]
   const scores = new utils.players.Scores(players, [0, 0, 0]);
 

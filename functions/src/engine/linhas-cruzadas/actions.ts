@@ -12,9 +12,9 @@ import { getNextPhase } from './index';
  * @returns
  */
 export const handleSubmitPrompt = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   promptId: string,
   randomSelection = false,
 ) => {
@@ -38,9 +38,9 @@ export const handleSubmitPrompt = async (
  * @returns
  */
 export const handleSubmitDrawing = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   drawing: string,
 ) => {
   return await utils.firestore.updatePlayer({
@@ -63,9 +63,9 @@ export const handleSubmitDrawing = async (
  * @returns
  */
 export const handleSubmitGuess = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   guess: string,
 ) => {
   return await utils.firestore.updatePlayer({

@@ -16,7 +16,7 @@ export type Decks = {
   horrorDeck: HouseCard[];
   jackpotDeck: HouseCard[];
   candyDeck: HouseCard[];
-  horrorCount: NumberDictionary;
+  horrorCount: Dictionary<number>;
 };
 
 export type CandyStatus = {

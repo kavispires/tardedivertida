@@ -21,12 +21,12 @@ export interface Decks {
 }
 
 export interface PolemicaDaVezStore extends DefaultStore {
-  gameOrder: PlayerId[];
+  gameOrder: UID[];
 }
 
 export interface PolemicaDaVezState extends DefaultState {
-  activePlayerId?: PlayerId;
-  gameOrder?: PlayerId[];
+  activePlayerId?: UID;
+  gameOrder?: UID[];
   currentTweets?: any;
   currentCustomTweet?: any;
   currentTweet?: any;

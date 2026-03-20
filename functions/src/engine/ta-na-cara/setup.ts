@@ -129,7 +129,7 @@ export const prepareAnsweringPhase = async (
 ): Promise<SaveGamePayload> => {
   // Mark question as used for the current player
   players[state.activePlayerId].questions = players[state.activePlayerId].questions.filter(
-    (cardId: CardId) => cardId !== store.currentQuestionId,
+    (cardId: UID) => cardId !== store.currentQuestionId,
   );
 
   // Unready players
@@ -220,7 +220,7 @@ export const prepareRevealPhase = async (
 };
 
 export const prepareGameOverPhase = async (
-  gameId: GameId,
+  gameId: UID,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,

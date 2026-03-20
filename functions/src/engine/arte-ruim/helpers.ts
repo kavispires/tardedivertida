@@ -100,7 +100,7 @@ export const distributeCardsByLevel = (cards: ArteRuimCard[]): CardsByLevel => {
 
 export const getAvailableCards = (
   cardsByLevel: CardsByLevel,
-  usedCardsIds: BooleanDictionary,
+  usedCardsIds: Dictionary<boolean>,
   roundLevels: number[],
   playerCount: number,
 ): {
@@ -218,7 +218,7 @@ export const buildDeck = (
 
   const usedCardIdDict = {};
   const shuffledLevel4Deck = utils.game.shuffle(cardsGroups);
-  let level4Hand: CardId[] = [];
+  let level4Hand: UID[] = [];
 
   return Array(cardsNeeded)
     .fill(0)
@@ -295,7 +295,7 @@ export const getEnoughLevel5Cards = (cards: ArteRuimPair[], playerCount: number)
  * @returns
  */
 export const getTheTwoLevel5Cards = (cards: ArteRuimCard[]): ArteRuimCard[] => {
-  const cache: BooleanDictionary = {};
+  const cache: Dictionary<boolean> = {};
 
   const selectedCards = cards.filter((card) => {
     if (cache[card.text] === undefined) {
@@ -364,7 +364,7 @@ export const buildGallery = (
   drawings: ArteRuimDrawing[],
   players: Players,
   store: PlainObject,
-  tableCardsIds: CardId[],
+  tableCardsIds: UID[],
 ) =>
   drawings.map((drawingEntry) => {
     const playerCount = utils.players.getPlayerCount(players);
@@ -385,8 +385,8 @@ export const buildGallery = (
 
     const playersSay = {};
     const playersPoints = {};
-    const gotCorrect: PlayerId[] = [];
-    const gotWrong: PlayerId[] = [];
+    const gotCorrect: UID[] = [];
+    const gotWrong: UID[] = [];
 
     Object.entries(<PlainObject>players).forEach(([playerId, pObject]) => {
       if (artistId === playerId) {

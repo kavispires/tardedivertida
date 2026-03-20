@@ -22,7 +22,7 @@ export type PastCategories = CategoryCard[];
 export type Deck = CategoryCard[];
 
 export interface OndaTelepaticaStore extends DefaultStore {
-  gameOrder?: PlayerId[];
+  gameOrder?: UID[];
   deck?: Deck;
   deckIndex?: number;
   pastCategories?: PastCategories;

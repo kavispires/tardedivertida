@@ -45,7 +45,7 @@ export const determineNextPhase = (
   round: Round,
   isGameOver?: boolean,
   turnOrder?: TurnOrder,
-  activePlayerId?: PlayerId,
+  activePlayerId?: UID,
 ): string => {
   const { LOBBY, SETUP, MAP_BUILDING, PATH_FOLLOWING, RESULTS, GAME_OVER } = LABIRINTO_SECRETO_PHASES;
   const order = [LOBBY, SETUP, MAP_BUILDING, PATH_FOLLOWING, RESULTS];
@@ -423,7 +423,7 @@ export const getRankingAndProcessScoring = (players: Players, store: FirebaseSto
       );
 
       // Build an empty array of with the same length as the current map
-      const correct: PlayerId[][] = currentMap.map(() => []);
+      const correct: UID[][] = currentMap.map(() => []);
 
       // Count correct guesses for each non-active player
       listOfPlayers.forEach((player) => {
@@ -473,7 +473,7 @@ export const getRankingAndProcessScoring = (players: Players, store: FirebaseSto
       const playerCount = listOfPlayers.length;
 
       // Award points depending on the number of correct guesses
-      correct.forEach((tree: PlayerId[], index) => {
+      correct.forEach((tree: UID[], index) => {
         const correctGuesses = tree.length;
         // Only one person guessed correctly
         if (correctGuesses === 1) {
@@ -527,7 +527,7 @@ export const updateMaps = (players: Players) => {
   });
 };
 
-export const getAllCompletePlayerIds = (players: Players): PlayerId[] => {
+export const getAllCompletePlayerIds = (players: Players): UID[] => {
   return utils.players
     .getListOfPlayers(players)
     .filter((player) => getIsPlayerMapComplete(player))

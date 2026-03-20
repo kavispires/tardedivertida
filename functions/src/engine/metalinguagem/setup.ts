@@ -99,7 +99,7 @@ export const prepareGuessingPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const creatorId: PlayerId = state.creatorId;
+  const creatorId: UID = state.creatorId;
 
   const creator = players[creatorId];
   // Unready players
@@ -131,19 +131,19 @@ export const prepareResultsPhase = async (
   // Unready players
   utils.players.unReadyPlayers(players);
 
-  const creatorId: PlayerId = state.creatorId;
+  const creatorId: UID = state.creatorId;
 
   // Achievement: Word Lengths
   utils.achievements.increase(store, state.creatorId, 'wordLengths', state.newWord.length);
 
   const wordLengths: WordLength[] = state.wordLengths;
 
-  const turnOrderWithoutCreator: PlayerId[] = utils.players
+  const turnOrderWithoutCreator: UID[] = utils.players
     .reorderGameOrder(state.turnOrder, creatorId)
     .filter((id: string) => id !== creatorId);
 
   const guessPlayersPerItem = turnOrderWithoutCreator.reduce(
-    (acc: Record<string, string[]>, id: PlayerId) => {
+    (acc: Record<string, string[]>, id: UID) => {
       const player = players[id];
       const [guess1, guess2] = player.guesses as [string, string];
       if (!acc[guess1]) acc[guess1] = [];
@@ -248,7 +248,7 @@ export const prepareResultsPhase = async (
 };
 
 export const prepareGameOverPhase = async (
-  gameId: GameId,
+  gameId: UID,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,

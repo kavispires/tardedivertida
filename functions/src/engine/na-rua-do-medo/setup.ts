@@ -237,7 +237,7 @@ export const prepareStreetEndPhase = async (
 
   // Achievements
   const monsterCount = countMonsters([...state.street, currentCard]);
-  state.continuingPlayerIds.forEach((playerId: PlayerId) => {
+  state.continuingPlayerIds.forEach((playerId: UID) => {
     // Achievement: most houses
     utils.achievements.increase(store, playerId, 'houses', 1);
     // Achievement: facing monsters
@@ -267,7 +267,7 @@ export const prepareStreetEndPhase = async (
 };
 
 export const prepareGameOverPhase = async (
-  gameId: GameId,
+  gameId: UID,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,

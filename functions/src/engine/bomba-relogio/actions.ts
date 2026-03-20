@@ -4,9 +4,9 @@ import { getNextPhase } from './index';
 import type { Declaration, Target } from './types';
 
 export const handleSubmitDeclarations = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   declarations: Declaration,
 ) => {
   return await utils.firestore.updatePlayer({
@@ -21,10 +21,10 @@ export const handleSubmitDeclarations = async (
 };
 
 export const handleUpdateTargetPlayer = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  targetPlayerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  targetPlayerId: UID,
 ) => {
   return await utils.firestore.updateState({
     gameName,
@@ -38,9 +38,9 @@ export const handleUpdateTargetPlayer = async (
 };
 
 export const handleSubmitTarget = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   target: Target,
 ) => {
   return await utils.firestore.updateState({

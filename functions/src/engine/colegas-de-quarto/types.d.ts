@@ -33,11 +33,11 @@ export type GalleryEntry = {
   id: string;
   ids: string[];
   words: string[];
-  playerId: PlayerId;
+  playerId: UID;
   clue: string | null;
-  correct: PlayerId[];
+  correct: UID[];
   misses: {
-    guesserId: PlayerId;
+    guesserId: UID;
     guesses: string[];
   }[];
 };

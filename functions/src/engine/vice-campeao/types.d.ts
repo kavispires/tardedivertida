@@ -5,7 +5,7 @@ export type ViceCampeaoOptions = {
 };
 
 export type RunnerCard = {
-  id: CardId;
+  id: UID;
   imageId: string;
   name: DualLanguageValue;
   type: 'movement-positive' | 'movement-negative' | 'movement-neutral' | 'ongoing' | 'effect';
@@ -18,9 +18,9 @@ export type RunnerCard = {
 
 export type RunActivity = {
   id: number; // index
-  cardId: CardId;
-  playerId: PlayerId;
-  targetId: PlayerId;
+  cardId: UID;
+  playerId: UID;
+  targetId: UID;
   newValue?: number;
   startingPositions: {
     [key: string]: number;
@@ -28,7 +28,7 @@ export type RunActivity = {
   endingPositions: {
     [key: string]: number;
   };
-  ongoingEffectCardId?: CardId;
+  ongoingEffectCardId?: UID;
 };
 
 export type ViceCampeaoAchievement = keyof typeof VICE_CAMPEAO_ACHIEVEMENTS;
@@ -38,7 +38,7 @@ export type ResourceData = {
 };
 
 export type GalleryEntry = {
-  itemsIds: CardId[];
+  itemsIds: UID[];
   name: string;
   names: string[];
   correct: boolean;

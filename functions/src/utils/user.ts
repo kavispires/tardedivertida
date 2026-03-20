@@ -2,52 +2,135 @@ import { getUserRef } from './firestore';
 import { removeDuplicates } from './game-utils';
 import { getListOfPlayers } from './players-utils';
 
+/**
+ * A single game play entry for a user's game history
+ */
 interface GameUserEntry {
-  gameName?: GameName;
-  gameId: GameId;
+  /**
+   * The name of the game
+   */
+  gameName?: string;
+  /**
+   * The unique identifier of the game instance
+   */
+  gameId: UID;
+  /**
+   * Timestamp when the game started
+   */
   startedAt: number;
+  /**
+   * Timestamp when the game ended
+   */
   endedAt: number;
+  /**
+   * Number of players in the game
+   */
   playerCount: number;
+  /**
+   * The player's placement/rank in the game
+   */
   placement: number;
+  /**
+   * Whether the player won the game
+   */
   win?: boolean;
+  /**
+   * Whether the player finished in last place
+   */
   last?: boolean;
+  /**
+   * Array of achievement keys earned in this game
+   */
   achievements: AchievementKey[];
 }
 
+/**
+ * Statistical data for a user's play history of a specific game
+ */
 interface GameUserStatistics {
-  gameName: GameName;
-  // Total game plays count
+  /**
+   * The name of the game
+   */
+  gameName: string;
+  /**
+   * Total number of times the game was played
+   */
   plays: number;
-  // Boolean if the game is winnable
+  /**
+   * Whether the game has a win condition
+   */
   isWinnable: boolean;
-  // Total number of wins
+  /**
+   * Total number of wins
+   */
   win: number;
-  // Total number of times in last place
+  /**
+   * Total number of times finished in last place
+   */
   last: number;
-  // Total number of unique achievements
+  /**
+   * Dictionary of unique achievements with their occurrence counts
+   */
   achievements: Record<AchievementKey, number>;
-  // Total game play duration
+  /**
+   * Total duration spent playing this game in milliseconds
+   */
   totalPlayDuration: number;
-  // The latest game played
+  /**
+   * The most recently played game instance
+   */
   latestPlay: GameUserEntry;
-  // The first game played with the earliest startedAt
+  /**
+   * The first game instance played (earliest startedAt)
+   */
   firstPlay: GameUserEntry;
-  // The game rating
+  /**
+   * The user's rating for this game
+   */
   rating: number | null;
-  // Comments
+  /**
+   * Optional user comments about the game
+   */
   comments?: string;
-  // Average player count
+  /**
+   * Average number of players across all plays
+   */
   averagePlayerCount: number;
 }
 
+/**
+ * Unique identifier for an avatar
+ */
 type AvatarId = string;
+
+/**
+ * Unique key for an achievement
+ */
 type AchievementKey = string;
-type GameName = string;
+
+/**
+ * Daily challenge entry for a user
+ */
 type DailyEntry = {
-  id: string; // Format YYYY-MM-DD
+  /**
+   * The date identifier in format YYYY-MM-DD
+   */
+  id: string;
+  /**
+   * The daily challenge number
+   */
   number: number;
+  /**
+   * Whether the challenge was completed successfully
+   */
   victory: boolean;
+  /**
+   * Number of hearts/lives remaining
+   */
   hearts: number;
+  /**
+   * Array of letters used or collected
+   */
   letters: string[];
 };
 
@@ -55,51 +138,119 @@ type DailyEntry = {
  * User database structure saved in Firestore
  */
 export interface FirebaseUserDB {
+  /**
+   * The unique identifier of the user
+   */
   id: string;
+  /**
+   * Whether the user has admin privileges
+   */
   isAdmin?: boolean;
+  /**
+   * Whether the user is a guest account
+   */
   isGuest?: boolean;
+  /**
+   * The user's preferred language
+   */
   preferredLanguage: Language;
-  names: string[]; // unique list but most recent comes last
+  /**
+   * List of names used by the user (most recent comes last)
+   */
+  names: string[];
+  /**
+   * The user's gender preference
+   */
   gender?: string;
+  /**
+   * Dictionary of avatars and their usage counts
+   */
   avatars: Record<AvatarId, number>;
-  ratings: Record<GameName, number>;
-  games: Record<GameName, Record<GameId, GameUserEntry>>;
-  blurredImages: Record<ImageCardId, true>;
+  /**
+   * Dictionary of game names and their ratings
+   */
+  ratings: Record<string, number>;
+  /**
+   * Nested dictionary of games and their play entries
+   */
+  games: Record<string, Record<UID, GameUserEntry>>;
+  /**
+   * Dictionary of images the user has chosen to blur
+   */
+  blurredImages: Record<UID, true>;
+  /**
+   * Dictionary of daily challenge entries
+   */
   daily?: Dictionary<DailyEntry>;
 }
 
+/**
+ * Global statistics across all games for a user
+ */
 interface FirebaseUIStatistics {
-  // Total game plays count
+  /**
+   * Total number of games played across all games
+   */
   plays: number;
-  // Total different games
+  /**
+   * Number of unique different games played
+   */
   uniqueGamesPlayed: number;
-  // Total games with end goal / are winnable
+  /**
+   * Count of plays in games that have a win condition
+   */
   winnableGames: number;
-  // Total number of wins
+  /**
+   * Total number of wins across all games
+   */
   win: number;
-  // Total number of times in last place
+  /**
+   * Total number of times finished in last place across all games
+   */
   last: number;
-  // Total number of unique achievements
+  /**
+   * Total count of unique achievements earned
+   */
   achievements: number;
-  // Total game play duration
+  /**
+   * Total duration spent playing all games in milliseconds
+   */
   totalPlayDuration: number;
-  // The latest game played
+  /**
+   * The most recently played game instance
+   */
   latestPlay: GameUserEntry;
-  // The first game played with the earliest startedAt
+  /**
+   * The first game instance ever played (earliest startedAt)
+   */
   firstPlay: GameUserEntry;
-  // game with the most entries
-  mostPlayedGame: GameName;
-  // game with the fewest entries
-  leastPlayedGame: GameName;
-  // Game with the highest rating
-  favoriteGame: GameName;
-  // Game with the lowest rating
-  leastFavoriteGame: GameName;
-  // Game with most wins
-  bestAtGame: GameName;
-  // Game with most last
-  worstAtGame: GameName;
-  // Average Player Count
+  /**
+   * Name of the game with the most play entries
+   */
+  mostPlayedGame: string;
+  /**
+   * Name of the game with the fewest play entries
+   */
+  leastPlayedGame: string;
+  /**
+   * Name of the game with the highest rating
+   */
+  favoriteGame: string;
+  /**
+   * Name of the game with the lowest rating
+   */
+  leastFavoriteGame: string;
+  /**
+   * Name of the game with the most wins
+   */
+  bestAtGame: string;
+  /**
+   * Name of the game with the most last place finishes
+   */
+  worstAtGame: string;
+  /**
+   * Average number of players across all game plays
+   */
   averagePlayerCount: number;
 }
 
@@ -107,22 +258,69 @@ interface FirebaseUIStatistics {
  * User interface parsed for the UI
  */
 interface FirebaseUserUI {
+  /**
+   * The unique identifier of the user
+   */
   id: string;
+  /**
+   * Whether the user has admin privileges
+   */
   isAdmin: boolean;
+  /**
+   * List of names used by the user
+   */
   names: string[];
+  /**
+   * The user's preferred language
+   */
   language: Language;
-  // Top 5 avatars
+  /**
+   * Array of the top 5 most used avatar IDs
+   */
   avatars: AvatarId[];
+  /**
+   * The user's gender preference
+   */
   gender?: string;
+  /**
+   * Global statistics across all games
+   */
   statistics: FirebaseUIStatistics;
-  games: Record<GameName, GameUserStatistics>;
-  blurredImages?: Record<ImageCardId, true>;
+  /**
+   * Dictionary of per-game statistics
+   */
+  games: Record<string, GameUserStatistics>;
+  /**
+   * Dictionary of images the user has chosen to blur
+   */
+  blurredImages?: Record<UID, true>;
+  /**
+   * Statistics and games played today
+   */
   today: {
+    /**
+     * Number of games played today
+     */
     plays: number;
+    /**
+     * Number of wins today
+     */
     win: number;
+    /**
+     * Number of last place finishes today
+     */
     last: number;
+    /**
+     * Number of achievements earned today
+     */
     achievements: number;
+    /**
+     * Total duration spent playing today in milliseconds
+     */
     duration: number;
+    /**
+     * Array of all games played today
+     */
     games: GameUserEntry[];
   };
 }
@@ -158,7 +356,7 @@ export const mergeUserData = (uid: string, userData?: FirebaseFirestore.Document
   return { ...DEFAULT_FIREBASE_USER_DB, ...(userData ?? {}), id: uid };
 };
 
-const isWinnableGame = (gameName: GameName): boolean => {
+const isWinnableGame = (gameName: string): boolean => {
   // Non-winnable games only
   return !['linhas-cruzadas', 'vamos-ao-cinema', 'ue-so-isso'].includes(gameName);
 };
@@ -175,7 +373,7 @@ export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
     .sort((a, b) => dbUser.avatars[b] - dbUser.avatars[a])
     .slice(0, 5);
 
-  const playsStatistics: Record<GameName, GameUserStatistics> = {};
+  const playsStatistics: Record<string, GameUserStatistics> = {};
 
   const today = Date.now() - 24 * 60 * 60 * 1000;
   const todaysGames: GameUserEntry[] = [];
@@ -366,13 +564,37 @@ export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
   };
 };
 
+/**
+ * Properties for saving a completed game to user profiles
+ */
 type SaveGameToUsersProps = {
+  /**
+   * The name of the game
+   */
   gameName: string;
-  gameId: GameId;
+  /**
+   * The unique identifier of the game instance
+   */
+  gameId: UID;
+  /**
+   * The language the game was played in
+   */
   language: Language;
+  /**
+   * Timestamp when the game started
+   */
   startedAt: DateMilliseconds;
+  /**
+   * Dictionary of all players in the game
+   */
   players: Players;
+  /**
+   * Array of players who won the game
+   */
   winners: Player[];
+  /**
+   * Array of achievements earned during the game
+   */
   achievements: Achievement<unknown>[];
 };
 
@@ -451,7 +673,7 @@ export const saveGameToUsers = async ({
   }
 };
 
-function getPlayersPlacement(players: Player[]): NumberDictionary {
+function getPlayersPlacement(players: Player[]): Dictionary<number> {
   // Sort players by score in descending order
   const sortedPlayers = players.sort((a, b) => b.score - a.score);
 

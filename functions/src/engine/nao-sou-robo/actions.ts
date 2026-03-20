@@ -12,10 +12,10 @@ import { getNextPhase } from './index';
  * @returns
  */
 export const handleSubmitCard = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  cardId: CardId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  cardId: UID,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -39,10 +39,10 @@ export const handleSubmitCard = async (
  * @returns
  */
 export const handleSubmitCardGuess = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  guess: CardId[],
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  guess: UID[],
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

@@ -133,7 +133,7 @@ export const prepareSkipAnnouncementPhase = async (
   // Unready players
   utils.players.unReadyPlayers(players);
 
-  const creatorId: PlayerId = state.creatorId;
+  const creatorId: UID = state.creatorId;
 
   // If creator have skipped their turn, they gain a new card
   players[creatorId].hand.push(...utils.game.dealItems(store.deckKeys, 1));
@@ -333,7 +333,7 @@ export const prepareResultsPhase = async (
 };
 
 export const prepareGameOverPhase = async (
-  gameId: GameId,
+  gameId: UID,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,

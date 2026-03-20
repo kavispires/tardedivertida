@@ -24,7 +24,7 @@ import { handleSubmitPattern } from './actions';
  * Get Initial Game State
  */
 export const getInitialState = (
-  gameId: GameId,
+  gameId: UID,
   uid: string,
   language: Language,
   version: string,

@@ -47,11 +47,11 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
   return BETS;
 };
 
-export const applyBetsToLodges = (players: Players, skierId: PlayerId, lodges: Lodge[], betType: string) => {
+export const applyBetsToLodges = (players: Players, skierId: UID, lodges: Lodge[], betType: string) => {
   const allPlayersBySkier = utils.players.getListOfPlayers(players, true, [skierId]);
   // Also update lodges with players
   allPlayersBySkier.forEach((player) => {
-    const bets: NumberDictionary = player[betType];
+    const bets: Dictionary<number> = player[betType];
     Object.keys(bets).forEach((betKey) => {
       const betValue = bets[betKey];
       if (betValue > 0) {
@@ -63,11 +63,11 @@ export const applyBetsToLodges = (players: Players, skierId: PlayerId, lodges: L
   });
 };
 
-export const aggregateBets = (players: Players, skierId: PlayerId, betType: string) => {
+export const aggregateBets = (players: Players, skierId: UID, betType: string) => {
   const allPlayersBySkier = utils.players.getListOfPlayers(players, true, [skierId]);
 
   allPlayersBySkier.forEach((player) => {
-    const bets: NumberDictionary = player.bets ?? {};
+    const bets: Dictionary<number> = player.bets ?? {};
     const playerBets = player[betType];
     Object.keys(playerBets).forEach((betKey) => {
       const betValue = playerBets[betKey];
@@ -81,7 +81,7 @@ export const aggregateBets = (players: Players, skierId: PlayerId, betType: stri
 
 export const calculateScores = (
   players: Players,
-  skierId: PlayerId,
+  skierId: UID,
   lodges: Lodge[],
   store: FirebaseStoreData,
 ) => {
@@ -89,12 +89,12 @@ export const calculateScores = (
   const scores = new utils.players.Scores(players, [0, 0, 0, 0]);
 
   const allPlayersButSkier = utils.players.getListOfPlayers(players, true, [skierId]);
-  const skierReferencePoints: NumberDictionary = {};
+  const skierReferencePoints: Dictionary<number> = {};
 
   const finalLodgeId = lodges.find((lodge) => lodge.selected)?.id ?? 0;
 
   allPlayersButSkier.forEach((player) => {
-    const bets: NumberDictionary = player.bets;
+    const bets: Dictionary<number> = player.bets;
 
     // TODO: add multiplier here for each chip
     const correctBet = bets?.[finalLodgeId] ?? 0;
@@ -108,7 +108,7 @@ export const calculateScores = (
   });
 
   // Skier's points is based on their 5 betting chips. Each chip represents 20% of the selected player's betting scored points.
-  const skierPlayersWithBets: BooleanDictionary = {};
+  const skierPlayersWithBets: Dictionary<boolean> = {};
   const skier = players[skierId];
   Object.keys(skier[SKIER_BET_TYPES.SKIERS_BETS]).forEach((playerId) => {
     const playerPoints = skierReferencePoints[playerId];
@@ -145,19 +145,19 @@ export const calculateScores = (
 
 export const calculateBetAchievements = (
   players: Players,
-  skierId: PlayerId,
+  skierId: UID,
   lodges: Lodge[],
   store: FirebaseStoreData,
 ) => {
-  const REF = Object.values(lodges).reduce((acc: ArrayDictionary<string>, l) => {
+  const REF = Object.values(lodges).reduce((acc: Dictionary<string[]>, l) => {
     acc[l.id] = [];
     return acc;
   }, {});
 
-  const initialBets: ArrayDictionary<string> = cloneDeep(REF);
-  const boostBets: ArrayDictionary<string> = cloneDeep(REF);
-  const finalBets: ArrayDictionary<string> = cloneDeep(REF);
-  const bets: ArrayDictionary<string> = cloneDeep(REF);
+  const initialBets: Dictionary<string[]> = cloneDeep(REF);
+  const boostBets: Dictionary<string[]> = cloneDeep(REF);
+  const finalBets: Dictionary<string[]> = cloneDeep(REF);
+  const bets: Dictionary<string[]> = cloneDeep(REF);
 
   const allPlayersButSkier = utils.players.getListOfPlayers(players, true, [skierId]);
 

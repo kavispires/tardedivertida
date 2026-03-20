@@ -13,7 +13,7 @@ export interface InstrumentosCodificadosInitialState extends InitialState {
 
 export interface Hint {
   hint: string;
-  targetId: PlayerId;
+  targetId: UID;
   position: number;
 }
 

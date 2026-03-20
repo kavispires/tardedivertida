@@ -32,7 +32,7 @@ export interface VamosAoCinemaStore extends DefaultStore {
 export type VamosAoCinemaAchievement = keyof typeof VAMOS_AO_CINEMA_ACHIEVEMENTS;
 
 export interface VamosAoCinemaState extends DefaultState {
-  gameOrder?: PlayerId[];
+  gameOrder?: UID[];
 }
 
 export interface VamosAoCinemaInitialState extends InitialState {

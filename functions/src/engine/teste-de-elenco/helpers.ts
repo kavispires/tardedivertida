@@ -158,7 +158,7 @@ export const determineCast = (players: Players, state: FirebaseStateData, store:
     activeRole.round += 1;
     activeRole.traits.push(store.traits.pop());
     activeRole.selection = votes.map((vote) => vote.value);
-    activeRole.directors = votes.reduce((acc: PlayerId[], vote) => {
+    activeRole.directors = votes.reduce((acc: UID[], vote) => {
       return acc.concat(vote.votes);
     }, []);
     votes.forEach((vote) => {

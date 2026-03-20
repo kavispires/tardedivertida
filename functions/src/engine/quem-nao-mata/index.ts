@@ -30,7 +30,7 @@ import { handleSubmitDecision, handleSubmitMessage, handleSubmitTarget } from '.
  * @returns
  */
 export const getInitialState = (
-  gameId: GameId,
+  gameId: UID,
   uid: string,
   language: Language,
   version: string,
@@ -61,8 +61,8 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
  * @returns
  */
 export const getNextPhase = async (
-  gameName: GameName,
-  gameId: GameId,
+  gameName: string,
+  gameId: UID,
   currentState?: FirebaseStateData,
 ): Promise<boolean> => {
   const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<

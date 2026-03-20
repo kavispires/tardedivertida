@@ -20,7 +20,7 @@ Sets up achievements in the store by creating an achievements object for every p
 **Returns:**
 - The updated achievements object.
 
-### `increase(store: PlainObject, playerId: PlayerId, property: string, value: number)`
+### `increase(store: PlainObject, playerId: UID, property: string, value: number)`
 
 Adds a numeric value to a given property in the achievements.
 
@@ -33,7 +33,7 @@ Adds a numeric value to a given property in the achievements.
 **Returns:**
 - The updated achievements object.
 
-### `push(store: PlainObject, playerId: PlayerId, property: string, value: any)`
+### `push(store: PlainObject, playerId: UID, property: string, value: any)`
 
 Pushes a value to the achievements property array.
 
@@ -46,7 +46,7 @@ Pushes a value to the achievements property array.
 **Returns:**
 - The updated achievements object.
 
-### `insert(store: PlainObject, playerId: PlayerId, property: string, value: any, index: number)`
+### `insert(store: PlainObject, playerId: UID, property: string, value: any, index: number)`
 
 Inserts a value in a specific array index in the achievements.
 
@@ -60,7 +60,7 @@ Inserts a value in a specific array index in the achievements.
 **Returns:**
 - The updated achievements object.
 
-### `getMostAndLeastOf(store: PlainObject, property: string, ineligiblePlayers: PlayerId[], condition: (args: any) => boolean)`
+### `getMostAndLeastOf(store: PlainObject, property: string, ineligiblePlayers: UID[], condition: (args: any) => boolean)`
 
 Gets the most and least values of a certain property, excluding ineligible players and based on a condition.
 
@@ -73,7 +73,7 @@ Gets the most and least values of a certain property, excluding ineligible playe
 **Returns:**
 - An object with `most` and `least` values.
 
-### `getMostAndLeastOfAverage(store: PlainObject, property: string, ineligiblePlayers: PlayerId[])`
+### `getMostAndLeastOfAverage(store: PlainObject, property: string, ineligiblePlayers: UID[])`
 
 Gets the most and least values of a certain property based on the average of the array of values.
 
@@ -85,7 +85,7 @@ Gets the most and least values of a certain property based on the average of the
 **Returns:**
 - An object with `most` and `least` values.
 
-### `getMostAndLeastUniqueItemsOf(store: PlainObject, property: string, ineligiblePlayers: PlayerId[])`
+### `getMostAndLeastUniqueItemsOf(store: PlainObject, property: string, ineligiblePlayers: UID[])`
 
 Gets the most and least unique items of a certain property.
 
@@ -97,7 +97,7 @@ Gets the most and least unique items of a certain property.
 **Returns:**
 - An object with `most` and `least` values.
 
-### `getEarliestAndLatestOccurrence(store: PlainObject, property: string, ineligiblePlayers: PlayerId[])`
+### `getEarliestAndLatestOccurrence(store: PlainObject, property: string, ineligiblePlayers: UID[])`
 
 Gets the earliest and latest occurrences of a certain property.
 
@@ -109,7 +109,7 @@ Gets the earliest and latest occurrences of a certain property.
 **Returns:**
 - An object with `most` and `least` values.
 
-### `getOnlyExactMatch(store: PlainObject, property: string, value: any, ineligiblePlayers: PlayerId[])`
+### `getOnlyExactMatch(store: PlainObject, property: string, value: any, ineligiblePlayers: UID[])`
 
 Gets the only exact match of a certain property and value.
 

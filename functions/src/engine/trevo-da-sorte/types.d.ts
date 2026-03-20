@@ -20,7 +20,7 @@ export interface CloverLeaf {
 }
 
 export interface Clover {
-  cloverId: PlayerId;
+  cloverId: UID;
   leaves: {
     A: CloverLeaf;
     B: CloverLeaf;
@@ -48,8 +48,8 @@ export interface GuessPayload {
   D: LeafGuess;
 }
 export interface Guess {
-  cloverId: PlayerId;
-  playerId: PlayerId;
+  cloverId: UID;
+  playerId: UID;
   score: number;
   leaves: {
     A: LeafGuess;
@@ -59,7 +59,7 @@ export interface Guess {
   };
 }
 
-export type Guesses = Record<PlayerId, Guess>;
+export type Guesses = Record<UID, Guess>;
 
 type Leaves = Record<LeafId, Leaf>;
 
@@ -68,7 +68,7 @@ export interface TrevoDaSorteStore extends DefaultStore {
 }
 
 export interface TrevoDaSorteState extends DefaultState {
-  gameOrder?: PlayerId[];
+  gameOrder?: UID[];
 
   [key: string]: any;
 }

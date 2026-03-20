@@ -13,9 +13,9 @@ import { getNextPhase } from '.';
  * @returns
  */
 export const handleSubmitTweet = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   tweetId: string,
   customTweet?: string,
 ) => {
@@ -42,9 +42,9 @@ export const handleSubmitTweet = async (
  * @returns
  */
 export const handleSubmitReaction = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   reaction: boolean,
   likesGuess: number,
 ) => {

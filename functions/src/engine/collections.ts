@@ -103,7 +103,7 @@ export const updateDataCollectionRecursively = async (
 export const updateCardDataCollection = async (
   type: 'cards' | 'imageCards',
   language: Language,
-  data: Record<CardId | ImageCardId, string[]>,
+  data: Record<UID | UID, string[]>,
 ): Promise<boolean> => {
   const documentName = `${type}Clues${language.toUpperCase()}`;
 
@@ -128,7 +128,7 @@ export const updateCardDataCollection = async (
   return true;
 };
 
-type OpposingIdeaClue = Record<CardId, Record<string | number, any>>;
+type OpposingIdeaClue = Record<UID, Record<string | number, any>>;
 
 // TODO: Delete after its run once
 export const updateOpposingIdeasClues = async (pastCategories: PastCategories) => {

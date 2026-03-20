@@ -23,7 +23,7 @@ export type CrimesHediondosOptions = {
 export type CrimesHediondosAchievement = keyof typeof CRIMES_HEDIONDOS_ACHIEVEMENTS;
 
 export interface Crime {
-  playerId: PlayerId;
+  playerId: UID;
   weaponId: string;
   evidenceId: string;
   victimId?: string;
@@ -41,7 +41,7 @@ export type Guess = {
   locationId?: string;
 };
 
-export type Guesses = Record<PlayerId, Guess>;
+export type Guesses = Record<UID, Guess>;
 
 export type GuessHistory = {
   [key: string]: GuessHistoryEntry[];

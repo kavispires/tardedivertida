@@ -6,9 +6,9 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 export const handleSubmitWord = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   wordId: string,
 ) => {
   return await utils.firestore.updateStore({
@@ -22,9 +22,9 @@ export const handleSubmitWord = async (
 };
 
 export const handleSubmitCards = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   cardsIds: string[],
 ) => {
   const cards = cardsIds.reduce((acc: PlainObject, cardId) => {
@@ -49,9 +49,9 @@ export const handleSubmitCards = async (
 };
 
 export const handlePlayCard = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   cardId: string,
 ) => {
   const actionText = 'play a card';
@@ -66,7 +66,7 @@ export const handlePlayCard = async (
   const playersList = utils.players.getListOfPlayers(players);
 
   // Group each players in a dictionary of cardIds and players array
-  const cardCache: Dictionary<PlayerId[]> = {};
+  const cardCache: Dictionary<UID[]> = {};
   playersList.forEach((player) => {
     Object.values<PlayerCard>(player.cards).forEach((card) => {
       if (cardCache[card.cardId] === undefined) {
@@ -77,8 +77,8 @@ export const handlePlayCard = async (
   });
 
   let didPlayerJustFall = false;
-  const playersWhoGotPoints: PlayerId[] = [];
-  const completedPlayers: PlayerId[] = [];
+  const playersWhoGotPoints: UID[] = [];
+  const completedPlayers: UID[] = [];
 
   // Check matches (3 points for 1 match, 2 points for 2+ matches, 0 points for 0 match)
   const cardEntry = cardCache[cardId];
@@ -89,14 +89,14 @@ export const handlePlayCard = async (
     players[playerId].fallen = true;
     didPlayerJustFall = true;
   } else if (matchCount === 1) {
-    cardEntry.forEach((pId: PlayerId) => {
+    cardEntry.forEach((pId: UID) => {
       if (!players[pId].fallen) {
         players[pId].cards[cardId].score = 3;
         playersWhoGotPoints.push(pId);
       }
     });
   } else {
-    cardEntry.forEach((pId: PlayerId) => {
+    cardEntry.forEach((pId: UID) => {
       if (!players[pId].fallen) {
         players[pId].cards[cardId].score = 2;
         playersWhoGotPoints.push(pId);
@@ -105,7 +105,7 @@ export const handlePlayCard = async (
   }
 
   // Mark all players matches as used
-  cardEntry.forEach((pId: PlayerId) => {
+  cardEntry.forEach((pId: UID) => {
     players[pId].cards[cardId].used = true;
   });
 
@@ -146,7 +146,7 @@ export const handlePlayCard = async (
     }
   }
 
-  const availableTurnOrder = state.gameOrder.filter((pId: PlayerId) => {
+  const availableTurnOrder = state.gameOrder.filter((pId: UID) => {
     return !players[pId].fallen && !players[pId].skip;
   });
 

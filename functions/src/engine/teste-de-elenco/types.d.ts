@@ -8,7 +8,7 @@ export type TesteDeElencoOptions = {
   nsfw?: boolean;
 } & SuspectCardsOptions;
 
-export type ActorId = CardId;
+export type ActorId = UID;
 
 export type MovieRole = {
   id: string;
@@ -26,7 +26,7 @@ export type ActingRole = {
   actor?: ActorId;
   cast: boolean;
   round: number;
-  directors: PlayerId[];
+  directors: UID[];
 } & Pick<MovieRole, 'id' | 'title' | 'description' | 'type'>;
 
 export type MovieGenre = {

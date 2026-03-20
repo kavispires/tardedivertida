@@ -31,7 +31,7 @@ import { handleSubmitRequest, handleSubmitDelivery, handleStopDelivering } from 
  * @returns
  */
 export const getInitialState = (
-  gameId: GameId,
+  gameId: UID,
   uid: string,
   language: Language,
   version: string,

@@ -153,8 +153,8 @@ export async function getSessionDoc(
  * @returns
  */
 export const getStateReferences = async <A = FirebaseFirestore.DocumentData>(
-  gameName: GameName,
-  gameId: GameId,
+  gameName: string,
+  gameId: UID,
   actionText: string,
 ): Promise<{
   sessionRef: FirebaseFirestore.CollectionReference;
@@ -186,8 +186,8 @@ export const getStateAndStoreReferences = async <
   A = FirebaseFirestore.DocumentData,
   O = FirebaseFirestore.DocumentData,
 >(
-  gameName: GameName,
-  gameId: GameId,
+  gameName: string,
+  gameId: UID,
   actionText: string,
   previousState?: A,
 ): Promise<{
@@ -306,7 +306,7 @@ export const saveGame = async (
  * @param gameId
  * @returns
  */
-export const markGameAsComplete = async (gameId: GameId) => {
+export const markGameAsComplete = async (gameId: UID) => {
   await getMetaRef().doc(gameId).update({ isComplete: true });
   return true;
 };

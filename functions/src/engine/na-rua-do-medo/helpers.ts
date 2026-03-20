@@ -206,9 +206,9 @@ type ParsedDecisions = {
   street: HouseCard[];
   candySidewalk: CandyStatus[];
   claimedJackpotIds: string[];
-  goingHomePlayerIds: PlayerId[];
-  continuingPlayerIds: PlayerId[];
-  alreadyAtHomePlayerIds: PlayerId[];
+  goingHomePlayerIds: UID[];
+  continuingPlayerIds: UID[];
+  alreadyAtHomePlayerIds: UID[];
   cashedInCandy: number;
 };
 
@@ -228,9 +228,9 @@ export const parseDecisions = (
   const continuingPlayers: Player[] = [];
   const goingHomePlayers: Player[] = [];
   const alreadyHomePlayers: Player[] = [];
-  const goingHomePlayerIds: PlayerId[] = [];
-  const continuingPlayerIds: PlayerId[] = [];
-  const alreadyAtHomePlayerIds: PlayerId[] = [];
+  const goingHomePlayerIds: UID[] = [];
+  const continuingPlayerIds: UID[] = [];
+  const alreadyAtHomePlayerIds: UID[] = [];
 
   utils.players.getListOfPlayers(players).forEach((player) => {
     switch (player.decision) {
@@ -344,7 +344,7 @@ export const parseDecisions = (
   };
 };
 
-export const checkIfIsPanic = (horrorCount: NumberDictionary, newHorrorKey: string) => {
+export const checkIfIsPanic = (horrorCount: Dictionary<number>, newHorrorKey: string) => {
   return horrorCount[newHorrorKey] === 1;
 };
 
@@ -406,8 +406,8 @@ export const determineOutcome = (
   };
 };
 
-export const sendPlayersHome = (players: Players): PlayerId[] => {
-  const atHome: PlayerId[] = [];
+export const sendPlayersHome = (players: Players): UID[] => {
+  const atHome: UID[] = [];
   utils.players.getListOfPlayers(players).forEach((player) => {
     if (player.decision === DECISIONS.HOME) {
       atHome.push(player.id);
@@ -429,7 +429,7 @@ export const getTotalCandyInSidewalk = (candySidewalk: CandyStatus[]): number =>
   }, 0);
 };
 
-export const resetHorrorCount = (horrorCount: NumberDictionary): NumberDictionary => {
+export const resetHorrorCount = (horrorCount: Dictionary<number>): Dictionary<number> => {
   Object.keys(horrorCount).forEach((key) => {
     horrorCount[key] = 0;
   });

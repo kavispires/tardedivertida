@@ -4,12 +4,12 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 export const handleSubmitGenre = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   genre: string,
   movieTitle: string,
-  propsIds: CardId[],
+  propsIds: UID[],
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -27,10 +27,10 @@ export const handleSubmitGenre = async (
 };
 
 export const handleSubmitActor = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  actorId: CardId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  actorId: UID,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,

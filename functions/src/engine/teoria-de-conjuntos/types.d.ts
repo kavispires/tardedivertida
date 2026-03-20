@@ -30,14 +30,14 @@ export interface ResourceData {
 
 export type DiagramArea = {
   key: string; // A | W | C | O and any combination
-  itemsIds: CardId[];
+  itemsIds: UID[];
 };
 
 export type Outcome = keyof typeof OUTCOME;
 
 export type Guess = {
-  itemId: CardId;
-  playerId: PlayerId;
+  itemId: UID;
+  playerId: UID;
   suggestedArea: string;
   correctArea: string | null;
   outcome: Outcome | string;

@@ -122,7 +122,7 @@ export const prepareBookPossessionPhase = async (
         doors: state.doors,
         newDoorIndex: store.doorsDeckIndex,
         answerDoorId: utils.game.getRandomItem(
-          state.doors.filter((doorId: ImageCardId) => doorId !== state.answerDoorId),
+          state.doors.filter((doorId: UID) => doorId !== state.answerDoorId),
         ),
       };
 
@@ -149,7 +149,7 @@ export const prepareBookPossessionPhase = async (
         pages: pages.pages,
         doors: isCorrect
           ? doors.doors
-          : state.doors.filter((doorId: ImageCardId) => doorId !== state.answerDoorId),
+          : state.doors.filter((doorId: UID) => doorId !== state.answerDoorId),
         answerDoorId: doors.answerDoorId,
         trapEntry,
       },
@@ -223,7 +223,7 @@ export const prepareResolutionPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const doorPlayerDict: Dictionary<PlayerId[]> = {};
+  const doorPlayerDict: Dictionary<UID[]> = {};
   // Gather all players door choices
   const visitedDoors = utils.players.getListOfPlayers(players, true).reduce((acc: string[], player) => {
     if (player.doorId) {
@@ -335,7 +335,7 @@ export const prepareResolutionPhase = async (
 };
 
 export const prepareGameOverPhase = async (
-  gameId: GameId,
+  gameId: UID,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,

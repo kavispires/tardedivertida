@@ -6,9 +6,9 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 export const handleSubmitMap = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
   newMap: (ExtendedTextCard | null)[],
 ) => {
   return await utils.firestore.updatePlayer({
@@ -23,11 +23,11 @@ export const handleSubmitMap = async (
 };
 
 export const handleSubmitPath = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  pathId: PlayerId,
-  guess: CardId[],
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  pathId: UID,
+  guess: UID[],
   choseRandomly?: boolean,
 ) => {
   return await utils.firestore.updatePlayer({

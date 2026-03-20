@@ -10,7 +10,7 @@ export type ClueId = string;
 
 export type Clue = {
   id: ClueId;
-  playerId: PlayerId;
+  playerId: UID;
   clue: string;
   /**
    * Indicates if the boss has already evaluated this clue against the secret word
