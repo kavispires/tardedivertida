@@ -2,6 +2,7 @@ import type { CallableRequest, FirebaseAuth } from '../types/reference';
 import utils from '../utils';
 import { feedEmulatorDaily } from '../utils/mocks/emulator';
 import * as dataUtils from './collections';
+import { apiDelegator } from '../utils/firebase';
 
 type DailyGetterPayload = {
   date: string; // Format YYYY-MM-DD
@@ -219,4 +220,4 @@ const DAILY_API_ACTIONS = {
  * @param request - The CallableRequest object.
  */
 export const dailyEngine = (request: CallableRequest) =>
-  utils.firebase.apiDelegator(request, DAILY_API_ACTIONS);
+  apiDelegator(request, DAILY_API_ACTIONS);

@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import * as functions from 'firebase-functions/v2';
+import { onCall } from 'firebase-functions/v2/https';
 // eslint-disable-next-line
 import { initializeApp } from 'firebase-admin/app';
 import { dailyEngine } from './engine/daily';
@@ -25,19 +25,19 @@ if (isEmulatingEnvironment()) {
 /**
  * All user actions outside a game
  */
-exports.userEngine = functions.https.onCall(userEngine);
+exports.userEngine = onCall(userEngine);
 
 /**
  * All daily game actions
  */
-exports.dailyEngine = functions.https.onCall(dailyEngine);
+exports.dailyEngine = onCall(dailyEngine);
 
 /**
  * All game engine actions
  */
-exports.gameEngine = functions.https.onCall(gameEngine);
+exports.gameEngine = onCall(gameEngine);
 
 /**
  * All game host actions
  */
-exports.hostEngine = functions.https.onCall(hostEngine);
+exports.hostEngine = onCall(hostEngine);

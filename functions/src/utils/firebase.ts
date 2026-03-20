@@ -1,12 +1,17 @@
 // eslint-disable-next-line
 import * as functions from 'firebase-functions/v2';
-
 import type { GenericCallableFunction } from '../types/reference';
-import utils from '.';
 
 export const isEmulatingFunctions = () => !!process.env.FUNCTIONS_EMULATOR;
 export const isEmulatingFirestore = () => !!process.env.FIRESTORE_EMULATOR_HOST;
 export const isEmulatingEnvironment = () => isEmulatingFunctions() || isEmulatingFirestore();
+
+if (isEmulatingFunctions()) {
+  console.log('🤡 EMULATING FUNCTIONS:', process.env.FUNCTIONS_EMULATOR)
+}
+if (isEmulatingFirestore()) {
+console.log('🤡 EMULATING FIRESTORE:', process.env.FIRESTORE_EMULATOR_HOST)
+}
 
 /**
  * CLOUD FUNCTIONS V2 MIGRATION
@@ -22,21 +27,22 @@ export const throwException = (error: unknown, action: string) => {
 
 export const apiDelegator = (
   request: functions.https.CallableRequest<ActionPayload>,
-  actions: Record<string, GenericCallableFunction>,
+  actions: Dictionary<GenericCallableFunction>,
 ) => {
   const uid = request.auth?.uid;
   const action = request.data?.action;
+  console.log(`Received request for action: ${action} from user: ${uid}`);
 
   if (!action) {
-    return utils.firebase.throwException('Action not provided', 'perform request');
+    return throwException('Action not provided', 'perform request');
   }
 
   if (!uid) {
-    return utils.firebase.throwException('User not authenticated', action.toLowerCase());
+    return throwException('User not authenticated', action.toLowerCase());
   }
 
   if (!actions[action]) {
-    return utils.firebase.throwException('Invalid action', action.toLowerCase());
+    return throwException('Invalid action', action.toLowerCase());
   }
 
   return actions[action](request.data, request.auth);

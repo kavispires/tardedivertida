@@ -2,6 +2,7 @@
 import type { CallableRequest, FirebaseAuth } from '../types/reference';
 import utils from '../utils';
 import type { FirebaseUserDB } from '../utils/user';
+import { apiDelegator } from '../utils/firebase';
 
 /**
  * Retrieves the user data based on the provided parameters.
@@ -116,4 +117,4 @@ const USER_API_ACTIONS = {
  * @returns The result of the user engine function.
  */
 export const userEngine = (request: CallableRequest) =>
-  utils.firebase.apiDelegator(request, USER_API_ACTIONS);
+  apiDelegator(request, USER_API_ACTIONS);
