@@ -2,11 +2,11 @@
 
 Legend
 
-- 🔘 Unknown/Unavailable information
-- ✅ Yes
-- ❌ No
-- 🟡 Some
-- ⛔️ Impossible/Won't happen
+- 🔘 Unknown / not evaluated yet
+- ✅ Yes / Complete
+- ❌ No / Missing
+- 🟡 Partial / incomplete / not as expected
+- ⛔️ Out of scope
 - ⏹ Non-applicable
 - ✴️ Needs work/fix/refactor
 
@@ -20,6 +20,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Arte Ruim Pra Dedéu
 
@@ -31,6 +32,19 @@ Legend
 - Collects Data: ✅
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
+
+## Barrados na Alfândega
+
+- Collection: `barrados-na-alfandega`
+- Code: 🔘
+- Rules: 🔘
+- Rules Images: 🔘
+- Bots: 🔘
+- Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Bomba Relógio
 
@@ -42,6 +56,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Colegas de Quarto
 
@@ -53,6 +68,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Comunicação Alienígena
 
@@ -64,6 +80,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Comunicação Alienígena Duo
 
@@ -75,6 +92,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Contadores de Histórias
 
@@ -86,6 +104,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Controle De Estoque
 
@@ -97,6 +116,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Crimes Hediondos
 
@@ -108,6 +128,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Cruza Palavras
 
@@ -119,6 +140,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Detetives Imaginativos
 
@@ -130,6 +152,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Duetos
 
@@ -141,6 +164,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Espião Entre Nós
 
@@ -152,6 +176,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Esquiadores
 
@@ -163,6 +188,19 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
+
+## Escape Room
+
+- Collection: `escape-room`
+- Code: 🔘
+- Rules: 🔘
+- Rules Images: 🔘
+- Bots: 🔘
+- Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Eu Não Sou Um Robô
 
@@ -174,6 +212,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Fileira De Fatos
 
@@ -185,6 +224,7 @@ Legend
 - Collects Data: ⛔️
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Fofoca Quente
 
@@ -196,6 +236,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Galeria de Sonhos
 
@@ -207,6 +248,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Idade da Preda
 
@@ -218,6 +260,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Instrumentos Codificados
 
@@ -229,6 +272,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Jogo da Mesmice
 
@@ -240,6 +284,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Labirinto Secreto
 
@@ -251,6 +296,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Linhas Cruzadas
 
@@ -262,6 +308,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Medidas Não Exatas
 
@@ -273,6 +320,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Megamix
 
@@ -284,6 +332,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Megarobos
 
@@ -295,6 +344,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Mente Coletiva
 
@@ -306,6 +356,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Meta Linguagem
 
@@ -317,6 +368,19 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
+
+## Na Fila do Banco
+
+- Collection: `na-fila-do-banco`
+- Code: 🔘
+- Rules: 🔘
+- Rules Images: 🔘
+- Bots: 🔘
+- Collects Data: 🔘
+- Phases Refactor: 🔘
+- View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Na Rua do Medo
 
@@ -328,6 +392,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Onda Telepática
 
@@ -339,6 +404,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Planejamento Urbano
 
@@ -350,6 +416,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Polêmica da Vez
 
@@ -361,6 +428,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Porta dos Desesperados
 
@@ -372,6 +440,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Qual O Quesito?
 
@@ -383,6 +452,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Quem Sou Eu?
 
@@ -394,6 +464,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Retrato Falado Monstruoso
 
@@ -405,6 +476,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Senso Literário
 
@@ -416,6 +488,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Sinais de Alerta
 
@@ -427,6 +500,7 @@ Legend
 - Collects Data: ✅
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Super Campeonato
 
@@ -438,6 +512,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Teoria de Conjuntos
 
@@ -449,6 +524,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Teste De Elenco
 
@@ -460,6 +536,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Testemunha Ocular
 
@@ -471,6 +548,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Ué, Só Isso?
 
@@ -482,6 +560,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Vamos Ao Cinema
 
@@ -493,6 +572,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Vendaval de Palpite
 
@@ -504,6 +584,7 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
 
 ## Vice-Campeão
 
@@ -515,3 +596,4 @@ Legend
 - Collects Data: 🔘
 - Phases Refactor: 🔘
 - View Refactor: 🔘
+- Constants as Const: 🔘
