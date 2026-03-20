@@ -12,9 +12,34 @@ export const print = (content: unknown) => {
   }
 };
 
+/**
+ * @deprecated Use determineNextPhase instead
+ */
 export const warnMissingPhase = (phase: string) => {
   // biome-ignore lint/suspicious/noConsole: on purpose
   console.warn(`Missing phase check to follow ${phase}`);
+};
+
+/**
+ * Determines the next phase in the game flow based on the current phase and ordered list of phases
+ * @param currentPhase - The current phase of the game
+ * @param orderedPhases - Array of phases in order
+ * @returns The next phase in the sequence, or the first phase if current phase is not found
+ */
+export const nextPhaseDelegator = (currentPhase: string, orderedPhases: string[]): string => {
+  const currentPhaseIndex = orderedPhases.indexOf(currentPhase);
+
+  if (currentPhaseIndex > -1) {
+    return orderedPhases[currentPhaseIndex + 1];
+  }
+
+  if (currentPhase === 'LOBBY') {
+    return orderedPhases[0];
+  }
+
+  // biome-ignore lint/suspicious/noConsole: on purpose
+  console.warn(`⚠️ Missing phase check to follow ${currentPhase}`);
+  return orderedPhases[0];
 };
 
 /**
