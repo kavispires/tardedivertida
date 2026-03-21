@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCopyToClipboard } from 'react-use';
 // Ant Design Resources
-import { Modal, Button, Divider, Alert, App } from 'antd';
+import { Modal, Button, Divider, Alert, App, Space } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
@@ -199,9 +199,8 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
       title={`${translate('Criando novo jogo', 'Creating new game')}: ${gameInfo.title[language]}`}
       open={open}
       onCancel={() => setOpen(false)}
-      onOk={onConfirmGame}
-      okButtonProps={{ disabled: Boolean(!gameId) || isSettingRedirect }}
-      maskClosable={false}
+      footer={null}
+      mask={{ closable: false }}
     >
       <GameStrip
         title={gameInfo.title}
@@ -280,39 +279,20 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
             />
             : {gameId}
           </Title>
-          <Instruction>
-            {previousGameId && !wasRedirectSuccessful && (
-              <Alert
-                type="info"
-                showIcon
-                title={
-                  <>
-                    <Translate
-                      pt={<>Você quer redirecionar jogadores em {previousGameId} para essa nova partida?</>}
-                      en={<>Redirect players in {previousGameId} to this new play?</>}
-                    />
-                    <Button
-                      size="large"
-                      onClick={() => {
-                        startRedirect(previousGameId ?? '', gameId ?? '', gameInfo.gameName);
-                      }}
-                      disabled={!gameId || !previousGameId}
-                      loading={isSettingRedirect}
-                    >
-                      <Translate
-                        pt="Redirecione-os"
-                        en="Redirect them"
-                      />
-                    </Button>
-                  </>
-                }
-              />
-            )}
-            {wasRedirectSuccessful && (
-              <Alert
-                type="info"
-                showIcon
-                title={
+
+          <Alert
+            type="info"
+            showIcon
+            banner
+            title={
+              <>
+                {previousGameId && !wasRedirectSuccessful && (
+                  <Translate
+                    pt={<>Você quer redirecionar jogadores em {previousGameId} para essa nova partida?</>}
+                    en={<>Redirect players in {previousGameId} to this new play?</>}
+                  />
+                )}
+                {wasRedirectSuccessful && (
                   <Translate
                     pt={
                       <>
@@ -325,10 +305,41 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
                       </>
                     }
                   />
-                }
-              />
-            )}
-          </Instruction>
+                )}
+              </>
+            }
+            action={
+              <Space
+                vertical
+                className="ml-4"
+              >
+                <Button
+                  block
+                  onClick={onConfirmGame}
+                >
+                  <Translate
+                    pt="Ir para o jogo"
+                    en="Go to game"
+                  />
+                </Button>
+
+                <Button
+                  block
+                  type="primary"
+                  onClick={() => {
+                    startRedirect(previousGameId ?? '', gameId ?? '', gameInfo.gameName);
+                  }}
+                  disabled={!gameId || !previousGameId || wasRedirectSuccessful}
+                  loading={isSettingRedirect}
+                >
+                  <Translate
+                    pt="Redirecione-os"
+                    en="Redirect them"
+                  />
+                </Button>
+              </Space>
+            }
+          />
         </div>
       ) : (
         <SpaceContainer align="center">
