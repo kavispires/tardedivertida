@@ -1,7 +1,8 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { capitalize } from 'lodash';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
-import { ClearOutlined, FilterOutlined, SearchOutlined } from '@ant-design/icons';
+import { ClearOutlined, FilterOutlined, ReloadOutlined, SearchOutlined } from '@ant-design/icons';
 import { Button, Collapse, Input, InputNumber, Select, Space, type TreeDataNode, TreeSelect } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
@@ -61,6 +62,7 @@ type FiltersProps = {
 };
 
 export function Filters({ availabilityCount, filters, setFilters }: FiltersProps) {
+  const queryClient = useQueryClient();
   const { translate } = useLanguage();
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -207,6 +209,14 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
           {isExpanded
             ? translate('Menos filtros', 'Fewer filters')
             : translate('Mais filtros', 'More filters')}
+        </Button>
+
+        <Button
+          onClick={() => queryClient.refetchQueries({ queryKey: ['gameList'] })}
+          size="small"
+          icon={<ReloadOutlined />}
+        >
+          Refresh List
         </Button>
       </Space>
 
