@@ -1,7 +1,7 @@
 import { cloneDeep, orderBy } from 'lodash';
 import { useState } from 'react';
 // Ant Design Resources
-import { App, Badge, Flex, Space } from 'antd';
+import { App, Badge, Flex } from 'antd';
 // Types
 import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 // Hooks
@@ -12,6 +12,7 @@ import { getAvatarColorById } from 'utils/helpers';
 import { SendButton, TransparentButton } from 'components/buttons';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { TitledContainer } from 'components/layout/TitledContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { PlayerSpace } from 'components/player';
@@ -30,7 +31,6 @@ import { parseGuesses } from './utils/helpers';
 import { HappinessTracker } from './components/HappinessTracker';
 import { SelectableStoreBoard } from './components/SelectableStoreBoard';
 import { Label } from './components/Label';
-// Hooks
 
 type StepGuessProps = {
   players: GamePlayers;
@@ -224,7 +224,10 @@ export function StepGuess({
         onSelectEntry={(boardEntryId) => handleMatch(boardEntryId)}
       />
 
-      <Space className="mt-4">
+      <SpaceFloat
+        className="mt-4 container--center"
+        enabled={isComplete}
+      >
         <SendButton
           size="large"
           disabled={!isComplete}
@@ -237,7 +240,7 @@ export function StepGuess({
         </SendButton>
 
         <DevButton onClick={() => setGuessedPairs(mockGuesses(guessedPairs, board, user.id))} />
-      </Space>
+      </SpaceFloat>
     </Step>
   );
 }

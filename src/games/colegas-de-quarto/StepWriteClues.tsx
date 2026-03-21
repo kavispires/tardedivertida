@@ -11,6 +11,7 @@ import { useMock } from 'hooks/useMock';
 import { SendButton } from 'components/buttons';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -115,7 +116,8 @@ export function StepWriteClues({
           }
         />
       </RuleInstruction>
-      <Space>
+
+      <SpaceFloat style={{ justifyContent: 'center', marginTop: '2rem' }}>
         {assignedPairs.map((assignedPair, index) => (
           <Space.Compact
             size="large"
@@ -147,7 +149,8 @@ export function StepWriteClues({
         <DevButton
           onClick={() => onSubmitClues({ clues: assignedPairs.map((pair) => `${mockClue()}-${pair.id}`) })}
         />
-      </Space>
+      </SpaceFloat>
+
       <Divider />
 
       <HappinessTracker happiness={happiness} />

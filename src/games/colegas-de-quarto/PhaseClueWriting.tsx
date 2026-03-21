@@ -14,6 +14,7 @@ import { Instruction } from 'components/text';
 import type { PhaseClueWritingState } from './utils/types';
 import { COLEGAS_DE_QUARTO_PHASES } from './utils/constants';
 import { useOnSubmitCluesAPIRequest } from './utils/api-requests';
+import { WaitingRoomClues } from './components/WaitingRoomClues';
 import { StepWriteClues } from './StepWriteClues';
 
 export function PhaseClueWriting({ players, state, user }: PhaseProps<PhaseClueWritingState>) {
@@ -49,6 +50,15 @@ export function PhaseClueWriting({ players, state, user }: PhaseProps<PhaseClueW
       <StepSwitcher
         step={step}
         players={players}
+        waitingRoom={{
+          content: (
+            <WaitingRoomClues
+              currentRound={state?.round.current}
+              user={user}
+              board={state.board}
+            />
+          ),
+        }}
       >
         {/* Step 0 */}
         <RoundAnnouncement

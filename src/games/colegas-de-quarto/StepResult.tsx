@@ -125,7 +125,7 @@ export function StepResult({
               <HappinessHighlight>
                 {(happiness.gained.at(-1) ?? 0) - finalItemPoints} pontos
               </HappinessHighlight>{' '}
-              adicionais por joradores adivinhando a pista um dos outros.
+              adicionais por jogadores adivinhando a pista um dos outros.
             </>
           }
           en={

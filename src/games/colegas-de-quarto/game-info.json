@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "colegas-de-quarto",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "release": "stable",
   "releaseDate": "2026-01-07",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Colegas de Quarto",
     "en": "Roommates"
@@ -20,7 +20,8 @@
     "cloudsAnimationType": "flow",
     "primaryColor": "",
     "colorScheme": "light",
-    "videoBackground": true
+    "videoBackground": true,
+    "imageBackground": true
   },
   "summary": {
     "pt": "Um jogo sobre a vida em comunidade e as interações entre colegas de quarto.",
@@ -28,24 +29,22 @@
   },
   "rules": {
     "pt": [
-      "Vocês são colegas de quarto que acabaram de se mudar juntos e estão tentando decorar a casa.",
-      "Em cada uma das 3 rodadas, vocês recebem pares de itens na grade que não querem na casa, e devem escrever uma pista de uma única palavra que conecte os dois.",
-      "Depois que todas as pistas são escritas, vocês devem combiná-las com as coisas corretas. A última coisa sem uma pista combinada é o que mantemos na casa.",
-      "O objetivo do jogo é alcançar um nível de felicidade (pontos) juntos fazendo as combinações corretas."
+      "You are roommates who just moved in together and are decorating your home.",
+      "In each of the 3 rounds, you are given pairs of items you don’t want in the house. For each pair, write a one-word clue that connects them.",
+      "Once all clues are written, try to match each clue to the correct pair of items.",
+      "The single item left without a matching clue is kept in the house.",
+      "Work together to earn happiness points by making the correct matches. The house needs at least 60% of happiness to be a good place to live."
     ],
     "en": [
-      "You are roommates that just moved in together trying to decorate the house.",
-      "Each of the 3 rounds, you are given pairs of items on the grid that you do not want in the house, and must write a single word clue that connects the two.",
-      "After all clues are written, you must match them with the correct things. The last thing without a matched clue is what we keep in the house.",
-      "The goal of the game is reach a level of happiness (points) together by making the correct matches"
+      "You are roommates who just moved in together and are decorating your home.",
+      "In each of the 3 rounds, you are given pairs of items you don’t want in the house. For each pair, write a one-word clue that connects them.",
+      "Once all clues are written, try to match each clue to the correct pair of items.",
+      "The single item left without a matching clue is kept in the house.",
+      "Work together to earn happiness points by making the correct matches. The house needs at least 60% of happiness to be a good place to live."
     ]
   },
   "playerCount": {
-    "recommended": [
-      2,
-      3,
-      4
-    ],
+    "recommended": [2, 3, 4],
     "min": 2,
     "max": 6,
     "best": 4
@@ -54,14 +53,8 @@
     "base": 0,
     "perPlayer": 0
   },
-  "mechanics": [
-    "cooperative",
-    "writing",
-    "guessing"
-  ],
-  "features": [
-    "achievements"
-  ],
+  "mechanics": ["cooperative", "writing", "guessing"],
+  "features": ["achievements"],
   "options": [
     {
       "key": "wordsSource",
