@@ -14,9 +14,10 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnPlayCardAPIRequest } from './utils/api-requests';
 import { CONTADORES_HISTORIAS_PHASES } from './utils/constants';
+import type { PhaseCardPlayState } from './utils/types';
 import { StepPlayCard } from './StepPlayCard';
 
-export function PhaseCardPlay({ state, players, user }: PhaseProps) {
+export function PhaseCardPlay({ state, players, user }: PhaseProps<PhaseCardPlayState>) {
   const { step, setStep } = useStep(0);
   const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
 

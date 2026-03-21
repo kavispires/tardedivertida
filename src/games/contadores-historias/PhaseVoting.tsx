@@ -10,13 +10,15 @@ import { ImageCardPreloadHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 import { CONTADORES_HISTORIAS_PHASES } from './utils/constants';
+import type { PhaseVotingState } from './utils/types';
 import { VotingRules } from './components/RulesBlobs';
 import { StepVoting } from './StepVoting';
 
-export function PhaseVoting({ state, players, user }: PhaseProps) {
+export function PhaseVoting({ state, players, user }: PhaseProps<PhaseVotingState>) {
   const { step, setStep } = useStep(0);
   const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
 
@@ -34,7 +36,9 @@ export function PhaseVoting({ state, players, user }: PhaseProps) {
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <VotingRules isUserTheStoryTeller={isUserTheStoryTeller} />
+      <Instruction>
+        <VotingRules isUserTheStoryTeller={isUserTheStoryTeller} />
+      </Instruction>
       <ImageCardPreloadHand hand={state.table.map((entry: PlainObject) => entry.cardId)} />
     </PhaseAnnouncement>
   );

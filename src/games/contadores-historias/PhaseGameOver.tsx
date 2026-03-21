@@ -7,9 +7,10 @@ import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 // Internal
 import { achievementsReference } from './utils/achievements';
+import type { PhaseGameOverState } from './utils/types';
 import { GameOverGallery } from './components/GameOverGallery';
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   return (
     <GameOverWrapper
       state={state}

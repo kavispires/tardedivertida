@@ -11,11 +11,12 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import { CONTADORES_HISTORIAS_PHASES } from './utils/constants';
+import type { PhaseResolutionState } from './utils/types';
 import { ScoringRules } from './components/RulesBlobs';
 import { StepResolution } from './StepResolution';
 import { StepRanking } from './StepRanking';
 
-export function PhaseResolution({ state, players }: PhaseProps) {
+export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const [storyteller] = useWhichPlayerIsThe('storytellerId', state, players);
 

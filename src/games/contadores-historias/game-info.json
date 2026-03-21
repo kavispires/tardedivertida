@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "contadores-historias",
-  "version": "4.1.33",
+  "version": "4.1.36",
   "release": "stable",
   "releaseDate": "2021-08-28",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Contadores de Histórias",
     "en": "Storytellers"
@@ -24,33 +24,32 @@
     "cloudsAnimationType": "flow",
     "primaryColor": "#1890ff",
     "colorScheme": "light",
-    "videoBackground": true
+    "videoBackground": true,
+    "imageBackground": true
   },
   "rules": {
     "pt": [
-      "Cada rodada alguém é o Contador de Histórias e selecionará uma cara em mão e escreverá uma história sobre ela.",
-      "A historia pode ser qualquer coisa, uma palavra, uma frase, etc. O objectivo é fazer que alguns jogadores descubram a carta relacionada, mas não todos",
-      "Se pelo menos um jogador, mas não todos, acertou a carta, o Contador de Histórias ganha pontos",
-      "Mas antes da votação, os outros jogadores saberá a história e também colocarão cartas relacionadas",
-      "Se a carta deles forem selecionadas, eles ganham pontos.",
-      "O jogo termina quando alguém alcança 30 pontos"
+      "Each round, one player is the Storyteller. They choose a card from their hand and give a clue about it (a word, phrase, or short story).",
+      "The goal is to have some players guess your card, but not all of them.",
+      "If at least one player, but not everyone, guesses your card, the Storyteller scores points.",
+      "All other players also choose a card from their hand that could match the clue.",
+      "All cards are shuffled and revealed. Players then vote on which card they think belongs to the Storyteller.",
+      "If another player picks your card, you score points.",
+      "The game ends when a player reaches 30 points."
     ],
     "en": [
-      "Every round someone will be the storyteller and will pick one of their cards in hands and write a story about it.",
-      "The story can be anything they want, a word, a sentence, etc. The goal is to have some players guessing the correct card but not all.",
-      "If at least one but not all players choose the right card, the storyteller will score points.",
-      "But watch out, before anybody can vote, everyone will see the story and also play a card to trick the other players.",
-      "If your trick-card gets picked by any other player, you get a point!",
-      "The game ends when someone score over 30 points."
+      "A cada rodada, um jogador é o Contador de Histórias. Ele escolhe uma carta da mão e dá uma pista sobre ela (uma palavra, frase ou pequena história).",
+      "O objetivo é fazer com que alguns jogadores acertem sua carta, mas não todos.",
+      "Se pelo menos um jogador, mas não todos, acertar sua carta, o Contador de Histórias ganha pontos.",
+      "Os outros jogadores também escolhem uma carta da mão que combine com a pista.",
+      "Todas as cartas são embaralhadas e reveladas. Em seguida, todos votam em qual carta acham que é a do Contador de Histórias.",
+      "Se outro jogador escolher a sua carta, você ganha pontos.",
+      "O jogo termina quando alguém alcança 30 pontos."
     ]
   },
   "playerCount": {
     "best": 6,
-    "recommended": [
-      4,
-      5,
-      6
-    ],
+    "recommended": [4, 5, 6],
     "min": 3,
     "max": 10
   },
@@ -58,17 +57,8 @@
     "base": 10,
     "perPlayer": 5
   },
-  "mechanics": [
-    "competitive",
-    "turn-based",
-    "images",
-    "writing",
-    "guessing"
-  ],
-  "features": [
-    "mobile-friendly",
-    "achievements"
-  ],
+  "mechanics": ["competitive", "turn-based", "images", "writing", "guessing"],
+  "features": ["mobile-friendly", "achievements"],
   "options": [
     {
       "key": "fixedRounds",

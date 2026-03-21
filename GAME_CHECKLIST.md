@@ -20,7 +20,7 @@ Legend
 - Optional Variations: ✅
 - Rules: ✅
 - Rules MD: 🔘
-- Rules Images: ✅
+- Rules Images: ✴️
 - Collects Data: 🔘
 - Image Background: ✅
 - Phase Delegator Migration: ✅
@@ -35,7 +35,7 @@ Legend
 - Code: `A`
 - Rules: 🔘
 - Rules MD: 🔘
-- Rules Images: 🔘
+- Rules Images: ✴️
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
@@ -129,17 +129,17 @@ Legend
 
 - Collection: `contadores-historias`
 - Code: `C`
-- Rules: 🔘
+- Rules: ✅
 - Rules MD: 🔘
 - Rules Images: 🔘
 - Bots: 🔘
 - Collects Data: 🔘
-- Image Background: 🔘
+- Image Background: ✅
 - Phase Delegator Migration: ✅
-- PhaseProps Migration: 🔘
+- PhaseProps Migration: ✅
 - Role-base View Migration: 🔘
-- Float Submit Migration: 🔘
-- Host Timer Bar Migration: 🔘
+- Float Submit Migration: ⛔️
+- Host Timer Bar Migration: ⛔️
 
 ## Controle De Estoque
 

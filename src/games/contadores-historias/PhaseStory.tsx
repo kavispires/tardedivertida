@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -18,10 +19,11 @@ import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitStoryAPIRequest } from './utils/api-requests';
 import { CONTADORES_HISTORIAS_PHASES } from './utils/constants';
+import type { PhaseStoryState } from './utils/types';
 import { StoryWaiting } from './components/StoryWaiting';
 import { StoryWriting } from './components/StoryWriting';
 
-export function PhaseStory({ state, players, user }: PhaseProps) {
+export function PhaseStory({ state, players, user }: PhaseProps<PhaseStoryState>) {
   const { step, goToNextStep, setStep } = useStep(0);
 
   const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
@@ -91,22 +93,24 @@ export function PhaseStory({ state, players, user }: PhaseProps) {
         />
 
         {/* Step 1 */}
-        <ViewIf condition={isUserTheStoryTeller}>
-          <StoryWriting
-            user={user}
-            onSubmitStory={onSubmitStory}
-            announcement={announcement}
-          />
-        </ViewIf>
-        <ViewIf condition={!isUserTheStoryTeller}>
-          <StoryWaiting
-            user={user}
-            storyteller={storyteller}
-            players={players}
-            gameOrder={state.gameOrder}
-            announcement={announcement}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isUserTheStoryTeller}>
+            <StoryWriting
+              user={user}
+              onSubmitStory={onSubmitStory}
+              announcement={announcement}
+            />
+          </ViewIf>
+          <ViewIf condition={!isUserTheStoryTeller}>
+            <StoryWaiting
+              user={user}
+              storyteller={storyteller}
+              players={players}
+              gameOrder={state.gameOrder}
+              announcement={announcement}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );
