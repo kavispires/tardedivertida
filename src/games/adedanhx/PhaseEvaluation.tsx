@@ -12,10 +12,11 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnNextEvaluationGroupAPIRequest, useOnRejectAnswersAPIRequest } from './utils/api-requests';
 import { ADEDANHX_PHASES } from './utils/constants';
+import type { PhaseEvaluationState } from './utils/types';
 import { ScoringRule } from './components/RulesBlobs';
 import { StepEvaluateGroup } from './StepEvaluateGroup';
 
-export function PhaseEvaluation({ players, state, user }: PhaseProps) {
+export function PhaseEvaluation({ players, state, user }: PhaseProps<PhaseEvaluationState>) {
   const { step } = useStep();
 
   const onNextGroup = useOnNextEvaluationGroupAPIRequest();

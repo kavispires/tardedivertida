@@ -23,9 +23,10 @@ Legend
 - Collects Data: 🔘
 - Image Background: 🔘
 - Phase Delegator Migration: ✅
-- PhaseProps Migration: 🔘
+- PhaseProps Migration: ✅
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Arte Ruim Pra Dedéu
 
@@ -41,6 +42,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Barrados na Alfândega
 
@@ -56,6 +58,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Bomba Relógio
 
@@ -71,6 +74,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Colegas de Quarto
 
@@ -86,6 +90,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Comunicação Alienígena
 
@@ -101,6 +106,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Comunicação Alienígena Duo
 
@@ -116,6 +122,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Contadores de Histórias
 
@@ -131,6 +138,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Controle De Estoque
 
@@ -146,6 +154,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Crimes Hediondos
 
@@ -161,6 +170,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Cruza Palavras
 
@@ -176,6 +186,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Detetives Imaginativos
 
@@ -191,6 +202,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Duetos
 
@@ -206,6 +218,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Espião Entre Nós
 
@@ -221,6 +234,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Esquiadores
 
@@ -236,6 +250,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Escape Room
 
@@ -251,6 +266,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Eu Não Sou Um Robô
 
@@ -266,6 +282,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Fileira De Fatos
 
@@ -281,6 +298,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Fofoca Quente
 
@@ -296,6 +314,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Galeria de Sonhos
 
@@ -311,6 +330,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Idade da Preda
 
@@ -326,6 +346,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Instrumentos Codificados
 
@@ -341,6 +362,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Jogo da Mesmice
 
@@ -356,6 +378,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Labirinto Secreto
 
@@ -371,6 +394,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Linhas Cruzadas
 
@@ -386,6 +410,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Medidas Não Exatas
 
@@ -401,6 +426,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Megamix
 
@@ -416,6 +442,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Megarobos
 
@@ -431,6 +458,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Mente Coletiva
 
@@ -446,6 +474,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Meta Linguagem
 
@@ -461,6 +490,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Na Fila do Banco
 
@@ -476,6 +506,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Na Rua do Medo
 
@@ -491,6 +522,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Onda Telepática
 
@@ -506,6 +538,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Planejamento Urbano
 
@@ -521,6 +554,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Polêmica da Vez
 
@@ -536,6 +570,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Porta dos Desesperados
 
@@ -551,6 +586,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Qual O Quesito?
 
@@ -566,6 +602,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Quem Sou Eu?
 
@@ -581,6 +618,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Retrato Falado Monstruoso
 
@@ -596,6 +634,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Senso Literário
 
@@ -611,6 +650,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Sinais de Alerta
 
@@ -626,6 +666,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Super Campeonato
 
@@ -641,6 +682,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Teoria de Conjuntos
 
@@ -656,6 +698,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Teste De Elenco
 
@@ -671,6 +714,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Testemunha Ocular
 
@@ -686,6 +730,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Ué, Só Isso?
 
@@ -701,6 +746,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Vamos Ao Cinema
 
@@ -716,6 +762,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Vendaval de Palpite
 
@@ -731,6 +778,7 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
 
 ## Vice-Campeão
 
@@ -746,3 +794,4 @@ Legend
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘

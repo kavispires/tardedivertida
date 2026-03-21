@@ -17,9 +17,10 @@ import { Instruction, TextHighlight } from 'components/text';
 // Internal
 import { useOnSubmitAnswersAPIRequest } from './utils/api-requests';
 import { ADEDANHX_PHASES, ANSWERING_TIME_IN_MINUTES } from './utils/constants';
+import type { PhaseAnsweringState } from './utils/types';
 import { StepAnswerGrid } from './StepAnswerGrid';
 
-export function PhaseAnswering({ players, state, user }: PhaseProps) {
+export function PhaseAnswering({ players, state, user }: PhaseProps<PhaseAnsweringState>) {
   const { step, goToNextStep, setStep } = useStep();
 
   const onSubmitAnswers = useOnSubmitAnswersAPIRequest(setStep);

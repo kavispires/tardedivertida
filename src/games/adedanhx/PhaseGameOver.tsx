@@ -8,11 +8,11 @@ import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
-import type { AdedanhxGalleryEntry } from './utils/types';
+import type { AdedanhxGalleryEntry, PhaseGameOverState } from './utils/types';
 import { achievementsReference } from './utils/achievements';
 import { FinalGalleryEntry } from './components/FinalGalleryEntry';
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   return (
     <GameOverWrapper
       state={state}

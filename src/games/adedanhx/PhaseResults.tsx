@@ -12,11 +12,12 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { ADEDANHX_PHASES } from './utils/constants';
+import type { PhaseResultsState } from './utils/types';
 import { ScoringRule } from './components/RulesBlobs';
 import { StepRanking } from './StepRanking';
 import { StepResultGrid } from './StepResultGrid';
 
-export function PhaseResults({ players, state, user }: PhaseProps) {
+export function PhaseResults({ players, state, user }: PhaseProps<PhaseResultsState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const [isFirstRunThrough, setIsFirstRunThrough] = useState(true);
 

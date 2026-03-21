@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "K",
   "gameName": "adedanhx",
-  "version": "2.0.56",
+  "version": "2.0.57",
   "release": "stable",
   "releaseDate": "2023-09-17",
   "available": false,
@@ -25,7 +25,8 @@
     "primaryColor": "#3653ad",
     "surfaceColor": "#fafaff",
     "colorScheme": "light",
-    "videoBackground": true
+    "videoBackground": true,
+    "imageBackground": true
   },
   "rules": {
     "en": [
@@ -46,12 +47,7 @@
     ]
   },
   "playerCount": {
-    "recommended": [
-      3,
-      4,
-      5,
-      6
-    ],
+    "recommended": [3, 4, 5, 6],
     "best": 5,
     "min": 2,
     "max": 10
@@ -60,15 +56,8 @@
     "base": 30,
     "perPlayer": 1
   },
-  "mechanics": [
-    "same-time",
-    "timed",
-    "writing",
-    "competitive"
-  ],
-  "features": [
-    "achievements"
-  ],
+  "mechanics": ["same-time", "timed", "writing", "competitive"],
+  "features": ["achievements"],
   "options": [
     {
       "key": "nsfw",
