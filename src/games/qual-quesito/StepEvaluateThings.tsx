@@ -8,6 +8,7 @@ import type { Item } from 'types/tdr';
 import { useMock } from 'hooks/useMock';
 // Components
 import { SendButton } from 'components/buttons';
+import { TripleStateButton } from 'components/buttons/TripleStateButton';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -17,9 +18,7 @@ import { RuleInstruction, StepTitle } from 'components/text';
 import type { SubmitEvaluationsPayload, TableEntry } from './utils/types';
 import { mockEvaluations } from './utils/mock';
 import { ThingCard } from './components/ThingCard';
-import { TripleStateButton } from './components/TripleStateButton';
 import { PlayersHandsCounts } from './components/PlayersHandsCounts';
-// Hooks
 
 type StepEvaluateThingsProps = {
   players: GamePlayers;
