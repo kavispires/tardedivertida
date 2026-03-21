@@ -43,7 +43,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: FILEIRA_DE_FATOS_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {
       deck: [],

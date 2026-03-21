@@ -1,18 +1,17 @@
 import type { Level5Type } from './types';
 
 export const ARTE_RUIM_PHASES = {
-  LOBBY: 'LOBBY',
   SETUP: 'SETUP',
   DRAW: 'DRAW',
   EVALUATION: 'EVALUATION',
   GALLERY: 'GALLERY',
   GAME_OVER: 'GAME_OVER',
-};
+} as const;
 
 export const ARTE_RUIM_ACTIONS = {
   SUBMIT_DRAWING: 'SUBMIT_DRAWING',
   SUBMIT_VOTING: 'SUBMIT_VOTING',
-};
+} as const;
 
 export const ARTE_RUIM_ACHIEVEMENTS = {
   SOLITARY_LOSER: 'SOLITARY_LOSER',
@@ -21,12 +20,12 @@ export const ARTE_RUIM_ACHIEVEMENTS = {
   WORST_ARTIST: 'WORST_ARTIST',
   TABLE_VOTES: 'TABLE_VOTES',
   CHOOSE_FOR_ME: 'CHOOSE_FOR_ME',
-};
+} as const;
 
 export const PLAYER_COUNTS = {
   MIN: 3,
   MAX: 10,
-};
+} as const;
 
 export const MAX_ROUNDS = 10;
 

@@ -44,7 +44,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: VAMOS_AO_CINEMA_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {
       gameOrder: [],

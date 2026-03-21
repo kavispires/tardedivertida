@@ -2,18 +2,17 @@ import { GAME_NAMES } from '../../utils/constants';
 import type { PartyTrackCandidate, TrackCandidate } from './types';
 
 export const MEGAMIX_PHASES = {
-  LOBBY: 'LOBBY',
   SETUP: 'SETUP',
   SEEDING: 'SEEDING',
   TRACK: 'TRACK',
   RESULT: 'RESULT',
   GAME_OVER: 'GAME_OVER',
-};
+} as const;
 
 export const MEGAMIX_ACTIONS = {
   SUBMIT_SEEDS: 'SUBMIT_SEEDS',
   SUBMIT_TRACK_ANSWER: 'SUBMIT_TRACK_ANSWER',
-};
+} as const;
 
 export const MEGAMIX_ACHIEVEMENTS = {
   SOLITARY_VIP: 'SOLITARY_VIP',
@@ -24,12 +23,12 @@ export const MEGAMIX_ACHIEVEMENTS = {
   LEAST_SWITCHED: 'LEAST_SWITCHED',
   MOST_JOIN: 'MOST_JOIN',
   MOST_LEFT: 'MOST_LEFT',
-};
+} as const;
 
 export const PLAYER_COUNTS = {
   MIN: 3,
   MAX: 25,
-};
+} as const;
 
 export const TOTAL_ROUNDS = 15;
 

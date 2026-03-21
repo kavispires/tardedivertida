@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "metalinguagem",
-  "version": "1.0.36",
+  "version": "1.0.37",
   "release": "stable",
   "releaseDate": "2025-03-21",
   "available": false,

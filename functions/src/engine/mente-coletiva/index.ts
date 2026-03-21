@@ -51,7 +51,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: MENTE_COLETIVA_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {
       deck: [],

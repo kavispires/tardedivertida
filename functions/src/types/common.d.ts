@@ -333,11 +333,6 @@ interface InitialStateArgs<TOptions = GameOptions> {
    */
   playerCounts: PlayerCounts;
   /**
-   * The initial phase (usually LOPPY)
-   * @default - not needed anymore
-   */
-  initialPhase?: string;
-  /**
    * The total pre-defined number of rounds
    */
   totalRounds: number;

@@ -10,8 +10,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { LOBBY, SETUP, TARGETING, STANDOFF, DUEL, RESOLUTION, GAME_OVER } = QUEM_NAO_MATA_PHASES;
-  const order = [LOBBY, SETUP, TARGETING, STANDOFF, DUEL, RESOLUTION, GAME_OVER];
+  const { SETUP, TARGETING, STANDOFF, DUEL, RESOLUTION, GAME_OVER } = QUEM_NAO_MATA_PHASES;
+  const order = [SETUP, TARGETING, STANDOFF, DUEL, RESOLUTION, GAME_OVER];
 
   if (currentPhase === RESOLUTION) {
     if (round.total === MAX_ROUNDS || round.forceLastRound) {
@@ -23,11 +23,5 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return TARGETING;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return TARGETING;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };

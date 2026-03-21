@@ -48,7 +48,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: MEDIDAS_NAO_EXATAS_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {},
     // options,

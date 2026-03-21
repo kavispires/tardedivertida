@@ -10,8 +10,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (state: TaNaCaraState, store: TaNaCaraStore): string => {
-  const { LOBBY, SETUP, PROMPT, ANSWERING, GUESSING, REVEAL, GAME_OVER } = TA_NA_CARA_PHASES;
-  const order = [LOBBY, SETUP, PROMPT, ANSWERING, GUESSING, REVEAL, GAME_OVER];
+  const { SETUP, PROMPT, ANSWERING, GUESSING, REVEAL, GAME_OVER } = TA_NA_CARA_PHASES;
+  const order = [SETUP, PROMPT, ANSWERING, GUESSING, REVEAL, GAME_OVER];
 
   const { phase: currentPhase, round } = state;
 
@@ -27,13 +27,7 @@ export const determineNextPhase = (state: TaNaCaraState, store: TaNaCaraStore): 
     return round.forceLastRound || (round.current > 0 && round.current) === round.total ? GAME_OVER : PROMPT;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return PROMPT;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 export const buildRankingAndOutcome = (

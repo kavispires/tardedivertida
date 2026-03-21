@@ -21,8 +21,8 @@ import type { FirebaseStoreData, PortaDosDesesperadosAchievement, Trap } from '.
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
-  const { LOBBY, SETUP, BOOK_POSSESSION, DOOR_CHOICE, RESOLUTION, GAME_OVER } = PORTA_DOS_DESESPERADOS_PHASES;
-  const order = [LOBBY, SETUP, BOOK_POSSESSION, DOOR_CHOICE, RESOLUTION, GAME_OVER];
+  const { SETUP, BOOK_POSSESSION, DOOR_CHOICE, RESOLUTION, GAME_OVER } = PORTA_DOS_DESESPERADOS_PHASES;
+  const order = [SETUP, BOOK_POSSESSION, DOOR_CHOICE, RESOLUTION, GAME_OVER];
 
   if (currentPhase === RESOLUTION) {
     return round.forceLastRound || (round.current > 0 && round.current === round.total) || isGameOver
@@ -30,13 +30,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
       : BOOK_POSSESSION;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return BOOK_POSSESSION;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 /**

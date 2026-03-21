@@ -16,18 +16,9 @@ export const determineNextPhase = (
   currentPhase: keyof typeof IDADE_DA_PREDA_PHASES,
   round: Round,
 ): string => {
-  const {
-    LOBBY,
-    SETUP,
-    CREATING_CONCEPTS,
-    CONCEPTS_REVEAL,
-    COMMUNICATING_THINGS,
-    GUESSING,
-    RESULTS,
-    GAME_OVER,
-  } = IDADE_DA_PREDA_PHASES;
+  const { SETUP, CREATING_CONCEPTS, CONCEPTS_REVEAL, COMMUNICATING_THINGS, GUESSING, RESULTS, GAME_OVER } =
+    IDADE_DA_PREDA_PHASES;
   const order = [
-    LOBBY,
     SETUP,
     CREATING_CONCEPTS,
     CONCEPTS_REVEAL,
@@ -41,13 +32,7 @@ export const determineNextPhase = (
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : CREATING_CONCEPTS;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return CONCEPTS_REVEAL;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 export const gatherConcepts = (players: Players, store: FirebaseStoreData): Concept[] => {

@@ -33,9 +33,8 @@ import { orderBy } from 'lodash';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { LOBBY, SETUP, CRIME_SELECTION, SCENE_MARKING, GUESSING, REVEAL, GAME_OVER } =
-    CRIMES_HEDIONDOS_PHASES;
-  const order = [LOBBY, SETUP, CRIME_SELECTION, SCENE_MARKING, GUESSING, REVEAL, GAME_OVER];
+  const { SETUP, CRIME_SELECTION, SCENE_MARKING, GUESSING, REVEAL, GAME_OVER } = CRIMES_HEDIONDOS_PHASES;
+  const order = [SETUP, CRIME_SELECTION, SCENE_MARKING, GUESSING, REVEAL, GAME_OVER];
 
   if (currentPhase === REVEAL) {
     return round.forceLastRound || (round.current > 0 && round.current === round.total)
@@ -47,13 +46,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return GUESSING;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return SCENE_MARKING;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 type ParsedTiles = {

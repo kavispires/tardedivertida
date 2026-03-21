@@ -27,8 +27,8 @@ import { orderBy } from 'lodash';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, outcome: string): string => {
-  const { LOBBY, SETUP, CARD_SELECTION, ARE_YOU_A_ROBOT, RESULTS, GAME_OVER } = NAO_SOU_ROBO_PHASES;
-  const order = [LOBBY, SETUP, CARD_SELECTION, ARE_YOU_A_ROBOT, RESULTS];
+  const { SETUP, CARD_SELECTION, ARE_YOU_A_ROBOT, RESULTS, GAME_OVER } = NAO_SOU_ROBO_PHASES;
+  const order = [SETUP, CARD_SELECTION, ARE_YOU_A_ROBOT, RESULTS];
 
   if (currentPhase === RESULTS) {
     return round.forceLastRound || round.current >= round.total || outcome !== OUTCOME.CONTINUE
@@ -36,13 +36,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
       : CARD_SELECTION;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return CARD_SELECTION;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 export const distributeCards = (store: FirebaseStoreData, players: Players, cards: UID[]) => {

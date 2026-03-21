@@ -1,10 +1,9 @@
 export const VICE_CAMPEAO_PHASES = {
-  LOBBY: 'LOBBY',
   SETUP: 'SETUP',
   CARD_SELECTION: 'CARD_SELECTION',
   RUN: 'RUN',
   GAME_OVER: 'GAME_OVER',
-};
+} as const;
 
 export const VICE_CAMPEAO_ACTIONS = {
   SUBMIT_CARD: 'SUBMIT_CARD',

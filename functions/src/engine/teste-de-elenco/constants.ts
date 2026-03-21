@@ -1,18 +1,17 @@
 import type { MovieRole, MovieGenre } from './types';
 
 export const TESTE_DE_ELENCO_PHASES = {
-  LOBBY: 'LOBBY',
   SETUP: 'SETUP',
   MOVIE_GENRE_SELECTION: 'MOVIE_GENRE_SELECTION',
   ACTOR_SELECTION: 'ACTOR_SELECTION',
   RESULT: 'RESULT',
   GAME_OVER: 'GAME_OVER',
-};
+} as const;
 
 export const TESTE_DE_ELENCO_ACTIONS = {
   SELECT_MOVIE_GENRE: 'SELECT_MOVIE_GENRE',
   SELECT_ACTOR: 'SELECT_ACTOR',
-};
+} as const;
 
 export const TESTE_DE_ELENCO_ACHIEVEMENTS = {
   ALONE_VOTES: 'ALONE_VOTES',
@@ -21,12 +20,12 @@ export const TESTE_DE_ELENCO_ACHIEVEMENTS = {
   FEWEST_CAST: 'FEWEST_CAST',
   CONSISTENCY: 'CONSISTENCY',
   CHANGELING: 'CHANGELING',
-};
+} as const;
 
 export const PLAYER_COUNTS = {
   MIN: 2,
   MAX: 10,
-};
+} as const;
 
 export const MAX_ROUNDS = 15;
 

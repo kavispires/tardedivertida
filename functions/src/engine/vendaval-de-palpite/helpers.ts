@@ -14,30 +14,16 @@ import { orderBy } from 'lodash';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, outcome?: string): string => {
-  const { LOBBY, SETUP, BOSS_SELECTION, SECRET_WORD_SELECTION, PLAYERS_CLUES, CLUE_EVALUATIONS, GAME_OVER } =
+  const { SETUP, BOSS_SELECTION, SECRET_WORD_SELECTION, PLAYERS_CLUES, CLUE_EVALUATIONS, GAME_OVER } =
     VENDAVAL_DE_PALPITE_PHASES;
-  const order = [
-    LOBBY,
-    SETUP,
-    BOSS_SELECTION,
-    SECRET_WORD_SELECTION,
-    PLAYERS_CLUES,
-    CLUE_EVALUATIONS,
-    GAME_OVER,
-  ];
+  const order = [SETUP, BOSS_SELECTION, SECRET_WORD_SELECTION, PLAYERS_CLUES, CLUE_EVALUATIONS, GAME_OVER];
   if (outcome && outcome !== 'CONTINUE') return GAME_OVER;
 
   if (currentPhase === CLUE_EVALUATIONS) {
     return round.forceLastRound || round.current === round.total ? GAME_OVER : PLAYERS_CLUES;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return PLAYERS_CLUES;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 const buildClueId = (playerId: UID, currentRound: number, index: number, guess = '') => {

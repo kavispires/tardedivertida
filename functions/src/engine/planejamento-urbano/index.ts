@@ -49,7 +49,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: PLANEJAMENTO_URBANO_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {},
     options,

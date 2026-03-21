@@ -1,5 +1,4 @@
 export const INSTRUMENTOS_CODIFICADOS_PHASES = {
-  LOBBY: 'LOBBY',
   SETUP: 'SETUP',
   HINT_GIVING: 'HINT_GIVING',
   HINT_RECEIVING: 'HINT_RECEIVING',
@@ -7,12 +6,12 @@ export const INSTRUMENTOS_CODIFICADOS_PHASES = {
   DISCUSSION: 'DISCUSSION',
   SOLUTION: 'SOLUTION',
   GAME_OVER: 'GAME_OVER',
-};
+} as const;
 
 export const PLAYER_COUNTS = {
   MIN: 2,
   MAX: 8,
-};
+} as const;
 
 export const TOTAL_ROUNDS = 5;
 

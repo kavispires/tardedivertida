@@ -1,21 +1,20 @@
 export const SONHOS_PESADELOS_PHASES = {
-  LOBBY: 'LOBBY',
   SETUP: 'SETUP',
   DREAM_TELLING: 'DREAM_TELLING',
   MATCHING: 'MATCHING',
   RESOLUTION: 'RESOLUTION',
   GAME_OVER: 'GAME_OVER',
-};
+} as const;
 
 export const SONHOS_PESADELOS_ACTIONS = {
   SUBMIT_DREAM: 'SUBMIT_DREAM',
   SUBMIT_VOTING: 'SUBMIT_VOTING',
-};
+} as const;
 
 export const PLAYER_COUNTS = {
   MIN: 2,
   MAX: 10,
-};
+} as const;
 
 export const TOTAL_ROUNDS = 5;
 

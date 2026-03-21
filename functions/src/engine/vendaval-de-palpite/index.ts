@@ -55,7 +55,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: VENDAVAL_DE_PALPITE_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {},
   });

@@ -108,7 +108,6 @@ export function getDefaultInitialState<T = InitialState>({
   language,
   version,
   playerCounts,
-  initialPhase,
   totalRounds,
   store,
   options = {},
@@ -140,7 +139,7 @@ export function getDefaultInitialState<T = InitialState>({
       ...(preSetupResult?.store ?? {}),
     },
     state: {
-      phase: initialPhase,
+      phase: 'LOBBY',
       round: {
         current: 0,
         total: totalRounds,

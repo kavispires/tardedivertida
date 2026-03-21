@@ -2,7 +2,6 @@ import type { Concept } from './types';
 
 export const IDADE_DA_PREDA_PHASES = {
   SETUP: 'SETUP',
-  LOBBY: 'LOBBY',
   CREATING_CONCEPTS: 'CREATING_CONCEPTS',
   CONCEPTS_REVEAL: 'CONCEPTS_REVEAL',
   COMMUNICATING_THINGS: 'COMMUNICATING_THINGS',
@@ -25,7 +24,7 @@ export const IDADE_DA_PREDA_ACTIONS = {
 export const PLAYER_COUNTS = {
   MIN: 2,
   MAX: 10,
-};
+} as const;
 
 export const TOTAL_ROUNDS = 5;
 
@@ -270,4 +269,4 @@ export const SOUNDS: Dictionary<DualLanguageValue> = {
     en: 'zu',
     pt: 'zu',
   },
-};
+} as const;

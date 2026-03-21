@@ -27,8 +27,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
-  const { LOBBY, SETUP, TOPIC_SELECTION, REACT, RESOLUTION, GAME_OVER } = POLEMICA_DA_VEZ_PHASES;
-  const order = [LOBBY, SETUP, TOPIC_SELECTION, REACT, RESOLUTION];
+  const { SETUP, TOPIC_SELECTION, REACT, RESOLUTION, GAME_OVER } = POLEMICA_DA_VEZ_PHASES;
+  const order = [SETUP, TOPIC_SELECTION, REACT, RESOLUTION];
 
   if (currentPhase === RESOLUTION) {
     return isGameOver || round.forceLastRound || (round.current > 0 && round.current === round.total)
@@ -36,13 +36,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
       : TOPIC_SELECTION;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return TOPIC_SELECTION;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 /**

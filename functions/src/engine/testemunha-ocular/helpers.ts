@@ -24,9 +24,9 @@ import { orderBy, random, shuffle } from 'lodash';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, outcome: Outcome): string => {
-  const { LOBBY, SETUP, WITNESS_SELECTION, QUESTION_SELECTION, QUESTIONING, TRIAL, FINAL_TRIAL, GAME_OVER } =
+  const { SETUP, WITNESS_SELECTION, QUESTION_SELECTION, QUESTIONING, TRIAL, FINAL_TRIAL, GAME_OVER } =
     TESTEMUNHA_OCULAR_PHASES;
-  const order = [LOBBY, SETUP, WITNESS_SELECTION, QUESTION_SELECTION, QUESTIONING, TRIAL];
+  const order = [SETUP, WITNESS_SELECTION, QUESTION_SELECTION, QUESTIONING, TRIAL];
 
   if (currentPhase === FINAL_TRIAL) {
     return GAME_OVER;
@@ -44,13 +44,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
     return round.forceLastRound || round.current >= MAX_ROUNDS ? GAME_OVER : QUESTION_SELECTION;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return QUESTION_SELECTION;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 export const getPoolOfSuspects = (

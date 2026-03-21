@@ -22,8 +22,8 @@ import { orderBy } from 'lodash';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { LOBBY, SETUP, ANSWERING, EVALUATION, RESULTS, GAME_OVER } = ADEDANHX_PHASES;
-  const order = [LOBBY, SETUP, ANSWERING, EVALUATION, RESULTS, GAME_OVER];
+  const { SETUP, ANSWERING, EVALUATION, RESULTS, GAME_OVER } = ADEDANHX_PHASES;
+  const order = [SETUP, ANSWERING, EVALUATION, RESULTS, GAME_OVER];
 
   if (currentPhase === RESULTS) {
     return round.forceLastRound || (round.current > 0 && round.current === round.total)
@@ -31,13 +31,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
       : ANSWERING;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return ANSWERING;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 export const buildGrid = (

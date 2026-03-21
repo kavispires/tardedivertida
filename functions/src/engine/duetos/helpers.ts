@@ -15,20 +15,14 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { LOBBY, SETUP, PAIRING, RESULTS, GAME_OVER } = DUETOS_PHASES;
-  const order = [LOBBY, SETUP, PAIRING, RESULTS];
+  const { SETUP, PAIRING, RESULTS, GAME_OVER } = DUETOS_PHASES;
+  const order = [SETUP, PAIRING, RESULTS, GAME_OVER];
 
   if (currentPhase === RESULTS) {
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : PAIRING;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return PAIRING;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 export const addItems = (pool: Item[], quantity: number, receiver: any[]) => {

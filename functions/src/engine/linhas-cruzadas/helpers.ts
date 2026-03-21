@@ -20,8 +20,8 @@ import type { ArteRuimCard, TextCard } from '../../types/tdr';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { LOBBY, SETUP, PROMPT_SELECTION, DRAWING, NAMING, PRESENTATION, GAME_OVER } = LINHAS_CRUZADAS_PHASES;
-  const order = [LOBBY, SETUP, PROMPT_SELECTION, DRAWING, NAMING, PRESENTATION, GAME_OVER];
+  const { SETUP, PROMPT_SELECTION, DRAWING, NAMING, PRESENTATION, GAME_OVER } = LINHAS_CRUZADAS_PHASES;
+  const order = [SETUP, PROMPT_SELECTION, DRAWING, NAMING, PRESENTATION, GAME_OVER];
 
   if (currentPhase !== PRESENTATION && round.forceLastRound) {
     return PRESENTATION;
@@ -36,13 +36,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return round.forceLastRound || round.current >= round.total ? PRESENTATION : DRAWING;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return PRESENTATION;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 export const dealPromptOptions = (

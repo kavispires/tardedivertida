@@ -12,20 +12,14 @@ import type { FirebaseStoreData, PlanejamentoUrbanoAchievement } from './types';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { LOBBY, SETUP, PLANNING, PLACING, RESOLUTION, GAME_OVER } = PLANEJAMENTO_URBANO_PHASES;
-  const order = [LOBBY, SETUP, PLANNING, PLACING, RESOLUTION];
+  const { SETUP, PLANNING, PLACING, RESOLUTION, GAME_OVER } = PLANEJAMENTO_URBANO_PHASES;
+  const order = [SETUP, PLANNING, PLACING, RESOLUTION];
 
   if (currentPhase === RESOLUTION) {
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : PLANNING;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return PLANNING;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 export const getAchievements = (store: FirebaseStoreData) => {

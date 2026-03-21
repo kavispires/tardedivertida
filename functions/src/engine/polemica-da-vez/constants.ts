@@ -1,16 +1,15 @@
 export const POLEMICA_DA_VEZ_PHASES = {
-  LOBBY: 'LOBBY',
   SETUP: 'SETUP',
   TOPIC_SELECTION: 'TOPIC_SELECTION',
   REACT: 'REACT',
   RESOLUTION: 'RESOLUTION',
   GAME_OVER: 'GAME_OVER',
-};
+} as const;
 
 export const POLEMICA_DA_VEZ_ACTIONS = {
   SUBMIT_TOPIC: 'SUBMIT_TOPIC',
   SUBMIT_REACTION: 'SUBMIT_REACTION',
-};
+} as const;
 
 export const POLEMICA_DA_VEZ_ACHIEVEMENTS = {
   BIGGEST_HATER: 'BIGGEST_HATER',
@@ -19,12 +18,12 @@ export const POLEMICA_DA_VEZ_ACHIEVEMENTS = {
   WORST_GUESSES: 'WORST_GUESSES',
   MOST_ONE_OFFS: 'MOST_ONE_OFFS',
   MOST_EXACTS: 'MOST_EXACTS',
-};
+} as const;
 
 export const PLAYER_COUNTS = {
   MIN: 3,
   MAX: 10,
-};
+} as const;
 
 export const SCORE_GOAL = 10;
 

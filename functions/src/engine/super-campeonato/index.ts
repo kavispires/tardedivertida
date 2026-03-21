@@ -51,7 +51,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: SUPER_CAMPEONATO_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {
       gameOrder: [],

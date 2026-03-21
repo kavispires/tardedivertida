@@ -31,20 +31,14 @@ import type { CrimeSceneTile, DatingCandidateCard, MovieReviewCard, TextCard } f
  * @returns next phase
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { LOBBY, SETUP, SEEDING, TRACK, RESULT, GAME_OVER } = MEGAMIX_PHASES;
-  const order = [LOBBY, SETUP, SEEDING, TRACK, RESULT, GAME_OVER];
+  const { SETUP, SEEDING, TRACK, RESULT, GAME_OVER } = MEGAMIX_PHASES;
+  const order = [SETUP, SEEDING, TRACK, RESULT, GAME_OVER];
 
   if (currentPhase === RESULT) {
     return round.forceLastRound || (round.current > 0 && round.current) === round.total ? GAME_OVER : TRACK;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return TRACK;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 /**

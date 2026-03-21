@@ -32,8 +32,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, outcome: Outcome): string => {
-  const { LOBBY, SETUP, TRICK_OR_TREAT, RESULT, STREET_END, GAME_OVER } = NA_RUA_DO_MEDO_PHASES;
-  const order = [LOBBY, SETUP, TRICK_OR_TREAT, RESULT, STREET_END, GAME_OVER];
+  const { SETUP, TRICK_OR_TREAT, RESULT, STREET_END, GAME_OVER } = NA_RUA_DO_MEDO_PHASES;
+  const order = [SETUP, TRICK_OR_TREAT, RESULT, STREET_END, GAME_OVER];
 
   if (!outcome) {
     return GAME_OVER;
@@ -57,13 +57,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
     return TRICK_OR_TREAT;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return TRICK_OR_TREAT;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 export const buildDecks = (isShortGame: boolean): Decks => {

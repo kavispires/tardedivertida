@@ -12,7 +12,6 @@ import type { EsquiadoresAchievement, FirebaseStoreData, Lodge } from './types';
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const {
-    LOBBY,
     SETUP,
     BETS,
     STARTING_RESULTS,
@@ -23,7 +22,6 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     GAME_OVER,
   } = ESQUIADORES_PHASES;
   const order = [
-    LOBBY,
     SETUP,
     BETS,
     STARTING_RESULTS,
@@ -38,13 +36,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return round.forceLastRound || (round.current > 0 && round.current === round.total) ? GAME_OVER : BETS;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return BETS;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 export const applyBetsToLodges = (players: Players, skierId: UID, lodges: Lodge[], betType: string) => {

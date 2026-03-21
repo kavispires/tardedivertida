@@ -44,7 +44,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: MESMICE_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {},
     options,

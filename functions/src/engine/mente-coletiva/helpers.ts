@@ -32,9 +32,9 @@ import { orderBy } from 'lodash';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
-  const { LOBBY, SETUP, QUESTION_SELECTION, EVERYBODY_WRITES, COMPARE, RESOLUTION, GAME_OVER } =
+  const { SETUP, QUESTION_SELECTION, EVERYBODY_WRITES, COMPARE, RESOLUTION, GAME_OVER } =
     MENTE_COLETIVA_PHASES;
-  const order = [LOBBY, SETUP, QUESTION_SELECTION, EVERYBODY_WRITES, COMPARE, RESOLUTION];
+  const order = [SETUP, QUESTION_SELECTION, EVERYBODY_WRITES, COMPARE, RESOLUTION];
 
   if (isGameOver || round.current === MAX_ROUNDS) {
     return GAME_OVER;
@@ -44,13 +44,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
     return round.forceLastRound ? GAME_OVER : QUESTION_SELECTION;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return QUESTION_SELECTION;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -338,12 +332,7 @@ const determineAnimation = (
  * @param level
  * @returns
  */
-const getNewLevel = (
-  playerId: UID,
-  lowestScores: UID[],
-  highestScores: UID[],
-  level: number,
-): number => {
+const getNewLevel = (playerId: UID, lowestScores: UID[], highestScores: UID[], level: number): number => {
   const isLowest = lowestScores.includes(playerId);
   const isHighest = highestScores.includes(playerId);
 

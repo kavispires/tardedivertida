@@ -47,7 +47,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: QUAL_QUESITO_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {},
     options,

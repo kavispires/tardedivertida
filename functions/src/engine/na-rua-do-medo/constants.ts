@@ -1,20 +1,19 @@
 export const NA_RUA_DO_MEDO_PHASES = {
-  LOBBY: 'LOBBY',
   SETUP: 'SETUP',
   TRICK_OR_TREAT: 'TRICK_OR_TREAT',
   RESULT: 'RESULT',
   STREET_END: 'STREET_END',
   GAME_OVER: 'GAME_OVER',
-};
+} as const;
 
 export const NA_RUA_DO_MEDO_ACTIONS = {
   SUBMIT_DECISION: 'SUBMIT_DECISION',
-};
+} as const;
 
 export const PLAYER_COUNTS = {
   MIN: 3,
   MAX: 10,
-};
+} as const;
 
 export const NA_RUA_DO_MEDO_ACHIEVEMENTS = {
   BRAVEST: 'BRAVEST',
@@ -24,7 +23,7 @@ export const NA_RUA_DO_MEDO_ACHIEVEMENTS = {
   MOST_HOUSES: 'MOST_HOUSES',
   MOST_JACKPOTS: 'MOST_JACKPOTS',
   MOST_SIDEWALK: 'MOST_SIDEWALK',
-};
+} as const;
 
 export const MAX_ROUNDS = 5;
 

@@ -16,13 +16,13 @@ Legend
 
 - Collection: `adedanhx`
 - Code: `K`
-- Rules: 🔘
+- Rules: ✅
 - Rules MD: 🔘
-- Rules Images: 🔘
-- Bots: 🔘
+- Rules Images: ✅
+- Bots: ⛔️
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -37,7 +37,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -52,7 +52,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -67,7 +67,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -82,7 +82,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -97,7 +97,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -112,7 +112,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -127,7 +127,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -142,7 +142,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -157,7 +157,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -172,7 +172,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -187,7 +187,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -202,7 +202,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -217,7 +217,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -232,7 +232,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -247,7 +247,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -262,7 +262,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -277,7 +277,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -292,7 +292,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -307,7 +307,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -322,7 +322,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -337,7 +337,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -352,7 +352,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -367,7 +367,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -382,7 +382,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -397,7 +397,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -412,7 +412,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -427,7 +427,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -442,7 +442,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -457,7 +457,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -472,7 +472,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -487,7 +487,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -502,7 +502,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -517,7 +517,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -532,7 +532,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -547,7 +547,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -562,7 +562,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -577,7 +577,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -592,7 +592,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -607,7 +607,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -622,7 +622,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -637,7 +637,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -652,7 +652,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -667,7 +667,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -682,7 +682,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -697,7 +697,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -712,7 +712,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -727,7 +727,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
@@ -742,7 +742,7 @@ Legend
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: 🔘
-- Phase Delegator Migration: 🔘
+- Phase Delegator Migration: ✅
 - PhaseProps Migration: 🔘
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘

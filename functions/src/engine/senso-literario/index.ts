@@ -36,7 +36,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: SENSO_LITERARIO_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {
       deck: [],

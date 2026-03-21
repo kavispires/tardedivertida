@@ -1,18 +1,17 @@
 import type { DataCounts } from './types';
 
 export const BOMBA_RELOGIO_PHASES = {
-  LOBBY: 'LOBBY',
   SETUP: 'SETUP',
   DECLARATION: 'DECLARATION',
   EXAMINATION: 'EXAMINATION',
   GAME_OVER: 'GAME_OVER',
-};
+} as const;
 
 export const BOMBA_RELOGIO_ACTIONS = {
   SUBMIT_DECLARATION: 'SUBMIT_DECLARATION',
   UPDATE_TARGET_PLAYER: 'UPDATE_TARGET_PLAYER',
   SUBMIT_TARGET: 'SUBMIT_TARGET',
-};
+} as const;
 
 export const BOMBA_RELOGIO_ACHIEVEMENTS = {
   SOLO_TERRORIST: 'SOLO_TERRORIST',
@@ -24,12 +23,12 @@ export const BOMBA_RELOGIO_ACHIEVEMENTS = {
   FEWEST_WIRES: 'FEWEST_WIRES',
   MOST_BLANKS: 'MOST_BLANKS',
   FEWEST_BLANKS: 'FEWEST_BLANKS',
-};
+} as const;
 
 export const PLAYER_COUNTS = {
   MIN: 4,
   MAX: 10,
-};
+} as const;
 
 export const TOTAL_ROUNDS = 4;
 

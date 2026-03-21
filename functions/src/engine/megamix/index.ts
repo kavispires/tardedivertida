@@ -44,7 +44,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: MEGAMIX_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {
       tracks: [],

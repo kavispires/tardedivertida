@@ -27,8 +27,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
-  const { LOBBY, SETUP, DIAL_CLUE, GUESS, REVEAL, GAME_OVER } = ONDA_TELEPATICA_PHASES;
-  const order = [LOBBY, SETUP, DIAL_CLUE, GUESS, REVEAL, GAME_OVER];
+  const { SETUP, DIAL_CLUE, GUESS, REVEAL, GAME_OVER } = ONDA_TELEPATICA_PHASES;
+  const order = [SETUP, DIAL_CLUE, GUESS, REVEAL, GAME_OVER];
 
   if (currentPhase === REVEAL) {
     return isGameOver || round.forceLastRound || (round.current > 0 && round.current === round.total)
@@ -36,13 +36,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
       : DIAL_CLUE;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return DIAL_CLUE;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 /**

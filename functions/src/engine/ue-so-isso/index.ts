@@ -54,7 +54,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: UE_SO_ISSO_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {
       deck: [],

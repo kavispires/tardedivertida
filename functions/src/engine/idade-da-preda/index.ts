@@ -51,7 +51,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: IDADE_DA_PREDA_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {},
     options,

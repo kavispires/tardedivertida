@@ -1,22 +1,21 @@
 export const QUEM_NAO_MATA_PHASES = {
-  LOBBY: 'LOBBY',
   SETUP: 'SETUP',
   TARGETING: 'TARGETING',
   STANDOFF: 'STANDOFF',
   DUEL: 'DUEL',
   RESOLUTION: 'RESOLUTION',
   GAME_OVER: 'GAME_OVER',
-};
+} as const;
 
 export const QUEM_NAO_MATA_ACTIONS = {
   SUBMIT_TARGET: 'SUBMIT_TARGET',
   SUBMIT_MESSAGE: 'SUBMIT_MESSAGE',
   SUBMIT_DECISION: 'SUBMIT_DECISION',
-};
+} as const;
 
 export const PLAYER_COUNTS = {
   MIN: 4,
   MAX: 10,
-};
+} as const;
 
 export const MAX_ROUNDS = 10;

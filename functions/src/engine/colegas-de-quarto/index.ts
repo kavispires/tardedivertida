@@ -50,7 +50,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: COLEGAS_DE_QUARTO_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {
       deck: [],

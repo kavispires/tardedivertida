@@ -12,8 +12,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, outcome: Outcome): string => {
-  const { LOBBY, SETUP, MISSION, MISSION_EVALUATION, RESULTS, GAME_OVER } = ESCAPE_ROOM_PHASES;
-  const order = [LOBBY, SETUP, MISSION, MISSION_EVALUATION, RESULTS, GAME_OVER];
+  const { SETUP, MISSION, MISSION_EVALUATION, RESULTS, GAME_OVER } = ESCAPE_ROOM_PHASES;
+  const order = [SETUP, MISSION, MISSION_EVALUATION, RESULTS, GAME_OVER];
 
   if (currentPhase === RESULTS) {
     // If the game over was forced, end the game
@@ -29,11 +29,5 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
 
   // TODO: handle mission evaluation for help card (maybe create a help phase?)
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return MISSION;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };

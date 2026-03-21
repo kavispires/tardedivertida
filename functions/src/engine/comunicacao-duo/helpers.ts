@@ -21,9 +21,8 @@ export const determineNextPhase = (
   round: Round,
   nextPhase?: keyof typeof COMUNICACAO_DUO_PHASES,
 ): string => {
-  const { LOBBY, SETUP, ASKING_FOR_SOMETHING, DELIVER_SOMETHING, VERIFICATION, GAME_OVER } =
-    COMUNICACAO_DUO_PHASES;
-  const order = [LOBBY, SETUP, ASKING_FOR_SOMETHING, DELIVER_SOMETHING, VERIFICATION, GAME_OVER];
+  const { SETUP, ASKING_FOR_SOMETHING, DELIVER_SOMETHING, VERIFICATION, GAME_OVER } = COMUNICACAO_DUO_PHASES;
+  const order = [SETUP, ASKING_FOR_SOMETHING, DELIVER_SOMETHING, VERIFICATION, GAME_OVER];
 
   if (currentPhase === VERIFICATION) {
     return round.forceLastRound || (round.current > 0 && round.current === round.total)
@@ -31,13 +30,7 @@ export const determineNextPhase = (
       : nextPhase || ASKING_FOR_SOMETHING;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return ASKING_FOR_SOMETHING;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 export const applyDataToDeck = (list: unknown[], type: string): DeckEntry[] => {

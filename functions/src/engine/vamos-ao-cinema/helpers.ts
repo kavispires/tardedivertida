@@ -19,8 +19,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, outcome?: string): string => {
-  const { LOBBY, SETUP, MOVIE_SELECTION, MOVIE_ELIMINATION, REVEAL, GAME_OVER } = VAMOS_AO_CINEMA_PHASES;
-  const order = [LOBBY, SETUP, MOVIE_SELECTION, MOVIE_ELIMINATION, REVEAL, GAME_OVER];
+  const { SETUP, MOVIE_SELECTION, MOVIE_ELIMINATION, REVEAL, GAME_OVER } = VAMOS_AO_CINEMA_PHASES;
+  const order = [SETUP, MOVIE_SELECTION, MOVIE_ELIMINATION, REVEAL, GAME_OVER];
 
   if (currentPhase === REVEAL) {
     if (outcome === OUTCOME.DONE) {
@@ -32,13 +32,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome?:
     return MOVIE_ELIMINATION;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return MOVIE_ELIMINATION;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 export const determineOutcome = (state: FirebaseStateData): string => {

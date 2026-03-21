@@ -12,9 +12,9 @@ import type { FirebaseStoreData, QuemSouEuAchievement } from './types';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, imageCardsMode: boolean): string => {
-  const { LOBBY, SETUP, CHARACTER_FILTERING, CHARACTER_DESCRIPTION, GUESSING, RESULTS, GAME_OVER } =
+  const { SETUP, CHARACTER_FILTERING, CHARACTER_DESCRIPTION, GUESSING, RESULTS, GAME_OVER } =
     QUEM_SOU_EU_PHASES;
-  const order = [LOBBY, SETUP, CHARACTER_FILTERING, CHARACTER_DESCRIPTION, GUESSING, RESULTS];
+  const order = [SETUP, CHARACTER_FILTERING, CHARACTER_DESCRIPTION, GUESSING, RESULTS];
 
   if (currentPhase === SETUP) {
     return imageCardsMode ? CHARACTER_DESCRIPTION : CHARACTER_FILTERING;
@@ -24,13 +24,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, imageCard
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : CHARACTER_DESCRIPTION;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return CHARACTER_DESCRIPTION;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 /**

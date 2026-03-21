@@ -51,7 +51,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: TESTEMUNHA_OCULAR_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {
       gameOrder: [],

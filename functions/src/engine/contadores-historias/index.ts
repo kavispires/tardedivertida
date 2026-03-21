@@ -50,7 +50,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: CONTADORES_HISTORIAS_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {
       gameOrder: [],

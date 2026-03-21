@@ -13,9 +13,9 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, outcome: Outcome): string => {
-  const { LOBBY, SETUP, ASSIGNMENT, INVESTIGATION, ASSESSMENT, FINAL_ASSESSMENT, RESOLUTION, GAME_OVER } =
+  const { SETUP, ASSIGNMENT, INVESTIGATION, ASSESSMENT, FINAL_ASSESSMENT, RESOLUTION, GAME_OVER } =
     ESPIAO_ENTRE_NOS_PHASES;
-  const order = [LOBBY, SETUP, ASSIGNMENT, INVESTIGATION, FINAL_ASSESSMENT, RESOLUTION, GAME_OVER];
+  const order = [SETUP, ASSIGNMENT, INVESTIGATION, FINAL_ASSESSMENT, RESOLUTION, GAME_OVER];
 
   if (currentPhase === RESOLUTION) {
     return round.forceLastRound ? GAME_OVER : ASSIGNMENT;
@@ -43,13 +43,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
     return ASSESSMENT;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return INVESTIGATION;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -194,10 +188,7 @@ export const calculateScore = (
   });
 };
 
-export const determineFinalAssessmentPlayerOrder = (
-  lastPlayerId: UID,
-  gameOrder: UID[],
-): UID[] => {
+export const determineFinalAssessmentPlayerOrder = (lastPlayerId: UID, gameOrder: UID[]): UID[] => {
   const lastPlayerIndex = gameOrder.indexOf(lastPlayerId);
 
   return [...gameOrder.slice(lastPlayerIndex), ...gameOrder.slice(0, lastPlayerIndex)];

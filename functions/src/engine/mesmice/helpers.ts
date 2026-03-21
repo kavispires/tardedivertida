@@ -20,8 +20,8 @@ export const determineNextPhase = (
   outcome: Outcome,
   playerCount: number,
 ): string => {
-  const { LOBBY, SETUP, CLUE_WRITING, OBJECT_FEATURE_ELIMINATION, RESULT, GAME_OVER } = MESMICE_PHASES;
-  const order = [LOBBY, SETUP, CLUE_WRITING, OBJECT_FEATURE_ELIMINATION, RESULT, GAME_OVER];
+  const { SETUP, CLUE_WRITING, OBJECT_FEATURE_ELIMINATION, RESULT, GAME_OVER } = MESMICE_PHASES;
+  const order = [SETUP, CLUE_WRITING, OBJECT_FEATURE_ELIMINATION, RESULT, GAME_OVER];
 
   if (currentPhase === RESULT) {
     if (
@@ -40,13 +40,7 @@ export const determineNextPhase = (
     }
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return CLUE_WRITING;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 /**

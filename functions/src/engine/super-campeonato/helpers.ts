@@ -30,11 +30,11 @@ export const determineNextPhase = (
   tier?: string,
   autoContenders?: boolean,
 ): string => {
-  const { LOBBY, SETUP, CHALLENGE_SELECTION, CONTENDER_SELECTION, BETS, BATTLE, RESULTS, GAME_OVER } =
+  const { SETUP, CHALLENGE_SELECTION, CONTENDER_SELECTION, BETS, BATTLE, RESULTS, GAME_OVER } =
     SUPER_CAMPEONATO_PHASES;
   const order = autoContenders
-    ? [LOBBY, SETUP, CHALLENGE_SELECTION, BETS, BATTLE]
-    : [LOBBY, SETUP, CHALLENGE_SELECTION, CONTENDER_SELECTION, BETS, BATTLE];
+    ? [SETUP, CHALLENGE_SELECTION, BETS, BATTLE, GAME_OVER]
+    : [SETUP, CHALLENGE_SELECTION, CONTENDER_SELECTION, BETS, BATTLE, GAME_OVER];
 
   if (currentPhase === RESULTS) {
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : CHALLENGE_SELECTION;
@@ -53,13 +53,7 @@ export const determineNextPhase = (
     return BETS;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return CHALLENGE_SELECTION;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 /**

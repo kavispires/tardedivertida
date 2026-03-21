@@ -44,7 +44,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: POLEMICA_DA_VEZ_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {
       pastTweets: [],

@@ -22,7 +22,6 @@ export const determineNextPhase = (
   store: ComunicacaoAlienigenaStore,
 ): string => {
   const {
-    LOBBY,
     SETUP,
     ALIEN_SELECTION,
     ALIEN_SEEDING,
@@ -35,7 +34,16 @@ export const determineNextPhase = (
   } = COMUNICACAO_ALIENIGENA_PHASES;
   const hasBot = checkIsBot(store);
 
-  const order = [LOBBY, SETUP, ALIEN_SELECTION, HUMAN_ASK, ALIEN_ANSWER, ALIEN_REQUEST, OFFERINGS, REVEAL];
+  const order = [
+    SETUP,
+    ALIEN_SELECTION,
+    HUMAN_ASK,
+    ALIEN_ANSWER,
+    ALIEN_REQUEST,
+    OFFERINGS,
+    REVEAL,
+    GAME_OVER,
+  ];
 
   const { phase: currentPhase, round, humanId, turnOrder, status, items } = state;
 
@@ -70,13 +78,7 @@ export const determineNextPhase = (
     return hasBot ? OFFERINGS : ALIEN_REQUEST;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return HUMAN_ASK;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 /**

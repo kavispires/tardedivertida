@@ -45,7 +45,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: CRUZA_PALAVRAS_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {
       deck: [],

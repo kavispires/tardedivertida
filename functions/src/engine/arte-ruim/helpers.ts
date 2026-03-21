@@ -27,8 +27,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
-  const { LOBBY, SETUP, DRAW, EVALUATION, GALLERY, GAME_OVER } = ARTE_RUIM_PHASES;
-  const order = [LOBBY, SETUP, DRAW, EVALUATION, GALLERY];
+  const { SETUP, DRAW, EVALUATION, GALLERY, GAME_OVER } = ARTE_RUIM_PHASES;
+  const order = [SETUP, DRAW, EVALUATION, GALLERY, GAME_OVER];
 
   if (isGameOver) {
     return GAME_OVER;
@@ -38,13 +38,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : DRAW;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return DRAW;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 /**

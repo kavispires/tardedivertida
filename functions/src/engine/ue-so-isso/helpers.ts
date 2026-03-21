@@ -28,9 +28,9 @@ export const determineNextPhase = (
   group: GroupProgress,
   currentOutcome?: Outcome,
 ): string => {
-  const { LOBBY, SETUP, WORD_SELECTION, SUGGEST, COMPARE, GUESS, VERIFY_GUESS, RESULT, GAME_OVER } =
+  const { SETUP, WORD_SELECTION, SUGGEST, COMPARE, GUESS, VERIFY_GUESS, RESULT, GAME_OVER } =
     UE_SO_ISSO_PHASES;
-  const order = [LOBBY, SETUP, WORD_SELECTION, SUGGEST, COMPARE, GUESS, VERIFY_GUESS, RESULT, GAME_OVER];
+  const order = [SETUP, WORD_SELECTION, SUGGEST, COMPARE, GUESS, VERIFY_GUESS, RESULT, GAME_OVER];
 
   if (currentPhase === GUESS && currentOutcome === OUTCOME.PASS) {
     return RESULT;
@@ -53,13 +53,7 @@ export const determineNextPhase = (
       : WORD_SELECTION;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return WORD_SELECTION;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 /**

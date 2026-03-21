@@ -1,28 +1,27 @@
 export const NAO_SOU_ROBO_PHASES = {
-  LOBBY: 'LOBBY',
   SETUP: 'SETUP',
   CARD_SELECTION: 'CARD_SELECTION',
   ARE_YOU_A_ROBOT: 'ARE_YOU_A_ROBOT',
   RESULTS: 'RESULTS',
   GAME_OVER: 'GAME_OVER',
-};
+} as const;
 
 export const NAO_SOU_ROBO_ACTIONS = {
   SUBMIT_CARD: 'SUBMIT_CARD',
   SUBMIT_GUESS: 'SUBMIT_GUESS',
-};
+} as const;
 
 export const NAO_SOU_ROBO_ACHIEVEMENTS = {
   MOST_ROBOT: 'MOST_ROBOT',
   LEAST_ROBOT: 'LEAST_ROBOT',
   MOST_ALONE_CORRECT: 'MOST_ALONE_CORRECT',
   MOST_ALONE_ROBOT: 'MOST_ALONE_ROBOT',
-};
+} as const;
 
 export const PLAYER_COUNTS = {
   MIN: 2,
   MAX: 8,
-};
+} as const;
 
 export const OUTCOME = {
   CONTINUE: 'CONTINUE',

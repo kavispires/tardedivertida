@@ -1,16 +1,15 @@
 export const ESCAPE_ROOM_PHASES = {
-  LOBBY: 'LOBBY',
   RULES: 'RULES',
   SETUP: 'SETUP',
   MISSION: 'MISSION',
   MISSION_EVALUATION: 'MISSION_EVALUATION',
   RESULTS: 'RESULTS',
   GAME_OVER: 'GAME_OVER',
-};
+} as const;
 
 export const ESCAPE_ROOM_ACTIONS = {
   SUBMIT_CARD_PLAY: 'SUBMIT_CARD_PLAY',
-};
+} as const;
 
 export const ESCAPE_ROOM_ACHIEVEMENTS = {
   LEAD_MISSION: 'LEAD_MISSION', // Had a mission card
@@ -20,12 +19,12 @@ export const ESCAPE_ROOM_ACHIEVEMENTS = {
   HELP_CARD: 'HELP_CARD', // Played a help card
   SUCCESSFUL_ESCAPE: 'SUCCESSFUL_ESCAPE', // All players
   FAILED_ESCAPE: 'FAILED_ESCAPE', // All players
-};
+} as const;
 
 export const PLAYER_COUNTS = {
   MIN: 3, // TODO: change to 4
   MAX: 7,
-};
+} as const;
 
 export const TOTAL_ROUNDS = 7;
 

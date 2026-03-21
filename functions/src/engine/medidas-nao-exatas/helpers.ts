@@ -14,8 +14,8 @@ import { orderBy } from 'lodash';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { LOBBY, SETUP, METRICS_BUILDING, GUESSING, RESULTS, GAME_OVER } = MEDIDAS_NAO_EXATAS_PHASES;
-  const order = [LOBBY, SETUP, METRICS_BUILDING, GUESSING, RESULTS, GAME_OVER];
+  const { SETUP, METRICS_BUILDING, GUESSING, RESULTS, GAME_OVER } = MEDIDAS_NAO_EXATAS_PHASES;
+  const order = [SETUP, METRICS_BUILDING, GUESSING, RESULTS, GAME_OVER];
 
   if (currentPhase === RESULTS) {
     return round.forceLastRound || (round.current > 0 && round.current === round.total)

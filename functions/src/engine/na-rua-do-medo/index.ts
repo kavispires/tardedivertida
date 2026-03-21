@@ -43,7 +43,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: NA_RUA_DO_MEDO_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {
       horrorDeck: [],

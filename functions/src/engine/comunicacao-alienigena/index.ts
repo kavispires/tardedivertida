@@ -62,7 +62,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: COMUNICACAO_ALIENIGENA_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {},
     options,

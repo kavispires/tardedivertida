@@ -11,8 +11,8 @@ import type { FirebaseStoreData, RunActivity, RunnerCard, ViceCampeaoAchievement
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { LOBBY, SETUP, CARD_SELECTION, RUN, GAME_OVER } = VICE_CAMPEAO_PHASES;
-  const order = [LOBBY, SETUP, CARD_SELECTION, RUN, GAME_OVER];
+  const { SETUP, CARD_SELECTION, RUN, GAME_OVER } = VICE_CAMPEAO_PHASES;
+  const order = [SETUP, CARD_SELECTION, RUN, GAME_OVER];
 
   if (currentPhase === RUN) {
     if (round.forceLastRound) return GAME_OVER;
@@ -21,13 +21,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return CARD_SELECTION;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return CARD_SELECTION;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 type OngoingPlayerEffectsType = Record<string, string | null>;
@@ -359,11 +353,7 @@ const triggerEffectTwist = (endingPositions: Record<UID, number>) => {
   return endingPositions;
 };
 
-const triggerEffectEveryElseGo = (
-  endingPositions: Record<UID, number>,
-  targetId: UID,
-  modifier: number,
-) => {
+const triggerEffectEveryElseGo = (endingPositions: Record<UID, number>, targetId: UID, modifier: number) => {
   Object.keys(endingPositions).forEach((id) => {
     if (id !== targetId) {
       endingPositions[id] = minMaxValue(endingPositions[id] + 1 + modifier);

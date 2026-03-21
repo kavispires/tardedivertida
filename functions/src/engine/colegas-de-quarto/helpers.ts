@@ -20,9 +20,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { LOBBY, SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER } =
-    COLEGAS_DE_QUARTO_PHASES;
-  const order = [LOBBY, SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER];
+  const { SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER } = COLEGAS_DE_QUARTO_PHASES;
+  const order = [SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER];
 
   if (currentPhase === REVEAL) {
     return round.forceLastRound || (round.current > 0 && round.current === round.total)
@@ -30,13 +29,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
       : WORDS_SELECTION;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return WORDS_SELECTION;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 export function buildRanking(

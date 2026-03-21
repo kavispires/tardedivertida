@@ -11,14 +11,10 @@ import { getRandomItems } from '../../utils/game-utils';
  * @param currentPhase
  * @returns phase
  */
-export const determineNextPhase = (
-  currentPhase: string,
-  gameOrder?: UID[],
-  activeCloverId?: UID,
-): string => {
-  const { LOBBY, SETUP, WORD_SELECTION, CLOVER_WRITING, CLOVER_GUESSING, RESULTS, GAME_OVER } =
+export const determineNextPhase = (currentPhase: string, gameOrder?: UID[], activeCloverId?: UID): string => {
+  const { SETUP, WORD_SELECTION, CLOVER_WRITING, CLOVER_GUESSING, RESULTS, GAME_OVER } =
     TREVO_DA_SORTE_PHASES;
-  const order = [LOBBY, SETUP, WORD_SELECTION, CLOVER_WRITING, CLOVER_GUESSING, RESULTS, GAME_OVER];
+  const order = [SETUP, WORD_SELECTION, CLOVER_WRITING, CLOVER_GUESSING, RESULTS, GAME_OVER];
 
   if (currentPhase === RESULTS) {
     // If last player, go to results
@@ -29,13 +25,7 @@ export const determineNextPhase = (
     return CLOVER_GUESSING;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return WORD_SELECTION;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 export const buildLeaves = (players: Players, gameMode: string) => {

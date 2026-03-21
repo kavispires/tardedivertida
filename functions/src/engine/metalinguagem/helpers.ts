@@ -10,8 +10,8 @@ import type { FirebaseStoreData, MetalinguagemAchievement, WordLength } from './
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, wordLengths: WordLength[]): string => {
-  const { LOBBY, SETUP, WORD_CREATION, GUESSING, RESULTS, GAME_OVER } = METALINGUAGEM_PHASES;
-  const order = [LOBBY, SETUP, WORD_CREATION, GUESSING, RESULTS, GAME_OVER];
+  const { SETUP, WORD_CREATION, GUESSING, RESULTS, GAME_OVER } = METALINGUAGEM_PHASES;
+  const order = [SETUP, WORD_CREATION, GUESSING, RESULTS, GAME_OVER];
 
   if (currentPhase === RESULTS) {
     if (round.forceLastRound) return GAME_OVER;
@@ -31,13 +31,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, wordLengt
     return GAME_OVER;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return WORD_CREATION;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 /**

@@ -15,7 +15,6 @@ export const determineNextPhase = (
   nextPhase?: keyof typeof FOFOCA_QUENTE_PHASES,
 ): string => {
   const {
-    LOBBY,
     SETUP,
     ROLES_SELECTION,
     BOARD_SETUP,
@@ -28,7 +27,6 @@ export const determineNextPhase = (
     GAME_OVER,
   } = FOFOCA_QUENTE_PHASES;
   const order = [
-    LOBBY,
     SETUP,
     ROLES_SELECTION,
     BOARD_SETUP,
@@ -47,13 +45,7 @@ export const determineNextPhase = (
       : nextPhase || INTIMIDATION;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return INTIMIDATION;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 export const determineStudentsThatCanBeRumored = (

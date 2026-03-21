@@ -16,8 +16,8 @@ export const determineNextPhase = (
   turnOrder: UID[] = [],
   activePlayerId: UID = '',
 ): string => {
-  const { LOBBY, SETUP, JUDGE_SELECTION, ITEM_PLACEMENT, EVALUATION, GAME_OVER } = TEORIA_DE_CONJUNTOS_PHASES;
-  const order = [LOBBY, SETUP, JUDGE_SELECTION, ITEM_PLACEMENT, EVALUATION, GAME_OVER];
+  const { SETUP, JUDGE_SELECTION, ITEM_PLACEMENT, EVALUATION, GAME_OVER } = TEORIA_DE_CONJUNTOS_PHASES;
+  const order = [SETUP, JUDGE_SELECTION, ITEM_PLACEMENT, EVALUATION, GAME_OVER];
 
   if (currentPhase === EVALUATION) {
     // If the player has won, go to GAME_OVER
@@ -37,13 +37,7 @@ export const determineNextPhase = (
     return ITEM_PLACEMENT;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return ITEM_PLACEMENT;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 export const createVennDiagram = (hasContextArea: boolean): Dictionary<DiagramArea> => {

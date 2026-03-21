@@ -13,9 +13,8 @@ export const determineNextPhase = (
   currentPhase: (typeof DETETIVES_IMAGINATIVOS_PHASES)[keyof typeof DETETIVES_IMAGINATIVOS_PHASES],
   round: Round,
 ): string => {
-  const { LOBBY, SETUP, SECRET_CLUE, CARD_PLAY, DEFENSE, VOTING, REVEAL, GAME_OVER } =
-    DETETIVES_IMAGINATIVOS_PHASES;
-  const order = [LOBBY, SETUP, SECRET_CLUE, CARD_PLAY, DEFENSE, VOTING, REVEAL, GAME_OVER];
+  const { SETUP, SECRET_CLUE, CARD_PLAY, DEFENSE, VOTING, REVEAL, GAME_OVER } = DETETIVES_IMAGINATIVOS_PHASES;
+  const order = [SETUP, SECRET_CLUE, CARD_PLAY, DEFENSE, VOTING, REVEAL, GAME_OVER];
 
   if (currentPhase === REVEAL) {
     return round.forceLastRound || (round.current > 0 && round.current === round.total)
@@ -23,23 +22,13 @@ export const determineNextPhase = (
       : SECRET_CLUE;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return SECRET_CLUE;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 /**
  * Count impostor votes and assign achievements accordingly.
  */
-export const countImpostorVotes = (
-  players: Players,
-  impostorId: UID,
-  store: FirebaseStoreData,
-): number =>
+export const countImpostorVotes = (players: Players, impostorId: UID, store: FirebaseStoreData): number =>
   utils.players.getListOfPlayers(players).reduce((total: number, player: Player) => {
     if (!player.vote) {
       return total;

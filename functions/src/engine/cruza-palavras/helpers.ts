@@ -26,8 +26,8 @@ export const determineNextPhase = (
   round: Round,
   options?: CruzaPalavrasOptions,
 ): string => {
-  const { LOBBY, SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER } = CRUZA_PALAVRAS_PHASES;
-  const order = [LOBBY, SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER];
+  const { SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER } = CRUZA_PALAVRAS_PHASES;
+  const order = [SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER];
 
   if (currentPhase === SETUP) {
     return options?.gridType === 'imageCards' ? CLUE_WRITING : WORDS_SELECTION;
@@ -39,13 +39,7 @@ export const determineNextPhase = (
       : CLUE_WRITING;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return CLUE_WRITING;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 export const buildGrid = (

@@ -13,8 +13,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { LOBBY, SETUP, COMPOSITE_SKETCH, EVALUATION, REVEAL, GAME_OVER } = RETRATO_FALADO_PHASES;
-  const order = [LOBBY, SETUP, COMPOSITE_SKETCH, EVALUATION, REVEAL, GAME_OVER];
+  const { SETUP, COMPOSITE_SKETCH, EVALUATION, REVEAL, GAME_OVER } = RETRATO_FALADO_PHASES;
+  const order = [SETUP, COMPOSITE_SKETCH, EVALUATION, REVEAL, GAME_OVER];
 
   if (currentPhase === REVEAL) {
     return round.forceLastRound || (round.current > 0 && round.current === round.total)
@@ -22,13 +22,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
       : COMPOSITE_SKETCH;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return COMPOSITE_SKETCH;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -99,13 +93,10 @@ export const buildRanking = (players: Players, witnessId: UID, store: FirebaseSt
 
   const max = Math.max(...Object.values(votesCount));
 
-  const mostVotes = Object.entries(votesCount).reduce(
-    (acc: UID[], [playerId, voteCount]: [UID, number]) => {
-      if (voteCount === max) acc.push(playerId);
-      return acc;
-    },
-    [],
-  );
+  const mostVotes = Object.entries(votesCount).reduce((acc: UID[], [playerId, voteCount]: [UID, number]) => {
+    if (voteCount === max) acc.push(playerId);
+    return acc;
+  }, []);
   let mostVoted: UID | null = null;
 
   // Achievement: Group votes

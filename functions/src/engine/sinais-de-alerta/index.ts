@@ -44,7 +44,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: SINAIS_DE_ALERTA_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {
       subjectsDeck: [],

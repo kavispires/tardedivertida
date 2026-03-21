@@ -1,26 +1,25 @@
 export const DUETOS_PHASES = {
-  LOBBY: 'LOBBY',
   SETUP: 'SETUP',
   PAIRING: 'PAIRING',
   RESULTS: 'RESULTS',
   GAME_OVER: 'GAME_OVER',
-};
+} as const;
 
 export const DUETOS_ACTIONS = {
   SUBMIT_PAIRS: 'SUBMIT_PAIRS',
-};
+} as const;
 
 export const DUETOS_ACHIEVEMENTS = {
   MOST_ALONE: 'MOST_ALONE',
   MOST_DUOS: 'MOST_DUOS',
   MOST_GROUPS: 'MOST_GROUPS',
   MOST_LEFT_OUT: 'MOST_LEFT_OUT',
-};
+} as const;
 
 export const PLAYER_COUNTS = {
   MIN: 2,
   MAX: 10,
-};
+} as const;
 
 export const TOTAL_ROUNDS = 5;
 

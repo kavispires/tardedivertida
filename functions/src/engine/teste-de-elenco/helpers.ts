@@ -22,8 +22,8 @@ import type { Item } from '../../types/tdr';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, state: FirebaseStateData): string => {
-  const { LOBBY, SETUP, MOVIE_GENRE_SELECTION, ACTOR_SELECTION, RESULT, GAME_OVER } = TESTE_DE_ELENCO_PHASES;
-  const order = [LOBBY, SETUP, MOVIE_GENRE_SELECTION, ACTOR_SELECTION, RESULT];
+  const { SETUP, MOVIE_GENRE_SELECTION, ACTOR_SELECTION, RESULT, GAME_OVER } = TESTE_DE_ELENCO_PHASES;
+  const order = [SETUP, MOVIE_GENRE_SELECTION, ACTOR_SELECTION, RESULT];
 
   if (currentPhase === RESULT) {
     // If all roles are cast, end the game
@@ -34,13 +34,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, state: Fi
     return round.forceLastRound || round.current >= MAX_ROUNDS ? GAME_OVER : ACTOR_SELECTION;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return ACTOR_SELECTION;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 /**

@@ -21,8 +21,8 @@ import type { TextCard } from '../../types/tdr';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
-  const { LOBBY, SETUP, DRAWING, EVALUATION, GALLERY, GAME_OVER } = SINAIS_DE_ALERTA_PHASES;
-  const order = [LOBBY, SETUP, DRAWING, EVALUATION, GALLERY];
+  const { SETUP, DRAWING, EVALUATION, GALLERY, GAME_OVER } = SINAIS_DE_ALERTA_PHASES;
+  const order = [SETUP, DRAWING, EVALUATION, GALLERY];
 
   if (isGameOver) {
     return GAME_OVER;
@@ -32,13 +32,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : DRAWING;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return DRAWING;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 export const dealCardsToPlayers = (players: Players, store: FirebaseStoreData) => {

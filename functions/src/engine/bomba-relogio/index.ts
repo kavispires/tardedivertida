@@ -40,7 +40,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: BOMBA_RELOGIO_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {
       deck: [],

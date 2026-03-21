@@ -2,18 +2,17 @@
 import type { TrapEntry } from './types';
 
 export const PORTA_DOS_DESESPERADOS_PHASES = {
-  LOBBY: 'LOBBY',
   SETUP: 'SETUP',
   BOOK_POSSESSION: 'BOOK_POSSESSION',
   DOOR_CHOICE: 'DOOR_CHOICE',
   RESOLUTION: 'RESOLUTION',
   GAME_OVER: 'GAME_OVER',
-};
+} as const;
 
 export const PORTA_DOS_DESESPERADOS_ACTIONS = {
   SUBMIT_PAGES: 'SUBMIT_PAGES',
   SUBMIT_DOOR: 'SUBMIT_DOOR',
-};
+} as const;
 
 export const PORTA_DOS_DESESPERADOS_ACHIEVEMENTS = {
   MOST_POSSESSED: 'MOST_POSSESSED',
@@ -32,12 +31,12 @@ export const PORTA_DOS_DESESPERADOS_ACHIEVEMENTS = {
   QUICK_DECISIONS: 'QUICK_DECISIONS',
   MAGIC_WASTER: 'MAGIC_WASTER',
   MAGIC_SAVER: 'MAGIC_SAVER',
-};
+} as const;
 
 export const PLAYER_COUNTS = {
   MIN: 2,
   MAX: 10,
-};
+} as const;
 
 export const MAX_ROUNDS = 15;
 

@@ -49,7 +49,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: CONTROLE_DE_ESTOQUE_PHASES.LOBBY,
     totalRounds: MIN_ROUNDS,
     store: {},
   });

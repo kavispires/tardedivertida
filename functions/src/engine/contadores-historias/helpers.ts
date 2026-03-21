@@ -24,8 +24,8 @@ import utils from '../../utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
-  const { LOBBY, SETUP, STORY, CARD_PLAY, VOTING, RESOLUTION, GAME_OVER } = CONTADORES_HISTORIAS_PHASES;
-  const order = [LOBBY, SETUP, STORY, CARD_PLAY, VOTING, RESOLUTION, GAME_OVER];
+  const { SETUP, STORY, CARD_PLAY, VOTING, RESOLUTION, GAME_OVER } = CONTADORES_HISTORIAS_PHASES;
+  const order = [SETUP, STORY, CARD_PLAY, VOTING, RESOLUTION, GAME_OVER];
 
   if (currentPhase === RESOLUTION) {
     return isGameOver || round.forceLastRound || (round.current > 0 && round.current) === round.total
@@ -33,24 +33,14 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
       : STORY;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return STORY;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 export const buildTableDeck = (allCards: UID[], quantity: number): UID[] => {
   return allCards.splice(0, quantity);
 };
 
-export const getTableCards = (
-  tableDeck: UID[],
-  deckIndex: number,
-  quantity: number,
-): UID[] => {
+export const getTableCards = (tableDeck: UID[], deckIndex: number, quantity: number): UID[] => {
   return Array(quantity)
     .fill(1)
     .map((el, index) => {
@@ -170,12 +160,7 @@ export const getRanking = (
   return scores.rank(players);
 };
 
-export const scoreRound = (
-  players: Players,
-  table: Table,
-  storyteller: UID,
-  store: FirebaseStoreData,
-) => {
+export const scoreRound = (players: Players, table: Table, storyteller: UID, store: FirebaseStoreData) => {
   const { solutionIndex, cardIndexDictionary } = buildCardIndex(table);
 
   // Add player votes to table

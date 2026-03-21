@@ -42,7 +42,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: INSTRUMENTOS_CODIFICADOS_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {},
   });

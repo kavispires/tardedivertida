@@ -17,10 +17,10 @@ export const determineNextPhase = (
   round: Round,
   skipTurn: boolean,
   players: Players,
-): QualQuesitoPhase => {
-  const { LOBBY, SETUP, CATEGORY_CREATION, SKIP_ANNOUNCEMENT, CARD_PLAY, VERIFICATION, RESULTS, GAME_OVER } =
+): string => {
+  const { SETUP, CATEGORY_CREATION, SKIP_ANNOUNCEMENT, CARD_PLAY, VERIFICATION, RESULTS, GAME_OVER } =
     QUAL_QUESITO_PHASES;
-  const order = [LOBBY, SETUP, CATEGORY_CREATION, CARD_PLAY, VERIFICATION, RESULTS, GAME_OVER];
+  const order = [SETUP, CATEGORY_CREATION, CARD_PLAY, VERIFICATION, RESULTS, GAME_OVER];
 
   if (currentPhase === CATEGORY_CREATION && skipTurn) {
     return SKIP_ANNOUNCEMENT;
@@ -41,13 +41,7 @@ export const determineNextPhase = (
       : CATEGORY_CREATION;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return CATEGORY_CREATION;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 export const buildCardsDictFromPlayersHands = (

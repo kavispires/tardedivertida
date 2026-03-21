@@ -50,7 +50,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: GALERIA_DE_SONHOS_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {
       gameOrder: [],

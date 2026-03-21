@@ -18,8 +18,8 @@ import type { FirebaseStoreData, GalleryEntry, SensoLiterarioAchievement } from 
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { LOBBY, SETUP, PATTERN_CREATION, RESULT, GAME_OVER } = SENSO_LITERARIO_PHASES;
-  const order = [LOBBY, SETUP, PATTERN_CREATION, RESULT, GAME_OVER];
+  const { SETUP, PATTERN_CREATION, RESULT, GAME_OVER } = SENSO_LITERARIO_PHASES;
+  const order = [SETUP, PATTERN_CREATION, RESULT, GAME_OVER];
 
   if (currentPhase === RESULT) {
     if (round.forceLastRound || (round.current > 0 && round.current === round.total)) {
@@ -29,13 +29,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return PATTERN_CREATION;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return PATTERN_CREATION;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 /**

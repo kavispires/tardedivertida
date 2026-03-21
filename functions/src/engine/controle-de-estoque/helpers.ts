@@ -17,9 +17,9 @@ export const determineNextPhase = (
   round: Round,
   state: ControleDeEstoqueState,
 ): string => {
-  const { LOBBY, SETUP, GOOD_PLACEMENT, PLACEMENT_CONFIRMATION, FULFILLMENT, RESULTS, GAME_OVER } =
+  const { SETUP, GOOD_PLACEMENT, PLACEMENT_CONFIRMATION, FULFILLMENT, RESULTS, GAME_OVER } =
     CONTROLE_DE_ESTOQUE_PHASES;
-  const order = [LOBBY, SETUP, GOOD_PLACEMENT, PLACEMENT_CONFIRMATION, FULFILLMENT, RESULTS, GAME_OVER];
+  const order = [SETUP, GOOD_PLACEMENT, PLACEMENT_CONFIRMATION, FULFILLMENT, RESULTS, GAME_OVER];
 
   // If last round and
   if (currentPhase === PLACEMENT_CONFIRMATION) {
@@ -36,13 +36,7 @@ export const determineNextPhase = (
       : FULFILLMENT;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return FULFILLMENT;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 /**

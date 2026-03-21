@@ -47,7 +47,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: TA_NA_CARA_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {},
     options,

@@ -14,8 +14,8 @@ import { orderBy } from 'lodash';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { LOBBY, SETUP, DREAM_TELLING, MATCHING, RESOLUTION, GAME_OVER } = SONHOS_PESADELOS_PHASES;
-  const order = [LOBBY, SETUP, DREAM_TELLING, MATCHING, RESOLUTION];
+  const { SETUP, DREAM_TELLING, MATCHING, RESOLUTION, GAME_OVER } = SONHOS_PESADELOS_PHASES;
+  const order = [SETUP, DREAM_TELLING, MATCHING, RESOLUTION];
 
   if (currentPhase === RESOLUTION) {
     if (round.forceLastRound) {
@@ -27,13 +27,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return GAME_OVER;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return DREAM_TELLING;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -80,8 +74,7 @@ export const getThemeDeck = (cards: SonhosPesadelosCards): ThemeDeck => {
  * @param imagesIds
  * @returns
  */
-export const buildTable = (imagesIds: UID[]): UID[] =>
-  imagesIds.splice(0, IMAGE_CARDS_PER_ROUND);
+export const buildTable = (imagesIds: UID[]): UID[] => imagesIds.splice(0, IMAGE_CARDS_PER_ROUND);
 
 /**
  * Selects 3 themes for the round and uses them across the distribution

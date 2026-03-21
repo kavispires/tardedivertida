@@ -47,8 +47,8 @@ export const determineNextPhase = (
   turnOrder?: TurnOrder,
   activePlayerId?: UID,
 ): string => {
-  const { LOBBY, SETUP, MAP_BUILDING, PATH_FOLLOWING, RESULTS, GAME_OVER } = LABIRINTO_SECRETO_PHASES;
-  const order = [LOBBY, SETUP, MAP_BUILDING, PATH_FOLLOWING, RESULTS];
+  const { SETUP, MAP_BUILDING, PATH_FOLLOWING, RESULTS, GAME_OVER } = LABIRINTO_SECRETO_PHASES;
+  const order = [SETUP, MAP_BUILDING, PATH_FOLLOWING, RESULTS];
 
   if (isGameOver) {
     return GAME_OVER;
@@ -62,13 +62,7 @@ export const determineNextPhase = (
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : MAP_BUILDING;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return MAP_BUILDING;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 // FOREST FUNCTIONS

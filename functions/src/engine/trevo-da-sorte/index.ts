@@ -45,7 +45,6 @@ export const getInitialState = (
     language,
     version,
     playerCounts: PLAYER_COUNTS,
-    initialPhase: TREVO_DA_SORTE_PHASES.LOBBY,
     totalRounds: 0,
     store: {},
     options,
