@@ -2,7 +2,6 @@
 import utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
-import type { FirebaseStateData } from './types';
 
 export const handleSubmitAnswers = async (
   gameName: string,
@@ -32,33 +31,7 @@ export const handleSubmitAnswers = async (
   });
 };
 
-export const handleNextEvaluationGroup = async (gameName: string, gameId: UID, playerId: UID) => {
-  const actionText = 'play a card';
-
-  const { state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
-    gameName,
-    gameId,
-    actionText,
-  );
-
-  // If it's the last answer, go to the next phase
-  if (state.answersGroups.length - 1 === state.answersGroupIndex) {
-    return getNextPhase(gameName, gameId);
-  }
-
-  // Unready everybody
-  utils.players.unReadyPlayers(players);
-
-  return await utils.firestore.updateState({
-    gameName,
-    gameId,
-    playerId,
-    actionText: 'stop the game',
-    change: { answersGroupIndex: state.answersGroupIndex + 1, players },
-  });
-};
-
-export const handleSubmitRejectAnswers = async (
+export const handleSubmitEvaluationsAnswers = async (
   gameName: string,
   gameId: UID,
   playerId: UID,
@@ -74,7 +47,7 @@ export const handleSubmitRejectAnswers = async (
     gameId,
     playerId,
     actionText: 'submit your evaluations',
-    shouldReady: true,
+    shouldReady: false,
     change: { ...change },
   });
 };

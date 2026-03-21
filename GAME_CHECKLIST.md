@@ -16,17 +16,18 @@ Legend
 
 - Collection: `adedanhx`
 - Code: `K`
+- Bots: ⛔️
+- Optional Variations: ✅
 - Rules: ✅
 - Rules MD: 🔘
 - Rules Images: ✅
-- Bots: ⛔️
 - Collects Data: 🔘
-- Image Background: 🔘
+- Image Background: ✅
 - Phase Delegator Migration: ✅
 - PhaseProps Migration: ✅
-- Role-base View Migration: 🔘
-- Float Submit Migration: 🔘
-- Host Timer Bar Migration: 🔘
+- Role-base View Migration: ⛔️
+- Float Submit Migration: ⛔️
+- Host Timer Bar Migration: ✅
 
 ## Arte Ruim Pra Dedéu
 

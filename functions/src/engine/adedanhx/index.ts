@@ -21,7 +21,7 @@ import {
   prepareEvaluationPhase,
 } from './setup';
 import { getTopics } from './data';
-import { handleNextEvaluationGroup, handleSubmitAnswers, handleSubmitRejectAnswers } from './actions';
+import { handleSubmitAnswers, handleSubmitEvaluationsAnswers } from './actions';
 
 /**
  * Get Initial Game State
@@ -120,11 +120,9 @@ export const submitAction = async (data: AdedanhxSubmitAction) => {
     case ADEDANHX_ACTIONS.SUBMIT_ANSWERS:
       utils.firebase.validateSubmitActionProperties(data, ['answers'], 'submit answers');
       return handleSubmitAnswers(gameName, gameId, playerId, data.answers, data.stop);
-    case ADEDANHX_ACTIONS.NEXT_EVALUATION_GROUP:
-      return handleNextEvaluationGroup(gameName, gameId, playerId);
-    case ADEDANHX_ACTIONS.SUBMIT_REJECTED_ANSWERS:
+    case ADEDANHX_ACTIONS.SUBMIT_EVALUATIONS:
       utils.firebase.validateSubmitActionProperties(data, ['evaluations'], 'submit evaluations');
-      return handleSubmitRejectAnswers(gameName, gameId, playerId, data.evaluations);
+      return handleSubmitEvaluationsAnswers(gameName, gameId, playerId, data.evaluations);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }

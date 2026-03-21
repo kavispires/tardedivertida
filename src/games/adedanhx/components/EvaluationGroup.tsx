@@ -1,9 +1,8 @@
 import clsx from 'clsx';
-import { isEqual } from 'lodash';
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { CheckOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, Switch, Tooltip } from 'antd';
+import { Tooltip } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
@@ -15,13 +14,14 @@ import { getAnimationClass } from 'utils/helpers';
 import { NoIcon } from 'icons/NoIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
+import { TimedButton } from 'components/buttons';
+import { TripleStateButton } from 'components/buttons/TripleStateButton';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { PlayerAvatarName } from 'components/player';
-import { TimedTimerBar } from 'components/timers';
 // Internal
-import type { GroupAnswerEvaluationEntry, SubmitRejectedAnswers } from '../utils/types';
+import type { GroupAnswerEvaluationEntry, SubmitEvaluationsPayload } from '../utils/types';
 import { ANSWERING_TIME } from '../utils/constants';
 import { CategoryCell, LetterCell } from './Grid';
 
@@ -29,138 +29,174 @@ type EvaluationGroupProps = {
   players: GamePlayers;
   user: GamePlayer;
   answersGroup: GroupAnswerEvaluationEntry;
-  onSubmitRejections: (payload: SubmitRejectedAnswers) => void;
-  timer: number;
+  answersGroupIndex: number;
+  onSubmitCurrentEvaluations: (payload: SubmitEvaluationsPayload) => void;
 };
 
 export function EvaluationGroup({
   answersGroup,
   players,
   user,
-  onSubmitRejections,
-  timer,
+  onSubmitCurrentEvaluations,
+  answersGroupIndex,
 }: EvaluationGroupProps) {
   const { isLoading } = useLoading();
-  const [groupId, setGroupId] = useState<string>('');
-  const [rejections, setRejections] = useState<Dictionary<boolean>>({});
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: only run on answersGroup.id change
-  useEffect(() => {
-    if (groupId !== answersGroup.id) {
-      setRejections({});
-      setGroupId(answersGroup.id);
-    }
-  }, [answersGroup.id]);
-
-  const updateRejection = (answerId: string, isRejected: boolean) => {
-    setRejections((prev) => {
-      const copy = { ...prev };
-      if (!isRejected && copy[answerId]) {
-        delete copy[answerId];
-      } else {
-        copy[answerId] = isRejected;
+  const [evaluations, setEvaluations] = useState<Dictionary<boolean>>(
+    answersGroup.answers.reduce((acc: Dictionary<boolean>, answer) => {
+      if (answer.autoRejected) {
+        acc[answer.id] = false;
       }
-      return copy;
+      return acc;
+    }, {}),
+  );
+
+  const isAllAutoRejected = useMemo(() => {
+    return answersGroup.answers.every((answer) => answer.autoRejected);
+  }, [answersGroup]);
+
+  const isSubmitted = useMemo(() => {
+    return answersGroup.answers.every((answer) => user?.evaluations?.[answer.id] !== undefined);
+  }, [answersGroup, user]);
+
+  const handleEvaluationChange = (answerId: string, evaluation: boolean) => {
+    // When changing an evaluation, it should auto-match any answer that has the same text value, to avoid players having to evaluate the same answer multiple times if they are the same
+    setEvaluations((prev) => {
+      const updatedEvaluations = { ...prev, [answerId]: evaluation };
+      const answer = answersGroup.answers.find((ans) => ans.id === answerId);
+      if (answer) {
+        answersGroup.answers.forEach((ans) => {
+          if (ans.id !== answerId && ans.answer === answer.answer) {
+            updatedEvaluations[ans.id] = evaluation;
+          }
+        });
+      }
+      return updatedEvaluations;
     });
   };
 
+  const handleOnExpire = () => {
+    // Accept any unevaluated answer as true, to avoid blocking the game flow. This means that if the player didn't evaluate an answer before the time runs out, it will be considered correct.
+    const finalEvaluations = answersGroup.answers.reduce((acc: Dictionary<boolean>, answer) => {
+      acc[answer.id] = evaluations[answer.id] ?? true;
+      return acc;
+    }, {});
+
+    onSubmitCurrentEvaluations({ evaluations: finalEvaluations });
+  };
+
   return (
-    <div>
-      <div className="div-container evaluation-entry">
-        <div className="div-container evaluation-entry__side">
-          <span
-            className={clsx(getAnimationClass('flipInY'))}
-            key={answersGroup.topic.id}
-          >
-            <CategoryCell
-              data={answersGroup.topic}
-              updateAnswer={NOOP}
-            />
-          </span>
-          <PlusOutlined />
-          <span
-            className={clsx(getAnimationClass('flipInY'))}
-            key={answersGroup.letter.letters}
-          >
-            <LetterCell
-              data={answersGroup.letter}
-              updateAnswer={NOOP}
-            />
-          </span>
-        </div>
-        <div
-          className={clsx('div-container evaluation-entry__side', getAnimationClass('fadeIn'))}
-          key={answersGroup.id}
+    <div className="div-container evaluation-entry">
+      <div className="div-container evaluation-entry__side">
+        <span
+          className={clsx(getAnimationClass('flipInY'))}
+          key={answersGroup.topic.id}
         >
-          {answersGroup.answers.map((answer) => {
-            return (
-              <div
-                className="evaluation-entry__player"
-                key={answer.playerId}
+          <CategoryCell
+            data={answersGroup.topic}
+            updateAnswer={NOOP}
+          />
+        </span>
+        <PlusOutlined />
+        <span
+          className={clsx(getAnimationClass('flipInY'))}
+          key={answersGroup.letter.letters}
+        >
+          <LetterCell
+            data={answersGroup.letter}
+            updateAnswer={NOOP}
+          />
+        </span>
+      </div>
+      <div
+        className={clsx('div-container evaluation-entry__side', getAnimationClass('fadeIn'))}
+        key={answersGroup.id}
+      >
+        {answersGroup.answers.map((answer) => {
+          return (
+            <div
+              className="evaluation-entry__player"
+              key={answer.playerId}
+            >
+              <TimeHighlight>{ANSWERING_TIME - answer.timestamp}"</TimeHighlight>{' '}
+              <PlayerAvatarName player={players[answer.playerId]} />{' '}
+              <span
+                className={clsx(
+                  'evaluation-entry__answer-text',
+                  answer.autoRejected && 'evaluation-entry__answer-text--rejected',
+                )}
               >
-                <TimeHighlight>{ANSWERING_TIME - answer.timestamp}"</TimeHighlight>{' '}
-                <PlayerAvatarName player={players[answer.playerId]} />{' '}
-                <span
-                  className={clsx(
-                    'evaluation-entry__answer-text',
-                    answer.autoRejected && 'evaluation-entry__answer-text--rejected',
-                  )}
-                >
-                  <Tooltip title={answer.answer}>{answer.answer}</Tooltip>
-                </span>
-                {answer.autoRejected ? (
-                  <Tooltip
-                    title={
-                      <Translate
-                        pt="Resposta rejeitada automaticamente por não condizer com a letra"
-                        en="Auto rejected for not fit the letter"
-                      />
-                    }
-                  >
-                    <IconAvatar
-                      icon={<NoIcon />}
-                      size="small"
+                <Tooltip title={answer.answer}>{answer.answer}</Tooltip>
+              </span>
+              {answer.autoRejected ? (
+                <Tooltip
+                  title={
+                    <Translate
+                      pt="Resposta rejeitada automaticamente por não condizer com a letra"
+                      en="Auto rejected for not fit the letter"
                     />
-                  </Tooltip>
-                ) : (
-                  <Switch
-                    checkedChildren={
+                  }
+                >
+                  <IconAvatar
+                    icon={<NoIcon />}
+                    size="small"
+                  />
+                </Tooltip>
+              ) : (
+                <TripleStateButton
+                  size="small"
+                  value={evaluations[answer.id] ?? null}
+                  onChange={(value) => handleEvaluationChange(answer.id, !!value)}
+                  style={{ border: '1px solid #cccccc' }}
+                  disabled={isSubmitted}
+                  icons={{
+                    true: (
                       <IconAvatar
-                        icon={<NoIcon />}
+                        icon={<CheckOutlined />}
                         size="small"
                       />
-                    }
-                    unCheckedChildren={<CheckOutlined />}
-                    onClick={(v) => updateRejection(answer.id, v)}
-                    checked={rejections[answer.id] ? true : undefined}
-                  />
-                )}
-              </div>
-            );
-          })}
-          <SpaceContainer className="evaluation-entry__reject-button">
-            <Button
-              type="primary"
-              shape="round"
-              onClick={() => onSubmitRejections({ evaluations: rejections })}
-              loading={isLoading}
-              disabled={isEqual(rejections, user.evaluations)}
-            >
-              <Translate
-                pt="Atualizar rejeições"
-                en="Reject wrong answers"
-              />
-            </Button>
-          </SpaceContainer>
-        </div>
+                    ),
+                    false: (
+                      <IconAvatar
+                        icon={<NoIcon className={clsx({ grayscale: evaluations[answer.id] !== false })} />}
+                        size="small"
+                      />
+                    ),
+                  }}
+                />
+              )}
+            </div>
+          );
+        })}
+        <SpaceContainer className="evaluation-entry__reject-button">
+          <TimedButton
+            type="primary"
+            shape="round"
+            onClick={() => onSubmitCurrentEvaluations({ evaluations })}
+            onExpire={() => (isSubmitted ? null : handleOnExpire())}
+            loading={isLoading}
+            disabled={isSubmitted || Object.keys(evaluations).length !== answersGroup.answers.length}
+            duration={getExpirationTime(answersGroupIndex, isAllAutoRejected, answersGroup.answers.length)}
+          >
+            <Translate
+              pt="Enviar avaliações"
+              en="Reject wrong answers"
+            />
+          </TimedButton>
+        </SpaceContainer>
       </div>
-      <SpaceContainer key={answersGroup.id}>
-        <TimedTimerBar
-          duration={timer}
-          onExpire={NOOP}
-          className="margin"
-        />
-      </SpaceContainer>
     </div>
   );
+}
+
+function getExpirationTime(answersGroupIndex: number, isAllAutoRejected: boolean, totalAnswers: number) {
+  if (answersGroupIndex === 0) {
+    return 35;
+  }
+
+  if (isAllAutoRejected) {
+    return 7;
+  }
+
+  // Give more time if there are more answers to evaluate, to avoid rushing players in groups with many answers
+  return [10, 10, 20, 30][totalAnswers] || 35;
 }

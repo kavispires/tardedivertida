@@ -7,7 +7,7 @@ export type SubmitGridAnswersPayload = {
   stop?: UID;
 };
 
-export type SubmitRejectedAnswers = {
+export type SubmitEvaluationsPayload = {
   evaluations: Dictionary<boolean>;
 };
 
@@ -96,16 +96,15 @@ export type PhaseEvaluationState = {
    * Grouped answers by cell for evaluation
    */
   answersGroups: GroupAnswerEvaluationEntry[];
-  /**
-   * Current index in the answers groups being evaluated
-   */
-  answersGroupIndex: number;
 };
 
 /**
  * State for the Results phase
  */
 export type PhaseResultsState = {
+  /**
+   * The current grid with topics and letters
+   */
   grid: AdedanhxGrid;
   /**
    * Whether a player has called stop

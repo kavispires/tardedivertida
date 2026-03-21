@@ -84,7 +84,8 @@ export const prepareAnsweringPhase = async (
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
-  utils.players.removePropertiesFromPlayers(players, ['evaluations', 'answers']);
+  // Reset values related to answers and evaluations
+  utils.players.addPropertiesToPlayers(players, { evaluations: {}, answers: {} });
 
   const round = utils.helpers.increaseRound(state.round);
   const options = store.options;
@@ -108,7 +109,7 @@ export const prepareAnsweringPhase = async (
         players,
         stop: false,
       },
-      stateCleanup: ['ranking', 'answersGroups', 'answerGroupIndex', 'answerGrid', 'stop'],
+      stateCleanup: ['ranking', 'answersGroups', 'answerGrid', 'stop'],
     },
   };
 };
@@ -140,7 +141,6 @@ export const prepareEvaluationPhase = async (
         phase: ADEDANHX_PHASES.EVALUATION,
         players,
         answersGroups,
-        answersGroupIndex: 0,
       },
     },
   };

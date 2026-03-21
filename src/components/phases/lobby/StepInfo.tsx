@@ -94,7 +94,8 @@ export function StepInfo({ players, setStep }: StepInfoProps) {
                 en="You played this game before"
               />
             }
-            className="margin"
+            banner
+            className="mt-0 mb-4"
           />
         </motion.div>
       )}

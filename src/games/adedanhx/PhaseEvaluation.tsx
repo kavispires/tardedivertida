@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -10,17 +11,34 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
-import { useOnNextEvaluationGroupAPIRequest, useOnRejectAnswersAPIRequest } from './utils/api-requests';
+import { useOnSubmitEvaluationsAPIRequest } from './utils/api-requests';
 import { ADEDANHX_PHASES } from './utils/constants';
 import type { PhaseEvaluationState } from './utils/types';
 import { ScoringRule } from './components/RulesBlobs';
 import { StepEvaluateGroup } from './StepEvaluateGroup';
+import { StepEvaluationComplete } from './StepEvaluationComplete';
 
 export function PhaseEvaluation({ players, state, user }: PhaseProps<PhaseEvaluationState>) {
   const { step } = useStep();
 
-  const onNextGroup = useOnNextEvaluationGroupAPIRequest();
-  const onSubmitRejections = useOnRejectAnswersAPIRequest();
+  const onSubmitCurrentEvaluations = useOnSubmitEvaluationsAPIRequest();
+
+  const answersGroupIndex = useMemo(() => {
+    // The answersGroupIndex is always the first answersGroups where not all players have evaluated every entry
+    const currentGroupIndex = state.answersGroups.findIndex((group) => {
+      const hasUnevaluatedEntries = group.answers.some((answer) => {
+        const hasBeenEvaluatedByAllPlayers = Object.values(players).every((player) => {
+          return player.evaluations[answer.id] !== undefined;
+        });
+
+        return !hasBeenEvaluatedByAllPlayers;
+      });
+
+      return hasUnevaluatedEntries;
+    });
+
+    return currentGroupIndex;
+  }, [players, state.answersGroups]);
 
   const announcement = (
     <PhaseAnnouncement
@@ -65,15 +83,18 @@ export function PhaseEvaluation({ players, state, user }: PhaseProps<PhaseEvalua
         players={players}
       >
         {/* Step 0 */}
-        <StepEvaluateGroup
-          players={players}
-          user={user}
-          announcement={announcement}
-          answersGroups={state.answersGroups}
-          answersGroupIndex={state.answersGroupIndex}
-          onNextGroup={onNextGroup}
-          onSubmitRejections={onSubmitRejections}
-        />
+        {answersGroupIndex > -1 ? (
+          <StepEvaluateGroup
+            players={players}
+            user={user}
+            announcement={announcement}
+            answersGroups={state.answersGroups}
+            answersGroupIndex={answersGroupIndex}
+            onSubmitCurrentEvaluations={onSubmitCurrentEvaluations}
+          />
+        ) : (
+          <StepEvaluationComplete />
+        )}
       </StepSwitcher>
     </PhaseContainer>
   );

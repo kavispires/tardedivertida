@@ -302,9 +302,6 @@ export const evaluateAnswers = (
   answersGroups: GroupAnswerEvaluationEntry[],
   store: FirebaseStoreData,
 ) => {
-  const playerCount = utils.players.getPlayerCount(players);
-  const acceptableRejections = playerCount > 4 ? 2 : 1;
-
   const rejections: Dictionary<number> = {};
   // Verify rejections and reject any answer that has been rejected by the acceptableRejections value
   utils.players.getListOfPlayers(players).forEach((player) => {
@@ -312,11 +309,11 @@ export const evaluateAnswers = (
       if (rejections[answerId] === undefined) {
         rejections[answerId] = 0;
       }
-      if (player.evaluations[answerId]) {
+      if (player.evaluations[answerId] === false) {
         rejections[answerId] += 1;
       }
 
-      if (rejections[answerId] >= acceptableRejections) {
+      if (rejections[answerId] >= 2) {
         const [groupId] = answerId.split(SEPARATOR);
         const answersGroup = answersGroups.find((group) => group.id === groupId);
         if (answersGroup) {

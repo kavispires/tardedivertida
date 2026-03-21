@@ -146,7 +146,7 @@ type TResultCell = {
 type CellProps = {
   data: TopicCard | LetterEntry | Cell | PlainObject | TResultCell;
   answer?: Answer;
-  toggleLock?: (id: string) => void;
+  toggleLock?: (id: string, value?: boolean) => void;
   updateAnswer: (id: string, answer: string) => void;
   players?: GamePlayers;
 };
@@ -200,18 +200,26 @@ function WritingCell({ data, answer, toggleLock = () => {}, updateAnswer }: Cell
   const { id } = data as Cell;
   const isLocked = (answer?.timestamp ?? 0) > 0;
 
+  const handleBlur = () => {
+    if (answer?.answer && answer?.answer.trim().length > 1 && !isLocked) {
+      toggleLock(id, true);
+    }
+  };
+
   return (
     <div className={clsx('adedanhx-grid-cell adedanhx-grid-cell__writing')}>
       <Input
         className="adedanhx-grid-cell__input"
         placeholder="?"
         onChange={(e) => updateAnswer(id, e.target.value)}
+        onBlur={handleBlur}
         disabled={isLocked}
       />
       <Switch
         checkedChildren={<LockFilled />}
         unCheckedChildren={<UnlockFilled />}
         onClick={() => toggleLock(id)}
+        value={isLocked}
         disabled={!answer?.answer}
       />
     </div>
@@ -317,7 +325,7 @@ function PopoverResult({ groupAnswer, players }: PopoverResultProps) {
               size="small"
             />
           )}
-          {answer.rejected && (
+          {answer.rejected && !answer.autoRejected && (
             <IconAvatar
               icon={<SpeechBubbleThumbsDownIcon />}
               size="small"
