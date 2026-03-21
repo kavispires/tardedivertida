@@ -1,0 +1,45 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "F",
+  "gameName": "na-fila-do-banco",
+  "version": "0.0.2",
+  "release": "dev",
+  "releaseDate": "0000-00-00",
+  "available": false,
+  "title": {
+    "pt": "Na Fila do Banco",
+    "en": "In Line for the Bank"
+  },
+  "popularName": {
+    "pt": "",
+    "en": ""
+  },
+  "inspiredBy": "rotavelE eht fo tnorF nI",
+  "summary": {
+    "pt": "TBD",
+    "en": "TBD"
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "cloudsAnimationType": "flow",
+    "primaryColor": "",
+    "colorScheme": "light",
+    "videoBackground": true
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [],
+    "min": 2,
+    "max": 5,
+    "best": 0
+  },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
+  "mechanics": ["competitive"],
+  "features": []
+}

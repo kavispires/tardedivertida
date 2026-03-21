@@ -72,6 +72,7 @@ export const ACHIEVEMENTS_DICT: Record<string, AchievementReference | null> = {
   megamix: MEGAMIX,
   'mente-coletiva': MENTE_COLETIVA,
   metalinguagem: METALINGUAGEM,
+  'na-fila-do-banco': null,
   'na-rua-do-medo': NA_RUA_DO_MEDO,
   'nao-sou-robo': NAO_SOU_ROBO,
   naufragos: null,

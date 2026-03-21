@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { throttle as throttleFunc } from 'lodash';
-import { useEffect, useMemo, useRef, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, type ComponentPropsWithoutRef, type ReactNode } from 'react';
 // Ant Design Resources
 import { DownCircleOutlined, UpCircleOutlined } from '@ant-design/icons';
 import { Button, Typography, type ButtonProps } from 'antd';
@@ -21,10 +21,6 @@ type ImageCardButtonProps = {
    * The content, usually a ImageCard component
    */
   children: ReactNode;
-  /**
-   * Optional custom class name for the container
-   */
-  className?: string;
   /**
    * The position of the button (default: top)
    */
@@ -61,7 +57,7 @@ type ImageCardButtonProps = {
    * Whether to enable throttling for the button click (use when the click performs an API call)
    */
   throttle?: boolean;
-};
+} & Omit<ComponentPropsWithoutRef<'div'>, 'onClick' | 'children'>;
 
 export function ImageCardButton({
   cardId,
@@ -76,6 +72,7 @@ export function ImageCardButton({
   buttonProps = {},
   hideButton = false,
   throttle = false,
+  ...divProps
 }: ImageCardButtonProps) {
   const isTop = buttonPosition === 'top';
 
@@ -135,7 +132,10 @@ export function ImageCardButton({
     ) : null;
 
   return (
-    <div className={clsx(styles.imageCardButton, className)}>
+    <div
+      className={clsx(styles.imageCardButton, className)}
+      {...divProps}
+    >
       {isTop && button}
       <ImageBlurButtonContainer
         cardId={cardId}

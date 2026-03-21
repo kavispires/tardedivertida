@@ -93,11 +93,7 @@ export const unReadyPlayer = (players: Players, playerId: UID): Players => {
  * @returns
  */
 export const unReadyPlayers = (players: Players, butThisOne?: UID | UID[]): Players => {
-  const excludeList: UID[] = butThisOne
-    ? typeof butThisOne === 'string'
-      ? [butThisOne]
-      : butThisOne
-    : [];
+  const excludeList: UID[] = butThisOne ? (typeof butThisOne === 'string' ? [butThisOne] : butThisOne) : [];
   for (const playerKey in players) {
     if (players[playerKey].type === 'player') {
       players[playerKey].ready = excludeList.includes(playerKey);
@@ -253,6 +249,7 @@ export const getPreviousPlayer = (turnOrder: GameOrder | TurnOrder, activePlayer
 /**
  * Counts how many player keys are in players a.k.a the number of players in the game
  * @param players
+ * @param includeBots whether to include bots in the count or not (default true)
  * @returns
  */
 export const getPlayerCount = (players: Players, includeBots = true): number =>
@@ -360,11 +357,7 @@ export const addBots = (
  * @param butThese player ids to ignore
  * @returns array of players
  */
-export const getListOfPlayers = (
-  players: Players,
-  includeBots = false,
-  butThese: UID[] = [],
-): Player[] => {
+export const getListOfPlayers = (players: Players, includeBots = false, butThese: UID[] = []): Player[] => {
   const options = Object.values(players).filter((player) => !butThese.includes(player.id));
   if (includeBots) return options;
   return options.filter((player) => player.type === 'player');
@@ -377,11 +370,7 @@ export const getListOfPlayers = (
  * @param butThese - An array of player IDs to exclude from the list. Defaults to an empty array.
  * @returns An array of player IDs, ordered by player name in ascending order.
  */
-export const getListOfPlayersIds = (
-  players: Players,
-  includeBots = false,
-  butThese: UID[] = [],
-): UID[] => {
+export const getListOfPlayersIds = (players: Players, includeBots = false, butThese: UID[] = []): UID[] => {
   return orderBy(getListOfPlayers(players, includeBots, butThese), ['name'], ['asc']).map(
     (player) => player.id,
   );

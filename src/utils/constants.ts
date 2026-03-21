@@ -271,6 +271,7 @@ export const GAME_COLLECTION = {
   NA_RUA_DO_MEDO: 'na-rua-do-medo',
   NAO_SOU_ROBO: 'nao-sou-robo',
   NAUFRAGOS: 'naufragos', // upcoming
+  NA_FILA_DO_BANCO: 'na-fila-do-banco',
   ONDA_TELEPATICA: 'onda-telepatica',
   PALHETA_DE_CORES: 'palheta-de-cores', // upcoming
   PLANEJAMENTO_URBANO: 'planejamento-urbano',

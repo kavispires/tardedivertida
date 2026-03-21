@@ -1,0 +1,10 @@
+@use "styles/sass" as *;
+
+.f-open-teller-slot {
+  outline: dashed get-unit(1) get-color("gray");
+  border-radius: var(--border-radius);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  aspect-ratio: 2/3;
+}

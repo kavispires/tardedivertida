@@ -41,6 +41,7 @@ export const gameSessions: GameSessionMap = {
   [GAME_COLLECTION.MEDIDAS_NAO_EXATAS]: lazy(
     () => import('games/medidas-nao-exatas/SessionMedidasNaoExatas'),
   ),
+  [GAME_COLLECTION.NA_FILA_DO_BANCO]: lazy(() => import('games/na-fila-do-banco/SessionNaFilaDoBanco')),
   [GAME_COLLECTION.MEGAMIX]: lazy(() => import('games/megamix/SessionMegamix')),
   [GAME_COLLECTION.MENTE_COLETIVA]: lazy(() => import('games/mente-coletiva/SessionMenteColetiva')),
   [GAME_COLLECTION.MESMICE]: lazy(() => import('games/mesmice/SessionMesmice')),
