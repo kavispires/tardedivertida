@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { type ReactNode, useState } from 'react';
 // Ant Design Resources
-import { StarFilled } from '@ant-design/icons';
-import { Alert, Button, Input, Rate } from 'antd';
+import { CloseOutlined, StarFilled } from '@ant-design/icons';
+import { Alert, Button, Flex, Input, Rate, Typography } from 'antd';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
@@ -102,7 +102,10 @@ function RateGameWidgetContent({ customText, hideWidget, setHideWidget }: RateGa
   if (isAdmin && !isAdminEnabled) return null;
 
   return (
-    <div
+    <Flex
+      orientation="vertical"
+      gap={6}
+      align="center"
       className={clsx(
         'rate-game-widget',
         thankYouMessage && 'rate-game-widget--thank-you',
@@ -117,20 +120,35 @@ function RateGameWidgetContent({ customText, hideWidget, setHideWidget }: RateGa
         />
       ) : (
         <>
-          <h3>
-            <Translate
-              pt="O que achou do jogo?"
-              en="Rate this game"
+          <Flex
+            justify="space-between"
+            align="center"
+            style={{ width: '100%' }}
+          >
+            <Typography.Title
+              level={4}
+              style={{ margin: 0 }}
+            >
+              <Translate
+                pt="O que achou do jogo?"
+                en="Rate this game"
+              />
+            </Typography.Title>
+            <Button
+              type="text"
+              icon={<CloseOutlined />}
+              onClick={() => setHideWidget(true)}
+              size="small"
             />
-          </h3>
+          </Flex>
           <Rate onChange={setRating} />
-          <p>
+          <Typography.Paragraph style={{ marginBottom: 0 }}>
             <Translate
               pt="Comentários"
               en="Comments"
               custom={customText}
             />
-          </p>
+          </Typography.Paragraph>
           <TextArea
             onChange={(e) => setComments(e.target.value)}
             disabled={isLoading}
@@ -146,20 +164,8 @@ function RateGameWidgetContent({ customText, hideWidget, setHideWidget }: RateGa
               en="Send"
             />
           </Button>
-          <p style={{ marginTop: '1rem' }}>
-            <Button
-              ghost
-              onClick={() => setHideWidget(true)}
-              size="small"
-            >
-              <Translate
-                pt="Hide"
-                en="Hide"
-              />
-            </Button>
-          </p>
         </>
       )}
-    </div>
+    </Flex>
   );
 }
