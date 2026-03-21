@@ -15,6 +15,8 @@ import type { SlideShowConfig } from 'hooks/useSlideShow';
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
+// Internal
+import styles from './styles';
 
 type SlideShowControlsProps = {
   /**
@@ -80,7 +82,7 @@ export function SlideShowControls({
         return (
           <div
             key={`control-timer-bar-${e + i}`}
-            className="slide-show__controls-timer-bar-node"
+            className={styles.slideShow__controlsTimerBarNode}
             style={{ width: `${99 / config.length}%` }}
           >
             {e}
@@ -90,11 +92,11 @@ export function SlideShowControls({
   }, [config.length]);
 
   return (
-    <div className="slide-show__controls">
-      <div className="slide-show__controls-timer-bar">
-        <div className="slide-show__controls-timer-bar-base">{slots}</div>
+    <div className={styles.slideShow__controls}>
+      <div className={styles.slideShow__controlsTimerBar}>
+        <div className={styles.slideShow__controlsTimerBarBase}>{slots}</div>
         <span
-          className="slide-show__controls-timer-bar-pill"
+          className={styles.slideShow__controlsTimerBarPill}
           style={{
             width: `${calculateProgress(totalDuration, timeLeft)}%`,
             backgroundColor: barColor,

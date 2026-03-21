@@ -14,6 +14,8 @@ import { GarbageIcon } from 'icons/GarbageIcon';
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PlayerAvatar } from 'components/player';
+// Internal
+import styles from './styles';
 
 /**
  * A functional component that renders a label for the slide show.
@@ -21,7 +23,7 @@ import { PlayerAvatar } from 'components/player';
 export function SlideShowLabel({ children, className, ...props }: ElementPropsWithChildren) {
   return (
     <div
-      className={clsx('slide-show-composable__label', className)}
+      className={clsx(styles.slideShowComposable__label, className)}
       {...props}
     >
       {children}
@@ -59,17 +61,17 @@ export function SlideShowBubbleValue({
 }: SlideShowBubbleProps) {
   return (
     <div
-      className={clsx('slide-show-composable__bubble-value', className)}
+      className={clsx(styles.slideShowComposable__bubbleValue, className)}
       style={winner && backgroundColor ? { backgroundColor, color: getContrastColor(backgroundColor) } : {}}
       {...props}
     >
       {winner ? (
         <CrownFilled
-          className="slide-show-composable__bubble-icon"
+          className={styles.slideShowComposable__bubbleIcon}
           style={backgroundColor ? { color: getContrastColor(backgroundColor) } : {}}
         />
       ) : (
-        <MessageFilled className="slide-show-composable__bubble-icon" />
+        <MessageFilled className={styles.slideShowComposable__bubbleIcon} />
       )}
 
       <span>{children}</span>
@@ -107,7 +109,7 @@ export function SlideShowPlayersList({
 
   return (
     <div
-      className={clsx('slide-show-composable__players', className)}
+      className={clsx(styles.slideShowComposable__players, className)}
       {...props}
     >
       <Avatar.Group>
@@ -119,7 +121,7 @@ export function SlideShowPlayersList({
         ))}
       </Avatar.Group>
       {children}
-      <span className="slide-show-composable__players-names">{selectedPlayersNames}</span>
+      <span className={styles.slideShowComposable__playersNames}>{selectedPlayersNames}</span>
     </div>
   );
 }
@@ -137,7 +139,7 @@ type SlideShowNoWinsProps = TextProps & {
 export function SlideShowNoWins({ children, icon, className, ...props }: SlideShowNoWinsProps) {
   return (
     <Typography.Text
-      className={clsx('slide-show-composable__no-wins', className)}
+      className={clsx(styles.slideShowComposable__noWins, className)}
       {...props}
     >
       <IconAvatar

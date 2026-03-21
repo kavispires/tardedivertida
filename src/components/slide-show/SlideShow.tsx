@@ -6,6 +6,7 @@ import type { ButtonProps } from 'antd';
 import type { SlideShowConfig } from 'hooks/useSlideShow';
 // Internal
 import { SlideShowControls } from './SlideShowControls';
+import styles from './styles';
 
 type SlideShowProps = {
   /**
@@ -58,15 +59,15 @@ export function SlideShow({
   config,
 }: SlideShowProps) {
   return (
-    <div className={clsx('slide-show', className)}>
+    <div className={clsx(styles.slideShow, className)}>
       <div
-        className={clsx('slide-show__left', leftClassName)}
+        className={clsx(styles.slideShow__left, leftClassName)}
         id="gallery-left"
       >
         {children[0]}
       </div>
       <div
-        className={clsx('slide-show__right', rightClassName)}
+        className={clsx(styles.slideShow__right, rightClassName)}
         id="gallery-right"
       >
         {children[1]}
