@@ -198,5 +198,5 @@ function getExpirationTime(answersGroupIndex: number, isAllAutoRejected: boolean
   }
 
   // Give more time if there are more answers to evaluate, to avoid rushing players in groups with many answers
-  return [10, 10, 20, 30][totalAnswers] || 35;
+  return [10, 10, 12, 18, 20, 22][totalAnswers] || 25;
 }
