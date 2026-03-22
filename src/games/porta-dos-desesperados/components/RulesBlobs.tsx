@@ -55,8 +55,8 @@ export function RoundOneRule({ magic, difficulty }: RoundOneRuleProps) {
       <br />
       <strong>
         <Translate
-          pt="Dificuldade: "
-          en="Difficulty: "
+          pt="Dificuldade do Jogo: "
+          en="Game Difficulty: "
         />
       </strong>
       <br />

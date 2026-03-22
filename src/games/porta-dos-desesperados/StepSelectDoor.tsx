@@ -14,6 +14,7 @@ import { getAnimationClass, removeDuplicates } from 'utils/helpers';
 import { SendButton } from 'components/buttons';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { PlayerAvatarName } from 'components/player';
 import { Step } from 'components/steps';
 import { Instruction, RuleInstruction, StepTitle } from 'components/text';
@@ -197,19 +198,6 @@ export function StepSelectDoor({
         />
       </RuleInstruction>
 
-      {Boolean(user.doorId) && (
-        <SendButton
-          size="large"
-          disabled={!user.doorId || user.ready || isButtonDisabled || shouldRestrainDoorConfirmation}
-          onClick={() => onConfirmDoor()}
-        >
-          <Translate
-            pt="Confirmar Porta"
-            en="Confirm Door"
-          />
-        </SendButton>
-      )}
-
       <Corridor
         doors={trap === TRAPS.SHUFFLED_DOORS ? user.shuffledDoorOrder : doors}
         trap={trap}
@@ -270,6 +258,20 @@ export function StepSelectDoor({
           </Book>
         </Image.PreviewGroup>
       </Space>
+      {Boolean(user.doorId) && (
+        <SpaceFloat>
+          <SendButton
+            size="large"
+            disabled={!user.doorId || user.ready || isButtonDisabled || shouldRestrainDoorConfirmation}
+            onClick={() => onConfirmDoor()}
+          >
+            <Translate
+              pt="Confirmar Porta"
+              en="Confirm Door"
+            />
+          </SendButton>
+        </SpaceFloat>
+      )}
     </Step>
   );
 }

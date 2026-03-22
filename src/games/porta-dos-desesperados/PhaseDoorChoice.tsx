@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -76,36 +77,38 @@ export function PhaseDoorChoice({ state, players, meta, user }: PhaseProps<Phase
         />
 
         {/* Step 3 */}
-        <ViewIf condition={isPossessed}>
-          <StepWaitDoorSelection
-            doors={state.doors}
-            pages={state.selectedPagesIds}
-            currentCorridor={state.currentCorridor}
-            trap={state.trap}
-            trapEntry={state.trapEntry}
-            players={players}
-            magic={state.magic}
-            answerDoorId={state.answerDoorId}
-            botEnabled={Boolean(meta?.options?.withBots)}
-          />
-        </ViewIf>
-        <ViewIf condition={!isPossessed}>
-          <StepSelectDoor
-            doors={state.doors}
-            pages={state.selectedPagesIds}
-            currentCorridor={state.currentCorridor}
-            trap={state.trap}
-            trapEntry={state.trapEntry}
-            onSubmitDoor={onSubmitDoor}
-            players={players}
-            user={user}
-            onConfirmDoor={onConfirmDoor}
-            possessed={possessed}
-            magic={state.magic}
-            answerDoorId={state.answerDoorId}
-            botEnabled={Boolean(meta?.options?.withBots)}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isPossessed}>
+            <StepWaitDoorSelection
+              doors={state.doors}
+              pages={state.selectedPagesIds}
+              currentCorridor={state.currentCorridor}
+              trap={state.trap}
+              trapEntry={state.trapEntry}
+              players={players}
+              magic={state.magic}
+              answerDoorId={state.answerDoorId}
+              botEnabled={Boolean(meta?.options?.withBots)}
+            />
+          </ViewIf>
+          <ViewIf condition={!isPossessed}>
+            <StepSelectDoor
+              doors={state.doors}
+              pages={state.selectedPagesIds}
+              currentCorridor={state.currentCorridor}
+              trap={state.trap}
+              trapEntry={state.trapEntry}
+              onSubmitDoor={onSubmitDoor}
+              players={players}
+              user={user}
+              onConfirmDoor={onConfirmDoor}
+              possessed={possessed}
+              magic={state.magic}
+              answerDoorId={state.answerDoorId}
+              botEnabled={Boolean(meta?.options?.withBots)}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

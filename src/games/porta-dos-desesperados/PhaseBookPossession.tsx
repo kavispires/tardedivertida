@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -139,25 +140,27 @@ export function PhaseBookPossession({ state, players }: PhaseProps<PhaseBookPoss
         />
 
         {/* Step 4 */}
-        <ViewIf condition={isPossessed}>
-          <StepSelectPages
-            pages={state.pages}
-            currentCorridor={state.currentCorridor}
-            answerDoorId={state.answerDoorId}
-            trap={state.trap}
-            trapEntry={state.trapEntry}
-            onSubmitPages={onSubmitPages}
-          />
-        </ViewIf>
-        <ViewIf condition={!isPossessed}>
-          <StepWaitPageSelection
-            players={players}
-            currentCorridor={state.currentCorridor}
-            trap={state.trap}
-            trapEntry={state.trapEntry}
-            possessed={possessed}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isPossessed}>
+            <StepSelectPages
+              pages={state.pages}
+              currentCorridor={state.currentCorridor}
+              answerDoorId={state.answerDoorId}
+              trap={state.trap}
+              trapEntry={state.trapEntry}
+              onSubmitPages={onSubmitPages}
+            />
+          </ViewIf>
+          <ViewIf condition={!isPossessed}>
+            <StepWaitPageSelection
+              players={players}
+              currentCorridor={state.currentCorridor}
+              trap={state.trap}
+              trapEntry={state.trapEntry}
+              possessed={possessed}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

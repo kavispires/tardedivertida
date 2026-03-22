@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "porta-dos-desesperados",
-  "version": "4.0.80",
+  "version": "4.0.81",
   "release": "stable",
   "releaseDate": "2022-10-02",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Porta dos Desesperados",
     "en": "Obscure Doors"
@@ -23,32 +23,28 @@
     "clouds": "doors-clouds",
     "cloudsAnimationType": "rising",
     "primaryColor": "#4B2142",
-    "colorScheme": "light",
-    "videoBackground": true
+    "colorScheme": "dark",
+    "videoBackground": true,
+    "imageBackground": true
   },
   "rules": {
-    "pt": [
-      "Você e seus amigos acordam num corredor escuro cercado por portas que ao se aproximar revelam imagens estranhas.",
-      "Logo, vocês notam um livro no chão: O Livro que Tudo Sabe, que ao abri-lo, um de vocês é possuído tem visões que indicam qual porta você devem entrar",
-      "Ao sair do estado catatônico, todos veem as imagens e devem selecionar a porta correta para achar a saída",
-      "Toda vez que uma porta é aberta, o livro perde força (representada por cristais)",
-      "Vocês conseguem achar a saída antes que o livro perca toda a sua força? E se armadilhas surgirem no caminho?"
-    ],
     "en": [
-      "You and your friends wake up in a dark corridor surrounded by doors that reveal strange images as you get closer to them.",
-      "Soon, you notice a book on the floor: The Book That Knows It All, which when opened, one of you is possessed and has visions that indicate which door y'all should enter",
-      "When leaving the catatonic state, the possessed players shows everyone the images the book indicated and they must select the correct door to find the exit",
-      "Every time a door is opened, the book loses strength (represented by magic crystals)",
-      "Can you find the exit before the book loses all its strength? And what if some traps come along the way?"
+      "You and your friends wake up in a dark corridor, surrounded by doors that reveal strange images as you approach them.",
+      "Soon, you discover a mysterious book on the floor: The Book That Knows It All. When opened, one player is possessed and receives visions that hint at which door you should enter.",
+      "After the vision ends, the possessed player shows the revealed images, and everyone must choose which door to enter.",
+      "Each time a door is opened, the book loses strength, represented by its magic crystals.",
+      "Can you find the exit before the book loses all its power? And what if traps appear along the way?"
+    ],
+    "pt": [
+      "Você e seus amigos acordam em um corredor escuro, cercados por portas que revelam imagens estranhas ao se aproximarem.",
+      "Logo, vocês encontram um livro misterioso no chão: O Livro que Tudo Sabe. Ao abri-lo, um jogador é possuído e tem visões que indicam qual porta vocês devem escolher.",
+      "Após sair do estado catatônico, o jogador possuído mostra as imagens reveladas, e todos devem escolher a porta correta.",
+      "Toda vez que uma porta é aberta, o livro perde força, representada por cristais mágicos.",
+      "Vocês conseguem encontrar a saída antes que o livro perca toda a sua força? E se armadilhas surgirem no caminho?"
     ]
   },
   "playerCount": {
-    "recommended": [
-      4,
-      5,
-      6,
-      7
-    ],
+    "recommended": [4, 5, 6, 7],
     "best": 5,
     "min": 2,
     "max": 10
@@ -57,18 +53,8 @@
     "base": 15,
     "perPlayer": 3
   },
-  "mechanics": [
-    "cooperative",
-    "guessing",
-    "puzzle",
-    "images",
-    "turn-based",
-    "discussion"
-  ],
-  "features": [
-    "bots",
-    "achievements"
-  ],
+  "mechanics": ["cooperative", "guessing", "puzzle", "images", "turn-based", "discussion"],
+  "features": ["bots", "achievements"],
   "options": [
     {
       "key": "withBots",
