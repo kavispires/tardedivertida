@@ -80,7 +80,6 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
             </SpaceContainer>
           </Flex>
         ))}
-        ?
       </TitledContainer>
     </GameOverWrapper>
   );

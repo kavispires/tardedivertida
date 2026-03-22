@@ -15,6 +15,7 @@ import { BookPatternCard } from 'components/cards/BookPatternCard';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle, TextHighlight } from 'components/text';
 // Internal
@@ -160,10 +161,7 @@ export function StepCreatePattern({ announcement, sequence, onSubmitPattern }: S
         />
       </SpaceContainer>
 
-      <Flex
-        gap={6}
-        align="center"
-      >
+      <SpaceFloat>
         <SendButton
           size="large"
           onClick={() => onSubmitPattern({ patternId: currentPatternId })}
@@ -181,7 +179,7 @@ export function StepCreatePattern({ announcement, sequence, onSubmitPattern }: S
             setLetter(newPattern.split('-')[2]);
           }}
         />
-      </Flex>
+      </SpaceFloat>
     </Step>
   );
 }
