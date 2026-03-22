@@ -38,6 +38,7 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
               {pluralize(matchCount, 'jogador')} lá!
               <br />
               {isSuperSpark && 'Brilho total!'}
+              {isSuperSpark && <FireworksEffect />}
               <StarPoints
                 keyPrefix="dream-result"
                 quantity={isSuperSpark ? 3 : 2}

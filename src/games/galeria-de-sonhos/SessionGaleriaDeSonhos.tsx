@@ -9,19 +9,17 @@ import { Session } from 'components/session';
 // Internal
 import { GALERIA_DE_SONHOS_PHASES } from './utils/constants';
 import { PhaseWordSelection } from './PhaseWordSelection';
-import { PhaseDreamsSelections } from './PhaseDreamsSelections';
+import { PhaseDreamsSelection } from './PhaseDreamsSelection';
 import { PhaseCardPlay } from './PhaseCardPlay';
 import { PhaseResolution } from './PhaseResolution';
 import { PhaseGameOver } from './PhaseGameOver';
-// Sass
-import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   switch (state.phase) {
     case GALERIA_DE_SONHOS_PHASES.WORD_SELECTION:
       return PhaseWordSelection;
     case GALERIA_DE_SONHOS_PHASES.DREAMS_SELECTION:
-      return PhaseDreamsSelections;
+      return PhaseDreamsSelection;
     case GALERIA_DE_SONHOS_PHASES.CARD_PLAY:
       return PhaseCardPlay;
     case GALERIA_DE_SONHOS_PHASES.RESOLUTION:

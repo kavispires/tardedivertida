@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "G",
   "gameName": "galeria-de-sonhos",
-  "version": "4.2.18",
+  "version": "4.2.19",
   "release": "stable",
   "releaseDate": "2022-01-26",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Galeria de sonhos",
     "en": "Dream Gallery"
@@ -24,51 +24,41 @@
     "cloudsAnimationType": "flow",
     "primaryColor": "#6052a8",
     "colorScheme": "dark",
-    "videoBackground": true
+    "videoBackground": true,
+    "imageBackground": true
   },
   "rules": {
     "pt": [
-      "Em Galeria dos sonhos, somos Caçadores de Sonhos tentando achar uns aos outros em sonhos aleatórios",
-      "Cada rodada tem uma palavra tema que jogadores devem visitar (selecionar) alguns dos 15 sonhos (cards) eles acham que outros jogadores também visitarão",
-      "Depois que todos selecionaram de 1 a 10 cartas, em ordem e um de cada vez, jogadores escolhem um dos seus sonhos visitados",
-      "Se apenas um jogador visitou o mesmo sonho que você, ambos ganham 3 pontos. Se mais de um visitou, todos ganham 2 pontos",
-      "Se você não dar match com ninguém, você está fora da rodada e não ganha mais pontos",
-      "Mas cuidado, se você for o único jogador que escolheu mais sonhos, você perde um ponto por cada carta que te deu ponto se você não der match com alguém",
-      "O jogo termina após 4 rodadas e quem tiver mais pontos é o vencedor"
+      "In Dream Gallery, you are Dream Scouts trying to find each other in a shared dream world.",
+      "Each round has a theme word. From a grid of 15 dream cards, secretly select 1 to 10 dreams you think other players will also choose.",
+      "Then, in turn order, players reveal one of their selected dreams at a time.",
+      "If exactly one other player selected the same dream, you both earn 3 points. If more players selected it, everyone involved earns 2 points.",
+      "If no one matches your dream, you are out for the rest of the round and your remaining dreams score no points.",
+      "Watch out: if you are the only player who selected the most dreams and you get no matches, you lose 1 point for each dream you selected.",
+      "After 4 rounds, the player with the most points wins."
     ],
     "en": [
-      "In Dream Gallery, we are 'Dream Scouts' trying to find each other in random dreams",
-      "Each round will be around word and players must visit (select) some of the 15 dreams (cards) they think other people will also visit",
-      "After all players have selected cards (1-10), in turn order, one at a time, each player calls one of their visited dreams",
-      "If you match with one single player you both earn 3 points. If you match with more players you all get 2 points",
-      "If you don't match with anybody, you are out of the round and none of your other dreams will score you any points",
-      "Watch out, if you are the only player who selected the most dreams, you will lose one point per scored card if you don't get any matches",
-      "The game ends after 4 rounds and whoever have the most points wins"
+      "Em Galeria dos Sonhos, vocês são Caçadores de Sonhos tentando se encontrar em um mundo de sonhos.",
+      "Cada rodada tem uma palavra-tema. A partir de 15 cartas de sonhos, selecione secretamente de 1 a 10 sonhos que você acha que outros jogadores também escolherão.",
+      "Depois, em ordem de turno, os jogadores revelam um de seus sonhos selecionados por vez.",
+      "Se exatamente outro jogador tiver escolhido o mesmo sonho, ambos ganham 3 pontos. Se mais jogadores escolheram, todos ganham 2 pontos.",
+      "Se ninguém combinar com o seu sonho, você está fora do resto da rodada e seus outros sonhos não pontuam.",
+      "Cuidado: se você for o único jogador que escolheu mais sonhos e não fizer nenhum match, você perde 1 ponto por cada sonho escolhido.",
+      "Após 4 rodadas, vence quem tiver mais pontos."
     ]
   },
   "playerCount": {
-    "recommended": [
-      4,
-      5,
-      6
-    ],
+    "recommended": [4, 5, 6],
     "best": 5,
     "min": 2,
     "max": 10
   },
-  "mechanics": [
-    "competitive",
-    "turn-based",
-    "images"
-  ],
+  "mechanics": ["competitive", "turn-based", "images"],
   "duration": {
     "base": 0,
     "perPlayer": 0
   },
-  "features": [
-    "achievements",
-    "bots"
-  ],
+  "features": ["achievements", "bots"],
   "options": [
     {
       "key": "surpriseMode",

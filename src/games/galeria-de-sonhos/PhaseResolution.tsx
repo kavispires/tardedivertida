@@ -13,9 +13,10 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction, RoundsLeftInstruction } from 'components/text';
 // Internal
 import { GALERIA_DE_SONHOS_PHASES } from './utils/constants';
+import type { PhaseResolutionState } from './utils/types';
 import { RowSwapInstruction } from './components/RulesBlobs';
 
-export function PhaseResolution({ state, players }: PhaseProps) {
+export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionState>) {
   const { step, goToNextStep } = useStep();
 
   return (
@@ -74,7 +75,10 @@ export function PhaseResolution({ state, players }: PhaseProps) {
         >
           <RowSwapInstruction round={state.round} />
           <RoundsLeftInstruction round={state.round} />
-          <HostNextPhaseButton round={state.round} />
+          <HostNextPhaseButton
+            round={state.round}
+            withWaitingTimeBar
+          />
         </StepRankingWrapper>
       </StepSwitcher>
     </PhaseContainer>

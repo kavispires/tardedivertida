@@ -254,7 +254,14 @@ export function StepAnnounceDream({
         />
       )}
 
-      {latest.isPhaseOver && <HostNextPhaseButton autoTriggerTime={15}>Ranking</HostNextPhaseButton>}
+      {latest.isPhaseOver && (
+        <HostNextPhaseButton
+          autoTriggerTime={15}
+          withWaitingTimeBar
+        >
+          Ranking
+        </HostNextPhaseButton>
+      )}
     </Step>
   );
 }

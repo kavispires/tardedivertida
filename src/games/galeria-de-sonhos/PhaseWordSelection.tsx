@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -17,10 +18,11 @@ import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitWordAPIRequest } from './utils/api-requests';
 import { GALERIA_DE_SONHOS_PHASES } from './utils/constants';
+import type { PhaseWordSelectionState } from './utils/types';
 import { GeneralRules, WordSelectionRules } from './components/RulesBlobs';
 import { StepWordSelection } from './StepWordSelection';
 
-export function PhaseWordSelection({ state, players }: PhaseProps) {
+export function PhaseWordSelection({ state, players }: PhaseProps<PhaseWordSelectionState>) {
   const { step, goToNextStep, setStep } = useStep();
 
   const [scout, isUserTheScout] = useWhichPlayerIsThe('scoutId', state, players);
@@ -69,39 +71,41 @@ export function PhaseWordSelection({ state, players }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 2 */}
-        <ViewIf condition={isUserTheScout}>
-          <StepWordSelection
-            onSubmitWord={onSubmitWord}
-            words={state.words}
-          />
-        </ViewIf>
-        <ViewIf condition={!isUserTheScout}>
-          <WaitingRoom
-            players={players}
-            title={
-              <Translate
-                pt="Aguarde..."
-                en="Please wait..."
-              />
-            }
-            instruction={
-              <Translate
-                pt={
-                  <>
-                    <PlayerAvatarName player={scout} /> está escolhendo o tema.
-                  </>
-                }
-                en={
-                  <>
-                    <PlayerAvatarName player={scout} /> is choosing the theme.
-                  </>
-                }
-              />
-            }
-          >
-            <GeneralRules />
-          </WaitingRoom>
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isUserTheScout}>
+            <StepWordSelection
+              onSubmitWord={onSubmitWord}
+              words={state.words}
+            />
+          </ViewIf>
+          <ViewIf condition={!isUserTheScout}>
+            <WaitingRoom
+              players={players}
+              title={
+                <Translate
+                  pt="Aguarde..."
+                  en="Please wait..."
+                />
+              }
+              instruction={
+                <Translate
+                  pt={
+                    <>
+                      <PlayerAvatarName player={scout} /> está escolhendo o tema.
+                    </>
+                  }
+                  en={
+                    <>
+                      <PlayerAvatarName player={scout} /> is choosing the theme.
+                    </>
+                  }
+                />
+              }
+            >
+              <GeneralRules />
+            </WaitingRoom>
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

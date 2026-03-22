@@ -8,7 +8,7 @@ import { useMock } from 'hooks/useMock';
 // Components
 import { FixedMenuButton, SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { TextHighlight, Title } from 'components/text';
@@ -82,7 +82,16 @@ export function StepDreamsSelection({
         />
       )}
 
-      <SpaceContainer>
+      <SelectTable
+        table={table}
+        onSelectCard={onSelectCard}
+        selectedCards={selectedCards}
+      />
+
+      <SpaceFloat
+        className="mt-4 container--center"
+        enabled={selectedCount >= minimumSelection}
+      >
         <SendButton
           size="large"
           disabled={selectedCount < minimumSelection || selectedCount > 10}
@@ -93,12 +102,7 @@ export function StepDreamsSelection({
             en={`Visit ${selectedCount} dreams`}
           />
         </SendButton>
-      </SpaceContainer>
-      <SelectTable
-        table={table}
-        onSelectCard={onSelectCard}
-        selectedCards={selectedCards}
-      />
+      </SpaceFloat>
     </Step>
   );
 }

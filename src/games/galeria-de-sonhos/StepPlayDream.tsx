@@ -65,6 +65,7 @@ export function StepPlayDream({
     setLastTurnCount(activePlayer.id);
   });
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: to avoid unnecessary renders
   useEffect(() => {
     if (isActivePlayer && !isLoading && !showedMessage) {
       message.info(
@@ -80,7 +81,7 @@ export function StepPlayDream({
       );
       setShowedMessage(true);
     }
-  }, [isActivePlayer, activePlayer.id, translate, isLoading, showedMessage, message]);
+  }, [isLoading, showedMessage, message]);
 
   return (
     <Step fullWidth>

@@ -10,14 +10,14 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
-import type { ImageCardObj } from './utils/types';
+import type { ImageCardObj, PhaseDreamsSelectionState } from './utils/types';
 import { useOnSubmitCardsAPIRequest } from './utils/api-requests';
 import { GALERIA_DE_SONHOS_PHASES } from './utils/constants';
 import { DreamSelectionRules } from './components/RulesBlobs';
 import { SelectedDreams } from './components/SelectedDreams';
 import { StepDreamsSelection } from './StepDreamsSelection';
 
-export function PhaseDreamsSelections({ state, players, meta, user }: PhaseProps) {
+export function PhaseDreamsSelection({ state, players, meta, user }: PhaseProps<PhaseDreamsSelectionState>) {
   const { step, setStep } = useStep();
 
   const onSubmitCards = useOnSubmitCardsAPIRequest(setStep);

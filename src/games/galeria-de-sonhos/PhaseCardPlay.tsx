@@ -24,11 +24,12 @@ import {
   GO_TO_PLAYER_WITH_NIGHTMARE_STEP,
   GO_TO_SEE_CARD_STEP,
 } from './utils/constants';
+import type { PhaseCardPlayState } from './utils/types';
 import { CardPlayRules } from './components/RulesBlobs';
 import { StepPlayDream } from './StepPlayDream';
 import { StepAnnounceDream } from './StepAnnounceDream';
 
-export function PhaseCardPlay({ state, players, meta, user }: PhaseProps) {
+export function PhaseCardPlay({ state, players, meta, user }: PhaseProps<PhaseCardPlayState>) {
   const { isLoading } = useLoading();
   const { step, goToNextStep, setStep } = useStep();
 
@@ -44,9 +45,9 @@ export function PhaseCardPlay({ state, players, meta, user }: PhaseProps) {
 
   const onPlayCard = useOnPlayCardAPIRequest(setStep);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: we only want to trigger this when the turn count changes, not on every state change
   useEffect(() => {
-    if (lastTurnCount && state.turnCount !== lastTurnCount) {
+    if (lastTurnCount && String(state.turnCount) !== lastTurnCount) {
       setStep(GO_TO_SEE_CARD_STEP);
     }
   }, [state.turnCount]);
@@ -164,7 +165,15 @@ export function PhaseCardPlay({ state, players, meta, user }: PhaseProps) {
 
         {/* Step 4 */}
         <StepAnnounceDream
-          latest={state.latest}
+          latest={
+            state.latest ?? {
+              cardId: '',
+              completedPlayers: [],
+              matchCount: 0,
+              matchedPlayers: [],
+              cardsLeft: 0,
+            }
+          }
           lastActivePlayer={lastActivePlayer}
           setStep={setStep}
           players={players}
