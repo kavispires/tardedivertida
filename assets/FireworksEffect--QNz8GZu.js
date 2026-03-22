@@ -1,1 +1,0 @@
-import{j as r}from"./index-hnCgXqnc.js";const s="_fireworks_ak80l_168",o="_fireworksBefore_ak80l_168",f="_fireworksAfter_ak80l_169",e={fireworks:s,fireworksBefore:o,fireworksAfter:f};function k(){return r.jsxs("div",{className:e.fireworks,children:[r.jsx("div",{className:e.fireworksBefore}),r.jsx("div",{className:e.fireworksAfter})]})}export{k as FireworksEffect};
