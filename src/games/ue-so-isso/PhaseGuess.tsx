@@ -14,10 +14,11 @@ import { ViewIf } from 'components/views';
 // Internal
 import { useOnSendGuessAPIRequest, useOnSubmitOutcomeAPIRequest } from './utils/api-requests';
 import { UE_SO_ISSO_PHASES } from './utils/constants';
+import type { PhaseGuessState } from './utils/types';
 import { StepGuessing } from './StepGuessing';
 import { StepWaitingForGuess } from './StepWaitingForGuess';
 
-export function PhaseGuess({ state, players, meta }: PhaseProps) {
+export function PhaseGuess({ state, players, meta }: PhaseProps<PhaseGuessState>) {
   const { step, setStep } = useStep(0);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
 

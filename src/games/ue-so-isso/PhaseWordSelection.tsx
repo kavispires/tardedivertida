@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps, GamePlayer } from 'types/game';
 // Hooks
@@ -16,6 +17,7 @@ import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
 import { UE_SO_ISSO_PHASES } from './utils/constants';
+import type { PhaseWordSelectionState } from './utils/types';
 import { GroupProgress } from './components/GroupProgress';
 import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
 import { StepWordSelection } from './StepWordSelection';
@@ -56,7 +58,7 @@ function RoundAnnouncementText({ guesser, group }: RoundAnnouncementTextProps) {
   );
 }
 
-export function PhaseWordSelection({ state, players }: PhaseProps) {
+export function PhaseWordSelection({ state, players }: PhaseProps<PhaseWordSelectionState>) {
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const { step, setStep, goToNextStep } = useStep(0);
 
@@ -141,29 +143,31 @@ export function PhaseWordSelection({ state, players }: PhaseProps) {
         </RoundAnnouncement>
 
         {/* Step 1 */}
-        <ViewIf condition={isUserTheGuesser}>
-          <GuesserWaitingRoom
-            players={players}
-            instructionSuffix={{
-              pt: 'decidem a palavra secreta',
-              en: 'choose a secret word',
-            }}
-            announcement={announcement}
-            phase={state.phase}
-            guesser={guesser}
-            turnOrder={state.gameOrder}
-          />
-        </ViewIf>
-        <ViewIf condition={!isUserTheGuesser}>
-          <StepWordSelection
-            words={state?.words}
-            onSendSelectedWords={onSendSelectedWords}
-            guesser={guesser}
-            announcement={announcement}
-            turnOrder={state.gameOrder}
-            players={players}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isUserTheGuesser}>
+            <GuesserWaitingRoom
+              players={players}
+              instructionSuffix={{
+                pt: 'decidem a palavra secreta',
+                en: 'choose a secret word',
+              }}
+              announcement={announcement}
+              phase={state.phase}
+              guesser={guesser}
+              turnOrder={state.gameOrder}
+            />
+          </ViewIf>
+          <ViewIf condition={!isUserTheGuesser}>
+            <StepWordSelection
+              words={state?.words}
+              onSendSelectedWords={onSendSelectedWords}
+              guesser={guesser}
+              announcement={announcement}
+              turnOrder={state.gameOrder}
+              players={players}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

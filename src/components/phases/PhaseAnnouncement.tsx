@@ -62,6 +62,10 @@ type PhaseAnnouncementBasicProps = {
    * If component should be an overlay or a block
    */
   type?: 'block' | 'overlay';
+  /**
+   * Whether to hide the continue button in overlay mode, which is useful when the announcement is just meant to show some information without prompting any action from the user
+   */
+  hideContinueButton?: boolean;
 };
 
 type PhaseAnnouncementBlock = {
@@ -84,6 +88,10 @@ type PhaseAnnouncementOverlay = {
    * The function called when the close button is clicked
    */
   onClose?: () => void;
+  /**
+   * Whether to hide the continue button in overlay mode, which is useful when the announcement is just meant to show some information without prompting any action from the user
+   */
+  hideContinueButton?: boolean;
 } & PhaseAnnouncementBasicProps;
 
 type PhaseAnnouncementProps = PhaseAnnouncementBlock | PhaseAnnouncementOverlay;
@@ -104,6 +112,7 @@ export function PhaseAnnouncement({
   unskippable,
   animationType = 'backInDown',
   type = 'block',
+  hideContinueButton = false,
 }: PhaseAnnouncementProps) {
   useTemporarilyHidePlayersBar(type === 'overlay');
   const durationPerRound = [7, 15, 7, 5]?.[currentRound] ?? 4;
@@ -185,6 +194,7 @@ export function PhaseAnnouncement({
               disabled={unskippable}
               autoFocus
               className="mt-2"
+              style={{ display: hideContinueButton ? 'none' : 'block' }}
             >
               <Translate
                 pt="Prosseguir"

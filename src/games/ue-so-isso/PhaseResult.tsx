@@ -13,9 +13,10 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction, TextHighlight } from 'components/text';
 // Internal
 import { UE_SO_ISSO_PHASES } from './utils/constants';
+import type { PhaseResultState } from './utils/types';
 import { StepResult } from './StepResult';
 
-export function PhaseResult({ state, players }: PhaseProps) {
+export function PhaseResult({ state, players }: PhaseProps<PhaseResultState>) {
   const { step } = useStep(0);
   const [guesser] = useWhichPlayerIsThe('guesserId', state, players);
 

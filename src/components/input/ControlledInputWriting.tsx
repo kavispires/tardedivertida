@@ -5,6 +5,15 @@ import { Button, type ButtonProps, Space } from 'antd';
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { SEPARATOR } from 'utils/constants';
+// Components
+import { SpaceFloat } from 'components/layout/SpaceFloat';
+
+type InputComponentBaseProps = {
+  id: string;
+  onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onPressEnter: () => void;
+  disabled: boolean;
+};
 
 type ControlledInputWritingProps = {
   /**
@@ -51,21 +60,22 @@ export function ControlledInputWriting({
   submitButtonProps = {},
   submitButtonLabel,
 }: ControlledInputWritingProps) {
-  const [values, setValues] = useState([]);
+  const [values, setValues] = useState<Record<number, string>>({});
   const { isLoading } = useLoading();
 
-  const onChangeInput = (e: any) => {
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value = '' } = e.target;
     if (id) {
       const indexStr = id.split(SEPARATOR)[1];
       const index = Number(indexStr);
       if (typeof index === 'number') {
-        setValues((s: any) => {
+        setValues((s) => {
           const newState = { ...s };
           newState[index] = value.toUpperCase().trim();
           return newState;
         });
       } else {
+        // biome-ignore lint/suspicious/noConsole: on purpose
         console.error(`Index ${indexStr} for ${id} is not a number`);
       }
     }
@@ -84,7 +94,7 @@ export function ControlledInputWriting({
     }
   };
 
-  const InputComponent: any = inputComponent;
+  const InputComponent = inputComponent as React.ComponentType<InputComponentBaseProps & PlainObject>;
 
   return (
     <div className="full-width">
@@ -111,7 +121,7 @@ export function ControlledInputWriting({
           })}
       </Space>
 
-      <Space
+      <SpaceFloat
         align="center"
         className="full-width padding div-container"
       >
@@ -124,7 +134,7 @@ export function ControlledInputWriting({
         >
           {submitButtonLabel}
         </Button>
-      </Space>
+      </SpaceFloat>
     </div>
   );
 }

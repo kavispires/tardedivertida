@@ -16,11 +16,12 @@ import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitValidationsAPIRequest, useOnValidateSuggestionAPIRequest } from './utils/api-requests';
 import { UE_SO_ISSO_PHASES } from './utils/constants';
+import type { PhaseCompareState } from './utils/types';
 import { ComparisonRules } from './components/RulesBlobs';
 import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
 import { StepCompareSuggestions } from './StepCompareSuggestions';
 
-export function PhaseCompare({ state, players }: PhaseProps) {
+export function PhaseCompare({ state, players }: PhaseProps<PhaseCompareState>) {
   const { step, setStep } = useStep(0);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const [controller, isUserTheController] = useWhichPlayerIsThe('controllerId', state, players);

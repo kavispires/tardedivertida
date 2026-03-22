@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -5,6 +6,8 @@ import { useHost } from 'hooks/useHost';
 import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+// Utils
+import { isDevEnv } from 'utils/helpers';
 // Icons
 import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
 // Components
@@ -16,9 +19,10 @@ import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitOutcomeAPIRequest } from './utils/api-requests';
 import { UE_SO_ISSO_PHASES } from './utils/constants';
+import type { PhaseVerifyGuessState } from './utils/types';
 import { StepGuessVerification } from './StepGuessVerification';
 
-export function PhaseVerifyGuess({ state, players }: PhaseProps) {
+export function PhaseVerifyGuess({ state, players }: PhaseProps<PhaseVerifyGuessState>) {
   const { isLoading } = useLoading();
   const { step, setStep } = useStep(0);
   const isHost = useHost();
@@ -41,8 +45,9 @@ export function PhaseVerifyGuess({ state, players }: PhaseProps) {
       currentRound={state?.round?.current}
       type="overlay"
       unskippable={!isActionable}
-      duration={isActionable ? 3 : 300}
-    ></PhaseAnnouncement>
+      duration={isActionable ? 3 : isDevEnv && isHost ? 3 : 300}
+      hideContinueButton={!isActionable}
+    />
   );
 
   return (
@@ -55,31 +60,33 @@ export function PhaseVerifyGuess({ state, players }: PhaseProps) {
         players={players}
       >
         {/* Step 0 */}
-        <ViewIf condition={['CONTINUE', 'WIN'].includes(state.group.outcome)}>
-          <Step announcement={announcement}>
-            <HostNextPhaseButton autoTriggerTime={2} />
-          </Step>
-        </ViewIf>
-        <ViewIf condition={!['CONTINUE', 'WIN'].includes(state.group.outcome)}>
-          <ViewIf condition={isActionable}>
-            <StepGuessVerification
-              guesser={guesser}
-              guess={state.guess || '?'}
-              onSubmitOutcome={onSubmitOutcome}
-              validSuggestions={state.validSuggestions}
-              secretWord={state.secretWord}
-              controller={controller}
-              isUserTheController={isUserTheController}
-              isLoading={isLoading}
-              announcement={announcement}
-            />
-          </ViewIf>
-          <ViewIf condition={!isActionable}>
+        <Fragment>
+          <ViewIf condition={['CONTINUE', 'WIN'].includes(state.group.outcome)}>
             <Step announcement={announcement}>
-              <div>{/* Users will just see the announcement */}</div>
+              <HostNextPhaseButton autoTriggerTime={2} />
             </Step>
           </ViewIf>
-        </ViewIf>
+          <ViewIf condition={!['CONTINUE', 'WIN'].includes(state.group.outcome)}>
+            <ViewIf condition={isActionable}>
+              <StepGuessVerification
+                guesser={guesser}
+                guess={state.guess || '?'}
+                onSubmitOutcome={onSubmitOutcome}
+                validSuggestions={state.validSuggestions}
+                secretWord={state.secretWord}
+                controller={controller}
+                isUserTheController={isUserTheController}
+                isLoading={isLoading}
+                announcement={announcement}
+              />
+            </ViewIf>
+            <ViewIf condition={!isActionable}>
+              <Step announcement={announcement}>
+                <div>{/* Users will just see the announcement */}</div>
+              </Step>
+            </ViewIf>
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

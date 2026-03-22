@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -14,11 +15,12 @@ import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitSuggestionsAPIRequest } from './utils/api-requests';
 import { UE_SO_ISSO_PHASES } from './utils/constants';
+import type { PhaseSuggestState } from './utils/types';
 import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
 import { WaitingRoomSuggestions } from './components/WaitingRoomSuggestions';
 import { StepSuggestion } from './StepSuggestion';
 
-export function PhaseSuggest({ state, players, user }: PhaseProps) {
+export function PhaseSuggest({ state, players, user }: PhaseProps<PhaseSuggestState>) {
   const { step, setStep } = useStep(0);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
 
@@ -66,28 +68,30 @@ export function PhaseSuggest({ state, players, user }: PhaseProps) {
         waitingRoom={{ content: <WaitingRoomSuggestions user={user} /> }}
       >
         {/* Step 0 */}
-        <ViewIf condition={isUserTheGuesser}>
-          <GuesserWaitingRoom
-            players={players}
-            instructionSuffix={{
-              pt: 'escrevem dicas',
-              en: 'write clues',
-            }}
-            phase={state.phase}
-            guesser={guesser}
-            turnOrder={state.gameOrder}
-          />
-        </ViewIf>
-        <ViewIf condition={!isUserTheGuesser}>
-          <StepSuggestion
-            guesser={guesser}
-            isUserTheGuesser={isUserTheGuesser}
-            onSendSuggestions={onSendSuggestions}
-            secretWord={state.secretWord}
-            suggestionsNumber={state.suggestionsNumber}
-            announcement={announcement}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isUserTheGuesser}>
+            <GuesserWaitingRoom
+              players={players}
+              instructionSuffix={{
+                pt: 'escrevem dicas',
+                en: 'write clues',
+              }}
+              phase={state.phase}
+              guesser={guesser}
+              turnOrder={state.gameOrder}
+            />
+          </ViewIf>
+          <ViewIf condition={!isUserTheGuesser}>
+            <StepSuggestion
+              guesser={guesser}
+              isUserTheGuesser={isUserTheGuesser}
+              onSendSuggestions={onSendSuggestions}
+              secretWord={state.secretWord}
+              suggestionsNumber={state.suggestionsNumber}
+              announcement={announcement}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );
