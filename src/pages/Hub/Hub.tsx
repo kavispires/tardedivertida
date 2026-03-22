@@ -46,6 +46,7 @@ function Hub() {
     bestWith: false,
     duration: 0,
     releaseStatus: [],
+    available: '',
     sortBy: 'title',
   });
 
@@ -138,6 +139,16 @@ function Hub() {
           });
 
           if (!matchesStatus) {
+            return false;
+          }
+        }
+
+        // Check availability
+        if (filters.available) {
+          if (filters.available === 'available' && game.available !== true) {
+            return false;
+          }
+          if (filters.available === 'unavailable' && game.available === true) {
             return false;
           }
         }

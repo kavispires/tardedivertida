@@ -41,6 +41,10 @@ export type FilterState = {
    */
   releaseStatus: string[];
   /**
+   * Availability filter (any, available, unavailable)
+   */
+  available: string;
+  /**
    * Sort by (title or release date)
    */
   sortBy: 'title' | 'release-date';
@@ -90,6 +94,7 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
       bestWith: false,
       duration: 0,
       releaseStatus: [],
+      available: '',
       sortBy: 'title',
     });
   };
@@ -99,7 +104,8 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
     filters.tags.length > 0 ||
     filters.players > 0 ||
     filters.duration > 0 ||
-    filters.releaseStatus.length > 0;
+    filters.releaseStatus.length > 0 ||
+    filters.available !== '';
 
   const playingOptions = [
     {
@@ -128,6 +134,21 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
     {
       label: translate('Em Breve', 'Coming Soon'),
       value: 'soon',
+    },
+  ];
+
+  const availableOptions = [
+    {
+      label: translate('Todos', 'All'),
+      value: '',
+    },
+    {
+      label: translate('Disponível', 'Available'),
+      value: 'available',
+    },
+    {
+      label: translate('Indisponível', 'Unavailable'),
+      value: 'unavailable',
     },
   ];
 
@@ -182,7 +203,6 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
             id="sort-by"
             value={filters.sortBy}
             style={{ minWidth: 180 }}
-            size="small"
             onChange={(value) => updateFilter('sortBy', value as 'title' | 'release-date')}
             options={sortOptions}
           />
@@ -213,7 +233,6 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
 
         <Button
           onClick={() => queryClient.refetchQueries({ queryKey: ['gameList'] })}
-          size="small"
           icon={<ReloadOutlined />}
         >
           Refresh List
@@ -309,6 +328,19 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
                   options={releaseStatusOptions}
                   placeholder={translate('Todos os status', 'All statuses')}
                   allowClear
+                />
+              </div>
+
+              <div className="hub-filters__entry">
+                <label htmlFor="available">{translate('Disponibilidade', 'Availability')}</label>
+                <Select
+                  id="available"
+                  style={{ minWidth: 200 }}
+                  size="small"
+                  value={filters.available}
+                  onChange={(value) => updateFilter('available', value)}
+                  options={availableOptions}
+                  placeholder={translate('Todos', 'All')}
                 />
               </div>
             </Space>
