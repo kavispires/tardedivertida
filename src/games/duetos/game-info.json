@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "duetos",
-  "version": "1.1.95",
+  "version": "1.1.97",
   "release": "stable",
   "releaseDate": "2023-11-05",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Duetos",
     "en": "Duets"
@@ -24,20 +24,21 @@
     "cloudsAnimationType": "falling",
     "primaryColor": "#5891e0",
     "colorScheme": "light",
-    "videoBackground": true
+    "videoBackground": true,
+    "imageBackground": true
   },
   "rules": {
     "en": [
-      "Let's pair stuff?",
-      "Each round a collection of things will be shown to you and you have to make pairs!",
-      "You get points equal to how many players made the same pair as you",
-      "After 5 rounds, the player with the most points wins"
+      "Let’s make pairs!",
+      "Each round, you are given a set of items and must group them into pairs.",
+      "You score points for each pair that other players created exactly the same way.",
+      "After 5 rounds, the player with the most points wins."
     ],
     "pt": [
-      "Vamos parear as coisas?",
-      "A cada rodada uma coleção de coisas será mostrada e você tem que fazer pares!",
-      "Você ganha pontos iguais a quantos jogadores fizeram o mesmo par que você",
-      "Depois de 5 rodadas, o jogador com mais pontos vence"
+      "Vamos formar pares!",
+      "A cada rodada, você recebe um conjunto de itens e deve organizá-los em pares.",
+      "Você ganha pontos para cada par que outros jogadores também formaram exatamente igual ao seu.",
+      "Após 5 rodadas, vence quem tiver mais pontos."
     ]
   },
   "duration": {
@@ -46,22 +47,12 @@
   },
   "playerCount": {
     "best": 4,
-    "recommended": [
-      4,
-      5,
-      6
-    ],
+    "recommended": [4, 5, 6],
     "min": 2,
     "max": 10
   },
-  "mechanics": [
-    "competitive",
-    "pairing",
-    "same-time"
-  ],
-  "features": [
-    "achievements"
-  ],
+  "mechanics": ["competitive", "pairing", "same-time"],
+  "features": ["achievements"],
   "options": [
     {
       "key": "nsfw",

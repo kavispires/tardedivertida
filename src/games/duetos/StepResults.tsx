@@ -15,13 +15,13 @@ import { PlayerAvatar } from 'components/player';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle, Title } from 'components/text';
 // Internal
-import type { DuetosGalleryEntry, Item, LefOutEntry } from './utils/types';
+import type { DuetosGalleryEntry, Item, LeftOutEntry } from './utils/types';
 import { Pair } from './components/Pair';
 
 type StepResultProps = {
   players: GamePlayers;
   gallery: DuetosGalleryEntry[];
-  leftOut: LefOutEntry[];
+  leftOut: LeftOutEntry[];
   pool: Item[];
   goToNextStep: UseStep['goToNextStep'];
 } & Pick<StepProps, 'announcement'>;

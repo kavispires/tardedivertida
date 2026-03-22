@@ -13,10 +13,11 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitPairsAPIRequest } from './utils/api-requests';
 import { DUETOS_PHASES } from './utils/constants';
+import type { PhasePairingState } from './utils/types';
 import { MadePairs } from './components/MadePairs';
 import { StepMakePairs } from './StepMakePairs';
 
-export function PhasePairing({ players, state, user }: PhaseProps) {
+export function PhasePairing({ players, state, user }: PhaseProps<PhasePairingState>) {
   const { step, setStep, goToNextStep } = useStep();
 
   const onSubmitPairs = useOnSubmitPairsAPIRequest(setStep);

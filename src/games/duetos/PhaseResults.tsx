@@ -11,10 +11,11 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { DUETOS_PHASES } from './utils/constants';
+import type { PhaseResultsState } from './utils/types';
 import { StepResult } from './StepResults';
 import { StepRanking } from './StepRanking';
 
-export function PhaseResults({ state, players }: PhaseProps) {
+export function PhaseResults({ state, players }: PhaseProps<PhaseResultsState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep();
 
   const announcement = (

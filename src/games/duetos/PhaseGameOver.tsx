@@ -9,10 +9,10 @@ import { Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
 import achievementsReference from './utils/achievements';
-import type { DuetosGalleryEntry } from './utils/types';
+import type { DuetosGalleryEntry, PhaseGameOverState } from './utils/types';
 import { Pair } from './components/Pair';
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   const gallery: DuetosGalleryEntry[] = state.gallery ?? [];
 
   return (

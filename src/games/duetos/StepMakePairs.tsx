@@ -13,7 +13,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { SendButton, TransparentButton } from 'components/buttons';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
@@ -63,7 +63,7 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
   const removeItem = (key: string) => {
     setPairs((prev) => {
       const copy = [...prev];
-      const index = copy.findIndex((element) => element === key);
+      const index = copy.indexOf(key);
       if (index !== -1) {
         // If a non-string element is found, add the key at that index
         copy[index] = null;
@@ -183,20 +183,6 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
         })}
       </Space>
 
-      <SpaceContainer>
-        <DevButton onClick={() => setPairs(mockPairs(pool))}>Mock Pairs</DevButton>
-        <SendButton
-          size="large"
-          disabled={user.ready || !isComplete}
-          onClick={() => onSubmitPairs({ pairs: pairs.map((v) => String(v)) })}
-        >
-          <Translate
-            pt="Enviar Pares"
-            en="Submit Pairs"
-          />
-        </SendButton>
-      </SpaceContainer>
-
       <Space
         wrap
         className={clsx('options-grid', `options-grid--${pool.length}`)}
@@ -225,6 +211,20 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
           );
         })}
       </Space>
+
+      <SpaceFloat enabled={isComplete}>
+        <DevButton onClick={() => setPairs(mockPairs(pool))}>Mock Pairs</DevButton>
+        <SendButton
+          size="large"
+          disabled={user.ready || !isComplete}
+          onClick={() => onSubmitPairs({ pairs: pairs.map((v) => String(v)) })}
+        >
+          <Translate
+            pt="Enviar Pares"
+            en="Submit Pairs"
+          />
+        </SendButton>
+      </SpaceFloat>
     </Step>
   );
 }
