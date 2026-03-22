@@ -14,10 +14,11 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitDecisionAPIRequest } from './utils/api-requests';
 import { NA_RUA_DO_MEDO_PHASES } from './utils/constants';
+import type { PhaseTrickOrTreatState } from './utils/types';
 import { PlayerStats } from './components/PlayerStats';
 import { StepMakeDecision } from './StepMakeDecision';
 
-export function PhaseTrickOrTreat({ state, players, user }: PhaseProps) {
+export function PhaseTrickOrTreat({ state, players, user }: PhaseProps<PhaseTrickOrTreatState>) {
   const isNewStreet = state.street.length === 0;
   const { step, goToNextStep } = useStep(isNewStreet ? 0 : 2);
 

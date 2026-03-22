@@ -21,7 +21,7 @@ import { PlayersDecisionState } from './components/PlayersDecisionState';
 type StepResultProps = {
   players: GamePlayers;
   street: StreetCard[];
-  currentCard: StreetCard;
+  currentCard?: StreetCard;
   candySidewalk: CandySidewalk;
   cashedInCandy: number;
   user: GamePlayer;
@@ -84,6 +84,16 @@ export function StepResult({
         )}
       </Title>
 
+      <HostNextPhaseButton
+        autoTriggerTime={7}
+        withWaitingTimeBar
+      >
+        <Translate
+          pt="Próxima Casa"
+          en="Next House"
+        />
+      </HostNextPhaseButton>
+
       <PopoverRule content={<CardCountExplanation />} />
 
       <PlayersDecisionState
@@ -101,13 +111,6 @@ export function StepResult({
         currentCard={currentCard}
         candySidewalk={candySidewalk}
       />
-
-      <HostNextPhaseButton autoTriggerTime={7}>
-        <Translate
-          pt="Próxima Casa"
-          en="Next House"
-        />
-      </HostNextPhaseButton>
 
       <PlayerStats user={user} />
     </Step>

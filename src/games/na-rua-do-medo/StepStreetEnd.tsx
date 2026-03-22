@@ -17,7 +17,7 @@ import { PlayersDecisionState } from './components/PlayersDecisionState';
 
 type StepStreetEndProps = {
   street: StreetCard[];
-  currentCard: StreetCard;
+  currentCard?: StreetCard;
   candySidewalk: CandySidewalk;
   user: GamePlayer;
   isDoubleHorror: boolean;

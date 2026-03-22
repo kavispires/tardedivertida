@@ -12,9 +12,10 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { NA_RUA_DO_MEDO_PHASES } from './utils/constants';
+import type { PhaseStreetEndState } from './utils/types';
 import { StepStreetEnd } from './StepStreetEnd';
 
-export function PhaseStreetEnd({ state, players, user }: PhaseProps) {
+export function PhaseStreetEnd({ state, players, user }: PhaseProps<PhaseStreetEndState>) {
   const { step } = useStep(0);
 
   const announcement = (

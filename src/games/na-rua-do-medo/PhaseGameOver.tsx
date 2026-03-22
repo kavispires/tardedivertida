@@ -16,10 +16,11 @@ import { Instruction } from 'components/text';
 // Internal
 import { achievementsReference } from './utils/achievements';
 import { GRID_REPEAT } from './utils/constants';
+import type { PhaseGameOverState } from './utils/types';
 import { CandyCount } from './components/CandyCount';
 import { PlayerStats } from './components/PlayerStats';
 
-export function PhaseGameOver({ state, players, user }: PhaseProps) {
+export function PhaseGameOver({ state, players, user }: PhaseProps<PhaseGameOverState>) {
   const { language } = useLanguage();
 
   const winningPlayersIds = state.winners.map((player: GamePlayer) => player.id);
