@@ -80,7 +80,6 @@ export function PhaseWitnessSelection({ state, players }: PhaseProps<PhaseWitnes
     <PhaseContainer
       phase={state?.phase}
       allowedPhase={TESTEMUNHA_OCULAR_PHASES.WITNESS_SELECTION}
-      className="t-phase"
     >
       <StepSwitcher
         step={step}

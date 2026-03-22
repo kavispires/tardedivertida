@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "testemunha-ocular",
-  "version": "6.1.10",
+  "version": "6.1.11",
   "release": "stable",
   "releaseDate": "2021-08-01",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Testemunha Ocular",
     "en": "Eye Witness"
@@ -24,49 +24,41 @@
     "cloudsAnimationType": "flow",
     "primaryColor": "#7d8388",
     "colorScheme": "dark",
-    "videoBackground": true
+    "videoBackground": true,
+    "imageBackground": true
   },
   "rules": {
     "pt": [
-      "Um crime. Uma testemunha. Desde quando julgando por aparência não se desvenda um crime?",
-      "Um jogador será a testemunha de um crime horrível, os outros, detetive.",
-      "Em cada rodada pergunta-se uma pergunta à testemunha que deve responder sim ou não",
-      "Então, os detetive devem libertar pelo menos um dos suspeitos, de um a um.",
-      "Se os detetives liberarem o criminoso, todos perdem. Quando dois suspeitos restarem, o grupo tenta adivinhar quem é o criminoso. Se acertarem, todos ganham",
-      "Mas há um porém! A testemunha não fala nada sobre a aparência, simplesmente julga o criminoso"
+      "One crime. One witness. But judging by appearances is never that simple...",
+      "One player is the witness to a terrible crime. All other players are detectives.",
+      "Each round, the detectives ask the witness a yes-or-no question.",
+      "Then, the detectives must eliminate at least one suspect.",
+      "If the detectives eliminate the criminal, everyone loses.",
+      "When only two suspects remain, the group must decide who the criminal is. If they guess correctly, everyone wins.",
+      "There’s a catch: the witness cannot describe physical appearance. Their answers are based on appearance, but they can’t say how."
     ],
     "en": [
-      "One crime. One witness... that judge people by their appearances. What could go wrong?",
-      "One player will be the witness of a horrible crime, the others, detectives.",
-      "In each round, a question is asked to the witness, who must answer yes or no",
-      "Then, the detectives must release at least one of the suspects, one by one.",
-      "If the detectives release the criminal, everyone loses. When two suspects remain, the group tries to guess who the criminal is. If they get it right, everyone wins",
-      "But there is a catch! The witness says nothing about the appearance, simply judges the criminal"
+      "One crime. One witness. But judging by appearances is never that simple...",
+      "One player is the witness to a terrible crime. All other players are detectives.",
+      "Each round, the detectives ask the witness a yes-or-no question.",
+      "Then, the detectives must eliminate at least one suspect.",
+      "If the detectives eliminate the criminal, everyone loses.",
+      "When only two suspects remain, the group must decide who the criminal is. If they guess correctly, everyone wins.",
+      "There’s a catch: the witness cannot describe physical appearance. Their answers are based on appearance, but they can’t say how."
     ]
   },
   "playerCount": {
     "best": 3,
-    "recommended": [
-      2,
-      3,
-      4
-    ],
+    "recommended": [2, 3, 4],
     "min": 2,
     "max": 10
   },
   "duration": {
-    "base": 0,
-    "perPlayer": 0
+    "base": 20,
+    "perPlayer": 1
   },
-  "mechanics": [
-    "cooperative",
-    "turn-based",
-    "guessing",
-    "discussion"
-  ],
-  "features": [
-    "achievements"
-  ],
+  "mechanics": ["cooperative", "turn-based", "guessing", "discussion"],
+  "features": ["achievements"],
   "options": [
     {
       "key": "largePool",

@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -97,41 +98,42 @@ export function PhaseQuestionSelection({ state, players }: PhaseProps<PhaseQuest
     <PhaseContainer
       phase={state?.phase}
       allowedPhase={TESTEMUNHA_OCULAR_PHASES.QUESTION_SELECTION}
-      className="t-phase"
     >
       <StepSwitcher
         step={step}
         players={players}
       >
         {/* Step 0 */}
-        <ViewIf condition={isUserTheQuestioner}>
-          <StepSelectQuestion
-            isLoading={isLoading}
-            onSelectQuestion={onSelectQuestion}
-            previouslyEliminatedSuspects={state.previouslyEliminatedSuspects}
-            questions={state.questions}
-            suspectsDict={state.suspectsDict}
-            suspectsIds={state.suspectsIds}
-            history={state.history}
-            announcement={announcement}
-            status={state.status}
-            outcome={state.outcome}
-          />
-        </ViewIf>
-        <ViewIf condition={!isUserTheQuestioner}>
-          <StepQuestionWaiting
-            isUserTheWitness={isUserTheWitness}
-            perpetratorId={state.perpetratorId}
-            previouslyEliminatedSuspects={state.previouslyEliminatedSuspects}
-            questioner={questioner}
-            suspectsDict={state.suspectsDict}
-            suspectsIds={state.suspectsIds}
-            history={state.history}
-            announcement={announcement}
-            status={state.status}
-            outcome={state.outcome}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isUserTheQuestioner}>
+            <StepSelectQuestion
+              isLoading={isLoading}
+              onSelectQuestion={onSelectQuestion}
+              previouslyEliminatedSuspects={state.previouslyEliminatedSuspects}
+              questions={state.questions}
+              suspectsDict={state.suspectsDict}
+              suspectsIds={state.suspectsIds}
+              history={state.history}
+              announcement={announcement}
+              status={state.status}
+              outcome={state.outcome}
+            />
+          </ViewIf>
+          <ViewIf condition={!isUserTheQuestioner}>
+            <StepQuestionWaiting
+              isUserTheWitness={isUserTheWitness}
+              perpetratorId={state.perpetratorId}
+              previouslyEliminatedSuspects={state.previouslyEliminatedSuspects}
+              questioner={questioner}
+              suspectsDict={state.suspectsDict}
+              suspectsIds={state.suspectsIds}
+              history={state.history}
+              announcement={announcement}
+              status={state.status}
+              outcome={state.outcome}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

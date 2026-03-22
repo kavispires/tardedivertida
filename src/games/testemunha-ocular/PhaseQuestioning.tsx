@@ -57,7 +57,6 @@ export function PhaseQuestioning({ state, players }: PhaseProps<PhaseQuestioning
     <PhaseContainer
       phase={state?.phase}
       allowedPhase={TESTEMUNHA_OCULAR_PHASES.QUESTIONING}
-      className="t-phase"
     >
       <StepSwitcher
         step={step}

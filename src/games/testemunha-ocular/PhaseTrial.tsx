@@ -71,7 +71,6 @@ export function PhaseTrial({ state, players }: PhaseProps<PhaseTrialState>) {
     <PhaseContainer
       phase={state?.phase}
       allowedPhase={TESTEMUNHA_OCULAR_PHASES.TRIAL}
-      className="t-phase"
     >
       <StepSwitcher
         step={step}
