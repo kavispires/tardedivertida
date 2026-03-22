@@ -1,3 +1,4 @@
+import { cloneDeep } from 'lodash';
 import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
@@ -7,13 +8,11 @@ import type { GamePlayers, GamePlayer } from 'types/game';
 import { useHost } from 'hooks/useHost';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
-// Utils
-import { deepCopy } from 'utils/helpers';
 // Components
 import { SendButton } from 'components/buttons';
 import { HostButton, HostOnlyContainer } from 'components/host';
 import { Translate } from 'components/language';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { messageContent } from 'components/pop-up';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
@@ -53,7 +52,7 @@ export function StepCompareSuggestions({
   const { message } = App.useApp();
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
-  const [myRecommendation, setMyRecommendation] = useState<Suggestion[]>(deepCopy(suggestions));
+  const [myRecommendation, setMyRecommendation] = useState<Suggestion[]>(cloneDeep(suggestions));
   const isHost = useHost();
   const [wasMessageShown, setWasMessageShown] = useState(false);
 
@@ -118,7 +117,7 @@ export function StepCompareSuggestions({
       />
 
       <ViewIf condition={isUserTheController}>
-        <SpaceContainer>
+        <SpaceFloat>
           <SendButton
             type="primary"
             onClick={() =>
@@ -132,7 +131,7 @@ export function StepCompareSuggestions({
               en="Confirm valid clues"
             />
           </SendButton>
-        </SpaceContainer>
+        </SpaceFloat>
       </ViewIf>
 
       <ViewIf condition={!isUserTheController}>

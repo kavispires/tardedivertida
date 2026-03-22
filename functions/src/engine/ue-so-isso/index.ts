@@ -47,6 +47,11 @@ export const getInitialState = (
   version: string,
   options: UeSoIssoGameOptions,
 ): UeSoIssoInitialState => {
+  // If the game has hints enabled, time is mandatory.
+  if (options.withHints) {
+    options.withTimer = true;
+  }
+
   return utils.helpers.getDefaultInitialState<UeSoIssoInitialState>({
     gameId,
     gameName: GAME_NAMES.UE_SO_ISSO,

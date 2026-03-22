@@ -6,11 +6,11 @@ import { getAnimationClass } from 'utils/helpers';
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { PlayerAvatarName } from 'components/player';
 import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle, TextHighlight, Title } from 'components/text';
+import { RuleInstruction, StepTitle, TextHighlight } from 'components/text';
 // Internal
 import type { SecretWord, Suggestion } from './utils/types';
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
@@ -122,17 +122,15 @@ export function StepResult({
         />
       </RuleInstruction>
 
-      <Title
-        size="xx-small"
-        className="margin"
+      <TitledContainer
+        wrap
+        title={
+          <Translate
+            pt="Dicas válidas"
+            en="Valid clues"
+          />
+        }
       >
-        <Translate
-          pt="Dicas válidas"
-          en="Valid clues"
-        />
-      </Title>
-
-      <SpaceContainer wrap>
         {validSuggestions.map((suggestionEntry, index) => {
           const id = `${suggestionEntry.suggestion}-${index}`;
           return (
@@ -143,39 +141,33 @@ export function StepResult({
             />
           );
         })}
-      </SpaceContainer>
+      </TitledContainer>
+
+      <HostNextPhaseButton withWaitingTimeBar />
 
       {validSuggestions.length !== suggestions.length && (
-        <div className="u-margin">
-          <Title
-            size="x-small"
-            className="margin"
-          >
+        <TitledContainer
+          className="u-all-suggestions"
+          wrap
+          title={
             <Translate
               pt="Todas as dicas"
               en="All clues"
             />
-          </Title>
-
-          <SpaceContainer
-            className="u-all-suggestions"
-            wrap
-          >
-            {suggestions.map((suggestionEntry, index) => {
-              const id = `all-${suggestionEntry.suggestion}-${index}`;
-              return (
-                <SuggestionEasel
-                  key={id}
-                  id={id}
-                  value={suggestionEntry.suggestion}
-                />
-              );
-            })}
-          </SpaceContainer>
-        </div>
+          }
+        >
+          {suggestions.map((suggestionEntry, index) => {
+            const id = `all-${suggestionEntry.suggestion}-${index}`;
+            return (
+              <SuggestionEasel
+                key={id}
+                id={id}
+                value={suggestionEntry.suggestion}
+              />
+            );
+          })}
+        </TitledContainer>
       )}
-
-      <HostNextPhaseButton />
     </Step>
   );
 }

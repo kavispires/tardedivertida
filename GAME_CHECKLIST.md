@@ -749,7 +749,7 @@ Legend
 - PhaseProps Migration: ✅
 - Role-base View Migration: 🔘
 - Float Submit Migration: ✅
-- Host Timer Bar Migration: ⛔️
+- Host Timer Bar Migration: ✅
 
 ## Vamos Ao Cinema
 
