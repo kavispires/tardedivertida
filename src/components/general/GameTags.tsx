@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 // Ant Design Resources
-import { Space, type SpaceProps, Tag, Tooltip } from 'antd';
+import { SettingFilled } from '@ant-design/icons';
+import { Badge, Space, type SpaceProps, Tag, Tooltip } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -147,10 +148,12 @@ export function GameTags({ mechanics = [], features = [], gameCode, ...rest }: G
                     key={`${gameCode}-${tag}`}
                     title={TAG_DICT[tag]?.label[language]}
                   >
-                    <Icon
-                      style={{ width: 36 }}
-                      className={styles.gameTagsGroupIcon}
-                    />
+                    <Badge count={<SettingFilled />}>
+                      <Icon
+                        style={{ width: 36 }}
+                        className={styles.gameTagsGroupIcon}
+                      />
+                    </Badge>
                   </Tooltip>
                 );
               })}
