@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useEffect, useRef, useState } from 'react';
 // Ant Design Resources
 import { Space, type SpaceProps } from 'antd';
@@ -13,7 +14,7 @@ type SpaceFloatProps = {
  * A Space component that automatically floats fixed to the bottom of the screen
  * when it would otherwise be out of bounds vertically.
  */
-export function SpaceFloat({ children, enabled = true, ...rest }: SpaceFloatProps) {
+export function SpaceFloat({ children, enabled = true, className, ...rest }: SpaceFloatProps) {
   const spaceRef = useRef<HTMLDivElement>(null);
   const [isFloating, setIsFloating] = useState(false);
 
@@ -51,6 +52,7 @@ export function SpaceFloat({ children, enabled = true, ...rest }: SpaceFloatProp
       style={{ marginTop: isFloating ? '2rem' : 0 }}
     >
       <Space
+        className={clsx('container--center', className)}
         {...rest}
         style={{
           ...rest.style,

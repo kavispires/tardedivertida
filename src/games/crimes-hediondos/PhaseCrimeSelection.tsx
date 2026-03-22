@@ -221,7 +221,7 @@ export function PhaseCrimeSelection({ players, state, user }: PhaseProps<PhaseCr
           />
           <DevButton
             onClick={onMockCrime}
-            size="large"
+            type="default"
           >
             Random Crime
           </DevButton>

@@ -149,7 +149,7 @@ export function CrimeGuessStatus({ status, withDescription = false, className = 
           </TextHighlight>
           {withDescription && (
             <Translate
-              pt="Você é tão burro que você escolheu items no grupo errado"
+              pt="Você é tão burro que escolheu items no grupo errado"
               en="You're so dumb you chose items in the wrong group"
             />
           )}

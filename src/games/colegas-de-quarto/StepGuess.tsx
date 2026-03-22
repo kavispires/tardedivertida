@@ -225,7 +225,7 @@ export function StepGuess({
       />
 
       <SpaceFloat
-        className="mt-4 container--center"
+        className="mt-4"
         enabled={isComplete}
       >
         <SendButton

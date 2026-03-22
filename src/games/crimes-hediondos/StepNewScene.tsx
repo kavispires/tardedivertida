@@ -9,6 +9,7 @@ import { SendButton } from 'components/buttons';
 import { SceneTile } from 'components/game/SceneTile';
 import { DualTranslate, Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -121,7 +122,7 @@ export function StepNewScene({
         />
       </SpaceContainer>
 
-      <SpaceContainer>
+      <SpaceFloat>
         <SendButton
           size="large"
           disabled={sceneMarkIndex === undefined}
@@ -136,7 +137,7 @@ export function StepNewScene({
             en="Send"
           />
         </SendButton>
-      </SpaceContainer>
+      </SpaceFloat>
     </Step>
   );
 }

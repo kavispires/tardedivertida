@@ -13,6 +13,7 @@ import { DebugOnly, DevButton } from 'components/debug';
 import { FloatingHand } from 'components/general/FloatingHand';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -207,21 +208,6 @@ export function StepGuessing({
         </SpaceContainer>
       </DebugOnly>
 
-      {isAllComplete && (
-        <SpaceContainer align="center">
-          <SendButton
-            size="large"
-            disabled={!isAllComplete}
-            onClick={() => onSubmitGuesses({ guesses })}
-          >
-            <Translate
-              pt="Enviar Respostas"
-              en="Send Guesses"
-            />
-          </SendButton>
-        </SpaceContainer>
-      )}
-
       <PlayersCards
         user={user}
         setActivePlayerId={setActivePlayerId}
@@ -266,6 +252,21 @@ export function StepGuessing({
             isVictimGame={isVictimGame}
           />
         </FloatingHand>
+      )}
+
+      {isAllComplete && (
+        <SpaceFloat className="mt-4">
+          <SendButton
+            size="large"
+            disabled={!isAllComplete}
+            onClick={() => onSubmitGuesses({ guesses })}
+          >
+            <Translate
+              pt="Enviar Respostas"
+              en="Send Guesses"
+            />
+          </SendButton>
+        </SpaceFloat>
       )}
 
       {/* This makes sure people can open the floating hand and still see all ItemBoard */}

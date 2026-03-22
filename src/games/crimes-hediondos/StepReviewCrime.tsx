@@ -7,7 +7,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { SendButton } from 'components/buttons';
 import { SceneTile } from 'components/game/SceneTile';
 import { Translate } from 'components/language';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { ReadyPlayersBar } from 'components/players';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
@@ -88,7 +88,7 @@ export function StepReviewCrime({
         />
       </div>
 
-      <SpaceContainer align="center">
+      <SpaceFloat>
         <SendButton
           onClick={onSubmitCrime}
           size="large"
@@ -98,7 +98,7 @@ export function StepReviewCrime({
             en="Submit"
           />
         </SendButton>
-      </SpaceContainer>
+      </SpaceFloat>
 
       <ReadyPlayersBar
         players={players}
