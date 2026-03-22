@@ -120,12 +120,12 @@ Legend
 - Rules Images: 🔘
 - Bots: 🔘
 - Collects Data: 🔘
-- Image Background: 🔘
+- Image Background: ✅
 - Phase Delegator Migration: ✅
-- PhaseProps Migration: 🔘
+- PhaseProps Migration: ✅
 - Role-base View Migration: 🔘
 - Float Submit Migration: 🔘
-- Host Timer Bar Migration: 🔘
+- Host Timer Bar Migration: ✅
 
 ## Contadores de Histórias
 

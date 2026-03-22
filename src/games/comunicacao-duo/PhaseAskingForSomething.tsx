@@ -13,9 +13,10 @@ import { Instruction } from 'components/text';
 // Internal
 import { COMUNICACAO_DUO_PHASES, STATUS } from './utils/constants';
 import { useOnSubmitRequestAPIRequest } from './utils/api-requests';
+import type { PhaseAskingForSomethingState } from './utils/types';
 import { StepAsk } from './StepAsk';
 
-export function PhaseAskingForSomething({ players, state, user }: PhaseProps) {
+export function PhaseAskingForSomething({ players, state, user }: PhaseProps<PhaseAskingForSomethingState>) {
   const { step } = useStep();
   let [requester, isTheRequester] = useWhichPlayerIsThe('requesterId', state, players);
   if (state.status === STATUS.IDLE) {

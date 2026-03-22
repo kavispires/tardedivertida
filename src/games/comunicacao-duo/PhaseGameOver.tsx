@@ -13,11 +13,12 @@ import { Instruction, Title } from 'components/text';
 // Internal
 import { STATUS } from './utils/constants';
 import achievementsReference from './utils/achievements';
+import type { PhaseGameOverState } from './utils/types';
 import { Board } from './components/Board';
 import { SummaryBox } from './components/SummaryBox';
 import { History } from './components/History';
 
-export function PhaseGameOver({ state, players, user }: PhaseProps) {
+export function PhaseGameOver({ state, players, user }: PhaseProps<PhaseGameOverState>) {
   return (
     <GameOverWrapper
       state={state}

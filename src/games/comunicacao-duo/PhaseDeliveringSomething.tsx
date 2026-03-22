@@ -15,9 +15,14 @@ import { ViewIf } from 'components/views';
 // Internal
 import { useOnStopDeliveryAPIRequest, useOnSubmitDeliveryAPIRequest } from './utils/api-requests';
 import { COMUNICACAO_DUO_PHASES } from './utils/constants';
+import type { PhaseDeliveringSomethingState } from './utils/types';
 import { StepDeliver } from './StepDeliver';
 
-export function PhaseDeliveringSomething({ players, state, user }: PhaseProps) {
+export function PhaseDeliveringSomething({
+  players,
+  state,
+  user,
+}: PhaseProps<PhaseDeliveringSomethingState>) {
   const { step } = useStep();
   const [requester, isTheRequester] = useWhichPlayerIsThe('requesterId', state, players);
 

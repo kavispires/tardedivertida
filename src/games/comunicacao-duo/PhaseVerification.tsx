@@ -10,9 +10,10 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import { COMUNICACAO_DUO_PHASES, STATUS } from './utils/constants';
+import type { PhaseVerificationState } from './utils/types';
 import { StepVerification } from './StepVerification';
 
-export function PhaseVerification({ players, state, user }: PhaseProps) {
+export function PhaseVerification({ players, state, user }: PhaseProps<PhaseVerificationState>) {
   const { step } = useStep();
 
   const announcement =

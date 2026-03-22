@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Types
-import type { ContenderCard, TextCard, SuspectCard as SuspectCardType } from 'types/tdr';
+import type { ContenderCard, SuspectCard as SuspectCardType, TextCard } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
@@ -24,22 +24,34 @@ export function HistoryDeliverableEntry({ deliverable, deckType, userSide }: His
 
   const sideIndex = SIDES.indexOf(userSide);
 
-  if (deckType === 'items') {
+  if (!deliverable.data) {
     return (
       <div
-        key={`cd-history-entry-${deliverable.data.id}`}
+        key={`cd-history-entry-${deliverable.id}`}
+        className={clsx('cd-history-entry', `cd-history-entry--${deliverable.affiliation[sideIndex]}`)}
+      >
+        {deliverable.id}
+      </div>
+    );
+  }
+
+  if (deckType === 'items' && deliverable.data.type === 'item') {
+    const itemData = deliverable.data;
+    return (
+      <div
+        key={`cd-history-entry-${itemData.id}`}
         className={clsx('cd-history-entry', `cd-history-entry--${deliverable.affiliation[sideIndex]}`)}
       >
         <ItemCard
-          itemId={`${deliverable.data.id}`}
-          title={deliverable.data.name ? dualTranslate(deliverable.data.name) : undefined}
+          itemId={`${itemData.id}`}
+          title={itemData.name ? dualTranslate(itemData.name) : undefined}
           width={64}
         />
       </div>
     );
   }
 
-  if (deckType === 'images') {
+  if (deckType === 'images' && deliverable.data.type === 'image') {
     return (
       <div
         key={`cd-history-entry-${deliverable.data.id}`}
@@ -54,14 +66,14 @@ export function HistoryDeliverableEntry({ deliverable, deckType, userSide }: His
     );
   }
 
-  if (deckType === 'contenders') {
+  if (deckType === 'contenders' && deliverable.data.type === 'contender') {
     return (
       <div
         key={`cd-history-entry-${deliverable.data.id}`}
         className={clsx('cd-history-entry', `cd-history-entry--${deliverable.affiliation[sideIndex]}`)}
       >
         <CharacterCard
-          character={deliverable.data as ContenderCard}
+          character={deliverable.data as unknown as ContenderCard}
           size={96}
           className="history-entry-image-card"
         />
@@ -69,14 +81,14 @@ export function HistoryDeliverableEntry({ deliverable, deckType, userSide }: His
     );
   }
 
-  if (deckType === 'suspects') {
+  if (deckType === 'suspects' && deliverable.data.type === 'suspect') {
     return (
       <div
         key={`cd-history-entry-${deliverable.data.id}`}
         className={clsx('cd-history-entry', `cd-history-entry--${deliverable.affiliation[sideIndex]}`)}
       >
         <SuspectCard
-          suspect={deliverable.data as SuspectCardType}
+          suspect={deliverable.data as unknown as SuspectCardType}
           width={72}
           hideName
         />
@@ -84,13 +96,13 @@ export function HistoryDeliverableEntry({ deliverable, deckType, userSide }: His
     );
   }
 
-  if (deckType === 'words') {
+  if (deckType === 'words' && deliverable.data.type === 'word') {
     return (
       <div
         key={`cd-history-entry-${deliverable.data.id}`}
         className={clsx('cd-history-entry', `cd-history-entry--${deliverable.affiliation[sideIndex]}`)}
       >
-        <Card hideHeader>{(deliverable.data as TextCard).text}</Card>
+        <Card hideHeader>{(deliverable.data as unknown as TextCard).text}</Card>
       </div>
     );
   }
