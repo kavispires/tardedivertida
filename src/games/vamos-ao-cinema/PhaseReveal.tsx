@@ -16,10 +16,11 @@ import { Instruction } from 'components/text';
 import { useOnSubmitMoviePosterAPIRequest } from './utils/api-requests';
 import { getAnnouncementKey } from './utils/helpers';
 import { VAMOS_AO_CINEMA_PHASES } from './utils/constants';
+import type { PhaseRevealState } from './utils/types';
 import { MovieHighlight } from './components/MovieHighlight';
 import { StepReveal } from './StepReveal';
 
-export function PhaseReveal({ state, players, user }: PhaseProps) {
+export function PhaseReveal({ state, players, user }: PhaseProps<PhaseRevealState>) {
   const { step, setStep } = useStep();
   const [activePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
@@ -75,7 +76,7 @@ export function PhaseReveal({ state, players, user }: PhaseProps) {
           <br />
           <MovieHighlight
             movies={state.movies}
-            movieId={state.finalMovieId}
+            movieId={state.finalMovieId ?? ''}
           />
         </Instruction>
       </PhaseAnnouncement>
@@ -112,7 +113,7 @@ export function PhaseReveal({ state, players, user }: PhaseProps) {
           finalMovieId={state.finalMovieId}
           score={state.score}
           onSubmitPoster={onSubmitPoster}
-          posters={state.posters}
+          posters={state.posters ?? []}
         />
       </StepSwitcher>
     </PhaseContainer>

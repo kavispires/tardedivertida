@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vamos-ao-cinema",
-  "version": "2.0.26",
+  "version": "2.0.27",
   "release": "stable",
   "releaseDate": "2023-01-14",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Vamos Ao Cinema",
     "en": "Movie Night"
@@ -24,36 +24,30 @@
     "cloudsAnimationType": "flow",
     "primaryColor": "#0C7489",
     "colorScheme": "dark",
-    "videoBackground": true
+    "videoBackground": true,
+    "imageBackground": true
   },
   "rules": {
     "pt": [
-      "Em \"Vamos Ao Cinema\", os jogadores são amigos que querem ir ao cinema.",
-      "A cada rodada, oito filmes e duas críticas, uma positiva e uma negativa, são reveladas e os jogadores tem que escolher secretamente o filme que eles acham que combina com essas críticas.",
-      "Então, de um em um, os jogadores eliminam os filmes que eles acham que ninguém escolheu.",
-      "Se o filme que um jogador escolheu é eliminado, os jogadores perdem um ponto, mas o jogo continua",
-      "Se um segundo filme é eliminado, a rodada é encerrada.",
-      "O jogo termina após 5 rodadas e os jogadores vencem se eles conseguirem pelo menos 75% dos pontos possíveis."
+      "Em \"Vamos ao Cinema\", os jogadores são amigos tentando escolher um filme para assistir juntos.",
+      "A cada rodada, oito filmes e duas críticas — uma positiva e uma negativa — são revelados. Os jogadores escolhem secretamente o filme que melhor combina com essas críticas.",
+      "Depois, um por vez, os jogadores eliminam filmes que acham que ninguém escolheu.",
+      "Se o filme escolhido por um jogador for eliminado, o grupo perde 1 ponto, mas a rodada continua.",
+      "Se um segundo filme escolhido for eliminado, a rodada termina imediatamente.",
+      "Após 5 rodadas, os jogadores vencem se fizerem pelo menos 75% dos pontos possíveis."
     ],
     "en": [
-      "In \"Movie Night\", players are friends who want to go to the movies.",
-      "Each round, eight movies and two reviews, one positive and one negative, are revealed and players have to secretly choose the movie they think fits these reviews.",
-      "Then, one by one, players eliminate the movies they think no one chose.",
-      "If the movie a player chose is eliminated, the players lose a point, but the game continues.",
-      "If a second movie is eliminated, the round ends.",
-      "The game ends after 5 rounds and players win if they get at least 75% of the possible points."
+      "In \"Movie Night\", players are friends trying to pick a movie to watch together.",
+      "Each round, eight movies and two reviews — one positive and one negative — are revealed. Players secretly choose the movie they think best fits both reviews.",
+      "Then, one by one, players eliminate movies they believe no one selected.",
+      "If a player’s chosen movie is eliminated, the group loses 1 point, but the round continues.",
+      "If a second chosen movie is eliminated, the round immediately ends.",
+      "After 5 rounds, players win if they score at least 75% of the total possible points."
     ]
   },
   "playerCount": {
     "best": 5,
-    "recommended": [
-      4,
-      5,
-      6,
-      7,
-      8,
-      9
-    ],
+    "recommended": [4, 5, 6, 7, 8, 9],
     "min": 2,
     "max": 9
   },
@@ -61,13 +55,6 @@
     "base": 30,
     "perPlayer": 1
   },
-  "mechanics": [
-    "cooperative",
-    "turn-based",
-    "guessing",
-    "push-your-luck"
-  ],
-  "features": [
-    "achievements"
-  ]
+  "mechanics": ["cooperative", "turn-based", "guessing", "push-your-luck"],
+  "features": ["achievements"]
 }

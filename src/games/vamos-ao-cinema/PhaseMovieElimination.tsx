@@ -16,10 +16,11 @@ import { Instruction } from 'components/text';
 import { useOnSubmitMovieEliminationAPIRequest } from './utils/api-requests';
 import { mockMovieElimination } from './utils/mock';
 import { VAMOS_AO_CINEMA_PHASES } from './utils/constants';
+import type { PhaseMovieEliminationState } from './utils/types';
 import { MistakeCountHighlight } from './components/MistakeCountHighlight';
 import { StepEliminateMovie } from './StepEliminateMovie';
 
-export function PhaseMovieElimination({ state, players, user }: PhaseProps) {
+export function PhaseMovieElimination({ state, players, user }: PhaseProps<PhaseMovieEliminationState>) {
   const { step, setStep } = useStep();
   const [activePlayer, isActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 

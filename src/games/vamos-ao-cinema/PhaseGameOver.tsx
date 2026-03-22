@@ -16,8 +16,9 @@ import { TitledContainer } from 'components/layout/TitledContainer';
 import { TextHighlight, Title } from 'components/text';
 // Internal
 import { achievementsReference } from './utils/achievements';
+import type { PhaseGameOverState } from './utils/types';
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   const posterWidth = useCardWidth(8, { gap: 16, minWidth: 80, maxWidth: 150, margin: 32 });
   return (
     <GameOverWrapper

@@ -15,10 +15,11 @@ import { Instruction } from 'components/text';
 import { useOnSubmitMovieSelectionAPIRequest } from './utils/api-requests';
 import { mockMovieSelection } from './utils/mock';
 import { VAMOS_AO_CINEMA_PHASES } from './utils/constants';
+import type { PhaseMovieSelectionState } from './utils/types';
 import { YourMovie } from './components/YourMovie';
 import { StepSelectMovie } from './StepSelectMovie';
 
-export function PhaseMovieSelection({ state, players, user }: PhaseProps) {
+export function PhaseMovieSelection({ state, players, user }: PhaseProps<PhaseMovieSelectionState>) {
   const { step, setStep, goToNextStep } = useStep();
 
   const onSelectMovie = useOnSubmitMovieSelectionAPIRequest(setStep);
