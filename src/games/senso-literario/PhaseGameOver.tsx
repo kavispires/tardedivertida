@@ -63,6 +63,7 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
                   align="center"
                   key={index}
                   gap={8}
+                  wrap
                 >
                   <BookPatternCard
                     patternId={card.patternId}
