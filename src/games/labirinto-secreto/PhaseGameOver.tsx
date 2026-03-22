@@ -13,11 +13,11 @@ import { Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
 import { PlayerAvatarStrip } from 'components/player';
 // Internal
-import type { MapSegment, Tree } from './utils/types';
+import type { MapSegment, PhaseGameOverState, Tree } from './utils/types';
 import { achievementsReference } from './utils/achievements';
 import { PlayerMap } from './components/PlayerMap';
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   const sortedPlayers = sortPlayers(players);
   const forest: Tree[] = state.forest ?? [];
 

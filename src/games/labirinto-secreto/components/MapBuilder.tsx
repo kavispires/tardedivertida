@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Space, Tooltip } from 'antd';
+import { Button, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Utils
@@ -15,8 +15,9 @@ import { SendButton, TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { TitledContainer } from 'components/layout/TitledContainer';
-import { TextHighlight } from 'components/text';
+import { RuleInstruction, TextHighlight } from 'components/text';
 // Internal
 import type { ExtendedTextCard, MapSegment, OnSubmitMapFunction, Tree } from '../utils/types';
 import { getPossibleTreeIds } from '../utils/helpers';
@@ -177,10 +178,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
       </SpaceContainer>
 
       {possibleTreeIds.length > 0 && (
-        <Space
-          className="contained"
-          wrap
-        >
+        <RuleInstruction type="tip">
           <strong>
             <Translate
               pt="Caminhos possíveis para a árvore atual"
@@ -196,7 +194,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
               {forest?.[treeId]?.card?.text}
             </MotionTextHighlight>
           ))}
-        </Space>
+        </RuleInstruction>
       )}
 
       <TitledContainer
@@ -231,7 +229,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
         </Button>
       </TitledContainer>
 
-      <SpaceContainer>
+      <SpaceFloat enabled={usedCards.length > 0}>
         <SendButton
           size="large"
           disabled={usedCards.length === 0}
@@ -242,7 +240,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
             en="Submit Map"
           />
         </SendButton>
-      </SpaceContainer>
+      </SpaceFloat>
     </>
   );
 }

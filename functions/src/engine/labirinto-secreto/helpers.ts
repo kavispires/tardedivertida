@@ -278,7 +278,7 @@ const buildPath = (
 export const buildForest = (cards: TextCard[], isItemsForest: boolean): Tree[] => {
   const trees = Array(5)
     .fill(0)
-    .map(() => utils.game.getRandomNumber(1, 15));
+    .map(() => utils.game.getRandomNumber(2, 15));
 
   return utils.game.makeArray(FOREST_WIDTH * FOREST_HEIGHT, 0).map((el: number, index) => {
     if (FORBIDDEN_TREES.includes(index)) {

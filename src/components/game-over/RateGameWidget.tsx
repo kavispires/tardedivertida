@@ -18,7 +18,6 @@ import { getAnimationClass } from 'utils/helpers';
 // Components
 import { FixedMenuButton } from 'components/buttons';
 import { Translate } from 'components/language';
-// Adapters
 
 const { TextArea } = Input;
 

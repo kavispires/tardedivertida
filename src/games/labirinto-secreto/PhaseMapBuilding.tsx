@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -72,23 +73,25 @@ export function PhaseMapBuilding({ state, players, user }: PhaseProps<PhaseMapBu
         }}
       >
         {/* Step 0 */}
-        <ViewIf condition={isUserMapComplete}>
-          <StepBuildWait
-            user={user}
-            announcement={announcement}
-            forest={state.forest}
-          />
-        </ViewIf>
-        <ViewIf condition={!isUserMapComplete}>
-          <StepBuildMap
-            players={players}
-            user={user}
-            announcement={announcement}
-            forest={state.forest}
-            currentRound={state.round.current}
-            onSubmitMap={onSubmitMap}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isUserMapComplete}>
+            <StepBuildWait
+              user={user}
+              announcement={announcement}
+              forest={state.forest}
+            />
+          </ViewIf>
+          <ViewIf condition={!isUserMapComplete}>
+            <StepBuildMap
+              players={players}
+              user={user}
+              announcement={announcement}
+              forest={state.forest}
+              currentRound={state.round.current}
+              onSubmitMap={onSubmitMap}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

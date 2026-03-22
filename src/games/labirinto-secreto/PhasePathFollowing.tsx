@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -63,25 +64,27 @@ export function PhasePathFollowing({ state, players, user }: PhaseProps<PhasePat
         players={players}
       >
         {/* Step 0 */}
-        <ViewIf condition={isTheActivePlayer}>
-          <StepPathWaiting
-            players={players}
-            announcement={announcement}
-            forest={state.forest}
-            activePlayer={activePlayer}
-          />
-        </ViewIf>
-        <ViewIf condition={!isTheActivePlayer}>
-          <StepFollowPath
-            players={players}
-            user={user}
-            announcement={announcement}
-            forest={state.forest}
-            onSubmitPath={onSubmitPath}
-            activePlayer={activePlayer}
-            isTheActivePlayer={isTheActivePlayer}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isTheActivePlayer}>
+            <StepPathWaiting
+              players={players}
+              announcement={announcement}
+              forest={state.forest}
+              activePlayer={activePlayer}
+            />
+          </ViewIf>
+          <ViewIf condition={!isTheActivePlayer}>
+            <StepFollowPath
+              players={players}
+              user={user}
+              announcement={announcement}
+              forest={state.forest}
+              onSubmitPath={onSubmitPath}
+              activePlayer={activePlayer}
+              isTheActivePlayer={isTheActivePlayer}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

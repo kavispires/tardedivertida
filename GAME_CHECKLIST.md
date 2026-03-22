@@ -9,6 +9,7 @@ Legend
 - ⛔️ Out of scope
 - ⏹ Non-applicable
 - ✴️ Needs work/fix/refactor
+- 📝 Todo/Should be done
 
 
 
@@ -385,17 +386,17 @@ Legend
 
 - Collection: `labirinto-secreto`
 - Code: `Z`
-- Rules: 🔘
+- Rules: ✅
 - Rules MD: 🔘
 - Rules Images: 🔘
 - Bots: 🔘
 - Collects Data: 🔘
-- Image Background: 🔘
+- Image Background: ✅
 - Phase Delegator Migration: ✅
-- PhaseProps Migration: 🔘
+- PhaseProps Migration: ✅
 - Role-base View Migration: 🔘
-- Float Submit Migration: 🔘
-- Host Timer Bar Migration: 🔘
+- Float Submit Migration: ✅
+- Host Timer Bar Migration: ✅
 
 ## Linhas Cruzadas
 

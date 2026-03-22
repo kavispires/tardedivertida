@@ -1,5 +1,6 @@
-import Tooltip from 'antd/lib/tooltip';
 import clsx from 'clsx';
+// Ant Design Resources
+import { Tooltip } from 'antd';
 // Images
 import trees from 'assets/images/trees.svg?url';
 // Sass

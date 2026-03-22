@@ -108,33 +108,35 @@ export function SlideShowControls({
         style={{ opacity: disableControlsFlag ? 0 : 100 }}
         className={getAnimationClass('fadeIn')}
       >
-        <Button
-          size="large"
-          icon={<StepBackwardOutlined />}
-          onClick={goToPreviousSlide}
-          disabled={disableControlsFlag || config.slideIndex === 0}
-        >
-          <Translate
-            pt="Anterior"
-            en="Previous"
+        <Space.Compact>
+          <Button
+            size="large"
+            icon={<StepBackwardOutlined />}
+            onClick={goToPreviousSlide}
+            disabled={disableControlsFlag || config.slideIndex === 0}
+          >
+            <Translate
+              pt="Anterior"
+              en="Previous"
+            />
+          </Button>
+          <Button
+            size="large"
+            icon={isRunning ? <PauseOutlined /> : <PlayCircleOutlined />}
+            onClick={isRunning ? pause : resume}
           />
-        </Button>
-        <Button
-          size="large"
-          icon={isRunning ? <PauseOutlined /> : <PlayCircleOutlined />}
-          onClick={isRunning ? pause : resume}
-        />
-        <Button
-          size="large"
-          onClick={goToNextSlide}
-          disabled={disableControlsFlag || config.slideIndex === config.length - 1}
-        >
-          <Translate
-            pt="Próximo"
-            en="Next"
-          />{' '}
-          <StepForwardOutlined />
-        </Button>
+          <Button
+            size="large"
+            onClick={goToNextSlide}
+            disabled={disableControlsFlag || config.slideIndex === config.length - 1}
+          >
+            <Translate
+              pt="Próximo"
+              en="Next"
+            />{' '}
+            <StepForwardOutlined />
+          </Button>
+        </Space.Compact>
         <Button
           {...nextButtonProps}
           size="large"

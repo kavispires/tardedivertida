@@ -11,6 +11,7 @@ import { SendButton } from 'components/buttons';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
 // Internal
 import type { MapSegment, OnSubmitPathGuessFunction, Tree, TreeId } from '../utils/types';
@@ -19,7 +20,6 @@ import { mockFollowedPath } from '../utils/mocks';
 import { Forest } from './Forest';
 import { PlayerMap } from './PlayerMap';
 import { MapEntry } from './MapEntry';
-// Ant Design Resources
 
 type ClickableForestProps = {
   forest: Tree[];
@@ -88,28 +88,6 @@ export function ClickableForest({
         />
       </MouseFollowingContent>
 
-      <SendButton
-        size="large"
-        onClick={() => onSubmitPath({ guess: selection.slice(1), pathId, choseRandomly: false })}
-        disabled={selection.length - 1 < currentMap.length}
-      >
-        <Translate
-          pt="Concluir"
-          en="Submit"
-        />
-      </SendButton>
-      <DevButton
-        onClick={() =>
-          onSubmitPath({
-            guess: mockFollowedPath(map, currentMap, true, Object.values(userMapping).flat().map(Number)),
-            pathId,
-            choseRandomly: true,
-          })
-        }
-        ghost
-      >
-        Random Dev
-      </DevButton>
       <Forest
         forest={forest}
         map={map}
@@ -123,6 +101,32 @@ export function ClickableForest({
         playerMapping={userMapping}
         players={players}
       />
+
+      <SpaceFloat enabled={selection.length - 1 === currentMap.length}>
+        <SendButton
+          size="large"
+          onClick={() => onSubmitPath({ guess: selection.slice(1), pathId, choseRandomly: false })}
+          disabled={selection.length - 1 < currentMap.length}
+        >
+          <Translate
+            pt="Concluir"
+            en="Submit"
+          />
+        </SendButton>
+        <DevButton
+          onClick={() =>
+            onSubmitPath({
+              guess: mockFollowedPath(map, currentMap, true, Object.values(userMapping).flat().map(Number)),
+              pathId,
+              choseRandomly: true,
+            })
+          }
+          ghost
+          type="default"
+        >
+          Random Dev
+        </DevButton>
+      </SpaceFloat>
     </SpaceContainer>
   );
 }
