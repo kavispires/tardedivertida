@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "M",
   "gameName": "medidas-nao-exatas",
-  "version": "1.0.29",
+  "version": "1.0.36",
   "release": "stable",
   "releaseDate": "2025-07-06",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Medidas Não Exatas",
     "en": "Creative Metrics"
@@ -23,26 +23,26 @@
     "clouds": "metrics-cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "#00598b",
-    "colorScheme": "light",
+    "colorScheme": "dark",
     "videoBackground": true,
     "imageBackground": true
   },
   "rules": {
     "en": [
       "In Creative Metrics, each round one player is the Presenter and evaluates a secret word using creative metrics while the others try to guess it.",
-      "The Presenter selects a secret word along with a set of possible words.",
+      "The Presenter selects a secret word along with a set of possible options.",
       "They then rate the secret word across 5 different metrics using 6 measurement tokens.",
-      "Other players race to guess the secret word — the faster you guess, the more points you earn.",
+      "Other players race to guess the secret word — the faster you guess correctly, the more points you earn.",
       "You may change your guess once per round, but you lose 1 point, and your new guess replaces the previous one, even if it was correct.",
-      "Players score points based on how quickly they guess correctly, and the Presenter earns 2 points for each correct guess."
+      "Players score based on how quickly they guess correctly, and the Presenter earns 2 points for each correct guess."
     ],
     "pt": [
       "Em Medidas Não Exatas, a cada rodada um jogador é o(a) Apresentador(a) e avalia uma palavra secreta usando métricas criativas enquanto os outros tentam adivinhar qual é.",
-      "O(A) Apresentador(a) escolhe uma palavra secreta junto com um conjunto de palavras possíveis.",
+      "O(A) Apresentador(a) escolhe uma palavra secreta junto com um conjunto de opções possíveis.",
       "Em seguida, ele(a) avalia a palavra secreta em 5 métricas diferentes usando 6 bolinhas de medida.",
       "Os outros jogadores correm para adivinhar a palavra secreta — quanto mais rápido você acertar, mais pontos ganha.",
       "Você pode mudar seu palpite uma vez por rodada, mas perde 1 ponto, e esse passa a ser seu palpite final, mesmo que o anterior estivesse correto.",
-      "Os jogadores ganham pontos de acordo com a rapidez do acerto, e o(a) Apresentador(a) ganha 2 pontos para cada jogador que acertar."
+      "Os jogadores pontuam de acordo com a rapidez do acerto, e o(a) Apresentador(a) ganha 2 pontos para cada jogador que acertar."
     ]
   },
   "playerCount": {

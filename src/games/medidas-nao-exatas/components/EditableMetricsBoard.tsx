@@ -1,4 +1,7 @@
+import clsx from 'clsx';
 import { useState } from 'react';
+// Ant Design Resources
+import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons';
 // Types
 import type { TextCard } from 'types/tdr';
 // Components
@@ -12,7 +15,6 @@ type EditableMetricsBoardProps = {
   onChange?: (metricId: string, evaluation: number) => void;
   disabled?: boolean;
 };
-
 export function EditableMetricsBoard({
   metricsDescriptors,
   evaluations,
@@ -24,7 +26,6 @@ export function EditableMetricsBoard({
       {Object.keys(metricsDescriptors).map((metricId) => {
         const descriptors = metricsDescriptors[metricId];
         const evaluation = evaluations?.[metricId] ?? 3;
-
         return (
           <Metric
             key={metricId}
@@ -72,30 +73,56 @@ function Metric({ descriptors, initialEvaluation = 3, onChange, disabled }: Metr
       </TransparentButton>
 
       <div className="metrics-board__evaluation">
-        <Pip
-          position={0}
-          value={evaluation}
-        />
-        <Pip
-          position={1}
-          value={evaluation}
-        />
-        <Pip
-          position={2}
-          value={evaluation}
-        />
-        <Pip
-          position={3}
-          value={evaluation}
-        />
-        <Pip
-          position={4}
-          value={evaluation}
-        />
-        <Pip
-          position={5}
-          value={evaluation}
-        />
+        <div className="metrics-board__evaluation-buttons">
+          <button
+            type="button"
+            onClick={onClickingOnTheLeft}
+            className={clsx('metrics-board__evaluation-button', 'metrics-board__evaluation-button--left', {
+              'metrics-board__evaluation-button--hidden': evaluation === 6,
+            })}
+            disabled={disabled}
+            style={{ width: ['40%', '30%', '40%', '50%', '60%', '70%', '60%'][evaluation] }}
+          >
+            <DoubleLeftOutlined />
+          </button>
+          <button
+            type="button"
+            onClick={onClickingOnTheRight}
+            className={clsx('metrics-board__evaluation-button', 'metrics-board__evaluation-button--right', {
+              'metrics-board__evaluation-button--hidden': evaluation === 0,
+            })}
+            disabled={disabled}
+            style={{ width: ['60%', '70%', '60%', '50%', '40%', '30%', '40%'][evaluation] }}
+          >
+            <DoubleRightOutlined />
+          </button>
+        </div>
+        <div className="metrics-board__evaluation-pips">
+          <Pip
+            position={0}
+            value={evaluation}
+          />
+          <Pip
+            position={1}
+            value={evaluation}
+          />
+          <Pip
+            position={2}
+            value={evaluation}
+          />
+          <Pip
+            position={3}
+            value={evaluation}
+          />
+          <Pip
+            position={4}
+            value={evaluation}
+          />
+          <Pip
+            position={5}
+            value={evaluation}
+          />
+        </div>
       </div>
 
       <TransparentButton

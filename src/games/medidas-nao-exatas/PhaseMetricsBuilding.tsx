@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -23,7 +24,6 @@ import { StepBuildMetrics } from './StepBuildMetrics';
 export function PhaseMetricsBuilding({ state, players }: PhaseProps<PhaseMetricsBuildingState>) {
   const { step, setStep, goToNextStep } = useStep();
   const [presenter, isThePresenter] = useWhichPlayerIsThe('presenterId', state, players);
-
   const onSubmitMetrics = useOnSubmitMetricsAPIRequest(setStep);
   const onSubmitPool = useOnSubmitPoolAPIRequest();
 
@@ -71,31 +71,32 @@ export function PhaseMetricsBuilding({ state, players }: PhaseProps<PhaseMetrics
           time={3}
           onPressButton={goToNextStep}
         />
-
         {/* Step 0 */}
-        <ViewIf condition={isThePresenter}>
-          <StepBuildMetrics
-            announcement={announcement}
-            wordsDict={state.wordsDict}
-            secretCardsOptionsIds={state.secretCardsOptionsIds}
-            availablePoolCardsIds={state.availablePoolCardsIds}
-            metricsDescriptors={state.metricsDescriptors}
-            poolIds={state.poolIds}
-            secretWordId={state.secretWordId}
-            onSubmitMetrics={onSubmitMetrics}
-            onSubmitPool={onSubmitPool}
-          />
-        </ViewIf>
-        <ViewIf condition={!isThePresenter}>
-          <StepWaitForPresenter
-            announcement={announcement}
-            players={players}
-            presenter={presenter}
-            turnOrder={state.turnOrder}
-            wordsDict={state.wordsDict}
-            poolIds={state.poolIds}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isThePresenter}>
+            <StepBuildMetrics
+              announcement={announcement}
+              wordsDict={state.wordsDict}
+              secretCardsOptionsIds={state.secretCardsOptionsIds}
+              availablePoolCardsIds={state.availablePoolCardsIds}
+              metricsDescriptors={state.metricsDescriptors}
+              poolIds={state.poolIds}
+              secretWordId={state.secretWordId}
+              onSubmitMetrics={onSubmitMetrics}
+              onSubmitPool={onSubmitPool}
+            />
+          </ViewIf>
+          <ViewIf condition={!isThePresenter}>
+            <StepWaitForPresenter
+              announcement={announcement}
+              players={players}
+              presenter={presenter}
+              turnOrder={state.turnOrder}
+              wordsDict={state.wordsDict}
+              poolIds={state.poolIds}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -11,11 +11,11 @@ import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
-import type { GalleryEntry } from './utils/types';
+import type { GalleryEntry, PhaseGameOverState } from './utils/types';
 import achievementsReference from './utils/achievements';
 import { MetricsBoard } from './components/MetricsBoard';
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   const gallery: GalleryEntry[] = state.gallery ?? [];
 
   return (

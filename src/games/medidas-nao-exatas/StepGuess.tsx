@@ -134,25 +134,36 @@ export function StepGuess({
         className="mb-4"
         justify="center"
       >
-        {poolIds.map((cardId) => (
-          <TransparentButton
-            key={cardId}
-            onClick={() =>
-              onSubmitGuess({
-                guesses: [...guesses, { cardId, level, timestamp: Math.max(GUESSING_TIME - timeLeft, 0) }],
-              })
+        {poolIds.map((cardId) => {
+          const baseTimestamp = Math.max(GUESSING_TIME - timeLeft, 0);
+          // Ensure timestamp is at least 3 seconds away from any previous guess
+          const adjustedTimestamp = guesses.reduce((timestamp, guess) => {
+            if (Math.abs(guess.timestamp - timestamp) < 3) {
+              return Math.min(guess.timestamp + 3, GUESSING_TIME);
             }
-            disabled={isLoading || user.ready || isThePresenter || guesses.length === 2}
-            active={guesses.some((g) => g.cardId === cardId)}
-          >
-            <Card
+            return timestamp;
+          }, baseTimestamp);
+
+          return (
+            <TransparentButton
               key={cardId}
-              hideHeader
+              onClick={() =>
+                onSubmitGuess({
+                  guesses: [...guesses, { cardId, level, timestamp: adjustedTimestamp }],
+                })
+              }
+              disabled={isLoading || user.ready || isThePresenter || guesses.length === 2}
+              active={guesses.some((g) => g.cardId === cardId)}
             >
-              {wordsDict[cardId].text}
-            </Card>
-          </TransparentButton>
-        ))}
+              <Card
+                key={cardId}
+                hideHeader
+              >
+                {wordsDict[cardId].text}
+              </Card>
+            </TransparentButton>
+          );
+        })}
       </Flex>
 
       <div className="m-guessing-board">

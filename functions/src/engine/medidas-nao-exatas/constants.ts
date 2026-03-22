@@ -31,5 +31,5 @@ export const PLAYER_COUNTS = {
 
 export const TOTAL_ROUNDS = 5;
 
-export const WORDS_PER_PLAYER = 8;
+export const WORDS_PER_PLAYER = 10;
 export const DESCRIPTORS_PER_PLAYER = 10;

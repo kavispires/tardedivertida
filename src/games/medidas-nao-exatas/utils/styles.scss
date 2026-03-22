@@ -22,10 +22,66 @@
     width: 15rem;
     border-radius: 1rem;
     background: get-color("gray", 3, 0.5);
-    // display: flex;
     border: none;
     display: flex;
     position: relative;
+  }
+
+  &__evaluation-buttons {
+    height: 1.5rem;
+    width: 100%;
+    border-radius: 1rem;
+    position: absolute;
+    z-index: 1;
+  }
+
+  &__evaluation-button {
+    width: 50%;
+    border: none;
+    height: 100%;
+    border-radius: 1rem;
+    transition: 500ms all ease;
+    background: transparent;
+    cursor: pointer;
+
+    &--left {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      text-align: right;
+      color: get-color("gray", 5, 0.5);
+      background: linear-gradient(to right, get-color("white", 5, 0), get-color("white", 5, 0.5));
+      opacity: 0.5;
+
+      &:hover {
+        background: linear-gradient(to right, get-color("white", 5, 0), get-color("white", 5, 1));
+        opacity: 1;
+      }
+    }
+
+    &--right {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      text-align: left;
+      color: get-color("gray", 5, 0.5);
+      background: linear-gradient(to right, get-color("white", 5, 0.5), get-color("white", 5, 0));
+      opacity: 0.5;
+
+      &:hover {
+        background: linear-gradient(to right, get-color("white", 5, 1), get-color("white", 5, 0));
+        opacity: 1;
+      }
+    }
+
+    &--hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  &__evaluation-pips {
+    height: 1.5rem;
+    width: 15rem;
+    border-radius: 1rem;
   }
 
   &__evaluation-pip {

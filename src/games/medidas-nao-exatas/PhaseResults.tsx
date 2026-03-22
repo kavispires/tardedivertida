@@ -12,11 +12,11 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { MEDIDAS_NAO_EXATAS_PHASES } from './utils/constants';
+import type { PhaseResultsState } from './utils/types';
 import { StepResults } from './StepResults';
 import { StepRanking } from './StepRanking';
-// Icons
 
-export function PhaseResults({ state, players }: PhaseProps) {
+export function PhaseResults({ state, players }: PhaseProps<PhaseResultsState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep();
   const [presenter] = useWhichPlayerIsThe('presenterId', state, players);
 
@@ -59,7 +59,6 @@ export function PhaseResults({ state, players }: PhaseProps) {
           presenter={presenter}
           result={state.result}
         />
-
         {/* Step 1 */}
         <StepRanking
           players={players}

@@ -86,8 +86,8 @@ export const prepareMetricsBuildingPhase = async (
   const wordsDict = keyBy(roundCards, 'id');
   const roundCardsIds = Object.keys(wordsDict);
 
-  const secretCardsOptionsIds = roundCardsIds.slice(0, 2);
-  const availablePoolCardsIds = roundCardsIds.slice(2);
+  const secretCardsOptionsIds = roundCardsIds.slice(0, 4);
+  const availablePoolCardsIds = roundCardsIds.slice(4);
 
   // Build descriptions
   const descriptorsDeck: TextCard[] = store.descriptorsDeck || [];

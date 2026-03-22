@@ -53,7 +53,7 @@ export function useOnSubmitGuessAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'submit-guess',
-    successMessage: translate('Palpite adivinhada com sucesso', 'Guess submitted successfully'),
+    successMessage: translate('Palpite enviado com sucesso', 'Guess submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao enviar seu palpite',
       'Oops, the application found an error while trying to submit your guess',

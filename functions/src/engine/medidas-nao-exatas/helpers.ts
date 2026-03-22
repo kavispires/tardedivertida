@@ -23,13 +23,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
       : METRICS_BUILDING;
   }
 
-  const currentPhaseIndex = order.indexOf(currentPhase as keyof typeof MEDIDAS_NAO_EXATAS_PHASES);
-
-  if (currentPhaseIndex > -1) {
-    return order[currentPhaseIndex + 1];
-  }
-  utils.helpers.warnMissingPhase(currentPhase);
-  return METRICS_BUILDING;
+  return utils.helpers.nextPhaseDelegator(currentPhase, order);
 };
 
 export const determineResults = (
