@@ -786,14 +786,14 @@ Legend
 
 - Collection: `vice-campeao`
 - Code: `V`
-- Rules: 🔘
+- Rules: ✅
 - Rules MD: 🔘
 - Rules Images: 🔘
-- Bots: 🔘
-- Collects Data: 🔘
-- Image Background: 🔘
+- Bots: 📝
+- Collects Data: ⛔️
+- Image Background: ✅
 - Phase Delegator Migration: ✅
-- PhaseProps Migration: 🔘
+- PhaseProps Migration: ✅
 - Role-base View Migration: 🔘
-- Float Submit Migration: 🔘
-- Host Timer Bar Migration: 🔘
+- Float Submit Migration: ✅
+- Host Timer Bar Migration: ⛔️

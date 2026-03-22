@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vice-campeao",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "release": "stable",
   "releaseDate": "2025-04-08",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Vice-Campeão",
     "en": "Runner-Up"
@@ -24,28 +24,25 @@
     "cloudsAnimationType": "flow",
     "primaryColor": "rgb(255,114,199)",
     "colorScheme": "dark",
-    "videoBackground": true
+    "videoBackground": true,
+    "imageBackground": true
   },
   "rules": {
     "pt": [
-      "Em Vice-Campeão, somos todos corredores em uma maratona e o objetivo é ser o segundo colocado.",
-      "A cada rodada, todos os jogadores escolhem uma carta que pode ser de movimento ou um efeito especial.",
-      "O plot-twist é que você pode usar sua carta em você mesmo ou em outro jogador!",
-      "Ao final de 5 rodadas quem estiver em segundo lugar ganha!"
+      "Em Vice-Campeão, vocês são corredores em uma maratona onde o objetivo é terminar em segundo lugar.",
+      "A cada rodada, todos os jogadores escolhem uma carta — que pode ser de movimento ou um efeito especial.",
+      "O plot twist: você pode usar sua carta em você mesmo ou em outro jogador.",
+      "Após 5 rodadas, quem estiver em segundo lugar vence!"
     ],
     "en": [
-      "In Runner-Up, we are all runners in a marathon and the goal is to be the second place.",
-      "In each round, all players choose a card that can be a movement or a special effect.",
-      "The plot twist is that you can use your card on yourself or on another player!",
-      "At the end of 5 rounds, whoever is in second place wins!"
+      "In Runner-Up, you are runners in a marathon where the goal is to finish in second place.",
+      "Each round, all players choose a card — either a movement card or a special effect.",
+      "Here’s the twist: you can play your card on yourself or on another player.",
+      "After 5 rounds, whoever is in second place wins the game!"
     ]
   },
   "playerCount": {
-    "recommended": [
-      4,
-      5,
-      6
-    ],
+    "recommended": [4, 5, 6],
     "best": 5,
     "min": 2,
     "max": 8
@@ -54,12 +51,6 @@
     "base": 5,
     "perPlayer": 4
   },
-  "mechanics": [
-    "competitive",
-    "same-time",
-    "push-your-luck"
-  ],
-  "features": [
-    "achievements"
-  ]
+  "mechanics": ["competitive", "same-time", "push-your-luck"],
+  "features": ["achievements"]
 }

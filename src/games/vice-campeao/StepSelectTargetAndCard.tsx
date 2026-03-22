@@ -9,6 +9,7 @@ import { useMock } from 'hooks/useMock';
 // Components
 import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { PlayersSelect } from 'components/players/PlayersSelect';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, StepTitle, TextHighlight } from 'components/text';
@@ -131,16 +132,21 @@ export function StepSelectTargetAndCard({
             );
           })}
         </Flex>
-        <SendButton
-          size="large"
-          onClick={() => onSubmitCard({ cardId: String(selectedCardId), targetId: String(selectedPlayerId) })}
-          disabled={!selectedCardId || !selectedPlayerId}
-        >
-          <Translate
-            en="Send"
-            pt="Enviar"
-          />
-        </SendButton>
+
+        <SpaceFloat enabled={!!selectedCardId && !!selectedPlayerId}>
+          <SendButton
+            size="large"
+            onClick={() =>
+              onSubmitCard({ cardId: String(selectedCardId), targetId: String(selectedPlayerId) })
+            }
+            disabled={!selectedCardId || !selectedPlayerId}
+          >
+            <Translate
+              en="Send"
+              pt="Enviar"
+            />
+          </SendButton>
+        </SpaceFloat>
       </Instruction>
     </Step>
   );
