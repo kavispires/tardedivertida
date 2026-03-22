@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "comunicacao-alienigena",
-  "version": "5.0.34",
+  "version": "5.0.35",
   "release": "stable",
   "releaseDate": "2023-02-12",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Comunicação Alienígena",
     "en": "Alien Language"
@@ -25,33 +25,31 @@
     "primaryColor": "#566E21",
     "surfaceColor": "#EADEDA",
     "colorScheme": "dark",
-    "videoBackground": true
+    "videoBackground": true,
+    "imageBackground": true
   },
   "rules": {
-    "pt": [
-      "Um alienígena chegou a terra e não fala nossa língua, e ele precisa de alguns objetos para conseguir voltar ao seu planeta",
-      "Um jogador será o alienígena e os outros serão os humanos",
-      "Cada rodada, os jogadores mostram uma combinação de objetos ao alienígena com o objetivo de descobrir um símbolo comum para eles",
-      "O alienígena tem uma tabela com atributos seus símbolos correspondentes e deve usá-lo para responder aos humanos",
-      "Após todos os jogadores terem feito uma pergunta com os objetos, é a vez do alienígena user os símbolos que ele ensinou aos alienígenas para pedir um objeto específico",
-      "Mas cuidado, alguns objetos são proibidos e não podem ser pedidos, eles causam os jogadores a perderem uma rodada",
-      "Você consegue entregar todos os objetos ao alienígena antes que o tempo (rodadas) acabe?"
-    ],
     "en": [
-      "An alien has arrived on earth and he doesn't speak our language, and he needs some objects to be able to return to his planet",
-      "One player will be the alien and the others will be the humans",
-      "Each round, the players show a combination of objects to the alien with the goal of discovering a common symbol for them",
-      "The alien has a table with attributes its corresponding symbols and must use it to answer the humans",
-      "After all players have asked a question with the objects, it is the alien's turn to use the symbols he taught the aliens to ask for a specific object",
-      "But be careful, some objects are forbidden and cannot be requested, they cause the players to lose a round",
-      "Can you deliver all the objects to the alien before the time (rounds) runs out?"
+      "An alien has arrived on Earth and doesn’t speak our language. It needs help collecting objects to return to its planet.",
+      "One player is the Alien, and all other players are Humans.",
+      "Each round, the Humans present combinations of objects to the Alien to try to understand how it communicates.",
+      "The Alien uses a reference table that maps attributes to symbols and responds using those symbols.",
+      "After all Humans have presented their combinations, the Alien uses its symbols to request a specific object.",
+      "Be careful: some objects are forbidden and cannot be requested. If one is chosen, the group loses a round.",
+      "Can you deliver all the required objects before you run out of rounds?"
+    ],
+    "pt": [
+      "Um alienígena chegou à Terra e não fala nossa língua. Ele precisa de alguns objetos para conseguir voltar ao seu planeta.",
+      "Um jogador será o Alienígena e os outros serão os Humanos.",
+      "A cada rodada, os Humanos mostram combinações de objetos ao Alienígena para tentar entender como ele se comunica.",
+      "O Alienígena possui uma tabela que relaciona atributos a símbolos e deve usá-la para responder aos Humanos.",
+      "Após todos os Humanos apresentarem suas combinações, o Alienígena usa os símbolos para pedir um objeto específico.",
+      "Mas cuidado: alguns objetos são proibidos e não podem ser pedidos. Se isso acontecer, o grupo perde uma rodada.",
+      "Vocês conseguem entregar todos os objetos antes que as rodadas acabem?"
     ]
   },
   "playerCount": {
-    "recommended": [
-      2,
-      3
-    ],
+    "recommended": [2, 3],
     "min": 1,
     "max": 4,
     "best": 3
@@ -60,17 +58,8 @@
     "base": 20,
     "perPlayer": 7
   },
-  "mechanics": [
-    "cooperative",
-    "turn-based",
-    "drawing",
-    "guessing",
-    "brain-burner"
-  ],
-  "features": [
-    "bots",
-    "achievements"
-  ],
+  "mechanics": ["cooperative", "turn-based", "drawing", "guessing", "brain-burner"],
+  "features": ["bots", "achievements"],
   "options": [
     {
       "key": "nsfw",

@@ -13,6 +13,7 @@ import { ItemCard } from 'components/cards/ItemCard';
 import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { PlayerAvatarName } from 'components/player';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
@@ -25,8 +26,8 @@ import type {
   PhaseBasicState,
   RequestHistoryEntry,
   SubmitAlienResponsePayload,
+  OfferingsStatus,
 } from './utils/types';
-import type { OfferingsStatus } from './utils/types';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
 import { HumanSignBoard } from './components/HumanSignBoard';
@@ -181,7 +182,7 @@ export function StepAlienAnswers({
         )}
 
         <HumanContent user={user}>
-          <SpaceContainer>
+          <SpaceFloat>
             <SendButton
               size="large"
               onClick={() => onConfirmNote()}
@@ -192,7 +193,7 @@ export function StepAlienAnswers({
                 en="I have noted the symbol and I'm ready"
               />
             </SendButton>
-          </SpaceContainer>
+          </SpaceFloat>
         </HumanContent>
       </ViewIf>
 

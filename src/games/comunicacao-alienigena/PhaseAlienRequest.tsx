@@ -12,9 +12,10 @@ import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnSubmitAlienRequestAPIRequest } from './utils/api-requests';
 import { COMUNICACAO_ALIENIGENA_PHASES } from './utils/constants';
+import type { PhaseAlienRequestState } from './utils/types';
 import { StepAlienRequests } from './StepAlienRequests';
 
-export function PhaseAlienRequest({ players, state, user }: PhaseProps) {
+export function PhaseAlienRequest({ players, state, user }: PhaseProps<PhaseAlienRequestState>) {
   const [alien, isUserAlien] = useWhichPlayerIsThe('alienId', state, players);
 
   const { step, setStep } = useStep();

@@ -11,12 +11,13 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { ViewIf } from 'components/views';
 // Internal
 import achievementsReference from './utils/achievements';
+import type { PhaseGameOverState } from './utils/types';
 import { History } from './components/History';
 import { HumanSignBoard } from './components/HumanSignBoard';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   const [, isUserAlien] = useWhichPlayerIsThe('alienId', state, players);
   return (
     <GameOverWrapper
@@ -30,7 +31,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
         reference={achievementsReference}
       />
 
-      <ViewIf condition={state.items && state.attributes && state.inquiryHistory && state.requestHistory}>
+      <ViewIf condition={!!(state.items && state.attributes && state.inquiryHistory && state.requestHistory)}>
         <SpaceContainer wrap>
           <ObjectsGrid
             items={state.items}
