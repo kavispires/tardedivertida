@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -92,30 +93,32 @@ export function PhasePlanning({ state, players }: PhaseProps<PhasePlanningState>
         </RoundAnnouncement>
 
         {/* Step 1 */}
-        <ViewIf condition={isTheArchitect}>
-          <StepPlanLocations
-            announcement={announcement}
-            players={players}
-            architectId={state.architectId}
-            gameOrder={state.gameOrder}
-            city={state.city}
-            cityLocationsDict={state.cityLocationsDict}
-            placements={Object.keys(state.coneCellIds).length}
-            availableProjectsIds={state.availableProjectsIds}
-            onSubmitPlanning={onSubmitPlanning}
-          />
-        </ViewIf>
-        <ViewIf condition={!isTheArchitect}>
-          <StepWaitForPlanning
-            announcement={announcement}
-            players={players}
-            gameOrder={state.gameOrder}
-            architect={architect}
-            city={state.city}
-            cityLocationsDict={state.cityLocationsDict}
-            placements={Object.keys(state.coneCellIds).length}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isTheArchitect}>
+            <StepPlanLocations
+              announcement={announcement}
+              players={players}
+              architectId={state.architectId}
+              gameOrder={state.gameOrder}
+              city={state.city}
+              cityLocationsDict={state.cityLocationsDict}
+              placements={Object.keys(state.coneCellIds).length}
+              availableProjectsIds={state.availableProjectsIds}
+              onSubmitPlanning={onSubmitPlanning}
+            />
+          </ViewIf>
+          <ViewIf condition={!isTheArchitect}>
+            <StepWaitForPlanning
+              announcement={announcement}
+              players={players}
+              gameOrder={state.gameOrder}
+              architect={architect}
+              city={state.city}
+              cityLocationsDict={state.cityLocationsDict}
+              placements={Object.keys(state.coneCellIds).length}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );
