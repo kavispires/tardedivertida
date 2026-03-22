@@ -10,10 +10,10 @@ import { TitledContainer } from 'components/layout/TitledContainer';
 import { Instruction } from 'components/text';
 // Internal
 import achievementsReference from './utils/achievements';
-import type { MetalinguagemGalleryEntry } from './utils/types';
+import type { MetalinguagemGalleryEntry, PhaseGameOverState } from './utils/types';
 import { Portmanteau } from './components/Portmanteau';
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   const gallery: MetalinguagemGalleryEntry[] = state.gallery ?? [];
 
   return (

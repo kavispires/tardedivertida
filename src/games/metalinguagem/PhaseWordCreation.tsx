@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -81,28 +82,30 @@ export function PhaseWordCreation({ state, players, user }: PhaseProps<PhaseWord
         players={players}
       >
         {/* Step 0 */}
-        <ViewIf condition={isTheCreator}>
-          <StepCreateWord
-            user={user}
-            players={players}
-            announcement={announcement}
-            items={state.items}
-            beginsWith={state.beginsWith}
-            endsWith={state.endsWith}
-            wordLengths={state.wordLengths}
-            onSubmitWord={onSubmitWord}
-          />
-        </ViewIf>
-        <ViewIf condition={!isTheCreator}>
-          <StepWaitWordCreation
-            players={players}
-            announcement={announcement}
-            items={state.items}
-            wordLengths={state.wordLengths}
-            creator={creator}
-            turnOrder={state.turnOrder}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isTheCreator}>
+            <StepCreateWord
+              user={user}
+              players={players}
+              announcement={announcement}
+              items={state.items}
+              beginsWith={state.beginsWith}
+              endsWith={state.endsWith}
+              wordLengths={state.wordLengths}
+              onSubmitWord={onSubmitWord}
+            />
+          </ViewIf>
+          <ViewIf condition={!isTheCreator}>
+            <StepWaitWordCreation
+              players={players}
+              announcement={announcement}
+              items={state.items}
+              wordLengths={state.wordLengths}
+              creator={creator}
+              turnOrder={state.turnOrder}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

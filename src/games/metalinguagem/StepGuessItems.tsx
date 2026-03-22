@@ -8,6 +8,7 @@ import { SendButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle, TextHighlight } from 'components/text';
 // Internal
@@ -90,21 +91,23 @@ export function StepGuessItems({
         onItemSelect={updateDict}
       />
 
-      <SendButton
-        disabled={!isComplete}
-        onClick={() => onSubmitGuesses({ guesses: selectedItems })}
-        size="large"
-      >
-        <Translate
-          en="Submit"
-          pt="Enviar"
-        />
-      </SendButton>
-
       <WordLengths
         wordLengths={wordLengths}
         highlightLength={newWord.length}
       />
+
+      <SpaceFloat enabled={isComplete}>
+        <SendButton
+          disabled={!isComplete}
+          onClick={() => onSubmitGuesses({ guesses: selectedItems })}
+          size="large"
+        >
+          <Translate
+            en="Submit"
+            pt="Enviar"
+          />
+        </SendButton>
+      </SpaceFloat>
     </Step>
   );
 }

@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "metalinguagem",
-  "version": "1.0.37",
+  "version": "1.0.38",
   "release": "stable",
   "releaseDate": "2025-03-21",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Meta Linguagem",
     "en": "Meta Language"
@@ -24,24 +24,25 @@
     "cloudsAnimationType": "flow",
     "primaryColor": "",
     "colorScheme": "light",
-    "videoBackground": true
+    "videoBackground": true,
+    "imageBackground": true
   },
   "rules": {
     "en": [
-      "You are a group of linguists trying to create a new dictionary of portmanteau words for the new world.",
-      "The goal is to create words with all lengths available (usually 3-8 letters)",
-      "Each round a player is the creator and must create a portmanteau word using the beginning of one given thing's name and the end of another thing's name",
-      "Then, the other players must try to guess which things the word represents",
-      "If the majority gets it right, that length of word is marked as completed. If the players get it wrong, the length is masked as in danger",
-      "Players win when all words lengths are used or when they get an in-danger length wrong"
+      "You are a group of linguists creating a new dictionary of portmanteau words.",
+      "The goal is to complete words of all available lengths (usually 3–8 letters), each length only once.",
+      "Each round, one player is the Creator and forms a portmanteau using the beginning of one given word and the end of another.",
+      "The other players must guess which two words were used.",
+      "If the majority guesses correctly, that word length is completed. If not, that length becomes in danger.",
+      "If a length in danger is failed again, the group loses. Complete all lengths to win."
     ],
     "pt": [
-      "Vocês são um grupo de linguistas tentando criar um novo dicionário de palavras portmanteau para o novo mundo.",
-      "O objetivo é criar palavras com todos os tamanhos disponíveis (geralmente 3-9 letras)",
-      "A cada rodada, um jogador é o criador e deve criar uma palavra portmanteau usando o começo do nome de uma coisa dada e o final do nome de outra coisa",
-      "Então, os outros jogadores devem tentar adivinhar quais coisas a palavra representa",
-      "Se a maioria acertar, aquele tamanho de palavra é marcado como concluído. Se os jogadores errarem, o tamanho está em perigo",
-      "Os jogadores vencem quando todos os tamanhos forem usados ou quando eles erram um tamanho em perigo"
+      "Vocês são um grupo de linguistas criando um novo dicionário de palavras-valise.",
+      "O objetivo é completar palavras de todos os tamanhos disponíveis (geralmente de 3 a 8 letras), cada tamanho apenas uma vez.",
+      "A cada rodada, um jogador é o Criador e forma uma palavra-valise usando o início de uma palavra e o final de outra.",
+      "Os outros jogadores devem adivinhar quais foram as duas palavras usadas.",
+      "Se a maioria acertar, aquele tamanho é concluído. Caso contrário, ele entra em perigo.",
+      "Se um tamanho em perigo for errado novamente, o grupo perde. Complete todos os tamanhos para vencer."
     ]
   },
   "playerCount": {

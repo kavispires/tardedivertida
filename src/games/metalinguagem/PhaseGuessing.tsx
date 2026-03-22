@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -64,32 +65,34 @@ export function PhaseGuessing({ state, players, user }: PhaseProps<PhaseGuessing
         }}
       >
         {/* Step 0 */}
-        <ViewIf condition={isTheCreator}>
-          <StepWaitGuessing
-            players={players}
-            creator={creator}
-            announcement={announcement}
-            items={state.items}
-            wordLengths={state.wordLengths}
-            newWord={state.newWord}
-            turnOrder={state.turnOrder}
-            beginsWith={state.beginsWith}
-            endsWith={state.endsWith}
-          />
-        </ViewIf>
-        <ViewIf condition={!isTheCreator}>
-          <StepGuessItems
-            announcement={announcement}
-            items={state.items}
-            wordLengths={state.wordLengths}
-            newWord={state.newWord}
-            onSubmitGuesses={onSubmitGuesses}
-            players={players}
-            user={user}
-            beginsWith={state.beginsWith}
-            endsWith={state.endsWith}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isTheCreator}>
+            <StepWaitGuessing
+              players={players}
+              creator={creator}
+              announcement={announcement}
+              items={state.items}
+              wordLengths={state.wordLengths}
+              newWord={state.newWord}
+              turnOrder={state.turnOrder}
+              beginsWith={state.beginsWith}
+              endsWith={state.endsWith}
+            />
+          </ViewIf>
+          <ViewIf condition={!isTheCreator}>
+            <StepGuessItems
+              announcement={announcement}
+              items={state.items}
+              wordLengths={state.wordLengths}
+              newWord={state.newWord}
+              onSubmitGuesses={onSubmitGuesses}
+              players={players}
+              user={user}
+              beginsWith={state.beginsWith}
+              endsWith={state.endsWith}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );
