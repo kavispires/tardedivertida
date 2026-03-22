@@ -248,21 +248,13 @@ const processFile = (filePath) => {
     startIndex++;
   }
 
-  // Remove all import comments that precede a import line
-  const filteredLines = lines.slice(startIndex).filter((line, index) => {
-    if (IMPORT_COMMENTS.includes(line.trim()) && lines[startIndex + index + 1]?.startsWith('import ')) {
-      return false;
-    }
-    return true;
-  });
-
   // Extract import lines
   const importLines = [];
   const nonImportLines = [];
 
   let currentImport = '';
 
-  filteredLines.forEach((line) => {
+  lines.slice(startIndex).forEach((line) => {
     if (line.startsWith('import ')) {
       // If it's single line import, add it to the import lines
       if (line.endsWith(';')) {
@@ -279,10 +271,11 @@ const processFile = (filePath) => {
         currentImport = '';
       }
     }
-    // If it's not an import line, add it to the non-import lines
-    else {
+    // If it's not an import line and not an import comment, add it to non-import lines
+    else if (line.trim() === '' || !IMPORT_COMMENTS.includes(line.trim())) {
       nonImportLines.push(line);
     }
+    // Skip any lines that are import comments - they'll be re-added by sortImports
   });
 
   // Combine duplicate imports from same modules
@@ -290,9 +283,24 @@ const processFile = (filePath) => {
 
   const sortedImports = sortImports(deduplicatedImports);
 
+  // Remove leading empty lines from non-import content
+  while (nonImportLines.length > 0 && nonImportLines[0].trim() === '') {
+    nonImportLines.shift();
+  }
+
+  // Remove single-line comments that appear directly after imports
+  while (nonImportLines.length > 0 && nonImportLines[0].trim().startsWith('//')) {
+    nonImportLines.shift();
+  }
+
+  // Remove any additional empty lines that may appear after the comments
+  while (nonImportLines.length > 0 && nonImportLines[0].trim() === '') {
+    nonImportLines.shift();
+  }
+
   // Replace original imports with sorted imports
   const biomeIgnoreContent = biomeIgnoreLines.length > 0 ? biomeIgnoreLines.join('\n') + '\n' : '';
-  const newFileContents = biomeIgnoreContent + sortedImports + nonImportLines.join('\n');
+  const newFileContents = biomeIgnoreContent + sortedImports + '\n' + nonImportLines.join('\n');
 
   // Write the changes back to the file
   fs.writeFileSync(filePath, newFileContents, 'utf8');
