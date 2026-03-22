@@ -59,6 +59,12 @@ export const autoSelectCorrectGuesses = (history?: History) => {
         evidenceId: historyEntry.evidenceId,
         isComplete: true,
       };
+      if (historyEntry.victimId) {
+        guesses[key].victimId = historyEntry.victimId;
+      }
+      if (historyEntry.locationId) {
+        guesses[key].locationId = historyEntry.locationId;
+      }
     }
   });
   return guesses;

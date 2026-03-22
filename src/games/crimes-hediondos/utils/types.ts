@@ -47,6 +47,7 @@ export type Guess = {
   victimId?: string;
   locationId?: string;
   isComplete?: boolean;
+  isError?: boolean;
 };
 
 export type GuessHistoryEntry = {

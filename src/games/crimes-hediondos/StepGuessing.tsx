@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
+// Ant Design Resources
+import { Alert } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
@@ -13,7 +15,6 @@ import { DebugOnly, DevButton } from 'components/debug';
 import { FloatingHand } from 'components/general/FloatingHand';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -74,39 +75,65 @@ export function StepGuessing({
 
   const onUpdateGuesses = (itemId: string) => {
     if (activePlayerId && itemId) {
-      const guessObj = {
+      const updatedGuess = {
         ...(guesses[activePlayerId] ?? {
           weaponId: undefined,
           evidenceId: undefined,
           victimId: undefined,
           locationId: undefined,
           isComplete: false,
+          isError: false,
         }),
       };
 
       if (itemId.includes('wp')) {
-        guessObj.weaponId = itemId;
+        updatedGuess.weaponId = itemId;
       }
       if (itemId.includes('ev')) {
-        guessObj.evidenceId = itemId;
+        updatedGuess.evidenceId = itemId;
       }
-      if (isVictimGame && itemId.includes('vt')) {
-        guessObj.victimId = itemId;
+      if (isVictimGame) {
+        if (itemId.includes('vt')) {
+          updatedGuess.victimId = itemId;
+        }
+      } else {
+        delete updatedGuess.victimId;
       }
-      if (isLocationGame && itemId.includes('lc')) {
-        guessObj.locationId = itemId;
+
+      if (isLocationGame) {
+        if (itemId.includes('lc')) {
+          updatedGuess.locationId = itemId;
+        }
+      } else {
+        delete updatedGuess.locationId;
+      }
+
+      updatedGuess.isComplete =
+        !!updatedGuess.weaponId &&
+        !!updatedGuess.evidenceId &&
+        (isVictimGame ? Boolean(updatedGuess.victimId) : true) &&
+        (isLocationGame ? Boolean(updatedGuess.locationId) : true);
+
+      // Verify if all selected items so far are from the same quadrant (correct or not)
+      const selectedItemIds = Object.values(updatedGuess).filter(
+        (value) => typeof value === 'string',
+      ) as string[];
+      const selectedQuadrants = selectedItemIds.map((id) => {
+        const group = Object.entries(groupedItems).find(([_, items]) => items.includes(id));
+        return group ? group[0] : null;
+      });
+
+      const uniqueQuadrants = new Set(selectedQuadrants);
+      if (uniqueQuadrants.size > 1) {
+        updatedGuess.isComplete = false;
+        updatedGuess.isError = true;
+      } else {
+        delete updatedGuess.isError;
       }
 
       setGuesses((s: PlainObject) => ({
         ...s,
-        [activePlayerId]: {
-          ...guessObj,
-          isComplete:
-            !!guessObj?.weaponId &&
-            !!guessObj?.evidenceId &&
-            (isVictimGame ? Boolean(guessObj?.victimId) : true) &&
-            (isLocationGame ? Boolean(guessObj?.locationId) : true),
-        },
+        [activePlayerId]: updatedGuess,
       }));
     }
   };
@@ -116,6 +143,7 @@ export function StepGuessing({
     activeCrime,
     isOwnCrime,
     isLocked,
+    isError,
     activeWeaponId,
     activeEvidenceId,
     activeVictimId,
@@ -152,6 +180,7 @@ export function StepGuessing({
       activeCrime,
       isOwnCrime,
       isLocked,
+      isError: activePlayerGuesses.isError,
       activeWeaponId,
       activeEvidenceId,
       activeVictimId,
@@ -195,6 +224,21 @@ export function StepGuessing({
         />
       </RuleInstruction>
 
+      {isAllComplete && (
+        <SpaceContainer>
+          <SendButton
+            size="large"
+            disabled={!isAllComplete}
+            onClick={() => onSubmitGuesses({ guesses })}
+          >
+            <Translate
+              pt="Enviar Respostas"
+              en="Send Guesses"
+            />
+          </SendButton>
+        </SpaceContainer>
+      )}
+
       <DebugOnly dev>
         <SpaceContainer>
           <DevButton
@@ -215,6 +259,19 @@ export function StepGuessing({
         guesses={guesses}
         history={user.history}
       >
+        {isError && (
+          <Alert
+            title={
+              <Translate
+                en="Some of the selected cards are not from the same quadrant. Please review your selection."
+                pt="Algumas das cartas selecionadas não estão no mesmo quadrante. Por favor, revise sua seleção."
+              />
+            }
+            banner
+            type="error"
+            className="full-width"
+          />
+        )}
         <SelectableGroupedItemsBoard
           items={items}
           weaponId={activeWeaponId}
@@ -252,21 +309,6 @@ export function StepGuessing({
             isVictimGame={isVictimGame}
           />
         </FloatingHand>
-      )}
-
-      {isAllComplete && (
-        <SpaceFloat className="mt-4">
-          <SendButton
-            size="large"
-            disabled={!isAllComplete}
-            onClick={() => onSubmitGuesses({ guesses })}
-          >
-            <Translate
-              pt="Enviar Respostas"
-              en="Send Guesses"
-            />
-          </SendButton>
-        </SpaceFloat>
       )}
 
       {/* This makes sure people can open the floating hand and still see all ItemBoard */}
