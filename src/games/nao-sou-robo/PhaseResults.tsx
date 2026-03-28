@@ -12,9 +12,10 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { NAO_SOU_ROBO_PHASES } from './utils/constants';
+import type { PhaseResultsState } from './utils/types';
 import { StepResult } from './StepResults';
 
-export function PhaseResults({ state, players, user }: PhaseProps) {
+export function PhaseResults({ state, players, user }: PhaseProps<PhaseResultsState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep();
 
   const announcement = (

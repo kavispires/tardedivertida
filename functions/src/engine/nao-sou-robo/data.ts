@@ -1,5 +1,5 @@
 // Constants
-import { DECK_PER_PLAYER, MAX_ROUNDS, MIN_ROUND_CARDS } from './constants';
+import { STARTING_HAND, MAX_ROUNDS, MIN_ROUND_CARDS, CARD_SELECTION_PER_PLAYER_COUNT } from './constants';
 import { GLOBAL_USED_DOCUMENTS, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
 // Type
 import type { TextCard } from '../../types/tdr';
@@ -17,7 +17,10 @@ import * as resourceUtils from '../resource';
  * @returns
  */
 export const getResourceData = async (language: Language, playerCount: number): Promise<ResourceData> => {
-  const imageCardsNeeded = DECK_PER_PLAYER * MAX_ROUNDS + MAX_ROUNDS * MIN_ROUND_CARDS;
+  // Calculate cards needed: player cards (starting hand + cards per round) + bot cards per round
+  const cardsPerPlayer = STARTING_HAND + MAX_ROUNDS * (CARD_SELECTION_PER_PLAYER_COUNT[playerCount] ?? 3);
+  const botCardsNeeded = MAX_ROUNDS * (MIN_ROUND_CARDS - (CARD_SELECTION_PER_PLAYER_COUNT[playerCount] ?? 3));
+  const imageCardsNeeded = cardsPerPlayer * playerCount + botCardsNeeded;
 
   const images = utils.game.shuffle(await utils.imageCards.getImageCards(imageCardsNeeded));
 
@@ -45,7 +48,7 @@ export const getResourceData = async (language: Language, playerCount: number): 
 
   // Robot cards
   const botCards = utils.game
-    .makeArray(MAX_ROUNDS * (MIN_ROUND_CARDS - playerCount))
+    .makeArray(botCardsNeeded)
     .map(() => {
       return images.pop() as string;
     })

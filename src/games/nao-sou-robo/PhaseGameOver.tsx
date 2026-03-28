@@ -11,10 +11,11 @@ import { Achievements } from 'components/general/Achievements';
 // Internal
 import achievementsReference from './utils/achievements';
 import { OUTCOME } from './utils/constants';
+import type { PhaseGameOverState } from './utils/types';
 import { FinalOutcome } from './components/FinalOutcome';
 import { GameOverGallery } from './components/GameOverGallery';
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   const announcementIcon = {
     [OUTCOME.HUMANS_WIN]: <TrophyIcon />,
     [OUTCOME.ROBOT_WINS]: <NuclearExplosionIcon />,

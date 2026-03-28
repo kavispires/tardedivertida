@@ -1,23 +1,27 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { ShoppingCartOutlined } from '@ant-design/icons';
-import { Button, Flex, InputNumber, Space, Typography } from 'antd';
+import { Badge, Button, Flex, InputNumber, Space, Typography } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
+import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
+import { SendButton } from 'components/buttons';
 import { ImageCardHand } from 'components/image-cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
+import { CardHighlight } from 'components/metrics/CardHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { Instruction, RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { Captcha, Robot, SubmitRobotCardPayload } from './utils/types';
-import { mockCardPick } from './utils/mock';
+import type { Captcha, Robot, SubmitRobotCardsPayload } from './utils/types';
+import { mockCardPicks } from './utils/mock';
 import { CaptchaTopic } from './components/CaptchaTopic';
 import { FloatingPlayerStats } from './components/FloatingPlayerStats';
 import { Summary } from './components/Summary';
@@ -32,9 +36,10 @@ import {
 type StepSelectCardProps = {
   players: GamePlayers;
   user: GamePlayer;
-  onSubmitCard: (payload: SubmitRobotCardPayload) => void;
+  onSubmitCard: (payload: SubmitRobotCardsPayload) => void;
   captcha: Captcha;
   robot: Robot;
+  cardsQuantityToSubmit: number;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepSelectCard({
@@ -44,14 +49,23 @@ export function StepSelectCard({
   captcha,
   players,
   robot,
+  cardsQuantityToSubmit,
 }: StepSelectCardProps) {
   const { isLoading } = useLoading();
   const [areTicketsInCart, setAreTicketsInCart] = useState(false);
+  const { dict: selections, updateDict: select, length: totalSelections } = useBooleanDictionary({});
 
-  const onSelectCard = (cardId: string) => onSubmitCard({ cardId });
+  // const handleCardSelect = (cardId: UID) => {
+  //   if (selectedCards.includes(cardId)) {
+  //     setSelectedCards((prev) => prev.filter((id) => id !== cardId));
+  //   } else if (selectedCards.length < cardsQuantityToSubmit) {
+  //     setSelectedCards((prev) => [...prev, cardId]);
+  //   }
+  // };
+
   const playerCount = Object.keys(players).length;
 
-  useMock(() => onSubmitCard({ cardId: mockCardPick(user.hand) }));
+  useMock(() => onSubmitCard({ cardIds: mockCardPicks(user.hand, cardsQuantityToSubmit) }));
 
   return (
     <Step
@@ -136,34 +150,54 @@ export function StepSelectCard({
             vertical
             contained
           >
-            <Flex justify="center">
-              <CaptchaTopic captcha={captcha} />
-            </Flex>
-
-            <Instruction>
+            <Instruction className="my-1">
               <Translate
                 pt={
                   <>
-                    Selecione uma das imagens abaixo que você acha que tem <strong>mais a ver</strong> com a
-                    carta acima.
+                    Selecione <CardHighlight>{cardsQuantityToSubmit}</CardHighlight> das imagens abaixo que
+                    você acha que tem <strong>mais a ver</strong> com:
                   </>
                 }
                 en={
                   <>
-                    Select one of the images below that you think is <strong>the most related</strong> to the
-                    card above.
+                    Select <CardHighlight>{cardsQuantityToSubmit}</CardHighlight> of the images below that you
+                    think is <strong>the most related</strong> to:
                   </>
                 }
               />
             </Instruction>
 
+            <Flex justify="center">
+              <CaptchaTopic captcha={captcha} />
+            </Flex>
+
             <ImageCardHand
               hand={user.hand}
-              onSelectCard={onSelectCard}
+              onSelectCard={select}
               disabledSelectButton={isLoading}
               sizeRatio={user.hand?.length}
               className="hand"
+              selectedCards={selections}
             />
+
+            <SpaceFloat enabled={totalSelections === cardsQuantityToSubmit}>
+              <Badge
+                count={totalSelections}
+                color={totalSelections === cardsQuantityToSubmit ? 'blue' : 'red'}
+              >
+                <SendButton
+                  size="large"
+                  disabled={totalSelections !== cardsQuantityToSubmit}
+                  onClick={() => onSubmitCard({ cardIds: Object.keys(selections) })}
+                  loading={isLoading}
+                >
+                  <Translate
+                    pt="Enviar escolhas"
+                    en="Submit picks"
+                  />
+                </SendButton>
+              </Badge>
+            </SpaceFloat>
           </SpaceContainer>
         </Flex>
       ) : (

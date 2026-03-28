@@ -17,6 +17,7 @@ import { IconAvatar } from 'components/avatars';
 import { SendButton, TransparentButton } from 'components/buttons';
 import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
 import { Translate } from 'components/language';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { CardHighlight } from 'components/metrics/CardHighlight';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
@@ -36,16 +37,17 @@ type StepSelectAllProps = {
   captcha: Captcha;
   options: Dictionary<CaptchaCard>;
   robot: Robot;
+  selectionCount: number;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepSelectAll({
-  players,
   user,
   announcement,
   onSubmitCaptcha,
   captcha,
   options,
   robot,
+  selectionCount,
 }: StepSelectAllProps) {
   const scrollToSubmitRef = useRef<HTMLButtonElement>(null);
   const { length, dict: selectedCards, updateDict, keys: selection } = useBooleanDictionary({});
@@ -57,16 +59,16 @@ export function StepSelectAll({
     return shuffle(Object.keys(options));
   }, [options]);
 
-  const playerCount = Object.keys(players).length;
+  // const playerCount = Object.keys(players).length;
 
   useMock(() =>
     onSubmitCaptcha({
-      guess: mockGuess(shuffledOptions, playerCount, user.cardId),
+      guess: mockGuess(shuffledOptions, selectionCount, user.cardId),
     }),
   );
 
   const toggleCard = (cardId: string) => {
-    if (length + 1 === playerCount && scrollToSubmitRef.current) {
+    if (length + 1 === selectionCount && scrollToSubmitRef.current) {
       scrollToSubmitRef.current.scrollIntoView({ behavior: 'smooth' });
     }
     updateDict(cardId);
@@ -130,43 +132,48 @@ export function StepSelectAll({
             </Flex>
           </SpeechBubble>
         </div>
-        <Image.PreviewGroup>
-          <ul className="n-table">
-            {shuffledOptions.map((cardId) => {
-              const isSelected = selectedCards[cardId];
+        <Flex justify="center">
+          <Image.PreviewGroup>
+            <ul
+              className="n-table"
+              style={{ width: cardWidth * 3 }}
+            >
+              {shuffledOptions.map((cardId) => {
+                const isSelected = selectedCards[cardId];
 
-              return (
-                <li
-                  key={`n-table-${cardId}`}
-                  className={clsx('n-table-item', getAnimationClass('zoomIn'))}
-                  style={{ width: `${cardWidth + 8}px` }}
-                >
-                  <TransparentButton
-                    onClick={() => toggleCard(cardId)}
-                    hoverType="sepia"
+                return (
+                  <li
+                    key={`n-table-${cardId}`}
+                    className={clsx('n-table-item', getAnimationClass('zoomIn'))}
+                    style={{ width: `${cardWidth + 8}px` }}
                   >
-                    <ImageBlurButtonContainer cardId={cardId}>
-                      <ImageCard
-                        cardId={cardId}
-                        cardWidth={cardWidth - 6} // 6 is the border total size
-                        square
-                        className={clsx('n-table-image', isSelected && 'n-table-image--selected')}
-                        preview={false}
-                      />
-                    </ImageBlurButtonContainer>
-                  </TransparentButton>
-                </li>
-              );
-            })}
-          </ul>
-        </Image.PreviewGroup>
+                    <TransparentButton
+                      onClick={() => toggleCard(cardId)}
+                      hoverType="sepia"
+                    >
+                      <ImageBlurButtonContainer cardId={cardId}>
+                        <ImageCard
+                          cardId={cardId}
+                          cardWidth={cardWidth - 6} // 6 is the border total size
+                          square
+                          className={clsx('n-table-image', isSelected && 'n-table-image--selected')}
+                          preview={false}
+                        />
+                      </ImageBlurButtonContainer>
+                    </TransparentButton>
+                  </li>
+                );
+              })}
+            </ul>
+          </Image.PreviewGroup>
+        </Flex>
       </div>
 
       <RuleInstruction type="event">
         <Translate
           pt={
             <>
-              São <CardHighlight>{playerCount} cartas</CardHighlight> no total a serem selecionadas.
+              São <CardHighlight>{selectionCount} cartas</CardHighlight> no total a serem selecionadas.
               <br />
               Você ganha <PointsHighlight type="positive">1 ponto</PointsHighlight> por cada carta que não é
               do robô e perde <PointsHighlight type="negative">1 ponto</PointsHighlight> por cada carta que é
@@ -175,7 +182,7 @@ export function StepSelectAll({
           }
           en={
             <>
-              There are <CardHighlight>{playerCount} cards</CardHighlight> in total to be selected.
+              There are <CardHighlight>{selectionCount} cards</CardHighlight> in total to be selected.
               <br />
               You get <PointsHighlight type="positive">1 point</PointsHighlight> for each card that is not
               from the robot and lose <PointsHighlight type="negative">1 point</PointsHighlight> for each card
@@ -185,11 +192,11 @@ export function StepSelectAll({
         />
       </RuleInstruction>
 
-      <Flex justify="center">
+      <SpaceFloat enabled={length === selectionCount}>
         <SendButton
           size="large"
           onClick={onSubmitCards}
-          disabled={user.ready || length !== playerCount}
+          disabled={user.ready || length !== selectionCount}
           ref={scrollToSubmitRef}
         >
           <Translate
@@ -198,7 +205,7 @@ export function StepSelectAll({
           />{' '}
           <Avatar size="small">{length}</Avatar>
         </SendButton>
-      </Flex>
+      </SpaceFloat>
 
       <Summary
         user={user}

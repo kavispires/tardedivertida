@@ -12,9 +12,10 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 import { NAO_SOU_ROBO_PHASES } from './utils/constants';
+import type { PhaseAreYouARobotState } from './utils/types';
 import { StepSelectAll } from './StepSelectAll';
 
-export function PhaseAreYouARobot({ state, players, user }: PhaseProps) {
+export function PhaseAreYouARobot({ state, players, user }: PhaseProps<PhaseAreYouARobotState>) {
   const { step, setStep } = useStep();
 
   const onSubmitCaptcha = useOnSubmitGuessAPIRequest(setStep);
@@ -59,6 +60,7 @@ export function PhaseAreYouARobot({ state, players, user }: PhaseProps) {
           captcha={state.captcha}
           options={state.options}
           robot={state.robot}
+          selectionCount={state.selectionCount}
         />
       </StepSwitcher>
     </PhaseContainer>

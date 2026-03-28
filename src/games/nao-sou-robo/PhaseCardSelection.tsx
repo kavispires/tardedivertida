@@ -13,9 +13,10 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitCardAPIRequest } from './utils/api-requests';
 import { NAO_SOU_ROBO_PHASES } from './utils/constants';
+import type { PhaseCardSelectionState } from './utils/types';
 import { StepSelectCard } from './StepSelectCard';
 
-export function PhaseCardSelection({ state, players, user }: PhaseProps) {
+export function PhaseCardSelection({ state, players, user }: PhaseProps<PhaseCardSelectionState>) {
   const { step, setStep, goToNextStep } = useStep();
 
   const onSubmitCard = useOnSubmitCardAPIRequest(setStep);
@@ -75,6 +76,7 @@ export function PhaseCardSelection({ state, players, user }: PhaseProps) {
           captcha={state.captcha}
           players={players}
           robot={state.robot}
+          cardsQuantityToSubmit={state.cardsQuantityToSubmit}
         />
       </StepSwitcher>
     </PhaseContainer>

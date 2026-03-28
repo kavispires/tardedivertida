@@ -8,15 +8,10 @@ import { getNextPhase } from './index';
  * @param gameName
  * @param gameId
  * @param playerId
- * @param cardId
+ * @param cardIds
  * @returns
  */
-export const handleSubmitCard = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  cardId: UID,
-) => {
+export const handleSubmitCards = async (gameName: string, gameId: UID, playerId: UID, cardIds: UID[]) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,
@@ -24,7 +19,7 @@ export const handleSubmitCard = async (
     actionText: 'submit card',
     shouldReady: true,
     change: {
-      cardId,
+      cardIds,
     },
     nextPhaseFunction: getNextPhase,
   });
@@ -38,12 +33,7 @@ export const handleSubmitCard = async (
  * @param guess
  * @returns
  */
-export const handleSubmitCardGuess = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  guess: UID[],
-) => {
+export const handleSubmitCardGuess = async (gameName: string, gameId: UID, playerId: UID, guess: UID[]) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,

@@ -5,7 +5,7 @@ export const NAO_SOU_ROBO_PHASES = {
 } as const;
 
 export const NAO_SOU_ROBO_ACTIONS = {
-  SUBMIT_CARD: 'SUBMIT_CARD',
+  SUBMIT_CARDS: 'SUBMIT_CARDS',
   SUBMIT_GUESS: 'SUBMIT_GUESS',
 } as const;
 

@@ -1,5 +1,10 @@
 @use "styles/sass" as *;
 
+.background {
+  background-color: get-color("gray", 1);
+  background-size: 1000% 1000%;
+}
+
 .n-table-container {
   background-color: get-color("gray", 1);
   border-radius: var(--border-radius);
@@ -14,7 +19,7 @@
 
 .n-table {
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(3, 1fr);
   background-color: get-color("gray", 1);
   border-radius: var(--border-radius);
 
@@ -55,6 +60,7 @@
 
 .hand.hand {
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .result-container {

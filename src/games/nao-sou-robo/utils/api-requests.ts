@@ -3,7 +3,7 @@ import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 import type { UseStep } from 'hooks/useStep';
 // Internal
-import type { SubmitRobotCardPayload, SubmitRobotGuessPayload } from './types';
+import type { SubmitRobotCardsPayload, SubmitRobotGuessPayload } from './types';
 import { NAO_SOU_ROBO_ACTIONS } from './constants';
 
 export function useOnSubmitCardAPIRequest(setStep: UseStep['setStep']) {
@@ -20,9 +20,9 @@ export function useOnSubmitCardAPIRequest(setStep: UseStep['setStep']) {
     ),
   });
 
-  return (payload: SubmitRobotCardPayload) => {
+  return (payload: SubmitRobotCardsPayload) => {
     request({
-      action: NAO_SOU_ROBO_ACTIONS.SUBMIT_CARD,
+      action: NAO_SOU_ROBO_ACTIONS.SUBMIT_CARDS,
       ...payload,
     });
   };

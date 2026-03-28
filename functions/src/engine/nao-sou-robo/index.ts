@@ -13,7 +13,7 @@ import type {
 import utils from '../../utils';
 // Internal Functions
 import { determineNextPhase } from './helpers';
-import { handleSubmitCard, handleSubmitCardGuess } from './actions';
+import { handleSubmitCards, handleSubmitCardGuess } from './actions';
 import {
   prepareSetupPhase,
   prepareGameOverPhase,
@@ -119,9 +119,9 @@ export const submitAction = async (data: NaoSouRoboSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
-    case NAO_SOU_ROBO_ACTIONS.SUBMIT_CARD:
-      utils.firebase.validateSubmitActionProperties(data, ['cardId'], 'submit card');
-      return handleSubmitCard(gameName, gameId, playerId, data.cardId);
+    case NAO_SOU_ROBO_ACTIONS.SUBMIT_CARDS:
+      utils.firebase.validateSubmitActionProperties(data, ['cardIds'], 'submit cards');
+      return handleSubmitCards(gameName, gameId, playerId, data.cardIds);
     case NAO_SOU_ROBO_ACTIONS.SUBMIT_GUESS:
       utils.firebase.validateSubmitActionProperties(data, ['guess'], 'submit guess');
       return handleSubmitCardGuess(gameName, gameId, playerId, data.guess);

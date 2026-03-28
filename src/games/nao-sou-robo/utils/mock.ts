@@ -1,7 +1,7 @@
-import { sample, sampleSize } from 'lodash';
+import { sampleSize } from 'lodash';
 
-export const mockCardPick = (hand: UID[]) => {
-  return sample(hand) ?? hand[0];
+export const mockCardPicks = (hand: UID[], quantity: number) => {
+  return sampleSize(hand, quantity);
 };
 
 export const mockGuess = (cards: UID[], playerCount: number, userCardId: UID) => {

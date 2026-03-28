@@ -1,7 +1,8 @@
 import {
   BEAT_THRESHOLD,
-  CARDS_PER_PLAYER,
-  DECK_PER_PLAYER,
+  CARD_SELECTION_PER_PLAYER_COUNT,
+  STARTING_HAND,
+  MAX_ROUNDS,
   NAO_SOU_ROBO_ACHIEVEMENTS,
   NAO_SOU_ROBO_PHASES,
   OUTCOME,
@@ -40,10 +41,12 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
 };
 
 export const distributeCards = (store: FirebaseStoreData, players: Players, cards: UID[]) => {
-  // Builds a 18 card deck per player
-  utils.deck.setup(store, players, cards, DECK_PER_PLAYER);
-  // Deals the first 7 cards
-  utils.deck.deal(store, players, CARDS_PER_PLAYER - 1);
+  const playerCount = utils.players.getPlayerCount(players);
+  const deckPerPlayer = STARTING_HAND + MAX_ROUNDS * (CARD_SELECTION_PER_PLAYER_COUNT[playerCount] ?? 3);
+  // Builds deck per player: starting hand + cards drawn each round
+  utils.deck.setup(store, players, cards, deckPerPlayer);
+  // Deals the starting hand
+  utils.deck.deal(store, players, STARTING_HAND);
 };
 
 export const calculateResults = (
@@ -58,7 +61,7 @@ export const calculateResults = (
   // Reset robot state
   robot.state = 0;
   // Current outcome
-  let outcome = OUTCOME.CONTINUE;
+  let outcome = OUTCOME.CONTINUE as string;
 
   const listOfPlayers = utils.players.getListOfPlayers(players);
 

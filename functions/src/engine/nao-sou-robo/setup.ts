@@ -2,6 +2,7 @@
 import type { CaptchaCard, FirebaseStateData, FirebaseStoreData, ResourceData, Robot } from './types';
 // Constants
 import {
+  CARD_SELECTION_PER_PLAYER_COUNT,
   GOODS_LIBRARY_COUNT,
   MAX_ROUNDS,
   MIN_ROUND_CARDS,
@@ -88,6 +89,9 @@ export const prepareSetupPhase = async (
     beat: 0,
   };
 
+  const playerCount = utils.players.getPlayerCount(players);
+  const cardsQuantityToSubmit = CARD_SELECTION_PER_PLAYER_COUNT[playerCount];
+
   // Save
   return {
     update: {
@@ -103,6 +107,7 @@ export const prepareSetupPhase = async (
         players,
         robot,
         outcome: OUTCOME.CONTINUE,
+        cardsQuantityToSubmit,
       },
     },
   };
@@ -116,8 +121,10 @@ export const prepareCardSelectionPhase = async (
   utils.players.unReadyPlayers(players);
   utils.players.removePropertiesFromPlayers(players, ['guess', 'cardId']);
 
-  // Deal one card per player
-  utils.deck.deal(store, players, 1);
+  const cardsQuantityToSubmit: number = state.cardsQuantityToSubmit;
+
+  // Deal cards to each player
+  utils.deck.deal(store, players, cardsQuantityToSubmit);
 
   const round = utils.helpers.increaseRound(state.round);
 
@@ -144,15 +151,19 @@ export const prepareAreYouARobotPhase = async (
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
 
-  const playerCards: CaptchaCard[] = utils.players.getListOfPlayers(players).map((player) => {
-    utils.deck.discard(store, players, player.id, player.cardId);
-    return {
-      id: player.cardId,
-      players: [],
-      bot: false,
-      playerId: player.id,
-    };
+  const playerCards: CaptchaCard[] = utils.players.getListOfPlayers(players).flatMap((player) => {
+    const playedCards: UID[] = player.cardIds ?? [];
+    return playedCards.map((cardId) => {
+      utils.deck.discard(store, players, player.id, cardId);
+      return {
+        id: cardId,
+        players: [],
+        bot: false,
+        playerId: player.id,
+      };
+    });
   });
+
   const robotCardsNeeded = Math.max(MIN_ROUND_CARDS - playerCards.length, 1);
   const botCards: CaptchaCard[] = [];
   utils.game.makeArray(robotCardsNeeded).forEach(() => {
@@ -178,7 +189,7 @@ export const prepareAreYouARobotPhase = async (
         robot: {
           ...state.robot,
         },
-        selectionCount: utils.players.getPlayerCount(players),
+        selectionCount: MIN_ROUND_CARDS - robotCardsNeeded,
       },
     },
   };

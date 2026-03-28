@@ -7,7 +7,7 @@ export const NAO_SOU_ROBO_PHASES = {
 } as const;
 
 export const NAO_SOU_ROBO_ACTIONS = {
-  SUBMIT_CARD: 'SUBMIT_CARD',
+  SUBMIT_CARDS: 'SUBMIT_CARDS',
   SUBMIT_GUESS: 'SUBMIT_GUESS',
 } as const;
 
@@ -28,19 +28,27 @@ export const OUTCOME = {
   TOO_SUSPICIOUS: 'TOO_SUSPICIOUS',
   ROBOT_WINS: 'ROBOT_WINS',
   HUMANS_WIN: 'HUMANS_WIN',
-};
+} as const;
 
 export const MAX_ROUNDS = 10;
 
-export const CARDS_PER_PLAYER = 8;
-
-export const DECK_PER_PLAYER = MAX_ROUNDS + CARDS_PER_PLAYER;
+export const STARTING_HAND = 8;
 
 export const ROUND_TYPES = ['colors', 'emotions', 'glyphs', 'words', 'emojis', 'warehouse-goods', 'words'];
 
 export const GOODS_LIBRARY_COUNT = 256;
 
 export const MIN_ROUND_CARDS = 9;
+
+export const CARD_SELECTION_PER_PLAYER_COUNT = {
+  2: 3,
+  3: 2,
+  4: 4,
+  5: 1,
+  6: 1,
+  7: 1,
+  8: 1,
+} as const;
 
 export const ROBOT_GOAL_BY_PLAYER_COUNT = {
   2: 20,
@@ -50,7 +58,7 @@ export const ROBOT_GOAL_BY_PLAYER_COUNT = {
   6: 15,
   7: 8,
   8: 5,
-};
+} as const;
 
 export const SUSPICION_THRESHOLD = 3;
 
