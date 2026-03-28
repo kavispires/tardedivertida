@@ -25,9 +25,10 @@ function extractGameMetadata() {
           gameCode: gameInfo.gameCode,
           version: gameInfo.version,
           release: gameInfo.release,
+          available: gameInfo.available ?? false,
           hasRules: !!(gameInfo.rules &&
-                      ((gameInfo.rules.pt && gameInfo.rules.pt.length > 0) ||
-                       (gameInfo.rules.en && gameInfo.rules.en.length > 0))),
+                      ((gameInfo.rules.pt && gameInfo.rules.pt.length > 1) ||
+                       (gameInfo.rules.en && gameInfo.rules.en.length > 1))),
           title: gameInfo.title,
         };
 
@@ -43,6 +44,8 @@ function extractGameMetadata() {
 
   // Filter valid games (not planned or deprecated)
   const validGames = games.filter(game => !excludedReleases.includes(game.release));
+  const availableGames = validGames.filter(game => game.available);
+  const unavailableGames = validGames.filter(game => !game.available);
 
   console.log('=== ALL GAMES ===');
   console.log(`Total games: ${games.length}`);
@@ -56,9 +59,33 @@ function extractGameMetadata() {
     Name: g.gameName,
     Version: g.version,
     Release: g.release,
+    Available: g.available ? '✓' : '✗',
     'Has Rules': g.hasRules ? '✓' : '✗',
     'Title (PT)': g.title?.pt || 'N/A'
   })));
+
+  console.log('\n=== AVAILABLE GAMES ===');
+  console.log(`Available games: ${availableGames.length}`);
+  console.table(availableGames.map(g => ({
+    Code: g.gameCode,
+    Name: g.gameName,
+    Version: g.version,
+    Release: g.release,
+    'Has Rules': g.hasRules ? '✓' : '✗',
+    'Title (PT)': g.title?.pt || 'N/A'
+  })));
+
+  console.log('\n=== UNAVAILABLE GAMES ===');
+  console.log(`Unavailable games: ${unavailableGames.length}`);
+  if (unavailableGames.length > 0) {
+    console.table(unavailableGames.map(g => ({
+      Code: g.gameCode,
+      Name: g.gameName,
+      Version: g.version,
+      Release: g.release,
+      'Has Rules': g.hasRules ? '✓' : '✗'
+    })));
+  }
 
   console.log('\n=== EXCLUDED GAMES (planned/deprecated) ===');
   const excludedGames = games.filter(game => excludedReleases.includes(game.release));
@@ -86,10 +113,14 @@ function extractGameMetadata() {
   const output = {
     totalGames: games.length,
     validGames: validGames.length,
+    availableGames: availableGames.length,
+    unavailableGames: unavailableGames.length,
     excludedGames: excludedGames.length,
     gamesWithoutRules: noRulesGames.length,
     allGames: games,
     validGamesList: validGames,
+    availableGamesList: availableGames,
+    unavailableGamesList: unavailableGames,
     excludedGamesList: excludedGames,
     gamesWithoutRulesList: noRulesGames
   };
