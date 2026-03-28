@@ -12,13 +12,13 @@ import { Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
 import { achievementsReference } from './utils/achievements';
+import type { PhaseGameOverState } from './utils/types';
 import { DiagramSection } from './components/DiagramSection';
 import { Solution } from './components/Solution';
 import { MyThings } from './components/MyThings';
 import { GameOverIcon } from './components/Announcement';
-// import type { MesmiceGalleryEntry } from './utils/types';
 
-export function PhaseGameOver({ state, players, user }: PhaseProps) {
+export function PhaseGameOver({ state, players, user }: PhaseProps<PhaseGameOverState>) {
   const [, isTheJudge] = useWhichPlayerIsThe('judgeId', state, players);
   const [width, ref] = useCardWidthByContainerRef(2, { maxWidth: 1000 });
 
@@ -53,7 +53,7 @@ export function PhaseGameOver({ state, players, user }: PhaseProps) {
             en="The Secret Rules"
           />
         }
-        contentProps={{ direction: 'vertical' }}
+        contentProps={{ orientation: 'vertical' }}
       >
         <Solution solutions={state.solutions} />
       </TitledContainer>

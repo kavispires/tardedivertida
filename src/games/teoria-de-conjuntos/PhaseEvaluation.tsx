@@ -8,11 +8,11 @@ import { PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnSubmitEvaluationAPIRequest } from './utils/api-requests';
-import type { Guess } from './utils/types';
+import type { Guess, PhaseEvaluationState } from './utils/types';
 import { TEORIA_DE_CONJUNTOS_PHASES } from './utils/constants';
 import { StepEvaluate } from './StepEvaluate';
 
-export function PhaseEvaluation({ state, players, user }: PhaseProps) {
+export function PhaseEvaluation({ state, players, user }: PhaseProps<PhaseEvaluationState>) {
   const { step, setStep } = useStep();
 
   const [judge, isTheJudge] = useWhichPlayerIsThe('judgeId', state, players);

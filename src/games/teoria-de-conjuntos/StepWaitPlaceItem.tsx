@@ -100,7 +100,7 @@ export function StepWaitPlaceItem({
               en="The Secret Rules"
             />
           }
-          contentProps={{ direction: 'vertical' }}
+          contentProps={{ orientation: 'vertical' }}
         >
           <Translate
             pt="Essas são as regras secretas de cada círculo, não fale elas com ninguém."

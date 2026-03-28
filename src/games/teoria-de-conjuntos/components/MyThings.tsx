@@ -42,7 +42,7 @@ export function MyThings({ hand = [], items, total }: MyThingsProps) {
           </Tooltip>
         </>
       }
-      contentProps={{ direction: 'vertical' }}
+      contentProps={{ orientation: 'vertical' }}
     >
       <Translate
         pt="Essas são as suas coisas que você poderá posicionar quando chegar sua vez."

@@ -64,7 +64,7 @@ export function WordLengths({ wordLengths, highlightLength, phase }: WordLengthP
           </>
         }
         contentProps={{
-          direction: 'vertical',
+          orientation: 'vertical',
         }}
       >
         <Flex

@@ -14,7 +14,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { SendButton, TransparentButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate, Translate } from 'components/language';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { TitledContainer } from 'components/layout/TitledContainer';
 import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
 import { TurnOrder } from 'components/players';
@@ -139,44 +139,13 @@ export function StepPlaceItem({
 
       <DiagramRules examples={examples} />
 
-      <SpaceContainer>
-        <SendButton
-          size="large"
-          disabled={!selectedArea || !selectedItemId}
-          onClick={() => {
-            if (selectedArea && selectedItemId) {
-              onSubmitItemPlacement({
-                position: selectedArea,
-                itemId: selectedItemId,
-              });
-            }
-          }}
-          ref={scrollToSubmitRef}
-        >
-          <Flex
-            gap={4}
-            align="center"
-          >
-            <Translate
-              en="Submit"
-              pt="Enviar"
-            />
-            <span className="selected-item">
-              <DualTranslate>{selectedItem?.name}</DualTranslate>
-            </span>
-            <span style={{ marginRight: '6px' }}>=</span>
-            <SelectedAreasCircles selectedArea={selectedArea} />
-          </Flex>
-        </SendButton>
-      </SpaceContainer>
-
       <MouseFollowingContent
         active={Boolean(selectedItemId) && (!selectedArea || selectedItemId !== previouslySelectedItemId)}
         contained
       >
         <ItemCard
           itemId={selectedItemId ?? ''}
-          width={100}
+          width={96}
           text={items[selectedItemId ?? '']?.name}
           className={getAnimationClass('pulse', {
             infinite: true,
@@ -304,6 +273,37 @@ export function StepPlaceItem({
         </Flex>
       </TitledContainer>
 
+      <SpaceFloat enabled={Boolean(selectedArea) && Boolean(selectedItemId)}>
+        <SendButton
+          size="large"
+          disabled={!selectedArea || !selectedItemId}
+          onClick={() => {
+            if (selectedArea && selectedItemId) {
+              onSubmitItemPlacement({
+                position: selectedArea,
+                itemId: selectedItemId,
+              });
+            }
+          }}
+          ref={scrollToSubmitRef}
+        >
+          <Flex
+            gap={4}
+            align="center"
+          >
+            <Translate
+              en="Submit"
+              pt="Enviar"
+            />
+            <span className="selected-item">
+              <DualTranslate>{selectedItem?.name}</DualTranslate>
+            </span>
+            <span style={{ marginRight: '6px' }}>=</span>
+            <SelectedAreasCircles selectedArea={selectedArea} />
+          </Flex>
+        </SendButton>
+      </SpaceFloat>
+
       {isJudge && (
         <TitledContainer
           contained
@@ -313,7 +313,7 @@ export function StepPlaceItem({
               en="The Secret Rules"
             />
           }
-          contentProps={{ direction: 'vertical' }}
+          contentProps={{ orientation: 'vertical' }}
         >
           <Translate
             pt="Essas são as regras secretas de cada círculo, não fale elas com ninguém."

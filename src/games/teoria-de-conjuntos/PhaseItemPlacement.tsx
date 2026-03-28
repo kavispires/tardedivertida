@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -9,14 +10,13 @@ import { StepSwitcher } from 'components/steps';
 import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitEvaluationFixAPIRequest, useOnSubmitItemPlacementAPIRequest } from './utils/api-requests';
-import type { Guess } from './utils/types';
+import type { Guess, PhaseItemPlacementState } from './utils/types';
 import { TEORIA_DE_CONJUNTOS_PHASES } from './utils/constants';
 import { Announcement } from './components/Announcement';
 import { StepPlaceItem } from './StepPlaceItem';
 import { StepWaitPlaceItem } from './StepWaitPlaceItem';
-// Icons
 
-export function PhaseItemPlacement({ state, players, user }: PhaseProps) {
+export function PhaseItemPlacement({ state, players, user }: PhaseProps<PhaseItemPlacementState>) {
   const { step, setStep } = useStep();
 
   const [, isTheJudge] = useWhichPlayerIsThe('judgeId', state, players);
@@ -50,40 +50,42 @@ export function PhaseItemPlacement({ state, players, user }: PhaseProps) {
         players={players}
       >
         {/* Step 0 */}
-        <ViewIf condition={isTheActivePlayer}>
-          <StepPlaceItem
-            players={players}
-            user={user}
-            examples={state.examples}
-            diagrams={state.diagrams}
-            items={state.items}
-            turnOrder={state.turnOrder}
-            activePlayer={activePlayer}
-            onSubmitItemPlacement={onSubmitItemPlacement}
-            onSubmitEvaluationFix={onSubmitEvaluationFix}
-            announcement={announcement}
-            targetItemCount={state.targetItemsCount}
-            round={state.round}
-            isJudge={isTheJudge}
-            solutions={state.solutions}
-          />
-        </ViewIf>
-        <ViewIf condition={!isTheActivePlayer}>
-          <StepWaitPlaceItem
-            players={players}
-            user={user}
-            examples={state.examples}
-            diagrams={state.diagrams}
-            items={state.items}
-            turnOrder={state.turnOrder}
-            activePlayer={activePlayer}
-            announcement={announcement}
-            isJudge={isTheJudge}
-            solutions={state.solutions}
-            targetItemCount={state.targetItemsCount}
-            round={state.round}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isTheActivePlayer}>
+            <StepPlaceItem
+              players={players}
+              user={user}
+              examples={state.examples}
+              diagrams={state.diagrams}
+              items={state.items}
+              turnOrder={state.turnOrder}
+              activePlayer={activePlayer}
+              onSubmitItemPlacement={onSubmitItemPlacement}
+              onSubmitEvaluationFix={onSubmitEvaluationFix}
+              announcement={announcement}
+              targetItemCount={state.targetItemsCount}
+              round={state.round}
+              isJudge={isTheJudge}
+              solutions={state.solutions}
+            />
+          </ViewIf>
+          <ViewIf condition={!isTheActivePlayer}>
+            <StepWaitPlaceItem
+              players={players}
+              user={user}
+              examples={state.examples}
+              diagrams={state.diagrams}
+              items={state.items}
+              turnOrder={state.turnOrder}
+              activePlayer={activePlayer}
+              announcement={announcement}
+              isJudge={isTheJudge}
+              solutions={state.solutions}
+              targetItemCount={state.targetItemsCount}
+              round={state.round}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { motion } from 'motion/react';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { Alert, Divider, Flex } from 'antd';
@@ -21,6 +22,8 @@ import { TripleAreaPlacedItems, tripleHelpers } from './TripleDiagram/TripleArea
 import { DoubleDiagram } from './DoubleDiagram/DoubleDiagram';
 import { DoubleDiagramClickableAreas } from './DoubleDiagram/DoubleDiagramClickableAreas';
 import { DoubleAreaPlacedItems, doubleHelpers } from './DoubleDiagram/DoubleAreaPlacedItems';
+
+const MotionInstruction = motion.create(Instruction);
 
 type DiagramSectionProps = {
   width: number;
@@ -60,13 +63,22 @@ export function DiagramSection({
 
   return (
     <div className="diagram-section">
-      <Instruction
+      <MotionInstruction
+        animate={{
+          opacity: hasAnAreaSelected ? 1 : 0,
+          height: hasAnAreaSelected ? 'auto' : 0,
+        }}
+        transition={{ duration: 0.3 }}
         contained={hasAnAreaSelected}
         className="diagram-section__selected-scope"
+        style={{ overflow: 'hidden' }}
       >
         {hasAnAreaSelected && (
           <>
-            <Title size="xx-small">
+            <Title
+              size="xx-small"
+              colorScheme="light"
+            >
               {selectedArea === 'O' ? (
                 <Translate
                   pt="Fora do Diagrama"
@@ -88,10 +100,12 @@ export function DiagramSection({
             />
           </>
         )}
-      </Instruction>
+      </MotionInstruction>
+
       <Instruction
         contained
         className="diagram-section__world"
+        style={{ width: width + 12 }}
       >
         {doubleDiagram ? (
           <>
@@ -162,7 +176,7 @@ function CurrentItem({
     >
       <ItemCard
         itemId={currentItem.id}
-        width={100}
+        width={64}
         className={clsx(
           'floating-item__item',
           currentItemPosition && 'floating-item__item--selection',

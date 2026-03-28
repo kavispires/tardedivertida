@@ -59,7 +59,7 @@ export function Solution({
         )}
       </Typography.Paragraph>
       {showHints && <AttributeHints />}
-      <Divider />
+      <Divider className="mt-2" />
       <Typography.Paragraph>
         <CircleHighlight color="gold">
           <Translate
@@ -84,7 +84,7 @@ export function Solution({
 
       {solutions.context && (
         <>
-          <Divider />
+          <Divider className="mt-2" />
           <Typography.Paragraph>
             <CircleHighlight color="red">
               <Translate
