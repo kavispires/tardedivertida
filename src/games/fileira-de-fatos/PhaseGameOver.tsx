@@ -12,9 +12,10 @@ import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
 import { getReference } from './utils/helpers';
 import achievementsReference from './utils/achievements';
+import type { PhaseGameOverState } from './utils/types';
 import { FinalScenarios } from './components/FinalScenarios';
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   return (
     <GameOverWrapper
       state={state}

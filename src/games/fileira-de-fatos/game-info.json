@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "F",
   "gameName": "fileira-de-fatos",
-  "version": "1.0.34",
+  "version": "1.0.36",
   "release": "stable",
   "releaseDate": "2023-07-21",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Fileira De Fatos",
     "en": "Facts Lineup"
@@ -24,22 +24,23 @@
     "cloudsAnimationType": "flow",
     "primaryColor": "#ab0d17",
     "colorScheme": "dark",
-    "videoBackground": true
+    "videoBackground": true,
+    "imageBackground": true
   },
   "rules": {
-    "pt": [
-      "Em Fileira De Fatos, jogadores ordenam cenários do melhor para o pior e tentam adivinhar como os outros pensam",
-      "Cada rodada um jogador é o juiz e deve ordenar os 5 cenários",
-      "Enquanto isso, os outros jogadores também ordenam os cenários tentando adivinhar como o juiz pensa",
-      "Você ganha 1 ponto por cenário na posição certa e o juiz ganha o mesmo número de pontos que o jogador que acertar mais",
-      "Após cada jogador ser o juiz pelo menos uma vez, o jogador que tiver mais pontos vence!"
-    ],
     "en": [
-      "In Facts Lineup, players order scenarios from best to worst and try to guess how others think",
-      "Each round a player is the judge and must order the 5 scenarios",
-      "Meanwhile, the other players also order the scenarios trying to guess how the judge thinks",
-      "You get 1 point for each scenario in the right position and the judge gets the same number of points as the player who gets the most",
-      "After each player is the judge at least once, the player with the most points wins!"
+      "In Facts Lineup, players rank scenarios from best to worst and try to predict how the judge thinks.",
+      "Each round, one player is the judge and secretly orders the 5 scenarios.",
+      "Meanwhile, the other players also order the scenarios, trying to match the judge’s ranking.",
+      "You earn 1 point for each scenario in the correct position, and the judge earns the same number of points as the highest-scoring player.",
+      "After each player has been the judge at least once, the player with the most points wins."
+    ],
+    "pt": [
+      "Em Fileira de Fatos, os jogadores ordenam cenários do melhor para o pior e tentam prever como o juiz pensa.",
+      "A cada rodada, um jogador é o juiz e ordena secretamente os 5 cenários.",
+      "Enquanto isso, os outros jogadores também ordenam os cenários tentando reproduzir a ordem do juiz.",
+      "Você ganha 1 ponto por cada cenário na posição correta, e o juiz ganha a mesma quantidade de pontos que o jogador com maior pontuação na rodada.",
+      "Após todos os jogadores serem o juiz pelo menos uma vez, vence quem tiver mais pontos."
     ]
   },
   "playerCount": {

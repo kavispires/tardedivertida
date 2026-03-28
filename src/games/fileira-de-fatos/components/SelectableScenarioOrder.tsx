@@ -12,6 +12,7 @@ import { SendButton, TransparentButton } from 'components/buttons';
 import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { RuleInstruction } from 'components/text';
 // Internal
 import type { SubmitScenarioOrderPayload } from '../utils/types';
@@ -41,7 +42,7 @@ export function SelectableScenarioOrder({ scenarios, kind, onSubmitOrder }: Sele
   const onAddScenario = (card: TextCard) => {
     setSelection((selection) => {
       const newSelection = [...selection];
-      const firstNullIndex = newSelection.findIndex((entry) => entry === null);
+      const firstNullIndex = newSelection.indexOf(null);
       newSelection[firstNullIndex] = card;
       return newSelection;
     });
@@ -88,7 +89,7 @@ export function SelectableScenarioOrder({ scenarios, kind, onSubmitOrder }: Sele
         ))}
       </div>
 
-      <SpaceContainer>
+      <SpaceFloat>
         <Button
           size="large"
           onClick={onRemoveScenario}
@@ -119,7 +120,7 @@ export function SelectableScenarioOrder({ scenarios, kind, onSubmitOrder }: Sele
             en="Submit"
           />
         </SendButton>
-      </SpaceContainer>
+      </SpaceFloat>
     </SpaceContainer>
   );
 }

@@ -12,10 +12,11 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { FILEIRA_DE_FATOS_PHASES } from './utils/constants';
+import type { PhaseResultsState } from './utils/types';
 import { StepRanking } from './StepRanking';
 import { StepReveal } from './StepReveal';
 
-export function PhaseResults({ state, players }: PhaseProps) {
+export function PhaseResults({ state, players }: PhaseProps<PhaseResultsState>) {
   const { step, goToPreviousStep, goToNextStep } = useStep();
   const [activePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 

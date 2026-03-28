@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -16,11 +17,12 @@ import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitOrderingAPIRequest } from './utils/api-requests';
 import { FILEIRA_DE_FATOS_PHASES } from './utils/constants';
+import type { PhaseOrderingState } from './utils/types';
 import { FirstRoundIntroduction } from './components/RulesExplanation';
 import { StepOrderScenarios } from './StepOrderScenarios';
 import { StepJudgeScenarios } from './StepJudgeScenarios';
 
-export function PhaseOrdering({ state, players }: PhaseProps) {
+export function PhaseOrdering({ state, players }: PhaseProps<PhaseOrderingState>) {
   const { step, setStep } = useStep();
   const [activePlayer, isTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
@@ -82,23 +84,25 @@ export function PhaseOrdering({ state, players }: PhaseProps) {
         players={players}
       >
         {/* Step 0 */}
-        <ViewIf condition={isTheActivePlayer}>
-          <StepJudgeScenarios
-            scenarios={state.scenarios}
-            roundType={state.roundType}
-            onSubmitOrder={onSubmitOrder}
-            announcement={announcement}
-          />
-        </ViewIf>
-        <ViewIf condition={!isTheActivePlayer}>
-          <StepOrderScenarios
-            activePlayer={activePlayer}
-            scenarios={state.scenarios}
-            roundType={state.roundType}
-            onSubmitOrder={onSubmitOrder}
-            announcement={announcement}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isTheActivePlayer}>
+            <StepJudgeScenarios
+              scenarios={state.scenarios}
+              roundType={state.roundType}
+              onSubmitOrder={onSubmitOrder}
+              announcement={announcement}
+            />
+          </ViewIf>
+          <ViewIf condition={!isTheActivePlayer}>
+            <StepOrderScenarios
+              activePlayer={activePlayer}
+              scenarios={state.scenarios}
+              roundType={state.roundType}
+              onSubmitOrder={onSubmitOrder}
+              announcement={announcement}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );
