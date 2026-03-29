@@ -3,8 +3,10 @@
 .ruleInstruction {
   $self: &;
 
-  background-color: rgba($color: white, $alpha: 0.85);
+  background-color: rgba($color: white, $alpha: 1);
   border-radius: var(--border-radius);
+  @include box-shadow;
+
   max-width: var(--max-width);
   min-width: calc(var(--max-width) / 2);
   display: grid;
@@ -53,6 +55,6 @@
 }
 
 .ruleInstructionContent {
-  padding: get-unit(2);
+  padding: get-unit(2 3);
   text-wrap: wrap;
 }
