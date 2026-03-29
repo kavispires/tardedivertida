@@ -5,13 +5,13 @@ import { useDevFeatures } from 'hooks/useDevFeatures';
 import { LETTERS } from 'utils/constants';
 import { getEntryId } from 'utils/helpers';
 // Internal
-import type { ArteRuimCard } from '../utils/types';
-import { ArteRuimCard as Card } from './Card';
+import type { ArteRuimCustomCard } from '../utils/types';
+import { ArteRuimCard } from './Card';
 
 type EvaluationAllCardsProps = {
-  cards: ArteRuimCard[];
+  cards: ArteRuimCustomCard[];
   activeItem: string;
-  onActivateItem: GenericFunction;
+  onActivateItem: (value: string) => void;
   votes: PlainObject;
   levelType: string;
 };
@@ -35,6 +35,7 @@ export function EvaluationAllCards({
         const isUsed = Object.values(votes).includes(cardEntryId);
 
         return (
+          // biome-ignore lint/a11y/useFocusableInteractive: <explanation>
           <li
             role="button"
             key={cardEntryId}
@@ -45,7 +46,7 @@ export function EvaluationAllCards({
             )}
             onClick={() => onActivateItem(cardEntryId)}
           >
-            <Card
+            <ArteRuimCard
               text={cardEntry.text}
               level={cardEntry.level}
               header={isDebugEnabled ? cardEntry.id : letter}

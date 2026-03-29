@@ -1,5 +1,10 @@
 @use "styles/sass" as *;
 
+.background {
+  background: linear-gradient(-45deg, #dee1e3, #9e9b97, #dfe4e8);
+  background-size: 1000% 1000%;
+}
+
 .a-draw-step {
   &__card {
     margin-bottom: get-unit(2);
@@ -108,7 +113,9 @@
     border-radius: get-unit(2);
     border: 2px solid transparent;
 
-    transition: background-color 250ms, transform 250ms;
+    transition:
+      background-color 250ms,
+      transform 250ms;
 
     &:hover {
       transform: scale(0.95);
@@ -141,7 +148,9 @@
     box-sizing: border-box;
     cursor: pointer;
     border-radius: get-unit(2);
-    transition: background-color 250ms, transform 250ms;
+    transition:
+      background-color 250ms,
+      transform 250ms;
     display: flex;
     justify-content: center;
     align-items: center;

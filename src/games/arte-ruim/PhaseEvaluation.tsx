@@ -12,11 +12,12 @@ import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitVotingAPIRequest } from './utils/api-requests';
 import { ARTE_RUIM_PHASES } from './utils/constants';
+import type { PhaseEvaluationState } from './utils/types';
 import { EvaluationRules } from './components/TextBlobs';
 import { EvaluatedDrawings } from './components/EvaluatedDrawings';
 import { StepEvaluation } from './StepEvaluation';
 
-function EvaluationPhase({ players, state, user }: PhaseProps) {
+function EvaluationPhase({ players, state, user }: PhaseProps<PhaseEvaluationState>) {
   const { step, setStep } = useStep(0);
 
   const onSubmitVoting = useOnSubmitVotingAPIRequest(setStep);
@@ -63,7 +64,7 @@ function EvaluationPhase({ players, state, user }: PhaseProps) {
         }}
       >
         {/*Step 0 */}
-        <ViewIf condition={state.drawings && user.id}>
+        <ViewIf condition={!!state.drawings && !!user.id}>
           <StepEvaluation
             drawings={state.drawings}
             cards={state.cards}

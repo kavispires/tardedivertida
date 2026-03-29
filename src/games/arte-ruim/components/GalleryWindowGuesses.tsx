@@ -5,15 +5,12 @@ import type { GamePlayers } from 'types/game';
 import { Translate } from 'components/language';
 import { SlideShowBubbleValue, SlideShowLabel, SlideShowPlayersList } from 'components/slide-show';
 // Internal
-import type { ArteRuimCard } from '../utils/types';
-import type { PlayersSay } from '../utils/types';
-// Ant Design Resources
-// Utils
+import type { ArteRuimCustomCard, PlayersSay } from '../utils/types';
 
 type GalleryWindowGuessesProps = {
   playersSay: PlayersSay;
   players: GamePlayers;
-  cards: ArteRuimCard[];
+  cards: ArteRuimCustomCard[];
   windowCardId: string;
   artistColor: string;
 };

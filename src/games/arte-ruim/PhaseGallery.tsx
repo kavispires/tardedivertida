@@ -11,11 +11,12 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import { ARTE_RUIM_PHASES, SLIDE_DURATION } from './utils/constants';
+import type { PhaseGalleryState } from './utils/types';
 import { GalleryRules } from './components/TextBlobs';
 import { StepGallery } from './StepGallery';
 import { StepRanking } from './StepRanking';
 
-function PhaseGallery({ state, players, meta }: PhaseProps) {
+function PhaseGallery({ state, players, meta }: PhaseProps<PhaseGalleryState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const slideShowConfig = useSlideShow({
     length: state.gallery.length,

@@ -35,17 +35,17 @@ Legend
 - Collection: `arte-ruim`
 - Code: `A`
 - Optional Variations: ✅
-- Rules: 🔘
+- Rules: ✅
 - Rules MD: 🔘
 - Rules Images: ✴️
 - Bots: 🔘
-- Collects Data: 🔘
-- Image Background: 🔘
+- Collects Data: ✅
+- Image Background: ✅
 - Phase Delegator Migration: ✅
-- PhaseProps Migration: 🔘
+- PhaseProps Migration: ✅
 - Role-base View Migration: 🔘
-- Float Submit Migration: 🔘
-- Host Timer Bar Migration: 🔘
+- Float Submit Migration: ✅
+- Host Timer Bar Migration: ✅
 
 ## Barrados na Alfândega
 

@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
@@ -14,17 +15,16 @@ import { SlideShow } from 'components/slide-show';
 import { Step } from 'components/steps';
 import { StepTitle } from 'components/text';
 // Internal
-import type { ArteRuimCard } from './utils/types';
-import type { ArteRuimWindow } from './utils/types';
+import type { ArteRuimCustomCard, ArteRuimGalleryWindow } from './utils/types';
 import { GalleryWindowCredits } from './components/GalleryWindowCredits';
 import { GalleryWindowGuesses } from './components/GalleryWindowGuesses';
 import { GalleryWindowResult } from './components/GalleryWindowResult';
 import { ScoringRules } from './components/TextBlobs';
 
 type StepGalleryProps = {
-  gallery: ArteRuimWindow[];
+  gallery: ArteRuimGalleryWindow[];
   players: GamePlayers;
-  cards: ArteRuimCard[];
+  cards: ArteRuimCustomCard[];
   slideShowConfig: SlideShowConfig;
 };
 
@@ -61,8 +61,7 @@ export function StepGallery({ gallery, players, cards, slideShowConfig }: StepGa
           className="a-gallery__drawing"
         />
 
-        {/** biome-ignore lint/complexity/noUselessFragments: I think it's needed */}
-        <>
+        <Fragment>
           <GalleryWindowCredits artist={playerArtist} />
 
           <GalleryWindowGuesses
@@ -81,7 +80,7 @@ export function StepGallery({ gallery, players, cards, slideShowConfig }: StepGa
             playersSay={playersSay}
             players={players}
           />
-        </>
+        </Fragment>
       </SlideShow>
     </Step>
   );

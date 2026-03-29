@@ -17,12 +17,12 @@ import { getEntryId, shuffle } from 'utils/helpers';
 import { SendButton } from 'components/buttons';
 import { CanvasResizer } from 'components/canvas';
 import { Translate } from 'components/language';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
-import type { ArteRuimCard, ArteRuimDrawing } from './utils/types';
+import type { ArteRuimCustomCard, ArteRuimDrawing, SubmitVotingPayload } from './utils/types';
 import { prepareVotes } from './utils/helpers';
 import { EvaluationAllDrawings } from './components/EvaluationAllDrawings';
 import { EvaluationAllCards } from './components/EvaluationAllCards';
@@ -30,9 +30,9 @@ import { EvaluationRules } from './components/TextBlobs';
 
 type StepEvaluationProps = {
   drawings: ArteRuimDrawing[];
-  cards: ArteRuimCard[];
+  cards: ArteRuimCustomCard[];
   players: GamePlayers;
-  onSubmitVoting: GenericFunction;
+  onSubmitVoting: (payload: SubmitVotingPayload) => void;
   levelType: string;
   user: GamePlayer;
 } & Pick<StepProps, 'announcement'>;
@@ -70,7 +70,7 @@ export function StepEvaluation({
       .filter((key: string) => !usedDrawings.includes(key));
     let cardsKeys = shuffle(
       cards
-        .map((e: ArteRuimCard, index: number) => getEntryId(['card', e.id, LETTERS[index]]))
+        .map((e: ArteRuimCustomCard, index: number) => getEntryId(['card', e.id, LETTERS[index]]))
         .filter((key: string) => !usedCards.includes(key)),
     );
     // For level 5 specifically, if there are less cards than drawings
@@ -90,7 +90,7 @@ export function StepEvaluation({
     setVotes(newVotes);
   }, [cards, drawings, votes, setVotes]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: no functions should be a dependency of this effect
   useEffect(() => {
     if (!canvasSize) {
       // Round to increments of 50
@@ -102,7 +102,7 @@ export function StepEvaluation({
     const playersDrawing = (drawings ?? []).find((drawing: ArteRuimDrawing) => drawing.playerId === user.id);
     if (playersDrawing && playersDrawing.level !== 5) {
       const drawingKey = getEntryId(['drawing', playersDrawing.id]);
-      const cardIndex = (cards ?? []).findIndex((card: ArteRuimCard) => card.playerId === user.id);
+      const cardIndex = (cards ?? []).findIndex((card: ArteRuimCustomCard) => card.playerId === user.id);
       const cardKey = getEntryId(['card', playersDrawing.id, LETTERS[cardIndex]]);
       const vote = { [drawingKey]: cardKey };
       return vote;
@@ -145,7 +145,7 @@ export function StepEvaluation({
               <br />
               Basta clicar em um desenho e depois em sua carta correspondente, ou vice-versa.
               <br />
-              Para refazer, basta reselecionar o desenho ou carta normalmente.
+              Para refazer, basta re-selecionar o desenho ou carta normalmente.
               <br />
               Quando estiver pronto, clique em <b>Enviar sua avaliação</b>.
             </>
@@ -165,7 +165,24 @@ export function StepEvaluation({
       </RuleInstruction>
 
       <Space orientation="vertical">
-        <SpaceContainer wrap>
+        <EvaluationAllDrawings
+          drawings={drawings ?? []}
+          activeItem={activeItem}
+          onActivateItem={activateItem}
+          votes={votes}
+          canvasSize={canvasSize}
+          players={players}
+        />
+
+        <EvaluationAllCards
+          cards={cards ?? []}
+          activeItem={activeItem}
+          onActivateItem={activateItem}
+          votes={votes}
+          levelType={levelType}
+        />
+
+        <SpaceFloat>
           <Button
             type="default"
             icon={<ClearOutlined />}
@@ -197,24 +214,7 @@ export function StepEvaluation({
               en="Send evaluation"
             />
           </SendButton>
-        </SpaceContainer>
-
-        <EvaluationAllDrawings
-          drawings={drawings ?? []}
-          activeItem={activeItem}
-          onActivateItem={activateItem}
-          votes={votes}
-          canvasSize={canvasSize}
-          players={players}
-        />
-
-        <EvaluationAllCards
-          cards={cards ?? []}
-          activeItem={activeItem}
-          onActivateItem={activateItem}
-          votes={votes}
-          levelType={levelType}
-        />
+        </SpaceFloat>
       </Space>
     </Step>
   );

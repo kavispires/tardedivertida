@@ -10,11 +10,11 @@ import { IconAvatar } from 'components/avatars/IconAvatar';
 import { CanvasSVG } from 'components/canvas';
 import { PlayerAvatarName } from 'components/player';
 // Internal
-import type { ArteRuimCard, ArteRuimDrawing } from '../utils/types';
+import type { ArteRuimCustomCard, ArteRuimDrawing } from '../utils/types';
 
 type EvaluatedDrawingsProps = {
   votes?: Dictionary<string>;
-  cards: ArteRuimCard[];
+  cards: ArteRuimCustomCard[];
   drawings: ArteRuimDrawing[];
   players: GamePlayers;
 };
@@ -29,7 +29,7 @@ export function EvaluatedDrawings({ votes, cards, drawings, players }: Evaluated
 
   const cardsDict = useMemo(
     () =>
-      cards.reduce((acc: Record<string, ArteRuimCard>, card) => {
+      cards.reduce((acc: Record<string, ArteRuimCustomCard>, card) => {
         acc[card.id] = card;
         return acc;
       }, {}),
@@ -60,7 +60,7 @@ export function EvaluatedDrawings({ votes, cards, drawings, players }: Evaluated
         .sort()
         .map((drawingKey: string) => {
           const drawing = drawingsDict[drawingKey] as ArteRuimDrawing;
-          const card = cardsDict[votes[drawingKey]] as ArteRuimCard;
+          const card = cardsDict[votes[drawingKey]] as ArteRuimCustomCard;
 
           return (
             <li

@@ -14,11 +14,12 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
 import { ARTE_RUIM_PHASES } from './utils/constants';
+import type { PhaseDrawState } from './utils/types';
 import { DrawInstruction } from './components/TextBlobs';
 import { LevelInstruction } from './components/LevelInstruction';
 import { StepDraw } from './StepDraw';
 
-function PhaseDraw({ players, state, user }: PhaseProps) {
+function PhaseDraw({ players, state, user }: PhaseProps<PhaseDrawState>) {
   const { step, goToNextStep, setStep } = useStep(0);
   const [startDrawingTimer, setStartDrawingTimer] = useState(false);
 
