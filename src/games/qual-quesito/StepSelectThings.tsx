@@ -14,6 +14,7 @@ import { Card } from 'components/cards';
 import { Popconfirm } from 'components/general/Popconfirm';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
@@ -179,7 +180,14 @@ export function StepSelectThings({
         </RuleInstruction>
       )}
 
-      <SpaceContainer className="my-6">
+      <ItemsHand
+        hand={user.hand ?? []}
+        cardsDict={cardsDict}
+        selectedItemsIds={selectedItemsIds}
+        onSelectItem={handleSelectItem}
+      />
+
+      <SpaceFloat className="mt-6">
         <Badge
           count={selectedItemsIds.length}
           showZero
@@ -230,14 +238,7 @@ export function StepSelectThings({
             </Button>
           </Popconfirm>
         )}
-      </SpaceContainer>
-
-      <ItemsHand
-        hand={user.hand ?? []}
-        cardsDict={cardsDict}
-        selectedItemsIds={selectedItemsIds}
-        onSelectItem={handleSelectItem}
-      />
+      </SpaceFloat>
 
       <PlayersHandsCounts
         players={players}

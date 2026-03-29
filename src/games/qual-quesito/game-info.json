@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "qual-quesito",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "release": "stable",
   "releaseDate": "2026-01-01",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Qual O Quesito?",
     "en": "And The Category Is"
@@ -23,33 +23,30 @@
     "clouds": "cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "",
-    "colorScheme": "light",
-    "videoBackground": true
+    "colorScheme": "dark",
+    "videoBackground": true,
+    "imageBackground": true
   },
   "rules": {
-    "pt": [
-      "Em cada rodada, um jogador cria uma categoria que conecte pelo menos 2 coisas de sua mão.",
-      "Todos os outros jogadores tentam adicionar suas próprias coisas à categoria.",
-      "O grupo vota se cada coisa se encaixa ou não na categoria.",
-      "O criador ganha 2 pontos por uma de suas coisas aceitas. Outros jogadores ganham 3 pontos por coisas aceitas.",
-      "Coisas rejeitadas por 2 rodadas consecutivas resultam na perda de 1 ponto.",
-      "O jogo termina quando um jogador se livra de todas as suas coisas, mas o jogador com mais pontos vence."
-    ],
     "en": [
-      "Each round, one player creates a category that connects at least 2 things from their hand.",
-      "All other players try to add their own things to the category.",
-      "The group votes whether each thing fits the category or not.",
-      "The creator earns 2 points for each of their accepted things. Other players earn 3 points for accepted things.",
-      "Things rejected for 2 consecutive rounds result in a 1 negative point penalty.",
-      "The game ends when a player gets rid of all their things, but the player with the most points wins."
+      "Each round, one player creates a category that connects at least 2 items from their hand.",
+      "All other players try to add their own items to the category.",
+      "The group votes whether each item fits the category.",
+      "The creator earns 2 points for each of their accepted items. Other players earn 3 points for each accepted item.",
+      "Items rejected for 2 consecutive rounds cause their owner to lose 1 point.",
+      "The game ends when a player gets rid of all their items, but the player with the most points wins."
+    ],
+    "pt": [
+      "A cada rodada, um jogador cria uma categoria que conecte pelo menos 2 itens de sua mão.",
+      "Todos os outros jogadores tentam adicionar seus próprios itens à categoria.",
+      "O grupo vota se cada item se encaixa na categoria.",
+      "O criador ganha 2 pontos para cada um de seus itens aceitos. Os outros jogadores ganham 3 pontos para cada item aceito.",
+      "Itens rejeitados por 2 rodadas consecutivas fazem seu dono perder 1 ponto.",
+      "O jogo termina quando um jogador se livra de todos os seus itens, mas o jogador com mais pontos vence."
     ]
   },
   "playerCount": {
-    "recommended": [
-      4,
-      5,
-      6
-    ],
+    "recommended": [4, 5, 6],
     "min": 2,
     "max": 10,
     "best": 5
@@ -58,14 +55,8 @@
     "base": 0,
     "perPlayer": 0
   },
-  "mechanics": [
-    "competitive",
-    "writing",
-    "voting"
-  ],
-  "features": [
-    "achievements"
-  ],
+  "mechanics": ["competitive", "writing", "voting"],
+  "features": ["achievements"],
   "options": [
     {
       "key": "nsfw",

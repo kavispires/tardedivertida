@@ -42,8 +42,10 @@ export function StepCreateCategory({
   const { isLoading } = useLoading();
   const [newCategory, setNewCategory] = useState<string>('');
 
+  const hand = user.hand ?? [];
+
   useMock(() => {
-    if (user.hand.length < 2) {
+    if (hand.length < 2) {
       onSkipTurn();
     } else {
       onSubmitCategory({ category: mockSentence('long') });
@@ -90,7 +92,7 @@ export function StepCreateCategory({
         />
       </RuleInstruction>
 
-      {user.hand.length < 2 && (
+      {hand.length < 2 && (
         <RuleInstruction type="event">
           <Translate
             pt={
@@ -112,7 +114,7 @@ export function StepCreateCategory({
         <Input
           size="large"
           placeholder="Escreva sua categoria aqui..."
-          disabled={isLoading || user.hand.length < 2}
+          disabled={isLoading || hand.length < 2}
           onChange={(e) => setNewCategory(e.target.value)}
         />
 
@@ -162,7 +164,7 @@ export function StepCreateCategory({
       </SpaceContainer>
 
       <ItemsHand
-        hand={user.hand ?? []}
+        hand={hand}
         cardsDict={cardsDict}
       />
 

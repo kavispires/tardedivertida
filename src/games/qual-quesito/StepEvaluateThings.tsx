@@ -12,6 +12,7 @@ import { TripleStateButton } from 'components/buttons/TripleStateButton';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -156,7 +157,7 @@ export function StepEvaluateThings({
         })}
       </SpaceContainer>
 
-      <SpaceContainer className="my-6">
+      <SpaceFloat className="mt-6">
         <SendButton
           size="large"
           disabled={!completeEvaluations}
@@ -169,7 +170,7 @@ export function StepEvaluateThings({
             en="Submit evaluations"
           />
         </SendButton>
-      </SpaceContainer>
+      </SpaceFloat>
 
       <PlayersHandsCounts
         players={players}
