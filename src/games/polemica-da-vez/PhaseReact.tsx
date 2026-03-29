@@ -14,9 +14,10 @@ import { Instruction } from 'components/text';
 import { useOnSubmitReactionAPIRequest } from './utils/api-requests';
 import { mockGuess } from './utils/mock';
 import { POLEMICA_DA_VEZ_PHASES } from './utils/constants';
+import type { PhaseReactState } from './utils/types';
 import { StepLiking } from './StepLiking';
 
-export function PhaseReact({ state, players }: PhaseProps) {
+export function PhaseReact({ state, players }: PhaseProps<PhaseReactState>) {
   const { step, setStep } = useStep(0);
 
   const onSubmitReaction = useOnSubmitReactionAPIRequest(setStep);

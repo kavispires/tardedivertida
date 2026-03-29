@@ -21,7 +21,7 @@ import { TweetComment } from './components/TweetComment';
 type StepResolutionProps = {
   players: GamePlayers;
   totalLikes: number;
-  customTweet: string;
+  customTweet: string | null;
   currentTweet: TextCard;
   goToNextStep: UseStep['goToNextStep'];
 } & Pick<StepProps, 'announcement'>;

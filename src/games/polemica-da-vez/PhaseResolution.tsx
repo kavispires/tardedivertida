@@ -12,10 +12,11 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { POLEMICA_DA_VEZ_PHASES } from './utils/constants';
+import type { PhaseResolutionState } from './utils/types';
 import { StepResolution } from './StepResolution';
 import { StepRanking } from './StepRanking';
 
-export function PhaseResolution({ state, players }: PhaseProps) {
+export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
 
   const announcement = (

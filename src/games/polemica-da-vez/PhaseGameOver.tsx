@@ -1,4 +1,5 @@
 import { orderBy } from 'lodash';
+import { useMemo } from 'react';
 // Ant Design Resources
 import { FallOutlined, RiseOutlined } from '@ant-design/icons';
 // Types
@@ -12,11 +13,16 @@ import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
 // Internal
-import type { PastTweet } from './utils/types';
+import type { PastTweet, PhaseGameOverState } from './utils/types';
 import achievementsReference from './utils/achievements';
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   const playerCount = Object.keys(players).length;
+
+  const orderedTweets = useMemo(
+    () => orderBy(state.allTweets, ['likes', 'text'], ['desc', 'asc']),
+    [state.allTweets],
+  );
 
   return (
     <GameOverWrapper
@@ -34,7 +40,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
         className="p-all-tweets"
         style={{ gridTemplateColumns: `repeat(${playerCount % 3 === 0 ? 3 : 5}, 1fr)` }}
       >
-        {orderBy(state.allTweets, ['likes', 'text'], ['desc', 'asc']).map((tweet: PastTweet) => {
+        {orderedTweets.map((tweet: PastTweet) => {
           const trended = tweet.likes > playerCount / 2;
           return (
             <li
@@ -56,7 +62,6 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
                   en="likes"
                 />
               </div>
-              {}
             </li>
           );
         })}

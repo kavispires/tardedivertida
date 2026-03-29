@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -18,10 +19,11 @@ import { ViewIf } from 'components/views';
 import { useOnSubmitTweetAPIRequest } from './utils/api-requests';
 import { mockTweetSelection } from './utils/mock';
 import { POLEMICA_DA_VEZ_PHASES } from './utils/constants';
+import type { PhaseTweetSelectionState } from './utils/types';
 import { ScoringRules } from './components/RulesBlobs';
 import { StepTweetSelection } from './StepTweetSelection';
 
-export function PhaseTweetSelection({ state, players, meta }: PhaseProps) {
+export function PhaseTweetSelection({ state, players, meta }: PhaseProps<PhaseTweetSelectionState>) {
   const { step, goToNextStep, setStep } = useStep(0);
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
@@ -86,48 +88,50 @@ export function PhaseTweetSelection({ state, players, meta }: PhaseProps) {
         </RoundAnnouncement>
 
         {/* Step 1 */}
-        <ViewIf condition={isUserTheActivePlayer}>
-          <StepTweetSelection
-            currentTweets={state.currentTweets}
-            currentCustomTweet={state.currentCustomTweet}
-            onSubmitTweet={onSubmitTweet}
-            announcement={announcement}
-            round={state.round}
-            isFixedRounds={isFixedRounds}
-          />
-        </ViewIf>
-        <ViewIf condition={!isUserTheActivePlayer}>
-          <Step
-            fullWidth
-            announcement={announcement}
-          >
-            <WaitingRoom
-              title={
-                <Translate
-                  pt="Aguarde..."
-                  en="Please wait..."
-                />
-              }
-              instruction={
-                <>
-                  <Instruction>
-                    <ScoringRules
-                      round={state.round}
-                      activePlayer={activePlayer}
-                      isFixedRounds={isFixedRounds}
-                    />
-                  </Instruction>
-                  <TurnOrder
-                    order={state.gameOrder}
-                    players={players}
-                    activePlayerId={state.activePlayerId}
-                  />
-                </>
-              }
-              players={players}
+        <Fragment>
+          <ViewIf condition={isUserTheActivePlayer}>
+            <StepTweetSelection
+              currentTweets={state.currentTweets}
+              currentCustomTweet={state.currentCustomTweet}
+              onSubmitTweet={onSubmitTweet}
+              announcement={announcement}
+              round={state.round}
+              isFixedRounds={isFixedRounds}
             />
-          </Step>
-        </ViewIf>
+          </ViewIf>
+          <ViewIf condition={!isUserTheActivePlayer}>
+            <Step
+              fullWidth
+              announcement={announcement}
+            >
+              <WaitingRoom
+                title={
+                  <Translate
+                    pt="Aguarde..."
+                    en="Please wait..."
+                  />
+                }
+                instruction={
+                  <>
+                    <Instruction>
+                      <ScoringRules
+                        round={state.round}
+                        activePlayer={activePlayer}
+                        isFixedRounds={isFixedRounds}
+                      />
+                    </Instruction>
+                    <TurnOrder
+                      order={state.gameOrder}
+                      players={players}
+                      activePlayerId={state.activePlayerId}
+                    />
+                  </>
+                }
+                players={players}
+              />
+            </Step>
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

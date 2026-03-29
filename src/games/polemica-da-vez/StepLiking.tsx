@@ -24,7 +24,7 @@ import { Tweet } from './components/Tweet';
 
 type StepLikingProps = {
   currentTweet: TextCard;
-  customTweet: string;
+  customTweet: string | null;
   onSubmitReaction: (payload: SubmitReactionPayload) => void;
   players: GamePlayers;
 } & Pick<StepProps, 'announcement'>;

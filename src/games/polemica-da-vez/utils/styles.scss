@@ -1,5 +1,10 @@
 @use "styles/sass" as *;
 
+.background {
+  background: linear-gradient(-45deg, #dcdada, #dadde1, #ced7e2, #95aad1);
+  background-size: 1000% 1000%;
+}
+
 .p-step {
   min-width: 50vw;
 }
