@@ -1,5 +1,10 @@
 @use "styles/sass" as *;
 
+.background {
+  background: linear-gradient(-45deg, #032035, #203b4e, #084677, #0b151d);
+  background-size: 1000% 1000%;
+}
+
 .metrics-board {
   // background: red;
   display: flex;
