@@ -115,6 +115,7 @@ export function SelectableCell({
         width: '100%',
         height: '100%',
         minHeight: '4rem', // Match the spreadsheet cell min-height
+        zIndex: -1,
       }}
     >
       <Flex
@@ -130,7 +131,7 @@ export function SelectableCell({
         justify="center"
         vertical={false}
       >
-        <PlusCircleFilled style={{ color: 'white' }} />
+        <PlusCircleFilled />
       </Flex>
     </DroppableArea>
   );

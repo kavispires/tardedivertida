@@ -11,6 +11,7 @@ import { SendButton, TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -32,6 +33,15 @@ export function StepSelectWords({ deck, onSubmitWords, user, announcement }: Ste
   const onRandomSelection = () => {
     setDict(
       sampleSize(deck, 10).reduce((acc: Dictionary<boolean>, c) => {
+        acc[c.id] = true;
+        return acc;
+      }, {}),
+    );
+  };
+
+  const onSelectAll = () => {
+    setDict(
+      deck.reduce((acc: Dictionary<boolean>, c) => {
         acc[c.id] = true;
         return acc;
       }, {}),
@@ -69,30 +79,6 @@ export function StepSelectWords({ deck, onSubmitWords, user, announcement }: Ste
         />
       </RuleInstruction>
 
-      <SpaceContainer>
-        <Button
-          onClick={onRandomSelection}
-          size="large"
-        >
-          <Translate
-            pt="Selecione pra mim"
-            en="Select for me"
-          />
-        </Button>
-        <Badge count={length}>
-          <SendButton
-            onClick={() => onSubmitWords({ words: keys })}
-            size="large"
-            disabled={length < 10 || user.ready}
-          >
-            <Translate
-              pt="Enviar cartas"
-              en="Submit cards"
-            />
-          </SendButton>
-        </Badge>
-      </SpaceContainer>
-
       <SpaceContainer
         className="max-width"
         wrap
@@ -109,6 +95,39 @@ export function StepSelectWords({ deck, onSubmitWords, user, announcement }: Ste
           );
         })}
       </SpaceContainer>
+
+      <SpaceFloat>
+        <Button
+          onClick={onSelectAll}
+          size="large"
+        >
+          <Translate
+            pt="Selecionar todas"
+            en="Select all"
+          />
+        </Button>
+        <Button
+          onClick={onRandomSelection}
+          size="large"
+        >
+          <Translate
+            pt="Selecionar aleatoriamente"
+            en="Select randomly"
+          />
+        </Button>
+        <Badge count={length}>
+          <SendButton
+            onClick={() => onSubmitWords({ words: keys })}
+            size="large"
+            disabled={length < 10 || user.ready}
+          >
+            <Translate
+              pt="Enviar cartas"
+              en="Submit cards"
+            />
+          </SendButton>
+        </Badge>
+      </SpaceFloat>
     </Step>
   );
 }

@@ -1,7 +1,7 @@
 @use "styles/sass" as *;
 
 .background {
-  background: linear-gradient(-45deg, #526257, #4a472f, #46321a);
+  background: linear-gradient(-45deg, #7d8997, #88949e, #766c60, #7d8997, #88949e, #766c60);
   background-size: 1000% 1000%;
 }
 
@@ -28,10 +28,11 @@
   padding: 0;
   background: 0;
   border: none;
+  z-index: 30;
 
   &:active {
     cursor: grabbing;
-    z-index: 15;
+    z-index: 300;
   }
 }
 

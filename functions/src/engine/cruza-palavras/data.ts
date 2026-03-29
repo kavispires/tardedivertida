@@ -14,7 +14,7 @@ import { TDR_RESOURCES } from '../../utils/constants';
  */
 export const getWords = async (language: Language, options?: CruzaPalavrasOptions): Promise<ResourceData> => {
   const allowNSFW = !!options?.nsfw;
-  const quantityNeeded = options?.gridType === 'imageCards' ? 15 : 30;
+  const quantityNeeded = options?.gridType === 'imageCards' ? 15 : 28;
 
   if (options?.gridType === 'properties') {
     const allCards = await resourceUtils.fetchResource<Dictionary<TextCard>>(

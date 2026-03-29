@@ -37,6 +37,9 @@ export function PhaseGameOver({ state, players, user }: PhaseProps<PhaseGameOver
             pt="A Grade Final"
           />
         }
+        contentProps={{
+          className: 'contained',
+        }}
       >
         <WordGrid
           grid={state.grid}

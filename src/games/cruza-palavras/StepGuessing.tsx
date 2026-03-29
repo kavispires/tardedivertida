@@ -10,7 +10,7 @@ import { getColorFromIndex, shuffle } from 'utils/helpers';
 // Components
 import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -182,6 +182,14 @@ export function StepGuessing({
           en="Guess the cells!"
         />
       </StepTitle>
+
+      <RuleInstruction type="action">
+        <Translate
+          pt="Arraste as dicas acima para as células correspondentes abaixo."
+          en="Drag the clues above to their corresponding cells below."
+        />
+      </RuleInstruction>
+
       <DndContext
         sensors={sensors}
         onDragEnd={handleDragEnd}
@@ -194,37 +202,6 @@ export function StepGuessing({
           user={user}
           clueColors={clueColors}
         />
-
-        <RuleInstruction type="action">
-          <Translate
-            pt="Arraste as dicas acima para as células correspondentes abaixo."
-            en="Drag the clues above to their corresponding cells below."
-          />
-        </RuleInstruction>
-
-        <SpaceContainer align="center">
-          <Button
-            size="large"
-            type="dashed"
-            onClick={randomGuessThem}
-            icon={<ThunderboltOutlined />}
-          >
-            <Translate
-              pt="Desistir"
-              en="Give up"
-            />
-          </Button>
-          <SendButton
-            size="large"
-            onClick={prepareSubmitGuesses}
-            disabled={Object.keys(guesses).length !== clues.length}
-          >
-            <Translate
-              pt="Enviar respostas"
-              en="Send guesses"
-            />
-          </SendButton>
-        </SpaceContainer>
 
         <WordGrid
           grid={grid}
@@ -240,6 +217,30 @@ export function StepGuessing({
           }}
         />
       </DndContext>
+
+      <SpaceFloat>
+        <Button
+          size="large"
+          type="dashed"
+          onClick={randomGuessThem}
+          icon={<ThunderboltOutlined />}
+        >
+          <Translate
+            pt="Desistir"
+            en="Give up"
+          />
+        </Button>
+        <SendButton
+          size="large"
+          onClick={prepareSubmitGuesses}
+          disabled={Object.keys(guesses).length !== clues.length}
+        >
+          <Translate
+            pt="Enviar respostas"
+            en="Send guesses"
+          />
+        </SendButton>
+      </SpaceFloat>
     </Step>
   );
 }
