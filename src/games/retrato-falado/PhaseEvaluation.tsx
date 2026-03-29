@@ -13,9 +13,10 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 import { RETRATO_FALADO_PHASES } from './utils/constants';
+import type { PhaseEvaluationState } from './utils/types';
 import { StepVote } from './StepVote';
 
-export function PhaseEvaluation({ state, players, user }: PhaseProps) {
+export function PhaseEvaluation({ state, players, user }: PhaseProps<PhaseEvaluationState>) {
   const { step, setStep } = useStep(0);
   const [, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
 

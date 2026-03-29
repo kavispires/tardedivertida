@@ -30,7 +30,7 @@ type StepResultsProps = {
   witnessVote: UID;
   witness: GamePlayer;
   mostVotes: UID[];
-  mostVoted: UID;
+  mostVoted: UID | null;
   votes: Record<UID, UID[]>;
 } & Pick<StepProps, 'announcement'>;
 

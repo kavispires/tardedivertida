@@ -11,9 +11,10 @@ import { Translate } from 'components/language';
 import { Title } from 'components/text';
 // Internal
 import { achievementsReference } from './utils/achievements';
+import type { PhaseGameOverState } from './utils/types';
 import { MonsterSketches } from './components/MonsterSketches';
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   const canvasWidth = useCardWidth(6, {
     gap: 16,
     minWidth: 150,

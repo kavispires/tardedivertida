@@ -44,7 +44,6 @@ export function ViewLastSeconds({ isUserTheWitness, remainingTime, lines, setLin
         </div>
       </ViewIf>
       <ViewIf condition={!isUserTheWitness}>
-        (
         <div className="r-view">
           <Title>
             <Translate
@@ -71,7 +70,6 @@ export function ViewLastSeconds({ isUserTheWitness, remainingTime, lines, setLin
             strokeWidth="small"
           />
         </div>
-        );
       </ViewIf>
     </>
   );

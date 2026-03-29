@@ -1,7 +1,8 @@
 @use "styles/sass" as *;
 
 .background {
-  background: rgba(8, 60, 3, 0.5);
+  background: linear-gradient(45deg, #5c6d5a, #30432e);
+  background-size: 1000% 1000%;
 }
 
 .r-view {

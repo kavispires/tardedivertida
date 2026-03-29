@@ -52,7 +52,6 @@ export function ViewSketching({
         </div>
       </ViewIf>
       <ViewIf condition={!isUserTheWitness}>
-        (
         <div className="r-view">
           <Title>
             <Translate
@@ -85,7 +84,6 @@ export function ViewSketching({
             strokeWidth="small"
           />
         </div>
-        );
       </ViewIf>
     </>
   );

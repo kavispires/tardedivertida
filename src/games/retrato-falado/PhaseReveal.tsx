@@ -12,10 +12,11 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { RETRATO_FALADO_PHASES } from './utils/constants';
+import type { PhaseRevealState } from './utils/types';
 import { StepResults } from './StepResults';
 import { StepRanking } from './StepRanking';
 
-export function PhaseReveal({ state, players, user }: PhaseProps) {
+export function PhaseReveal({ state, players, user }: PhaseProps<PhaseRevealState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
 
   const [witness] = useWhichPlayerIsThe('witnessId', state, players);

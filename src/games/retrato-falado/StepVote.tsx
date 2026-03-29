@@ -130,6 +130,7 @@ export function StepVote({
                 disabled={ownDrawing}
                 className="r-vote-button"
                 icon={!ownDrawing && <CheckSquareOutlined />}
+                type="primary"
               >
                 {ownDrawing ? (
                   <Translate
