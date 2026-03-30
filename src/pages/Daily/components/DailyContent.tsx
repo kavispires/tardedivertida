@@ -124,7 +124,7 @@ export function DailyContent({ children, isLoading, ...props }: DailyContentProp
     return (
       <Content
         {...props}
-        style={{ ...backgroundOverride, ...props.style }}
+        style={{ ...backgroundOverride, ...props.style, marginBottom: 64 }}
       >
         <Flex
           justify="center"
@@ -140,7 +140,7 @@ export function DailyContent({ children, isLoading, ...props }: DailyContentProp
   return (
     <Content
       {...props}
-      style={{ ...backgroundOverride, ...props.style }}
+      style={{ ...backgroundOverride, ...props.style, marginBottom: 64 }}
     >
       {componentEffect}
       {children}
