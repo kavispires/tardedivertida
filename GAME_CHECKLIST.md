@@ -195,7 +195,7 @@ Legend
 
 - Collection: `detetives-imaginativos`
 - Code: `D`
-- Rules: 🔘
+- Rules: ✅
 - Rules MD: 🔘
 - Rules Images: 🔘
 - Bots: 🔘
@@ -371,7 +371,7 @@ Legend
 
 - Collection: `mesmice`
 - Code: `J`
-- Rules: 🔘
+- Rules: ✅
 - Rules MD: 🔘
 - Rules Images: 🔘
 - Bots: 🔘
@@ -403,7 +403,7 @@ Legend
 
 - Collection: `linhas-cruzadas`
 - Code: `L`
-- Rules: 🔘
+- Rules: ✅
 - Rules MD: 🔘
 - Rules Images: 🔘
 - Bots: 🔘
@@ -435,7 +435,7 @@ Legend
 
 - Collection: `megamix`
 - Code: `Z`
-- Rules: 🔘
+- Rules: ✅
 - Rules MD: 🔘
 - Rules Images: 🔘
 - Bots: 🔘
@@ -467,7 +467,7 @@ Legend
 
 - Collection: `mente-coletiva`
 - Code: `M`
-- Rules: 🔘
+- Rules: ✅
 - Rules MD: 🔘
 - Rules Images: 🔘
 - Bots: 🔘
@@ -531,7 +531,7 @@ Legend
 
 - Collection: `onda-telepatica`
 - Code: `O`
-- Rules: 🔘
+- Rules: ✅
 - Rules MD: 🔘
 - Rules Images: 🔘
 - Bots: 🔘
@@ -659,7 +659,7 @@ Legend
 
 - Collection: `sinais-de-alerta`
 - Code: `S`
-- Rules: 🔘
+- Rules: ✅
 - Rules MD: 🔘
 - Rules Images: 🔘
 - Bots: 🔘
@@ -675,7 +675,7 @@ Legend
 
 - Collection: `super-campeonato`
 - Code: `W`
-- Rules: 🔘
+- Rules: ✅
 - Rules MD: 🔘
 - Rules Images: 🔘
 - Bots: 🔘
@@ -707,7 +707,7 @@ Legend
 
 - Collection: `teste-de-elenco`
 - Code: `T`
-- Rules: 🔘
+- Rules: ✅
 - Rules MD: 🔘
 - Rules Images: 🔘
 - Bots: 🔘

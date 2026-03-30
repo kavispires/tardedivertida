@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "megamix",
-  "version": "4.1.10",
+  "version": "4.1.11",
   "release": "stable",
   "releaseDate": "2022-12-17",
   "available": false,
@@ -27,21 +27,21 @@
     "videoBackground": true
   },
   "rules": {
-    "pt": [
-      "Cada rodada um desafio é lançado e o objetivo é entrar para a área VIP!",
-      "A maioria dos desafios você tem que escolher entra duas, três ou quatro opções. Quem escolheu o mesmo que a maioria vai para a área VIP ou permanece lá.",
-      "Porém, se houve um empate entre 2 opções, quem estiver na área VIP fica, quem não estava, mesmo que tenha votado no empate, fica de fora.",
-      "Em desafios com mais de duas opções, se todas as opções tiverem o mesmo número de votos, deu velha! Todo mundo sai da área VIP.",
-      "Ao entrar para a área VIP, você ganha 1 ponto. Se permanecer na área VIP, você ganha 2 pontos.",
-      "O jogo termina após 15 rodadas e quem estiver na área VIP e tiver mais pontos ganha!"
-    ],
     "en": [
-      "Each round a challenge is launched and the goal is to join the VIP area!",
-      "Most challenges you have to choose between two, three or four options. Whoever chose the same as the majority goes to the VIP area or stays there.",
-      "However, if there is a tie between 2 options, whoever is in the VIP area stays, whoever was not, even if they voted in the majority, stays out.",
-      "In challenges with more than two options, if all options have the same number of votes, it's a draw! Everyone leaves the VIP area.",
-      "When you join the VIP area, you get 1 point. If you stay in the VIP area, you get 2 points.",
-      "The game ends after 15 rounds and whoever is in the VIP area and has the most points wins!"
+      "Each round, a challenge is presented and the goal is to enter the VIP area.",
+      "In most challenges, you must choose between two, three, or four options. Players who pick the majority option enter or remain in the VIP area.",
+      "If there is a tie between two options, players already in the VIP area stay, while all others remain outside — even if they chose one of the tied options.",
+      "In challenges with more than two options, if all options receive the same number of votes, it’s a draw and everyone leaves the VIP area.",
+      "Entering the VIP area earns you 1 point. Staying in the VIP area earns you 2 points.",
+      "After 15 rounds, the player in the VIP area with the most points wins."
+    ],
+    "pt": [
+      "A cada rodada, um desafio é apresentado e o objetivo é entrar na área VIP.",
+      "Na maioria dos desafios, você deve escolher entre duas, três ou quatro opções. Quem escolher a opção da maioria entra ou permanece na área VIP.",
+      "Se houver empate entre duas opções, quem já está na área VIP permanece, enquanto os demais ficam de fora — mesmo que tenham escolhido uma das opções empatadas.",
+      "Em desafios com mais de duas opções, se todas tiverem o mesmo número de votos, é empate e todos saem da área VIP.",
+      "Ao entrar na área VIP, você ganha 1 ponto. Ao permanecer na área VIP, você ganha 2 pontos.",
+      "Após 15 rodadas, vence quem estiver na área VIP e tiver mais pontos."
     ]
   },
   "playerCount": {

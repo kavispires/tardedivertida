@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "J",
   "gameName": "mesmice",
-  "version": "1.0.70",
+  "version": "1.0.71",
   "release": "stable",
   "releaseDate": "2024-01-18",
   "available": false,
@@ -28,30 +28,25 @@
     "videoBackground": true
   },
   "rules": {
-    "pt": [
-      "Em Jogo da Mesmice, jogadores tentam eliminar características que não se aplicam aos objetos da vez.",
-      "Cada rodada, um jogador recebe um objeto e uma característica (comprimento, movimento, uso) aleatórios e deve citar um objeto que conecta as duas coisas.",
-      "Após todos escreveram seus objetos, de um a um, os jogadores tem que eliminar as característica que não ou menos se aplicam à comparação.",
-      "A característica mais votada é eliminada até que apenas uma sobre.",
-      "O group ganha mais pontos quanto mais características eles eliminam corretamente.",
-      "O group ganha o jogo se alcançar pelo menos 70% de sucessos."
-    ],
     "en": [
-      "In Same But Different, players try to eliminate features that do not apply to the objects of the round.",
-      "Each round, a player receives a random object and feature (length, movement, use) and must name an object that connects the two things.",
-      "After everyone writes their objects, one by one, players have to eliminate the feature that does not or least apply to the comparison.",
-      "The most voted feature is eliminated until only one remains.",
-      "The group earns more points the more features they eliminate correctly.",
-      "The group wins the game if they reach at least 70% of successes."
+      "In Same But Different, players try to eliminate features that do not apply to the objects in play.",
+      "Each round, one player receives a random object and a feature (such as length, movement, or use) and must name another object that connects to both.",
+      "After everyone writes their objects, players take turns eliminating the feature that applies the least to the comparison.",
+      "The most voted feature is removed, and this continues until only one feature remains.",
+      "The group scores more points the more features they eliminate correctly.",
+      "The group wins if they achieve at least 70% success."
+    ],
+    "pt": [
+      "Em Jogo da Mesmice, os jogadores tentam eliminar características que não se aplicam aos objetos da rodada.",
+      "A cada rodada, um jogador recebe um objeto e uma característica aleatórios (como comprimento, movimento ou uso) e deve citar outro objeto que conecte os dois.",
+      "Após todos escreverem seus objetos, os jogadores, um a um, eliminam a característica que menos se aplica à comparação.",
+      "A característica mais votada é eliminada, e isso continua até que reste apenas uma.",
+      "O grupo ganha mais pontos quanto mais características eliminar corretamente.",
+      "O grupo vence se alcançar pelo menos 70% de acertos."
     ]
   },
   "playerCount": {
-    "recommended": [
-      3,
-      4,
-      5,
-      6
-    ],
+    "recommended": [3, 4, 5, 6],
     "best": 4,
     "min": 2,
     "max": 10
@@ -60,14 +55,8 @@
     "base": 0,
     "perPlayer": 0
   },
-  "mechanics": [
-    "cooperative",
-    "discussion",
-    "writing"
-  ],
-  "features": [
-    "achievements"
-  ],
+  "mechanics": ["cooperative", "discussion", "writing"],
+  "features": ["achievements"],
   "options": [
     {
       "key": "nsfw",

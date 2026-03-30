@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sinais-de-alerta",
-  "version": "1.0.56",
+  "version": "1.0.57",
   "release": "stable",
   "releaseDate": "2024-09-02",
   "available": false,
@@ -31,19 +31,19 @@
     "perPlayer": 2
   },
   "rules": {
-    "pt": [
-      "Em Sinais de Alerta, você é parte do setor de sinalizações do Departamento de Trânsito de uma cidade.",
-      "Cada rodada você é encarregado de criar uma placa de sinalização específica em 30 segundos",
-      "Após todos terem criado suas placas é hora de tentar adivinhar o sujeito e o descritivo de cada placa",
-      "Você ganha pontos por acertar a dos outros e pontos pelos outros jogadores terem acertado a sua",
-      "O jogo acaba após 5 rodadas e o jogador com mais pontos vence"
-    ],
     "en": [
-      "In Warning Signs, you are part of the signaling sector of the Traffic Department of a city.",
-      "Each round you are in charge of creating a specific signaling sign in 30 seconds",
-      "After everyone has created their signs, it's time to try to guess the subject and the description of each sign",
-      "You earn points for guessing the others' signs and points for the other players having guessed yours",
-      "The game ends after 5 rounds and the player with the most points wins"
+      "In Warning Signs, you are part of the traffic sign design team for a city.",
+      "Each round, you must create a specific traffic sign within 30 seconds.",
+      "After everyone finishes, players try to guess the subject and description of each sign.",
+      "You earn points for correctly guessing others' signs and for having your sign guessed correctly.",
+      "After 5 rounds, the player with the most points wins."
+    ],
+    "pt": [
+      "Em Sinais de Alerta, você faz parte da equipe de criação de placas de trânsito de uma cidade.",
+      "A cada rodada, você deve criar uma placa de sinalização específica em 30 segundos.",
+      "Após todos terminarem, os jogadores tentam adivinhar o sujeito e o descritivo de cada placa.",
+      "Você ganha pontos ao acertar as placas dos outros e quando acertam a sua.",
+      "Após 5 rodadas, o jogador com mais pontos vence."
     ]
   },
   "playerCount": {

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "linhas-cruzadas",
-  "version": "1.2.87",
+  "version": "1.2.88",
   "release": "stable",
   "releaseDate": "2022-02-13",
   "available": false,
@@ -28,21 +28,17 @@
     "videoBackground": true
   },
   "rules": {
-    "pt": [
-      "Neste jogo, você recebe uma carta e a desenha, daí o próximo jogador tentar adivinhar o que é, daí o próximo jogador desenha a adivinhação, e por ai vai até seu album original volta pra você."
-    ],
     "en": [
-      "In this game, you receive a prompt and will have to draw it, then the next player will attempt to guess your drawing, then the next player will draw the guess attempt, and so on until your album comes back to you"
+      "In this game, you receive a prompt and draw it, then the next player guesses your drawing and the following player draws that guess.",
+      "This continues, alternating between drawing and guessing, until your original album returns to you."
+    ],
+    "pt": [
+      "Neste jogo, você recebe uma carta e a desenha, depois o próximo jogador tenta adivinhar e o seguinte desenha essa adivinhação.",
+      "Isso continua alternando entre desenhar e adivinhar até que seu álbum original volte para você."
     ]
   },
   "playerCount": {
-    "recommended": [
-      6,
-      7,
-      8,
-      9,
-      10
-    ],
+    "recommended": [6, 7, 8, 9, 10],
     "min": 4,
     "max": 10,
     "best": 7
@@ -51,16 +47,8 @@
     "base": 0,
     "perPlayer": 0
   },
-  "mechanics": [
-    "cooperative",
-    "drawing",
-    "guessing",
-    "writing"
-  ],
-  "features": [
-    "achievements",
-    "mobile-friendly"
-  ],
+  "mechanics": ["cooperative", "drawing", "guessing", "writing"],
+  "features": ["achievements", "mobile-friendly"],
   "options": [
     {
       "key": "singleWordOnly",
