@@ -4,7 +4,6 @@ import { TrophyOutlined } from '@ant-design/icons';
 import type { TextCard } from 'types/tdr';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { TimedButton } from 'components/buttons';
 import { CharacterCard } from 'components/cards/CharacterCard';
@@ -16,7 +15,6 @@ import { StepTitle } from 'components/text';
 import type { Bet, Bracket } from './utils/type';
 import { BetsFloatingHand } from './components/BetsFloatingHand';
 import { Challenge } from './components/Challenge';
-// Ant Design resources
 
 type StepWinnerProps = {
   challenge: TextCard;
@@ -34,12 +32,11 @@ export function StepWinner({
   selectedContenderId,
   announcement,
 }: StepWinnerProps) {
-  useTemporarilyHidePlayersBar();
-
   return (
     <Step
       fullWidth
       announcement={announcement}
+      hidePlayersBar
     >
       <StepTitle>
         <Translate

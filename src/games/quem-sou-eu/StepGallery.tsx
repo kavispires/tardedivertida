@@ -3,7 +3,6 @@ import type { GameRound, GamePlayers } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import type { SlideShowConfig } from 'hooks/useSlideShow';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
@@ -38,8 +37,6 @@ export function StepGallery({
   round,
   imageCardMode,
 }: StepGalleryProps) {
-  useTemporarilyHidePlayersBar();
-
   const glyphWidth = useCardWidth(20, {
     gap: 16,
     minWidth: 45,
@@ -56,7 +53,10 @@ export function StepGallery({
   const currentColor = getAvatarColorById(currentPlayer.avatarId);
 
   return (
-    <Step className="l-step-album">
+    <Step
+      className="l-step-album"
+      hidePlayersBar
+    >
       <StepTitle>
         <Translate
           pt="Galeria"

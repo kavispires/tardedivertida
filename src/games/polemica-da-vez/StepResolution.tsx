@@ -5,7 +5,6 @@ import type { GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Components
@@ -34,13 +33,12 @@ export function StepResolution({
   goToNextStep,
   announcement,
 }: StepResolutionProps) {
-  useTemporarilyHidePlayersBar();
-
   return (
     <Step
       fullWidth
       className="p-step"
       announcement={announcement}
+      hidePlayersBar
     >
       <StepTitle>
         <Translate

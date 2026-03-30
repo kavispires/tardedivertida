@@ -4,7 +4,6 @@ import type { TextCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import type { SlideShowConfig } from 'hooks/useSlideShow';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
@@ -30,8 +29,6 @@ type StepGalleryProps = {
 };
 
 export function StepGallery({ gallery, players, cards, slideShowConfig, gameLanguage }: StepGalleryProps) {
-  useTemporarilyHidePlayersBar();
-
   const canvasWidth = useCardWidth(3, { gap: 16, minWidth: 150, maxWidth: 300 });
 
   const galleryEntry = gallery[slideShowConfig.slideIndex];
@@ -40,7 +37,10 @@ export function StepGallery({ gallery, players, cards, slideShowConfig, gameLang
   const currentColor = getAvatarColorById(playerArtist.avatarId);
 
   return (
-    <Step fullWidth>
+    <Step
+      fullWidth
+      hidePlayersBar
+    >
       <StepTitle size="small">
         <Translate
           pt="Galeria de Placas"

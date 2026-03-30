@@ -2,8 +2,6 @@
 import { Divider } from 'antd';
 // Types
 import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
-// Hooks
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
@@ -20,7 +18,6 @@ import type {
 import { AdminAnswerControl } from './components/AdminAnswerControl';
 import { AnswerGroup } from './components/AnswerGroup';
 import { UserAnswers } from './components/UserAnswers';
-// Hook
 
 type StepCompareProps = {
   currentQuestion: Question;
@@ -50,7 +47,6 @@ export function StepCompare({
   setAllowedList,
   round,
 }: StepCompareProps) {
-  useTemporarilyHidePlayersBar();
   const allowUserAnswer = (isAllowed: boolean, answerId: string) => {
     const allowedListCopy = { ...allowedList };
     if (!isAllowed) {
@@ -78,6 +74,7 @@ export function StepCompare({
     <Step
       fullWidth
       announcement={announcement}
+      hidePlayersBar
     >
       <AnswerGroup
         currentQuestion={currentQuestion}

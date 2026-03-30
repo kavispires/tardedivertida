@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { HostButton, HostOnlyContainer } from 'components/host';
 import { Translate } from 'components/language';
@@ -27,11 +26,13 @@ export function StepResolution({
   currentSpy,
   onProgressGame,
 }: StepVotingProps) {
-  useTemporarilyHidePlayersBar();
   const { isLoading } = useLoading();
 
   return (
-    <Step className="e-phase-step">
+    <Step
+      className="e-phase-step"
+      hidePlayersBar
+    >
       <StepTitle
         className={clsx('e-phase-title', !resolutionStatus.isPlayerVictory && 'e-phase-title--fail')}
       >

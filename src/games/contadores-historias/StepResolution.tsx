@@ -5,7 +5,6 @@ import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import type { UseStep } from 'hooks/useStep';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { NPCPlayerAvatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
@@ -37,8 +36,6 @@ export function StepResolution({
   goToNextStep,
   announcement,
 }: StepResolutionProps) {
-  useTemporarilyHidePlayersBar();
-
   const cardWidth = useCardWidth(10, { minWidth: 75 });
 
   const solution = table.find((entry) => entry.playerId === storyteller.id);
@@ -48,6 +45,7 @@ export function StepResolution({
     <Step
       fullWidth
       announcement={announcement}
+      hidePlayersBar
     >
       <StepTitle>
         <Translate

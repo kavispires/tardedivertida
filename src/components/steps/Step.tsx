@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 import { type ReactNode, forwardRef } from 'react';
+// Hooks
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Sass
 import styles from './Step.module.scss';
 
@@ -24,10 +26,26 @@ export type StepProps = {
    * Flag indicating if the step should be full height
    */
   fullHeight?: boolean;
+  /**
+   * Flag to hide the players bar during this step
+   */
+  hidePlayersBar?: boolean;
 };
 
 export const Step = forwardRef<HTMLDivElement, StepProps>(
-  ({ children, announcement, fullWidth = false, fullHeight = false, className = '' }: StepProps, ref) => {
+  (
+    {
+      children,
+      announcement,
+      fullWidth = false,
+      fullHeight = false,
+      className = '',
+      hidePlayersBar = false,
+    }: StepProps,
+    ref,
+  ) => {
+    useTemporarilyHidePlayersBar(!hidePlayersBar);
+
     return (
       <div
         ref={ref}

@@ -4,7 +4,6 @@ import type { GamePlayers } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import type { SlideShowConfig } from 'hooks/useSlideShow';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
@@ -29,8 +28,6 @@ type StepGalleryProps = {
 };
 
 export function StepGallery({ gallery, players, cards, slideShowConfig }: StepGalleryProps) {
-  useTemporarilyHidePlayersBar();
-
   const canvasWidth = useCardWidth(2, { gap: 16, minWidth: 200, maxWidth: 500 });
 
   const { drawing, artistId, id, text, playersPoints, playersSay } = gallery[slideShowConfig.slideIndex];
@@ -39,7 +36,10 @@ export function StepGallery({ gallery, players, cards, slideShowConfig }: StepGa
   const currentColor = getAvatarColorById(playerArtist.avatarId);
 
   return (
-    <Step fullWidth>
+    <Step
+      fullWidth
+      hidePlayersBar
+    >
       <StepTitle size="small">
         <Translate
           pt="Galeria de Arte"

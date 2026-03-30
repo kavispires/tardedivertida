@@ -5,7 +5,6 @@ import { Button, Space } from 'antd';
 import type { GamePlayers } from 'types/game';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
@@ -23,7 +22,6 @@ type StepAlbumProps = {
 };
 
 export function StepAlbum({ players, album }: StepAlbumProps) {
-  useTemporarilyHidePlayersBar();
   const [areControlsLocked, setAreControlsLocked] = useState(true);
   const [currentEntry, setCurrentEntry] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
@@ -81,7 +79,10 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
   }, [timeLeft, isRunning, currentAlbumLastPageIndex]);
 
   return (
-    <Step className="l-step-album">
+    <Step
+      className="l-step-album"
+      hidePlayersBar
+    >
       <Title>
         <Translate
           pt="Álbum de Fotos"

@@ -6,7 +6,6 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import type { SlideShowConfig } from 'hooks/useSlideShow';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Icons
 import { ArrowIcon } from 'icons/ArrowIcon';
 import { ConeIcon } from 'icons/ConeIcon';
@@ -54,7 +53,6 @@ export function StepGallery({
   players,
   coneCellIds,
 }: StepGalleryProps) {
-  useTemporarilyHidePlayersBar();
   const [ref, { width, height }] = useMeasure<HTMLDivElement>();
 
   const constructionWidth = useCardWidth(placements + 5, { maxWidth: 256 });
@@ -63,7 +61,10 @@ export function StepGallery({
   const coneColor = getConeColor(galleryEntry.coneId);
 
   return (
-    <Step fullWidth>
+    <Step
+      fullWidth
+      hidePlayersBar
+    >
       <StepTitle size="small">
         <Translate
           pt="Construções"

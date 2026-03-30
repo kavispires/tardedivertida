@@ -1,7 +1,5 @@
 // Types
 import type { GameRanking, GameRound, GamePlayer, GamePlayers } from 'types/game';
-// Hooks
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
@@ -35,10 +33,11 @@ export function StepReveal({
   table,
   announcement,
 }: StepRevealProps) {
-  useTemporarilyHidePlayersBar();
-
   return (
-    <Step announcement={announcement}>
+    <Step
+      announcement={announcement}
+      hidePlayersBar
+    >
       <StepRankingWrapper
         delay={5}
         players={players}

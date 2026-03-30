@@ -8,7 +8,6 @@ import { Flex } from 'antd';
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getMeanDuration } from 'utils/helpers';
 // Components
@@ -68,7 +67,6 @@ export function StepReveal({
   psychic,
   announcement,
 }: StepRevealProps) {
-  useTemporarilyHidePlayersBar();
   const regularPlayers = useMemo(
     () =>
       orderBy(
@@ -86,6 +84,7 @@ export function StepReveal({
     <Step
       fullWidth
       announcement={announcement}
+      hidePlayersBar
     >
       <StepTitle
         level={2}

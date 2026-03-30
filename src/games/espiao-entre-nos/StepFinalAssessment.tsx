@@ -5,7 +5,6 @@ import { App } from 'antd';
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
@@ -38,7 +37,6 @@ export function StepFinalAssessment({
   onMakeAccusation,
   outcome,
 }: StepFinalAssessmentProps) {
-  useTemporarilyHidePlayersBar();
   const { notification } = App.useApp();
   const { translate } = useLanguage();
 
@@ -54,7 +52,7 @@ export function StepFinalAssessment({
   }, [outcome?.type]);
 
   return (
-    <Step>
+    <Step hidePlayersBar>
       <StepTitle className="e-phase-title">
         <Translate
           pt="Última Chance!"

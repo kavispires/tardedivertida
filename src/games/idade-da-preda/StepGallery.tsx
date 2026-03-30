@@ -2,7 +2,6 @@
 import type { GamePlayers } from 'types/game';
 // Hooks
 import type { SlideShowConfig } from 'hooks/useSlideShow';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
@@ -33,15 +32,16 @@ export function StepGallery({
   basicConcepts,
   concepts,
 }: StepGalleryProps) {
-  useTemporarilyHidePlayersBar();
-
   const galleryEntry = gallery[slideShowConfig.slideIndex];
 
   const creator = players[galleryEntry.playerId];
   const currentColor = getAvatarColorById(creator.avatarId);
 
   return (
-    <Step fullWidth>
+    <Step
+      fullWidth
+      hidePlayersBar
+    >
       <StepTitle size="small">
         <Translate
           pt="Novos termos no dicionário"

@@ -1,7 +1,5 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
-// Hooks
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { Step, type StepProps } from 'components/steps';
 import { ViewIf } from 'components/views';
@@ -38,10 +36,11 @@ export function StepPlayCard({
   announcement,
   isUserTheCurrentPlayer,
 }: StepPlayCardProps) {
-  useTemporarilyHidePlayersBar();
-
   return (
-    <Step announcement={announcement}>
+    <Step
+      announcement={announcement}
+      hidePlayersBar
+    >
       <ViewIf condition={isUserTheCurrentPlayer}>
         <StepPlayCardAction
           clue={clue}

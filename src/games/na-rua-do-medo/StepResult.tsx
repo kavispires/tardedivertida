@@ -1,8 +1,6 @@
 import clsx from 'clsx';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
-// Hooks
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
@@ -43,10 +41,11 @@ export function StepResult({
   goingHomePlayerIds,
   candyInHand,
 }: StepResultProps) {
-  useTemporarilyHidePlayersBar();
-
   return (
-    <Step fullWidth>
+    <Step
+      fullWidth
+      hidePlayersBar
+    >
       <StepTitle
         className={clsx('n-title', getAnimationClass('fadeIn'))}
         level={2}

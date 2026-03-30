@@ -8,7 +8,6 @@ import { Button } from 'antd';
 import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Icons
@@ -54,7 +53,6 @@ export function StepResult({
   winningTeam,
   scoringType,
 }: StepResultProps) {
-  useTemporarilyHidePlayersBar();
   const [resultRef, { width }] = useMeasure();
   const [ref, { width: resultsValueWidth }] = useMeasure();
 
@@ -72,7 +70,10 @@ export function StepResult({
   let losingCount = 0;
 
   return (
-    <Step announcement={announcement}>
+    <Step
+      announcement={announcement}
+      hidePlayersBar
+    >
       <StepTitle size="small">
         <Translate
           pt="Resultado"

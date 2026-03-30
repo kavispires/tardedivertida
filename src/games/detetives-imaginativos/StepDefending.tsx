@@ -1,7 +1,5 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
-// Hooks
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { Step, type StepProps } from 'components/steps';
 import { ViewIf } from 'components/views';
@@ -36,10 +34,11 @@ export function StepDefending({
   turnOrder,
   announcement,
 }: StepDefendingProps) {
-  useTemporarilyHidePlayersBar();
-
   return (
-    <Step announcement={announcement}>
+    <Step
+      announcement={announcement}
+      hidePlayersBar
+    >
       <ViewIf condition={isUserTheCurrentPlayer}>
         <StepDefendingAction
           clue={clue}

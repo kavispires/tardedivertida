@@ -5,7 +5,6 @@ import { TrophyOutlined } from '@ant-design/icons';
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { AVATARS as avatars } from 'utils/avatars';
 import { getMeanDuration } from 'utils/helpers';
@@ -48,8 +47,6 @@ export function StepReveal({
   whoGotNoPoints,
   announcement,
 }: StepRevealProps) {
-  useTemporarilyHidePlayersBar();
-
   const { correctCoordinatesPerPlayer, colorCodedCluesPerPlayer, whoGotNoPointsNames, playerCount } =
     useMemo(() => {
       return {
@@ -93,6 +90,7 @@ export function StepReveal({
     <Step
       fullWidth
       announcement={announcement}
+      hidePlayersBar
     >
       <StepTitle>
         <Translate

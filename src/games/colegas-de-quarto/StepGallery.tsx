@@ -6,7 +6,6 @@ import { Flex } from 'antd';
 import type { GameRound, GamePlayers } from 'types/game';
 // Hooks
 import type { SlideShowConfig } from 'hooks/useSlideShow';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAnimation } from 'utils/animations';
 import { getAvatarColorById } from 'utils/helpers';
@@ -36,8 +35,6 @@ type StepGalleryProps = {
 };
 
 export function StepGallery({ board, gallery, slideShowConfig, players, round }: StepGalleryProps) {
-  useTemporarilyHidePlayersBar();
-
   const galleryEntry = gallery[slideShowConfig.slideIndex];
   const player = players[galleryEntry.playerId];
   const playerColor = getAvatarColorById(player.avatarId);
@@ -49,7 +46,10 @@ export function StepGallery({ board, gallery, slideShowConfig, players, round }:
   }, [board]);
 
   return (
-    <Step fullWidth>
+    <Step
+      fullWidth
+      hidePlayersBar
+    >
       <StepTitle size="small">
         <Translate
           pt="Resultado"

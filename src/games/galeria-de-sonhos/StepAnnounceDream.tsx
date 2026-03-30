@@ -7,7 +7,6 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import type { UseStep } from 'hooks/useStep';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAnimation } from 'utils/animations';
 import { getAvatarColorById } from 'utils/helpers';
@@ -49,7 +48,6 @@ export function StepAnnounceDream({
   playerInNightmare,
   gameOrder,
 }: StepAnnounceDreamProps) {
-  useTemporarilyHidePlayersBar();
   const cardWidth = useCardWidth(5, { gap: 8, minWidth: 140, maxWidth: 150 });
 
   const { matchingPlayers, fallenMatchingPlayers } = useMemo(
@@ -74,7 +72,10 @@ export function StepAnnounceDream({
   const completedPlayers = Object.values(players).filter((player) => player?.skip || player?.fallen);
 
   return (
-    <Step fullWidth>
+    <Step
+      fullWidth
+      hidePlayersBar
+    >
       <motion.div
         className="g-dream-result"
         {...getAnimation('fadeIn', { speed: 'slow' })}

@@ -28,7 +28,7 @@ export function ScoreTrack({ history, hideInstructions = false }: ScoreTrackProp
           pt="Progresso"
         />
       }
-      contentProps={{ direction: 'vertical' }}
+      contentProps={{ orientation: 'vertical' }}
     >
       <div
         className="score-track"

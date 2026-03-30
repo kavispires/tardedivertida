@@ -3,8 +3,6 @@ import { useMemo } from 'react';
 import { Divider } from 'antd';
 // Types
 import type { GameRound, GamePlayers } from 'types/game';
-// Hooks
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
@@ -17,7 +15,6 @@ import type { BoardEntry, HouseHappiness } from './utils/types';
 import { HouseItem } from './components/HouseItem';
 import { HappinessHighlight } from './components/Highlights';
 import { HappinessTracker } from './components/HappinessTracker';
-// Icons
 
 type StepResultProps = {
   players: GamePlayers;
@@ -38,8 +35,6 @@ export function StepResult({
   happiness,
   goToNextStep,
 }: StepResultProps) {
-  useTemporarilyHidePlayersBar();
-
   const itemsDict = useMemo(() => {
     return board.reduce((acc: Dictionary<BoardEntry>, item) => {
       acc[item.id] = item;
@@ -50,7 +45,10 @@ export function StepResult({
   const finalItemPoints = 3 * foundTarget.length;
 
   return (
-    <Step fullWidth>
+    <Step
+      fullWidth
+      hidePlayersBar
+    >
       <StepTitle size="small">
         {foundTarget.length > 0 ? (
           <Translate

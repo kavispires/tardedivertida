@@ -2,7 +2,6 @@
 import type { GamePlayers } from 'types/game';
 // Hooks
 import type { SlideShowConfig } from 'hooks/useSlideShow';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
@@ -23,8 +22,6 @@ type StepResultsProps = {
 };
 
 export function StepResults({ players, gallery, slideShowConfig, correctGuessPoints }: StepResultsProps) {
-  useTemporarilyHidePlayersBar();
-
   const galleryEntry = gallery[slideShowConfig.slideIndex];
   const activePlayer = players[galleryEntry.playerId];
 
@@ -32,6 +29,7 @@ export function StepResults({ players, gallery, slideShowConfig, correctGuessPoi
     <Step
       fullWidth
       className="s-results-step"
+      hidePlayersBar
     >
       <StepTitle>
         <Translate

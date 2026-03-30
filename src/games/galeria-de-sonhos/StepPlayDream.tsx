@@ -7,7 +7,6 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
@@ -57,7 +56,7 @@ export function StepPlayDream({
   botEnabled = false,
 }: StepDreamsSelectionProps) {
   const { message } = App.useApp();
-  useTemporarilyHidePlayersBar();
+
   const { translate } = useLanguage();
   const [showedMessage, setShowedMessage] = useState(false);
 
@@ -84,7 +83,10 @@ export function StepPlayDream({
   }, [isLoading, showedMessage, message]);
 
   return (
-    <Step fullWidth>
+    <Step
+      fullWidth
+      hidePlayersBar
+    >
       <StepTitle size="small">
         <Translate
           pt="Bingo dos Sonhos"

@@ -6,7 +6,6 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import type { UseStep } from 'hooks/useStep';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -47,7 +46,6 @@ export function StepInvestigation({
   outcome,
   setStep,
 }: StepInvestigationProps) {
-  useTemporarilyHidePlayersBar();
   const { translate } = useLanguage();
   const [isAccusationSelectVisible, setAccusationSelectVisible] = useState(true);
   const { notification } = App.useApp();
@@ -68,7 +66,10 @@ export function StepInvestigation({
   };
 
   return (
-    <Step className="e-phase-step">
+    <Step
+      className="e-phase-step"
+      hidePlayersBar
+    >
       <div className="e-phase-step-header">
         <div className="e-phase-step-header__timer-container">
           <Timer

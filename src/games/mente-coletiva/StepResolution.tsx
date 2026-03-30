@@ -6,7 +6,6 @@ import { HeartFilled } from '@ant-design/icons';
 import type { GameRanking, GameRound, GamePlayers } from 'types/game';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
@@ -39,7 +38,6 @@ export function StepResolution({
   pastureSize,
   announceSave = false,
 }: StepResolutionProps) {
-  useTemporarilyHidePlayersBar();
   const [step, setStep] = useState(0);
   const [pastureIndex, setPastureIndex] = useState(0);
   const [showAnnounceSave, setShowAnnounceSave] = useState(false);
@@ -71,6 +69,7 @@ export function StepResolution({
     <Step
       fullWidth
       announcement={announcement}
+      hidePlayersBar
     >
       <StepTitle>
         <Translate

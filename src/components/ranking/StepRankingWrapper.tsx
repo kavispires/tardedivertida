@@ -3,8 +3,6 @@ import type { ReactNode } from 'react';
 import { CaretUpOutlined } from '@ant-design/icons';
 // Types
 import type { GameRanking, GamePlayers } from 'types/game';
-// Hooks
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { Translate } from 'components/language';
 import { useGameAppearance } from 'components/session/GameInfoContext';
@@ -14,7 +12,6 @@ import { Instruction, StepTitle } from 'components/text';
 import { RankingBoard } from './RankingBoard';
 // Sass
 import styles from './ranking.module.scss';
-// Styles
 
 type StepRankingWrapperProps = {
   /**
@@ -66,13 +63,12 @@ export function StepRankingWrapper({
   victoryIndex = 0,
   delay = 0,
 }: StepRankingWrapperProps) {
-  useTemporarilyHidePlayersBar();
   const appearance = useGameAppearance();
 
   const scheme = colorScheme ?? appearance.colorScheme ?? 'light';
 
   return (
-    <Step>
+    <Step hidePlayersBar>
       <StepTitle colorScheme={scheme}>{title ?? 'Ranking'}</StepTitle>
 
       {subtitle}

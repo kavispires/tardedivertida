@@ -4,8 +4,6 @@ import { TrophyOutlined } from '@ant-design/icons';
 import { Button, Collapse } from 'antd';
 // Types
 import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
-// Hooks
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAnimationClass, getLastItem } from 'utils/helpers';
 // Components
@@ -58,8 +56,6 @@ export function StepReveal({
   isVictimGame,
   isLocationGame,
 }: StepRevealProps) {
-  useTemporarilyHidePlayersBar();
-
   const [activePlayerId, setActivePlayerId] = useState<UID>('');
 
   const playerCount = Object.keys(players).length;
@@ -71,7 +67,10 @@ export function StepReveal({
   const isLocked = isEntryLocked(latestHistoryEntry);
 
   return (
-    <Step announcement={announcement}>
+    <Step
+      announcement={announcement}
+      hidePlayersBar
+    >
       <StepTitle>
         <Translate
           pt="Resultado"

@@ -7,7 +7,6 @@ import type { MonsterImage } from 'types/tdr';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import type { UseStep } from 'hooks/useStep';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { TimedButton } from 'components/buttons';
 import { MonsterCard } from 'components/cards/MonsterCard';
@@ -51,8 +50,6 @@ export function StepResults({
   announcement,
   votes,
 }: StepResultsProps) {
-  useTemporarilyHidePlayersBar();
-
   const canvasWidth = useCardWidth(Math.min(Object.keys(players).length, 6), {
     gap: 16,
     minWidth: 150,
@@ -88,6 +85,7 @@ export function StepResults({
     <Step
       fullWidth
       announcement={announcement}
+      hidePlayersBar
     >
       <StepTitle>
         {mostVoted ? (

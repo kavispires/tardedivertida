@@ -1,7 +1,5 @@
 // Types
 import type { GamePlayer } from 'types/game';
-// Hooks
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { HostNextPhaseButton } from 'components/host';
 import { Translate } from 'components/language';
@@ -20,10 +18,11 @@ type StepAssignmentProps = {
 };
 
 export function StepAssignment({ user, isUserTheSpy, locations }: StepAssignmentProps) {
-  useTemporarilyHidePlayersBar();
-
   return (
-    <Step className="e-phase-step">
+    <Step
+      className="e-phase-step"
+      hidePlayersBar
+    >
       <StepTitle className="e-phase-title">
         <Translate
           pt="Você está no(a)..."
