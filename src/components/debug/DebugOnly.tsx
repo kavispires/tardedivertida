@@ -1,3 +1,4 @@
+import { USE_DEV } from 'dev-configs';
 import type { ReactNode } from 'react';
 // Hooks
 import { useDevFeatures } from 'hooks/useDevFeatures';
@@ -29,7 +30,7 @@ type DebugOnlyProps = {
 export function DebugOnly({ children, div = false, dev = false, devOnly = false }: DebugOnlyProps) {
   const { isDebugEnabled, isDevEnv } = useDevFeatures();
 
-  if (devOnly) {
+  if (devOnly && USE_DEV) {
     if (div && isDevEnv) {
       return <div>{children}</div>;
     }
@@ -37,7 +38,7 @@ export function DebugOnly({ children, div = false, dev = false, devOnly = false 
     return isDevEnv ? children : null;
   }
 
-  if ((dev && isDevEnv) || isDebugEnabled) {
+  if ((dev && isDevEnv && USE_DEV) || isDebugEnabled) {
     if (div) {
       return <div>{children}</div>;
     }
