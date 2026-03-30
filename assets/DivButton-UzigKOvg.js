@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-pnrAbbe4.js";import{yr as t}from"./PageLayout-D_UqYHXD.js";var n=e();function r({className:e,...r}){return(0,n.jsx)(`button`,{className:t(`button-reset`,e),...r})}export{r as t};

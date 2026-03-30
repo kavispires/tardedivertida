@@ -1,0 +1,1 @@
+import"./helpers-B3hG8ytX.js";import{r as e}from"./useGlobalState-90a09cKk.js";function t(){let[t,n]=e(`isDebugEnabled`);return{isDevEnv:!1,isDebugEnabled:t,toggleDevFeatures:()=>{n(!t)}}}export{t};

@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-pnrAbbe4.js";import{t}from"./CustomAvatarWrapper-G1Vy5U5Q.js";var n=`/tardedivertida/assets/super-heroes-BoxNuE4M.svg`,r=e(),i=e=>(0,r.jsx)(t,{sprite:n,prefix:`super-hero`,...e});export{i as t};

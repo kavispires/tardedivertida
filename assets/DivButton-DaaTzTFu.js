@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-pnrAbbe4.js";import{hr as t}from"./PageLayout-BMi3Ru8b.js";var n=e();function r({className:e,...r}){return(0,n.jsx)(`button`,{className:t(`button-reset`,e),...r})}export{r as t};
