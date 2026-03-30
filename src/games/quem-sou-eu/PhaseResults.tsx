@@ -12,11 +12,12 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { QUEM_SOU_EU_PHASES, SLIDE_DURATION } from './utils/constants';
+import type { PhaseResultsState } from './utils/types';
 import { ScoringRules } from './components/RulesBlobs';
 import { StepGallery } from './StepGallery';
 import { StepRanking } from './StepRanking';
 
-export function PhaseResults({ state, players }: PhaseProps) {
+export function PhaseResults({ state, players }: PhaseProps<PhaseResultsState>) {
   const { step, goToPreviousStep, goToNextStep } = useStep();
 
   const slideShowConfig = useSlideShow({

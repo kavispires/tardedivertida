@@ -1,3 +1,4 @@
+import { isEmpty } from 'lodash';
 // Ant Design Resources
 import { Popover, Space, Tooltip } from 'antd';
 // Types
@@ -14,8 +15,10 @@ import { YesIcon } from 'icons/YesIcon';
 import { IconAvatar } from 'components/avatars';
 import { SendButton, TransparentButton } from 'components/buttons';
 import { GlyphCard } from 'components/cards/GlyphCard';
+import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -259,7 +262,10 @@ export function StepSelectGlyphs({
         ))}
       </Space>
 
-      <SpaceContainer>
+      <SpaceFloat
+        enabled={!isEmpty(positiveSelection) || !isEmpty(negativeSelection)}
+        className="mt-8"
+      >
         <SendButton
           size="large"
           onClick={() => onSelectGlyphs({ glyphs: prepareGlyphs(positiveSelection, negativeSelection) })}
@@ -270,7 +276,13 @@ export function StepSelectGlyphs({
             en={<>Submit glyphs</>}
           />
         </SendButton>
-      </SpaceContainer>
+        <DevButton
+          size="large"
+          onClick={() => onSelectGlyphs({ glyphs: mockGlyphs(glyphs) })}
+        >
+          Mock Selection
+        </DevButton>
+      </SpaceFloat>
     </Step>
   );
 }

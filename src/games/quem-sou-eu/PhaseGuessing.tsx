@@ -12,10 +12,11 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
 import { QUEM_SOU_EU_PHASES } from './utils/constants';
+import type { PhaseGuessingState } from './utils/types';
 import { ScoringRules } from './components/RulesBlobs';
 import { StepGuessing } from './StepGuessing';
 
-export function PhaseGuessing({ state, players, user }: PhaseProps) {
+export function PhaseGuessing({ state, players, user }: PhaseProps<PhaseGuessingState>) {
   const { step, setStep } = useStep();
 
   const onSubmitGuesses = useOnSubmitGuessesAPIRequest(setStep);

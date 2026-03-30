@@ -12,7 +12,7 @@ import { useMock } from 'hooks/useMock';
 import { SendButton, TransparentButton } from 'components/buttons';
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { CardHighlight } from 'components/metrics/CardHighlight';
 import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
@@ -104,7 +104,7 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
         ))}
       </Space>
 
-      <SpaceContainer>
+      <SpaceFloat>
         <SendButton
           size="large"
           type="dashed"
@@ -130,7 +130,7 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
             />
           </SendButton>
         </Badge>
-      </SpaceContainer>
+      </SpaceFloat>
     </Step>
   );
 }

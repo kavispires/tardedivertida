@@ -13,10 +13,15 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitGlyphsAPIRequest } from './utils/api-requests';
 import { QUEM_SOU_EU_PHASES } from './utils/constants';
+import type { PhaseCharacterDescriptionState } from './utils/types';
 import { WaitingRoomCharacter } from './components/WaitingRoomCharacter';
 import { StepSelectGlyphs } from './StepSelectGlyphs';
 
-export function PhaseCharacterDescription({ state, players, user }: PhaseProps) {
+export function PhaseCharacterDescription({
+  state,
+  players,
+  user,
+}: PhaseProps<PhaseCharacterDescriptionState>) {
   const { step, goToNextStep, setStep } = useStep();
 
   const onSelectGlyphs = useOnSubmitGlyphsAPIRequest(setStep);

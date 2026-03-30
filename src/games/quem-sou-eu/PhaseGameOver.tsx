@@ -8,11 +8,11 @@ import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
-import type { FinalCharacterEntry } from './utils/types';
+import type { FinalCharacterEntry, PhaseGameOverState } from './utils/types';
 import { achievementsReference } from './utils/achievements';
 import { FinalCharacter } from './components/FinalCharacter';
 
-export function PhaseGameOver({ state, players, meta }: PhaseProps) {
+export function PhaseGameOver({ state, players, meta }: PhaseProps<PhaseGameOverState>) {
   return (
     <GameOverWrapper
       state={state}

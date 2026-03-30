@@ -12,9 +12,10 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitCharactersAPIRequest } from './utils/api-requests';
 import { QUEM_SOU_EU_PHASES } from './utils/constants';
+import type { PhaseCharacterFilteringState } from './utils/types';
 import { StepSelectCharacters } from './StepSelectCharacters';
 
-export function PhaseCharacterFiltering({ state, players, user }: PhaseProps) {
+export function PhaseCharacterFiltering({ state, players, user }: PhaseProps<PhaseCharacterFilteringState>) {
   const { step, setStep } = useStep();
 
   const onSelectCharacters = useOnSubmitCharactersAPIRequest(setStep);
