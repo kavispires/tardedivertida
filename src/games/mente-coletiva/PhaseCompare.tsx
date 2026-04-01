@@ -12,10 +12,11 @@ import { StepSwitcher } from 'components/steps';
 // Internal
 import { useOnAddAnswerAPIRequest, useOnNextAnswersAPIRequest } from './utils/api-requests';
 import { MENTE_COLETIVA_PHASES } from './utils/constants';
+import type { PhaseCompareState } from './utils/types';
 import { ComparingRules } from './components/RulesBlobs';
 import { StepCompare } from './StepCompare';
 
-export function PhaseCompare({ state, players, user }: PhaseProps) {
+export function PhaseCompare({ state, players, user }: PhaseProps<PhaseCompareState>) {
   const { step } = useStep(0);
 
   const [allowedList, setAllowedList] = useState({});

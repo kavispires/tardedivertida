@@ -12,10 +12,11 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitAnswersAPIRequest } from './utils/api-requests';
 import { MENTE_COLETIVA_PHASES } from './utils/constants';
+import type { PhaseEverybodyWritesState } from './utils/types';
 import { AnsweringRules } from './components/RulesBlobs';
 import { StepAnswering } from './StepAnswering';
 
-export function PhaseEverybodyWrites({ state, players, meta, user }: PhaseProps) {
+export function PhaseEverybodyWrites({ state, players, meta, user }: PhaseProps<PhaseEverybodyWritesState>) {
   const { step, setStep } = useStep(0);
 
   const onSubmitAnswers = useOnSubmitAnswersAPIRequest(setStep);

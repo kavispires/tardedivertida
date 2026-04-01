@@ -11,9 +11,10 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { MENTE_COLETIVA_PHASES } from './utils/constants';
+import type { PhaseResolutionState } from './utils/types';
 import { StepResolution } from './StepResolution';
 
-export function PhaseResolution({ state, players }: PhaseProps) {
+export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionState>) {
   const { step } = useStep(0);
 
   const announcement = (

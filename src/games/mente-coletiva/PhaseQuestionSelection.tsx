@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -15,11 +16,12 @@ import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitCustomQuestionAPIRequest, useOnSubmitQuestionAPIRequest } from './utils/api-requests';
 import { MENTE_COLETIVA_PHASES } from './utils/constants';
+import type { PhaseQuestionSelectionState } from './utils/types';
 import { GamePremiseRules } from './components/RulesBlobs';
 import { StepQuestionSelection } from './StepQuestionSelection';
 import { StepQuestionSelectionWaiting } from './StepQuestionSelectionWaiting';
 
-export function PhaseQuestionSelection({ state, players, user }: PhaseProps) {
+export function PhaseQuestionSelection({ state, players, user }: PhaseProps<PhaseQuestionSelectionState>) {
   const { step, goToNextStep, setStep } = useStep(0);
 
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
@@ -68,28 +70,30 @@ export function PhaseQuestionSelection({ state, players, user }: PhaseProps) {
         </RoundAnnouncement>
 
         {/* Step 1 */}
-        <ViewIf condition={isUserTheActivePlayer}>
-          <StepQuestionSelection
-            players={players}
-            currentQuestions={state.currentQuestions}
-            onSubmitQuestion={onSubmitQuestion}
-            onSubmitCustomQuestion={onSubmitCustomQuestion}
-            roundType={state.roundType}
-            activePlayer={activePlayer}
-            pastureSize={state.pastureSize}
-            user={user}
-            announcement={announcement}
-          />
-        </ViewIf>
-        <ViewIf condition={!isUserTheActivePlayer}>
-          <StepQuestionSelectionWaiting
-            activePlayer={activePlayer}
-            players={players}
-            roundType={state.roundType}
-            pastureSize={state.pastureSize}
-            announcement={announcement}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isUserTheActivePlayer}>
+            <StepQuestionSelection
+              players={players}
+              currentQuestions={state.currentQuestions}
+              onSubmitQuestion={onSubmitQuestion}
+              onSubmitCustomQuestion={onSubmitCustomQuestion}
+              roundType={state.roundType}
+              activePlayer={activePlayer}
+              pastureSize={state.pastureSize}
+              user={user}
+              announcement={announcement}
+            />
+          </ViewIf>
+          <ViewIf condition={!isUserTheActivePlayer}>
+            <StepQuestionSelectionWaiting
+              activePlayer={activePlayer}
+              players={players}
+              roundType={state.roundType}
+              pastureSize={state.pastureSize}
+              announcement={announcement}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

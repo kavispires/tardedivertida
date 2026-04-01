@@ -126,6 +126,7 @@ export function StepAnswering({
         </ol>
         <SpaceContainer>
           <DevButton
+            size="large"
             onClick={() => onSubmitAnswers({ answers: mockAnswers(user.id, currentQuestion.number) })}
           >
             Mock Answers
@@ -135,6 +136,7 @@ export function StepAnswering({
             type="primary"
             disabled={isDisabled}
             onClick={() => onSubmitAnswers({ answers })}
+            size="large"
           >
             <Translate
               pt="Enviar respostas"

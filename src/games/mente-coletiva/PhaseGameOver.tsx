@@ -9,11 +9,11 @@ import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Title } from 'components/text';
 // Internal
-import type { GalleryEntry } from './utils/types';
+import type { GalleryEntry, PhaseGameOverState } from './utils/types';
 import { achievementsReference } from './utils/achievements';
 import { SheepAvatar } from './components/SheepAvatar';
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   return (
     <GameOverWrapper
       state={state}
