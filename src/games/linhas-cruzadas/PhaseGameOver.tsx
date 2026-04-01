@@ -12,10 +12,10 @@ import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { PlayerAvatarName } from 'components/player';
 // Internal
-import type { AlbumEntry } from './utils/types';
+import type { AlbumEntry, PhaseGameOverState } from './utils/types';
 import achievementsReference from './utils/achievements';
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   const slideCount = Math.min(state.album[0]?.slides.length ?? 5, 8);
   const cardWidth = useCardWidth(slideCount, { minWidth: 100 });
 

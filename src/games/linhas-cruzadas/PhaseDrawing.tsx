@@ -14,9 +14,10 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
 import { DRAWING_TIME_IN_SECONDS, LINHAS_CRUZADAS_PHASES } from './utils/constants';
+import type { PhaseDrawingState } from './utils/types';
 import { StepTimedDrawing } from './StepTimedDrawing';
 
-export function PhaseDrawing({ state, players, user }: PhaseProps) {
+export function PhaseDrawing({ state, players, user }: PhaseProps<PhaseDrawingState>) {
   const { step, goToNextStep, setStep } = useStep(0);
 
   const onSubmitDrawing = useOnSubmitDrawingAPIRequest(setStep);

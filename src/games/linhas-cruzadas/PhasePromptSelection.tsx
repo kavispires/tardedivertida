@@ -12,9 +12,10 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitPromptAPIRequest } from './utils/api-requests';
 import { LINHAS_CRUZADAS_PHASES } from './utils/constants';
+import type { PhasePromptSelectionState } from './utils/types';
 import { StepSelectPrompt } from './StepSelectPrompt';
 
-export function PhasePromptSelection({ state, players, user }: PhaseProps) {
+export function PhasePromptSelection({ state, players, user }: PhaseProps<PhasePromptSelectionState>) {
   const { step, goToNextStep, setStep } = useStep(0);
 
   const onSubmitPrompt = useOnSubmitPromptAPIRequest(setStep);

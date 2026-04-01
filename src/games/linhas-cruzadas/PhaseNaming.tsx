@@ -13,9 +13,10 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 import { LINHAS_CRUZADAS_PHASES } from './utils/constants';
+import type { PhaseNamingState } from './utils/types';
 import { StepNameDrawing } from './StepNameDrawing';
 
-export function PhaseNaming({ state, players, user }: PhaseProps) {
+export function PhaseNaming({ state, players, user }: PhaseProps<PhaseNamingState>) {
   const { step, goToNextStep, setStep } = useStep(0);
 
   const onSubmitGuess = useOnSubmitGuessAPIRequest(setStep);

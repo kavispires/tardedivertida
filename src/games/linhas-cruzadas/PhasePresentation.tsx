@@ -12,9 +12,10 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 // Internal
 import { LINHAS_CRUZADAS_PHASES } from './utils/constants';
+import type { PhasePresentationState } from './utils/types';
 import { StepAlbum } from './StepAlbum';
 
-export function PhasePresentation({ state, players }: PhaseProps) {
+export function PhasePresentation({ state, players }: PhaseProps<PhasePresentationState>) {
   const { step, goToNextStep } = useStep(0);
 
   return (
