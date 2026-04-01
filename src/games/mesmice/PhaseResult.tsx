@@ -14,9 +14,10 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 // Internal
 import { MESMICE_PHASES } from './utils/constants';
+import type { PhaseResultState } from './utils/types';
 import { StepResult } from './StepResult';
 
-export function PhaseResult({ state, players, user }: PhaseProps) {
+export function PhaseResult({ state, players, user }: PhaseProps<PhaseResultState>) {
   const { step } = useStep();
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 

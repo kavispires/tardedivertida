@@ -13,11 +13,12 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitObjectAPIRequest } from './utils/api-requests';
 import { MESMICE_PHASES } from './utils/constants';
+import type { PhaseClueWritingState } from './utils/types';
 import { PlayerObjectClueFeature } from './components/PlayerObjectClueFeature';
 import { StepSelectObject } from './StepObjectSelection';
 import { StepWriteClue } from './StepWriteClue';
 
-export function PhaseClueWriting({ state, players, user }: PhaseProps) {
+export function PhaseClueWriting({ state, players, user }: PhaseProps<PhaseClueWritingState>) {
   const { step, setStep, goToNextStep, goToPreviousStep } = useStep();
   const [objectId, setObjectId] = useState<string>('');
 

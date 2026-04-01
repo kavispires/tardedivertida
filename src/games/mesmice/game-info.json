@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "J",
   "gameName": "mesmice",
-  "version": "1.0.71",
+  "version": "1.0.72",
   "release": "stable",
   "releaseDate": "2024-01-18",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Jogo da Mesmice",
     "en": "Same But Different"
@@ -25,7 +25,8 @@
     "primaryColor": "#2ba19b",
     "surfaceColor": "#f5fcfc",
     "colorScheme": "light",
-    "videoBackground": true
+    "videoBackground": true,
+    "imageBackground": true
   },
   "rules": {
     "en": [

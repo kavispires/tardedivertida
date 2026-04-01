@@ -14,6 +14,7 @@ import type { UseStep } from 'hooks/useStep';
 import { SendButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { Step } from 'components/steps';
 import { RuleInstruction, StepTitle } from 'components/text';
 // Internal
@@ -142,23 +143,27 @@ export function StepWriteClue({
         />
       </SpaceContainer>
 
-      <SpaceContainer>
+      <SpaceFloat className="mt-5">
         <Button
           onClick={goToPreviousStep}
           disabled={isLoading}
+          size="large"
         >
           <Translate
             pt="Voltar"
             en="Back"
           />
         </Button>
-        <SendButton onClick={handleSubmitClue}>
+        <SendButton
+          onClick={handleSubmitClue}
+          size="large"
+        >
           <Translate
             pt="Enviar"
             en="Submit"
           />
         </SendButton>
-      </SpaceContainer>
+      </SpaceFloat>
     </Step>
   );
 }

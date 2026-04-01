@@ -16,10 +16,15 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitFeatureAPIRequest } from './utils/api-requests';
 import { MESMICE_PHASES } from './utils/constants';
+import type { PhaseObjectFeatureEliminationState } from './utils/types';
 import { WaitingRoomFeature } from './components/WaitingRoomFeature';
 import { StepSelectFeature } from './StepSelectFeature';
 
-export function PhaseObjectFeatureElimination({ state, players, user }: PhaseProps) {
+export function PhaseObjectFeatureElimination({
+  state,
+  players,
+  user,
+}: PhaseProps<PhaseObjectFeatureEliminationState>) {
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
   const initialStep = state.outcome === 'NEW' ? 0 : 1;
   const { step, setStep, goToNextStep } = useStep(initialStep);
