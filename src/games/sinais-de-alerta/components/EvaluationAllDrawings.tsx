@@ -49,7 +49,7 @@ export function EvaluationAllDrawings({
         />
       }
       contentProps={{ className: 'div-container' }}
-      className="contained"
+      contained
     >
       {drawings.map((drawing) => {
         const subject = cards?.[subjectGuesses?.[drawing.playerId]]?.text;

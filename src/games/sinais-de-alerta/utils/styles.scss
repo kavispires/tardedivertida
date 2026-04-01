@@ -1,5 +1,10 @@
 @use "styles/sass" as *;
 
+.background {
+  background: linear-gradient(-45deg, #6c5f0c, #153305, #1d3c0a);
+  background-size: 1000% 1000%;
+}
+
 .sda-card {
   z-index: 15;
 }
@@ -68,10 +73,13 @@
 }
 
 .sda-word-button {
+  position: relative;
+
   &__matched {
     position: absolute;
-    top: -10px;
-    right: -30px;
+    top: get-unit(-1);
+    right: get-unit(-4);
+    z-index: 1;
   }
 
   &__avatar {

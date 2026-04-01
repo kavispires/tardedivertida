@@ -14,9 +14,10 @@ import { Instruction } from 'components/text';
 // Internal
 import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
 import { SINAIS_DE_ALERTA_PHASES } from './utils/constants';
+import type { PhaseDrawingState } from './utils/types';
 import { StepDraw } from './StepDraw';
 
-export function PhaseDrawing({ state, players, meta, user }: PhaseProps) {
+export function PhaseDrawing({ state, players, meta, user }: PhaseProps<PhaseDrawingState>) {
   const { step, goToNextStep, setStep } = useStep(0);
 
   const [startDrawingTimer, setStartDrawingTimer] = useState(false);

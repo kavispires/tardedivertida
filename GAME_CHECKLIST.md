@@ -12,7 +12,6 @@ Legend
 - 📝 Todo/Should be done
 
 
-
 ## Adedanhx
 
 - Collection: `adedanhx`
@@ -631,8 +630,8 @@ Legend
 - Rules MD: 🔘
 - Rules Images: 🔘
 - Bots: 🔘
-- Collects Data: 🔘
-- Image Background: 🔘
+- Collects Data: ✅
+- Image Background: ✅
 - Phase Delegator Migration: ✅
 - PhaseProps Migration: ✅
 - Role-base View Migration: 🔘
@@ -663,12 +662,12 @@ Legend
 - Rules MD: 🔘
 - Rules Images: 🔘
 - Bots: 🔘
-- Collects Data: 🔘
-- Image Background: 🔘
+- Collects Data: ✅
+- Image Background: ✅
 - Phase Delegator Migration: ✅
-- PhaseProps Migration: 🔘
+- PhaseProps Migration: ✅
 - Role-base View Migration: 🔘
-- Float Submit Migration: 🔘
+- Float Submit Migration: ✅
 - Host Timer Bar Migration: 🔘
 
 ## Super Campeonato

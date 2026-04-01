@@ -10,11 +10,11 @@ import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
 import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
-import type { FinalGalleryEntry } from './utils/types';
+import type { FinalGalleryEntry, PhaseGameOverState } from './utils/types';
 import { achievementsReference } from './utils/achievements';
 import { FinalGalleryItem } from './components/FinalGalleryItem';
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   const canvasWidth = useCardWidth(8, { gap: 16, minWidth: 100, maxWidth: 500 });
 
   return (

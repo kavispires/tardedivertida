@@ -14,7 +14,7 @@ import { useMock } from 'hooks/useMock';
 import { SendButton } from 'components/buttons';
 import { CanvasResizer } from 'components/canvas';
 import { Translate } from 'components/language';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { TitledContainer } from 'components/layout/TitledContainer';
 import { PopoverRule } from 'components/rules';
 import { Step, type StepProps } from 'components/steps';
@@ -79,7 +79,7 @@ export function StepEvaluate({
     randomSelection();
   };
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: setCanvasSize is a stable setter from hook state
   useEffect(() => {
     if (!canvasSize) {
       // Round to increments of 50
@@ -173,12 +173,31 @@ export function StepEvaluate({
       </RuleInstruction>
 
       <Space orientation="vertical">
-        <SpaceContainer wrap>
+        <EvaluationAllDrawings
+          players={players}
+          cards={cards}
+          drawings={drawings}
+          onSelect={activateItem}
+          subjectGuesses={subjectGuesses}
+          descriptorGuesses={descriptorGuesses}
+          gameLanguage={gameLanguage}
+          activeItem={activeItem}
+        />
+
+        {gameLanguage === 'pt' ? subjects : descriptors}
+
+        {gameLanguage === 'pt' ? descriptors : subjects}
+
+        <SpaceFloat
+          enabled={isComplete}
+          className="mt-10"
+        >
           <Button
             type="default"
             icon={<ClearOutlined />}
             onClick={resetGuesses}
             disabled={isLoading}
+            size="large"
           >
             <Translate
               pt="Limpar seleções"
@@ -190,6 +209,7 @@ export function StepEvaluate({
             icon={<ThunderboltOutlined />}
             onClick={onGuessForMe}
             disabled={isLoading || isComplete}
+            size="large"
           >
             <Translate
               pt="Chutar restantes"
@@ -205,28 +225,14 @@ export function StepEvaluate({
             }
             disabled={!isComplete}
             icon={<CloudUploadOutlined />}
+            size="large"
           >
             <Translate
               pt="Enviar sua avaliação"
               en="Send evaluation"
             />
           </SendButton>
-        </SpaceContainer>
-
-        <EvaluationAllDrawings
-          players={players}
-          cards={cards}
-          drawings={drawings}
-          onSelect={activateItem}
-          subjectGuesses={subjectGuesses}
-          descriptorGuesses={descriptorGuesses}
-          gameLanguage={gameLanguage}
-          activeItem={activeItem}
-        />
-
-        {gameLanguage === 'pt' ? subjects : descriptors}
-
-        {gameLanguage === 'pt' ? descriptors : subjects}
+        </SpaceFloat>
       </Space>
     </Step>
   );

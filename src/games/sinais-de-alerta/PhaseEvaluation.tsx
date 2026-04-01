@@ -12,10 +12,11 @@ import { ViewIf } from 'components/views';
 // Internal
 import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
 import { SINAIS_DE_ALERTA_PHASES } from './utils/constants';
+import type { PhaseEvaluationState } from './utils/types';
 import { EvaluationRules } from './components/RulesBlobs';
 import { StepEvaluate } from './StepEvaluate';
 
-export function PhaseEvaluation({ state, players, meta, user }: PhaseProps) {
+export function PhaseEvaluation({ state, players, meta, user }: PhaseProps<PhaseEvaluationState>) {
   const { step, setStep } = useStep(0);
 
   const onSubmitGuesses = useOnSubmitGuessesAPIRequest(setStep);
@@ -47,7 +48,7 @@ export function PhaseEvaluation({ state, players, meta, user }: PhaseProps) {
         players={players}
       >
         {/*Step 0 */}
-        <ViewIf condition={state.drawings && user.id}>
+        <ViewIf condition={!!state.drawings && !!user.id}>
           <StepEvaluate
             announcement={announcement}
             gameLanguage={meta.language}
