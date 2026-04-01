@@ -2,11 +2,23 @@
 import type { Achievement, GamePlayer, GameRanking, GameRound } from 'types/game';
 import type { TextCard } from 'types/tdr';
 
+/**
+ * Payload for submitting robot cards
+ */
 export type SubmitRobotCardsPayload = {
+  /**
+   * Array of card IDs to submit
+   */
   cardIds: UID[];
 };
 
+/**
+ * Payload for submitting robot guess
+ */
 export type SubmitRobotGuessPayload = {
+  /**
+   * Array of guessed card IDs
+   */
   guess: UID[];
 };
 

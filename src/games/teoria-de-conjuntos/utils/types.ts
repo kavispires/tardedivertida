@@ -4,54 +4,150 @@ import type { DiagramTopic, Item } from 'types/tdr';
 // Internal
 import type { OUTCOME } from './constants';
 
+/**
+ * Payload for submitting judge selection
+ */
 export type SubmitJudgePayload = {
+  /**
+   * ID of the player selected as judge
+   */
   judgeId: UID;
 };
 
+/**
+ * Payload for submitting item placement on the diagram
+ */
 export type SubmitItemPlacementPayload = {
+  /**
+   * ID of the item being placed
+   */
   itemId: UID;
+  /**
+   * Area position on the diagram (e.g., 'A', 'W', 'AW', 'O')
+   */
   position: string;
 };
 
+/**
+ * Payload for submitting judge's evaluation
+ */
 export type SubmitEvaluationPayload = {
+  /**
+   * Evaluation result from the judge
+   */
   evaluation: string;
 };
 
+/**
+ * Payload for submitting evaluation fix/correction
+ */
 export type SubmitEvaluationFixPayload = {
+  /**
+   * ID of the item being re-evaluated
+   */
   itemId: UID;
+  /**
+   * Current area where the item is placed
+   */
   currentArea: string;
+  /**
+   * New evaluation result
+   */
   newEvaluation: string;
 };
 
+/**
+ * Solutions dictionary containing the correct topics for each diagram circle
+ */
 export type Solutions = {
+  /**
+   * Attribute circle topic
+   */
   attribute: DiagramTopic;
+  /**
+   * Word circle topic
+   */
   word: DiagramTopic;
+  /**
+   * Context circle topic (optional, not present in easy mode)
+   */
   context?: DiagramTopic;
 };
 
+/**
+ * Examples for each diagram type to help players understand the categories
+ */
 export type DiagramExamples = {
+  /**
+   * Example topics for the attribute circle
+   */
   attribute: DiagramTopic[];
+  /**
+   * Example topics for the word circle
+   */
   word: DiagramTopic[];
+  /**
+   * Example topics for the context circle (optional, not present in easy mode)
+   */
   context?: DiagramTopic[];
 };
 
+/**
+ * Area in the Venn diagram that can contain items
+ */
 export type DiagramArea = {
-  key: string; // A | W | C | O and any combination
+  /**
+   * Key representing the area (A, W, C, O, or any combination like AW, AC, WC, AWC)
+   */
+  key: string;
+  /**
+   * Array of item IDs placed in this area
+   */
   itemsIds: UID[];
 };
 
+/**
+ * Outcome type for a guess
+ */
 export type Outcome = keyof typeof OUTCOME;
 
+/**
+ * Player's guess for item placement
+ */
 export type Guess = {
+  /**
+   * ID of the item being guessed
+   */
   itemId: UID;
+  /**
+   * ID of the player making the guess
+   */
   playerId: UID;
+  /**
+   * Area suggested by the player
+   */
   suggestedArea: string;
+  /**
+   * Correct area determined by the judge (null if not yet evaluated)
+   */
   correctArea: string | null;
+  /**
+   * Outcome of the guess (CONTINUE, WRONG, WIN, PENDING)
+   */
   outcome: Outcome | string;
 };
 
+/**
+ * Reevaluation props for fixing judge decisions
+ */
 export type Reevaluation = {
+  /**
+   * Callback to open the fix modal
+   */
   onOpenFixModal: (itemId: string, currentArea: string) => void;
+  /**
+   * Whether the current user is the judge
+   */
   isJudge: boolean;
 };
 

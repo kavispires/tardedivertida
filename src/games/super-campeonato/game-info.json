@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "W",
   "gameName": "super-campeonato",
-  "version": "2.3.80",
+  "version": "2.3.81",
   "release": "stable",
   "releaseDate": "2022-02-06",
   "available": false,

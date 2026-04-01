@@ -15,7 +15,6 @@ import { Step, type StepProps } from 'components/steps';
 import { RuleInstruction, StepTitle, TextHighlight } from 'components/text';
 // Internal
 import type { GalleryEntry } from './utils/types';
-// Hooks
 
 type StepResultsProps = {
   players: GamePlayers;
@@ -90,11 +89,11 @@ export function StepResults({ announcement, sequence, players, gallery, goToNext
             />
             <ListOfPlayers
               players={players}
-              list={card.playersIsd}
+              list={card.playersIds}
               prefix={card.patternId}
               style={{ maxWidth: cardWidth * 1.5 }}
             />
-            {card.playersIsd.length > 1 && (
+            {card.playersIds.length > 1 && (
               <span>
                 <PointsHighlight type="positive">
                   <Translate

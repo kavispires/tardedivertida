@@ -72,7 +72,7 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
                   />
                   <ListOfPlayers
                     players={players}
-                    list={card.playersIsd}
+                    list={card.playersIds}
                     prefix={card.patternId}
                     style={{ maxWidth: cardWidth }}
                   />

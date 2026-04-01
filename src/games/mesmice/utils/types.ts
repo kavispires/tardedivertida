@@ -2,12 +2,6 @@
 import type { Achievement } from 'types/game';
 import type { Item, ObjectFeatureCard } from 'types/tdr';
 
-export enum Phase {
-  CLUE_WRITING = 'CLUE_WRITING',
-  OBJECT_FEATURE_ELIMINATION = 'OBJECT_FEATURE_ELIMINATION',
-  RESULT = 'RESULT',
-}
-
 /**
  * Payload for submitting an object and clue
  */
