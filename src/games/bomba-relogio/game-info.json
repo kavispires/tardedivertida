@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "bomba-relogio",
-  "version": "0.9.16",
+  "version": "0.9.17",
   "release": "beta",
   "releaseDate": "2026-01-11",
   "available": false,
@@ -24,7 +24,8 @@
     "cloudsAnimationType": "flow",
     "primaryColor": "#214f8f",
     "colorScheme": "dark",
-    "videoBackground": true
+    "videoBackground": true,
+    "imageBackground": true
   },
   "rules": {
     "pt": [
@@ -45,21 +46,12 @@
     ]
   },
   "playerCount": {
-    "recommended": [
-      5,
-      6,
-      7
-    ],
+    "recommended": [5, 6, 7],
     "min": 4,
     "max": 10,
     "best": 6
   },
-  "mechanics": [
-    "cooperative",
-    "turn-based",
-    "traitor",
-    "discussion"
-  ],
+  "mechanics": ["cooperative", "turn-based", "traitor", "discussion"],
   "duration": {
     "base": 0,
     "perPlayer": 0

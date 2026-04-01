@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vendaval-de-palpite",
-  "version": "0.9.75",
+  "version": "0.9.76",
   "release": "paused",
   "releaseDate": "2022-05-29",
   "available": false,
@@ -24,22 +24,15 @@
     "cloudsAnimationType": "flow",
     "primaryColor": "",
     "colorScheme": "light",
-    "videoBackground": true
+    "videoBackground": true,
+    "imageBackground": true
   },
   "rules": {
-    "pt": [
-      "TBD"
-    ],
-    "en": [
-      "TBD"
-    ]
+    "pt": ["TBD"],
+    "en": ["TBD"]
   },
   "playerCount": {
-    "recommended": [
-      4,
-      5,
-      6
-    ],
+    "recommended": [4, 5, 6],
     "min": 2,
     "max": 10,
     "best": 0
@@ -48,12 +41,6 @@
     "base": 0,
     "perPlayer": 0
   },
-  "mechanics": [
-    "cooperative",
-    "same-time",
-    "writing",
-    "guessing",
-    "brain-burner"
-  ],
+  "mechanics": ["cooperative", "same-time", "writing", "guessing", "brain-burner"],
   "features": []
 }

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "detetives-imaginativos",
-  "version": "4.0.29",
+  "version": "4.0.30",
   "release": "stable",
   "releaseDate": "2021-07-10",
   "available": false,
@@ -24,7 +24,8 @@
     "cloudsAnimationType": "falling",
     "primaryColor": "#4B2142",
     "colorScheme": "dark",
-    "videoBackground": true
+    "videoBackground": true,
+    "imageBackground": true
   },
   "rules": {
     "en": [

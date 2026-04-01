@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "O",
   "gameName": "onda-telepatica",
-  "version": "4.0.88",
+  "version": "4.0.89",
   "releaseDate": "2021-05-18",
   "release": "stable",
   "available": false,
@@ -24,7 +24,8 @@
     "cloudsAnimationType": "flow",
     "primaryColor": "#E1146D",
     "colorScheme": "dark",
-    "videoBackground": true
+    "videoBackground": true,
+    "imageBackground": true
   },
   "rules": {
     "en": [

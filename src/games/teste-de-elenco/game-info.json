@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "teste-de-elenco",
-  "version": "2.0.74",
+  "version": "2.0.75",
   "release": "stable",
   "releaseDate": "2023-11-04",
   "available": false,
@@ -24,7 +24,8 @@
     "cloudsAnimationType": "flow",
     "primaryColor": "#4F1271",
     "colorScheme": "light",
-    "videoBackground": true
+    "videoBackground": true,
+    "imageBackground": true
   },
   "rules": {
     "en": [

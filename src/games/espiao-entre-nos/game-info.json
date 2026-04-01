@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "espiao-entre-nos",
-  "version": "0.10.80",
+  "version": "0.10.81",
   "release": "paused",
   "releaseDate": "2021-05-23",
   "available": false,
@@ -24,7 +24,8 @@
     "cloudsAnimationType": "falling",
     "primaryColor": "#1CC41C",
     "colorScheme": "light",
-    "videoBackground": true
+    "videoBackground": true,
+    "imageBackground": true
   },
   "rules": {
     "pt": [
@@ -36,16 +37,10 @@
       "A qualquer momento, mas uma única vez por rodada, você pode acusar alguém, daí todos têm que votar e se a votação for unânime, revelam-se os papéis e prendemos o espião! Ou será que não? Tenha certeza antes de acusar alguém!",
       "O espião também pode parar o jogo e tentar adivinhar onde é o local! Se em 10 minutos, nada for descoberto, temos uma última change, mas explicamos isso quando a hora chegar"
     ],
-    "en": [
-      "TBD"
-    ]
+    "en": ["TBD"]
   },
   "playerCount": {
-    "recommended": [
-      5,
-      6,
-      7
-    ],
+    "recommended": [5, 6, 7],
     "min": 4,
     "max": 10,
     "best": 6
@@ -54,13 +49,6 @@
     "base": 0,
     "perPlayer": 0
   },
-  "mechanics": [
-    "competitive",
-    "same-time",
-    "traitor",
-    "discussion",
-    "timed",
-    "voting"
-  ],
+  "mechanics": ["competitive", "same-time", "traitor", "discussion", "timed", "voting"],
   "features": []
 }
