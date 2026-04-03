@@ -299,10 +299,12 @@ function SwipeableCardPair({ imageId1, imageId2, cardWidth, onEvaluate }: Swipea
         <ImageCard
           cardId={imageId1}
           cardWidth={cardWidth}
+          preview={false}
         />
         <ImageCard
           cardId={imageId2}
           cardWidth={cardWidth}
+          preview={false}
         />
       </Flex>
 

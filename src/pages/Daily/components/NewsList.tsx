@@ -17,6 +17,23 @@ type NewsItem = {
 
 export const NEWS_LIST: NewsItem[] = [
   {
+    date: '2026-04-04',
+    content: (
+      <>
+        <em>Nova forma de contribuir:</em>
+        <br />
+        <IconAvatar
+          icon={<ALL_SETTINGS.CONEXOES.HUB_ICON />}
+          size="small"
+        />{' '}
+        <strong>
+          <DualTranslate>{ALL_SETTINGS.CONEXOES.NAME}</DualTranslate>
+        </strong>{' '}
+        - avalie se pares de imagens estão relacionados!
+      </>
+    ),
+  },
+  {
     date: '2026-02-14',
     content: (
       <>
