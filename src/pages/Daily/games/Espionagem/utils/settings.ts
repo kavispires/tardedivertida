@@ -8,7 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'espionagem',
   RELEASE_DATE: '2025-07-05',
   TYPE: 'game',
-  COLOR: 'rgba(89, 209, 134, 0.85)',
+  COLOR: 'rgba(125, 192, 121, 0.85)',
   EMOJI: '🕵️‍♂️',
   HUB_ICON: DailySuspectGameIcon,
   HUB_NAME: { pt: 'Espionagem', en: 'Espionage' },

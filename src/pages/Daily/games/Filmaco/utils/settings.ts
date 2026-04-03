@@ -8,7 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'filmaco',
   TYPE: 'game',
   RELEASE_DATE: '2024-05-30',
-  COLOR: 'rgba(85, 161, 255, 0.85)',
+  COLOR: 'rgba(118, 151, 226, 0.85)',
   EMOJI: '🎬',
   HUB_ICON: DailyMovieGameIcon,
   HUB_NAME: { pt: 'Filmaço', en: 'Movicon' },

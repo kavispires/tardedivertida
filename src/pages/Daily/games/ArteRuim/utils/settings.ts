@@ -8,7 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'arte-ruim',
   TYPE: 'game',
   RELEASE_DATE: '2023-11-04',
-  COLOR: 'rgba(158, 182, 244, 0.85)',
+  COLOR: 'rgba(174, 169, 223, 0.85)',
   EMOJI: '🖼️',
   HUB_ICON: DailyArtGameIcon,
   HUB_NAME: { pt: 'Arte Ruim', en: 'Is It Art?' },

@@ -8,7 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'portais-magicos',
   TYPE: 'game',
   RELEASE_DATE: '2025-04-12',
-  COLOR: 'rgba(255, 171, 145, 0.85)',
+  COLOR: 'rgba(222, 141, 93, 0.85)',
   EMOJI: '🚪',
   HUB_ICON: DailyImagesGameIcon,
   HUB_NAME: { pt: 'Portais', en: 'Portals' },

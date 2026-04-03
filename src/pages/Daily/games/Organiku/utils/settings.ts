@@ -8,7 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'organiku',
   TYPE: 'game',
   RELEASE_DATE: '2025-06-07',
-  COLOR: 'rgba(186, 243, 154, 0.85)',
+  COLOR: 'rgba(211, 232, 124, 0.85)',
   EMOJI: '🧸',
   HUB_ICON: DailyMemoryGridGameIcon,
   HUB_NAME: { pt: 'Organiku', en: 'Organiku' },

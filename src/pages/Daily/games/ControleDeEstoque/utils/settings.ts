@@ -8,7 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'controle-de-estoque',
   TYPE: 'game',
   RELEASE_DATE: '2024-08-04',
-  COLOR: 'rgba(255, 199, 59, 0.85)',
+  COLOR: 'rgba(249, 205, 84, 0.85)',
   EMOJI: '📦',
   HUB_ICON: DailyWarehouseGameIcon,
   HUB_NAME: { pt: 'Estoque', en: 'Warehouse' },

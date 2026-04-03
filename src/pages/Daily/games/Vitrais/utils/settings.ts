@@ -8,7 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'vitrais',
   TYPE: 'game',
   RELEASE_DATE: '2025-12-24',
-  COLOR: 'rgba(255, 150, 29, 0.85)',
+  COLOR: 'rgba(253, 176, 76, 0.85)',
   EMOJI: '🧩',
   HUB_ICON: DailyPuzzleGameIcon,
   HUB_NAME: { pt: 'Vitrais', en: 'Vitrais' },

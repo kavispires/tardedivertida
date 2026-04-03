@@ -8,7 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'aqui-o',
   TYPE: 'game',
   RELEASE_DATE: '2024-04-30',
-  COLOR: 'rgba(227, 167, 111, 0.85)',
+  COLOR: 'rgba(237, 202, 158, 0.85)',
   EMOJI: '🔍',
   HUB_ICON: DailyFindingGameIcon,
   HUB_NAME: { pt: 'Aqui Ó', en: 'Find This' },

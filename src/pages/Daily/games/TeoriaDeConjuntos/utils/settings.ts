@@ -8,7 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'teoria-de-conjuntos',
   TYPE: 'game',
   RELEASE_DATE: '2024-08-31',
-  COLOR: 'rgba(172, 128, 221, 0.85)',
+  COLOR: 'rgba(195, 135, 202, 0.85)',
   EMOJI: '⭕️',
   HUB_ICON: DailyDiagramGameIcon,
   HUB_NAME: { pt: 'Conjuntos', en: 'Diagrams' },
