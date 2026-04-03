@@ -315,6 +315,7 @@ export const DATA_DOCUMENTS = {
   IMAGE_CARDS_CLUES_EN: 'imageCardsCluesEN',
   IMAGE_CARDS_CLUES_PT: 'imageCardsCluesPT',
   IMAGE_CARDS_RELATIONSHIPS: 'imageCardsRelationships',
+  IMAGE_CARDS_RELATIONSHIPS_DAILY: 'imageCardsRelationshipsDaily',
   OPPOSING_IDEAS_CLUES: 'opposingIdeasClues',
   SUFFIX_COUNTS: 'suffixCounts',
   SUSPECT_ANSWERS: 'suspectAnswers',
@@ -322,6 +323,7 @@ export const DATA_DOCUMENTS = {
   MONSTER_DRAWINGS: 'monsterDrawings',
   PAIRS: 'pairs',
   SIGNS: 'signs', // requires language suffix
+  TESTIMONIES: 'testimonies',
 } as const;
 
 export const TDR_RESOURCES = {

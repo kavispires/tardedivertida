@@ -14,6 +14,7 @@ import type { DailyPortaisMagicosEntry } from '../games/PortaisMagicos/utils/typ
 import type { DailyOrganikuEntry } from '../games/Organiku/utils/types';
 import type { DailyEspionagemEntry } from '../games/Espionagem/utils/types';
 import type { DailyVitraisEntry } from '../games/Vitrais/utils/types';
+import type { DailyConexoesEntry } from '../games/Conexoes/utils/types';
 
 export type DateKey = string; // Format YYYY-MM-DD
 
@@ -35,6 +36,7 @@ export type DailyResponse = {
   // Contributions
   artista: DailyPicacoEntry;
   'ta-na-cara': DailyTaNaCaraEntry;
+  conexoes: DailyConexoesEntry;
   // Other
   dictionary?: Dictionary<string>;
 };

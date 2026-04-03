@@ -167,10 +167,15 @@ const sortImports = (imports) => {
 const combineDuplicateImports = (importLines) => {
   // Group imports by module path
   const importsByModule = {};
+  const sideEffectImports = []; // Track side-effect imports (no 'from' clause)
 
   importLines.forEach((line) => {
     const match = line.match(/from\s+['"]([^'"]+)['"]/);
-    if (!match) return;
+    if (!match) {
+      // Side-effect import (e.g., import './styles.scss')
+      sideEffectImports.push(line);
+      return;
+    }
 
     const modulePath = match[1];
 
@@ -231,7 +236,8 @@ const combineDuplicateImports = (importLines) => {
     combinedImports.push(combinedLine);
   });
 
-  return combinedImports;
+  // Add side-effect imports back
+  return [...combinedImports, ...sideEffectImports];
 };
 
 // Process a single file

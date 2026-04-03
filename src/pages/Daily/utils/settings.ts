@@ -14,11 +14,13 @@ import { SETTINGS as TEORIA_DE_CONJUNTOS } from '../games/TeoriaDeConjuntos/util
 import { SETTINGS as TA_NA_CARA } from '../games/TaNaCara/utils/settings';
 import { SETTINGS as VITRAIS } from '../games/Vitrais/utils/settings';
 import { SETTINGS as ENDLESS_VITRAIS } from '../games/VitraisInfinitos/utils/settings';
+import { SETTINGS as CONEXOES } from '../games/Conexoes/utils/settings';
 
 export const ALL_SETTINGS = {
   AQUI_O,
   ARTE_RUIM,
   COMUNICACAO_ALIENIGENA,
+  CONEXOES,
   CONTROLE_DE_ESTOQUE,
   ESPIONAGEM,
   FILMACO,

@@ -23,6 +23,7 @@ import { DailyComunicacaoAlienigenaGame } from './games/ComunicacaoAlienigena/Da
 import { DailyPortaisMagicosGame } from './games/PortaisMagicos/DailyPortaisMagicosGame';
 import { DailyQuartetosGame } from './games/Quartetos/DailyQuartetosGame';
 import { DailyTaNaCaraGame } from './games/TaNaCara/DailyTaNaCaraGame';
+import { DailyConexoesGame } from './games/Conexoes/DailyConexoesGame';
 import { DailyEspionagemGame } from './games/Espionagem/DailyEspionagemGame';
 import { DailyOrganikuGame } from './games/Organiku/DailyOrganikuGame';
 import { DailyVitraisGame } from './games/Vitrais/DailyVitraisGame';
@@ -77,6 +78,7 @@ function DailyPage() {
       'teoria-de-conjuntos': DailyTeoriaDeConjuntosGame,
       vitrais: DailyVitraisGame,
       // Contribute
+      conexoes: DailyConexoesGame,
       picaco: DailyPicacoGame,
       'ta-na-cara': DailyTaNaCaraGame,
       demo: DailyDemoPage,

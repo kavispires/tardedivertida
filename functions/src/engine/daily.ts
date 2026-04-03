@@ -3,6 +3,7 @@ import utils from '../utils';
 import { feedEmulatorDaily } from '../utils/mocks/emulator';
 import * as dataUtils from './collections';
 import { apiDelegator } from '../utils/firebase';
+import { DATA_DOCUMENTS } from '../utils/constants';
 
 type DailyGetterPayload = {
   date: string; // Format YYYY-MM-DD
@@ -157,7 +158,7 @@ const saveTestimonies = async (data: DailySaveTestimoniesPayload, auth: Firebase
   }
 
   try {
-    const docRef = utils.firestore.getDataRef().doc('testimonies');
+    const docRef = utils.firestore.getDataRef().doc(DATA_DOCUMENTS.TESTIMONIES);
     const doc = await docRef.get();
     const docData = doc.data() as FirestoreTestimonyData;
     const previousUserData = JSON.parse(docData?.[uid] || '{}') as FirestoreTestimonyData;
@@ -207,11 +208,84 @@ const saveTestimonies = async (data: DailySaveTestimoniesPayload, auth: Firebase
   return true;
 };
 
+type RelatedPair = {
+  imageId1: string;
+  imageId2: string;
+};
+
+type DailySaveConexoesPayload = {
+  pairs: RelatedPair[];
+};
+
+/**
+ * Saves the image connections/relationships data.
+ *
+ * @param data - The payload containing the relationships data.
+ * @param auth - The authentication object.
+ * @returns A boolean indicating whether the saving was successful.
+ */
+const saveConexoes = async (data: DailySaveConexoesPayload, auth: FirebaseAuth) => {
+  const actionText = 'save conexoes';
+  const uid = auth?.uid;
+
+  if (!uid) {
+    return utils.firebase.throwException('User not authenticated', actionText);
+  }
+
+  if (!data.pairs || !Array.isArray(data.pairs)) {
+    return utils.firebase.throwException('Pairs data is missing', actionText);
+  }
+
+  try {
+    const docRef = utils.firestore.getDataRef().doc(DATA_DOCUMENTS.IMAGE_CARDS_RELATIONSHIPS_DAILY);
+    const doc = await docRef.get();
+    const docData = (doc.data() as Record<string, string>) || {};
+
+    // Parse existing user data
+    const previousUserData = JSON.parse(docData?.[uid] || '{}') as Record<string, string[]>;
+
+    // Merge new relationships with existing ones
+    const mergedRelationships: Record<string, string[]> = { ...previousUserData };
+
+    // Helper function to add bidirectional relationship
+    const addRelationship = (id1: string, id2: string) => {
+      // Add id2 to id1's array
+      if (!mergedRelationships[id1]) {
+        mergedRelationships[id1] = [];
+      }
+      if (!mergedRelationships[id1].includes(id2)) {
+        mergedRelationships[id1].push(id2);
+      }
+
+      // Add id1 to id2's array (bidirectional)
+      if (!mergedRelationships[id2]) {
+        mergedRelationships[id2] = [];
+      }
+      if (!mergedRelationships[id2].includes(id1)) {
+        mergedRelationships[id2].push(id1);
+      }
+    };
+
+    // Process each pair and create bidirectional relationships
+    for (const pair of data.pairs) {
+      addRelationship(pair.imageId1, pair.imageId2);
+    }
+
+    // Save back to Firestore
+    await docRef.update({ [uid]: JSON.stringify(mergedRelationships) });
+  } catch (error) {
+    utils.firebase.throwException(error, actionText);
+  }
+
+  return true;
+};
+
 const DAILY_API_ACTIONS = {
   GET_DAILY: getDaily,
   SAVE_DAILY: saveDaily,
   SAVE_DRAWING: saveDrawing,
   SAVE_TESTIMONIES: saveTestimonies,
+  SAVE_CONEXOES: saveConexoes,
 };
 
 /**
@@ -219,5 +293,4 @@ const DAILY_API_ACTIONS = {
  *
  * @param request - The CallableRequest object.
  */
-export const dailyEngine = (request: CallableRequest) =>
-  apiDelegator(request, DAILY_API_ACTIONS);
+export const dailyEngine = (request: CallableRequest) => apiDelegator(request, DAILY_API_ACTIONS);

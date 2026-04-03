@@ -8,6 +8,7 @@ import { DAILY_API, DAILY_API_ACTIONS } from 'services/adapters';
 // Internal
 import type { DrawingToSave } from '../games/Picaco/utils/types';
 import type { AnswerToSave } from '../games/TaNaCara/utils/types';
+import type { SavePayload as ConexoesSavePayload } from '../games/Conexoes/utils/types';
 
 export function useDailySaveDrawings(onSuccess: GenericFunction) {
   const { translate } = useLanguage();
@@ -68,6 +69,41 @@ export function useDailySaveTestimonies(onSuccess: () => void) {
         title: translate(
           'Vixi, o aplicativo encontrou um erro ao tentar salvar respostas',
           'Oops, the application failed when trying to save answers',
+        ),
+        description: JSON.stringify(e.message),
+        placement: 'bottomLeft',
+      });
+      // biome-ignore lint/suspicious/noConsole: on purpose
+      console.error(e);
+    },
+  });
+
+  return query;
+}
+
+export function useDailySaveConexoes(onSuccess: () => void) {
+  const { translate } = useLanguage();
+  const { notification } = App.useApp();
+
+  const query = useMutation({
+    mutationKey: ['daily-save-conexoes'],
+    mutationFn: async (payload: ConexoesSavePayload) =>
+      await DAILY_API.run({
+        action: DAILY_API_ACTIONS.SAVE_CONEXOES,
+        ...payload,
+      }),
+    onSuccess: () => {
+      notification.success({
+        title: translate('Relações salvas com sucesso!', 'Relationships saved successfully!'),
+        placement: 'bottomLeft',
+      });
+      onSuccess();
+    },
+    onError: (e: Error) => {
+      notification.error({
+        title: translate(
+          'Vixi, o aplicativo encontrou um erro ao tentar salvar relações',
+          'Oops, the application failed when trying to save relationships',
         ),
         description: JSON.stringify(e.message),
         placement: 'bottomLeft',

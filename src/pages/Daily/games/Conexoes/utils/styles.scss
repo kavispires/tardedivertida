@@ -1,0 +1,20 @@
+@use "styles/sass" as *;
+
+// Styles for Daily Conexoes Game
+.conexoes {
+  &__swipe-hint {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  &__pair-container {
+    position: relative;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+}

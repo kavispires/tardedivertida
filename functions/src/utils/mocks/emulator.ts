@@ -4,6 +4,7 @@ import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, USED_GAME_IDS } from '../constan
 import utils from '..';
 import aliemItemsMock from './alien-items.json';
 import type { FirebaseUserDB } from '../user';
+const sample = {};
 
 /**
  * Feeds basic data to the emulator DB
@@ -14,7 +15,6 @@ export const feedEmulatorDB = async () => {
     return;
   }
 
-  const sample = { 'a-a-a': true };
   console.log('\x1b[33m%s\x1b[0m', '🤡 Seeding Emulator DB');
 
   // DATA
@@ -84,6 +84,17 @@ export const feedEmulatorDaily = async () => {
     return;
   }
 
+  const dataEntries: Promise<FirebaseFirestore.WriteResult>[] = [];
+
+  Object.values(DATA_DOCUMENTS).forEach((usedEntryName) => {
+    dataEntries.push(utils.firestore.getDataRef().doc(usedEntryName).set(sample));
+
+    dataEntries.push(utils.firestore.getDataRef().doc(`${usedEntryName}PT`).set(sample));
+    dataEntries.push(utils.firestore.getDataRef().doc(`${usedEntryName}EN`).set(sample));
+  });
+
+  await Promise.all(dataEntries);
+
   console.log('\x1b[33m%s\x1b[0m', '🤡 Seeding Emulator Daily');
 
   // DAILY
@@ -138,6 +149,9 @@ export const feedEmulatorDaily = async () => {
     ),
     'ta-na-cara': JSON.parse(
       '{"id":"2023-10-31","number":0,"type":"ta-na-cara","testimonies":[{"testimonyId":"t-1-pt","question":"Ele(a) já foi para um jogo em um estádio?","nsfw":false,"suspectsIds":["us-gb-031","us-gb-032","us-gb-033","us-gb-034","us-gb-035","us-gb-036"]},{"testimonyId":"t-2-pt","question":"Ele(a) gosta de música clássica?","nsfw":false,"suspectsIds":["us-gb-051","us-gb-052","us-gb-053","us-gb-054","us-gb-055","us-gb-056"]},{"testimonyId":"t-3-pt","question":"Ele(a) acredita em alienígenas?","nsfw":true,"suspectsIds":["us-gb-101","us-gb-102","us-gb-103","us-gb-104","us-gb-105","us-gb-106"]}],"variant":"rl","suspectsIds":["us-gb-001","us-gb-002","us-gb-003","us-gb-004","us-gb-005","us-gb-006","us-gb-007"],"names":{"us-gb-031":"Murilo","us-gb-032":"João","us-gb-033":"José","us-gb-036":"Conrado"}}',
+    ),
+    conexoes: JSON.parse(
+      '{"id":"2026-04-04","type":"conexoes","number":1,"imageIds":["td-d2-130","td-d1-210","td-d16-81","td-d13-190","td-d1-149","td-d14-237","td-d5-186","td-d1-38","td-d16-211","td-d9-78","td-d16-187","td-d6-192","td-d3-69","td-d7-13","td-d1-42","td-d13-171","td-d9-198","td-d11-180","td-d14-73","td-d14-26","td-d9-94","td-d13-188","td-d11-156","td-d1-24","td-d7-93","td-d15-150","td-d15-207","td-d8-163","td-d3-51","td-d3-46","td-d2-28","td-d16-226","td-d2-107","td-d7-158","td-d8-230","td-d2-211","td-d2-212","td-d9-35","td-d12-132","td-d4-124","td-d11-252","td-d9-65","td-d14-172","td-d9-32","td-d6-209","td-d13-08","td-d10-53","td-d11-143","td-d9-126","td-d1-246"]}',
     ),
     quartetos: JSON.parse(
       '{"id":"2023-10-31","setId":"1","number":0,"type":"quartetos","difficulty":0,"grid":["483","2633","194","167","2601","632","179","2630","416","580","471","2746","27","190","1280","347"],"sets":[{"id":"27-167-179-580","title":"Duas rodas","itemsIds":["27","167","179","580"],"level":0},{"id":"1280-2601-2630-2633","title":"Animais Extintos","itemsIds":["1280","2601","2633","2630"],"level":1},{"id":"194-416-471-632","title":"Coisas que enchem de ar","itemsIds":["194","416","471","632"],"level":2},{"id":"190-347-483-2746","title":"Video Game","itemsIds":["190","2746","347","483"],"level":3}]}',

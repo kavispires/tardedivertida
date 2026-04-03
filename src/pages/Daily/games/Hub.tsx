@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { orderBy } from 'lodash';
 import moment from 'moment';
 import { motion } from 'motion/react';
 import { useEffect } from 'react';
@@ -30,7 +31,6 @@ import { DailyChrome } from '../components/DailyChrome';
 import { News } from '../components/News';
 import { BundleResults } from '../components/BundleResults';
 import { checkWasPlayedToday, daysSinceRelease, hasBeenReleased } from '../utils';
-// import { DailyCrimeGameIcon } from 'icons/DailyCrimeGameIcon';
 
 type Entry = GameSettings & {
   disabled?: boolean;
@@ -50,32 +50,41 @@ const _COMING_SOON_ENTRY: Entry = {
   disabled: true,
 };
 
-const GAMES: Entry[] = [
-  ALL_SETTINGS.ARTE_RUIM,
-  ALL_SETTINGS.COMUNICACAO_ALIENIGENA,
-  ALL_SETTINGS.AQUI_O,
-  ALL_SETTINGS.TEORIA_DE_CONJUNTOS,
-  ALL_SETTINGS.CONTROLE_DE_ESTOQUE,
-  ALL_SETTINGS.ESPIONAGEM,
-  ALL_SETTINGS.FILMACO,
-  ALL_SETTINGS.ORGANIKU,
-  ALL_SETTINGS.PALAVREADO,
-  ALL_SETTINGS.PORTAIS_MAGICOS,
-  ALL_SETTINGS.QUARTETOS,
-  ALL_SETTINGS.VITRAIS,
-];
+const GAMES: Entry[] = orderBy(
+  [
+    ALL_SETTINGS.ARTE_RUIM,
+    ALL_SETTINGS.COMUNICACAO_ALIENIGENA,
+    ALL_SETTINGS.AQUI_O,
+    ALL_SETTINGS.TEORIA_DE_CONJUNTOS,
+    ALL_SETTINGS.CONTROLE_DE_ESTOQUE,
+    ALL_SETTINGS.ESPIONAGEM,
+    ALL_SETTINGS.FILMACO,
+    ALL_SETTINGS.ORGANIKU,
+    ALL_SETTINGS.PALAVREADO,
+    ALL_SETTINGS.PORTAIS_MAGICOS,
+    ALL_SETTINGS.QUARTETOS,
+    ALL_SETTINGS.VITRAIS,
+  ],
+  ['HUB_NAME.pt'],
+  ['asc'],
+);
 
-const CONTRIBUTIONS: Entry[] = [
-  ALL_SETTINGS.PICACO,
-  ALL_SETTINGS.TA_NA_CARA,
-  // {
-  //   ...COMING_SOON_ENTRY,
-  //   HUB_ICON: DailyContributionGame,
-  //   HUB_NAME: { pt: 'Responda', en: 'Answer' },
-  //   COLOR: 'rgba(240, 240, 228, 0.85)',
-  //   disabled: true,
-  // },
-];
+const CONTRIBUTIONS: Entry[] = orderBy(
+  [
+    ALL_SETTINGS.CONEXOES,
+    ALL_SETTINGS.PICACO,
+    ALL_SETTINGS.TA_NA_CARA,
+    // {
+    //   ...COMING_SOON_ENTRY,
+    //   HUB_ICON: DailyContributionGame,
+    //   HUB_NAME: { pt: 'Responda', en: 'Answer' },
+    //   COLOR: 'rgba(240, 240, 228, 0.85)',
+    //   disabled: true,
+    // },
+  ],
+  ['HUB_NAME.pt'],
+  ['asc'],
+);
 
 const DEMOS: Entry[] = [
   // {
