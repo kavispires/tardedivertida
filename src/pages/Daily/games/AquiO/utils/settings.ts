@@ -11,7 +11,6 @@ export const SETTINGS: GameSettings = {
   COLOR: 'rgba(237, 202, 158, 0.85)',
   EMOJI: '🔍',
   HUB_ICON: DailyFindingGameIcon,
-  HUB_NAME: { pt: 'Aqui Ó', en: 'Find This' },
   NAME: { pt: 'Aqui Ó', en: 'Find This' },
   TAGLINE: {
     pt: 'Já encontrou a coisa em comum? Ela está...',

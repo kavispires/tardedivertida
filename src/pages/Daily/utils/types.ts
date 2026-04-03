@@ -81,10 +81,6 @@ export interface GameSettings {
    */
   HUB_ICON: ComponentType<SVGProps<SVGSVGElement>>;
   /**
-   * Game hub short name
-   */
-  HUB_NAME: DualLanguageValue;
-  /**
    * Game name
    */
   NAME: DualLanguageValue;

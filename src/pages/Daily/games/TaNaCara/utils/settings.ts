@@ -11,7 +11,6 @@ export const SETTINGS: GameSettings = {
   COLOR: 'rgba(242, 233, 236, 0.85)',
   EMOJI: '👤',
   HUB_ICON: DailyJudgingGameIcon,
-  HUB_NAME: { pt: 'Tá Na Cara', en: 'In Your Face' },
   NAME: { pt: 'Tá Na Cara', en: 'In Your Face' },
   TAGLINE: {
     pt: 'Julgue o livro pela capa! O cara pela cara!',

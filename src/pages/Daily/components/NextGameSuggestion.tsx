@@ -40,7 +40,7 @@ const PRIORITY_LIST = orderBy(
       );
     },
     'TYPE',
-    'HUB_NAME',
+    'NAME',
   ],
   ['desc', 'desc', 'asc'],
 );

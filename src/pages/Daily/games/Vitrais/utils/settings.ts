@@ -11,7 +11,6 @@ export const SETTINGS: GameSettings = {
   COLOR: 'rgba(253, 176, 76, 0.85)',
   EMOJI: '🧩',
   HUB_ICON: DailyPuzzleGameIcon,
-  HUB_NAME: { pt: 'Vitrais', en: 'Vitrais' },
   NAME: { pt: 'Vitrais', en: 'Vitrais' },
   TAGLINE: {
     en: 'Are you puzzled enough to do this?',

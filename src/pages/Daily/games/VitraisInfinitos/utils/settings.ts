@@ -11,8 +11,7 @@ export const SETTINGS: GameSettings = {
   COLOR: 'rgb(255 202 141 / 85%)',
   EMOJI: '🧩',
   HUB_ICON: DailyPuzzleGameIcon,
-  HUB_NAME: { pt: 'Vitrais∞', en: 'Vitrais∞' },
-  NAME: { pt: 'Vitrais Infinitos', en: 'Vitrais Infinite' },
+  NAME: { pt: 'Vitrais∞', en: 'Vitrais∞' },
   TAGLINE: {
     en: 'Are you puzzled enough to do this?',
     pt: 'Já quebrou a cabeça hoje?',

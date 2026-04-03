@@ -11,7 +11,6 @@ export const SETTINGS: GameSettings = {
   COLOR: 'rgba(237, 101, 80, 0.85)',
   EMOJI: '🔤',
   HUB_ICON: DailyWordGameIcon,
-  HUB_NAME: { pt: 'Palavreado', en: 'Rewording' },
   NAME: { pt: 'Palavreado', en: 'Rewording' },
   TAGLINE: {
     pt: 'E se o caça palavras estivesse todo embaralhado?',

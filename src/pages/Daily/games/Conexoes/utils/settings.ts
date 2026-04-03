@@ -11,7 +11,6 @@ export const SETTINGS: GameSettings = {
   COLOR: 'rgba(232, 244, 248, 0.85)',
   EMOJI: '🔗',
   HUB_ICON: DailyConexoesGameIcon,
-  HUB_NAME: { pt: 'Conexões', en: 'Connections' },
   NAME: { pt: 'Conexões', en: 'Connections' },
   TAGLINE: {
     pt: 'Ajude a conectar cartas relacionadas!',

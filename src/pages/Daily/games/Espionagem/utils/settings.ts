@@ -11,7 +11,7 @@ export const SETTINGS: GameSettings = {
   COLOR: 'rgba(125, 192, 121, 0.85)',
   EMOJI: '🕵️‍♂️',
   HUB_ICON: DailySuspectGameIcon,
-  HUB_NAME: { pt: 'Espionagem', en: 'Espionage' },
+
   NAME: { pt: 'Espionagem', en: 'Espionage' },
   TAGLINE: {
     en: 'Can you figure out who is the culprit?',

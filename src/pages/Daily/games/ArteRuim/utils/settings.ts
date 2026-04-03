@@ -11,8 +11,7 @@ export const SETTINGS: GameSettings = {
   COLOR: 'rgba(174, 169, 223, 0.85)',
   EMOJI: '🖼️',
   HUB_ICON: DailyArtGameIcon,
-  HUB_NAME: { pt: 'Arte Ruim', en: 'Is It Art?' },
-  NAME: { pt: 'Arte Ruim', en: 'Questionable Art' },
+  NAME: { pt: 'Arte Ruim', en: 'Is It Art?' },
   TAGLINE: {
     pt: 'Adivinhe o título das obras de arte!',
     en: 'Guess the title of the artworks!',

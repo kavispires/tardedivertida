@@ -11,7 +11,6 @@ export const SETTINGS: GameSettings = {
   COLOR: 'rgba(118, 151, 226, 0.85)',
   EMOJI: '🎬',
   HUB_ICON: DailyMovieGameIcon,
-  HUB_NAME: { pt: 'Filmaço', en: 'Movicon' },
   NAME: { pt: 'Filmaço', en: 'Movicon' },
   TAGLINE: {
     pt: 'Pegue a pipoca e venha descobrir esse filme!',

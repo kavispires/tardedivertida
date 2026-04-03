@@ -11,8 +11,7 @@ export const SETTINGS: GameSettings = {
   COLOR: 'rgba(231, 157, 179, 0.85)',
   EMOJI: '🗂',
   HUB_ICON: DailyGroupingGameIcon,
-  HUB_NAME: { pt: 'Quartetos', en: 'Quartets' },
-  NAME: { pt: 'Quartetos', en: 'Connect Four' },
+  NAME: { pt: 'Quartetos', en: 'Quartets' },
   TAGLINE: {
     pt: 'Conecte quatro palavras relacionadas!',
     en: 'Connect four related words!',

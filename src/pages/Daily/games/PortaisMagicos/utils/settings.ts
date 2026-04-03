@@ -11,8 +11,7 @@ export const SETTINGS: GameSettings = {
   COLOR: 'rgba(222, 141, 93, 0.85)',
   EMOJI: '🚪',
   HUB_ICON: DailyImagesGameIcon,
-  HUB_NAME: { pt: 'Portais', en: 'Portals' },
-  NAME: { pt: 'Portais Mágicos', en: 'Magic Doors' },
+  NAME: { pt: 'Portais', en: 'Portals' },
   TAGLINE: {
     pt: 'Descubra o que há por trás desses portais!',
     en: 'Discover what lies beyond these doors!',

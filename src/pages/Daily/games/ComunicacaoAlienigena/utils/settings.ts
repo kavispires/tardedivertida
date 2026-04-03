@@ -11,7 +11,6 @@ export const SETTINGS: GameSettings = {
   COLOR: 'rgba(145, 203, 196, 0.85)',
   EMOJI: '🛸',
   HUB_ICON: DailyAlienGameIcon,
-  HUB_NAME: { pt: 'Alienígena', en: 'Alienate' },
   NAME: { pt: 'Alienígena', en: 'Alienate' },
   TAGLINE: {
     pt: 'Não sabe se comunicar com seu cônjuge?',

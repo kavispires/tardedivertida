@@ -44,7 +44,6 @@ const _COMING_SOON_ENTRY: Entry = {
   EMOJI: '',
   COLOR: '',
   HUB_ICON: DailyContributionGame,
-  HUB_NAME: { pt: '', en: '' },
   NAME: { pt: '', en: '' },
   TAGLINE: { pt: '', en: '' },
   disabled: true,
@@ -65,7 +64,7 @@ const GAMES: Entry[] = orderBy(
     ALL_SETTINGS.QUARTETOS,
     ALL_SETTINGS.VITRAIS,
   ],
-  ['HUB_NAME.pt'],
+  ['NAME.pt'],
   ['asc'],
 );
 
@@ -77,12 +76,12 @@ const CONTRIBUTIONS: Entry[] = orderBy(
     // {
     //   ...COMING_SOON_ENTRY,
     //   HUB_ICON: DailyContributionGame,
-    //   HUB_NAME: { pt: 'Responda', en: 'Answer' },
+    //   NAME: { pt: 'Responda', en: 'Answer' },
     //   COLOR: 'rgba(240, 240, 228, 0.85)',
     //   disabled: true,
     // },
   ],
-  ['HUB_NAME.pt'],
+  ['NAME.pt'],
   ['asc'],
 );
 
@@ -90,7 +89,7 @@ const DEMOS: Entry[] = [
   // {
   //   ...COMING_SOON_ENTRY,
   //   HUB_ICON: DailyCrimeGameIcon,
-  //   HUB_NAME: { pt: 'Criminologia', en: 'Criminology' },
+  //   NAME: { pt: 'Criminologia', en: 'Criminology' },
   //   COLOR: 'rgba(243, 232, 145, 0.85)',
   //   VERSION: 'disabled',
   // },
@@ -218,14 +217,14 @@ function HubList({ list, width, startingIndex }: HubListProps) {
   return (
     <div className="hub-list">
       {list.map(
-        ({ KEY, ROUTE, HUB_ICON, HUB_NAME, COLOR, RELEASE_DATE, VERSION = 'stable', disabled }, index) => (
+        ({ KEY, ROUTE, HUB_ICON, NAME, COLOR, RELEASE_DATE, VERSION = 'stable', disabled }, index) => (
           <GameButton
             key={KEY}
             lsKey={KEY}
             width={width}
             href={ROUTE}
             Icon={HUB_ICON}
-            name={HUB_NAME}
+            name={NAME}
             color={COLOR}
             version={VERSION}
             releaseDate={RELEASE_DATE}

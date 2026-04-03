@@ -11,7 +11,7 @@ export const SETTINGS: GameSettings = {
   COLOR: 'rgba(255, 150, 29, 0.85)',
   EMOJI: '🧪',
   HUB_ICON: DailyPuzzleGameIcon,
-  HUB_NAME: { pt: 'Demonstração', en: 'Demo' },
+
   NAME: { pt: 'Demonstração', en: 'Demo' },
   TAGLINE: {
     en: 'This is just a demo, nothing to see here.',

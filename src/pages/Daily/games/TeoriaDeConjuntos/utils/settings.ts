@@ -11,8 +11,7 @@ export const SETTINGS: GameSettings = {
   COLOR: 'rgba(195, 135, 202, 0.85)',
   EMOJI: '⭕️',
   HUB_ICON: DailyDiagramGameIcon,
-  HUB_NAME: { pt: 'Conjuntos', en: 'Diagrams' },
-  NAME: { pt: 'Teoria de Conjuntos', en: 'Diagram Theory' },
+  NAME: { pt: 'Conjuntos', en: 'Diagrams' },
   TAGLINE: {
     pt: 'Quantas vogais têm em PQP?',
     en: 'Can you solve this set challenge?',

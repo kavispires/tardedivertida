@@ -11,7 +11,6 @@ export const SETTINGS: GameSettings = {
   COLOR: 'rgba(211, 232, 124, 0.85)',
   EMOJI: '🧸',
   HUB_ICON: DailyMemoryGridGameIcon,
-  HUB_NAME: { pt: 'Organiku', en: 'Organiku' },
   NAME: { pt: 'Organiku', en: 'Organiku' },
   TAGLINE: {
     en: 'Can you organize the table?',

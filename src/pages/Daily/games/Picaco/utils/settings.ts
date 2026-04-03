@@ -11,7 +11,6 @@ export const SETTINGS: GameSettings = {
   COLOR: 'rgba(234, 236, 241, 0.85)',
   EMOJI: '🎨',
   HUB_ICON: DailyDrawingGameIcon,
-  HUB_NAME: { pt: 'Picaço!', en: 'Big Artist' },
   NAME: { pt: 'Picaço!', en: 'Big Artist' },
   TAGLINE: {
     pt: 'Já desenhou hoje? Novas frases todos os dias!',

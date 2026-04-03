@@ -43,7 +43,7 @@ export const NEWS_LIST: NewsItem[] = [
           size="small"
         />{' '}
         <strong>
-          <DualTranslate>{ALL_SETTINGS.ENDLESS_VITRAIS.HUB_NAME}</DualTranslate>
+          <DualTranslate>{ALL_SETTINGS.ENDLESS_VITRAIS.NAME}</DualTranslate>
         </strong>{' '}
         com uma imagem diferente a cada partida!
       </>
@@ -90,7 +90,7 @@ export const NEWS_LIST: NewsItem[] = [
           size="small"
         />{' '}
         <strong>
-          <DualTranslate>{ALL_SETTINGS.VITRAIS.HUB_NAME}</DualTranslate>
+          <DualTranslate>{ALL_SETTINGS.VITRAIS.NAME}</DualTranslate>
         </strong>{' '}
         - desvende a imagem neste quebra-cabeça!
       </>
@@ -170,7 +170,7 @@ export const NEWS_LIST: NewsItem[] = [
           size="small"
         />{' '}
         <strong>
-          <DualTranslate>{ALL_SETTINGS.ESPIONAGEM.HUB_NAME}</DualTranslate>
+          <DualTranslate>{ALL_SETTINGS.ESPIONAGEM.NAME}</DualTranslate>
         </strong>{' '}
         - descubra quem é o culpado!
       </>
@@ -217,7 +217,7 @@ export const NEWS_LIST: NewsItem[] = [
           size="small"
         />{' '}
         <strong>
-          <DualTranslate>{ALL_SETTINGS.ORGANIKU.HUB_NAME}</DualTranslate>
+          <DualTranslate>{ALL_SETTINGS.ORGANIKU.NAME}</DualTranslate>
         </strong>{' '}
         - descubra onde cada item pertence! Uai, é tipo Sudoku?
       </>
@@ -281,7 +281,7 @@ export const NEWS_LIST: NewsItem[] = [
           size="small"
         />{' '}
         <strong>
-          <DualTranslate>{ALL_SETTINGS.QUARTETOS.HUB_NAME}</DualTranslate>
+          <DualTranslate>{ALL_SETTINGS.QUARTETOS.NAME}</DualTranslate>
         </strong>{' '}
         - faça quatro grupos de quatro!
       </>
@@ -298,7 +298,7 @@ export const NEWS_LIST: NewsItem[] = [
           size="small"
         />{' '}
         <strong>
-          <DualTranslate>{ALL_SETTINGS.TA_NA_CARA.HUB_NAME}</DualTranslate>
+          <DualTranslate>{ALL_SETTINGS.TA_NA_CARA.NAME}</DualTranslate>
         </strong>{' '}
         - julgue as pessoas pela cara!
       </>
