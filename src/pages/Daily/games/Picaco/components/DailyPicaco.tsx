@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
-import { Button, Divider, Layout } from 'antd';
+import { Layout, Button, Divider } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Utils
@@ -57,14 +57,14 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
       >
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
+      <Menu
+        hearts={0}
+        total={0}
+        openRules
+        rules={<Rules date={data.id} />}
+      />
       <DailyContent ref={contentRef}>
         <div ref={headerRef}>
-          <Menu
-            hearts={0}
-            total={0}
-            openRules
-            rules={<Rules date={data.id} />}
-          />
           {alreadyPlayed && (
             <Instruction className="info-screen">
               <IconAvatar icon={<ThumbsUpIcon />} />

@@ -4,6 +4,8 @@ import { useLocation } from 'react-router-dom';
 import { Flex, Layout } from 'antd';
 // Icons
 import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
+// Internal
+import { DailyImageBackground } from './DailyImageBackground';
 
 const { Content } = Layout;
 
@@ -124,7 +126,7 @@ export function DailyContent({ children, isLoading, ...props }: DailyContentProp
     return (
       <Content
         {...props}
-        style={{ ...backgroundOverride, ...props.style, marginBottom: 64 }}
+        style={{ ...backgroundOverride, ...props.style, paddingBottom: 64 }}
       >
         <Flex
           justify="center"
@@ -140,10 +142,13 @@ export function DailyContent({ children, isLoading, ...props }: DailyContentProp
   return (
     <Content
       {...props}
-      style={{ ...backgroundOverride, ...props.style, marginBottom: 64 }}
+      style={{ ...backgroundOverride, ...props.style, paddingBottom: 64, position: 'relative' }}
     >
-      {componentEffect}
-      {children}
+      <DailyImageBackground />
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        {componentEffect}
+        {children}
+      </div>
     </Content>
   );
 }

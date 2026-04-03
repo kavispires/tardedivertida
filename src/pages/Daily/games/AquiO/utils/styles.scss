@@ -4,6 +4,7 @@
   display: grid;
   border-radius: 50%;
   background: get-color("brown", 1);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 
   grid-template-columns: 1fr 2fr 2fr 2fr 1fr;
   grid-template-rows: 1fr 2fr 2fr 2fr 1fr;

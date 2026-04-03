@@ -25,6 +25,7 @@ export function RulesHintsModal({ label, title, description, children }: RulesHi
           onClick={() => toggleTipsModal(true)}
           icon={<QuestionCircleOutlined />}
           ghost
+          className="daily-ghost-button"
         >
           {label}
         </Button>

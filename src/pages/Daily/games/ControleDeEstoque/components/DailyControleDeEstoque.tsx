@@ -70,14 +70,13 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
       >
         <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
+      <Menu
+        hearts={hearts}
+        total={SETTINGS.HEARTS}
+        openRules={true}
+        rules={<Rules date={data.id} />}
+      />
       <DailyContent ref={contentRef}>
-        <Menu
-          hearts={hearts}
-          total={SETTINGS.HEARTS}
-          openRules={true}
-          rules={<Rules date={data.id} />}
-        />
-
         <PreloadItems goods={data.goods} />
 
         <Region>
@@ -149,36 +148,36 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
             title={data.title}
           />
         </Modal>
-      </DailyContent>
 
-      <Region>
-        <Popconfirm
-          title={
-            <Translate
-              pt="Deseja mesmo recomeçar o jogo?"
-              en="Do you really want to reset the game?"
-            />
-          }
-          description={
-            <Translate
-              pt="Você perderá um coração."
-              en="You will lose a heart."
-            />
-          }
-          onConfirm={reset}
-        >
-          <Button
-            type="primary"
-            danger
-            disabled={hearts <= 0}
+        <Region>
+          <Popconfirm
+            title={
+              <Translate
+                pt="Deseja mesmo recomeçar o jogo?"
+                en="Do you really want to reset the game?"
+              />
+            }
+            description={
+              <Translate
+                pt="Você perderá um coração."
+                en="You will lose a heart."
+              />
+            }
+            onConfirm={reset}
           >
-            <Translate
-              pt="Recomeçar Jogo"
-              en="Reset Game"
-            />
-          </Button>
-        </Popconfirm>
-      </Region>
+            <Button
+              type="primary"
+              danger
+              disabled={hearts <= 0}
+            >
+              <Translate
+                pt="Recomeçar Jogo"
+                en="Reset Game"
+              />
+            </Button>
+          </Popconfirm>
+        </Region>
+      </DailyContent>
     </Layout>
   );
 }

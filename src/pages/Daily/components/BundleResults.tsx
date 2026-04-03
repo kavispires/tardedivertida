@@ -16,6 +16,18 @@ import type { DailyResponse, GameSettings } from '../utils/types';
 import { ALL_HELPERS } from '../utils/helpers';
 import { checkWasPlayedToday, getSourceName, wait } from '../utils';
 import { useDailyChallenge } from '../hooks/useDailyChallenge';
+import type { DailyAquiOEntry } from '../games/AquiO/utils/types';
+import type { DailyArteRuimEntry } from '../games/ArteRuim/utils/types';
+import type { DailyComunicacaoAlienigenaEntry } from '../games/ComunicacaoAlienigena/utils/types';
+import type { DailyControleDeEstoqueEntry } from '../games/ControleDeEstoque/utils/types';
+import type { DailyEspionagemEntry } from '../games/Espionagem/utils/types';
+import type { DailyFilmacoEntry } from '../games/Filmaco/utils/types';
+import type { DailyOrganikuEntry } from '../games/Organiku/utils/types';
+import type { DailyPalavreadoEntry } from '../games/Palavreado/utils/types';
+import type { DailyPortaisMagicosEntry } from '../games/PortaisMagicos/utils/types';
+import type { DailyQuartetosEntry } from '../games/Quartetos/utils/types';
+import type { DailyTeoriaDeConjuntosEntry } from '../games/TeoriaDeConjuntos/utils/types';
+import type { DailyVitraisEntry } from '../games/Vitrais/utils/types';
 
 type BundleResultsProps = {
   list: (GameSettings & { disabled?: boolean })[];
@@ -56,6 +68,7 @@ export function BundleResults({ list }: BundleResultsProps) {
         className="my-6"
       >
         <Button
+          className="daily-ghost-button"
           ghost
           icon={<ShareAltOutlined />}
           onClick={() => setOpen(true)}
@@ -139,80 +152,80 @@ export function BundleResults({ list }: BundleResultsProps) {
 }
 
 function getResultForGame(data: DailyResponse[keyof DailyResponse], language: Language) {
-  if (!data || typeof data !== 'object' || !data.type) {
+  if (!data || typeof data !== 'object' || !('type' in data) || !data.type) {
     return '';
   }
 
-  switch (data?.type) {
+  switch (data.type) {
     case 'aqui-o': {
       return ALL_HELPERS.AQUI_O.getWrittenResult({
-        data,
+        data: data as DailyAquiOEntry,
         language,
       });
     }
     case 'arte-ruim': {
       return ALL_HELPERS.ARTE_RUIM.getWrittenResult({
-        data,
+        data: data as DailyArteRuimEntry,
         language,
       });
     }
     case 'comunicacao-alienigena': {
       return ALL_HELPERS.COMUNICACAO_ALIENIGENA.getWrittenResult({
-        data,
+        data: data as DailyComunicacaoAlienigenaEntry,
         language,
       });
     }
     case 'controle-de-estoque': {
       return ALL_HELPERS.CONTROLE_DE_ESTOQUE.getWrittenResult({
-        data,
+        data: data as DailyControleDeEstoqueEntry,
         language,
       });
     }
     case 'espionagem': {
       return ALL_HELPERS.ESPIONAGEM.getWrittenResult({
-        data,
+        data: data as DailyEspionagemEntry,
         language,
       });
     }
     case 'filmaco': {
       return ALL_HELPERS.FILMACO.getWrittenResult({
-        data,
+        data: data as DailyFilmacoEntry,
         language,
       });
     }
     case 'organiku': {
       return ALL_HELPERS.ORGANIKU.getWrittenResult({
-        data,
+        data: data as DailyOrganikuEntry,
         language,
       });
     }
     case 'palavreado': {
       return ALL_HELPERS.PALAVREADO.getWrittenResult({
-        data,
+        data: data as DailyPalavreadoEntry,
         language,
       });
     }
     case 'portais-magicos': {
       return ALL_HELPERS.PORTAIS_MAGICOS.getWrittenResult({
-        data,
+        data: data as DailyPortaisMagicosEntry,
         language,
       });
     }
     case 'quartetos': {
       return ALL_HELPERS.QUARTETOS.getWrittenResult({
-        data,
+        data: data as DailyQuartetosEntry,
         language,
       });
     }
     case 'teoria-de-conjuntos': {
       return ALL_HELPERS.TEORIA_DE_CONJUNTOS.getWrittenResult({
-        data,
+        data: data as DailyTeoriaDeConjuntosEntry,
         language,
       });
     }
     case 'vitrais': {
       return ALL_HELPERS.VITRAIS.getWrittenResult({
-        data,
+        data: data as DailyVitraisEntry,
         language,
       });
     }

@@ -46,14 +46,13 @@ export function DailyFilmaco({ data }: DailyFilmacoProps) {
       >
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
+      <Menu
+        hearts={hearts}
+        total={SETTINGS.HEARTS}
+        openRules={!isComplete || hearts === SETTINGS.HEARTS}
+        rules={<Rules date={data.id} />}
+      />
       <DailyContent>
-        <Menu
-          hearts={hearts}
-          total={SETTINGS.HEARTS}
-          openRules={!isComplete || hearts === SETTINGS.HEARTS}
-          rules={<Rules date={data.id} />}
-        />
-
         <Region>
           {data?.isDoubleFeature ? (
             <Typography.Text strong>

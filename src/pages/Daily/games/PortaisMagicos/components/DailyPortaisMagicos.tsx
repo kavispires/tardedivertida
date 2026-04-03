@@ -70,14 +70,13 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
       >
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
+      <Menu
+        hearts={hearts}
+        total={SETTINGS.HEARTS}
+        openRules={!isComplete || hearts === SETTINGS.HEARTS}
+        rules={<Rules date={data.id} />}
+      />
       <DailyContent ref={ref}>
-        <Menu
-          hearts={hearts}
-          total={SETTINGS.HEARTS}
-          openRules={!isComplete || hearts === SETTINGS.HEARTS}
-          rules={<Rules date={data.id} />}
-        />
-
         {currentCorridor && !isComplete && (
           <>
             <Region key={`doors-${currentCorridor?.passcode}`}>

@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
-import { Button, FloatButton, Layout, Modal, Switch, Typography } from 'antd';
+import { Button, Flex, FloatButton, Layout, Modal, Space, Switch, Typography } from 'antd';
 // Utils
 import { getAnimation } from 'utils/animations';
 import { isDevEnv } from 'utils/helpers';
@@ -59,12 +59,15 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
 
   // UI state
   const [contentRef, contentMeasure] = useMeasure<HTMLDivElement>();
-  const [headerRef, headerMeasure] = useMeasure<HTMLDivElement>();
+
   const discWidth = useMemo(() => {
-    const width = contentMeasure.width - 24;
-    const height = (contentMeasure.height - headerMeasure.height) / 2 - 24;
-    return Math.max(Math.min(width, height, 450), 150);
-  }, [contentMeasure.height, contentMeasure.width, headerMeasure.height]);
+    const availableHeight = window.innerHeight - contentMeasure.x;
+    const bottomPadding = 64; // DailyContent paddingBottom
+    const spacing = 100; // Account for spacing between discs, margins, and ShowResultsButton
+    const calculatedSize = (availableHeight - bottomPadding - spacing) / 2;
+    const maxWidth = window.innerWidth * 0.9; // 90vw
+    return Math.min(calculatedSize, maxWidth);
+  }, [contentMeasure.x]);
 
   return (
     <Layout className="app">
@@ -74,14 +77,14 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
       >
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
-      <DailyContent ref={contentRef}>
-        <div ref={headerRef}>
-          <Menu
-            hearts={hearts}
-            total={SETTINGS.HEARTS}
-            openRules={true}
-            rules={<Rules date={data.id} />}
-          />
+      <Menu
+        hearts={hearts}
+        total={SETTINGS.HEARTS}
+        openRules={true}
+        rules={<Rules date={data.id} />}
+      />
+      <DailyContent>
+        <div>
           <SpaceContainer>
             <Typography.Text strong>
               <DualTranslate>{data.title}</DualTranslate> |{' '}
@@ -111,7 +114,12 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
           setShowResultModal={setShowResultModal}
         />
 
-        <SpaceContainer orientation="vertical">
+        <Space
+          className="full-width"
+          align="center"
+          orientation="vertical"
+          ref={contentRef}
+        >
           {!isPlaying && (
             <>
               <Button
@@ -132,39 +140,45 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
                 />
               </Button>
 
-              <Switch
-                unCheckedChildren={
-                  <Translate
-                    pt="Modo Normal"
-                    en="Normal Mode"
-                  />
-                }
-                checkedChildren={
-                  <Translate
-                    pt="Modo Difícil"
-                    en="Challenge Mode"
-                  />
-                }
-                value={mode === 'challenge'}
-                onChange={(checked) => onModeChange(checked ? 'challenge' : 'normal')}
-              />
+              <Flex
+                gap={12}
+                wrap
+                className="mt-10"
+              >
+                <Switch
+                  unCheckedChildren={
+                    <Translate
+                      pt="Modo Normal"
+                      en="Normal Mode"
+                    />
+                  }
+                  checkedChildren={
+                    <Translate
+                      pt="Modo Difícil"
+                      en="Challenge Mode"
+                    />
+                  }
+                  value={mode === 'challenge'}
+                  onChange={(checked) => onModeChange(checked ? 'challenge' : 'normal')}
+                />
 
-              <Switch
-                unCheckedChildren={
-                  <Translate
-                    pt="Sem Voz"
-                    en="Voice Off"
-                  />
-                }
-                checkedChildren={
-                  <Translate
-                    pt="Com Voz"
-                    en="Voice On"
-                  />
-                }
-                value={voice === 'on'}
-                onChange={(checked) => onVoiceChange(checked ? 'on' : 'off')}
-              />
+                <Switch
+                  unCheckedChildren={
+                    <Translate
+                      pt="Sem Voz"
+                      en="Voice Off"
+                    />
+                  }
+                  checkedChildren={
+                    <Translate
+                      pt="Com Voz"
+                      en="Voice On"
+                    />
+                  }
+                  value={voice === 'on'}
+                  onChange={(checked) => onVoiceChange(checked ? 'on' : 'off')}
+                />
+              </Flex>
 
               <PreloadItems items={data.itemsIds} />
             </>
@@ -215,7 +229,7 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
               isLose={isLose}
             />
           </Modal>
-        </SpaceContainer>
+        </Space>
       </DailyContent>
     </Layout>
   );

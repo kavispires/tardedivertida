@@ -63,14 +63,13 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
       >
         TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
       </Header>
+      <Menu
+        hearts={hearts}
+        total={SETTINGS.HEARTS}
+        openRules={!isComplete || hearts === SETTINGS.HEARTS}
+        rules={<Rules date={data.id} />}
+      />
       <DailyContent ref={ref}>
-        <Menu
-          hearts={hearts}
-          total={SETTINGS.HEARTS}
-          openRules={!isComplete || hearts === SETTINGS.HEARTS}
-          rules={<Rules date={data.id} />}
-        />
-
         <RegionText>
           <Translate
             pt="Faça quatro grupos de quatro"
