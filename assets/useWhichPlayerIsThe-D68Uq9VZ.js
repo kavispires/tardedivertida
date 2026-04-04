@@ -1,0 +1,1 @@
+import{s as e}from"./jsx-runtime-pnrAbbe4.js";import{ri as t}from"./PageLayout-wz8FEAPo.js";import{j as n,z as r}from"./helpers-DhD9sGvA.js";import{r as i}from"./useGlobalState-DhsLTmhD.js";var a=r(),o=e(t(),1);function s(e=`activePlayerId`,t={},r={}){let[s]=i(`userId`);return(0,o.useMemo)(()=>{let i=(0,a.get)(t,e);return[r?.[i]??n,i===s]},[r,e,t,s])}export{s as t};

@@ -1,1 +1,0 @@
-import"./helpers-DsMAm_fr.js";import{r as e}from"./useGlobalState-BWSfwxXx.js";function t(){let[t,n]=e(`isDebugEnabled`);return{isDevEnv:!1,isDebugEnabled:t,toggleDevFeatures:()=>{n(!t)}}}export{t};
