@@ -63,7 +63,7 @@ export function DailyControleDeEstoque({ data }: DailyControleDeEstoqueProps) {
   }, [contentMeasure.width]);
 
   return (
-    <Layout className="app">
+    <Layout>
       <Header
         icon={<DailyWarehouseGameIcon />}
         localStorageKey={SETTINGS.KEY}

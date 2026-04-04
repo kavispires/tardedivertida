@@ -39,7 +39,7 @@ export function DailyFilmaco({ data }: DailyFilmacoProps) {
   const width = useCardWidth(5, { margin: 64, maxWidth: 100, minWidth: 65 });
 
   return (
-    <Layout className="app">
+    <Layout>
       <Header
         icon={<DailyMovieGameIcon />}
         localStorageKey={SETTINGS.KEY}

@@ -77,7 +77,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
   const { translate } = useLanguage();
 
   return (
-    <Layout className="app">
+    <Layout>
       <Header
         icon={<DailyDrawingGameIcon />}
         localStorageKey={SETTINGS.KEY}

@@ -56,7 +56,7 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
   const shouldShakeScreen = latestAttempt && !isComplete && guesses.length > 0;
 
   return (
-    <Layout className="app">
+    <Layout>
       <Header
         icon={<DailyGroupingGameIcon />}
         localStorageKey={SETTINGS.KEY}

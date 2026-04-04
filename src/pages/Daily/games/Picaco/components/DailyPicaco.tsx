@@ -50,7 +50,7 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
   }, [contentMeasure.height, contentMeasure.width, headerMeasure.height]);
 
   return (
-    <Layout className="app">
+    <Layout>
       <Header
         icon={<DailyDrawingGameIcon />}
         localStorageKey={SETTINGS.KEY}

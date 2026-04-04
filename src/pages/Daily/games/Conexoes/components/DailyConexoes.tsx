@@ -65,7 +65,7 @@ export function DailyConexoes({ data }: DailyConexoesProps) {
   const preloadHand = nextPair ? [nextPair.imageId1, nextPair.imageId2] : [];
 
   return (
-    <Layout className="app">
+    <Layout>
       <Header
         icon={<SETTINGS.HUB_ICON />}
         localStorageKey={SETTINGS.KEY}

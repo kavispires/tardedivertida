@@ -49,7 +49,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
   } = usePalavreadoEngine(data, initialState);
 
   return (
-    <Layout className="app">
+    <Layout>
       <Header
         icon={<DailyWordGameIcon />}
         localStorageKey={SETTINGS.KEY}

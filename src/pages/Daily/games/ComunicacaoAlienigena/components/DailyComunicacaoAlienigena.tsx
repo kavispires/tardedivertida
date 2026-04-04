@@ -63,7 +63,7 @@ export function DailyComunicacaoAlienigena({ data }: DailyComunicacaoAlienigenaP
   const previousGuesses = useMemo(() => guesses.map((guess) => guess.split('-')), [guesses]);
 
   return (
-    <Layout className="app">
+    <Layout>
       <Header
         icon={<DailyAlienGameIcon />}
         localStorageKey={SETTINGS.KEY}

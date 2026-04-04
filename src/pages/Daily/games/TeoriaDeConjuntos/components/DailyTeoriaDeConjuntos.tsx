@@ -65,7 +65,7 @@ export function DailyTeoriaDeConjuntos({ data }: DailyTeoriaDeConjuntosProps) {
   }, [contentMeasure.width]);
 
   return (
-    <Layout className="app">
+    <Layout>
       <Header
         icon={<DailyDiagramGameIcon />}
         localStorageKey={SETTINGS.KEY}

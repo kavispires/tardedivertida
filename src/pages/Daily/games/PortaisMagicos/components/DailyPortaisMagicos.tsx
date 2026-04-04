@@ -63,7 +63,7 @@ export function DailyPortaisMagicos({ data }: DailyPortaisMagicosProps) {
   }, [currentCorridorIndex, currentCorridorIndexes]);
 
   return (
-    <Layout className="app">
+    <Layout>
       <Header
         icon={<DailyImagesGameIcon />}
         localStorageKey={SETTINGS.KEY}

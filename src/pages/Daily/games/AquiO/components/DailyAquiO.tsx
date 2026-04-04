@@ -70,7 +70,7 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
   }, [contentMeasure.x]);
 
   return (
-    <Layout className="app">
+    <Layout>
       <Header
         icon={<DailyFindingGameIcon />}
         localStorageKey={SETTINGS.KEY}

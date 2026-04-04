@@ -58,7 +58,7 @@ export function DailyEspionagem({ data }: DailyEspionagemProps) {
   const width = useCardWidth(4, { margin: 32, maxWidth: 128, minWidth: 64 });
 
   return (
-    <Layout className="app">
+    <Layout>
       <Header
         icon={<DailyMovieGameIcon />}
         localStorageKey={SETTINGS.KEY}

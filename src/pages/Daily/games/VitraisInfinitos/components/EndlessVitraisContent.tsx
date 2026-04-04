@@ -13,7 +13,6 @@ import {
 import { CSS } from '@dnd-kit/utilities';
 import { useQueryClient } from '@tanstack/react-query';
 import { motion } from 'motion/react';
-import type React from 'react';
 import { useEffect, useState, useMemo } from 'react';
 // Ant Design Resources
 import { Button, Flex, Layout } from 'antd';
@@ -612,7 +611,7 @@ export function EndlessVitraisContent({ data, isLoading }: EndlessVitraisDemoPro
   });
 
   return (
-    <Layout className="app">
+    <Layout>
       <Header
         icon={<SETTINGS.HUB_ICON />}
         localStorageKey=""

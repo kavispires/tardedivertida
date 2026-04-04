@@ -36,7 +36,7 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
     useArteRuimEngine(data, initialState);
 
   return (
-    <Layout className="app">
+    <Layout>
       <Header
         icon={<DailyArtGameIcon />}
         localStorageKey={SETTINGS.KEY}

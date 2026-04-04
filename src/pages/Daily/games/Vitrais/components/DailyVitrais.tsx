@@ -58,7 +58,7 @@ export function DailyVitrais({ data }: DailyVitraisProps) {
   const imageUrl = useTDImageCardUrl(data.cardId);
 
   return (
-    <Layout className="app">
+    <Layout>
       <Header
         icon={<DailyPuzzleGameIcon />}
         localStorageKey={SETTINGS.KEY}

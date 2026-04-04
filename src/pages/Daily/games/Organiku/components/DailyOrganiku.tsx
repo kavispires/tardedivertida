@@ -51,7 +51,7 @@ export function DailyOrganiku({ data }: DailyOrganikuProps) {
   const swapLimit = data.grid.length - data.defaultRevealedIndexes.length;
 
   return (
-    <Layout className="app">
+    <Layout>
       <Header
         icon={<DailyMemoryGridGameIcon />}
         localStorageKey={SETTINGS.KEY}

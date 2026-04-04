@@ -25,7 +25,7 @@ export function DailyDemoContent({ data: _data }: DailyDemoProps) {
     minWidth: 256,
   });
   return (
-    <Layout className="app">
+    <Layout>
       <Header
         icon={<AnimatedProcessingIcon />}
         localStorageKey=""
