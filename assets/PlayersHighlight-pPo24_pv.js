@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-pnrAbbe4.js";import{l as t}from"./useBlurCards-ByU-piUK.js";import{Bt as n}from"./collection-Ba_cxXgH.js";var r=e();function i({children:e,type:i,iconSize:a,className:o}){return(0,r.jsx)(t,{icon:(0,r.jsx)(n,{}),type:i,iconSize:a,className:o,children:e})}export{i as t};
