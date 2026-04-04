@@ -1,7 +1,7 @@
 {
 	"name": "tardedivertida",
 	"homepage": "http://www.kavispires.com/tardedivertida/",
-	"version": "50.13.84",
+	"version": "50.13.85",
 	"private": true,
 	"type": "module",
 	"dependencies": {
@@ -17,7 +17,7 @@
 		"@types/react-dom": "^19.2.3",
 		"@vitejs/plugin-react": "^6.0.0",
 		"animate.css": "^4.1.1",
-		"antd": "^6.3.4",
+		"antd": "^6.2.3",
 		"clsx": "^2.1.1",
 		"firebase": "^12.11.0",
 		"howler": "^2.2.4",
