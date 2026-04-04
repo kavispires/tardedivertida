@@ -29,7 +29,7 @@ type AvatarSelectionProps = {
   /**
    * Callback function to update the selected avatar
    */
-  setSelectedAvatar: GenericFunction;
+  setSelectedAvatar: (avatarId: string) => void;
   /**
    * The current user's ID
    */

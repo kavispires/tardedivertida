@@ -8,6 +8,14 @@ import { HOST_API_ACTIONS } from 'services/adapters';
 // Internal
 import { ValueFormItem } from './ValueFormItem';
 
+type ValueType = 'string' | 'number' | 'boolean' | 'nullish';
+
+type FormValues = {
+  key: string;
+  value: string | number | boolean;
+  valueType: ValueType;
+};
+
 type ForceStateFormProps = {
   /**
    * The loading state
@@ -20,7 +28,7 @@ type ForceStateFormProps = {
   /**
    * The admin action being performed
    */
-  onPerformAdminAction: GenericFunction;
+  onPerformAdminAction: (params: { state: Partial<GameState>; action: string }) => Promise<void>;
 };
 
 export const ForceStateForm = ({ isLoading, state, onPerformAdminAction }: ForceStateFormProps) => {
@@ -29,26 +37,26 @@ export const ForceStateForm = ({ isLoading, state, onPerformAdminAction }: Force
   const [valueType, setValueType] = useState('string');
   const stateKeys = Object.keys(state).map((k) => ({ label: k, value: k }));
 
-  const onValueTypeSelectChange = (newType: any) => {
+  const onValueTypeSelectChange = (newType: ValueType) => {
     if (['boolean', 'nullish'].includes(newType)) form.setFieldsValue({ value: true });
     if (newType === 'number') form.setFieldsValue({ value: 0 });
     if (newType === 'string') form.setFieldsValue({ value: '' });
     setValueType(newType);
   };
 
-  const onFinish = async (e: any) => {
-    let parsedValue = e.value;
+  const onFinish = async (values: FormValues) => {
+    let parsedValue: string | number | boolean | null | undefined = values.value;
 
     try {
-      if (e.valueType === 'number') {
-        parsedValue = Number(e.value) ?? 0;
+      if (values.valueType === 'number') {
+        parsedValue = Number(values.value) ?? 0;
       }
-      if (e.valueType === 'nullish') {
-        parsedValue = e.value ? null : undefined;
+      if (values.valueType === 'nullish') {
+        parsedValue = values.value ? null : undefined;
       }
 
       const payload = {
-        [e.key]: parsedValue,
+        [values.key]: parsedValue,
       };
 
       if (window.confirm(`Tem certeza que quer forçar o estado ${JSON.stringify(payload)}`)) {
@@ -57,8 +65,9 @@ export const ForceStateForm = ({ isLoading, state, onPerformAdminAction }: Force
         form.resetFields();
         setValueType('string');
       }
-    } catch (e: any) {
-      message.error('Something went wrong', e);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      message.error(`Something went wrong: ${errorMessage}`);
     }
   };
 

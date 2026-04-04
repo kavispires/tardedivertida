@@ -5,7 +5,6 @@ import { useCountdown } from 'hooks/useCountdown';
 import { TimerBar } from './TimerBar';
 // Sass
 import styles from './timers.module.scss';
-// Styles
 
 type TimedTimerBarProps = {
   /**
@@ -15,7 +14,7 @@ type TimedTimerBarProps = {
   /**
    * Function executed when the time is up
    */
-  onExpire: GenericFunction;
+  onExpire: () => void;
   /**
    * Number of ticks in the bar
    */

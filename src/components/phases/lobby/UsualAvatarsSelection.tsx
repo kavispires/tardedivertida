@@ -10,7 +10,7 @@ import avatars from 'assets/images/avatars.svg?url';
 import styles from '../PhaseLobby.module.scss';
 
 type UsualAvatarsSelectionProps = {
-  setSelectedAvatar: GenericFunction;
+  setSelectedAvatar: (avatarId: string) => void;
   avatarsIds: string[];
 };
 

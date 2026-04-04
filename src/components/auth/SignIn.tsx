@@ -231,7 +231,7 @@ function SignInWithEmail({ onSuccess }: SignInProps) {
 
 type ResetPasswordFormProps = {
   email?: string;
-  onSuccess: GenericFunction;
+  onSuccess: () => void;
 };
 
 function ResetPasswordForm({ email, onSuccess }: ResetPasswordFormProps) {

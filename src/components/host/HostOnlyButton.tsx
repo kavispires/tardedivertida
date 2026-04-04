@@ -9,7 +9,7 @@ type HostOnlyButtonProps = {
   /**
    * The click action
    */
-  onClick: GenericFunction;
+  onClick: () => void;
   /**
    * The button label
    */
