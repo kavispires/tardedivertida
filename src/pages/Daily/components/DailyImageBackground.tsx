@@ -15,10 +15,8 @@ export function DailyImageBackground() {
 
   const backgroundStyle: CSSProperties = {
     position: 'absolute',
-    top: '-5%',
-    left: '-5%',
-    width: '110%',
-    height: '110%',
+    width: '100%',
+    height: '100%',
     backgroundImage: `url('${imageUrl}')`,
     backgroundColor: '#1a1a2e', // Fallback color
     backgroundSize: 'cover',
