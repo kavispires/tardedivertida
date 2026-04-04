@@ -1,0 +1,1 @@
+import{s as e}from"./jsx-runtime-pnrAbbe4.js";import{Gr as t}from"./PageLayout-Dyqlxp2I.js";var n=e(t(),1);function r(e,t){let[r,i]=(0,n.useState)(e),a=e=>{let n=!t||t(r);if(!r[e]&&n)i(t=>({...t,[e]:!0}));else{let t={...r};delete t[e],i(t)}},o=()=>i(e),s=Object.keys(r);return{dict:r,setDict:i,updateDict:a,reset:o,keys:s,length:s.length}}export{r as t};
