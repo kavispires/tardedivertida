@@ -4,11 +4,11 @@ import { Button } from 'antd';
 // Types
 import type { GameRound, GameRanking, GamePlayers } from 'types/game';
 // Components
-import { HostNextPhaseButton } from 'components/host';
-import { Translate } from 'components/language';
-import { StepRankingWrapper } from 'components/ranking';
-import { PopoverRule } from 'components/rules';
-import { RoundsLeftInstruction } from 'components/text';
+import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
+import { Translate } from 'components/language/Translate';
+import { StepRankingWrapper } from 'components/ranking/StepRankingWrapper';
+import { PopoverRule } from 'components/rules/PopoverRule';
+import { RoundsLeftInstruction } from 'components/text/RoundsLeftInstruction';
 // Internal
 import { ScoringRules } from './components/RulesBlobs';
 

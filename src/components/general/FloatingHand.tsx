@@ -8,9 +8,9 @@ import { useLanguage } from 'hooks/useLanguage';
 // Icons
 import { HandOfCardsIcon } from 'icons/HandOfCardsIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 import { DivButton } from 'components/buttons/DivButton';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Sass
 import styles from './FloatingHand.module.scss';
 

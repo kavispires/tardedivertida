@@ -1,7 +1,7 @@
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { CanvasSVG } from 'components/canvas';
+import { CanvasSVG } from 'components/canvas/CanvasSVG';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
 import { useGroupedVotes } from '../../utils/useGroupedVotes';

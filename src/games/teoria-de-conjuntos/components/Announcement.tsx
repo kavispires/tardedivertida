@@ -13,12 +13,12 @@ import { DiagramIcon } from 'icons/DiagramIcon';
 import { GarbageIcon } from 'icons/GarbageIcon';
 import { SkullIcon } from 'icons/SkullIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 import { ItemCard } from 'components/cards/ItemCard';
-import { Translate } from 'components/language';
-import { PhaseAnnouncement } from 'components/phases';
-import { PlayerAvatarName } from 'components/player';
-import { Instruction } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import { OUTCOME } from '../utils/constants';
 import type { Guess } from '../utils/types';

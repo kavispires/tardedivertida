@@ -11,7 +11,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { CloverIcon } from 'icons/CloverIcon';
 import { LockIcon } from 'icons/LockIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 // Internal
 import type { LeafEntry, LeafPosition } from '../utils/types';
 

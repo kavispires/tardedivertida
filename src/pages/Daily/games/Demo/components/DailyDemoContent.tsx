@@ -5,7 +5,7 @@ import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 // Icons
 import { AnimatedProcessingIcon } from 'icons/collection';
 // Components
-import { DualTranslate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { Header } from 'pages/Daily/components/Header';

@@ -5,8 +5,9 @@ import { Flex, Modal, Typography } from 'antd';
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { getSuspectImageId } from 'components/cards/SuspectCard';
-import { ImageCard } from 'components/image-cards';
-import { DualTranslate, Translate } from 'components/language';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 // Pages
 import { Region } from 'pages/Daily/components/Region';
 // Internal

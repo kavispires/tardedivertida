@@ -8,12 +8,12 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
-import { TransparentButton } from 'components/buttons';
-import { Card } from 'components/cards';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { Card } from 'components/cards/Card';
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { RuleInstruction } from 'components/text';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';

@@ -4,9 +4,9 @@ import type { TextCard } from 'types/tdr';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Components
-import { Translate } from 'components/language';
-import { Step, type StepProps } from 'components/steps';
-import { StepTitle } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { Step, type StepProps } from 'components/steps/Step';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { Bracket, SubmitBetsPayload } from './utils/type';
 import { mockBets } from './utils/mock';

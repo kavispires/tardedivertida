@@ -7,20 +7,20 @@ import type { Item } from 'types/tdr';
 // Icons
 import { SpeechBubbleAcceptedIcon, SpeechBubbleDeclinedIcon } from 'icons/collection';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 import { TimedButton } from 'components/buttons/TimedButton';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatarName } from 'components/player';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { TableEntry } from './utils/types';
 import { CREATOR_SCORE_BONUS, CREATOR_SCORE_POINTS, OTHERS_SCORE_POINTS } from './utils/constants';
 import { ThingCard } from './components/ThingCard';
 import { PlayersHandsCounts } from './components/PlayersHandsCounts';
-// Hooks
 
 type StepResultsProps = {
   players: GamePlayers;

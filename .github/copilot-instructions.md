@@ -13,6 +13,7 @@ When suggesting code:
 - Consider performance with useMemo/useCallback where appropriate
 - Leverage existing utility functions from the codebase
 - Use lodash utility functions for common operations, but import the specific functions you need directly, not via `_`
+- **IMPORTANT**: Always use direct imports for components, never create or use barrel exports (index.ts files) in `src/components/`. Import directly from the component file, e.g., `import { Button } from 'components/buttons/Button'` instead of `import { Button } from 'components/buttons'`. This improves tree-shaking and reduces bundle size.
 
 ## React component structure preferences:
 - Export named components, not default exports

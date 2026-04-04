@@ -4,8 +4,8 @@ import { Select, type SelectProps } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Components
-import { Translate } from 'components/language';
-import { PlayerAvatar } from 'components/player';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
 
 type PlayersSelectProps = {
   players: GamePlayers;

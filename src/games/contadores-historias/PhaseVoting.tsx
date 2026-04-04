@@ -6,11 +6,12 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { VoteIcon } from 'icons/VoteIcon';
 // Components
-import { ImageCardPreloadHand } from 'components/image-cards';
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
+import { ImageCardPreloadHand } from 'components/image-cards/ImageCardPreloadHand';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 import { CONTADORES_HISTORIAS_PHASES } from './utils/constants';

@@ -7,11 +7,12 @@ import type { TeenageRumor } from 'types/tdr';
 import { BlackmailIcon } from 'icons/BlackmailIcon';
 import { CyberBullyingIcon } from 'icons/CyberBullyingIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { SendButton } from 'components/buttons';
-import { DebugOnly } from 'components/debug';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { SendButton } from 'components/buttons/SendButton';
+import { DebugOnly } from 'components/debug/DebugOnly';
 import { ModalOverlay } from 'components/general/ModalOverlay';
-import { DualTranslate, Translate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 // Internal
 import type { SocialGroup, Student } from '../utils/types';
 import { ACTION_TYPES, AGE_NUMBER, BUILD, GENDER, HEIGHT } from '../utils/constants';

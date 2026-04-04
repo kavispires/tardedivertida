@@ -6,11 +6,13 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { Translate } from 'components/language';
-import { ReadyPlayersBar } from 'components/players';
-import { Step } from 'components/steps';
-import { Instruction, StepTitle } from 'components/text';
-import { View, ViewSwitch } from 'components/views';
+import { Translate } from 'components/language/Translate';
+import { ReadyPlayersBar } from 'components/players/ReadyPlayersBar';
+import { Step } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { View } from 'components/views/View';
+import { ViewSwitch } from 'components/views/ViewSwitch';
 // Internal
 import type { Location } from './utils/types';
 import { EspiaoEntreNosCard as Card } from './components/Card';

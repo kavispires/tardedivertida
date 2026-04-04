@@ -6,10 +6,12 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { DictionaryIcon } from 'icons/DictionaryIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
-import { Instruction, TextHighlight } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import type { PhaseResultsState } from './utils/types';
 import { METALINGUAGEM_PHASES } from './utils/constants';

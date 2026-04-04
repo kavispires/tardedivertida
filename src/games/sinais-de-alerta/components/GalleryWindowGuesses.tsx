@@ -10,9 +10,13 @@ import { getContrastColor } from 'utils/helpers';
 // Icons
 import { StarIcon } from 'icons/StarIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
-import { SlideShowBubbleValue, SlideShowLabel, SlideShowPlayersList } from 'components/slide-show';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language/Translate';
+import {
+  SlideShowBubbleValue,
+  SlideShowLabel,
+  SlideShowPlayersList,
+} from 'components/slide-show/SlideShowComposableComponents';
 // Internal
 import type { GalleryEntry } from '../utils/types';
 import { getTitle } from '../utils/helpers';

@@ -12,19 +12,20 @@ import { ConeIcon } from 'icons/ConeIcon';
 import { CrownIcon } from 'icons/CrownIcon';
 import { XIcon } from 'icons/XIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { DualTranslate, Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
-import { StarPoints } from 'components/points';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { StarPoints } from 'components/points/StarPoints';
+import { SlideShow } from 'components/slide-show/SlideShow';
 import {
-  SlideShow,
   SlideShowBubbleValue,
+  SlideShowPlayersList,
   SlideShowLabel,
   SlideShowNoWins,
-  SlideShowPlayersList,
-} from 'components/slide-show';
-import { Step } from 'components/steps';
-import { StepTitle } from 'components/text';
+} from 'components/slide-show/SlideShowComposableComponents';
+import { Step } from 'components/steps/Step';
+import { StepTitle } from 'components/text/StepTitle';
 import { gridMapUtils } from 'components/toolKits/GridMap';
 // Internal
 import type { City, CityLocationsDict, GalleryEntry } from './utils/types';

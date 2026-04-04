@@ -17,10 +17,11 @@ import ACHIEVEMENTS_DICT from 'utils/achievements';
 import { AnimatedVideoConferenceIcon } from 'icons/AnimatedVideoConferenceIcon';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 import { GameBanner } from 'components/general/GameBanner';
-import { DualTranslate, Translate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 // Internal
 import { GameStatistics } from './GameStatistics';
 

@@ -3,11 +3,10 @@ import { orderBy } from 'lodash';
 import { useMemo } from 'react';
 // Components
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Instruction } from 'components/text';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import type { Leaves, LeafId, LeafEvent } from '../utils/types';
 import { Leaf } from './Leaf';
-// And Design Resources
 
 type DetachedLeavesProps = {
   leaves: Leaves;

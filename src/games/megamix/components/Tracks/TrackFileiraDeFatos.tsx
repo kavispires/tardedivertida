@@ -9,11 +9,12 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
-import { TransparentButton } from 'components/buttons';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 import { EmojiCard } from 'components/cards/EmojiCard';
-import { DualTranslate, Translate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { RuleInstruction } from 'components/text';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';

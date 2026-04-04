@@ -10,16 +10,17 @@ import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { FixedMenuButton } from 'components/buttons';
-import { Card } from 'components/cards';
-import { Translate } from 'components/language';
+import { FixedMenuButton } from 'components/buttons/FixedMenuButton';
+import { Card } from 'components/cards/Card';
+import { Translate } from 'components/language/Translate';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatarName } from 'components/player';
-import { TurnOrder } from 'components/players';
-import { messageContent } from 'components/pop-up';
-import { PopoverRule } from 'components/rules';
-import { Step } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { messageContent } from 'components/pop-up/messageContent';
+import { PopoverRule } from 'components/rules/PopoverRule';
+import { Step } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { ImageCardObj, PlayCardPayload } from './utils/types';
 import { BotsRules, CardPlayRules } from './components/RulesBlobs';

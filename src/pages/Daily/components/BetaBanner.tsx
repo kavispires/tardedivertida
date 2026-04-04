@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Alert } from 'antd';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 
 export function BetaBanner() {
   return (

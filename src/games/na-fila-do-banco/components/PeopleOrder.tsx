@@ -1,8 +1,8 @@
 // Ant Design Resources
 import { Flex, Tooltip } from 'antd';
 // Components
-import { ImageCard } from 'components/image-cards';
-import { DualTranslate } from 'components/language';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { DualTranslate } from 'components/language/DualTranslate';
 
 const ORDER: {
   id: string;

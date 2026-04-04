@@ -7,8 +7,8 @@ import { getAnimationClass } from 'utils/helpers';
 import { RevolverIcon } from 'icons/RevolverIcon';
 import { ThinkingIcon } from 'icons/ThinkingIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { PlayerAvatarCard } from 'components/player';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
 
 type PlayerStatusProps = {
   player: GamePlayer;

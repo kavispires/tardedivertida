@@ -10,14 +10,16 @@ import { getAnimation } from 'utils/animations';
 import { LocationIcon } from 'icons/LocationIcon';
 import { NoIcon } from 'icons/NoIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { SendButton, TransparentButton } from 'components/buttons';
-import { Card } from 'components/cards';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { SendButton } from 'components/buttons/SendButton';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { Card } from 'components/cards/Card';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { TitledContainer } from 'components/layout/TitledContainer';
-import { RuleInstruction, TextHighlight } from 'components/text';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import type { ExtendedTextCard, MapSegment, OnSubmitMapFunction, Tree } from '../utils/types';
 import { getPossibleTreeIds } from '../utils/helpers';

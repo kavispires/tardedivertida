@@ -4,7 +4,7 @@ import { Tooltip } from 'antd';
 // Components
 import { getSource } from 'components/cards/ItemCard';
 import { TreeCard } from 'components/cards/TreeCard';
-import { Sprite } from 'components/sprites';
+import { Sprite } from 'components/sprites/Sprite';
 
 type TreeImageProps = {
   id: string | number;

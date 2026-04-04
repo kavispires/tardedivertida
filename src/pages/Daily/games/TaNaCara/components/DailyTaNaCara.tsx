@@ -21,13 +21,14 @@ import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
 import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
 import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Card } from 'components/cards';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Card } from 'components/cards/Card';
 import { SuspectCard } from 'components/cards/SuspectCard';
-import { ImageCardPreloadHand } from 'components/image-cards';
-import { DualTranslate, Translate } from 'components/language';
+import { ImageCardPreloadHand } from 'components/image-cards/ImageCardPreloadHand';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Instruction } from 'components/text';
+import { Instruction } from 'components/text/Instruction';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { Header } from 'pages/Daily/components/Header';

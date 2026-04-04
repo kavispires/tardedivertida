@@ -6,10 +6,11 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { QuestionIcon } from 'icons/QuestionIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { RoundAnnouncement } from 'components/round';
-import { StepSwitcher } from 'components/steps';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
 // Internal
 import { useOnSubmitHumanInquiryAPIRequest } from './utils/api-requests';
 import type { PhaseHumanAskState } from './utils/types';

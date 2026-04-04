@@ -8,12 +8,13 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { SendButton } from 'components/buttons';
-import { ImageCard, ImageCardHand } from 'components/image-cards';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { ImageCardHand } from 'components/image-cards/ImageCardHand';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps';
-import { StepTitle } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import { mockStory } from '../utils/mock';
 import type { SubmitStoryPayload } from '../utils/types';

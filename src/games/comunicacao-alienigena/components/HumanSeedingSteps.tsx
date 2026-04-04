@@ -11,11 +11,14 @@ import { useLoading } from 'hooks/useLoading';
 import { SEPARATOR } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Card } from 'components/cards';
+import { Card } from 'components/cards/Card';
 import { ItemCard } from 'components/cards/ItemCard';
-import { DualTranslate, Translate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Instruction, RuleInstruction, Title } from 'components/text';
+import { Instruction } from 'components/text/Instruction';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { Title } from 'components/text/Title';
 import { alienAttributesUtils } from 'components/toolKits/AlienAttributes';
 // Internal
 import type { Seed, SubmitSeedingPayload } from '../utils/types';

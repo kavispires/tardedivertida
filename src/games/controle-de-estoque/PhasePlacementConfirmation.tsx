@@ -7,8 +7,8 @@ import type { BossIdeaCard } from 'types/tdr';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Components
-import { PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
 // Internal
 import { useOnConfirmGoodPlacementAPIRequest, useOnPlaceGoodAPIRequest } from './utils/api-requests';
 import { CONTROLE_DE_ESTOQUE_PHASES } from './utils/constants';

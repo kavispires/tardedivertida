@@ -12,12 +12,13 @@ import { EventIcon } from 'icons/EventIcon';
 import { LocationIcon } from 'icons/LocationIcon';
 import { SkullIcon } from 'icons/SkullIcon';
 // Components
-import { DevButton } from 'components/debug';
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { RoundAnnouncement } from 'components/round';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
+import { DevButton } from 'components/debug/DevButton';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import type { PhaseCrimeSelectionState, SubmitCrimePayload } from './utils/types';
 import { useOnSubmitCrimeAPIRequest } from './utils/api-requests';

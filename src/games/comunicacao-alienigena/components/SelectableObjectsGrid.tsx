@@ -7,16 +7,15 @@ import type { GamePlayer } from 'types/game';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { TransparentButton } from 'components/buttons';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 import { ItemCard } from 'components/cards/ItemCard';
-import { Translate } from 'components/language';
-import { Title } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { Title } from 'components/text/Title';
 // Internal
 import type { OfferingsStatus, PhaseBasicState } from '../utils/types';
 import { BADGE_INSTRUCTION } from '../utils/constants';
 import { useSpriteWidth } from '../utils/useSpriteWidth';
 import { ObjectsKey } from './ObjectsKey';
-// Hook
 
 type SelectableObjectsGridProps = {
   user: GamePlayer;

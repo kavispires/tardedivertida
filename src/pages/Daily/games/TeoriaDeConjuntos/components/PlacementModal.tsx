@@ -2,7 +2,7 @@
 import { CaretDownOutlined } from '@ant-design/icons';
 import { Flex, Modal } from 'antd';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Pages
 import { Region } from 'pages/Daily/components/Region';
 // Internal

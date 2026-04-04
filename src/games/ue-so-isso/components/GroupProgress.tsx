@@ -4,10 +4,10 @@ import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
 import { BoxQuestionMarkIcon } from 'icons/BoxQuestionMarkIcon';
 import { BoxXIcon } from 'icons/BoxXIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language/Translate';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Title } from 'components/text';
+import { Title } from 'components/text/Title';
 
 type GroupProgressProps = {
   group: GroupProgress;

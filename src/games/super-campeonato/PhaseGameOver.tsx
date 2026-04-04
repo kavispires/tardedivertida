@@ -7,13 +7,13 @@ import { useLanguage } from 'hooks/useLanguage';
 // Icons
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
-import { Card } from 'components/cards';
+import { Card } from 'components/cards/Card';
 import { CharacterCard } from 'components/cards/CharacterCard';
-import { GameOverWrapper } from 'components/game-over';
+import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
 import { Achievements } from 'components/general/Achievements';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Title } from 'components/text';
+import { Title } from 'components/text/Title';
 // Internal
 import type { PastBattles } from './utils/type';
 import { achievementsReference } from './utils/achievements';

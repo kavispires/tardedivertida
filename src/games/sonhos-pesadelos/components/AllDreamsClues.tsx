@@ -5,8 +5,8 @@ import type { GamePlayers } from 'types/game';
 import { LETTERS } from 'utils/constants';
 import { getColorFromLetter, getEntryId } from 'utils/helpers';
 // Components
-import { TransparentButton } from 'components/buttons';
-import { Card } from 'components/cards';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { Card } from 'components/cards/Card';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import type { Dream } from '../utils/types';

@@ -6,13 +6,13 @@ import { AVATARS } from 'utils/avatars';
 // Icons
 import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
-import { SendButton } from 'components/buttons';
-import { DrawingCanvas } from 'components/canvas';
-import { Card } from 'components/cards';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { DrawingCanvas } from 'components/canvas/DrawingCanvas';
+import { Card } from 'components/cards/Card';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step } from 'components/steps';
-import { TimedTimerBar } from 'components/timers';
+import { Step } from 'components/steps/Step';
+import { TimedTimerBar } from 'components/timers/TimedTimerBar';
 // Internal
 import type { Prompt, SubmitDrawingPayload } from './utils/types';
 import { DRAWING_TIME_IN_SECONDS } from './utils/constants';

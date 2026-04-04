@@ -9,11 +9,11 @@ import { LETTERS } from 'utils/constants';
 // Icons
 import { PliersIcon } from 'icons/PliersIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 import { ImageCard } from 'components/image-cards/ImageCard';
 import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
-import { ViewIf } from 'components/views';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import type { TimeBombCard } from '../utils/types';
 import { CARD_IMAGE_NAMES } from '../utils/constants';

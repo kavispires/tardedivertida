@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 // Components
-import { Translate } from 'components/language';
-import { CollapsibleRule } from 'components/rules';
+import { Translate } from 'components/language/Translate';
+import { CollapsibleRule } from 'components/rules/CollapsibleRule';
 
 type TipsProps = {
   children?: ReactNode;

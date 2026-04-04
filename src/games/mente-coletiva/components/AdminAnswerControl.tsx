@@ -8,11 +8,11 @@ import type { GamePlayers } from 'types/game';
 import { useDevFeatures } from 'hooks/useDevFeatures';
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { TimedButton } from 'components/buttons';
-import { HostOnlyContainer } from 'components/host';
-import { Translate } from 'components/language';
+import { TimedButton } from 'components/buttons/TimedButton';
+import { HostOnlyContainer } from 'components/host/HostOnlyContainer';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatar } from 'components/player';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
 // Internal
 import type {
   AddAnswerPayload,

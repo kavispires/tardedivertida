@@ -11,14 +11,17 @@ import { getRandomItem } from 'utils/helpers';
 // Icons
 import { MovieGenreIcon } from 'icons/MovieGenreIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { SendButton, TransparentButton } from 'components/buttons';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { SendButton } from 'components/buttons/SendButton';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 import { ItemCard } from 'components/cards/ItemCard';
-import { DualTranslate, Translate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TitledContainer } from 'components/layout/TitledContainer';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { MovieGenreOption, SubmitMovieGenrePayload } from './utils/types';
 import { Icons } from './utils/helpers';

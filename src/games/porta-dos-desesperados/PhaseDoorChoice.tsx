@@ -7,12 +7,14 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { MagicDoorIcon } from 'icons/MagicDoorIcon';
 // Components
-import { ImageCardPreloadHand } from 'components/image-cards';
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
-import { ViewIf } from 'components/views';
+import { ImageCardPreloadHand } from 'components/image-cards/ImageCardPreloadHand';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { PhaseTimerReset } from 'components/phases/PhaseTimerReset';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import { shouldAnnounceTrap } from './utils/helpers';
 import { useOnMakeReady, useOnSubmitDoorAPIRequest } from './utils/api-requests';

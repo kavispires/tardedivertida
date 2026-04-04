@@ -11,9 +11,9 @@ import { getContrastColor, getPlayerNamesFromIds } from 'utils/helpers';
 // Icons
 import { GarbageIcon } from 'icons/GarbageIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
-import { PlayerAvatar } from 'components/player';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
 // Internal
 import styles from './styles';
 

@@ -2,7 +2,7 @@ import { type ReactNode, useState } from 'react';
 // Ant Design Resources
 import { Layout, Typography } from 'antd';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 // Internal
 import { DevResetLocalStorageButton } from './DevResetLocalStorageButton';
 

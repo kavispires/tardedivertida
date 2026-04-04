@@ -15,8 +15,8 @@ import { SkullIcon } from 'icons/SkullIcon';
 import { StarIcon } from 'icons/StarIcon';
 import { SupportIcon } from 'icons/SupportIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { DualTranslate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { DualTranslate } from 'components/language/DualTranslate';
 // Internal
 import type { FeatureFilm } from '../utils/types';
 

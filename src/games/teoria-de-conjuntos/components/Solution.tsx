@@ -4,7 +4,7 @@ import { Divider, Flex, Typography } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Internal
 import type { Solutions } from '../utils/types';
 import { countWordProperties } from '../utils/helper';

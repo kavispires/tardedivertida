@@ -9,12 +9,13 @@ import { BombIcon, BoxBlankIcon } from 'icons/collection';
 import { WalkieTalkieIcon } from 'icons/WalkieTalkieIcon';
 import { WireIcon } from 'icons/WireIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { PlayerAvatarName } from 'components/player';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import type { PhaseDeclarationState, PhaseExaminationState } from './utils/types';
 import { BOMBA_RELOGIO_PHASES } from './utils/constants';

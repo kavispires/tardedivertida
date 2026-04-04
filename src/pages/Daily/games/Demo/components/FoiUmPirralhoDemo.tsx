@@ -5,7 +5,7 @@ import { Button, Card, Collapse, Divider, Flex, Space, Typography } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { ImageCard } from 'components/image-cards';
+import { ImageCard } from 'components/image-cards/ImageCard';
 // Internal
 import { type FoiUmPirralhoEntry, generatePuzzle } from './foi-um-pirralho-helpers';
 // Sass

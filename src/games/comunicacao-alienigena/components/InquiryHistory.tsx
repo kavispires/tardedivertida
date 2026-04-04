@@ -5,8 +5,9 @@ import { Space, Table } from 'antd';
 import type { GamePlayers } from 'types/game';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
-import { DualTranslate, Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 // Internal
 import type { InquiryHistoryEntry, PhaseBasicState } from '../utils/types';
 import { AlienViewBoard } from './AlienViewBoard';

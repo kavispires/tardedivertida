@@ -4,12 +4,12 @@ import type { Item } from 'types/tdr';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { TitledContainer } from 'components/layout/TitledContainer';
-import { PlayerAvatarName } from 'components/player';
-import { TurnOrder } from 'components/players';
-import { Step, type StepProps } from 'components/steps';
-import { StepTitle } from 'components/text';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { Step, type StepProps } from 'components/steps/Step';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { DiagramArea, DiagramExamples, Solutions } from './utils/types';
 import { getPlayerItemsLeft } from './utils/helper';

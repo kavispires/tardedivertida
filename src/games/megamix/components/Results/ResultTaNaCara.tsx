@@ -2,9 +2,9 @@
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language/Translate';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';
 

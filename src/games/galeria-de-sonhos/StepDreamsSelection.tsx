@@ -6,12 +6,14 @@ import type { TextCard } from 'types/tdr';
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useMock } from 'hooks/useMock';
 // Components
-import { FixedMenuButton, SendButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { FixedMenuButton } from 'components/buttons/FixedMenuButton';
+import { SendButton } from 'components/buttons/SendButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { PopoverRule } from 'components/rules';
-import { Step, type StepProps } from 'components/steps';
-import { TextHighlight, Title } from 'components/text';
+import { PopoverRule } from 'components/rules/PopoverRule';
+import { Step, type StepProps } from 'components/steps/Step';
+import { TextHighlight } from 'components/text/TextHighlight';
+import { Title } from 'components/text/Title';
 // Internal
 import type { ImageCardObj, SubmitCardsPayload } from './utils/types';
 import { mockDreamSelection } from './utils/mock';

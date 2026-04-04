@@ -1,10 +1,11 @@
 // Ant Design Resources
 import { Modal } from 'antd';
 // Components
-import { ImageCard, ImageCardButton } from 'components/image-cards';
-import { Translate } from 'components/language';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { ImageCardButton } from 'components/image-cards/ImageCardButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { RuleInstruction } from 'components/text';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 // Internal
 import type { ClientCard, SubmitPlayCardPayload } from '../utils/types';
 

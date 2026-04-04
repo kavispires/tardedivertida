@@ -3,11 +3,12 @@ import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { HostNextPhaseButton } from 'components/host';
-import { Translate } from 'components/language';
-import { PopoverRule } from 'components/rules';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
+import { Translate } from 'components/language/Translate';
+import { PopoverRule } from 'components/rules/PopoverRule';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { CandySidewalk, StreetCard } from './utils/types';
 import { PlayerStats } from './components/PlayerStats';

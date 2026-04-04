@@ -8,8 +8,8 @@ import type { GameState } from 'types/game';
 import { useGameList } from 'hooks/useGameList';
 // Components
 import { GameStrip } from 'components/general/GameBanner';
-import { Translate } from 'components/language';
-import { Title } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { Title } from 'components/text/Title';
 
 type RedirectSessionProps = {
   /**

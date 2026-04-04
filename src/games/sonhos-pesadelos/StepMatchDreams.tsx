@@ -11,10 +11,11 @@ import { useVotingMatch } from 'hooks/useVotingMatch';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step } from 'components/steps';
-import { Instruction, StepTitle } from 'components/text';
+import { Step } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { Dream } from './utils/types';
 import { cleanupVotes, selectOwnVote, voteRandomly } from './utils/helpers';

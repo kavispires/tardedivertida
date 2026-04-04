@@ -6,11 +6,13 @@ import type { GamePlayers } from 'types/game';
 import { useHost } from 'hooks/useHost';
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { TransparentButton } from 'components/buttons';
-import { Translate } from 'components/language';
-import { PlayerAvatarCard } from 'components/player';
-import { Step } from 'components/steps';
-import { Instruction, RuleInstruction, StepTitle } from 'components/text';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
+import { Step } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 
 type StepBossPlayerSelectionProps = {
   players: GamePlayers;

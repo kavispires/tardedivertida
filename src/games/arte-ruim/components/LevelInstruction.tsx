@@ -1,6 +1,7 @@
 // Components
-import { DualTranslate, Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
+import { Instruction } from 'components/text/Instruction';
 
 type LevelInstructionProps = {
   level: number;

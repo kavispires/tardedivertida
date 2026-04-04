@@ -11,11 +11,12 @@ import { useMock } from 'hooks/useMock';
 import { SEPARATOR } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { ControlledInputWriting } from 'components/input';
-import { Translate } from 'components/language';
-import { Step } from 'components/steps';
-import { Instruction, StepTitle } from 'components/text';
-import { TimerBar } from 'components/timers';
+import { ControlledInputWriting } from 'components/input/ControlledInputWriting';
+import { Translate } from 'components/language/Translate';
+import { Step } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { TimerBar } from 'components/timers/TimerBar';
 // Internal
 import type { Clues, BoardObject } from './utils/types';
 import { mockClues } from './utils/mock';

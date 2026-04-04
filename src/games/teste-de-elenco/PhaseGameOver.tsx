@@ -9,13 +9,15 @@ import { CrownIcon } from 'icons/CrownIcon';
 import { MovieGenreIcon } from 'icons/MovieGenreIcon';
 // Components
 import { SuspectCard } from 'components/cards/SuspectCard';
-import { GameOverWrapper } from 'components/game-over';
+import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
 import { Achievements } from 'components/general/Achievements';
-import { HostOnlyContainer } from 'components/host';
-import { ImageCard } from 'components/image-cards';
-import { DualTranslate, Translate } from 'components/language';
+import { HostOnlyContainer } from 'components/host/HostOnlyContainer';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 import { TitledContainer } from 'components/layout/TitledContainer';
-import { TextHighlight, Title } from 'components/text';
+import { TextHighlight } from 'components/text/TextHighlight';
+import { Title } from 'components/text/Title';
 // Internal
 import type { FeatureFilm } from './utils/types';
 import { achievementsReference } from './utils/achievements';

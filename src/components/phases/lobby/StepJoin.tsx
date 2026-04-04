@@ -11,7 +11,7 @@ import { signInAsGuest } from 'services/firebase';
 // Components
 import { SignIn, SignInWithGoogle } from 'components/auth/SignIn';
 import { SignUp } from 'components/auth/SignUp';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Sass
 import styles from '../PhaseLobby.module.scss';
 

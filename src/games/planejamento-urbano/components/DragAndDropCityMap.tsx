@@ -7,7 +7,7 @@ import { BrickWallIcon } from 'icons/BrickWallIcon';
 import { ConeIcon } from 'icons/ConeIcon';
 // Components
 import { DraggableItem } from 'components/drag-and-drop/DragAndDrop';
-import { Title } from 'components/text';
+import { Title } from 'components/text/Title';
 // Internal
 import type { City, CityLocationsDict } from '../utils/types';
 import { getConeColor } from '../utils/helpers';

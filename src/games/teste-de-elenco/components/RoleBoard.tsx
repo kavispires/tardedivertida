@@ -7,9 +7,12 @@ import { pluralize } from 'utils/helpers';
 import { MovieGenreIcon } from 'icons/MovieGenreIcon';
 import { NoIcon } from 'icons/NoIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { DualTranslate, Translate } from 'components/language';
-import { Instruction, TextHighlight, Title } from 'components/text';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
+import { Instruction } from 'components/text/Instruction';
+import { TextHighlight } from 'components/text/TextHighlight';
+import { Title } from 'components/text/Title';
 // Internal
 import type { ActingRole, FeatureFilm } from '../utils/types';
 import { Icons } from '../utils/helpers';

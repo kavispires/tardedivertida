@@ -13,10 +13,10 @@ import { getAnimationClass } from 'utils/helpers';
 import { PanicIcon } from 'icons/PanicIcon';
 // Components
 import { ArteRuimTimerSound } from 'components/audio/ArteRuimTimerSound';
-import { DrawingCanvas } from 'components/canvas';
-import { Card } from 'components/cards';
-import { DevButton } from 'components/debug';
-import { Step, type StepProps } from 'components/steps';
+import { DrawingCanvas } from 'components/canvas/DrawingCanvas';
+import { Card } from 'components/cards/Card';
+import { DevButton } from 'components/debug/DevButton';
+import { Step, type StepProps } from 'components/steps/Step';
 // Internal
 import type { ArteRuimCustomCard } from './utils/types';
 

@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 // Ant Design Resources
 import { Space, type SpaceProps } from 'antd';
 // Components
-import { Title, type TitleProps } from 'components/text';
+import { Title, type TitleProps } from 'components/text/Title';
 // Sass
 import styles from './TitledContainer.module.scss';
 

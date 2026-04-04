@@ -3,7 +3,7 @@ import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { pluralize } from 'utils/helpers';
 // Components
-import { Card } from 'components/cards';
+import { Card } from 'components/cards/Card';
 
 type CategoryCardProps = {
   categories: string[];

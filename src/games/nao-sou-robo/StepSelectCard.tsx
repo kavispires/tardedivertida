@@ -11,14 +11,16 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { SendButton } from 'components/buttons';
-import { ImageCardHand } from 'components/image-cards';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { ImageCardHand } from 'components/image-cards/ImageCardHand';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { CardHighlight } from 'components/metrics/CardHighlight';
-import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, StepTitle } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { Captcha, Robot, SubmitRobotCardsPayload } from './utils/types';
 import { mockCardPicks } from './utils/mock';

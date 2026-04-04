@@ -6,8 +6,8 @@ import { BoxMinusIcon } from 'icons/BoxMinusIcon';
 import { BoxPlusIcon } from 'icons/BoxPlusIcon';
 import { BoxXIcon } from 'icons/BoxXIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language/Translate';
 // Internal
 import { TransparentButton } from './TransparentButton';
 // Sass

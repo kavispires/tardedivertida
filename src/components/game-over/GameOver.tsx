@@ -1,7 +1,6 @@
 import { motion } from 'motion/react';
 import { type ReactNode, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 // Ant Design Resources
 import { ArrowRightOutlined } from '@ant-design/icons';
 import { Button, Progress, Space } from 'antd';
@@ -14,12 +13,12 @@ import { useLanguage } from 'hooks/useLanguage';
 import { AVATARS } from 'utils/avatars';
 // Components
 import { GameStrip } from 'components/general/GameBanner';
-import { HostOnlyButton } from 'components/host';
-import { Translate } from 'components/language';
-import { PlayerAvatar } from 'components/player';
+import { HostOnlyButton } from 'components/host/HostOnlyButton';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
 import { useGameInfoContext } from 'components/session/GameInfoContext';
-import { Step, type StepProps } from 'components/steps';
-import { Instruction } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import { RateGameWidget } from './RateGameWidget';
 // Images

@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { HeartFilled } from '@ant-design/icons';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Pages
 import { RulesWrapper } from 'pages/Daily/components/RulesWrapper';
 // Internal

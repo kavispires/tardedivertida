@@ -3,12 +3,13 @@ import type { TextCard } from 'types/tdr';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
-import { TransparentButton } from 'components/buttons';
-import { Card } from 'components/cards';
-import { Translate } from 'components/language';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { Card } from 'components/cards/Card';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { Step } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { Title } from 'components/text/Title';
 // Internal
 import type { SubmitWordPayload } from './utils/types';
 

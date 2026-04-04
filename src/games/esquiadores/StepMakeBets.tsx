@@ -3,13 +3,14 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Components
-import { DevButton } from 'components/debug';
-import { Translate } from 'components/language';
+import { DevButton } from 'components/debug/DevButton';
+import { Translate } from 'components/language/Translate';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatarName } from 'components/player';
-import { TurnOrder } from 'components/players';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { PhaseBetsState, SubmitBetsPayload } from './utils/types';
 import { mockBets } from './utils/mock';

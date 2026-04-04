@@ -3,10 +3,9 @@ import { Avatar } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Sass
 import styles from '../drawers.module.scss';
-// Styles
 
 type SectionMetaProps = {
   round: GameRound;

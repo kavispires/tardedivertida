@@ -13,14 +13,16 @@ import { getRandomItem } from 'utils/helpers';
 // Icons
 import { ImageCardsIcon } from 'icons/ImageCardsIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { ImageCardHand } from 'components/image-cards';
-import { Translate } from 'components/language';
-import { TurnOrder } from 'components/players';
-import { messageContent } from 'components/pop-up';
-import { StepTitle, RuleInstruction } from 'components/text';
-import { TimedTimerClock, WaitingTime } from 'components/timers';
-import { ViewIf } from 'components/views';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { ImageCardHand } from 'components/image-cards/ImageCardHand';
+import { Translate } from 'components/language/Translate';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { messageContent } from 'components/pop-up/messageContent';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { TimedTimerClock } from 'components/timers/TimedTimerClock';
+import { WaitingTime } from 'components/timers/WaitingTime';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import type { CardEntry, SubmitPlayCardPayload } from './utils/types';
 import { isEarliestPlayerWithFewestCards } from './utils/helpers';

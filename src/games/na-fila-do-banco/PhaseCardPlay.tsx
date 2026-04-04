@@ -6,11 +6,12 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { TDIcon } from 'icons/TDIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { RoundAnnouncement } from 'components/round';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import type { PhaseCardPlayState } from './utils/types';
 import { NA_FILA_DO_BANCO_PHASES } from './utils/constants';

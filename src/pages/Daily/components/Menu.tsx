@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
-import type { ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 // Ant Design Resources
 import { AppstoreFilled, HeartFilled, HeartOutlined, QuestionCircleFilled } from '@ant-design/icons';
 import { Button, Drawer, Space } from 'antd';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Internal
 import { useDailyGlobalStore } from '../hooks/useDailyGlobalStore';
 

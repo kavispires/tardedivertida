@@ -4,7 +4,7 @@ import { ClockIcon } from 'icons/ClockIcon';
 import { PeopleAssessmentIcon } from 'icons/PeopleAssessmentIcon';
 // Components
 import { StatusBar } from 'components/general/StatusBar';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { MetricHighlight } from 'components/metrics/MetricHighlight';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 // Internal

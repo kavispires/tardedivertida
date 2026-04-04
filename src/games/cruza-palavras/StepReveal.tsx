@@ -9,14 +9,15 @@ import type { UseStep } from 'hooks/useStep';
 import { AVATARS as avatars } from 'utils/avatars';
 import { getMeanDuration } from 'utils/helpers';
 // Components
-import { TimedButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { TimedButton } from 'components/buttons/TimedButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TitledContainer } from 'components/layout/TitledContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PopoverRule } from 'components/rules';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { PopoverRule } from 'components/rules/PopoverRule';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { Clue, Grid, GridType, ResultPlayerCell } from './utils/types';
 import { WordGrid } from './components/WordGrid';

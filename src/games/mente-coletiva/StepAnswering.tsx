@@ -10,15 +10,15 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { getEntryId } from 'utils/helpers';
 // Components
-import { SendButton } from 'components/buttons';
+import { SendButton } from 'components/buttons/SendButton';
 import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
-import { DevButton } from 'components/debug';
-import { Translate } from 'components/language';
+import { DevButton } from 'components/debug/DevButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PopoverRule } from 'components/rules';
-import { Step, type StepProps } from 'components/steps';
-import { StepTitle } from 'components/text';
-import { TimedTimerClock } from 'components/timers';
+import { PopoverRule } from 'components/rules/PopoverRule';
+import { Step, type StepProps } from 'components/steps/Step';
+import { StepTitle } from 'components/text/StepTitle';
+import { TimedTimerClock } from 'components/timers/TimedTimerClock';
 // Internal
 import type { Question, SubmitAnswersPayload } from './utils/types';
 import { mockAnswers } from './utils/mock';

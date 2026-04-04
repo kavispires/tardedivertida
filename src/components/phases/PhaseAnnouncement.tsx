@@ -9,12 +9,11 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 // Utils
 import { type AnimationType, getAnimationClass } from 'utils/helpers';
 // Components
-import { TimedButton } from 'components/buttons';
-import { Translate } from 'components/language';
-import { Title } from 'components/text';
+import { TimedButton } from 'components/buttons/TimedButton';
+import { Translate } from 'components/language/Translate';
+import { Title } from 'components/text/Title';
 // Sass
 import styles from './PhaseAnnouncement.module.scss';
-// Design Resource
 
 type PhaseAnnouncementBasicProps = {
   /**

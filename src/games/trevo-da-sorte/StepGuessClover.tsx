@@ -5,13 +5,13 @@ import type { GamePlayer } from 'types/game';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { DevButton } from 'components/debug';
-import { Translate } from 'components/language';
+import { DevButton } from 'components/debug/DevButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatarName } from 'components/player';
-import { PopoverRule } from 'components/rules';
-import { Step } from 'components/steps';
-import { StepTitle } from 'components/text';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { PopoverRule } from 'components/rules/PopoverRule';
+import { Step } from 'components/steps/Step';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { CloverObject, Leaves } from './utils/types';
 import { mockGuesses } from './utils/mock';

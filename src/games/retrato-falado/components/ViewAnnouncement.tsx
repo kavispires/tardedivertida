@@ -2,8 +2,8 @@
 import { SketchIcon } from 'icons/SketchIcon';
 import { TimerIcon } from 'icons/TimerIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement } from 'components/phases';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
 
 type ViewAnnouncementProps = {
   isUserTheWitness: boolean;

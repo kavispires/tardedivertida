@@ -6,15 +6,17 @@ import type { GamePlayers, GamePlayer } from 'types/game';
 import { useCardWidth } from 'hooks/useCardWidth';
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { NPCPlayerAvatar } from 'components/avatars';
-import { TimedButton } from 'components/buttons';
-import { ImageBlurButton, ImageCard } from 'components/image-cards';
-import { Translate } from 'components/language';
+import { NPCPlayerAvatar } from 'components/avatars/NPCPlayerAvatar';
+import { TimedButton } from 'components/buttons/TimedButton';
+import { ImageBlurButton } from 'components/image-cards/ImageBlurButton';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatarName, PlayerAvatarTooltip } from 'components/player';
-import { PopoverRule } from 'components/rules';
-import { Step, type StepProps } from 'components/steps';
-import { StepTitle } from 'components/text';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { PlayerAvatarTooltip } from 'components/player/PlayerAvatarTooltip';
+import { PopoverRule } from 'components/rules/PopoverRule';
+import { Step, type StepProps } from 'components/steps/Step';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { TableEntry } from './utils/types';
 import { ScoringRules } from './components/RulesBlobs';

@@ -6,7 +6,7 @@ import type { MonsterImage } from 'types/tdr';
 import { useCountdown } from 'hooks/useCountdown';
 import { useGlobalState } from 'hooks/useGlobalState';
 // Components
-import { ViewSwitch } from 'components/views';
+import { ViewSwitch } from 'components/views/ViewSwitch';
 // Internal
 import { TIMES, VIEWS } from './utils/constants';
 import type { SubmitOrientationPayload, SubmitSketchPayload } from './utils/types';

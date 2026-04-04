@@ -9,12 +9,14 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { ImageCardHand } from 'components/image-cards';
-import { Translate } from 'components/language';
+import { ImageCardHand } from 'components/image-cards/ImageCardHand';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { CardHighlight } from 'components/metrics/CardHighlight';
-import { Step, type StepProps } from 'components/steps';
-import { TextHighlight, StepTitle, RuleInstruction } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import type { SubmitSecretCluePayload } from './utils/types';
 

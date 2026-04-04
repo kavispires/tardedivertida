@@ -4,8 +4,8 @@ import { Layout } from 'antd';
 // Icons
 import { CalendarIcon } from 'icons/CalendarIcon';
 // Components
-import { DebugOnly } from 'components/debug';
-import { Translate } from 'components/language';
+import { DebugOnly } from 'components/debug/DebugOnly';
+import { Translate } from 'components/language/Translate';
 import { PageLayout } from 'components/layout/PageLayout';
 // Internal
 import { useDailyChallenge } from '../hooks/useDailyChallenge';

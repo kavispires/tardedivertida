@@ -6,11 +6,10 @@ import { getAnimation } from 'utils/animations';
 // Icons
 import { AnimatedVideoConferenceIcon } from 'icons/AnimatedVideoConferenceIcon';
 // Components
-import { DualTranslate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
 import { LoadingPageLayout } from 'components/layout/PageLayout';
 // Sass
 import styles from './loaders.module.scss';
-// Styles
 
 const Text = motion.create(Typography.Text);
 

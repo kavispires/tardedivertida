@@ -1,17 +1,17 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
-import { ReadyPlayersBar } from 'components/players';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
-import { ViewIf } from 'components/views';
+import { ReadyPlayersBar } from 'components/players/ReadyPlayersBar';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import type { CardEntry } from './utils/types';
 import { Table } from './components/Table';
 import { VotingOptions } from './components/VotingOptions';
-// Icons
 
 type StepVotingProps = {
   isLoading: boolean;

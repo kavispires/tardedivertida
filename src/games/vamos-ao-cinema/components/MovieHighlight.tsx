@@ -3,8 +3,8 @@ import type { MovieCard } from 'types/tdr';
 // Icons
 import { FilmReelIcon } from 'icons/FilmReelIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { TextHighlight } from 'components/text';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import { getMovieTitle } from '../utils/helpers';
 

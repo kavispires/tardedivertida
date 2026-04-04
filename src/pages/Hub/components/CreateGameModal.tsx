@@ -16,10 +16,12 @@ import { useRedirectToNewGame } from 'hooks/useRedirectToNewGame';
 import { HOST_API, HOST_API_ACTIONS } from 'services/adapters';
 // Components
 import { GameStrip } from 'components/general/GameBanner';
-import { LanguageSwitch, Translate } from 'components/language';
+import { LanguageSwitch } from 'components/language/LanguageSwitch';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Loading } from 'components/loaders';
-import { Instruction, Title } from 'components/text';
+import { Loading } from 'components/loaders/Loading';
+import { Instruction } from 'components/text/Instruction';
+import { Title } from 'components/text/Title';
 // Internal
 import { GameCustomizations } from './GameCustomizations';
 

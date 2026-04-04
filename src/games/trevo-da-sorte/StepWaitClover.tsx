@@ -1,10 +1,11 @@
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
-import { Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
-import { Step } from 'components/steps';
-import { Instruction, StepTitle } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { Step } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { CloverObject, Leaves } from './utils/types';
 import { useCloverState } from './utils/useCloverState';

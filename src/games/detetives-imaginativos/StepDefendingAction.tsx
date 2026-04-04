@@ -9,12 +9,13 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { getAnimationClass, getRandomItem } from 'utils/helpers';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatarName } from 'components/player';
-import { TurnOrder } from 'components/players';
-import { messageContent } from 'components/pop-up';
-import { StepTitle, RuleInstruction } from 'components/text';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { messageContent } from 'components/pop-up/messageContent';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { CardEntry, SubmitDefensePayload } from './utils/types';
 import { EndDefenseTimedButton } from './components/EndDefenseTimedButton';

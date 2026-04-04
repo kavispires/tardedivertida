@@ -6,7 +6,7 @@ import { getAnimation } from 'utils/animations';
 // Icons
 import { TeenDetectiveIcon } from 'icons/TeenDetectiveIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 import { Translate } from 'components/language/Translate';
 
 export function DetectiveToken() {

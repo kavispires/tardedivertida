@@ -10,9 +10,9 @@ import { getAnimation } from 'utils/animations';
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 import { SignCard } from 'components/cards/SignCard';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Pages
 import { DailyItem } from 'pages/Daily/components/DailyItem';

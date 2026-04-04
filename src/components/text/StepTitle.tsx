@@ -6,7 +6,7 @@ import { type AvatarProps, Typography } from 'antd';
 // Icons
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 import { useGameAppearance } from 'components/session/GameInfoContext';
 // Sass
 import styles from './StepTitle.module.scss';

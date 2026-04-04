@@ -1,6 +1,6 @@
 // Components
-import { DualTranslate } from 'components/language';
-import { Title } from 'components/text';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Title } from 'components/text/Title';
 
 type MinigameTitleProps = {
   title: DualLanguageValue;

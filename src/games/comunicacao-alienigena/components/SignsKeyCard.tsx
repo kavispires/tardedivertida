@@ -8,11 +8,12 @@ import { Button, Popover, Space } from 'antd';
 import { useCacheAlternative } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { TransparentButton } from 'components/buttons';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 import { SignCard } from 'components/cards/SignCard';
 import { Popconfirm } from 'components/general/Popconfirm';
-import { DualTranslate, Translate } from 'components/language';
-import { Title } from 'components/text';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
+import { Title } from 'components/text/Title';
 // Internal
 import type { PhaseBasicState } from '../utils/types';
 import { COMUNICACAO_ALIENIGENA_PHASES } from '../utils/constants';

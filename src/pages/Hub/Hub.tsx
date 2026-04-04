@@ -14,9 +14,10 @@ import { SEPARATOR } from 'utils/constants';
 import { calculateGameAverageDuration, isDevEnv } from 'utils/helpers';
 // Components
 import { LogoutButton } from 'components/auth/LogoutButton';
-import { LanguageSwitch, Translate } from 'components/language';
+import { LanguageSwitch } from 'components/language/LanguageSwitch';
+import { Translate } from 'components/language/Translate';
 import { PageLayout } from 'components/layout/PageLayout';
-import { LoadingPage } from 'components/loaders';
+import { LoadingPage } from 'components/loaders/LoadingPage';
 // Pages
 import { DevHeader } from 'pages/Dev/DevHeader';
 // Internal
@@ -235,15 +236,12 @@ function Hub() {
           />,
         ]}
       />
-
       <DevEmulatorAlert />
-
       <Filters
         filters={filters}
         setFilters={setFilters}
         availabilityCount={stableGames.length}
       />
-
       <Layout.Content
         className="container"
         id="main-container"
@@ -281,7 +279,6 @@ function Hub() {
             </Typography.Paragraph>
             <RowOfGames games={sortGamesByLanguage([...betaGames, ...devGames])} />
             <Divider />
-
             <Typography.Title level={2}>
               <Translate
                 pt="Lançamentos Estáveis"
@@ -290,7 +287,6 @@ function Hub() {
             </Typography.Title>
             <RowOfGames games={sortGamesByLanguage(stableGames)} />
             <Divider />
-
             <Typography.Title level={2}>
               <Translate
                 pt="Em Breve"
@@ -314,7 +310,6 @@ function Hub() {
                 <Divider />
               </>
             )}
-
             <Typography.Title level={2}>
               <Translate
                 pt="Lançamentos Estáveis"
@@ -323,7 +318,6 @@ function Hub() {
             </Typography.Title>
             <RowOfGames games={sortGamesByLanguage(stableGames)} />
             <Divider />
-
             {devGames.length > 0 && (
               <>
                 <Typography.Title level={2}>
@@ -336,7 +330,6 @@ function Hub() {
                 <Divider />
               </>
             )}
-
             <Typography.Title level={2}>
               <Translate
                 pt="Em Breve"

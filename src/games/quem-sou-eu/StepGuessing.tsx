@@ -14,12 +14,14 @@ import { useVotingMatch } from 'hooks/useVotingMatch';
 // Utils
 import { getEntryId, sortPlayers } from 'utils/helpers';
 // Components
-import { SendButton, TransparentButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { RibbonGroup } from 'components/ribbons';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { RibbonGroup } from 'components/ribbons/RibbonGroup';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { Characters, SubmitGuessesPayload } from './utils/types';
 import { getRibbons, prepareGuesses } from './utils/helpers';

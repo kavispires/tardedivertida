@@ -4,10 +4,12 @@ import { Alert, Button, Flex } from 'antd';
 import type { GamePlayers, GamePlayer } from 'types/game';
 // Components
 import { Popconfirm } from 'components/general/Popconfirm';
-import { Translate } from 'components/language';
-import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, StepTitle } from 'components/text';
-import { ViewIf } from 'components/views';
+import { Translate } from 'components/language/Translate';
+import { Step, type StepProps } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import type { FofocaQuenteDefaultState } from './utils/types';
 import { useFofocaQuenteContext } from './utils/FofocaQuenteContext';

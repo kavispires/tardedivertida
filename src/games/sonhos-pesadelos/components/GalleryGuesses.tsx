@@ -5,8 +5,8 @@ import type { GamePlayers } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { PlayerAvatar } from 'components/player';
-import { StarPoints } from 'components/points';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { StarPoints } from 'components/points/StarPoints';
 // Internal
 import type { GalleryEntry } from '../utils/types';
 import { DreamCard } from './DreamCard';

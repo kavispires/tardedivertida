@@ -10,7 +10,7 @@ import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 // Internal
 import { PlayerAvatar } from './PlayerAvatar';
 // Sass

@@ -6,10 +6,10 @@ import type { GamePlayer } from 'types/game';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { RuleInstruction } from 'components/text';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 
 type UserAnswersProps = {
   answerGroup: any;

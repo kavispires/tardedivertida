@@ -1,9 +1,10 @@
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
-import { Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
-import { Instruction, RuleInstruction } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { Instruction } from 'components/text/Instruction';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 
 export function WritingRules() {
   return (

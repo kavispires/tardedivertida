@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 // Ant Design Resources
 import { Button, Flex } from 'antd';
 // Components
-import { ImageCard } from 'components/image-cards';
+import { ImageCard } from 'components/image-cards/ImageCard';
 // Internal
 import type { ClientCard, Teller } from '../utils/types';
 import { BankClient } from './BankClient';

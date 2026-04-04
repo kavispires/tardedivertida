@@ -7,12 +7,12 @@ import { useDevFeatures } from 'hooks/useDevFeatures';
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useGlobalState } from 'hooks/useGlobalState';
 // Components
-import { LanguageSwitch, Translate } from 'components/language';
+import { LanguageSwitch } from 'components/language/LanguageSwitch';
+import { Translate } from 'components/language/Translate';
 // Internal
 import { BlurOptions } from './BlurOptions';
 // Sass
 import styles from '../drawers.module.scss';
-// Styles
 
 export function SectionSettings() {
   const { isAdmin } = useCurrentUserContext();

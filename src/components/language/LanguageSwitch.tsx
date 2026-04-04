@@ -4,7 +4,7 @@ import { Switch } from 'antd';
 // Hooks
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 // Internal
 import { BrazilFlag, UnitedStatesFlag } from './LanguageButtons';
 // Sass

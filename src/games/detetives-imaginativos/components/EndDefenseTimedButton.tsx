@@ -1,6 +1,6 @@
 // Components
-import { TimedButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { TimedButton } from 'components/buttons/TimedButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import type { SubmitDefensePayload } from '../utils/types';

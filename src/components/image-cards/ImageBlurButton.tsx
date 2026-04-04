@@ -4,7 +4,7 @@ import { Button, Tooltip } from 'antd';
 // Hooks
 import { useBlurCards } from 'hooks/useBlurCards';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Sass
 import styles from './ImageBlurButton.module.scss';
 

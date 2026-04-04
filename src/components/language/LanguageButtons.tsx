@@ -3,7 +3,7 @@ import { Space } from 'antd';
 // Hooks
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
-import { TransparentButton } from 'components/buttons';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 
 export function LanguageButtons() {
   const [language, setLanguage] = useGlobalLocalStorage('language');

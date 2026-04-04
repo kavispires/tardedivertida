@@ -12,13 +12,15 @@ import { useStep } from 'hooks/useStep';
 import { LETTERS } from 'utils/constants';
 import { getColorFromIndex } from 'utils/helpers';
 // Components
-import { SendButton, TransparentButton } from 'components/buttons';
-import { Card } from 'components/cards';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { Card } from 'components/cards/Card';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { SubmitMetricsPayload, SubmitPoolPayload } from './utils/types';
 import { EditableMetricsBoard } from './components/EditableMetricsBoard';

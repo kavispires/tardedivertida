@@ -11,8 +11,9 @@ import { getAnimationClass } from 'utils/helpers';
 // Icons
 import { DailyGroupingGameIcon } from 'icons/DailyGroupingGameIcon';
 // Components
-import { TransparentButton } from 'components/buttons';
-import { DualTranslate, Translate } from 'components/language';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { DailyItem } from 'pages/Daily/components/DailyItem';

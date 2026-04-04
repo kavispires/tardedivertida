@@ -4,7 +4,7 @@ import { getAnimationClass } from 'utils/helpers';
 // Icons
 import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
 // Components
-import { TransparentButton } from 'components/buttons';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
 // Internal
 import type { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';

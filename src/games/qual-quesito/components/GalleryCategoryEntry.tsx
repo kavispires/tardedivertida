@@ -4,8 +4,9 @@ import { Flex } from 'antd';
 import type { GamePlayers } from 'types/game';
 import type { Item } from 'types/tdr';
 // Components
-import { Card } from 'components/cards';
-import { PlayerAvatar, PlayerAvatarName } from 'components/player';
+import { Card } from 'components/cards/Card';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 // Internal
 import type { GalleryEntry } from '../utils/types';
 import { ThingCard } from './ThingCard';

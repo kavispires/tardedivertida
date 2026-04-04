@@ -13,8 +13,8 @@ import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 import { SkullIcon } from 'icons/SkullIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Pages
 import { DailyItem } from 'pages/Daily/components/DailyItem';

@@ -5,10 +5,11 @@ import { useStep } from 'hooks/useStep';
 // Icons
 import { GridIcon } from 'icons/GridIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { RoundAnnouncement } from 'components/round';
-import { StepSwitcher } from 'components/steps';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
 // Internal
 import { useOnSubmitClueAPIRequest } from './utils/api-requests';
 import { CRUZA_PALAVRAS_PHASES } from './utils/constants';

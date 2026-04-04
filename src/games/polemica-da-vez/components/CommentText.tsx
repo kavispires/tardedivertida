@@ -4,8 +4,8 @@ import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
 import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language';
-import { StarPoints } from 'components/points';
+import { Translate } from 'components/language/Translate';
+import { StarPoints } from 'components/points/StarPoints';
 
 type CommentTextProps = {
   reaction: boolean;

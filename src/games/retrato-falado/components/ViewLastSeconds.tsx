@@ -1,11 +1,12 @@
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
-import { DrawingCanvas } from 'components/canvas';
-import { Translate } from 'components/language';
-import { RuleInstruction, Title } from 'components/text';
-import { TimerBar } from 'components/timers';
-import { ViewIf } from 'components/views';
+import { DrawingCanvas } from 'components/canvas/DrawingCanvas';
+import { Translate } from 'components/language/Translate';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { Title } from 'components/text/Title';
+import { TimerBar } from 'components/timers/TimerBar';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import { TIMES } from '../utils/constants';
 

@@ -1,11 +1,13 @@
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Components
-import { SendButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, TextHighlight, StepTitle } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import type { CurrentCategory, SubmitGuessPayload } from './utils/types';
 import { Dial } from './components/Dial';

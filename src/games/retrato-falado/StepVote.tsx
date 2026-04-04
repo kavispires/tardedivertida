@@ -9,15 +9,17 @@ import type { MonsterImage } from 'types/tdr';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
-import { SendButton } from 'components/buttons';
-import { CanvasResizer, CanvasSVG } from 'components/canvas';
+import { SendButton } from 'components/buttons/SendButton';
+import { CanvasResizer } from 'components/canvas/CanvasResizer';
+import { CanvasSVG } from 'components/canvas/CanvasSVG';
 import { MonsterCard } from 'components/cards/MonsterCard';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
-import { ViewIf } from 'components/views';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import type { Sketch, SubmitVotePayload } from './utils/types';
 

@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import { RulesIcon } from 'icons/RulesIcon';
 import { VideoGameControllerIcon } from 'icons/VideoGameControllerIcon';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 
 /**
  * Pops up a modal with a confirmation button but also closing timeout

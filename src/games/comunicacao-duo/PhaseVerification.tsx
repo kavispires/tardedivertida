@@ -5,9 +5,10 @@ import { useStep } from 'hooks/useStep';
 // Icons
 import { NuclearExplosionIcon } from 'icons/NuclearExplosionIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
 // Internal
 import { COMUNICACAO_DUO_PHASES, STATUS } from './utils/constants';
 import type { PhaseVerificationState } from './utils/types';

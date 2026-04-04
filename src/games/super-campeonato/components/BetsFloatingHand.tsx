@@ -6,8 +6,8 @@ import { GamblingChipIcon } from 'icons/GamblingChipIcon';
 // Components
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { FloatingHand } from 'components/general/FloatingHand';
-import { ImageBlurButtonContainer } from 'components/image-cards';
-import { Translate } from 'components/language';
+import { ImageBlurButtonContainer } from 'components/image-cards/ImageBlurButtonContainer';
+import { Translate } from 'components/language/Translate';
 // Internal
 import type { Bet, Bracket } from '../utils/type';
 import { findBetContenders } from '../utils/helpers';

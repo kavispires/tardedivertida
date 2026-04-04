@@ -5,11 +5,13 @@ import { useStep } from 'hooks/useStep';
 // Icons
 import { CreateIcon } from 'icons/CreateIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { RoundAnnouncement } from 'components/round';
-import { StepSwitcher } from 'components/steps';
-import { Instruction, TextHighlight } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import type { PhaseCreatingConceptsState } from './utils/types';
 import { IDADE_DA_PREDA_PHASES } from './utils/constants';

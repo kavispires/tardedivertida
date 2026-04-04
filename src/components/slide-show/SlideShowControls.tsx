@@ -14,7 +14,7 @@ import type { SlideShowConfig } from 'hooks/useSlideShow';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Internal
 import styles from './styles';
 

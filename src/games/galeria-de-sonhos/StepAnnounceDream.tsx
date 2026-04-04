@@ -11,13 +11,13 @@ import type { UseStep } from 'hooks/useStep';
 import { getAnimation } from 'utils/animations';
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { TimedButton } from 'components/buttons';
-import { HostNextPhaseButton } from 'components/host';
-import { ImageCard } from 'components/image-cards';
-import { Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
-import { TurnOrder } from 'components/players';
-import { Step } from 'components/steps';
+import { TimedButton } from 'components/buttons/TimedButton';
+import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { Step } from 'components/steps/Step';
 // Internal
 import type { LatestInfo } from './utils/types';
 import { GO_TO_CARD_PLAY_STEP } from './utils/constants';

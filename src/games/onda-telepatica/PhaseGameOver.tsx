@@ -6,11 +6,11 @@ import type { PhaseProps } from 'types/game';
 import { TrophyIcon } from 'icons/TrophyIcon';
 import { WavelengthDeviceIcon } from 'icons/WavelengthDeviceIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { GameOverWrapper } from 'components/game-over';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
 import { Achievements } from 'components/general/Achievements';
-import { Translate } from 'components/language';
-import { Title } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { Title } from 'components/text/Title';
 // Internal
 import { achievementsReference } from './utils/achievements';
 

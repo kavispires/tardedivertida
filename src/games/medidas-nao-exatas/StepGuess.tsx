@@ -9,14 +9,16 @@ import { useCountdown } from 'hooks/useCountdown';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { TransparentButton } from 'components/buttons';
-import { Card } from 'components/cards';
-import { HostNextPhaseButton } from 'components/host';
-import { Translate } from 'components/language';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { Card } from 'components/cards/Card';
+import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
+import { Translate } from 'components/language/Translate';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Step } from 'components/steps';
-import { RuleInstruction, StepTitle, TextHighlight } from 'components/text';
-import { TimerBar } from 'components/timers';
+import { Step } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { TextHighlight } from 'components/text/TextHighlight';
+import { TimerBar } from 'components/timers/TimerBar';
 // Internal
 import type { Guess, SubmitGuessPayload } from './utils/types';
 import { GUESSING_TIME } from './utils/constants';

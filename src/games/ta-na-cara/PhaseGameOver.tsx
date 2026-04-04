@@ -3,7 +3,7 @@ import type { PhaseProps, GamePlayer } from 'types/game';
 // Icons
 import { FlagIcon } from 'icons/FlagIcon';
 // Components
-import { GameOverWrapper } from 'components/game-over';
+import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { PlayerBoard } from './components/PlayersBoards';

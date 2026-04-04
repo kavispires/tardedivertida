@@ -8,10 +8,10 @@ import { pluralize } from 'utils/helpers';
 // Icons
 import { SecurityIcon, TraitorIcon } from 'icons/collection';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { ImageCard } from 'components/image-cards';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { ImageCard } from 'components/image-cards/ImageCard';
 import { Translate } from 'components/language/Translate';
-import { PlayerAvatarCard } from 'components/player';
+import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
 // Internal
 import { useNotesStore } from '../utils/notes-store';
 import { CARD_IMAGE_NAMES } from '../utils/constants';

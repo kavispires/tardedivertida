@@ -8,9 +8,9 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { CrownIcon } from 'icons/CrownIcon';
 // Components
 import { BookPatternCard } from 'components/cards/BookPatternCard';
-import { GameOverWrapper } from 'components/game-over';
+import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
 import { Achievements } from 'components/general/Achievements';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TitledContainer } from 'components/layout/TitledContainer';
 import { ListOfPlayers } from 'components/players/ListOfPlayers';

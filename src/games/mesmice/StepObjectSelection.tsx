@@ -3,10 +3,11 @@ import type { GamePlayer } from 'types/game';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Components
-import { TransparentButton } from 'components/buttons';
-import { Translate } from 'components/language';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { Translate } from 'components/language/Translate';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { ObjectCardObj } from './utils/types';
 import { mockObjectIdSelection } from './utils/mock';

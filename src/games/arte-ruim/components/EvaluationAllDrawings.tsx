@@ -4,9 +4,9 @@ import type { GamePlayers } from 'types/game';
 // Utils
 import { getEntryId } from 'utils/helpers';
 // Components
-import { CanvasSVG } from 'components/canvas';
-import { PlayerAvatarName } from 'components/player';
-import { Ribbon } from 'components/ribbons';
+import { CanvasSVG } from 'components/canvas/CanvasSVG';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { Ribbon } from 'components/ribbons/Ribbon';
 // Internal
 import type { ArteRuimDrawing } from '../utils/types';
 

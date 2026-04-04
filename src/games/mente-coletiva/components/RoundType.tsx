@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Icons
 import { ArrowSignIcon } from 'icons/ArrowSignIcon';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 
 type RoundTypeProps = {
   /**

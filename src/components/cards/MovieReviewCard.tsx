@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { ParagraphHighlighter } from 'components/text/ParagraphHighlighter';
 // Sass
 import styles from './MovieReviewCard.module.scss';

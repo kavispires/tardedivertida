@@ -3,14 +3,11 @@ import type { PhaseProps } from 'types/game';
 // Icons
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
-import { GameOverWrapper } from 'components/game-over';
-import { Translate } from 'components/language';
+import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
+import { Translate } from 'components/language/Translate';
 import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
 import type { PhaseGameOverState } from './utils/types';
-// Ant Design Resources
-// import { Achievements } from 'components/general/Achievements';
-// import achievementsReference from './utils/achievements';
 
 export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   return (

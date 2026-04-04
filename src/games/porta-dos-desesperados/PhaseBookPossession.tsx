@@ -9,14 +9,16 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { MagicBookIcon } from 'icons/MagicBookIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
-import { PlayerAvatarName } from 'components/player';
-import { TurnOrder } from 'components/players';
-import { RoundAnnouncement } from 'components/round';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
-import { ViewIf } from 'components/views';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { PhaseTimerReset } from 'components/phases/PhaseTimerReset';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import { useOnSubmitPagesAPIRequest } from './utils/api-requests';
 import { PORTA_DOS_DESESPERADOS_PHASES, TRAPS } from './utils/constants';

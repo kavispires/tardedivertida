@@ -4,7 +4,7 @@ import type { GamePlayer } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Internal
 import { DreamCard } from './DreamCard';
 

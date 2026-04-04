@@ -3,7 +3,7 @@ import type { GamePlayer } from 'types/game';
 // Icons
 import { XIcon } from 'icons/XIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import type { ExtendedObjectFeatureCard, ObjectCardObj } from '../utils/types';

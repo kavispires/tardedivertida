@@ -7,8 +7,8 @@ import { Button, Divider, Flex, Modal, Typography } from 'antd';
 // Icons
 import { BellIcon } from 'icons/BellIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language/Translate';
 // Internal
 import { NEWS_LIST } from './NewsList';
 

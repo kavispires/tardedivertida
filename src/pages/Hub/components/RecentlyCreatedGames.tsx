@@ -7,7 +7,7 @@ import { Button, Space, Tooltip } from 'antd';
 // Hooks
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 
 /**
  * @deprecated

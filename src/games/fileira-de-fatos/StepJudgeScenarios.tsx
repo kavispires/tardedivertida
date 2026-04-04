@@ -1,9 +1,10 @@
 // Types
 import type { TextCard } from 'types/tdr';
 // Components
-import { Translate } from 'components/language';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { SubmitScenarioOrderPayload } from './utils/types';
 import { SelectableScenarioOrder } from './components/SelectableScenarioOrder';

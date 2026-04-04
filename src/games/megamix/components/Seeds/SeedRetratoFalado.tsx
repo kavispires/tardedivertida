@@ -11,14 +11,14 @@ import { NOOP } from 'utils/constants';
 // Icons
 import { PanicIcon } from 'icons/PanicIcon';
 // Components
-import { DrawingCanvas } from 'components/canvas';
+import { DrawingCanvas } from 'components/canvas/DrawingCanvas';
 import { MonsterCard } from 'components/cards/MonsterCard';
-import { ImageCardPreloadHand } from 'components/image-cards';
-import { Translate } from 'components/language';
-import { Instruction, Title } from 'components/text';
+import { ImageCardPreloadHand } from 'components/image-cards/ImageCardPreloadHand';
+import { Translate } from 'components/language/Translate';
+import { Instruction } from 'components/text/Instruction';
+import { Title } from 'components/text/Title';
 // Internal
 import type { SeedEntryRetratoFalado } from '../../utils/types';
-// Sound
 
 type SeedRetratoFaladoProps = {
   seed: SeedEntryRetratoFalado;

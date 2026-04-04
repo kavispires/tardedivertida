@@ -6,9 +6,10 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { AlienCommunicationIcon } from 'icons/AlienCommunicationIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
 // Internal
 import { useOnSubmitAlienRequestAPIRequest } from './utils/api-requests';
 import { COMUNICACAO_ALIENIGENA_PHASES } from './utils/constants';

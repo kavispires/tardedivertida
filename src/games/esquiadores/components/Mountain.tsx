@@ -11,7 +11,7 @@ import { getAvatarColorById } from 'utils/helpers';
 // Icons
 import { SkierIcon } from 'icons/SkierIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 // Internal
 import type { MountainDilemma } from '../utils/types';
 // Images

@@ -7,13 +7,14 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { CreateIcon } from 'icons/CreateIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { PlayerAvatarName } from 'components/player';
-import { TurnOrder } from 'components/players';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
-import { ViewIf } from 'components/views';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import type { PhaseWordCreationState } from './utils/types';
 import { useOnSubmitNewWordAPIRequest } from './utils/api-requests';

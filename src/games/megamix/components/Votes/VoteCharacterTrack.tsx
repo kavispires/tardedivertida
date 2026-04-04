@@ -2,7 +2,7 @@
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { CharacterCard } from 'components/cards/CharacterCard';
-import { ImageBlurButtonContainer } from 'components/image-cards';
+import { ImageBlurButtonContainer } from 'components/image-cards/ImageBlurButtonContainer';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
 import { useGroupedVotes } from '../../utils/useGroupedVotes';

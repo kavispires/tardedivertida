@@ -5,11 +5,12 @@ import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { TimedButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { TimedButton } from 'components/buttons/TimedButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { AdedanhxGrid, AnswerGridEntry, GroupAnswerEvaluationEntry } from './utils/types';
 import { AnswersGrid } from './components/Grid';

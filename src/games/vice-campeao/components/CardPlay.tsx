@@ -8,10 +8,10 @@ import { getAnimationClass } from 'utils/helpers';
 import { ArrowIcon } from 'icons/ArrowIcon';
 import { NoIcon } from 'icons/NoIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
-import { PlayerAvatarCard } from 'components/player';
-import { RuleInstruction } from 'components/text';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 // Internal
 import type { RunActivity, RunnerCard } from '../utils/types';
 import { RunCard } from './RunCard';

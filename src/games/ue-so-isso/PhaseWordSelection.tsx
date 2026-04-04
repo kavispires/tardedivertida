@@ -7,13 +7,14 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { OpinionsIcon } from 'icons/OpinionsIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { PlayerAvatarName } from 'components/player';
-import { RoundAnnouncement } from 'components/round';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
-import { ViewIf } from 'components/views';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
 import { UE_SO_ISSO_PHASES } from './utils/constants';

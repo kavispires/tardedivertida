@@ -13,11 +13,12 @@ import { getAnimationClass } from 'utils/helpers';
 import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
 import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
-import { Translate } from 'components/language';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { Translate } from 'components/language/Translate';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { SubmitReactionPayload } from './utils/types';
 import { Tweet } from './components/Tweet';

@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Tag } from 'antd';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Internal
 import type { OfferingsStatus } from '../utils/types';
 

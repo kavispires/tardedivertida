@@ -12,12 +12,12 @@ import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Card } from 'components/cards';
+import { Card } from 'components/cards/Card';
 import { SuspectCard } from 'components/cards/SuspectCard';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatar } from 'components/player';
-import { RuleInstruction } from 'components/text';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 import { SpeechBubble } from 'components/text/SpeechBubble';
 // Internal
 import type { TrackProps } from '../../utils/types';

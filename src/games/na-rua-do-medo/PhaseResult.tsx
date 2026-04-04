@@ -1,12 +1,11 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Components
-import { PhaseContainer } from 'components/phases';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
 // Internal
 import { NA_RUA_DO_MEDO_PHASES } from './utils/constants';
 import type { PhaseResultState } from './utils/types';
 import { StepResult } from './StepResult';
-// Hooks
 
 export function PhaseResult({ state, players, user }: PhaseProps<PhaseResultState>) {
   return (

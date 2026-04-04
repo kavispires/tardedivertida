@@ -10,14 +10,16 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { isEverybodyReady } from 'utils/helpers';
 // Components
-import { Card } from 'components/cards';
-import { ImageCard, ImageCardButton } from 'components/image-cards';
-import { Translate } from 'components/language';
+import { Card } from 'components/cards/Card';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { ImageCardButton } from 'components/image-cards/ImageCardButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PopoverRule } from 'components/rules';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
-import { TimedTimerBar } from 'components/timers';
+import { PopoverRule } from 'components/rules/PopoverRule';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { TimedTimerBar } from 'components/timers/TimedTimerBar';
 // Internal
 import type { SubmitVotePayload, TableEntry } from './utils/types';
 import { mockVote } from './utils/mock';

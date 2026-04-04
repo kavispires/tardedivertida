@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "idade-da-preda",
-  "version": "0.9.31",
+  "version": "0.9.37",
   "release": "beta",
   "releaseDate": "2025-06-08",
   "available": false,
@@ -43,11 +43,7 @@
     ]
   },
   "playerCount": {
-    "recommended": [
-      4,
-      5,
-      6
-    ],
+    "recommended": [4, 5, 6],
     "best": 5,
     "min": 2,
     "max": 10
@@ -56,12 +52,7 @@
     "base": 0,
     "perPlayer": 0
   },
-  "mechanics": [
-    "cooperative",
-    "competitive",
-    "writing",
-    "guessing"
-  ],
+  "mechanics": ["cooperative", "competitive", "writing", "guessing"],
   "features": [],
   "options": [
     {

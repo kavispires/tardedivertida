@@ -1,5 +1,5 @@
 // Components
-import { PlayerAvatarCard } from 'components/player';
+import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
 import { useGroupedVotes } from '../../utils/useGroupedVotes';

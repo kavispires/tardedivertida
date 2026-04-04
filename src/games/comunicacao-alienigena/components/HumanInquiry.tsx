@@ -10,9 +10,11 @@ import { useCache } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { SendButton } from 'components/buttons';
-import { DebugOnly, DevButton } from 'components/debug';
-import { DualTranslate, Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { DebugOnly } from 'components/debug/DebugOnly';
+import { DevButton } from 'components/debug/DevButton';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { alienAttributesUtils } from 'components/toolKits/AlienAttributes';
 // Internal

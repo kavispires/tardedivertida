@@ -6,7 +6,7 @@ import type { GameInfo } from 'types/game-info';
 import { useGameList } from 'hooks/useGameList';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { LoadingPage } from 'components/loaders';
+import { LoadingPage } from 'components/loaders/LoadingPage';
 
 const PLACEHOLDER_GAME_INFO: GameInfo = {
   gameCode: ' ',

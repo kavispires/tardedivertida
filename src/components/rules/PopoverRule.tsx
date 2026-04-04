@@ -2,8 +2,8 @@ import type { ReactNode } from 'react';
 // Ant Design Resources
 import { ReadOutlined } from '@ant-design/icons';
 // Components
-import { FixedMenuButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { FixedMenuButton } from 'components/buttons/FixedMenuButton';
+import { Translate } from 'components/language/Translate';
 
 type PopoverRuleProps = {
   /**

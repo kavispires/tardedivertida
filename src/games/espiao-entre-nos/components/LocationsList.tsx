@@ -6,7 +6,7 @@ import { Button, Tooltip } from 'antd';
 import { useCache } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Internal
 import type { Location } from '../utils/types';
 

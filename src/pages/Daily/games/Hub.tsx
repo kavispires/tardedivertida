@@ -21,8 +21,9 @@ import { getToday, isDevEnv } from 'utils/helpers';
 import { DailyContributionGame } from 'icons/DailyContributionGame';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { DualTranslate, Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 // Internal
 import { dailySoundEffects, playSFX, SFXAllNames } from '../utils/soundEffects';
 import type { GameSettings } from '../utils/types';

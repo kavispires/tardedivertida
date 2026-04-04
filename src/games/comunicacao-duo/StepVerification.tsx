@@ -6,12 +6,14 @@ import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 // Components
 import { AlienKeyboard } from 'components/alien/AlienKeyboard';
 import { AlienText } from 'components/alien/AlienText';
-import { HostNextPhaseButton } from 'components/host';
-import { Translate } from 'components/language';
+import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle, TextHighlight } from 'components/text';
-import { ViewIf } from 'components/views';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { TextHighlight } from 'components/text/TextHighlight';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import type { DeckEntry, HistoryEntry, Summary } from './utils/types';
 import { COMUNICACAO_DUO_PHASES, STATUS } from './utils/constants';

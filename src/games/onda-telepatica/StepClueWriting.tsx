@@ -8,11 +8,12 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { SendButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Step } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import { mockHint } from './utils/mock';
 import type { SubmitCluePayload } from './utils/types';

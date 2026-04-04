@@ -4,8 +4,9 @@ import type { GamePlayer } from 'types/game';
 // Utils
 import { getAnimation } from 'utils/animations';
 // Components
-import { Translate } from 'components/language';
-import { RuleInstruction, TextHighlight } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import type { SecretWord } from '../utils/types';
 

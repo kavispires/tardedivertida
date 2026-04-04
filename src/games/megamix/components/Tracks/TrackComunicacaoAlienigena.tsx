@@ -8,13 +8,14 @@ import { useMock } from 'hooks/useMock';
 // Icons
 import { AlienIcon } from 'icons/AlienIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 import { ItemCard } from 'components/cards/ItemCard';
 import { SignCard } from 'components/cards/SignCard';
-import { DualTranslate, Translate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { RuleInstruction } from 'components/text';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 import { SpeechBubble } from 'components/text/SpeechBubble';
 // Internal
 import type { AlienSign, TrackProps } from '../../utils/types';

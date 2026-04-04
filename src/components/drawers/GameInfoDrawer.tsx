@@ -9,12 +9,12 @@ import type { GameState, GamePlayers } from 'types/game';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { DebugOnly } from 'components/debug';
+import { DebugOnly } from 'components/debug/DebugOnly';
 import { GameStrip } from 'components/general/GameBanner';
-import { Translate } from 'components/language';
-import { PlayerAvatar } from 'components/player';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
 import { PlayersStatusBar } from 'components/players/PlayersStatusBar';
-import { RulesModal } from 'components/rules';
+import { RulesModal } from 'components/rules/RulesModal';
 import { useGameInfoContext } from 'components/session/GameInfoContext';
 // Internal
 import { SectionMeta } from './_internal/SectionMeta';
@@ -22,7 +22,6 @@ import { SectionRankedPlayers } from './_internal/SectionRankedPlayers';
 import { SectionSettings } from './_internal/SectionSettings';
 // Sass
 import styles from './drawers.module.scss';
-// Styles
 
 type GameInfoDrawerProps = {
   /**

@@ -7,8 +7,9 @@ import { Carousel, Typography } from 'antd';
 // Services
 import { logAnalyticsEvent } from 'services/firebase';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { DualTranslate, Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 // Internal
 import type { GameSettings } from '../utils/types';
 import { ALL_SETTINGS } from '../utils/settings';

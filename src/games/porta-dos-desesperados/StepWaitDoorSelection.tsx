@@ -7,10 +7,12 @@ import type { GamePlayers } from 'types/game';
 // Utils
 import { NOOP, PLACEHOLDER_PLAYER } from 'utils/constants';
 // Components
-import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
-import { Translate } from 'components/language';
-import { Step } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { ImageBlurButtonContainer } from 'components/image-cards/ImageBlurButtonContainer';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { Translate } from 'components/language/Translate';
+import { Step } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import { shouldAnnounceTrap } from './utils/helpers';
 import { PORTA_DOS_DESESPERADOS_PHASES, ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';

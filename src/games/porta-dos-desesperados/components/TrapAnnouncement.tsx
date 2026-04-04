@@ -3,9 +3,9 @@ import { Flex } from 'antd';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { DualTranslate } from 'components/language';
-import { PhaseAnnouncement } from 'components/phases';
-import { Instruction } from 'components/text';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import type { TrapEntry } from '../utils/types';
 import { getTrapIcon } from '../utils/helpers';

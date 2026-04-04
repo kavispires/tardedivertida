@@ -6,10 +6,10 @@ import type { SuspectCard } from 'types/tdr';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 import { SuspectCard as SuspectCardComponent } from 'components/cards/SuspectCard';
-import { Translate } from 'components/language';
-import { CollapsibleRule } from 'components/rules';
+import { Translate } from 'components/language/Translate';
+import { CollapsibleRule } from 'components/rules/CollapsibleRule';
 // Internal
 import type { THistoryEntry } from '../utils/types';
 

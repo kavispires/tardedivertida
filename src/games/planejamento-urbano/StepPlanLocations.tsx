@@ -4,12 +4,13 @@ import type { GamePlayers } from 'types/game';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useMock } from 'hooks/useMock';
 // Components
-import { SendButton } from 'components/buttons';
-import { DevButton } from 'components/debug';
-import { Translate } from 'components/language';
-import { TurnOrder } from 'components/players';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { SendButton } from 'components/buttons/SendButton';
+import { DevButton } from 'components/debug/DevButton';
+import { Translate } from 'components/language/Translate';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { City, CityLocationsDict } from './utils/types';
 import type { useOnSubmitPlanningAPIRequest } from './utils/api-requests';

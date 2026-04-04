@@ -8,17 +8,18 @@ import { useStep } from 'hooks/useStep';
 import { BooksIcon } from 'icons/collection';
 // Components
 import { BookPatternCard } from 'components/cards/BookPatternCard';
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { RoundAnnouncement } from 'components/round';
-import { StepSwitcher } from 'components/steps';
-import { Instruction, TextHighlight } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import type { PhasePatternCreationState } from './utils/types';
 import { SENSO_LITERARIO_PHASES } from './utils/constants';
 import { useOnSubmitPatternAPIRequest } from './utils/api-requests';
 import { StepCreatePattern } from './StepCreatePattern';
-// Icons
 
 export function PhasePatternCreation({ players, state, user }: PhaseProps<PhasePatternCreationState>) {
   const { step, goToNextStep, setStep } = useStep();

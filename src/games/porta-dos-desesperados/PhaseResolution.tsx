@@ -5,9 +5,10 @@ import { useStep } from 'hooks/useStep';
 // Icons
 import { MagicBookSpellIcon } from 'icons/MagicBookSpellIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
 // Internal
 import { PORTA_DOS_DESESPERADOS_PHASES } from './utils/constants';
 import type { PhaseResolutionState } from './utils/types';

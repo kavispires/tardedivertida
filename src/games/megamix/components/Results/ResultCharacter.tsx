@@ -2,9 +2,9 @@
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { CharacterCard } from 'components/cards/CharacterCard';
-import { ImageBlurButtonContainer } from 'components/image-cards';
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { ImageBlurButtonContainer } from 'components/image-cards/ImageBlurButtonContainer';
+import { Translate } from 'components/language/Translate';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';
 

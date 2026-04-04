@@ -1,5 +1,5 @@
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 // Internal

@@ -4,10 +4,12 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { HostButton, HostOnlyContainer } from 'components/host';
-import { Translate } from 'components/language';
-import { Step } from 'components/steps';
-import { Instruction, StepTitle } from 'components/text';
+import { HostButton } from 'components/host/HostButton';
+import { HostOnlyContainer } from 'components/host/HostOnlyContainer';
+import { Translate } from 'components/language/Translate';
+import { Step } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { ResolutionStatus } from './utils/types';
 

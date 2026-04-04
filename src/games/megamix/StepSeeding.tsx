@@ -8,9 +8,9 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
 // Components
-import { Translate } from 'components/language';
-import { Step, type StepProps } from 'components/steps';
-import { StepTitle } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { Step, type StepProps } from 'components/steps/Step';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { SeedEntry, SubmitAnswerPayload } from './utils/types';
 import { buildSeedingSteps } from './utils/helpers';

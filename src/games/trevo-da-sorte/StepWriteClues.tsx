@@ -4,13 +4,13 @@ import { Button } from 'antd';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { DebugOnly } from 'components/debug';
+import { DebugOnly } from 'components/debug/DebugOnly';
 import { Popconfirm } from 'components/general/Popconfirm';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PopoverRule } from 'components/rules';
-import { Step } from 'components/steps';
-import { StepTitle } from 'components/text';
+import { PopoverRule } from 'components/rules/PopoverRule';
+import { Step } from 'components/steps/Step';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { CloverObject, Leaves } from './utils/types';
 import { mockClues } from './utils/mock';

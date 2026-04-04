@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 // Ant Design Resources
 import { Typography } from 'antd';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Internal
 import { BetaBanner, DemoBanner } from './BetaBanner';
 import { checkWeekend } from '../utils';

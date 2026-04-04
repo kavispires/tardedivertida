@@ -5,8 +5,8 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { TransparentButton } from 'components/buttons';
-import { Card } from 'components/cards';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { Card } from 'components/cards/Card';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import type { TrackProps } from '../../utils/types';

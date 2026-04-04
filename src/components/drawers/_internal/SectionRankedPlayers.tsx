@@ -10,11 +10,10 @@ import { useUser } from 'hooks/useUser';
 // Utils
 import { AVATARS } from 'utils/avatars';
 // Components
-import { Translate } from 'components/language';
-import { PlayerAvatar } from 'components/player';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
 // Sass
 import styles from '../drawers.module.scss';
-// Styles
 
 type SectionRankedPlayersProps = {
   players: GamePlayers;

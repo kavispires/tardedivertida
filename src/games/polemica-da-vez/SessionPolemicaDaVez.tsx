@@ -4,8 +4,8 @@ import type { GameState } from 'types/game';
 import { GAME_COLLECTION } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
-import { PhaseError } from 'components/phases';
-import { Session } from 'components/session';
+import { PhaseError } from 'components/phases/PhaseError';
+import { Session } from 'components/session/Session';
 // Internal
 import { POLEMICA_DA_VEZ_PHASES } from './utils/constants';
 import { PhaseTweetSelection } from './PhaseTweetSelection';
@@ -15,7 +15,6 @@ import { PhaseGameOver } from './PhaseGameOver';
 // Sass
 import 'assets/fonts/architects-daughter.scss';
 import './utils/styles.scss';
-// Fonts
 
 function getActiveComponent(state: GameState) {
   switch (state.phase) {

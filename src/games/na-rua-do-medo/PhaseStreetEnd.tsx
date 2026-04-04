@@ -6,10 +6,11 @@ import { useStep } from 'hooks/useStep';
 import { HouseIcon } from 'icons/HouseIcon';
 import { ScaredIcon } from 'icons/ScaredIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import { NA_RUA_DO_MEDO_PHASES } from './utils/constants';
 import type { PhaseStreetEndState } from './utils/types';

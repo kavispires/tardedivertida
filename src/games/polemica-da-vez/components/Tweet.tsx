@@ -6,7 +6,7 @@ import { Avatar } from 'antd';
 import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 import { TwitterIcon } from 'icons/TwitterIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 
 type TweetProps = {
   tweet: string;

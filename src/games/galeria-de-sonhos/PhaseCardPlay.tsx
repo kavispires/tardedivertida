@@ -9,13 +9,15 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { DoorSignIcon } from 'icons/DoorSignIcon';
 import { NightmareIcon } from 'icons/NightmareIcon';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { CardHighlight } from 'components/metrics/CardHighlight';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
-import { PlayerAvatarName } from 'components/player';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { PhaseTimerReset } from 'components/phases/PhaseTimerReset';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import { useOnPlayCardAPIRequest } from './utils/api-requests';
 import {

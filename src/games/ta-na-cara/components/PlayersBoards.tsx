@@ -8,14 +8,13 @@ import { getAvatarColorById, sortPlayers } from 'utils/helpers';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { ImageCard } from 'components/image-cards';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { ImageCard } from 'components/image-cards/ImageCard';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatarCard } from 'components/player';
+import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
 // Internal
 import type { QuestionsDictionary } from '../utils/types';
-// Hook
 
 type PlayersBoardsProps = {
   players: GamePlayers;

@@ -11,8 +11,10 @@ import { getAnimationClass } from 'utils/helpers';
 // Icons
 import { StarIcon } from 'icons/StarIcon';
 // Components
-import { ImageCard, ImageCardBack, ImageCardButton } from 'components/image-cards';
-import { Translate } from 'components/language';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { ImageCardBack } from 'components/image-cards/ImageCardBack';
+import { ImageCardButton } from 'components/image-cards/ImageCardButton';
+import { Translate } from 'components/language/Translate';
 // Internal
 import type { ImageCardObj } from '../utils/types';
 import { BORDER_TOTAL_SIZE } from '../utils/constants';

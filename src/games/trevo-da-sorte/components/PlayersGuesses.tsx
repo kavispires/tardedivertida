@@ -6,8 +6,8 @@ import type { GamePlayers } from 'types/game';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Components
-import { PlayerAvatarName } from 'components/player';
-import { Instruction } from 'components/text';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import type { CloverObject, Leaves } from '../utils/types';
 import { Clover } from './Clover';

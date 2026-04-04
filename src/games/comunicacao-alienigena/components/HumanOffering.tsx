@@ -7,11 +7,11 @@ import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 // Utils
 import { pluralize } from 'utils/helpers';
 // Components
-import { SendButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
-import { RuleInstruction } from 'components/text';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 // Internal
 import type { OfferingsStatus, PhaseBasicState, SubmitOfferingsPayload } from '../utils/types';
 import { CurseItemHighlight, ItemsHighlight } from './Highlights';

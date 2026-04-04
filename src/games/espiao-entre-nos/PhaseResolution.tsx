@@ -10,10 +10,12 @@ import { MapLocationIcon } from 'icons/MapLocationIcon';
 import { NuclearExplosionIcon } from 'icons/NuclearExplosionIcon';
 import { ThiefIcon } from 'icons/ThiefIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
-import { ViewIf } from 'components/views';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { PhaseTimerReset } from 'components/phases/PhaseTimerReset';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import { useOnProgressGameAPIRequest } from './utils/api-requests';
 import { determineView } from './utils/helpers';

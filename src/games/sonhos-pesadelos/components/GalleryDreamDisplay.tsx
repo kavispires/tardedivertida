@@ -3,8 +3,8 @@ import type { GamePlayer } from 'types/game';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { ImageCard } from 'components/image-cards';
-import { PlayerAvatarName } from 'components/player';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 // Internal
 import type { GalleryEntry } from '../utils/types';
 

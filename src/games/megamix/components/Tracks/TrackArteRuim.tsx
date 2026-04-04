@@ -10,12 +10,12 @@ import { useMock } from 'hooks/useMock';
 import { LETTERS } from 'utils/constants';
 import { getColorFromIndex } from 'utils/helpers';
 // Components
-import { TransparentButton } from 'components/buttons';
-import { CanvasSVG } from 'components/canvas';
-import { Card } from 'components/cards';
-import { Translate } from 'components/language';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { CanvasSVG } from 'components/canvas/CanvasSVG';
+import { Card } from 'components/cards/Card';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { RuleInstruction } from 'components/text';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';

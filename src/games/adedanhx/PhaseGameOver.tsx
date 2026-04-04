@@ -3,9 +3,9 @@ import type { PhaseProps } from 'types/game';
 // Icons
 import { CrownIcon } from 'icons/CrownIcon';
 // Components
-import { GameOverWrapper } from 'components/game-over';
+import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
 import { Achievements } from 'components/general/Achievements';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { TitledContainer } from 'components/layout/TitledContainer';
 // Internal
 import type { AdedanhxGalleryEntry, PhaseGameOverState } from './utils/types';

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Sass
 import styles from './SpecialRule.module.scss';
 

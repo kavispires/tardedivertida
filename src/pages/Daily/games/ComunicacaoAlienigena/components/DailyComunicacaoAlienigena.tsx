@@ -12,10 +12,11 @@ import { getAnimationClass } from 'utils/helpers';
 // Icons
 import { DailyAlienGameIcon } from 'icons/DailyAlienGameIcon';
 // Components
-import { TransparentButton } from 'components/buttons';
 import { DivButton } from 'components/buttons/DivButton';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 import { SignCard } from 'components/cards/SignCard';
-import { DualTranslate, Translate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';

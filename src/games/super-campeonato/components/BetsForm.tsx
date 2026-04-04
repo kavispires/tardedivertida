@@ -11,12 +11,12 @@ import { MedalIcon } from 'icons/MedalIcon';
 import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { SendButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { SendButton } from 'components/buttons/SendButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Instruction } from 'components/text';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import type { Bracket, FightingContender, SubmitBetsPayload } from '../utils/type';
 import { getSmartBetContenderOptions } from '../utils/helpers';

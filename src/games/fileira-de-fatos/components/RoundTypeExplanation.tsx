@@ -1,9 +1,9 @@
 // Ant Design Resources
 import { Avatar } from 'antd';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { RuleInstruction } from 'components/text';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 import { SpecialRule } from 'components/text/SpecialRule';
 
 type RoundTypeProps = {

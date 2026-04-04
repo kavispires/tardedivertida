@@ -1,6 +1,6 @@
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
-import { DualTranslate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
 // Internal
 import type { ObjectCardObj } from '../utils/types';
 

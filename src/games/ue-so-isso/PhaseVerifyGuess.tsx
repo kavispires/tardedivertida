@@ -11,11 +11,13 @@ import { isDevEnv } from 'utils/helpers';
 // Icons
 import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
 // Components
-import { HostNextPhaseButton } from 'components/host';
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Step, StepSwitcher } from 'components/steps';
-import { ViewIf } from 'components/views';
+import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { Step } from 'components/steps/Step';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import { useOnSubmitOutcomeAPIRequest } from './utils/api-requests';
 import { UE_SO_ISSO_PHASES } from './utils/constants';

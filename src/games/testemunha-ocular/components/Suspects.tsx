@@ -9,8 +9,9 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
 import { Popconfirm } from 'components/general/Popconfirm';
-import { ImageCard } from 'components/image-cards';
-import { DualTranslate, Translate } from 'components/language';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 
 type SuspectsProps = {
   suspectsDict: Dictionary<SuspectCard>;

@@ -4,7 +4,8 @@ import { Image } from 'antd';
 // Hooks
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Components
-import { DualTranslate, Translate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 // Internal
 import type { RunnerCard } from '../utils/types';
 

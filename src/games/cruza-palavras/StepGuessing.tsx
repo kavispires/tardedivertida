@@ -8,11 +8,12 @@ import type { GamePlayer } from 'types/game';
 // Utils
 import { getColorFromIndex, shuffle } from 'utils/helpers';
 // Components
-import { SendButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { Clue, Grid, GridType, SubmitGuessesPayload } from './utils/types';
 import { getClueFromKey, getClueKey, isClue } from './utils/helpers';

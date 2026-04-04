@@ -7,13 +7,12 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 // Internal
 import { reorder } from './reorder';
 // Sass
 import styles from './TurnOrder.module.scss';
-// Styles
 
 type TurnOrderProps = {
   /**

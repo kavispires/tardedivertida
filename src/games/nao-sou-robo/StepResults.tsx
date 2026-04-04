@@ -11,14 +11,15 @@ import type { UseStep } from 'hooks/useStep';
 import { RobotIcon } from 'icons/RobotIcon';
 import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { TimedButton } from 'components/buttons';
-import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { TimedButton } from 'components/buttons/TimedButton';
+import { ImageBlurButtonContainer } from 'components/image-cards/ImageBlurButtonContainer';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { Translate } from 'components/language/Translate';
 import { TitledContainer } from 'components/layout/TitledContainer';
-import { PlayerAvatar } from 'components/player';
-import { Step, type StepProps } from 'components/steps';
-import { StepTitle } from 'components/text';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { Step, type StepProps } from 'components/steps/Step';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { Robot, RobotGalleryEntry } from './utils/types';
 import { CaptchaTopic } from './components/CaptchaTopic';

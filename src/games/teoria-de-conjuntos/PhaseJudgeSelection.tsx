@@ -5,10 +5,11 @@ import { useStep } from 'hooks/useStep';
 // Icons
 import { LawIcon } from 'icons/LawIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
 import { StepSelectPlayer } from 'components/steps/StepSelectPlayer';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
 // Internal
 import { useOnSubmitJudgeAPIRequest } from './utils/api-requests';
 import { TEORIA_DE_CONJUNTOS_PHASES } from './utils/constants';

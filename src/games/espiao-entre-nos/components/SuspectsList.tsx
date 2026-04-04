@@ -10,7 +10,7 @@ import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 
 type SuspectsListProps = {
   players: GamePlayers;

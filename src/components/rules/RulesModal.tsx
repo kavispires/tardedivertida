@@ -7,11 +7,10 @@ import type { GameInfo } from 'types/game-info';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { Translate } from 'components/language';
-import { RulesCarousel } from 'components/rules';
+import { Translate } from 'components/language/Translate';
+import { RulesCarousel } from 'components/rules/RulesCarousel';
 // Sass
 import styles from './rules.module.scss';
-// Styles
 
 type RulesModalProps = {
   gameInfo: GameInfo;

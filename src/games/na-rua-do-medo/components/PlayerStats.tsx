@@ -6,11 +6,11 @@ import { QuestionIcon } from 'icons/QuestionIcon';
 import { TrickOrTreatIcon } from 'icons/TrickOrTreatIcon';
 import { WalkIcon } from 'icons/WalkIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 import { FloatingHand } from 'components/general/FloatingHand';
-import { ImageCard } from 'components/image-cards';
-import { Translate } from 'components/language';
-import { PlayerAvatarStrip } from 'components/player';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarStrip } from 'components/player/PlayerAvatarStrip';
 // Internal
 import type { Decision, StreetCard } from '../utils/types';
 

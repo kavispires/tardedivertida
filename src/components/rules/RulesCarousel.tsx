@@ -13,11 +13,10 @@ import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Sass
 import styles from './rules.module.scss';
-// Styles
 
 type RulesCarouselProps = {
   info: GameInfo;

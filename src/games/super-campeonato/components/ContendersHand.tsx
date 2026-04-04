@@ -5,7 +5,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { FloatingHand } from 'components/general/FloatingHand';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Internal
 import type { FightingContender } from '../utils/type';
 

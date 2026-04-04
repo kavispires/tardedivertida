@@ -7,7 +7,7 @@ import { CompassIcon } from 'icons/CompassIcon';
 import { FinishLineIcon } from 'icons/FinishLineIcon';
 import { FlagIcon } from 'icons/FlagIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 // Internal
 import type { Direction, MapSegment, Tree, TreeId } from '../utils/types';
 import { getOriginDirection } from '../utils/helpers';

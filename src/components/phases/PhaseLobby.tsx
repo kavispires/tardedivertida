@@ -13,10 +13,11 @@ import { useStep } from 'hooks/useStep';
 // Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { AdminMenuDrawer } from 'components/admin';
+import { AdminMenuDrawer } from 'components/admin/AdminMenuDrawer';
 import { GameStrip } from 'components/general/GameBanner';
-import { DualTranslate, Translate } from 'components/language';
-import { PhaseContainer } from 'components/phases';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
 import { useGameInfoContext } from 'components/session/GameInfoContext';
 // Internal
 import { CloudBackground } from './lobby/CloudBackground';

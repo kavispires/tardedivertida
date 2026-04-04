@@ -4,13 +4,14 @@ import type { PhaseProps } from 'types/game';
 import { CriminalIcon } from 'icons/CriminalIcon';
 import { NewspaperIcon } from 'icons/NewspaperIcon';
 // Components
-import { GameOverWrapper } from 'components/game-over';
+import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
 import { Achievements } from 'components/general/Achievements';
-import { ImageCard } from 'components/image-cards';
-import { DualTranslate, Translate } from 'components/language';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
-import { Instruction } from 'components/text';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import achievementsReference from './utils/achievements';
 import type { PhaseGameOverState } from './utils/types';

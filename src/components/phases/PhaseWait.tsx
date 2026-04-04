@@ -5,8 +5,9 @@ import { PHASES } from 'utils/phases';
 // Icons
 import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
 // Components
-import { Translate } from 'components/language';
-import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { Instruction } from 'components/text/Instruction';
+import { Title } from 'components/text/Title';
 // Internal
 import { PhaseContainer } from './PhaseContainer';
 

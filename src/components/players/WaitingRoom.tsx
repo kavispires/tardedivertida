@@ -6,12 +6,12 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 // Icons
 import { WaitingRoomIcon } from 'icons/WaitingRoomIcon';
 // Components
-import { Translate } from 'components/language';
-import { ReadyPlayersBar } from 'components/players';
-import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { ReadyPlayersBar } from 'components/players/ReadyPlayersBar';
+import { Instruction } from 'components/text/Instruction';
+import { Title } from 'components/text/Title';
 // Sass
 import styles from './WaitingRoom.module.scss';
-// Styles
 
 type WaitingRoomProps = {
   /**

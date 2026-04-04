@@ -12,14 +12,15 @@ import { useMock } from 'hooks/useMock';
 // Icons
 import { XIcon } from 'icons/XIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 import { Popconfirm } from 'components/general/Popconfirm';
-import { Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
-import { ViewIf } from 'components/views';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import { mockFeatureSelection } from './utils/mock';
 import type {

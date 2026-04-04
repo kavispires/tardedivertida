@@ -6,12 +6,13 @@ import { AVATARS } from 'utils/avatars';
 // Icons
 import { CrownIcon } from 'icons/CrownIcon';
 // Components
-import { GameOverWrapper } from 'components/game-over';
+import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
 import { Achievements } from 'components/general/Achievements';
-import { DualTranslate, Translate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 import { TitledContainer } from 'components/layout/TitledContainer';
-import { PlayerAvatar } from 'components/player';
-import { Instruction } from 'components/text';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import { achievementsReference } from './utils/achievements';
 

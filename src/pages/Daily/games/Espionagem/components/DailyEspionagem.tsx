@@ -14,8 +14,9 @@ import { getAnimation } from 'utils/animations';
 import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
 // Components
 import { getSuspectImageId } from 'components/cards/SuspectCard';
-import { ImageCard } from 'components/image-cards';
-import { DualTranslate, Translate } from 'components/language';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { Header } from 'pages/Daily/components/Header';

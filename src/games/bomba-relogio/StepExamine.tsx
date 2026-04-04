@@ -7,12 +7,14 @@ import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 // Utils
 import { getAvatarColorById, sortPlayers } from 'utils/helpers';
 // Components
-import { HostNextPhaseButton } from 'components/host';
-import { ImageCard } from 'components/image-cards';
-import { Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle, TextHighlight } from 'components/text';
+import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import type { DataCounts, Status, SubmitTargetPayload, UpdateTargetPlayerPayload } from './utils/types';
 import { CARD_IMAGE_NAMES, OUTCOME } from './utils/constants';
@@ -21,8 +23,6 @@ import { Tips } from './components/RulesBlobs';
 import { RedWireHighlight } from './components/Highlights';
 import { PlayerTableEntry } from './components/PlayerTableEntry';
 import { HandTarget } from './components/HandTarget';
-// Hooks
-// Icons
 
 type StepDeclarationProps = {
   players: GamePlayers;

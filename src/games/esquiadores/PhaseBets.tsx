@@ -8,13 +8,14 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { GamblingChipIcon } from 'icons/GamblingChipIcon';
 import { QuestionIcon } from 'icons/QuestionIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { TurnOrder } from 'components/players';
-import { RoundAnnouncement } from 'components/round';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
-import { ViewIf } from 'components/views';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import type { PhaseBetsState } from './utils/types';
 import { useOnSubmitBetsAPIRequest, useOnSubmitChoicesAPIRequest } from './utils/api-requests';

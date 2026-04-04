@@ -2,8 +2,8 @@
 import { QuestionCircleFilled } from '@ant-design/icons';
 import { Flex } from 'antd';
 // Components
-import { Translate } from 'components/language';
-import { TextHighlight } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { TextHighlight } from 'components/text/TextHighlight';
 
 export function ImposterTitle() {
   return (

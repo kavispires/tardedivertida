@@ -7,11 +7,11 @@ import { useMock } from 'hooks/useMock';
 // Icons
 import { StreetIcon } from 'icons/StreetIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { RuleInstruction } from 'components/text';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 // Internal
 import type { StreetCard, TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';

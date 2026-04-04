@@ -2,9 +2,9 @@ import type { ReactNode } from 'react';
 // Types
 import type { GamePlayers } from 'types/game';
 // Components
-import { Translate } from 'components/language';
-import { WaitingRoom } from 'components/players';
-import { Step } from 'components/steps';
+import { Translate } from 'components/language/Translate';
+import { WaitingRoom } from 'components/players/WaitingRoom';
+import { Step } from 'components/steps/Step';
 
 type StepWaitingProps = {
   players: GamePlayers;

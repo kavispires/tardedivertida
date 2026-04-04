@@ -7,10 +7,11 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 import { useLanguage } from 'hooks/useLanguage';
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Step } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { Title } from 'components/text/Title';
 // Internal
 import type { Location, Outcome, TimerType } from './utils/types';
 import { EspiaoEntreNosCard as Card } from './components/Card';

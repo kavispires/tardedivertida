@@ -6,9 +6,9 @@ import type { GamePlayer } from 'types/game';
 import { LETTERS } from 'utils/constants';
 import { getColorFromLetter } from 'utils/helpers';
 // Components
-import { Card } from 'components/cards';
+import { Card } from 'components/cards/Card';
 import { FloatingHand } from 'components/general/FloatingHand';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Internal
 import type { QuestionsDictionary } from '../utils/types';
 

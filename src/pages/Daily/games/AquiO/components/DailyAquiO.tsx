@@ -9,9 +9,10 @@ import { isDevEnv } from 'utils/helpers';
 import { DailyFindingGameIcon } from 'icons/DailyFindingGameIcon';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
-import { DualTranslate, Translate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { TimerBar } from 'components/timers';
+import { TimerBar } from 'components/timers/TimerBar';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { Header } from 'pages/Daily/components/Header';

@@ -4,19 +4,20 @@ import type { GamePlayers, GamePlayer } from 'types/game';
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useMock } from 'hooks/useMock';
 // Components
-import { SendButton } from 'components/buttons';
-import { Card } from 'components/cards';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { Card } from 'components/cards/Card';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle, TextHighlight } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import type { SubmitGuessesPayload, WordLength } from './utils/types';
 import { mockGuess } from './utils/mock';
 import { ItemsGrid } from './components/ItemsGrid';
 import { WordLengths } from './components/WordLengths';
-// Hooks
 
 type StepGuessItemsProps = {
   players: GamePlayers;

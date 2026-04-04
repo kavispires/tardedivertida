@@ -11,10 +11,10 @@ import { useMock } from 'hooks/useMock';
 import { PanicIcon } from 'icons/PanicIcon';
 // Components
 import { SinaisDeAlertaTimerSound } from 'components/audio/SinaisDeAlertaSound';
-import { DrawingCanvas } from 'components/canvas';
-import { Card } from 'components/cards';
-import { DevButton } from 'components/debug';
-import { Step, type StepProps } from 'components/steps';
+import { DrawingCanvas } from 'components/canvas/DrawingCanvas';
+import { Card } from 'components/cards/Card';
+import { DevButton } from 'components/debug/DevButton';
+import { Step, type StepProps } from 'components/steps/Step';
 // Internal
 import { getTitle } from './utils/helpers';
 import type { SubmitDrawingPayload } from './utils/types';

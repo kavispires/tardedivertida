@@ -3,17 +3,17 @@ import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Components
-import { Translate } from 'components/language';
-import { TurnOrder } from 'components/players';
-import { Step, type StepProps } from 'components/steps';
-import { Instruction, StepTitle } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { Step, type StepProps } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 import { mockPromptDecision } from './utils/mock';
 import { CharactersBoard } from './components/CharactersBoard';
 import { PlayersBoards } from './components/PlayersBoards';
 import { PlayerChoices } from './components/PlayerChoices';
-// Mocks
 
 type StepSelectPromptProps = {
   players: GamePlayers;

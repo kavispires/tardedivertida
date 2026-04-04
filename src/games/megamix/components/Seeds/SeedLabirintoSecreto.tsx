@@ -8,9 +8,11 @@ import type { GamePlayer } from 'types/game';
 import { BikiniModelIcon } from 'icons/BikiniModelIcon';
 // Components
 import { SocialProfile } from 'components/game/SocialProfile';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Instruction, TextHighlight, Title } from 'components/text';
+import { Instruction } from 'components/text/Instruction';
+import { TextHighlight } from 'components/text/TextHighlight';
+import { Title } from 'components/text/Title';
 // Internal
 import type { SeedEntryLabirintoSecreto } from '../../utils/types';
 

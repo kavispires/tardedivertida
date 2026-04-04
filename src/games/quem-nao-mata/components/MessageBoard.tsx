@@ -7,8 +7,8 @@ import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { PLACEHOLDER_PLAYER } from 'utils/constants';
 // Components
-import { Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 // Internal
 import type { Message } from '../utils/types';
 

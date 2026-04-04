@@ -10,12 +10,15 @@ import { useLoading } from 'hooks/useLoading';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Components
-import { SendButton, TransparentButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatarCard } from 'components/player';
-import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, StepTitle, type RuleInstructionProps } from 'components/text';
+import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
+import { Step, type StepProps } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { RuleInstruction, type RuleInstructionProps } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 
 type StepSelectPlayerProps = {
   /**

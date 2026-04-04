@@ -4,7 +4,7 @@ import { CloseSquareOutlined } from '@ant-design/icons';
 // Types
 import type { GamePlayers } from 'types/game';
 // Components
-import { PlayerAvatarName } from 'components/player';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 // Internal
 import type { Clue, GridCell, ResultPlayerCell } from '../utils/types';
 import { ClueCard } from './ClueCard';

@@ -10,7 +10,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
 import { Popconfirm } from 'components/general/Popconfirm';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 
 type PlayersElectProps = {
   players: GamePlayers;

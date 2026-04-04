@@ -10,11 +10,12 @@ import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Card } from 'components/cards';
+import { Card } from 'components/cards/Card';
 import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
-import { Translate } from 'components/language';
-import { Step } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { Step } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { Title } from 'components/text/Title';
 // Internal
 import type { AnswerGroupObject, Question } from '../utils/types';
 import { SheepAvatar } from './SheepAvatar';

@@ -12,7 +12,8 @@ import { FloatButton, Typography } from 'antd';
 // Hooks
 import { useQueryParams } from 'hooks/useQueryParams';
 // Components
-import { DualTranslate, Translate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 import { Window } from 'components/layout/Window';
 // Internal
 import type { FofocaQuenteDefaultState } from '../utils/types';

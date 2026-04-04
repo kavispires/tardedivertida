@@ -8,12 +8,12 @@ import { useLoading } from 'hooks/useLoading';
 import { LETTERS } from 'utils/constants';
 import { getColorFromLetter, sortPlayers } from 'utils/helpers';
 // Components
-import { TransparentButton } from 'components/buttons';
-import { Card } from 'components/cards';
-import { Translate } from 'components/language';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { Card } from 'components/cards/Card';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatarCard } from 'components/player';
-import { Instruction } from 'components/text';
+import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import type { QuestionsDictionary } from '../utils/types';
 

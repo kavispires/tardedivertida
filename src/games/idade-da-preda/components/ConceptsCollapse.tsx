@@ -9,7 +9,7 @@ import type { Item } from 'types/tdr';
 import { useCache } from 'hooks/useCache';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Internal
 import { useSpriteWidth } from '../utils/useSpriteWidth';
 import type { Concept } from '../utils/types';

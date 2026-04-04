@@ -1,7 +1,7 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Internal
-import { PhaseContainer } from './index';
+import { PhaseContainer } from './PhaseContainer';
 
 export function PhasePlaceholder({ state }: PhaseProps) {
   return (

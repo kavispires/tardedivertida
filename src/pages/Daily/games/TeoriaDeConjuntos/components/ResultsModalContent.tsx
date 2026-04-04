@@ -8,8 +8,8 @@ import { BoxXIcon } from 'icons/BoxXIcon';
 import { CircleIcon } from 'icons/CircleIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Pages
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';

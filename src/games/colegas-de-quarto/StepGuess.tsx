@@ -9,15 +9,18 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { SendButton, TransparentButton } from 'components/buttons';
-import { DevButton } from 'components/debug';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { DevButton } from 'components/debug/DevButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { TitledContainer } from 'components/layout/TitledContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerSpace } from 'components/player';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle, TextHighlight } from 'components/text';
+import { PlayerSpace } from 'components/player/PlayerSpace';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import type {
   BoardEntry,

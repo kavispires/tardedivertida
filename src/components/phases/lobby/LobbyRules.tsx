@@ -10,7 +10,7 @@ import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 import { getAnimation } from 'utils/animations';
 // Components
 import { GameTags } from 'components/general/GameTags';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { useGameInfoContext } from 'components/session/GameInfoContext';
 // Internal
 import { LobbyReadyButtons } from './LobbyReadyButtons';

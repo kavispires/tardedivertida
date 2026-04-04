@@ -9,7 +9,8 @@ import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 // Icons
 import { DailyImagesGameIcon } from 'icons/DailyImagesGameIcon';
 // Components
-import { DualTranslate, Translate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { Header } from 'pages/Daily/components/Header';

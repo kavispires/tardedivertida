@@ -9,7 +9,7 @@ import { useTDImageCardUrl } from 'hooks/useTDImageCardUrl';
 // Icons
 import { DailyPuzzleGameIcon } from 'icons/DailyPuzzleGameIcon';
 // Components
-import { DualTranslate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { Header } from 'pages/Daily/components/Header';

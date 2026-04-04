@@ -10,7 +10,7 @@ import { calculateGameAverageDuration, truncateRecommended } from 'utils/helpers
 // Components
 import { GameStrip } from 'components/general/GameBanner';
 import { GameTags } from 'components/general/GameTags';
-import { RulesModal } from 'components/rules';
+import { RulesModal } from 'components/rules/RulesModal';
 // Internal
 import { CreateGameFlow } from './CreateGameModal';
 

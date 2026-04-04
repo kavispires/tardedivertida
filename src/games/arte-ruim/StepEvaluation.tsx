@@ -14,13 +14,14 @@ import { useVotingMatch } from 'hooks/useVotingMatch';
 import { LETTERS } from 'utils/constants';
 import { getEntryId, shuffle } from 'utils/helpers';
 // Components
-import { SendButton } from 'components/buttons';
-import { CanvasResizer } from 'components/canvas';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { CanvasResizer } from 'components/canvas/CanvasResizer';
+import { Translate } from 'components/language/Translate';
 import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { PopoverRule } from 'components/rules';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { PopoverRule } from 'components/rules/PopoverRule';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { ArteRuimCustomCard, ArteRuimDrawing, SubmitVotingPayload } from './utils/types';
 import { prepareVotes } from './utils/helpers';

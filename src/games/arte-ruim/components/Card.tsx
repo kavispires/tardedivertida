@@ -4,7 +4,7 @@ import { WarningOutlined } from '@ant-design/icons';
 // Utils
 import { getColorFromLetter } from 'utils/helpers';
 // Components
-import { Card } from 'components/cards';
+import { Card } from 'components/cards/Card';
 
 type ArteRuimCardProps = {
   /**

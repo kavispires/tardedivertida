@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 // Icons
 import { GuessIcon } from 'icons/GuessIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 // Internal
 import type { LeafEntry, LeafPosition, LeafId } from '../utils/types';
 import { Leaf } from './Leaf';

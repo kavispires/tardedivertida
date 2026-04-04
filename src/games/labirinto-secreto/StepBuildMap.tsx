@@ -6,11 +6,12 @@ import { useMock } from 'hooks/useMock';
 import { NoIcon } from 'icons/NoIcon';
 import { TreeIcon } from 'icons/TreeIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language/Translate';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { OnSubmitMapFunction, Tree } from './utils/types';
 import { buildPlayerMappingForLatestTree } from './utils/helpers';

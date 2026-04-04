@@ -4,14 +4,15 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useMock } from 'hooks/useMock';
 // Components
-import { SendButton } from 'components/buttons';
+import { SendButton } from 'components/buttons/SendButton';
 import { DevButton } from 'components/debug/DevButton';
-import { Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
-import { TurnOrder } from 'components/players';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
-import { ViewIf } from 'components/views';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import type { City, CityLocationsDict } from './utils/types';
 import type { useOnSubmitPlacingAPIRequest } from './utils/api-requests';

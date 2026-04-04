@@ -1,5 +1,5 @@
 // Components
-import { TextHighlight } from 'components/text';
+import { TextHighlight } from 'components/text/TextHighlight';
 
 type UserNameProps = {
   names?: string[];

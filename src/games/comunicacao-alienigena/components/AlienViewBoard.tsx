@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { keyBy } from 'lodash';
 import { useMemo } from 'react';
 // Components
-import { CanvasSVG } from 'components/canvas';
+import { CanvasSVG } from 'components/canvas/CanvasSVG';
 import { SignCard } from 'components/cards/SignCard';
 import { type AlienAttribute, alienAttributesUtils } from 'components/toolKits/AlienAttributes';
 // Internal

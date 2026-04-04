@@ -6,8 +6,9 @@ import { useCache } from 'hooks/useCache';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
 import { SignCard } from 'components/cards/SignCard';
-import { DualTranslate, Translate } from 'components/language';
-import { TextHighlight } from 'components/text';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
+import { TextHighlight } from 'components/text/TextHighlight';
 import { alienAttributesUtils } from 'components/toolKits/AlienAttributes';
 // Internal
 import type { PhaseAlienAnswerState, PhaseBasicState } from '../utils/types';

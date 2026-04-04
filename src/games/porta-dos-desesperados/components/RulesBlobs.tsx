@@ -5,10 +5,12 @@ import type { GamePlayers } from 'types/game';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Components
-import { FixedMenuButton } from 'components/buttons';
-import { DualTranslate, Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
-import { Instruction, Title } from 'components/text';
+import { FixedMenuButton } from 'components/buttons/FixedMenuButton';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { Instruction } from 'components/text/Instruction';
+import { Title } from 'components/text/Title';
 // Internal
 import { TOTAL_DOORS } from '../utils/constants';
 import { getTrapIcon } from '../utils/helpers';

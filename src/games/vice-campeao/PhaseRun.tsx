@@ -6,17 +6,17 @@ import { useStep } from 'hooks/useStep';
 // Icons
 import { WalkIcon } from 'icons/WalkIcon';
 // Components
-import { ImageCardPreloadHand } from 'components/image-cards';
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
+import { ImageCardPreloadHand } from 'components/image-cards/ImageCardPreloadHand';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import type { PhaseRunState } from './utils/types';
 import { VICE_CAMPEAO_PHASES } from './utils/constants';
 import { StepRace } from './StepRace';
 import { StepRanking } from './StepRanking';
-// Icons
 
 export function PhaseRun({ state, players }: PhaseProps<PhaseRunState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep();

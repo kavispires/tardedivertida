@@ -3,8 +3,8 @@ import { memoize } from 'lodash';
 // Utils
 import { DEFAULT_PADDING } from 'utils/constants';
 // Components
-import { DualTranslate } from 'components/language';
-import { DEFAULT_SPRITE_SIZE, Sprite } from 'components/sprites';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { DEFAULT_SPRITE_SIZE, Sprite } from 'components/sprites/Sprite';
 // Sass
 import styles from './ItemCard.module.scss';
 

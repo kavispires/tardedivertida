@@ -15,7 +15,7 @@ import type { UseStep } from 'hooks/useStep';
 import { AVAILABLE_AVATAR_IDS } from 'utils/avatars';
 import { getRandomItem, isDevEnv } from 'utils/helpers';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { useGameInfoContext } from 'components/session/GameInfoContext';
 // Internal
 import { AvatarSelection } from './AvatarSelection';

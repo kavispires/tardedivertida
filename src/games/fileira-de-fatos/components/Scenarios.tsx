@@ -8,8 +8,8 @@ import type { TextCard } from 'types/tdr';
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { EmojiCard } from 'components/cards/EmojiCard';
-import { DualTranslate } from 'components/language';
-import { PlayerAvatarStrip } from 'components/player';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { PlayerAvatarStrip } from 'components/player/PlayerAvatarStrip';
 // Internal
 import type { ScaleEntry } from '../utils/types';
 

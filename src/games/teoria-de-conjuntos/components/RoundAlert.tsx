@@ -4,8 +4,8 @@ import { Button, Tooltip } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 // Components
-import { Translate } from 'components/language';
-import { RuleInstruction } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 
 export function RoundAlert({ round }: { round: GameRound }) {
   const roundsLeft = round.total - round.current + 1;

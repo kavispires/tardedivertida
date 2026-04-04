@@ -5,12 +5,13 @@ import { useStep } from 'hooks/useStep';
 // Icons
 import { CrimeSceneIcon } from 'icons/CrimeSceneIcon';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
 import { StepSelectPlayer } from 'components/steps/StepSelectPlayer';
-import { Instruction } from 'components/text';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import { useOnSelectWitnessAPIRequest } from './utils/api-requests';
 import { TESTEMUNHA_OCULAR_PHASES } from './utils/constants';

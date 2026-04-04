@@ -4,7 +4,7 @@ import { Button } from 'antd';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Pages
 import { Region, RegionText } from 'pages/Daily/components/Region';
 // Internal

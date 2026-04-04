@@ -8,13 +8,14 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
 // Components
 import { AnswerNoButton, AnswerYesButton } from 'components/buttons/AnswerButtons';
-import { Card } from 'components/cards';
-import { Translate } from 'components/language';
+import { Card } from 'components/cards/Card';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatarName } from 'components/player';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
-import { ViewIf } from 'components/views';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import type { Outcome, Status, SubmitTestimonyPayload, THistoryEntry } from './utils/types';
 import { mockWitnessTestimony } from './utils/mock';

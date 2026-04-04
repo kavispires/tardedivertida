@@ -1,7 +1,7 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Components
-import { LoadingPage } from 'components/loaders';
+import { LoadingPage } from 'components/loaders/LoadingPage';
 
 export function PhaseLoading(_props: PhaseProps) {
   return (

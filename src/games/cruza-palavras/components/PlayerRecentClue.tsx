@@ -1,9 +1,10 @@
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { TextHighlight, Title } from 'components/text';
+import { TextHighlight } from 'components/text/TextHighlight';
+import { Title } from 'components/text/Title';
 // Internal
 import type { GridCell } from '../utils/types';
 

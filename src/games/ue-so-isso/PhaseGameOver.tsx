@@ -8,16 +8,15 @@ import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { FlagIcon } from 'icons/FlagIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { GameOverWrapper } from 'components/game-over';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
 import { Achievements } from 'components/general/Achievements';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { TitledContainer } from 'components/layout/TitledContainer';
-import { PlayerAvatar } from 'components/player';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
 // Internal
 import type { GalleryEntry, PhaseGameOverState } from './utils/types';
 import achievementsReference from './utils/achievements';
-// Ant Design Resources
 
 export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   return (

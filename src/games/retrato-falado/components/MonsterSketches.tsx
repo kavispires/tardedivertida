@@ -3,9 +3,9 @@ import { Space, Avatar } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Components
-import { CanvasSVG } from 'components/canvas';
-import { Translate } from 'components/language';
-import { PlayerAvatar } from 'components/player';
+import { CanvasSVG } from 'components/canvas/CanvasSVG';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
 // Internal
 import type { Sketch } from '../utils/types';
 

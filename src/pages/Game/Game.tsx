@@ -6,8 +6,8 @@ import { useIsGameStale } from 'hooks/useIsGameStale';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { PageError } from 'components/errors';
-import { LoadingPage } from 'components/loaders';
+import { PageError } from 'components/errors/PageError';
+import { LoadingPage } from 'components/loaders/LoadingPage';
 
 function Game() {
   const { translate } = useLanguage();

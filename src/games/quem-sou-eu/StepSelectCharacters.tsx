@@ -9,13 +9,15 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { SendButton, TransparentButton } from 'components/buttons';
+import { SendButton } from 'components/buttons/SendButton';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 import { CharacterCard } from 'components/cards/CharacterCard';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { CardHighlight } from 'components/metrics/CardHighlight';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import { mockSelectCharacters } from './utils/mock';
 import type { SubmitCharactersPayload } from './utils/types';

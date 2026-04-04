@@ -14,16 +14,15 @@ import { useLoading } from 'hooks/useLoading';
 import { HOST_API_ACTIONS } from 'services/adapters';
 import { getFirestoreConsoleUrl } from 'services/firebase';
 // Components
-import { FixedMenuButton } from 'components/buttons';
+import { FixedMenuButton } from 'components/buttons/FixedMenuButton';
 import { Popconfirm } from 'components/general/Popconfirm';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Internal
 import { AdminPerformActionButton } from './_internal/AdminPerformActionButton';
 import { ForceStateForm } from './_internal/ForceStateForm';
 import { PlayersReadyState } from './_internal/PlayersReadyState';
 // Sass
 import styles from './AdminMenuDrawer.module.scss';
-// Styles
 
 type AdminMenuDrawerProps = {
   /**

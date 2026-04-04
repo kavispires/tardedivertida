@@ -7,16 +7,17 @@ import type { UseStep } from 'hooks/useStep';
 // Utils
 import { pluralize } from 'utils/helpers';
 // Components
-import { TimedButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { TimedButton } from 'components/buttons/TimedButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatarName } from 'components/player';
-import { TurnOrder } from 'components/players';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 import { ListOfPlayers } from 'components/players/ListOfPlayers';
-import { Step, type StepProps } from 'components/steps';
-import { Instruction, StepTitle } from 'components/text';
-import { ViewIf } from 'components/views';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { Step, type StepProps } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 import { CharactersBoard } from './components/CharactersBoard';

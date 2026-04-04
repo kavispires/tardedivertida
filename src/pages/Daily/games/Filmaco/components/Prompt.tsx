@@ -4,7 +4,7 @@ import { Avatar, Space } from 'antd';
 // Icons
 import { BoxBlankIcon } from 'icons/BoxBlankIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 // Pages
 import type { LettersDictionary } from 'pages/Daily/utils/types';
 // Internal

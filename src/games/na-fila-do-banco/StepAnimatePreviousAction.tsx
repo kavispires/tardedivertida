@@ -7,13 +7,14 @@ import type { GamePlayers, GamePlayer } from 'types/game';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { SendButton } from 'components/buttons';
-import { ImageCardButton } from 'components/image-cards';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { ImageCardButton } from 'components/image-cards/ImageCardButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps';
-import { Instruction, StepTitle } from 'components/text';
-import { ViewIf } from 'components/views';
+import { Step, type StepProps } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import type { ClientCard, SubmitPlayCardPayload, Teller } from './utils/types';
 import { TellerBoard } from './components/TellerBoard';

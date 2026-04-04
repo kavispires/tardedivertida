@@ -6,8 +6,8 @@ import { CheckMarkIcon } from 'icons/CheckMarkIcon';
 import { LocationIcon } from 'icons/LocationIcon';
 import { OnlineOrderIcon } from 'icons/OnlineOrderIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
 // Internal
 import type { useControleDeEstoqueEngine } from '../utils/useControleDeEstoqueEngine';

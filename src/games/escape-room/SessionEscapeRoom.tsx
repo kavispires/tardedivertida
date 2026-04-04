@@ -4,8 +4,9 @@ import type { GameState } from 'types/game';
 import { GAME_COLLECTION } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
-import { PhaseError, PhasePlaceholder } from 'components/phases';
-import { Session } from 'components/session';
+import { PhaseError } from 'components/phases/PhaseError';
+import { PhasePlaceholder } from 'components/phases/PhasePlaceholder';
+import { Session } from 'components/session/Session';
 // Internal
 import { ESCAPE_ROOM_PHASES } from './utils/constants';
 // Sass

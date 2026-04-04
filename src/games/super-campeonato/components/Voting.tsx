@@ -9,12 +9,13 @@ import { useStep } from 'hooks/useStep';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { SendButton, TransparentButton } from 'components/buttons';
+import { SendButton } from 'components/buttons/SendButton';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 import { CharacterCard, type OverlayColor } from 'components/cards/CharacterCard';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import type { Bet, Bracket, BracketTier, SubmitBattleVotesPayload } from '../utils/type';
 import { useBracketVoting } from '../utils/useBracketVoting';

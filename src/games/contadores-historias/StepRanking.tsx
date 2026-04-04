@@ -6,14 +6,14 @@ import type { GameRanking, GameRound, GamePlayer, GamePlayers } from 'types/game
 import { useLanguage } from 'hooks/useLanguage';
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { HostNextPhaseButton } from 'components/host';
-import { Translate } from 'components/language';
+import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatarName } from 'components/player';
-import { StepRankingWrapper } from 'components/ranking';
-import { PopoverRule } from 'components/rules';
-import { RuleInstruction } from 'components/text';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { StepRankingWrapper } from 'components/ranking/StepRankingWrapper';
+import { PopoverRule } from 'components/rules/PopoverRule';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 // Internal
 import type { Outcome } from './utils/types';
 import { ScoringRules } from './components/RulesBlobs';

@@ -11,14 +11,15 @@ import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { SendButton } from 'components/buttons';
-import { CanvasResizer } from 'components/canvas';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { CanvasResizer } from 'components/canvas/CanvasResizer';
+import { Translate } from 'components/language/Translate';
 import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { TitledContainer } from 'components/layout/TitledContainer';
-import { PopoverRule } from 'components/rules';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { PopoverRule } from 'components/rules/PopoverRule';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { DrawingEntry, SubmitEvaluationPayload } from './utils/types';
 import { useGuessing } from './utils/useGuessing';

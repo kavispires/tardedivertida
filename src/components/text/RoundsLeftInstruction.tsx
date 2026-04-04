@@ -3,8 +3,8 @@ import type { GameRound } from 'types/game';
 // Utils
 import { pluralize } from 'utils/helpers';
 // Components
-import { Translate } from 'components/language';
-import { RuleInstruction } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 
 type RoundsLeftInstructionProps = {
   /**

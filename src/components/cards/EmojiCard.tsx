@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Utils
 import { DEFAULT_PADDING } from 'utils/constants';
 // Components
-import { DEFAULT_SPRITE_SIZE, Sprite } from 'components/sprites';
+import { DEFAULT_SPRITE_SIZE, Sprite } from 'components/sprites/Sprite';
 // Sass
 import styles from './EmojiCard.module.scss';
 

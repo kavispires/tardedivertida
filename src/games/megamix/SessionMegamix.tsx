@@ -4,8 +4,8 @@ import type { GameState } from 'types/game';
 import { GAME_COLLECTION } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
-import { PhaseError } from 'components/phases';
-import { Session } from 'components/session';
+import { PhaseError } from 'components/phases/PhaseError';
+import { Session } from 'components/session/Session';
 // Internal
 import { MEGAMIX_PHASES } from './utils/constants';
 import { PhaseTrack } from './PhaseTrack';

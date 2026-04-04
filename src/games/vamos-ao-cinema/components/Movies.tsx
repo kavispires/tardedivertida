@@ -13,10 +13,10 @@ import { ScaredIcon } from 'icons/ScaredIcon';
 import { StarIcon } from 'icons/StarIcon';
 import { TomatoIcon } from 'icons/TomatoIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 import { MovieCard } from 'components/cards/MovieCard';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatar } from 'components/player';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
 
 type MoviesProps = {
   movies: MovieCardType[];

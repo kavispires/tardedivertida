@@ -3,11 +3,11 @@ import type { PhaseProps, GamePlayer } from 'types/game';
 // Icons
 import { TheEndIcon } from 'icons/TheEndIcon';
 // Components
-import { GameOverWrapper } from 'components/game-over';
+import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
 import { Achievements } from 'components/general/Achievements';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Title } from 'components/text';
+import { Title } from 'components/text/Title';
 // Internal
 import type { GalleryEntry, PhaseGameOverState } from './utils/types';
 import { achievementsReference } from './utils/achievements';

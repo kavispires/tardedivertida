@@ -4,11 +4,12 @@ import type { TextCard } from 'types/tdr';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useMock } from 'hooks/useMock';
 // Components
-import { SendButton } from 'components/buttons';
+import { SendButton } from 'components/buttons/SendButton';
 import { CharacterCard } from 'components/cards/CharacterCard';
-import { Translate } from 'components/language';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { FightingContender, SubmitContendersPayload } from './utils/type';
 import { mockSelectContender } from './utils/mock';

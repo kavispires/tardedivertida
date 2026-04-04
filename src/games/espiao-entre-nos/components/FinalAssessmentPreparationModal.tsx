@@ -6,7 +6,7 @@ import type { GamePlayers } from 'types/game';
 // Hooks
 import { useHost } from 'hooks/useHost';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 
 type FinalAssessmentModalProps = {

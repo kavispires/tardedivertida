@@ -9,10 +9,10 @@ import { useLoading } from 'hooks/useLoading';
 import { LETTERS } from 'utils/constants';
 // Components
 import { ClubberAvatar } from 'components/avatars/ClubberAvatar';
-import { SendButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Title } from 'components/text';
+import { Title } from 'components/text/Title';
 // Internal
 import type { SeedEntryClubberOutfit, SubmitAnswerPayload } from '../../utils/types';
 

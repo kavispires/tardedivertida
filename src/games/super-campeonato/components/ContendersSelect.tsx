@@ -1,10 +1,9 @@
 // Ant Design Resources
 import { Select } from 'antd';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Internal
 import type { BracketTier, FightingContender } from '../utils/type';
-// Ant Design resources
 
 type ContendersSelectProps = {
   contenders: FightingContender[];

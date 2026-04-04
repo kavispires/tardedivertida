@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 // Ant Design Resources
 import { Typography } from 'antd';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 import { useGameAppearance } from 'components/session/GameInfoContext';
 // Sass
 import styles from './Title.module.scss';

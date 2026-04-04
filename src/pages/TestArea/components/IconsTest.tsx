@@ -3,10 +3,11 @@ import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 import { EarthIcon } from 'icons/EarthIcon';
 import { HeartIcon } from 'icons/HeartIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Instruction, Title } from 'components/text';
+import { Instruction } from 'components/text/Instruction';
+import { Title } from 'components/text/Title';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
 import type { TestStepProps } from '../TestArea';

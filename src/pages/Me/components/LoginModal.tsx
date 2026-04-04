@@ -4,7 +4,7 @@ import { Modal } from 'antd';
 import { NOOP } from 'utils/constants';
 // Components
 import { SignIn } from 'components/auth/SignIn';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 
 type LoginModalProps = {
   isAuthenticated: boolean;

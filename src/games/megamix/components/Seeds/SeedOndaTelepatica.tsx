@@ -4,10 +4,11 @@ import { Button, Input, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { Card } from 'components/cards';
-import { Translate } from 'components/language';
+import { Card } from 'components/cards/Card';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Instruction, Title } from 'components/text';
+import { Instruction } from 'components/text/Instruction';
+import { Title } from 'components/text/Title';
 // Internal
 import type { SeedEntryOndaTelepatica } from '../../utils/types';
 

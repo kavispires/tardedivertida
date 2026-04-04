@@ -10,9 +10,9 @@ import { getAnimation } from 'utils/animations';
 import { BoxXIcon } from 'icons/collection';
 import { XIcon } from 'icons/XIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Card } from 'components/cards';
-import { PlayerAvatarTooltip } from 'components/player';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Card } from 'components/cards/Card';
+import { PlayerAvatarTooltip } from 'components/player/PlayerAvatarTooltip';
 // Internal
 import type { GalleryBracket } from '../utils/types';
 import { BracketPointsBox } from './BracketPointsBox';

@@ -4,8 +4,9 @@ import { Button, Popover } from 'antd';
 // Types
 import type { DiagramTopic } from 'types/tdr';
 // Components
-import { Translate } from 'components/language';
-import { RuleInstruction, TextHighlight } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import type { DiagramExamples } from '../utils/types';
 import { CircleHighlight } from './Highlights';

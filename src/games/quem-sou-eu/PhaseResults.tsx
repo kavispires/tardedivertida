@@ -6,10 +6,11 @@ import { useStep } from 'hooks/useStep';
 // Icons
 import { MirrorIcon } from 'icons/MirrorIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import { QUEM_SOU_EU_PHASES, SLIDE_DURATION } from './utils/constants';
 import type { PhaseResultsState } from './utils/types';

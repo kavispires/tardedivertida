@@ -8,11 +8,12 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { Card } from 'components/cards';
-import { Translate } from 'components/language';
+import { Card } from 'components/cards/Card';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step } from 'components/steps';
-import { Instruction, StepTitle } from 'components/text';
+import { Step } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import { mockDream } from './utils/mock';
 import { DreamBoard } from './components/DreamBoard';

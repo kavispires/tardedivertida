@@ -6,9 +6,9 @@ import type { Item } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { SendButton } from 'components/buttons';
+import { SendButton } from 'components/buttons/SendButton';
 import { ItemCard } from 'components/cards/ItemCard';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Internal
 import type { Solutions } from '../utils/types';
 import { Solution } from './Solution';

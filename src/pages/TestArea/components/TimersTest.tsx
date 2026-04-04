@@ -1,9 +1,11 @@
 // Components
-import { TimedButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { TimedButton } from 'components/buttons/TimedButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Instruction, Title } from 'components/text';
-import { TimedTimerBar, TimedTimerClock } from 'components/timers';
+import { Instruction } from 'components/text/Instruction';
+import { Title } from 'components/text/Title';
+import { TimedTimerBar } from 'components/timers/TimedTimerBar';
+import { TimedTimerClock } from 'components/timers/TimedTimerClock';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
 import type { TestStepProps } from '../TestArea';

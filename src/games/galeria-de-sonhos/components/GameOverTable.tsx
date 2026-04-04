@@ -6,7 +6,8 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { ImageBlurButton, ImageCard } from 'components/image-cards';
+import { ImageBlurButton } from 'components/image-cards/ImageBlurButton';
+import { ImageCard } from 'components/image-cards/ImageCard';
 // Internal
 import type { ImageCardObj } from '../utils/types';
 

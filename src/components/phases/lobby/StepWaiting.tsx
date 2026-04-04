@@ -15,8 +15,10 @@ import { HOST_API, HOST_API_ACTIONS } from 'services/adapters';
 // Utils
 import { AVATARS } from 'utils/avatars';
 // Components
-import { HostButton, HostOnlyContainer } from 'components/host';
-import { DualTranslate, Translate } from 'components/language';
+import { HostButton } from 'components/host/HostButton';
+import { HostOnlyContainer } from 'components/host/HostOnlyContainer';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { useGameInfoContext } from 'components/session/GameInfoContext';
 // Internal

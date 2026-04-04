@@ -5,9 +5,10 @@ import { Button } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatar, PlayerAvatarName } from 'components/player';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 
 type VotingOptionsProps = {
   isAllDisabled: boolean;

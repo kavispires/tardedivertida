@@ -5,13 +5,16 @@ import { Collapse } from 'antd';
 import type { GamePlayer } from 'types/game';
 import type { CrimeSceneTile } from 'types/tdr';
 // Components
-import { SendButton } from 'components/buttons';
+import { SendButton } from 'components/buttons/SendButton';
 import { SceneTile } from 'components/game/SceneTile';
-import { DualTranslate, Translate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, StepTitle } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type {
   Crime,

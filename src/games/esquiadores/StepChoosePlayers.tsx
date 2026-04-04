@@ -3,10 +3,11 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Components
-import { Translate } from 'components/language';
-import { TurnOrder } from 'components/players';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { PhaseBetsState, SubmitBetsPayload } from './utils/types';
 import { mockSkierBets } from './utils/mock';

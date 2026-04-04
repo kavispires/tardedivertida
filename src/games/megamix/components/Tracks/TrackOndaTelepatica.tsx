@@ -8,9 +8,10 @@ import { ArrowLeftOutlined, ArrowRightOutlined, MinusOutlined } from '@ant-desig
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { Card } from 'components/cards';
-import { Translate } from 'components/language';
-import { RuleInstruction, TextHighlight } from 'components/text';
+import { Card } from 'components/cards/Card';
+import { Translate } from 'components/language/Translate';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';

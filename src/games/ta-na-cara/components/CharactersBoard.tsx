@@ -6,10 +6,10 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { TransparentButton } from 'components/buttons';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 import { Popconfirm } from 'components/general/Popconfirm';
-import { ImageCard } from 'components/image-cards';
-import { DualTranslate } from 'components/language';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { DualTranslate } from 'components/language/DualTranslate';
 // Internal
 import type { CharactersDictionary } from '../utils/types';
 

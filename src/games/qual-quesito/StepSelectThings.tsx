@@ -9,15 +9,16 @@ import type { Item } from 'types/tdr';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { SendButton } from 'components/buttons';
-import { Card } from 'components/cards';
+import { SendButton } from 'components/buttons/SendButton';
+import { Card } from 'components/cards/Card';
 import { Popconfirm } from 'components/general/Popconfirm';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { SubmitCardsPayload } from './utils/types';
 import { mockCardPlay } from './utils/mock';

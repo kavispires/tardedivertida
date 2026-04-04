@@ -10,12 +10,15 @@ import type { Item } from 'types/tdr';
 import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
 // Components
-import { SendButton, TransparentButton } from 'components/buttons';
+import { SendButton } from 'components/buttons/SendButton';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 import { ItemCard } from 'components/cards/ItemCard';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle, TextHighlight } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import type { Concept, SubmitNamePayload } from './utils/types';
 import { useSpriteWidth } from './utils/useSpriteWidth';

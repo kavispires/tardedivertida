@@ -6,8 +6,8 @@ import { useCountdown } from 'hooks/useCountdown';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { DrawingCanvas } from 'components/canvas';
-import { TimerBar } from 'components/timers';
+import { DrawingCanvas } from 'components/canvas/DrawingCanvas';
+import { TimerBar } from 'components/timers/TimerBar';
 // Internal
 import { SETTINGS } from '../utils/settings';
 

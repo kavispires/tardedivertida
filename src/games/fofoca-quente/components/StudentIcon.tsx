@@ -4,7 +4,8 @@ import { Avatar, type AvatarProps, Tooltip } from 'antd';
 // Types
 import type { TeenageStudent } from 'types/tdr';
 // Components
-import { DualTranslate, Translate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 // Internal
 import { AGE_NUMBER, BUILD, GENDER, HEIGHT } from '../utils/constants';
 import type { SocialGroup } from '../utils/types';

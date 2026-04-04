@@ -1,11 +1,12 @@
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 // Components
-import { Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
-import { TurnOrder } from 'components/players';
-import { Step, type StepProps } from 'components/steps';
-import { Instruction, StepTitle } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { Step, type StepProps } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 import { CharactersBoard } from './components/CharactersBoard';

@@ -6,9 +6,9 @@ import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
 import { NoIcon } from 'icons/NoIcon';
 import { YesIcon } from 'icons/YesIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 import { GlyphCard } from 'components/cards/GlyphCard';
-import { PlayerAvatarStrip } from 'components/player';
+import { PlayerAvatarStrip } from 'components/player/PlayerAvatarStrip';
 // Internal
 import { parseSelectedGlyphs } from '../utils/helpers';
 

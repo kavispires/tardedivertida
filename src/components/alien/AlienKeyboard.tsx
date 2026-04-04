@@ -17,7 +17,7 @@ import { LETTERS } from 'utils/constants';
 import { stringRemoveAccents } from 'utils/helpers';
 // Components
 import { SignCard } from 'components/cards/SignCard';
-import { DualTranslate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
 // Internal
 import { useAlienAttributes } from './useAlienAttributes';
 // Sass

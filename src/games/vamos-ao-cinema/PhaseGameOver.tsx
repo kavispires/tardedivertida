@@ -7,13 +7,14 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Icons
 import { FlagIcon } from 'icons/FlagIcon';
 // Components
-import { GameOverWrapper } from 'components/game-over';
+import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
 import { Achievements } from 'components/general/Achievements';
-import { ImageCard } from 'components/image-cards';
-import { Translate } from 'components/language';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TitledContainer } from 'components/layout/TitledContainer';
-import { TextHighlight, Title } from 'components/text';
+import { TextHighlight } from 'components/text/TextHighlight';
+import { Title } from 'components/text/Title';
 // Internal
 import { achievementsReference } from './utils/achievements';
 import type { PhaseGameOverState } from './utils/types';

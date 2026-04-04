@@ -3,7 +3,7 @@ import { Carousel } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { CanvasSVG } from 'components/canvas';
+import { CanvasSVG } from 'components/canvas/CanvasSVG';
 
 type DrawingCarouselProps = {
   drawings: string[];

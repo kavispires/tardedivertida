@@ -3,8 +3,8 @@ import type { GamePlayers } from 'types/game';
 // Utils
 import { isEverybodyReady } from 'utils/helpers';
 // Components
-import { HostNextPhaseButton } from 'components/host';
-import { Translate } from 'components/language';
+import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
+import { Translate } from 'components/language/Translate';
 
 type AutoNextPhaseProps = {
   /**

@@ -4,10 +4,11 @@ import { CaretUpOutlined } from '@ant-design/icons';
 // Types
 import type { GameRanking, GamePlayers } from 'types/game';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { useGameAppearance } from 'components/session/GameInfoContext';
-import { Step } from 'components/steps';
-import { Instruction, StepTitle } from 'components/text';
+import { Step } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import { RankingBoard } from './RankingBoard';
 // Sass

@@ -5,7 +5,7 @@ import { Button, Popover } from 'antd';
 // Types
 import type { AchievementInfo } from 'types/game';
 // Components
-import { DualTranslate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
 // Internal
 import { Medal } from './Medal';
 // Sass

@@ -2,7 +2,7 @@
 import { Button } from 'antd';
 // Components
 import { Popconfirm } from 'components/general/Popconfirm';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 
 type ResetBettingButtonProps = {
   onConfirm: () => void;

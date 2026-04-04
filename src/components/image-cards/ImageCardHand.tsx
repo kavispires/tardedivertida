@@ -1,4 +1,3 @@
-import { ImageCard, ImageCardButton } from '.';
 import clsx from 'clsx';
 import { motion } from 'motion/react';
 import type { ReactNode, Ref } from 'react';
@@ -8,6 +7,9 @@ import { type GetProps, Image, Space } from 'antd';
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 // Utils
 import { getAnimation } from 'utils/animations';
+// Internal
+import { ImageCard } from './ImageCard';
+import { ImageCardButton } from './ImageCardButton';
 // Sass
 import styles from './ImageCardHand.module.scss';
 

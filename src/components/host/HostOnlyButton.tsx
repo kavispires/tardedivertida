@@ -2,7 +2,8 @@ import type { ReactNode } from 'react';
 // Ant Design Resources
 import type { ButtonProps } from 'antd';
 // Internal
-import { HostButton, HostOnlyContainer } from './index';
+import { HostButton } from './HostButton';
+import { HostOnlyContainer } from './HostOnlyContainer';
 
 type HostOnlyButtonProps = {
   /**

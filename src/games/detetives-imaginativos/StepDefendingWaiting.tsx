@@ -3,11 +3,12 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatarName } from 'components/player';
-import { TurnOrder } from 'components/players';
-import { StepTitle, RuleInstruction } from 'components/text';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { CardEntry } from './utils/types';
 import { TableFocus } from './components/TableFocus';

@@ -4,7 +4,7 @@ import { useToggle } from 'react-use';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Button, Modal, Typography } from 'antd';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Pages
 import { Region } from 'pages/Daily/components/Region';
 

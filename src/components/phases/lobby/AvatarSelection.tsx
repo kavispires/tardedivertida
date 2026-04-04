@@ -9,8 +9,9 @@ import type { GamePlayers } from 'types/game';
 // Utils
 import { AVAILABLE_AVATAR_IDS, AVATARS } from 'utils/avatars';
 // Components
-import { TransparentButton } from 'components/buttons';
-import { DualTranslate, Translate } from 'components/language';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 // Images
 import avatars from 'assets/images/avatars.svg?url';
 // Sass

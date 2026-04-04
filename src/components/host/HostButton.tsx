@@ -5,7 +5,7 @@ import { RocketOutlined } from '@ant-design/icons';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 // Components
-import { SendButton } from 'components/buttons';
+import { SendButton } from 'components/buttons/SendButton';
 // Sass
 import styles from './HostButton.module.scss';
 

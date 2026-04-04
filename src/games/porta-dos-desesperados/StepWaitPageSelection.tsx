@@ -8,10 +8,10 @@ import { getAnimationClass } from 'utils/helpers';
 // Icons
 import { PanicIcon } from 'icons/PanicIcon';
 // Components
-import { Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
-import { WaitingRoom } from 'components/players';
-import { Step } from 'components/steps';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { WaitingRoom } from 'components/players/WaitingRoom';
+import { Step } from 'components/steps/Step';
 // Internal
 import { shouldAnnounceTrap } from './utils/helpers';
 import { PORTA_DOS_DESESPERADOS_PHASES } from './utils/constants';

@@ -10,10 +10,10 @@ import { sortPlayers } from 'utils/helpers';
 import { ShooterIcon } from 'icons/ShooterIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatar } from 'components/player';
-import { RuleInstruction } from 'components/text';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';

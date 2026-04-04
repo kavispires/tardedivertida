@@ -2,8 +2,8 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Layout, Space } from 'antd';
 // Components
-import { DrawingCanvas } from 'components/canvas';
-import { Title } from 'components/text';
+import { DrawingCanvas } from 'components/canvas/DrawingCanvas';
+import { Title } from 'components/text/Title';
 
 function Draw() {
   const [lines, setLines] = useState<any>([]);

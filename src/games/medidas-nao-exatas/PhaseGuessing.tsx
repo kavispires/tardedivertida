@@ -7,19 +7,17 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { GuessIcon } from 'icons/GuessIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import type { PhaseGuessingState } from './utils/types';
 import { MEDIDAS_NAO_EXATAS_PHASES } from './utils/constants';
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 import { GuessingRules } from './components/RulesBlocks';
 import { StepGuess } from './StepGuess';
-// Icons
-// Internal
-// import { StepWait } from './StepWaitForPresenter';
 
 export function PhaseGuessing({ state, players, user }: PhaseProps<PhaseGuessingState>) {
   const { step, goToNextStep } = useStep();

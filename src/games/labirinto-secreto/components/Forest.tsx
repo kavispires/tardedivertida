@@ -12,12 +12,12 @@ import { PLACEHOLDER_PLAYER } from 'utils/constants';
 import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
 import { ArrowIcon } from 'icons/ArrowIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 import { DivButton } from 'components/buttons/DivButton';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { ZoomPanPinchContainer } from 'components/layout/ZoomPanPinchContainer';
 import { AvatarGroup } from 'components/players/PlayerAvatarGroup';
-import { ViewIf } from 'components/views';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import type { MapSegment, PlayerMapping, Tree, TreeId } from '../utils/types';
 import { getDirection } from '../utils/helpers';

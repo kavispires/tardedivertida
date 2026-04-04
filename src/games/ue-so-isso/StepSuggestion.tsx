@@ -5,13 +5,14 @@ import type { GamePlayer } from 'types/game';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Components
-import { DevButton } from 'components/debug';
+import { DevButton } from 'components/debug/DevButton';
 import { SuggestionEasel } from 'components/game/SuggestionEasel';
-import { ControlledInputWriting } from 'components/input';
-import { Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { ControlledInputWriting } from 'components/input/ControlledInputWriting';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import { mockSuggestions } from './utils/mock';
 import type { SecretWord, SubmitSuggestionsPayload } from './utils/types';

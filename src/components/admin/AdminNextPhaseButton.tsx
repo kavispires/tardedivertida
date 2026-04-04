@@ -10,8 +10,8 @@ import { useLoading } from 'hooks/useLoading';
 // Services
 import { HOST_API_ACTIONS } from 'services/adapters';
 // Components
-import { TimedButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { TimedButton } from 'components/buttons/TimedButton';
+import { Translate } from 'components/language/Translate';
 // Internal
 import { AdminOnlyContainer } from './AdminOnlyContainer';
 

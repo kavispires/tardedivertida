@@ -10,13 +10,15 @@ import { getAvatarColorById, getLastItem } from 'utils/helpers';
 // Icons
 import { InvestigationIcon } from 'icons/InvestigationIcon';
 // Components
-import { SendButton } from 'components/buttons';
-import { DebugOnly, DevButton } from 'components/debug';
+import { SendButton } from 'components/buttons/SendButton';
+import { DebugOnly } from 'components/debug/DebugOnly';
+import { DevButton } from 'components/debug/DevButton';
 import { FloatingHand } from 'components/general/FloatingHand';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type {
   Crime,

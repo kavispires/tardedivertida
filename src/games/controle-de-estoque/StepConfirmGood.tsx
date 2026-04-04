@@ -9,11 +9,14 @@ import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { TimedButton } from 'components/buttons';
-import { DualTranslate, Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
-import { Step } from 'components/steps';
-import { Instruction, RuleInstruction, StepTitle } from 'components/text';
+import { TimedButton } from 'components/buttons/TimedButton';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { Step } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { Good, PlaceGoodPayload, WarehouseSlot } from './utils/types';
 import { BOSS_IDEAS_IDS } from './utils/constants';

@@ -4,7 +4,7 @@ import { ArrowIcon } from 'icons/ArrowIcon';
 import { MapIcon } from 'icons/MapIcon';
 import { NoIcon } from 'icons/NoIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 // Internal
 import type { MapSegment, Tree } from '../utils/types';
 import { TreeImage } from './TreeImage';

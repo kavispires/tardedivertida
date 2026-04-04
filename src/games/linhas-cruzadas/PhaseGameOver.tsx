@@ -7,10 +7,10 @@ import { getAvatarColorById } from 'utils/helpers';
 // Icons
 import { TheEndIcon } from 'icons/TheEndIcon';
 // Components
-import { CanvasSVG } from 'components/canvas';
-import { GameOverWrapper } from 'components/game-over';
+import { CanvasSVG } from 'components/canvas/CanvasSVG';
+import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
 import { Achievements } from 'components/general/Achievements';
-import { PlayerAvatarName } from 'components/player';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 // Internal
 import type { AlbumEntry, PhaseGameOverState } from './utils/types';
 import achievementsReference from './utils/achievements';

@@ -6,12 +6,12 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { getEntryId } from 'utils/helpers';
 // Components
-import { ImageBlurButton, ImageCardSelectButton } from 'components/image-cards';
-import { RibbonGroup } from 'components/ribbons';
+import { ImageBlurButton } from 'components/image-cards/ImageBlurButton';
+import { ImageCardSelectButton } from 'components/image-cards/ImageCardSelectButton';
+import { RibbonGroup } from 'components/ribbons/RibbonGroup';
 // Internal
 import { getClueId } from '../utils/helpers';
 import { DreamCard } from './DreamCard';
-// Components
 
 type DreamBoardVoteProps = {
   table: UID[];

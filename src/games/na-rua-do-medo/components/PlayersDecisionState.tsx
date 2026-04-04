@@ -11,9 +11,9 @@ import { ScaredIcon } from 'icons/ScaredIcon';
 import { TrickOrTreatIcon } from 'icons/TrickOrTreatIcon';
 import { WalkIcon } from 'icons/WalkIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
 import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language/Translate';
 
 type PlayersDecisionStateProps = {
   players: GamePlayers;

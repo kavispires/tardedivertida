@@ -3,9 +3,9 @@ import type { TextCard } from 'types/tdr';
 // Icons
 import { CheckMarkIcon } from 'icons/CheckMarkIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
-import { Card } from 'components/cards';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { Card } from 'components/cards/Card';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 
 type EvaluationAllDescriptorsProps = {

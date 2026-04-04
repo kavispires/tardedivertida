@@ -6,7 +6,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { NOOP } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { ImageCard } from 'components/image-cards';
+import { ImageCard } from 'components/image-cards/ImageCard';
 // Internal
 import type { StreetCard } from '../utils/types';
 

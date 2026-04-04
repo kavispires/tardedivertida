@@ -6,12 +6,11 @@ import { useLanguage } from 'hooks/useLanguage';
 // Services
 import { signUp } from 'services/firebase';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Images
 import logo from 'assets/images/tarde-divertida-logo.svg?url';
 // Sass
 import styles from './auth.module.scss';
-// Styles
 
 type SignUpProps = {
   /**

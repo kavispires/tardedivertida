@@ -2,8 +2,9 @@
 import { CompassOutlined } from '@ant-design/icons';
 import { Button, Tooltip } from 'antd';
 // Components
-import { TransparentButton } from 'components/buttons';
-import { DualTranslate, Translate } from 'components/language';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 import { ZoomPanPinchContainer } from 'components/layout/ZoomPanPinchContainer';
 // Internal
 import type { FofocaQuenteDefaultState } from '../utils/types';

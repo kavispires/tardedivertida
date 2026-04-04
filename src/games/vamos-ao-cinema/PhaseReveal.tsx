@@ -8,10 +8,11 @@ import { MovieTheaterIcon } from 'icons/MovieTheaterIcon';
 import { ScaredIcon } from 'icons/ScaredIcon';
 import { TomatoIcon } from 'icons/TomatoIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import { useOnSubmitMoviePosterAPIRequest } from './utils/api-requests';
 import { getAnnouncementKey } from './utils/helpers';

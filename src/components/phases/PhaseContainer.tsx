@@ -3,8 +3,8 @@ import { type ReactNode, useRef } from 'react';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { PageError } from 'components/errors';
-import { LoadingPage } from 'components/loaders';
+import { PageError } from 'components/errors/PageError';
+import { LoadingPage } from 'components/loaders/LoadingPage';
 // Sass
 import styles from './PhaseContainer.module.scss';
 

@@ -1,9 +1,9 @@
 // Types
 import type { GameRound, GamePlayers } from 'types/game';
 // Components
-import { Translate } from 'components/language';
-import { Step } from 'components/steps';
-import { StepTitle } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { Step } from 'components/steps/Step';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { Clues, BoardObject } from './utils/types';
 import { Board } from './components/Board';

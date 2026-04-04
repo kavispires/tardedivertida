@@ -10,8 +10,8 @@ import { PHASES } from 'utils/phases';
 // Icons
 import { AnimatedGearIcon } from 'icons/AnimatedGearIcon';
 // Components
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { Instruction } from 'components/text/Instruction';
 import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import { PhaseContainer } from './PhaseContainer';

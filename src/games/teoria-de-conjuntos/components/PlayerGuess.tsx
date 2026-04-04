@@ -6,9 +6,9 @@ import type { Item } from 'types/tdr';
 // Icons
 import { ArrowIcon } from 'icons/ArrowIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 import { ItemCard } from 'components/cards/ItemCard';
-import { PlayerAvatarCard } from 'components/player';
+import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
 import { SpeechBubble } from 'components/text/SpeechBubble';
 // Internal
 import type { Guess } from '../utils/types';

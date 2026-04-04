@@ -6,11 +6,11 @@ import type { GameRound, GameRanking, GamePlayers } from 'types/game';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { HostNextPhaseButton } from 'components/host';
-import { Translate } from 'components/language';
+import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { StepRankingWrapper } from 'components/ranking';
-import { RuleInstruction } from 'components/text';
+import { StepRankingWrapper } from 'components/ranking/StepRankingWrapper';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 // Internal
 import type { GalleryEntry } from './utils/types';
 import { ConstructionHighlight } from './components/Highlights';

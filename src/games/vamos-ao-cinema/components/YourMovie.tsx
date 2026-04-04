@@ -3,9 +3,10 @@ import type { MovieCard } from 'types/tdr';
 // Icons
 import { FilmReelIcon } from 'icons/FilmReelIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
-import { Instruction, TextHighlight } from 'components/text';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language/Translate';
+import { Instruction } from 'components/text/Instruction';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import { getMovieTitle } from '../utils/helpers';
 

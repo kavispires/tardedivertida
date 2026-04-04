@@ -1,12 +1,12 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Components
-import { Card } from 'components/cards';
-import { Translate } from 'components/language';
+import { Card } from 'components/cards/Card';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { TurnOrder } from 'components/players';
-import { Step, type StepProps } from 'components/steps';
-import { StepTitle } from 'components/text';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { Step, type StepProps } from 'components/steps/Step';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { WordLength } from './utils/types';
 import { ItemsGrid } from './components/ItemsGrid';

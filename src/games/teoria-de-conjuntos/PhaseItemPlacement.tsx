@@ -5,9 +5,9 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Components
-import { PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
-import { ViewIf } from 'components/views';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import { useOnSubmitEvaluationFixAPIRequest, useOnSubmitItemPlacementAPIRequest } from './utils/api-requests';
 import type { Guess, PhaseItemPlacementState } from './utils/types';

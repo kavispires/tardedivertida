@@ -4,7 +4,7 @@ import { Button, Divider, Space, Switch, Tooltip } from 'antd';
 // Hooks
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Sass
 import styles from '../PhaseLobby.module.scss';
 

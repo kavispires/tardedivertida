@@ -20,13 +20,14 @@ import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 import { SkullIcon } from 'icons/SkullIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 import { GameStrip } from 'components/general/GameBanner';
 import { GameTags } from 'components/general/GameTags';
 import { GameVideo } from 'components/general/GameVideo';
-import { DualTranslate, Translate } from 'components/language';
-import { RulesModal } from 'components/rules';
-import { Title } from 'components/text';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
+import { RulesModal } from 'components/rules/RulesModal';
+import { Title } from 'components/text/Title';
 // Internal
 import { formatDurationToHoursAndMinutes, timestampToDate } from '../utils';
 import { InfoCard } from './InfoCard';

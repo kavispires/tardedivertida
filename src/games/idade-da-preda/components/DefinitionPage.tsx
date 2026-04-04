@@ -5,9 +5,10 @@ import { Card, Divider, Flex, Typography } from 'antd';
 // Components
 import { SpeakButton } from 'components/audio/SpeakButton';
 import { ItemCard } from 'components/cards/ItemCard';
-import { DualTranslate, Translate } from 'components/language';
-import { SlideShowLabel } from 'components/slide-show';
-import { TextHighlight } from 'components/text';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
+import { SlideShowLabel } from 'components/slide-show/SlideShowComposableComponents';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import type { Concept, GalleryEntry } from '../utils/types';
 import { useSpriteWidth } from '../utils/useSpriteWidth';

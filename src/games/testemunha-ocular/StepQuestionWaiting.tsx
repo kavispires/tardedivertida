@@ -2,10 +2,11 @@
 import type { GamePlayer } from 'types/game';
 import type { SuspectCard } from 'types/tdr';
 // Components
-import { Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { Outcome, Status, THistoryEntry } from './utils/types';
 import { OUTCOME } from './utils/constants';

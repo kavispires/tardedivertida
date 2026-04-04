@@ -5,10 +5,10 @@ import { getAvatarColorById } from 'utils/helpers';
 // Icons
 import { KnifeIcon } from 'icons/KnifeIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
-import { Translate } from 'components/language';
-import { PlayerAvatarCard } from 'components/player';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
 
 type PlayerTargetCardButtonProps = {
   player: GamePlayer;

@@ -6,9 +6,10 @@ import { useStep } from 'hooks/useStep';
 // Icons
 import { PictureIcon } from 'icons/PictureIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
 // Internal
 import { ARTE_RUIM_PHASES, SLIDE_DURATION } from './utils/constants';
 import type { PhaseGalleryState } from './utils/types';

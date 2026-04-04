@@ -8,11 +8,13 @@ import { PassportIcon } from 'icons/PassportIcon';
 import { SecretIcon } from 'icons/SecretIcon';
 import { SpyNewspaperIcon } from 'icons/SpyNewspaperIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
-import { RoundAnnouncement } from 'components/round';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { PhaseTimerReset } from 'components/phases/PhaseTimerReset';
+import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import { ESPIAO_ENTRE_NOS_PHASES } from './utils/constants';
 import { StepAssignment } from './StepAssignment';

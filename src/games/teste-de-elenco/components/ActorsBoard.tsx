@@ -5,7 +5,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { TransparentButton } from 'components/buttons';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 import { SuspectCard } from 'components/cards/SuspectCard';
 import { Popconfirm } from 'components/general/Popconfirm';
 import { SpaceContainer } from 'components/layout/SpaceContainer';

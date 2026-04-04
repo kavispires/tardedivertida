@@ -8,8 +8,8 @@ import { useBlurCards } from 'hooks/useBlurCards';
 import { useLanguage } from 'hooks/useLanguage';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Components
-import { ImageBlurButtonContainer } from 'components/image-cards';
-import { DualTranslate } from 'components/language';
+import { ImageBlurButtonContainer } from 'components/image-cards/ImageBlurButtonContainer';
+import { DualTranslate } from 'components/language/DualTranslate';
 // Sass
 import styles from './CharacterCard.module.scss';
 

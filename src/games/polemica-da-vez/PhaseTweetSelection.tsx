@@ -8,13 +8,16 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { TrendingIcon } from 'icons/TrendingIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { TurnOrder, WaitingRoom } from 'components/players';
-import { RoundAnnouncement } from 'components/round';
-import { Step, StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
-import { ViewIf } from 'components/views';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { WaitingRoom } from 'components/players/WaitingRoom';
+import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
+import { Step } from 'components/steps/Step';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import { useOnSubmitTweetAPIRequest } from './utils/api-requests';
 import { mockTweetSelection } from './utils/mock';

@@ -1,9 +1,10 @@
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
-import { Translate } from 'components/language';
-import { RulesList } from 'components/rules';
-import { Instruction, RuleInstruction } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { RulesList } from 'components/rules/RulesList';
+import { Instruction } from 'components/text/Instruction';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 // Internal
 import { CandyHighlight } from './Highlights';
 

@@ -7,10 +7,11 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { CrimeItemCard } from 'components/cards/CrimeItemCard';
 import { SceneTile } from 'components/game/SceneTile';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { GroupedItems, ItemsDict, SceneTilePayload, SubmitCrimePayload } from './utils/types';
 import { ContinueButton } from './components/ContinueButton';

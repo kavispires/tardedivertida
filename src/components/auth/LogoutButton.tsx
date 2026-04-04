@@ -6,7 +6,7 @@ import { App, Button, type ButtonProps } from 'antd';
 import { signOut } from 'services/firebase';
 // Components
 import { Popconfirm } from 'components/general/Popconfirm';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 
 export function LogoutButton(props: ButtonProps) {
   const navigate = useNavigate();

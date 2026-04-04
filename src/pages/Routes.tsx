@@ -7,12 +7,13 @@ import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useError } from 'hooks/useError';
 import { useGlobalState } from 'hooks/useGlobalState';
 // Components
-import { PageError } from 'components/errors';
-import { LoadingBar, LoadingPage } from 'components/loaders';
+import { PageError } from 'components/errors/PageError';
+import { LoadingBar } from 'components/loaders/LoadingBar';
+import { LoadingPage } from 'components/loaders/LoadingPage';
 // Internal
 import Home from './Home/Home';
 import Login from './Login/Login';
-// Routes Lazy load
+
 const Me = lazy(() => import('pages/Me/Me' /* webpackChunkName: "page-me" */));
 const Users = lazy(() => import('pages/Me/Users' /* webpackChunkName: "page-users" */));
 const Hub = lazy(() => import('pages/Hub/Hub' /* webpackChunkName: "page-hub" */));

@@ -1,6 +1,6 @@
 // Components
-import { Translate } from 'components/language';
-import { TextHighlight } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import type { Leaves, CloverObject } from '../utils/types';
 import { parseRotation } from '../utils/helpers';

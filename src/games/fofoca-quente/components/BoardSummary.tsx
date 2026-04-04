@@ -5,7 +5,7 @@ import { Flex, Typography } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Internal
 import type { SocialGroup, Student } from '../utils/types';
 import { AGE_NUMBER, BUILD, GENDER, HEIGHT } from '../utils/constants';

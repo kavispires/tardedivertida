@@ -9,13 +9,14 @@ import { useMock } from 'hooks/useMock';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
-import { Translate } from 'components/language';
-import { TurnOrder } from 'components/players';
-import { Step, type StepProps } from 'components/steps';
-import { StepTitle, Title } from 'components/text';
-import { ViewIf } from 'components/views';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { Translate } from 'components/language/Translate';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { Step, type StepProps } from 'components/steps/Step';
+import { StepTitle } from 'components/text/StepTitle';
+import { Title } from 'components/text/Title';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 import { mockAnswer } from './utils/mock';

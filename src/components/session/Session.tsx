@@ -16,16 +16,18 @@ import { useUser } from 'hooks/useUser';
 // Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { AdminMenuDrawer } from 'components/admin';
-import { GameInfoDrawer } from 'components/drawers';
+import { AdminMenuDrawer } from 'components/admin/AdminMenuDrawer';
+import { GameInfoDrawer } from 'components/drawers/GameInfoDrawer';
 import { AutoNextPhase } from 'components/general/AutoNextPhase';
 import { PageLayout } from 'components/layout/PageLayout';
-import { PhaseError, PhaseLoading, PhaseLobby, PhaseSetup } from 'components/phases';
+import { PhaseError } from 'components/phases/PhaseError';
+import { PhaseLoading } from 'components/phases/PhaseLoading';
+import { PhaseLobby } from 'components/phases/PhaseLobby';
+import { PhaseSetup } from 'components/phases/PhaseSetup';
 // Internal
 import { RedirectSession } from './RedirectSession';
 import { GameInfoProvider, useGameAppearance, useGameInfoContext } from './GameInfoContext';
 
-// biome-ignore lint/suspicious/noExplicitAny: unknown breaks everything
 type UnknownWorkaround = any;
 
 type SessionProps = {

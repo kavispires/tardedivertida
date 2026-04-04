@@ -5,7 +5,7 @@ import { Flex, Popover, Typography } from 'antd';
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { ImageCard } from 'components/image-cards/ImageCard';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Internal
 import type { DataCounts, TimeBombCard } from '../utils/types';
 import { CARD_IMAGE_NAMES } from '../utils/constants';

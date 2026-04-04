@@ -6,9 +6,9 @@ import { QualitySealIcon } from 'icons/QualitySealIcon';
 import { TheEndIcon } from 'icons/TheEndIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { GameOverWrapper } from 'components/game-over';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Internal
 import { Board } from './components/Board';

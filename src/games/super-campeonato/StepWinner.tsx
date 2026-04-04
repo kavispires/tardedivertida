@@ -5,12 +5,12 @@ import type { TextCard } from 'types/tdr';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { TimedButton } from 'components/buttons';
+import { TimedButton } from 'components/buttons/TimedButton';
 import { CharacterCard } from 'components/cards/CharacterCard';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps';
-import { StepTitle } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { Bet, Bracket } from './utils/type';
 import { BetsFloatingHand } from './components/BetsFloatingHand';

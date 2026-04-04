@@ -3,15 +3,14 @@ import { TrophyOutlined } from '@ant-design/icons';
 // Types
 import type { GamePlayers } from 'types/game';
 // Components
-import { TimedButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { TimedButton } from 'components/buttons/TimedButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps';
-import { StepTitle } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { RunActivity, RunnerCard } from './utils/types';
 import { AnimatedRaceTrack } from './components/AnimatedRaceTrack';
-// Hooks
 
 type StepRaceProps = {
   players: GamePlayers;

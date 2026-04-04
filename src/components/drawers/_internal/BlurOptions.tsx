@@ -6,11 +6,9 @@ import { Alert, App, Button, Checkbox, Spin } from 'antd';
 import { useBlurCards } from 'hooks/useBlurCards';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Sass
 import styles from '../drawers.module.scss';
-// Ant Design Resource
-// Styles
 
 export function BlurOptions() {
   const { message } = App.useApp();

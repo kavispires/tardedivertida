@@ -10,9 +10,10 @@ import { AlienAngryIcon } from 'icons/AlienAngryIcon';
 import { AlienHappyIcon } from 'icons/AlienHappyIcon';
 import { AlienNeutralIcon } from 'icons/AlienNeutralIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
 // Internal
 import type { PhaseRevealState, RequestHistoryEntry } from './utils/types';
 import { COMUNICACAO_ALIENIGENA_PHASES, ITEM_TYPES } from './utils/constants';

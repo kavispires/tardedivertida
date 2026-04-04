@@ -4,7 +4,7 @@ import { BoxMinusIcon } from 'icons/BoxMinusIcon';
 import { BoxOneIcon } from 'icons/BoxOneIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Internal
 import type { PhaseBasicState } from '../utils/types';
 import { ITEM_TYPES } from '../utils/constants';

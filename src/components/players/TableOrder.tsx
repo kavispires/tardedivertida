@@ -9,13 +9,12 @@ import { getAvatarColorById } from 'utils/helpers';
 // Icons
 import { TableIcon } from 'icons/TableIcon';
 // Components
-import { Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 // Internal
 import { reorder } from './reorder';
 // Sass
 import styles from './TableOrder.module.scss';
-// Styles
 
 type TableOrderProps = {
   /**

@@ -11,11 +11,12 @@ import { BombIcon } from 'icons/BombIcon';
 import { WireIcon } from 'icons/WireIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
-import { SendButton } from 'components/buttons';
-import { Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { SendButton } from 'components/buttons/SendButton';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { DataCounts, Status, SubmitDeclarationPayload } from './utils/types';
 import { mockDeclaration } from './utils/mock';

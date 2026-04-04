@@ -5,9 +5,9 @@ import type { GameRound, GameRanking, GamePlayers } from 'types/game';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { HostNextPhaseButton } from 'components/host';
-import { Translate } from 'components/language';
-import { StepRankingWrapper } from 'components/ranking';
+import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
+import { Translate } from 'components/language/Translate';
+import { StepRankingWrapper } from 'components/ranking/StepRankingWrapper';
 
 type StepRankingProps = {
   players: GamePlayers;

@@ -9,8 +9,8 @@ import type { MonsterImage } from 'types/tdr';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalState } from 'hooks/useGlobalState';
 // Components
-import { ImageCard } from 'components/image-cards';
-import { Translate } from 'components/language';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { Translate } from 'components/language/Translate';
 // Sass
 import styles from './MonsterCard.module.scss';
 

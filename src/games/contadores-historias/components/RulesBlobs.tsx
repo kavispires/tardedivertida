@@ -1,10 +1,10 @@
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatar } from 'components/player';
-import { Instruction } from 'components/text';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { Instruction } from 'components/text/Instruction';
 
 type VotingRulesProps = {
   isUserTheStoryTeller: boolean;

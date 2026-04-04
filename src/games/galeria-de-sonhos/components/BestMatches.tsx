@@ -4,10 +4,10 @@ import { Avatar, Divider } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { ImageCard } from 'components/image-cards';
-import { Translate } from 'components/language';
-import { Step } from 'components/steps';
-import { Title } from 'components/text';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { Translate } from 'components/language/Translate';
+import { Step } from 'components/steps/Step';
+import { Title } from 'components/text/Title';
 // Internal
 import type { ImageCardMatch } from '../utils/types';
 

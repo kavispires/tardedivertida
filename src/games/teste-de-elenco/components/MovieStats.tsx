@@ -7,7 +7,7 @@ import { CulturesIcon } from 'icons/CulturesIcon';
 import { GenderIcon } from 'icons/GenderIcon';
 import { RainbowIcon } from 'icons/RainbowIcon';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { MetricHighlight } from 'components/metrics/MetricHighlight';
 // Internal
 import type { FeatureFilm } from '../utils/types';

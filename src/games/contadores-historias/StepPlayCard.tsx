@@ -4,12 +4,13 @@ import type { GamePlayers, GamePlayer } from 'types/game';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { Card } from 'components/cards';
-import { ImageCardHand } from 'components/image-cards';
-import { Translate } from 'components/language';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
-import { ViewIf } from 'components/views';
+import { Card } from 'components/cards/Card';
+import { ImageCardHand } from 'components/image-cards/ImageCardHand';
+import { Translate } from 'components/language/Translate';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import { mockPlayCard } from './utils/mock';
 import type { PlayCardPayload } from './utils/types';

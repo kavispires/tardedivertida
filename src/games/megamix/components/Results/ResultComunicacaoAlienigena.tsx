@@ -1,7 +1,7 @@
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';
 

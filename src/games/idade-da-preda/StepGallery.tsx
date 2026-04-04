@@ -5,11 +5,11 @@ import type { SlideShowConfig } from 'hooks/useSlideShow';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { Translate } from 'components/language';
-import { PopoverRule } from 'components/rules';
-import { SlideShow } from 'components/slide-show';
-import { Step } from 'components/steps';
-import { StepTitle } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { PopoverRule } from 'components/rules/PopoverRule';
+import { SlideShow } from 'components/slide-show/SlideShow';
+import { Step } from 'components/steps/Step';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { Concept, GalleryEntry } from './utils/types';
 import { ScoringRules } from './components/RulesBlobs';

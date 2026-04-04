@@ -11,10 +11,11 @@ import { TreeThreeIcon } from 'icons/TreeThreeIcon';
 import { TreeTwoIcon } from 'icons/TreeTwoIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
-import { TransparentButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { RuleInstruction, TextHighlight } from 'components/text';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';

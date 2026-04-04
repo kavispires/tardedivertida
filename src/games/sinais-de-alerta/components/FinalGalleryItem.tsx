@@ -6,7 +6,7 @@ import type { GamePlayers } from 'types/game';
 import { getAvatarColorById } from 'utils/helpers';
 // Components
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatarName } from 'components/player';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 // Internal
 import type { FinalGalleryEntry } from '../utils/types';
 import { WarningDrawing } from './WarningDrawing';

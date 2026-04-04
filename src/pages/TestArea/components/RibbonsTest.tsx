@@ -3,12 +3,13 @@ import { useState } from 'react';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
-import { TransparentButton } from 'components/buttons';
-import { ImageCard } from 'components/image-cards';
-import { Translate } from 'components/language';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { RibbonGroup } from 'components/ribbons';
-import { Instruction, Title } from 'components/text';
+import { RibbonGroup } from 'components/ribbons/RibbonGroup';
+import { Instruction } from 'components/text/Instruction';
+import { Title } from 'components/text/Title';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
 import type { TestStepProps } from '../TestArea';

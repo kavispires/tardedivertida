@@ -1,7 +1,7 @@
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { TransparentButton } from 'components/buttons';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 import { CrimeItemBackgroundCard, CrimeItemCard } from 'components/cards/CrimeItemCard';
 // Internal
 import type { GroupedItems, ItemsDict } from '../utils/types';

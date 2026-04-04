@@ -1,7 +1,7 @@
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { Card } from 'components/cards';
+import { Card } from 'components/cards/Card';
 
 type SecretWordCardProps = {
   secretWord: string;

@@ -4,8 +4,8 @@ import { Flex, Input, type InputRef, Space } from 'antd';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Components
-import { SendButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { Translate } from 'components/language/Translate';
 // Internal
 import type { SubmitCluePayload } from '../utils/types';
 

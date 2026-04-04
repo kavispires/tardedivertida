@@ -2,8 +2,12 @@ import { orderBy } from 'lodash';
 // Types
 import type { GamePlayers } from 'types/game';
 // Components
-import { Translate } from 'components/language';
-import { SlideShowBubbleValue, SlideShowLabel, SlideShowPlayersList } from 'components/slide-show';
+import { Translate } from 'components/language/Translate';
+import {
+  SlideShowBubbleValue,
+  SlideShowLabel,
+  SlideShowPlayersList,
+} from 'components/slide-show/SlideShowComposableComponents';
 // Internal
 import type { ArteRuimCustomCard, PlayersSay } from '../utils/types';
 

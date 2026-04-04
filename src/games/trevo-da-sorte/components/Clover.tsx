@@ -11,7 +11,7 @@ import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
 import { BoxOneIcon } from 'icons/BoxOneIcon';
 import { BoxXIcon } from 'icons/BoxXIcon';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Internal
 import { FIRST_ATTEMPT_SCORE, ROTATIONS, SECOND_ATTEMPT_SCORE } from '../utils/constants';
 import type {

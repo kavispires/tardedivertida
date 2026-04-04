@@ -8,12 +8,13 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
 // Components
-import { SendButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { TurnOrder } from 'components/players';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { PhaseBetsState, SubmitChoicesPayload } from './utils/types';
 import { MountainIllustration } from './components/Mountain';

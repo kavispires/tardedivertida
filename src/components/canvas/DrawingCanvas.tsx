@@ -5,7 +5,7 @@ import { Stage, Layer, Line } from 'react-konva';
 import { DeleteOutlined, UndoOutlined } from '@ant-design/icons';
 import { Button, Flex, Space } from 'antd';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Sass
 import styles from './DrawingCanvas.module.scss';
 

@@ -4,16 +4,16 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { FloatingHand } from 'components/general/FloatingHand';
-import { ImageCardHand } from 'components/image-cards';
-import { Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
-import { TurnOrder } from 'components/players';
-import { StepTitle, RuleInstruction } from 'components/text';
+import { ImageCardHand } from 'components/image-cards/ImageCardHand';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { CardEntry } from './utils/types';
 import { Table } from './components/Table';
 import { ImposterTitle, SecretClueTitle } from './components/Titles';
-// Icons
 
 type StepPlayCardWaitingProps = {
   isUserTheImpostor: boolean;

@@ -15,12 +15,13 @@ import { DJIcon } from 'icons/DJIcon';
 import { GarbageIcon } from 'icons/GarbageIcon';
 import { VIPLineIcon } from 'icons/VIPLineIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { TimedButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { TimedButton } from 'components/buttons/TimedButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { Track } from './utils/types';
 import { useColorizeBackground } from './utils/useColorizeBackground';

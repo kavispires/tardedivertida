@@ -7,11 +7,12 @@ import { BoxPlusIcon } from 'icons/BoxPlusIcon';
 import { BoxXIcon } from 'icons/BoxXIcon';
 // Components
 import { SpeakButton } from 'components/audio/SpeakButton';
-import { IconAvatar } from 'components/avatars';
-import { Card } from 'components/cards';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Card } from 'components/cards/Card';
 import { ItemCard } from 'components/cards/ItemCard';
-import { Translate } from 'components/language';
-import { Instruction, TextHighlight } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { Instruction } from 'components/text/Instruction';
+import { TextHighlight } from 'components/text/TextHighlight';
 
 type PortmanteauProps = {
   word: string;

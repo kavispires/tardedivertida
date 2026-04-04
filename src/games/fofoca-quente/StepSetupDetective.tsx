@@ -6,11 +6,14 @@ import type { GamePlayers, GamePlayer } from 'types/game';
 // Icons
 import { TeenDetectiveIcon } from 'icons/TeenDetectiveIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { SendButton } from 'components/buttons';
-import { DualTranslate, Translate } from 'components/language';
-import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, StepTitle } from 'components/text';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { SendButton } from 'components/buttons/SendButton';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
+import { Step, type StepProps } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { FofocaQuenteDefaultState, SubmitDetectiveLocationPayload } from './utils/types';
 import { useFofocaQuenteContext } from './utils/FofocaQuenteContext';
@@ -18,7 +21,6 @@ import { SchoolBoard } from './components/SchoolBoard';
 import { BoardSummary } from './components/BoardSummary';
 import { DetectiveGoals } from './components/DetectiveGoals';
 import { Info } from './components/Info';
-// Hooks
 
 type StepSetupDetectiveProps = {
   players: GamePlayers;

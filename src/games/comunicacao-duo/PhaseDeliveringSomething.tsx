@@ -7,11 +7,13 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { MysteryBoxIcon } from 'icons/MysteryBoxIcon';
 // Components
 import { AlienText } from 'components/alien/AlienText';
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
-import { Instruction, TextHighlight } from 'components/text';
-import { ViewIf } from 'components/views';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
+import { TextHighlight } from 'components/text/TextHighlight';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import { useOnStopDeliveryAPIRequest, useOnSubmitDeliveryAPIRequest } from './utils/api-requests';
 import { COMUNICACAO_DUO_PHASES } from './utils/constants';

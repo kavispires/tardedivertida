@@ -16,8 +16,8 @@ import { HOST_API_ACTIONS } from 'services/adapters';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Translate } from 'components/language';
-import { WaitingTime } from 'components/timers';
+import { Translate } from 'components/language/Translate';
+import { WaitingTime } from 'components/timers/WaitingTime';
 // Internal
 import { HostOnlyContainer, hostOnlyContainerStyles } from './HostOnlyContainer';
 import { HostButton } from './HostButton';

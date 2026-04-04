@@ -12,11 +12,13 @@ import { HouseIcon } from 'icons/HouseIcon';
 import { WalkIcon } from 'icons/WalkIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
-import { TransparentButton } from 'components/buttons';
-import { Translate } from 'components/language';
-import { PopoverRule } from 'components/rules';
-import { Step } from 'components/steps';
-import { RuleInstruction, StepTitle, Title } from 'components/text';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { Translate } from 'components/language/Translate';
+import { PopoverRule } from 'components/rules/PopoverRule';
+import { Step } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { Title } from 'components/text/Title';
 // Internal
 import type { CandySidewalk, StreetCard, SubmitDecisionPayload } from './utils/types';
 import { mockPlayerDecision } from './utils/mock';

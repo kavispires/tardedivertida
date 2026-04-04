@@ -5,10 +5,10 @@ import type { SlideShowConfig } from 'hooks/useSlideShow';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { Translate } from 'components/language';
-import { SlideShow } from 'components/slide-show';
-import { Step } from 'components/steps';
-import { StepTitle } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { SlideShow } from 'components/slide-show/SlideShow';
+import { Step } from 'components/steps/Step';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { GalleryEntry } from './utils/types';
 import { GalleryDreamDisplay } from './components/GalleryDreamDisplay';

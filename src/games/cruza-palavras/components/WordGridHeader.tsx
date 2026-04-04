@@ -7,10 +7,10 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
-import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
+import { ImageBlurButtonContainer } from 'components/image-cards/ImageBlurButtonContainer';
+import { ImageCard } from 'components/image-cards/ImageCard';
 // Internal
 import type { GridCell, GridType } from '../utils/types';
-// Design Resources
 
 type WordGridHeaderProps = {
   cell: GridCell;

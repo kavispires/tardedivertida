@@ -6,7 +6,7 @@ import { App, Button, Flex, Space } from 'antd';
 import { isDevEnv } from 'utils/helpers';
 // Components
 import { Popconfirm } from 'components/general/Popconfirm';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Internal
 import { ALL_SETTINGS } from '../utils/settings';
 import { composeLocalPlayedKey, composeLocalTodayKey } from '../utils';

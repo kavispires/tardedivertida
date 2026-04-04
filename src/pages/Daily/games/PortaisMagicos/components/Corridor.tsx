@@ -6,8 +6,8 @@ import { Avatar, Flex, Image, Tag, Typography } from 'antd';
 import { getAnimation } from 'utils/animations';
 // Components
 import { DoorFrame } from 'components/game/DoorFrame';
-import { ImageCard } from 'components/image-cards';
-import { Translate } from 'components/language';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 
 type CorridorProps = {

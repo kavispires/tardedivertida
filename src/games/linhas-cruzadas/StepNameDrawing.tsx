@@ -7,13 +7,14 @@ import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
 // Components
-import { SendButton } from 'components/buttons';
-import { CanvasSVG } from 'components/canvas';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { CanvasSVG } from 'components/canvas/CanvasSVG';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatarName } from 'components/player';
-import { Step } from 'components/steps';
-import { RuleInstruction, Title } from 'components/text';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { Step } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { Title } from 'components/text/Title';
 // Internal
 import type { Prompt, SubmitGuessPayload } from './utils/types';
 

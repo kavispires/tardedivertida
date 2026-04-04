@@ -7,12 +7,13 @@ import type { UseStep } from 'hooks/useStep';
 // Icons
 import { BouncerIcon } from 'icons/BouncerIcon';
 // Components
-import { HostNextPhaseButton } from 'components/host';
-import { Translate } from 'components/language';
+import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { StepRankingWrapper } from 'components/ranking';
-import { Step } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { StepRankingWrapper } from 'components/ranking/StepRankingWrapper';
+import { Step } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import { useColorizeBackground } from './utils/useColorizeBackground';
 

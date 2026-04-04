@@ -8,7 +8,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { WavelengthDeviceIcon } from 'icons/WavelengthDeviceIcon';
 // Components
 import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
-import { TextHighlight } from 'components/text';
+import { TextHighlight } from 'components/text/TextHighlight';
 
 export function WavelengthHighlight({ children, type, iconSize, className }: HighlightProps) {
   return (

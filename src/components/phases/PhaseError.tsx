@@ -3,7 +3,7 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { PageError } from 'components/errors';
+import { PageError } from 'components/errors/PageError';
 
 export function PhaseError({ state }: PhaseProps) {
   const { dualTranslate } = useLanguage();

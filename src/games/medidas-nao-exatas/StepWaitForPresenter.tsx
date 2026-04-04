@@ -7,10 +7,11 @@ import type { TextCard } from 'types/tdr';
 // Utils
 import { getAnimation } from 'utils/animations';
 // Components
-import { Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
-import { TurnOrder, WaitingRoom } from 'components/players';
-import { Step, type StepProps } from 'components/steps';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { WaitingRoom } from 'components/players/WaitingRoom';
+import { Step, type StepProps } from 'components/steps/Step';
 
 type StepWaitForPresenterProps = {
   players: GamePlayers;

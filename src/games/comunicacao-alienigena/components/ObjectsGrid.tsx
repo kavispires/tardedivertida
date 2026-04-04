@@ -6,8 +6,8 @@ import { Badge, Space } from 'antd';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
-import { Translate } from 'components/language';
-import { Title } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { Title } from 'components/text/Title';
 // Internal
 import type { OfferingsStatus, PhaseBasicState } from '../utils/types';
 import { BADGE_INSTRUCTION } from '../utils/constants';

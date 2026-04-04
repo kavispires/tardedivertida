@@ -6,7 +6,7 @@ import { Tooltip } from 'antd';
 import { DEFAULT_PADDING } from 'utils/constants';
 // Components
 import { getSource, type ItemCardProps } from 'components/cards/ItemCard';
-import { DEFAULT_SPRITE_SIZE, Sprite } from 'components/sprites';
+import { DEFAULT_SPRITE_SIZE, Sprite } from 'components/sprites/Sprite';
 // Internal
 import { useDailyChallenge } from '../hooks/useDailyChallenge';
 

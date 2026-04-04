@@ -15,10 +15,11 @@ import { NoIcon } from 'icons/NoIcon';
 import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
 import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language/Translate';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatar, PlayerAvatarName } from 'components/player';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 // Internal
 import type {
   AdedanhxGrid,

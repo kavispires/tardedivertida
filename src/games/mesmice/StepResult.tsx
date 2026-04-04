@@ -13,13 +13,14 @@ import { getAnimation } from 'utils/animations';
 // Icons
 import { XIcon } from 'icons/XIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { HostNextPhaseButton } from 'components/host';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
+import { Translate } from 'components/language/Translate';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
-import { ViewIf } from 'components/views';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import type { ExtendedObjectFeatureCard, HistoryEntry, MostVotesResult, ObjectCardObj } from './utils/types';
 import { OUTCOME } from './utils/constants';

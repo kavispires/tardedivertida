@@ -4,8 +4,8 @@ import { CalendarIcon } from 'icons/CalendarIcon';
 import { NewFeatureIcon } from 'icons/NewFeatureIcon';
 import { WeekendIcon } from 'icons/WeekendIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { DualTranslate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { DualTranslate } from 'components/language/DualTranslate';
 // Internal
 import { ALL_SETTINGS } from '../utils/settings';
 

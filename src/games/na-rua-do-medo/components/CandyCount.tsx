@@ -3,7 +3,7 @@ import { Avatar } from 'antd';
 // Icons
 import { CandyIcon } from 'icons/CandyIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 
 type CandyCountProps = {
   candyCount: number;

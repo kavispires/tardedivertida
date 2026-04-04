@@ -10,7 +10,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { getAnimation } from 'utils/animations';
 import { stringRemoveAccents } from 'utils/helpers';
 // Components
-import { TransparentButton } from 'components/buttons';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 import { ItemCard } from 'components/cards/ItemCard';
 // Internal
 import { useSpriteWidth } from '../utils/useSpriteWidth';

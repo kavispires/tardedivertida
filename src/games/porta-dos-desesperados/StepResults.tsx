@@ -6,11 +6,12 @@ import type { GameRound, GamePlayers } from 'types/game';
 import { LETTERS } from 'utils/constants';
 import { pluralize } from 'utils/helpers';
 // Components
-import { HostNextPhaseButton } from 'components/host';
-import { ImageCard } from 'components/image-cards';
-import { Translate } from 'components/language';
-import { Step } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { Translate } from 'components/language/Translate';
+import { Step } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import { OUTCOME, TOTAL_DOORS, TRAPS } from './utils/constants';
 import type { TrapEntry } from './utils/types';

@@ -12,11 +12,12 @@ import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { resetGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { AdminButton } from 'components/admin';
-import { LanguageSwitch, Translate } from 'components/language';
+import { AdminButton } from 'components/admin/AdminButton';
+import { LanguageSwitch } from 'components/language/LanguageSwitch';
+import { Translate } from 'components/language/Translate';
 import { PageLayout } from 'components/layout/PageLayout';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Title } from 'components/text';
+import { Title } from 'components/text/Title';
 // Internal
 import { HomeVideoBackground } from './HomeVideoBackground';
 import { AnimatedBackground } from './AnimatedBackground';

@@ -7,10 +7,10 @@ import { useLanguage } from 'hooks/useLanguage';
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { TextHighlight } from 'components/text';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Pages
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 // Internal

@@ -9,12 +9,13 @@ import type { Item } from 'types/tdr';
 import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
 // Components
-import { SendButton } from 'components/buttons';
+import { SendButton } from 'components/buttons/SendButton';
 import { ItemCard } from 'components/cards/ItemCard';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Step } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { Concept, SubmitConceptsPayload } from './utils/types';
 import { mockConcept } from './utils/mock';

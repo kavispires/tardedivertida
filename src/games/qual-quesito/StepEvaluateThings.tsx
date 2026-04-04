@@ -7,14 +7,15 @@ import type { Item } from 'types/tdr';
 // Hooks
 import { useMock } from 'hooks/useMock';
 // Components
-import { SendButton } from 'components/buttons';
+import { SendButton } from 'components/buttons/SendButton';
 import { TripleStateButton } from 'components/buttons/TripleStateButton';
-import { Card } from 'components/cards';
-import { Translate } from 'components/language';
+import { Card } from 'components/cards/Card';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { SubmitEvaluationsPayload, TableEntry } from './utils/types';
 import { mockEvaluations } from './utils/mock';

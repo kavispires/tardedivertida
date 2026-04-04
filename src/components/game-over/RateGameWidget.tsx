@@ -16,8 +16,8 @@ import { GAME_API_COMMON_ACTIONS } from 'services/adapters';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { FixedMenuButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { FixedMenuButton } from 'components/buttons/FixedMenuButton';
+import { Translate } from 'components/language/Translate';
 
 const { TextArea } = Input;
 

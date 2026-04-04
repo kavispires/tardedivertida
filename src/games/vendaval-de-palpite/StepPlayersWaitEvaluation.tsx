@@ -3,15 +3,16 @@ import { Alert } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 // Components
-import { Translate } from 'components/language';
-import { PlayerAvatar, PlayerAvatarName } from 'components/player';
-import { Step } from 'components/steps';
-import { Instruction, StepTitle } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { Step } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { Clues, BoardObject } from './utils/types';
 import { Board } from './components/Board';
 import { CategoryCard } from './components/CategoryCard';
-// Types
 
 type StepPlayersWaitEvaluationProps = {
   categories: string[];

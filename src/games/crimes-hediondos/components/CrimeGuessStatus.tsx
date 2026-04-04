@@ -10,9 +10,9 @@ import { BoxTwoIcon } from 'icons/BoxTwoIcon';
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { LockIcon } from 'icons/LockIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
-import { TextHighlight } from 'components/text';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language/Translate';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import { GUESS_STATUS } from '../utils/constants';
 

@@ -8,8 +8,9 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { getAnimation } from 'utils/animations';
 // Components
-import { ImageCard, ImageCardButton } from 'components/image-cards';
-import { Translate } from 'components/language';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { ImageCardButton } from 'components/image-cards/ImageCardButton';
+import { Translate } from 'components/language/Translate';
 // Internal
 import type { ImageCardObj } from '../utils/types';
 import { BORDER_TOTAL_SIZE } from '../utils/constants';

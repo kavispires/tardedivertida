@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { Button, Switch } from 'antd';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Instruction } from 'components/text';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import type { Clues, BoardEntry } from '../utils/types';
 

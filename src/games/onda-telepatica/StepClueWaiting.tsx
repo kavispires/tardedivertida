@@ -2,12 +2,13 @@
 import type { GamePlayer, GamePlayers } from 'types/game';
 import type { SpectrumCard } from 'types/tdr';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatarName } from 'components/player';
-import { WaitingRoom } from 'components/players';
-import { Step, type StepProps } from 'components/steps';
-import { Instruction, TextHighlight } from 'components/text';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { WaitingRoom } from 'components/players/WaitingRoom';
+import { Step, type StepProps } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import { OpposingIdeasCard } from './components/OpposingIdeasCard';
 

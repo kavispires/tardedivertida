@@ -6,12 +6,13 @@ import { Button, Popover, Space, Tooltip } from 'antd';
 import { useCache } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { TransparentButton } from 'components/buttons';
-import { DrawingCanvas } from 'components/canvas';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { DrawingCanvas } from 'components/canvas/DrawingCanvas';
 import { SignCard } from 'components/cards/SignCard';
 import { Popconfirm } from 'components/general/Popconfirm';
-import { DualTranslate, Translate } from 'components/language';
-import { Title } from 'components/text';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
+import { Title } from 'components/text/Title';
 // Internal
 import type { PhaseBasicState } from '../utils/types';
 

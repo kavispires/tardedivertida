@@ -4,10 +4,9 @@ import { Space, Typography } from 'antd';
 // Icons
 import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 // Sass
 import styles from './loaders.module.scss';
-// Styles
 
 type LoadingProps = {
   /**

@@ -20,7 +20,8 @@ import { Button, Flex, Layout } from 'antd';
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { useTDImageCardUrl } from 'hooks/useTDImageCardUrl';
 // Components
-import { DualTranslate, Translate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { Header } from 'pages/Daily/components/Header';

@@ -6,7 +6,7 @@ import type { GamePlayer } from 'types/game';
 // Utils
 import { getAnimationClass, getAvatarColorById } from 'utils/helpers';
 // Components
-import { PlayerAvatar } from 'components/player';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
 // Sass
 import styles from './Ribbons.module.scss';
 

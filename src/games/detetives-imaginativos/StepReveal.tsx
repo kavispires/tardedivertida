@@ -1,13 +1,14 @@
 // Types
 import type { GameRanking, GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Components
-import { HostNextPhaseButton } from 'components/host';
-import { Translate } from 'components/language';
+import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
+import { Translate } from 'components/language/Translate';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatarName } from 'components/player';
-import { StepRankingWrapper } from 'components/ranking';
-import { Step, type StepProps } from 'components/steps';
-import { RoundsLeftInstruction, RuleInstruction } from 'components/text';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { StepRankingWrapper } from 'components/ranking/StepRankingWrapper';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RoundsLeftInstruction } from 'components/text/RoundsLeftInstruction';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 // Internal
 import type { CardEntry } from './utils/types';
 import { TableFocus } from './components/TableFocus';

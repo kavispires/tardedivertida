@@ -5,11 +5,13 @@ import type { GamePlayers } from 'types/game';
 import { NuclearExplosionIcon } from 'icons/NuclearExplosionIcon';
 import { UnderConstructionIcon } from 'icons/UnderConstructionIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language/Translate';
 import { TitledContainer } from 'components/layout/TitledContainer';
 import { ListOfPlayers } from 'components/players/ListOfPlayers';
-import { Instruction, RuleInstruction, TextHighlight } from 'components/text';
+import { Instruction } from 'components/text/Instruction';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import { OUTCOME } from '../utils/constants';
 import type { Robot } from '../utils/types';

@@ -12,10 +12,13 @@ import { BossIdeaIcon } from 'icons/BossIdeaIcon';
 import { MysteryBoxIcon } from 'icons/MysteryBoxIcon';
 // Components
 import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
-import { DualTranslate, Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
-import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, StepTitle } from 'components/text';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { Step, type StepProps } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { Good, PlaceGoodPayload, WarehouseSlot } from './utils/types';
 import { BOSS_IDEAS_IDS } from './utils/constants';

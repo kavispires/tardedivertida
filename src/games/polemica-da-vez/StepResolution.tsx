@@ -8,11 +8,11 @@ import type { UseStep } from 'hooks/useStep';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Components
-import { TimedButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { TimedButton } from 'components/buttons/TimedButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps';
-import { StepTitle } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import { Tweet } from './components/Tweet';
 import { TweetComment } from './components/TweetComment';

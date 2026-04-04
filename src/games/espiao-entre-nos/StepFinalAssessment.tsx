@@ -6,9 +6,10 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-import { Translate } from 'components/language';
-import { Step } from 'components/steps';
-import { Instruction, StepTitle } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { Step } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { FinalAssessment, Location, Outcome } from './utils/types';
 import { FinalAssessmentInstruction } from './components/RulesBlobs';

@@ -9,12 +9,14 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { BossIdeaIcon } from 'icons/BossIdeaIcon';
 // Components
-import { DualTranslate, Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { PlayerAvatarName } from 'components/player';
-import { RoundAnnouncement } from 'components/round';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import { CONTROLE_DE_ESTOQUE_PHASES, DAYS_OF_THE_WEEK } from './utils/constants';
 import { useOnPlaceGoodAPIRequest } from './utils/api-requests';

@@ -6,8 +6,8 @@ import type { GamePlayers, GamePlayer } from 'types/game';
 import { getAvatarColorById, sortPlayers } from 'utils/helpers';
 // Components
 import { CharacterCard } from 'components/cards/CharacterCard';
-import { Translate } from 'components/language';
-import { PlayerAvatar } from 'components/player';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
 // Internal
 import type { Bracket, ContenderByTier } from '../utils/type';
 import { findBetContenders, getContenderIdsByTier } from '../utils/helpers';

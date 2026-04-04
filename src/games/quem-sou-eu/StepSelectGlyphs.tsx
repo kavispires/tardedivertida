@@ -12,15 +12,17 @@ import { useMock } from 'hooks/useMock';
 import { NoIcon } from 'icons/NoIcon';
 import { YesIcon } from 'icons/YesIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { SendButton, TransparentButton } from 'components/buttons';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { SendButton } from 'components/buttons/SendButton';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 import { GlyphCard } from 'components/cards/GlyphCard';
-import { DevButton } from 'components/debug';
-import { Translate } from 'components/language';
+import { DevButton } from 'components/debug/DevButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { Characters, SubmitGlyphsPayload } from './utils/types';
 import { prepareGlyphs } from './utils/helpers';

@@ -8,12 +8,13 @@ import type { TextCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 // Components
-import { SendButton, TransparentButton } from 'components/buttons';
-import { DevButton } from 'components/debug';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { DevButton } from 'components/debug/DevButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { RuleInstruction } from 'components/text';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 // Internal
 import type { SubmitScenarioOrderPayload } from '../utils/types';
 import { getReference } from '../utils/helpers';

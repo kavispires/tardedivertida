@@ -7,13 +7,15 @@ import { useStep } from 'hooks/useStep';
 import { LockIcon } from 'icons/LockIcon';
 import { TimeWritingIcon } from 'icons/TimedWritingIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language/Translate';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { RoundAnnouncement } from 'components/round';
-import { StepSwitcher } from 'components/steps';
-import { Instruction, TextHighlight } from 'components/text';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import { useOnSubmitAnswersAPIRequest } from './utils/api-requests';
 import { ADEDANHX_PHASES, ANSWERING_TIME_IN_MINUTES } from './utils/constants';

@@ -10,9 +10,10 @@ import { getAvatarColorById } from 'utils/helpers';
 // Icons
 import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { ImageBlurButtonContainer, ImageCard } from 'components/image-cards';
-import { PlayerAvatar } from 'components/player';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { ImageBlurButtonContainer } from 'components/image-cards/ImageBlurButtonContainer';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
 // Internal
 import type { FinalGalleryEntry } from '../utils/types';
 

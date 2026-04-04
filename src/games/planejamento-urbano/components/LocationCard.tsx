@@ -19,7 +19,7 @@ import { Typography } from 'antd';
 // Hooks
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Components
-import { DualTranslate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
 // Internal
 import type { CityLocationsDict } from '../utils/types';
 

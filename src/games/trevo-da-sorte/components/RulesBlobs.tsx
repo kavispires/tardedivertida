@@ -1,6 +1,6 @@
 // Components
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import { FIRST_ATTEMPT_SCORE, SECOND_ATTEMPT_SCORE } from '../utils/constants';
 

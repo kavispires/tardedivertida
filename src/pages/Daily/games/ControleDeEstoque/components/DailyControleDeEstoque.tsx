@@ -8,7 +8,8 @@ import type { Me } from 'types/user';
 import { DailyWarehouseGameIcon } from 'icons/DailyWarehouseGameIcon';
 // Components
 import { Popconfirm } from 'components/general/Popconfirm';
-import { DualTranslate, Translate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { Header } from 'pages/Daily/components/Header';

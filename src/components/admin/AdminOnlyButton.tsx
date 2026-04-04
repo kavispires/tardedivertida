@@ -1,12 +1,13 @@
-import type { ReactNode } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 // Internal
-import { AdminButton, AdminOnlyContainer } from './index';
+import { AdminButton } from './AdminButton';
+import { AdminOnlyContainer } from './AdminOnlyContainer';
 
 type AdminOnlyButtonProps = {
   /**
    * The click action
    */
-  onClick: GenericFunction;
+  onClick: ComponentProps<typeof AdminButton>['onClick'];
   /**
    * The button label
    */

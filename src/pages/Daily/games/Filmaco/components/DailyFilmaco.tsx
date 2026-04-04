@@ -8,7 +8,8 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Icons
 import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
 // Components
-import { DualTranslate, Translate } from 'components/language';
+import { DualTranslate } from 'components/language/DualTranslate';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';

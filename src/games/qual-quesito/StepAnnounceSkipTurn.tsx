@@ -3,14 +3,14 @@ import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 import type { Item } from 'types/tdr';
 // Components
 import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { Translate } from 'components/language';
-import { PlayerAvatarName } from 'components/player';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import { ItemsHand } from './components/ItemsHand';
 import { PlayersHandsCounts } from './components/PlayersHandsCounts';
-// Hooks
 
 type StepAnnounceSkipTurnProps = {
   players: GamePlayers;

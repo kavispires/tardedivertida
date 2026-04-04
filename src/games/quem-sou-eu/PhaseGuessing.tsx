@@ -5,10 +5,11 @@ import { useStep } from 'hooks/useStep';
 // Icons
 import { EvaluateIcon } from 'icons/EvaluateIcon';
 // Components
-import { Translate } from 'components/language';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
 // Internal
 import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
 import { QUEM_SOU_EU_PHASES } from './utils/constants';

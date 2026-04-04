@@ -3,7 +3,7 @@ import { Space } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
 // Components
-import { Card } from 'components/cards';
+import { Card } from 'components/cards/Card';
 import { EmojiCard } from 'components/cards/EmojiCard';
 import { GlyphCard } from 'components/cards/GlyphCard';
 import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';

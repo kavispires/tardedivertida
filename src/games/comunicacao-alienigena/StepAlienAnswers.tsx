@@ -8,17 +8,18 @@ import { useLoading } from 'hooks/useLoading';
 // Utils
 import { getAnimationClass, pluralize } from 'utils/helpers';
 // Components
-import { SendButton } from 'components/buttons';
+import { SendButton } from 'components/buttons/SendButton';
 import { ItemCard } from 'components/cards/ItemCard';
-import { DebugOnly } from 'components/debug';
-import { Translate } from 'components/language';
+import { DebugOnly } from 'components/debug/DebugOnly';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { PlayerAvatarName } from 'components/player';
-import { PopoverRule } from 'components/rules';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
-import { ViewIf } from 'components/views';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { PopoverRule } from 'components/rules/PopoverRule';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import type {
   InquiryHistoryEntry,

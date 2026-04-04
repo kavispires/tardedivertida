@@ -11,12 +11,13 @@ import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { SendButton } from 'components/buttons';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { Step } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Step } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { ExtendedObjectFeatureCard, ObjectCardObj, SubmitObjectPayload } from './utils/types';
 import { ObjectFeature } from './components/ObjectFeature';

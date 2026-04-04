@@ -9,11 +9,13 @@ import { useCountdown } from 'hooks/useCountdown';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { HostNextPhaseButton } from 'components/host';
-import { Translate } from 'components/language';
-import { RankingBoard } from 'components/ranking';
-import { Step, type StepProps, StepSwitcher } from 'components/steps';
-import { Instruction, StepTitle } from 'components/text';
+import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
+import { Translate } from 'components/language/Translate';
+import { RankingBoard } from 'components/ranking/RankingBoard';
+import { Step, type StepProps } from 'components/steps/Step';
+import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Instruction } from 'components/text/Instruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import { Pasture } from './components/Pasture';
 import { RoundType } from './components/RoundType';

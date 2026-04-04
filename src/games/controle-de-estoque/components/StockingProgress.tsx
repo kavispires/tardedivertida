@@ -2,7 +2,7 @@
 import { ClockIcon } from 'icons/ClockIcon';
 import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { MetricHighlight } from 'components/metrics/MetricHighlight';
 
 type StockingProgressProps = {

@@ -4,9 +4,9 @@ import type { GameState } from 'types/game';
 import { GAME_COLLECTION } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
-import { PhaseError } from 'components/phases';
+import { PhaseError } from 'components/phases/PhaseError';
 import { PhaseWait } from 'components/phases/PhaseWait';
-import { Session } from 'components/session';
+import { Session } from 'components/session/Session';
 // Internal
 import { LABIRINTO_SECRETO_PHASES } from './utils/constants';
 import { PhaseMapBuilding } from './PhaseMapBuilding';

@@ -13,14 +13,16 @@ import { SEPARATOR } from 'utils/constants';
 import { LockIcon } from 'icons/LockIcon';
 import { StopIcon } from 'icons/StopIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { DevButton } from 'components/debug';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { DevButton } from 'components/debug/DevButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
-import { Step } from 'components/steps';
-import { Instruction, RuleInstruction, StepTitle } from 'components/text';
-import { TimerClock } from 'components/timers';
+import { Step } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { TimerClock } from 'components/timers/TimerClock';
 // Internal
 import type { AdedanhxGrid, Answer, SubmitGridAnswersPayload } from './utils/types';
 import { buildAnswerSheet } from './utils/helpers';

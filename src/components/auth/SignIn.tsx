@@ -10,15 +10,14 @@ import { resetPassword, signIn, signInWithGoogle } from 'services/firebase';
 // Icons
 import { GoogleIcon } from 'icons/GoogleIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Title } from 'components/text';
+import { Title } from 'components/text/Title';
 // Images
 import logo from 'assets/images/tarde-divertida-logo.svg?url';
 // Sass
 import styles from './auth.module.scss';
-// Styles
 
 type SignInProps = {
   /**

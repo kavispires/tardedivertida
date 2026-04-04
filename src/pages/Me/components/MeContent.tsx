@@ -21,11 +21,12 @@ import { TrophyIcon } from 'icons/TrophyIcon';
 import { UserStatsIcon } from 'icons/UserStatsIcon';
 // Components
 import { LogoutButton } from 'components/auth/LogoutButton';
-import { IconAvatar } from 'components/avatars';
-import { LanguageSwitch, Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { LanguageSwitch } from 'components/language/LanguageSwitch';
+import { Translate } from 'components/language/Translate';
 import { PageLayout } from 'components/layout/PageLayout';
-import { PlayerAvatar } from 'components/player';
-import { Title } from 'components/text';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { Title } from 'components/text/Title';
 // Internal
 import { durationToHours, timestampToDate } from '../utils';
 import { UserName } from './UserName';

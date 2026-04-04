@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Tooltip } from 'antd';
 // Components
-import { ImageCard } from 'components/image-cards';
+import { ImageCard } from 'components/image-cards/ImageCard';
 // Internal
 import type { Teller } from '../utils/types';
 

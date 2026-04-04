@@ -8,18 +8,18 @@ import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
 // Components
-import { SendButton } from 'components/buttons';
-import { DevButton } from 'components/debug';
-import { Translate } from 'components/language';
+import { SendButton } from 'components/buttons/SendButton';
+import { DevButton } from 'components/debug/DevButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle } from 'components/text';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { BoardEntry, HouseHappiness, PlayerAssignedPair, SubmitCluesPayload } from './utils/types';
 import { PAIR_COLORS, PAIR_ICONS } from './utils/helpers';
 import { StoreBoard } from './components/StoreBoard';
 import { HappinessTracker } from './components/HappinessTracker';
-// Hooks
 
 type StepWriteCluesProps = {
   players: GamePlayers;

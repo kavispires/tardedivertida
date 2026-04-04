@@ -2,10 +2,10 @@
 import { RobotIcon } from 'icons/RobotIcon';
 import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
-import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { Translate } from 'components/language/Translate';
 import { CardHighlight } from 'components/metrics/CardHighlight';
-import { RuleInstruction } from 'components/text';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 import { SpeechBubble } from 'components/text/SpeechBubble';
 // Internal
 import type { Robot, RobotGalleryEntry } from '../utils/types';

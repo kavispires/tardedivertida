@@ -2,10 +2,10 @@ import { useState, type ComponentType } from 'react';
 // Ant Design Resources
 import { Steps } from 'antd';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 import { PageLayout } from 'components/layout/PageLayout';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Title } from 'components/text';
+import { Title } from 'components/text/Title';
 // Internal
 import { LanguageTest } from './components/LanguageTest';
 import { DrawingTest } from './components/DrawingTest';

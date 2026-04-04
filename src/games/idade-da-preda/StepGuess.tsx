@@ -10,15 +10,18 @@ import { useVotingMatch } from 'hooks/useVotingMatch';
 // Utils
 import { getEntryId, parseEntryId } from 'utils/helpers';
 // Components
-import { SendButton, TransparentButton } from 'components/buttons';
+import { SendButton } from 'components/buttons/SendButton';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 import { ItemCard } from 'components/cards/ItemCard';
-import { DevButton } from 'components/debug';
-import { Translate } from 'components/language';
+import { DevButton } from 'components/debug/DevButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatar } from 'components/player';
-import { Step, type StepProps } from 'components/steps';
-import { RuleInstruction, StepTitle, TextHighlight } from 'components/text';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { Step, type StepProps } from 'components/steps/Step';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 import { SpeechBubble } from 'components/text/SpeechBubble';
+import { StepTitle } from 'components/text/StepTitle';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import type { Concept, NewNameEntry, SubmitGuessesPayload } from './utils/types';
 import { useSpriteWidth } from './utils/useSpriteWidth';

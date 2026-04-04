@@ -7,7 +7,7 @@ import { Layout, App, Switch, Divider } from 'antd';
 import * as icons from 'icons/collection';
 import { collectionByCategory, collectionByGame, collectionUnassigned } from 'icons/collectionByGame';
 // Components
-import { TransparentButton } from 'components/buttons';
+import { TransparentButton } from 'components/buttons/TransparentButton';
 import { PageLayout } from 'components/layout/PageLayout';
 // Internal
 import { DevHeader } from './DevHeader';

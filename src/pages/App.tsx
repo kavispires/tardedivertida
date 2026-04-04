@@ -7,7 +7,7 @@ import { useAppSetup } from 'hooks/useAppSetup';
 // Services
 import { AuthProvider } from 'services/AuthProvider';
 // Components
-import { RouteError } from 'components/errors';
+import { RouteError } from 'components/errors/RouteError';
 // Internal
 import { AnimatedRoutes, routes } from './Routes';
 

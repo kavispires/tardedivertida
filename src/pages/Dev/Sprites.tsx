@@ -18,7 +18,7 @@ import { EmojiCard } from 'components/cards/EmojiCard';
 import { TreeCard } from 'components/cards/TreeCard';
 import { Medal } from 'components/general/Medal';
 import { PageLayout } from 'components/layout/PageLayout';
-import { PlayerAvatar } from 'components/player';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
 // Internal
 import { MEDALS_IDS } from './utils/constants';
 import { DevHeader } from './DevHeader';

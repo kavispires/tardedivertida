@@ -13,7 +13,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import ACHIEVEMENTS_DICT from 'utils/achievements';
 // Components
 import { VirtualizationWrapper } from 'components/general/VirtualizationWrapper';
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Internal
 import { AchievementCard } from './AchievementCard';
 

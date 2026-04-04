@@ -9,11 +9,11 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
-import { Translate } from 'components/language';
-import { messageContent } from 'components/pop-up';
-import { Step } from 'components/steps';
-import { StepTitle } from 'components/text';
-import { TimedTimerBar } from 'components/timers';
+import { Translate } from 'components/language/Translate';
+import { messageContent } from 'components/pop-up/messageContent';
+import { Step } from 'components/steps/Step';
+import { StepTitle } from 'components/text/StepTitle';
+import { TimedTimerBar } from 'components/timers/TimedTimerBar';
 // Internal
 import type { Message } from './utils/types';
 import { MessageBoard } from './components/MessageBoard';

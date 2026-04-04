@@ -8,7 +8,7 @@ import { speak } from 'utils/speech';
 // Icons
 import { AudioIcon } from 'icons/AudioIcon';
 // Components
-import { IconAvatar } from 'components/avatars';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 
 type SpeakButtonProps = {
   /**

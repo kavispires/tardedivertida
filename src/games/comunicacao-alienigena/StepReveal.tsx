@@ -9,16 +9,18 @@ import { ClockIcon } from 'icons/ClockIcon';
 import { PlayerIconsIcon } from 'icons/PlayerIconsIcon';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
-import { DebugOnly } from 'components/debug';
-import { HostNextPhaseButton } from 'components/host';
-import { Translate } from 'components/language';
+import { DebugOnly } from 'components/debug/DebugOnly';
+import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { MetricHighlight } from 'components/metrics/MetricHighlight';
-import { PlayerAvatarName } from 'components/player';
-import { PopoverRule } from 'components/rules';
-import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, StepTitle } from 'components/text';
-import { ViewIf } from 'components/views';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { PopoverRule } from 'components/rules/PopoverRule';
+import { Step, type StepProps } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import type {
   InquiryHistoryEntry,

@@ -22,7 +22,7 @@ import {
   speak,
 } from 'utils/speech';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 
 type LobbyReadyButtonsProps = {
   /**

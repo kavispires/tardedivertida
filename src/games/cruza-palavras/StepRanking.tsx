@@ -5,12 +5,12 @@ import type { GameRanking, GameRound, GamePlayers } from 'types/game';
 // Hooks
 import type { UseStep } from 'hooks/useStep';
 // Components
-import { HostNextPhaseButton } from 'components/host';
-import { Translate } from 'components/language';
+import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { StepRankingWrapper } from 'components/ranking';
-import { PopoverRule } from 'components/rules';
-import { RuleInstruction } from 'components/text';
+import { StepRankingWrapper } from 'components/ranking/StepRankingWrapper';
+import { PopoverRule } from 'components/rules/PopoverRule';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 // Internal
 import { ScoringRule } from './components/RulesBlobs';
 

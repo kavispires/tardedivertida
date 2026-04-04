@@ -6,11 +6,11 @@ import type { GamePlayers } from 'types/game';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 // Components
-import { HostNextPhaseButton } from 'components/host';
-import { Translate } from 'components/language';
+import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step } from 'components/steps';
-import { Title } from 'components/text';
+import { Step } from 'components/steps/Step';
+import { Title } from 'components/text/Title';
 // Internal
 import type { AlbumEntry } from './utils/types';
 import { SLIDE_DURATION } from './utils/constants';

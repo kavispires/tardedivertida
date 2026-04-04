@@ -3,7 +3,7 @@ import type { PhaseProps } from 'types/game';
 // Icons
 import { LadderIcon } from 'icons/LadderIcon';
 // Components
-import { GameOverWrapper } from 'components/game-over';
+import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
 import { Achievements } from 'components/general/Achievements';
 // Internal
 import { achievementsReference } from './utils/achievements';

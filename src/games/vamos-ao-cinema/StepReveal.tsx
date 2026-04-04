@@ -7,18 +7,21 @@ import { useLoading } from 'hooks/useLoading';
 // Utils
 import { getAnimationClass, pluralize } from 'utils/helpers';
 // Components
-import { TransparentButton } from 'components/buttons';
-import { HostNextPhaseButton } from 'components/host';
-import { ImageCard } from 'components/image-cards';
-import { Translate } from 'components/language';
+import { TransparentButton } from 'components/buttons/TransparentButton';
+import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
+import { ImageCard } from 'components/image-cards/ImageCard';
+import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatarName } from 'components/player';
-import { TurnOrder } from 'components/players';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 import { ListOfPlayers } from 'components/players/ListOfPlayers';
-import { Step, type StepProps } from 'components/steps';
-import { Instruction, RuleInstruction, StepTitle, Title } from 'components/text';
-import { ViewIf } from 'components/views';
+import { TurnOrder } from 'components/players/TurnOrder';
+import { Step, type StepProps } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+import { Title } from 'components/text/Title';
+import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import { Reviews } from './components/Reviews';
 import { Movies } from './components/Movies';

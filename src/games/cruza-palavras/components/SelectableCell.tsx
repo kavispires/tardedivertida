@@ -4,7 +4,7 @@ import { Button, Flex, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
-import { Translate } from 'components/language';
+import { Translate } from 'components/language/Translate';
 // Internal
 import type { Clue, GridCell } from '../utils/types';
 import { getClueFromKey } from '../utils/helpers';
