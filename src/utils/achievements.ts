@@ -37,16 +37,6 @@ import VAMOS_AO_CINEMA from 'games/vamos-ao-cinema/utils/achievements';
 import VICE_CAMPEAO from 'games/vice-campeao/utils/achievements';
 // Types
 import type { AchievementReference } from 'types/game';
-// import CINEGRAFISTAS_AMADORES from 'games/cinegrafistas-amadores/utils/achievements';
-// import ESPIAO_ENTRE_NOS from 'games/espiao-entre-nos/utils/achievements';
-// import INSTRUMENTOS_CODIFICADOS from 'games/instrumentos-codificados/utils/achievements';
-// import NAUFRAGOS from 'games/naufragos/utils/achievements';
-// import PALHETA_DE_CORES from 'games/palheta-de-cores/utils/achievements';
-// import QUEM_NAO_MATA from 'games/quem-nao-mata/utils/achievements';
-// import SONHOS_PESADELOS from 'games/sonhos-pesadelos/utils/achievements';
-// import TA_NA_CARA from 'games/ta-na-cara/utils/achievements';
-// import TREVO_DA_SORTE from 'games/trevo-da-sorte/utils/achievements';
-// import VENDAVAL_DE_PALPITE from 'games/vendaval-de-palpite/utils/achievements';
 
 export const ACHIEVEMENTS_DICT: Record<string, AchievementReference | null> = {
   adedanhx: ADEDANHX,
@@ -87,12 +77,10 @@ export const ACHIEVEMENTS_DICT: Record<string, AchievementReference | null> = {
   'retrato-falado': RETRATO_FALADO,
   'senso-literario': SENSO_LITERARIO,
   'sinais-de-alerta': SINAIS_DE_ALERTA,
-  'sonhos-pesadelos': null,
   'super-campeonato': SUPER_CAMPEONATO,
   'ta-na-cara': null,
   'testemunha-ocular': TESTEMUNHA_OCULAR,
   'teste-de-elenco': TESTE_DE_ELENCO,
-  'trevo-da-sorte': null,
   'ue-so-isso': UE_SO_ISSO,
   'vamos-ao-cinema': VAMOS_AO_CINEMA,
   'vendaval-de-palpite': null,

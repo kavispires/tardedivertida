@@ -666,7 +666,6 @@ export const getData = async (
    * Games not represented here:
    * espiao-entre-nos
    * linhas-cruzadas
-   * sonhos-pesadelos
    * vendaval-de-palpite
    */
 

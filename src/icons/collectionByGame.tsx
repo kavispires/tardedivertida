@@ -290,9 +290,7 @@ export const collectionByGame: Record<string, string[]> = {
     'HandcuffsIcon',
   ],
   'ta-na-cara': ['ChatIcon', 'ChoiceIcon', 'SpotlightIcon'],
-  'trevo-da-sorte': ['CloverIcon'],
   esquiadores: ['SkiingIcon', 'SnowHillIcon', 'GamblingChipIcon', 'LodgeIcon', 'SkierIcon'],
-  'sonhos-pesadelos': ['CountdownIcon'],
   'planejamento-urbano': [
     'ConeIcon',
     'BrickWallIcon',
