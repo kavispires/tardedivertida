@@ -8,6 +8,64 @@ Games are listed by their Portuguese names. Game folder keys used in commits are
 
 ## 2026
 
+### March 2026
+
+#### Game Updates
+
+- **Adedanhx** — Version 3: answers auto-lock; all answers must be evaluated by all; fixed countdown time during evaluation
+- **Medidas Não Exatas** — Fixed Pips functionality; added more initial password cards; fixed duplicated bracket when player changes too fast
+- **Crimes Hediondos** — Fixed guessing completion function; alerts users for items in different quadrants
+- **Ue Só Isso** — Updated function to include timer when "with hints" option is selected
+- **Colegas de Quarto** — Fixed PT rules; added imageBackground; float submit button and other improvements
+- **Senso Literário** — Updated game over gallery to wrap entries to fit the screen
+- **Não Sou Robô** — Players now submit more than 1 card to get the captcha closer to 8 cards by the players and 1 card by the robot
+- **Qual O Quesito?** — Cosmetic updates
+- **Na Fila do Banco** — In-progress development; added missing logo files
+- Refined and clarified game rules for 9 games
+- **Phase Migration** — 25 games migrated: fixed Phases, PhaseProps, and added background support (Arte Ruim, Comunicação Alienigena, Comunicação Duo, Contadores Histórias, Crimes Hediondos, Cruza-Palavras, Duetos, Fileira de Fatos, Galeria de Sonhos, Labirinto Secreto, Medidas Não Exatas, Metalinguagem, Na Rua do Medo, Não Sou Robô, Planejamento Urbano, Polêmica da Vez, Porta dos Desesperados, Qual O Quesito?, Quem Sou Eu, Retrato Falado, Senso Literário, Teoria de Conjuntos, Testemunha Ocular, Ue Só Isso, Vamos ao Cinema, Vice-Campeão)
+
+#### Daily Challenges
+
+- **Daily Hub** — Added bottom margin to daily content
+- **Foi um Pirralho** — Demo code added
+
+#### Platform & Infrastructure
+
+- **Vite v8** — Migration completed
+- **Phase Delegator Migration** — Performed migration; created `nextPhaseDelegator` in functions to minimize code during `determineNextPhase`
+- **ViewIf Migration** — Replaced ViewOr with ViewIf; migration bugs fixed
+- **CSS Modules Migration** — Fixed issues created by CSS modules migration (batch 2); fixed SlideShow styles
+- Simplified common types for UI and functions
+- Updated games schema
+- Created image background option for games via Session component
+- Bumped dependencies multiple times (vite, firebase-functions, firebase-admin, biome, and other libraries)
+- Reverted dependency bump for firebase-functions (caused issues)
+- Security updates: bumped flatted (3.3.1 → 3.4.2), js-yaml (3.14.1 → 3.14.2), node-forge (1.3.3 → 1.4.0)
+- Updated extract-game-metadata script
+- Updated onboard script (added frontend setup and game-info creation)
+- Updated checklist with better migration items; disabled every game until verified
+
+#### UI/UX Improvements
+
+- **Hub** — Updated CreateGameModal redirect flow; added way to refresh list of games; added filter for technical features (gear icon for features)
+- **Components** — Step component updated to include `useTemporarilyHidePlayersBar` when needed via 'hidePlayersBar' prop; RuleInstruction now has solid color background; created SpaceFloat to fix floating viewport action buttons; added close button to RateGameWidget; moved TripleStateButton to /buttons; VideoBackground displays "coming soon" video when correct video is not available
+- **Lobby** — Cleaned up components
+
+#### Performance & Optimization
+
+- Improved code splitting by making the list of games async
+- Improved code splitting by moving `getToday` outside of daily
+
+#### Bug Fixes
+
+- Fixed ViewIf migration bugs
+- Fixed issues created by CSS modules migration (multiple batches)
+- Fixed SlideShow styles from CSS modules migration
+- Fixed mismatched player count in games
+- Fixed sorting import function in scripts
+
+---
+
 ### February 2026
 
 #### New Games
