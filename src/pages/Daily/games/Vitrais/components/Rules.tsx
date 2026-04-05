@@ -16,7 +16,6 @@ export function Rules({ date, numberOfPieces }: RulesProps) {
   return (
     <RulesWrapper
       date={date}
-      betaVersion
       basicRules={
         <Translate
           pt={

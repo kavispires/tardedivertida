@@ -16,6 +16,10 @@ export type GameState = {
   boardState: string[][];
   guesses: string[][]; // words guesses per heart
   swaps: number;
+  /**
+   * Whether the smart shuffle hint was used
+   */
+  usedSmartShuffle: boolean;
 };
 
 export type SessionState = {

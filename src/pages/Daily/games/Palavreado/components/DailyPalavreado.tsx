@@ -1,7 +1,8 @@
 import clsx from 'clsx';
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Divider, Flex, Layout, Modal, Space, Typography } from 'antd';
+import { BulbOutlined } from '@ant-design/icons';
+import { Button, Divider, Flex, Layout, Modal, Popconfirm, Space, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Icons
@@ -47,6 +48,8 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
     size,
     keyword,
     words,
+    smartShuffle,
+    usedSmartShuffle,
   } = usePalavreadoEngine(data, initialState);
 
   return (
@@ -93,6 +96,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
               onClick={submitGrid}
               disabled={isComplete}
               block
+              size="large"
             >
               <Translate
                 pt="Enviar"
@@ -167,6 +171,63 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
           </Region>
         )}
 
+        {!isComplete && (
+          <Region className="mt-5">
+            <Popconfirm
+              title={
+                <Translate
+                  pt="Você só pode usar esta dica uma vez!"
+                  en="You can only use this hint once!"
+                />
+              }
+              description={
+                <Translate
+                  pt="Isso embaralhará as letras incorretas de forma inteligente. Vogais trocam com vogais, consoantes com consoantes, e posições já testadas serão evitadas."
+                  en="This will intelligently shuffle incorrect letters. Vowels swap with vowels, consonants with consonants, and previously tested positions are avoided."
+                />
+              }
+              onConfirm={smartShuffle}
+              okText={
+                <Translate
+                  pt="Embaralhar"
+                  en="Shuffle"
+                />
+              }
+              cancelText={
+                <Translate
+                  pt="Cancelar"
+                  en="Cancel"
+                />
+              }
+              disabled={
+                isComplete || hearts <= 1 || hearts === Math.max(SETTINGS.HEARTS, size) || usedSmartShuffle
+              }
+            >
+              <Button
+                icon={<BulbOutlined />}
+                disabled={
+                  isComplete || hearts <= 1 || hearts === Math.max(SETTINGS.HEARTS, size) || usedSmartShuffle
+                }
+                color="gold"
+                variant="solid"
+              >
+                <Translate
+                  pt="Embaralhar Inteligente"
+                  en="Smart Shuffle"
+                />
+              </Button>
+            </Popconfirm>
+            {!usedSmartShuffle && (
+              <Typography.Text type="secondary">
+                <Translate
+                  pt="Você só pode usar o Embaralhar inteligente uma vez e só depois da primeira tentativa e antes da última!"
+                  en="You can only use the Smart Shuffle once and after the first attempt and before the last!"
+                />
+              </Typography.Text>
+            )}
+          </Region>
+        )}
+
         <Modal
           open={showResultModal}
           onCancel={() => setShowResultModal(false)}
@@ -179,6 +240,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
             words={data.words}
             swaps={swaps}
             guesses={guesses}
+            usedSmartShuffle={usedSmartShuffle}
           />
         </Modal>
       </DailyContent>

@@ -11,6 +11,7 @@ import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
 import { vibrate } from 'pages/Daily/utils/vibrate';
 // Internal
+import { smartShuffle as smartShuffleHelper } from './helpers';
 import { SETTINGS } from './settings';
 import type { DailyPalavreadoEntry, GameState, PalavreadoLetter, SessionState } from './types';
 
@@ -74,6 +75,28 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
         letters: copyLetters,
         swaps: prev.swaps + 1,
       };
+    });
+  };
+
+  const smartShuffle = () => {
+    if (state.hearts <= 1 || state.usedSmartShuffle) {
+      return;
+    }
+
+    setState((prev) => {
+      const shuffledLetters = smartShuffleHelper(prev.letters, prev.guesses, size);
+      playSFX('shuffle');
+
+      return {
+        ...prev,
+        letters: shuffledLetters,
+        usedSmartShuffle: true,
+      };
+    });
+
+    updateSession({
+      selection: null,
+      swap: [],
     });
   };
 
@@ -161,6 +184,7 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
     guesses: state.guesses,
     letters: state.letters,
     swaps: state.swaps,
+    usedSmartShuffle: state.usedSmartShuffle,
     selection: session.selection,
     swap: session.swap,
     showResultModal,
@@ -170,6 +194,7 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
     isComplete,
     selectLetter,
     submitGrid,
+    smartShuffle,
     keyword: data.keyword,
     size,
     words: data.words,

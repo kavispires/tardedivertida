@@ -1,4 +1,6 @@
-import { cloneDeep, merge } from 'lodash';
+import { cloneDeep, merge, shuffle } from 'lodash';
+// Utils
+import { stringRemoveAccents } from 'utils/helpers';
 // Pages
 import { generateShareableResult, loadLocalToday } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
@@ -16,6 +18,7 @@ const DEFAULT_LOCAL_TODAY: GameState = {
   swaps: 0,
   letters: [],
   guesses: [],
+  usedSmartShuffle: false,
 };
 
 export const getInitialState = (data: DailyPalavreadoEntry): GameState => {
@@ -39,6 +42,7 @@ export const getInitialState = (data: DailyPalavreadoEntry): GameState => {
     guesses: localToday.guesses,
     hearts: localToday.hearts,
     swaps: localToday.swaps,
+    usedSmartShuffle: localToday.usedSmartShuffle,
   };
 
   return state;
@@ -76,6 +80,137 @@ export const calculateGuessValue = (word: string, guess: string): number => {
 };
 
 /**
+ * Checks if a letter is a vowel (including Portuguese accented vowels).
+ */
+export const isVowel = (letter: string): boolean => {
+  const normalized = stringRemoveAccents(letter.toLowerCase());
+  return 'aeiou'.includes(normalized);
+};
+
+/**
+ * Checks if a letter is a consonant.
+ */
+export const isConsonant = (letter: string): boolean => {
+  const normalized = stringRemoveAccents(letter.toLowerCase());
+  return /[a-z]/.test(normalized) && !isVowel(letter);
+};
+
+/**
+ * Intelligently shuffles incorrectly placed letters, respecting vowel/consonant types
+ * and avoiding previously guessed positions.
+ */
+export const smartShuffle = (
+  letters: PalavreadoLetter[],
+  guesses: string[][],
+  size: number,
+): PalavreadoLetter[] => {
+  const copyLetters = cloneDeep(letters);
+
+  // Identify unlocked letters that are incorrectly placed
+  const incorrectLetters = copyLetters
+    .map((letter, index) => ({ letter, index }))
+    .filter(({ letter }) => !letter.locked);
+
+  if (incorrectLetters.length === 0) {
+    return copyLetters;
+  }
+
+  // Build a map of previously guessed positions for each letter
+  const previouslyGuessed = new Map<string, Set<number>>();
+  guesses.forEach((attempt) => {
+    attempt.forEach((word, wordIndex) => {
+      word.split('').forEach((char, charIndex) => {
+        const globalIndex = wordIndex * size + charIndex;
+        if (!previouslyGuessed.has(char)) {
+          previouslyGuessed.set(char, new Set());
+        }
+        const charSet = previouslyGuessed.get(char);
+        if (charSet) {
+          charSet.add(globalIndex);
+        }
+      });
+    });
+  });
+
+  // Separate into vowels and consonants
+  const vowelIndices: number[] = [];
+  const consonantIndices: number[] = [];
+
+  incorrectLetters.forEach(({ letter, index }) => {
+    if (isVowel(letter.letter)) {
+      vowelIndices.push(index);
+    } else if (isConsonant(letter.letter)) {
+      consonantIndices.push(index);
+    }
+  });
+
+  // Helper function to check if a swap is valid
+  const isValidSwap = (letter: string, targetIndex: number): boolean => {
+    const guessedPositions = previouslyGuessed.get(letter);
+    return !guessedPositions?.has(targetIndex);
+  };
+
+  // Helper function to shuffle within a group
+  const shuffleGroup = (indices: number[]) => {
+    if (indices.length <= 1) return;
+
+    const shuffledIndices = shuffle([...indices]);
+    const letterValues = indices.map((i) => copyLetters[i].letter);
+
+    // Try to place each letter in a valid position
+    const assignments: Array<{ index: number; letter: string }> = [];
+
+    for (let i = 0; i < indices.length; i++) {
+      const targetIndex = shuffledIndices[i];
+      const originalIndex = indices[i];
+
+      // Skip if it's the same position
+      if (targetIndex === originalIndex) {
+        // Try to find a different valid position
+        let swapped = false;
+        for (let j = i + 1; j < shuffledIndices.length; j++) {
+          const altIndex = shuffledIndices[j];
+          if (altIndex !== originalIndex && isValidSwap(letterValues[i], altIndex)) {
+            // Swap in shuffledIndices
+            [shuffledIndices[i], shuffledIndices[j]] = [shuffledIndices[j], shuffledIndices[i]];
+            swapped = true;
+            break;
+          }
+        }
+        if (!swapped) {
+          // Keep in same place if no valid swap found
+          shuffledIndices[i] = originalIndex;
+        }
+      }
+    }
+
+    // Apply the shuffled assignments
+    for (let i = 0; i < indices.length; i++) {
+      const targetIndex = shuffledIndices[i];
+      const letter = letterValues[i];
+
+      if (isValidSwap(letter, targetIndex)) {
+        assignments.push({ index: targetIndex, letter });
+      } else {
+        // Fallback: keep in original position
+        assignments.push({ index: indices[i], letter });
+      }
+    }
+
+    // Apply assignments
+    assignments.forEach(({ index, letter }) => {
+      copyLetters[index].letter = letter;
+    });
+  };
+
+  // Shuffle vowels and consonants separately
+  shuffleGroup(vowelIndices);
+  shuffleGroup(consonantIndices);
+
+  return copyLetters;
+};
+
+/**
  * Generates a shareable result string for the game.
  */
 export function writeResult({
@@ -83,11 +218,13 @@ export function writeResult({
   guesses,
   words,
   totalHearts,
+  usedSmartShuffle = false,
   ...rest
 }: BasicResultsOptions & {
   swaps: number;
   guesses: string[][];
   words: string[];
+  usedSmartShuffle?: boolean;
 }): string {
   const size = guesses[0].length;
   const colors = ['🟥', '🟦', '🟪', '🟫', '🟧'];
@@ -104,9 +241,10 @@ export function writeResult({
   }
 
   const correctTotalHearts = Math.max(totalHearts, size);
+  const hintIndicator = usedSmartShuffle ? ' 💡' : '';
 
   return generateShareableResult({
-    heartsSuffix: ` (${swaps} trocas)`,
+    heartsSuffix: ` (${swaps} trocas${hintIndicator})`,
     totalHearts: correctTotalHearts,
     heartsSpacing: ' ',
     additionalLines: cleanUpAttempts.map((row) => row.join(' ').trim()).filter(Boolean),
@@ -131,5 +269,6 @@ export function getWrittenResult({ data, language }: { data: DailyPalavreadoEntr
     swaps: state.swaps,
     guesses: state.guesses,
     words: data.words,
+    usedSmartShuffle: state.usedSmartShuffle,
   });
 }

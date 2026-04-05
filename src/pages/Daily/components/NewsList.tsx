@@ -17,6 +17,22 @@ type NewsItem = {
 
 export const NEWS_LIST: NewsItem[] = [
   {
+    date: '2026-04-05',
+    content: (
+      <>
+        <IconAvatar
+          icon={<NewFeatureIcon />}
+          size="small"
+        />{' '}
+        <strong>
+          <DualTranslate>{ALL_SETTINGS.PALAVREADO.NAME}</DualTranslate>
+        </strong>{' '}
+        agora tem um botão de Embaralhar Inteligente (💡) que reorganiza as letras incorretas respeitando
+        vogais e consoantes!
+      </>
+    ),
+  },
+  {
     date: '2026-04-04',
     content: (
       <>

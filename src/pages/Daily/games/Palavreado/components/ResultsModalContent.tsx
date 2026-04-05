@@ -24,6 +24,10 @@ type ResultsModalContentProps = {
   hearts: number;
   swaps: number;
   guesses: string[][];
+  /**
+   * Whether the smart shuffle hint was used
+   */
+  usedSmartShuffle: boolean;
 };
 
 export function ResultsModalContent({
@@ -33,6 +37,7 @@ export function ResultsModalContent({
   hearts,
   swaps,
   guesses,
+  usedSmartShuffle,
 }: ResultsModalContentProps) {
   const { language } = useLanguage();
 
@@ -47,8 +52,9 @@ export function ResultsModalContent({
         swaps,
         guesses,
         totalHearts: SETTINGS.HEARTS,
+        usedSmartShuffle,
       }),
-    [challengeNumber, hearts, words, language, swaps, guesses],
+    [challengeNumber, hearts, words, language, swaps, guesses, usedSmartShuffle],
   );
 
   return (
