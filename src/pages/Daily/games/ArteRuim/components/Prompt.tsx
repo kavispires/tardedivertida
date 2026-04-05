@@ -62,7 +62,12 @@ export function Prompt({ text, guesses }: PromptProps) {
                 </Avatar>
               );
             })}
-            {i + 1 < p.length && <Avatar shape="square"></Avatar>}
+            {i + 1 < p.length && (
+              <Avatar
+                shape="square"
+                style={{ opacity: 0.5 }}
+              />
+            )}
           </Space>
         );
       })}
