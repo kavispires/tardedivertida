@@ -1,0 +1,1 @@
+function e({condition:e=!1,children:t}){return e?t:null}export{e as t};

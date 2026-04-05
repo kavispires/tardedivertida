@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-pnrAbbe4.js";e();function t({condition:e=!1,children:t}){return e?t:null}function n({cases:e,children:t}){if(e.length>5)throw Error(`ViewSwitch only supports up to 5 cases`);return e[0]&&t[0]?t[0]:e[1]&&t[1]?t[1]:e[2]&&t[2]?t[2]:e[3]&&t[3]?t[3]:e[4]&&t[4]?t[4]:(console.error(`Rendering all children in the ViewSwitch`),t)}export{t as n,n as t};
