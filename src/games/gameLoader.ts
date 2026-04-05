@@ -62,7 +62,6 @@ export const gameSessions: GameSessionMap = {
   [GAME_COLLECTION.RETRATO_FALADO]: lazy(() => import('games/retrato-falado/SessionRetratoFalado')),
   [GAME_COLLECTION.SENSO_LITERARIO]: lazy(() => import('games/senso-literario/SessionSensoLiterario')),
   [GAME_COLLECTION.SINAIS_DE_ALERTA]: lazy(() => import('games/sinais-de-alerta/SessionSinaisDeAlerta')),
-  [GAME_COLLECTION.SONHOS_PESADELOS]: lazy(() => import('games/sonhos-pesadelos/SessionSonhosPesadelos')),
   [GAME_COLLECTION.SUPER_CAMPEONATO]: lazy(() => import('games/super-campeonato/SessionSuperCampeonato')),
   [GAME_COLLECTION.TA_NA_CARA]: lazy(() => import('games/ta-na-cara/SessionTaNaCara')),
   [GAME_COLLECTION.TEORIA_DE_CONJUNTOS]: lazy(
@@ -70,7 +69,6 @@ export const gameSessions: GameSessionMap = {
   ),
   [GAME_COLLECTION.TESTE_DE_ELENCO]: lazy(() => import('games/teste-de-elenco/SessionTesteDeElenco')),
   [GAME_COLLECTION.TESTEMUNHA_OCULAR]: lazy(() => import('games/testemunha-ocular/SessionTestemunhaOcular')),
-  [GAME_COLLECTION.TREVO_DA_SORTE]: lazy(() => import('games/trevo-da-sorte/SessionTrevoDaSorte')),
   [GAME_COLLECTION.UE_SO_ISSO]: lazy(() => import('games/ue-so-isso/SessionUeSoIsso')),
   [GAME_COLLECTION.VAMOS_AO_CINEMA]: lazy(() => import('games/vamos-ao-cinema/SessionVamosAoCinema')),
   [GAME_COLLECTION.VENDAVAL_DE_PALPITE]: lazy(

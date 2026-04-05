@@ -284,13 +284,11 @@ export const GAME_COLLECTION = {
   SENSO_LITERARIO: 'senso-literario',
   SINAIS_DE_ALERTA: 'sinais-de-alerta',
   SONHINHO_BOM: 'sonhinho-bom', // upcoming
-  SONHOS_PESADELOS: 'sonhos-pesadelos',
   SUPER_CAMPEONATO: 'super-campeonato',
   TA_NA_CARA: 'ta-na-cara',
   TEORIA_DE_CONJUNTOS: 'teoria-de-conjuntos',
   TESTEMUNHA_OCULAR: 'testemunha-ocular',
   TESTE_DE_ELENCO: 'teste-de-elenco',
-  TREVO_DA_SORTE: 'trevo-da-sorte', // upcoming
   UE_SO_ISSO: 'ue-so-isso',
   VAMOS_AO_CINEMA: 'vamos-ao-cinema',
   VENDAVAL_DE_PALPITE: 'vendaval-de-palpite',

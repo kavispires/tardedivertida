@@ -211,11 +211,6 @@ const GAMES = [
     key: 'SINAIS_DE_ALERTA',
   },
   {
-    name: 'sonhos-pesadelos',
-    code: 'S',
-    key: 'SONHOS_PESADELOS',
-  },
-  {
     name: 'super-campeonato',
     code: 'W',
     key: 'SUPER_CAMPEONATO',
@@ -239,11 +234,6 @@ const GAMES = [
     name: 'testemunha-ocular',
     code: 'T',
     key: 'TESTEMUNHA_OCULAR',
-  },
-  {
-    name: 'trevo-da-sorte',
-    code: 'Y',
-    key: 'TREVO_DA_SORTE',
   },
   {
     name: 'ue-so-isso',

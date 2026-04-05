@@ -7,6 +7,7 @@ import utils from '../utils';
 import { feedEmulatorDB } from '../utils/mocks/emulator';
 import type { CallableRequest, FirebaseAuth } from '../types/reference';
 import { orderBy } from 'lodash';
+import { retireGamesFromUsers } from '../utils/admin-cleanup';
 
 export type CreateGamePayload = {
   gameName: string;
@@ -105,6 +106,7 @@ export type BasicGamePayload = {
   gameId: UID;
   gameName: string;
   action: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 };
 
@@ -320,6 +322,40 @@ const playAgain = async (data: BasicGamePayload) => {
   return false;
 };
 
+export type RetireGamesPayload = {
+  gameNames: string[];
+  action: string;
+};
+
+/**
+ * Retires games from all user profiles by removing game data and updating statistics.
+ * This is an admin-only operation for cleaning up deprecated/cancelled games.
+ *
+ * @param data - The payload containing the array of game names to retire
+ * @returns Result of the cleanup operation including counts and summary
+ */
+const retireGames = async (data: RetireGamesPayload) => {
+  const { gameNames } = data;
+
+  const actionText = 'retire games';
+  utils.firebase.verifyPayload(gameNames, 'gameNames', actionText);
+
+  if (!Array.isArray(gameNames) || gameNames.length === 0) {
+    return utils.firebase.throwException('gameNames must be a non-empty array', actionText);
+  }
+
+  try {
+    // eslint-disable-next-line no-console
+    console.log(`Starting game retirement for: ${gameNames.join(', ')}`);
+    const result = await retireGamesFromUsers(gameNames);
+    // eslint-disable-next-line no-console
+    console.log('Game retirement completed:', result);
+    return result;
+  } catch (error) {
+    return utils.firebase.throwException(error, actionText);
+  }
+};
+
 const HOST_API_ACTIONS = {
   CREATE_GAME: createGame,
   LOCK_GAME: lockGame,
@@ -328,6 +364,7 @@ const HOST_API_ACTIONS = {
   PLAY_AGAIN: playAgain,
   FORCE_END_GAME: forceLastRound,
   RESET_GAME: unlockAndResetGame,
+  RETIRE_GAMES: retireGames,
 };
 
 /**
@@ -341,7 +378,9 @@ const HOST_API_ACTIONS = {
  *
  * @param request - The CallableRequest object.
  */
-export const hostEngine = (request: CallableRequest<CreateGamePayload | BasicGamePayload>) => {
+export const hostEngine = (
+  request: CallableRequest<CreateGamePayload | BasicGamePayload | RetireGamesPayload>,
+) => {
   // Verify action
   const action = request.data?.action;
   if (!action) {

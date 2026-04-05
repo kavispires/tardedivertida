@@ -38,13 +38,11 @@ import * as quemNaoMataEngine from '../engine/quem-nao-mata';
 import * as quemSouEuEngine from '../engine/quem-sou-eu';
 import * as sensoLiterarioEngine from '../engine/senso-literario';
 import * as sinaisDeAlertaEngine from '../engine/sinais-de-alerta';
-import * as sonhosPesadelosEngine from '../engine/sonhos-pesadelos';
 import * as superCampeonatoEngine from '../engine/super-campeonato';
 import * as taNaCaraEngine from '../engine/ta-na-cara';
 import * as teoriaDeConjuntos from '../engine/teoria-de-conjuntos';
 import * as testemunhaOcularEngine from '../engine/testemunha-ocular';
 import * as testeDeElencoEngine from '../engine/teste-de-elenco';
-import * as trevoDaSorteEngine from '../engine/trevo-da-sorte';
 import * as ueSoIssoEngine from '../engine/ue-so-isso';
 import * as vamosAoCinemaEngine from '../engine/vamos-ao-cinema';
 import * as vendavalDePalpiteEngine from '../engine/vendaval-de-palpite';
@@ -90,13 +88,11 @@ const engines = {
   [GAME_NAMES.RETRATO_FALADO]: retratoFaladoEngine,
   [GAME_NAMES.SENSO_LITERARIO]: sensoLiterarioEngine,
   [GAME_NAMES.SINAIS_DE_ALERTA]: sinaisDeAlertaEngine,
-  [GAME_NAMES.SONHOS_PESADELOS]: sonhosPesadelosEngine,
   [GAME_NAMES.SUPER_CAMPEONATO]: superCampeonatoEngine,
   [GAME_NAMES.TA_NA_CARA]: taNaCaraEngine,
   [GAME_NAMES.TEORIA_DE_CONJUNTOS]: teoriaDeConjuntos,
   [GAME_NAMES.TESTEMUNHA_OCULAR]: testemunhaOcularEngine,
   [GAME_NAMES.TESTE_DE_ELENCO]: testeDeElencoEngine,
-  [GAME_NAMES.TREVO_DA_SORTE]: trevoDaSorteEngine,
   [GAME_NAMES.UE_SO_ISSO]: ueSoIssoEngine,
   [GAME_NAMES.VAMOS_AO_CINEMA]: vamosAoCinemaEngine,
   [GAME_NAMES.VENDAVAL_DE_PALPITE]: vendavalDePalpiteEngine,
