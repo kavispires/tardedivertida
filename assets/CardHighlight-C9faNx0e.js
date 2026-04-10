@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-pnrAbbe4.js";import{Jn as t}from"./collection-B9csclDA.js";import{t as n}from"./MetricHighlight-BiNxvM4O.js";var r=e();function i({children:e,type:i,iconSize:a,className:o}){return(0,r.jsx)(n,{icon:(0,r.jsx)(t,{}),type:i,iconSize:a,className:o,children:e})}export{i as t};
