@@ -22,7 +22,6 @@ type StepGalleryProps = {
   players: GamePlayers;
   forest: Tree[];
   slideShowConfig: SlideShowConfig;
-
   user: GamePlayer;
   gallery: GamePlayer[];
 };

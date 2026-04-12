@@ -1,5 +1,5 @@
 // Constants
-import { CARDS_PER_ROUND, LABIRINTO_SECRETO_PHASES } from './constants';
+import { CARDS_PER_ROUND, LABIRINTO_SECRETO_PHASES, MULLIGAN_HAND } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type {
@@ -67,7 +67,7 @@ export const prepareSetupPhase = async (
   });
   store.achievements = achievements;
 
-  utils.players.addPropertiesToPlayers(players, { history: {} });
+  utils.players.addPropertiesToPlayers(players, { history: {}, mulliganAvailable: true });
 
   // Save
   return {
@@ -90,6 +90,22 @@ export const prepareMapBuildingPhase = async (
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
+
+  // Change hands for all players who chose to mulligan
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    if (player.mulliganReceived) {
+      delete player.mulliganReceived;
+    }
+
+    if (player.wantsToMulligan && player.mulliganAvailable) {
+      player.mulliganAvailable = false;
+      const currentHand: number = player.hand.length;
+      player.hand = [];
+      utils.deck.deal(store, players, Math.min(MULLIGAN_HAND, currentHand), [player.id]);
+      player.mulliganReceived = true;
+      delete player.wantsToMulligan;
+    }
+  });
 
   // Deal cards
   utils.deck.deal(store, players, CARDS_PER_ROUND);

@@ -10,6 +10,7 @@ export const handleSubmitMap = async (
   gameId: UID,
   playerId: UID,
   newMap: (ExtendedTextCard | null)[],
+  mulligan = false,
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
@@ -17,7 +18,7 @@ export const handleSubmitMap = async (
     playerId,
     actionText: 'submit your map',
     shouldReady: true,
-    change: { newMap },
+    change: { newMap, wantsToMulligan: mulligan },
     nextPhaseFunction: getNextPhase,
   });
 };

@@ -43,10 +43,15 @@ export const draw = (store: PlainObject, players: Players, playerId: UID, quanti
  * @param store - The game store object.
  * @param players - The object containing player information.
  * @param [quantity=1] - The number of cards to deal to each player.
+ * @param [forThesePlayers] - An optional array of player IDs to specify which players should receive cards. If not provided, all players will receive cards.
  * @returns - it modifies store and players
  */
-export const deal = (store: PlainObject, players: Players, quantity = 1) => {
-  utils.players.getListOfPlayers(players).forEach((player) => {
+export const deal = (store: PlainObject, players: Players, quantity = 1, forThesePlayers?: UID[]) => {
+  const targetPlayers = forThesePlayers
+    ? utils.players.getListOfPlayers(players).filter((player) => forThesePlayers.includes(player.id))
+    : utils.players.getListOfPlayers(players);
+
+  targetPlayers.forEach((player) => {
     draw(store, players, player.id, quantity);
   });
 };

@@ -5,7 +5,7 @@ import { getRandomItem } from 'utils/helpers';
 import type { ExtendedTextCard, MapSegment, TreeId } from './types';
 import { getAvailableSegments } from './helpers';
 
-export const mockNewMap = (hand: ExtendedTextCard): ExtendedTextCard[] => {
+export const mockNewMap = (hand: ExtendedTextCard[]): ExtendedTextCard[] => {
   return sampleSize<ExtendedTextCard>(hand, 3).map((card) => ({
     ...card,
     negate: Math.random() > 0.75,

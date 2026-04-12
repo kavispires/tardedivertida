@@ -15,7 +15,7 @@ import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
 // Internal
 import type { MapSegment, OnSubmitPathGuessFunction, Tree, TreeId } from '../utils/types';
-import { buildUserMappingForLatestTree, getAvailableSegments } from '../utils/helpers';
+import { buildPlayerMappingForLatestTree, getAvailableSegments } from '../utils/helpers';
 import { mockFollowedPath } from '../utils/mocks';
 import { Forest } from './Forest';
 import { PlayerMap } from './PlayerMap';
@@ -30,19 +30,12 @@ type ClickableForestProps = {
   players: GamePlayers;
 };
 
-export function ClickableForest({
-  forest,
-  map = [],
-  onSubmitPath,
-  pathId,
-  user,
-  players,
-}: ClickableForestProps) {
+export function ClickableForest({ forest, map = [], onSubmitPath, pathId, players }: ClickableForestProps) {
   const currentMap = map.filter((segment) => !segment.passed && segment.clues.length > 0);
   const currentTreeId = findLast(map, (segment) => segment.passed)?.treeId ?? map?.[0]?.treeId ?? 0;
   const passedTrees = map.filter((segment) => segment.passed).map((segment) => segment.treeId);
 
-  const userMapping = buildUserMappingForLatestTree(user, currentMap, pathId);
+  const playerMapping = buildPlayerMappingForLatestTree(players, players[pathId]);
 
   const [selection, setSelection] = useState<TreeId[]>([currentTreeId]);
   const [activeTree, setActiveTree] = useState<TreeId>(currentTreeId);
@@ -67,7 +60,7 @@ export function ClickableForest({
   // DEV Only
   useMock(() => {
     onSubmitPath({
-      guess: mockFollowedPath(map, currentMap, true, Object.values(userMapping).flat().map(Number)),
+      guess: mockFollowedPath(map, currentMap, true, Object.values(playerMapping).flat().map(Number)),
       pathId,
       choseRandomly: true,
     });
@@ -98,7 +91,7 @@ export function ClickableForest({
           activeTree,
           disabled: isDisabled,
         }}
-        playerMapping={userMapping}
+        playerMapping={playerMapping}
         players={players}
       />
 
@@ -116,7 +109,7 @@ export function ClickableForest({
         <DevButton
           onClick={() =>
             onSubmitPath({
-              guess: mockFollowedPath(map, currentMap, true, Object.values(userMapping).flat().map(Number)),
+              guess: mockFollowedPath(map, currentMap, true, Object.values(playerMapping).flat().map(Number)),
               pathId,
               choseRandomly: true,
             })

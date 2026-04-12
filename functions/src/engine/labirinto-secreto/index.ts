@@ -136,7 +136,7 @@ export const submitAction = async (data: LabirintoSecretoSubmitAction) => {
   switch (action) {
     case LABIRINTO_SECRETO_ACTIONS.SUBMIT_MAP:
       utils.firebase.validateSubmitActionProperties(data, ['newMap'], 'submit map');
-      return handleSubmitMap(gameName, gameId, playerId, data.newMap);
+      return handleSubmitMap(gameName, gameId, playerId, data.newMap, data.mulligan);
     case LABIRINTO_SECRETO_ACTIONS.SUBMIT_PATH:
       utils.firebase.validateSubmitActionProperties(
         data,

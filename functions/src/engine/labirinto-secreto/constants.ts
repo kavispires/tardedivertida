@@ -112,7 +112,8 @@ export const DIRECTIONS = {
   DOWN_RIGHT: 'DOWN_RIGHT',
 };
 
-export const CARDS_PER_PLAYER = 29;
+export const CARDS_PER_PLAYER = 38;
+export const MULLIGAN_HAND = 5;
 export const STARTING_CARDS = 5;
 export const CARDS_PER_ROUND = 4;
 

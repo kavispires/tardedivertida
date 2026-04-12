@@ -1,6 +1,6 @@
 import { Fragment } from 'react/jsx-runtime';
 // Types
-import type { PhaseProps } from 'types/game';
+import type { GamePlayer, PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 // Icons
@@ -13,7 +13,7 @@ import { StepSwitcher } from 'components/steps/StepSwitcher';
 import { Instruction } from 'components/text/Instruction';
 import { ViewIf } from 'components/views/ViewIf';
 // Internal
-import type { MapSegment, PhaseMapBuildingState } from './utils/types';
+import type { CustomPlayerProps, MapSegment, PhaseMapBuildingState } from './utils/types';
 import { useOnSubmitMapAPIRequest } from './utils/api-requests';
 import { LABIRINTO_SECRETO_PHASES } from './utils/constants';
 import { PlayerSelectionMap } from './components/PlayerSelection';
@@ -85,7 +85,7 @@ export function PhaseMapBuilding({ state, players, user }: PhaseProps<PhaseMapBu
           <ViewIf condition={!isUserMapComplete}>
             <StepBuildMap
               players={players}
-              user={user}
+              user={user as GamePlayer<CustomPlayerProps>}
               announcement={announcement}
               forest={state.forest}
               currentRound={state.round.current}

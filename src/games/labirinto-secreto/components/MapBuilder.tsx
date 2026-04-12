@@ -2,7 +2,8 @@ import { cloneDeep } from 'lodash';
 import { motion } from 'motion/react';
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Tooltip } from 'antd';
+import { DoubleRightOutlined } from '@ant-design/icons';
+import { Alert, Button, Checkbox, Flex, Popconfirm, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Utils
@@ -22,7 +23,13 @@ import { TitledContainer } from 'components/layout/TitledContainer';
 import { RuleInstruction } from 'components/text/RuleInstruction';
 import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
-import type { ExtendedTextCard, MapSegment, OnSubmitMapFunction, Tree } from '../utils/types';
+import type {
+  CustomPlayerProps,
+  ExtendedTextCard,
+  MapSegment,
+  OnSubmitMapFunction,
+  Tree,
+} from '../utils/types';
 import { getPossibleTreeIds } from '../utils/helpers';
 import { TreeImage } from './TreeImage';
 
@@ -31,7 +38,7 @@ const MotionTextHighlight = motion.create(TextHighlight);
 
 type MapBuilderProps = {
   forest: Tree[];
-  user: GamePlayer;
+  user: GamePlayer<CustomPlayerProps>;
   onSubmitMap: OnSubmitMapFunction;
 };
 
@@ -42,6 +49,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
   const [selections, setSelections] = useState<(ExtendedTextCard | null)[]>(map.map((_) => null));
   const [currentIndex, setIndex] = useState(0);
   const [skippedIndexes, setSkippedIndexes] = useState<number[]>([]);
+  const [mulliganUsed, setMulliganUsed] = useState(false);
 
   const onSetCard = (card: ExtendedTextCard) => {
     setSelections((prev) => {
@@ -212,21 +220,41 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
         }
         contained
       >
-        {(user.hand ?? []).map((card: ExtendedTextCard) => (
-          <TransparentButton
-            onClick={() => onSetCard(card)}
-            key={card.id}
-            disabled={usedCards.includes(card.id) || currentIndex >= map.length}
-            className="map-builder__card-button"
-          >
-            <Card hideHeader>{card.text}</Card>
-          </TransparentButton>
-        ))}
+        {user.mulliganReceived && (
+          <Alert
+            showIcon
+            title={
+              <Translate
+                pt="Você escolheu trocar a mão de cartas na rodada anterior, aqui estão suas novas cartas!"
+                en="You chose to mulligan your hand in the previous round, here are your new cards!"
+              />
+            }
+            type="warning"
+          />
+        )}
+
+        <Flex
+          wrap
+          justify="center"
+        >
+          {(user.hand ?? []).map((card: ExtendedTextCard) => (
+            <TransparentButton
+              onClick={() => onSetCard(card)}
+              key={card.id}
+              disabled={usedCards.includes(card.id) || currentIndex >= map.length}
+              className="map-builder__card-button"
+            >
+              <Card hideHeader>{card.text}</Card>
+            </TransparentButton>
+          ))}
+        </Flex>
         <Button
           size="large"
           type="default"
           onClick={() => onSkipTree(currentIndex)}
           disabled={!previousSelections?.[currentIndex]?.length}
+          icon={<DoubleRightOutlined />}
+          iconPlacement="end"
         >
           <Translate
             pt="Pular árvore"
@@ -236,10 +264,48 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
       </TitledContainer>
 
       <SpaceFloat enabled={usedCards.length > 0}>
+        {user.mulliganAvailable && (
+          <Popconfirm
+            title={
+              <Translate
+                pt="Descartar Mão e Pegar Novas Cartas?"
+                en="Discard Hand and Draw New Cards?"
+              />
+            }
+            description={
+              <Translate
+                pt="Você pode fazer isso apenas uma vez por jogo. Você perderá todas as suas cartas e receberá cartas novas."
+                en="You can only do this once per game. You will lose all your cards and get cartas new ones."
+              />
+            }
+            onConfirm={() => setMulliganUsed(true)}
+            onCancel={() => setMulliganUsed(false)}
+            okText={
+              <Translate
+                pt="Sim, pegar novas cartas"
+                en="Yes, get new cards"
+              />
+            }
+            cancelText={
+              <Translate
+                pt="Cancelar"
+                en="Cancel"
+              />
+            }
+          >
+            <Checkbox checked={mulliganUsed}>
+              <Translate
+                pt="Descartar mão e pegar novas cartas"
+                en="Discard hand and get new cards"
+              />
+            </Checkbox>
+          </Popconfirm>
+        )}
+
         <SendButton
           size="large"
           disabled={usedCards.length === 0}
-          onClick={() => onSubmitMap({ newMap: selections })}
+          onClick={() => onSubmitMap({ newMap: selections, mulligan: mulliganUsed })}
         >
           <Translate
             pt="Enviar Mapa"

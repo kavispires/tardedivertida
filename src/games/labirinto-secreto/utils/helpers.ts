@@ -190,40 +190,6 @@ export const buildPlayerMapping = (players: GamePlayers, activePlayer: GamePlaye
 };
 
 /**
- * Build dictionary of treeIds to playerIds showing what trees the user has tried in the latest segment
- * @param players
- * @param activePlayer
- * @returns
- */
-export const buildUserMappingForLatestTree = (
-  user: GamePlayer,
-  currentMap: MapSegment[],
-  activePlayerId: UID,
-): PlayerMapping => {
-  // Segments that are active for the current player's map
-
-  const activeSegment = currentMap[0];
-
-  const playerMapping: PlayerMapping = {};
-
-  const historyEntry = user.history[activePlayerId];
-  if (historyEntry) {
-    const treeIds: TreeId[] = historyEntry[activeSegment.index];
-
-    if (treeIds) {
-      treeIds.forEach((treeId) => {
-        if (playerMapping[treeId] === undefined) {
-          playerMapping[treeId] = [];
-        }
-        playerMapping[treeId].push(user.id);
-      });
-    }
-  }
-
-  return playerMapping;
-};
-
-/**
  * Build dictionary of treeIds to playerIds showing where players made a mistake
  * @param players
  * @param activePlayer

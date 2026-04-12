@@ -81,6 +81,8 @@ export function Forest({
   const proportion = isSmall ? 0.5 : 0.9;
   const initialScale = Math.min(forestFullWidth, screenWidth * proportion) / forestFullWidth;
 
+  const showPreviousGuesses = !!players && (!actions?.selection || actions.selection.length <= 1);
+
   return (
     <div className="forest-container-area">
       <ZoomPanPinchContainer
@@ -177,7 +179,7 @@ export function Forest({
                       />
                     )}
 
-                    <ViewIf condition={!!players && !!playerMapping?.[tree.id]}>
+                    <ViewIf condition={!!players && showPreviousGuesses}>
                       <div className="forest__players">
                         {!!players && (
                           <PlayerPositions
@@ -209,7 +211,7 @@ export function Forest({
                   width={treeWidth}
                 />
 
-                <ViewIf condition={!!players && !!playerMapping?.[tree.id]}>
+                <ViewIf condition={!!players && showPreviousGuesses}>
                   <div className="forest__players">
                     {!!players && (
                       <PlayerPositions

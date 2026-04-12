@@ -27,3 +27,5 @@ export const DIRECTIONS: Record<string, Direction> = {
 };
 
 export const SLIDE_DURATION = 15;
+
+export const MULLIGAN_CARD_COUNT = 9;

@@ -10,6 +10,10 @@ export type SubmitMapPayload = {
    * Array of text cards or null values representing the new map segments
    */
   newMap: (TextCard | null)[];
+  /**
+   * Whether the player is using their one-time mulligan to discard hand and get 7 new cards
+   */
+  mulligan?: boolean;
 };
 
 /**
@@ -147,6 +151,18 @@ export interface MapSegment {
  * Mapping of tree IDs to arrays of player IDs currently at those trees
  */
 export type PlayerMapping = Record<TreeId, UID[]>;
+
+/**
+ * Custom properties added to each player for the Labirinto Secreto game
+ */
+export type CustomPlayerProps = {
+  hand: ExtendedTextCard[];
+  history: Record<string, any>;
+  map: MapSegment[];
+  mulliganAvailable: boolean;
+  mulliganReceived?: boolean;
+  wantsToMulligan?: boolean;
+};
 
 /**
  * State for the map building phase

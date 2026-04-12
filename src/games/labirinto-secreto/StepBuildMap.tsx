@@ -13,7 +13,7 @@ import { Step, type StepProps } from 'components/steps/Step';
 import { RuleInstruction } from 'components/text/RuleInstruction';
 import { StepTitle } from 'components/text/StepTitle';
 // Internal
-import type { OnSubmitMapFunction, Tree } from './utils/types';
+import type { CustomPlayerProps, OnSubmitMapFunction, Tree } from './utils/types';
 import { buildPlayerMappingForLatestTree } from './utils/helpers';
 import { mockNewMap } from './utils/mocks';
 import { Forest } from './components/Forest';
@@ -22,7 +22,7 @@ import { MapBuilder } from './components/MapBuilder';
 
 type StepBuildMapProps = {
   players: GamePlayers;
-  user: GamePlayer;
+  user: GamePlayer<CustomPlayerProps>;
   forest: Tree[];
   currentRound: number;
   onSubmitMap: OnSubmitMapFunction;
