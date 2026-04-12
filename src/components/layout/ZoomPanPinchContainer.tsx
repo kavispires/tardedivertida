@@ -7,6 +7,7 @@ import {
   useCallback,
   useRef,
 } from 'react';
+import { useLocalStorage, useDebounce } from 'react-use';
 import {
   TransformWrapper,
   TransformComponent,
@@ -64,6 +65,11 @@ export type ZoomPanPinchContainerProps = {
    * Whether to lock controls on initialization.
    */
   lockControlsOnInit?: boolean;
+  /**
+   * Key used to persist zoom level in localStorage (e.g., game name like "labirinto-secreto").
+   * When provided, zoom state will be saved to and restored from localStorage with key pattern: TD_zoom_{persistentZoomKey}
+   */
+  persistentZoomKey?: string;
 };
 
 /**
@@ -80,6 +86,7 @@ export function ZoomPanPinchContainer({
   wrapperClassName,
   contentClassName,
   lockControlsOnInit = false,
+  persistentZoomKey,
 }: ZoomPanPinchContainerProps) {
   const [isLocked, setIsLocked] = useState(lockControlsOnInit);
   const outerContainerRef = useRef<HTMLDivElement>(null);
@@ -93,6 +100,29 @@ export function ZoomPanPinchContainer({
     centerOnInit = true,
     ...restTransformWrapperProps
   } = transformWrapperProps ?? {};
+
+  // Persistent zoom state (localStorage)
+  const localStorageKey = persistentZoomKey ? `TD_zoom_${persistentZoomKey}` : undefined;
+  const [persistedScale, setPersistedScale] = useLocalStorage<number>(
+    localStorageKey ?? 'TD_zoom_default',
+    initialScale,
+  );
+
+  // Current zoom scale (updates on every transform)
+  const [currentScale, setCurrentScale] = useState<number>(
+    persistentZoomKey ? (persistedScale ?? initialScale) : initialScale,
+  );
+
+  // Debounce saving to localStorage to avoid excessive writes
+  useDebounce(
+    () => {
+      if (persistentZoomKey && currentScale !== persistedScale) {
+        setPersistedScale(currentScale);
+      }
+    },
+    300,
+    [currentScale, persistentZoomKey],
+  );
 
   /**
    * Resizes the outer container based on the current zoom level and content dimensions.
@@ -119,13 +149,21 @@ export function ZoomPanPinchContainer({
 
       outer.style.width = `${finalWidth}px`;
       outer.style.height = `${finalHeight}px`;
+
+      // Track scale changes for persistence
+      if (persistentZoomKey && state.scale !== currentScale) {
+        setCurrentScale(state.scale);
+      }
     },
-    [maxWidth, maxHeight, fixedCanvasHeight],
+    [maxWidth, maxHeight, fixedCanvasHeight, persistentZoomKey, currentScale],
   );
+
+  // Use persisted scale if available, otherwise use initialScale
+  const effectiveInitialScale = persistentZoomKey ? (persistedScale ?? initialScale) : initialScale;
 
   return (
     <TransformWrapper
-      initialScale={initialScale}
+      initialScale={effectiveInitialScale}
       minScale={minScale}
       maxScale={maxScale}
       wheel={wheel}
