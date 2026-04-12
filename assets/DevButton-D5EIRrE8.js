@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-pnrAbbe4.js";import{t}from"./BugFilled-Dgbn_sr0.js";import{y as n}from"./index-3On6NvV8.js";import{l as r}from"./speech-HkhWTWJK.js";var i=e();function a({children:e,ghost:a,type:o,...s}){return(0,i.jsx)(r,{devOnly:!0,children:(0,i.jsx)(n,{icon:(0,i.jsx)(t,{}),ghost:a??!0,type:o??`primary`,...s,children:e})})}export{a as t};
