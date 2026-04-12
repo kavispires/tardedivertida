@@ -86,6 +86,7 @@ export function Forest({
       <ZoomPanPinchContainer
         maxWidth={forestFullWidth}
         wrapperClassName={clsx('forest-container', size === 'small' && 'forest-container--small')}
+        persistentZoomKey="labirinto-secreto"
         transformWrapperProps={{
           initialScale,
           minScale: 0.5,

@@ -1,3 +1,4 @@
+import { cloneDeep } from 'lodash';
 import { motion } from 'motion/react';
 import { useState } from 'react';
 // Ant Design Resources
@@ -76,10 +77,13 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
 
   const onNegateCard = (index: number) => {
     setSelections((prev) => {
-      const copy = [...(prev ?? [])];
+      const copy = cloneDeep(prev);
       if (copy[index]) {
-        // biome-ignore lint/style/noNonNullAssertion: idk what's up with the compiler
-        copy[index]!.negate = !copy[index]?.negate;
+        if (copy[index]?.negate === undefined) {
+          copy[index].negate = true;
+        } else {
+          copy[index].negate = !copy[index].negate;
+        }
       }
       return copy;
     });
