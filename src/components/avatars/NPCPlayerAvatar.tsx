@@ -55,7 +55,7 @@ export const NPCPlayerAvatar = ({
       />
       <span className={styles.avatarName__name}>
         <Translate
-          pt="Computador"
+          pt="NPC"
           en="NPC"
         />
       </span>

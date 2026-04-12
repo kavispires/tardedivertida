@@ -48,7 +48,7 @@ type CardProps = {
    * If true, the header will be hidden
    */
   hideHeader?: boolean;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export const Card = ({
   children,
@@ -61,6 +61,7 @@ export const Card = ({
   headerClassName = '',
   footerClassName = '',
   hideHeader = false,
+  ...rest
 }: CardProps) => {
   const bgColor = randomColor
     ? getColorFromLetter(
@@ -80,6 +81,7 @@ export const Card = ({
         size === 'large' && styles.cardLarge,
         className,
       )}
+      {...rest}
     >
       {!hideHeader && (
         <span

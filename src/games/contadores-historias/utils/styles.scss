@@ -112,16 +112,33 @@
   }
 }
 
-.c-story-card {
+.c-story-card.c-story-card {
   width: 70%;
-  font-size: 1.25rem;
   max-width: 720px;
   margin: 0.5em auto;
 
-  .card__text {
-    font-family: "Dancing Script", cursive;
-    text-transform: none;
-    font-size: 1.5rem;
+  // Target the inner text span
+  & > span {
+    font-family: "Dancing Script", cursive !important;
+    text-transform: none !important;
+    font-size: 1.25em !important;
+  }
+}
+
+.c-story-card {
+  &__container {
+    position: relative;
+  }
+
+  &__storyteller {
+    position: absolute;
+    font-size: 1rem;
+    left: 0;
+    top: 0;
+    transform: translate(-20%, 25%) rotate(-10deg);
+    border-radius: var(--border-radius);
+    padding: get-unit(1 2);
+    background: get-color("yellow", 3);
   }
 }
 

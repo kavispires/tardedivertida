@@ -21,8 +21,8 @@ import { ViewIf } from 'components/views/ViewIf';
 import { useOnSubmitStoryAPIRequest } from './utils/api-requests';
 import { CONTADORES_HISTORIAS_PHASES } from './utils/constants';
 import type { PhaseStoryState } from './utils/types';
-import { StoryWaiting } from './components/StoryWaiting';
-import { StoryWriting } from './components/StoryWriting';
+import { StepStoryWaiting } from './StepStoryWaiting';
+import { StepStoryWriting } from './StepStoryWriting';
 
 export function PhaseStory({ state, players, user }: PhaseProps<PhaseStoryState>) {
   const { step, goToNextStep, setStep } = useStep(0);
@@ -96,14 +96,14 @@ export function PhaseStory({ state, players, user }: PhaseProps<PhaseStoryState>
         {/* Step 1 */}
         <Fragment>
           <ViewIf condition={isUserTheStoryTeller}>
-            <StoryWriting
+            <StepStoryWriting
               user={user}
               onSubmitStory={onSubmitStory}
               announcement={announcement}
             />
           </ViewIf>
           <ViewIf condition={!isUserTheStoryTeller}>
-            <StoryWaiting
+            <StepStoryWaiting
               user={user}
               storyteller={storyteller}
               players={players}

@@ -4,7 +4,6 @@ import type { GamePlayers, GamePlayer } from 'types/game';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
-import { Card } from 'components/cards/Card';
 import { ImageCardHand } from 'components/image-cards/ImageCardHand';
 import { Translate } from 'components/language/Translate';
 import { Step, type StepProps } from 'components/steps/Step';
@@ -15,6 +14,7 @@ import { ViewIf } from 'components/views/ViewIf';
 import { mockPlayCard } from './utils/mock';
 import type { PlayCardPayload } from './utils/types';
 import { TableFaceDown } from './components/TableFaceDown';
+import { StorytellingCard } from './components/StorytellingCard';
 
 type StepPlayCardProps = {
   players: GamePlayers;
@@ -55,13 +55,10 @@ export function StepPlayCard({
       announcement={announcement}
     >
       <StepTitle>
-        <Card
-          header={storyteller.name}
-          className="c-story-card"
-          randomColor
-        >
-          {story}
-        </Card>
+        <StorytellingCard
+          storyteller={storyteller}
+          story={story}
+        />
       </StepTitle>
 
       <RuleInstruction type={isUserTheStoryTeller ? 'wait' : 'action'}>

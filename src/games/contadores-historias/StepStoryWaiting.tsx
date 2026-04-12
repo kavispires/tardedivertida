@@ -10,14 +10,20 @@ import { Step, type StepProps } from 'components/steps/Step';
 import { RuleInstruction } from 'components/text/RuleInstruction';
 import { StepTitle } from 'components/text/StepTitle';
 
-type StoryWaitingProps = {
+type StepStoryWaitingProps = {
   storyteller: GamePlayer;
   user: GamePlayer;
   players: GamePlayers;
   gameOrder: UID[];
 } & Pick<StepProps, 'announcement'>;
 
-export function StoryWaiting({ storyteller, user, players, gameOrder, announcement }: StoryWaitingProps) {
+export function StepStoryWaiting({
+  storyteller,
+  user,
+  players,
+  gameOrder,
+  announcement,
+}: StepStoryWaitingProps) {
   return (
     <Step
       fullWidth

@@ -16,16 +16,16 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Step, type StepProps } from 'components/steps/Step';
 import { StepTitle } from 'components/text/StepTitle';
 // Internal
-import { mockStory } from '../utils/mock';
-import type { SubmitStoryPayload } from '../utils/types';
-import { BookPages } from '../../../components/game/BookPages';
+import { mockStory } from './utils/mock';
+import type { SubmitStoryPayload } from './utils/types';
+import { BookPages } from '../../components/game/BookPages';
 
-type StoryWritingProps = {
+type StepStoryWritingProps = {
   user: GamePlayer;
   onSubmitStory: (payload: SubmitStoryPayload) => void;
 } & Pick<StepProps, 'announcement'>;
 
-export function StoryWriting({ user, onSubmitStory, announcement }: StoryWritingProps) {
+export function StepStoryWriting({ user, onSubmitStory, announcement }: StepStoryWritingProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const [story, setStory] = useState('');
