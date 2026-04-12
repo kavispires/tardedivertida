@@ -1,5 +1,6 @@
 // Types
 import type { Achievement } from 'types/game';
+import type { Item } from 'types/tdr';
 // Internal
 import type { WORD_LENGTH_STATUS } from './constants';
 
@@ -78,7 +79,7 @@ export type PhaseWordCreationState = {
   /**
    * Available items to use for word creation
    */
-  items: string[];
+  items: Item[];
   /**
    * Order of players' turns
    */
@@ -108,7 +109,7 @@ export type PhaseGuessingState = {
   /**
    * Available items that were used
    */
-  items: string[];
+  items: Item[];
   /**
    * Order of players' turns
    */
@@ -154,7 +155,7 @@ export type PhaseResultsState = {
   /**
    * Available items that were used
    */
-  items: string[];
+  items: Item[];
   /**
    * Order of players' turns
    */

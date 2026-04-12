@@ -1,5 +1,7 @@
 import { sample } from 'lodash';
 import { mockClue } from 'mock/clues';
+// Types
+import type { Item } from 'types/tdr';
 // Utils
 import { getRandomItem } from 'utils/helpers';
 // Internal
@@ -33,8 +35,17 @@ export function mockNewWord(wordLengths: WordLength[]): SubmitWordPayload {
   };
 }
 
-export function mockGuess(itemsIds: string[], beginsWith: string, endsWith: string): string[] {
-  const options = [...itemsIds, beginsWith, endsWith, beginsWith, endsWith, beginsWith, endsWith, beginsWith];
+export function mockGuess(itemsIds: Item[], beginsWith: string, endsWith: string): string[] {
+  const options = [
+    ...itemsIds.map((item) => item.id),
+    beginsWith,
+    endsWith,
+    beginsWith,
+    endsWith,
+    beginsWith,
+    endsWith,
+    beginsWith,
+  ];
 
   const first = sample(options) || options[0];
   const second = sample(options.filter((option) => option !== first)) || options[2];

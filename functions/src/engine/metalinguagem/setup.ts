@@ -7,6 +7,7 @@ import utils from '../../utils';
 import { GAME_NAMES } from '../../utils/constants';
 import { orderBy } from 'lodash';
 import { getAchievements } from './helpers';
+import type { Item } from '../../types/tdr';
 
 /**
  * Setup
@@ -66,7 +67,7 @@ export const prepareWordCreationPhase = async (
   const round = utils.helpers.increaseRound(state.round);
   const creatorId = utils.players.getActivePlayer(state.turnOrder, round.current);
 
-  const storeItems: string[] = store.items;
+  const storeItems: Item[] = store.items;
 
   const currentRound = round.current;
 
@@ -86,8 +87,8 @@ export const prepareWordCreationPhase = async (
         round,
         creatorId,
         items,
-        beginsWith: targets[0],
-        endsWith: targets[1],
+        beginsWith: targets[0].id,
+        endsWith: targets[1].id,
       },
       stateCleanup: ['mostVotedItems', 'guessPlayersPerItem'],
     },
@@ -142,21 +143,18 @@ export const prepareResultsPhase = async (
     .reorderGameOrder(state.turnOrder, creatorId)
     .filter((id: string) => id !== creatorId);
 
-  const guessPlayersPerItem = turnOrderWithoutCreator.reduce(
-    (acc: Record<string, string[]>, id: UID) => {
-      const player = players[id];
-      const [guess1, guess2] = player.guesses as [string, string];
-      if (!acc[guess1]) acc[guess1] = [];
-      acc[guess1].push(id);
-      if (!acc[guess2]) acc[guess2] = [];
-      acc[guess2].push(id);
+  const guessPlayersPerItem = turnOrderWithoutCreator.reduce((acc: Record<string, string[]>, id: UID) => {
+    const player = players[id];
+    const [guess1, guess2] = player.guesses as [string, string];
+    if (!acc[guess1]) acc[guess1] = [];
+    acc[guess1].push(id);
+    if (!acc[guess2]) acc[guess2] = [];
+    acc[guess2].push(id);
 
-      return acc;
-    },
-    {},
-  );
+    return acc;
+  }, {});
 
-  const answer: string[] = [state.beginsWith, state.endsWith];
+  const answer: UID[] = [state.beginsWith, state.endsWith];
 
   // Get ordered most voted things, if there's a tie for anything, the turn order is used
   const guessVotes = orderBy(

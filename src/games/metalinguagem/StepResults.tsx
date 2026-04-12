@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import { Badge, Flex, Tooltip } from 'antd';
 // Types
 import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
+import type { Item } from 'types/tdr';
 // Icons
 import { SkullIcon } from 'icons/SkullIcon';
 import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
@@ -29,7 +30,7 @@ type StepResultsProps = {
   players: GamePlayers;
   creator: GamePlayer;
   turnOrder: UID[];
-  items: string[];
+  items: Item[];
   wordLengths: WordLength[];
   newWord: string;
   guessPlayersPerItem: Record<string, UID[]>;
@@ -201,6 +202,7 @@ export function StepResults({
         selectedItems={[]}
         targets={[beginsWith, endsWith]}
         results={{ guessPlayersPerItem, players }}
+        displayRealNames
       />
 
       <HostNextPhaseButton

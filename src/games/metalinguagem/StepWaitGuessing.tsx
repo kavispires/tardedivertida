@@ -1,5 +1,6 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
+import type { Item } from 'types/tdr';
 // Components
 import { Card } from 'components/cards/Card';
 import { Translate } from 'components/language/Translate';
@@ -16,7 +17,7 @@ type StepWaitGuessingProps = {
   players: GamePlayers;
   creator: GamePlayer;
   turnOrder: UID[];
-  items: string[];
+  items: Item[];
   wordLengths: WordLength[];
   newWord: string;
   beginsWith: string;

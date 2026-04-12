@@ -1,4 +1,3 @@
-import type { Item } from '../../types/tdr';
 import type { MetalinguagemOptions, ResourceData } from './types';
 import utils from '../../utils';
 import { ITEMS_PER_ROUND, MAX_ROUNDS } from './constants';
@@ -16,6 +15,12 @@ export const getResourceData = async (options: MetalinguagemOptions): Promise<Re
   const dreamItems = await utils.tdr.getItems(Math.ceil(itemsNeeded / 0.7), {
     allowNSFW,
     decks: ['dream'],
+    cleanUp: (item) => {
+      return {
+        id: item.id,
+        name: item.name,
+      };
+    },
   });
 
   const metaItems = await utils.tdr.getItems(Math.ceil(itemsNeeded / 0.3), {
@@ -24,9 +29,6 @@ export const getResourceData = async (options: MetalinguagemOptions): Promise<Re
   });
 
   return {
-    items: utils.game.getRandomItems(
-      [...dreamItems, ...metaItems].map((item: Item) => item.id),
-      itemsNeeded,
-    ),
+    items: utils.game.getRandomItems([...dreamItems, ...metaItems], itemsNeeded),
   };
 };

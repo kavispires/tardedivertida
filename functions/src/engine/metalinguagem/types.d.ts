@@ -1,3 +1,4 @@
+import type { Item } from '../../types/tdr';
 import type { METALINGUAGEM_ACHIEVEMENTS, METALINGUAGEM_ACTIONS, WORD_LENGTH_STATUS } from './constants';
 
 export type MetalinguagemOptions = {
@@ -10,11 +11,11 @@ export type MetalinguagemOptions = {
 export type MetalinguagemAchievement = keyof typeof METALINGUAGEM_ACHIEVEMENTS;
 
 export type ResourceData = {
-  items: UID[];
+  items: Item[];
 };
 
 export type GalleryEntry = {
-  itemsIds: UID[];
+  itemsIds: Item[];
   name: string;
   names: string[];
   correct: boolean;

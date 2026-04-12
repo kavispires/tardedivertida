@@ -1,5 +1,6 @@
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
+import type { Item } from 'types/tdr';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useMock } from 'hooks/useMock';
@@ -22,7 +23,7 @@ import { WordLengths } from './components/WordLengths';
 type StepGuessItemsProps = {
   players: GamePlayers;
   user: GamePlayer;
-  items: string[];
+  items: Item[];
   wordLengths: WordLength[];
   newWord: string;
   onSubmitGuesses: (payload: SubmitGuessesPayload) => void;
