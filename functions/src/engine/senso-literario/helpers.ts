@@ -100,15 +100,15 @@ export function buildRanking(store: FirebaseStoreData, players: Players, sequenc
       if (!entry) {
         entry = {
           patternId,
-          playersIsd: [],
+          playersIds: [],
         };
         gallery.cards.push(entry);
       }
-      entry.playersIsd.push(player.id);
+      entry.playersIds.push(player.id);
     } else {
       gallery.cards.push({
         patternId,
-        playersIsd: [player.id],
+        playersIds: [player.id],
       });
     }
 
@@ -157,7 +157,7 @@ export function buildRanking(store: FirebaseStoreData, players: Players, sequenc
     }
   });
 
-  gallery.cards = orderBy(gallery.cards, [(card) => card.playersIsd.length, 'patternId'], ['desc', 'asc']);
+  gallery.cards = orderBy(gallery.cards, [(card) => card.playersIds.length, 'patternId'], ['desc', 'asc']);
 
   return {
     gallery,

@@ -9,7 +9,7 @@ export type Pattern = {
 export type GalleryEntry = {
   sequence: UID[];
   cards: {
-    playersIsd: UID[];
+    playersIds: UID[];
     patternId: UID;
   }[];
 };
