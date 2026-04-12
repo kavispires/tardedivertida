@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "labirinto-secreto",
-  "version": "3.1.17",
+  "version": "3.1.19",
   "release": "stable",
   "releaseDate": "2023-06-24",
   "available": true,
@@ -103,6 +103,22 @@
         },
         {
           "label": "Items (Icons)",
+          "value": true
+        }
+      ]
+    },
+    {
+      "key": "includePrivateTrees",
+      "kind": "switch",
+      "label": "Private Trees",
+      "description": "Possibly include easter eggs tree cards (like Flávia, or Maris)",
+      "values": [
+        {
+          "label": "Exclude",
+          "value": false
+        },
+        {
+          "label": "Include",
           "value": true
         }
       ]

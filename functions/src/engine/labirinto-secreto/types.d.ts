@@ -14,6 +14,10 @@ export type LabirintoSecretoGameOptions = {
    * Possibly include nsfw items
    */
   nsfw?: boolean;
+  /**
+   * Include private easter eggs trees (like Flávia or Maris)
+   */
+  includePrivateTrees?: boolean;
 };
 
 export type ResourceData = {
