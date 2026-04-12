@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import { Collapse, type CollapseProps } from 'antd';
 // Components
 import { Translate } from 'components/language/Translate';
-import { Instruction } from 'components/text/Instruction';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 
 type CollapsibleRuleProps = {
   /**
@@ -32,12 +32,15 @@ export function CollapsibleRule({ children, title, ghost = true, ...rest }: Coll
   ];
 
   return (
-    <Instruction contained>
+    <RuleInstruction
+      type="tip"
+      style={{ padding: 0 }}
+    >
       <Collapse
         ghost={ghost}
         items={panels}
         {...rest}
       />
-    </Instruction>
+    </RuleInstruction>
   );
 }

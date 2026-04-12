@@ -16,6 +16,7 @@ import { useRedirectToNewGame } from 'hooks/useRedirectToNewGame';
 import { HOST_API, HOST_API_ACTIONS } from 'services/adapters';
 // Components
 import { GameStrip } from 'components/general/GameBanner';
+import { Popconfirm } from 'components/general/Popconfirm';
 import { LanguageSwitch } from 'components/language/LanguageSwitch';
 import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -315,15 +316,34 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
                 vertical
                 className="ml-4"
               >
-                <Button
-                  block
-                  onClick={onConfirmGame}
-                >
-                  <Translate
-                    pt="Ir para o jogo"
-                    en="Go to game"
-                  />
-                </Button>
+                {previousGameId && !wasRedirectSuccessful ? (
+                  <Popconfirm
+                    title={
+                      <Translate
+                        pt="Tem certeza que deseja ir para o jogo sem redirecionar os jogadores?"
+                        en="Are you sure you want to go to the game without redirecting the players?"
+                      />
+                    }
+                    onConfirm={onConfirmGame}
+                  >
+                    <Button block>
+                      <Translate
+                        pt="Ir para o jogo"
+                        en="Go to game"
+                      />
+                    </Button>
+                  </Popconfirm>
+                ) : (
+                  <Button
+                    block
+                    onClick={onConfirmGame}
+                  >
+                    <Translate
+                      pt="Ir para o jogo"
+                      en="Go to game"
+                    />
+                  </Button>
+                )}
 
                 <Button
                   block

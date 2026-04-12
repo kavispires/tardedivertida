@@ -4,7 +4,6 @@ import { BoxBlankIcon, SecurityIcon, TraitorIcon } from 'icons/collection';
 import { WireIcon } from 'icons/WireIcon';
 // Components
 import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
-// Icons
 
 export function TerroristHighlight({ children }: HighlightProps) {
   return (
@@ -28,11 +27,12 @@ export function AgentHighlight({ children }: HighlightProps) {
   );
 }
 
-export function BombHighlight({ children }: HighlightProps) {
+export function BombHighlight({ children, ...rest }: HighlightProps) {
   return (
     <MetricHighlight
       icon={<BombIcon />}
       iconPlacement="before"
+      {...rest}
     >
       {children}
     </MetricHighlight>

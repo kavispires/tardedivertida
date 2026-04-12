@@ -149,7 +149,10 @@ export const prepareExaminationPhase = async (
 
   // Remove the card from the player
   if (cutsLength > 0 && targetPlayerId) {
-    const latestCut = status.cut[cutsLength - 1];
+    const latestCut = Object.values(status.cut).at(-1);
+    if (!latestCut) {
+      throw new Error('No latest cut found despite cutsLength > 0');
+    }
     players[targetPlayerId].hand = players[targetPlayerId].hand.filter(
       (card: TimeBombCard) => card.id !== latestCut.id,
     );

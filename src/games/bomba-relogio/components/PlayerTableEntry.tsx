@@ -1,9 +1,11 @@
 import clsx from 'clsx';
+import { motion } from 'motion/react';
 // Ant Design Resources
 import { Button, Flex, Switch, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Utils
+import { getAnimation } from 'utils/animations';
 import { pluralize } from 'utils/helpers';
 // Icons
 import { SecurityIcon, TraitorIcon } from 'icons/collection';
@@ -63,9 +65,12 @@ export function PlayerTableEntry({
               />
             }
           >
-            <span style={{ color: 'black' }}>
-              <BombHighlight>{player.declarations.bombs ?? 0}</BombHighlight>
-            </span>
+            <motion.div
+              style={{ color: 'black' }}
+              {...getAnimation('tada', { infinite: true })}
+            >
+              <BombHighlight type="negative">{player.declarations.bombs ?? 0}</BombHighlight>
+            </motion.div>
           </Tooltip>
         )}
       </Flex>

@@ -58,6 +58,13 @@ export function StepExamine({
   const playersList = useMemo(() => sortPlayers(players), [players]);
   const targetPlayer = currentTargetPlayerId ? players[currentTargetPlayerId] : null;
 
+  const totalWiresDeclared = useMemo(() => {
+    return playersList.reduce((acc, player) => {
+      return acc + (player.declarations.wires ?? 0);
+    }, 0);
+  }, [playersList]);
+  const someoneIsLying = neededWires !== totalWiresDeclared;
+
   return (
     <Step
       fullWidth
@@ -82,6 +89,15 @@ export function StepExamine({
               <br />
               Se você é um terrorista, você quer enganar os agentes para que eles revelem a bomba ou não
               encontrar os fios vermelhos até o jogo acabar.
+              {someoneIsLying && (
+                <>
+                  <br />
+                  <strong style={{ color: 'red' }}>
+                    Alguém está mentindo nessa rodada! Faltam {neededWires} fios vermelhos e{' '}
+                    {totalWiresDeclared} foram declarados.
+                  </strong>
+                </>
+              )}
             </>
           }
           en={

@@ -17,7 +17,6 @@ type RoleCard = {
 
 export function RoleCard({ role = 'agent', dataCounts }: RoleCard) {
   const minAgents = dataCounts.wires - dataCounts.terrorists;
-  const minTerrorists = dataCounts.wires - dataCounts.agents;
 
   return (
     <Flex
@@ -46,9 +45,9 @@ export function RoleCard({ role = 'agent', dataCounts }: RoleCard) {
                 <br />
                 Há{' '}
                 <TextHighlight>
-                  {minAgents} ou {dataCounts.terrorists} terroristas
+                  {minAgents} ou {dataCounts.agents} agentes
                 </TextHighlight>{' '}
-                no jogo.
+                no jogo, o resto é terrorista.
               </>
             }
             en={
@@ -59,11 +58,11 @@ export function RoleCard({ role = 'agent', dataCounts }: RoleCard) {
                 agents from cutting the <RedWireHighlight>{dataCounts.wires} red wires</RedWireHighlight> by
                 the end of the final round.
                 <br />
-                There are up to{' '}
+                There are{' '}
                 <TextHighlight>
-                  {minTerrorists} ou {dataCounts.terrorists} terrorists
+                  {minAgents} or {dataCounts.agents} agents
                 </TextHighlight>{' '}
-                in the game.
+                in the game, the rest are terrorists.
               </>
             }
           />
@@ -91,9 +90,9 @@ export function RoleCard({ role = 'agent', dataCounts }: RoleCard) {
                 Your goal is to cut all <RedWireHighlight>{dataCounts.wires} red wires</RedWireHighlight> and
                 never the <BombHighlight>Bomb</BombHighlight>!
                 <br />
-                There are up to{' '}
+                There are{' '}
                 <TextHighlight>
-                  {minAgents} ou {dataCounts.agents} agents
+                  {minAgents} or {dataCounts.agents} agents
                 </TextHighlight>{' '}
                 in the game, the rest are terrorists.
               </>

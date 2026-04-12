@@ -37,12 +37,7 @@ export const handleUpdateTargetPlayer = async (
   });
 };
 
-export const handleSubmitTarget = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  target: Target,
-) => {
+export const handleSubmitTarget = async (gameName: string, gameId: UID, playerId: UID, target: Target) => {
   return await utils.firestore.updateState({
     gameName,
     gameId,
