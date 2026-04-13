@@ -139,7 +139,45 @@ export const preparePlanningPhase = async (
     'available',
     'used',
   );
-  const selectedIds = utils.game.getRandomItems(availableOrthogonalCellsIds, LOCATIONS_PER_ROUND + 1);
+
+  /**
+   * Selects non-adjacent cells from available cells to ensure no two cones are placed orthogonally next to each other.
+   *
+   * @param availableCellIds - Array of available cell IDs
+   * @param desiredCount - Number of cells to select
+   * @returns Array of non-adjacent cell IDs
+   */
+  const selectNonAdjacentCells = (availableCellIds: string[], desiredCount: number): string[] => {
+    const shuffled = utils.game.shuffle([...availableCellIds]);
+    const selected: string[] = [];
+    const remainingPool = new Set(shuffled);
+
+    for (const cellId of shuffled) {
+      // If we've already selected enough cells, stop
+      if (selected.length >= desiredCount) {
+        break;
+      }
+
+      // If this cell is no longer in the available pool (because it was a neighbor of a previously selected cell), skip it
+      if (!remainingPool.has(cellId)) {
+        continue;
+      }
+
+      // Select this cell
+      selected.push(cellId);
+      remainingPool.delete(cellId);
+
+      // Remove all orthogonal neighbors from the remaining pool to prevent adjacent selection
+      const neighbors = utils.toolKits.gridMapUtils.getAdjacentIdsToCellId(city, cellId, 'orthogonal');
+      neighbors.forEach((neighborId) => {
+        remainingPool.delete(neighborId);
+      });
+    }
+
+    return selected;
+  };
+
+  const selectedIds = selectNonAdjacentCells(availableOrthogonalCellsIds, LOCATIONS_PER_ROUND + 1);
   const coneCellIds: Record<string, string> = {};
   selectedIds.forEach((id, index) => {
     coneCellIds[LETTERS[index]] = id;
