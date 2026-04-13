@@ -7,13 +7,8 @@
 
   &--small {
     max-width: 50vw;
-    border-radius: 50px;
+    border-radius: 30vw * 9 / 5;
   }
-}
-
-.forest-container-temp {
-  width: 90vw;
-  height: 10px;
 }
 
 .forest-container-area {
@@ -21,6 +16,7 @@
 
   display: grid;
   justify-items: center;
+  border-radius: get-unit(2);
 }
 
 .forest-container-controls {
@@ -46,7 +42,6 @@
   border-radius: 75px;
   text-transform: capitalize;
   margin: get-unit(1);
-  border: get-unit(2) get-color("green", 5) solid;
 
   &__tree-container {
     position: relative;
@@ -93,15 +88,15 @@
     }
 
     &--segment {
-      background: get-color("teal", 4, 0.85);
+      background: get-color("teal", 4);
     }
 
     &--passed {
-      background: get-color("green", 8, 0.85);
+      background: get-color("green", 8);
     }
 
     &--current {
-      background: get-color("green", 4, 0.85);
+      background: get-color("green", 4);
       border: get-unit(2) get-color("green", 5) solid;
     }
 
@@ -455,8 +450,23 @@
     justify-content: center;
     z-index: 30;
 
-    bottom: 0;
-    transform: translateY(-150%);
+    transform: translateY(-110%);
+  }
+
+  &__player-paths {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &__player-path-line {
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 1 !important;
+    }
   }
 }
 

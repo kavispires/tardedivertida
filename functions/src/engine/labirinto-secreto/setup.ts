@@ -67,7 +67,17 @@ export const prepareSetupPhase = async (
   });
   store.achievements = achievements;
 
-  utils.players.addPropertiesToPlayers(players, { history: {}, mulliganAvailable: true });
+  utils.players.addPropertiesToPlayers(players, { mulliganAvailable: true });
+
+  const listOfPlayers = utils.players.getListOfPlayers(players);
+  listOfPlayers.forEach((player) => {
+    player.history = {};
+    listOfPlayers.forEach((otherPlayer) => {
+      if (player.id !== otherPlayer.id) {
+        player.history[otherPlayer.id] = { 0: [otherPlayer.map[0].treeId] };
+      }
+    });
+  });
 
   // Save
   return {

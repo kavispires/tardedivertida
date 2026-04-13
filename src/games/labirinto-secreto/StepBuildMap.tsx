@@ -96,6 +96,7 @@ export function StepBuildMap({
         hidePassedTreeNames
         players={players}
         playerMapping={playerMapping}
+        hidePathLines
       />
 
       <RuleInstruction type="action">

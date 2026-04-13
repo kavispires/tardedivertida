@@ -1,3 +1,4 @@
+import { orderBy } from 'lodash';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Internal
@@ -142,16 +143,21 @@ export const getPossibleTreeIds = (fullMap: MapSegment[], currentSegment?: MapSe
  * Build dictionary of treeIds to playerIds showing players that have passed through a tree
  * @param players
  * @param activePlayer
+ * @param latestOnly - If true, only show the latest tree visited by each player
  * @returns
  */
-export const buildPlayerMapping = (players: GamePlayers, activePlayer: GamePlayer): PlayerMapping => {
+export const buildPlayerMapping = (
+  players: GamePlayers,
+  activePlayer: GamePlayer,
+  latestOnly = false,
+): PlayerMapping => {
   // Segments that are active for the current player's map
   const currentMap = activePlayer.map as MapSegment[];
   const activeSegments = currentMap.filter((segment) => segment.active);
 
   const playerMapping: PlayerMapping = {};
 
-  if (activeSegments[0].index > 0) {
+  if (!latestOnly && activeSegments[0].index > 0) {
     const startingSegment = currentMap[activeSegments[0].index - 1];
     playerMapping[startingSegment.treeId] = Object.keys(players).filter(
       (playerId) => playerId !== activePlayer.id,
@@ -161,28 +167,51 @@ export const buildPlayerMapping = (players: GamePlayers, activePlayer: GamePlaye
   Object.values(players).forEach((player) => {
     const historyEntry = player.history[activePlayer.id];
     if (historyEntry) {
-      activeSegments.forEach((segment, index, arr) => {
-        const treeIds: TreeId[] = historyEntry[segment.index];
+      if (latestOnly) {
+        // Find the latest segment where the player has actually visited trees
+        // Start from the last active segment and work backwards
+        let latestTreeId: TreeId | null = null;
 
-        if (treeIds) {
-          // The last segment should display every player that has passed through it
-          if (index === arr.length - 1) {
-            treeIds.forEach((treeId) => {
-              if (playerMapping[treeId] === undefined) {
-                playerMapping[treeId] = [];
-              }
-              playerMapping[treeId].push(player.id);
-            });
-          } else {
-            // Any other segment, only show the latest try
-            const lastTreeId = treeIds?.[treeIds.length - 1];
-            if (playerMapping[lastTreeId] === undefined) {
-              playerMapping[lastTreeId] = [];
-            }
-            playerMapping[lastTreeId].push(player.id);
+        for (let i = activeSegments.length - 1; i >= 0; i--) {
+          const segment = activeSegments[i];
+          const treeIds: TreeId[] = historyEntry[segment.index];
+
+          if (treeIds && treeIds.length > 0) {
+            latestTreeId = treeIds[treeIds.length - 1];
+            break;
           }
         }
-      });
+
+        if (latestTreeId !== null) {
+          if (playerMapping[latestTreeId] === undefined) {
+            playerMapping[latestTreeId] = [];
+          }
+          playerMapping[latestTreeId].push(player.id);
+        }
+      } else {
+        activeSegments.forEach((segment, index, arr) => {
+          const treeIds: TreeId[] = historyEntry[segment.index];
+
+          if (treeIds) {
+            // The last segment should display every player that has passed through it
+            if (index === arr.length - 1) {
+              treeIds.forEach((treeId) => {
+                if (playerMapping[treeId] === undefined) {
+                  playerMapping[treeId] = [];
+                }
+                playerMapping[treeId].push(player.id);
+              });
+            } else {
+              // Any other segment, only show the latest try
+              const lastTreeId = treeIds?.[treeIds.length - 1];
+              if (playerMapping[lastTreeId] === undefined) {
+                playerMapping[lastTreeId] = [];
+              }
+              playerMapping[lastTreeId].push(player.id);
+            }
+          }
+        });
+      }
     }
   });
 
@@ -234,4 +263,88 @@ export const buildPlayerMappingForLatestTree = (
   });
 
   return playerMapping;
+};
+
+/**
+ * Player path segment with coordinate information
+ */
+export type PlayerPathSegment = {
+  playerId: UID;
+  color: string;
+  fromTreeId: TreeId;
+  toTreeId: TreeId;
+  fromPoint: Point;
+  toPoint: Point;
+  offset: number;
+};
+
+/**
+ * Calculate player paths with parallel line offsets for visualization
+ * Builds path segments for each player showing their journey through the forest
+ * @param players - All game players
+ * @param activePlayerId - The player whose map is being followed
+ * @param activeSegmentIndex - Current segment index to show paths up to
+ * @returns Array of path segments with coordinates and offsets
+ */
+export const calculatePlayerPaths = (
+  players: GamePlayers,
+  activePlayerId: UID,
+  activeSegmentIndex: number,
+): PlayerPathSegment[] => {
+  const segments: PlayerPathSegment[] = [];
+  const edgeMap: Record<string, { playerIds: UID[]; colors: string[] }> = {};
+
+  // First pass: collect all player paths and group by edges
+  orderBy(Object.values(players), ['avatarId']).forEach((player) => {
+    const historyEntry = player.history?.[activePlayerId];
+    if (!historyEntry) return;
+
+    // Build ordered path for this player up to the active segment
+    const playerPath: TreeId[] = [];
+    for (let i = 0; i <= activeSegmentIndex; i++) {
+      const treeIds: TreeId[] = historyEntry[i];
+      if (treeIds && treeIds.length > 0) {
+        // Take the last tree they tried for this segment
+        const lastTreeId = treeIds[treeIds.length - 1];
+        playerPath.push(lastTreeId);
+      }
+    }
+
+    // Create edges from consecutive tree pairs
+    for (let i = 0; i < playerPath.length - 1; i++) {
+      const fromTreeId = playerPath[i];
+      const toTreeId = playerPath[i + 1];
+      const edgeKey = `${fromTreeId}-${toTreeId}`;
+
+      if (!edgeMap[edgeKey]) {
+        edgeMap[edgeKey] = { playerIds: [], colors: [] };
+      }
+      edgeMap[edgeKey].playerIds.push(player.id);
+      edgeMap[edgeKey].colors.push(player.avatarId);
+    }
+  });
+
+  // Second pass: create segments with offsets
+  Object.entries(edgeMap).forEach(([edgeKey, { playerIds, colors }]) => {
+    const [fromTreeId, toTreeId] = edgeKey.split('-').map(Number);
+    const fromPoint = getPoint(fromTreeId);
+    const toPoint = getPoint(toTreeId);
+
+    const numPlayers = playerIds.length;
+    const baseOffset = numPlayers > 1 ? -(numPlayers - 1) * 1.5 : 0;
+
+    playerIds.forEach((playerId, index) => {
+      segments.push({
+        playerId,
+        color: colors[index],
+        fromTreeId,
+        toTreeId,
+        fromPoint,
+        toPoint,
+        offset: baseOffset + index * 3,
+      });
+    });
+  });
+
+  return orderBy(segments, ['color']);
 };

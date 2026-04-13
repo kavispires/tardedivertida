@@ -31,7 +31,7 @@ export function StepGallery({ players, gallery, user, forest, slideShowConfig }:
 
   const currentPlayer = gallery[slideShowConfig.slideIndex];
   const currentColor = getAvatarColorById(currentPlayer.avatarId);
-  const playerMapping = buildPlayerMapping(players, currentPlayer);
+  const playerMapping = buildPlayerMapping(players, currentPlayer, true);
 
   return (
     <Step fullWidth>

@@ -60,6 +60,7 @@ export function PhaseResults({ state, players, user }: PhaseProps<PhaseResultsSt
           type="block"
           onClose={goToNextStep}
           unskippable
+          duration={4}
         >
           <Instruction>
             <Translate

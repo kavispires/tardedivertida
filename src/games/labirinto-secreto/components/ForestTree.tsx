@@ -95,7 +95,6 @@ export function ForestTree({
       {showPath && isFinalPoint && (
         <IconAvatar
           icon={<FinishLineIcon />}
-          // size="large"
           className={`forest__end forest__end--${finishLineDirection}`}
         />
       )}

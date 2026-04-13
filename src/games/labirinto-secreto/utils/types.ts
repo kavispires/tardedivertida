@@ -157,7 +157,7 @@ export type PlayerMapping = Record<TreeId, UID[]>;
  */
 export type CustomPlayerProps = {
   hand: ExtendedTextCard[];
-  history: Record<string, any>;
+  history: Record<string, number[]>;
   map: MapSegment[];
   mulliganAvailable: boolean;
   mulliganReceived?: boolean;

@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { findLast } from 'lodash';
+import { useMeasure } from 'react-use';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
@@ -22,6 +23,7 @@ import { ViewIf } from 'components/views/ViewIf';
 import type { MapSegment, PlayerMapping, Tree, TreeId } from '../utils/types';
 import { getDirection } from '../utils/helpers';
 import { ForestTree } from './ForestTree';
+import { PlayerPathLines } from './PlayerPathLines';
 
 type ForestProps = {
   forest: Tree[];
@@ -40,6 +42,7 @@ type ForestProps = {
   user?: GamePlayer;
   forestBorderColor?: string;
   playerMapping?: PlayerMapping;
+  hidePathLines?: boolean;
 };
 
 export function Forest({
@@ -53,9 +56,12 @@ export function Forest({
   user = PLACEHOLDER_PLAYER,
   forestBorderColor = 'transparent',
   playerMapping,
+  hidePathLines,
 }: ForestProps) {
   const [screenWidth] = useScreenSize();
   const treeWidth = useCardWidth(7, { gap: 16, minWidth: 60, maxWidth: 100 });
+
+  const [ref, { width }] = useMeasure<HTMLDivElement>();
 
   if (!forest || !map || map.length === 0 || !screenWidth) {
     return (
@@ -83,8 +89,23 @@ export function Forest({
 
   const showPreviousGuesses = !!players && (!actions?.selection || actions.selection.length <= 1);
 
+  // Calculate active segment index for path visualization
+  const activeSegmentIndex = map.filter((segment) => segment.passed).length;
+  const shouldShowPaths =
+    !hidePathLines &&
+    showPreviousGuesses &&
+    !!playerMapping &&
+    !!players &&
+    activeSegmentIndex > 0 &&
+    map[0]?.playerId;
+
   return (
-    <div className="forest-container-area">
+    <div
+      className="forest-container-area"
+      style={{
+        backgroundColor: forestBorderColor,
+      }}
+    >
       <ZoomPanPinchContainer
         maxWidth={forestFullWidth}
         wrapperClassName={clsx('forest-container', size === 'small' && 'forest-container--small')}
@@ -100,7 +121,16 @@ export function Forest({
         <div
           className="forest"
           style={{ borderColor: forestBorderColor }}
+          ref={ref}
         >
+          {shouldShowPaths && players && (
+            <PlayerPathLines
+              players={players}
+              activePlayerId={map[0].playerId}
+              activeSegmentIndex={activeSegmentIndex}
+              forestSize={width}
+            />
+          )}
           {forest.map((tree) => {
             const segment = treeMap?.[tree.id];
 
@@ -141,6 +171,7 @@ export function Forest({
                       )}
                       width={treeWidth}
                     />
+                    {tree.id}
                     {isSelected && currentTreeId !== tree.id && (
                       <>
                         <span
