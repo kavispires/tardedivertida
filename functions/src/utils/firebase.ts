@@ -7,10 +7,10 @@ export const isEmulatingFirestore = () => !!process.env.FIRESTORE_EMULATOR_HOST;
 export const isEmulatingEnvironment = () => isEmulatingFunctions() || isEmulatingFirestore();
 
 if (isEmulatingFunctions()) {
-  console.log('🤡 EMULATING FUNCTIONS:', process.env.FUNCTIONS_EMULATOR)
+  console.log('🤡 EMULATING FUNCTIONS:', process.env.FUNCTIONS_EMULATOR);
 }
 if (isEmulatingFirestore()) {
-console.log('🤡 EMULATING FIRESTORE:', process.env.FIRESTORE_EMULATOR_HOST)
+  console.log('🤡 EMULATING FIRESTORE:', process.env.FIRESTORE_EMULATOR_HOST);
 }
 
 /**
@@ -67,12 +67,7 @@ export function verifyPayload(property?: unknown, propertyName = 'unknown proper
  * @param action
  * @param actionText
  */
-export function validateActionPayload(
-  gameId: UID,
-  gameName: string,
-  action: string,
-  actionText: string,
-) {
+export function validateActionPayload(gameId: UID, gameName: string, action: string, actionText: string) {
   verifyPayload(gameId, 'gameId', actionText);
   verifyPayload(gameName, 'gameName', actionText);
   verifyPayload(action, 'action', actionText);
@@ -85,12 +80,7 @@ export function validateActionPayload(
  * @param playerId
  * @param action
  */
-export function validateSubmitActionPayload(
-  gameId: UID,
-  gameName: string,
-  playerId: UID,
-  action: string,
-) {
+export function validateSubmitActionPayload(gameId: UID, gameName: string, playerId: UID, action: string) {
   const actionText = 'submit action';
   verifyPayload(gameId, 'gameId', actionText);
   verifyPayload(gameName, 'gameName', actionText);
