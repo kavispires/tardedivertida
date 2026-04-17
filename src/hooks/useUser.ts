@@ -18,6 +18,7 @@ export function useUser(players: GamePlayers, state?: GameState): GamePlayer {
   const [user, setUser] = useGlobalState('user');
   const [isReady, setIsReady] = useState(false);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: setUser is from useGlobalState and is recreated each render but is conceptually stable
   useEffect(() => {
     if (userId === VIEWER_ID) {
       setUser({
@@ -31,7 +32,8 @@ export function useUser(players: GamePlayers, state?: GameState): GamePlayer {
     if (userId && players?.[userId]) {
       setUser(players?.[userId]);
     }
-  }, [players, userId, setUser]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [players, userId]);
 
   useEffect(() => {
     if (userId === VIEWER_ID) {
