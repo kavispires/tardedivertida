@@ -10,6 +10,7 @@ import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { CharacterFace, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
+import { keyBy } from 'lodash';
 import utils from '../../utils';
 import { buildRankingAndOutcome } from './helpers';
 
@@ -37,14 +38,14 @@ export const prepareSetupPhase = async (
       revealed: false,
     }));
 
-  const charactersDict = utils.helpers.buildDictionaryFromList(selectedCharacters, 'id');
+  const charactersDict = keyBy(selectedCharacters, 'id');
 
   const gameQuestions = utils.helpers.getRandomItems(
     additionalData.allCards,
     playerCount * QUESTIONS_PER_PLAYER,
   );
 
-  const questionsDict = utils.helpers.buildDictionaryFromList(gameQuestions, 'id');
+  const questionsDict = keyBy(gameQuestions, 'id');
 
   // Deal questions to players
   utils.playerHand.dealDeck(players, Object.keys(questionsDict), QUESTIONS_PER_PLAYER, 'questions');

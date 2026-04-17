@@ -5,6 +5,7 @@ import { GAME_NAMES } from '../../utils/constants';
 import type { FirebaseStateData, FirebaseStoreData, Good, ResourceData, WarehouseSlot } from './types';
 import type { BossIdeaCard } from '../../types/tdr';
 // Utils
+import { keyBy } from 'lodash';
 import utils from '../../utils';
 // Internal
 import {
@@ -39,7 +40,7 @@ export const prepareSetupPhase = async (
   const goods = utils.helpers.getRandomItems(resourceData.goodsIds, TOTAL_GOODS + OUT_OF_STOCK_GOODS);
   const placeableGoods = utils.helpers.getRandomItems(goods, TOTAL_GOODS);
   const extraGoods = goods.filter((good) => !placeableGoods.includes(good));
-  const goodsDict = utils.helpers.buildDictionaryFromList(
+  const goodsDict = keyBy(
     goods.map((goodId) => {
       const good: Good = {
         id: goodId,
@@ -52,7 +53,7 @@ export const prepareSetupPhase = async (
   );
 
   // Build grid and make center slot available to start the game
-  const warehouseGrid = utils.helpers.buildDictionaryFromList(
+  const warehouseGrid = keyBy(
     utils.helpers.makeArray(49).map((id) => {
       const slot: WarehouseSlot = {
         id,

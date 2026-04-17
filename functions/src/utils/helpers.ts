@@ -196,20 +196,6 @@ export const buildBooleanDictionary = <T>(list: T[], key = 'id'): Dictionary<boo
 };
 
 /**
- * Converts an array of objects into a dictionary/map using a specified property as the key.
- * Example: [{id: 'a', name: 'Alice'}] becomes {'a': {id: 'a', name: 'Alice'}}
- * @param list - The array of objects to convert
- * @param keyProperty - The property name to use as dictionary keys
- * @returns A dictionary with the specified property as keys
- */
-export const buildDictionaryFromList = <T>(list: T[], keyProperty = 'id'): Record<string, T> =>
-  list.reduce((acc: Record<string, T>, item: T) => {
-    const key = (item as PlainObject)[keyProperty];
-    acc[key] = item;
-    return acc;
-  }, {});
-
-/**
  * Simulates a delay during development when running in emulation environment.
  * Useful for testing loading states and async behavior.
  * @param duration - The delay duration in milliseconds

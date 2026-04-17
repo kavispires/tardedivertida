@@ -1,6 +1,7 @@
 // Constants
 import { GENRES, MAX_ROUNDS, TESTE_DE_ELENCO_ACHIEVEMENTS, TESTE_DE_ELENCO_PHASES } from './constants';
 // Utils
+import { keyBy } from 'lodash';
 import utils from '../../utils';
 import type {
   ActingRole,
@@ -86,9 +87,7 @@ export const buildMovie = (players: Players, store: FirebaseStoreData, movieProp
   };
 
   genre.roles.forEach((role) => {
-    const candidates = utils.helpers.buildDictionaryFromList(
-      new Array(role.pool).fill(0).map(() => store.actors.pop()),
-    );
+    const candidates = keyBy(new Array(role.pool).fill(0).map(() => store.actors.pop()));
     movie.roles[role.id] = {
       id: role.id,
       title: role.title,

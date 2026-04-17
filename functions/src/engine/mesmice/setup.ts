@@ -5,6 +5,7 @@ import { GAME_NAMES } from '../../utils/constants';
 import type { Item, ObjectFeatureCard } from '../../types/tdr';
 import type { ExtendedObjectFeatureCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
+import { keyBy } from 'lodash';
 import utils from '../../utils';
 // Internal
 import { calculateFinalGroupScore, determineOutcome, getAchievements } from './helpers';
@@ -79,9 +80,7 @@ export const prepareClueWritingPhase = async (
       },
       state: {
         phase: MESMICE_PHASES.CLUE_WRITING,
-        features: utils.helpers.buildDictionaryFromList(
-          features.map((feature: ObjectFeatureCard) => ({ ...feature, eliminated: false })),
-        ),
+        features: keyBy(features.map((feature: ObjectFeatureCard) => ({ ...feature, eliminated: false }))),
         players,
         outcome: OUTCOME.NEW,
         groupScore: 0,

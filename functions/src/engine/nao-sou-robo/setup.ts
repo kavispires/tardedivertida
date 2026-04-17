@@ -13,6 +13,7 @@ import {
 } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Utils
+import { keyBy } from 'lodash';
 import utils from '../../utils';
 import { calculateResults, distributeCards, getAchievements } from './helpers';
 
@@ -175,7 +176,7 @@ export const prepareAreYouARobotPhase = async (
     });
   });
 
-  const options = utils.helpers.buildDictionaryFromList([...playerCards, ...botCards]);
+  const options = keyBy([...playerCards, ...botCards]);
 
   return {
     update: {

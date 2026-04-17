@@ -1,3 +1,4 @@
+import { keyBy } from 'lodash';
 import utils from '../../utils';
 import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
 import { MEGAMIX_PHASES, SIDES } from './constants';
@@ -187,7 +188,7 @@ export const prepareGameOverPhase = async (
     .getListOfPlayers(players)
     .filter((player) => state.winningTeam.includes(player.id));
 
-  const winners = utils.players.determineWinners(utils.helpers.buildDictionaryFromList(winningPlayers));
+  const winners = utils.players.determineWinners(keyBy(winningPlayers));
   const fairWinners = utils.players.determineWinners(players);
 
   calculateAllAchievements(players, store);
