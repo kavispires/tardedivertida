@@ -23,9 +23,7 @@ export const prepareSetupPhase = async (
   const actors = sampleSize(additionalData.allActors, TOTAL_ACTORS);
 
   // Get character traits
-  const traits = utils.helpers
-    .getRandomItems(additionalData.allCards, TOTAL_TRAITS)
-    .map((trait) => trait.answer);
+  const traits = sampleSize(additionalData.allCards, TOTAL_TRAITS).map((trait) => trait.answer);
 
   const achievements = utils.achievements.setup(players, {
     alone: 0,

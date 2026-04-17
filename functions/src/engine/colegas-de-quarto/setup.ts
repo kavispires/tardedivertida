@@ -7,7 +7,7 @@ import {
   WORDS_IN_POOL,
 } from './constants';
 import { GAME_NAMES, SEPARATOR } from '../../utils/constants';
-import { shuffle } from 'lodash';
+import { shuffle, uniq } from 'lodash';
 // Types
 import type { BoardEntry, FirebaseStateData, FirebaseStoreData, PastClues, ResourceData } from './types';
 // Utils
@@ -115,7 +115,7 @@ export const prepareClueWritingPhase = async (
     selectedWordsIds.push(...(player.selectedWordsIds ?? []));
   });
   const totalWords = SETTINGS_PER_PLAYER_COUNT[playerCount]?.totalWords ?? 13;
-  const cleanupIds = shuffle(utils.helpers.removeDuplicates(selectedWordsIds)).slice(0, totalWords);
+  const cleanupIds = shuffle(uniq(selectedWordsIds)).slice(0, totalWords);
   const playerOrder = shuffle([
     TARGET_ID,
     ...utils.players

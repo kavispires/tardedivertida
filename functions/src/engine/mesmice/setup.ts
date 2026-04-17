@@ -1,7 +1,7 @@
 // Constants
 import { GAME_DIFFICULTY, ITEMS_PER_PLAYER, MESMICE_PHASES, OUTCOME, SCORING } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
-import { keyBy } from 'lodash';
+import { keyBy, sampleSize } from 'lodash';
 // Types
 import type { Item, ObjectFeatureCard } from '../../types/tdr';
 import type { ExtendedObjectFeatureCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
@@ -65,9 +65,9 @@ export const prepareClueWritingPhase = async (
   // Distribute items
   utils.players.dealItemsToPlayers(players, store.items, ITEMS_PER_PLAYER, 'items');
   // Distribute target to each player
-  const features = store.features;
+  const features: ExtendedObjectFeatureCard[] = store.features;
   utils.players.getListOfPlayers(players).forEach((player) => {
-    player.target = utils.helpers.getRandomItem<ExtendedObjectFeatureCard>(features).id;
+    player.target = sampleSize(features, 1)[0].id;
   });
 
   utils.players.unReadyPlayers(players);

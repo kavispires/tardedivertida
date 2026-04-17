@@ -1,11 +1,10 @@
 // Constants
 import { MEDIDAS_NAO_EXATAS_ACHIEVEMENTS, MEDIDAS_NAO_EXATAS_PHASES } from './constants';
-import { orderBy } from 'lodash';
+import { orderBy, uniq } from 'lodash';
 // Utils
 import utils from '../../utils';
 import type { TextCard } from '../../types/tdr';
 import type { FirebaseStoreData, GalleryEntry, Guess, MedidasNaoExatasAchievement } from './types';
-import { removeDuplicates } from '../../utils/helpers';
 
 /**
  * Determine the next phase based on the current one
@@ -54,7 +53,7 @@ export const determineResults = (
   const guessesByTimestamp: Record<number, Guess[]> = {};
   utils.players.getListOfPlayers(players).forEach((player) => {
     if (player.id !== presenterId) {
-      const guesses: Guess[] = removeDuplicates(player.guesses);
+      const guesses: Guess[] = uniq(player.guesses);
 
       guesses.forEach((guess, index) => {
         // Normalize timestamp to 3 seconds intervals

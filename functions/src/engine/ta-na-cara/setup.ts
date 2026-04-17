@@ -31,19 +31,16 @@ export const prepareSetupPhase = async (
   // Build characters list
   const charactersCount = Math.max(playerCount * 2, MINIMUM_SUSPECTS);
 
-  const selectedCharacters: CharacterFace[] = utils.helpers
-    .getRandomItems(additionalData.allSuspects, charactersCount)
-    .map((character) => ({
+  const selectedCharacters: CharacterFace[] = sampleSize(additionalData.allSuspects, charactersCount).map(
+    (character) => ({
       ...character,
       revealed: false,
-    }));
+    }),
+  );
 
   const charactersDict = keyBy(selectedCharacters, 'id');
 
-  const gameQuestions = sampleSize(
-    additionalData.allCards,
-    playerCount * QUESTIONS_PER_PLAYER,
-  );
+  const gameQuestions = sampleSize(additionalData.allCards, playerCount * QUESTIONS_PER_PLAYER);
 
   const questionsDict = keyBy(gameQuestions, 'id');
 

@@ -294,15 +294,13 @@ export const getData = async (
 
         variant: 'cards',
         data: {
-          cards: utils.helpers
-            .getRandomItems(Object.entries(arteGroup1.cards), 3)
-            .reduce((acc: TextCard[], [id, text]) => {
-              acc.push({
-                id,
-                text,
-              });
-              return acc;
-            }, []),
+          cards: sampleSize(Object.entries(arteGroup1.cards), 3).reduce((acc: TextCard[], [id, text]) => {
+            acc.push({
+              id,
+              text,
+            });
+            return acc;
+          }, []),
         },
       });
     }
@@ -315,15 +313,13 @@ export const getData = async (
 
         variant: 'drawings',
         data: {
-          cards: utils.helpers
-            .getRandomItems(Object.entries(arteGroup2.cards), 3)
-            .reduce((acc: TextCard[], [id, text]) => {
-              acc.push({
-                id,
-                text,
-              });
-              return acc;
-            }, []),
+          cards: sampleSize(Object.entries(arteGroup2.cards), 3).reduce((acc: TextCard[], [id, text]) => {
+            acc.push({
+              id,
+              text,
+            });
+            return acc;
+          }, []),
         },
       });
     }

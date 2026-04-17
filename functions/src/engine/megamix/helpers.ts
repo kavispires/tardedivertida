@@ -3,7 +3,7 @@ import utils from '../../utils';
 import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
 import { buildDecks } from '../na-rua-do-medo/helpers';
 import type { HouseCard } from '../na-rua-do-medo/types';
-import { cloneDeep, orderBy, random, sample, sampleSize, shuffle } from 'lodash';
+import { cloneDeep, orderBy, random, sample, sampleSize, shuffle, uniq } from 'lodash';
 import {
   MEGAMIX_ACHIEVEMENTS,
   MEGAMIX_PHASES,
@@ -736,9 +736,7 @@ const buildPolemicaDaVezOptions = (players: Players) => {
     .makeArray(playerCount, 1)
     .map((v) => Math.round((v * 100) / playerCount));
 
-  return orderBy([
-    ...new Set([0, correctPercentage, 100, ...sampleSize(possibleLikes, 3)]),
-  ]);
+  return orderBy([...new Set([0, correctPercentage, 100, ...sampleSize(possibleLikes, 3)])]);
 };
 
 const buildRetratoFaladoOptions = (players: Players, track: Track) => {
@@ -911,13 +909,10 @@ const buildPartyOptions = (players: Players, language: Language) => {
         card: {
           id: option.playerId,
           text: option.text,
-          options: utils.helpers.removeDuplicates(
+          options: uniq(
             shuffle([
               option.playerId,
-              ...sampleSize(
-                utils.players.getListOfPlayersIds(players, false, [option.playerId]),
-                2,
-              ),
+              ...sampleSize(utils.players.getListOfPlayersIds(players, false, [option.playerId]), 2),
             ]),
           ),
         },
@@ -1021,41 +1016,18 @@ export const getNaRuaDoMedoScenario = (playerCount: number) => {
     ...sampleSize(decks.jackpotDeck, 1),
   ]);
   // 2) 2 monsters, 2 low card, 1 medium cards
-  scenarios.push([
-    ...sampleSize(horrorDeck, 2),
-    ...sampleSize(lowCandy, 2),
-    ...sampleSize(mediumCandy, 1),
-  ]);
+  scenarios.push([...sampleSize(horrorDeck, 2), ...sampleSize(lowCandy, 2), ...sampleSize(mediumCandy, 1)]);
   // 3) 3 monsters, 2 medium cards
-  scenarios.push([
-    ...sampleSize(horrorDeck, 3),
-    ...sampleSize(mediumCandy, 2),
-  ]);
+  scenarios.push([...sampleSize(horrorDeck, 3), ...sampleSize(mediumCandy, 2)]);
   // 4) 1 monster, 4 low cards
-  scenarios.push([
-    ...sampleSize(horrorDeck, 1),
-    ...sampleSize(lowCandy, 4),
-  ]);
+  scenarios.push([...sampleSize(horrorDeck, 1), ...sampleSize(lowCandy, 4)]);
   // 5) 2 monsters, 1 low, 2 high
-  scenarios.push([
-    ...sampleSize(horrorDeck, 2),
-    ...sampleSize(lowCandy, 1),
-    ...sampleSize(highCandy, 2),
-  ]);
+  scenarios.push([...sampleSize(horrorDeck, 2), ...sampleSize(lowCandy, 1), ...sampleSize(highCandy, 2)]);
 
   return {
     scenarios: shuffle(scenarios),
-    home: [
-      sample(decks.horrorDeck),
-      ...sampleSize(
-        [...decks.candyDeck, sample(decks.jackpotDeck)],
-        2,
-      ),
-    ],
-    costumes: sampleSize(
-      utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES),
-      playerCount,
-    ),
+    home: [sample(decks.horrorDeck), ...sampleSize([...decks.candyDeck, sample(decks.jackpotDeck)], 2)],
+    costumes: sampleSize(utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES), playerCount),
     kids: sampleSize(utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES), 5),
   };
 };

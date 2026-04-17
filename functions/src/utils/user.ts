@@ -1,5 +1,5 @@
+import { uniq } from 'lodash';
 import { getUserRef } from './firestore';
-import { removeDuplicates } from './helpers';
 import { getListOfPlayers } from './players-utils';
 
 /**
@@ -648,7 +648,7 @@ export const saveGameToUsers = async ({
 
     if (user) {
       // Name: keep latest name as the last one in the list
-      user.names = removeDuplicates([...(user?.names ?? []), name].reverse()).reverse();
+      user.names = uniq([...(user?.names ?? []), name].reverse()).reverse();
       // Avatars: Add one to the user avatar
       if (user.avatars[avatarId] === undefined) {
         user.avatars[avatarId] = 0;

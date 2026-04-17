@@ -201,9 +201,9 @@ export const simulateBotCards = (players: Players, table: ImageCard[]) => {
   if (bots[0] && singleMatchedCardIds.length > 1) {
     const bot = bots[0];
 
-    bot.cards = utils.helpers
-      .getRandomItems(singleMatchedCardIds, Math.min(singleMatchedCardIds.length, playersCount))
-      .reduce((acc: Dictionary<PlayerCard>, cardId: UID) => {
+    bot.cards = utils.helpers;
+    sampleSize(singleMatchedCardIds, Math.min(singleMatchedCardIds.length, playersCount)).reduce(
+      (acc: Dictionary<PlayerCard>, cardId: UID) => {
         const entry: PlayerCard = {
           cardId,
           used: false,
@@ -214,7 +214,9 @@ export const simulateBotCards = (players: Players, table: ImageCard[]) => {
         acc[cardId] = entry;
 
         return acc;
-      }, {});
+      },
+      {},
+    );
   }
 
   // METHOD BOT B: matches with the most matched cards (?)

@@ -2,6 +2,7 @@ import type { IdadeDaPredaOptions, ResourceData } from './types';
 import utils from '../../utils';
 import type { Item } from '../../types/tdr';
 import { AGE_1_ITEMS_COUNT, ITEMS_PER_PLAYER_PER_AGE, NEW_AGES_COUNT, PLAYER_COUNTS } from './constants';
+import { sampleSize } from 'lodash';
 
 /**
  * Example data structure for game data
@@ -45,15 +46,15 @@ export const getResourceData = async (options: IdadeDaPredaOptions): Promise<Res
   // Get the table count for each area plus items per player as if there were 10 players
   const age1Quantity = AGE_1_ITEMS_COUNT + PLAYER_COUNTS.MAX * ITEMS_PER_PLAYER_PER_AGE;
   const otherAgesQuantity = NEW_AGES_COUNT + PLAYER_COUNTS.MAX * ITEMS_PER_PLAYER_PER_AGE;
-  const selectedAge1 = utils.helpers.getRandomItems<Item>(allAge1, age1Quantity);
+  const selectedAge1 = sampleSize(allAge1, age1Quantity);
 
   return {
     0: selectedAge1.slice(0, AGE_1_ITEMS_COUNT),
     1: selectedAge1.slice(AGE_1_ITEMS_COUNT),
-    2: utils.helpers.getRandomItems<Item>(allAge2, otherAgesQuantity),
-    3: utils.helpers.getRandomItems<Item>(allAge3, otherAgesQuantity),
-    4: utils.helpers.getRandomItems<Item>(allAge4, otherAgesQuantity),
-    5: utils.helpers.getRandomItems<Item>(allAge5, otherAgesQuantity),
+    2: sampleSize(allAge2, otherAgesQuantity),
+    3: sampleSize(allAge3, otherAgesQuantity),
+    4: sampleSize(allAge4, otherAgesQuantity),
+    5: sampleSize(allAge5, otherAgesQuantity),
   };
 };
 

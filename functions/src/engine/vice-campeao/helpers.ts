@@ -2,7 +2,7 @@
 import utils from '../../utils';
 import { VICE_CAMPEAO_ACHIEVEMENTS, VICE_CAMPEAO_PHASES } from './constants';
 import type { FirebaseStoreData, RunActivity, RunnerCard, ViceCampeaoAchievement } from './types';
-import { cloneDeep, groupBy, orderBy, sampleSize } from 'lodash';
+import { cloneDeep, groupBy, orderBy, sampleSize, uniq } from 'lodash';
 
 /**
  * Determine the next phase based on the current one
@@ -322,9 +322,7 @@ const triggerEffectLastPlace = (endingPositions: Record<UID, number>, targetId: 
 
 const triggerEffectSwap = (endingPositions: Record<UID, number>) => {
   // Get the first place player
-  const orderedPositions = utils.helpers.removeDuplicates(
-    Object.values(endingPositions).sort((a, b) => b - a),
-  );
+  const orderedPositions = uniq(Object.values(endingPositions).sort((a, b) => b - a));
   const firstPlace = Object.keys(endingPositions).filter(
     (key) => endingPositions[key] === orderedPositions[0],
   );
@@ -346,9 +344,7 @@ const triggerEffectSwap = (endingPositions: Record<UID, number>) => {
 
 const triggerEffectTwist = (endingPositions: Record<UID, number>) => {
   // Order values
-  const orderedPositions = utils.helpers.removeDuplicates(
-    Object.values(endingPositions).sort((a, b) => a - b),
-  );
+  const orderedPositions = uniq(Object.values(endingPositions).sort((a, b) => a - b));
   const reversedPositions = [...orderedPositions].reverse();
   // Reverse the order of the positions
   Object.entries(endingPositions).forEach(([playerId, currentPosition]) => {

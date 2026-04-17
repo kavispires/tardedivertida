@@ -1,6 +1,6 @@
 // Constants
 import { GENRES, MAX_ROUNDS, TESTE_DE_ELENCO_ACHIEVEMENTS, TESTE_DE_ELENCO_PHASES } from './constants';
-import { keyBy, sampleSize } from 'lodash';
+import { keyBy, sampleSize, uniq } from 'lodash';
 // Utils
 import utils from '../../utils';
 import type {
@@ -54,7 +54,7 @@ const determineMovieVotes = (
 
   const selectedProps = utils.players.getListOfPlayers(players).reduce((acc: string[], player) => {
     if (player.selectedProps) {
-      return utils.helpers.removeDuplicates(acc.concat(player.selectedProps));
+      return uniq(acc.concat(player.selectedProps));
     }
     return acc;
   }, []);
@@ -253,7 +253,7 @@ export const getAchievements = (store: FirebaseStoreData, players: Players) => {
   }
 
   utils.players.getListOfPlayers(players).forEach((player) => {
-    const unique = utils.helpers.removeDuplicates(player.votes).length;
+    const unique = uniq(player.votes).length;
     utils.achievements.increase(store, player.id, 'actors', unique);
   });
 

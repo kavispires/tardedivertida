@@ -7,6 +7,7 @@ import type { MesmiceOptions, ResourceData } from './types';
 import * as resourceUtils from '../resource';
 import utils from '../../utils';
 import { FEATURES_COUNTS, GAME_COMPLEXITY, GAME_DIFFICULTY, ITEMS_PER_PLAYER } from './constants';
+import { sampleSize } from 'lodash';
 
 /**
  * Get object features and items
@@ -58,10 +59,7 @@ export const getData = async (
     const features: ObjectFeatureCard[] = [];
 
     Object.keys(counts).forEach((level) => {
-      const levelFeatures = utils.helpers.getRandomItems<ObjectFeatureCard>(
-        featuresByLevel[level],
-        counts[level],
-      );
+      const levelFeatures: ObjectFeatureCard[] = sampleSize(featuresByLevel[level], counts[level]);
       features.push(...levelFeatures);
     });
     return features;

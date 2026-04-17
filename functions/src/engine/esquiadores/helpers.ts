@@ -2,7 +2,7 @@
 import utils from '../../utils';
 import { BET_TYPES, ESQUIADORES_ACHIEVEMENTS, ESQUIADORES_PHASES, SKIER_BET_TYPES } from './constants';
 import type { EsquiadoresAchievement, FirebaseStoreData, Lodge } from './types';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, uniq } from 'lodash';
 
 /**
  * Determine the next phase based on the current one
@@ -49,7 +49,7 @@ export const applyBetsToLodges = (players: Players, skierId: UID, lodges: Lodge[
       if (betValue > 0) {
         const lodgeId = Number.parseInt(betKey, 10);
         lodges[lodgeId].playersIds.push(player.id);
-        lodges[lodgeId].playersIds = utils.helpers.removeDuplicates(lodges[lodgeId].playersIds);
+        lodges[lodgeId].playersIds = uniq(lodges[lodgeId].playersIds);
       }
     });
   });

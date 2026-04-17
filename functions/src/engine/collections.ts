@@ -1,3 +1,4 @@
+import { uniq } from 'lodash';
 import utils from '../utils';
 import { DATA_DOCUMENTS } from '../utils/constants';
 import type { PastCategories } from './onda-telepatica/types';
@@ -116,7 +117,7 @@ export const updateCardDataCollection = async (
     Object.entries(data).forEach(([cardId, clues]) => {
       if (clues.length === 0) return;
       if (currentData[cardId]) {
-        currentData[cardId] = utils.helpers.removeDuplicates([...currentData[cardId], ...clues]);
+        currentData[cardId] = uniq([...currentData[cardId], ...clues]);
       } else {
         currentData[cardId] = clues;
       }
@@ -177,7 +178,7 @@ export const updateImageCardsRelationships = async (relationships: ImageCardRela
 
   // Remove duplicates
   Object.entries(parsedRelationships).forEach(([key, relatedIds]) => {
-    parsedRelationships[key] = utils.helpers.removeDuplicates(relatedIds);
+    parsedRelationships[key] = uniq(relatedIds);
   });
 
   // Save

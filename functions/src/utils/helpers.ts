@@ -13,7 +13,7 @@
  */
 
 import { isEmulatingEnvironment } from './firebase';
-import { mean, shuffle } from 'lodash';
+import { mean } from 'lodash';
 
 /**
  * Prints content to console in JSON format when running in emulation environment.
@@ -39,7 +39,6 @@ export function stringRemoveAccents(str: string): string {
 
 /**
  * Gets the last item in an array.
- * @deprecated Use lodash _.last instead
  * @param list - The array to get the last item from
  * @returns The last item in the array
  */
@@ -50,7 +49,6 @@ export const getLastItem = <T>(list: T[]): T => {
 /**
  * Removes a specific item from an array and returns a new array without that item.
  * Does not mutate the original array.
- * @deprecated Use lodash _.without instead
  * @param list - The array to remove an item from
  * @param target - The item to remove
  * @returns A new array with the target item removed
@@ -70,18 +68,7 @@ export const makeArray = (length = 1, startAt = 0): number[] =>
   new Array(length).fill(0).map((e, i) => e + i + startAt);
 
 /**
- * Removes duplicate elements from an array, keeping only unique values.
- * @deprecated Use lodash _.uniq instead
- * @param arr - The array to remove duplicates from
- * @returns A new array with only unique values
- */
-export const removeDuplicates = <T>(arr: T[]): T[] => {
-  return Array.from(new Set(arr));
-};
-
-/**
  * Returns an array of unique items that are present in only one of arrays.
- * @deprecated Use lodash _.xor instead
  * @param array1 - The first array to compare.
  * @param array2 - The second array to compare.
  * @returns An array of unique items that are present in one of the arrays.
@@ -215,47 +202,6 @@ export const forceWait = async (duration = 0) => {
   await new Promise((resolve) => setTimeout(resolve, duration));
 };
 
-// Random & Shuffling
-
-/**
- * Generates a random integer within a specified range (inclusive).
- * @deprecated Use lodash _.random instead
- * @param min - The minimum value (inclusive)
- * @param max - The maximum value (inclusive)
- * @returns A random integer between min and max
- */
-export const getRandomNumber = (min = 0, max = 100): number =>
-  Math.floor(Math.random() * (max - min + 1) + min);
-
-/**
- * Selects a single random item from an array.
- * @deprecated Use lodash _.sample instead
- * @param list - The array to select from
- * @returns A randomly selected item from the array
- */
-export const getRandomItem = <T>(list: T[]): T => {
-  return list[Math.floor(Math.random() * list.length)];
-};
-
-/**
- * Selects multiple random items from an array without replacement.
- * If quantity exceeds array length, returns all items shuffled.
- * @deprecated Use lodash _.sampleSize instead
- * @param list - The array to select from
- * @param quantity - The number of items to select
- * @returns An array of randomly selected items
- */
-export const getRandomItems = <T>(list: T[], quantity = 1): T[] => {
-  const shuffledList = shuffle(list);
-  if (quantity > shuffledList.length) return shuffledList;
-
-  const res = new Array(quantity).fill(null);
-  for (let i = 0; i < res.length; i++) {
-    res[i] = shuffledList[i];
-  }
-  return res;
-};
-
 // Array Navigation
 
 /**
@@ -303,7 +249,6 @@ export const getPreviousItem = (list: Primitive[], currentItem: Primitive, wrap 
 /**
  * Splits an array into chunks of a specified size.
  * The last chunk may be smaller if the array length is not evenly divisible.
- * @deprecated Use lodash _.chunk instead
  * @param list - The array to split
  * @param chunkSize - The size of each chunk
  * @returns A 2D array of chunks

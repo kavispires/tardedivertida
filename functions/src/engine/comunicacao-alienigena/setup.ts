@@ -1,7 +1,7 @@
 // Constants
 import { GAME_NAMES } from '../../utils/constants';
 import { COMUNICACAO_ALIENIGENA_PHASES, ITEMS_COUNT, ITEM_TYPES } from './constants';
-import { shuffle } from 'lodash';
+import { shuffle, uniq } from 'lodash';
 // Types
 import type {
   FirebaseStateData,
@@ -128,12 +128,7 @@ export const prepareAlienSeedingPhase = async (
   const playersCount = utils.players.getPlayerCount(players, false);
 
   const quantityPerPlayer = Math.ceil(attributesWithUnclearValues.length / playersCount);
-  utils.players.dealItemsToPlayers(
-    players,
-    shuffle(attributesWithUnclearValues),
-    quantityPerPlayer,
-    'seeds',
-  );
+  utils.players.dealItemsToPlayers(players, shuffle(attributesWithUnclearValues), quantityPerPlayer, 'seeds');
 
   // For each seed, give only items that have unclear values
   utils.players.getListOfPlayers(players).forEach((player) => {
@@ -380,7 +375,7 @@ export const prepareOfferingsPhase = async (
       .map((item) => item.id);
 
     const recentlyInquiredItemsIds = state.currentInquiry ?? [];
-    const previouslyInquiredItemsIds = utils.helpers.removeDuplicates([
+    const previouslyInquiredItemsIds = uniq([
       ...deterministicStartingItems,
       ...inquiryHistory.flatMap((entry) => entry.objectIds),
     ]);
