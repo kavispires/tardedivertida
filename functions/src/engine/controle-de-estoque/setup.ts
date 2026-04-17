@@ -69,7 +69,7 @@ export const prepareSetupPhase = async (
 
   // Calculate rounds and distribute goods
   // Each player must be the floor supervisor at least once with a minimum of 5 rounds
-  const { gameOrder } = utils.players.buildGameOrder(players);
+  const { gameOrder } = utils.turnOrder.create(players);
   const totalRounds = Math.max(gameOrder.length, MIN_ROUNDS);
 
   // Determine bosses ideas making the First day always the first idea
@@ -120,7 +120,7 @@ export const prepareGoodPlacementPhase = async (
   // Start game if it is the first round or all rounds goods have been placed
   if (!state.roundGoods || state.roundsGoodIndex >= state.roundGoods.length - 1) {
     const currentRound = state.round.current + 1;
-    const supervisorId = utils.players.getActivePlayer(state.gameOrder, currentRound);
+    const supervisorId = utils.turnOrder.getActivePlayerId(state.gameOrder, currentRound);
 
     // Ready everybody but the supervisor
     utils.players.readyPlayers(players, supervisorId);

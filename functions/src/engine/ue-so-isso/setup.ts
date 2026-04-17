@@ -43,7 +43,7 @@ export const prepareSetupPhase = async (
   allWords: TextCard[],
 ): Promise<SaveGamePayload> => {
   // Determine turn order
-  const { gameOrder } = utils.players.buildGameOrder(players);
+  const { gameOrder } = utils.turnOrder.create(players);
 
   // Build deck
   const deck = buildDeck(
@@ -101,8 +101,8 @@ export const prepareWordSelectionPhase = async (
   const round = utils.helpers.increaseRound(state.round);
 
   // Determine guesser based on round and gameOrder
-  const guesserId = utils.players.getActivePlayer(state.gameOrder, round.current);
-  const controllerId = utils.players.getActivePlayer(state.gameOrder, round.current + 1);
+  const guesserId = utils.turnOrder.getActivePlayerId(state.gameOrder, round.current);
+  const controllerId = utils.turnOrder.getActivePlayerId(state.gameOrder, round.current + 1);
 
   // Get current words
   const currentWords = buildCurrentWords(JSON.parse(store.deck[round.current - 1]));

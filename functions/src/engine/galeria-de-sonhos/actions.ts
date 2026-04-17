@@ -5,12 +5,7 @@ import utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
 
-export const handleSubmitWord = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  wordId: string,
-) => {
+export const handleSubmitWord = async (gameName: string, gameId: UID, playerId: UID, wordId: string) => {
   return await utils.firestore.updateStore({
     gameName,
     gameId,
@@ -21,12 +16,7 @@ export const handleSubmitWord = async (
   });
 };
 
-export const handleSubmitCards = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  cardsIds: string[],
-) => {
+export const handleSubmitCards = async (gameName: string, gameId: UID, playerId: UID, cardsIds: string[]) => {
   const cards = cardsIds.reduce((acc: PlainObject, cardId) => {
     acc[cardId] = {
       cardId,
@@ -48,12 +38,7 @@ export const handleSubmitCards = async (
   });
 };
 
-export const handlePlayCard = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  cardId: string,
-) => {
+export const handlePlayCard = async (gameName: string, gameId: UID, playerId: UID, cardId: string) => {
   const actionText = 'play a card';
 
   // Get 'players' from given game session
@@ -138,7 +123,7 @@ export const handlePlayCard = async (
   let currentPlayerId = state.activePlayerId;
   let tries = 0;
   while (!nextActivePlayerId && tries <= playersList.length) {
-    currentPlayerId = utils.players.getNextPlayer(state.gameOrder, currentPlayerId);
+    currentPlayerId = utils.turnOrder.getNextPlayerId(state.gameOrder, currentPlayerId);
     tries += 1;
 
     if (!players[currentPlayerId].fallen && !players[currentPlayerId].skip) {

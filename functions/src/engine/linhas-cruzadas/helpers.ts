@@ -124,7 +124,7 @@ export const assignSlideToPlayers = (
     if (isFirstSlide && gameOrder.length % 2 === 0) {
       currentAlbumSlides = album[albumEntryId].slides;
     } else {
-      albumEntryId = utils.players.getNextPlayer(gameOrder, player.currentPrompt?.id ?? player.id);
+      albumEntryId = utils.turnOrder.getNextPlayerId(gameOrder, player.currentPrompt?.id ?? player.id);
       currentAlbumSlides = album[albumEntryId].slides;
     }
     const newSlide = currentAlbumSlides[currentAlbumSlides.length - 1];

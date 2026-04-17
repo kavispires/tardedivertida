@@ -21,7 +21,7 @@ export const prepareSetupPhase = async (
 ): Promise<SaveGamePayload> => {
   // Determine turn order
   // Determine turn order
-  const { gameOrder, playerIds } = utils.players.buildGameOrder(
+  const { gameOrder, playerIds } = utils.turnOrder.create(
     players,
     store.options.fixedRounds ? DOUBLE_ROUNDS_THRESHOLD : undefined,
   );
@@ -67,7 +67,7 @@ export const prepareTweetSelectionPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Determine active player based on current round
-  const activePlayerId = utils.players.getActivePlayer(store.gameOrder, state.round.current + 1);
+  const activePlayerId = utils.turnOrder.getActivePlayerId(store.gameOrder, state.round.current + 1);
 
   // Modify player
   utils.players.addPropertiesToPlayers(players, {

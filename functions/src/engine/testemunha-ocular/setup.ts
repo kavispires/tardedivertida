@@ -125,7 +125,7 @@ export const prepareQuestionSelectionPhase = async (
 
   utils.achievements.increase(store, witnessId, 'witness', 1);
 
-  const newTurnOrder = utils.players.buildGameOrder(players).gameOrder.filter((id) => id !== witnessId);
+  const newTurnOrder = utils.turnOrder.create(players).gameOrder.filter((id) => id !== witnessId);
 
   const turnOrder = store.turnOrder.length > 0 ? store.turnOrder : newTurnOrder;
 

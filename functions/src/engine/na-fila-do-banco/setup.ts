@@ -15,7 +15,7 @@ export const prepareSetupPhase = async (
 ) => {
   const deck = buildDeck(players);
 
-  const { gameOrder } = utils.players.buildGameOrder(players);
+  const { gameOrder } = utils.turnOrder.create(players);
   const playerCount = utils.players.getPlayerCount(players);
 
   const achievements = utils.achievements.setup(players, {
@@ -58,7 +58,7 @@ export const prepareCardPlayPhase = async (
   players: Players,
 ) => {
   const previousPlayerId = state.activePlayerId ?? null;
-  const nextActivePlayerId = utils.players.getNextPlayer(state.gameOrder, state.activePlayerId ?? '');
+  const nextActivePlayerId = utils.turnOrder.getNextPlayerId(state.gameOrder, state.activePlayerId ?? '');
   const playerCount = utils.players.getPlayerCount(players);
 
   // START ROUND

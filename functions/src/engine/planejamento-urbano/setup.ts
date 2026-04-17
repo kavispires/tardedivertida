@@ -65,7 +65,7 @@ export const prepareSetupPhase = async (
     }
   });
 
-  const { playerIds: gameOrder, gameOrder: totalGameOrder } = utils.players.buildGameOrder(players, 6);
+  const { playerIds: gameOrder, gameOrder: totalGameOrder } = utils.turnOrder.create(players, 6);
 
   const deck = utils.game.getRandomItems(allLocations, totalGameOrder.length * 3).map((l) => l.id);
 
@@ -116,7 +116,7 @@ export const preparePlanningPhase = async (
   const round = utils.helpers.increaseRound(state.round);
 
   // Determine the active planner
-  const architectId = utils.players.getActivePlayer(state.gameOrder, round.current);
+  const architectId = utils.turnOrder.getActivePlayerId(state.gameOrder, round.current);
 
   utils.players.readyPlayers(players, architectId);
 

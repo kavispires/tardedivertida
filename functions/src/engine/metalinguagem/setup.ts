@@ -33,7 +33,7 @@ export const prepareSetupPhase = async (
     status: WORD_LENGTH_STATUS.AVAILABLE,
   }));
 
-  const { gameOrder: turnOrder } = utils.players.buildGameOrder(players);
+  const { gameOrder: turnOrder } = utils.turnOrder.create(players);
 
   // Save
   return {
@@ -65,7 +65,7 @@ export const prepareWordCreationPhase = async (
   utils.players.removePropertiesFromPlayers(players, ['guesses', 'newWord', 'names']);
 
   const round = utils.helpers.increaseRound(state.round);
-  const creatorId = utils.players.getActivePlayer(state.turnOrder, round.current);
+  const creatorId = utils.turnOrder.getActivePlayerId(state.turnOrder, round.current);
 
   const storeItems: Item[] = store.items;
 
@@ -139,8 +139,8 @@ export const prepareResultsPhase = async (
 
   const wordLengths: WordLength[] = state.wordLengths;
 
-  const turnOrderWithoutCreator: UID[] = utils.players
-    .reorderGameOrder(state.turnOrder, creatorId)
+  const turnOrderWithoutCreator: UID[] = utils.turnOrder
+    .reorder(state.turnOrder, creatorId)
     .filter((id: string) => id !== creatorId);
 
   const guessPlayersPerItem = turnOrderWithoutCreator.reduce((acc: Record<string, string[]>, id: UID) => {

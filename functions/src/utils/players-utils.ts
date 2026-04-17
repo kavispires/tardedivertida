@@ -5,15 +5,6 @@ import { throwException } from './firebase';
 // Utils
 import { getRandomUniqueItem, shuffle } from './game-utils';
 
-// Re-export turn order functions for backward compatibility
-export {
-  buildGameOrder,
-  reorderGameOrder,
-  getActivePlayer,
-  getNextPlayer,
-  getPreviousPlayer,
-} from './turn-order-utils';
-
 /**
  * Generates a player id based of their name
  * @param playerName

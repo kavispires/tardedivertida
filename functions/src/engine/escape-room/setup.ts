@@ -32,7 +32,7 @@ export const prepareSetupPhase = async (
   };
 
   // Determine player order (who gets mission #1, #2, etc)
-  const { gameOrder } = utils.players.buildGameOrder(players);
+  const { gameOrder } = utils.turnOrder.create(players);
 
   // TODO: Deal cards
   console.log('Resource Data:', resourceData);

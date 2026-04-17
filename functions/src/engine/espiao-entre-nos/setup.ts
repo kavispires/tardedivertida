@@ -34,7 +34,7 @@ export const prepareSetupPhase = async (
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder } = utils.players.buildGameOrder(players);
+  const { gameOrder } = utils.turnOrder.create(players);
 
   // Save
   return {

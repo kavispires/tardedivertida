@@ -32,7 +32,7 @@ export const prepareSetupPhase = async (
     bestMetrics: 0,
   });
 
-  const { playerIds: turnOrder, gameOrder } = utils.players.buildGameOrder(players, 4);
+  const { playerIds: turnOrder, gameOrder } = utils.turnOrder.create(players, 4);
 
   const wordsDeck = utils.game.getRandomItems(additionalData.allWords, WORDS_PER_PLAYER * gameOrder.length);
   const descriptorsDeck = utils.game.getRandomItems(
@@ -75,7 +75,7 @@ export const prepareMetricsBuildingPhase = async (
   utils.players.removePropertiesFromPlayers(players, ['guesses']);
 
   const round = utils.helpers.increaseRound(state.round);
-  const presenterId = utils.players.getActivePlayer(state.turnOrder, round.current);
+  const presenterId = utils.turnOrder.getActivePlayerId(state.turnOrder, round.current);
 
   // Unready presenter only
   utils.players.readyPlayers(players, presenterId);

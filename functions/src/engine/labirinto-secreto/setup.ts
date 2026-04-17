@@ -46,7 +46,7 @@ export const prepareSetupPhase = async (
   // Build player hands
   distributeCards(store, players, resourceData.allCards);
 
-  const { gameOrder } = utils.players.buildGameOrder(players);
+  const { gameOrder } = utils.turnOrder.create(players);
 
   const achievements = utils.achievements.setup(players, {
     adjectives: 0, // card quantity
@@ -155,7 +155,7 @@ export const preparePathFollowingPhase = async (
   }
 
   // Get active player
-  const activePlayerId = utils.players.getNextPlayer(turnOrder, state.activePlayerId);
+  const activePlayerId = utils.turnOrder.getNextPlayerId(turnOrder, state.activePlayerId);
 
   // Unready players
   utils.players.unReadyPlayers(players, activePlayerId);

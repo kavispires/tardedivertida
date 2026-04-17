@@ -140,14 +140,14 @@ export const prepareItemPlacementPhase = async (
 
   // Create player order in a way that the judge is always the first player
   const getPlayerOrder = () => {
-    const po = utils.players.buildGameOrder(players, undefined, false, [judgeId]);
+    const po = utils.turnOrder.create(players, undefined, false, [judgeId]);
     return [judgeId, ...po.gameOrder];
   };
 
   const isNotTheJudge = state.activePlayerId !== judgeId;
 
   // Determine or get player order
-  const turnOrder = state.turnOrder || getPlayerOrder();
+  let turnOrder: string[] = state.turnOrder || getPlayerOrder();
 
   const isNewRound = currentGuess.outcome !== OUTCOME.CONTINUE;
 
@@ -192,9 +192,16 @@ export const prepareItemPlacementPhase = async (
   const shouldTriggerNewRound = !isNotTheJudge || isNewRound;
   // Determine round if outcome has been wrong or new
   const round: Round = shouldTriggerNewRound ? utils.helpers.increaseRound(state.round) : state.round;
-  const activePlayerId = shouldTriggerNewRound
-    ? utils.players.getActivePlayer(turnOrder, round.current)
-    : state.activePlayerId;
+  let activePlayerId: string = state.activePlayerId;
+  // Determine the active player - if it's a new round, get the next player in the order, otherwise keep the same active player
+  if (shouldTriggerNewRound) {
+    // However, if the current active player is the last player in the order, we need to push the first non-judge player to the end of the order.
+    if (activePlayerId === turnOrder[turnOrder.length - 1]) {
+      turnOrder = utils.turnOrder.rotate(turnOrder, 1, judgeId);
+    }
+
+    activePlayerId = utils.turnOrder.getActivePlayerId(turnOrder, round.current);
+  }
 
   utils.players.readyPlayers(players, activePlayerId);
 

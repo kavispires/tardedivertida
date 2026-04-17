@@ -44,7 +44,7 @@ export const prepareSetupPhase = async (
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine turn order
-  const { gameOrder } = utils.players.buildGameOrder(players);
+  const { gameOrder } = utils.turnOrder.create(players);
 
   // Build deck
   const deck = buildDeck(additionalData.allQuestions);
@@ -89,7 +89,7 @@ export const prepareQuestionSelectionPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Determine active player based on current round
-  const activePlayerId = utils.players.getActivePlayer(store.gameOrder, state.round.current + 1);
+  const activePlayerId = utils.turnOrder.getActivePlayerId(store.gameOrder, state.round.current + 1);
 
   // Modify player
   utils.players.addPropertiesToPlayers(players, {

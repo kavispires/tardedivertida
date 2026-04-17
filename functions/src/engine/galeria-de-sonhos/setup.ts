@@ -32,7 +32,7 @@ export const prepareSetupPhase = async (
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder } = utils.players.buildGameOrder(players);
+  const { gameOrder } = utils.turnOrder.create(players);
 
   // Build Image Cards deck
   const imageCardsIdsDeck = utils.game.getRandomItems(resourceData.images, TABLE_DECK_TOTAL);
@@ -98,7 +98,7 @@ export const prepareWordSelectionPhase = async (
   utils.players.removePropertiesFromPlayers(players, ['cards', 'fallen', 'skip', 'inNightmare']);
 
   // Determine active player based on current round
-  const scoutId = utils.players.getActivePlayer(store.gameOrder, round.current);
+  const scoutId = utils.turnOrder.getActivePlayerId(store.gameOrder, round.current);
   utils.players.unReadyPlayer(players, scoutId);
 
   // Update table

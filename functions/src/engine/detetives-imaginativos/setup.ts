@@ -23,7 +23,7 @@ export const prepareSetupPhase = async (
   data: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder } = utils.players.buildGameOrder(players);
+  const { gameOrder } = utils.turnOrder.create(players);
 
   // Assigned cards to players depending on player count
   const cardsPerPlayer = TOTAL_ROUNDS * 2 + HAND_LIMIT;
@@ -88,7 +88,7 @@ export const prepareSecretCluePhase = async (
         round: utils.helpers.increaseRound(state.round),
         leaderId,
         impostorId,
-        turnOrder: utils.players.reorderGameOrder(state.turnOrder, leaderId),
+        turnOrder: utils.turnOrder.reorder(state.turnOrder, leaderId),
       },
       stateCleanup: ['phaseOrder', 'phaseIndex', 'currentPlayerId', 'impostorVotes', 'ranking', 'table'],
     },

@@ -40,7 +40,7 @@ export const prepareSetupPhase = async (
   data: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder, playerCount: pC } = utils.players.buildGameOrder(players);
+  const { gameOrder, playerCount: pC } = utils.turnOrder.create(players);
   const playerCount = store.options?.withBots ? pC + 2 : pC;
 
   // Setup achievements
@@ -102,7 +102,7 @@ export const prepareBookPossessionPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   const round = utils.helpers.increaseRound(state.round);
-  const possessedId = utils.players.getActivePlayer(state.gameOrder, round.current);
+  const possessedId = utils.turnOrder.getActivePlayerId(state.gameOrder, round.current);
 
   // Unready players
   utils.players.readyPlayers(players, possessedId);
@@ -147,9 +147,7 @@ export const prepareBookPossessionPhase = async (
         currentCorridor,
         trap,
         pages: pages.pages,
-        doors: isCorrect
-          ? doors.doors
-          : state.doors.filter((doorId: UID) => doorId !== state.answerDoorId),
+        doors: isCorrect ? doors.doors : state.doors.filter((doorId: UID) => doorId !== state.answerDoorId),
         answerDoorId: doors.answerDoorId,
         trapEntry,
       },

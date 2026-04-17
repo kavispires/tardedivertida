@@ -15,7 +15,7 @@ import * as globalUtils from '../global';
 export const getData = async (players: Players): Promise<ResourceData> => {
   // We build the used cards deck all at once to avoid having to generate and
   // get unique ones every time
-  const { gameOrder, playerCount } = utils.players.buildGameOrder(players, DOUBLE_ROUNDS_THRESHOLD);
+  const { gameOrder, playerCount } = utils.turnOrder.create(players, DOUBLE_ROUNDS_THRESHOLD);
   const cardsPerPlayer = gameOrder.length * 2 + HAND_LIMIT;
   const minimumNumberOfCards = playerCount * cardsPerPlayer;
 

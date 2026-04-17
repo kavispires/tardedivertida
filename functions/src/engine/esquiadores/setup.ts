@@ -30,7 +30,7 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const { gameOrder, playerIds: turnOrder } = utils.players.buildGameOrder(players, DOUBLE_ROUNDS_THRESHOLD);
+  const { gameOrder, playerIds: turnOrder } = utils.turnOrder.create(players, DOUBLE_ROUNDS_THRESHOLD);
 
   // Build deck
   const deck = utils.game.getRandomItems(resourceData.dilemmas, gameOrder.length * DILEMMAS_PER_ROUND);
@@ -87,7 +87,7 @@ export const prepareBetsPhase = async (
 
   // Get new active skier
   const round = utils.helpers.increaseRound(state.round);
-  const activeSkierId = utils.players.getActivePlayer(state.turnOrder, round.current);
+  const activeSkierId = utils.turnOrder.getActivePlayerId(state.turnOrder, round.current);
 
   // Give initial chips to players
   utils.players.addPropertiesToPlayers(players, {

@@ -28,9 +28,9 @@ export const prepareSetupPhase = async (
   data: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder } = utils.players.buildGameOrder(players);
+  const { gameOrder } = utils.turnOrder.create(players);
 
-  const { gameOrder: roundsIfRoundFixed } = utils.players.buildGameOrder(players, DOUBLE_ROUNDS_THRESHOLD);
+  const { gameOrder: roundsIfRoundFixed } = utils.turnOrder.create(players, DOUBLE_ROUNDS_THRESHOLD);
   const totalRounds = store.options.fixedRounds ? roundsIfRoundFixed.length : MAX_ROUNDS;
 
   // Assigned cards to players
@@ -86,8 +86,8 @@ export const prepareStoryPhase = async (
   utils.players.removePropertiesFromPlayers(players, ['vote', 'cardId', 'story']);
 
   // Determine active player based on current round
-  const storytellerId = utils.players.getActivePlayer(state.gameOrder, state.round.current + 1);
-  const nextStorytellerId = utils.players.getActivePlayer(state.gameOrder, state.round.current + 2);
+  const storytellerId = utils.turnOrder.getActivePlayerId(state.gameOrder, state.round.current + 1);
+  const nextStorytellerId = utils.turnOrder.getActivePlayerId(state.gameOrder, state.round.current + 2);
 
   utils.players.readyPlayers(players, storytellerId);
 

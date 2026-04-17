@@ -25,7 +25,7 @@ export const prepareSetupPhase = async (
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder: turnOrder, playerCount } = utils.players.buildGameOrder(players);
+  const { gameOrder: turnOrder, playerCount } = utils.turnOrder.create(players);
 
   // Build characters list
   const charactersCount = Math.max(playerCount * 2, MINIMUM_SUSPECTS);
@@ -94,7 +94,7 @@ export const preparePromptPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const activePlayerId = utils.players.getNextPlayer(state.turnOrder, state.activePlayerId);
+  const activePlayerId = utils.turnOrder.getNextPlayerId(state.turnOrder, state.activePlayerId);
 
   utils.players.readyPlayers(players, activePlayerId);
 

@@ -22,7 +22,7 @@ export const prepareSetupPhase = async (
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine turn order
-  const { gameOrder, playerIds } = utils.players.buildGameOrder(
+  const { gameOrder, playerIds } = utils.turnOrder.create(
     players,
     store.options.fixedRounds ? DOUBLE_ROUNDS_THRESHOLD : undefined,
   );
@@ -66,7 +66,7 @@ export const prepareDialCluePhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Determine active player based on current round
-  const psychicId = utils.players.getActivePlayer(store.gameOrder, state.round.current + 1);
+  const psychicId = utils.turnOrder.getActivePlayerId(store.gameOrder, state.round.current + 1);
 
   utils.players.readyPlayers(players, psychicId);
 

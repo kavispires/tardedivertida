@@ -26,7 +26,7 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const { gameOrder, playerCount } = utils.players.buildGameOrder(players);
+  const { gameOrder, playerCount } = utils.turnOrder.create(players);
 
   const expressionsDeck = utils.game.getRandomItems(
     resourceData.allExpressions,

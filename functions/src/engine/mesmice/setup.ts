@@ -31,7 +31,7 @@ export const prepareSetupPhase = async (
   });
 
   // Build turn order
-  const { gameOrder, playerIds: turnOrder } = utils.players.buildGameOrder(players);
+  const { gameOrder, playerIds: turnOrder } = utils.turnOrder.create(players);
 
   // Save
   return {
@@ -109,7 +109,7 @@ export const prepareObjectFeatureEliminationPhase = async (
   if (state.outcome !== OUTCOME.CONTINUE) {
     // Save gallery
     round = utils.helpers.increaseRound(state.round);
-    const activePlayerId = utils.players.getActivePlayer(store.gameOrder, round.current);
+    const activePlayerId = utils.turnOrder.getActivePlayerId(store.gameOrder, round.current);
     const activePlayer = players[activePlayerId];
     stateUpdate.activePlayerId = activePlayerId;
     stateUpdate.item = activePlayer.items.find(

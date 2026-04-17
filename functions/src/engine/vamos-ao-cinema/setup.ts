@@ -30,7 +30,7 @@ export const prepareSetupPhase = async (
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine turn order
-  const { gameOrder } = utils.players.buildGameOrder(players);
+  const { gameOrder } = utils.turnOrder.create(players);
 
   // Add poster votes
   utils.players.addPropertiesToPlayers(players, { posters: {} });
@@ -149,12 +149,12 @@ export const prepareMovieEliminationPhase = async (
   // Get or build turnOrder
   const turnOrder =
     state.turnOrder ??
-    utils.players.reorderGameOrder(
+    utils.turnOrder.reorder(
       store.gameOrder,
-      utils.players.getActivePlayer(store.gameOrder, state.round.current),
+      utils.turnOrder.getActivePlayerId(store.gameOrder, state.round.current),
     );
 
-  const activePlayerId = utils.players.getNextPlayer(turnOrder, state.activePlayerId);
+  const activePlayerId = utils.turnOrder.getNextPlayerId(turnOrder, state.activePlayerId);
 
   utils.players.readyPlayers(players, activePlayerId);
 

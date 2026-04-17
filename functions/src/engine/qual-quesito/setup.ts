@@ -43,7 +43,7 @@ export const prepareSetupPhase = async (
 
   const deckKeys = utils.playerHand.dealDeck(players, Object.keys(deckDict), CARDS_PER_PLAYER, 'hand');
 
-  const { gameOrder: turnOrder } = utils.players.buildGameOrder(players);
+  const { gameOrder: turnOrder } = utils.turnOrder.create(players);
 
   // Save
   return {
@@ -77,7 +77,7 @@ export const prepareCategoryCreationPhase = async (
   utils.players.removePropertiesFromPlayers(players, ['playedCardsIds', 'evaluations']);
 
   const round = utils.helpers.increaseRound(state.round);
-  const creatorId = utils.players.getActivePlayer(state.turnOrder, round.current);
+  const creatorId = utils.turnOrder.getActivePlayerId(state.turnOrder, round.current);
 
   // Unready creator only
   utils.players.readyPlayers(players, creatorId);

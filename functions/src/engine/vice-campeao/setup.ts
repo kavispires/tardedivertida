@@ -30,7 +30,7 @@ export const prepareSetupPhase = async (
     distance: 0,
   });
 
-  const { gameOrder: turnOrder } = utils.players.buildGameOrder(players);
+  const { gameOrder: turnOrder } = utils.turnOrder.create(players);
 
   const cardsDict = keyBy(additionalData.cards, 'id');
 
@@ -79,7 +79,7 @@ export const prepareCardSelectionPhase = async (
 
   utils.deck.deal(store, players, CARD_PER_ROUND);
 
-  const turnOrder = utils.players.reorderGameOrder(state.turnOrder, state.turnOrder[1]);
+  const turnOrder = utils.turnOrder.reorder(state.turnOrder, state.turnOrder[1]);
 
   const currentPositions = utils.players
     .getListOfPlayers(players)

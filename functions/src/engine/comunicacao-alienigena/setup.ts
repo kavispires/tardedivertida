@@ -199,10 +199,13 @@ export const prepareHumanAskPhase = async (
   // Make player order if it doesn't exist
   const turnOrder =
     state.turnOrder ??
-    utils.players.buildGameOrder(players).gameOrder.filter((playerId) => playerId !== state.alienId);
+    utils.turnOrder.create(players).gameOrder.filter((playerId) => playerId !== state.alienId);
 
   // Unready current human player
-  const humanId = utils.players.getNextPlayer(turnOrder, state.humanId ?? utils.game.getLastItem(turnOrder));
+  const humanId = utils.turnOrder.getNextPlayerId(
+    turnOrder,
+    state.humanId ?? utils.game.getLastItem(turnOrder),
+  );
 
   utils.players.readyPlayers(players, humanId);
 

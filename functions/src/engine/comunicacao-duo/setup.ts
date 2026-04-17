@@ -74,7 +74,7 @@ export const prepareAskingForSomething = async (
   if (!state.turnOrder) {
     utils.players.unReadyPlayers(players);
   } else {
-    stateUpdate.requesterId = utils.players.getNextPlayer(state.turnOrder, state.requesterId);
+    stateUpdate.requesterId = utils.turnOrder.getNextPlayerId(state.turnOrder, state.requesterId);
     utils.players.unReadyPlayers(players, stateUpdate.requesterId);
   }
 
@@ -131,7 +131,7 @@ export const prepareDeliveringSomethingPhase = async (
     utils.achievements.push(store, stateUpdate.requesterId, 'clueQuantity', stateUpdate.clueQuantity);
 
     // Achievement: The other player resets their deliveries
-    const answererId = utils.players.getNextPlayer(Object.keys(players), state.requesterId);
+    const answererId = utils.turnOrder.getNextPlayerId(Object.keys(players), state.requesterId);
     utils.achievements.push(store, answererId, 'deliveries', 0);
   }
   utils.players.unReadyPlayers(players, stateUpdate.requesterId);
@@ -158,7 +158,7 @@ export const prepareVerificationPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const answererId = utils.players.getNextPlayer(Object.keys(players), state.requesterId);
+  const answererId = utils.turnOrder.getNextPlayerId(Object.keys(players), state.requesterId);
   utils.players.unReadyPlayers(players);
 
   if (players[answererId].stopDelivery) {

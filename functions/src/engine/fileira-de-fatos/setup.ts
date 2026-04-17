@@ -21,7 +21,7 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const { gameOrder, playerIds: turnOrder } = utils.players.buildGameOrder(players, DOUBLE_ROUNDS_THRESHOLD);
+  const { gameOrder, playerIds: turnOrder } = utils.turnOrder.create(players, DOUBLE_ROUNDS_THRESHOLD);
 
   // Build deck
   const deck = utils.game.getRandomItems(resourceData.scenarios, gameOrder.length * SCENARIOS_PER_ROUND);
@@ -66,7 +66,7 @@ export const prepareScenarioOrderingPhase = async (
   utils.players.removePropertiesFromPlayers(players, ['currentOrder']);
 
   const round = utils.helpers.increaseRound(state.round);
-  const activePlayerId = utils.players.getActivePlayer(state.turnOrder, round.current);
+  const activePlayerId = utils.turnOrder.getActivePlayerId(state.turnOrder, round.current);
   const deck: TextCard[] = store.deck;
   const scenarios = deck.splice(0, SCENARIOS_PER_ROUND);
 
