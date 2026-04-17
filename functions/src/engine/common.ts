@@ -131,9 +131,9 @@ const makeMeReady = async (data: Payload<{ onlyReady?: boolean }>) => {
   );
 
   const players = state?.players ?? {};
-  const updatedPlayers = utils.players.readyPlayer(players, playerId);
+  utils.players.readyPlayer(players, playerId);
 
-  if (onlyReady || !utils.players.isEverybodyReady(updatedPlayers)) {
+  if (onlyReady || !utils.players.isEverybodyReady(players)) {
     try {
       const path = `players.${playerId}.ready`;
       await sessionRef.doc('state').update({ [path]: true });

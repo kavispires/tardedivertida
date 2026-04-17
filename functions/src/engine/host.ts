@@ -290,7 +290,10 @@ const playAgain = async (data: BasicGamePayload) => {
 
   const players = state?.players ?? {};
   // Reset players
-  const newPlayers = utils.players.resetPlayers(players);
+  utils.players.resetPlayers(players);
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    player.forceMetaRefresh = player.updatedAt ?? 0;
+  });
 
   // Update meta
   const metaDoc = await utils.firestore.getSessionDoc(gameName, gameId, 'meta', actionText);
@@ -311,7 +314,7 @@ const playAgain = async (data: BasicGamePayload) => {
         current: 0,
         total: 0,
       },
-      players: newPlayers,
+      players,
     });
 
     return true;

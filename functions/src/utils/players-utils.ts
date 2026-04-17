@@ -6,9 +6,9 @@ import { cloneDeep, groupBy, orderBy, shuffle } from 'lodash';
 import { getRandomUniqueItem } from './game-utils';
 
 /**
- * Generates a player id based of their name
- * @param playerName
- * @returns
+ * Generates a player id based on their name by normalizing, removing accents, and lowercasing.
+ * @param playerName - The name of the player to generate an ID from
+ * @returns A unique identifier string prefixed with underscore
  */
 export function generatePlayerId(playerName: string): UID {
   return `_${playerName
@@ -18,11 +18,13 @@ export function generatePlayerId(playerName: string): UID {
 }
 
 /**
- * Creates new player object
- * @param name
- * @param avatarId the player's chosen avatar
- * @param players
- * @returns
+ * Creates a new player object with default properties.
+ * @param id - The unique identifier for the player
+ * @param name - The display name of the player
+ * @param avatarId - The player's chosen avatar ID, will be reassigned if already in use
+ * @param players - The existing players object to check for avatar conflicts
+ * @param isGuest - Whether the player is a guest user
+ * @returns A new player object with initialized properties
  */
 export const createPlayer = (
   id: UID,
@@ -50,10 +52,10 @@ export const createPlayer = (
 };
 
 /**
- * Set given player as ready in the players object
- * @param players
- * @param playerId
- * @returns
+ * Sets the specified player as ready and updates their timestamp.
+ * @param players - The players object to modify
+ * @param playerId - The ID of the player to mark as ready
+ * @returns The modified players object
  */
 export const readyPlayer = (players: Players, playerId: UID): Players => {
   players[playerId].ready = true;
@@ -62,68 +64,64 @@ export const readyPlayer = (players: Players, playerId: UID): Players => {
 };
 
 /**
- * Set all players as ready
- * @param players
- * @param butThisOne
- * @returns
+ * Sets all players as ready, optionally excluding one player.
+ * @param players - The players object to modify
+ * @param butThisOne - Optional player ID to exclude from being marked ready
  */
-export const readyPlayers = (players: Players, butThisOne: UID = ''): Players => {
+export const readyPlayers = (players: Players, butThisOne: UID = '') => {
   for (const playerKey in players) {
     players[playerKey].ready = playerKey !== butThisOne;
   }
-  return players;
 };
 
 /**
- * Set given player as ready in the players object
- * @param players
- * @param playerId
- * @returns
+ * Sets the specified player as not ready and updates their timestamp.
+ * @param players - The players object to modify
+ * @param playerId - The ID of the player to mark as not ready
  */
-export const unReadyPlayer = (players: Players, playerId: UID): Players => {
+export const unReadyPlayer = (players: Players, playerId: UID) => {
   players[playerId].ready = false;
   players[playerId].updatedAt = Date.now();
-  return players;
 };
 
 /**
- * Set all players as not ready
- * @param players
- * @param butThisOne - playerId or list of player ids to be ignored
- * @returns
+ * Sets all non-bot players as not ready, optionally excluding specific players.
+ * @param players - The players object to modify
+ * @param butThisOne - Optional player ID or array of player IDs to keep as ready
  */
-export const unReadyPlayers = (players: Players, butThisOne?: UID | UID[]): Players => {
+export const unReadyPlayers = (players: Players, butThisOne?: UID | UID[]) => {
   const excludeList: UID[] = butThisOne ? (typeof butThisOne === 'string' ? [butThisOne] : butThisOne) : [];
   for (const playerKey in players) {
     if (players[playerKey].type === 'player') {
       players[playerKey].ready = excludeList.includes(playerKey);
     }
   }
-  return players;
 };
 
 /**
- * Add properties to players
- * @param players
- * @param properties object with properties to be added
- * @returns
+ * Adds properties to all players in the players object.
+ * @param players - The players object to modify
+ * @param properties - An object containing the properties to add to each player, or a function that receives each player and returns properties to add
  */
-export const addPropertiesToPlayers = (players: Players, properties: PlainObject): Players => {
+export const addPropertiesToPlayers = (
+  players: Players,
+  properties: PlainObject | ((player: Player) => PlainObject),
+) => {
   for (const playerId in players) {
+    const propsToAdd = typeof properties === 'function' ? properties(players[playerId]) : properties;
+
     players[playerId] = {
       ...players[playerId],
-      ...cloneDeep(properties),
+      ...cloneDeep(propsToAdd),
       updatedAt: Date.now(),
     };
   }
-  return players;
 };
 
 /**
- * Add properties to players
- * @param players
- * @param properties array with property names to ne removed
- * @returns
+ * Removes specified properties from all players in the players object.
+ * @param players - The players object to modify
+ * @param properties - An array of property names to remove from each player
  */
 export const removePropertiesFromPlayers = (players: Players, properties: string[]) => {
   for (const playerId in players) {
@@ -134,11 +132,10 @@ export const removePropertiesFromPlayers = (players: Players, properties: string
 };
 
 /**
- * Set all players as not ready
- * @param players
- * @returns
+ * Resets all players to their default state, keeping only essential properties.
+ * @param players - The players object to reset
  */
-export const resetPlayers = (players: Players): Players => {
+export const resetPlayers = (players: Players) => {
   for (const playerId in players) {
     players[playerId] = {
       id: playerId,
@@ -150,13 +147,12 @@ export const resetPlayers = (players: Players): Players => {
       updatedAt: Date.now(),
     };
   }
-  return players;
 };
 
 /**
- * Verify if all players are ready
- * @param players
- * @returns
+ * Checks if all players (including bots) have their ready status set to true.
+ * @param players - The players object to check
+ * @returns True if all players are ready, false otherwise
  */
 export const isEverybodyReady = (players: Players): boolean => {
   return getListOfPlayers(players, true).every((player) => player.ready);
@@ -189,9 +185,9 @@ export const orderPlayersByScore = (
 };
 
 /**
- * Determine winners based on who has the highest score
- * @param players
- * @returns array of winning players
+ * Determines the winning players based on who has the highest score.
+ * @param players - The players object to evaluate
+ * @returns An array of players with the highest score (may be multiple in case of ties)
  */
 export const determineWinners = (players: Players): Player[] => {
   const orderedScores = orderPlayersByScore(players, true);
@@ -199,9 +195,9 @@ export const determineWinners = (players: Players): Player[] => {
 };
 
 /**
- * Determine losers based on who has the lowest score
- * @param players
- * @returns array of losing players
+ * Determines the losing players based on who has the lowest score.
+ * @param players - The players object to evaluate
+ * @returns An array of players with the lowest score (may be multiple in case of ties)
  */
 export const determineLosers = (players: Players): Player[] => {
   const orderedScores = orderPlayersByScore(players, true);
@@ -209,20 +205,21 @@ export const determineLosers = (players: Players): Player[] => {
 };
 
 /**
- * Counts how many player keys are in players a.k.a the number of players in the game
- * @param players
- * @param includeBots whether to include bots in the count or not (default true)
- * @returns
+ * Counts the total number of players in the game.
+ * @param players - The players object to count
+ * @param includeBots - Whether to include bot players in the count
+ * @returns The number of players in the game
  */
 export const getPlayerCount = (players: Players, includeBots = true): number =>
   getListOfPlayersIds(players, includeBots).length;
 
 /**
- * Creates number ids and distribute them as given propertyName to players
- * @param players
- * @param startingId
- * @param endingId
- * @param propertyName
+ * Creates and distributes randomized numeric IDs to players as a specified property.
+ * @param players - The players object to modify
+ * @param startingId - The starting number for the ID range
+ * @param endingId - The ending number for the ID range
+ * @param propertyName - The property name to assign the ID to on each player
+ * @param includeBots - Whether to include bot players in the distribution
  */
 export const distributeNumberIds = (
   players: Players,
@@ -239,11 +236,11 @@ export const distributeNumberIds = (
 };
 
 /**
- * Deal items from a list to players
- * @param players
- * @param list
- * @param quantityPerPlayer
- * @param propertyName
+ * Distributes items from a list to players in round-robin fashion.
+ * @param players - The players object to modify
+ * @param list - The array of items to distribute
+ * @param quantityPerPlayer - How many items each player should receive
+ * @param propertyName - The property name to assign the items to on each player
  */
 export const dealItemsToPlayers = (
   players: Players,
@@ -271,17 +268,15 @@ export const dealItemsToPlayers = (
 
     player[propertyName].push(list[i]);
   }
-
-  return players;
 };
 
 /**
- * Adds bots to the players object
- * @param players
- * @param language - just to determine the robot's name
- * @param quantity 1-5
- * @param defaultProperties any properties the bot should have from the get-go
- * @returns
+ * Adds bot players to the players object with randomized names and avatars.
+ * @param players - The players object to modify
+ * @param language - The language to use for bot names (English or Portuguese)
+ * @param quantity - The number of bots to add (1-5)
+ * @param defaultProperties - Additional properties to assign to each bot from the start
+ * @returns An array of the created bot players
  */
 export const addBots = (
   players: Players,
@@ -313,11 +308,11 @@ export const addBots = (
 };
 
 /**
- * Get list of non-bot players
- * @param players
- * @param includeBots default=false
- * @param butThese player ids to ignore
- * @returns array of players
+ * Retrieves a list of player objects, optionally including bots and excluding specific players.
+ * @param players - The players object to extract from
+ * @param includeBots - Whether to include bot players in the list
+ * @param butThese - An array of player IDs to exclude from the list
+ * @returns An array of player objects
  */
 export const getListOfPlayers = (players: Players, includeBots = false, butThese: UID[] = []): Player[] => {
   const options = Object.values(players).filter((player) => !butThese.includes(player.id));
@@ -353,17 +348,17 @@ export const sortPlayerIdsByName = (playerIds: UID[], players: Players): UID[] =
 };
 
 /**
- * Get list of bot players
- * @param players
- * @returns
+ * Retrieves a list of all bot players from the players object.
+ * @param players - The players object to extract from
+ * @returns An array of bot player objects
  */
 export const getListOfBots = (players: Players): Player[] => {
   return Object.values(players).filter((player) => player.type === 'bot');
 };
 
 /**
- * When bots shouldn't score, it clears their score
- * @param players
+ * Resets all bot players' scores to zero when bots shouldn't accumulate points.
+ * @param players - The players object to modify
  */
 export const neutralizeBotScores = (players: Players) => {
   getListOfBots(players).forEach((botPlayer) => {
@@ -371,9 +366,17 @@ export const neutralizeBotScores = (players: Players) => {
   });
 };
 
+/**
+ * Manages score tracking for players, including previous scores, gained points, and new scores.
+ */
 export class Scores {
   scores: NewScores;
 
+  /**
+   * Creates a new Scores instance and initializes score tracking for all players.
+   * @param players - The players object or array to track scores for
+   * @param gainedPointsInitialState - Optional array defining the structure for tracking gained points across multiple categories
+   */
   constructor(players: Players | Player[], gainedPointsInitialState?: number[]) {
     this.scores = {};
 
@@ -396,10 +399,10 @@ export class Scores {
   }
 
   /**
-   * Adds a value to given player's gained score
-   * @param playerId
-   * @param value
-   * @param gainedIndex
+   * Adds points to a specific player's score.
+   * @param playerId - The ID of the player to add points to
+   * @param value - The number of points to add
+   * @param gainedIndex - The index in the gainedPoints array to modify (for tracking points by category)
    */
   add(playerId: UID, value: number, gainedIndex = 0): void {
     this.scores[playerId].gainedPoints[gainedIndex] += value;
@@ -407,10 +410,10 @@ export class Scores {
   }
 
   /**
-   * Adds a value to all players's gained score in the list
-   * @param playerIds
-   * @param value
-   * @param gainedIndex
+   * Adds points to multiple players' scores simultaneously.
+   * @param playerIds - An array of player IDs to add points to
+   * @param value - The number of points to add to each player
+   * @param gainedIndex - The index in the gainedPoints array to modify (for tracking points by category)
    */
   addMultiple(playerIds: UID[], value: number, gainedIndex = 0): void {
     playerIds.forEach((playerId) => {
@@ -420,10 +423,10 @@ export class Scores {
   }
 
   /**
-   * Subtracts a value from given player's gained score
-   * @param playerId
-   * @param value
-   * @param gainedIndex
+   * Subtracts points from a specific player's score.
+   * @param playerId - The ID of the player to subtract points from
+   * @param value - The number of points to subtract
+   * @param gainedIndex - The index in the gainedPoints array to modify (for tracking points by category)
    */
   subtract(playerId: UID, value: number, gainedIndex = 0): void {
     this.scores[playerId].gainedPoints[gainedIndex] -= value;
@@ -431,7 +434,10 @@ export class Scores {
   }
 
   /**
-   * Returns sorted round's ranking
+   * Finalizes scores, updates player objects, and returns a sorted ranking.
+   * @param players - The players object to update with the new scores
+   * @param round - Whether to round all score values to integers
+   * @returns A sorted array of score entries from lowest to highest
    */
   rank(players: Players, round?: boolean): NewScore[] {
     if (round) {
@@ -452,7 +458,7 @@ export class Scores {
   }
 
   /**
-   * Resets previous and total score
+   * Resets all players' previous and new scores to zero.
    */
   reset(): void {
     Object.values(this.scores).forEach((entry) => {
@@ -462,9 +468,9 @@ export class Scores {
   }
 
   /**
-   * Returns the gained score of a given player
-   * @param playerId
-   * @param index
+   * Retrieves the total gained points for a specific player across all categories.
+   * @param playerId - The ID of the player to get points for
+   * @returns The sum of all gained points for the player
    */
   get(playerId: UID): number {
     return this.scores[playerId]?.gainedPoints.reduce((acc, g) => acc + g, 0) ?? 0;
@@ -516,9 +522,11 @@ export type MostVotesResult = {
 };
 
 /**
- * Ranks the votes of Players objects based on a given property.
- * @param players - A collection of players objects
- * @param property - The property to be compared
+ * Analyzes and ranks vote results based on a specified player property.
+ * @param players - The players object to analyze
+ * @param property - The property name on player objects that contains their vote
+ * @param winnerOnly - Whether to return only the top vote recipient(s)
+ * @returns An array of vote results sorted by vote count, with tie information
  */
 export const getRankedVotes = (players: Players, property: string, winnerOnly = false): MostVotesResult[] => {
   const propertyCounts: Record<string, MostVotesResult> = {};
@@ -562,11 +570,11 @@ export const getRankedVotes = (players: Players, property: string, winnerOnly = 
 };
 
 /**
- * Get the winning ranked vote result based on turn order tie-breaking
- * @param rankedVotes - the ranked votes results
- * @param turnOrder - the turn order
- * @param activePlayerId - the current active player id
- * @returns the winning vote result, using turn order priority to break ties
+ * Determines the winning vote result, using turn order to break ties if necessary.
+ * @param rankedVotes - The ranked vote results from getRankedVotes
+ * @param turnOrder - The turn order array for tie-breaking
+ * @param activePlayerId - The current active player's ID for priority tie-breaking
+ * @returns The winning vote result, with ties resolved by turn order
  */
 export const getWinningRankedVote = (
   rankedVotes: MostVotesResult[],

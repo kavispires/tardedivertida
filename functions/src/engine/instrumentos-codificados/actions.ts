@@ -58,12 +58,7 @@ export const handleSubmitConclusions = async (
   });
 };
 
-export const handleSubmitCode = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  code: string,
-) => {
+export const handleSubmitCode = async (gameName: string, gameId: UID, playerId: UID, code: string) => {
   const actionText = 'submit conclusions';
 
   const { sessionRef, state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
@@ -72,18 +67,18 @@ export const handleSubmitCode = async (
     actionText,
   );
 
-  const updatedPlayers = utils.players.readyPlayer(players, playerId);
+  utils.players.readyPlayer(players, playerId);
 
-  updatedPlayers[playerId].codeGuess = code;
+  players[playerId].codeGuess = code;
 
   try {
-    await sessionRef.doc('state').update({ [`players.${playerId}`]: updatedPlayers[playerId] });
+    await sessionRef.doc('state').update({ [`players.${playerId}`]: players[playerId] });
   } catch (error) {
     utils.firebase.throwException(error, actionText);
   }
 
   // If all players are ready, trigger next phase
-  if (utils.players.isEverybodyReady(updatedPlayers)) {
+  if (utils.players.isEverybodyReady(players)) {
     return getNextPhase(gameName, gameId, state);
   }
 
