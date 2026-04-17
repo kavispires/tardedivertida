@@ -42,7 +42,7 @@ export const getInitialState = (
   version: string,
   options: PortaDosDesesperadosOptions,
 ): PortaDosDesesperadosInitialState => {
-  return utils.helpers.getDefaultInitialState<PortaDosDesesperadosInitialState>({
+  return utils.game.getDefaultInitialState<PortaDosDesesperadosInitialState>({
     gameId,
     gameName: GAME_NAMES.PORTA_DOS_DESESPERADOS,
     uid,

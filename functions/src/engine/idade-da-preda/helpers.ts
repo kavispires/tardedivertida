@@ -32,7 +32,7 @@ export const determineNextPhase = (
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : CREATING_CONCEPTS;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export const gatherConcepts = (players: Players, store: FirebaseStoreData): Concept[] => {

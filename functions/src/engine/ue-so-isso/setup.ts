@@ -98,7 +98,7 @@ export const prepareWordSelectionPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const round = utils.helpers.increaseRound(state.round);
+  const round = utils.game.increaseRound(state.round);
 
   // Determine guesser based on round and gameOrder
   const guesserId = utils.turnOrder.getActivePlayerId(state.gameOrder, round.current);
@@ -179,7 +179,7 @@ export const prepareComparePhase = async (
 
   const suggestionsArray = validateSuggestions(currentSuggestions);
 
-  const shuffledSuggestions = utils.game.shuffle(suggestionsArray);
+  const shuffledSuggestions = utils.helpers.shuffle(suggestionsArray);
 
   utils.players.readyPlayers(players, state.controllerId);
 

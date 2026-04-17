@@ -63,7 +63,7 @@ export const prepareSetupPhase = async (
     return acc;
   }, {});
 
-  const [gossiper, bestFriend] = utils.game.getRandomItems(Object.values(students), 2);
+  const [gossiper, bestFriend] = utils.helpers.getRandomItems(Object.values(students), 2);
 
   // Set gossiper
   students[gossiper.id].isGossiper = true;
@@ -76,7 +76,7 @@ export const prepareSetupPhase = async (
   }
 
   // Get motivations
-  const motivations = utils.game.getRandomItems(
+  const motivations = utils.helpers.getRandomItems(
     resourceData.motivations.filter((motivation) => (options.beginnerGame ? motivation.beginner : true)),
     TOTAL_MOTIVATIONS,
   );
@@ -141,7 +141,7 @@ export const prepareBoardSetupPhase = async (
   const detectivePlayerId = state.detectivePlayerId || '';
 
   // Give 3 options of social group to choose from
-  players[gossiperPlayerId].socialGroupOptions = utils.game.getRandomItems(
+  players[gossiperPlayerId].socialGroupOptions = utils.helpers.getRandomItems(
     Object.keys(state.socialGroups ?? {}),
     3,
   );
@@ -220,7 +220,7 @@ export const prepareRumorPhase = async (
     motivations[state.gossiperMotivationIndex || 0].id,
   );
 
-  const possibleRumors = utils.game.getRandomItems(store.rumors ?? [], 3);
+  const possibleRumors = utils.helpers.getRandomItems(store.rumors ?? [], 3);
 
   // Unready player to has the action
   utils.players.unReadyPlayers(players, detectivePlayerId);

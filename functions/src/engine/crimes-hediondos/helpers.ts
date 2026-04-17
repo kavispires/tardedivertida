@@ -46,7 +46,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return GUESSING;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 type ParsedTiles = {
@@ -81,12 +81,12 @@ export const parseTiles = (sceneTiles: CrimeSceneTile[]): ParsedTiles => {
     },
   );
 
-  result.victimTile = utils.game.getRandomItem(result.victimsTiles);
+  result.victimTile = utils.helpers.getRandomItem(result.victimsTiles);
   result.victimTile.type = 'victim';
 
   const leftoverVictimTiles = result.victimsTiles.filter((tile) => tile.id !== result.victimTile?.id);
 
-  result.sceneTiles = utils.game.getRandomItems(
+  result.sceneTiles = utils.helpers.getRandomItems(
     [...result.sceneTiles, ...leftoverVictimTiles],
     SCENE_TILES_COUNT,
   );
@@ -127,10 +127,10 @@ export const groupItems = (
   locations: CrimesHediondosCard[],
 ): GroupItems => {
   // Divide things into 4 groups
-  const groupedWeapons = utils.game.sliceIntoChunks(weapons, ITEMS_PER_GROUP);
-  const groupedEvidence = utils.game.sliceIntoChunks(evidence, ITEMS_PER_GROUP);
-  const groupedLocations = utils.game.sliceIntoChunks(locations, ITEMS_PER_GROUP);
-  const groupedVictims = utils.game.sliceIntoChunks(victims, ITEMS_PER_GROUP);
+  const groupedWeapons = utils.helpers.sliceIntoChunks(weapons, ITEMS_PER_GROUP);
+  const groupedEvidence = utils.helpers.sliceIntoChunks(evidence, ITEMS_PER_GROUP);
+  const groupedLocations = utils.helpers.sliceIntoChunks(locations, ITEMS_PER_GROUP);
+  const groupedVictims = utils.helpers.sliceIntoChunks(victims, ITEMS_PER_GROUP);
 
   const groupedItems = {};
   groupedEvidence.forEach((evidenceGroup, index) => {
@@ -247,7 +247,7 @@ export const updateOrCreateGuessHistory = (
         const guess = player.guesses[crime.playerId];
 
         // Lock a crime if it was previously correct
-        const lastGuess = utils.game.getLastItem(history[crime.playerId]);
+        const lastGuess = utils.helpers.getLastItem(history[crime.playerId]);
         if (lastGuess && [GUESS_STATUS.CORRECT, GUESS_STATUS.LOCKED].includes(lastGuess.status)) {
           history[crime.playerId].push({
             status: GUESS_STATUS.LOCKED,
@@ -427,7 +427,7 @@ export const buildRanking = (players: Players, currentRound: number): BuiltRanki
       const history: GuessHistory = player.history;
       Object.entries(history).forEach((entry: HistoryEntry) => {
         const criminalId = entry[0];
-        const lastGuess = utils.game.getLastItem(entry[1]);
+        const lastGuess = utils.helpers.getLastItem(entry[1]);
 
         switch (lastGuess.status) {
           case GUESS_STATUS.CORRECT:
@@ -491,7 +491,7 @@ export const mockCrimeForBots = (
 ) => {
   utils.players.getListOfBots(players).forEach((bot) => {
     const itemsGroup = groupedItems[bot.itemGroupIndex];
-    const shuffledItems = utils.game.shuffle(itemsGroup);
+    const shuffledItems = utils.helpers.shuffle(itemsGroup);
     const weaponId = shuffledItems.find((e) => e?.includes('wp'));
     const weapon = items[weaponId ?? ''];
     bot.weaponId = weaponId;

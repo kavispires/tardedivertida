@@ -35,7 +35,7 @@ export const prepareSetupPhase = async (
   const { gameOrder } = utils.turnOrder.create(players);
 
   // Build Image Cards deck
-  const imageCardsIdsDeck = utils.game.getRandomItems(resourceData.images, TABLE_DECK_TOTAL);
+  const imageCardsIdsDeck = utils.helpers.getRandomItems(resourceData.images, TABLE_DECK_TOTAL);
   const tableDeck = imageCardsIdsDeck.map((cardId) => ({ id: cardId, used: false }));
 
   // Get word deck
@@ -92,7 +92,7 @@ export const prepareWordSelectionPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const round = utils.helpers.increaseRound(state.round);
+  const round = utils.game.increaseRound(state.round);
 
   // Make sure everybody has 6 cards in hand
   utils.players.removePropertiesFromPlayers(players, ['cards', 'fallen', 'skip', 'inNightmare']);
@@ -107,7 +107,7 @@ export const prepareWordSelectionPhase = async (
   // Get current words options
   const [wordsDeck, words] = getRoundWords(store.wordsDeck);
 
-  let minimumSelection = store.options?.surpriseMode ? utils.game.getRandomItem([5, 6, 7]) : 1;
+  let minimumSelection = store.options?.surpriseMode ? utils.helpers.getRandomItem([5, 6, 7]) : 1;
   if (round.current === 1 && store.options?.surpriseMode) {
     minimumSelection = 4;
   }

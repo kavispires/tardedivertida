@@ -25,7 +25,7 @@ export const prepareSetupPhase = async (
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Build table and distribute cards to players
-  const items = utils.game.shuffle([...additionalData['0']]);
+  const items = utils.helpers.shuffle([...additionalData['0']]);
 
   const achievements = utils.achievements.setup(players, {
     concepts: 0,
@@ -68,7 +68,7 @@ export const prepareCreatingConceptsPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const round = utils.helpers.increaseRound(state.round);
+  const round = utils.game.increaseRound(state.round);
   // Unready players
   utils.players.unReadyPlayers(players);
 
@@ -77,7 +77,7 @@ export const prepareCreatingConceptsPhase = async (
 
   const maxProposals = Math.max(Math.ceil(totalProposals / utils.players.getPlayerCount(players)), 1);
 
-  const roundsItems = utils.game.shuffle([...store.items[round.current]]);
+  const roundsItems = utils.helpers.shuffle([...store.items[round.current]]);
 
   const playersCount = utils.players.getPlayerCount(players);
 
@@ -162,7 +162,7 @@ export const prepareCommunicatingThingsPhase = async (
         phase: IDADE_DA_PREDA_PHASES.COMMUNICATING_THINGS,
         players,
         concepts: orderBy(concepts, [`syllable.${store.language}`, 'key'], ['asc', 'asc']),
-        pool: utils.game.shuffle(pool),
+        pool: utils.helpers.shuffle(pool),
       },
     },
   };

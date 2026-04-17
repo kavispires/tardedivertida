@@ -89,7 +89,7 @@ export const getData = async (
 
   // Select tracks to be used
   const customTrackCandidatesQuantity = Math.min(possibleTracks.length, moreGameTracks ? 8 : 5);
-  const customTrackCandidates = utils.game.getRandomItems(possibleTracks, customTrackCandidatesQuantity);
+  const customTrackCandidates = utils.helpers.getRandomItems(possibleTracks, customTrackCandidatesQuantity);
 
   // Get data for custom tracks data
 
@@ -108,13 +108,13 @@ export const getData = async (
 
         variant: 'detective',
         data: {
-          cards: utils.game.getRandomItems(imageCardsDeck, 4),
+          cards: utils.helpers.getRandomItems(imageCardsDeck, 4),
         },
       });
     }
     // VARIANT: Detective
     if (detetiveImaginativosTrack.variant === 'impostor') {
-      const selectedCards = utils.game.sliceInParts(utils.game.getRandomItems(imageCardsDeck, 6), 2);
+      const selectedCards = utils.helpers.sliceInParts(utils.helpers.getRandomItems(imageCardsDeck, 6), 2);
       customTracks.push({
         game: GAME_NAMES.DETETIVES_IMAGINATIVOS,
 
@@ -137,8 +137,8 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.GALERIA_DE_SONHOS,
       data: {
-        cards: utils.game.getRandomItems(imageCardsDeck, 3),
-        theme: utils.game.getRandomItem(themes),
+        cards: utils.helpers.getRandomItems(imageCardsDeck, 3),
+        theme: utils.helpers.getRandomItem(themes),
       },
     });
   }
@@ -155,8 +155,8 @@ export const getData = async (
 
       variant: 'normal',
       data: {
-        doors: utils.game.getRandomItems(imageCardsDeck, 3),
-        book: utils.game.getRandomItems(imageCardsDeck, 1),
+        doors: utils.helpers.getRandomItems(imageCardsDeck, 3),
+        book: utils.helpers.getRandomItems(imageCardsDeck, 1),
       },
     });
   }
@@ -171,8 +171,8 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.CONTADORES_HISTORIAS,
       data: {
-        cards: utils.game.getRandomItems(imageCardsDeck, 3),
-        prompts: utils.game.getRandomItems(cards, 5),
+        cards: utils.helpers.getRandomItems(imageCardsDeck, 3),
+        prompts: utils.helpers.getRandomItems(cards, 5),
       },
     });
   }
@@ -189,7 +189,7 @@ export const getData = async (
       game: GAME_NAMES.SUPER_CAMPEONATO,
       data: {
         contenders,
-        challenge: utils.game.getRandomItem(challenges),
+        challenge: utils.helpers.getRandomItem(challenges),
       },
     });
   }
@@ -199,8 +199,8 @@ export const getData = async (
   if (quemSouEuTrack) {
     const contenders = await utils.tdr.getContenders(language, allowNSFW, ['any'], 3);
 
-    const glyphs = utils.game.sliceInParts(
-      utils.game.getRandomItems(utils.game.makeArray(SPRITE_LIBRARIES.GLYPHS, 1), 4),
+    const glyphs = utils.helpers.sliceInParts(
+      utils.helpers.getRandomItems(utils.helpers.makeArray(SPRITE_LIBRARIES.GLYPHS, 1), 4),
       2,
     );
 
@@ -222,8 +222,8 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.PALHETA_DE_CORES,
       data: {
-        card: utils.game.getRandomItem(contenders),
-        palette: utils.game.getRandomItems(
+        card: utils.helpers.getRandomItem(contenders),
+        palette: utils.helpers.getRandomItems(
           ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'hotPink', 'gray', 'black', 'white'],
           4,
         ),
@@ -242,7 +242,7 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.POLEMICA_DA_VEZ,
       data: {
-        card: utils.game.getRandomItem(tweets),
+        card: utils.helpers.getRandomItem(tweets),
       },
     });
   }
@@ -257,7 +257,7 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.FILEIRA_DE_FATOS,
       data: {
-        scenarios: utils.game.getRandomItems(Object.values(allScenarios), 3),
+        scenarios: utils.helpers.getRandomItems(Object.values(allScenarios), 3),
       },
     });
   }
@@ -273,7 +273,7 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.ESQUIADORES,
       data: {
-        dilemma: utils.game.getRandomItem(selectedDilemas),
+        dilemma: utils.helpers.getRandomItem(selectedDilemas),
       },
     });
   }
@@ -284,7 +284,7 @@ export const getData = async (
     const cardsGroups: ArteRuimGroup[] = Object.values(
       await resourceUtils.fetchResource<Dictionary<ArteRuimGroup>>(TDR_RESOURCES.ARTE_RUIM_GROUPS, language),
     );
-    const [arteGroup1, arteGroup2] = utils.game.getRandomItems(cardsGroups, 2);
+    const [arteGroup1, arteGroup2] = utils.helpers.getRandomItems(cardsGroups, 2);
     // VARIANT: CARDS
     if (arteRuimTrack.variant === 'cards') {
       // 1 drawing for 3 cards
@@ -293,7 +293,7 @@ export const getData = async (
 
         variant: 'cards',
         data: {
-          cards: utils.game
+          cards: utils.helpers
             .getRandomItems(Object.entries(arteGroup1.cards), 3)
             .reduce((acc: TextCard[], [id, text]) => {
               acc.push({
@@ -314,7 +314,7 @@ export const getData = async (
 
         variant: 'drawings',
         data: {
-          cards: utils.game
+          cards: utils.helpers
             .getRandomItems(Object.entries(arteGroup2.cards), 3)
             .reduce((acc: TextCard[], [id, text]) => {
               acc.push({
@@ -338,7 +338,7 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.RETRATO_FALADO,
       data: {
-        card: utils.game.getRandomItem(monsters),
+        card: utils.helpers.getRandomItem(monsters),
       },
     });
   }
@@ -351,8 +351,8 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.CRUZA_PALAVRAS,
       data: {
-        cards: utils.game.getRandomItems(words, 4),
-        clue: utils.game.getRandomItem(words),
+        cards: utils.helpers.getRandomItems(words, 4),
+        clue: utils.helpers.getRandomItem(words),
       },
     });
   }
@@ -364,7 +364,7 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.UE_SO_ISSO,
       data: {
-        cards: utils.game.getRandomItems(words, 3),
+        cards: utils.helpers.getRandomItems(words, 3),
       },
     });
   }
@@ -382,8 +382,8 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.LABIRINTO_SECRETO,
       data: {
-        trees: utils.game.getRandomItems(trees, 3),
-        adjectives: utils.game.getRandomItems(adjectives, 9),
+        trees: utils.helpers.getRandomItems(trees, 3),
+        adjectives: utils.helpers.getRandomItems(adjectives, 9),
       },
     });
   }
@@ -398,16 +398,16 @@ export const getData = async (
       ),
     );
     const suspects: SuspectCard[] = Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.SUSPECTS));
-    const deckType = utils.game.getRandomItem(['ct', 'gb', 'ai']);
+    const deckType = utils.helpers.getRandomItem(['ct', 'gb', 'ai']);
     customTracks.push({
       game: GAME_NAMES.TESTEMUNHA_OCULAR,
       data: {
-        question: utils.game.getRandomItem(testimonyQuestions),
-        suspects: utils.game.getRandomItems(suspects, 3).map((suspect) => ({
+        question: utils.helpers.getRandomItem(testimonyQuestions),
+        suspects: utils.helpers.getRandomItems(suspects, 3).map((suspect) => ({
           ...suspect,
           id: `us-${deckType}-${suspect.id.split('-')[1]}`,
         })),
-        answer: Boolean(utils.game.getRandomItem([true, false])),
+        answer: Boolean(utils.helpers.getRandomItem([true, false])),
       },
     });
   }
@@ -422,14 +422,14 @@ export const getData = async (
       ),
     );
     const suspects: SuspectCard[] = Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.SUSPECTS));
-    const deckType = utils.game.getRandomItem(['ct', 'gb', 'ai']);
-    const suspect = utils.game.getRandomItem(suspects);
+    const deckType = utils.helpers.getRandomItem(['ct', 'gb', 'ai']);
+    const suspect = utils.helpers.getRandomItem(suspects);
     customTracks.push({
       game: GAME_NAMES.TA_NA_CARA,
 
       variant: 'witness',
       data: {
-        question: utils.game.getRandomItem(testimonyQuestions),
+        question: utils.helpers.getRandomItem(testimonyQuestions),
         suspect: { ...suspect, id: `us-${deckType}-${suspect.id.split('-')[1]}` },
       },
     });
@@ -459,8 +459,8 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.NAMORO_OU_AMIZADE,
       data: {
-        heads: utils.game.getRandomItems(heads, 3),
-        bodies: utils.game.getRandomItems(bodies, 3),
+        heads: utils.helpers.getRandomItems(heads, 3),
+        bodies: utils.helpers.getRandomItems(bodies, 3),
         ...selectedPersonalities,
       },
     });
@@ -476,8 +476,8 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.ONDA_TELEPATICA,
       data: {
-        card: utils.game.getRandomItem(opposingIdeas),
-        side: utils.game.getRandomItem(['left', 'right']),
+        card: utils.helpers.getRandomItem(opposingIdeas),
+        side: utils.helpers.getRandomItem(['left', 'right']),
       },
     });
   }
@@ -491,7 +491,7 @@ export const getData = async (
     const attributes = Object.values(
       await resourceUtils.fetchResource<Dictionary<ItemAttribute>>(TDR_RESOURCES.ITEMS_ATTRIBUTES),
     );
-    const selectedAttributes = utils.game.getRandomItems(Object.values(attributes), 2);
+    const selectedAttributes = utils.helpers.getRandomItems(Object.values(attributes), 2);
 
     const selectedAlienItems = await utils.tdr.getItems(5, {
       allowNSFW,
@@ -504,7 +504,7 @@ export const getData = async (
       data: {
         items: selectedAlienItems,
         attributes: selectedAttributes,
-        signs: utils.game.getRandomItems(utils.game.makeArray(SPRITE_LIBRARIES.ALIEN_SIGNS, 0), 2),
+        signs: utils.helpers.getRandomItems(utils.helpers.makeArray(SPRITE_LIBRARIES.ALIEN_SIGNS, 0), 2),
       },
     });
   }
@@ -522,7 +522,7 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.MENTE_COLETIVA,
       data: {
-        question: utils.game.getRandomItem(groupQuestions),
+        question: utils.helpers.getRandomItem(groupQuestions),
       },
     });
   }
@@ -548,7 +548,7 @@ export const getData = async (
         game: GAME_NAMES.CRIMES_HEDIONDOS,
         variant: 'weapon',
         data: {
-          cards: utils.game.getRandomItems(Object.values(allWeapons), 3),
+          cards: utils.helpers.getRandomItems(Object.values(allWeapons), 3),
           scenes: crimes.weapon.scenes,
           crimeIndexes: crimes.weapon.crime,
         },
@@ -562,7 +562,7 @@ export const getData = async (
         game: GAME_NAMES.CRIMES_HEDIONDOS,
         variant: 'evidence',
         data: {
-          cards: utils.game.getRandomItems(Object.values(allEvidence), 3),
+          cards: utils.helpers.getRandomItems(Object.values(allEvidence), 3),
           scenes: crimes.evidence.scenes,
           crimeIndexes: crimes.evidence.crime,
         },
@@ -584,7 +584,7 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.VAMOS_AO_CINEMA,
       data: {
-        movies: utils.game.getRandomItems(movies, 6),
+        movies: utils.helpers.getRandomItems(movies, 6),
         reviews,
       },
     });
@@ -622,7 +622,7 @@ export const getData = async (
   const allChoices = Object.values(
     await resourceUtils.fetchResource<Dictionary<ChoiceCard>>(TDR_RESOURCES.CHOICES, language),
   ) as PlainObject[];
-  const shuffledChoices = utils.game.shuffle(allChoices);
+  const shuffledChoices = utils.helpers.shuffle(allChoices);
 
   const selectedChoices = new Array(TOTAL_ROUNDS).fill(null);
   let thisThatIndex = 0;
@@ -643,7 +643,7 @@ export const getData = async (
   }
   selectedChoices.reverse();
 
-  const filteredCustomTracks = utils.game.shuffle(customTracks.filter((track) => !!track?.game));
+  const filteredCustomTracks = utils.helpers.shuffle(customTracks.filter((track) => !!track?.game));
   // Build track order
   const tracks: Track[] = [];
   const customTrackInterval = Math.ceil(TOTAL_ROUNDS / filteredCustomTracks.length);
@@ -686,5 +686,5 @@ const getRandomTrackGame = (candidates: TrackCandidate[], allowNSFW: boolean) =>
     }
   });
 
-  return utils.game.getRandomItem(options);
+  return utils.helpers.getRandomItem(options);
 };

@@ -33,7 +33,7 @@ export const getInitialState = (
   language: Language,
   version: string,
 ): BombaRelogioInitialState => {
-  return utils.helpers.getDefaultInitialState<BombaRelogioInitialState>({
+  return utils.game.getDefaultInitialState<BombaRelogioInitialState>({
     gameId,
     gameName: GAME_NAMES.BOMBA_RELOGIO,
     uid,

@@ -35,7 +35,7 @@ export const getInitialState = (
   language: Language,
   version: string,
 ): RetratoFaladoInitialState => {
-  return utils.helpers.getDefaultInitialState<RetratoFaladoInitialState>({
+  return utils.game.getDefaultInitialState<RetratoFaladoInitialState>({
     gameId,
     gameName: GAME_NAMES.RETRATO_FALADO,
     uid,

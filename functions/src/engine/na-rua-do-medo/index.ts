@@ -36,7 +36,7 @@ export const getInitialState = (
   version: string,
   options: NoRuaDoMedoOptions,
 ): NoRuaDoMedoInitialState => {
-  return utils.helpers.getDefaultInitialState<NoRuaDoMedoInitialState>({
+  return utils.game.getDefaultInitialState<NoRuaDoMedoInitialState>({
     gameId,
     gameName: GAME_NAMES.NA_RUA_DO_MEDO,
     uid,

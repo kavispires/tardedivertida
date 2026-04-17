@@ -5,7 +5,7 @@ import type { ContenderCard, Item, SuspectCard, TextCard } from '../types/tdr';
 import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from './constants';
 import * as firestoreUtils from './firestore';
 import * as gameUtils from './game-utils';
-import { buildBooleanDictionary } from './helpers';
+import { buildBooleanDictionary, getRandomItems, shuffle } from './helpers';
 import { updateDataFirebaseDoc } from '../engine/collections';
 
 export const getItems = async (
@@ -80,14 +80,14 @@ export const getItems = async (
 
   // If there are enough safe items, return them
   if (list.length >= quantity) {
-    return gameUtils.getRandomItems(list, quantity).map(options.cleanUp ?? ((item) => item));
+    return getRandomItems(list, quantity).map(options.cleanUp ?? ((item) => item));
   }
 
   // If not the minimum items needed, reset and use all safe
   await firestoreUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
 
   list = Object.values(itemsObj);
-  return gameUtils.getRandomItems(list, quantity).map(options.cleanUp ?? ((item) => item));
+  return getRandomItems(list, quantity).map(options.cleanUp ?? ((item) => item));
 };
 
 export const itemUtils = {
@@ -250,10 +250,10 @@ export const getContenders = async (
     availableContenders = Object.values(languageContenders);
   }
 
-  const selectedContenders = gameUtils.getRandomItems(availableContenders, cardQuantity);
+  const selectedContenders = getRandomItems(availableContenders, cardQuantity);
   const withPrioritized = [...Object.values(priorityDecks), ...selectedContenders];
 
-  return gameUtils.getRandomItems(withPrioritized, quantity);
+  return getRandomItems(withPrioritized, quantity);
 };
 
 /**
@@ -300,7 +300,7 @@ export const getUnusedResources = async <T extends { id: string; nsfw?: boolean 
   }, {});
 
   if (!quantity) {
-    return gameUtils.shuffle(Object.values(safeResources));
+    return shuffle(Object.values(safeResources));
   }
 
   // Get used resources
@@ -315,7 +315,7 @@ export const getUnusedResources = async <T extends { id: string; nsfw?: boolean 
     availableResources = safeResources;
   }
 
-  return gameUtils.getRandomItems(Object.values(availableResources), quantity);
+  return getRandomItems(Object.values(availableResources), quantity);
 };
 
 /**

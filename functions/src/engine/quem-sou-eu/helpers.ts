@@ -24,7 +24,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, imageCard
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : CHARACTER_DESCRIPTION;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 /**

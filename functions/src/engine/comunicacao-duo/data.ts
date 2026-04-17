@@ -46,7 +46,7 @@ export const getDeck = async (language: Language, options: ComunicacaoDuoOptions
       utils.tdr.modifySuspectIdsByOptions(
         Object.values(allSuspects),
         {
-          deckType: utils.game.getRandomItem(['ghibli', 'realistic', 'pixar', 'fox']),
+          deckType: utils.helpers.getRandomItem(['ghibli', 'realistic', 'pixar', 'fox']),
         },
         true,
       ),

@@ -52,7 +52,7 @@ export const getInitialState = (
     options.withTimer = true;
   }
 
-  return utils.helpers.getDefaultInitialState<UeSoIssoInitialState>({
+  return utils.game.getDefaultInitialState<UeSoIssoInitialState>({
     gameId,
     gameName: GAME_NAMES.UE_SO_ISSO,
     uid,

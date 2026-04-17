@@ -44,7 +44,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
     return round.forceLastRound || round.current >= MAX_ROUNDS ? GAME_OVER : QUESTION_SELECTION;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export const getPoolOfSuspects = (
@@ -58,7 +58,7 @@ export const getPoolOfSuspects = (
 
   if (isGbExclusive) {
     return orderBy(
-      utils.game.getRandomItems(
+      utils.helpers.getRandomItems(
         allSuspects.filter((s) => s.gbExclusive),
         poolSize,
       ),
@@ -68,12 +68,12 @@ export const getPoolOfSuspects = (
   }
 
   if (!targetedPool) {
-    return orderBy(utils.game.getRandomItems(allSuspects, poolSize), [`name.${language}`], ['asc']);
+    return orderBy(utils.helpers.getRandomItems(allSuspects, poolSize), [`name.${language}`], ['asc']);
   }
 
-  const attributeKeys = utils.game.shuffle(['age', 'build', 'race', 'gender']);
+  const attributeKeys = utils.helpers.shuffle(['age', 'build', 'race', 'gender']);
   const startIndex = random(1, poolSize);
-  const ordering = utils.game.shuffle(['asc', 'desc', 'asc', 'desc']);
+  const ordering = utils.helpers.shuffle(['asc', 'desc', 'asc', 'desc']);
 
   const orderedPool = orderBy(
     allSuspects,

@@ -28,7 +28,7 @@ export const prepareSetupPhase = async (
 ): Promise<SaveGamePayload> => {
   // Make deck dictionary
   const deckIds: UID[] = [];
-  const deck = utils.game.shuffle(additionalData.items).reduce((acc: Dictionary<Item>, item) => {
+  const deck = utils.helpers.shuffle(additionalData.items).reduce((acc: Dictionary<Item>, item) => {
     acc[item.id] = item;
     deckIds.push(item.id);
     return acc;
@@ -191,7 +191,7 @@ export const prepareItemPlacementPhase = async (
   // If player got it right (CONTINUE), just continue with the same player.
   const shouldTriggerNewRound = !isNotTheJudge || isNewRound;
   // Determine round if outcome has been wrong or new
-  const round: Round = shouldTriggerNewRound ? utils.helpers.increaseRound(state.round) : state.round;
+  const round: Round = shouldTriggerNewRound ? utils.game.increaseRound(state.round) : state.round;
   let activePlayerId: string = state.activePlayerId;
   // Determine the active player - if it's a new round, get the next player in the order, otherwise keep the same active player
   if (shouldTriggerNewRound) {

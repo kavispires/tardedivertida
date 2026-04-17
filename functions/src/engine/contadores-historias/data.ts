@@ -23,7 +23,7 @@ export const getData = async (playerCount: number): Promise<ResourceData> => {
   const cards = await utils.imageCards.getImageCards(minimumNumberOfCards);
 
   return {
-    cards: utils.game.shuffle(cards),
+    cards: utils.helpers.shuffle(cards),
   };
 };
 

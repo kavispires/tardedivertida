@@ -23,7 +23,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome?:
     return round.forceLastRound || round.current === round.total ? GAME_OVER : PLAYERS_CLUES;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 const buildClueId = (playerId: UID, currentRound: number, index: number, guess = '') => {

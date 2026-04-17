@@ -27,12 +27,12 @@ export const prepareSetupPhase = async (
   cards: PlainObject,
 ): Promise<SaveGamePayload> => {
   // Get 5 (4 regular rounds + 1 order round) themes
-  const themes = utils.game.getRandomItems(Object.values(cards), TOTAL_ROUNDS);
+  const themes = utils.helpers.getRandomItems(Object.values(cards), TOTAL_ROUNDS);
 
   // Build final code
   const playerCount = utils.players.getPlayerCount(players);
 
-  const passCodeOrders = utils.game.shuffle(DIGITS);
+  const passCodeOrders = utils.helpers.shuffle(DIGITS);
 
   // Get each player's password fragment, add instrument
   utils.players.getListOfPlayers(players).forEach((player, index) => {
@@ -78,7 +78,7 @@ export const prepareHintGivingPhase = async (
     update: {
       state: {
         phase: INSTRUMENTOS_CODIFICADOS_PHASES.HINT_GIVING,
-        round: utils.helpers.increaseRound(state?.round, TOTAL_ROUNDS),
+        round: utils.game.increaseRound(state?.round, TOTAL_ROUNDS),
         players,
         theme,
       },

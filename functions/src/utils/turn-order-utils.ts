@@ -1,5 +1,5 @@
 // Utils
-import { shuffle } from './game-utils';
+import { shuffle } from './helpers';
 import { getListOfPlayersIds } from './players-utils';
 
 /**

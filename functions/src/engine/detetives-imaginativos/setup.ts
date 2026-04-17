@@ -56,7 +56,7 @@ export const prepareSetupPhase = async (
           total: TOTAL_ROUNDS,
         },
         // Just so the 'last impostor' is the new leader
-        impostorId: utils.game.getRandomItem(gameOrder),
+        impostorId: utils.helpers.getRandomItem(gameOrder),
         turnOrder: gameOrder,
       },
     },
@@ -75,7 +75,7 @@ export const prepareSecretCluePhase = async (
   // Determine the leader
   const leaderId = state.impostorId;
   // Determine the impostor
-  const impostorId = utils.game.getRandomItem(utils.players.getListOfPlayersIds(players, false, [leaderId]));
+  const impostorId = utils.helpers.getRandomItem(utils.players.getListOfPlayersIds(players, false, [leaderId]));
 
   utils.players.unReadyPlayer(players, leaderId);
 
@@ -85,7 +85,7 @@ export const prepareSecretCluePhase = async (
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.SECRET_CLUE,
         players,
-        round: utils.helpers.increaseRound(state.round),
+        round: utils.game.increaseRound(state.round),
         leaderId,
         impostorId,
         turnOrder: utils.turnOrder.reorder(state.turnOrder, leaderId),

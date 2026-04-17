@@ -23,7 +23,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, status: S
     return status.outcome === OUTCOME.END ? DECLARATION : EXAMINATION;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -89,15 +89,15 @@ export const getStartingAchievements = () => {
  */
 export const buildDeck = (dataCounts: DataCounts): TimeBombCard[] => {
   return shuffle([
-    ...utils.game.makeArray(dataCounts.bomb).map(() => ({
+    ...utils.helpers.makeArray(dataCounts.bomb).map(() => ({
       id: 'card-0',
       type: CARD_TYPES.BOMB,
     })),
-    ...utils.game.makeArray(dataCounts.wires).map((v) => ({
+    ...utils.helpers.makeArray(dataCounts.wires).map((v) => ({
       id: `card-${v + dataCounts.bomb}`,
       type: CARD_TYPES.WIRE,
     })),
-    ...utils.game.makeArray(dataCounts.blank).map((v) => ({
+    ...utils.helpers.makeArray(dataCounts.blank).map((v) => ({
       id: `card-${v + dataCounts.bomb + dataCounts.wires}`,
       type: CARD_TYPES.BLANK,
     })),
@@ -123,8 +123,8 @@ export const determineRoles = (
 ): void => {
   const listOfPlayers = utils.players.getListOfPlayers(players);
   const allRoles = shuffle([
-    ...utils.game.makeArray(dataCounts.agents).map(() => ROLES.AGENT),
-    ...utils.game.makeArray(dataCounts.terrorists).map(() => ROLES.TERRORIST),
+    ...utils.helpers.makeArray(dataCounts.agents).map(() => ROLES.AGENT),
+    ...utils.helpers.makeArray(dataCounts.terrorists).map(() => ROLES.TERRORIST),
   ]);
 
   // Assign roles to players

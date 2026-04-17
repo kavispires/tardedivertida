@@ -25,11 +25,11 @@ export const getResourceData = async (language: Language, options?: DuetosOption
   }
   if (options?.specialRounds.includes('avatars')) {
     specialDeckTypes.push(
-      utils.game.getRandomItem(['superHeroes', 'clubbers', 'superHeroes', 'clubbers', 'costumes']),
+      utils.helpers.getRandomItem(['superHeroes', 'clubbers', 'superHeroes', 'clubbers', 'costumes']),
     );
   }
   if (options?.specialRounds.includes('sprites')) {
-    specialDeckTypes.push(utils.game.getRandomItem(['emojis', 'glyphs', 'glyphs']));
+    specialDeckTypes.push(utils.helpers.getRandomItem(['emojis', 'glyphs', 'glyphs']));
   }
   if (options?.specialRounds.includes('words')) {
     specialDeckTypes.push('words');
@@ -41,7 +41,7 @@ export const getResourceData = async (language: Language, options?: DuetosOption
     specialDeckTypes.push('contenders');
   }
 
-  specialDeckTypes = utils.game.getRandomItems(specialDeckTypes, Math.min(specialDeckTypes.length, 3));
+  specialDeckTypes = utils.helpers.getRandomItems(specialDeckTypes, Math.min(specialDeckTypes.length, 3));
 
   const customRounds = specialDeckTypes.length;
 
@@ -60,34 +60,34 @@ export const getResourceData = async (language: Language, options?: DuetosOption
 
   let emojis: number[] = [];
   if (specialDeckTypes.includes('emojis')) {
-    emojis = utils.game.getRandomItems(utils.game.makeArray(SPRITE_LIBRARIES.EMOJIS), quantityNeeded);
+    emojis = utils.helpers.getRandomItems(utils.helpers.makeArray(SPRITE_LIBRARIES.EMOJIS), quantityNeeded);
   }
 
   let glyphs: number[] = [];
   if (specialDeckTypes.includes('glyphs')) {
-    glyphs = utils.game.getRandomItems(utils.game.makeArray(SPRITE_LIBRARIES.GLYPHS), quantityNeeded);
+    glyphs = utils.helpers.getRandomItems(utils.helpers.makeArray(SPRITE_LIBRARIES.GLYPHS), quantityNeeded);
   }
 
   let superHeroes: number[] = [];
   if (specialDeckTypes.includes('superHeroes')) {
-    superHeroes = utils.game.getRandomItems(
-      utils.game.makeArray(AVATAR_SPRITE_LIBRARIES.SUPER_HEROES),
+    superHeroes = utils.helpers.getRandomItems(
+      utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.SUPER_HEROES),
       quantityNeeded,
     );
   }
 
   let clubbers: number[] = [];
   if (specialDeckTypes.includes('clubbers')) {
-    clubbers = utils.game.getRandomItems(
-      utils.game.makeArray(AVATAR_SPRITE_LIBRARIES.CLUBBERS),
+    clubbers = utils.helpers.getRandomItems(
+      utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.CLUBBERS),
       quantityNeeded,
     );
   }
 
   let costumes: number[] = [];
   if (specialDeckTypes.includes('costumes')) {
-    costumes = utils.game.getRandomItems(
-      utils.game.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES),
+    costumes = utils.helpers.getRandomItems(
+      utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES),
       quantityNeeded,
     );
   }
@@ -100,11 +100,11 @@ export const getResourceData = async (language: Language, options?: DuetosOption
   let suspects: SuspectCard[] = [];
   if (specialDeckTypes.includes('suspects')) {
     const allSuspects = await resourceUtils.fetchResource<Dictionary<SuspectCard>>(TDR_RESOURCES.SUSPECTS);
-    suspects = utils.game.getRandomItems(
+    suspects = utils.helpers.getRandomItems(
       utils.tdr.modifySuspectIdsByOptions(
         Object.values(allSuspects),
         {
-          deckType: utils.game.getRandomItem(['ghibli', 'realistic', 'pixar', 'fox']),
+          deckType: utils.helpers.getRandomItem(['ghibli', 'realistic', 'pixar', 'fox']),
         },
         true,
       ),

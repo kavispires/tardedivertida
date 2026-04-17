@@ -44,7 +44,7 @@ export const getInitialState = (
   version: string,
   options: SuperCampeonatoOptions,
 ): SuperCampeonatoInitialState => {
-  return utils.helpers.getDefaultInitialState<SuperCampeonatoInitialState>({
+  return utils.game.getDefaultInitialState<SuperCampeonatoInitialState>({
     gameId,
     gameName: GAME_NAMES.SUPER_CAMPEONATO,
     uid,

@@ -53,7 +53,7 @@ export const determineNextPhase = (
       : WORD_SELECTION;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -62,7 +62,7 @@ export const determineNextPhase = (
  * @param numberOfRounds
  */
 export const buildDeck = (allWords: TextCard[], numberOfRounds: number, wordsPerCard) => {
-  const shuffledWords = utils.game.shuffle(allWords);
+  const shuffledWords = utils.helpers.shuffle(allWords);
 
   const deck: string[] = [];
   for (let i = 0; i < numberOfRounds * wordsPerCard; i += wordsPerCard) {
@@ -150,7 +150,7 @@ export const determineSecretWord = (currentWords: UsedWords): UsedWord => {
     }
   });
 
-  return utils.game.shuffle(mostVotes)[0];
+  return utils.helpers.shuffle(mostVotes)[0];
 };
 
 /**
@@ -260,10 +260,10 @@ export function countAchievements(store: FirebaseStoreData) {
 
   // Get mean values
   Object.keys(store.achievements).forEach((playerId) => {
-    store.achievements[playerId].correctGuesses = utils.game.calculateAverage(
+    store.achievements[playerId].correctGuesses = utils.helpers.calculateAverage(
       store.achievements[playerId].correctGuesses ?? [],
     );
-    store.achievements[playerId].wrongGuesses = utils.game.calculateAverage(
+    store.achievements[playerId].wrongGuesses = utils.helpers.calculateAverage(
       store.achievements[playerId].wrongGuesses ?? [],
     );
   });

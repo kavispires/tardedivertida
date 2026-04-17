@@ -21,7 +21,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return CARD_SELECTION;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 type OngoingPlayerEffectsType = Record<string, string | null>;
@@ -194,7 +194,7 @@ export const buildRun = (
 
     // Russian roulette (vc-19)
     if (triggerKey === 'roulette') {
-      const randomTargetId = utils.game.getRandomItem(
+      const randomTargetId = utils.helpers.getRandomItem(
         Object.keys(players).filter((pId) => ongoingPlayerEffects.freeze !== pId),
       );
       return race.push({
@@ -213,7 +213,7 @@ export const buildRun = (
       }
 
       if (targetId) {
-        const newValue = utils.game.getRandomItem([1, -1, 2, -2, 3, -3, -4, 4, 5, -5]);
+        const newValue = utils.helpers.getRandomItem([1, -1, 2, -2, 3, -3, -4, 4, 5, -5]);
         endingPositions[targetId] += newValue + getOngoingModifier(ongoingPlayerEffects, targetId);
 
         return race.push({
@@ -321,7 +321,7 @@ const triggerEffectLastPlace = (endingPositions: Record<UID, number>, targetId: 
 
 const triggerEffectSwap = (endingPositions: Record<UID, number>) => {
   // Get the first place player
-  const orderedPositions = utils.game.removeDuplicates(Object.values(endingPositions).sort((a, b) => b - a));
+  const orderedPositions = utils.helpers.removeDuplicates(Object.values(endingPositions).sort((a, b) => b - a));
   const firstPlace = Object.keys(endingPositions).filter(
     (key) => endingPositions[key] === orderedPositions[0],
   );
@@ -343,7 +343,7 @@ const triggerEffectSwap = (endingPositions: Record<UID, number>) => {
 
 const triggerEffectTwist = (endingPositions: Record<UID, number>) => {
   // Order values
-  const orderedPositions = utils.game.removeDuplicates(Object.values(endingPositions).sort((a, b) => a - b));
+  const orderedPositions = utils.helpers.removeDuplicates(Object.values(endingPositions).sort((a, b) => a - b));
   const reversedPositions = [...orderedPositions].reverse();
   // Reverse the order of the positions
   Object.entries(endingPositions).forEach(([playerId, currentPosition]) => {

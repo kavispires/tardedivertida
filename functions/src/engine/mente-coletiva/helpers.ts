@@ -44,7 +44,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
     return round.forceLastRound ? GAME_OVER : QUESTION_SELECTION;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -61,17 +61,17 @@ export const determineRoundType = (playerCount: number, currentRound: number, pl
 
   // When the farthest player is too far from the others
   if (isLevelDifferenceGreaterThanOne(players)) {
-    return isSmallGame ? 2 : utils.game.getRandomItem([2, 2, 2, 3]);
+    return isSmallGame ? 2 : utils.helpers.getRandomItem([2, 2, 2, 3]);
   }
 
   // If the game is going for too long
   if (currentRound > 9) {
-    return isSmallGame ? utils.game.getRandomItem([1, 2, 2]) : utils.game.getRandomItem([2, 2, 3]);
+    return isSmallGame ? utils.helpers.getRandomItem([1, 2, 2]) : utils.helpers.getRandomItem([2, 2, 3]);
   }
 
   return isSmallGame
-    ? utils.game.getRandomItem([1, 1, 1, 1, 1, 2, 0])
-    : utils.game.getRandomItem([1, 1, 1, 1, 2, 2, 3, 0]);
+    ? utils.helpers.getRandomItem([1, 1, 1, 1, 1, 2, 0])
+    : utils.helpers.getRandomItem([1, 1, 1, 1, 2, 2, 3, 0]);
 };
 
 /**
@@ -82,7 +82,7 @@ export const determineRoundType = (playerCount: number, currentRound: number, pl
 export const buildDeck = (allQuestions: AllQuestions): Deck => {
   const neededQuestionsAmount = MAX_ROUNDS * QUESTIONS_PER_ROUND;
 
-  const shuffledQuestions = utils.game.shuffle(Object.values(allQuestions));
+  const shuffledQuestions = utils.helpers.shuffle(Object.values(allQuestions));
 
   return shuffledQuestions.slice(0, neededQuestionsAmount + 1);
 };

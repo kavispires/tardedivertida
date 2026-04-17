@@ -8,7 +8,7 @@ import utils from './index';
  * @param cardsPerPlayer - The number of cards to distribute per player
  */
 export const setup = <T>(store: PlainObject, players: Players, cards: T[], cardsPerPlayer: number) => {
-  const shuffledSplitDeck = utils.game.sliceIntoChunks(cards, cardsPerPlayer);
+  const shuffledSplitDeck = utils.helpers.sliceIntoChunks(cards, cardsPerPlayer);
   store.decks = {};
 
   utils.players.getListOfPlayers(players).forEach((player, index) => {
@@ -134,7 +134,7 @@ export const reshuffle = (
 
   // Optionally shuffle the discard pile before merging
   if (options?.shuffleBeforeMerge) {
-    cardsToShuffle = utils.game.shuffle(cardsToShuffle);
+    cardsToShuffle = utils.helpers.shuffle(cardsToShuffle);
   }
 
   // Add shuffled cards back to the bottom of the deck
@@ -215,7 +215,7 @@ export const shuffleDeck = (store: PlainObject, playerId: UID) => {
     return;
   }
 
-  store.decks[playerId].deck = utils.game.shuffle(store.decks[playerId].deck);
+  store.decks[playerId].deck = utils.helpers.shuffle(store.decks[playerId].deck);
 };
 
 /**

@@ -78,7 +78,7 @@ export const determineNextPhase = (
     return hasBot ? OFFERINGS : ALIEN_REQUEST;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 /**

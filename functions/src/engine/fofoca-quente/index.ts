@@ -44,7 +44,7 @@ export const getInitialState = (
   version: string,
   options: FofocaQuenteOptions,
 ): FofocaQuenteInitialState => {
-  return utils.helpers.getDefaultInitialState<FofocaQuenteInitialState>({
+  return utils.game.getDefaultInitialState<FofocaQuenteInitialState>({
     gameId,
     gameName: GAME_NAMES.FOFOCA_QUENTE,
     uid,

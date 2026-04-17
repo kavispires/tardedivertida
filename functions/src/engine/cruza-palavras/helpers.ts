@@ -39,7 +39,7 @@ export const determineNextPhase = (
       : CLUE_WRITING;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export const buildGrid = (
@@ -48,11 +48,11 @@ export const buildGrid = (
   wordsPerCoordinate: number,
   shouldUsePlayersClues: boolean,
 ): GridCell[] => {
-  const playersCluesDeck = utils.game.shuffle(playersClues);
+  const playersCluesDeck = utils.helpers.shuffle(playersClues);
   const currentDeck =
     shouldUsePlayersClues && playersCluesDeck.length >= wordsPerCoordinate * 2
       ? playersCluesDeck
-      : utils.game.shuffle(words);
+      : utils.helpers.shuffle(words);
 
   const x: Deck = [
     {
@@ -138,7 +138,7 @@ export const buildGrid = (
  */
 export const distributeCoordinates = (players: Players, grid: GridCell[]): GridCell[] => {
   const available = grid.filter((entry) => entry.available && !entry.playerId);
-  const shuffledCoordinates = utils.game.shuffle(available);
+  const shuffledCoordinates = utils.helpers.shuffle(available);
 
   const distribute = (player: Player, cell: GridCell) => {
     if (cell) {

@@ -22,7 +22,7 @@ export const getWords = async (language: Language, options?: CruzaPalavrasOption
       language,
     );
     // Does not need type because it is just text
-    return { deck: utils.game.getRandomItems(Object.values(allCards), quantityNeeded) };
+    return { deck: utils.helpers.getRandomItems(Object.values(allCards), quantityNeeded) };
   }
 
   if (options?.gridType === 'imageCards') {

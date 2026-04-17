@@ -22,11 +22,11 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return GAME_OVER;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export const buildCodeFragment = () => {
-  return utils.game.getRandomItems(DIGITS, 3).map((n) => `${n}`);
+  return utils.helpers.getRandomItems(DIGITS, 3).map((n) => `${n}`);
 };
 
 export const buildCode = (players: Players, playerCount: number): string[] => {

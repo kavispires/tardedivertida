@@ -31,7 +31,7 @@ export const getInitialState = (
   version: string,
   options: ViceCampeaoOptions = {},
 ): ViceCampeaoInitialState => {
-  return utils.helpers.getDefaultInitialState<ViceCampeaoInitialState>({
+  return utils.game.getDefaultInitialState<ViceCampeaoInitialState>({
     gameId,
     gameName: GAME_NAMES.VICE_CAMPEAO,
     uid,

@@ -30,11 +30,11 @@ export const determineNextPhase = (
       : nextPhase || ASKING_FOR_SOMETHING;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export const applyDataToDeck = (list: unknown[], type: string): DeckEntry[] => {
-  return utils.game.shuffle(DECK).map((entry, index) => {
+  return utils.helpers.shuffle(DECK).map((entry, index) => {
     if (type === 'images') {
       return {
         ...entry,

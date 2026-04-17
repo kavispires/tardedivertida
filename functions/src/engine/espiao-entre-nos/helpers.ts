@@ -43,7 +43,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
     return ASSESSMENT;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -53,7 +53,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
  * @returns
  */
 export const createRolesPool = (roles: string[], playerCount: number): string[] => {
-  const shuffledRoles = utils.game.shuffle(roles);
+  const shuffledRoles = utils.helpers.shuffle(roles);
 
   const sessionRoles = new Array(playerCount).fill('').map((_, index) => {
     if (index === 0) return SPY;
@@ -63,7 +63,7 @@ export const createRolesPool = (roles: string[], playerCount: number): string[] 
     return shuffledRoles[index - 1];
   });
 
-  return utils.game.shuffle(sessionRoles);
+  return utils.helpers.shuffle(sessionRoles);
 };
 
 /**

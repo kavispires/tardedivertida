@@ -134,7 +134,7 @@ export const prepareMapBuildingPhase = async (
       state: {
         phase: LABIRINTO_SECRETO_PHASES.MAP_BUILDING,
         players,
-        round: utils.helpers.increaseRound(state?.round),
+        round: utils.game.increaseRound(state?.round),
       },
       stateCleanup: ['turnOrder', 'activePlayerId', 'ranking'],
     },

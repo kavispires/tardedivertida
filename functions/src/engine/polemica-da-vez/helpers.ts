@@ -36,7 +36,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
       : TOPIC_SELECTION;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -62,8 +62,8 @@ export const buildDeck = (allTweets: CustomTweet[]): Decks => {
   );
 
   return {
-    deck: utils.game.getRandomItems(deck, MAX_ROUNDS * TOPICS_PER_ROUND),
-    customDeck: utils.game.getRandomItems(customDeck, MAX_ROUNDS * CUSTOM_TOPICS_PER_ROUND),
+    deck: utils.helpers.getRandomItems(deck, MAX_ROUNDS * TOPICS_PER_ROUND),
+    customDeck: utils.helpers.getRandomItems(customDeck, MAX_ROUNDS * CUSTOM_TOPICS_PER_ROUND),
   };
 };
 

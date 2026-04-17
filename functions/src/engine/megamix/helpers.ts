@@ -38,7 +38,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return round.forceLastRound || (round.current > 0 && round.current) === round.total ? GAME_OVER : TRACK;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -55,7 +55,7 @@ export const distributeSeeds = (
 ) => {
   const individualSeeds: any[] = [];
   const groupSeeds: any[] = [];
-  const playersList = utils.game.shuffle(utils.players.getListOfPlayers(players));
+  const playersList = utils.helpers.shuffle(utils.players.getListOfPlayers(players));
   const playerCount = playersList.length;
 
   tracks.forEach((track) => {
@@ -64,7 +64,7 @@ export const distributeSeeds = (
         if (track.variant === 'cards') {
           individualSeeds.push({
             type: GAME_NAMES.ARTE_RUIM,
-            card: utils.game.getRandomItem(track.data.cards),
+            card: utils.helpers.getRandomItem(track.data.cards),
           });
           break;
         }
@@ -87,7 +87,7 @@ export const distributeSeeds = (
       case GAME_NAMES.CONTADORES_HISTORIAS:
         individualSeeds.push({
           type: GAME_NAMES.CONTADORES_HISTORIAS,
-          card: utils.game.getRandomItem(track.data.cards),
+          card: utils.helpers.getRandomItem(track.data.cards),
           prompts: track.data.prompts,
         });
         break;
@@ -200,7 +200,7 @@ export const distributeSeeds = (
     let customQuestionCount = playerCount;
     let customSeedIndex = 0;
 
-    const customIndividualTracks: any[] = utils.game.makeArray(playerCount).map(() => {
+    const customIndividualTracks: any[] = utils.helpers.makeArray(playerCount).map(() => {
       return cloneDeep({
         type: 'party',
         cards: [],
@@ -262,7 +262,7 @@ export const distributeSeeds = (
     player.seeds.push(seed);
   });
 
-  const clubbers = utils.game.sliceIntoChunks(
+  const clubbers = utils.helpers.sliceIntoChunks(
     clubberIds,
     Math.min(Math.floor(clubberIds.length / playersList.length), 5),
   );
@@ -299,7 +299,7 @@ const distributeTracksEvenly = (tracks: Track[], count: number, playerCount: num
 
   // Shuffle each group internally for variety
   Object.keys(tracksByGame).forEach((gameType) => {
-    tracksByGame[gameType] = utils.game.shuffle(tracksByGame[gameType]);
+    tracksByGame[gameType] = utils.helpers.shuffle(tracksByGame[gameType]);
   });
 
   const gameTypes = Object.keys(tracksByGame);
@@ -393,7 +393,7 @@ export const handleSeedingData = (
         break;
 
       case GAME_NAMES.UE_SO_ISSO:
-        track.data.cards = utils.game.getRandomItems(track.data.cards, 2);
+        track.data.cards = utils.helpers.getRandomItems(track.data.cards, 2);
         track.data.options = buildUeSoIssoOptions(players);
         break;
 
@@ -448,9 +448,9 @@ export const parseCrimeTiles = (sceneTiles: CrimeSceneTile[]) => {
     },
   );
 
-  result.weaponSceneTiles = utils.game.shuffle(result.weaponSceneTiles);
-  result.evidenceSceneTiles = utils.game.shuffle(result.evidenceSceneTiles);
-  result.sceneTiles = utils.game.shuffle(result.sceneTiles);
+  result.weaponSceneTiles = utils.helpers.shuffle(result.weaponSceneTiles);
+  result.evidenceSceneTiles = utils.helpers.shuffle(result.evidenceSceneTiles);
+  result.sceneTiles = utils.helpers.shuffle(result.sceneTiles);
 
   return {
     weapon: {
@@ -462,11 +462,11 @@ export const parseCrimeTiles = (sceneTiles: CrimeSceneTile[]) => {
         sceneC: result.sceneTiles[1],
       },
       crime: {
-        causeOfDeath: utils.game.getRandomNumber(0, 5),
-        location: utils.game.getRandomNumber(0, 5),
-        sceneA: utils.game.getRandomNumber(0, 5),
-        sceneB: utils.game.getRandomNumber(0, 5),
-        sceneC: utils.game.getRandomNumber(0, 5),
+        causeOfDeath: utils.helpers.getRandomNumber(0, 5),
+        location: utils.helpers.getRandomNumber(0, 5),
+        sceneA: utils.helpers.getRandomNumber(0, 5),
+        sceneB: utils.helpers.getRandomNumber(0, 5),
+        sceneC: utils.helpers.getRandomNumber(0, 5),
       },
     },
     evidence: {
@@ -478,11 +478,11 @@ export const parseCrimeTiles = (sceneTiles: CrimeSceneTile[]) => {
         sceneC: result.sceneTiles[3],
       },
       crime: {
-        reasonForEvidence: utils.game.getRandomNumber(0, 5),
-        location: utils.game.getRandomNumber(0, 5),
-        sceneA: utils.game.getRandomNumber(0, 5),
-        sceneB: utils.game.getRandomNumber(0, 5),
-        sceneC: utils.game.getRandomNumber(0, 5),
+        reasonForEvidence: utils.helpers.getRandomNumber(0, 5),
+        location: utils.helpers.getRandomNumber(0, 5),
+        sceneA: utils.helpers.getRandomNumber(0, 5),
+        sceneB: utils.helpers.getRandomNumber(0, 5),
+        sceneC: utils.helpers.getRandomNumber(0, 5),
       },
     },
   };
@@ -679,9 +679,9 @@ export const getCandidatePersonality = (cards: DatingCandidateCard[]) => {
   });
 
   return {
-    interests: utils.game.getRandomItems(interests, 3),
-    needs: utils.game.getRandomItems(needs, 3),
-    funFacts: utils.game.getRandomItems(funFacts, 3),
+    interests: utils.helpers.getRandomItems(interests, 3),
+    needs: utils.helpers.getRandomItems(needs, 3),
+    funFacts: utils.helpers.getRandomItems(funFacts, 3),
   };
 };
 
@@ -732,9 +732,9 @@ const buildPolemicaDaVezOptions = (players: Players) => {
     }, 0);
   const correctPercentage = Math.round((totalLikes / playerCount) * 100);
 
-  const possibleLikes = utils.game.makeArray(playerCount, 1).map((v) => Math.round((v * 100) / playerCount));
+  const possibleLikes = utils.helpers.makeArray(playerCount, 1).map((v) => Math.round((v * 100) / playerCount));
 
-  return orderBy([...new Set([0, correctPercentage, 100, ...utils.game.getRandomItems(possibleLikes, 3)])]);
+  return orderBy([...new Set([0, correctPercentage, 100, ...utils.helpers.getRandomItems(possibleLikes, 3)])]);
 };
 
 const buildRetratoFaladoOptions = (players: Players, track: Track) => {
@@ -767,7 +767,7 @@ const buildUeSoIssoOptions = (players: Players) => {
     }
   });
 
-  return utils.game.getRandomItems([...new Set(clues)], Math.min(5, clues.length));
+  return utils.helpers.getRandomItems([...new Set(clues)], Math.min(5, clues.length));
 };
 
 /**
@@ -841,7 +841,7 @@ const buildLabirintoSecretoOptions = (players: Players, track: Track) => {
     });
   });
 
-  const permutations = utils.game.shuffle([
+  const permutations = utils.helpers.shuffle([
     [clues[0], clues[2], clues[1]],
     [clues[1], clues[2], clues[0]],
     [clues[1], clues[0], clues[2]],
@@ -849,7 +849,7 @@ const buildLabirintoSecretoOptions = (players: Players, track: Track) => {
     [clues[2], clues[1], clues[0]],
   ]);
 
-  const options = utils.game.shuffle([[clues[0], clues[1], clues[2]], permutations[0], permutations[1]]);
+  const options = utils.helpers.shuffle([[clues[0], clues[1], clues[2]], permutations[0], permutations[1]]);
 
   return {
     0: options[0],
@@ -907,10 +907,10 @@ const buildPartyOptions = (players: Players, language: Language) => {
         card: {
           id: option.playerId,
           text: option.text,
-          options: utils.game.removeDuplicates(
-            utils.game.shuffle([
+          options: utils.helpers.removeDuplicates(
+            utils.helpers.shuffle([
               option.playerId,
-              ...utils.game.getRandomItems(
+              ...utils.helpers.getRandomItems(
                 utils.players.getListOfPlayersIds(players, false, [option.playerId]),
                 2,
               ),
@@ -931,7 +931,7 @@ const buildPartyOptions = (players: Players, language: Language) => {
         data: {
           card: {
             question: getQuestion(variant, language),
-            options: utils.game.shuffle(values),
+            options: utils.helpers.shuffle(values),
           },
         },
       });
@@ -1012,35 +1012,35 @@ export const getNaRuaDoMedoScenario = (playerCount: number) => {
   // Scenarios
   // 1) 3 monsters, 1 low card, 1 jackpot
   scenarios.push([
-    ...utils.game.getRandomItems(horrorDeck, 3),
-    ...utils.game.getRandomItems(lowCandy, 1),
-    ...utils.game.getRandomItems(decks.jackpotDeck, 1),
+    ...utils.helpers.getRandomItems(horrorDeck, 3),
+    ...utils.helpers.getRandomItems(lowCandy, 1),
+    ...utils.helpers.getRandomItems(decks.jackpotDeck, 1),
   ]);
   // 2) 2 monsters, 2 low card, 1 medium cards
   scenarios.push([
-    ...utils.game.getRandomItems(horrorDeck, 2),
-    ...utils.game.getRandomItems(lowCandy, 2),
-    ...utils.game.getRandomItems(mediumCandy, 1),
+    ...utils.helpers.getRandomItems(horrorDeck, 2),
+    ...utils.helpers.getRandomItems(lowCandy, 2),
+    ...utils.helpers.getRandomItems(mediumCandy, 1),
   ]);
   // 3) 3 monsters, 2 medium cards
-  scenarios.push([...utils.game.getRandomItems(horrorDeck, 3), ...utils.game.getRandomItems(mediumCandy, 2)]);
+  scenarios.push([...utils.helpers.getRandomItems(horrorDeck, 3), ...utils.helpers.getRandomItems(mediumCandy, 2)]);
   // 4) 1 monster, 4 low cards
-  scenarios.push([...utils.game.getRandomItems(horrorDeck, 1), ...utils.game.getRandomItems(lowCandy, 4)]);
+  scenarios.push([...utils.helpers.getRandomItems(horrorDeck, 1), ...utils.helpers.getRandomItems(lowCandy, 4)]);
   // 5) 2 monsters, 1 low, 2 high
   scenarios.push([
-    ...utils.game.getRandomItems(horrorDeck, 2),
-    ...utils.game.getRandomItems(lowCandy, 1),
-    ...utils.game.getRandomItems(highCandy, 2),
+    ...utils.helpers.getRandomItems(horrorDeck, 2),
+    ...utils.helpers.getRandomItems(lowCandy, 1),
+    ...utils.helpers.getRandomItems(highCandy, 2),
   ]);
 
   return {
-    scenarios: utils.game.shuffle(scenarios),
+    scenarios: utils.helpers.shuffle(scenarios),
     home: [
-      utils.game.getRandomItem(decks.horrorDeck),
-      ...utils.game.getRandomItems([...decks.candyDeck, utils.game.getRandomItem(decks.jackpotDeck)], 2),
+      utils.helpers.getRandomItem(decks.horrorDeck),
+      ...utils.helpers.getRandomItems([...decks.candyDeck, utils.helpers.getRandomItem(decks.jackpotDeck)], 2),
     ],
-    costumes: utils.game.getRandomItems(utils.game.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES), playerCount),
-    kids: utils.game.getRandomItems(utils.game.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES), 5),
+    costumes: utils.helpers.getRandomItems(utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES), playerCount),
+    kids: utils.helpers.getRandomItems(utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES), 5),
   };
 };
 
@@ -1055,8 +1055,8 @@ export const getMovieReviews = (reviews: MovieReviewCard[]) => {
   );
 
   return {
-    good: utils.game.getRandomItem(good),
-    bad: utils.game.getRandomItem(bad),
+    good: utils.helpers.getRandomItem(good),
+    bad: utils.helpers.getRandomItem(bad),
   };
 };
 
@@ -1066,13 +1066,13 @@ export const calculateAllAchievements = (players: Players, store: FirebaseStoreD
       store,
       player.id,
       'longestVIP',
-      utils.game.calculateLongestRun(player.team, SIDES.WINNER),
+      utils.helpers.calculateLongestRun(player.team, SIDES.WINNER),
     );
     utils.achievements.increase(
       store,
       player.id,
       'longestLoser',
-      utils.game.calculateLongestRun(player.team, SIDES.LOSER),
+      utils.helpers.calculateLongestRun(player.team, SIDES.LOSER),
     );
 
     player.team.forEach((team: string, index: number) => {

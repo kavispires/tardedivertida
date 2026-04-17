@@ -55,14 +55,14 @@ export const determineNextPhase = (
   }
 
   if (currentPhase === PATH_FOLLOWING) {
-    return utils.game.getLastItem(turnOrder ?? []) === activePlayerId ? RESULTS : PATH_FOLLOWING;
+    return utils.helpers.getLastItem(turnOrder ?? []) === activePlayerId ? RESULTS : PATH_FOLLOWING;
   }
 
   if (currentPhase === RESULTS) {
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : MAP_BUILDING;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 // FOREST FUNCTIONS
@@ -201,7 +201,7 @@ const getAvailableNextStep = (
   });
 
   if (available.length === 0) return null;
-  return utils.game.getRandomItem(available);
+  return utils.helpers.getRandomItem(available);
 };
 
 const WHILE_THRESHOLD = 300;
@@ -264,7 +264,7 @@ const buildPath = (
     }
 
     // Last resort safety
-    return utils.game.makeArray(length).map(() => startingPoint);
+    return utils.helpers.makeArray(length).map(() => startingPoint);
   }
 
   return segments;
@@ -278,9 +278,9 @@ const buildPath = (
 export const buildForest = (cards: TextCard[], isItemsForest: boolean): Tree[] => {
   const trees = Array(5)
     .fill(0)
-    .map(() => utils.game.getRandomNumber(2, 15));
+    .map(() => utils.helpers.getRandomNumber(2, 15));
 
-  return utils.game.makeArray(FOREST_WIDTH * FOREST_HEIGHT, 0).map((el: number, index) => {
+  return utils.helpers.makeArray(FOREST_WIDTH * FOREST_HEIGHT, 0).map((el: number, index) => {
     if (FORBIDDEN_TREES.includes(index)) {
       return {
         id: el,
@@ -312,7 +312,7 @@ export const buildPaths = (players: Players) => {
   const generatedPaths: Point[][] = [];
 
   // Shuffle entry points so we don't always prioritize the top-left player for the "cleanest" path
-  const shuffledEntries = utils.game.shuffle(entryPoints);
+  const shuffledEntries = utils.helpers.shuffle(entryPoints);
 
   // Generate paths sequentially
   shuffledEntries.forEach((entryPoint) => {
@@ -335,7 +335,7 @@ export const buildPaths = (players: Players) => {
   }
 
   // Shuffle the valid paths again before assigning to ensure fairness
-  const finalPaths = utils.game.shuffle(generatedPaths);
+  const finalPaths = utils.helpers.shuffle(generatedPaths);
 
   utils.players.getListOfPlayers(players).forEach((player, playerIndex) => {
     const path = finalPaths[playerIndex];
@@ -346,7 +346,7 @@ export const buildPaths = (players: Players) => {
       return;
     }
 
-    player.map = utils.game
+    player.map = utils.helpers
       .makeArray(PATH_DISTANCE)
       .map((_, index) => {
         // Safety: Ensure current point exists

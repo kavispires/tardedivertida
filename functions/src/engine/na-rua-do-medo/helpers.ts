@@ -57,7 +57,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
     return TRICK_OR_TREAT;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export const buildDecks = (isShortGame: boolean): Decks => {
@@ -65,7 +65,7 @@ export const buildDecks = (isShortGame: boolean): Decks => {
   const horrorCount = {};
   const horrorDeck: HouseCard[] = utils.helpers.flattenArray(
     HORROR_SETS.map((horrorGroup: DualLanguageValue[]) => {
-      const horrorName = utils.game.getRandomItem(horrorGroup);
+      const horrorName = utils.helpers.getRandomItem(horrorGroup);
       const horrorGenericName = horrorName.en.toLowerCase();
       const horrorKey = `${CARD_KEY_PREFIX}-horror-${horrorGenericName}`;
       // This is used to count how many horrors have happen each round
@@ -129,7 +129,7 @@ export const buildStreetDeck = (store: FirebaseStoreData, currentRound: number):
   // Add all candy values
   const streetDeck = [...store.candyDeck, ...horrorDeckWithoutAnyUsedHorrors, ...availableJackpots];
 
-  const shuffledStreet = utils.game.shuffle(streetDeck);
+  const shuffledStreet = utils.helpers.shuffle(streetDeck);
 
   let tries = 0;
   while (

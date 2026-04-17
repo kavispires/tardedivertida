@@ -50,7 +50,7 @@ export const prepareSetupPhase = async (
   }
 
   // Get all available locations
-  const allLocations = utils.game.shuffle(
+  const allLocations = utils.helpers.shuffle(
     Object.values(allCityLocations).filter((l) => (allowNSFW || !l.nsfw) && !usedCityLocations[l.id]),
   );
 
@@ -67,7 +67,7 @@ export const prepareSetupPhase = async (
 
   const { playerIds: gameOrder, gameOrder: totalGameOrder } = utils.turnOrder.create(players, 6);
 
-  const deck = utils.game.getRandomItems(allLocations, totalGameOrder.length * 3).map((l) => l.id);
+  const deck = utils.helpers.getRandomItems(allLocations, totalGameOrder.length * 3).map((l) => l.id);
 
   deck.forEach((locationId) => {
     usedCityLocations[locationId] = allCityLocations[locationId];
@@ -113,7 +113,7 @@ export const preparePlanningPhase = async (
   const deck = store.deck;
   const city: City = state.city;
 
-  const round = utils.helpers.increaseRound(state.round);
+  const round = utils.game.increaseRound(state.round);
 
   // Determine the active planner
   const architectId = utils.turnOrder.getActivePlayerId(state.gameOrder, round.current);
@@ -148,7 +148,7 @@ export const preparePlanningPhase = async (
    * @returns Array of non-adjacent cell IDs
    */
   const selectNonAdjacentCells = (availableCellIds: string[], desiredCount: number): string[] => {
-    const shuffled = utils.game.shuffle([...availableCellIds]);
+    const shuffled = utils.helpers.shuffle([...availableCellIds]);
     const selected: string[] = [];
     const remainingPool = new Set(shuffled);
 

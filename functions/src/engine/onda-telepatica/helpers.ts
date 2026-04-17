@@ -36,7 +36,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
       : DIAL_CLUE;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -71,7 +71,7 @@ export const determineGameOver = (
 export const buildDeck = (data: ResourceData): Deck => {
   const neededQuestionsAmount = MAX_ROUNDS * CATEGORIES_PER_ROUND;
 
-  const shuffledQuestions = utils.game.shuffle(Object.values(data.allCategories));
+  const shuffledQuestions = utils.helpers.shuffle(Object.values(data.allCategories));
 
   return shuffledQuestions.slice(0, neededQuestionsAmount + 1);
 };

@@ -76,7 +76,7 @@ export const prepareCategoryCreationPhase = async (
   // Cleanup
   utils.players.removePropertiesFromPlayers(players, ['playedCardsIds', 'evaluations']);
 
-  const round = utils.helpers.increaseRound(state.round);
+  const round = utils.game.increaseRound(state.round);
   const creatorId = utils.turnOrder.getActivePlayerId(state.turnOrder, round.current);
 
   // Unready creator only

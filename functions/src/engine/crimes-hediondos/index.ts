@@ -38,7 +38,7 @@ export const getInitialState = (
   version: string,
   options: CrimesHediondosOptions,
 ): CrimesHediondosInitialState => {
-  return utils.helpers.getDefaultInitialState<CrimesHediondosInitialState>({
+  return utils.game.getDefaultInitialState<CrimesHediondosInitialState>({
     gameId,
     gameName: GAME_NAMES.CRIMES_HEDIONDOS,
     uid,

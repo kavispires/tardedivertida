@@ -37,7 +37,7 @@ export const getInitialState = (
   version: string,
   options: MetalinguagemOptions,
 ): MetalinguagemInitialState => {
-  return utils.helpers.getDefaultInitialState<MetalinguagemInitialState>({
+  return utils.game.getDefaultInitialState<MetalinguagemInitialState>({
     gameId,
     gameName: GAME_NAMES.METALINGUAGEM,
     uid,

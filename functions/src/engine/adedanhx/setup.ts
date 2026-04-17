@@ -87,7 +87,7 @@ export const prepareAnsweringPhase = async (
   // Reset values related to answers and evaluations
   utils.players.addPropertiesToPlayers(players, { evaluations: {}, answers: {} });
 
-  const round = utils.helpers.increaseRound(state.round);
+  const round = utils.game.increaseRound(state.round);
   const options = store.options;
 
   // Get current grid

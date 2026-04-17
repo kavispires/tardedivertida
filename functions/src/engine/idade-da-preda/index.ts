@@ -44,7 +44,7 @@ export const getInitialState = (
   version: string,
   options: IdadeDaPredaOptions,
 ): IdadeDaPredaInitialState => {
-  return utils.helpers.getDefaultInitialState<IdadeDaPredaInitialState>({
+  return utils.game.getDefaultInitialState<IdadeDaPredaInitialState>({
     gameId,
     gameName: GAME_NAMES.IDADE_DA_PREDA,
     uid,

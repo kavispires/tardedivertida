@@ -36,7 +36,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return round.forceLastRound || (round.current > 0 && round.current === round.total) ? GAME_OVER : BETS;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export const applyBetsToLodges = (players: Players, skierId: UID, lodges: Lodge[], betType: string) => {
@@ -49,7 +49,7 @@ export const applyBetsToLodges = (players: Players, skierId: UID, lodges: Lodge[
       if (betValue > 0) {
         const lodgeId = Number.parseInt(betKey, 10);
         lodges[lodgeId].playersIds.push(player.id);
-        lodges[lodgeId].playersIds = utils.game.removeDuplicates(lodges[lodgeId].playersIds);
+        lodges[lodgeId].playersIds = utils.helpers.removeDuplicates(lodges[lodgeId].playersIds);
       }
     });
   });

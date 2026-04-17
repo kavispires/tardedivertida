@@ -43,7 +43,7 @@ export const getInitialState = (
   version: string,
   options: GaleriaDeSonhosOptions,
 ): GaleriaDeSonhosInitialState => {
-  return utils.helpers.getDefaultInitialState<GaleriaDeSonhosInitialState>({
+  return utils.game.getDefaultInitialState<GaleriaDeSonhosInitialState>({
     gameId,
     gameName: GAME_NAMES.GALERIA_DE_SONHOS,
     uid,

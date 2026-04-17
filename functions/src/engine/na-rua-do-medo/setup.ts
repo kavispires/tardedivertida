@@ -97,7 +97,7 @@ export const prepareTrickOrTreatPhase = async (
     });
     utils.players.unReadyPlayers(players);
 
-    const round = utils.helpers.increaseRound(state.round);
+    const round = utils.game.increaseRound(state.round);
     const streetDeck = buildStreetDeck(store, round.current);
     store.streetDeck = streetDeck;
     resetHorrorCount(store.horrorCount);

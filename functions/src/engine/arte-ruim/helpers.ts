@@ -38,7 +38,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : DRAW;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -66,7 +66,7 @@ export const getGameSettings = (options: ArteRuimGameOptions) => {
 
   return {
     MAX_ROUNDS: levels.length,
-    LEVELS: options.randomize ? utils.game.shuffle(levels) : levels,
+    LEVELS: options.randomize ? utils.helpers.shuffle(levels) : levels,
   };
 };
 
@@ -167,7 +167,7 @@ export const getEnoughUnusedLevel4Cards = (
     // Makes sure the look is not infinite
     tries++;
     if (tries > 100) {
-      return utils.game.sliceIntoChunks(discarded, cardsNeeded)[0];
+      return utils.helpers.sliceIntoChunks(discarded, cardsNeeded)[0];
     }
     const selected = deck.pop();
     if (selected) {
@@ -185,7 +185,7 @@ export const getEnoughUnusedLevel4Cards = (
     }
   }
 
-  return utils.game.shuffle(Object.keys(reserved)).slice(0, cardsNeeded);
+  return utils.helpers.shuffle(Object.keys(reserved)).slice(0, cardsNeeded);
 };
 
 /**
@@ -206,12 +206,12 @@ export const buildDeck = (
   const { allCards, availableCards, cardsGroups, specialLevels } = resourceData;
 
   // Shuffle available decls
-  availableCards[1] = utils.game.shuffle(availableCards[1]);
-  availableCards[2] = utils.game.shuffle(availableCards[2]);
-  availableCards[3] = utils.game.shuffle(availableCards[3]);
+  availableCards[1] = utils.helpers.shuffle(availableCards[1]);
+  availableCards[2] = utils.helpers.shuffle(availableCards[2]);
+  availableCards[3] = utils.helpers.shuffle(availableCards[3]);
 
   const usedCardIdDict = {};
-  const shuffledLevel4Deck = utils.game.shuffle(cardsGroups);
+  const shuffledLevel4Deck = utils.helpers.shuffle(cardsGroups);
   let level4Hand: UID[] = [];
 
   return Array(cardsNeeded)
@@ -270,9 +270,9 @@ export const getEnoughLevel5Cards = (cards: ArteRuimPair[], playerCount: number)
     const cardsArr1 = new Array(count * 2).fill(newCards[1]).map((c, i) => ({ ...c, id: `${c.id}--${i}` }));
     // From an array composed of twice the numbers of players for each card,
     // return an array with the exact number of players
-    const randomCards = utils.game.getRandomItems([...cardsArr0, ...cardsArr1], count - 2);
+    const randomCards = utils.helpers.getRandomItems([...cardsArr0, ...cardsArr1], count - 2);
     // Guarantee that there's at least one of each
-    return utils.game.getRandomItems([newCards[0], newCards[1], ...randomCards], count);
+    return utils.helpers.getRandomItems([newCards[0], newCards[1], ...randomCards], count);
   }
 
   // Get 2 pairs

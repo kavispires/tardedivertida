@@ -37,7 +37,7 @@ export const getInitialState = (
   version: string,
   options: MesmiceOptions,
 ): MesmiceInitialState => {
-  return utils.helpers.getDefaultInitialState<MesmiceInitialState>({
+  return utils.game.getDefaultInitialState<MesmiceInitialState>({
     gameId,
     gameName: GAME_NAMES.MESMICE,
     uid,

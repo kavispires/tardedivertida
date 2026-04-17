@@ -108,7 +108,7 @@ export const prepareCardSelectionPhase = async (
       state: {
         phase: VICE_CAMPEAO_PHASES.CARD_SELECTION,
         players,
-        round: utils.helpers.increaseRound(state.round),
+        round: utils.game.increaseRound(state.round),
         turnOrder,
         race,
       },

@@ -102,7 +102,7 @@ export const preparePlayersClues = async (
       state: {
         phase: VENDAVAL_DE_PALPITE_PHASES.PLAYERS_CLUES,
         players,
-        round: utils.helpers.increaseRound(state.round),
+        round: utils.game.increaseRound(state.round),
         board,
         clues,
       },

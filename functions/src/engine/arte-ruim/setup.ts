@@ -99,7 +99,7 @@ export const prepareDrawPhase = async (
       },
       state: {
         phase: ARTE_RUIM_PHASES.DRAW,
-        round: utils.helpers.increaseRound(state?.round),
+        round: utils.game.increaseRound(state?.round),
         players,
         level,
         levelType,
@@ -121,10 +121,10 @@ export const prepareEvaluationPhase = async (
 
   // Shuffle cards
   const shuffledCards: ArteRuimCard[] =
-    level === 5 ? getTheTwoLevel5Cards(store.currentCards) : utils.game.shuffle(store.currentCards);
+    level === 5 ? getTheTwoLevel5Cards(store.currentCards) : utils.helpers.shuffle(store.currentCards);
 
   // Shuffle drawings
-  const shuffledDrawings = utils.game.shuffle(
+  const shuffledDrawings = utils.helpers.shuffle(
     utils.players.getListOfPlayers(players).map((player) => player.currentCard),
   );
 
@@ -155,7 +155,7 @@ export const prepareGalleryPhase = async (
     .map((card) => card.id);
 
   // Build gallery
-  const gallery = utils.game.shuffle(buildGallery(state.drawings, players, store, tableCardsIds));
+  const gallery = utils.helpers.shuffle(buildGallery(state.drawings, players, store, tableCardsIds));
 
   const ranking = buildRanking(state.drawings, players);
 

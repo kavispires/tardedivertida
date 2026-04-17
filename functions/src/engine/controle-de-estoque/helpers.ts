@@ -36,7 +36,7 @@ export const determineNextPhase = (
       : FULFILLMENT;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 /**

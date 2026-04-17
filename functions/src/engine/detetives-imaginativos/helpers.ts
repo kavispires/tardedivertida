@@ -22,7 +22,7 @@ export const determineNextPhase = (
       : SECRET_CLUE;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 /**

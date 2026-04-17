@@ -29,7 +29,7 @@ export const getInitialState = (
   language: Language,
   version: string,
 ): SensoLiterarioInitialState => {
-  return utils.helpers.getDefaultInitialState<SensoLiterarioInitialState>({
+  return utils.game.getDefaultInitialState<SensoLiterarioInitialState>({
     gameId,
     gameName: GAME_NAMES.SENSO_LITERARIO,
     uid,

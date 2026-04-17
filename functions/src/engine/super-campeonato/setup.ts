@@ -45,7 +45,7 @@ export const prepareSetupPhase = async (
   }
 
   // Get 10 challenges
-  const deck = utils.game.getRandomItems(resourceData.challenges, CHALLENGES_PER_GAME);
+  const deck = utils.helpers.getRandomItems(resourceData.challenges, CHALLENGES_PER_GAME);
 
   // Shuffle contenders
   const contendersDeck = resourceData.contenders;
@@ -108,7 +108,7 @@ export const prepareChallengeSelectionPhase = async (
   // Get the two challenges
   const challenges = [store.deck[store.deckIndex], store.deck[store.deckIndex + 1]];
 
-  const round = utils.helpers.increaseRound(state.round);
+  const round = utils.game.increaseRound(state.round);
 
   // If round 5, build brackets with store.finalBrackets
   let brackets: unknown = utils.firestore.deleteValue();

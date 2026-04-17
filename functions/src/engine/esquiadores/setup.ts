@@ -16,7 +16,7 @@ import {
 } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 import { aggregateBets, applyBetsToLodges, calculateScores, getAchievements } from './helpers';
-import { makeArray } from '../../utils/game-utils';
+import { makeArray } from '../../utils/helpers';
 
 /**
  * Setup
@@ -33,7 +33,7 @@ export const prepareSetupPhase = async (
   const { gameOrder, playerIds: turnOrder } = utils.turnOrder.create(players, DOUBLE_ROUNDS_THRESHOLD);
 
   // Build deck
-  const deck = utils.game.getRandomItems(resourceData.dilemmas, gameOrder.length * DILEMMAS_PER_ROUND);
+  const deck = utils.helpers.getRandomItems(resourceData.dilemmas, gameOrder.length * DILEMMAS_PER_ROUND);
 
   const achievements = utils.achievements.setup(players, {
     lodges: 0,
@@ -86,7 +86,7 @@ export const prepareBetsPhase = async (
   ]);
 
   // Get new active skier
-  const round = utils.helpers.increaseRound(state.round);
+  const round = utils.game.increaseRound(state.round);
   const activeSkierId = utils.turnOrder.getActivePlayerId(state.turnOrder, round.current);
 
   // Give initial chips to players
@@ -98,7 +98,7 @@ export const prepareBetsPhase = async (
 
   const deck: DilemmaCard[] = store.deck;
   const dilemmas = deck.splice(0, DILEMMAS_PER_ROUND);
-  const sprites = utils.game.shuffle(makeArray(13).map((i) => `mountain-${i}`));
+  const sprites = utils.helpers.shuffle(makeArray(13).map((i) => `mountain-${i}`));
   const mountain: MountainDilemma[] = dilemmas.map((dilemma, index) => ({
     id: index,
     spriteId: sprites[index],
@@ -116,7 +116,7 @@ export const prepareBetsPhase = async (
     });
   }
 
-  const lodges: Lodge[] = utils.game.makeArray(6).map((i) => ({
+  const lodges: Lodge[] = utils.helpers.makeArray(6).map((i) => ({
     id: i,
     playersIds: [],
     selected: false,

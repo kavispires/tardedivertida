@@ -66,7 +66,7 @@ export const prepareClueWritingPhase = async (
   // Distribute target to each player
   const features = store.features;
   utils.players.getListOfPlayers(players).forEach((player) => {
-    player.target = utils.game.getRandomItem<ExtendedObjectFeatureCard>(features).id;
+    player.target = utils.helpers.getRandomItem<ExtendedObjectFeatureCard>(features).id;
   });
 
   utils.players.unReadyPlayers(players);
@@ -108,7 +108,7 @@ export const prepareObjectFeatureEliminationPhase = async (
 
   if (state.outcome !== OUTCOME.CONTINUE) {
     // Save gallery
-    round = utils.helpers.increaseRound(state.round);
+    round = utils.game.increaseRound(state.round);
     const activePlayerId = utils.turnOrder.getActivePlayerId(store.gameOrder, round.current);
     const activePlayer = players[activePlayerId];
     stateUpdate.activePlayerId = activePlayerId;
@@ -118,7 +118,7 @@ export const prepareObjectFeatureEliminationPhase = async (
     stateUpdate.clue = activePlayer.clue;
     stateUpdate.target = activePlayer.target;
     const difficulty = store.options.hardMode ? GAME_DIFFICULTY.HARD : GAME_DIFFICULTY.EASY;
-    stateUpdate.history = utils.game.makeArray(SCORING[difficulty].length, 0).map((value) => ({
+    stateUpdate.history = utils.helpers.makeArray(SCORING[difficulty].length, 0).map((value) => ({
       featureId: null,
       pass: false,
       votes: [],

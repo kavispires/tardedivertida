@@ -38,7 +38,7 @@ export const getInitialState = (
   version: string,
   options: CruzaPalavrasOptions,
 ): CruzaPalavrasInitialState => {
-  return utils.helpers.getDefaultInitialState<CruzaPalavrasInitialState>({
+  return utils.game.getDefaultInitialState<CruzaPalavrasInitialState>({
     gameId,
     gameName: GAME_NAMES.CRUZA_PALAVRAS,
     uid,

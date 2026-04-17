@@ -37,7 +37,7 @@ export const determineNextPhase = (
     return ITEM_PLACEMENT;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export const createVennDiagram = (hasContextArea: boolean): Dictionary<DiagramArea> => {

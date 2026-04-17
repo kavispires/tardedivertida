@@ -47,7 +47,7 @@ export const prepareSetupPhase = async (
   const suspectsIds = suspects.map((s) => s.id);
   const suspectsDict = keyBy(suspects, 'id');
 
-  const perpetratorId = utils.game.getRandomItem(suspects).id;
+  const perpetratorId = utils.helpers.getRandomItem(suspects).id;
 
   // Build deck
   const deck = buildQuestionsDeck(additionalData.allCards);
@@ -175,7 +175,7 @@ export const prepareQuestionSelectionPhase = async (
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.QUESTION_SELECTION,
         players,
-        round: utils.helpers.increaseRound(state.round),
+        round: utils.game.increaseRound(state.round),
         questionerId,
         questions,
         witnessId,

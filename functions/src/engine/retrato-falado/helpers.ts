@@ -22,7 +22,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
       : COMPOSITE_SKETCH;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -32,7 +32,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
  * @returns
  */
 export const buildDeck = (allMonsters: AllMonsters, playerCount: number) => {
-  return utils.game.getRandomItems(Object.values(allMonsters), playerCount);
+  return utils.helpers.getRandomItems(Object.values(allMonsters), playerCount);
 };
 
 /**
@@ -58,7 +58,7 @@ export const gatherSketches = (
     return acc;
   }, []);
 
-  return utils.game.shuffle(gathering);
+  return utils.helpers.shuffle(gathering);
 };
 
 /**

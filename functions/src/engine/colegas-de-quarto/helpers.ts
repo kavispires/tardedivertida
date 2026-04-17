@@ -29,7 +29,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
       : WORDS_SELECTION;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export function buildRanking(

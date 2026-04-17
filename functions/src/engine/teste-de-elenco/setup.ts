@@ -19,10 +19,10 @@ export const prepareSetupPhase = async (
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Get needed actors
-  const actors = utils.game.getRandomItems(additionalData.allActors, TOTAL_ACTORS);
+  const actors = utils.helpers.getRandomItems(additionalData.allActors, TOTAL_ACTORS);
 
   // Get character traits
-  const traits = utils.game
+  const traits = utils.helpers
     .getRandomItems(additionalData.allCards, TOTAL_TRAITS)
     .map((trait) => trait.answer);
 
@@ -136,7 +136,7 @@ export const prepareActorSelectionPhase = async (
       },
       state: {
         phase: TESTE_DE_ELENCO_PHASES.ACTOR_SELECTION,
-        round: utils.helpers.increaseRound(state.round),
+        round: utils.game.increaseRound(state.round),
         players,
         movie,
         activeRoleId,

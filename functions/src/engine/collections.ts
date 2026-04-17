@@ -49,7 +49,7 @@ export const updateDataFirebaseDoc = async (documentName: string, data: any): Pr
   switch (expectedType) {
     case 'array':
     case 'object':
-      newData = utils.game.merge(currentData, data);
+      newData = utils.helpers.merge(currentData, data);
       break;
     default:
       newData = currentData;
@@ -116,7 +116,7 @@ export const updateCardDataCollection = async (
     Object.entries(data).forEach(([cardId, clues]) => {
       if (clues.length === 0) return;
       if (currentData[cardId]) {
-        currentData[cardId] = utils.game.removeDuplicates([...currentData[cardId], ...clues]);
+        currentData[cardId] = utils.helpers.removeDuplicates([...currentData[cardId], ...clues]);
       } else {
         currentData[cardId] = clues;
       }
@@ -177,7 +177,7 @@ export const updateImageCardsRelationships = async (relationships: ImageCardRela
 
   // Remove duplicates
   Object.entries(parsedRelationships).forEach(([key, relatedIds]) => {
-    parsedRelationships[key] = utils.game.removeDuplicates(relatedIds);
+    parsedRelationships[key] = utils.helpers.removeDuplicates(relatedIds);
   });
 
   // Save

@@ -1,5 +1,5 @@
 import { getUserRef } from './firestore';
-import { removeDuplicates } from './game-utils';
+import { removeDuplicates } from './helpers';
 import { getListOfPlayers } from './players-utils';
 
 /**

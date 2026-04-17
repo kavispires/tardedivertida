@@ -9,7 +9,7 @@ import * as resourceUtils from '../resource';
 import { TDR_RESOURCES } from '../../utils/constants';
 import { orderBy, shuffle } from 'lodash';
 import { alienAttributesUtils } from '../../utils/tool-kits';
-import { makeArray } from '../../utils/game-utils';
+import { makeArray } from '../../utils/helpers';
 import type { AlienItem } from '../../utils/tool-kits/alien-attributes';
 
 /**
@@ -45,7 +45,7 @@ export const getResourceData = async (
   );
 
   // Attributes: Randomize spriteIds
-  const sortedSprites = shuffle(utils.game.makeArray(Object.keys(itemsAttributesResource).length, 0));
+  const sortedSprites = shuffle(utils.helpers.makeArray(Object.keys(itemsAttributesResource).length, 0));
   attributes.forEach((attr, index) => {
     attr.spriteId = `${sortedSprites[index]}`;
   });

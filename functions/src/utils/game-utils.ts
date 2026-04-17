@@ -1,61 +1,204 @@
-import { buildBooleanDictionary } from './helpers';
-
-// Shuffling
-
-/**
- * Shuffle list copy
- * @param list
- * @returns
- */
-export const shuffle = <T>(list: T[]): T[] => {
-  const result = [...list];
-  result.sort(() => Math.random() - 0.5);
-  return result;
-};
-
-// Random
+import { LETTERS, LETTERS_EN, LETTERS_PT } from './constants';
+import { buildBooleanDictionary, getRandomItems } from './helpers';
+import { getListOfPlayers } from './players-utils';
 
 /**
- * Get random number
- * @param [min] inclusive
- * @param [max] inclusive
- * @returns a random number
+ * Game-specific utility functions for game mechanics and flow.
+ *
+ * This file contains utilities specifically related to game logic including:
+ * - Game flow (phase delegation, game ID generation, initial state setup)
+ * - Game state (victory points, rounds management)
+ * - Game-specific randomization (filtering by used items, dealing cards/tokens)
+ * - Game data operations (filtering by IDs)
+ *
+ * For generic, reusable utilities not specific to game logic,
+ * see helpers.ts instead.
  */
-export const getRandomNumber = (min = 0, max = 100): number =>
-  Math.floor(Math.random() * (max - min + 1) + min);
+
+// Game Flow
 
 /**
- * Get random element/item from a list
- * @param list
- * @returns one random item
+ * Determines the next phase in the game flow based on the current phase.
+ * If the current phase is not found in the ordered list, defaults to the first phase.
+ * Special handling for 'LOBBY' phase which always advances to the first game phase.
+ * @param currentPhase - The current phase of the game
+ * @param orderedPhases - Array of phases in sequential order
+ * @returns The next phase in the sequence
  */
-export const getRandomItem = <T>(list: T[]): T => {
-  return list[Math.floor(Math.random() * list.length)];
-};
+export const nextPhaseDelegator = (currentPhase: string, orderedPhases: string[]): string => {
+  const currentPhaseIndex = orderedPhases.indexOf(currentPhase);
 
-/**
- * Get random elements from a list
- * @param list
- * @param [quantity]
- * @returns random items
- */
-export const getRandomItems = <T>(list: T[], quantity = 1): T[] => {
-  const shuffledList = shuffle(list);
-  if (quantity > shuffledList.length) return shuffledList;
-
-  const res = new Array(quantity).fill(null);
-  for (let i = 0; i < res.length; i++) {
-    res[i] = shuffledList[i];
+  if (currentPhaseIndex > -1) {
+    return orderedPhases[currentPhaseIndex + 1];
   }
-  return res;
+
+  if (currentPhase === 'LOBBY') {
+    return orderedPhases[0];
+  }
+
+  // biome-ignore lint/suspicious/noConsole: on purpose
+  console.warn(`⚠️ Missing phase check to follow ${currentPhase}`);
+  return orderedPhases[0];
 };
 
 /**
- * Get random unique items from a list
- * @param list
- * @param used
- * @param [quantity]
- * @returns
+ * Generates a unique game ID with the specified game code prefix and language identifier.
+ * Format: [gameCode][languageLetter][randomLetters]
+ * Example: 'ABCD' where A is game code, B is language letter, CD are random
+ * @param gameCode - A single capital letter identifying the game
+ * @param language - The game language ('en' or 'pt')
+ * @param usedIds - Array of already-used IDs to avoid duplicates
+ * @param length - The total length of the game ID
+ * @returns A unique game ID string
+ */
+export const generateGameId = (
+  gameCode: UID,
+  language: Language,
+  usedIds: string[] = [],
+  length = 4,
+): string => {
+  if (!gameCode) throw Error('Missing game code');
+
+  if (gameCode.length > 1 || !LETTERS.includes(gameCode)) throw Error('Invalid game code');
+
+  /**
+   * Generate a game id
+   * @param gameCode a single capital letter
+   * @param length
+   * @returns
+   */
+  function generateId(gameCode: UID, length: number, language: Language): string {
+    let id = `${gameCode}`;
+    // Add second character based on language
+    id +=
+      language === 'en'
+        ? LETTERS_EN[Math.floor(Math.random() * LETTERS_EN.length)]
+        : LETTERS_PT[Math.floor(Math.random() * LETTERS_PT.length)];
+
+    while (id.length < length) {
+      id += LETTERS[Math.floor(Math.random() * LETTERS.length)];
+    }
+    return id;
+  }
+
+  let gameId: string | null = null;
+  while (!gameId || usedIds.includes(gameId)) {
+    gameId = generateId(gameCode, length, language);
+  }
+
+  return gameId;
+};
+
+/**
+ * Builds the default initial state structure for a game.
+ * This provides the foundational meta, store, and state objects that all games extend.
+ * @param params - Object containing game initialization parameters
+ * @returns The complete initial state object for the game
+ */
+export function getDefaultInitialState<T = InitialState>({
+  gameId,
+  gameName,
+  uid,
+  language,
+  version,
+  playerCounts,
+  totalRounds,
+  store,
+  options = {},
+  onCreate = () => ({}),
+}: InitialStateArgs): InitialState | T {
+  const createdAt = Date.now();
+  const preSetupResult = onCreate();
+  return {
+    meta: {
+      gameId,
+      gameName,
+      createdAt,
+      createdBy: uid,
+      min: playerCounts.MIN,
+      max: playerCounts.MAX,
+      isLocked: false,
+      isComplete: false,
+      language,
+      replay: 0,
+      options,
+      version,
+      ...(preSetupResult?.meta ?? {}),
+    },
+    store: {
+      language,
+      options,
+      createdAt,
+      ...store,
+      ...(preSetupResult?.store ?? {}),
+    },
+    state: {
+      phase: 'LOBBY',
+      round: {
+        current: 0,
+        total: totalRounds,
+        forceLastRound: false,
+      },
+      updatedAt: Date.now(),
+      ...(preSetupResult?.state ?? {}),
+      players: {
+        ...(preSetupResult?.players ?? {}),
+      },
+    },
+  };
+}
+
+// Game Scoring & Rounds
+
+/**
+ * Calculates how many points the leading player needs to reach the victory threshold.
+ * Returns 0 if a player has already reached or exceeded the victory points.
+ * @param players - The players object containing all player data
+ * @param victory - The number of points needed to win
+ * @returns The number of points remaining until victory
+ */
+export const getPointsToVictory = (players: Players, victory: number): number => {
+  const max = getListOfPlayers(players, true).reduce((acc, player) => {
+    return Math.max(acc, player.score);
+  }, 0);
+  return max < victory ? victory - max : 0;
+};
+
+/**
+ * Calculates how many rounds remain until the game ends.
+ * @param currentRound - The current round number
+ * @param totalRounds - The total number of rounds in the game
+ * @returns The number of rounds remaining
+ */
+export const getRoundsToEndGame = (currentRound: number, totalRounds: number): number => {
+  return totalRounds - currentRound;
+};
+
+/**
+ * Increments the current round count by 1.
+ * Optionally allows overriding the total or setting a specific current round.
+ * @param round - The current round object
+ * @param total - Optional override for total rounds
+ * @param current - Optional override for current round (prevents increment)
+ * @returns Updated round object with incremented current value
+ */
+export const increaseRound = (round: Round, total?: number, current?: number): Round => {
+  return {
+    ...round,
+    total: total ?? round.total,
+    current: current ?? (round?.current ?? 0) + 1,
+  };
+};
+
+// Game-Specific Randomization
+
+/**
+ * Selects random items from an array, excluding items that have already been used.
+ * Game-specific utility for managing used/available item pools.
+ * @param list - The array to select from
+ * @param used - Array of items to exclude from selection
+ * @param quantity - The number of items to select
+ * @returns An array of randomly selected unique items
  */
 export const getRandomUniqueItems = <T>(list: T[], used: T[] = [], quantity = 1): T[] => {
   const availableList = list.filter((i) => !used.includes(i));
@@ -63,22 +206,23 @@ export const getRandomUniqueItems = <T>(list: T[], used: T[] = [], quantity = 1)
 };
 
 /**
- * Get a random item from list that is not
- * @param list
- * @param used
- * @returns
+ * Selects a single random item from an array, excluding already-used items.
+ * @param list - The array to select from
+ * @param used - Array of items to exclude from selection
+ * @returns A randomly selected unique item
  */
 export const getRandomUniqueItem = <T>(list: T[], used: T[]): T => {
   return getRandomUniqueItems(list, used, 1)[0];
 };
 
 /**
- * Get random unique items from a list of objects
- * @param list
- * @param used
- * @param quantity
- * @param byPropertyName property name
- * @returns
+ * Selects random unique objects from an array, filtering by a property to avoid duplicates.
+ * Useful for selecting game items like cards or tokens by their ID.
+ * @param list - The array of objects to select from
+ * @param used - Array of already-used objects
+ * @param quantity - The number of objects to select
+ * @param byPropertyName - The property name to use for uniqueness checking
+ * @returns An array of randomly selected unique objects
  */
 export const getRandomUniqueObjects = <T>(
   list: T[],
@@ -91,116 +235,15 @@ export const getRandomUniqueObjects = <T>(
   return getRandomItems(availableList, quantity);
 };
 
-/**
- * Gets the next item in a array
- * @param list
- * @param currentItem
- * @param wrap determine if the result should wrap to the beginning of the array
- * @returns
- */
-export const getNextItem = (list: Primitive[], currentItem: Primitive, wrap = true): Primitive => {
-  const currentIndex = list.findIndex((i) => i === currentItem);
-
-  if (currentItem === -1) return null;
-
-  if (currentIndex === list.length - 1) {
-    return wrap ? list[0] : null;
-  }
-
-  return list[currentIndex + 1];
-};
+// Game Data Operations
 
 /**
- * Gets the previous item in a array
- * @param list
- * @param currentItem
- * @param wrap determine if the result should wrap to the end of the array
- * @returns
- */
-export const getPreviousItem = (list: Primitive[], currentItem: Primitive, wrap = true): Primitive => {
-  const currentIndex = list.findIndex((i) => i === currentItem);
-
-  if (currentItem === -1) return null;
-
-  if (currentIndex === 0) {
-    return wrap ? list[list.length - 1] : null;
-  }
-
-  return list[currentIndex - 1];
-};
-
-/**
- * Gets the last item in a list
- * @param list
- * @returns
- */
-export const getLastItem = <T>(list: T[]): T => {
-  return list[list.length - 1];
-};
-
-/**
- * Remove item from list of strings
- * @param list
- * @param target
- * @returns
- */
-export const removeItem = (list: Primitive[], target: Primitive): Primitive[] => {
-  return list.filter((item) => item !== target);
-};
-
-/**
- * Splits list into chunks of given size
- * @param list
- * @param [chunkSize] the size of the chunks the list is being split into
- * @returns
- */
-export const sliceIntoChunks = <T>(list: T[], chunkSize = 2): T[][] => {
-  const res: T[][] = [];
-  for (let i = 0; i < list.length; i += chunkSize) {
-    const chunk = list.slice(i, i + chunkSize);
-    res.push(chunk);
-  }
-  return res;
-};
-
-/**
- * Splits list into a number of parts
- * @param list
- * @param [numParts] how many parts it should be split into
- * @returns
- */
-export const sliceInParts = <T>(list: T[], numParts = 1): T[][] => {
-  const res: T[][] = [];
-
-  if (numParts === 1) return [list];
-  if (numParts < 1) return [];
-
-  let i = 0;
-
-  if (list.length % numParts === 0) {
-    const partSize = Math.floor(list.length / numParts);
-    while (i < list.length) {
-      const end = i + partSize;
-      res.push(list.slice(i, end));
-      i = end;
-    }
-  } else {
-    while (i < list.length) {
-      const partSize = Math.ceil((list.length - i) / numParts--);
-      const end = i + partSize;
-      res.push(list.slice(i, end));
-      i = end;
-    }
-  }
-
-  return res;
-};
-
-/**
- * Deal n items, modifying the original list
- * @param list
- * @param quantity
- * @returns
+ * Deals items from the end of an array, removing them from the original array.
+ * WARNING: This modifies the original array by popping items.
+ * Game-specific utility for dealing cards/tokens during gameplay.
+ * @param list - The array to deal from (will be modified)
+ * @param quantity - The number of items to deal
+ * @returns An array of dealt items
  */
 export const dealItems = <T>(list: T[], quantity: number) => {
   const dealt: T[] = [];
@@ -214,12 +257,16 @@ export const dealItems = <T>(list: T[], quantity: number) => {
 };
 
 /**
- * Filter out entries that contained any of the used ids
- * @param dict
- * @param usedIds
- * @returns
+ * Filters a dictionary to exclude entries with IDs present in the usedIds set.
+ * Useful for removing already-used game resources from an available pool.
+ * @param dict - The dictionary to filter
+ * @param usedIds - A boolean dictionary of IDs to exclude
+ * @returns A new dictionary with used IDs removed
  */
-export const filterOutByIds = <T>(dict: Record<string, T>, usedIds: Dictionary<boolean>): Record<string, T> => {
+export const filterOutByIds = <T>(
+  dict: Record<string, T>,
+  usedIds: Dictionary<boolean>,
+): Record<string, T> => {
   return Object.keys(dict).reduce((acc: Record<string, T>, entryId: string) => {
     if (!usedIds[entryId]) {
       acc[entryId] = dict[entryId];
@@ -228,116 +275,3 @@ export const filterOutByIds = <T>(dict: Record<string, T>, usedIds: Dictionary<b
     return acc;
   }, {});
 };
-
-/**
- * Creates array of given length filled with indexes
- * @param length the length of the array
- * @param startAt the starting value (default: 0)
- * @returns
- */
-export const makeArray = (length = 1, startAt = 0): number[] =>
-  new Array(length).fill(0).map((e, i) => e + i + startAt);
-
-/**
- * Merges the properties of multiple objects into one object.
- *
- * @param {object} target - The target object to merge the source objects into.
- * @param {...any} sources - The source objects to merge into the target object.
- * @returns {any} The target object with the properties of the source objects merged in.
- */
-export function merge(target: any, ...sources: any[]): any {
-  sources.forEach((source) => {
-    for (const key in source) {
-      if (source[key] !== null || source[key] !== undefined) {
-        if (typeof target[key] === 'object' && typeof source[key] === 'object') {
-          merge(target[key], source[key]);
-        } else {
-          target[key] = source[key];
-        }
-      }
-    }
-  });
-
-  return target;
-}
-
-/**
- * Remove duplicated elements from a list
- * @param arr
- * @returns
- */
-export const removeDuplicates = <T>(arr: T[]): T[] => {
-  return Array.from(new Set(arr));
-};
-
-/**
- * Returns an array of unique items that are present in only one of arrays.
- * @param array1 - The first array to compare.
- * @param array2 - The second array to compare.
- * @returns An array of unique items that are present in one of the arrays.
- */
-export function getUniqueItems(array1: any[], array2: any[]): any[] {
-  const counts: Dictionary<number> = {};
-
-  // Add the items from the first array to the map
-  array1.forEach((item) => {
-    if (counts[item] === undefined) {
-      counts[item] = 0;
-    }
-    counts[item] += 1;
-  });
-
-  // Add the unique items from the second array to the result
-  array2.forEach((item) => {
-    if (counts[item] === undefined) {
-      counts[item] = 0;
-    }
-    counts[item] += 1;
-  });
-
-  return Object.entries(counts)
-    .filter(([, count]) => count === 1)
-    .map(([key]) => key);
-}
-
-export function calculateAverage(values: number[], round = false): number {
-  if (!values || values.length === 0) {
-    return 0;
-  }
-
-  const sum = values.reduce((acc, num) => acc + num, 0);
-  const average = sum / values.length;
-
-  if (round) {
-    return Math.round(average);
-  }
-
-  return average;
-}
-
-/**
- * Calculates the longest run of a given value in a list
- * @param values
- * @param value
- * @returns the longest run of a given value in a list
- */
-export function calculateLongestRun(
-  values: (string | number | boolean)[],
-  target: string | number | boolean,
-): number {
-  let currentStreak = 0;
-  let longestStreak = 0;
-
-  values.forEach((v) => {
-    if (v === target) {
-      currentStreak++;
-      if (currentStreak > longestStreak) {
-        longestStreak = currentStreak;
-      }
-    } else {
-      currentStreak = 0;
-    }
-  });
-
-  return longestStreak;
-}

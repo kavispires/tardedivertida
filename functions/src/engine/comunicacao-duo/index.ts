@@ -37,7 +37,7 @@ export const getInitialState = (
   version: string,
   options: ComunicacaoDuoOptions,
 ): ComunicacaoDuoInitialState => {
-  return utils.helpers.getDefaultInitialState<ComunicacaoDuoInitialState>({
+  return utils.game.getDefaultInitialState<ComunicacaoDuoInitialState>({
     gameId,
     gameName: GAME_NAMES.COMUNICACAO_DUO,
     uid,

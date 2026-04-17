@@ -68,7 +68,7 @@ export const preparePatternCreationPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const round = utils.helpers.increaseRound(state.round);
+  const round = utils.game.increaseRound(state.round);
 
   // Unready players
   utils.players.unReadyPlayers(players);

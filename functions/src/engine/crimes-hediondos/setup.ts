@@ -122,7 +122,7 @@ export const prepareCrimeSelectionPhase = async (
     update: {
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.CRIME_SELECTION,
-        round: utils.helpers.increaseRound(state.round),
+        round: utils.game.increaseRound(state.round),
         players,
         items,
         groupedItems,
@@ -161,7 +161,7 @@ export const prepareSceneMarkingPhase = async (
       },
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.SCENE_MARKING,
-        round: utils.helpers.increaseRound(state.round),
+        round: utils.game.increaseRound(state.round),
         players: players,
         scenes: updatedScenes,
         scenesOrder: updatedScenesOrder,

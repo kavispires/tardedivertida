@@ -33,7 +33,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
       : STORY;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export const buildTableDeck = (allCards: UID[], quantity: number): UID[] => {
@@ -69,7 +69,7 @@ export const buildTable = (players: Players, tableCards: UID[], storyteller: UID
     });
   });
 
-  return utils.game.shuffle(table);
+  return utils.helpers.shuffle(table);
 };
 
 export const buildCardIndex = (table: Table) => {

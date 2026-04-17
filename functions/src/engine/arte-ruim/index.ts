@@ -37,7 +37,7 @@ export const getInitialState = (
   version: string,
   options: ArteRuimGameOptions,
 ): ArteRuimInitialState => {
-  return utils.helpers.getDefaultInitialState<ArteRuimInitialState>({
+  return utils.game.getDefaultInitialState<ArteRuimInitialState>({
     gameId,
     gameName: GAME_NAMES.ARTE_RUIM,
     uid,

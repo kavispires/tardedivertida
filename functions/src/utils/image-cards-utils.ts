@@ -1,5 +1,5 @@
 import { throwException } from './firebase';
-import { shuffle } from './game-utils';
+import { shuffle } from './helpers';
 import { fetchResource } from '../engine/resource';
 
 const deckCache = {};

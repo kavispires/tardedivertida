@@ -42,7 +42,7 @@ export const getInitialState = (
   language: Language,
   version: string,
 ): ControleDeEstoqueInitialState => {
-  return utils.helpers.getDefaultInitialState<ControleDeEstoqueInitialState>({
+  return utils.game.getDefaultInitialState<ControleDeEstoqueInitialState>({
     gameId,
     gameName: GAME_NAMES.CONTROLE_DE_ESTOQUE,
     uid,

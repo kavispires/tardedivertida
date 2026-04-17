@@ -37,7 +37,7 @@ export const getInitialState = (
   version: string,
   options: NaoSouRoboOptions,
 ): NaoSouRoboInitialState => {
-  return utils.helpers.getDefaultInitialState<NaoSouRoboInitialState>({
+  return utils.game.getDefaultInitialState<NaoSouRoboInitialState>({
     gameId,
     gameName: GAME_NAMES.NAO_SOU_ROBO,
     uid,

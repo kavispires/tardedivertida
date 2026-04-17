@@ -34,7 +34,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, state: Fi
     return round.forceLastRound || round.current >= MAX_ROUNDS ? GAME_OVER : ACTOR_SELECTION;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -46,16 +46,16 @@ const determineMovieVotes = (
   players: Players,
 ): { genre: MovieGenre; movieTitle: string; selectedProps: string[] } => {
   const genreVotes = utils.players.getRankedVotes(players, 'genre', true);
-  const genreKey = utils.game.getRandomItem(genreVotes).value;
+  const genreKey = utils.helpers.getRandomItem(genreVotes).value;
   const genre = GENRES[genreKey];
 
-  const movieTitle = utils.game.getRandomItem(
+  const movieTitle = utils.helpers.getRandomItem(
     utils.players.getRankedVotes(players, 'movieTitle', true),
   ).value;
 
   const selectedProps = utils.players.getListOfPlayers(players).reduce((acc: string[], player) => {
     if (player.selectedProps) {
-      return utils.game.removeDuplicates(acc.concat(player.selectedProps));
+      return utils.helpers.removeDuplicates(acc.concat(player.selectedProps));
     }
     return acc;
   }, []);
@@ -256,7 +256,7 @@ export const getAchievements = (store: FirebaseStoreData, players: Players) => {
   }
 
   utils.players.getListOfPlayers(players).forEach((player) => {
-    const unique = utils.game.removeDuplicates(player.votes).length;
+    const unique = utils.helpers.removeDuplicates(player.votes).length;
     utils.achievements.increase(store, player.id, 'actors', unique);
   });
 

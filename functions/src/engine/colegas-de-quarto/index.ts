@@ -43,7 +43,7 @@ export const getInitialState = (
   version: string,
   options: ColegasDeQuartoOptions,
 ): ColegasDeQuartoInitialState => {
-  return utils.helpers.getDefaultInitialState<ColegasDeQuartoInitialState>({
+  return utils.game.getDefaultInitialState<ColegasDeQuartoInitialState>({
     gameId,
     gameName: GAME_NAMES.COLEGAS_DE_QUARTO,
     uid,

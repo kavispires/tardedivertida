@@ -45,7 +45,7 @@ export const determineNextPhase = (
       : nextPhase || INTIMIDATION;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export const determineStudentsThatCanBeRumored = (

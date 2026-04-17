@@ -46,7 +46,7 @@ export const getResourceData = async (playerCount: number): Promise<ResourceData
   }
 
   return {
-    cards: utils.game.shuffle(deck),
+    cards: utils.helpers.shuffle(deck),
   };
 };
 

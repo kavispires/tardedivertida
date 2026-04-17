@@ -35,7 +35,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
     return CARD_PLAY;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export const buildDeck = (players: Players): ClientCard[] => {

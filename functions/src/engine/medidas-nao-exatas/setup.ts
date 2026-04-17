@@ -8,7 +8,7 @@ import type { TextCard } from '../../types/tdr';
 import { GAME_NAMES } from '../../utils/constants';
 import { determineResults, getAchievements } from './helpers';
 import { keyBy } from 'lodash';
-import { makeArray } from '../../utils/game-utils';
+import { makeArray } from '../../utils/helpers';
 
 /**
  * Setup
@@ -34,8 +34,8 @@ export const prepareSetupPhase = async (
 
   const { playerIds: turnOrder, gameOrder } = utils.turnOrder.create(players, 4);
 
-  const wordsDeck = utils.game.getRandomItems(additionalData.allWords, WORDS_PER_PLAYER * gameOrder.length);
-  const descriptorsDeck = utils.game.getRandomItems(
+  const wordsDeck = utils.helpers.getRandomItems(additionalData.allWords, WORDS_PER_PLAYER * gameOrder.length);
+  const descriptorsDeck = utils.helpers.getRandomItems(
     additionalData.allDescriptors,
     DESCRIPTORS_PER_PLAYER * gameOrder.length,
   );
@@ -74,7 +74,7 @@ export const prepareMetricsBuildingPhase = async (
 ): Promise<SaveGamePayload> => {
   utils.players.removePropertiesFromPlayers(players, ['guesses']);
 
-  const round = utils.helpers.increaseRound(state.round);
+  const round = utils.game.increaseRound(state.round);
   const presenterId = utils.turnOrder.getActivePlayerId(state.turnOrder, round.current);
 
   // Unready presenter only

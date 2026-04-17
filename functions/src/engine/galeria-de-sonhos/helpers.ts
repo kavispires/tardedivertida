@@ -23,7 +23,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
       : WORD_SELECTION;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 const replaceTableCards = (
@@ -60,7 +60,7 @@ export const buildTable = (
 };
 
 export const buildDeck = (allWords: AllWords): TextCard[] => {
-  return utils.game.getRandomItems(Object.values(allWords), WORD_DECK_TOTAL);
+  return utils.helpers.getRandomItems(Object.values(allWords), WORD_DECK_TOTAL);
 };
 
 export const getRoundWords = (wordsDeck: TextCard[]): [TextCard[], TextCard[]] => {
@@ -200,7 +200,7 @@ export const simulateBotCards = (players: Players, table: ImageCard[]) => {
   if (bots[0] && singleMatchedCardIds.length > 1) {
     const bot = bots[0];
 
-    bot.cards = utils.game
+    bot.cards = utils.helpers
       .getRandomItems(singleMatchedCardIds, Math.min(singleMatchedCardIds.length, playersCount))
       .reduce((acc: Dictionary<PlayerCard>, cardId: UID) => {
         const entry: PlayerCard = {
@@ -238,7 +238,7 @@ export const simulateBotCards = (players: Players, table: ImageCard[]) => {
   if (bots[2]) {
     const bot = bots[2];
 
-    const selectedTable = utils.game.getRandomItems(table, 4);
+    const selectedTable = utils.helpers.getRandomItems(table, 4);
 
     bot.cards = selectedTable.reduce((acc: Dictionary<PlayerCard>, card: ImageCard) => {
       const entry: PlayerCard = {

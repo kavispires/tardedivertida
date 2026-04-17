@@ -1,5 +1,5 @@
 import 'jest';
-import * as helpers from '../../src/utils/helpers';
+import * as helpers from '../../src/utils/game-utils';
 
 describe('helpers', () => {
   let players = {};

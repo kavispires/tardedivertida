@@ -37,7 +37,7 @@ export const getInitialState = (
   version: string,
   options: OndaTelepaticaOptions,
 ): OndaTelepaticaInitialState => {
-  return utils.helpers.getDefaultInitialState<OndaTelepaticaInitialState>({
+  return utils.game.getDefaultInitialState<OndaTelepaticaInitialState>({
     gameId,
     gameName: GAME_NAMES.ONDA_TELEPATICA,
     uid,

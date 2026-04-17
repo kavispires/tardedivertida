@@ -14,7 +14,7 @@ export const handleSubmitPages = async (
     gameId,
     playerId,
     actionText: 'submit your clue pages',
-    change: { selectedPagesIds: utils.game.shuffle(pageIds) },
+    change: { selectedPagesIds: utils.helpers.shuffle(pageIds) },
     nextPhaseFunction: getNextPhase,
   });
 };

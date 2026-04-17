@@ -37,7 +37,7 @@ export const getInitialState = (
   version: string,
   options: VamosAoCinemaOptions,
 ): VamosAoCinemaInitialState => {
-  return utils.helpers.getDefaultInitialState<VamosAoCinemaInitialState>({
+  return utils.game.getDefaultInitialState<VamosAoCinemaInitialState>({
     gameId,
     gameName: GAME_NAMES.VAMOS_AO_CINEMA,
     uid,

@@ -97,7 +97,7 @@ export const prepareStoryPhase = async (
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.STORY,
         players,
-        round: utils.helpers.increaseRound(state.round),
+        round: utils.game.increaseRound(state.round),
         storytellerId,
         nextStorytellerId,
       },

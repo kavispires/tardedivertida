@@ -62,7 +62,7 @@ export const prepareSeedingPhase = async (
   utils.players.unReadyPlayers(players);
 
   // Give each player 5 outfits
-  const clubbers = utils.game.shuffle(
+  const clubbers = utils.helpers.shuffle(
     Array(AVATAR_SPRITE_LIBRARIES.CLUBBERS)
       .fill(0)
       .map((e, i) => String(e + i)),
@@ -121,7 +121,7 @@ export const prepareTrackPhase = async (
         state: {
           phase: MEGAMIX_PHASES.TRACK,
           track: tracks[state.round.current],
-          round: utils.helpers.increaseRound(state.round),
+          round: utils.game.increaseRound(state.round),
           players,
         },
       },
@@ -136,7 +136,7 @@ export const prepareTrackPhase = async (
       state: {
         phase: MEGAMIX_PHASES.TRACK,
         track: store.tracks[state.round.current],
-        round: utils.helpers.increaseRound(state.round),
+        round: utils.game.increaseRound(state.round),
         players,
       },
     },

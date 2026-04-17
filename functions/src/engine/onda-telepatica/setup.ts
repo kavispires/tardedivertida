@@ -83,11 +83,11 @@ export const prepareDialCluePhase = async (
       },
       state: {
         phase: ONDA_TELEPATICA_PHASES.DIAL_CLUE,
-        round: utils.helpers.increaseRound(state.round),
+        round: utils.game.increaseRound(state.round),
         players,
         psychicId,
         currentCategories,
-        target: utils.game.getRandomNumber(-10, 10),
+        target: utils.helpers.getRandomNumber(-10, 10),
       },
     },
   };

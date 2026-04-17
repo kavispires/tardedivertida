@@ -15,7 +15,7 @@ export const handleSubmitCharacters = async (
     playerId,
     actionText: 'submit your characters',
     shouldReady: true,
-    change: { selectedCharacters: utils.game.shuffle(characters) },
+    change: { selectedCharacters: utils.helpers.shuffle(characters) },
     nextPhaseFunction: getNextPhase,
   });
 };

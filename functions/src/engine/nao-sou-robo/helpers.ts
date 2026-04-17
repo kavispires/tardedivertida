@@ -37,7 +37,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
       : CARD_SELECTION;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export const distributeCards = (store: FirebaseStoreData, players: Players, cards: UID[]) => {

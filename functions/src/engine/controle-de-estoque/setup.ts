@@ -36,8 +36,8 @@ export const prepareSetupPhase = async (
 
   // Gather goods and build dictionary
   // There should be extra goods for the out-of-stock mechanic during the fulfillment phase
-  const goods = utils.game.getRandomItems(resourceData.goodsIds, TOTAL_GOODS + OUT_OF_STOCK_GOODS);
-  const placeableGoods = utils.game.getRandomItems(goods, TOTAL_GOODS);
+  const goods = utils.helpers.getRandomItems(resourceData.goodsIds, TOTAL_GOODS + OUT_OF_STOCK_GOODS);
+  const placeableGoods = utils.helpers.getRandomItems(goods, TOTAL_GOODS);
   const extraGoods = goods.filter((good) => !placeableGoods.includes(good));
   const goodsDict = utils.helpers.buildDictionaryFromList(
     goods.map((goodId) => {
@@ -53,7 +53,7 @@ export const prepareSetupPhase = async (
 
   // Build grid and make center slot available to start the game
   const warehouseGrid = utils.helpers.buildDictionaryFromList(
-    utils.game.makeArray(49).map((id) => {
+    utils.helpers.makeArray(49).map((id) => {
       const slot: WarehouseSlot = {
         id,
         goodId: null,
@@ -75,7 +75,7 @@ export const prepareSetupPhase = async (
   // Determine bosses ideas making the First day always the first idea
   const bossIdeas: BossIdeaCard[] = [resourceData.allBossIdeas.FIRST_DAY];
   bossIdeas.push(
-    ...utils.game.getRandomItems(
+    ...utils.helpers.getRandomItems(
       Object.values(resourceData.allBossIdeas).filter((idea) => idea.id !== 'FIRST_DAY'),
       totalRounds - 1,
     ),
@@ -226,7 +226,7 @@ export const prepareFulfillmentPhase = async (
       slot.available = false;
     });
   }
-  utils.helpers.increaseRound(round);
+  utils.game.increaseRound(round);
 
   const availableOrders = Object.values<Dictionary<Good>>(state.goodsDict)
     .filter((good) => {
@@ -239,7 +239,7 @@ export const prepareFulfillmentPhase = async (
 
   utils.players.dealItemsToPlayers(
     players,
-    utils.game.shuffle(availableOrders),
+    utils.helpers.shuffle(availableOrders),
     Math.floor(availableOrders.length / utils.players.getPlayerCount(players)),
     'orders',
   );

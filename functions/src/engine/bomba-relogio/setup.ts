@@ -88,7 +88,7 @@ export const prepareDeclarationPhase = async (
   const deck: TimeBombCard[] = isNewGame
     ? shuffle(storeUpdate.deck)
     : shuffle(listOfPlayers.flatMap((player) => player.hand));
-  const deckChunks = utils.game.sliceInParts(deck, playerCount);
+  const deckChunks = utils.helpers.sliceInParts(deck, playerCount);
 
   // Assign roles to players
   listOfPlayers.forEach((player, index) => {
@@ -112,7 +112,7 @@ export const prepareDeclarationPhase = async (
       state: {
         phase: BOMBA_RELOGIO_PHASES.DECLARATION,
         players,
-        round: utils.helpers.increaseRound(state.round),
+        round: utils.game.increaseRound(state.round),
         status,
       },
     },

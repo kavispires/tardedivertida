@@ -18,7 +18,7 @@ export const getData = async (): Promise<ResourceData> => {
     TDR_RESOURCES.WAREHOUSE_BOSS_IDEAS,
   );
 
-  const goodsIds = utils.game.makeArray(GOODS_LIBRARY_COUNT, 1).map((i) => `good-${i}`);
+  const goodsIds = utils.helpers.makeArray(GOODS_LIBRARY_COUNT, 1).map((i) => `good-${i}`);
 
   return { allBossIdeas, goodsIds };
 };

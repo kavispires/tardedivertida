@@ -27,14 +27,14 @@ const getFinalLevel = async (language: string, playerCount: number, options: Art
       TDR_RESOURCES.ARTE_RUIM_PAIRS,
       language,
     );
-    const shuffledLevel5Deck = utils.game.shuffle(Object.values(allCardPairsResponse));
+    const shuffledLevel5Deck = utils.helpers.shuffle(Object.values(allCardPairsResponse));
     return {
       cards: getEnoughLevel5Cards(shuffledLevel5Deck, cardsPerRound),
       types: Array(levelQuantity).fill('pairs' as Level5Type),
     };
   }
 
-  const types = utils.game.getRandomItems(SPECIAL_LEVELS_LIBRARIES, levelQuantity);
+  const types = utils.helpers.getRandomItems(SPECIAL_LEVELS_LIBRARIES, levelQuantity);
 
   const result: ArteRuimCard[] = [];
 
@@ -42,13 +42,13 @@ const getFinalLevel = async (language: string, playerCount: number, options: Art
     const document = library === 'contenders' ? library : `${library}-${language}`;
     const response = await resourceUtils.fetchResource<Dictionary<TextCard & PlainObject>>(document);
 
-    const cards = utils.game.shuffle(Object.values(response)).filter((card) => {
+    const cards = utils.helpers.shuffle(Object.values(response)).filter((card) => {
       if (library === 'contenders' && card.exclusivity && card.exclusivity !== language) {
         return false;
       }
       return true;
     });
-    utils.game.getRandomItems(cards, cardsPerRound).forEach((card) => {
+    utils.helpers.getRandomItems(cards, cardsPerRound).forEach((card) => {
       const newCard = {
         text: card.text,
         id: card.id,

@@ -90,7 +90,7 @@ export const prepareWordsSelectionPhase = async (
         phase: COLEGAS_DE_QUARTO_PHASES.WORDS_SELECTION,
         players,
         pool,
-        round: utils.helpers.increaseRound(state?.round),
+        round: utils.game.increaseRound(state?.round),
         requiredWords,
       },
       stateCleanup: ['table', 'gallery', 'ranking'],
@@ -115,7 +115,7 @@ export const prepareClueWritingPhase = async (
     selectedWordsIds.push(...(player.selectedWordsIds ?? []));
   });
   const totalWords = SETTINGS_PER_PLAYER_COUNT[playerCount]?.totalWords ?? 13;
-  const cleanupIds = shuffle(utils.game.removeDuplicates(selectedWordsIds)).slice(0, totalWords);
+  const cleanupIds = shuffle(utils.helpers.removeDuplicates(selectedWordsIds)).slice(0, totalWords);
   const playerOrder = shuffle([
     TARGET_ID,
     ...utils.players
@@ -143,7 +143,7 @@ export const prepareClueWritingPhase = async (
   utils.players.getListOfPlayers(players).forEach((player) => {
     player.assignedWordIds = shuffle(player?.assignedWordIds || []);
     // Divide in chunks based on pairsToGuess
-    const chunks: BoardEntry[][] = utils.game.sliceInParts(
+    const chunks: BoardEntry[][] = utils.helpers.sliceInParts(
       player.assignedWordIds,
       SETTINGS_PER_PLAYER_COUNT[playerCount]?.pairsToGuess || 1,
     );

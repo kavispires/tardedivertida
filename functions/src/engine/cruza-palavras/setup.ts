@@ -112,7 +112,7 @@ export const prepareClueWritingPhase = async (
     const originalDeck: Deck = store.deck;
 
     while (Object.keys(deckDict).length < gridSize) {
-      const cardId = utils.game.getRandomItem(originalDeck).id;
+      const cardId = utils.helpers.getRandomItem(originalDeck).id;
       deckDict[cardId] = true;
     }
 
@@ -134,7 +134,7 @@ export const prepareClueWritingPhase = async (
   utils.players.unReadyPlayers(players);
   utils.players.removePropertiesFromPlayers(players, ['choseRandomly']);
 
-  const round = utils.helpers.increaseRound(state.round);
+  const round = utils.game.increaseRound(state.round);
 
   let gameType: string = state.gameType;
   let grid: GridCell[] = state.grid ?? buildGrid(store.deck, store.playersClues, gridSize, false);

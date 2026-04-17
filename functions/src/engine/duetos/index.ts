@@ -31,7 +31,7 @@ export const getInitialState = (
   version: string,
   options: DuetosOptions,
 ): DuetosInitialState => {
-  return utils.helpers.getDefaultInitialState<DuetosInitialState>({
+  return utils.game.getDefaultInitialState<DuetosInitialState>({
     gameId,
     gameName: GAME_NAMES.DUETOS,
     uid,

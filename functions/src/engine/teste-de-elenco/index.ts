@@ -37,7 +37,7 @@ export const getInitialState = (
   version: string,
   options: TesteDeElencoOptions,
 ): TesteDeElencoInitialState => {
-  return utils.helpers.getDefaultInitialState<TesteDeElencoInitialState>({
+  return utils.game.getDefaultInitialState<TesteDeElencoInitialState>({
     gameId,
     gameName: GAME_NAMES.TESTE_DE_ELENCO,
     uid,

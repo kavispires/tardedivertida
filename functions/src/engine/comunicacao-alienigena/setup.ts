@@ -129,7 +129,7 @@ export const prepareAlienSeedingPhase = async (
   const quantityPerPlayer = Math.ceil(attributesWithUnclearValues.length / playersCount);
   utils.players.dealItemsToPlayers(
     players,
-    utils.game.shuffle(attributesWithUnclearValues),
+    utils.helpers.shuffle(attributesWithUnclearValues),
     quantityPerPlayer,
     'seeds',
   );
@@ -185,7 +185,7 @@ export const prepareHumanAskPhase = async (
   if (
     state.currentInquiry &&
     state.humanId &&
-    utils.game.getLastItem(state.turnOrder ?? []) !== state.humanId
+    utils.helpers.getLastItem(state.turnOrder ?? []) !== state.humanId
   ) {
     inquiryHistory.unshift({
       answer: state.alienResponse,
@@ -204,7 +204,7 @@ export const prepareHumanAskPhase = async (
   // Unready current human player
   const humanId = utils.turnOrder.getNextPlayerId(
     turnOrder,
-    state.humanId ?? utils.game.getLastItem(turnOrder),
+    state.humanId ?? utils.helpers.getLastItem(turnOrder),
   );
 
   utils.players.readyPlayers(players, humanId);
@@ -379,7 +379,7 @@ export const prepareOfferingsPhase = async (
       .map((item) => item.id);
 
     const recentlyInquiredItemsIds = state.currentInquiry ?? [];
-    const previouslyInquiredItemsIds = utils.game.removeDuplicates([
+    const previouslyInquiredItemsIds = utils.helpers.removeDuplicates([
       ...deterministicStartingItems,
       ...inquiryHistory.flatMap((entry) => entry.objectIds),
     ]);
@@ -420,7 +420,7 @@ export const prepareRevealPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const round = utils.helpers.increaseRound(state.round);
+  const round = utils.game.increaseRound(state.round);
   const status: OfferingsStatus = {
     ...state.status,
     timeLeft: state.status.timeLeft - 1,

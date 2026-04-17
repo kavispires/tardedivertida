@@ -22,32 +22,35 @@ export const getResourceData = async (language: Language, playerCount: number): 
   const botCardsNeeded = MAX_ROUNDS * (MIN_ROUND_CARDS - (CARD_SELECTION_PER_PLAYER_COUNT[playerCount] ?? 3));
   const imageCardsNeeded = cardsPerPlayer * playerCount + botCardsNeeded;
 
-  const images = utils.game.shuffle(await utils.imageCards.getImageCards(imageCardsNeeded));
+  const images = utils.helpers.shuffle(await utils.imageCards.getImageCards(imageCardsNeeded));
 
   const quantityNeeded = Math.ceil(MAX_ROUNDS / 3);
 
   // Colors
   const allColors = await resourceUtils.fetchResource<Dictionary<TextCard>>(TDR_RESOURCES.COLORS, language);
-  const colors = utils.game.getRandomItems(Object.values(allColors), quantityNeeded);
+  const colors = utils.helpers.getRandomItems(Object.values(allColors), quantityNeeded);
 
   // Emotions
   const allEmotions = await resourceUtils.fetchResource<Dictionary<TextCard>>(
     TDR_RESOURCES.EMOTIONS,
     language,
   );
-  const emotions = utils.game.getRandomItems(Object.values(allEmotions), quantityNeeded);
+  const emotions = utils.helpers.getRandomItems(Object.values(allEmotions), quantityNeeded);
 
   // Words
   const words = await utils.tdr.getSingleWords(language, quantityNeeded);
 
   // Glyphs
-  const glyphs = utils.game.getRandomItems(utils.game.makeArray(SPRITE_LIBRARIES.GLYPHS), quantityNeeded * 3);
+  const glyphs = utils.helpers.getRandomItems(
+    utils.helpers.makeArray(SPRITE_LIBRARIES.GLYPHS),
+    quantityNeeded * 3,
+  );
 
   // Emojis
-  const emojis = utils.game.getRandomItems(utils.game.makeArray(SPRITE_LIBRARIES.EMOJIS), quantityNeeded);
+  const emojis = utils.helpers.getRandomItems(utils.helpers.makeArray(SPRITE_LIBRARIES.EMOJIS), quantityNeeded);
 
   // Robot cards
-  const botCards = utils.game
+  const botCards = utils.helpers
     .makeArray(botCardsNeeded)
     .map(() => {
       return images.pop() as string;

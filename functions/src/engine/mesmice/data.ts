@@ -58,7 +58,7 @@ export const getData = async (
     const features: ObjectFeatureCard[] = [];
 
     Object.keys(counts).forEach((level) => {
-      const levelFeatures = utils.game.getRandomItems<ObjectFeatureCard>(
+      const levelFeatures = utils.helpers.getRandomItems<ObjectFeatureCard>(
         featuresByLevel[level],
         counts[level],
       );

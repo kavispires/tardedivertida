@@ -92,7 +92,7 @@ export const prepareTweetSelectionPhase = async (
       },
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.TOPIC_SELECTION,
-        round: utils.helpers.increaseRound(state.round),
+        round: utils.game.increaseRound(state.round),
         players,
         activePlayerId,
         currentTweets,

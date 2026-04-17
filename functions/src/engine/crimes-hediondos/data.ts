@@ -26,7 +26,7 @@ export const getData = async (options: CrimesHediondosOptions): Promise<Resource
   const locations: CrimesHediondosCard[] = [];
   if (options.withLocations) {
     locations.push(
-      ...utils.game.getRandomItems(
+      ...utils.helpers.getRandomItems(
         Object.values(
           await resourceUtils.fetchResource<Dictionary<CrimesHediondosCard>>(TDR_RESOURCES.CRIME_LOCATIONS),
         ),
@@ -39,7 +39,7 @@ export const getData = async (options: CrimesHediondosOptions): Promise<Resource
   const victims: CrimesHediondosCard[] = [];
   if (options.withVictims) {
     victims.push(
-      ...utils.game.getRandomItems(
+      ...utils.helpers.getRandomItems(
         Object.values(
           await resourceUtils.fetchResource<Dictionary<CrimesHediondosCard>>(TDR_RESOURCES.CRIME_VICTIMS),
         ),
@@ -61,8 +61,8 @@ export const getData = async (options: CrimesHediondosOptions): Promise<Resource
   });
 
   return {
-    weapons: utils.game.getRandomItems(listOfWeapons, CARDS_PER_GAME),
-    evidence: utils.game.getRandomItems(listOfEvidence, CARDS_PER_GAME),
+    weapons: utils.helpers.getRandomItems(listOfWeapons, CARDS_PER_GAME),
+    evidence: utils.helpers.getRandomItems(listOfEvidence, CARDS_PER_GAME),
     allScenes: Object.values(allScenes),
     locations,
     victims,

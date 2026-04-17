@@ -55,7 +55,7 @@ const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
   const gameRef = admin.firestore().collection('games').doc(gameName);
 
   // Generate unique 4 digit code starting with game code letter
-  let gameId: string = utils.helpers.generateGameId(gameCode, language as Language, usedGameIds);
+  let gameId: string = utils.game.generateGameId(gameCode, language as Language, usedGameIds);
 
   // Make sure the game does not exist, I do not trust that while loop
   const tempGame = await gameRef.collection(gameId).doc('state').get();

@@ -37,7 +37,7 @@ export const getInitialState = (
   version: string,
   options: LabirintoSecretoGameOptions,
 ): LabirintoSecretoInitialState => {
-  return utils.helpers.getDefaultInitialState<LabirintoSecretoInitialState>({
+  return utils.game.getDefaultInitialState<LabirintoSecretoInitialState>({
     gameId,
     gameName: GAME_NAMES.LABIRINTO_SECRETO,
     uid,

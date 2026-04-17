@@ -37,7 +37,7 @@ export const getInitialState = (
   version: string,
   options: SinaisDeAlertaOptions,
 ): SinaisDeAlertaInitialState => {
-  return utils.helpers.getDefaultInitialState<SinaisDeAlertaInitialState>({
+  return utils.game.getDefaultInitialState<SinaisDeAlertaInitialState>({
     gameId,
     gameName: GAME_NAMES.SINAIS_DE_ALERTA,
     uid,

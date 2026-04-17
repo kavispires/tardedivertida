@@ -29,5 +29,5 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
 
   // TODO: handle mission evaluation for help card (maybe create a help phase?)
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };

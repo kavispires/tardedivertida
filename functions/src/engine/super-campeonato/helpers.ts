@@ -53,7 +53,7 @@ export const determineNextPhase = (
     return BETS;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -112,7 +112,7 @@ export const getMostVotedChallenge = (players: Players, challenges: TextCard[]) 
 
   // If both got the max votes, return a random one
   if (votesCount.length > 1 && votesCount.every((vc) => vc === max)) {
-    return utils.game.getRandomItem(challenges);
+    return utils.helpers.getRandomItem(challenges);
   }
 
   // Return only the most voted one
@@ -159,7 +159,7 @@ export const makeBrackets = (players: Players, deck: FightingContender[], curren
   }
 
   // Make brackets
-  const shuffledContenders = utils.game.shuffle(contenders);
+  const shuffledContenders = utils.helpers.shuffle(contenders);
 
   const emptyBracketArray: Bracket[] = Array(15)
     .fill(0)
@@ -231,7 +231,7 @@ export const updateBracketsWithVotes = (players: Players, brackets: Bracket[]) =
     const winnerPos =
       gotThis.length === 1
         ? Number(arrKeys[arrValues.findIndex((v) => v === max)])
-        : utils.game.getRandomItem(arrKeys);
+        : utils.helpers.getRandomItem(arrKeys);
     const winner = brackets[Number(winnerPos)];
     winner.win = true;
 
@@ -283,7 +283,7 @@ export const buildRanking = (players: Players, brackets: Bracket[]) => {
 
 export const makeFinalBrackets = (brackets: Bracket[]) => {
   // Make brackets
-  const shuffledContenders = utils.game.shuffle(brackets);
+  const shuffledContenders = utils.helpers.shuffle(brackets);
 
   const emptyBracketArray: Bracket[] = Array(15)
     .fill(0)

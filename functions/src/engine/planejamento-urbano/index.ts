@@ -42,7 +42,7 @@ export const getInitialState = (
   version: string,
   options: PlanejamentoUrbanoOptions,
 ): PlanejamentoUrbanoInitialState => {
-  return utils.helpers.getDefaultInitialState<PlanejamentoUrbanoInitialState>({
+  return utils.game.getDefaultInitialState<PlanejamentoUrbanoInitialState>({
     gameId,
     gameName: GAME_NAMES.PLANEJAMENTO_URBANO,
     uid,

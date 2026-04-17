@@ -31,7 +31,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, wordLengt
     return GAME_OVER;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 /**

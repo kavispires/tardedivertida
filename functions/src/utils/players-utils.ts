@@ -3,7 +3,8 @@ import { cloneDeep, groupBy, orderBy } from 'lodash';
 import { AVATAR_IDS } from './constants';
 import { throwException } from './firebase';
 // Utils
-import { getRandomUniqueItem, shuffle } from './game-utils';
+import { shuffle } from './helpers';
+import { getRandomUniqueItem } from './game-utils';
 
 /**
  * Generates a player id based of their name

@@ -27,7 +27,7 @@ export const determineNextPhase = (state: TaNaCaraState, store: TaNaCaraStore): 
     return round.forceLastRound || (round.current > 0 && round.current) === round.total ? GAME_OVER : PROMPT;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export const buildRankingAndOutcome = (
@@ -108,7 +108,7 @@ const assignNewCharacterToPlayer = (
     .map((character) => character.id);
 
   if (availableCharacters.length > 1) {
-    players[playerId].characterId = utils.game.getRandomItem(availableCharacters);
+    players[playerId].characterId = utils.helpers.getRandomItem(availableCharacters);
     charactersDict[players[playerId].characterId].playerId = playerId;
   } else {
     players[playerId].characterId = null;

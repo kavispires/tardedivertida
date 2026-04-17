@@ -19,7 +19,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
       : ORDERING;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export const buildRanking = (

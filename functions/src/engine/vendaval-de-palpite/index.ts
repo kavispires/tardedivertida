@@ -48,7 +48,7 @@ export const getInitialState = (
   language: Language,
   version: string,
 ): VendavalDePalpiteInitialState => {
-  return utils.helpers.getDefaultInitialState<VendavalDePalpiteInitialState>({
+  return utils.game.getDefaultInitialState<VendavalDePalpiteInitialState>({
     gameId,
     gameName: GAME_NAMES.VENDAVAL_DE_PALPITE,
     uid,

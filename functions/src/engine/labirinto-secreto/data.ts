@@ -51,7 +51,7 @@ export const getData = async (
     : Object.values(allWords).filter((card) => !card.private);
 
   return {
-    forestCards: utils.game.getRandomItems(filtered, FOREST_HEIGHT * FOREST_WIDTH),
+    forestCards: utils.helpers.getRandomItems(filtered, FOREST_HEIGHT * FOREST_WIDTH),
     allCards: adjectives,
   };
 };

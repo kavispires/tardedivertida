@@ -22,7 +22,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : PAIRING;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export const addItems = (pool: Item[], quantity: number, receiver: any[]) => {

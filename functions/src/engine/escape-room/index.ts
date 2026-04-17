@@ -37,7 +37,7 @@ export const getInitialState = (
   version: string,
   options: EscapeRoomOptions,
 ): EscapeRoomInitialState => {
-  return utils.helpers.getDefaultInitialState<EscapeRoomInitialState>({
+  return utils.game.getDefaultInitialState<EscapeRoomInitialState>({
     gameId,
     gameName: GAME_NAMES.ESCAPE_ROOM,
     uid,

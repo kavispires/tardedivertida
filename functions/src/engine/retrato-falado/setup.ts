@@ -75,7 +75,7 @@ export const prepareCompositeSketchPhase = async (
         players,
         currentMonster,
         witnessId,
-        round: utils.helpers.increaseRound(state.round),
+        round: utils.game.increaseRound(state.round),
       },
       storeCleanup: ['currentOrientation', 'witnessVote', 'mostVotes', 'ranking', 'mostVoted', 'votes'],
     },

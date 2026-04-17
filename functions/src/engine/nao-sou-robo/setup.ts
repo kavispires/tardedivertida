@@ -40,7 +40,7 @@ export const prepareSetupPhase = async (
   // Get robot cards
   const botDeck = resourceData.botCards;
   // Build word pool
-  const pool = utils.game.makeArray(MAX_ROUNDS).reduce((acc, _, i) => {
+  const pool = utils.helpers.makeArray(MAX_ROUNDS).reduce((acc, _, i) => {
     const roundType = ROUND_TYPES[i % ROUND_TYPES.length];
     if (['colors', 'emotions', 'words', 'emojis'].includes(roundType)) {
       acc[i + 1] = {
@@ -63,8 +63,8 @@ export const prepareSetupPhase = async (
     }
 
     if (roundType === 'warehouse-goods') {
-      const goodsIds = utils.game.getRandomItems(
-        utils.game.makeArray(GOODS_LIBRARY_COUNT, 1).map((i) => `good-${i}`),
+      const goodsIds = utils.helpers.getRandomItems(
+        utils.helpers.makeArray(GOODS_LIBRARY_COUNT, 1).map((i) => `good-${i}`),
         2,
       );
       const values: string[] = [];
@@ -126,7 +126,7 @@ export const prepareCardSelectionPhase = async (
   // Deal cards to each player
   utils.deck.deal(store, players, cardsQuantityToSubmit);
 
-  const round = utils.helpers.increaseRound(state.round);
+  const round = utils.game.increaseRound(state.round);
 
   const captcha = store.pool[round.current];
 
@@ -166,7 +166,7 @@ export const prepareAreYouARobotPhase = async (
 
   const robotCardsNeeded = Math.max(MIN_ROUND_CARDS - playerCards.length, 1);
   const botCards: CaptchaCard[] = [];
-  utils.game.makeArray(robotCardsNeeded).forEach(() => {
+  utils.helpers.makeArray(robotCardsNeeded).forEach(() => {
     const cardId = store.botDeck.pop() as UID;
     botCards.push({
       id: cardId,

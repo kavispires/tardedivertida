@@ -67,7 +67,7 @@ export const prepareAssignmentPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Use only 25 locations
-  const availableLocations: SpyLocation[] = utils.game.getRandomItems(
+  const availableLocations: SpyLocation[] = utils.helpers.getRandomItems(
     store.allLocations,
     LOCATIONS_USED_IN_A_ROUND,
   );
@@ -81,7 +81,7 @@ export const prepareAssignmentPhase = async (
     'asc',
   );
 
-  const currentLocation = utils.game.getRandomItem(availableLocations);
+  const currentLocation = utils.helpers.getRandomItem(availableLocations);
 
   const availableRoles = createRolesPool(currentLocation.roles, utils.players.getPlayerCount(players));
 
@@ -100,7 +100,7 @@ export const prepareAssignmentPhase = async (
       state: {
         phase: ESPIAO_ENTRE_NOS_PHASES.ASSIGNMENT,
         players,
-        round: utils.helpers.increaseRound(state.round),
+        round: utils.game.increaseRound(state.round),
         locations,
         currentSpyId,
         startingPlayerId: store.gameOrder[0],

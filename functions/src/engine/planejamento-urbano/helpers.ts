@@ -19,7 +19,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : PLANNING;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export const getAchievements = (store: FirebaseStoreData) => {

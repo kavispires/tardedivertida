@@ -36,7 +36,7 @@ export const getInitialState = (
   version: string,
   options: FileiraDeFatosOptions,
 ): FileiraDeFatosInitialState => {
-  return utils.helpers.getDefaultInitialState<FileiraDeFatosInitialState>({
+  return utils.game.getDefaultInitialState<FileiraDeFatosInitialState>({
     gameId,
     gameName: GAME_NAMES.FILEIRA_DE_FATOS,
     uid,

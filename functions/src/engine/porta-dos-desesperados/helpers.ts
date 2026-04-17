@@ -30,7 +30,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
       : BOOK_POSSESSION;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -77,7 +77,7 @@ export const createTrapOrder = (): string[] => {
   const trapKeys = Object.keys(TRAPS);
 
   // The first trap should always be NONE, then shuffle the rest, but the level of the next trap should never be equal to the previous one
-  const shuffledTraps = utils.game.shuffle(trapKeys);
+  const shuffledTraps = utils.helpers.shuffle(trapKeys);
   const orderedTraps = ['NONE'];
   for (let i = 0; i < shuffledTraps.length; i++) {
     const currentTrap = shuffledTraps[i];
@@ -118,7 +118,7 @@ export const getDoorSet = (doorDeck: UID[], doorDeckIndex: number, trap: Trap) =
   const quantity = trap === TRAPS.EXTRA_DOOR ? DOOR_OPTIONS_PER_ROUND + 1 : DOOR_OPTIONS_PER_ROUND;
 
   const selectedDoors = doorDeck.slice(doorDeckIndex, doorDeckIndex + quantity);
-  const answerDoorId = utils.game.getRandomItem(selectedDoors);
+  const answerDoorId = utils.helpers.getRandomItem(selectedDoors);
 
   return {
     doors: selectedDoors,
@@ -159,10 +159,10 @@ export const getBookPages = (pagesDeck: UID[], pagesDeckIndex: number, trap: Tra
  */
 export const botDoorSelection = (players: Players, doors: UID[], doorAnswerId: UID) => {
   // The bot pool is only half of the doors, but always has the answer
-  const options = [...utils.game.getRandomItems(doors, 4), doorAnswerId];
+  const options = [...utils.helpers.getRandomItems(doors, 4), doorAnswerId];
 
   utils.players.getListOfBots(players).forEach((bot) => {
-    bot.doorId = utils.game.getRandomItem(options);
+    bot.doorId = utils.helpers.getRandomItem(options);
     bot.ready = true;
   });
 };

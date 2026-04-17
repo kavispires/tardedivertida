@@ -84,17 +84,17 @@ export const getResourceData = async (
   );
 
   const examples = {
-    attribute: utils.game.getRandomItems(attribute, 3),
-    word: utils.game.getRandomItems(word, 3),
-    context: utils.game.getRandomItems(context ?? [], 3),
+    attribute: utils.helpers.getRandomItems(attribute, 3),
+    word: utils.helpers.getRandomItems(word, 3),
+    context: utils.helpers.getRandomItems(context ?? [], 3),
   };
 
   return {
     items,
     diagrams: {
-      attribute: utils.game.getRandomItem(attribute),
-      word: utils.game.getRandomItem(word),
-      context: utils.game.getRandomItem(context ?? []),
+      attribute: utils.helpers.getRandomItem(attribute),
+      word: utils.helpers.getRandomItem(word),
+      context: utils.helpers.getRandomItem(context ?? []),
     },
     examples,
   };

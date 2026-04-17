@@ -3,7 +3,7 @@ import { CHARACTER_TYPES, NA_FILA_DO_BANCO_PHASES, OUTCOME, TOTAL_ROUNDS } from 
 // Utils
 import utils from '../../utils';
 import type { ClientCard, FirebaseStateData, FirebaseStoreData } from './types';
-import { shuffle } from '../../utils/game-utils';
+import { shuffle } from '../../utils/helpers';
 import { buildDeck, buildTellers } from './helpers';
 import { keyBy } from 'lodash';
 import { GAME_NAMES } from '../../utils/constants';
@@ -63,7 +63,7 @@ export const prepareCardPlayPhase = async (
 
   // START ROUND
   if (state.outcome === OUTCOME.SETUP) {
-    const round: Round = utils.helpers.increaseRound(state.round);
+    const round: Round = utils.game.increaseRound(state.round);
     // Reshuffle deck
     const deckDict: Dictionary<ClientCard> = state.deckDict || {};
     const deck: UID[] = shuffle(Object.keys(deckDict));

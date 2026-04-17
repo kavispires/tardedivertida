@@ -29,6 +29,6 @@ export const getResourceData = async (options: MetalinguagemOptions): Promise<Re
   });
 
   return {
-    items: utils.game.getRandomItems([...dreamItems, ...metaItems], itemsNeeded),
+    items: utils.helpers.getRandomItems([...dreamItems, ...metaItems], itemsNeeded),
   };
 };

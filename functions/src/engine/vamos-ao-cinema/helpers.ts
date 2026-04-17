@@ -9,7 +9,7 @@ import {
 } from './constants';
 import type { FirebaseStateData, FirebaseStoreData, VamosAoCinemaAchievement } from './types';
 import { LETTERS } from '../../utils/constants';
-import { makeArray } from '../../utils/game-utils';
+import { makeArray } from '../../utils/helpers';
 import utils from '../../utils';
 
 /**
@@ -32,7 +32,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome?:
     return MOVIE_ELIMINATION;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export const determineOutcome = (state: FirebaseStateData): string => {
@@ -138,8 +138,8 @@ export const getFinalMovies = (
 
     const posterId =
       votes.length > 0
-        ? getMostFrequentElementFromList(votes) || utils.game.getRandomItem(votes)
-        : utils.game.getRandomItem(posters[movie.session - 1]);
+        ? getMostFrequentElementFromList(votes) || utils.helpers.getRandomItem(votes)
+        : utils.helpers.getRandomItem(posters[movie.session - 1]);
 
     finalMovies.push({
       id: movie.id,

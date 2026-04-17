@@ -24,7 +24,7 @@ export const prepareSetupPhase = async (
   const { gameOrder, playerIds: turnOrder } = utils.turnOrder.create(players, DOUBLE_ROUNDS_THRESHOLD);
 
   // Build deck
-  const deck = utils.game.getRandomItems(resourceData.scenarios, gameOrder.length * SCENARIOS_PER_ROUND);
+  const deck = utils.helpers.getRandomItems(resourceData.scenarios, gameOrder.length * SCENARIOS_PER_ROUND);
 
   const achievements = utils.achievements.setup(players, {
     first: 0,
@@ -65,12 +65,12 @@ export const prepareScenarioOrderingPhase = async (
   utils.players.unReadyPlayers(players);
   utils.players.removePropertiesFromPlayers(players, ['currentOrder']);
 
-  const round = utils.helpers.increaseRound(state.round);
+  const round = utils.game.increaseRound(state.round);
   const activePlayerId = utils.turnOrder.getActivePlayerId(state.turnOrder, round.current);
   const deck: TextCard[] = store.deck;
   const scenarios = deck.splice(0, SCENARIOS_PER_ROUND);
 
-  const roundType = round.current === 1 ? ROUND_TYPES[0] : utils.game.getRandomItem(ROUND_TYPES);
+  const roundType = round.current === 1 ? ROUND_TYPES[0] : utils.helpers.getRandomItem(ROUND_TYPES);
 
   // Save
   return {

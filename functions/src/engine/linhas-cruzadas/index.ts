@@ -38,7 +38,7 @@ export const getInitialState = (
   version: string,
   options: LinhasCruzadasOptions,
 ): LinhasCruzadasInitialState => {
-  return utils.helpers.getDefaultInitialState<LinhasCruzadasInitialState>({
+  return utils.game.getDefaultInitialState<LinhasCruzadasInitialState>({
     gameId,
     gameName: GAME_NAMES.LINHAS_CRUZADAS,
     uid,

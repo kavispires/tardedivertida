@@ -1,5 +1,5 @@
 import { cloneDeep } from 'lodash';
-import { calculateAverage, removeDuplicates } from './game-utils';
+import { calculateAverage, removeDuplicates } from './helpers';
 import { getListOfPlayers } from './players-utils';
 
 interface StoreAchievement {

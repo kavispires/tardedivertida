@@ -29,7 +29,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return PATTERN_CREATION;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 /**

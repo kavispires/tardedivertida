@@ -47,7 +47,7 @@ export const getInitialState = (
   version: string,
   options: TeoriaDeConjuntosOptions,
 ): TeoriaDeConjuntosInitialState => {
-  return utils.helpers.getDefaultInitialState<TeoriaDeConjuntosInitialState>({
+  return utils.game.getDefaultInitialState<TeoriaDeConjuntosInitialState>({
     gameId,
     gameName: GAME_NAMES.TEORIA_DE_CONJUNTOS,
     uid,

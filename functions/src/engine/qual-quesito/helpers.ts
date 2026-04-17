@@ -41,7 +41,7 @@ export const determineNextPhase = (
       : CATEGORY_CREATION;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export const buildCardsDictFromPlayersHands = (

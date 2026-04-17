@@ -28,7 +28,7 @@ export const prepareSetupPhase = async (
     bestWords: [],
   });
 
-  const wordLengths = utils.game.makeArray(6, 3).map((value) => ({
+  const wordLengths = utils.helpers.makeArray(6, 3).map((value) => ({
     wordLength: value,
     status: WORD_LENGTH_STATUS.AVAILABLE,
   }));
@@ -64,7 +64,7 @@ export const prepareWordCreationPhase = async (
   // Cleanup
   utils.players.removePropertiesFromPlayers(players, ['guesses', 'newWord', 'names']);
 
-  const round = utils.helpers.increaseRound(state.round);
+  const round = utils.game.increaseRound(state.round);
   const creatorId = utils.turnOrder.getActivePlayerId(state.turnOrder, round.current);
 
   const storeItems: Item[] = store.items;
@@ -73,7 +73,7 @@ export const prepareWordCreationPhase = async (
 
   const items = storeItems.slice((currentRound - 1) * ITEMS_PER_ROUND, currentRound * ITEMS_PER_ROUND);
 
-  const targets = utils.game.getRandomItems(items, 2);
+  const targets = utils.helpers.getRandomItems(items, 2);
 
   // Unready creator only
   utils.players.readyPlayers(players, creatorId);

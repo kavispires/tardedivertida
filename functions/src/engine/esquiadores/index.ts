@@ -40,7 +40,7 @@ export const getInitialState = (
   version: string,
   options: EsquiadoresOptions,
 ): EsquiadoresInitialState => {
-  return utils.helpers.getDefaultInitialState<EsquiadoresInitialState>({
+  return utils.game.getDefaultInitialState<EsquiadoresInitialState>({
     gameId,
     gameName: GAME_NAMES.ESQUIADORES,
     uid,

@@ -4,7 +4,7 @@ import { MEDIDAS_NAO_EXATAS_ACHIEVEMENTS, MEDIDAS_NAO_EXATAS_PHASES } from './co
 import utils from '../../utils';
 import type { TextCard } from '../../types/tdr';
 import type { FirebaseStoreData, GalleryEntry, Guess, MedidasNaoExatasAchievement } from './types';
-import { removeDuplicates } from '../../utils/game-utils';
+import { removeDuplicates } from '../../utils/helpers';
 import { orderBy } from 'lodash';
 
 /**
@@ -23,7 +23,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
       : METRICS_BUILDING;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export const determineResults = (

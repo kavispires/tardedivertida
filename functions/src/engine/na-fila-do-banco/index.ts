@@ -29,7 +29,7 @@ export const getInitialState = (
   language: Language,
   version: string,
 ): NaFilaDoBancoInitialState => {
-  return utils.helpers.getDefaultInitialState<NaFilaDoBancoInitialState>({
+  return utils.game.getDefaultInitialState<NaFilaDoBancoInitialState>({
     gameId,
     gameName: GAME_NAMES.NA_FILA_DO_BANCO,
     uid,

@@ -35,7 +35,7 @@ export const getInitialState = (
   language: Language,
   version: string,
 ): QuemNaoMataInitialState => {
-  return utils.helpers.getDefaultInitialState<QuemNaoMataInitialState>({
+  return utils.game.getDefaultInitialState<QuemNaoMataInitialState>({
     gameId,
     gameName: GAME_NAMES.QUEM_NAO_MATA,
     uid,

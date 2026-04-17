@@ -28,11 +28,11 @@ export const prepareSetupPhase = async (
 ): Promise<SaveGamePayload> => {
   const { gameOrder, playerCount } = utils.turnOrder.create(players);
 
-  const expressionsDeck = utils.game.getRandomItems(
+  const expressionsDeck = utils.helpers.getRandomItems(
     resourceData.allExpressions,
     playerCount * (store.options.singleWordOnly ? 0 : 2),
   );
-  const wordsDeck = utils.game.getRandomItems(
+  const wordsDeck = utils.helpers.getRandomItems(
     resourceData.allWords,
     playerCount * (store.options.singleWordOnly ? 4 : 2),
   );
@@ -133,7 +133,7 @@ export const prepareDrawingPhase = async (
       },
       state: {
         phase: LINHAS_CRUZADAS_PHASES.DRAWING,
-        round: utils.helpers.increaseRound(state.round),
+        round: utils.game.increaseRound(state.round),
         players,
       },
     },

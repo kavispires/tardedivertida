@@ -31,7 +31,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
       : ANSWERING;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export const buildGrid = (
@@ -42,7 +42,7 @@ export const buildGrid = (
   roundsCount: number,
   allowNSFW: boolean,
 ) => {
-  const shuffledTopics = utils.game.shuffle(allTopics).filter((topic) => allowNSFW || !topic.nsfw);
+  const shuffledTopics = utils.helpers.shuffle(allTopics).filter((topic) => allowNSFW || !topic.nsfw);
   const easyTopics: TopicCard[] = [];
   const mediumTopics: TopicCard[] = [];
   const hardTopics: TopicCard[] = [];
@@ -91,27 +91,29 @@ export const buildGrid = (
   }
 
   // Distribute topics
-  const topics: TopicCard[] = utils.game.makeArray(topicsQuantity * roundsCount).map((_, index: number) => {
-    const position = index % topicsQuantity;
-    let topic: TopicCard | undefined;
-    if (position === 0 || position === 1) {
-      topic = easyTopics.pop();
-    }
-    if (position === 2 || position === 3) {
-      topic = mediumTopics.pop();
-    }
-    if (position === 4) {
-      topic = hardTopics.pop();
-    }
+  const topics: TopicCard[] = utils.helpers
+    .makeArray(topicsQuantity * roundsCount)
+    .map((_, index: number) => {
+      const position = index % topicsQuantity;
+      let topic: TopicCard | undefined;
+      if (position === 0 || position === 1) {
+        topic = easyTopics.pop();
+      }
+      if (position === 2 || position === 3) {
+        topic = mediumTopics.pop();
+      }
+      if (position === 4) {
+        topic = hardTopics.pop();
+      }
 
-    if (topic) {
-      return topic;
-    }
-    return shuffledTopics.pop() as TopicCard;
-  });
+      if (topic) {
+        return topic;
+      }
+      return shuffledTopics.pop() as TopicCard;
+    });
 
   // Distribute letters
-  const shuffledLetters = utils.game.shuffle(allLetters);
+  const shuffledLetters = utils.helpers.shuffle(allLetters);
   const easyLetters: LetterEntry[] = [];
   const mediumLetters: LetterEntry[] = [];
   const hardLetters: LetterEntry[] = [];
@@ -147,7 +149,7 @@ export const buildGrid = (
     }
   }
 
-  const letters: LetterEntry[] = utils.game
+  const letters: LetterEntry[] = utils.helpers
     .makeArray(lettersQuantity * roundsCount)
     .map((_, index: number) => {
       const position = index % lettersQuantity;

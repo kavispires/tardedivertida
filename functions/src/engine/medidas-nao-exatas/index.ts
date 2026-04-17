@@ -41,7 +41,7 @@ export const getInitialState = (
   version: string,
   // options: MedidasNaoExatasOptions,
 ): MedidasNaoExatasInitialState => {
-  return utils.helpers.getDefaultInitialState<MedidasNaoExatasInitialState>({
+  return utils.game.getDefaultInitialState<MedidasNaoExatasInitialState>({
     gameId,
     gameName: GAME_NAMES.MEDIDAS_NAO_EXATAS,
     uid,

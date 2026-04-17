@@ -67,7 +67,7 @@ export const prepareAskingForSomething = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const round = utils.helpers.increaseRound(state.round);
+  const round = utils.game.increaseRound(state.round);
 
   const stateUpdate: PlainObject = {};
   // If round 1, no active player, otherwise, active player is the last active player

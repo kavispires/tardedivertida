@@ -34,8 +34,8 @@ export const prepareSetupPhase = async (
   const { allSubjects, allDescriptors } = resourceData;
 
   const cardsNeeded = (playerCount + TABLE_CARDS) * TOTAL_ROUNDS;
-  const subjectsDeck = utils.game.getRandomItems(allSubjects, cardsNeeded);
-  const descriptorsDeck = utils.game.getRandomItems(allDescriptors, cardsNeeded);
+  const subjectsDeck = utils.helpers.getRandomItems(allSubjects, cardsNeeded);
+  const descriptorsDeck = utils.helpers.getRandomItems(allDescriptors, cardsNeeded);
 
   const achievements = utils.achievements.setup(players, {
     subjectGuesses: 0,
@@ -90,7 +90,7 @@ export const prepareDrawingPhase = async (
       },
       state: {
         phase: SINAIS_DE_ALERTA_PHASES.DRAWING,
-        round: utils.helpers.increaseRound(state.round),
+        round: utils.game.increaseRound(state.round),
         timeLimit: store?.options?.longerTimer ? LONGER_TIME_LIMIT : NORMAL_TIME_LIMIT,
         cards,
         players,
@@ -119,8 +119,8 @@ export const prepareEvaluationPhase = async (
     return entry;
   });
 
-  const subjectsIds = utils.game.shuffle(Object.keys(state.cards).filter((id) => id.includes('wss')));
-  const descriptorsIds = utils.game.shuffle(Object.keys(state.cards).filter((id) => id.includes('wsd')));
+  const subjectsIds = utils.helpers.shuffle(Object.keys(state.cards).filter((id) => id.includes('wss')));
+  const descriptorsIds = utils.helpers.shuffle(Object.keys(state.cards).filter((id) => id.includes('wsd')));
 
   utils.players.removePropertiesFromPlayers(players, ['choseRandomly']);
 

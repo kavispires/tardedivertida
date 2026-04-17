@@ -35,12 +35,12 @@ export const prepareSetupPhase = async (
   // Add poster votes
   utils.players.addPropertiesToPlayers(players, { posters: {} });
 
-  const movieDeck = utils.game.getRandomItems(
+  const movieDeck = utils.helpers.getRandomItems(
     Object.values(additionalData.movies),
     TOTAL_ROUNDS * MOVIES_PER_ROUND,
   );
 
-  const [good, bad] = utils.game.shuffle(Object.values(additionalData.reviews)).reduce(
+  const [good, bad] = utils.helpers.shuffle(Object.values(additionalData.reviews)).reduce(
     (acc: [MovieReviewCard[], MovieReviewCard[]], card) => {
       acc[card.type === 'good' ? 0 : 1].push(card);
 
@@ -49,10 +49,10 @@ export const prepareSetupPhase = async (
     [[], []],
   );
 
-  const goodReviewsDeck = utils.game.getRandomItems(good, TOTAL_ROUNDS);
-  const badReviewsDeck = utils.game.getRandomItems(bad, TOTAL_ROUNDS);
-  const moviePosters = utils.game
-    .sliceIntoChunks(utils.game.shuffle(getMoviePosterIds()), 5)
+  const goodReviewsDeck = utils.helpers.getRandomItems(good, TOTAL_ROUNDS);
+  const badReviewsDeck = utils.helpers.getRandomItems(bad, TOTAL_ROUNDS);
+  const moviePosters = utils.helpers
+    .sliceIntoChunks(utils.helpers.shuffle(getMoviePosterIds()), 5)
     .splice(0, 5)
     .reduce((acc, posterList, index) => {
       acc[index] = posterList;
@@ -127,7 +127,7 @@ export const prepareMovieSelectionPhase = async (
       state: {
         phase: VAMOS_AO_CINEMA_PHASES.MOVIE_SELECTION,
         players,
-        round: utils.helpers.increaseRound(state.round),
+        round: utils.game.increaseRound(state.round),
         movies,
         goodReview,
         badReview,

@@ -40,7 +40,7 @@ export const getInitialState = (
   version: string,
   options: QualQuesitoOptions,
 ): QualQuesitoInitialState => {
-  return utils.helpers.getDefaultInitialState<QualQuesitoInitialState>({
+  return utils.game.getDefaultInitialState<QualQuesitoInitialState>({
     gameId,
     gameName: GAME_NAMES.QUAL_QUESITO,
     uid,

@@ -36,7 +36,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return round.forceLastRound || round.current >= round.total ? PRESENTATION : DRAWING;
   }
 
-  return utils.helpers.nextPhaseDelegator(currentPhase, order);
+  return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
 export const dealPromptOptions = (
@@ -50,7 +50,7 @@ export const dealPromptOptions = (
   if (options.singleWordOnly) {
     const dealCardEveryNTimes = Math.floor(wordsDeck.length / playerCount);
     utils.players.getListOfPlayers(players).forEach((player, index) => {
-      player.prompts = utils.game.shuffle(
+      player.prompts = utils.helpers.shuffle(
         Array(dealCardEveryNTimes)
           .fill(0)
           .map((e, i) => wordsDeck[e + index + i * playerCount]),
@@ -60,7 +60,7 @@ export const dealPromptOptions = (
     // On an even distribution all players get the same amount of expressions and single word cards
     const deck = options.evenDistribution
       ? [...expressionDeck, ...wordsDeck]
-      : utils.game.shuffle([...expressionDeck, ...wordsDeck]);
+      : utils.helpers.shuffle([...expressionDeck, ...wordsDeck]);
     const dealCardEveryNTimes = Math.floor(deck.length / playerCount);
     utils.players.getListOfPlayers(players).forEach((player, index) => {
       player.prompts = Array(dealCardEveryNTimes)

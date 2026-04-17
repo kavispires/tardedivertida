@@ -37,7 +37,7 @@ export const getInitialState = (
   version: string,
   options: AdedanhxOptions,
 ): AdedanhxInitialState => {
-  return utils.helpers.getDefaultInitialState<AdedanhxInitialState>({
+  return utils.game.getDefaultInitialState<AdedanhxInitialState>({
     gameId,
     gameName: GAME_NAMES.ADEDANHX,
     uid,

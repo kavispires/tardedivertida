@@ -61,10 +61,10 @@ export const prepareSetupPhase = async (
 
   // Round 5
   const round5 = [
-    ...utils.game.getRandomItems(round1, 3),
-    ...utils.game.getRandomItems(round2, 3),
-    ...utils.game.getRandomItems(round3, 3),
-    ...utils.game.getRandomItems(round4, 3),
+    ...utils.helpers.getRandomItems(round1, 3),
+    ...utils.helpers.getRandomItems(round2, 3),
+    ...utils.helpers.getRandomItems(round3, 3),
+    ...utils.helpers.getRandomItems(round4, 3),
   ];
 
   const achievements = utils.achievements.setup(players, {
@@ -83,7 +83,7 @@ export const prepareSetupPhase = async (
           2: round2,
           3: round3,
           4: round4,
-          5: utils.game.shuffle(round5),
+          5: utils.helpers.shuffle(round5),
         },
         achievements,
         gallery: [],
@@ -108,7 +108,7 @@ export const preparePairPhase = async (
   utils.players.unReadyPlayers(players);
   utils.players.removePropertiesFromPlayers(players, ['pairs']);
 
-  const round = utils.helpers.increaseRound(state.round);
+  const round = utils.game.increaseRound(state.round);
 
   const pool = store.deck[round.current];
   const roundType = round.current === 5 ? 'mixed' : pool[0].type;

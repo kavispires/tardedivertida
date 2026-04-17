@@ -1,5 +1,6 @@
 // Helpers
-import { removeItem, sliceIntoChunks } from './game-utils';
+import { sliceIntoChunks } from './helpers';
+import { removeItem } from './helpers';
 import { getListOfPlayersIds } from './players-utils';
 
 /**

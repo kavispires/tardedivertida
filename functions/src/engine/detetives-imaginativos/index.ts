@@ -36,7 +36,7 @@ export const getInitialState = (
   language: Language,
   version: string,
 ): DetetivesImaginativosInitialState => {
-  return utils.helpers.getDefaultInitialState<DetetivesImaginativosInitialState>({
+  return utils.game.getDefaultInitialState<DetetivesImaginativosInitialState>({
     gameId,
     gameName: GAME_NAMES.DETETIVES_IMAGINATIVOS,
     uid,

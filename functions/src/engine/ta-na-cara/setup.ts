@@ -30,7 +30,7 @@ export const prepareSetupPhase = async (
   // Build characters list
   const charactersCount = Math.max(playerCount * 2, MINIMUM_SUSPECTS);
 
-  const selectedCharacters: CharacterFace[] = utils.game
+  const selectedCharacters: CharacterFace[] = utils.helpers
     .getRandomItems(additionalData.allSuspects, charactersCount)
     .map((character) => ({
       ...character,
@@ -39,7 +39,7 @@ export const prepareSetupPhase = async (
 
   const charactersDict = utils.helpers.buildDictionaryFromList(selectedCharacters, 'id');
 
-  const gameQuestions = utils.game.getRandomItems(
+  const gameQuestions = utils.helpers.getRandomItems(
     additionalData.allCards,
     playerCount * QUESTIONS_PER_PLAYER,
   );
@@ -50,7 +50,7 @@ export const prepareSetupPhase = async (
   utils.playerHand.dealDeck(players, Object.keys(questionsDict), QUESTIONS_PER_PLAYER, 'questions');
 
   // Assign a random character to each player
-  let charactersIds = utils.game.shuffle(Object.keys(charactersDict));
+  let charactersIds = utils.helpers.shuffle(Object.keys(charactersDict));
 
   utils.players.getListOfPlayers(players).forEach((player, index) => {
     const cardId = charactersIds[index];
@@ -115,7 +115,7 @@ export const preparePromptPhase = async (
         phase: TA_NA_CARA_PHASES.PROMPT,
         players,
         activePlayerId,
-        round: activePlayerId === state.turnOrder[0] ? utils.helpers.increaseRound(state.round) : state.round,
+        round: activePlayerId === state.turnOrder[0] ? utils.game.increaseRound(state.round) : state.round,
       },
       stateCleanup: ['targetId', 'correct', 'ranking', 'result'],
     },

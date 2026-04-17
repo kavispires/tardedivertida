@@ -49,7 +49,7 @@ export const prepareTargetingPhase = async (
       state: {
         phase: QUEM_NAO_MATA_PHASES.TARGETING,
         players,
-        round: state.turn ? state.round : utils.helpers.increaseRound(state.round),
+        round: state.turn ? state.round : utils.game.increaseRound(state.round),
         turn: state.turn ? state.turn + 1 : 1,
       },
     },
