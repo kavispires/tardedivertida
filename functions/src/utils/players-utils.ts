@@ -5,6 +5,15 @@ import { throwException } from './firebase';
 // Utils
 import { getRandomUniqueItem, shuffle } from './game-utils';
 
+// Re-export turn order functions for backward compatibility
+export {
+  buildGameOrder,
+  reorderGameOrder,
+  getActivePlayer,
+  getNextPlayer,
+  getPreviousPlayer,
+} from './turn-order-utils';
+
 /**
  * Generates a player id based of their name
  * @param playerName
@@ -209,44 +218,6 @@ export const determineLosers = (players: Players): Player[] => {
 };
 
 /**
- * Get active player
- * @param turnOrder
- * @param currentRound
- * @returns
- */
-export const getActivePlayer = (turnOrder: GameOrder | TurnOrder, currentRound: number) => {
-  return turnOrder[(currentRound - 1) % turnOrder.length];
-};
-
-/**
- * Get next player in a turn order after the current player
- * @param turnOrder
- * @param activePlayerId
- * @returns
- */
-export const getNextPlayer = (turnOrder: GameOrder | TurnOrder, activePlayerId: UID): UID => {
-  const index = turnOrder.indexOf(activePlayerId);
-
-  if (index === -1) return turnOrder[0];
-
-  return turnOrder[(index + 1) % turnOrder.length];
-};
-
-/**
- * Get previous player in a turn order before the current player
- * @param turnOrder
- * @param activePlayerId
- * @returns
- */
-export const getPreviousPlayer = (turnOrder: GameOrder | TurnOrder, activePlayerId: UID): UID => {
-  const index = turnOrder.indexOf(activePlayerId);
-
-  if (index === -1 || index === 0) return turnOrder[turnOrder.length - 1];
-
-  return turnOrder[(index - 1) % turnOrder.length];
-};
-
-/**
  * Counts how many player keys are in players a.k.a the number of players in the game
  * @param players
  * @param includeBots whether to include bots in the count or not (default true)
@@ -407,40 +378,6 @@ export const neutralizeBotScores = (players: Players) => {
   getListOfBots(players).forEach((botPlayer) => {
     botPlayer.score = 0;
   });
-};
-
-/**
- * Randomizes player ids
- * @param players
- * @param doublingThreshold - doubles the order player count is lower than this
- * @returns obj - gameOrder is the randomized order of players,
- * playerIds is the list of player ids in the game,
- * playerCount is the number of players in the game
- */
-export const buildGameOrder = (
-  players: Players,
-  doublingThreshold = 0,
-  includeBots = false,
-  excludePlayersIds: UID[] = [],
-): { gameOrder: UID[]; playerIds: UID[]; playerCount: number } => {
-  const playerIds = shuffle(getListOfPlayersIds(players, includeBots, excludePlayersIds));
-  const gameOrder = playerIds.length < doublingThreshold ? [...playerIds, ...playerIds] : playerIds;
-  return { gameOrder, playerIds, playerCount: playerIds.length };
-};
-
-/**
- * Orders a randomized player list starting from given player id
- * @param gameOrder - the order of players
- * @param startingPlayerId - the player to start the order
- * @returns
- */
-export const reorderGameOrder = (gameOrder: UID[], startingPlayerId: UID) => {
-  const index = gameOrder.indexOf(startingPlayerId);
-  if (index === -1) {
-    return gameOrder;
-  }
-
-  return [...gameOrder.slice(index), ...gameOrder.slice(0, index)];
 };
 
 export class Scores {
@@ -633,6 +570,13 @@ export const getRankedVotes = (players: Players, property: string, winnerOnly = 
   return resultArray;
 };
 
+/**
+ * Get the winning ranked vote result based on turn order tie-breaking
+ * @param rankedVotes - the ranked votes results
+ * @param turnOrder - the turn order
+ * @param activePlayerId - the current active player id
+ * @returns the winning vote result, using turn order priority to break ties
+ */
 export const getWinningRankedVote = (
   rankedVotes: MostVotesResult[],
   turnOrder: UID[],

@@ -8,6 +8,7 @@ import * as imageCards from './image-cards-utils';
 import * as players from './players-utils';
 import * as playerHand from './player-hand-utils';
 import * as tdr from './tdr-utils';
+import * as turnOrder from './turn-order-utils';
 import * as user from './user';
 import * as toolKits from './tool-kits';
 
@@ -22,6 +23,7 @@ export default {
   players,
   playerHand,
   tdr,
+  turnOrder,
   user,
   toolKits,
 };
