@@ -1,5 +1,6 @@
+import { sampleSize } from 'lodash';
 import { LETTERS, LETTERS_EN, LETTERS_PT } from './constants';
-import { buildBooleanDictionary, getRandomItems } from './helpers';
+import { buildBooleanDictionary } from './helpers';
 import { getListOfPlayers } from './players-utils';
 
 /**
@@ -202,7 +203,7 @@ export const increaseRound = (round: Round, total?: number, current?: number): R
  */
 export const getRandomUniqueItems = <T>(list: T[], used: T[] = [], quantity = 1): T[] => {
   const availableList = list.filter((i) => !used.includes(i));
-  return getRandomItems(availableList, quantity);
+  return sampleSize(availableList, quantity);
 };
 
 /**
@@ -232,7 +233,7 @@ export const getRandomUniqueObjects = <T>(
 ): T[] => {
   const usedIdDict = buildBooleanDictionary(used as PlainObject[]);
   const availableList = list.filter((entry) => !usedIdDict[entry[byPropertyName]]);
-  return getRandomItems(availableList, quantity);
+  return sampleSize(availableList, quantity);
 };
 
 // Game Data Operations

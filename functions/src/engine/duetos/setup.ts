@@ -1,6 +1,7 @@
 // Constants
 import { CARDS_PER_HARD_ROUND, CARDS_PER_NORMAL_ROUND, DUETOS_PHASES, TOTAL_ROUNDS } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
+import { sampleSize, shuffle } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
@@ -61,10 +62,10 @@ export const prepareSetupPhase = async (
 
   // Round 5
   const round5 = [
-    ...utils.helpers.getRandomItems(round1, 3),
-    ...utils.helpers.getRandomItems(round2, 3),
-    ...utils.helpers.getRandomItems(round3, 3),
-    ...utils.helpers.getRandomItems(round4, 3),
+    ...sampleSize(round1, 3),
+    ...sampleSize(round2, 3),
+    ...sampleSize(round3, 3),
+    ...sampleSize(round4, 3),
   ];
 
   const achievements = utils.achievements.setup(players, {
@@ -83,7 +84,7 @@ export const prepareSetupPhase = async (
           2: round2,
           3: round3,
           4: round4,
-          5: utils.helpers.shuffle(round5),
+          5: shuffle(round5),
         },
         achievements,
         gallery: [],

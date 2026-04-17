@@ -1,6 +1,7 @@
 import 'jest';
 import * as gameUtils from '../../src/utils/game-utils';
 import * as helpers from '../../src/utils/helpers';
+import { shuffle } from 'lodash';
 
 describe('game-utils', () => {
   let result: any = null;
@@ -9,7 +10,7 @@ describe('game-utils', () => {
   describe('shuffle', () => {
     test('it shuffles given list', () => {
       sample = ['A', 'B', 'C'];
-      result = helpers.shuffle(sample);
+      result = shuffle(sample);
       expect(Array.isArray(result)).toBeTruthy();
       expect(result).toHaveLength(3);
       expect(result).toEqual(expect.arrayContaining(sample));

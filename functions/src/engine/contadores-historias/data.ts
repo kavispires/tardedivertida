@@ -1,6 +1,7 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
 import { CARDS_PER_PLAYER } from './constants';
+import { shuffle } from 'lodash';
 // Types
 import type { ResourceData } from './types';
 // Helpers
@@ -23,7 +24,7 @@ export const getData = async (playerCount: number): Promise<ResourceData> => {
   const cards = await utils.imageCards.getImageCards(minimumNumberOfCards);
 
   return {
-    cards: utils.helpers.shuffle(cards),
+    cards: shuffle(cards),
   };
 };
 

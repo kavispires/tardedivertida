@@ -9,8 +9,8 @@ import {
 } from './constants';
 // Utils
 import utils from '../../utils';
-import { orderBy, shuffle } from 'lodash';
 import type { FirebaseStoreData, GalleryEntry, SensoLiterarioAchievement } from './types';
+import { orderBy, shuffle } from 'lodash';
 /**
  * Determine the next phase based on the current one
  * @param currentPhase

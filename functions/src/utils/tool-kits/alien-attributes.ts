@@ -1,5 +1,5 @@
-import { keyBy, keys, orderBy, sampleSize, shuffle, sortBy } from 'lodash';
 import type { Item, ItemAttribute, ItemAttributesValues, ItemId } from '../../types/tdr';
+import { keyBy, keys, orderBy, sampleSize, shuffle, sortBy } from 'lodash';
 
 /**
  * TD ALIEN ATTRIBUTES TOOLKIT FUNCTIONS

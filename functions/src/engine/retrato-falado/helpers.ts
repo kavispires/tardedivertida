@@ -1,5 +1,6 @@
 // Constants
 import { RETRATO_FALADO_ACHIEVEMENTS, RETRATO_FALADO_PHASES } from './constants';
+import { sampleSize, shuffle } from 'lodash';
 // Types
 import type { MonsterImage } from '../../types/tdr';
 import type { AllMonsters, FirebaseStoreData, MonsterSketch, RetratoFaladoAchievement } from './types';
@@ -32,7 +33,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
  * @returns
  */
 export const buildDeck = (allMonsters: AllMonsters, playerCount: number) => {
-  return utils.helpers.getRandomItems(Object.values(allMonsters), playerCount);
+  return sampleSize(Object.values(allMonsters), playerCount);
 };
 
 /**
@@ -58,7 +59,7 @@ export const gatherSketches = (
     return acc;
   }, []);
 
-  return utils.helpers.shuffle(gathering);
+  return shuffle(gathering);
 };
 
 /**

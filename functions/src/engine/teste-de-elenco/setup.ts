@@ -1,6 +1,7 @@
 // Constants
 import { GENRES, MAX_ROUNDS, TESTE_DE_ELENCO_PHASES, TOTAL_ACTORS, TOTAL_TRAITS } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
+import { sampleSize } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, Movie, ResourceData } from './types';
 // Utils
@@ -19,7 +20,7 @@ export const prepareSetupPhase = async (
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Get needed actors
-  const actors = utils.helpers.getRandomItems(additionalData.allActors, TOTAL_ACTORS);
+  const actors = sampleSize(additionalData.allActors, TOTAL_ACTORS);
 
   // Get character traits
   const traits = utils.helpers

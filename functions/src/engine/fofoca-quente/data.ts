@@ -1,11 +1,11 @@
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
+import { sampleSize } from 'lodash';
 // Types
 import type { ResourceData, SocialGroup, StaffMember } from './types';
 // Utils
 import * as resourceUtils from '../resource';
 import type { TeenageMotivation, TeenageRumor, TeenageStudent } from '../../types/tdr';
-import utils from '../../utils';
 import { TOTAL_RUMORS, TOTAL_STUDENTS } from './constants';
 
 /**
@@ -18,11 +18,11 @@ export const getData = async (): Promise<ResourceData> => {
   const allTeenagers = await resourceUtils.fetchResource<Dictionary<TeenageStudent>>(
     TDR_RESOURCES.TEENAGE_STUDENTS,
   );
-  const teenagers = utils.helpers.getRandomItems(Object.values(allTeenagers), TOTAL_STUDENTS);
+  const teenagers = sampleSize(Object.values(allTeenagers), TOTAL_STUDENTS);
 
   // Get rumors
   const allRumors = await resourceUtils.fetchResource<Dictionary<TeenageRumor>>(TDR_RESOURCES.TEENAGE_RUMORS);
-  const rumors = utils.helpers.getRandomItems(Object.values(allRumors), TOTAL_RUMORS);
+  const rumors = sampleSize(Object.values(allRumors), TOTAL_RUMORS);
 
   // Get motivations
   const allMotivations = await resourceUtils.fetchResource<Dictionary<TeenageMotivation>>(

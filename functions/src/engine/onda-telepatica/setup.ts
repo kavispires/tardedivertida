@@ -1,6 +1,7 @@
 // Constants
 import { CATEGORIES_PER_ROUND, MAX_ROUNDS, ONDA_TELEPATICA_PHASES } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
+import { random } from 'lodash';
 // Types
 import type { CategoryCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
@@ -87,7 +88,7 @@ export const prepareDialCluePhase = async (
         players,
         psychicId,
         currentCategories,
-        target: utils.helpers.getRandomNumber(-10, 10),
+        target: random(-10, 10),
       },
     },
   };

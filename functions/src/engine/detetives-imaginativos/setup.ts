@@ -1,6 +1,7 @@
 // Constants
 import { DETETIVES_IMAGINATIVOS_PHASES, HAND_LIMIT, TOTAL_ROUNDS } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
+import { cloneDeep, sample } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData, TableEntry } from './types';
 // Utils
@@ -8,7 +9,6 @@ import utils from '../../utils';
 // Internal
 import { calculateRanking, countImpostorVotes, getAchievements } from './helpers';
 import { saveData } from './data';
-import { cloneDeep } from 'lodash';
 
 /**
  * Setup
@@ -56,7 +56,7 @@ export const prepareSetupPhase = async (
           total: TOTAL_ROUNDS,
         },
         // Just so the 'last impostor' is the new leader
-        impostorId: utils.helpers.getRandomItem(gameOrder),
+        impostorId: sample(gameOrder),
         turnOrder: gameOrder,
       },
     },
@@ -75,7 +75,7 @@ export const prepareSecretCluePhase = async (
   // Determine the leader
   const leaderId = state.impostorId;
   // Determine the impostor
-  const impostorId = utils.helpers.getRandomItem(utils.players.getListOfPlayersIds(players, false, [leaderId]));
+  const impostorId = sample(utils.players.getListOfPlayersIds(players, false, [leaderId]));
 
   utils.players.unReadyPlayer(players, leaderId);
 

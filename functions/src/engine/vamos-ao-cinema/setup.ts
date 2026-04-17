@@ -1,6 +1,7 @@
 // Constants
 import { MOVIES_PER_ROUND, OUTCOME, TOTAL_ROUNDS, VAMOS_AO_CINEMA_PHASES } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
+import { sampleSize, shuffle } from 'lodash';
 // Types
 import type { MovieReviewCard } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
@@ -35,12 +36,12 @@ export const prepareSetupPhase = async (
   // Add poster votes
   utils.players.addPropertiesToPlayers(players, { posters: {} });
 
-  const movieDeck = utils.helpers.getRandomItems(
+  const movieDeck = sampleSize(
     Object.values(additionalData.movies),
     TOTAL_ROUNDS * MOVIES_PER_ROUND,
   );
 
-  const [good, bad] = utils.helpers.shuffle(Object.values(additionalData.reviews)).reduce(
+  const [good, bad] = shuffle(Object.values(additionalData.reviews)).reduce(
     (acc: [MovieReviewCard[], MovieReviewCard[]], card) => {
       acc[card.type === 'good' ? 0 : 1].push(card);
 
@@ -49,10 +50,10 @@ export const prepareSetupPhase = async (
     [[], []],
   );
 
-  const goodReviewsDeck = utils.helpers.getRandomItems(good, TOTAL_ROUNDS);
-  const badReviewsDeck = utils.helpers.getRandomItems(bad, TOTAL_ROUNDS);
+  const goodReviewsDeck = sampleSize(good, TOTAL_ROUNDS);
+  const badReviewsDeck = sampleSize(bad, TOTAL_ROUNDS);
   const moviePosters = utils.helpers
-    .sliceIntoChunks(utils.helpers.shuffle(getMoviePosterIds()), 5)
+    .sliceIntoChunks(shuffle(getMoviePosterIds()), 5)
     .splice(0, 5)
     .reduce((acc, posterList, index) => {
       acc[index] = posterList;

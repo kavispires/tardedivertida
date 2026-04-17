@@ -1,6 +1,7 @@
 // Constants
 import { STARTING_HAND, MAX_ROUNDS, MIN_ROUND_CARDS, CARD_SELECTION_PER_PLAYER_COUNT } from './constants';
 import { GLOBAL_USED_DOCUMENTS, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
+import { sampleSize, shuffle } from 'lodash';
 // Type
 import type { TextCard } from '../../types/tdr';
 import type { GalleryEntry, ResourceData } from './types';
@@ -22,32 +23,32 @@ export const getResourceData = async (language: Language, playerCount: number): 
   const botCardsNeeded = MAX_ROUNDS * (MIN_ROUND_CARDS - (CARD_SELECTION_PER_PLAYER_COUNT[playerCount] ?? 3));
   const imageCardsNeeded = cardsPerPlayer * playerCount + botCardsNeeded;
 
-  const images = utils.helpers.shuffle(await utils.imageCards.getImageCards(imageCardsNeeded));
+  const images = shuffle(await utils.imageCards.getImageCards(imageCardsNeeded));
 
   const quantityNeeded = Math.ceil(MAX_ROUNDS / 3);
 
   // Colors
   const allColors = await resourceUtils.fetchResource<Dictionary<TextCard>>(TDR_RESOURCES.COLORS, language);
-  const colors = utils.helpers.getRandomItems(Object.values(allColors), quantityNeeded);
+  const colors = sampleSize(Object.values(allColors), quantityNeeded);
 
   // Emotions
   const allEmotions = await resourceUtils.fetchResource<Dictionary<TextCard>>(
     TDR_RESOURCES.EMOTIONS,
     language,
   );
-  const emotions = utils.helpers.getRandomItems(Object.values(allEmotions), quantityNeeded);
+  const emotions = sampleSize(Object.values(allEmotions), quantityNeeded);
 
   // Words
   const words = await utils.tdr.getSingleWords(language, quantityNeeded);
 
   // Glyphs
-  const glyphs = utils.helpers.getRandomItems(
+  const glyphs = sampleSize(
     utils.helpers.makeArray(SPRITE_LIBRARIES.GLYPHS),
     quantityNeeded * 3,
   );
 
   // Emojis
-  const emojis = utils.helpers.getRandomItems(utils.helpers.makeArray(SPRITE_LIBRARIES.EMOJIS), quantityNeeded);
+  const emojis = sampleSize(utils.helpers.makeArray(SPRITE_LIBRARIES.EMOJIS), quantityNeeded);
 
   // Robot cards
   const botCards = utils.helpers

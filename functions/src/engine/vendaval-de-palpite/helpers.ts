@@ -1,10 +1,10 @@
 // Types
 import type { Board, BoardEntry, Clue, Clues } from './types';
+import { orderBy } from 'lodash';
 // Constants
 import { VENDAVAL_DE_PALPITE_PHASES } from './constants';
 // Utilities
 import utils from '../../utils';
-import { orderBy } from 'lodash';
 
 /**
  * Determine the next phase based on the current one

@@ -1,6 +1,7 @@
 // Constants
 import { STARTING_ITEMS_PER_PLAYER_COUNT, ROUNDS_PER_PLAYER, JUDGE_HAND_QUANTITY } from './constants';
 import { TDR_RESOURCES } from '../../utils/constants';
+import { sampleSize } from 'lodash';
 // Type
 import type { DiagramTopic, Item } from '../../types/tdr';
 import type { TeoriaDeConjuntosOptions, ResourceData, TopicsByDiagramType } from './types';
@@ -84,17 +85,17 @@ export const getResourceData = async (
   );
 
   const examples = {
-    attribute: utils.helpers.getRandomItems(attribute, 3),
-    word: utils.helpers.getRandomItems(word, 3),
-    context: utils.helpers.getRandomItems(context ?? [], 3),
+    attribute: sampleSize(attribute, 3),
+    word: sampleSize(word, 3),
+    context: sampleSize(context ?? [], 3),
   };
 
   return {
     items,
     diagrams: {
-      attribute: utils.helpers.getRandomItem(attribute),
-      word: utils.helpers.getRandomItem(word),
-      context: utils.helpers.getRandomItem(context ?? []),
+      attribute: sampleSize(attribute, 1)[0],
+      word: sampleSize(word, 1)[0],
+      context: sampleSize(context ?? [], 1)[0],
     },
     examples,
   };

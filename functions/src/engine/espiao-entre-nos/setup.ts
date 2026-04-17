@@ -7,6 +7,7 @@ import {
   TIMER_STATUS,
 } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
+import { orderBy, sampleSize } from 'lodash';
 // Types
 import type { SpyLocation } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, Outcome, Resolution, ResourceData } from './types';
@@ -19,7 +20,6 @@ import {
   determineFinalAssessmentPlayerOrder,
   distributeRoles,
 } from './helpers';
-import { orderBy } from 'lodash';
 
 /**
  * Setup
@@ -67,10 +67,7 @@ export const prepareAssignmentPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Use only 25 locations
-  const availableLocations: SpyLocation[] = utils.helpers.getRandomItems(
-    store.allLocations,
-    LOCATIONS_USED_IN_A_ROUND,
-  );
+  const availableLocations: SpyLocation[] = sampleSize(store.allLocations, LOCATIONS_USED_IN_A_ROUND);
 
   const locations = orderBy(
     availableLocations.map((location) => ({
@@ -81,7 +78,7 @@ export const prepareAssignmentPhase = async (
     'asc',
   );
 
-  const currentLocation = utils.helpers.getRandomItem(availableLocations);
+  const currentLocation = sampleSize(availableLocations, 1)[0];
 
   const availableRoles = createRolesPool(currentLocation.roles, utils.players.getPlayerCount(players));
 

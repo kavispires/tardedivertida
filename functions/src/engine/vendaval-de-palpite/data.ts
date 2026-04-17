@@ -2,11 +2,11 @@
 import { TDR_RESOURCES } from '../../utils/constants';
 import type { ResourceData } from './types';
 import type { TextCard } from '../../types/tdr';
+import { orderBy } from 'lodash';
 // Helpers
 import utils from '../../utils';
 import * as resourceUtils from '../resource';
 import { TOTAL_WORDS_NEEDED } from './constants';
-import { orderBy } from 'lodash';
 
 /**
  * Get word cards and categories resource based on the game's language

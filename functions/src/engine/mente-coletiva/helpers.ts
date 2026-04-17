@@ -9,6 +9,7 @@ import {
 } from './constants';
 // Types
 import type { GroupQuestionCard } from '../../types/tdr';
+import { orderBy, sample, shuffle } from 'lodash';
 import type {
   AllQuestions,
   AnswerEntry,
@@ -22,7 +23,6 @@ import type {
 } from './types';
 // Utils
 import utils from '../../utils';
-import { orderBy } from 'lodash';
 
 /**
  * Determine the next phase based on the current one
@@ -61,17 +61,17 @@ export const determineRoundType = (playerCount: number, currentRound: number, pl
 
   // When the farthest player is too far from the others
   if (isLevelDifferenceGreaterThanOne(players)) {
-    return isSmallGame ? 2 : utils.helpers.getRandomItem([2, 2, 2, 3]);
+    return isSmallGame ? 2 : sample([2, 2, 2, 3]);
   }
 
   // If the game is going for too long
   if (currentRound > 9) {
-    return isSmallGame ? utils.helpers.getRandomItem([1, 2, 2]) : utils.helpers.getRandomItem([2, 2, 3]);
+    return isSmallGame ? sample([1, 2, 2]) : sample([2, 2, 3]);
   }
 
   return isSmallGame
-    ? utils.helpers.getRandomItem([1, 1, 1, 1, 1, 2, 0])
-    : utils.helpers.getRandomItem([1, 1, 1, 1, 2, 2, 3, 0]);
+    ? sample([1, 1, 1, 1, 1, 2, 0])
+    : sample([1, 1, 1, 1, 2, 2, 3, 0]);
 };
 
 /**
@@ -82,7 +82,7 @@ export const determineRoundType = (playerCount: number, currentRound: number, pl
 export const buildDeck = (allQuestions: AllQuestions): Deck => {
   const neededQuestionsAmount = MAX_ROUNDS * QUESTIONS_PER_ROUND;
 
-  const shuffledQuestions = utils.helpers.shuffle(Object.values(allQuestions));
+  const shuffledQuestions = shuffle(Object.values(allQuestions));
 
   return shuffledQuestions.slice(0, neededQuestionsAmount + 1);
 };

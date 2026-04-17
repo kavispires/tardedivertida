@@ -5,7 +5,7 @@ import { TOTAL_ITEMS } from './constants';
 import { applyDataToDeck } from './helpers';
 import { TDR_RESOURCES } from '../../utils/constants';
 import type { SuspectCard } from '../../types/tdr';
-import { orderBy } from 'lodash';
+import { orderBy, sample } from 'lodash';
 
 /**
  * Get words resource based on the game's language
@@ -46,7 +46,7 @@ export const getDeck = async (language: Language, options: ComunicacaoDuoOptions
       utils.tdr.modifySuspectIdsByOptions(
         Object.values(allSuspects),
         {
-          deckType: utils.helpers.getRandomItem(['ghibli', 'realistic', 'pixar', 'fox']),
+          deckType: sample(['ghibli', 'realistic', 'pixar', 'fox']),
         },
         true,
       ),

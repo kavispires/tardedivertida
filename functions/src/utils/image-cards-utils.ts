@@ -1,6 +1,6 @@
 import { throwException } from './firebase';
-import { shuffle } from './helpers';
 import { fetchResource } from '../engine/resource';
+import { shuffle } from 'lodash';
 
 const deckCache = {};
 

@@ -1,4 +1,5 @@
 import type { SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
+import { orderBy, random, sampleSize, shuffle } from 'lodash';
 // Constants
 import {
   HARD_MODE_EXTRA_SUSPECT_COUNT,
@@ -12,7 +13,6 @@ import {
 // Utils
 import utils from '../../utils';
 import type { FirebaseStoreData, TestemunhaOcularAchievement } from './types';
-import { orderBy, random, shuffle } from 'lodash';
 
 /**
  * Determine the next phase based on the current one
@@ -58,7 +58,7 @@ export const getPoolOfSuspects = (
 
   if (isGbExclusive) {
     return orderBy(
-      utils.helpers.getRandomItems(
+      sampleSize(
         allSuspects.filter((s) => s.gbExclusive),
         poolSize,
       ),
@@ -68,12 +68,12 @@ export const getPoolOfSuspects = (
   }
 
   if (!targetedPool) {
-    return orderBy(utils.helpers.getRandomItems(allSuspects, poolSize), [`name.${language}`], ['asc']);
+    return orderBy(sampleSize(allSuspects, poolSize), [`name.${language}`], ['asc']);
   }
 
-  const attributeKeys = utils.helpers.shuffle(['age', 'build', 'race', 'gender']);
+  const attributeKeys = shuffle(['age', 'build', 'race', 'gender']);
   const startIndex = random(1, poolSize);
-  const ordering = utils.helpers.shuffle(['asc', 'desc', 'asc', 'desc']);
+  const ordering = shuffle(['asc', 'desc', 'asc', 'desc']);
 
   const orderedPool = orderBy(
     allSuspects,

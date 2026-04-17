@@ -7,10 +7,10 @@ import {
   TA_NA_CARA_PHASES,
 } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
+import { keyBy, sampleSize, shuffle } from 'lodash';
 // Types
 import type { CharacterFace, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
-import { keyBy } from 'lodash';
 import utils from '../../utils';
 import { buildRankingAndOutcome } from './helpers';
 
@@ -40,7 +40,7 @@ export const prepareSetupPhase = async (
 
   const charactersDict = keyBy(selectedCharacters, 'id');
 
-  const gameQuestions = utils.helpers.getRandomItems(
+  const gameQuestions = sampleSize(
     additionalData.allCards,
     playerCount * QUESTIONS_PER_PLAYER,
   );
@@ -51,7 +51,7 @@ export const prepareSetupPhase = async (
   utils.playerHand.dealDeck(players, Object.keys(questionsDict), QUESTIONS_PER_PLAYER, 'questions');
 
   // Assign a random character to each player
-  let charactersIds = utils.helpers.shuffle(Object.keys(charactersDict));
+  let charactersIds = shuffle(Object.keys(charactersDict));
 
   utils.players.getListOfPlayers(players).forEach((player, index) => {
     const cardId = charactersIds[index];

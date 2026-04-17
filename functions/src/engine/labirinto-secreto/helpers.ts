@@ -25,6 +25,7 @@ import {
 // Utils
 import utils from '../../utils';
 import type { TextCard } from '../../types/tdr';
+import { random, sample, shuffle } from 'lodash';
 
 export const determineGameOver = (players: Players) => {
   // After 5 rounds or all paths are completed
@@ -201,7 +202,7 @@ const getAvailableNextStep = (
   });
 
   if (available.length === 0) return null;
-  return utils.helpers.getRandomItem(available);
+  return sample(available) ?? null;
 };
 
 const WHILE_THRESHOLD = 300;
@@ -278,7 +279,7 @@ const buildPath = (
 export const buildForest = (cards: TextCard[], isItemsForest: boolean): Tree[] => {
   const trees = Array(5)
     .fill(0)
-    .map(() => utils.helpers.getRandomNumber(2, 15));
+    .map(() => random(2, 15));
 
   return utils.helpers.makeArray(FOREST_WIDTH * FOREST_HEIGHT, 0).map((el: number, index) => {
     if (FORBIDDEN_TREES.includes(index)) {
@@ -312,7 +313,7 @@ export const buildPaths = (players: Players) => {
   const generatedPaths: Point[][] = [];
 
   // Shuffle entry points so we don't always prioritize the top-left player for the "cleanest" path
-  const shuffledEntries = utils.helpers.shuffle(entryPoints);
+  const shuffledEntries = shuffle(entryPoints);
 
   // Generate paths sequentially
   shuffledEntries.forEach((entryPoint) => {
@@ -335,7 +336,7 @@ export const buildPaths = (players: Players) => {
   }
 
   // Shuffle the valid paths again before assigning to ensure fairness
-  const finalPaths = utils.helpers.shuffle(generatedPaths);
+  const finalPaths = shuffle(generatedPaths);
 
   utils.players.getListOfPlayers(players).forEach((player, playerIndex) => {
     const path = finalPaths[playerIndex];

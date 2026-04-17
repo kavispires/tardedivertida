@@ -1,5 +1,6 @@
 // Helpers
 import utils from '../../utils';
+import { shuffle } from 'lodash';
 // Internal functions
 import { getNextPhase } from './index';
 
@@ -15,7 +16,7 @@ export const handleSubmitCharacters = async (
     playerId,
     actionText: 'submit your characters',
     shouldReady: true,
-    change: { selectedCharacters: utils.helpers.shuffle(characters) },
+    change: { selectedCharacters: shuffle(characters) },
     nextPhaseFunction: getNextPhase,
   });
 };

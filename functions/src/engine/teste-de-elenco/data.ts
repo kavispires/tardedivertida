@@ -1,12 +1,12 @@
 // Types
 import type { SuspectCard, MovieCard, TestimonyQuestionCard } from '../../types/tdr';
 import type { ResourceData, TesteDeElencoOptions } from './types';
+import { sampleSize } from 'lodash';
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
 // Helpers
 import utils from '../../utils';
 import * as resourceUtils from '../resource';
-import { sampleSize } from 'lodash';
 
 /**
  * Get question resource based on the game's language

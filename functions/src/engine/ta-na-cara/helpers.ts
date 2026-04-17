@@ -1,5 +1,6 @@
 import { DUMMY_ID, TA_NA_CARA_PHASES } from './constants';
 import type { CharacterFace, TaNaCaraState, TaNaCaraStore } from './types';
+import { sample } from 'lodash';
 // Helpers
 import utils from '../../utils';
 
@@ -108,7 +109,7 @@ const assignNewCharacterToPlayer = (
     .map((character) => character.id);
 
   if (availableCharacters.length > 1) {
-    players[playerId].characterId = utils.helpers.getRandomItem(availableCharacters);
+    players[playerId].characterId = sample(availableCharacters);
     charactersDict[players[playerId].characterId].playerId = playerId;
   } else {
     players[playerId].characterId = null;

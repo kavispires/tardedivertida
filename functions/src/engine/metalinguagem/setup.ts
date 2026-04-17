@@ -1,11 +1,11 @@
 // Constants
 import { ITEMS_PER_ROUND, MAX_ROUNDS, METALINGUAGEM_PHASES, WORD_LENGTH_STATUS } from './constants';
+import { orderBy, sampleSize } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, GalleryEntry, ResourceData, WordLength } from './types';
 // Utils
 import utils from '../../utils';
 import { GAME_NAMES } from '../../utils/constants';
-import { orderBy } from 'lodash';
 import { getAchievements } from './helpers';
 import type { Item } from '../../types/tdr';
 
@@ -73,7 +73,7 @@ export const prepareWordCreationPhase = async (
 
   const items = storeItems.slice((currentRound - 1) * ITEMS_PER_ROUND, currentRound * ITEMS_PER_ROUND);
 
-  const targets = utils.helpers.getRandomItems(items, 2);
+  const targets = sampleSize(items, 2);
 
   // Unready creator only
   utils.players.readyPlayers(players, creatorId);

@@ -1,4 +1,5 @@
 import type { MovieCard } from '../../types/tdr';
+import { sampleSize } from 'lodash';
 import {
   MAX_MISTAKES,
   MOVIE_POSTERS_COUNT,
@@ -138,8 +139,8 @@ export const getFinalMovies = (
 
     const posterId =
       votes.length > 0
-        ? getMostFrequentElementFromList(votes) || utils.helpers.getRandomItem(votes)
-        : utils.helpers.getRandomItem(posters[movie.session - 1]);
+        ? getMostFrequentElementFromList(votes) || sampleSize(votes, 1)[0]
+        : sampleSize(posters[movie.session - 1], 1)[0];
 
     finalMovies.push({
       id: movie.id,

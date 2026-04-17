@@ -7,13 +7,13 @@ import {
   TOTAL_ROUNDS,
 } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
+import { cloneDeep, orderBy, sampleSize, shuffle } from 'lodash';
 // Types
 import type { DrawingEntry, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
 import { dealCardsToPlayers, evaluateAnswers, getAchievements } from './helpers';
 import { saveDrawings } from './data';
-import { cloneDeep, orderBy } from 'lodash';
 
 /**
  * Setup
@@ -34,8 +34,8 @@ export const prepareSetupPhase = async (
   const { allSubjects, allDescriptors } = resourceData;
 
   const cardsNeeded = (playerCount + TABLE_CARDS) * TOTAL_ROUNDS;
-  const subjectsDeck = utils.helpers.getRandomItems(allSubjects, cardsNeeded);
-  const descriptorsDeck = utils.helpers.getRandomItems(allDescriptors, cardsNeeded);
+  const subjectsDeck = sampleSize(allSubjects, cardsNeeded);
+  const descriptorsDeck = sampleSize(allDescriptors, cardsNeeded);
 
   const achievements = utils.achievements.setup(players, {
     subjectGuesses: 0,
@@ -119,8 +119,8 @@ export const prepareEvaluationPhase = async (
     return entry;
   });
 
-  const subjectsIds = utils.helpers.shuffle(Object.keys(state.cards).filter((id) => id.includes('wss')));
-  const descriptorsIds = utils.helpers.shuffle(Object.keys(state.cards).filter((id) => id.includes('wsd')));
+  const subjectsIds = shuffle(Object.keys(state.cards).filter((id) => id.includes('wss')));
+  const descriptorsIds = shuffle(Object.keys(state.cards).filter((id) => id.includes('wsd')));
 
   utils.players.removePropertiesFromPlayers(players, ['choseRandomly']);
 

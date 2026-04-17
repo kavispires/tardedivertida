@@ -13,6 +13,7 @@ import {
 // Utils
 import utils from '../../utils';
 import type { FirebaseStoreData, PortaDosDesesperadosAchievement, Trap } from './types';
+import { sample, sampleSize, shuffle } from 'lodash';
 
 /**
  * Determine the next phase based on the current one
@@ -77,7 +78,7 @@ export const createTrapOrder = (): string[] => {
   const trapKeys = Object.keys(TRAPS);
 
   // The first trap should always be NONE, then shuffle the rest, but the level of the next trap should never be equal to the previous one
-  const shuffledTraps = utils.helpers.shuffle(trapKeys);
+  const shuffledTraps = shuffle(trapKeys);
   const orderedTraps = ['NONE'];
   for (let i = 0; i < shuffledTraps.length; i++) {
     const currentTrap = shuffledTraps[i];
@@ -118,7 +119,7 @@ export const getDoorSet = (doorDeck: UID[], doorDeckIndex: number, trap: Trap) =
   const quantity = trap === TRAPS.EXTRA_DOOR ? DOOR_OPTIONS_PER_ROUND + 1 : DOOR_OPTIONS_PER_ROUND;
 
   const selectedDoors = doorDeck.slice(doorDeckIndex, doorDeckIndex + quantity);
-  const answerDoorId = utils.helpers.getRandomItem(selectedDoors);
+  const answerDoorId = sample(selectedDoors);
 
   return {
     doors: selectedDoors,
@@ -159,10 +160,10 @@ export const getBookPages = (pagesDeck: UID[], pagesDeckIndex: number, trap: Tra
  */
 export const botDoorSelection = (players: Players, doors: UID[], doorAnswerId: UID) => {
   // The bot pool is only half of the doors, but always has the answer
-  const options = [...utils.helpers.getRandomItems(doors, 4), doorAnswerId];
+  const options = [...sampleSize(doors, 4), doorAnswerId];
 
   utils.players.getListOfBots(players).forEach((bot) => {
-    bot.doorId = utils.helpers.getRandomItem(options);
+    bot.doorId = sample(options);
     bot.ready = true;
   });
 };

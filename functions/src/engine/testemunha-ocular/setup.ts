@@ -1,5 +1,6 @@
 // Types
 import type { TestimonyQuestionCard } from '../../types/tdr';
+import { difference, keyBy, sampleSize } from 'lodash';
 import type {
   FirebaseStateData,
   FirebaseStoreData,
@@ -18,7 +19,6 @@ import {
   getPoolOfSuspects,
 } from './helpers';
 import { GAME_NAMES } from '../../utils/constants';
-import { difference, keyBy, sample } from 'lodash';
 import { saveData } from './data';
 
 /**
@@ -47,7 +47,7 @@ export const prepareSetupPhase = async (
   const suspectsIds = suspects.map((s) => s.id);
   const suspectsDict = keyBy(suspects, 'id');
 
-  const perpetratorId = utils.helpers.getRandomItem(suspects).id;
+  const perpetratorId = sampleSize(suspects, 1)[0].id;
 
   // Build deck
   const deck = buildQuestionsDeck(additionalData.allCards);
@@ -60,13 +60,14 @@ export const prepareSetupPhase = async (
 
   // Determine the reason
   const perpetratorGender = suspectsDict[perpetratorId].gender;
-  const reason = sample(
+  const reason = sampleSize(
     Object.values(additionalData.allReasons).filter((reason) => {
       if (perpetratorGender === 'male' && reason.feature === 'female') return false;
       if (perpetratorGender === 'female' && reason.feature === 'male') return false;
       return true;
     }),
-  );
+    1,
+  )[0];
 
   // Save
   return {

@@ -1,5 +1,6 @@
 // Types
 import type { FirebaseStateData, FirebaseStoreData } from './types';
+import { sampleSize, shuffle } from 'lodash';
 // Constants
 import {
   DIGITS,
@@ -27,12 +28,12 @@ export const prepareSetupPhase = async (
   cards: PlainObject,
 ): Promise<SaveGamePayload> => {
   // Get 5 (4 regular rounds + 1 order round) themes
-  const themes = utils.helpers.getRandomItems(Object.values(cards), TOTAL_ROUNDS);
+  const themes = sampleSize(Object.values(cards), TOTAL_ROUNDS);
 
   // Build final code
   const playerCount = utils.players.getPlayerCount(players);
 
-  const passCodeOrders = utils.helpers.shuffle(DIGITS);
+  const passCodeOrders = shuffle(DIGITS);
 
   // Get each player's password fragment, add instrument
   utils.players.getListOfPlayers(players).forEach((player, index) => {

@@ -1,5 +1,6 @@
 // Types
 import type { TopicCard } from '../../types/tdr';
+import { orderBy, shuffle } from 'lodash';
 import type {
   AdedanhxAchievement,
   AnswerEvaluationEntry,
@@ -13,7 +14,6 @@ import { ADEDANHX_ACHIEVEMENTS, ADEDANHX_PHASES } from './constants';
 import { SEPARATOR } from '../../utils/constants';
 // Utils
 import utils from '../../utils';
-import { orderBy } from 'lodash';
 
 /**
  * Determine the next phase based on the current one
@@ -42,7 +42,7 @@ export const buildGrid = (
   roundsCount: number,
   allowNSFW: boolean,
 ) => {
-  const shuffledTopics = utils.helpers.shuffle(allTopics).filter((topic) => allowNSFW || !topic.nsfw);
+  const shuffledTopics = shuffle(allTopics).filter((topic) => allowNSFW || !topic.nsfw);
   const easyTopics: TopicCard[] = [];
   const mediumTopics: TopicCard[] = [];
   const hardTopics: TopicCard[] = [];
@@ -113,7 +113,7 @@ export const buildGrid = (
     });
 
   // Distribute letters
-  const shuffledLetters = utils.helpers.shuffle(allLetters);
+  const shuffledLetters = shuffle(allLetters);
   const easyLetters: LetterEntry[] = [];
   const mediumLetters: LetterEntry[] = [];
   const hardLetters: LetterEntry[] = [];

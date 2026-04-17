@@ -12,8 +12,8 @@
  * see game-utils.ts instead.
  */
 
-import { mean } from 'lodash';
 import { isEmulatingEnvironment } from './firebase';
+import { mean, shuffle } from 'lodash';
 
 /**
  * Prints content to console in JSON format when running in emulation environment.
@@ -218,20 +218,8 @@ export const forceWait = async (duration = 0) => {
 // Random & Shuffling
 
 /**
- * Shuffles an array randomly, returning a new array without modifying the original.
- * Uses the Fisher-Yates shuffle algorithm via Array.sort.
- * @deprecated Use lodash _.shuffle instead
- * @param list - The array to shuffle
- * @returns A new shuffled array
- */
-export const shuffle = <T>(list: T[]): T[] => {
-  const result = [...list];
-  result.sort(() => Math.random() - 0.5);
-  return result;
-};
-
-/**
  * Generates a random integer within a specified range (inclusive).
+ * @deprecated Use lodash _.random instead
  * @param min - The minimum value (inclusive)
  * @param max - The maximum value (inclusive)
  * @returns A random integer between min and max

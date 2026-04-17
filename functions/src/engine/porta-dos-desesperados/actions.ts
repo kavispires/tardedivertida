@@ -1,5 +1,6 @@
 // Helpers
 import utils from '../../utils';
+import { shuffle } from 'lodash';
 // Internal functions
 import { getNextPhase } from './index';
 
@@ -14,7 +15,7 @@ export const handleSubmitPages = async (
     gameId,
     playerId,
     actionText: 'submit your clue pages',
-    change: { selectedPagesIds: utils.helpers.shuffle(pageIds) },
+    change: { selectedPagesIds: shuffle(pageIds) },
     nextPhaseFunction: getNextPhase,
   });
 };

@@ -23,6 +23,7 @@ import type {
 } from './types';
 // Utils
 import utils from '../../utils';
+import { sampleSize, shuffle } from 'lodash';
 
 /**
  * Determine the next phase based on the current one
@@ -64,7 +65,7 @@ export const buildDecks = (isShortGame: boolean): Decks => {
   // 1. Build horror deck: get one random horror of each set and make 3 copies of it
   const horrorCount = {};
   const horrorDeck: HouseCard[] = HORROR_SETS.flatMap((horrorGroup: DualLanguageValue[]) => {
-    const horrorName = utils.helpers.getRandomItem(horrorGroup);
+    const horrorName = sampleSize(horrorGroup, 1)[0];
     const horrorGenericName = horrorName.en.toLowerCase();
     const horrorKey = `${CARD_KEY_PREFIX}-horror-${horrorGenericName}`;
     // This is used to count how many horrors have happen each round
@@ -127,7 +128,7 @@ export const buildStreetDeck = (store: FirebaseStoreData, currentRound: number):
   // Add all candy values
   const streetDeck = [...store.candyDeck, ...horrorDeckWithoutAnyUsedHorrors, ...availableJackpots];
 
-  const shuffledStreet = utils.helpers.shuffle(streetDeck);
+  const shuffledStreet = shuffle(streetDeck);
 
   let tries = 0;
   while (

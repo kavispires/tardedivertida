@@ -1,6 +1,7 @@
 import type { MetalinguagemOptions, ResourceData } from './types';
 import utils from '../../utils';
 import { ITEMS_PER_ROUND, MAX_ROUNDS } from './constants';
+import { sampleSize } from 'lodash';
 
 /**
  * Get items for the game
@@ -29,6 +30,6 @@ export const getResourceData = async (options: MetalinguagemOptions): Promise<Re
   });
 
   return {
-    items: utils.helpers.getRandomItems([...dreamItems, ...metaItems], itemsNeeded),
+    items: sampleSize([...dreamItems, ...metaItems], itemsNeeded),
   };
 };

@@ -7,6 +7,7 @@ import {
   WORDS_IN_POOL,
 } from './constants';
 import { GAME_NAMES, SEPARATOR } from '../../utils/constants';
+import { shuffle } from 'lodash';
 // Types
 import type { BoardEntry, FirebaseStateData, FirebaseStoreData, PastClues, ResourceData } from './types';
 // Utils
@@ -15,7 +16,6 @@ import utils from '../../utils';
 import { buildRanking, getAchievements } from './helpers';
 import { saveData } from './data';
 import type { TextCard } from '../../types/tdr';
-import { shuffle } from 'lodash';
 
 /**
  * Setup

@@ -1,7 +1,7 @@
 // Constants
 import { GENRES, MAX_ROUNDS, TESTE_DE_ELENCO_ACHIEVEMENTS, TESTE_DE_ELENCO_PHASES } from './constants';
+import { keyBy, sampleSize } from 'lodash';
 // Utils
-import { keyBy } from 'lodash';
 import utils from '../../utils';
 import type {
   ActingRole,
@@ -47,12 +47,10 @@ const determineMovieVotes = (
   players: Players,
 ): { genre: MovieGenre; movieTitle: string; selectedProps: string[] } => {
   const genreVotes = utils.players.getRankedVotes(players, 'genre', true);
-  const genreKey = utils.helpers.getRandomItem(genreVotes).value;
+  const genreKey = sampleSize(genreVotes, 1)[0].value;
   const genre = GENRES[genreKey];
 
-  const movieTitle = utils.helpers.getRandomItem(
-    utils.players.getRankedVotes(players, 'movieTitle', true),
-  ).value;
+  const movieTitle = sampleSize(utils.players.getRankedVotes(players, 'movieTitle', true), 1)[0].value;
 
   const selectedProps = utils.players.getListOfPlayers(players).reduce((acc: string[], player) => {
     if (player.selectedProps) {

@@ -1,5 +1,6 @@
 // Types
 import type { CaptchaCard, FirebaseStateData, FirebaseStoreData, ResourceData, Robot } from './types';
+import { keyBy, sampleSize } from 'lodash';
 // Constants
 import {
   CARD_SELECTION_PER_PLAYER_COUNT,
@@ -13,7 +14,6 @@ import {
 } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Utils
-import { keyBy } from 'lodash';
 import utils from '../../utils';
 import { calculateResults, distributeCards, getAchievements } from './helpers';
 
@@ -64,7 +64,7 @@ export const prepareSetupPhase = async (
     }
 
     if (roundType === 'warehouse-goods') {
-      const goodsIds = utils.helpers.getRandomItems(
+      const goodsIds = sampleSize(
         utils.helpers.makeArray(GOODS_LIBRARY_COUNT, 1).map((i) => `good-${i}`),
         2,
       );

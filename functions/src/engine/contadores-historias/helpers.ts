@@ -6,6 +6,7 @@ import {
   OUTCOME,
 } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD, NPC } from '../../utils/constants';
+import { shuffle } from 'lodash';
 // Type
 import type {
   ContadoresHistoriasAchievement,
@@ -69,7 +70,7 @@ export const buildTable = (players: Players, tableCards: UID[], storyteller: UID
     });
   });
 
-  return utils.helpers.shuffle(table);
+  return shuffle(table);
 };
 
 export const buildCardIndex = (table: Table) => {

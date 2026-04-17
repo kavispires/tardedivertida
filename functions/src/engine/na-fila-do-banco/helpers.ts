@@ -8,9 +8,9 @@ import {
   TELLERS,
 } from './constants';
 import type { ClientCard, Teller } from './types';
+import { shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
-import { shuffle } from 'lodash';
 import { AVATARS_COLORS } from '../../utils/constants';
 
 /**

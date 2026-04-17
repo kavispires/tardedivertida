@@ -16,6 +16,7 @@ import {
   ONDA_TELEPATICA_PHASES,
 } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
+import { shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
 
@@ -71,7 +72,7 @@ export const determineGameOver = (
 export const buildDeck = (data: ResourceData): Deck => {
   const neededQuestionsAmount = MAX_ROUNDS * CATEGORIES_PER_ROUND;
 
-  const shuffledQuestions = utils.helpers.shuffle(Object.values(data.allCategories));
+  const shuffledQuestions = shuffle(Object.values(data.allCategories));
 
   return shuffledQuestions.slice(0, neededQuestionsAmount + 1);
 };

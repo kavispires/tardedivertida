@@ -1,6 +1,6 @@
 // Utils
-import { random } from 'lodash';
 import utils from '../../utils';
+import { random, sampleSize } from 'lodash';
 // Internal
 import { FOFOCA_QUENTE_PHASES, MAX_ROUNDS, STARTING_STUDENT_POSITIONS, TOTAL_MOTIVATIONS } from './constants';
 import type {
@@ -63,7 +63,7 @@ export const prepareSetupPhase = async (
     return acc;
   }, {});
 
-  const [gossiper, bestFriend] = utils.helpers.getRandomItems(Object.values(students), 2);
+  const [gossiper, bestFriend] = sampleSize(Object.values(students), 2);
 
   // Set gossiper
   students[gossiper.id].isGossiper = true;
@@ -76,7 +76,7 @@ export const prepareSetupPhase = async (
   }
 
   // Get motivations
-  const motivations = utils.helpers.getRandomItems(
+  const motivations = sampleSize(
     resourceData.motivations.filter((motivation) => (options.beginnerGame ? motivation.beginner : true)),
     TOTAL_MOTIVATIONS,
   );
@@ -141,7 +141,7 @@ export const prepareBoardSetupPhase = async (
   const detectivePlayerId = state.detectivePlayerId || '';
 
   // Give 3 options of social group to choose from
-  players[gossiperPlayerId].socialGroupOptions = utils.helpers.getRandomItems(
+  players[gossiperPlayerId].socialGroupOptions = sampleSize(
     Object.keys(state.socialGroups ?? {}),
     3,
   );
@@ -220,7 +220,7 @@ export const prepareRumorPhase = async (
     motivations[state.gossiperMotivationIndex || 0].id,
   );
 
-  const possibleRumors = utils.helpers.getRandomItems(store.rumors ?? [], 3);
+  const possibleRumors = sampleSize(store.rumors ?? [], 3);
 
   // Unready player to has the action
   utils.players.unReadyPlayers(players, detectivePlayerId);

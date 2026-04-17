@@ -1,10 +1,10 @@
 // Constants
 import { QUAL_QUESITO_ACHIEVEMENTS, QUAL_QUESITO_PHASES } from './constants';
+import { keyBy } from 'lodash';
 // Utils
 import utils from '../../utils';
 import type { FirebaseStoreData, QualQuesitoAchievement, QualQuesitoPhase } from './types';
 import type { Item } from '../../types/tdr';
-import { keyBy } from 'lodash';
 
 /**
  * Determine the next phase based on the current one

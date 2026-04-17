@@ -1,5 +1,6 @@
 // Constants
 import { DESCRIPTORS_PER_PLAYER, MEDIDAS_NAO_EXATAS_PHASES, WORDS_PER_PLAYER } from './constants';
+import { keyBy, sampleSize } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, GalleryEntry, ResourceData } from './types';
 // Utils
@@ -7,7 +8,6 @@ import utils from '../../utils';
 import type { TextCard } from '../../types/tdr';
 import { GAME_NAMES } from '../../utils/constants';
 import { determineResults, getAchievements } from './helpers';
-import { keyBy } from 'lodash';
 import { makeArray } from '../../utils/helpers';
 
 /**
@@ -34,8 +34,8 @@ export const prepareSetupPhase = async (
 
   const { playerIds: turnOrder, gameOrder } = utils.turnOrder.create(players, 4);
 
-  const wordsDeck = utils.helpers.getRandomItems(additionalData.allWords, WORDS_PER_PLAYER * gameOrder.length);
-  const descriptorsDeck = utils.helpers.getRandomItems(
+  const wordsDeck = sampleSize(additionalData.allWords, WORDS_PER_PLAYER * gameOrder.length);
+  const descriptorsDeck = sampleSize(
     additionalData.allDescriptors,
     DESCRIPTORS_PER_PLAYER * gameOrder.length,
   );

@@ -1,13 +1,13 @@
 // Constants
 import { EXTRA_ITEMS, PAIRS_PER_ROUND, TOTAL_ROUNDS } from './constants';
 import { AVATAR_SPRITE_LIBRARIES, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
+import { isEmpty, sample, sampleSize } from 'lodash';
 // Type
 import type { ContenderCard, SuspectCard, TextCard } from '../../types/tdr';
 import type { DuetosOptions, Gallery, ResourceData } from './types';
 // Helpers
 import utils from '../../utils';
 import * as resourceUtils from '../resource';
-import { isEmpty } from 'lodash';
 
 /**
  * Get characters based on the game's language
@@ -25,11 +25,11 @@ export const getResourceData = async (language: Language, options?: DuetosOption
   }
   if (options?.specialRounds.includes('avatars')) {
     specialDeckTypes.push(
-      utils.helpers.getRandomItem(['superHeroes', 'clubbers', 'superHeroes', 'clubbers', 'costumes']),
+      sample(['superHeroes', 'clubbers', 'superHeroes', 'clubbers', 'costumes']),
     );
   }
   if (options?.specialRounds.includes('sprites')) {
-    specialDeckTypes.push(utils.helpers.getRandomItem(['emojis', 'glyphs', 'glyphs']));
+    specialDeckTypes.push(sample(['emojis', 'glyphs', 'glyphs']));
   }
   if (options?.specialRounds.includes('words')) {
     specialDeckTypes.push('words');
@@ -41,7 +41,7 @@ export const getResourceData = async (language: Language, options?: DuetosOption
     specialDeckTypes.push('contenders');
   }
 
-  specialDeckTypes = utils.helpers.getRandomItems(specialDeckTypes, Math.min(specialDeckTypes.length, 3));
+  specialDeckTypes = sampleSize(specialDeckTypes, Math.min(specialDeckTypes.length, 3));
 
   const customRounds = specialDeckTypes.length;
 
@@ -60,17 +60,17 @@ export const getResourceData = async (language: Language, options?: DuetosOption
 
   let emojis: number[] = [];
   if (specialDeckTypes.includes('emojis')) {
-    emojis = utils.helpers.getRandomItems(utils.helpers.makeArray(SPRITE_LIBRARIES.EMOJIS), quantityNeeded);
+    emojis = sampleSize(utils.helpers.makeArray(SPRITE_LIBRARIES.EMOJIS), quantityNeeded);
   }
 
   let glyphs: number[] = [];
   if (specialDeckTypes.includes('glyphs')) {
-    glyphs = utils.helpers.getRandomItems(utils.helpers.makeArray(SPRITE_LIBRARIES.GLYPHS), quantityNeeded);
+    glyphs = sampleSize(utils.helpers.makeArray(SPRITE_LIBRARIES.GLYPHS), quantityNeeded);
   }
 
   let superHeroes: number[] = [];
   if (specialDeckTypes.includes('superHeroes')) {
-    superHeroes = utils.helpers.getRandomItems(
+    superHeroes = sampleSize(
       utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.SUPER_HEROES),
       quantityNeeded,
     );
@@ -78,7 +78,7 @@ export const getResourceData = async (language: Language, options?: DuetosOption
 
   let clubbers: number[] = [];
   if (specialDeckTypes.includes('clubbers')) {
-    clubbers = utils.helpers.getRandomItems(
+    clubbers = sampleSize(
       utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.CLUBBERS),
       quantityNeeded,
     );
@@ -86,7 +86,7 @@ export const getResourceData = async (language: Language, options?: DuetosOption
 
   let costumes: number[] = [];
   if (specialDeckTypes.includes('costumes')) {
-    costumes = utils.helpers.getRandomItems(
+    costumes = sampleSize(
       utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES),
       quantityNeeded,
     );
@@ -100,11 +100,11 @@ export const getResourceData = async (language: Language, options?: DuetosOption
   let suspects: SuspectCard[] = [];
   if (specialDeckTypes.includes('suspects')) {
     const allSuspects = await resourceUtils.fetchResource<Dictionary<SuspectCard>>(TDR_RESOURCES.SUSPECTS);
-    suspects = utils.helpers.getRandomItems(
+    suspects = sampleSize(
       utils.tdr.modifySuspectIdsByOptions(
         Object.values(allSuspects),
         {
-          deckType: utils.helpers.getRandomItem(['ghibli', 'realistic', 'pixar', 'fox']),
+          deckType: sample(['ghibli', 'realistic', 'pixar', 'fox']),
         },
         true,
       ),

@@ -1,6 +1,7 @@
 // Types
 import type { FirebaseStateData, FirebaseStoreData, Lodge, MountainDilemma, ResourceData } from './types';
 import type { DilemmaCard } from '../../types/tdr';
+import { sampleSize, shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
 import {
@@ -33,7 +34,7 @@ export const prepareSetupPhase = async (
   const { gameOrder, playerIds: turnOrder } = utils.turnOrder.create(players, DOUBLE_ROUNDS_THRESHOLD);
 
   // Build deck
-  const deck = utils.helpers.getRandomItems(resourceData.dilemmas, gameOrder.length * DILEMMAS_PER_ROUND);
+  const deck = sampleSize(resourceData.dilemmas, gameOrder.length * DILEMMAS_PER_ROUND);
 
   const achievements = utils.achievements.setup(players, {
     lodges: 0,
@@ -98,7 +99,7 @@ export const prepareBetsPhase = async (
 
   const deck: DilemmaCard[] = store.deck;
   const dilemmas = deck.splice(0, DILEMMAS_PER_ROUND);
-  const sprites = utils.helpers.shuffle(makeArray(13).map((i) => `mountain-${i}`));
+  const sprites = shuffle(makeArray(13).map((i) => `mountain-${i}`));
   const mountain: MountainDilemma[] = dilemmas.map((dilemma, index) => ({
     id: index,
     spriteId: sprites[index],

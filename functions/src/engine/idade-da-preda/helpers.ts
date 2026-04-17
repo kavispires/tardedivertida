@@ -1,9 +1,9 @@
 // Constants
 import { IDADE_DA_PREDA_PHASES, SOUNDS } from './constants';
+import { orderBy, shuffle } from 'lodash';
 // Helpers
 import utils from '../../utils';
 import type { Concept, FirebaseStoreData, GalleryEntry, NewNameEntry } from './types';
-import { orderBy, shuffle } from 'lodash';
 
 /**
  * Determine the next phase based on the current one

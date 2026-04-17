@@ -1,11 +1,11 @@
 // Constants
 import { MEDIDAS_NAO_EXATAS_ACHIEVEMENTS, MEDIDAS_NAO_EXATAS_PHASES } from './constants';
+import { orderBy } from 'lodash';
 // Utils
 import utils from '../../utils';
 import type { TextCard } from '../../types/tdr';
 import type { FirebaseStoreData, GalleryEntry, Guess, MedidasNaoExatasAchievement } from './types';
 import { removeDuplicates } from '../../utils/helpers';
-import { orderBy } from 'lodash';
 
 /**
  * Determine the next phase based on the current one

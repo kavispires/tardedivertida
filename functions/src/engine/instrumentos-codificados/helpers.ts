@@ -1,5 +1,6 @@
 // Constantes
 import { DIGITS, INSTRUMENTOS_CODIFICADOS_PHASES, TOTAL_ROUNDS } from './constants';
+import { sampleSize } from 'lodash';
 // Helpers
 import utils from '../../utils';
 
@@ -26,7 +27,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
 };
 
 export const buildCodeFragment = () => {
-  return utils.helpers.getRandomItems(DIGITS, 3).map((n) => `${n}`);
+  return sampleSize(DIGITS, 3).map((n) => `${n}`);
 };
 
 export const buildCode = (players: Players, playerCount: number): string[] => {

@@ -1,5 +1,6 @@
 // Constants
 import { ITEM_TYPES, ITEMS_COUNT, TOTAL_ITEMS } from './constants';
+import { orderBy, shuffle } from 'lodash';
 // Type
 import type { Item, ItemAttribute, ItemAttributesValues } from '../../types/tdr';
 import type { ResourceData, ComunicacaoAlienigenaOptions } from './types';
@@ -7,7 +8,6 @@ import type { ResourceData, ComunicacaoAlienigenaOptions } from './types';
 import utils from '../../utils';
 import * as resourceUtils from '../resource';
 import { TDR_RESOURCES } from '../../utils/constants';
-import { orderBy, shuffle } from 'lodash';
 import { alienAttributesUtils } from '../../utils/tool-kits';
 import { makeArray } from '../../utils/helpers';
 import type { AlienItem } from '../../utils/tool-kits/alien-attributes';

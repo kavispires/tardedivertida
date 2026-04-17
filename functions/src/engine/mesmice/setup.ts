@@ -1,11 +1,11 @@
 // Constants
 import { GAME_DIFFICULTY, ITEMS_PER_PLAYER, MESMICE_PHASES, OUTCOME, SCORING } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
+import { keyBy } from 'lodash';
 // Types
 import type { Item, ObjectFeatureCard } from '../../types/tdr';
 import type { ExtendedObjectFeatureCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
-import { keyBy } from 'lodash';
 import utils from '../../utils';
 // Internal
 import { calculateFinalGroupScore, determineOutcome, getAchievements } from './helpers';

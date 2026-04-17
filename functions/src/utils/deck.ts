@@ -1,4 +1,5 @@
 import utils from './index';
+import { shuffle } from 'lodash';
 
 /**
  * Sets up the game by distributing cards to players.
@@ -134,7 +135,7 @@ export const reshuffle = (
 
   // Optionally shuffle the discard pile before merging
   if (options?.shuffleBeforeMerge) {
-    cardsToShuffle = utils.helpers.shuffle(cardsToShuffle);
+    cardsToShuffle = shuffle(cardsToShuffle);
   }
 
   // Add shuffled cards back to the bottom of the deck
@@ -215,7 +216,7 @@ export const shuffleDeck = (store: PlainObject, playerId: UID) => {
     return;
   }
 
-  store.decks[playerId].deck = utils.helpers.shuffle(store.decks[playerId].deck);
+  store.decks[playerId].deck = shuffle(store.decks[playerId].deck);
 };
 
 /**

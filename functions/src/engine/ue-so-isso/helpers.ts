@@ -1,5 +1,6 @@
 // Types
 import type { TextCard } from '../../types/tdr';
+import { shuffle } from 'lodash';
 import type {
   CurrentSuggestions,
   FirebaseStoreData,
@@ -62,7 +63,7 @@ export const determineNextPhase = (
  * @param numberOfRounds
  */
 export const buildDeck = (allWords: TextCard[], numberOfRounds: number, wordsPerCard) => {
-  const shuffledWords = utils.helpers.shuffle(allWords);
+  const shuffledWords = shuffle(allWords);
 
   const deck: string[] = [];
   for (let i = 0; i < numberOfRounds * wordsPerCard; i += wordsPerCard) {
@@ -150,7 +151,7 @@ export const determineSecretWord = (currentWords: UsedWords): UsedWord => {
     }
   });
 
-  return utils.helpers.shuffle(mostVotes)[0];
+  return shuffle(mostVotes)[0];
 };
 
 /**

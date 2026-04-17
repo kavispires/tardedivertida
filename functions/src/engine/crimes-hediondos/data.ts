@@ -1,11 +1,11 @@
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
+import { sampleSize } from 'lodash';
 // Types
 import type { CrimeSceneTile, CrimesHediondosCard } from '../../types/tdr';
 import type { CrimesHediondosOptions, ResourceData } from './types';
 // Helpers
 import * as resourceUtils from '../resource';
-import utils from '../../utils';
 import { CARDS_PER_GAME } from './constants';
 /**
  * Get question resource based on the game's language
@@ -26,7 +26,7 @@ export const getData = async (options: CrimesHediondosOptions): Promise<Resource
   const locations: CrimesHediondosCard[] = [];
   if (options.withLocations) {
     locations.push(
-      ...utils.helpers.getRandomItems(
+      ...sampleSize(
         Object.values(
           await resourceUtils.fetchResource<Dictionary<CrimesHediondosCard>>(TDR_RESOURCES.CRIME_LOCATIONS),
         ),
@@ -39,7 +39,7 @@ export const getData = async (options: CrimesHediondosOptions): Promise<Resource
   const victims: CrimesHediondosCard[] = [];
   if (options.withVictims) {
     victims.push(
-      ...utils.helpers.getRandomItems(
+      ...sampleSize(
         Object.values(
           await resourceUtils.fetchResource<Dictionary<CrimesHediondosCard>>(TDR_RESOURCES.CRIME_VICTIMS),
         ),
@@ -61,8 +61,8 @@ export const getData = async (options: CrimesHediondosOptions): Promise<Resource
   });
 
   return {
-    weapons: utils.helpers.getRandomItems(listOfWeapons, CARDS_PER_GAME),
-    evidence: utils.helpers.getRandomItems(listOfEvidence, CARDS_PER_GAME),
+    weapons: sampleSize(listOfWeapons, CARDS_PER_GAME),
+    evidence: sampleSize(listOfEvidence, CARDS_PER_GAME),
     allScenes: Object.values(allScenes),
     locations,
     victims,

@@ -1,6 +1,7 @@
 // Types
 import type { TextCard } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData } from './types';
+import { orderBy, shuffle } from 'lodash';
 // Constants
 import {
   ALLOWED_MISTAKES,
@@ -28,7 +29,6 @@ import {
   validateSuggestions,
 } from './helpers';
 import { saveData } from './data';
-import { orderBy } from 'lodash';
 
 /**
  * Setup
@@ -179,7 +179,7 @@ export const prepareComparePhase = async (
 
   const suggestionsArray = validateSuggestions(currentSuggestions);
 
-  const shuffledSuggestions = utils.helpers.shuffle(suggestionsArray);
+  const shuffledSuggestions = shuffle(suggestionsArray);
 
   utils.players.readyPlayers(players, state.controllerId);
 

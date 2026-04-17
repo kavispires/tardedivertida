@@ -1,6 +1,7 @@
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
 import { CARDS_PER_PLAYER, FOREST_HEIGHT, FOREST_WIDTH } from './constants';
+import { sampleSize } from 'lodash';
 // Types
 import type { TextCard } from '../../types/tdr';
 import type { LabirintoSecretoGameOptions, ResourceData } from './types';
@@ -51,7 +52,7 @@ export const getData = async (
     : Object.values(allWords).filter((card) => !card.private);
 
   return {
-    forestCards: utils.helpers.getRandomItems(filtered, FOREST_HEIGHT * FOREST_WIDTH),
+    forestCards: sampleSize(filtered, FOREST_HEIGHT * FOREST_WIDTH),
     allCards: adjectives,
   };
 };

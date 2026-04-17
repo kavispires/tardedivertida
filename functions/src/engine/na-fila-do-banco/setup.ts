@@ -1,11 +1,10 @@
 // functions/src/engine/na-fila-do-banco/setup.ts
 import { CHARACTER_TYPES, NA_FILA_DO_BANCO_PHASES, OUTCOME, TOTAL_ROUNDS } from './constants';
+import { keyBy, shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
 import type { ClientCard, FirebaseStateData, FirebaseStoreData } from './types';
-import { shuffle } from '../../utils/helpers';
 import { buildDeck, buildTellers } from './helpers';
-import { keyBy } from 'lodash';
 import { GAME_NAMES } from '../../utils/constants';
 
 export const prepareSetupPhase = async (

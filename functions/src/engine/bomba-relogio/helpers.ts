@@ -1,9 +1,9 @@
 // Constants
 import { BOMBA_RELOGIO_ACHIEVEMENTS, BOMBA_RELOGIO_PHASES, CARD_TYPES, OUTCOME, ROLES } from './constants';
+import { sample, shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
 import type { BombaRelogioAchievement, DataCounts, FirebaseStoreData, Status, TimeBombCard } from './types';
-import { sample, shuffle } from 'lodash';
 
 /**
  * Determine the next phase based on the current one

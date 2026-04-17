@@ -8,12 +8,12 @@ import {
 } from './constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, Guess, ResourceData } from './types';
+import { cloneDeep, shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
 import { GAME_NAMES } from '../../utils/constants';
 import type { Item } from '../../types/tdr';
 import { createVennDiagram, getAchievements } from './helpers';
-import { cloneDeep } from 'lodash';
 
 /**
  * Setup
@@ -28,7 +28,7 @@ export const prepareSetupPhase = async (
 ): Promise<SaveGamePayload> => {
   // Make deck dictionary
   const deckIds: UID[] = [];
-  const deck = utils.helpers.shuffle(additionalData.items).reduce((acc: Dictionary<Item>, item) => {
+  const deck = shuffle(additionalData.items).reduce((acc: Dictionary<Item>, item) => {
     acc[item.id] = item;
     deckIds.push(item.id);
     return acc;

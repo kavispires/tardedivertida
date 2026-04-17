@@ -1,9 +1,8 @@
 // Constants
-import { cloneDeep, groupBy, orderBy } from 'lodash';
 import { AVATAR_IDS } from './constants';
 import { throwException } from './firebase';
+import { cloneDeep, groupBy, orderBy, shuffle } from 'lodash';
 // Utils
-import { shuffle } from './helpers';
 import { getRandomUniqueItem } from './game-utils';
 
 /**

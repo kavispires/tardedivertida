@@ -1,6 +1,7 @@
 // Types
 import type { ResourceData, FirebaseStateData, FirebaseStoreData, ArteRuimGameOptions } from './types';
 import type { ArteRuimCard } from '../../types/tdr';
+import { cloneDeep, orderBy, shuffle } from 'lodash';
 // Constants
 import { GAME_NAMES } from '../../utils/constants';
 import { ARTE_RUIM_PHASES, GAME_OVER_SCORE_THRESHOLD } from './constants';
@@ -18,7 +19,6 @@ import {
   getTheTwoLevel5Cards,
 } from './helpers';
 import { saveUsedCards } from './data';
-import { cloneDeep, orderBy } from 'lodash';
 
 /**
  * Setup
@@ -121,10 +121,10 @@ export const prepareEvaluationPhase = async (
 
   // Shuffle cards
   const shuffledCards: ArteRuimCard[] =
-    level === 5 ? getTheTwoLevel5Cards(store.currentCards) : utils.helpers.shuffle(store.currentCards);
+    level === 5 ? getTheTwoLevel5Cards(store.currentCards) : shuffle(store.currentCards);
 
   // Shuffle drawings
-  const shuffledDrawings = utils.helpers.shuffle(
+  const shuffledDrawings = shuffle(
     utils.players.getListOfPlayers(players).map((player) => player.currentCard),
   );
 
@@ -155,7 +155,7 @@ export const prepareGalleryPhase = async (
     .map((card) => card.id);
 
   // Build gallery
-  const gallery = utils.helpers.shuffle(buildGallery(state.drawings, players, store, tableCardsIds));
+  const gallery = shuffle(buildGallery(state.drawings, players, store, tableCardsIds));
 
   const ranking = buildRanking(state.drawings, players);
 

@@ -22,9 +22,9 @@ import type {
   WrongItems,
 } from './types';
 import type { CrimeSceneTile, CrimesHediondosCard } from '../../types/tdr';
+import { orderBy, sampleSize, shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
-import { orderBy } from 'lodash';
 
 /**
  * Determine the next phase based on the current one
@@ -81,15 +81,12 @@ export const parseTiles = (sceneTiles: CrimeSceneTile[]): ParsedTiles => {
     },
   );
 
-  result.victimTile = utils.helpers.getRandomItem(result.victimsTiles);
+  result.victimTile = sampleSize(result.victimsTiles, 1)[0];
   result.victimTile.type = 'victim';
 
   const leftoverVictimTiles = result.victimsTiles.filter((tile) => tile.id !== result.victimTile?.id);
 
-  result.sceneTiles = utils.helpers.getRandomItems(
-    [...result.sceneTiles, ...leftoverVictimTiles],
-    SCENE_TILES_COUNT,
-  );
+  result.sceneTiles = sampleSize([...result.sceneTiles, ...leftoverVictimTiles], SCENE_TILES_COUNT);
 
   return result;
 };
@@ -491,7 +488,7 @@ export const mockCrimeForBots = (
 ) => {
   utils.players.getListOfBots(players).forEach((bot) => {
     const itemsGroup = groupedItems[bot.itemGroupIndex];
-    const shuffledItems = utils.helpers.shuffle(itemsGroup);
+    const shuffledItems = shuffle(itemsGroup);
     const weaponId = shuffledItems.find((e) => e?.includes('wp'));
     const weapon = items[weaponId ?? ''];
     bot.weaponId = weaponId;

@@ -1,6 +1,7 @@
 // Constants
 import { CRUZA_PALAVRAS_PHASES, WORDS_PER_COORDINATE } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
+import { sampleSize } from 'lodash';
 // Types
 import type { Deck, FirebaseStateData, FirebaseStoreData, GridCell, ResourceData } from './types';
 // Utils
@@ -112,7 +113,7 @@ export const prepareClueWritingPhase = async (
     const originalDeck: Deck = store.deck;
 
     while (Object.keys(deckDict).length < gridSize) {
-      const cardId = utils.helpers.getRandomItem(originalDeck).id;
+      const cardId = sampleSize(originalDeck, 1)[0].id;
       deckDict[cardId] = true;
     }
 

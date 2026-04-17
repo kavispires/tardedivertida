@@ -1,5 +1,6 @@
 // Constants
 import { GAME_NAMES, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
+import { sample, sampleSize, shuffle } from 'lodash';
 // Types
 import type {
   ArteRuimCard,
@@ -63,33 +64,33 @@ export const getData = async (
   // Get all custom tracks
   const possibleTracks: TrackCandidate[] = [];
   if (options.tracks.includes('images')) {
-    possibleTracks.push(getRandomTrackGame(IMAGES_TRACKS, allowNSFW));
+    possibleTracks.push(getRandomTrackGame(IMAGES_TRACKS, allowNSFW)!);
   }
   if (options.tracks.includes('characters')) {
-    possibleTracks.push(getRandomTrackGame(CHARACTERS_TRACKS, allowNSFW));
+    possibleTracks.push(getRandomTrackGame(CHARACTERS_TRACKS, allowNSFW)!);
   }
   if (options.tracks.includes('opinions')) {
-    possibleTracks.push(getRandomTrackGame(OPINIONS_TRACKS, allowNSFW));
+    possibleTracks.push(getRandomTrackGame(OPINIONS_TRACKS, allowNSFW)!);
   }
   if (options.tracks.includes('drawing')) {
-    possibleTracks.push(getRandomTrackGame(DRAWING_TRACKS, allowNSFW));
+    possibleTracks.push(getRandomTrackGame(DRAWING_TRACKS, allowNSFW)!);
   }
   if (options.tracks.includes('words')) {
-    possibleTracks.push(getRandomTrackGame(WORDS_TRACKS, allowNSFW));
+    possibleTracks.push(getRandomTrackGame(WORDS_TRACKS, allowNSFW)!);
   }
   if (options.tracks.includes('judging') && allowNSFW) {
-    possibleTracks.push(getRandomTrackGame(JUDGING_TRACKS, allowNSFW));
+    possibleTracks.push(getRandomTrackGame(JUDGING_TRACKS, allowNSFW)!);
   }
   if (options.tracks.includes('special')) {
-    possibleTracks.push(getRandomTrackGame(SPECIAL_TRACKS, allowNSFW));
+    possibleTracks.push(getRandomTrackGame(SPECIAL_TRACKS, allowNSFW)!);
   }
   if (options.tracks.includes('unpopular')) {
-    possibleTracks.push(getRandomTrackGame(UNPOPULAR_TRACKS, allowNSFW));
+    possibleTracks.push(getRandomTrackGame(UNPOPULAR_TRACKS, allowNSFW)!);
   }
 
   // Select tracks to be used
   const customTrackCandidatesQuantity = Math.min(possibleTracks.length, moreGameTracks ? 8 : 5);
-  const customTrackCandidates = utils.helpers.getRandomItems(possibleTracks, customTrackCandidatesQuantity);
+  const customTrackCandidates = sampleSize(possibleTracks, customTrackCandidatesQuantity);
 
   // Get data for custom tracks data
 
@@ -108,13 +109,13 @@ export const getData = async (
 
         variant: 'detective',
         data: {
-          cards: utils.helpers.getRandomItems(imageCardsDeck, 4),
+          cards: sampleSize(imageCardsDeck, 4),
         },
       });
     }
     // VARIANT: Detective
     if (detetiveImaginativosTrack.variant === 'impostor') {
-      const selectedCards = utils.helpers.sliceInParts(utils.helpers.getRandomItems(imageCardsDeck, 6), 2);
+      const selectedCards = utils.helpers.sliceInParts(sampleSize(imageCardsDeck, 6), 2);
       customTracks.push({
         game: GAME_NAMES.DETETIVES_IMAGINATIVOS,
 
@@ -137,8 +138,8 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.GALERIA_DE_SONHOS,
       data: {
-        cards: utils.helpers.getRandomItems(imageCardsDeck, 3),
-        theme: utils.helpers.getRandomItem(themes),
+        cards: sampleSize(imageCardsDeck, 3),
+        theme: sample(themes),
       },
     });
   }
@@ -155,8 +156,8 @@ export const getData = async (
 
       variant: 'normal',
       data: {
-        doors: utils.helpers.getRandomItems(imageCardsDeck, 3),
-        book: utils.helpers.getRandomItems(imageCardsDeck, 1),
+        doors: sampleSize(imageCardsDeck, 3),
+        book: sampleSize(imageCardsDeck, 1),
       },
     });
   }
@@ -171,8 +172,8 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.CONTADORES_HISTORIAS,
       data: {
-        cards: utils.helpers.getRandomItems(imageCardsDeck, 3),
-        prompts: utils.helpers.getRandomItems(cards, 5),
+        cards: sampleSize(imageCardsDeck, 3),
+        prompts: sampleSize(cards, 5),
       },
     });
   }
@@ -189,7 +190,7 @@ export const getData = async (
       game: GAME_NAMES.SUPER_CAMPEONATO,
       data: {
         contenders,
-        challenge: utils.helpers.getRandomItem(challenges),
+        challenge: sample(challenges),
       },
     });
   }
@@ -200,7 +201,7 @@ export const getData = async (
     const contenders = await utils.tdr.getContenders(language, allowNSFW, ['any'], 3);
 
     const glyphs = utils.helpers.sliceInParts(
-      utils.helpers.getRandomItems(utils.helpers.makeArray(SPRITE_LIBRARIES.GLYPHS, 1), 4),
+      sampleSize(utils.helpers.makeArray(SPRITE_LIBRARIES.GLYPHS, 1), 4),
       2,
     );
 
@@ -222,8 +223,8 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.PALHETA_DE_CORES,
       data: {
-        card: utils.helpers.getRandomItem(contenders),
-        palette: utils.helpers.getRandomItems(
+        card: sample(contenders),
+        palette: sampleSize(
           ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'hotPink', 'gray', 'black', 'white'],
           4,
         ),
@@ -242,7 +243,7 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.POLEMICA_DA_VEZ,
       data: {
-        card: utils.helpers.getRandomItem(tweets),
+        card: sample(tweets),
       },
     });
   }
@@ -257,7 +258,7 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.FILEIRA_DE_FATOS,
       data: {
-        scenarios: utils.helpers.getRandomItems(Object.values(allScenarios), 3),
+        scenarios: sampleSize(Object.values(allScenarios), 3),
       },
     });
   }
@@ -273,7 +274,7 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.ESQUIADORES,
       data: {
-        dilemma: utils.helpers.getRandomItem(selectedDilemas),
+        dilemma: sample(selectedDilemas),
       },
     });
   }
@@ -284,7 +285,7 @@ export const getData = async (
     const cardsGroups: ArteRuimGroup[] = Object.values(
       await resourceUtils.fetchResource<Dictionary<ArteRuimGroup>>(TDR_RESOURCES.ARTE_RUIM_GROUPS, language),
     );
-    const [arteGroup1, arteGroup2] = utils.helpers.getRandomItems(cardsGroups, 2);
+    const [arteGroup1, arteGroup2] = sampleSize(cardsGroups, 2);
     // VARIANT: CARDS
     if (arteRuimTrack.variant === 'cards') {
       // 1 drawing for 3 cards
@@ -338,7 +339,7 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.RETRATO_FALADO,
       data: {
-        card: utils.helpers.getRandomItem(monsters),
+        card: sample(monsters),
       },
     });
   }
@@ -351,8 +352,8 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.CRUZA_PALAVRAS,
       data: {
-        cards: utils.helpers.getRandomItems(words, 4),
-        clue: utils.helpers.getRandomItem(words),
+        cards: sampleSize(words, 4),
+        clue: sample(words),
       },
     });
   }
@@ -364,7 +365,7 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.UE_SO_ISSO,
       data: {
-        cards: utils.helpers.getRandomItems(words, 3),
+        cards: sampleSize(words, 3),
       },
     });
   }
@@ -382,8 +383,8 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.LABIRINTO_SECRETO,
       data: {
-        trees: utils.helpers.getRandomItems(trees, 3),
-        adjectives: utils.helpers.getRandomItems(adjectives, 9),
+        trees: sampleSize(trees, 3),
+        adjectives: sampleSize(adjectives, 9),
       },
     });
   }
@@ -398,16 +399,16 @@ export const getData = async (
       ),
     );
     const suspects: SuspectCard[] = Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.SUSPECTS));
-    const deckType = utils.helpers.getRandomItem(['ct', 'gb', 'ai']);
+    const deckType = sample(['ct', 'gb', 'ai']);
     customTracks.push({
       game: GAME_NAMES.TESTEMUNHA_OCULAR,
       data: {
-        question: utils.helpers.getRandomItem(testimonyQuestions),
-        suspects: utils.helpers.getRandomItems(suspects, 3).map((suspect) => ({
+        question: sample(testimonyQuestions),
+        suspects: sampleSize(suspects, 3).map((suspect) => ({
           ...suspect,
           id: `us-${deckType}-${suspect.id.split('-')[1]}`,
         })),
-        answer: Boolean(utils.helpers.getRandomItem([true, false])),
+        answer: Boolean(sample([true, false])),
       },
     });
   }
@@ -422,14 +423,14 @@ export const getData = async (
       ),
     );
     const suspects: SuspectCard[] = Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.SUSPECTS));
-    const deckType = utils.helpers.getRandomItem(['ct', 'gb', 'ai']);
-    const suspect = utils.helpers.getRandomItem(suspects);
+    const deckType = sampleSize(['ct', 'gb', 'ai'], 1)[0];
+    const suspect = sampleSize(suspects, 1)[0];
     customTracks.push({
       game: GAME_NAMES.TA_NA_CARA,
 
       variant: 'witness',
       data: {
-        question: utils.helpers.getRandomItem(testimonyQuestions),
+        question: sampleSize(testimonyQuestions, 1)[0],
         suspect: { ...suspect, id: `us-${deckType}-${suspect.id.split('-')[1]}` },
       },
     });
@@ -459,8 +460,8 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.NAMORO_OU_AMIZADE,
       data: {
-        heads: utils.helpers.getRandomItems(heads, 3),
-        bodies: utils.helpers.getRandomItems(bodies, 3),
+        heads: sampleSize(heads, 3),
+        bodies: sampleSize(bodies, 3),
         ...selectedPersonalities,
       },
     });
@@ -476,8 +477,8 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.ONDA_TELEPATICA,
       data: {
-        card: utils.helpers.getRandomItem(opposingIdeas),
-        side: utils.helpers.getRandomItem(['left', 'right']),
+        card: sample(opposingIdeas),
+        side: sample(['left', 'right']),
       },
     });
   }
@@ -491,7 +492,7 @@ export const getData = async (
     const attributes = Object.values(
       await resourceUtils.fetchResource<Dictionary<ItemAttribute>>(TDR_RESOURCES.ITEMS_ATTRIBUTES),
     );
-    const selectedAttributes = utils.helpers.getRandomItems(Object.values(attributes), 2);
+    const selectedAttributes = sampleSize(Object.values(attributes), 2);
 
     const selectedAlienItems = await utils.tdr.getItems(5, {
       allowNSFW,
@@ -504,7 +505,7 @@ export const getData = async (
       data: {
         items: selectedAlienItems,
         attributes: selectedAttributes,
-        signs: utils.helpers.getRandomItems(utils.helpers.makeArray(SPRITE_LIBRARIES.ALIEN_SIGNS, 0), 2),
+        signs: sampleSize(utils.helpers.makeArray(SPRITE_LIBRARIES.ALIEN_SIGNS, 0), 2),
       },
     });
   }
@@ -522,7 +523,7 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.MENTE_COLETIVA,
       data: {
-        question: utils.helpers.getRandomItem(groupQuestions),
+        question: sample(groupQuestions),
       },
     });
   }
@@ -548,7 +549,7 @@ export const getData = async (
         game: GAME_NAMES.CRIMES_HEDIONDOS,
         variant: 'weapon',
         data: {
-          cards: utils.helpers.getRandomItems(Object.values(allWeapons), 3),
+          cards: sampleSize(Object.values(allWeapons), 3),
           scenes: crimes.weapon.scenes,
           crimeIndexes: crimes.weapon.crime,
         },
@@ -562,7 +563,7 @@ export const getData = async (
         game: GAME_NAMES.CRIMES_HEDIONDOS,
         variant: 'evidence',
         data: {
-          cards: utils.helpers.getRandomItems(Object.values(allEvidence), 3),
+          cards: sampleSize(Object.values(allEvidence), 3),
           scenes: crimes.evidence.scenes,
           crimeIndexes: crimes.evidence.crime,
         },
@@ -584,7 +585,7 @@ export const getData = async (
     customTracks.push({
       game: GAME_NAMES.VAMOS_AO_CINEMA,
       data: {
-        movies: utils.helpers.getRandomItems(movies, 6),
+        movies: sampleSize(movies, 6),
         reviews,
       },
     });
@@ -622,7 +623,7 @@ export const getData = async (
   const allChoices = Object.values(
     await resourceUtils.fetchResource<Dictionary<ChoiceCard>>(TDR_RESOURCES.CHOICES, language),
   ) as PlainObject[];
-  const shuffledChoices = utils.helpers.shuffle(allChoices);
+  const shuffledChoices = shuffle(allChoices);
 
   const selectedChoices = new Array(TOTAL_ROUNDS).fill(null);
   let thisThatIndex = 0;
@@ -643,7 +644,7 @@ export const getData = async (
   }
   selectedChoices.reverse();
 
-  const filteredCustomTracks = utils.helpers.shuffle(customTracks.filter((track) => !!track?.game));
+  const filteredCustomTracks = shuffle(customTracks.filter((track) => !!track?.game));
   // Build track order
   const tracks: Track[] = [];
   const customTrackInterval = Math.ceil(TOTAL_ROUNDS / filteredCustomTracks.length);
@@ -686,5 +687,5 @@ const getRandomTrackGame = (candidates: TrackCandidate[], allowNSFW: boolean) =>
     }
   });
 
-  return utils.helpers.getRandomItem(options);
+  return sample(options);
 };

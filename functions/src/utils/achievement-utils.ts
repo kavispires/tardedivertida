@@ -1,6 +1,6 @@
-import { cloneDeep } from 'lodash';
-import { calculateAverage, removeDuplicates } from './helpers';
+import { calculateAverage } from './helpers';
 import { getListOfPlayers } from './players-utils';
+import { cloneDeep, uniq } from 'lodash';
 
 interface StoreAchievement {
   playerId: UID;
@@ -222,7 +222,7 @@ export const getMostAndLeastUniqueItemsOf = (
   ineligiblePlayers: UID[] = [],
 ): AchievementResult => {
   Object.values<StoreAchievement>(store.achievements).forEach((achievement) => {
-    achievement[property] = removeDuplicates(achievement[property]).length;
+    achievement[property] = uniq(achievement[property]).length;
   });
 
   return getMostAndLeastOf(store, property, ineligiblePlayers);

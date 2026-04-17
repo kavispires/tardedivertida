@@ -1,6 +1,7 @@
 // Constants
 import { SCENARIOS_PER_ROUND, FILEIRA_DE_FATOS_PHASES, ROUND_TYPES } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
+import { sample, sampleSize } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 import type { TextCard } from '../../types/tdr';
@@ -24,7 +25,7 @@ export const prepareSetupPhase = async (
   const { gameOrder, playerIds: turnOrder } = utils.turnOrder.create(players, DOUBLE_ROUNDS_THRESHOLD);
 
   // Build deck
-  const deck = utils.helpers.getRandomItems(resourceData.scenarios, gameOrder.length * SCENARIOS_PER_ROUND);
+  const deck = sampleSize(resourceData.scenarios, gameOrder.length * SCENARIOS_PER_ROUND);
 
   const achievements = utils.achievements.setup(players, {
     first: 0,
@@ -70,7 +71,7 @@ export const prepareScenarioOrderingPhase = async (
   const deck: TextCard[] = store.deck;
   const scenarios = deck.splice(0, SCENARIOS_PER_ROUND);
 
-  const roundType = round.current === 1 ? ROUND_TYPES[0] : utils.helpers.getRandomItem(ROUND_TYPES);
+  const roundType = round.current === 1 ? ROUND_TYPES[0] : sample(ROUND_TYPES);
 
   // Save
   return {

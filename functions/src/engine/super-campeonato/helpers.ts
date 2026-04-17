@@ -1,4 +1,5 @@
 import utils from '../../utils';
+import { sample, shuffle } from 'lodash';
 import {
   CHAMPIONSHIP_ORDER,
   CONTENDERS_PER_ROUND,
@@ -112,7 +113,7 @@ export const getMostVotedChallenge = (players: Players, challenges: TextCard[]) 
 
   // If both got the max votes, return a random one
   if (votesCount.length > 1 && votesCount.every((vc) => vc === max)) {
-    return utils.helpers.getRandomItem(challenges);
+    return sample(challenges);
   }
 
   // Return only the most voted one
@@ -159,7 +160,7 @@ export const makeBrackets = (players: Players, deck: FightingContender[], curren
   }
 
   // Make brackets
-  const shuffledContenders = utils.helpers.shuffle(contenders);
+  const shuffledContenders = shuffle(contenders);
 
   const emptyBracketArray: Bracket[] = Array(15)
     .fill(0)
@@ -231,7 +232,7 @@ export const updateBracketsWithVotes = (players: Players, brackets: Bracket[]) =
     const winnerPos =
       gotThis.length === 1
         ? Number(arrKeys[arrValues.findIndex((v) => v === max)])
-        : utils.helpers.getRandomItem(arrKeys);
+        : sample(arrKeys);
     const winner = brackets[Number(winnerPos)];
     winner.win = true;
 
@@ -283,7 +284,7 @@ export const buildRanking = (players: Players, brackets: Bracket[]) => {
 
 export const makeFinalBrackets = (brackets: Bracket[]) => {
   // Make brackets
-  const shuffledContenders = utils.helpers.shuffle(brackets);
+  const shuffledContenders = shuffle(brackets);
 
   const emptyBracketArray: Bracket[] = Array(15)
     .fill(0)

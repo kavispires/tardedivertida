@@ -1,8 +1,8 @@
 // Utils
-import { cloneDeep } from 'lodash';
 import utils from '../../utils';
 import { BET_TYPES, ESQUIADORES_ACHIEVEMENTS, ESQUIADORES_PHASES, SKIER_BET_TYPES } from './constants';
 import type { EsquiadoresAchievement, FirebaseStoreData, Lodge } from './types';
+import { cloneDeep } from 'lodash';
 
 /**
  * Determine the next phase based on the current one

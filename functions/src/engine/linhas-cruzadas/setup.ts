@@ -1,5 +1,6 @@
 // Constants
 import { LINHAS_CRUZADAS_PHASES } from './constants';
+import { sampleSize } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
@@ -28,11 +29,11 @@ export const prepareSetupPhase = async (
 ): Promise<SaveGamePayload> => {
   const { gameOrder, playerCount } = utils.turnOrder.create(players);
 
-  const expressionsDeck = utils.helpers.getRandomItems(
+  const expressionsDeck = sampleSize(
     resourceData.allExpressions,
     playerCount * (store.options.singleWordOnly ? 0 : 2),
   );
-  const wordsDeck = utils.helpers.getRandomItems(
+  const wordsDeck = sampleSize(
     resourceData.allWords,
     playerCount * (store.options.singleWordOnly ? 4 : 2),
   );

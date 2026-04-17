@@ -1,11 +1,11 @@
 // Constants
 import { CONTROLE_DE_ESTOQUE_PHASES, OUT_OF_STOCK_GOODS, MIN_ROUNDS, TOTAL_GOODS } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
+import { keyBy, sampleSize, shuffle } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, Good, ResourceData, WarehouseSlot } from './types';
 import type { BossIdeaCard } from '../../types/tdr';
 // Utils
-import { keyBy } from 'lodash';
 import utils from '../../utils';
 // Internal
 import {
@@ -37,8 +37,8 @@ export const prepareSetupPhase = async (
 
   // Gather goods and build dictionary
   // There should be extra goods for the out-of-stock mechanic during the fulfillment phase
-  const goods = utils.helpers.getRandomItems(resourceData.goodsIds, TOTAL_GOODS + OUT_OF_STOCK_GOODS);
-  const placeableGoods = utils.helpers.getRandomItems(goods, TOTAL_GOODS);
+  const goods = sampleSize(resourceData.goodsIds, TOTAL_GOODS + OUT_OF_STOCK_GOODS);
+  const placeableGoods = sampleSize(goods, TOTAL_GOODS);
   const extraGoods = goods.filter((good) => !placeableGoods.includes(good));
   const goodsDict = keyBy(
     goods.map((goodId) => {
@@ -76,7 +76,7 @@ export const prepareSetupPhase = async (
   // Determine bosses ideas making the First day always the first idea
   const bossIdeas: BossIdeaCard[] = [resourceData.allBossIdeas.FIRST_DAY];
   bossIdeas.push(
-    ...utils.helpers.getRandomItems(
+    ...sampleSize(
       Object.values(resourceData.allBossIdeas).filter((idea) => idea.id !== 'FIRST_DAY'),
       totalRounds - 1,
     ),
@@ -240,7 +240,7 @@ export const prepareFulfillmentPhase = async (
 
   utils.players.dealItemsToPlayers(
     players,
-    utils.helpers.shuffle(availableOrders),
+    shuffle(availableOrders),
     Math.floor(availableOrders.length / utils.players.getPlayerCount(players)),
     'orders',
   );

@@ -1,5 +1,6 @@
 // Types
 import type { TextCard } from '../../types/tdr';
+import { shuffle } from 'lodash';
 import type {
   ClueEntry,
   CruzaPalavrasAchievement,
@@ -48,11 +49,11 @@ export const buildGrid = (
   wordsPerCoordinate: number,
   shouldUsePlayersClues: boolean,
 ): GridCell[] => {
-  const playersCluesDeck = utils.helpers.shuffle(playersClues);
+  const playersCluesDeck = shuffle(playersClues);
   const currentDeck =
     shouldUsePlayersClues && playersCluesDeck.length >= wordsPerCoordinate * 2
       ? playersCluesDeck
-      : utils.helpers.shuffle(words);
+      : shuffle(words);
 
   const x: Deck = [
     {
@@ -138,7 +139,7 @@ export const buildGrid = (
  */
 export const distributeCoordinates = (players: Players, grid: GridCell[]): GridCell[] => {
   const available = grid.filter((entry) => entry.available && !entry.playerId);
-  const shuffledCoordinates = utils.helpers.shuffle(available);
+  const shuffledCoordinates = shuffle(available);
 
   const distribute = (player: Player, cell: GridCell) => {
     if (cell) {

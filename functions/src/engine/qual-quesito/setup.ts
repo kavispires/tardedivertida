@@ -11,10 +11,10 @@ import {
 } from './constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, TableEntry, ResourceData, GalleryEntry } from './types';
+import { keyBy, orderBy, shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
 import { GAME_NAMES } from '../../utils/constants';
-import { keyBy, orderBy, shuffle } from 'lodash';
 import { buildCardsDictFromPlayersHands, getAchievements } from './helpers';
 
 /**

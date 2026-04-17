@@ -10,11 +10,11 @@ import {
 } from './constants';
 // Types
 import type { City, FirebaseStateData, FirebaseStoreData, GalleryEntry, ResourceData } from './types';
+import { difference, orderBy, sampleSize, shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
 import type { CityLocation } from '../../types/tdr';
 import { GAME_NAMES, LETTERS } from '../../utils/constants';
-import { difference, orderBy } from 'lodash';
 import { getAchievements } from './helpers';
 
 /**
@@ -50,7 +50,7 @@ export const prepareSetupPhase = async (
   }
 
   // Get all available locations
-  const allLocations = utils.helpers.shuffle(
+  const allLocations = shuffle(
     Object.values(allCityLocations).filter((l) => (allowNSFW || !l.nsfw) && !usedCityLocations[l.id]),
   );
 
@@ -67,7 +67,7 @@ export const prepareSetupPhase = async (
 
   const { playerIds: gameOrder, gameOrder: totalGameOrder } = utils.turnOrder.create(players, 6);
 
-  const deck = utils.helpers.getRandomItems(allLocations, totalGameOrder.length * 3).map((l) => l.id);
+  const deck = sampleSize(allLocations, totalGameOrder.length * 3).map((l) => l.id);
 
   deck.forEach((locationId) => {
     usedCityLocations[locationId] = allCityLocations[locationId];
@@ -148,7 +148,7 @@ export const preparePlanningPhase = async (
    * @returns Array of non-adjacent cell IDs
    */
   const selectNonAdjacentCells = (availableCellIds: string[], desiredCount: number): string[] => {
-    const shuffled = utils.helpers.shuffle([...availableCellIds]);
+    const shuffled = shuffle([...availableCellIds]);
     const selected: string[] = [];
     const remainingPool = new Set(shuffled);
 

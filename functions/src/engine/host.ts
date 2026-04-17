@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin';
+import { orderBy } from 'lodash';
 // Constants
 import { GAME_CODES, USED_GAME_IDS } from '../utils/constants';
 // Utils
@@ -6,7 +7,6 @@ import * as delegatorUtils from '../utils/delegators';
 import utils from '../utils';
 import { feedEmulatorDB } from '../utils/mocks/emulator';
 import type { CallableRequest, FirebaseAuth } from '../types/reference';
-import { orderBy } from 'lodash';
 import { retireGamesFromUsers } from '../utils/admin-cleanup';
 
 export type CreateGamePayload = {

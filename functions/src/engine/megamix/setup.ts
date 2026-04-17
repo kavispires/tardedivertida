@@ -1,7 +1,7 @@
-import { keyBy } from 'lodash';
 import utils from '../../utils';
 import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
 import { MEGAMIX_PHASES, SIDES } from './constants';
+import { keyBy, shuffle } from 'lodash';
 import {
   calculateAllAchievements,
   distributeSeeds,
@@ -63,7 +63,7 @@ export const prepareSeedingPhase = async (
   utils.players.unReadyPlayers(players);
 
   // Give each player 5 outfits
-  const clubbers = utils.helpers.shuffle(
+  const clubbers = shuffle(
     Array(AVATAR_SPRITE_LIBRARIES.CLUBBERS)
       .fill(0)
       .map((e, i) => String(e + i)),

@@ -1,5 +1,6 @@
 import type { ComunicacaoDuoAchievement, DeckEntry, FirebaseStoreData, Summary } from './types';
 import utils from '../../utils';
+import { shuffle } from 'lodash';
 // Constants
 import {
   COMUNICACAO_DUO_PHASES,
@@ -34,7 +35,7 @@ export const determineNextPhase = (
 };
 
 export const applyDataToDeck = (list: unknown[], type: string): DeckEntry[] => {
-  return utils.helpers.shuffle(DECK).map((entry, index) => {
+  return shuffle(DECK).map((entry, index) => {
     if (type === 'images') {
       return {
         ...entry,

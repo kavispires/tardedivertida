@@ -8,6 +8,7 @@ import {
   TOPICS_PER_ROUND,
 } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
+import { sampleSize } from 'lodash';
 // Types
 import type {
   CustomTweet,
@@ -62,8 +63,8 @@ export const buildDeck = (allTweets: CustomTweet[]): Decks => {
   );
 
   return {
-    deck: utils.helpers.getRandomItems(deck, MAX_ROUNDS * TOPICS_PER_ROUND),
-    customDeck: utils.helpers.getRandomItems(customDeck, MAX_ROUNDS * CUSTOM_TOPICS_PER_ROUND),
+    deck: sampleSize(deck, MAX_ROUNDS * TOPICS_PER_ROUND),
+    customDeck: sampleSize(customDeck, MAX_ROUNDS * CUSTOM_TOPICS_PER_ROUND),
   };
 };
 

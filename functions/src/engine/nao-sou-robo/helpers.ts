@@ -10,6 +10,7 @@ import {
 } from './constants';
 // Utils
 import utils from '../../utils';
+import { orderBy } from 'lodash';
 import type {
   Captcha,
   CaptchaCard,
@@ -18,7 +19,6 @@ import type {
   NaoSouRoboAchievement,
   Robot,
 } from './types';
-import { orderBy } from 'lodash';
 
 /**
  * Determine the next phase based on the current one

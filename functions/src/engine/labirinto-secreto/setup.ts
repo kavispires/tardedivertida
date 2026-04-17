@@ -1,6 +1,7 @@
 // Constants
 import { CARDS_PER_ROUND, LABIRINTO_SECRETO_PHASES, MULLIGAN_HAND } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
+import { orderBy } from 'lodash';
 // Types
 import type {
   ExtendedTextCard,
@@ -23,7 +24,6 @@ import {
   getRankingAndProcessScoring,
   updateMaps,
 } from './helpers';
-import { orderBy } from 'lodash';
 
 /**
  * Setup

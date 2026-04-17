@@ -10,6 +10,7 @@ import {
   TOTAL_ROUNDS,
 } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
+import { shuffle } from 'lodash';
 // Types
 import type { Character, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
@@ -50,7 +51,7 @@ export const prepareSetupPhase = async (
   utils.players.getListOfPlayers(players).forEach((player) => {
     player.availableCharacters = utils.game.dealItems(deck, CHARACTERS_PER_PLAYER);
     if (imageCardsMode) {
-      player.selectedCharacters = utils.helpers.shuffle(
+      player.selectedCharacters = shuffle(
         player.availableCharacters.map((c: ContenderCard) => c.id),
       );
     }
@@ -116,7 +117,7 @@ export const prepareCharacterDescriptionPhase = async (
   // Unready players
   utils.players.unReadyPlayers(players);
 
-  const glyphs = utils.helpers.shuffle(utils.helpers.makeArray(TOTAL_GLYPHS, 1));
+  const glyphs = shuffle(utils.helpers.makeArray(TOTAL_GLYPHS, 1));
 
   const characters: Dictionary<Character> = {};
 
@@ -131,7 +132,7 @@ export const prepareCharacterDescriptionPhase = async (
     }
 
     if (player.selectedCharacters) {
-      player.availableCharacters = utils.helpers.shuffle(
+      player.availableCharacters = shuffle(
         player.availableCharacters.filter((c: Character) => player.selectedCharacters.includes(c.id)),
       );
 
@@ -175,7 +176,7 @@ export const prepareCharacterDescriptionPhase = async (
         players,
         round,
         characters,
-        tableOrder: utils.helpers.shuffle(Object.keys(characters)),
+        tableOrder: shuffle(Object.keys(characters)),
         roundType: CHARACTERS_VISIBILITY_PER_ROUND[round.current - 1] ? 'SHOW' : 'HIDE',
       },
     },

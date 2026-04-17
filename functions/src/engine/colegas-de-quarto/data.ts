@@ -1,6 +1,7 @@
 // Types
 import type { ColegasDeQuartoOptions, PastClues, ResourceData } from './types';
 import type { TextCard } from '../../types/tdr';
+import { sampleSize } from 'lodash';
 // Utils
 import * as dataUtils from '../collections';
 import utils from '../../utils';
@@ -25,7 +26,7 @@ export const getWords = async (
       language,
     );
     // Does not need type because it is just text
-    return { deck: utils.helpers.getRandomItems(Object.values(allCards), quantityNeeded) };
+    return { deck: sampleSize(Object.values(allCards), quantityNeeded) };
   }
 
   const deck = await utils.tdr.getSingleWords(language, quantityNeeded);

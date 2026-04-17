@@ -1,6 +1,7 @@
 // Constants
 import { GALERIA_DE_SONHOS_PHASES, TABLE_DECK_TOTAL, TOTAL_ROUNDS } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
+import { sample, sampleSize } from 'lodash';
 // Types
 import type { TextCard } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
@@ -35,7 +36,7 @@ export const prepareSetupPhase = async (
   const { gameOrder } = utils.turnOrder.create(players);
 
   // Build Image Cards deck
-  const imageCardsIdsDeck = utils.helpers.getRandomItems(resourceData.images, TABLE_DECK_TOTAL);
+  const imageCardsIdsDeck = sampleSize(resourceData.images, TABLE_DECK_TOTAL);
   const tableDeck = imageCardsIdsDeck.map((cardId) => ({ id: cardId, used: false }));
 
   // Get word deck
@@ -107,7 +108,7 @@ export const prepareWordSelectionPhase = async (
   // Get current words options
   const [wordsDeck, words] = getRoundWords(store.wordsDeck);
 
-  let minimumSelection = store.options?.surpriseMode ? utils.helpers.getRandomItem([5, 6, 7]) : 1;
+  let minimumSelection = store.options?.surpriseMode ? sample([5, 6, 7]) : 1;
   if (round.current === 1 && store.options?.surpriseMode) {
     minimumSelection = 4;
   }

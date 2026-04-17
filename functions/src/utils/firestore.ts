@@ -1,10 +1,10 @@
 // eslint-disable-next-line
 import * as functions from 'firebase-functions/v2';
+import { isEmpty } from 'lodash';
 // eslint-disable-next-line
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 // Utils
 import utils from '.';
-import { isEmpty } from 'lodash';
 import { isEmulatingEnvironment, throwException } from './firebase';
 import { print } from './helpers';
 

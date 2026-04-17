@@ -1,8 +1,8 @@
 // Utils
-import { cloneDeep, groupBy, orderBy } from 'lodash';
 import utils from '../../utils';
 import { VICE_CAMPEAO_ACHIEVEMENTS, VICE_CAMPEAO_PHASES } from './constants';
 import type { FirebaseStoreData, RunActivity, RunnerCard, ViceCampeaoAchievement } from './types';
+import { cloneDeep, groupBy, orderBy, sampleSize } from 'lodash';
 
 /**
  * Determine the next phase based on the current one
@@ -194,9 +194,10 @@ export const buildRun = (
 
     // Russian roulette (vc-19)
     if (triggerKey === 'roulette') {
-      const randomTargetId = utils.helpers.getRandomItem(
+      const randomTargetId = sampleSize(
         Object.keys(players).filter((pId) => ongoingPlayerEffects.freeze !== pId),
-      );
+        1,
+      )[0];
       return race.push({
         ...baseActivity,
         targetId: randomTargetId,
@@ -213,7 +214,7 @@ export const buildRun = (
       }
 
       if (targetId) {
-        const newValue = utils.helpers.getRandomItem([1, -1, 2, -2, 3, -3, -4, 4, 5, -5]);
+        const newValue = sampleSize([1, -1, 2, -2, 3, -3, -4, 4, 5, -5], 1)[0];
         endingPositions[targetId] += newValue + getOngoingModifier(ongoingPlayerEffects, targetId);
 
         return race.push({
@@ -321,7 +322,9 @@ const triggerEffectLastPlace = (endingPositions: Record<UID, number>, targetId: 
 
 const triggerEffectSwap = (endingPositions: Record<UID, number>) => {
   // Get the first place player
-  const orderedPositions = utils.helpers.removeDuplicates(Object.values(endingPositions).sort((a, b) => b - a));
+  const orderedPositions = utils.helpers.removeDuplicates(
+    Object.values(endingPositions).sort((a, b) => b - a),
+  );
   const firstPlace = Object.keys(endingPositions).filter(
     (key) => endingPositions[key] === orderedPositions[0],
   );
@@ -343,7 +346,9 @@ const triggerEffectSwap = (endingPositions: Record<UID, number>) => {
 
 const triggerEffectTwist = (endingPositions: Record<UID, number>) => {
   // Order values
-  const orderedPositions = utils.helpers.removeDuplicates(Object.values(endingPositions).sort((a, b) => a - b));
+  const orderedPositions = utils.helpers.removeDuplicates(
+    Object.values(endingPositions).sort((a, b) => a - b),
+  );
   const reversedPositions = [...orderedPositions].reverse();
   // Reverse the order of the positions
   Object.entries(endingPositions).forEach(([playerId, currentPosition]) => {

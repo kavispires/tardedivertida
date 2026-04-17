@@ -7,6 +7,7 @@ import {
   TOTAL_ROUNDS,
 } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
+import { sampleSize } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
@@ -45,7 +46,7 @@ export const prepareSetupPhase = async (
   }
 
   // Get 10 challenges
-  const deck = utils.helpers.getRandomItems(resourceData.challenges, CHALLENGES_PER_GAME);
+  const deck = sampleSize(resourceData.challenges, CHALLENGES_PER_GAME);
 
   // Shuffle contenders
   const contendersDeck = resourceData.contenders;

@@ -7,6 +7,7 @@ import {
   TOTAL_ROUNDS,
 } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
+import { cloneDeep } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
@@ -20,7 +21,6 @@ import {
   groupAnswers,
   storeGalleryData,
 } from './helpers';
-import { cloneDeep } from 'lodash';
 
 /**
  * Setup

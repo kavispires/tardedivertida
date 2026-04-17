@@ -1,12 +1,12 @@
-import { every, some } from 'lodash';
 import { getGlobalFirebaseDocData, updateGlobalFirebaseDoc } from '../engine/global';
 import { fetchResource } from '../engine/resource';
 import type { ContenderCard, Item, SuspectCard, TextCard } from '../types/tdr';
 import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from './constants';
 import * as firestoreUtils from './firestore';
 import * as gameUtils from './game-utils';
-import { buildBooleanDictionary, getRandomItems, shuffle } from './helpers';
+import { buildBooleanDictionary } from './helpers';
 import { updateDataFirebaseDoc } from '../engine/collections';
+import { every, sampleSize, shuffle, some } from 'lodash';
 
 export const getItems = async (
   quantity?: number,
@@ -80,14 +80,14 @@ export const getItems = async (
 
   // If there are enough safe items, return them
   if (list.length >= quantity) {
-    return getRandomItems(list, quantity).map(options.cleanUp ?? ((item) => item));
+    return sampleSize(list, quantity).map(options.cleanUp ?? ((item) => item));
   }
 
   // If not the minimum items needed, reset and use all safe
   await firestoreUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
 
   list = Object.values(itemsObj);
-  return getRandomItems(list, quantity).map(options.cleanUp ?? ((item) => item));
+  return sampleSize(list, quantity).map(options.cleanUp ?? ((item) => item));
 };
 
 export const itemUtils = {
@@ -250,10 +250,10 @@ export const getContenders = async (
     availableContenders = Object.values(languageContenders);
   }
 
-  const selectedContenders = getRandomItems(availableContenders, cardQuantity);
+  const selectedContenders = sampleSize(availableContenders, cardQuantity);
   const withPrioritized = [...Object.values(priorityDecks), ...selectedContenders];
 
-  return getRandomItems(withPrioritized, quantity);
+  return sampleSize(withPrioritized, quantity);
 };
 
 /**
@@ -315,7 +315,7 @@ export const getUnusedResources = async <T extends { id: string; nsfw?: boolean 
     availableResources = safeResources;
   }
 
-  return getRandomItems(Object.values(availableResources), quantity);
+  return sampleSize(Object.values(availableResources), quantity);
 };
 
 /**

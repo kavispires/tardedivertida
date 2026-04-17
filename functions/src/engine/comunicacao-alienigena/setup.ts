@@ -1,6 +1,7 @@
 // Constants
 import { GAME_NAMES } from '../../utils/constants';
 import { COMUNICACAO_ALIENIGENA_PHASES, ITEMS_COUNT, ITEM_TYPES } from './constants';
+import { shuffle } from 'lodash';
 // Types
 import type {
   FirebaseStateData,
@@ -129,7 +130,7 @@ export const prepareAlienSeedingPhase = async (
   const quantityPerPlayer = Math.ceil(attributesWithUnclearValues.length / playersCount);
   utils.players.dealItemsToPlayers(
     players,
-    utils.helpers.shuffle(attributesWithUnclearValues),
+    shuffle(attributesWithUnclearValues),
     quantityPerPlayer,
     'seeds',
   );

@@ -1,6 +1,7 @@
 // Types
 import type { TextCard } from '../../types/tdr';
 import type { AllWords, FirebaseStoreData, GaleriaDeSonhosAchievement, ImageCard, PlayerCard } from './types';
+import { sampleSize } from 'lodash';
 // Constants
 import { GALERIA_DE_SONHOS_ACHIEVEMENTS, GALERIA_DE_SONHOS_PHASES, WORD_DECK_TOTAL } from './constants';
 // Utils
@@ -60,7 +61,7 @@ export const buildTable = (
 };
 
 export const buildDeck = (allWords: AllWords): TextCard[] => {
-  return utils.helpers.getRandomItems(Object.values(allWords), WORD_DECK_TOTAL);
+  return sampleSize(Object.values(allWords), WORD_DECK_TOTAL);
 };
 
 export const getRoundWords = (wordsDeck: TextCard[]): [TextCard[], TextCard[]] => {
@@ -238,7 +239,7 @@ export const simulateBotCards = (players: Players, table: ImageCard[]) => {
   if (bots[2]) {
     const bot = bots[2];
 
-    const selectedTable = utils.helpers.getRandomItems(table, 4);
+    const selectedTable = sampleSize(table, 4);
 
     bot.cards = selectedTable.reduce((acc: Dictionary<PlayerCard>, card: ImageCard) => {
       const entry: PlayerCard = {

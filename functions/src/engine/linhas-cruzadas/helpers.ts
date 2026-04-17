@@ -9,6 +9,7 @@ import type {
 } from './types';
 // Constants
 import { LINHAS_CRUZADAS_ACHIEVEMENTS, LINHAS_CRUZADAS_PHASES } from './constants';
+import { shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
 import type { ArteRuimCard, TextCard } from '../../types/tdr';
@@ -50,7 +51,7 @@ export const dealPromptOptions = (
   if (options.singleWordOnly) {
     const dealCardEveryNTimes = Math.floor(wordsDeck.length / playerCount);
     utils.players.getListOfPlayers(players).forEach((player, index) => {
-      player.prompts = utils.helpers.shuffle(
+      player.prompts = shuffle(
         Array(dealCardEveryNTimes)
           .fill(0)
           .map((e, i) => wordsDeck[e + index + i * playerCount]),
@@ -60,7 +61,7 @@ export const dealPromptOptions = (
     // On an even distribution all players get the same amount of expressions and single word cards
     const deck = options.evenDistribution
       ? [...expressionDeck, ...wordsDeck]
-      : utils.helpers.shuffle([...expressionDeck, ...wordsDeck]);
+      : shuffle([...expressionDeck, ...wordsDeck]);
     const dealCardEveryNTimes = Math.floor(deck.length / playerCount);
     utils.players.getListOfPlayers(players).forEach((player, index) => {
       player.prompts = Array(dealCardEveryNTimes)

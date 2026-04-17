@@ -12,6 +12,7 @@ import {
   WIN_CONDITION,
 } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
+import { sample, sampleSize, shuffle } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData, Trap } from './types';
 // Utils
@@ -61,10 +62,10 @@ export const prepareSetupPhase = async (
   // Get image cards
   const imageCardsParts = utils.helpers.sliceInParts(data.cards, 3);
   // Use the first as the doors
-  const doorsDeck = utils.helpers.getRandomItems(imageCardsParts[0], DOOR_OPTIONS_PER_ROUND * DOOR_LEVELS);
+  const doorsDeck = sampleSize(imageCardsParts[0], DOOR_OPTIONS_PER_ROUND * DOOR_LEVELS);
 
   // Use the other two decks as book pages
-  const pagesDeck = utils.helpers.getRandomItems(
+  const pagesDeck = sampleSize(
     [...imageCardsParts[1], ...imageCardsParts[2]],
     PAGES_PER_ROUND * MAX_ROUNDS,
   );
@@ -121,7 +122,7 @@ export const prepareBookPossessionPhase = async (
     : {
         doors: state.doors,
         newDoorIndex: store.doorsDeckIndex,
-        answerDoorId: utils.helpers.getRandomItem(
+        answerDoorId: sample(
           state.doors.filter((doorId: UID) => doorId !== state.answerDoorId),
         ),
       };
@@ -178,7 +179,7 @@ export const prepareDoorChoicePhase = async (
 
   if (state.trap === TRAPS.RANDOM_INTERJECTION) {
     const otherPages = state.pages.filter((pageId: string) => !selectedPagesIds.includes(pageId));
-    selectedPagesIds.push(utils.helpers.getRandomItem(otherPages));
+    selectedPagesIds.push(sample(otherPages));
   }
 
   // Bot choices
@@ -190,12 +191,12 @@ export const prepareDoorChoicePhase = async (
 
   if (state.trap === TRAPS.SHUFFLED_DOORS) {
     utils.players.getListOfPlayers(players).forEach((player) => {
-      player.shuffledDoorOrder = utils.helpers.shuffle(state.doors);
+      player.shuffledDoorOrder = shuffle(state.doors);
     });
   }
 
   if (state.trap === TRAPS.BLIND_DOOR) {
-    const blindDoorsOrder = utils.helpers.shuffle(state.doors);
+    const blindDoorsOrder = shuffle(state.doors);
     utils.players.getListOfPlayers(players).forEach((player, index) => {
       player.blindDoorId = blindDoorsOrder[index % blindDoorsOrder.length];
     });
@@ -210,7 +211,7 @@ export const prepareDoorChoicePhase = async (
       state: {
         phase: PORTA_DOS_DESESPERADOS_PHASES.DOOR_CHOICE,
         players,
-        selectedPagesIds: utils.helpers.shuffle(selectedPagesIds),
+        selectedPagesIds: shuffle(selectedPagesIds),
       },
     },
   };
