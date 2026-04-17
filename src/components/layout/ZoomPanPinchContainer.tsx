@@ -170,7 +170,7 @@ export function ZoomPanPinchContainer({
       centerOnInit={centerOnInit}
       disabled={isLocked}
       onInit={updateOuterContainerSize}
-      onTransformed={updateOuterContainerSize}
+      onTransform={updateOuterContainerSize}
       {...restTransformWrapperProps}
     >
       {!hideControls && (

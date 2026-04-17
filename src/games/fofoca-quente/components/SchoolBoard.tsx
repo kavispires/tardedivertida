@@ -41,7 +41,6 @@ export function SchoolBoard({
       transformWrapperProps={{
         minScale: 0.5,
         maxScale: 2,
-        smooth: true,
       }}
     >
       <div

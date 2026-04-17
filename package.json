@@ -1,7 +1,7 @@
 {
 	"name": "tardedivertida",
 	"homepage": "http://www.kavispires.com/tardedivertida/",
-	"version": "50.13.113",
+	"version": "50.13.114",
 	"private": true,
 	"type": "module",
 	"dependencies": {
@@ -33,7 +33,7 @@
 		"react-router-dom": "^7.14.1",
 		"react-timer-hook": "^4.0.5",
 		"react-use": "^17.6.0",
-		"react-zoom-pan-pinch": "^3.7.0",
+		"react-zoom-pan-pinch": "^4.0.3",
 		"sass": "^1.98.0",
 		"typescript": "^5.9.3",
 		"vite": "^8.0.3",
