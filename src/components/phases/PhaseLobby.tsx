@@ -46,6 +46,7 @@ export function PhaseLobby({ players, meta }: PhaseProps) {
 
   const player = players?.[currentUser.id];
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: setter functions from useGlobalState are recreated each render but are conceptually stable
   useEffect(() => {
     if (player) {
       setStep(2);
@@ -60,16 +61,8 @@ export function PhaseLobby({ players, meta }: PhaseProps) {
       setUsername(localUsername ?? '');
       setUserAvatarId(localAvatarId ?? '');
     }
-  }, [
-    player,
-    setStep,
-    setUserId,
-    setUsername,
-    setUserAvatarId,
-    isAuthenticated,
-    localUsername,
-    localAvatarId,
-  ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [player, isAuthenticated, localUsername, localAvatarId]);
 
   return (
     <PhaseContainer
