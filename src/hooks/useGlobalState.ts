@@ -1,4 +1,4 @@
-import { useStore } from '@tanstack/react-store';
+import { useSelector } from '@tanstack/react-store';
 import { Store } from '@tanstack/store';
 // Types
 import type { GamePlayer } from 'types/game';
@@ -50,7 +50,7 @@ export const setGlobalState = <K extends keyof InitialState>(property: K, value:
 };
 
 export const useGlobalState = <K extends keyof InitialState>(property: K) => {
-  const { [property]: value } = useStore(globalStore, () => globalStore.state);
+  const { [property]: value } = useSelector(globalStore, (state) => state);
 
   return [value, (newValue: InitialState[K]) => setGlobalState(property, newValue)] as const;
 };

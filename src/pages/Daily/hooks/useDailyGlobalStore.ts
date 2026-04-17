@@ -1,4 +1,4 @@
-import { useStore } from '@tanstack/react-store';
+import { useSelector } from '@tanstack/react-store';
 import { Store } from '@tanstack/store';
 // Utils
 import { getToday } from 'utils/helpers';
@@ -34,7 +34,7 @@ export const setDailyGlobalState = <K extends keyof InitialState>(property: K, v
 };
 
 export const useDailyGlobalStore = <K extends keyof InitialState>(property: K) => {
-  const { [property]: value } = useStore(dailyGlobalStore, () => dailyGlobalStore.state);
+  const { [property]: value } = useSelector(dailyGlobalStore, (state) => state);
 
   return [value, (newValue: InitialState[K]) => setDailyGlobalState(property, newValue)] as const;
 };

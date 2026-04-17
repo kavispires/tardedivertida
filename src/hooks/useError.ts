@@ -1,4 +1,4 @@
-import { useStore } from '@tanstack/react-store';
+import { useSelector } from '@tanstack/react-store';
 import { Store } from '@tanstack/store';
 
 type ErrorState = {
@@ -31,7 +31,7 @@ const setError = (key: string, value?: string) => {
  * - `errors`: An object containing the current errors.
  */
 export function useError() {
-  const { errors } = useStore(errorsStore, () => errorsStore.state);
+  const { errors } = useSelector(errorsStore, (state) => state);
 
   return { isError: Object.values(errors).some((v) => v), setError, errors };
 }

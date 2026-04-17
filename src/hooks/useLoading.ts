@@ -1,4 +1,4 @@
-import { useStore } from '@tanstack/react-store';
+import { useSelector } from '@tanstack/react-store';
 import { Store } from '@tanstack/store';
 
 type LoadingState = {
@@ -23,7 +23,7 @@ const setLoader = (key: string, isLoading: boolean) => {
  * - `isKeyLoading` {(key: string) => boolean}: A function to check if a specific key is loading.
  */
 export function useLoading() {
-  const { loaders } = useStore(loadingStore, () => loadingStore.state);
+  const { loaders } = useSelector(loadingStore, (state) => state);
 
   const isLoading = Object.values(loaders).some((value) => value);
 

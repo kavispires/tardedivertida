@@ -1,4 +1,4 @@
-import { useStore } from '@tanstack/react-store';
+import { useSelector } from '@tanstack/react-store';
 import { Store } from '@tanstack/store';
 import { isEqual } from 'lodash';
 import { useEffectOnce } from 'react-use';
@@ -53,7 +53,7 @@ export const getKey = (property: string) => `${APP_NAME}_${property}`;
  * @returns A tuple containing the current value and a setter function to update the value.
  */
 export function useGlobalLocalStorage<K extends keyof LocalStorageState>(property: K) {
-  const { [property]: value } = useStore(localStorageStore, () => localStorageStore.state);
+  const { [property]: value } = useSelector(localStorageStore, (state) => state);
 
   const updateValue = (newValue: LocalStorageState[K] | null) => {
     const localStorageKey = getKey(property);

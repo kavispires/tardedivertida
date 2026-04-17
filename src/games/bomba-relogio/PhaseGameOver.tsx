@@ -24,7 +24,7 @@ import { ConfettiEffect } from 'components/visual-effects/ConfettiEffect';
 import { achievementsReference } from './utils/achievements';
 import type { DataCounts, PhaseGameOverState, Status } from './utils/types';
 import { OUTCOME, ROLE_IMAGES_NAMES } from './utils/constants';
-import { useNotesStore } from './utils/notes-store';
+import { useNotesStore } from './utils/useNotesStore';
 import { AgentHighlight, RedWireHighlight, TerroristHighlight } from './components/Highlights';
 
 export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {

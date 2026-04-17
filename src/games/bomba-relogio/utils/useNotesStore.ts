@@ -1,4 +1,4 @@
-import { useStore } from '@tanstack/react-store';
+import { useSelector } from '@tanstack/react-store';
 import { Store } from '@tanstack/store';
 
 type PlayerNote = 'agent' | 'terrorist' | '';
@@ -43,7 +43,7 @@ export const clearPlayerNote = (playerId: UID) => {
  * Clear all notes
  */
 export const clearAllNotes = () => {
-  notesStore.setState({ notes: {} });
+  notesStore.setState(() => ({ notes: {} }));
 };
 
 /**
@@ -57,7 +57,7 @@ export const clearAllNotes = () => {
  * - `getPlayerNote` {(playerId: UID) => PlayerNote}: Function to get a note for a specific player.
  */
 export function useNotesStore() {
-  const { notes } = useStore(notesStore, () => notesStore.state);
+  const { notes } = useSelector(notesStore, (state) => state);
 
   const getPlayerNote = (playerId: UID): PlayerNote => {
     return notes[playerId] ?? '';

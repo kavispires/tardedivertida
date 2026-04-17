@@ -15,7 +15,7 @@ import { ImageCard } from 'components/image-cards/ImageCard';
 import { Translate } from 'components/language/Translate';
 import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
 // Internal
-import { useNotesStore } from '../utils/notes-store';
+import { useNotesStore } from '../utils/useNotesStore';
 import { CARD_IMAGE_NAMES } from '../utils/constants';
 import type { TimeBombCard } from '../utils/types';
 import { BombHighlight, RedWireHighlight } from './Highlights';
