@@ -570,16 +570,16 @@ export const getMostMatching = (players: Players, property: string, acceptance =
   // Get max votes
   const maxVal = Math.max(...lengths);
   const winningUniqueValues: string[] = [];
-  const winningValues = utils.helpers.flattenArray(
-    Object.keys(counts).reduce((acc: string[][], key) => {
+  const winningValues = Object.keys(counts)
+    .reduce((acc: string[][], key) => {
       const arr = counts[key];
       if (arr.length === maxVal) {
         acc.push(arr);
         winningUniqueValues.push(key);
       }
       return acc;
-    }, []),
-  );
+    }, [])
+    .flat();
 
   const winningTeam: string[] = [];
   const losingTeam: string[] = [];
@@ -732,9 +732,13 @@ const buildPolemicaDaVezOptions = (players: Players) => {
     }, 0);
   const correctPercentage = Math.round((totalLikes / playerCount) * 100);
 
-  const possibleLikes = utils.helpers.makeArray(playerCount, 1).map((v) => Math.round((v * 100) / playerCount));
+  const possibleLikes = utils.helpers
+    .makeArray(playerCount, 1)
+    .map((v) => Math.round((v * 100) / playerCount));
 
-  return orderBy([...new Set([0, correctPercentage, 100, ...utils.helpers.getRandomItems(possibleLikes, 3)])]);
+  return orderBy([
+    ...new Set([0, correctPercentage, 100, ...utils.helpers.getRandomItems(possibleLikes, 3)]),
+  ]);
 };
 
 const buildRetratoFaladoOptions = (players: Players, track: Track) => {
@@ -1023,9 +1027,15 @@ export const getNaRuaDoMedoScenario = (playerCount: number) => {
     ...utils.helpers.getRandomItems(mediumCandy, 1),
   ]);
   // 3) 3 monsters, 2 medium cards
-  scenarios.push([...utils.helpers.getRandomItems(horrorDeck, 3), ...utils.helpers.getRandomItems(mediumCandy, 2)]);
+  scenarios.push([
+    ...utils.helpers.getRandomItems(horrorDeck, 3),
+    ...utils.helpers.getRandomItems(mediumCandy, 2),
+  ]);
   // 4) 1 monster, 4 low cards
-  scenarios.push([...utils.helpers.getRandomItems(horrorDeck, 1), ...utils.helpers.getRandomItems(lowCandy, 4)]);
+  scenarios.push([
+    ...utils.helpers.getRandomItems(horrorDeck, 1),
+    ...utils.helpers.getRandomItems(lowCandy, 4),
+  ]);
   // 5) 2 monsters, 1 low, 2 high
   scenarios.push([
     ...utils.helpers.getRandomItems(horrorDeck, 2),
@@ -1037,9 +1047,15 @@ export const getNaRuaDoMedoScenario = (playerCount: number) => {
     scenarios: utils.helpers.shuffle(scenarios),
     home: [
       utils.helpers.getRandomItem(decks.horrorDeck),
-      ...utils.helpers.getRandomItems([...decks.candyDeck, utils.helpers.getRandomItem(decks.jackpotDeck)], 2),
+      ...utils.helpers.getRandomItems(
+        [...decks.candyDeck, utils.helpers.getRandomItem(decks.jackpotDeck)],
+        2,
+      ),
     ],
-    costumes: utils.helpers.getRandomItems(utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES), playerCount),
+    costumes: utils.helpers.getRandomItems(
+      utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES),
+      playerCount,
+    ),
     kids: utils.helpers.getRandomItems(utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES), 5),
   };
 };

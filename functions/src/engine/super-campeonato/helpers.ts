@@ -76,9 +76,9 @@ export const getTableContenders = (contendersDeck: ContendersDeck, players: Play
     return [];
   }
 
-  const usedContenders = utils.helpers.flattenArray<ContenderCard>(
-    utils.players.getListOfPlayers(players).map((player) => player.contenders),
-  );
+  const usedContenders: ContenderCard[] = utils.players
+    .getListOfPlayers(players)
+    .flatMap((player) => player.contenders);
 
   const selectedContenders = utils.game.getRandomUniqueObjects<ContenderCard>(
     contendersDeck,

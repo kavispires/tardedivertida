@@ -63,23 +63,21 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
 export const buildDecks = (isShortGame: boolean): Decks => {
   // 1. Build horror deck: get one random horror of each set and make 3 copies of it
   const horrorCount = {};
-  const horrorDeck: HouseCard[] = utils.helpers.flattenArray(
-    HORROR_SETS.map((horrorGroup: DualLanguageValue[]) => {
-      const horrorName = utils.helpers.getRandomItem(horrorGroup);
-      const horrorGenericName = horrorName.en.toLowerCase();
-      const horrorKey = `${CARD_KEY_PREFIX}-horror-${horrorGenericName}`;
-      // This is used to count how many horrors have happen each round
-      horrorCount[horrorKey] = 0;
+  const horrorDeck: HouseCard[] = HORROR_SETS.flatMap((horrorGroup: DualLanguageValue[]) => {
+    const horrorName = utils.helpers.getRandomItem(horrorGroup);
+    const horrorGenericName = horrorName.en.toLowerCase();
+    const horrorKey = `${CARD_KEY_PREFIX}-horror-${horrorGenericName}`;
+    // This is used to count how many horrors have happen each round
+    horrorCount[horrorKey] = 0;
 
-      return new Array(3).fill(1).map((e, i) => ({
-        id: `horror-${horrorGenericName}-${e + i}`,
-        name: horrorName,
-        key: horrorKey,
-        type: 'horror',
-        value: 0,
-      }));
-    }),
-  );
+    return new Array(3).fill(1).map((e, i) => ({
+      id: `horror-${horrorGenericName}-${e + i}`,
+      name: horrorName,
+      key: horrorKey,
+      type: 'horror',
+      value: 0,
+    }));
+  });
 
   // 2. Build jackpot deck: based on game length
   const jackpotDeck: HouseCard[] = new Array(isShortGame ? SHORT_GAME_ROUNDS : MAX_ROUNDS)

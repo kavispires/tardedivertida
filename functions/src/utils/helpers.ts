@@ -38,16 +38,6 @@ export function stringRemoveAccents(str: string): string {
 }
 
 /**
- * Flattens a two-dimensional array into a single-dimensional array.
- * Example: [[1, 2], [3, 4]] becomes [1, 2, 3, 4]
- * @deprecated Use lodash _.flatten instead
- * @param twoDimensionalArray - The 2D array to flatten
- * @returns A flattened single-dimensional array
- */
-export const flattenArray = <T>(twoDimensionalArray: T[][]): T[] =>
-  twoDimensionalArray.reduce((acc, arr) => acc.concat(arr), []);
-
-/**
  * Gets the last item in an array.
  * @deprecated Use lodash _.last instead
  * @param list - The array to get the last item from
