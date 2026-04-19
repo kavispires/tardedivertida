@@ -7,7 +7,7 @@ import { TELLER_EFFECT_TYPE } from './constants';
 
 export function useBankClientCardWidth(tellers: Dictionary<Teller>) {
   const longestQueueLength = Math.max(...Object.values(tellers).map((teller) => teller.queue.length));
-  return useCardWidth(Math.max(10, longestQueueLength), { maxWidth: 96, minWidth: 64 });
+  return useCardWidth(Math.max(10, longestQueueLength), { maxWidth: 96, minWidth: 48 });
 }
 
 export function useNextStepDuration(tellersList: Teller[]) {

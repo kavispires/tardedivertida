@@ -2,7 +2,10 @@ import { motion, AnimatePresence, type MotionProps } from 'motion/react';
 import { useState, useEffect } from 'react';
 // Ant Design Resources
 import { Button, Flex } from 'antd';
+// Icons
+import { ActionAlertIcon } from 'icons/ActionAlertIcon';
 // Components
+import { IconAvatar } from 'components/avatars/IconAvatar';
 import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 // Internal
@@ -113,10 +116,16 @@ export function TellerBoard({ teller, deckDict, cardWidth, onSelectTeller, anima
           );
         } else {
           firstSpeech = (
-            <Translate
-              en="Did you know you can do everything online? Let's go!"
-              pt="Vocês sabiam que dá pra fazer tudo online? Vamos lá!"
-            />
+            <>
+              <IconAvatar
+                size="small"
+                icon={<ActionAlertIcon />}
+              />
+              <Translate
+                en="Did you know you can do everything online? Let's go!"
+                pt="Vocês sabiam que dá pra fazer tudo online? Vamos lá!"
+              />
+            </>
           );
         }
       }

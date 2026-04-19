@@ -1,10 +1,10 @@
-import { sample } from 'lodash';
 import { motion, AnimatePresence, type MotionProps } from 'motion/react';
 import { useState, useEffect } from 'react';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Components
 import { Translate } from 'components/language/Translate';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 // Internal
 import type { ClientCard, Teller } from '../utils/types';
 import { BankClient } from './BankClient';
@@ -111,7 +111,12 @@ export function TellerBoardResolution({ teller, deckDict, cardWidth, animate }: 
                   exit={{ opacity: 0, y: 5, scale: 0.8 }}
                   className="f-speech-bubble"
                 >
-                  <FinalSpeech cardId={cardId} />
+                  <FinalScoringSpeech
+                    cardId={cardId}
+                    deckDict={deckDict}
+                    teller={teller}
+                    positionInQueue={displayQueue.indexOf(cardId)}
+                  />
                   <div className="f-speech-bubble__tail" />
                 </motion.div>
               )}
@@ -131,9 +136,12 @@ export function TellerBoardResolution({ teller, deckDict, cardWidth, animate }: 
 
 type FinalSpeechProps = {
   cardId: string;
+  deckDict: Dictionary<ClientCard>;
+  teller: Teller;
+  positionInQueue: number;
 };
 
-function FinalSpeech({ cardId }: FinalSpeechProps) {
+function FinalScoringSpeech({ cardId, deckDict, teller, positionInQueue }: FinalSpeechProps) {
   if (cardId.includes('KID')) {
     return (
       <Translate
@@ -143,45 +151,15 @@ function FinalSpeech({ cardId }: FinalSpeechProps) {
     );
   }
 
-  const pool = [
-    <Translate
-      key="finalSpeech1"
-      en="Finally!"
-      pt="Finalmente!"
-    />,
-    <Translate
-      key="finalSpeech2"
-      en="Finally!"
-      pt="Finalmente!"
-    />,
-    <Translate
-      key="finalSpeech3"
-      en="Finally!"
-      pt="Finalmente!"
-    />,
-    <Translate
-      key="finalSpeech4"
-      en="Thank God!"
-      pt="Graças a Deus!"
-    />,
-    <Translate
-      key="finalSpeech5"
-      en="It's about time!"
-      pt="Já era hora!"
-    />,
-    <Translate
-      key="finalSpeech6"
-      en="At last!"
-      pt="Até que enfim!"
-    />,
-  ];
+  const isDoubled = teller.doublers.includes(deckDict[cardId].type);
+  const points = teller.capacity[positionInQueue] || 0;
 
   return (
-    sample(pool) || (
-      <Translate
-        en="Finally!"
-        pt="Finalmente!"
-      />
-    )
+    <PointsHighlight
+      iconPlacement="before"
+      type={isDoubled ? 'positive' : 'default'}
+    >
+      {points} {isDoubled && ' × 2'}
+    </PointsHighlight>
   );
 }

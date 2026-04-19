@@ -12,7 +12,7 @@ import { keyBy, orderBy, shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
 import type { ClientCard, FirebaseStateData, FirebaseStoreData, Teller } from './types';
-import { buildDeck, buildTellers } from './helpers';
+import { buildDeck, buildTellers, getAchievements } from './helpers';
 import { GAME_NAMES } from '../../utils/constants';
 
 export const prepareSetupPhase = async (
@@ -428,8 +428,7 @@ export const prepareGameOverPhase = async (
 
   await utils.firestore.markGameAsComplete(gameId);
 
-  // const achievements = getAchievements(store);
-  const achievements = [];
+  const achievements = getAchievements(store);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.NA_FILA_DO_BANCO,

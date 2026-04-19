@@ -1,6 +1,13 @@
 // functions/src/engine/na-fila-do-banco/helpers.ts
-import { CARD_COLORS, CHARACTER_TYPES, NA_FILA_DO_BANCO_PHASES, OUTCOME, TELLERS } from './constants';
-import type { ClientCard, Teller } from './types';
+import {
+  CARD_COLORS,
+  CHARACTER_TYPES,
+  NA_FILA_DO_BANCO_ACHIEVEMENTS,
+  NA_FILA_DO_BANCO_PHASES,
+  OUTCOME,
+  TELLERS,
+} from './constants';
+import type { ClientCard, FirebaseStoreData, NaFilaDoBancoAchievement, Teller } from './types';
 import { shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
@@ -151,4 +158,144 @@ export const buildTellers = (playerCount: number, currentRound: number): Diction
     };
   });
   return tellers;
+};
+
+/**
+ * Get achievements
+ * @param store
+ */
+export const getAchievements = (store: FirebaseStoreData) => {
+  const achievements: Achievement<NaFilaDoBancoAchievement>[] = [];
+
+  // Most Retiree Cards
+  const { most: mostRetiree } = utils.achievements.getMostAndLeastOf(store, 'retiree');
+  if (mostRetiree) {
+    achievements.push({
+      type: NA_FILA_DO_BANCO_ACHIEVEMENTS.MOST_RETIREE_CARDS,
+      playerId: mostRetiree.playerId,
+      value: mostRetiree.value,
+    });
+  }
+
+  // Most Veteran Cards
+  const { most: mostVeteran } = utils.achievements.getMostAndLeastOf(store, 'veteran');
+  if (mostVeteran) {
+    achievements.push({
+      type: NA_FILA_DO_BANCO_ACHIEVEMENTS.MOST_VETERAN_CARDS,
+      playerId: mostVeteran.playerId,
+      value: mostVeteran.value,
+    });
+  }
+
+  // Most Mother Cards
+  const { most: mostMother } = utils.achievements.getMostAndLeastOf(store, 'motherBaby');
+  if (mostMother) {
+    achievements.push({
+      type: NA_FILA_DO_BANCO_ACHIEVEMENTS.MOST_MOTHER_CARDS,
+      playerId: mostMother.playerId,
+      value: mostMother.value,
+    });
+  }
+
+  // Most Businessman Cards
+  const { most: mostBusinessman } = utils.achievements.getMostAndLeastOf(store, 'businessman');
+  if (mostBusinessman) {
+    achievements.push({
+      type: NA_FILA_DO_BANCO_ACHIEVEMENTS.MOST_BUSINESSMAN_CARDS,
+      playerId: mostBusinessman.playerId,
+      value: mostBusinessman.value,
+    });
+  }
+
+  // Most Student Cards
+  const { most: mostStudent } = utils.achievements.getMostAndLeastOf(store, 'student');
+  if (mostStudent) {
+    achievements.push({
+      type: NA_FILA_DO_BANCO_ACHIEVEMENTS.MOST_STUDENT_CARDS,
+      playerId: mostStudent.playerId,
+      value: mostStudent.value,
+    });
+  }
+
+  // Most Motoboy Cards
+  const { most: mostMotoboy } = utils.achievements.getMostAndLeastOf(store, 'motoboy');
+  if (mostMotoboy) {
+    achievements.push({
+      type: NA_FILA_DO_BANCO_ACHIEVEMENTS.MOST_MOTOBOY_CARDS,
+      playerId: mostMotoboy.playerId,
+      value: mostMotoboy.value,
+    });
+  }
+
+  // Most Kid Cards
+  const { most: mostKid } = utils.achievements.getMostAndLeastOf(store, 'kid');
+  if (mostKid) {
+    achievements.push({
+      type: NA_FILA_DO_BANCO_ACHIEVEMENTS.MOST_KID_CARDS,
+      playerId: mostKid.playerId,
+      value: mostKid.value,
+    });
+  }
+
+  // Most Own Color Cards
+  const { most: mostOwnColor } = utils.achievements.getMostAndLeastOf(store, 'ownColor');
+  if (mostOwnColor) {
+    achievements.push({
+      type: NA_FILA_DO_BANCO_ACHIEVEMENTS.MOST_OWN_COLOR_CARDS,
+      playerId: mostOwnColor.playerId,
+      value: mostOwnColor.value,
+    });
+  }
+
+  // Most Neutral Color Cards
+  const { most: mostNeutral } = utils.achievements.getMostAndLeastOf(store, 'neutral');
+  if (mostNeutral) {
+    achievements.push({
+      type: NA_FILA_DO_BANCO_ACHIEVEMENTS.MOST_NEUTRAL_COLOR_CARDS,
+      playerId: mostNeutral.playerId,
+      value: mostNeutral.value,
+    });
+  }
+
+  // Most Cut-Ins
+  const { most: mostCutIns } = utils.achievements.getMostAndLeastOf(store, 'cutIns');
+  if (mostCutIns) {
+    achievements.push({
+      type: NA_FILA_DO_BANCO_ACHIEVEMENTS.MOST_CUT_INS,
+      playerId: mostCutIns.playerId,
+      value: mostCutIns.value,
+    });
+  }
+
+  // Most Got Cut
+  const { most: mostGotCut } = utils.achievements.getMostAndLeastOf(store, 'gotCut');
+  if (mostGotCut) {
+    achievements.push({
+      type: NA_FILA_DO_BANCO_ACHIEVEMENTS.MOST_GOT_CUT,
+      playerId: mostGotCut.playerId,
+      value: mostGotCut.value,
+    });
+  }
+
+  // Most Stays
+  const { most: mostStays } = utils.achievements.getMostAndLeastOf(store, 'stays');
+  if (mostStays) {
+    achievements.push({
+      type: NA_FILA_DO_BANCO_ACHIEVEMENTS.MOST_STAYS,
+      playerId: mostStays.playerId,
+      value: mostStays.value,
+    });
+  }
+
+  // Most Online Triggers
+  const { most: mostOnline } = utils.achievements.getMostAndLeastOf(store, 'online');
+  if (mostOnline) {
+    achievements.push({
+      type: NA_FILA_DO_BANCO_ACHIEVEMENTS.MOST_ONLINE_TRIGGERS,
+      playerId: mostOnline.playerId,
+      value: mostOnline.value,
+    });
+  }
+
+  return achievements;
 };

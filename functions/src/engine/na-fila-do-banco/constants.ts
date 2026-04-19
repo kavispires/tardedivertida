@@ -30,7 +30,7 @@ export const OUTCOME = {
   SETUP: 'SETUP',
   CONTINUE: 'CONTINUE',
   END_ROUND: 'END_ROUND',
-};
+} as const;
 
 export const CHARACTER_TYPES = {
   KID: 'KID',
@@ -40,7 +40,7 @@ export const CHARACTER_TYPES = {
   BUSINESSMAN: 'BUSINESSMAN',
   STUDENT: 'STUDENT',
   MOTOBOY: 'MOTOBOY',
-};
+} as const;
 
 // What character cuts in front of what character
 export const CUT_IN_HIERARCHY: Record<string, string> = {

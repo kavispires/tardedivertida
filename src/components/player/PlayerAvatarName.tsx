@@ -75,3 +75,31 @@ export const PlayerAvatarName = ({
     </span>
   );
 };
+
+export const NPCPlayerAvatarName = ({
+  size = 'small',
+  className = '',
+  withDescription = false,
+  uppercase = false,
+  botId,
+  botName = 'Bot',
+  upright = false,
+  ...rest
+}: Omit<PlayerAvatarNameProps, 'player'> & { botId: string; botName?: string }) => {
+  const { language } = useLanguage();
+
+  return (
+    <span
+      {...rest}
+      className={clsx(styles.avatarName, uppercase && styles.uppercase, upright && styles.upright, className)}
+    >
+      <PlayerAvatar
+        avatarId={botId}
+        className={styles.avatar}
+        size={size}
+      />
+      <span className={styles.name}>{botName}</span>
+      {withDescription && <span className={styles.name}>, {AVATARS[botId].description[language]}</span>}
+    </span>
+  );
+};

@@ -1,4 +1,4 @@
-import type { NA_FILA_DO_BANCO_ACTIONS } from './constants';
+import type { NA_FILA_DO_BANCO_ACTIONS, NA_FILA_DO_BANCO_ACHIEVEMENTS } from './constants';
 
 export interface ClientCard {
   id: string;
@@ -43,3 +43,5 @@ export interface NaFilaDoBancoSubmitAction extends Payload {
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData & NaFilaDoBancoState;
 export type FirebaseStoreData = FirebaseFirestore.DocumentData & NaFilaDoBancoStore;
+
+export type NaFilaDoBancoAchievement = keyof typeof NA_FILA_DO_BANCO_ACHIEVEMENTS;
