@@ -133,7 +133,7 @@ export const CHARACTER_TYPES: Dictionary<{
     },
     cutIn: 'STUDENT',
     description: {
-      en: "The Student goes in front of the Motoboy, after all she's super hot",
+      en: "The Student goes in front of the Courier, after all she's super hot",
       pt: 'A Estudante vai na frente do Motoboy, afinal ela é super gata',
     },
     cutSpeech: {
@@ -151,11 +151,11 @@ export const CHARACTER_TYPES: Dictionary<{
     spriteId: 6,
     name: {
       pt: 'Motoboy',
-      en: 'Motoboy',
+      en: 'Courier',
     },
     cutIn: 'RETIREE',
     description: {
-      en: "The Motoboy goes in front of the Retiree, after all he's in a hurry and the Retiree is slow",
+      en: "The Courier goes in front of the Retiree, after all he's in a hurry and the Retiree is slow",
       pt: 'O Motoboy vai na frente da Aposentada, afinal ele está com pressa e a Aposentada é devagar',
     },
     cutSpeech: {

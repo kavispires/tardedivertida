@@ -81,7 +81,7 @@ export const achievementsReference: AchievementReference = {
     },
     description: {
       pt: 'Colocou mais motoboys na fila',
-      en: 'Lined up the most motoboy clients',
+      en: 'Lined up the most Courier clients',
     },
   },
   [ACHIEVEMENTS.MOST_KID_CARDS]: {
