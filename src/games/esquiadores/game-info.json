@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "esquiadores",
-  "version": "1.0.49",
+  "version": "2.0.1",
   "release": "stable",
   "releaseDate": "2025-01-20",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Esquiadores",
     "en": "Ski Resort"
@@ -29,20 +29,20 @@
   },
   "rules": {
     "en": [
-      "In Ski Resort, players take turns being the skier",
-      "Each round the skier must decide between a series of dilemmas that form the mountain",
-      "The other layers will have certain number of chips to bet on each lodge by the end of the mountain the skier will end up",
-      "You get points for each chip you set on the correct lodge but you will have multiple chances to improve those odds",
-      "In the meantime, the skier is also betting on which players they will want to share points with",
-      "The games ends when all players have been the skier"
+      "In Ski Resort, players take turns being the Skier.",
+      "Each round, the Skier makes a series of choices that determine their path down the mountain.",
+      "Meanwhile, the other players receive a set number of chips to bet on which lodge the Skier will end up at.",
+      "You earn points for each chip you place on the correct lodge, and you may have opportunities to adjust your bets along the way.",
+      "At the same time, the Skier bets on which players they want to share points with.",
+      "The game ends when all players have taken a turn as the Skier."
     ],
     "pt": [
-      "Em Esquiadores, os jogadores se revezam sendo o esquiador",
-      "A cada rodada o esquiador deve decidir entre uma série de dilemas que formam a montanha",
-      "Enquanto isso, os jogadores terão certa quantidade de fichas para apostar em cada cabana onde o esquiador vai terminar ao final da montanha",
-      "Você ganha pontos para cada ficha que você colocar na cabana correta",
-      "Enquanto isso, o esquiador também está apostando em quais jogadores eles vão querer compartilhar pontos",
-      "O jogo termina quando todos os jogadores tiverem sido o esquiador"
+      "Em Esquiadores, os jogadores se revezam sendo o Esquiador.",
+      "A cada rodada, o Esquiador toma uma série de decisões que determinam seu caminho pela montanha.",
+      "Enquanto isso, os outros jogadores recebem uma quantidade de fichas para apostar em qual cabana o Esquiador vai terminar.",
+      "Você ganha pontos para cada ficha colocada na cabana correta e pode ter chances de ajustar suas apostas ao longo da descida.",
+      "Ao mesmo tempo, o Esquiador aposta em quais jogadores deseja compartilhar pontos.",
+      "O jogo termina quando todos os jogadores tiverem sido o Esquiador."
     ]
   },
   "playerCount": {
@@ -56,7 +56,7 @@
     "perPlayer": 0
   },
   "mechanics": ["competitive", "same-time", "betting", "voting"],
-  "features": [],
+  "features": ["achievements"],
   "options": [
     {
       "key": "nsfw",

@@ -163,7 +163,10 @@ export const prepareStartingResultsPhase = async (
   // Add skier selections to mountain
   const isGoingLeftLevel1 = choices[0] === 'left';
   const isGoingLeftLevel2 = choices[isGoingLeftLevel1 ? 1 : 2] === 'left';
-  const isGoingLeftLevel3 = choices[2] === 'left';
+  const level3ChoiceIndex =
+    isGoingLeftLevel1 && isGoingLeftLevel2 ? 3 : isGoingLeftLevel1 || isGoingLeftLevel2 ? 4 : 5;
+  const isGoingLeftLevel3 = choices[level3ChoiceIndex] === 'left';
+
   mountain[0].direction = choices[0] as MountainDilemma['direction'];
   mountain[1].selected = isGoingLeftLevel1;
   if (mountain[1].selected) {

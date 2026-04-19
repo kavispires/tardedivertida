@@ -88,7 +88,6 @@ export const calculateScores = (
   allPlayersButSkier.forEach((player) => {
     const bets: Dictionary<number> = player.bets;
 
-    // TODO: add multiplier here for each chip
     const correctBet = bets?.[finalLodgeId] ?? 0;
     scores.add(player.id, correctBet, 0);
     skierReferencePoints[player.id] = correctBet;

@@ -9,6 +9,7 @@ import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
 // Components
 import { SendButton } from 'components/buttons/SendButton';
+import { DebugOnly } from 'components/debug/DebugOnly';
 import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TurnOrder } from 'components/players/TurnOrder';
@@ -124,7 +125,7 @@ export function StepMakeChoices({
         <div className="ski-mountain-entry my-6">
           <div className="ski-mountain-entry__prompt">
             {currentDilemma.dilemma.prompt}
-            {currentDilemma.id}
+            <DebugOnly dev>{currentDilemma.id}</DebugOnly>
           </div>
 
           <MountainIllustration

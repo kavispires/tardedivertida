@@ -68,7 +68,7 @@ export function StepChoosePlayers({
               Como esquiador você aposta ganha pontos baseado nos pontos que os outros jogadores ganharem.
               <br />
               Você tem <ChipsHighlight>{user.chips}</ChipsHighlight> fichas para apostar em quais jogadores
-              você quer compartilhar pontos. Cada ficha vale 20% dos pontos que o jogador ganhar.
+              você quer compartilhar pontos.
             </>
           }
           en={
@@ -76,7 +76,7 @@ export function StepChoosePlayers({
               As a skier you bet and win points based on the points other players win.
               <br />
               You have <ChipsHighlight>{user.chips}</ChipsHighlight> chips to bet on which players you want to
-              share points with. Each chip is worth 20% of the points the player wins.
+              share points with.
             </>
           }
         />
@@ -99,6 +99,7 @@ export function StepChoosePlayers({
       />
 
       <SkierBets
+        key={user.chips}
         players={players}
         user={user}
         onSubmitBets={onSubmitBets}

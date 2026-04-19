@@ -45,18 +45,18 @@ export const DOUBLE_ROUNDS_THRESHOLD = 4;
 export const DILEMMAS_PER_ROUND = 6;
 
 export const BETTING_CHIPS = {
-  INITIAL: 5,
-  BOOST: 3,
-  FINAL: 2,
+  INITIAL: 8,
+  BOOST: 4,
+  FINAL: 3,
 };
 
 export const SKIERS_BETTING_CHIPS = {
   INITIAL: 0,
-  BOOST: 7,
-  FINAL: 3,
+  BOOST: 3,
+  FINAL: 7,
 };
 
-export const CATCH_UP_BONUS = 2;
+export const CATCH_UP_BONUS = 5;
 
 export const BET_TYPES = {
   INITIAL: 'initial',
@@ -70,7 +70,7 @@ export const SKIER_BET_TYPES = {
 };
 
 export const MOUNTAIN_SECTION = {
-  SUMMIT: 'SUBMIT', // nothing is display
+  SUMMIT: 'SUBMIT', // nothing is displayed
   LEVEL_1: 'LEVEL_1', // after first decision
   LEVEL_2: 'LEVEL_2', // after second decision
   LODGE: 'LODGE', // after final decision
