@@ -7,4 +7,90 @@
   display: flex;
   justify-content: center;
   aspect-ratio: 2/3;
+  margin: get-unit(2);
+}
+
+.teller-card {
+  position: relative;
+
+  &__capacity {
+    position: absolute;
+    bottom: get-unit(1);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &__capacity-entry {
+    background-color: get-color("brown");
+    color: get-color("white");
+    width: 1.5em;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1 / 1;
+    border-radius: get-unit(1);
+  }
+
+  &__doublers {
+    position: absolute;
+    top: get-unit(2);
+    left: get-unit(2);
+  }
+
+  &__doubler {
+    background-color: get-color("white", 4, 0.5);
+    width: 1.5em;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+  }
+}
+
+.teller-board-line {
+  width: 100%;
+  max-width: 90vw;
+  background: get-color("white", 5, 0.2);
+  padding: get-unit(1);
+  margin-bottom: get-unit(2);
+  border-radius: var(--border-radius);
+}
+
+.f-selected-card {
+  outline: solid get-unit(1) get-color("yellow");
+  border-radius: var(--border-radius);
+}
+
+.f-speech-bubble {
+  position: absolute;
+  bottom: 100%; // Anchors to the top of the card, growing upwards
+  left: get-unit(3); // Flushed perfectly to the left edge of the card
+  margin-bottom: get-unit(2); // Space between the bubble and the card for the tail
+  background: white;
+  padding: get-unit(2) get-unit(3);
+  border-radius: get-unit(3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+
+  // --- Text & Sizing Rules ---
+  width: max-content; // Instead of 'fit-content'
+  max-width: 256px;
+  white-space: normal; // Allow wrapping
+  word-wrap: break-word; // Break long words if needed
+  font-family:
+    Comic Sans MS,
+    cursive,
+    sans-serif;
+  line-height: 1.4;
+
+  color: #333;
+
+  &__tail {
+    position: absolute;
+    bottom: -4px;
+    left: 16%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 8px;
+    height: 8px;
+    background: white;
+  }
 }

@@ -7,13 +7,15 @@ type BankClientProps = {
   cardId: string;
   deckDict: Dictionary<ClientCard>;
   cardWidth: number;
+  className?: string;
 };
 
-export function BankClient({ cardId, deckDict, cardWidth }: BankClientProps) {
+export function BankClient({ cardId, deckDict, cardWidth, className }: BankClientProps) {
   return (
     <ImageCard
       cardId={deckDict[cardId].imageId}
       cardWidth={cardWidth}
+      className={className}
     />
   );
 }

@@ -7,7 +7,7 @@ type DualTransLateProps = {
   /**
    * The dual language text object
    */
-  children: DualLanguageValue;
+  children: DualLanguageValue | { en: React.ReactNode; pt: React.ReactNode };
 };
 
 /**

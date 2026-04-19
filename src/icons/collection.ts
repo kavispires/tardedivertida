@@ -1,3 +1,5 @@
+export * from './ActionAlertIcon';
+export * from './DeskIcon';
 export * from './AgeIcon';
 export * from './AlarmClockIcon';
 export * from './AlertIcon';

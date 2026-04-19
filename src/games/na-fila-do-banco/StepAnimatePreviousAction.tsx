@@ -1,26 +1,20 @@
-import { Fragment, useState } from 'react';
-// Ant Design Resources
-import { Flex, Modal } from 'antd';
 // Types
-import type { GamePlayers, GamePlayer } from 'types/game';
-// Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useLoading } from 'hooks/useLoading';
+import type { GamePlayers, GamePlayer, GameRound } from 'types/game';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { ImageCardButton } from 'components/image-cards/ImageCardButton';
+import { TimedButton } from 'components/buttons/TimedButton';
+import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
 import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { TurnOrder } from 'components/players/TurnOrder';
 import { Step, type StepProps } from 'components/steps/Step';
-import { Instruction } from 'components/text/Instruction';
 import { StepTitle } from 'components/text/StepTitle';
 import { ViewIf } from 'components/views/ViewIf';
 // Internal
-import type { ClientCard, SubmitPlayCardPayload, Teller } from './utils/types';
+import type { ClientCard, Teller } from './utils/types';
+import { useNextStepDuration } from './utils/hooks';
+import { OUTCOME } from './utils/constants';
 import { TellerBoard } from './components/TellerBoard';
-import { BankClient } from './components/BankClient';
-import { DrawDecksModal } from './components/DrawDecksModal';
 import { PeopleOrder } from './components/PeopleOrder';
+import { MyHand } from './components/MyHand';
 
 type StepAnimatePreviousActionProps = {
   players: GamePlayers;
@@ -32,105 +26,105 @@ type StepAnimatePreviousActionProps = {
   goToNextStep: () => void;
   isTheActivePlayer: boolean;
   previousPlayer: GamePlayer;
-  onSubmitCard: (payload: SubmitPlayCardPayload) => void;
+  cardWidth: number;
+  turnOrder: TurnOrder;
+  outcome: string;
+  round: GameRound;
+  isNewRound: boolean;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepAnimatePreviousAction({
   announcement,
+  players,
   tellers,
   deckDict,
   user,
-  isTheActivePlayer,
-  onSubmitCard,
   drawDeck,
+  isTheActivePlayer,
+  previousPlayer,
+  goToNextStep,
+  cardWidth,
+  turnOrder,
+  outcome,
+  round,
+  isNewRound,
 }: StepAnimatePreviousActionProps) {
-  const { isLoading } = useLoading();
-  const [tellerId, setTellerId] = useState<string | null>(null);
-  const [cardId, setCardId] = useState<string | null>(null);
-  const cardWidth = useCardWidth(8, { maxWidth: 96 });
-
   const tellersList = Object.values(tellers);
+  const duration = useNextStepDuration(tellersList);
 
   return (
     <Step
       fullWidth
       announcement={announcement}
     >
-      <StepTitle>
-        <Translate
-          pt={<>?</>}
-          en={<>?</>}
-        />
+      <StepTitle size="medium">
+        <ViewIf condition={isNewRound}>
+          <Translate
+            pt={<>É um novo dia no banco...</>}
+            en={<>It's a new day at the bank...</>}
+          />
+        </ViewIf>
+
+        <ViewIf condition={!isNewRound}>
+          {previousPlayer ? (
+            <Translate
+              pt={<>E isso que acontece...</>}
+              en={<>And this is what happens...</>}
+            />
+          ) : (
+            <Translate
+              pt={<>É um calmo dia no banco...</>}
+              en={<>It's a calm day at the bank...</>}
+            />
+          )}
+        </ViewIf>
       </StepTitle>
 
-      <Instruction contained>
-        <Translate
-          pt={<>?</>}
-          en={<>?</>}
+      {tellersList.map((teller) => (
+        <TellerBoard
+          key={`${teller.id}-${previousPlayer?.id}`}
+          teller={teller}
+          deckDict={deckDict}
+          cardWidth={cardWidth}
+          animate
         />
-      </Instruction>
+      ))}
 
-      <TellerBoard
-        teller={tellersList[0]}
-        deckDict={deckDict}
-        cardWidth={cardWidth}
-        onSelectTeller={cardId ? setTellerId : undefined}
-      />
-      <TellerBoard
-        teller={tellersList[1]}
-        deckDict={deckDict}
-        cardWidth={cardWidth}
-        onSelectTeller={cardId ? setTellerId : undefined}
-      />
-      <TellerBoard
-        teller={tellersList[2]}
-        deckDict={deckDict}
-        cardWidth={cardWidth}
-        onSelectTeller={cardId ? setTellerId : undefined}
-      />
+      {outcome !== OUTCOME.END_ROUND ? (
+        <TimedButton
+          type="primary"
+          duration={duration}
+          disabled
+          onExpire={() => goToNextStep()}
+        >
+          <Translate
+            pt="Continuando em..."
+            en="Continuing in..."
+          />
+        </TimedButton>
+      ) : (
+        <HostNextPhaseButton
+          withWaitingTimeBar
+          autoTriggerTime={12}
+          round={round}
+        />
+      )}
 
-      <DrawDecksModal
-        open={!!tellerId && !!cardId}
-        onClose={() => setTellerId(null)}
-        onSubmitCard={onSubmitCard}
+      <MyHand
+        user={user}
         deckDict={deckDict}
+        isTheActivePlayer={isTheActivePlayer}
+        cardWidth={cardWidth}
         drawDeck={drawDeck}
-        cardWidth={cardWidth}
-        selectedCardId={cardId}
-        selectedTellerId={tellerId}
       />
-
-      <Instruction contained>
-        My hand
-        <Flex gap={6}>
-          {user?.hand?.map((cardId: string) => (
-            <Fragment key={cardId}>
-              <ViewIf condition={!isTheActivePlayer}>
-                <BankClient
-                  cardId={cardId}
-                  deckDict={deckDict}
-                  cardWidth={cardWidth}
-                />
-              </ViewIf>
-
-              <ViewIf condition={isTheActivePlayer}>
-                <ImageCardButton
-                  cardId={deckDict[cardId].imageId}
-                  onClick={() => setCardId(cardId)}
-                >
-                  <BankClient
-                    cardId={cardId}
-                    deckDict={deckDict}
-                    cardWidth={cardWidth}
-                  />
-                </ImageCardButton>
-              </ViewIf>
-            </Fragment>
-          ))}
-        </Flex>
-      </Instruction>
 
       <PeopleOrder />
+
+      <TurnOrder
+        players={players}
+        order={turnOrder}
+        activePlayerId={previousPlayer?.id || ''}
+      />
     </Step>
   );
 }

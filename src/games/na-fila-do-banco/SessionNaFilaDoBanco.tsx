@@ -4,20 +4,23 @@ import type { GameState } from 'types/game';
 import { GAME_COLLECTION } from 'utils/constants';
 // Components
 import { PhaseError } from 'components/phases/PhaseError';
-import { PhasePlaceholder } from 'components/phases/PhasePlaceholder';
 import { Session } from 'components/session/Session';
 // Internal
 import { NA_FILA_DO_BANCO_PHASES } from './utils/constants';
 import { PhaseCardPlay } from './PhaseCardPlay';
+import { PhaseRoundResolution } from './PhaseRoundResolution';
+import { PhaseGameOver } from './PhaseGameOver';
+// Sass
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   switch (state.phase) {
     case NA_FILA_DO_BANCO_PHASES.CARD_PLAY:
       return PhaseCardPlay;
     case NA_FILA_DO_BANCO_PHASES.ROUND_RESOLUTION:
-      return PhasePlaceholder;
+      return PhaseRoundResolution;
     case NA_FILA_DO_BANCO_PHASES.GAME_OVER:
-      return PhasePlaceholder;
+      return PhaseGameOver;
     default:
       return PhaseError;
   }

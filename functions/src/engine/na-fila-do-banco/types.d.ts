@@ -14,9 +14,14 @@ export interface Teller {
   imageId: string;
   capacity: number[];
   doublers: string[];
-  previousQueue: string[];
   queue: string[];
-  nextQueue: string[];
+  lastEvent: {
+    eventId: string;
+    playedCardId: string;
+    effectType: string;
+    // ADD THIS: The snapshot of the queue right before this event
+    queueBeforeEvent: string[]; // (e.g., ['A', 'B'])
+  } | null;
 }
 
 export interface NaFilaDoBancoStore extends DefaultStore {

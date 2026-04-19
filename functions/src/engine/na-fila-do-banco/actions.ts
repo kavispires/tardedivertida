@@ -28,9 +28,9 @@ export const handleSubmitCard = async (
     actionText: 'submit card to teller',
     shouldReady: true,
     change: {
-      cardId,
-      tellerId,
-      newCardId,
+      selectedTellerId: tellerId,
+      selectedCardId: cardId,
+      selectedNewCardId: newCardId,
     },
     nextPhaseFunction: getNextPhase,
   });

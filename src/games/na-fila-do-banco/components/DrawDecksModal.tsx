@@ -1,13 +1,17 @@
+import clsx from 'clsx';
+import { useState } from 'react';
 // Ant Design Resources
-import { Modal } from 'antd';
+import { Flex, Modal, Typography } from 'antd';
 // Components
+import { SendButton } from 'components/buttons/SendButton';
 import { ImageCard } from 'components/image-cards/ImageCard';
 import { ImageCardButton } from 'components/image-cards/ImageCardButton';
 import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { RuleInstruction } from 'components/text/RuleInstruction';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import type { ClientCard, SubmitPlayCardPayload } from '../utils/types';
+import { ClientHighlight, DeckColorHighlight } from './Highlights';
 
 type DrawDecksModalProps = {
   open: boolean;
@@ -33,6 +37,12 @@ export function DrawDecksModal({
   const card1 = drawDeck[0];
   const card2 = drawDeck[1];
   const card3 = drawDeck[2];
+  const noCardsAnymore = !card1 && !card2 && !card3;
+  const [newCardId, setNewCardId] = useState<string | null>(null);
+
+  const card = deckDict[selectedCardId ?? ''];
+  const cardType = card?.type;
+  const cardColor = card?.color;
 
   return (
     <Modal
@@ -44,31 +54,72 @@ export function DrawDecksModal({
       }
       open={open}
       onCancel={onClose}
-      footer={null}
+      footer={
+        <Flex justify="flex-end">
+          <SendButton
+            onClick={() => {
+              onSubmitCard({
+                cardId: selectedCardId ?? '',
+                tellerId: selectedTellerId ?? '',
+                newCardId: newCardId ?? '',
+              });
+              onClose();
+            }}
+            disabled={noCardsAnymore ? false : !newCardId || !selectedTellerId || !selectedCardId}
+          >
+            <Translate
+              pt="Enviar"
+              en="Submit"
+            />
+          </SendButton>
+        </Flex>
+      }
     >
-      <RuleInstruction
-        type="action"
-        className="m-0"
-      >
+      <Typography.Paragraph>
         <Translate
-          pt="Selecione uma carta nova para sua mão. Aqui você vê qual baralho (jogador) a carta pertence, mas não sabe qual o tipo de cliente ela é, escolha com sabedoria."
-          en="Select a new card for your hand. Here you can see which player's deck the card belongs to, but you don't know the type of client it is, choose wisely."
+          pt={
+            <>
+              Você selecionou <ClientHighlight clientId={cardType ?? ''} /> do baralho{' '}
+              <DeckColorHighlight color={cardColor ?? ''} /> para o{' '}
+              <TextHighlight>Caixa {selectedTellerId}</TextHighlight>.
+            </>
+          }
+          en={
+            <>
+              You selected <ClientHighlight clientId={cardType ?? ''} /> from the{' '}
+              <DeckColorHighlight color={cardColor ?? ''} /> deck for{' '}
+              <TextHighlight>Teller {selectedTellerId}</TextHighlight>.
+            </>
+          }
         />
-      </RuleInstruction>
+      </Typography.Paragraph>
+
+      <Typography.Paragraph>
+        {noCardsAnymore ? (
+          <Translate
+            pt="O baralho acabou, não há mais cartas para escolher. Simplesmente prossiga."
+            en="The deck is empty, there are no more cards to choose. Simply proceed."
+          />
+        ) : (
+          <Translate
+            pt="Selecione uma carta nova para sua mão. Aqui você vê qual baralho (jogador) a carta pertence, mas não sabe qual o tipo de cliente ela é, escolha com sabedoria."
+            en="Select a new card for your hand. Here you can see which player's deck the card belongs to, but you don't know the type of client it is, choose wisely."
+          />
+        )}
+      </Typography.Paragraph>
 
       <SpaceContainer>
         {card1 && (
           <ImageCardButton
             cardId={`nfdb-${deckDict[drawDeck[0]].color}-back`}
             throttle
-            onClick={() =>
-              onSubmitCard({ cardId: drawDeck[0], tellerId: selectedTellerId ?? '', newCardId: card1 })
-            }
+            onClick={() => setNewCardId(drawDeck[0])}
             buttonPosition="bottom"
           >
             <ImageCard
               cardId={`nfdb-${deckDict[drawDeck[0]].color}-back`}
               cardWidth={cardWidth}
+              className={clsx({ 'f-selected-card': newCardId === drawDeck[0] })}
             />
           </ImageCardButton>
         )}
@@ -76,14 +127,13 @@ export function DrawDecksModal({
           <ImageCardButton
             cardId={`nfdb-${deckDict[drawDeck[1]].color}-back`}
             throttle
-            onClick={() =>
-              onSubmitCard({ cardId: drawDeck[1], tellerId: selectedTellerId ?? '', newCardId: card2 })
-            }
+            onClick={() => setNewCardId(drawDeck[1])}
             buttonPosition="bottom"
           >
             <ImageCard
               cardId={`nfdb-${deckDict[drawDeck[1]].color}-back`}
               cardWidth={cardWidth}
+              className={clsx({ 'f-selected-card': newCardId === drawDeck[1] })}
             />
           </ImageCardButton>
         )}
@@ -91,14 +141,13 @@ export function DrawDecksModal({
           <ImageCardButton
             cardId={`nfdb-${deckDict[drawDeck[2]].color}-back`}
             throttle
-            onClick={() =>
-              onSubmitCard({ cardId: drawDeck[2], tellerId: selectedTellerId ?? '', newCardId: card3 })
-            }
+            onClick={() => setNewCardId(drawDeck[2])}
             buttonPosition="bottom"
           >
             <ImageCard
               cardId={`nfdb-${deckDict[drawDeck[2]].color}-back`}
               cardWidth={cardWidth}
+              className={clsx({ 'f-selected-card': newCardId === drawDeck[2] })}
             />
           </ImageCardButton>
         )}

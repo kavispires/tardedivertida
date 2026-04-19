@@ -1,9 +1,17 @@
 // functions/src/engine/na-fila-do-banco/setup.ts
-import { CHARACTER_TYPES, NA_FILA_DO_BANCO_PHASES, OUTCOME, TOTAL_ROUNDS } from './constants';
-import { keyBy, shuffle } from 'lodash';
+import {
+  CHARACTER_TYPES,
+  CUT_IN_HIERARCHY,
+  NA_FILA_DO_BANCO_PHASES,
+  ONLINE_TRIGGER_POINTS,
+  OUTCOME,
+  TELLER_EFFECT_TYPE,
+  TOTAL_ROUNDS,
+} from './constants';
+import { keyBy, orderBy, shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
-import type { ClientCard, FirebaseStateData, FirebaseStoreData } from './types';
+import type { ClientCard, FirebaseStateData, FirebaseStoreData, Teller } from './types';
 import { buildDeck, buildTellers } from './helpers';
 import { GAME_NAMES } from '../../utils/constants';
 
@@ -18,7 +26,7 @@ export const prepareSetupPhase = async (
   const playerCount = utils.players.getPlayerCount(players);
 
   const achievements = utils.achievements.setup(players, {
-    kids: 0,
+    kid: 0,
     retiree: 0,
     veteran: 0,
     motherBaby: 0,
@@ -28,12 +36,16 @@ export const prepareSetupPhase = async (
     online: 0,
     ownColor: 0,
     neutral: 0,
+    cutIns: 0,
+    gotCut: 0,
+    stays: 0,
   });
 
   return {
     update: {
       store: {
         achievements,
+        gallery: [],
       },
       state: {
         phase: NA_FILA_DO_BANCO_PHASES.SETUP,
@@ -52,7 +64,7 @@ export const prepareSetupPhase = async (
 };
 
 export const prepareCardPlayPhase = async (
-  _store: FirebaseStoreData,
+  store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ) => {
@@ -68,14 +80,8 @@ export const prepareCardPlayPhase = async (
     const deck: UID[] = shuffle(Object.keys(deckDict));
     // Build tellers (use the first 3 capacity for 3 players, 4 for 4 players and 5 for 5 players)
     const tellers = buildTellers(playerCount, round.current);
-    utils.helpers.print(deckDict);
     const deckWithoutKids = deck.filter((cardId) => !cardId.includes(CHARACTER_TYPES.KID));
     const kidCards = deck.filter((cardId) => cardId.includes(CHARACTER_TYPES.KID));
-    utils.helpers.print(deckWithoutKids);
-    console.log('total without kids', deckWithoutKids.length, 'expected', (playerCount + 1) * 6);
-
-    utils.helpers.print({ 'total kids': kidCards.length });
-    console.log('total kids', kidCards.length, 'expected', 7);
 
     // Each player gets 2 cards in their hand at the start of the game, it cannot be a KID
     for (let i = 0; i < playerCount; i++) {
@@ -108,7 +114,8 @@ export const prepareCardPlayPhase = async (
         }
       });
 
-      console.log('Cards in hand', players[playerId].hand);
+      // Reset online trigger count for the new round
+      players[playerId].onlineTriggerCount = 0;
     }
 
     // Each teller gets a card in front of them to start the line, it cannot be a KID
@@ -116,7 +123,12 @@ export const prepareCardPlayPhase = async (
       const cardId = deckWithoutKids.shift();
       if (cardId) {
         teller.queue.push(cardId);
-        teller.nextQueue.push(cardId);
+        teller.lastEvent = {
+          eventId: Date.now().toString(),
+          playedCardId: cardId,
+          effectType: TELLER_EFFECT_TYPE.STAY,
+          queueBeforeEvent: [],
+        };
 
         const index = deckWithoutKids.indexOf(cardId);
         if (index > -1) {
@@ -128,8 +140,6 @@ export const prepareCardPlayPhase = async (
     // Make a draw deck with the remaining cards, it will have all the KID cards.
     const drawDeck = shuffle([...deckWithoutKids, ...kidCards]);
 
-    console.log('Initial draw deck', drawDeck);
-
     utils.players.readyPlayers(players, nextActivePlayerId);
 
     return {
@@ -139,7 +149,7 @@ export const prepareCardPlayPhase = async (
           round,
           activePlayerId: nextActivePlayerId,
           tellers,
-          drawDeck,
+          drawDeck: drawDeck,
           outcome: OUTCOME.CONTINUE,
           players,
           previousPlayerId,
@@ -149,15 +159,148 @@ export const prepareCardPlayPhase = async (
   }
   // CONTINUE ROUND: continue vs no deck
   const drawDeck: UID[] = state.drawDeck || [];
-  const isDeckEmpty = drawDeck.length <= 1; // TODO: Fix, it should end when players have 1 card in hand
+  const deckDict: Dictionary<ClientCard> = state.deckDict || {};
+
+  const tellers: Dictionary<Teller> = state.tellers || {};
+
+  // Reset all tellers events
+  Object.values(tellers).forEach((teller) => {
+    teller.lastEvent = null;
+  });
 
   // Get played data for current player and update deck and tellers.
-  // Apply cut-in rules based on the card, KID rule, or ONLINE rule if applicable, in this order
-  // Cut-in rules are based on the hierarchy defined in CUT_IN_HIERARCHY, if the card played can cut in front of any card in the line, it does so. If it cannot cut in front of any card, it goes to the end of the line.
-  // KID rule: When a kid is played in a line with another card of the same color as the kid, that card goes to the end of the line next to the kid.
-  // ONLINE "we can do this online": If 3 people of the same type are in the same line, they are removed from the line and placed in the discard pile. The player who triggered it gets 1 points. (2 points if it was a set of KIDs).
+  const selectedTellerId: UID = players[previousPlayerId]?.selectedTellerId;
+  const selectedCardId: UID = players[previousPlayerId]?.selectedCardId;
+  const selectedNewCardId: UID | null = players[previousPlayerId]?.selectedNewCardId || null;
+  const playedCard = deckDict[selectedCardId];
 
-  if (isDeckEmpty) {
+  // Handle Achievements
+  switch (playedCard?.type) {
+    case CHARACTER_TYPES.KID:
+      utils.achievements.increase(store, previousPlayerId, 'kid', 1);
+      break;
+    case CHARACTER_TYPES.RETIREE:
+      utils.achievements.increase(store, previousPlayerId, 'retiree', 1);
+      break;
+    case CHARACTER_TYPES.VETERAN:
+      utils.achievements.increase(store, previousPlayerId, 'veteran', 1);
+      break;
+    case CHARACTER_TYPES.MOTHER:
+      utils.achievements.increase(store, previousPlayerId, 'motherBaby', 1);
+      break;
+    case CHARACTER_TYPES.BUSINESSMAN:
+      utils.achievements.increase(store, previousPlayerId, 'businessman', 1);
+      break;
+    case CHARACTER_TYPES.STUDENT:
+      utils.achievements.increase(store, previousPlayerId, 'student', 1);
+      break;
+    case CHARACTER_TYPES.MOTOBOY:
+      utils.achievements.increase(store, previousPlayerId, 'motoboy', 1);
+      break;
+    default:
+      break;
+  }
+  if (playedCard?.playerId === previousPlayerId) {
+    utils.achievements.increase(store, previousPlayerId, 'ownColor', 1);
+  }
+  if (playedCard?.playerId === 'neutral') {
+    utils.achievements.increase(store, previousPlayerId, 'neutral', 1);
+  }
+
+  tellers[selectedTellerId].lastEvent = {
+    eventId: Date.now().toString(),
+    playedCardId: selectedCardId,
+    effectType: TELLER_EFFECT_TYPE.STAY,
+    queueBeforeEvent: [...tellers[selectedTellerId].queue], // Capture the state of the queue before the event
+  };
+
+  // Determine the effect type.
+  let queue = tellers[selectedTellerId].queue;
+  // If KID: When a kid is played in a line with another card of the same color as the kid, that card goes to the end of the line next to the kid.
+  if (playedCard.type === CHARACTER_TYPES.KID) {
+    const color = playedCard.color;
+    const sameColorCardIndex = queue.findIndex((cardId) => deckDict[cardId]?.color === color);
+    queue.push(selectedCardId); // The kid is always added to the end of the line
+    // If there's another card of the same color, bring the adult next to the kid
+    if (sameColorCardIndex !== -1) {
+      const [sameColorCardId] = queue.splice(sameColorCardIndex, 1);
+      queue.push(sameColorCardId);
+      tellers[selectedTellerId].lastEvent.effectType = TELLER_EFFECT_TYPE.BRING_NEXT_TO_ME;
+    }
+  }
+
+  // If CLIENT: Cut-in rules are based on the hierarchy defined in CUT_IN_HIERARCHY, if the card played can cut in front of any card in the line, it does so.
+  if (playedCard.type !== CHARACTER_TYPES.KID) {
+    const cutInIndex = queue.findIndex((cardId) => {
+      if (!deckDict[cardId]) return false;
+      const cardType = deckDict[cardId].type;
+      return CUT_IN_HIERARCHY[playedCard.type].includes(cardType);
+    });
+    if (cutInIndex !== -1) {
+      const cardGettingCut = deckDict[queue[cutInIndex + 1]];
+      // Insert selected card in front of cutInIndex, keep the cut card there and move the rest of the line back
+      const afterCutInCards = queue.splice(cutInIndex); // Cards that will be after the
+      queue.push(selectedCardId);
+      queue.push(...afterCutInCards);
+
+      tellers[selectedTellerId].lastEvent.effectType = TELLER_EFFECT_TYPE.CUT_IN_FRONT;
+      utils.achievements.increase(store, previousPlayerId, 'cutIns', 1);
+
+      if (cardGettingCut && cardGettingCut.playerId !== 'neutral') {
+        utils.achievements.increase(store, cardGettingCut.playerId, 'gotCut', 1);
+      }
+    } else {
+      queue.push(selectedCardId);
+      utils.achievements.increase(store, previousPlayerId, 'stays', 1);
+    }
+  }
+
+  // Online effect: If 3 people of the same type are in the same line, remove them all
+  const typeCounts: Record<string, number> = {};
+  queue.forEach((cardId) => {
+    const cardType = deckDict[cardId]?.type;
+    if (cardType) {
+      typeCounts[cardType] = (typeCounts[cardType] || 0) + 1;
+    }
+  });
+
+  const onlineTriggeredTypes = Object.keys(typeCounts).filter((type) => typeCounts[type] >= 3);
+  if (onlineTriggeredTypes.length > 0) {
+    // Remove all cards of the triggered types from the queue
+    queue = queue.filter((cardId) => {
+      const cardType = deckDict[cardId]?.type;
+      return !onlineTriggeredTypes.includes(cardType || '');
+    });
+    tellers[selectedTellerId].lastEvent.effectType =
+      tellers[selectedTellerId].lastEvent.effectType === TELLER_EFFECT_TYPE.BRING_NEXT_TO_ME
+        ? TELLER_EFFECT_TYPE.BRING_NEXT_TO_ME_AND_REMOVE_THREE
+        : TELLER_EFFECT_TYPE.REMOVE_THREE;
+
+    players[previousPlayerId].onlineTriggerCount += 1;
+    utils.achievements.increase(store, previousPlayerId, 'online', 1);
+  }
+
+  // Update player hand
+  players[previousPlayerId].hand = players[previousPlayerId].hand.filter(
+    (cardId: UID) => cardId !== selectedCardId,
+  );
+  if (selectedNewCardId) {
+    players[previousPlayerId].hand.push(selectedNewCardId);
+    drawDeck.splice(drawDeck.indexOf(selectedNewCardId), 1);
+  }
+
+  const isDeckEmpty = drawDeck.length <= 1;
+  const doesNextActivePlayerHaveCards = players[nextActivePlayerId].hand.length > 1;
+
+  utils.players.removePropertiesFromPlayers(players, [
+    'selectedTellerId',
+    'selectedCardId',
+    'selectedNewCardId',
+  ]);
+
+  tellers[selectedTellerId].queue = queue;
+
+  if (isDeckEmpty && !doesNextActivePlayerHaveCards) {
     utils.players.unReadyPlayers(players);
 
     return {
@@ -167,41 +310,106 @@ export const prepareCardPlayPhase = async (
           players,
           outcome: OUTCOME.END_ROUND,
           previousPlayerId,
-          // no activePlayerId is updated
+          tellers,
+          drawDeck,
+          activePlayerId: nextActivePlayerId,
         },
       },
     };
   }
 
   // Define next player
-  utils.players.unReadyPlayers(players, nextActivePlayerId);
+  utils.players.readyPlayers(players, nextActivePlayerId);
 
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       state: {
         phase: NA_FILA_DO_BANCO_PHASES.CARD_PLAY,
         players,
         activePlayerId: nextActivePlayerId,
         previousPlayerId,
+        outcome: OUTCOME.CONTINUE,
+        tellers,
+        drawDeck,
       },
     },
   };
 };
 
 export const prepareRoundResolutionPhase = async (
-  _store: FirebaseStoreData,
-  _state: FirebaseStateData,
+  store: FirebaseStoreData,
+  state: FirebaseStateData,
   players: Players,
 ) => {
   utils.players.unReadyPlayers(players);
 
+  const gallery: UID[] = store.gallery || [];
+
+  // Gained points [Teller A, Teller B, Teller C, Online Triggers]
+  const scores = new utils.players.Scores(players, [0, 0, 0, 0]);
+
+  const deckDict: Dictionary<ClientCard> = state.deckDict || {};
+  const tellers: Dictionary<Teller> = state.tellers || {};
+
   // Perform scoring for each teller.
+  orderBy(Object.values(tellers), ['id'], ['asc']).forEach((teller, tellerIndex) => {
+    const { capacity, queue, doublers } = teller;
+
+    teller.lastEvent = {
+      eventId: Date.now().toString(),
+      playedCardId: '',
+      effectType: TELLER_EFFECT_TYPE.REMOVE_THREE,
+      queueBeforeEvent: [...queue],
+    };
+
+    // Award points for the capacity of the line.
+    teller.queue = teller.queue.slice(0, capacity.length); // Remove cards that exceed the teller's capacity
+
+    teller.queue.forEach((cardId, queueIndex) => {
+      const card = deckDict[cardId];
+      if (card) {
+        if (card.playerId === 'neutral') {
+          gallery.push(cardId);
+          return;
+        }
+
+        if (card.type === CHARACTER_TYPES.KID) {
+          return; // KID cards do not score points
+        }
+
+        const playerId = card.playerId;
+        scores.add(playerId, capacity[queueIndex], tellerIndex);
+        gallery.push(cardId);
+        if (doublers.includes(card.type)) {
+          scores.add(playerId, capacity[queueIndex], tellerIndex);
+        }
+      }
+    });
+  });
+
+  // Award points for online triggers
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    if (player.onlineTriggerCount > 0) {
+      scores.add(player.id, player.onlineTriggerCount * ONLINE_TRIGGER_POINTS, 3); // Each online trigger is worth 3 points
+    }
+  });
 
   return {
     update: {
+      store: {
+        gallery,
+      },
       state: {
         phase: NA_FILA_DO_BANCO_PHASES.ROUND_RESOLUTION,
         players,
+        tellers,
+        activePlayerId: state.previousPlayerId,
+        previousPlayerId: null,
+        outcome: OUTCOME.SETUP,
+        ranking: scores.rank(players),
       },
     },
   };
@@ -248,7 +456,8 @@ export const prepareGameOverPhase = async (
         gameEndedAt: Date.now(),
         winners,
         achievements,
-        gallery: store.gallery,
+        gallery: store.gallery || [],
+        deckDict: state.deckDict || {},
       },
     },
   };

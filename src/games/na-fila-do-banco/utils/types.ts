@@ -15,9 +15,14 @@ export interface Teller {
   imageId: string;
   capacity: number[];
   doublers: string[];
-  previousQueue: string[];
   queue: string[];
-  nextQueue: string[];
+  lastEvent: {
+    eventId: string;
+    playedCardId: string;
+    effectType: string;
+    // ADD THIS: The snapshot of the queue right before this event
+    queueBeforeEvent: string[]; // (e.g., ['A', 'B'])
+  } | null;
 }
 
 export type SubmitPlayCardPayload = {
@@ -30,25 +35,30 @@ export type SubmitPlayCardPayload = {
 };
 
 export type PhaseCardPlayState = {
+  activePlayerId: UID;
   deckDict: Dictionary<ClientCard>;
   drawDeck: UID[];
+  gameOrder: TurnOrder;
   tellers: Dictionary<Teller>;
   outcome: string;
-  activePlayerId: UID;
+  previousPlayerId: UID | null;
 };
 
 export type PhaseRoundResolutionState = {
+  activePlayerId: UID;
   deckDict: Dictionary<ClientCard>;
   drawDeck: UID[];
-  tellers: Dictionary<Teller>;
+  gameOrder: TurnOrder;
   outcome: string;
-  activePlayerId: UID;
+  previousPlayerId: null;
+  tellers: Dictionary<Teller>;
   ranking: GameRanking;
 };
 
 export type PhaseGameOverState = {
   winners: GamePlayer[];
   achievements: Achievement[];
-  gallery: unknown[];
+  deckDict: Dictionary<ClientCard>;
+  gallery: UID[];
   gameEndedAt: number;
 };

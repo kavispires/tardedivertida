@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "F",
   "gameName": "na-fila-do-banco",
-  "version": "0.0.11",
+  "version": "0.0.14",
   "release": "dev",
   "releaseDate": "0000-00-00",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Na Fila do Banco",
     "en": "In Line for the Bank"

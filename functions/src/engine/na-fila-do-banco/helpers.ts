@@ -1,12 +1,5 @@
 // functions/src/engine/na-fila-do-banco/helpers.ts
-import {
-  CARD_COLORS,
-  CHARACTER_TYPES,
-  CUT_IN_HIERARCHY,
-  NA_FILA_DO_BANCO_PHASES,
-  OUTCOME,
-  TELLERS,
-} from './constants';
+import { CARD_COLORS, CHARACTER_TYPES, NA_FILA_DO_BANCO_PHASES, OUTCOME, TELLERS } from './constants';
 import type { ClientCard, Teller } from './types';
 import { shuffle } from 'lodash';
 // Utils
@@ -55,8 +48,11 @@ export const buildDeck = (players: Players): ClientCard[] => {
 
   utils.players.getListOfPlayers(players).forEach((player) => {
     decksCount++;
+    const color = CARD_COLORS[decksCount];
+    player.deckColor = color;
+    player.onlineTriggerCount = 0;
+
     orderedCharacterTypes.forEach((type, index) => {
-      const color = CARD_COLORS[decksCount];
       deck.push({
         id: `${player.id}-${type}-${color}`,
         type,
@@ -69,7 +65,7 @@ export const buildDeck = (players: Players): ClientCard[] => {
         // For 2 players, add an extra card of each type for each player to make the game more dynamic
         decksCount++;
         deck.push({
-          id: `${player.id}-${type}-${color}`,
+          id: `${player.id}-${type}-${color}-2`,
           type,
           playerId: player.id,
           color,
@@ -142,52 +138,17 @@ export const getDistantColors = (players: Players, minDistance = 2): string[] =>
 
 export const buildTellers = (playerCount: number, currentRound: number): Dictionary<Teller> => {
   const tellers: Dictionary<Teller> = {};
-  const cuttingCapacity = 5 - (playerCount === 2 ? 4 : playerCount); // For 2 players, use the first 4 capacities to make the game more dynamic
+  const cuttingCapacity = [0, 0, 3, 3, 4, 5][playerCount]; // The number of capacities to remove from the end of the array based on player count, to adjust the game difficulty. For example, with 3 players, it removes the last 3 capacities, which are the higher ones, to make the game easier with less players
   TELLERS.forEach((teller) => {
     tellers[teller.id] = {
       id: teller.id,
       imageId: `nfdb-teller-${teller.id}`,
       type: teller.type,
       doublers: teller.doublers,
-      capacity: teller.capacitiesPerRound[currentRound].slice(0, cuttingCapacity), // It removes the end of the array, which has the higher capacities, to adjust to the player count
-      previousQueue: [],
+      capacity: teller.capacitiesPerRound[currentRound].slice(0, Math.max(3, cuttingCapacity)), // It removes the end of the array, which has the higher capacities, to adjust to the player count
       queue: [],
-      nextQueue: [],
+      lastEvent: null, // Initialize lastEvent as null, it will be updated with the snapshot of the queue before the event when a card is played in this teller
     };
   });
   return tellers;
-};
-
-/**
- * Determines the correct index for a card to be inserted based on the cut-in hierarchy.
- */
-export const determineQueueIndex = (queue: ClientCard[], newCard: ClientCard): number => {
-  const targetToCut = CUT_IN_HIERARCHY[newCard.type];
-
-  // Find the first instance of the target they are allowed to cut
-  const targetIndex = queue.findIndex((card) => card.type === targetToCut);
-
-  if (targetIndex !== -1) {
-    return targetIndex;
-  }
-
-  // If no target to cut, go to the end of the line
-  return queue.length;
-};
-
-/**
- * Checks if 3 identical characters are together and removes them (Go to App rule).
- */
-export const checkAndRemoveAppUsers = (queue: ClientCard[]): ClientCard[] => {
-  if (queue.length < 3) return queue;
-
-  for (let i = 0; i <= queue.length - 3; i++) {
-    if (queue[i].type === queue[i + 1].type && queue[i + 1].type === queue[i + 2].type) {
-      // Remove the 3 identical characters
-      const newQueue = [...queue];
-      newQueue.splice(i, 3);
-      return checkAndRemoveAppUsers(newQueue); // Re-check in case a new match formed
-    }
-  }
-  return queue;
 };
