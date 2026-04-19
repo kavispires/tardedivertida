@@ -1,5 +1,4 @@
 export * from './ActionAlertIcon';
-export * from './DeskIcon';
 export * from './AgeIcon';
 export * from './AlarmClockIcon';
 export * from './AlertIcon';
@@ -101,6 +100,7 @@ export * from './DailyWordGameIcon';
 export * from './DeathIcon';
 export * from './DeckIcon';
 export * from './DefenseIcon';
+export * from './DeskIcon';
 export * from './DetectiveIcon';
 export * from './DiagramIcon';
 export * from './DiceIcon';
