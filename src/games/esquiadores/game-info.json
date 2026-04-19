@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "esquiadores",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "release": "stable",
   "releaseDate": "2025-01-20",
   "available": true,
@@ -33,7 +33,7 @@
       "Each round, the Skier makes a series of choices that determine their path down the mountain.",
       "Meanwhile, the other players receive a set number of chips to bet on which lodge the Skier will end up at.",
       "You earn points for each chip you place on the correct lodge, and you may have opportunities to adjust your bets along the way.",
-      "At the same time, the Skier bets on which players they want to share points with.",
+      "At the same time, the Skier bets on which lodge will attract the most total chips from all players, earning points for predicting the most popular lodge.",
       "The game ends when all players have taken a turn as the Skier."
     ],
     "pt": [
@@ -41,7 +41,7 @@
       "A cada rodada, o Esquiador toma uma série de decisões que determinam seu caminho pela montanha.",
       "Enquanto isso, os outros jogadores recebem uma quantidade de fichas para apostar em qual cabana o Esquiador vai terminar.",
       "Você ganha pontos para cada ficha colocada na cabana correta e pode ter chances de ajustar suas apostas ao longo da descida.",
-      "Ao mesmo tempo, o Esquiador aposta em quais jogadores deseja compartilhar pontos.",
+      "Ao mesmo tempo, o Esquiador aposta em qual cabana atrairá o maior número total de fichas de todos os jogadores, ganhando pontos por prever a cabana mais popular.",
       "O jogo termina quando todos os jogadores tiverem sido o Esquiador."
     ]
   },

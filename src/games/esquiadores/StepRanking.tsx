@@ -40,8 +40,8 @@ export function StepRanking({ players, ranking, goToPreviousStep, round }: StepR
         />,
         <Translate
           key="4"
-          pt="Esquiador: pontos por cada jogador não apostado"
-          en="Skier: points for each player not betted on"
+          pt="Pontos pelas cabanas sem nenhuma aposta"
+          en="Points for lodges without any bets"
         />,
       ]}
     >

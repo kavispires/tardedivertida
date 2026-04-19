@@ -1,13 +1,10 @@
-import { orderBy } from 'lodash';
-import { useMemo } from 'react';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/game';
+import type { GamePlayer } from 'types/game';
 // Icons
 import { LodgeIcon } from 'icons/LodgeIcon';
 // Components
 import { Translate } from 'components/language/Translate';
 import { TitledContainer } from 'components/layout/TitledContainer';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 // Internal
 import type { Lodge } from '../utils/types';
 import { LODGE_COLORS } from '../utils/constants';
@@ -51,21 +48,17 @@ export function CurrentBets({ lodges, user, betType }: CurrentBetsProps) {
 }
 
 type CurrentSkierBetsProps = {
+  /**
+   * Current user player object
+   */
   user: GamePlayer;
-  players: GamePlayers;
+  /**
+   * Array of lodge objects
+   */
+  lodges: Lodge[];
 };
 
-export function CurrentSkierBets({ players, user }: CurrentSkierBetsProps) {
-  const playersList = useMemo(
-    () =>
-      orderBy(
-        Object.values(players).filter((player) => player.id !== user.id),
-        ['name'],
-        ['asc'],
-      ),
-    [players, user.id],
-  );
-
+export function CurrentSkierBets({ lodges, user }: CurrentSkierBetsProps) {
   return (
     <TitledContainer
       title={
@@ -76,17 +69,21 @@ export function CurrentSkierBets({ players, user }: CurrentSkierBetsProps) {
       }
     >
       <div className="skier-bets">
-        {playersList.map((player) => (
+        {lodges.map((lodge) => (
           <div
-            key={player.id}
+            key={lodge.id}
             className="lodge"
           >
             <div className="lodge__icon">
-              <PlayerAvatarName player={player} />
+              <LodgeIcon
+                width={48}
+                color={LODGE_COLORS[lodge.id]}
+              />
+              <span className="lodge__number">{lodge.id + 1}</span>
             </div>
 
             <div className="lodge__bets">
-              {user.skierBets !== undefined && (
+              {user.skiersBets !== undefined && (
                 <div className="lodge__bet">
                   <BettingChipValue
                     title={
@@ -95,7 +92,7 @@ export function CurrentSkierBets({ players, user }: CurrentSkierBetsProps) {
                         en="Initial Bets"
                       />
                     }
-                    value={user.skierBets[player.id] ?? 0}
+                    value={user.skiersBets[lodge.id] ?? 0}
                   />
                 </div>
               )}
@@ -108,7 +105,7 @@ export function CurrentSkierBets({ players, user }: CurrentSkierBetsProps) {
                         en="Bonus Bets"
                       />
                     }
-                    value={user.skiersBoost[player.id] ?? 0}
+                    value={user.skiersBoost[lodge.id] ?? 0}
                   />
                 </div>
               )}

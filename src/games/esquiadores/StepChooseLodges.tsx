@@ -4,6 +4,7 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 import { useMock } from 'hooks/useMock';
 // Components
 import { Translate } from 'components/language/Translate';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TurnOrder } from 'components/players/TurnOrder';
 import { Step, type StepProps } from 'components/steps/Step';
 import { RuleInstruction } from 'components/text/RuleInstruction';
@@ -16,21 +17,54 @@ import { Mountain } from './components/Mountain';
 import { Lodges } from './components/Lodges';
 import { SkierBets } from './components/SkierBets';
 
-type StepChoosePlayersProps = {
+type StepChooseLodgesProps = {
+  /**
+   * All players in the game
+   */
   players: GamePlayers;
+  /**
+   * Current user player object
+   */
   user: GamePlayer;
+  /**
+   * Turn order array
+   */
   turnOrder: GameOrder;
+  /**
+   * The active skier player
+   */
   skier: GamePlayer;
+  /**
+   * Mountain dilemmas array
+   */
   mountain: PhaseBetsState['mountain'];
+  /**
+   * Array of lodges
+   */
   lodges: PhaseBetsState['lodges'];
+  /**
+   * Callback to submit bets
+   */
   onSubmitBets: (payload: SubmitBetsPayload) => void;
+  /**
+   * Type of bet (initial, boost, final)
+   */
   betType: string;
+  /**
+   * Animation start position
+   */
   animateFrom: number;
+  /**
+   * Animation direction
+   */
   animateTo: 'left' | 'right' | null;
-  playerBetType: 'skiersBets' | 'skiersBoost';
+  /**
+   * Type of skier bet (skiersBets or skiersBoost)
+   */
+  skierBetType: 'skiersBets' | 'skiersBoost';
 } & Pick<StepProps, 'announcement'>;
 
-export function StepChoosePlayers({
+export function StepChooseLodges({
   announcement,
   players,
   turnOrder,
@@ -42,11 +76,11 @@ export function StepChoosePlayers({
   betType,
   animateFrom,
   animateTo,
-  playerBetType,
-}: StepChoosePlayersProps) {
+  skierBetType,
+}: StepChooseLodgesProps) {
   // Dev: Mock bets
   useMock(() => {
-    onSubmitBets({ bets: mockSkierBets(user.chips ?? 0, players, skier.id), betType: playerBetType });
+    onSubmitBets({ bets: mockSkierBets(user.chips ?? 0), betType: skierBetType });
   });
 
   return (
@@ -56,8 +90,8 @@ export function StepChoosePlayers({
     >
       <StepTitle>
         <Translate
-          pt="Escolha jogadores"
-          en="Choose players"
+          pt="Escolha cabanas"
+          en="Choose lodges"
         />
       </StepTitle>
 
@@ -65,18 +99,25 @@ export function StepChoosePlayers({
         <Translate
           pt={
             <>
-              Como esquiador você aposta ganha pontos baseado nos pontos que os outros jogadores ganharem.
+              Como esquiador você aposta em qual cabana terá o maior número total de fichas apostadas por
+              todos os jogadores.
               <br />
-              Você tem <ChipsHighlight>{user.chips}</ChipsHighlight> fichas para apostar em quais jogadores
-              você quer compartilhar pontos.
+              Você tem <ChipsHighlight>{user.chips}</ChipsHighlight> fichas para apostar. Cada ficha vale{' '}
+              <PointsHighlight>1 ponto</PointsHighlight> se você apostar na cabana mais popular.
+              <br />
+              <strong>BÔNUS:</strong> Você também ganha <PointsHighlight>1 ponto</PointsHighlight> para cada
+              cabana que você não coloca nenhuma ficha durante o jogo.
             </>
           }
           en={
             <>
-              As a skier you bet and win points based on the points other players win.
+              As a skier you bet on which lodge will have the most total chips bet by all players.
               <br />
-              You have <ChipsHighlight>{user.chips}</ChipsHighlight> chips to bet on which players you want to
-              share points with.
+              You have <ChipsHighlight>{user.chips}</ChipsHighlight> chips to bet. Each chip is worth{' '}
+              <PointsHighlight>1 point</PointsHighlight> if you bet on the most popular lodge.
+              <br />
+              <strong>BONUS:</strong> You also earn <PointsHighlight>1 point</PointsHighlight> for each lodge
+              you don't place any chips on during the game.
             </>
           }
         />
@@ -100,10 +141,10 @@ export function StepChoosePlayers({
 
       <SkierBets
         key={user.chips}
-        players={players}
+        lodges={lodges}
         user={user}
         onSubmitBets={onSubmitBets}
-        betType={playerBetType}
+        betType={skierBetType}
       />
 
       <TurnOrder

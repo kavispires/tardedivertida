@@ -242,7 +242,7 @@ Legend
 
 - Collection: `esquiadores`
 - Code: `E`
-- Rules: 🔘
+- Rules: ✅
 - Rules MD: 🔘
 - Rules Images: 🔘
 - Bots: 🔘
@@ -251,8 +251,8 @@ Legend
 - Phase Delegator Migration: ✅
 - PhaseProps Migration: ✅
 - Role-base View Migration: 🔘
-- Float Submit Migration: 🔘
-- Host Timer Bar Migration: 🔘
+- Float Submit Migration: ✅
+- Host Timer Bar Migration: ✅
 
 ## Escape Room
 

@@ -162,10 +162,8 @@ export const prepareStartingResultsPhase = async (
 
   // Add skier selections to mountain
   const isGoingLeftLevel1 = choices[0] === 'left';
-  const isGoingLeftLevel2 = choices[isGoingLeftLevel1 ? 1 : 2] === 'left';
-  const level3ChoiceIndex =
-    isGoingLeftLevel1 && isGoingLeftLevel2 ? 3 : isGoingLeftLevel1 || isGoingLeftLevel2 ? 4 : 5;
-  const isGoingLeftLevel3 = choices[level3ChoiceIndex] === 'left';
+  const isGoingLeftLevel2 = choices[1] === 'left';
+  const isGoingLeftLevel3 = choices[2] === 'left';
 
   mountain[0].direction = choices[0] as MountainDilemma['direction'];
   mountain[1].selected = isGoingLeftLevel1;
@@ -344,14 +342,16 @@ export const prepareResultsPhase = async (
   // Aggregate all bets per player
   aggregateBets(players, activeSkierId, BET_TYPES.FINAL);
 
-  // Aggregate skier player bets
-  const allPlayersBySkier = utils.players.getListOfPlayers(players, true, [activeSkierId]);
+  // Aggregate skier lodge bets (skiers now bet on lodges, not players)
   const skier = players[activeSkierId];
-  skier.bets = allPlayersBySkier.reduce((acc: Dictionary<number>, player) => {
-    acc[player.id] = 0;
-    if (player[BET_TYPES.INITIAL][player.id]) acc[player.id] += player[BET_TYPES.INITIAL][player.id];
-    if (player[BET_TYPES.BOOST][player.id]) acc[player.id] += player[BET_TYPES.BOOST][player.id];
-    if (player[BET_TYPES.FINAL][player.id]) acc[player.id] += player[BET_TYPES.FINAL][player.id];
+  skier.bets = lodges.reduce((acc: Dictionary<number>, lodge) => {
+    acc[lodge.id] = 0;
+    if (skier[SKIER_BET_TYPES.SKIERS_BETS]?.[lodge.id]) {
+      acc[lodge.id] += skier[SKIER_BET_TYPES.SKIERS_BETS][lodge.id];
+    }
+    if (skier[SKIER_BET_TYPES.SKIERS_BOOST]?.[lodge.id]) {
+      acc[lodge.id] += skier[SKIER_BET_TYPES.SKIERS_BOOST][lodge.id];
+    }
     return acc;
   }, {});
 

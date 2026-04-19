@@ -98,35 +98,44 @@ export const calculateScores = (
     utils.achievements.increase(store, player.id, 'lodges', lodges.length - lodgesWithoutBet);
   });
 
-  // Skier's points is based on their 5 betting chips. Each chip represents 20% of the selected player's betting scored points.
-  const skierPlayersWithBets: Dictionary<boolean> = {};
+  // Skier scoring: bet on which lodge will have the most total chips
+  // Calculate total chips bet on each lodge by all players
+  const lodgeChipTotals: Dictionary<number> = {};
+  allPlayersButSkier.forEach((player) => {
+    Object.entries(player.bets).forEach(([lodgeId, chips]) => {
+      lodgeChipTotals[lodgeId] = (lodgeChipTotals[lodgeId] ?? 0) + (chips as number);
+    });
+  });
+
+  // Find lodge(s) with most chips
+  const mostPopularLodgeId = Object.entries(lodgeChipTotals).sort(
+    ([, a], [, b]) => (b as number) - (a as number),
+  )[0]?.[0];
+
+  // Skier gets points for chips placed on the most popular lodge
   const skier = players[skierId];
-  Object.keys(skier[SKIER_BET_TYPES.SKIERS_BETS]).forEach((playerId) => {
-    const playerPoints = skierReferencePoints[playerId];
-    const chips: number = skier[SKIER_BET_TYPES.SKIERS_BETS][playerId];
-    if (chips) {
-      skierPlayersWithBets[playerId] = true;
-      const skierPoints = playerPoints * 0.1 * chips;
-      scores.add(skierId, skierPoints, 2);
-      utils.achievements.increase(store, playerId, 'betOn', chips);
-    }
-  });
-  Object.keys(skier[SKIER_BET_TYPES.SKIERS_BOOST]).forEach((playerId) => {
-    const playerPoints = skierReferencePoints[playerId];
-    const chips: number = skier[SKIER_BET_TYPES.SKIERS_BETS][playerId];
-    if (chips) {
-      skierPlayersWithBets[playerId] = true;
-      const skierPoints = playerPoints * 0.1 * chips;
-      scores.add(skierId, skierPoints, 2);
-      utils.achievements.increase(store, playerId, 'betOn', chips);
-    }
-  });
+  const skierBetsOnPopular =
+    (skier[SKIER_BET_TYPES.SKIERS_BETS]?.[mostPopularLodgeId] ?? 0) +
+    (skier[SKIER_BET_TYPES.SKIERS_BOOST]?.[mostPopularLodgeId] ?? 0);
 
-  // Achievement: Most/Fewest Players
-  utils.achievements.increase(store, skierId, 'players', Object.keys(skierPlayersWithBets).length);
+  scores.add(skierId, skierBetsOnPopular, 2);
 
-  // Skier points for players they didn't bet on
-  scores.add(skierId, allPlayersButSkier.length - Object.keys(skierPlayersWithBets).length, 3);
+  // Calculate which lodges skier bet on
+  const skierBetLodges = new Set([
+    ...Object.keys(skier[SKIER_BET_TYPES.SKIERS_BETS] ?? {}).filter(
+      (k) => skier[SKIER_BET_TYPES.SKIERS_BETS][k] > 0,
+    ),
+    ...Object.keys(skier[SKIER_BET_TYPES.SKIERS_BOOST] ?? {}).filter(
+      (k) => skier[SKIER_BET_TYPES.SKIERS_BOOST][k] > 0,
+    ),
+  ]);
+
+  // Achievement: Most/Fewest Lodges (for skier, this is how many lodges they bet on)
+  utils.achievements.increase(store, skierId, 'players', skierBetLodges.size);
+
+  // Empty lodge bonus: 1 point for each lodge skier didn't bet on
+  const emptyLodgeBonus = 6 - skierBetLodges.size;
+  scores.add(skierId, emptyLodgeBonus, 3);
 
   // So this function is not giant, we'll calculate achievements in a separate function
   calculateBetAchievements(players, skierId, lodges, store);

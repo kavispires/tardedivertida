@@ -20,7 +20,7 @@ import { ESQUIADORES_PHASES } from './utils/constants';
 import { CurrentBets, CurrentSkierBets } from './components/CurrentBets';
 import { SnowEffect } from '../../components/visual-effects/SnowEffect';
 import { StepMakeBets } from './StepMakeBets';
-import { StepChoosePlayers } from './StepChoosePlayers';
+import { StepChooseLodges } from './StepChooseLodges';
 
 export function PhaseLastChance({ players, state, user }: PhaseProps<PhaseBetsState>) {
   const { step, setStep } = useStep();
@@ -76,7 +76,7 @@ export function PhaseLastChance({ players, state, user }: PhaseProps<PhaseBetsSt
           content: isUserSkier ? (
             <CurrentSkierBets
               user={user}
-              players={players}
+              lodges={state.lodges}
             />
           ) : (
             <CurrentBets
@@ -90,7 +90,7 @@ export function PhaseLastChance({ players, state, user }: PhaseProps<PhaseBetsSt
         {/* Step 1 */}
         <Fragment>
           <ViewIf condition={isUserSkier}>
-            <StepChoosePlayers
+            <StepChooseLodges
               announcement={announcement}
               players={players}
               turnOrder={state.turnOrder}
@@ -102,7 +102,7 @@ export function PhaseLastChance({ players, state, user }: PhaseProps<PhaseBetsSt
               betType="final"
               animateFrom={state.animateFrom}
               animateTo={state.animateTo}
-              playerBetType="skiersBoost"
+              skierBetType="skiersBoost"
             />
           </ViewIf>
           <ViewIf condition={!isUserSkier}>

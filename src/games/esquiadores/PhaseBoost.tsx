@@ -20,7 +20,7 @@ import { ESQUIADORES_PHASES } from './utils/constants';
 import { CurrentBets, CurrentSkierBets } from './components/CurrentBets';
 import { SnowEffect } from '../../components/visual-effects/SnowEffect';
 import { StepMakeBets } from './StepMakeBets';
-import { StepChoosePlayers } from './StepChoosePlayers';
+import { StepChooseLodges } from './StepChooseLodges';
 
 export function PhaseBoost({ players, state, user }: PhaseProps<PhaseBetsState>) {
   const { step, setStep } = useStep();
@@ -56,8 +56,8 @@ export function PhaseBoost({ players, state, user }: PhaseProps<PhaseBetsState>)
     >
       <Instruction>
         <Translate
-          pt="Distribua seus pontos bônus de acordo com o que o esquiador"
-          en="Distribute your boost points according to skier"
+          pt="Distribua seus pontos bônus"
+          en="Distribute your boost points"
         />
       </Instruction>
     </PhaseAnnouncement>
@@ -76,7 +76,7 @@ export function PhaseBoost({ players, state, user }: PhaseProps<PhaseBetsState>)
           content: isUserSkier ? (
             <CurrentSkierBets
               user={user}
-              players={players}
+              lodges={state.lodges}
             />
           ) : (
             <CurrentBets
@@ -90,7 +90,7 @@ export function PhaseBoost({ players, state, user }: PhaseProps<PhaseBetsState>)
         {/* Step 1 */}
         <Fragment>
           <ViewIf condition={isUserSkier}>
-            <StepChoosePlayers
+            <StepChooseLodges
               announcement={announcement}
               players={players}
               turnOrder={state.turnOrder}
@@ -102,7 +102,7 @@ export function PhaseBoost({ players, state, user }: PhaseProps<PhaseBetsState>)
               betType="boost"
               animateFrom={state.animateFrom}
               animateTo={state.animateTo}
-              playerBetType="skiersBets"
+              skierBetType="skiersBets"
             />
           </ViewIf>
           <ViewIf condition={!isUserSkier}>

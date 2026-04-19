@@ -44,16 +44,6 @@ export function StepBetsBreakdown({
     return orderBy(lodges, ['selected', (o) => o.playersIds.length, 'id'], ['desc', 'desc', 'asc']);
   }, [lodges]);
 
-  const playersList = useMemo(
-    () =>
-      orderBy(
-        Object.values(players).filter((player) => player.id !== skier.id),
-        [(o) => (skier.skiersBets?.[o.id] ?? 0) + (skier.skiersBoost?.[o.id] ?? 0), 'name'],
-        ['desc', 'asc'],
-      ),
-    [players, skier.id, skier.skiersBets, skier.skiersBoost],
-  );
-
   return (
     <Step>
       <StepTitle>
@@ -111,25 +101,31 @@ export function StepBetsBreakdown({
         }
         contentProps={{ className: 'contained' }}
       >
-        {playersList.map((player) => {
-          const betValue = (skier.skiersBets?.[player.id] ?? 0) + (skier.skiersBoost?.[player.id] ?? 0);
-          return (
-            <div
-              key={player.id}
-              className="lodge"
-            >
-              <div className="lodge__icon">
-                <PlayerAvatarName player={player} />
-              </div>
+        <div className="skier-bets">
+          {lodges.map((lodge) => {
+            const betValue = (skier.skiersBets?.[lodge.id] ?? 0) + (skier.skiersBoost?.[lodge.id] ?? 0);
+            return (
+              <div
+                key={lodge.id}
+                className="lodge"
+              >
+                <div className="lodge__icon">
+                  <LodgeIcon
+                    width={48}
+                    color={LODGE_COLORS[lodge.id]}
+                  />
+                  <span className="lodge__number">{lodge.id + 1}</span>
+                </div>
 
-              <div className="lodge__bets">
-                <div className="lodge__bet">
-                  <BettingChipValue value={betValue} />
+                <div className="lodge__bets">
+                  <div className="lodge__bet">
+                    <BettingChipValue value={betValue} />
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </TitledContainer>
 
       <SpaceContainer>

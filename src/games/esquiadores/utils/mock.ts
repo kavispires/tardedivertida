@@ -1,6 +1,4 @@
 import { sample } from 'lodash';
-// Types
-import type { GamePlayers } from 'types/game';
 
 export const mockChoices = (): string[] => {
   const choices = ['left', 'right'];
@@ -30,18 +28,14 @@ export const mockBets = (bettingChips: number, animateFrom: number): Dictionary<
   return bets;
 };
 
-export const mockSkierBets = (
-  bettingChips: number,
-  players: GamePlayers,
-  skierId: UID,
-): Dictionary<number> => {
+export const mockSkierBets = (bettingChips: number): Dictionary<number> => {
   const bets: Dictionary<number> = {};
 
-  const playersButSkier = Object.keys(players).filter((playerId) => playerId !== skierId);
+  const lodges = [0, 1, 2, 3, 4, 5];
 
   for (let i = 0; i < bettingChips; i++) {
-    const player = sample(playersButSkier) ?? playersButSkier[0];
-    bets[player] = (bets[player] ?? 0) + 1;
+    const lodge = sample(lodges) ?? 0;
+    bets[lodge] = (bets[lodge] ?? 0) + 1;
   }
 
   return bets;

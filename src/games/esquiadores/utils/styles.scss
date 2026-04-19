@@ -140,6 +140,7 @@ $pyramid-rows: 3;
   justify-content: center;
   background: get-color("white", 4);
   width: 100%;
+  border-radius: var(--border-radius);
 }
 
 .lodge-results {

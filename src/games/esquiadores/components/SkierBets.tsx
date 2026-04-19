@@ -1,56 +1,67 @@
-import { orderBy } from 'lodash';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 // Ant Design Resources
-import { InputNumber } from 'antd';
+import { InputNumber, Tooltip } from 'antd';
 // Types
-import type { GamePlayer, GamePlayers } from 'types/game';
+import type { GamePlayer } from 'types/game';
+// Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
+// Icons
+import { LodgeIcon } from 'icons/LodgeIcon';
 // Components
 import { SendButton } from 'components/buttons/SendButton';
 import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 // Internal
-import type { SubmitBetsPayload } from '../utils/types';
-import { SKIER_BET_TYPES } from '../utils/constants';
+import type { Lodge, SubmitBetsPayload } from '../utils/types';
+import { LODGE_COLORS, SKIER_BET_TYPES } from '../utils/constants';
 import { ChipsHighlight } from './Highlights';
 import { BettingChipValue } from './BettingChipValue';
 
 type SkierBetsProps = {
-  players: GamePlayers;
+  /**
+   * Array of lodge objects
+   */
+  lodges: Lodge[];
+  /**
+   * Callback function to submit bets
+   */
   onSubmitBets?: (payload: SubmitBetsPayload) => void;
+  /**
+   * Current user player object
+   */
   user: GamePlayer;
+  /**
+   * Type of bet being placed
+   */
   betType: string;
 };
 
-export function SkierBets({ players, user, onSubmitBets, betType }: SkierBetsProps) {
-  const playersList = useMemo(
-    () =>
-      orderBy(
-        Object.values(players).filter((player) => player.id !== user.id),
-        ['name'],
-        ['asc'],
-      ),
-    [players, user.id],
-  );
-
+export function SkierBets({ lodges, user, onSubmitBets, betType }: SkierBetsProps) {
   const [bets, setBets] = useState(
-    playersList.reduce((acc: Dictionary<number>, player) => {
-      acc[player.id] = 0;
+    lodges.reduce((acc: Dictionary<number>, lodge) => {
+      acc[lodge.id] = 0;
       return acc;
     }, {}),
   );
   const [chipsLeft, setChipsLeft] = useState(user.chips ?? 0);
+  const lodgeWidth = useCardWidth(6, { gap: 16, margin: 32, maxWidth: 150 });
 
   return (
     <SpaceContainer orientation="vertical">
       <div className="skier-bets">
-        {playersList.map((player) => (
+        {lodges.map((lodge) => (
           <div
-            key={player.id}
+            key={lodge.id}
             className="lodge"
+            style={{ width: lodgeWidth }}
           >
             <div className="lodge__icon">
-              <PlayerAvatarName player={player} />
+              <LodgeIcon
+                width={lodgeWidth / 3}
+                color={LODGE_COLORS[lodge.id]}
+              />
+              <span className="lodge__number">{lodge.id + 1}</span>
             </div>
 
             <div className="lodge__bets">
@@ -63,7 +74,7 @@ export function SkierBets({ players, user, onSubmitBets, betType }: SkierBetsPro
                         en="Initial Bets"
                       />
                     }
-                    value={user[SKIER_BET_TYPES.SKIERS_BETS][player.id] ?? 0}
+                    value={user[SKIER_BET_TYPES.SKIERS_BETS][lodge.id] ?? 0}
                   />
                 </div>
               )}
@@ -76,7 +87,7 @@ export function SkierBets({ players, user, onSubmitBets, betType }: SkierBetsPro
                         en="Bonus Bets"
                       />
                     }
-                    value={user[SKIER_BET_TYPES.SKIERS_BOOST][player.id] ?? 0}
+                    value={user[SKIER_BET_TYPES.SKIERS_BOOST][lodge.id] ?? 0}
                   />
                 </div>
               )}
@@ -86,14 +97,14 @@ export function SkierBets({ players, user, onSubmitBets, betType }: SkierBetsPro
                 <InputNumber
                   style={{ width: '100%' }}
                   type="number"
-                  value={bets[player.id]}
+                  value={bets[lodge.id]}
                   min={0}
-                  max={bets[player.id] + chipsLeft}
+                  max={bets[lodge.id] + chipsLeft}
                   onChange={(value) => {
                     const bet = value as number;
-                    const diff = bet - bets[player.id];
+                    const diff = bet - bets[lodge.id];
                     if (chipsLeft - diff >= 0) {
-                      setBets({ ...bets, [player.id]: bet });
+                      setBets({ ...bets, [lodge.id]: bet });
                       setChipsLeft(chipsLeft - diff);
                     }
                   }}
@@ -111,8 +122,19 @@ export function SkierBets({ players, user, onSubmitBets, betType }: SkierBetsPro
       </div>
 
       {onSubmitBets && (
-        <SpaceContainer>
-          <ChipsHighlight>{chipsLeft}</ChipsHighlight>
+        <SpaceFloat enabled={chipsLeft === 0}>
+          <Tooltip
+            title={
+              <Translate
+                pt="Fichas restantes a serem usadas"
+                en="Remaining chips to be used"
+              />
+            }
+          >
+            <div>
+              <ChipsHighlight>{chipsLeft}</ChipsHighlight>
+            </div>
+          </Tooltip>
           <SendButton
             size="large"
             onClick={() => onSubmitBets({ bets, betType })}
@@ -123,7 +145,7 @@ export function SkierBets({ players, user, onSubmitBets, betType }: SkierBetsPro
               en="Send bets"
             />
           </SendButton>
-        </SpaceContainer>
+        </SpaceFloat>
       )}
     </SpaceContainer>
   );
