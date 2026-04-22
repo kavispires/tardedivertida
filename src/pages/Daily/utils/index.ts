@@ -1,4 +1,4 @@
-import moment from 'moment';
+import { parse, getDay, format, isAfter, differenceInDays, subDays } from 'date-fns';
 // Utils
 import { getToday } from 'utils/helpers';
 // Internal
@@ -12,8 +12,8 @@ import { getSettings } from './settings';
  * @returns True if the date is a Saturday or Sunday, false otherwise.
  */
 export function checkWeekend(dateString: string): boolean {
-  const date = moment(dateString, 'YYYY-MM-DD');
-  return [6, 0].includes(date.day()); // 0 represents Sunday and 6 represents Saturday in moment.js
+  const date = parse(dateString, 'yyyy-MM-dd', new Date());
+  return [6, 0].includes(getDay(date)); // 0 represents Sunday and 6 represents Saturday
 }
 
 /**
@@ -24,7 +24,7 @@ export function checkWeekend(dateString: string): boolean {
  */
 export function hasBeenReleased(releaseDate: string): boolean {
   if (releaseDate === 'DEMO') return true;
-  return moment(releaseDate, 'YYYY-MM-DD').isAfter(moment().format('YYYY-MM-DD'));
+  return isAfter(parse(releaseDate, 'yyyy-MM-dd', new Date()), new Date());
 }
 
 /**
@@ -34,7 +34,7 @@ export function hasBeenReleased(releaseDate: string): boolean {
  * @returns The number of days since the release date.
  */
 export function daysSinceRelease(releaseDate: string): number {
-  return moment().diff(moment(releaseDate, 'YYYY-MM-DD'), 'days');
+  return differenceInDays(new Date(), parse(releaseDate, 'yyyy-MM-dd', new Date()));
 }
 
 /**
@@ -43,8 +43,7 @@ export function daysSinceRelease(releaseDate: string): number {
  * @returns
  */
 export function getDateFromToday(days: number): string {
-  const today = moment().format('YYYY-MM-DD');
-  return moment(today, 'YYYY-MM-DD').subtract(days, 'days').format('YYYY-MM-DD');
+  return format(subDays(new Date(), days), 'yyyy-MM-dd');
 }
 
 /**

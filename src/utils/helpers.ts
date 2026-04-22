@@ -1,6 +1,6 @@
+import { format } from 'date-fns';
 import { USE_FIRESTORE_EMULATOR, USE_MOCKS } from 'dev-configs';
 import { camelCase, orderBy, startCase } from 'lodash';
-import moment from 'moment';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 import type { GameInfo } from 'types/game-info';
@@ -90,7 +90,7 @@ export const isDevMocking = isDevEnv && USE_MOCKS;
  */
 export function getToday(): string {
   if (isDevEnv && USE_FIRESTORE_EMULATOR) return '2023-10-31';
-  return moment().format('YYYY-MM-DD');
+  return format(new Date(), 'yyyy-MM-dd');
 }
 
 const methods = {

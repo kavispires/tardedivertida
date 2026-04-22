@@ -6,7 +6,7 @@ import {
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
-import moment from 'moment';
+import { addSeconds } from 'date-fns';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useStopwatch } from 'react-timer-hook';
 // Pages
@@ -27,7 +27,7 @@ export function useVitraisEngine(data: DailyVitraisEntry, initialState: GameStat
 
   const { totalSeconds, seconds, minutes, isRunning, start, pause } = useStopwatch({
     autoStart: true,
-    offsetTimestamp: moment(new Date()).add(state.timeElapsed, 'seconds').toDate(),
+    offsetTimestamp: addSeconds(new Date(), state.timeElapsed),
   });
 
   const allPieceIds = useMemo(() => {

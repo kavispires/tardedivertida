@@ -1,5 +1,5 @@
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
-import moment from 'moment';
+import { endOfDay, differenceInMilliseconds } from 'date-fns';
 import { createContext, type ReactNode, useContext } from 'react';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
@@ -34,9 +34,9 @@ type DailyContextProviderProps = {
 
 const timeToMidnight = (() => {
   // Calculate time until midnight
-  const now = moment();
-  const midnight = moment().endOf('day');
-  return midnight.diff(now); // Difference in milliseconds
+  const now = new Date();
+  const midnight = endOfDay(now);
+  return differenceInMilliseconds(midnight, now); // Difference in milliseconds
 })();
 
 export const DailyContextProvider = ({ children }: DailyContextProviderProps) => {

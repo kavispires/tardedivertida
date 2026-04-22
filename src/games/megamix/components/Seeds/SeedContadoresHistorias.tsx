@@ -1,4 +1,4 @@
-import moment from 'moment';
+import { format } from 'date-fns';
 // Ant Design Resources
 import { Button } from 'antd';
 // Components
@@ -12,7 +12,7 @@ import { Title } from 'components/text/Title';
 import type { SeedEntryContadoresHistorias } from '../../utils/types';
 import { SVGPhone } from '../SVGPhone';
 
-const now = moment().format('MMMM YYYY, h:mm');
+const now = format(new Date(), 'MMMM yyyy, h:mm');
 
 type SeedContadoresHistoriasProps = {
   seed: SeedEntryContadoresHistorias;

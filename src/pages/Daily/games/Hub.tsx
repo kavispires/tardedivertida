@@ -1,6 +1,6 @@
 import clsx from 'clsx';
+import { addYears, format } from 'date-fns';
 import { orderBy } from 'lodash';
-import moment from 'moment';
 import { motion } from 'motion/react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -41,7 +41,7 @@ const _COMING_SOON_ENTRY: Entry = {
   KEY: '',
   ROUTE: '',
   TYPE: 'game',
-  RELEASE_DATE: moment().add(1, 'year').format('YYYY-MM-DD'),
+  RELEASE_DATE: format(addYears(new Date(), 1), 'yyyy-MM-dd'),
   EMOJI: '',
   COLOR: '',
   HUB_ICON: DailyContributionGame,

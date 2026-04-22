@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import moment from 'moment';
+import { parse, format, isAfter, isBefore, startOfDay } from 'date-fns';
 import { useState } from 'react';
 // Ant Design Resources
 import { BellFilled } from '@ant-design/icons';
@@ -15,11 +15,16 @@ import { NEWS_LIST } from './NewsList';
 const NEWS_KEY = 'daily-news';
 
 // Only use news that are today or earlier
-const UP_TO_TODAY_NEWS_LIST = NEWS_LIST.filter((item) => moment(item.date).isSameOrBefore(moment(), 'day'));
+const UP_TO_TODAY_NEWS_LIST = NEWS_LIST.filter((item) => {
+  const itemDate = parse(item.date, 'yyyy-MM-dd', new Date());
+  const today = startOfDay(new Date());
+  // isSameOrBefore day granularity: not after today
+  return !isAfter(startOfDay(itemDate), today);
+});
 
 // Filtered news list based on exact dates and today
 const AVAILABLE_NEWS_LIST = (() => {
-  const today = moment().format('YYYY-MM-DD');
+  const today = format(new Date(), 'yyyy-MM-dd');
 
   return UP_TO_TODAY_NEWS_LIST.filter((item) => {
     // If exact is true, only include if date matches today
@@ -44,8 +49,13 @@ const shouldAutoOpenNews = () => {
   if (!lastSeenNewsDate) return true;
 
   // Check if current news is newer than what user has seen
-  const isTodayOrAfter = moment().isSameOrAfter(moment(AVAILABLE_NEWS_LIST[0].date), 'day');
-  const hasNewContent = moment(AVAILABLE_NEWS_LIST[0].date).isAfter(moment(lastSeenNewsDate));
+  const newsDate = parse(AVAILABLE_NEWS_LIST[0].date, 'yyyy-MM-dd', new Date());
+  const today = startOfDay(new Date());
+  const lastSeen = parse(lastSeenNewsDate, 'yyyy-MM-dd', new Date());
+
+  // isSameOrAfter day granularity: not before the news date
+  const isTodayOrAfter = !isBefore(today, startOfDay(newsDate));
+  const hasNewContent = isAfter(startOfDay(newsDate), startOfDay(lastSeen));
 
   return isTodayOrAfter && hasNewContent;
 };

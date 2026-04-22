@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import moment from 'moment';
+import { format } from 'date-fns';
 import { useState } from 'react';
 // Ant Design Resources
 import { Button, Input } from 'antd';
@@ -21,7 +21,7 @@ type SeedUeSoIssoProps = {
   updateData: GenericComponent;
 };
 
-const now = moment().format('MMMM YYYY, h:mm');
+const now = format(new Date(), 'MMMM yyyy, h:mm');
 
 export function SeedUeSoIsso({ seed, updateData }: SeedUeSoIssoProps) {
   const [value, setValue] = useState('');

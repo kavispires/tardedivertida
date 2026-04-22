@@ -1,4 +1,4 @@
-import moment from 'moment';
+import { formatDistanceToNow } from 'date-fns';
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
@@ -24,7 +24,9 @@ export function TweetComment({ player, totalLikes }: TweetCommentProps) {
       <div className="p-tweet-comment__content">
         <div className="p-tweet-comment__author">
           <span className="p-tweet-comment__author-name">{player.name}</span>
-          <span className="p-tweet-comment__author-date">{moment(player.updatedAt).fromNow()}</span>
+          <span className="p-tweet-comment__author-date">
+            {formatDistanceToNow(player.updatedAt, { addSuffix: true })}
+          </span>
         </div>
         <CommentText
           reaction={player.reaction}

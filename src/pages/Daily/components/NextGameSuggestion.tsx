@@ -1,5 +1,5 @@
+import { parse, isValid, differenceInDays } from 'date-fns';
 import { orderBy } from 'lodash';
-import moment from 'moment';
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 // Ant Design Resources
@@ -34,11 +34,10 @@ const PRIORITY_LIST = orderBy(
   ],
   [
     (o) => {
-      const releaseDate = moment(o.RELEASE_DATE, 'YYYY-MM-DD');
-      const now = moment();
-      return (
-        releaseDate.isValid() && releaseDate.diff(now, 'days') <= 30 && releaseDate.diff(now, 'days') >= 0
-      );
+      const releaseDate = parse(o.RELEASE_DATE, 'yyyy-MM-dd', new Date());
+      const now = new Date();
+      const daysUntilRelease = differenceInDays(releaseDate, now);
+      return isValid(releaseDate) && daysUntilRelease <= 30 && daysUntilRelease >= 0;
     },
     'TYPE',
     'NAME',
