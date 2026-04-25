@@ -14,7 +14,6 @@ const IMPORT_COMMENTS = [
   '// Components',
   '// Sass',
   '// Constants',
-  '// Resources and Utils',
   '// Images',
   '// Fonts',
   '// API & Hooks',
