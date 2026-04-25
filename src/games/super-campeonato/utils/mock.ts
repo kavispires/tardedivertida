@@ -1,7 +1,8 @@
+import { cloneDeep } from 'lodash';
 // Types
 import type { TextCard } from 'types/tdr';
 // Utils
-import { deepCopy, getRandomItem } from 'utils/helpers';
+import { getRandomItem } from 'utils/helpers';
 // Internal
 import type { Bet, Bracket, FightingContender } from './type';
 import { DEFAULT_BETS, TIER_BY_STEP, voteTarget } from './constants';
@@ -16,7 +17,7 @@ export function mockSelectContender(contenders: FightingContender[]): UID {
 }
 
 export function mockBets(brackets: Bracket[]) {
-  const bets: Bet = deepCopy(DEFAULT_BETS);
+  const bets: Bet = cloneDeep(DEFAULT_BETS);
 
   for (let i = 0; i <= 2; i++) {
     const tier = TIER_BY_STEP[i];

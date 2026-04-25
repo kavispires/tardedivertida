@@ -99,7 +99,7 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
     >
       <div className="seeding-container__stepper">
         <Steps
-          progressDot
+          type="dot"
           current={currentStep}
           items={steps}
         />

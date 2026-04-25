@@ -61,25 +61,31 @@ export function HumanInquiry({
           defaultValue=""
           size="large"
           onChange={(value) => setAttribute(value)}
-        >
-          <Select.Option value="">
-            <Translate
-              pt="Selecione um atributo"
-              en="Select an attribute"
-            />
-          </Select.Option>
-          {orderedAttributes.map((attribute) => (
-            <Select.Option
-              key={`attribute-${attribute.id}`}
-              value={attribute.id}
-              style={{
-                textDecoration: startingAttributesIds.includes(attribute.id) ? 'line-through' : 'none',
-              }}
-            >
-              <DualTranslate>{attribute.name}</DualTranslate>
-            </Select.Option>
-          ))}
-        </Select>
+          options={[
+            {
+              value: '',
+              label: (
+                <Translate
+                  pt="Selecione um atributo"
+                  en="Select an attribute"
+                />
+              ),
+            },
+            ...orderedAttributes.map((attribute) => ({
+              key: `attribute-${attribute.id}`,
+              value: attribute.id,
+              label: (
+                <span
+                  style={{
+                    textDecoration: startingAttributesIds.includes(attribute.id) ? 'line-through' : 'none',
+                  }}
+                >
+                  <DualTranslate>{attribute.name}</DualTranslate>
+                </span>
+              ),
+            })),
+          ]}
+        />
         <Badge count={objectsIds.length}>
           <SendButton
             size="large"

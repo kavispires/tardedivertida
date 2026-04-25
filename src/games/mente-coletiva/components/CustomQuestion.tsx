@@ -45,20 +45,27 @@ export function CustomQuestion({ onSubmit, userId }: CustomQuestionProps) {
           <Select
             value={questionType}
             onChange={(e) => setQuestionType(e)}
-          >
-            <Select.Option value={translate('Cite', 'What are')}>
-              <Translate
-                pt="Cite"
-                en="What are"
-              />
-            </Select.Option>
-            <Select.Option value={translate('Complete a frase', 'Fill in the blank')}>
-              <Translate
-                pt="Complete a frase"
-                en="Fill in the blank"
-              />
-            </Select.Option>
-          </Select>
+            options={[
+              {
+                value: translate('Cite', 'What are'),
+                label: (
+                  <Translate
+                    pt="Cite"
+                    en="What are"
+                  />
+                ),
+              },
+              {
+                value: translate('Complete a frase', 'Fill in the blank'),
+                label: (
+                  <Translate
+                    pt="Complete a frase"
+                    en="Fill in the blank"
+                  />
+                ),
+              },
+            ]}
+          />
           <InputNumber
             defaultValue={3}
             min={2}

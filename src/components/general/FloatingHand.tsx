@@ -146,7 +146,7 @@ export function FloatingHandDrawer({ children, icon, title }: FloatingHandProps)
         onClose={toggleDrawer}
         open={open}
         mask={false}
-        height={Math.max(378, height)}
+        size={Math.max(378, height)}
       >
         <div ref={ref}>{children}</div>
       </Drawer>

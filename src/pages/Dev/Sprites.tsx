@@ -120,16 +120,12 @@ function SpritesPage() {
             value={activeType}
             size="small"
             style={{ minWidth: '15ch' }}
-          >
-            {optionsList.map((option) => (
-              <Select.Option
-                value={option.key}
-                key={option.key}
-              >
-                {option.label}
-              </Select.Option>
-            ))}
-          </Select>
+            options={optionsList.map((option) => ({
+              value: option.key,
+              key: option.key,
+              label: option.label,
+            }))}
+          />
         }
         subTitle={
           <>

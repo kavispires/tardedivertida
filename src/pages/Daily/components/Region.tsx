@@ -5,10 +5,10 @@ import { Flex, Typography, type SpaceProps } from 'antd';
 // Components
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 
-export function Region({ align, direction, children, className, ...props }: SpaceProps) {
+export function Region({ align, orientation, children, className, ...props }: SpaceProps) {
   return (
     <SpaceContainer
-      orientation={direction ?? 'vertical'}
+      orientation={orientation ?? 'vertical'}
       align={align ?? 'center'}
       className={clsx('region', className)}
       {...props}

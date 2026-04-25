@@ -15,11 +15,6 @@ type InstructionsProps = {
    */
   contained?: boolean;
   /**
-   * Make text color white
-   * @deprecated
-   */
-  white?: boolean;
-  /**
    * Makes instruction width 100%
    */
   fullWidth?: boolean;
@@ -42,7 +37,6 @@ type InstructionsProps = {
  */
 export const Instruction = ({
   children,
-  white,
   className,
   contained,
   fullWidth,
@@ -56,7 +50,6 @@ export const Instruction = ({
         styles.instruction,
         contained && styles.instructionContained,
         colorScheme === 'dark' && styles.instructionDark,
-        white && styles.instructionWhite,
         fullWidth && `${styles.instruction}--full-width`,
         noMargin && styles.instructionNoMargin,
         className,

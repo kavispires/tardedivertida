@@ -18,21 +18,22 @@ export function ContendersSelect({ contenders, updateBet, language, betTier }: C
       className="w-bet-form__select"
       defaultValue=""
       onChange={(id) => updateBet({ [betTier]: id })}
-    >
-      <Select.Option value="">
-        <Translate
-          pt="Selecione"
-          en="Select"
-        />
-      </Select.Option>
-      {contenders.map((contender) => (
-        <Select.Option
-          value={contender.id}
-          key={`option-${betTier}-${contender.id}`}
-        >
-          {contender.name[language]}
-        </Select.Option>
-      ))}
-    </Select>
+      options={[
+        {
+          value: '',
+          label: (
+            <Translate
+              pt="Selecione"
+              en="Select"
+            />
+          ),
+        },
+        ...contenders.map((contender) => ({
+          value: contender.id,
+          key: `option-${betTier}-${contender.id}`,
+          label: contender.name[language],
+        })),
+      ]}
+    />
   );
 }

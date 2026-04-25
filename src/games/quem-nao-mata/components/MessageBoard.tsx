@@ -95,18 +95,12 @@ function PopOverMessageForm({ onSubmitMessage, players }: PopOverMessageFormProp
               en="Select someone"
             />
           }
-        >
-          {Object.values(players).map((player) => {
-            return (
-              <Select.Option
-                key={player.id}
-                value={player.id}
-              >
-                <PlayerAvatarName player={player} />
-              </Select.Option>
-            );
-          })}
-        </Select>
+          options={Object.values(players).map((player) => ({
+            key: player.id,
+            value: player.id,
+            label: <PlayerAvatarName player={player} />,
+          }))}
+        />
       </Form.Item>
       <Form.Item
         label={
@@ -125,28 +119,27 @@ function PopOverMessageForm({ onSubmitMessage, players }: PopOverMessageFormProp
               en="Select someone"
             />
           }
-        >
-          <Select.Option value="ALL">
-            <PlayerAvatarName
-              player={{
-                ...PLACEHOLDER_PLAYER,
-                id: 'unknown',
-                avatarId: 'N',
-                name: translate('TODOS', 'EVERYBODY'),
-              }}
-            />
-          </Select.Option>
-          {Object.values(players).map((player) => {
-            return (
-              <Select.Option
-                key={player.id}
-                value={player.id}
-              >
-                <PlayerAvatarName player={player} />
-              </Select.Option>
-            );
-          })}
-        </Select>
+          options={[
+            {
+              value: 'ALL',
+              label: (
+                <PlayerAvatarName
+                  player={{
+                    ...PLACEHOLDER_PLAYER,
+                    id: 'unknown',
+                    avatarId: 'N',
+                    name: translate('TODOS', 'EVERYBODY'),
+                  }}
+                />
+              ),
+            },
+            ...Object.values(players).map((player) => ({
+              key: player.id,
+              value: player.id,
+              label: <PlayerAvatarName player={player} />,
+            })),
+          ]}
+        />
       </Form.Item>
 
       <Form.Item label="">

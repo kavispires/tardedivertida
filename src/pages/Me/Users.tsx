@@ -12,7 +12,6 @@ import { firestore } from 'services/firebase';
 import { PageLayout } from 'components/layout/PageLayout';
 // Sass
 import './Me.scss';
-// Components
 
 interface GameUserEntry {
   gameName?: string;
@@ -115,31 +114,30 @@ function Users() {
     setSelectedUserD(data.find((e) => e.id === uid) ?? DEFAULT_FIREBASE_USER_DB);
   };
 
-  const options = data.map((entry) => (
-    <Select.Option
-      key={entry.id}
-      value={entry.id}
-    >
-      <strong>{entry?.names?.[0]}</strong>: {entry.id}
-    </Select.Option>
-  ));
+  const options = data.map((entry) => ({
+    key: entry.id,
+    value: entry.id,
+    label: (
+      <>
+        <strong>{entry?.names?.[0]}</strong>: {entry.id}
+      </>
+    ),
+  }));
 
   const selectO = (
     <Select
       onChange={onSelectUserO}
       style={{ minWidth: 300 }}
-    >
-      {options}
-    </Select>
+      options={options}
+    />
   );
 
   const selectD = (
     <Select
       onChange={onSelectUserD}
       style={{ minWidth: 300 }}
-    >
-      {options}
-    </Select>
+      options={options}
+    />
   );
 
   const mergedUser = useMemo(

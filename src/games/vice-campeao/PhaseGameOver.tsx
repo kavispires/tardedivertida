@@ -69,7 +69,7 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
               <Button
                 icon={<ArrowRightOutlined />}
                 onClick={goToNextStep}
-                iconPosition="end"
+                iconPlacement="end"
               >
                 <Translate
                   pt="Próxima Carta"

@@ -196,7 +196,6 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                 shape="round"
                 onClick={onPrevious}
                 icon={<DoubleLeftOutlined />}
-                iconPosition="start"
                 disabled={questionIndex === 0}
               >
                 <Translate

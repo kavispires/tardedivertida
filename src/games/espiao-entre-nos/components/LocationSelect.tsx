@@ -32,16 +32,12 @@ export function LocationSelect({ locations, onSend }: LocationSelectProps) {
       <Select
         onChange={onSelectLocation}
         placeholder={translate('Chute um local', 'Guess location')}
-      >
-        {locations.map((location) => (
-          <Select.Option
-            key={`select-${location.id}`}
-            value={location.id}
-          >
-            {location.name}
-          </Select.Option>
-        ))}
-      </Select>
+        options={locations.map((location) => ({
+          key: `select-${location.id}`,
+          value: location.id,
+          label: location.name,
+        }))}
+      />
       <Popconfirm
         title={
           <Translate

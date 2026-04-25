@@ -90,12 +90,15 @@ export const ForceStateForm = ({ isLoading, state, onPerformAdminAction }: Force
         label="Type"
         name="valueType"
       >
-        <Select onChange={onValueTypeSelectChange}>
-          <Select.Option value="string">string</Select.Option>
-          <Select.Option value="number">number</Select.Option>
-          <Select.Option value="boolean">boolean</Select.Option>
-          <Select.Option value="nullish">nullish</Select.Option>
-        </Select>
+        <Select
+          onChange={onValueTypeSelectChange}
+          options={[
+            { value: 'string', label: 'string' },
+            { value: 'number', label: 'number' },
+            { value: 'boolean', label: 'boolean' },
+            { value: 'nullish', label: 'nullish' },
+          ]}
+        />
       </Form.Item>
 
       <ValueFormItem valueType={valueType} />

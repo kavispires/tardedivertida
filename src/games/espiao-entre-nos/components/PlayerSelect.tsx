@@ -35,16 +35,12 @@ export function PlayerSelect({ players, onSend, isFinalAssessment = false }: Pla
         onChange={onSelectPlayerId}
         className="e-select"
         placeholder={translate('Acuse um jogador', 'Accuse a player')}
-      >
-        {playersWithoutMe.map((player) => (
-          <Select.Option
-            key={player.id}
-            value={player.id}
-          >
-            {player.name}
-          </Select.Option>
-        ))}
-      </Select>
+        options={playersWithoutMe.map((player) => ({
+          key: player.id,
+          value: player.id,
+          label: player.name,
+        }))}
+      />
       <Popconfirm
         title={`${
           isFinalAssessment

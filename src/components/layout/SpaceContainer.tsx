@@ -6,7 +6,7 @@ import styles from './SpaceContainer.module.scss';
 
 type SpaceContainerProps = {
   /**
-   * Forces direction to be vertical
+   * Forces orientation to be vertical
    */
   vertical?: boolean;
   /**
@@ -25,7 +25,7 @@ type SpaceContainerProps = {
 export function SpaceContainer({
   className,
   align,
-  direction,
+  orientation,
   children,
   vertical,
   contained,
@@ -35,7 +35,7 @@ export function SpaceContainer({
   return (
     <Space
       className={clsx(styles.spaceContainer, contained && 'contained', fullWidth && 'full-width', className)}
-      orientation={vertical ? 'vertical' : direction}
+      orientation={vertical ? 'vertical' : orientation}
       align={align ?? 'center'}
       {...props}
     >
