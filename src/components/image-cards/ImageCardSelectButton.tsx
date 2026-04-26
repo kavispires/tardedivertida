@@ -44,13 +44,14 @@ export function ImageCardSelectButton({
   deselectLabel,
   isSelected = false,
   standalone = false,
+  className,
 }: ImageCardSelectButtonProps) {
   return (
     <Button
       shape="round"
       size="small"
       ghost={!isSelected}
-      className={clsx('image-card-select-button', { standalone })}
+      className={clsx('image-card-select-button', { standalone }, className)}
       onClick={() => onClick(cardId)}
     >
       <UpCircleOutlined />
