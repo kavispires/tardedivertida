@@ -7,7 +7,7 @@ import type { GamePlayers, GamePlayer } from 'types/game';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language/Translate';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { WaitingRoom } from 'components/players/WaitingRoom';
 import { Step } from 'components/steps/Step';
 // Internal
@@ -79,7 +79,7 @@ export function GuesserWaitingRoom({
           />
         }
       >
-        <TurnOrder
+        <PlayersTurnOrder
           players={players}
           order={turnOrder}
           activePlayerId={guesser.id}

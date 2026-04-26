@@ -10,7 +10,7 @@ import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
 import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { Step, type StepProps } from 'components/steps/Step';
 import { RuleInstruction } from 'components/text/RuleInstruction';
 import { StepTitle } from 'components/text/StepTitle';
@@ -152,7 +152,7 @@ export function StepResults({
         </SpaceContainer>
       )}
 
-      <TurnOrder
+      <PlayersTurnOrder
         players={players}
         order={turnOrder}
         activePlayerId={skier.id}

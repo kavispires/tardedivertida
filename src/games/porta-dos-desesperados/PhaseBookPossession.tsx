@@ -14,7 +14,7 @@ import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
 import { PhaseContainer } from 'components/phases/PhaseContainer';
 import { PhaseTimerReset } from 'components/phases/PhaseTimerReset';
 import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
 import { StepSwitcher } from 'components/steps/StepSwitcher';
 import { Instruction } from 'components/text/Instruction';
@@ -118,7 +118,7 @@ export function PhaseBookPossession({ state, players }: PhaseProps<PhaseBookPoss
               }
             />
 
-            <TurnOrder
+            <PlayersTurnOrder
               players={players}
               order={state.gameOrder}
               activePlayerId={state.possessedId}

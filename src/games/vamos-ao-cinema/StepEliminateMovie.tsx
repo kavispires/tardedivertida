@@ -10,7 +10,7 @@ import { TomatoIcon } from 'icons/TomatoIcon';
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { Translate } from 'components/language/Translate';
 import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { Step, type StepProps } from 'components/steps/Step';
 import { RuleInstruction } from 'components/text/RuleInstruction';
 import { StepTitle } from 'components/text/StepTitle';
@@ -126,7 +126,7 @@ export function StepEliminateMovie({
         disableButtons={!isActivePlayer}
       />
 
-      <TurnOrder
+      <PlayersTurnOrder
         players={players}
         activePlayerId={activePlayer.id}
         order={turnOrder}

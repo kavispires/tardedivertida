@@ -6,7 +6,7 @@ import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { Translate } from 'components/language/Translate';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { Step, type StepProps } from 'components/steps/Step';
 import { Instruction } from 'components/text/Instruction';
 import { StepTitle } from 'components/text/StepTitle';
@@ -75,7 +75,7 @@ export function StepWaitingForGuesses({
         questionsDict={questionsDict}
       />
 
-      <TurnOrder
+      <PlayersTurnOrder
         players={players}
         order={turnOrder}
         activePlayerId={activePlayerId}

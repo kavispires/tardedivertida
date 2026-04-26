@@ -6,7 +6,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { RuleInstruction } from 'components/text/RuleInstruction';
 import { StepTitle } from 'components/text/StepTitle';
 // Internal
@@ -72,7 +72,7 @@ export function StepDefendingWaiting({
         />
       </SpaceContainer>
 
-      <TurnOrder
+      <PlayersTurnOrder
         players={players}
         activePlayerId={currentPlayer.id}
         order={turnOrder}

@@ -7,7 +7,7 @@ import { useMock } from 'hooks/useMock';
 import { SendButton } from 'components/buttons/SendButton';
 import { DevButton } from 'components/debug/DevButton';
 import { Translate } from 'components/language/Translate';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { Step, type StepProps } from 'components/steps/Step';
 import { RuleInstruction } from 'components/text/RuleInstruction';
 import { StepTitle } from 'components/text/StepTitle';
@@ -126,7 +126,7 @@ export function StepPlanLocations({
         </DevButton>
       </DragAndDropCityMap>
 
-      <TurnOrder
+      <PlayersTurnOrder
         players={players}
         activePlayerId={architectId}
         order={gameOrder}

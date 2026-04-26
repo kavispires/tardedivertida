@@ -19,7 +19,7 @@ import { Translate } from 'components/language/Translate';
 import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { TitledContainer } from 'components/layout/TitledContainer';
 import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { Step, type StepProps } from 'components/steps/Step';
 import { RuleInstruction } from 'components/text/RuleInstruction';
 import { StepTitle } from 'components/text/StepTitle';
@@ -327,7 +327,7 @@ export function StepPlaceItem({
         </TitledContainer>
       )}
 
-      <TurnOrder
+      <PlayersTurnOrder
         players={players}
         order={turnOrder}
         activePlayerId={activePlayer.id}

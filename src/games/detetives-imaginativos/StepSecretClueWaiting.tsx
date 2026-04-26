@@ -5,7 +5,7 @@ import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCardHand } from 'components/image-cards/ImageCardHand';
 import { Translate } from 'components/language/Translate';
 import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { Step, type StepProps } from 'components/steps/Step';
 import { RuleInstruction } from 'components/text/RuleInstruction';
 import { StepTitle } from 'components/text/StepTitle';
@@ -52,7 +52,7 @@ export function StepSecretClueWaiting({
         />
       </RuleInstruction>
 
-      <TurnOrder
+      <PlayersTurnOrder
         players={players}
         activePlayerId={leader.id}
         order={turnOrder}

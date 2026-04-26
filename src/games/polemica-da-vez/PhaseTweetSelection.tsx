@@ -11,7 +11,7 @@ import { TrendingIcon } from 'icons/TrendingIcon';
 import { Translate } from 'components/language/Translate';
 import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
 import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { WaitingRoom } from 'components/players/WaitingRoom';
 import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
 import { Step } from 'components/steps/Step';
@@ -58,7 +58,7 @@ export function PhaseTweetSelection({ state, players, meta }: PhaseProps<PhaseTw
           activePlayer={activePlayer}
           isFixedRounds={isFixedRounds}
         />
-        <TurnOrder
+        <PlayersTurnOrder
           order={state.gameOrder}
           players={players}
           activePlayerId={state.activePlayerId}
@@ -123,7 +123,7 @@ export function PhaseTweetSelection({ state, players, meta }: PhaseProps<PhaseTw
                         isFixedRounds={isFixedRounds}
                       />
                     </Instruction>
-                    <TurnOrder
+                    <PlayersTurnOrder
                       order={state.gameOrder}
                       players={players}
                       activePlayerId={state.activePlayerId}

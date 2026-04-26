@@ -12,7 +12,7 @@ import { getAnimationClass, getRandomItem } from 'utils/helpers';
 import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { messageContent } from 'components/pop-up/messageContent';
 import { RuleInstruction } from 'components/text/RuleInstruction';
 import { StepTitle } from 'components/text/StepTitle';
@@ -119,7 +119,7 @@ export function StepDefendingAction({
         />
       </SpaceContainer>
 
-      <TurnOrder
+      <PlayersTurnOrder
         players={players}
         activePlayerId={currentPlayer.id}
         order={turnOrder}

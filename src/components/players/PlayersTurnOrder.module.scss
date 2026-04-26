@@ -1,6 +1,6 @@
 @use "styles/sass" as *;
 
-.turnOrder {
+.playersTurnOrder {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,14 +9,14 @@
   margin: get-unit(2 auto);
 }
 
-.turnOrderTitle {
+.playersTurnOrderTitle {
   background-color: rgba($color: white, $alpha: 0.6);
   margin: 0;
   padding: get-unit(1 2 0 2);
   border-radius: get-unit(3 3 0 0);
 }
 
-.turnOrderPlayers {
+.playersTurnOrderPlayers {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,17 +26,17 @@
   flex-wrap: wrap;
 }
 
-.turnOrderPlayer {
+.playersTurnOrderPlayer {
   background-color: rgba($color: white, $alpha: 0.6);
   padding: get-unit(1 2);
   border-radius: get-unit(5);
   white-space: nowrap;
 }
 
-.turnOrderPlayerActive {
+.playersTurnOrderPlayerActive {
   color: get-color("white");
 }
 
-.turnOrderArrow {
+.playersTurnOrderArrow {
   margin: get-unit(0 1);
 }

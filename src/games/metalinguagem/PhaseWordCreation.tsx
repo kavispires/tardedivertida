@@ -11,7 +11,7 @@ import { Translate } from 'components/language/Translate';
 import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
 import { PhaseContainer } from 'components/phases/PhaseContainer';
 import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { StepSwitcher } from 'components/steps/StepSwitcher';
 import { Instruction } from 'components/text/Instruction';
 import { ViewIf } from 'components/views/ViewIf';
@@ -65,7 +65,7 @@ export function PhaseWordCreation({ state, players, user }: PhaseProps<PhaseWord
         />
       </Instruction>
 
-      <TurnOrder
+      <PlayersTurnOrder
         players={players}
         order={state.turnOrder}
         activePlayerId={state.creatorId}

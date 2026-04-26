@@ -12,9 +12,9 @@ import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 // Internal
 import { reorder } from './reorder';
 // Sass
-import styles from './TurnOrder.module.scss';
+import styles from './PlayersTurnOrder.module.scss';
 
-type TurnOrderProps = {
+type PlayersTurnOrderProps = {
   /**
    * Game players
    */
@@ -45,7 +45,7 @@ type TurnOrderProps = {
   additionalInfoParser?: (player: GamePlayer) => ReactNode;
 };
 
-export function TurnOrder({
+export function PlayersTurnOrder({
   players,
   order,
   activePlayerId,
@@ -53,36 +53,39 @@ export function TurnOrder({
   title,
   className = '',
   additionalInfoParser,
-}: TurnOrderProps) {
+}: PlayersTurnOrderProps) {
   const orderList = useMemo(
     () => (reorderByUser ? reorder(order, reorderByUser) : order),
     [reorderByUser, order],
   );
 
   return (
-    <div className={clsx(styles.turnOrder, className)}>
-      <header className={styles.turnOrderTitle}>
+    <div className={clsx(styles.playersTurnOrder, className)}>
+      <header className={styles.playersTurnOrderTitle}>
         <Translate
           en="Player Order"
           pt="Ordem dos Jogadores"
           custom={title}
         />
       </header>
-      <ol className={styles.turnOrderPlayers}>
+      <ol className={styles.playersTurnOrderPlayers}>
         {orderList.map((playerId, index) => {
           const player = players[playerId];
           const isActive = activePlayerId === playerId;
           return (
             <Fragment key={`turn-order-player-${playerId}`}>
               <span
-                className={clsx(styles.turnOrderPlayer, isActive && styles.turnOrderPlayerActive)}
+                className={clsx(
+                  styles.playersTurnOrderPlayer,
+                  isActive && styles.playersTurnOrderPlayerActive,
+                )}
                 style={isActive ? { backgroundColor: getAvatarColorById(player.avatarId) } : undefined}
               >
                 <PlayerAvatarName player={player} />
                 {!!additionalInfoParser && additionalInfoParser(player)}
               </span>
               {index < order.length - 1 && (
-                <span className={styles.turnOrderArrow}>
+                <span className={styles.playersTurnOrderArrow}>
                   <ForwardFilled />
                 </span>
               )}

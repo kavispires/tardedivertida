@@ -16,7 +16,7 @@ import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
 import { ImageCard } from 'components/image-cards/ImageCard';
 import { Translate } from 'components/language/Translate';
 import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { Step } from 'components/steps/Step';
 // Internal
 import type { LatestInfo } from './utils/types';
@@ -248,7 +248,7 @@ export function StepAnnounceDream({
       </motion.div>
 
       {gameOrder.length > 1 && (
-        <TurnOrder
+        <PlayersTurnOrder
           players={players}
           order={gameOrder}
           activePlayerId={activePlayer.id}

@@ -8,7 +8,7 @@ import { PhotoAlbumIcon } from 'icons/PhotoAlbumIcon';
 import { Translate } from 'components/language/Translate';
 import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
 import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { StepSwitcher } from 'components/steps/StepSwitcher';
 import { Instruction } from 'components/text/Instruction';
 // Internal
@@ -48,7 +48,7 @@ export function PhasePresentation({ state, players }: PhaseProps<PhasePresentati
               pt="A ordem dos albums será:"
               en="The albums' order will be:"
             />
-            <TurnOrder
+            <PlayersTurnOrder
               players={players}
               order={state.gameOrder}
             />

@@ -7,7 +7,7 @@ import { DevButton } from 'components/debug/DevButton';
 import { Translate } from 'components/language/Translate';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { Step, type StepProps } from 'components/steps/Step';
 import { RuleInstruction } from 'components/text/RuleInstruction';
 import { StepTitle } from 'components/text/StepTitle';
@@ -157,7 +157,7 @@ export function StepMakeBets({
         Mock Bets
       </DevButton>
 
-      <TurnOrder
+      <PlayersTurnOrder
         players={players}
         order={turnOrder}
         activePlayerId={skier.id}

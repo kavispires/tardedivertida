@@ -15,7 +15,7 @@ import { Card } from 'components/cards/Card';
 import { Translate } from 'components/language/Translate';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { messageContent } from 'components/pop-up/messageContent';
 import { PopoverRule } from 'components/rules/PopoverRule';
 import { Step } from 'components/steps/Step';
@@ -188,7 +188,7 @@ export function StepPlayDream({
         isPlayAvailable={isActivePlayer}
       />
 
-      <TurnOrder
+      <PlayersTurnOrder
         players={players}
         order={gameOrder}
         activePlayerId={activePlayer.id}

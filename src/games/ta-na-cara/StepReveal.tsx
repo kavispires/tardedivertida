@@ -13,7 +13,7 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 import { ListOfPlayers } from 'components/players/ListOfPlayers';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { Step, type StepProps } from 'components/steps/Step';
 import { Instruction } from 'components/text/Instruction';
 import { StepTitle } from 'components/text/StepTitle';
@@ -161,7 +161,7 @@ export function StepReveal({
         </TimedButton>
       </SpaceContainer>
 
-      <TurnOrder
+      <PlayersTurnOrder
         players={players}
         order={turnOrder}
         activePlayerId={activePlayerId}

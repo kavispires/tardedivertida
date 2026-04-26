@@ -5,7 +5,7 @@ import type { Item } from 'types/tdr';
 import { Card } from 'components/cards/Card';
 import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { Step, type StepProps } from 'components/steps/Step';
 import { StepTitle } from 'components/text/StepTitle';
 // Internal
@@ -66,7 +66,7 @@ export function StepWaitGuessing({
         highlightLength={newWord.length}
       />
 
-      <TurnOrder
+      <PlayersTurnOrder
         players={players}
         order={turnOrder}
         activePlayerId={creator.id}

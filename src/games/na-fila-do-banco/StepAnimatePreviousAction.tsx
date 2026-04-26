@@ -4,7 +4,7 @@ import type { GamePlayers, GamePlayer, GameRound } from 'types/game';
 import { TimedButton } from 'components/buttons/TimedButton';
 import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
 import { Translate } from 'components/language/Translate';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { Step, type StepProps } from 'components/steps/Step';
 import { StepTitle } from 'components/text/StepTitle';
 import { ViewIf } from 'components/views/ViewIf';
@@ -120,7 +120,7 @@ export function StepAnimatePreviousAction({
 
       <PeopleOrder />
 
-      <TurnOrder
+      <PlayersTurnOrder
         players={players}
         order={turnOrder}
         activePlayerId={previousPlayer?.id || ''}

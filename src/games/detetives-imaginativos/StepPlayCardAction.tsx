@@ -16,7 +16,7 @@ import { ImageCardsIcon } from 'icons/ImageCardsIcon';
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { ImageCardHand } from 'components/image-cards/ImageCardHand';
 import { Translate } from 'components/language/Translate';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { messageContent } from 'components/pop-up/messageContent';
 import { RuleInstruction } from 'components/text/RuleInstruction';
 import { StepTitle } from 'components/text/StepTitle';
@@ -154,7 +154,7 @@ export function StepPlayCardAction({
         players={players}
       />
 
-      <TurnOrder
+      <PlayersTurnOrder
         players={players}
         activePlayerId={currentPlayer.id}
         order={turnOrder}

@@ -3,7 +3,7 @@ import type { GamePlayers, GamePlayer } from 'types/game';
 // Components
 import { Translate } from 'components/language/Translate';
 import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { Step, type StepProps } from 'components/steps/Step';
 import { Instruction } from 'components/text/Instruction';
 import { StepTitle } from 'components/text/StepTitle';
@@ -74,7 +74,7 @@ export function StepWaitingForPrompt({
         questionsDict={questionsDict}
       />
 
-      <TurnOrder
+      <PlayersTurnOrder
         players={players}
         order={turnOrder}
         activePlayerId={activePlayerId}

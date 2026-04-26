@@ -7,7 +7,7 @@ import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { Translate } from 'components/language/Translate';
 import { TitledContainer } from 'components/layout/TitledContainer';
 import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { Step, type StepProps } from 'components/steps/Step';
 import { StepTitle } from 'components/text/StepTitle';
 // Internal
@@ -111,7 +111,7 @@ export function StepWaitPlaceItem({
         </TitledContainer>
       )}
 
-      <TurnOrder
+      <PlayersTurnOrder
         players={players}
         order={turnOrder}
         activePlayerId={activePlayer.id}

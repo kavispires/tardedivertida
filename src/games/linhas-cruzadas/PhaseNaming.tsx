@@ -8,7 +8,7 @@ import { WriteIdeaIcon } from 'icons/WriteIdeaIcon';
 import { Translate } from 'components/language/Translate';
 import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
 import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { StepSwitcher } from 'components/steps/StepSwitcher';
 import { Instruction } from 'components/text/Instruction';
 // Internal
@@ -50,7 +50,7 @@ export function PhaseNaming({ state, players, user }: PhaseProps<PhaseNamingStat
               en="Try to guess what the artwork is"
             />
 
-            <TurnOrder
+            <PlayersTurnOrder
               players={players}
               order={state.gameOrder}
               className="l-turn-order"

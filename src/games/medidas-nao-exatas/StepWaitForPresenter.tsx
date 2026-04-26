@@ -9,7 +9,7 @@ import { getAnimation } from 'utils/animations';
 // Components
 import { Translate } from 'components/language/Translate';
 import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { TurnOrder } from 'components/players/TurnOrder';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { WaitingRoom } from 'components/players/WaitingRoom';
 import { Step, type StepProps } from 'components/steps/Step';
 
@@ -62,7 +62,7 @@ export function StepWaitForPresenter({
         }
       ></WaitingRoom>
 
-      <TurnOrder
+      <PlayersTurnOrder
         players={players}
         order={turnOrder}
         activePlayerId={presenter.id}
