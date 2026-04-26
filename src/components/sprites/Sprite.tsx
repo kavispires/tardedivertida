@@ -54,7 +54,7 @@ export function Sprite({
   const { isLoading, data, isError } = useQuery({
     queryKey: ['sprite', source],
     queryFn: async () => {
-      const response = await fetch(`${baseUrl}/sprites/${source}.svg`);
+      const response = await fetch(`${baseUrl}/${source}.svg`);
       return await response.text();
     },
     enabled: !!spriteId && !!source,
