@@ -307,6 +307,7 @@ export * from './VoteIcon';
 export * from './WaitingRoomIcon';
 export * from './WalkIcon';
 export * from './WalkieTalkieIcon';
+export * from './WarehouseIcon';
 export * from './WarningSignIcon';
 export * from './WavelengthDeviceIcon';
 export * from './WeekendIcon';

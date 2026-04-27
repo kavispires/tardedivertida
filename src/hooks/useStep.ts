@@ -5,6 +5,7 @@ export type UseStep = {
   setStep: React.Dispatch<React.SetStateAction<number>>;
   goToNextStep: () => void;
   goToPreviousStep: () => void;
+  goToSteps: (step: number) => void;
 };
 
 /**
@@ -16,12 +17,15 @@ export function useStep(startingStep = 0): UseStep {
 
   const goToNextStep = () => setStep((s) => s + 1);
 
-  const goToPreviousStep = () => setStep((s) => (s - 1 < 0 ? 0 : s - 1));
+  const goToPreviousStep = () => setStep((s) => Math.max(0, s - 1));
+
+  const goToSteps = (step: number) => setStep((s) => Math.max(0, s + step));
 
   return {
     step,
     setStep,
     goToNextStep,
     goToPreviousStep,
+    goToSteps,
   };
 }

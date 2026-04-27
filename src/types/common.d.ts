@@ -182,3 +182,8 @@ type ResponseError = {
 type Prettify<T> = {
   [K in keyof T]: T[K];
 } & {};
+
+/**
+ * Utility type to extract the value types from an object
+ */
+type ValueOf<T> = T[keyof T];

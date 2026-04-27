@@ -1,0 +1,88 @@
+// Types
+import type { GamePlayer, GamePlayers } from 'types/game';
+// Components
+import { SendButton } from 'components/buttons/SendButton';
+import { AutoNextPhase } from 'components/general/AutoNextPhase';
+import { Translate } from 'components/language/Translate';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
+import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
+import { Step, type StepProps } from 'components/steps/Step';
+import { Instruction } from 'components/text/Instruction';
+import { RuleInstruction } from 'components/text/RuleInstruction';
+import { StepTitle } from 'components/text/StepTitle';
+// Internal
+import type { Good, WarehouseSlot } from './utils/types';
+import { Warehouse } from './components/Warehouse';
+
+type StepGetAcquaintedProps = {
+  players: GamePlayers;
+  user: GamePlayer;
+  turnOrder: TurnOrder;
+  goodsDict: Dictionary<Good>;
+  warehouseGrid: WarehouseSlot[];
+  onReady: () => void;
+} & Pick<StepProps, 'announcement'>;
+
+export function StepGetAcquainted({
+  announcement,
+  goodsDict,
+  warehouseGrid,
+  players,
+  turnOrder,
+  user,
+  onReady,
+}: StepGetAcquaintedProps) {
+  return (
+    <Step
+      fullWidth
+      announcement={announcement}
+    >
+      <StepTitle>
+        <Translate
+          en="This is the warehouse!"
+          pt="Este é o armazém logístico!"
+        />
+      </StepTitle>
+
+      <RuleInstruction type="lore">
+        <Translate
+          en="You were just hired as floor supervisors for a big logistics company! Your first task is to get acquainted with the warehouse and the goods that are already stocked there. Press Ready to Work when you're ready"
+          pt="Vocês acabaram de ser contratados como supervisores de chão de fábrica para uma grande empresa de logística! A primeira tarefa de vocês é se familiarizar com o armazém e os produtos que já estão estocados lá. Aperte Pronto para Trabalhar quando estiver pronto"
+        />
+      </RuleInstruction>
+
+      <Warehouse
+        warehouse={warehouseGrid}
+        goodsDict={goodsDict}
+      />
+
+      <SpaceFloat className="mt-4">
+        {user.ready ? (
+          <Instruction contained>
+            <Translate
+              en="Ready to Work!"
+              pt="Pronto pra trabalhar!"
+            />
+          </Instruction>
+        ) : (
+          <SendButton
+            onClick={onReady}
+            size="large"
+          >
+            <Translate
+              en="Ready to Work"
+              pt="Pronto para Trabalhar"
+            />
+          </SendButton>
+        )}
+      </SpaceFloat>
+
+      <PlayersTurnOrder
+        players={players}
+        order={turnOrder}
+      />
+
+      <AutoNextPhase players={players} />
+    </Step>
+  );
+}

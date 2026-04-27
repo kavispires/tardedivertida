@@ -1,10 +1,11 @@
 // Types
-import type { ControleDeEstoqueState, ControleDeEstoqueStore, Good, WarehouseSlot } from './types';
+import type { ControleDeEstoqueState, ControleDeEstoqueStore, Event, Good, WarehouseSlot } from './types';
 // Constants
 import { CONTROLE_DE_ESTOQUE_PHASES, WAREHOUSE_SIZE } from './constants';
 import { LETTERS } from '../../utils/constants';
 // Utils
 import utils from '../../utils';
+import { BOSS_IDEAS } from './data';
 
 /**
  * Determine the next phase based on the current one
@@ -17,16 +18,35 @@ export const determineNextPhase = (
   round: Round,
   state: ControleDeEstoqueState,
 ): string => {
-  const { SETUP, GOOD_PLACEMENT, PLACEMENT_CONFIRMATION, FULFILLMENT, RESULTS, GAME_OVER } =
+  const { SETUP, THE_WAREHOUSE, GOOD_PLACEMENT, PLACEMENT_CONFIRMATION, FULFILLMENT, RESULTS, GAME_OVER } =
     CONTROLE_DE_ESTOQUE_PHASES;
-  const order = [SETUP, GOOD_PLACEMENT, PLACEMENT_CONFIRMATION, FULFILLMENT, RESULTS, GAME_OVER];
+  const order = [
+    SETUP,
+    THE_WAREHOUSE,
+    GOOD_PLACEMENT,
+    PLACEMENT_CONFIRMATION,
+    FULFILLMENT,
+    RESULTS,
+    GAME_OVER,
+  ];
 
-  // If last round and
-  if (currentPhase === PLACEMENT_CONFIRMATION) {
-    if (round.current === round.total && state.roundsGoodIndex === state.roundGoods.length - 1) {
+  // SETUP → THE_WAREHOUSE
+  if (currentPhase === SETUP) {
+    return THE_WAREHOUSE;
+  }
+
+  // THE_WAREHOUSE → GOOD_PLACEMENT (when all players ready)
+  if (currentPhase === THE_WAREHOUSE) {
+    return GOOD_PLACEMENT;
+  }
+
+  // PLACEMENT_CONFIRMATION → check if all goods placed
+  if (currentPhase === GOOD_PLACEMENT) {
+    // If all goods have been placed (no more available goods), move to FULFILLMENT
+    if (!state.availableGoods || state.availableGoods.length === 0) {
       return FULFILLMENT;
     }
-
+    // Otherwise, continue placing goods
     return GOOD_PLACEMENT;
   }
 
@@ -51,7 +71,36 @@ export const determineNextPhase = (
  * slot is an object containing properties such as `amenityId`, `goodId`, and
  * `available`.
  */
-export const updateAvailableSlotsInWarehouse = (warehouseGrid: Dictionary<WarehouseSlot>) => {
+export const updateAvailableSlotsInWarehouse = (
+  warehouseGrid: Dictionary<WarehouseSlot>,
+  bossIdeaId: string,
+  goal?: number,
+) => {
+  switch (bossIdeaId) {
+    // AISLE: Single row or column
+    case BOSS_IDEAS.AISLE.id: {
+      updateWarehouseByAisleAvailability(warehouseGrid);
+      break;
+    }
+    // WALLS: Edge only
+    case BOSS_IDEAS.WALLS.id: {
+      updateWarehouseByEdgeAvailability(warehouseGrid);
+      break;
+    }
+    // FENG_SHUI: Rotates the entire warehouse 90deg
+    case BOSS_IDEAS.FENG_SHUI.id: {
+      updateWarehouseByRotation(warehouseGrid);
+      break;
+    }
+    // Default: adjacent availability
+    default: {
+      updateWarehouseByAdjacency(warehouseGrid);
+      break;
+    }
+  }
+};
+
+const updateWarehouseByAdjacency = (warehouseGrid: Dictionary<WarehouseSlot>) => {
   // The warehouse grid is a 7x7 grid, if an empty slot is adjacent
   const totalSlots = WAREHOUSE_SIZE * WAREHOUSE_SIZE; // 49 slots in total
 
@@ -100,11 +149,93 @@ export const updateAvailableSlotsInWarehouse = (warehouseGrid: Dictionary<Wareho
   }
 };
 
+const updateWarehouseByAisleAvailability = (warehouseGrid: Dictionary<WarehouseSlot>) => {
+  const totalSlots = WAREHOUSE_SIZE * WAREHOUSE_SIZE; // 49 slots in total
+
+  // Count empty slots for each row and column
+  const rowEmptyCounts: number[] = Array(WAREHOUSE_SIZE).fill(0);
+  const colEmptyCounts: number[] = Array(WAREHOUSE_SIZE).fill(0);
+
+  // First pass: count empty slots in each row and column
+  for (let i = 0; i < totalSlots; i++) {
+    const slot = warehouseGrid[i];
+    const row = Math.floor(i / WAREHOUSE_SIZE);
+    const col = i % WAREHOUSE_SIZE;
+
+    if (!slot.amenityId && !slot.goodId) {
+      rowEmptyCounts[row]++;
+      colEmptyCounts[col]++;
+    }
+  }
+
+  // Find the row or column with the most empty slots
+  const maxRowEmpty = Math.max(...rowEmptyCounts);
+  const maxColEmpty = Math.max(...colEmptyCounts);
+
+  let targetRow = -1;
+  let targetCol = -1;
+
+  if (maxRowEmpty >= maxColEmpty) {
+    // Use the row with most empty slots
+    targetRow = rowEmptyCounts.indexOf(maxRowEmpty);
+  } else {
+    // Use the column with most empty slots
+    targetCol = colEmptyCounts.indexOf(maxColEmpty);
+  }
+
+  // Second pass: mark slots in the target row or column as available
+  let availableCount = 0;
+  for (let i = 0; i < totalSlots; i++) {
+    const slot = warehouseGrid[i];
+    const row = Math.floor(i / WAREHOUSE_SIZE);
+    const col = i % WAREHOUSE_SIZE;
+
+    const isInTargetRow = targetRow !== -1 && row === targetRow;
+    const isInTargetCol = targetCol !== -1 && col === targetCol;
+
+    if ((isInTargetRow || isInTargetCol) && !slot.amenityId && !slot.goodId) {
+      slot.available = true;
+      slot.temporaryName = LETTERS[availableCount];
+      availableCount++;
+    } else {
+      slot.available = false;
+      slot.temporaryName = null;
+    }
+  }
+};
+
+const updateWarehouseByRotation = (warehouseGrid: Dictionary<WarehouseSlot>) => {
+  const totalSlots = WAREHOUSE_SIZE * WAREHOUSE_SIZE; // 49 slots in total
+  const newGrid: Dictionary<WarehouseSlot> = {};
+
+  // Rotate the grid 90 degrees counter clockwise, making for example, id 0 become id 42, id 6 become 0, id 48 become 6, etc.
+  for (let i = 0; i < totalSlots; i++) {
+    const row = Math.floor(i / WAREHOUSE_SIZE);
+    const col = i % WAREHOUSE_SIZE;
+
+    // Counter-clockwise rotation: (row, col) → (WAREHOUSE_SIZE - 1 - col, row)
+    const newRow = WAREHOUSE_SIZE - 1 - col;
+    const newCol = row;
+    const newIndex = newRow * WAREHOUSE_SIZE + newCol;
+
+    // Copy slot data to new position and update the id to match the new position
+    newGrid[newIndex] = { ...warehouseGrid[i], id: newIndex };
+  }
+
+  // Copy rotated grid back to original
+  for (let i = 0; i < totalSlots; i++) {
+    warehouseGrid[i] = newGrid[i];
+  }
+
+  // Apply adjacency-based availability after rotation
+  updateWarehouseByAdjacency(warehouseGrid);
+};
+
 /**
  * A function that makes only edge slots available based on the absence of an amenity and good.
  * @param warehouseGrid - A 1D array of WarehouseSlot objects representing a 7x7 grid.
  */
-export const updateEdgeAvailability = (warehouseGrid: Dictionary<WarehouseSlot>) => {
+const updateWarehouseByEdgeAvailability = (warehouseGrid: Dictionary<WarehouseSlot>) => {
   const totalSlots = WAREHOUSE_SIZE * WAREHOUSE_SIZE; // 49 slots in total
 
   let availableCount = 0;
@@ -132,10 +263,51 @@ export const updateEdgeAvailability = (warehouseGrid: Dictionary<WarehouseSlot>)
   }
 };
 
-export const concealAllGoods = (goodsDict: Dictionary<Good>) => {
+export const concealAllGoods = (
+  goodsDict: Dictionary<Good>,
+  actorId: Event['actorId'],
+  type: Event['type'],
+): Event => {
+  const goodsIds: string[] = [];
+
   Object.values(goodsDict).forEach((good) => {
-    good.exposed = false;
+    if (good.exposed) {
+      good.exposed = false;
+      goodsIds.push(good.id);
+    }
   });
+
+  return {
+    actorId,
+    goodsIds,
+    type,
+  };
+};
+
+export const concealGoodsForEvent = (
+  goodsDict: Dictionary<Good>,
+  warehouseGrid: Dictionary<WarehouseSlot>,
+  goodId: string,
+  selectedWarehouseSlot: number,
+  actorId: Event['actorId'],
+  type: Event['type'],
+): Event => {
+  // Update goodsDict
+  if (goodsDict[goodId]) {
+    goodsDict[goodId].exposed = false;
+    goodsDict[goodId].slot = selectedWarehouseSlot;
+  }
+
+  // Update Warehouse Grid
+  if (warehouseGrid[selectedWarehouseSlot]) {
+    warehouseGrid[selectedWarehouseSlot].goodId = goodId;
+  }
+
+  return {
+    actorId,
+    goodsIds: [goodId],
+    type,
+  };
 };
 
 export const buildRanking = (

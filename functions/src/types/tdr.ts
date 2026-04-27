@@ -86,6 +86,10 @@ export type BossIdeaCard = {
    */
   title: DualLanguageValue;
   /**
+   * The type of the boss idea, used for filtering and sorting (eg: communication, movement, etc). Can be a custom string depending on the game.
+   */
+  type: string;
+  /**
    * The boss idea speech bubble.
    */
   subtitle: DualLanguageValue;

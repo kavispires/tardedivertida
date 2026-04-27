@@ -1,5 +1,10 @@
 @use "styles/sass" as *;
 
+.background {
+  background: linear-gradient(-45deg, #272a36, #4c525c, #121529);
+  background-size: 1000% 1000%;
+}
+
 .warehouse {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -23,6 +28,16 @@
     background: get-color("black", 4);
     color: get-color("white");
     font-size: 1.25rem;
+    position: relative;
+  }
+
+  &__selected-good {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(10deg);
+    filter: drop-shadow(0 0 5px get-color("yellow"));
+    z-index: 1;
   }
 
   &__empty-shelf-button {
@@ -68,6 +83,24 @@
     transform: translate(-50%, -60%);
     outline: get-unit(1) solid get-color("yellow");
   }
+
+  &__good {
+    &--0 {
+      rotate: 0deg;
+    }
+    &--90 {
+      transform-origin: 50% 50%;
+      rotate: 90deg;
+    }
+    &--180 {
+      transform-origin: 50% 50%;
+      rotate: 180deg;
+    }
+    &--270 {
+      transform-origin: 50% 50%;
+      rotate: 270deg;
+    }
+  }
 }
 
 .warehouse-good {
@@ -78,4 +111,10 @@
   &--EYE_EXAM {
     filter: blur(12px);
   }
+}
+
+.c-stocking-progress {
+  display: grid;
+  gap: get-unit(2);
+  grid-template-columns: repeat(3, 1fr);
 }

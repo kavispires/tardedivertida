@@ -9,17 +9,17 @@ import { PhasePlaceholder } from 'components/phases/PhasePlaceholder';
 import { Session } from 'components/session/Session';
 // Internal
 import { CONTROLE_DE_ESTOQUE_PHASES } from './utils/constants';
+import { PhaseTheWarehouse } from './PhaseTheWarehouse';
 import { PhaseGoodPlacement } from './PhaseGoodPlacement';
-import { PhasePlacementConfirmation } from './PhasePlacementConfirmation';
 // Sass
 import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   switch (state.phase) {
+    case CONTROLE_DE_ESTOQUE_PHASES.THE_WAREHOUSE:
+      return PhaseTheWarehouse;
     case CONTROLE_DE_ESTOQUE_PHASES.GOOD_PLACEMENT:
       return PhaseGoodPlacement;
-    case CONTROLE_DE_ESTOQUE_PHASES.PLACEMENT_CONFIRMATION:
-      return PhasePlacementConfirmation;
     case CONTROLE_DE_ESTOQUE_PHASES.FULFILLMENT:
       return PhasePlaceholder;
     case CONTROLE_DE_ESTOQUE_PHASES.RESULTS:

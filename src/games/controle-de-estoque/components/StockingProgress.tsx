@@ -4,46 +4,48 @@ import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
 // Components
 import { Translate } from 'components/language/Translate';
 import { MetricHighlight } from 'components/metrics/MetricHighlight';
+// Internal
+import type { Status } from '../utils/types';
 
 type StockingProgressProps = {
-  /**
-   * The number of goods that have been stocked this round
-   * Usually `roundsGoodIndex`
-   */
-  stockingCount: number;
-  /**
-   * The total number of goods to be stocked this round
-   * Usually `roundGoods.length`
-   */
-  stockingRoundCount: number;
-  /**
-   * The total number of goods that have been stocked so far
-   */
-  stocked: number;
+  status: Status;
 };
 
-export function StockingProgress({ stockingCount, stockingRoundCount, stocked }: StockingProgressProps) {
+export function StockingProgress({ status }: StockingProgressProps) {
+  const { progress, goal, stocked, total } = status;
   return (
     <Translate
       en={
-        <>
-          Round goods:{' '}
-          <MetricHighlight icon={<ClockIcon />}>
-            {stockingCount}/{stockingRoundCount}
-          </MetricHighlight>
-          <br />
-          Stocked Goods: <MetricHighlight icon={<ShippingBoxIcon />}>{stocked}/35</MetricHighlight>
-        </>
+        <div className="c-stocking-progress">
+          <span>
+            Round goods:{' '}
+            <MetricHighlight icon={<ClockIcon />}>
+              {progress}/{goal}
+            </MetricHighlight>
+          </span>
+          <span>
+            Stocked Goods:{' '}
+            <MetricHighlight icon={<ShippingBoxIcon />}>
+              {stocked}/{total}
+            </MetricHighlight>
+          </span>
+        </div>
       }
       pt={
-        <>
-          Mercadorias da rodada:{' '}
-          <MetricHighlight icon={<ClockIcon />}>
-            {stockingCount}/{stockingRoundCount}
-          </MetricHighlight>
-          <br />
-          Mercadorias estocadas: <MetricHighlight icon={<ShippingBoxIcon />}>{stocked}/35</MetricHighlight>
-        </>
+        <div className="c-stocking-progress">
+          <span>
+            Mercadorias da rodada:{' '}
+            <MetricHighlight icon={<ClockIcon />}>
+              {progress}/{goal}
+            </MetricHighlight>
+          </span>
+          <span>
+            Mercadorias estocadas:{' '}
+            <MetricHighlight icon={<ShippingBoxIcon />}>
+              {stocked}/{total}
+            </MetricHighlight>
+          </span>
+        </div>
       }
     />
   );

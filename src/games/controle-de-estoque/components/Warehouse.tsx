@@ -1,81 +1,236 @@
 import clsx from 'clsx';
+import { motion } from 'motion/react';
+import { useState, useEffect } from 'react';
 // Utils
+import { getAnimation } from 'utils/animations';
 import { getAnimationClass } from 'utils/helpers';
 // Icons
 import { MysteryBoxIcon } from 'icons/MysteryBoxIcon';
 import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
 // Components
 import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
+import { ZoomPanPinchContainer } from 'components/layout/ZoomPanPinchContainer';
 // Internal
-import type { Good, WarehouseSlot } from '../utils/types';
+import type { Event, Good, WarehouseSlot } from '../utils/types';
+import { useGoodSize } from '../utils/hooks';
+import { BOSS_IDEAS_IDS, EVENT_TYPE } from '../utils/constants';
 
 type WarehouseProps = {
   goodsDict: Dictionary<Good>;
   warehouse: WarehouseSlot[];
   onPlaceGood?: (index: number) => void;
-  width: number;
-  goodClassName?: string;
-  conceal?: boolean;
+  bossIdeaId?: UID;
+  event?: Event;
+  currentGoodId?: UID;
+  selectedWarehouseSlot?: number | null;
 };
 
 export function Warehouse({
   goodsDict,
   warehouse,
-  width,
   onPlaceGood,
-  goodClassName,
-  conceal,
+  bossIdeaId,
+  event,
+  currentGoodId,
+  selectedWarehouseSlot,
 }: WarehouseProps) {
-  const size = { width, height: width };
+  const { goodSize, goodWidth, warehouseWidth } = useGoodSize();
+
+  // Track goods that are currently being animated by events
+  const [concealingGoods, setConcealingGoods] = useState<Set<string>>(new Set());
+
+  const goodClassName = `warehouse-good--${bossIdeaId}`;
+  const confidential = bossIdeaId === BOSS_IDEAS_IDS.CONFIDENTIAL;
+
+  // Update concealing goods when event changes
+  useEffect(() => {
+    if (event?.type === EVENT_TYPE.CONCEAL && event.goodsIds.length > 0) {
+      setConcealingGoods(new Set(event.goodsIds));
+    }
+  }, [event]);
+
+  /**
+   * Check if a good should be animated based on the current event
+   */
+  const shouldAnimateGood = (goodId: string): boolean => {
+    return concealingGoods.has(goodId);
+  };
+
+  /**
+   * Handle animation completion for a concealed good
+   */
+  const handleConcealComplete = (goodId: string) => {
+    setConcealingGoods((prev) => {
+      const next = new Set(prev);
+      next.delete(goodId);
+      return next;
+    });
+  };
 
   return (
-    <div className="warehouse">
-      {warehouse.map((slot, index) => {
-        if (slot.available) {
-          return (
-            <div
-              key={index}
-              className={clsx('warehouse__empty-shelf warehouse__empty-available-shelf')}
-              style={size}
-            >
-              {onPlaceGood ? (
-                <button
-                  type="button"
-                  className="warehouse__empty-shelf-button"
-                  onClick={() => onPlaceGood?.(index)}
-                >
-                  {slot.temporaryName ?? '?'}
-                </button>
-              ) : (
-                (slot.temporaryName ?? '?')
-              )}
-            </div>
-          );
-        }
-
-        if (slot.amenityId) {
-          return null;
-        }
-
-        if (slot.goodId) {
-          const good = goodsDict[slot.goodId];
-
-          if (good.exposed) {
-            if (conceal) {
-              return <MysteryBoxIcon width={width} />;
-            }
-
+    <ZoomPanPinchContainer
+      maxWidth={warehouseWidth}
+      transformWrapperProps={{
+        minScale: 0.5,
+        maxScale: 2,
+        wheel: {
+          disabled: true,
+        },
+      }}
+      persistentZoomKey="controle-de-estoque"
+    >
+      <div className="warehouse">
+        {warehouse.map((slot, index) => {
+          if (slot.available && !event) {
             return (
               <div
                 key={index}
-                className={clsx('warehouse__shelf', 'warehouse__shelf-active')}
-                style={size}
+                className={clsx('warehouse__empty-shelf warehouse__empty-available-shelf')}
+                style={goodSize}
               >
-                <WarehouseGoodCard
-                  goodId={good.id}
-                  width={width - 12}
-                  className={clsx(getAnimationClass('bounce'), goodClassName)}
-                />
+                {onPlaceGood ? (
+                  <button
+                    type="button"
+                    className="warehouse__empty-shelf-button"
+                    onClick={() => onPlaceGood?.(index)}
+                  >
+                    {slot.temporaryName ?? '?'}
+                  </button>
+                ) : (
+                  (slot.temporaryName ?? '?')
+                )}
+
+                {selectedWarehouseSlot === index && currentGoodId && (
+                  <div className="warehouse__selected-good">
+                    <motion.div {...getAnimation('pulse', { infinite: true })}>
+                      {confidential ? (
+                        <MysteryBoxIcon width={goodWidth} />
+                      ) : (
+                        <WarehouseGoodCard
+                          goodId={currentGoodId}
+                          width={goodWidth}
+                          className={clsx(
+                            `warehouse__good--${goodsDict[currentGoodId]?.orientation ?? 0}`,
+                            goodClassName,
+                          )}
+                        />
+                      )}
+                    </motion.div>
+                  </div>
+                )}
+              </div>
+            );
+          }
+
+          if (slot.amenityId) {
+            return null;
+          }
+
+          if (slot.goodId) {
+            const good = goodsDict[slot.goodId];
+            const isConcealing = shouldAnimateGood(good.id);
+
+            // Animate concealment if event is active for this good (regardless of exposed state)
+            if (isConcealing) {
+              const delayIndex = event?.goodsIds.indexOf(good.id) ?? 0;
+              const baseDelay = 6 + delayIndex * 0.15;
+
+              return (
+                <div
+                  key={index}
+                  className={clsx('warehouse__shelf', 'warehouse__shelf-active')}
+                  style={{ ...goodSize, position: 'relative' }}
+                >
+                  {/* Good flipping out */}
+                  <motion.div
+                    initial={{ opacity: 1, rotateY: 0 }}
+                    animate={{
+                      opacity: 0,
+                      rotateY: 90,
+                      transition: {
+                        duration: 0.4,
+                        delay: baseDelay,
+                      },
+                    }}
+                    style={{
+                      transformStyle: 'preserve-3d',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                    }}
+                  >
+                    {confidential ? (
+                      <MysteryBoxIcon width={goodWidth} />
+                    ) : (
+                      <WarehouseGoodCard
+                        goodId={good.id}
+                        width={goodWidth}
+                        className={clsx(`warehouse__good--${good.orientation ?? 0}`, goodClassName)}
+                      />
+                    )}
+                  </motion.div>
+
+                  {/* Shipping box flipping in */}
+                  <motion.div
+                    initial={{ opacity: 0, rotateY: -90 }}
+                    animate={{
+                      opacity: 1,
+                      rotateY: 0,
+                      transition: {
+                        duration: 0.4,
+                        delay: baseDelay + 0.4,
+                      },
+                    }}
+                    onAnimationComplete={() => handleConcealComplete(good.id)}
+                    style={{
+                      transformStyle: 'preserve-3d',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                    }}
+                  >
+                    <ShippingBoxIcon width={goodWidth} />
+                  </motion.div>
+                </div>
+              );
+            }
+
+            if (good.exposed) {
+              return (
+                <div
+                  key={index}
+                  className={clsx('warehouse__shelf', 'warehouse__shelf-active')}
+                  style={goodSize}
+                >
+                  {confidential ? (
+                    <MysteryBoxIcon
+                      width={goodWidth}
+                      key={index}
+                      className={clsx(getAnimationClass('bounce'))}
+                    />
+                  ) : (
+                    <WarehouseGoodCard
+                      goodId={good.id}
+                      width={goodWidth}
+                      className={clsx(
+                        getAnimationClass('bounce'),
+                        `warehouse__good--${good.orientation ?? 0}`,
+                        goodClassName,
+                      )}
+                    />
+                  )}
+                </div>
+              );
+            }
+
+            // Show shipping box (concealed state)
+            return (
+              <div
+                key={index}
+                className={clsx('warehouse__shelf', getAnimationClass('flipInY'))}
+                style={goodSize}
+              >
+                <ShippingBoxIcon width={goodWidth} />
               </div>
             );
           }
@@ -83,24 +238,14 @@ export function Warehouse({
           return (
             <div
               key={index}
-              className={clsx('warehouse__shelf', getAnimationClass('flipInY'))}
-              style={size}
+              className={clsx('warehouse__empty-shelf')}
+              style={goodSize}
             >
-              <ShippingBoxIcon width={width - 12} />
+              .
             </div>
           );
-        }
-
-        return (
-          <div
-            key={index}
-            className={clsx('warehouse__empty-shelf')}
-            style={size}
-          >
-            .
-          </div>
-        );
-      })}
-    </div>
+        })}
+      </div>
+    </ZoomPanPinchContainer>
   );
 }

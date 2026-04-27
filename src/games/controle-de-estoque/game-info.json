@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "controle-de-estoque",
-  "version": "0.0.49",
-  "release": "paused",
+  "version": "0.0.50",
+  "release": "dev",
   "releaseDate": "0000-00-00",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Controle De Estoque",
     "en": "Inventory Control"
@@ -18,8 +18,8 @@
   "appearance": {
     "clouds": "package-cloud",
     "cloudsAnimationType": "flow",
-    "primaryColor": "",
-    "colorScheme": "light",
+    "primaryColor": "#b04b1b",
+    "colorScheme": "dark",
     "videoBackground": true,
     "imageBackground": true
   },

@@ -19,6 +19,7 @@ import utils from '../../utils';
 import { determineNextPhase } from './helpers';
 import {
   prepareSetupPhase,
+  prepareTheWarehousePhase,
   prepareGoodPlacementPhase,
   prepareGameOverPhase,
   preparePlacementConfirmationPhase,
@@ -26,7 +27,7 @@ import {
   prepareResultsPhase,
 } from './setup';
 import { getData } from './data';
-import { handlePlaceGood } from './actions';
+import { handleConfirmGood, handlePlaceGood } from './actions';
 // import { handleNextEvaluationGroup, handleSubmitAnswers, handleSubmitRejectAnswers } from './actions';
 
 /**
@@ -84,7 +85,13 @@ export const getNextPhase = async (
     return getNextPhase(gameName, gameId);
   }
 
-  // * -> GOOD_PLACEMENT
+  // SETUP -> THE_WAREHOUSE
+  if (nextPhase === CONTROLE_DE_ESTOQUE_PHASES.THE_WAREHOUSE) {
+    const newPhase = await prepareTheWarehousePhase(store, state, players);
+    return utils.firestore.saveGame(sessionRef, newPhase);
+  }
+
+  // THE_WAREHOUSE -> GOOD_PLACEMENT
   if (nextPhase === CONTROLE_DE_ESTOQUE_PHASES.GOOD_PLACEMENT) {
     const newPhase = await prepareGoodPlacementPhase(store, state, players);
     return utils.firestore.saveGame(sessionRef, newPhase);
@@ -128,20 +135,11 @@ export const submitAction = async (data: ControleDeEstoqueSubmitAction) => {
 
   switch (action) {
     case CONTROLE_DE_ESTOQUE_ACTIONS.PLACE_GOOD:
-      utils.firebase.validateSubmitActionProperties(
-        data,
-        ['goodId', 'newWarehouseSlot'],
-        'submit place good',
-      );
-      return handlePlaceGood(
-        gameName,
-        gameId,
-        playerId,
-        data.goodId,
-        data.newWarehouseSlot,
-        data.previousWarehouseSlot,
-        data.concealed,
-      );
+      utils.firebase.validateSubmitActionProperties(data, ['selectedWarehouseSlot'], 'submit place good');
+      return handlePlaceGood(gameName, gameId, playerId, data.selectedWarehouseSlot);
+    case CONTROLE_DE_ESTOQUE_ACTIONS.CONFIRM_PLACEMENT:
+      utils.firebase.validateSubmitActionProperties(data, ['selectedWarehouseSlot'], 'confirm placement');
+      return handleConfirmGood(gameName, gameId, playerId, data.selectedWarehouseSlot);
     // case CONTROLE_DE_ESTOQUE_ACTIONS.NEXT_EVALUATION_GROUP:
     //   return handleNextEvaluationGroup(gameName, gameId, playerId);
     // case CONTROLE_DE_ESTOQUE_ACTIONS.SUBMIT_REJECTED_ANSWERS:

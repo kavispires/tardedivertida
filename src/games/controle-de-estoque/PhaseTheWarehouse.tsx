@@ -1,0 +1,61 @@
+// Types
+import type { PhaseProps } from 'types/game';
+// Icons
+import { WarehouseIcon } from 'icons/collection';
+// Components
+import { Translate } from 'components/language/Translate';
+import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
+import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { Instruction } from 'components/text/Instruction';
+// Internal
+import { CONTROLE_DE_ESTOQUE_PHASES } from './utils/constants';
+import { useOnMakeReady } from './utils/api-requests';
+import { useWarehouse } from './utils/hooks';
+import type { PhaseTheWarehouseState } from './utils/types';
+import { StepGetAcquainted } from './StepGetAcquainted';
+
+export function PhaseTheWarehouse({ players, state, user }: PhaseProps<PhaseTheWarehouseState>) {
+  const warehouse = useWarehouse(state.warehouseGrid);
+
+  const onReady = useOnMakeReady();
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<WarehouseIcon />}
+      title={
+        <Translate
+          pt="O Armazém"
+          en="The Warehouse"
+        />
+      }
+      currentRound={state?.round?.current}
+      duration={7}
+      type="overlay"
+      unskippable
+    >
+      <Instruction>
+        <Translate
+          pt="Esses itens já estão no armazém. Memorize suas posições antes de começarmos!"
+          en="These items are already in the warehouse. Memorize their positions before we start!"
+        />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
+
+  return (
+    <PhaseContainer
+      phase={state?.phase}
+      allowedPhase={CONTROLE_DE_ESTOQUE_PHASES.THE_WAREHOUSE}
+    >
+      <StepGetAcquainted
+        announcement={announcement}
+        goodsDict={state.goodsDict}
+        warehouseGrid={warehouse}
+        players={players}
+        turnOrder={state.turnOrder}
+        onReady={onReady}
+        user={user}
+      />
+    </PhaseContainer>
+  );
+}
