@@ -1,7 +1,7 @@
 {
 	"name": "tardedivertida",
 	"homepage": "http://www.kavispires.com/tardedivertida/",
-	"version": "50.13.125",
+	"version": "50.13.126",
 	"private": true,
 	"type": "module",
 	"dependencies": {
@@ -48,8 +48,10 @@
 		"predeploy": "yarn build",
 		"deploy": "gh-pages -d build",
 		"lint": "biome check . --write --no-errors-on-unmatched",
+		"scripts:list": "node scripts/list-scripts.cjs",
 		"prepare": "husky",
 		"onboard": "node scripts/onboard-game.cjs",
+		"revert-versions": "node scripts/revert-game-versions.cjs",
 		"update-commit": "td amend-commit-date",
 		"sort-imports": "node scripts/sort-imports-in-folder.cjs",
 		"clean": "rm -rf node_modules & yarn cache clean"

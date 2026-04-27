@@ -30,8 +30,10 @@ function update_package_version {
   # Get the current version from package.json
   current_version=$(awk -F'"' '/version/ {print $4}' package.json)
 
-  # Check if the version property has been modified
-  if ! git diff --unified=0 HEAD~1..HEAD package.json | grep -qE '^\+[[:space:]]*"version":\s*"[^"]+"' ; then
+  # Check if the version property has been modified in staged changes
+  if git diff --cached package.json | grep -q '^\+.*"version"'; then
+      echo "☑️  tarde-divertida version was already updated: ${current_version}"
+  else
       # Always increment the patch version
       npm version patch --no-git-tag-version
 
@@ -41,8 +43,6 @@ function update_package_version {
       new_version=$(awk -F'"' '/version/ {print $4}' package.json)
 
       echo "☑️  tarde-divertida version updated: from ${current_version} to ${new_version}"
-  else
-      echo "☑️  tarde-divertida version was already updated: ${current_version}"
   fi
 }
 
@@ -70,12 +70,12 @@ check_game_versions() {
 
         if $was_modified; then
           modified_game_count=$((modified_game_count+1))
-          # Check if the version property in game-info.json has been modified since the last commit
-          if git diff --quiet --exit-code HEAD -- game-info.json && git diff --quiet --exit-code HEAD -- game-info.json -- ':(exclude)*.version'; then
+          # Check if the version property has been modified in staged changes
+          if git diff --cached -- "${game_dir}/game-info.json" | grep -q '^\+.*"version"'; then
+            echo "    ☑️ The version was already updated."
+          else
             increment_patch_version "${game_dir}/game-info.json"
             git add "${game_dir}/game-info.json"
-          else
-            echo "☑️ The version was updated already."
           fi
         fi
       fi
