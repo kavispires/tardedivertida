@@ -13,12 +13,7 @@ import { getNextPhase } from '.';
  * @param alienId - The ID of the selected alien player.
  * @returns - it triggers the next state.
  */
-export const handleSubmitAlien = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  alienId: UID,
-) => {
+export const handleSubmitAlien = async (gameName: string, gameId: UID, playerId: UID, alienId: UID) => {
   return await utils.firestore.updateState({
     gameName,
     gameId,

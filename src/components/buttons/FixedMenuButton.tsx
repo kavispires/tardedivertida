@@ -37,7 +37,7 @@ type FixedMenuButtonDefaultProps = {
   buttonProps?: ButtonProps;
 };
 
-interface FixedMenuButtonPopoverProps extends FixedMenuButtonDefaultProps {
+type FixedMenuButtonPopoverProps = FixedMenuButtonDefaultProps & {
   /**
    * The type of the floater
    */
@@ -54,9 +54,9 @@ interface FixedMenuButtonPopoverProps extends FixedMenuButtonDefaultProps {
    * If popover should be open
    */
   open?: boolean;
-}
+};
 
-interface FixedMenuButtonButtonOnlyProps extends FixedMenuButtonDefaultProps {
+type FixedMenuButtonButtonOnlyProps = FixedMenuButtonDefaultProps & {
   /**
    * The type of the floater
    */
@@ -73,7 +73,7 @@ interface FixedMenuButtonButtonOnlyProps extends FixedMenuButtonDefaultProps {
    * If popover should be open
    */
   open?: never;
-}
+};
 
 type FixedMenuButtonProps = FixedMenuButtonPopoverProps | FixedMenuButtonButtonOnlyProps;
 

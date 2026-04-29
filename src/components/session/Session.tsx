@@ -45,6 +45,9 @@ type SessionProps = {
   provider?: ComponentType<PhaseProviderProps<UnknownWorkaround>>;
 };
 
+/**
+ * Main session container that manages game state, user data, and renders the active game component
+ */
 export function Session({ gameCollection, getActiveComponent, provider }: SessionProps) {
   const { meta, dataUpdatedAt } = useGameMeta();
   const { language } = useLanguage();
@@ -145,6 +148,9 @@ type SessionConfigWrapperProps = {
   children: ReactNode;
 };
 
+/**
+ * Wrapper component that provides custom Ant Design theme configuration for the session
+ */
 export function SessionConfigWrapper({ children }: SessionConfigWrapperProps) {
   const customTokens = useGetCustomTokens();
 

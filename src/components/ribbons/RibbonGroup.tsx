@@ -11,6 +11,9 @@ type RibbonGroupProps = {
   labels: string[] | GamePlayer[];
 };
 
+/**
+ * Container for multiple ribbon components, displaying a group of labels or player ribbons
+ */
 export function RibbonGroup({ labels }: RibbonGroupProps) {
   return (
     <div className={clsx(styles.ribbonGroup, styles.ribbonAbsolute)}>

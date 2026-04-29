@@ -36,10 +36,7 @@ export const prepareSetupPhase = async (
   // Add poster votes
   utils.players.addPropertiesToPlayers(players, { posters: {} });
 
-  const movieDeck = sampleSize(
-    Object.values(additionalData.movies),
-    TOTAL_ROUNDS * MOVIES_PER_ROUND,
-  );
+  const movieDeck = sampleSize(Object.values(additionalData.movies), TOTAL_ROUNDS * MOVIES_PER_ROUND);
 
   const [good, bad] = shuffle(Object.values(additionalData.reviews)).reduce(
     (acc: [MovieReviewCard[], MovieReviewCard[]], card) => {

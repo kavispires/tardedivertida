@@ -16,6 +16,9 @@ type PageErrorProps = {
   description?: string;
 };
 
+/**
+ * Full-page error display component with message and optional description
+ */
 export function PageError({ message, description }: PageErrorProps) {
   return (
     <PageLayout className="container container--center">

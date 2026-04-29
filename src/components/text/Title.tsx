@@ -40,6 +40,9 @@ export type TitleProps = Omit<AntdTitleProps, 'level'> & {
   align?: 'left' | 'right' | 'center';
 };
 
+/**
+ * Game title component with optional icon, color scheme, and customizable size and alignment
+ */
 export const Title = ({
   children,
   colorScheme,

@@ -34,12 +34,7 @@ export const handleSubmitOrientation = async (
  * @param sketch
  * @returns
  */
-export const handleSubmitSketch = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  sketch: string,
-) => {
+export const handleSubmitSketch = async (gameName: string, gameId: UID, playerId: UID, sketch: string) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,
@@ -59,12 +54,7 @@ export const handleSubmitSketch = async (
  * @param vote
  * @returns
  */
-export const handleSubmitVote = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  vote: UID,
-) => {
+export const handleSubmitVote = async (gameName: string, gameId: UID, playerId: UID, vote: UID) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,

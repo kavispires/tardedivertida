@@ -32,9 +32,7 @@ type PhaseContainerProps = {
 };
 
 /**
- * Wrapping container around a game screen
- * @param props
- * @returns
+ * Wrapper container component around a game screen that validates phase and provides error handling
  */
 export function PhaseContainer({
   phase,

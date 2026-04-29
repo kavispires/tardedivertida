@@ -14,6 +14,9 @@ export type PlayerSpaceProps = SpaceProps & {
   withBorder?: boolean;
 };
 
+/**
+ * Ant Design Space component with player-specific color styling based on avatar
+ */
 export const PlayerSpace = ({ avatarId, withBorder, ...rest }: PlayerSpaceProps) => {
   const avatar = AVATARS[avatarId];
 

@@ -52,6 +52,9 @@ type GameOverProps = {
   rateWidgetCustomText?: ReactNode;
 } & Pick<StepProps, 'announcement'>;
 
+/**
+ * Game over screen component that displays the final game state with rating widget and navigation options
+ */
 export function GameOver({ state, children, className, rateWidgetCustomText, announcement }: GameOverProps) {
   const info = useGameInfoContext();
   const { language } = useLanguage();

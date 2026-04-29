@@ -10,8 +10,7 @@ type PhaseTimerResetProps = {
 };
 
 /**
- * Component to be placed in between sequential PhaseAnnouncement
- * to reset the automatic timer.
+ * Component to be placed between sequential PhaseAnnouncement components to reset the automatic timer
  */
 export function PhaseTimerReset({ goToNextStep }: PhaseTimerResetProps) {
   const calledRef = useRef(false);

@@ -11,12 +11,7 @@ import { getNextPhase } from './index';
  * @param pairs
  * @returns
  */
-export const handleSubmitPairs = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  pairs: UID[],
-) => {
+export const handleSubmitPairs = async (gameName: string, gameId: UID, playerId: UID, pairs: UID[]) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,

@@ -44,12 +44,7 @@ export const handleSubmitWord = async (
  * @param cardId
  * @returns
  */
-export const handleSubmitGuess = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  guesses: UID[],
-) => {
+export const handleSubmitGuess = async (gameName: string, gameId: UID, playerId: UID, guesses: UID[]) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,

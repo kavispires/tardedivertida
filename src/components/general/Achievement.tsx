@@ -24,6 +24,9 @@ type AchievementProps = {
 
 const unknownText = { pt: 'Desconhecido', en: 'Unknown' };
 
+/**
+ * Component that displays a single achievement with medal icon and description
+ */
 export function Achievement({ achievement, value }: AchievementProps) {
   return (
     <div className={clsx(styles.achievement, Boolean(value) && styles.achievementAchieved)}>

@@ -14,6 +14,9 @@ export type PlayerFlexProps = FlexProps & {
   withBorder?: boolean;
 };
 
+/**
+ * Ant Design Flex component with player-specific color styling based on avatar
+ */
 export const PlayerFlex = ({ avatarId, withBorder, ...rest }: PlayerFlexProps) => {
   const avatar = AVATARS[avatarId];
 

@@ -5,6 +5,9 @@ import { useGameAppearance, useGameInfoContext } from 'components/session/GameIn
 // Sass
 import styles from './ImageBackground.module.scss';
 
+/**
+ * Background component that displays a static image background for the lobby based on game appearance settings
+ */
 export function ImageBackground() {
   const info = useGameInfoContext();
   const gameAppearance = useGameAppearance();

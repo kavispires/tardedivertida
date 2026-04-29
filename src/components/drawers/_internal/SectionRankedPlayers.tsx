@@ -16,9 +16,15 @@ import { PlayerAvatar } from 'components/player/PlayerAvatar';
 import styles from '../drawers.module.scss';
 
 type SectionRankedPlayersProps = {
+  /**
+   * The game players object to display rankings for
+   */
   players: GamePlayers;
 };
 
+/**
+ * Section component that displays ranked players sorted by score
+ */
 export function SectionRankedPlayers({ players }: SectionRankedPlayersProps) {
   const { language } = useLanguage();
   const user = useUser(players);

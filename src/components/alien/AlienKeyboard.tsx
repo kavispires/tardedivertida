@@ -42,6 +42,9 @@ type AlienKeyboardProps = {
   disabled?: boolean;
 };
 
+/**
+ * Keyboard interface for inputting alien language symbols with search and control functionality
+ */
 export function AlienKeyboard({ value, onChange, availableAttributeKeys, disabled }: AlienKeyboardProps) {
   const { language } = useLanguage();
   const { isLoading, data: attributes = {} } = useAlienAttributes(true);

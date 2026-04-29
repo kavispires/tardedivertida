@@ -27,6 +27,9 @@ type MovieCardProps = {
   prefixColor?: string;
 };
 
+/**
+ * Displays a movie card with customizable prefix and suffix colors
+ */
 export function MovieCard({ movie, disableSuffix, disablePrefix, prefixColor, suffixColor }: MovieCardProps) {
   return (
     <div className={styles.movieCard}>

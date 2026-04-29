@@ -10,6 +10,9 @@ import { Translate } from 'components/language/Translate';
 // Sass
 import styles from '../drawers.module.scss';
 
+/**
+ * Component that provides blur card management options with image preview
+ */
 export function BlurOptions() {
   const { message } = App.useApp();
   const { blurCard } = useBlurCards();

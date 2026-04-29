@@ -18,9 +18,15 @@ import styles from '../PhaseLobby.module.scss';
 const Title = motion.create(Typography.Title);
 
 type StepJoinProps = {
+  /**
+   * Function to navigate to a different lobby step
+   */
   setStep: UseStep['setStep'];
 };
 
+/**
+ * Lobby step component that handles guest sign-in and navigation to account creation
+ */
 export function StepJoin({ setStep }: StepJoinProps) {
   const { isAuthenticated } = useCurrentUserContext();
 
@@ -98,6 +104,9 @@ type LoginButtonProps = {
   setStep: UseStep['setStep'];
 };
 
+/**
+ * Button component that opens a modal for existing users to sign in
+ */
 export function LoginButton({ disabled, setStep }: LoginButtonProps) {
   const [open, setOpen] = useState(false);
 
@@ -144,6 +153,9 @@ type SignUpButtonProps = {
   setStep: UseStep['setStep'];
 };
 
+/**
+ * Button component that opens a modal for new users to create an account
+ */
 export function SignUpButton({ disabled, setStep }: SignUpButtonProps) {
   const [open, setOpen] = useState(false);
 

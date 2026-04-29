@@ -1,6 +1,9 @@
 // Sass
 import styles from './SnowEffect.module.scss';
 
+/**
+ * Component that renders an animated snowfall effect
+ */
 export function SnowEffect() {
   return (
     <div className={styles.initialSnow}>

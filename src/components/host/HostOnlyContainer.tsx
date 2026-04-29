@@ -10,7 +10,7 @@ import styles from './HostOnlyContainer.module.scss';
 
 export { styles as hostOnlyContainerStyles };
 
-interface HostOnlyContainerProps extends SpaceProps {
+type HostOnlyContainerProps = SpaceProps & {
   /**
    * The content of the component
    */
@@ -23,8 +23,11 @@ interface HostOnlyContainerProps extends SpaceProps {
    * Optional custom class name
    */
   className?: string;
-}
+};
 
+/**
+ * Container that renders its children only for the host player with a distinctive fieldset border
+ */
 export const HostOnlyContainer = ({ children, label, className = '', ...rest }: HostOnlyContainerProps) => {
   const isHost = useHost();
 

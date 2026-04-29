@@ -34,6 +34,9 @@ type RulesCarouselProps = {
   actionsClassName?: string;
 };
 
+/**
+ * Carousel component for displaying game rules with navigation controls
+ */
 export function RulesCarousel({
   info,
   className = '',

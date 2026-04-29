@@ -46,12 +46,7 @@ export const handleSubmitCrime = async (
   });
 };
 
-export const handleSubmitMark = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  sceneIndex: number,
-) => {
+export const handleSubmitMark = async (gameName: string, gameId: UID, playerId: UID, sceneIndex: number) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,
@@ -63,12 +58,7 @@ export const handleSubmitMark = async (
   });
 };
 
-export const handleSubmitGuesses = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  guesses: Guesses,
-) => {
+export const handleSubmitGuesses = async (gameName: string, gameId: UID, playerId: UID, guesses: Guesses) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,

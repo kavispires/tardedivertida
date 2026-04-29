@@ -2,9 +2,12 @@ import React from 'react';
 // Internal
 import { PageError } from './PageError';
 
-interface ErrorBoundaryProps {
+type ErrorBoundaryProps = {
+  /**
+   * The children to render within the error boundary
+   */
   children: React.ReactNode;
-}
+};
 
 interface ErrorBoundaryState {
   hasError: boolean;

@@ -31,6 +31,9 @@ type LobbyReadyButtonsProps = {
   players: GamePlayers;
 };
 
+/**
+ * Component that displays ready and not-ready buttons with player status in the lobby
+ */
 export function LobbyReadyButtons({ players }: LobbyReadyButtonsProps) {
   const { isLoading } = useLoading();
   const { language, translate } = useLanguage();

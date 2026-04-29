@@ -8,12 +8,21 @@ import { DualTranslate } from 'components/language/DualTranslate';
 import styles from './BookPatternCard.module.scss';
 
 type BookPatternCardProps = {
+  /**
+   * The unique identifier for the book pattern
+   */
   patternId: string;
+  /**
+   * The width of the card in pixels
+   */
   cardWidth: number;
 };
 
 const FOLDER_PREFIX = 'slbc';
 
+/**
+ * Displays a book pattern card for the library game with tooltip and image
+ */
 export function BookPatternCard({ patternId, cardWidth }: BookPatternCardProps) {
   if (patternId === 'wildcard') {
     return (

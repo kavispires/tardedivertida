@@ -12,6 +12,9 @@ type SpeakProps = {
   text: DualLanguageValue;
 };
 
+/**
+ * Component that automatically plays text-to-speech audio in the selected language
+ */
 export function Speak({ text }: SpeakProps) {
   const [volume] = useGlobalLocalStorage('volume');
   const { language } = useLanguage();

@@ -40,6 +40,9 @@ type BannerProps = {
   static?: boolean;
 };
 
+/**
+ * Component that displays a game banner with animated logo and optional title
+ */
 export function GameBanner({
   title,
   gameName,
@@ -131,6 +134,9 @@ type GameStripProps = {
   static?: boolean;
 };
 
+/**
+ * Component that displays a game strip with horizontal layout and optional logo
+ */
 export function GameStrip({
   gameName,
   width,

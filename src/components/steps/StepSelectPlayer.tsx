@@ -39,6 +39,9 @@ type StepSelectPlayerProps = {
   ruleInstructionProps: RuleInstructionProps;
 } & Pick<StepProps, 'announcement'>;
 
+/**
+ * Step component for selecting a player from a list with filtering and announcement support
+ */
 export function StepSelectPlayer({
   players,
   announcement,

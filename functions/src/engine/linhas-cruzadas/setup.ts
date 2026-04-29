@@ -33,10 +33,7 @@ export const prepareSetupPhase = async (
     resourceData.allExpressions,
     playerCount * (store.options.singleWordOnly ? 0 : 2),
   );
-  const wordsDeck = sampleSize(
-    resourceData.allWords,
-    playerCount * (store.options.singleWordOnly ? 4 : 2),
-  );
+  const wordsDeck = sampleSize(resourceData.allWords, playerCount * (store.options.singleWordOnly ? 4 : 2));
 
   const achievements = utils.achievements.setup(players, {
     drawingDuration: 0,

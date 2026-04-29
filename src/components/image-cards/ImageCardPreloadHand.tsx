@@ -6,6 +6,10 @@ import styles from './ImageCardPreloadHand.module.scss';
 type ImageCardPreloadHandProps = {
   hand: string[];
 };
+
+/**
+ * Component that preloads a hand of image cards for performance optimization
+ */
 export function ImageCardPreloadHand({ hand }: ImageCardPreloadHandProps) {
   if (!hand) return <span></span>;
   return (

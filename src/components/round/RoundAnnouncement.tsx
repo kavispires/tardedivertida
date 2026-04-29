@@ -50,6 +50,9 @@ type RoundAnnouncementProps = {
   unskippable?: boolean;
 };
 
+/**
+ * Displays a round announcement overlay with round number and optional continue button
+ */
 export function RoundAnnouncement({
   round,
   onPressButton,

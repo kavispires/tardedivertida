@@ -36,12 +36,7 @@ export const handleSubmitMetrics = async (
   });
 };
 
-export const handleSubmitGuess = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  guesses: Guess[],
-) => {
+export const handleSubmitGuess = async (gameName: string, gameId: UID, playerId: UID, guesses: Guess[]) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,

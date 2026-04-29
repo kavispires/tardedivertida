@@ -38,6 +38,9 @@ type SuspectCardProps = {
   style?: Omit<React.CSSProperties, 'width'>;
 };
 
+/**
+ * Displays a suspect card with name and optional variant styling
+ */
 export function SuspectCard({
   suspect,
   width,

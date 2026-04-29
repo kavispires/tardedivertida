@@ -78,6 +78,9 @@ type AnimationConfig = {
   durations: number[];
 };
 
+/**
+ * Background component that renders animated clouds flowing across the lobby screen
+ */
 export function CloudBackground() {
   const BASE_URL = useTDBaseUrl('assets');
   const gameAppearance = useGameAppearance();

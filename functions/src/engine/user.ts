@@ -116,5 +116,4 @@ const USER_API_ACTIONS = {
  * @param request - The callable request object.
  * @returns The result of the user engine function.
  */
-export const userEngine = (request: CallableRequest) =>
-  apiDelegator(request, USER_API_ACTIONS);
+export const userEngine = (request: CallableRequest) => apiDelegator(request, USER_API_ACTIONS);

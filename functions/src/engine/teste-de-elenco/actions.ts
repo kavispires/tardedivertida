@@ -26,12 +26,7 @@ export const handleSubmitGenre = async (
   });
 };
 
-export const handleSubmitActor = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  actorId: UID,
-) => {
+export const handleSubmitActor = async (gameName: string, gameId: UID, playerId: UID, actorId: UID) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,

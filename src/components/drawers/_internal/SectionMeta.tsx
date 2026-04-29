@@ -12,6 +12,9 @@ type SectionMetaProps = {
   groupScore?: number;
 };
 
+/**
+ * Section component that displays game meta information including round and group score
+ */
 export function SectionMeta({ round, groupScore }: SectionMetaProps) {
   return (
     <ul className={styles.gameInfoDrawer__meta}>

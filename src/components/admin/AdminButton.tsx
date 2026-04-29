@@ -7,7 +7,7 @@ import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLoading } from 'hooks/useLoading';
 
-interface AdminButtonProps extends ButtonProps {
+type AdminButtonProps = ButtonProps & {
   /**
    * The content of the component
    */
@@ -16,8 +16,11 @@ interface AdminButtonProps extends ButtonProps {
    * Action triggered when the button is clicked
    */
   onClick: React.MouseEventHandler<HTMLElement>;
-}
+};
 
+/**
+ * Admin-only button that displays only when admin features are enabled and the user is an admin
+ */
 export function AdminButton({ onClick, children, ...rest }: AdminButtonProps) {
   const { isLoading } = useLoading();
   const [isAdminEnabled] = useGlobalState('isAdminEnabled');

@@ -13,6 +13,9 @@ type SendButtonProps = ButtonProps & {
   throttleTime?: number;
 };
 
+/**
+ * Button with throttled onClick handler to prevent rapid successive submissions
+ */
 export const SendButton = forwardRef<HTMLButtonElement, SendButtonProps>(
   ({ onClick, throttleTime = 750, icon, loading, type = 'primary', ...props }, ref) => {
     const { isLoading } = useLoading();

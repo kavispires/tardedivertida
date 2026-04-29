@@ -16,6 +16,9 @@ type CollapsibleRuleProps = {
   title?: ReactNode;
 } & Omit<CollapseProps, 'items'>;
 
+/**
+ * Collapsible panel component for displaying game rules with expand/collapse functionality
+ */
 export function CollapsibleRule({ children, title, ghost = true, ...rest }: CollapsibleRuleProps) {
   const panels: CollapseProps['items'] = [
     {

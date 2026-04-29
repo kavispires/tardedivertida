@@ -23,6 +23,9 @@ type PlayerAvatarEntryProps = {
   className?: string;
 } & React.HTMLAttributes<HTMLDivElement>;
 
+/**
+ * Player avatar entry component displaying avatar with name and optional animation
+ */
 export const PlayerAvatarEntry = ({
   player,
   animate = false,

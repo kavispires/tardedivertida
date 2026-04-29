@@ -2,7 +2,6 @@
 import { useCountdown } from 'hooks/useCountdown';
 // Sass
 import styles from './timers.module.scss';
-// Styles
 
 type TimeForActionProps = {
   /**
@@ -19,6 +18,9 @@ type TimeForActionProps = {
   timeLeft?: number;
 };
 
+/**
+ * Displays remaining time in minutes and seconds with optional countdown functionality
+ */
 export function WaitingTime({ duration, timeLeft, onExpire }: TimeForActionProps) {
   const { timeLeft: privateTimeLeft } = useCountdown({
     duration,

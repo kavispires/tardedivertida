@@ -38,6 +38,9 @@ type CharacterCardProps = {
   hideName?: boolean;
 };
 
+/**
+ * Displays a character/contender card with optional color overlay and blur support
+ */
 export function CharacterCard({ size, overlayColor, character, className, hideName }: CharacterCardProps) {
   const { dualTranslate } = useLanguage();
   const { shouldBeBlurred } = useBlurCards();

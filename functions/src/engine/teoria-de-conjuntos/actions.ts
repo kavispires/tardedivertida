@@ -16,12 +16,7 @@ import { OUTCOME } from './constants';
  * @param judgeId - The ID of the selected judge player.
  * @returns - A promise that resolves after the update is complete.
  */
-export const handleSubmitJudge = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  judgeId: UID,
-) => {
+export const handleSubmitJudge = async (gameName: string, gameId: UID, playerId: UID, judgeId: UID) => {
   return await utils.firestore.updateState({
     gameName,
     gameId,

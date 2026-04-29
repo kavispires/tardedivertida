@@ -18,6 +18,9 @@ type RedirectSessionProps = {
   state: GameState;
 };
 
+/**
+ * Component that handles redirecting users to different game sessions or game selection
+ */
 export function RedirectSession({ state }: RedirectSessionProps) {
   const navigate = useNavigate();
   const { data: gameList } = useGameList();

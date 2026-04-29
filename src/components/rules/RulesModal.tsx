@@ -13,10 +13,19 @@ import { RulesCarousel } from 'components/rules/RulesCarousel';
 import styles from './rules.module.scss';
 
 type RulesModalProps = {
+  /**
+   * The game information object containing the rules to display
+   */
   gameInfo: GameInfo;
+  /**
+   * Optional Ant Design button props to customize the rules button
+   */
   buttonProps?: ButtonProps;
 };
 
+/**
+ * Modal component that displays game rules in a carousel format with a trigger button
+ */
 export function RulesModal({ gameInfo, buttonProps }: RulesModalProps) {
   const { language, translate } = useLanguage();
   const [isVisible, setVisibility] = useState(false);

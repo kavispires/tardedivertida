@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "M",
   "gameName": "medidas-nao-exatas",
-  "version": "1.0.48",
+  "version": "1.0.49",
   "release": "stable",
   "releaseDate": "2025-07-06",
   "available": true,

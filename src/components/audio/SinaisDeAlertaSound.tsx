@@ -3,8 +3,10 @@ import { useEffect } from 'react';
 import { useAudio } from 'react-use';
 // Hooks
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
-// Sound
 
+/**
+ * Component that plays the Sinais de Alerta timer sound with volume controls
+ */
 export function SinaisDeAlertaTimerSound() {
   const [volume] = useGlobalLocalStorage('volume');
   const [audio, , controls] = useAudio({

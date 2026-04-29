@@ -24,6 +24,9 @@ type PlayerCountsProps = {
   icon?: ReactNode;
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>;
 
+/**
+ * Component that displays player avatars with associated count badges, sortable by name, count, or turn order
+ */
 export function PlayerCounts({
   players,
   turnOrder,

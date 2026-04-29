@@ -15,6 +15,9 @@ type SpecialRuleProps = {
   className?: string;
 };
 
+/**
+ * Highlights text as a special rule with distinctive badge styling
+ */
 export function SpecialRule({ children, className }: SpecialRuleProps) {
   return (
     <span className={className}>

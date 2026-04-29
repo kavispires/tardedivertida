@@ -4,12 +4,7 @@ import { OUTCOME } from './constants';
 import { getNextPhase } from './index';
 import type { FirebaseStateData } from './types';
 
-export const handleSelectWitness = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  witnessId: UID,
-) => {
+export const handleSelectWitness = async (gameName: string, gameId: UID, playerId: UID, witnessId: UID) => {
   return await utils.firestore.updateState({
     gameName,
     gameId,
@@ -22,12 +17,7 @@ export const handleSelectWitness = async (
   });
 };
 
-export const handleSelectQuestion = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  questionId: UID,
-) => {
+export const handleSelectQuestion = async (gameName: string, gameId: UID, playerId: UID, questionId: UID) => {
   return await utils.firestore.updateState({
     gameName,
     gameId,

@@ -17,6 +17,9 @@ type PlayersStatusBarProps = {
   players: GamePlayers;
 };
 
+/**
+ * Horizontal status bar component that displays all players with their current game status
+ */
 export function PlayersStatusBar({ players }: PlayersStatusBarProps) {
   const [showPlayersBar] = useGlobalState('showPlayersBar');
 

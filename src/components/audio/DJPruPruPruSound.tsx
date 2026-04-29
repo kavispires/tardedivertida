@@ -3,8 +3,10 @@ import { useEffect } from 'react';
 import { useAudio } from 'react-use';
 // Hooks
 import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
-// Sound
 
+/**
+ * Component that plays an air horn sound effect with volume controls for DJ Pru Pru Pru game
+ */
 export function DJPruPruPruSound() {
   const [volume] = useGlobalLocalStorage('volume');
   const [audio, , controls] = useAudio({

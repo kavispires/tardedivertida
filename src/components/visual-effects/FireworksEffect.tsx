@@ -1,6 +1,9 @@
 // Sass
 import styles from './FireworksEffect.module.scss';
 
+/**
+ * Component that renders an animated fireworks effect
+ */
 export function FireworksEffect() {
   return (
     <div className={styles.fireworks}>

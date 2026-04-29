@@ -230,9 +230,7 @@ export const updateBracketsWithVotes = (players: Players, brackets: Bracket[]) =
     const gotThis = arrValues.filter((v) => v === max);
 
     const winnerPos =
-      gotThis.length === 1
-        ? Number(arrKeys[arrValues.findIndex((v) => v === max)])
-        : sample(arrKeys);
+      gotThis.length === 1 ? Number(arrKeys[arrValues.findIndex((v) => v === max)]) : sample(arrKeys);
     const winner = brackets[Number(winnerPos)];
     winner.win = true;
 

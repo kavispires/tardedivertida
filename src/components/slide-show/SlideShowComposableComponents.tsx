@@ -18,7 +18,7 @@ import { PlayerAvatar } from 'components/player/PlayerAvatar';
 import styles from './styles';
 
 /**
- * A functional component that renders a label for the slide show.
+ * Label component for slide show content
  */
 export function SlideShowLabel({ children, className, ...props }: ElementPropsWithChildren) {
   return (
@@ -47,9 +47,7 @@ type SlideShowBubbleProps = {
 } & ElementPropsWithChildren;
 
 /**
- * A component that displays a bubble value in a slide show.
- * It conditionally renders a crown icon if the `winner` prop is true,
- * otherwise, it renders a message icon.
+ * Bubble value component for slide show that displays a value with optional winner crown icon
  */
 export function SlideShowBubbleValue({
   children,
@@ -93,7 +91,7 @@ type SlideShowPlayersListProps = {
 } & ElementProps;
 
 /**
- * SlideShowPlayersList component displays a list of player avatars and their names.
+ * Component that displays a list of player avatars and names in a slide show
  */
 export function SlideShowPlayersList({
   players,
@@ -134,7 +132,7 @@ type SlideShowNoWinsProps = TextProps & {
 };
 
 /**
- * SlideShowNoWins displays a message indicating that no one won in the slide show.
+ * Component that displays a message indicating no one won in the slide show
  */
 export function SlideShowNoWins({ children, icon, className, ...props }: SlideShowNoWinsProps) {
   return (

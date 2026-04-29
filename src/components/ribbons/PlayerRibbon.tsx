@@ -15,6 +15,9 @@ type RibbonProps = {
   position?: 'absolute' | 'static';
 };
 
+/**
+ * Ribbon component displaying a player's name and avatar with bounce animation
+ */
 export function PlayerRibbon({ player, position = 'absolute' }: RibbonProps) {
   return (
     <div className={clsx(styles.ribbon, position === 'absolute' && styles.ribbonAbsolute)}>

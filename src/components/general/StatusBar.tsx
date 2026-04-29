@@ -21,6 +21,9 @@ type StatusBarProps = {
   title?: ReactNode;
 };
 
+/**
+ * Component that displays a horizontal status bar with entries showing key-value pairs
+ */
 export function StatusBar({ entries, title }: StatusBarProps) {
   return (
     <div className={styles.statusBar}>

@@ -141,10 +141,7 @@ export const prepareBoardSetupPhase = async (
   const detectivePlayerId = state.detectivePlayerId || '';
 
   // Give 3 options of social group to choose from
-  players[gossiperPlayerId].socialGroupOptions = sampleSize(
-    Object.keys(state.socialGroups ?? {}),
-    3,
-  );
+  players[gossiperPlayerId].socialGroupOptions = sampleSize(Object.keys(state.socialGroups ?? {}), 3);
 
   players[detectivePlayerId].locationIndexes = [];
 

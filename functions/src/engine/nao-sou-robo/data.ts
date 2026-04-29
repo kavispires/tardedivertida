@@ -42,10 +42,7 @@ export const getResourceData = async (language: Language, playerCount: number): 
   const words = await utils.tdr.getSingleWords(language, quantityNeeded);
 
   // Glyphs
-  const glyphs = sampleSize(
-    utils.helpers.makeArray(SPRITE_LIBRARIES.GLYPHS),
-    quantityNeeded * 3,
-  );
+  const glyphs = sampleSize(utils.helpers.makeArray(SPRITE_LIBRARIES.GLYPHS), quantityNeeded * 3);
 
   // Emojis
   const emojis = sampleSize(utils.helpers.makeArray(SPRITE_LIBRARIES.EMOJIS), quantityNeeded);

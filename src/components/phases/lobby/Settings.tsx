@@ -9,9 +9,15 @@ import { Translate } from 'components/language/Translate';
 import styles from '../PhaseLobby.module.scss';
 
 type SettingsProps = {
+  /**
+   * Flag indicating if the game contains images that can be blurred
+   */
   hasImages: boolean;
 };
 
+/**
+ * Component that displays lobby settings for volume control and image blur toggle
+ */
 export function Settings({ hasImages }: SettingsProps) {
   const [blurEnabled, setBlurEnabled] = useGlobalLocalStorage('blurEnabled');
   const [volume, setVolume] = useGlobalLocalStorage('volume');

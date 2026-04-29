@@ -2,7 +2,6 @@
 import type { GroupQuestionCard as GroupQuestionCardType } from 'types/tdr';
 // Sass
 import styles from './GroupQuestionCard.module.scss';
-// Type
 
 type GroupQuestionCardProps = {
   /**
@@ -15,6 +14,9 @@ type GroupQuestionCardProps = {
   overrideNumber?: number;
 };
 
+/**
+ * Displays a group question card with question number and prefix/suffix text
+ */
 export function GroupQuestionCard({ question, overrideNumber }: GroupQuestionCardProps) {
   return (
     <span className={`${styles.groupQuestionCard} ${styles.groupQuestionCardSpan}`}>

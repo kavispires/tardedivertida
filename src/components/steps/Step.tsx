@@ -32,6 +32,9 @@ export type StepProps = {
   hidePlayersBar?: boolean;
 };
 
+/**
+ * Base step container component with announcement banner and optional full-width layout
+ */
 export const Step = forwardRef<HTMLDivElement, StepProps>(
   (
     {

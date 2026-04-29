@@ -11,6 +11,9 @@ type PlayersSelectProps = {
   players: GamePlayers;
 } & Omit<SelectProps, 'options'>;
 
+/**
+ * Select dropdown component with player options sorted alphabetically by name
+ */
 export function PlayersSelect({ players, style, ...props }: PlayersSelectProps) {
   const options = orderBy(Object.values(players), [(o) => o.name.toLowerCase()], ['asc']).map((player) => ({
     key: player.id,

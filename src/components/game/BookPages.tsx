@@ -18,6 +18,9 @@ type BookPagesProps = {
   className?: string;
 };
 
+/**
+ * SVG book pages layout displaying left and right page content side-by-side
+ */
 export function BookPages({ leftPage, rightPage, className }: BookPagesProps) {
   return (
     <svg

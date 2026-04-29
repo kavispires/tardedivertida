@@ -113,12 +113,7 @@ export const handleSubmitValidation = async (
  * @param guess
  * @returns
  */
-export const handleSendGuess = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  guess: string,
-) => {
+export const handleSendGuess = async (gameName: string, gameId: UID, playerId: UID, guess: string) => {
   return await utils.firestore.updateState({
     gameName,
     gameId,
@@ -139,12 +134,7 @@ export const handleSendGuess = async (
  * @param outcome
  * @returns
  */
-export const handleConfirmGuess = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  outcome: string,
-) => {
+export const handleConfirmGuess = async (gameName: string, gameId: UID, playerId: UID, outcome: string) => {
   return await utils.firestore.updateStore({
     gameName,
     gameId,

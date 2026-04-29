@@ -18,6 +18,10 @@ type LoadingProps = {
    */
   margin?: boolean;
 };
+
+/**
+ * Loading spinner with optional message and margin
+ */
 export function Loading({ message, margin = false }: LoadingProps) {
   return (
     <Space className={clsx(styles.loading, margin && styles['loading--margin'])}>

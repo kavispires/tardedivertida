@@ -6,6 +6,9 @@ import { useGameAppearance, useGameInfoContext } from 'components/session/GameIn
 // Sass
 import styles from './VideoBackground.module.scss';
 
+/**
+ * Background component that displays a video background for the lobby based on game appearance settings
+ */
 export function VideoBackground() {
   const BASE_URL = useTDBaseUrl('assets');
   const info = useGameInfoContext();

@@ -1,7 +1,18 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { FireFilled } from '@ant-design/icons';
-import { Button, Drawer } from 'antd';
+import { CheckCircleFilled, FireFilled, MinusCircleFilled } from '@ant-design/icons';
+import {
+  App,
+  AutoComplete,
+  Button,
+  type ButtonProps,
+  Drawer,
+  Form,
+  Input,
+  InputNumber,
+  Select,
+  Switch,
+} from 'antd';
 // Types
 import type { GameState, GamePlayers } from 'types/game';
 // Hooks
@@ -17,10 +28,6 @@ import { getFirestoreConsoleUrl } from 'services/firebase';
 import { FixedMenuButton } from 'components/buttons/FixedMenuButton';
 import { Popconfirm } from 'components/general/Popconfirm';
 import { Translate } from 'components/language/Translate';
-// Internal
-import { AdminPerformActionButton } from './_internal/AdminPerformActionButton';
-import { ForceStateForm } from './_internal/ForceStateForm';
-import { PlayersReadyState } from './_internal/PlayersReadyState';
 // Sass
 import styles from './AdminMenuDrawer.module.scss';
 
@@ -174,3 +181,252 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
     </div>
   );
 };
+
+type AdminPerformActionButtonProps = ButtonProps & {
+  /**
+   * The label of the button
+   */
+  label: string;
+};
+const AdminPerformActionButton = ({ label, ...props }: AdminPerformActionButtonProps) => (
+  <Button
+    icon={<FireFilled />}
+    type="primary"
+    danger
+    className="full-width"
+    {...props}
+  >
+    {label}
+  </Button>
+);
+
+type ValueType = 'string' | 'number' | 'boolean' | 'nullish';
+
+type ValueFormItemProps = {
+  /**
+   * The input value type
+   */
+  valueType?: ValueType | string;
+};
+
+export const ValueFormItem = ({ valueType }: ValueFormItemProps) => {
+  switch (valueType) {
+    case 'number':
+      return (
+        <Form.Item
+          label="Value"
+          name="value"
+        >
+          <InputNumber />
+        </Form.Item>
+      );
+    case 'boolean':
+      return (
+        <Form.Item
+          label="Value"
+          name="value"
+        >
+          <Switch
+            checkedChildren="true"
+            unCheckedChildren="false"
+            defaultChecked
+          />
+        </Form.Item>
+      );
+    case 'nullish':
+      return (
+        <Form.Item
+          label="Value"
+          name="value"
+        >
+          <Switch
+            checkedChildren="null"
+            unCheckedChildren="undefined"
+            defaultChecked
+          />
+        </Form.Item>
+      );
+    default:
+      return (
+        <Form.Item
+          label="Value"
+          name="value"
+        >
+          <Input />
+        </Form.Item>
+      );
+  }
+};
+
+type FormValues = {
+  key: string;
+  value: string | number | boolean;
+  valueType: ValueType;
+};
+
+type ForceStateFormProps = {
+  /**
+   * The loading state
+   */
+  isLoading?: boolean;
+  /**
+   * The game state
+   */
+  state: GameState;
+  /**
+   * The admin action being performed
+   */
+  onPerformAdminAction: (params: { state: Partial<GameState>; action: string }) => Promise<void>;
+};
+
+export const ForceStateForm = ({ isLoading, state, onPerformAdminAction }: ForceStateFormProps) => {
+  const { message } = App.useApp();
+  const [form] = Form.useForm();
+  const [valueType, setValueType] = useState('string');
+  const stateKeys = Object.keys(state).map((k) => ({ label: k, value: k }));
+
+  const onValueTypeSelectChange = (newType: ValueType) => {
+    if (['boolean', 'nullish'].includes(newType)) form.setFieldsValue({ value: true });
+    if (newType === 'number') form.setFieldsValue({ value: 0 });
+    if (newType === 'string') form.setFieldsValue({ value: '' });
+    setValueType(newType);
+  };
+
+  const onFinish = async (values: FormValues) => {
+    let parsedValue: string | number | boolean | null | undefined = values.value;
+
+    try {
+      if (values.valueType === 'number') {
+        parsedValue = Number(values.value) ?? 0;
+      }
+      if (values.valueType === 'nullish') {
+        parsedValue = values.value ? null : undefined;
+      }
+
+      const payload = {
+        [values.key]: parsedValue,
+      };
+
+      if (window.confirm(`Tem certeza que quer forçar o estado ${JSON.stringify(payload)}`)) {
+        await onPerformAdminAction({ state: payload, action: HOST_API_ACTIONS.FORCE_STATE_PROPERTY });
+
+        form.resetFields();
+        setValueType('string');
+      }
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      message.error(`Something went wrong: ${errorMessage}`);
+    }
+  };
+
+  return (
+    <Form
+      name="basic"
+      form={form}
+      initialValues={{ valueType: 'string' as unknown as ValueType }}
+      onFinish={onFinish}
+    >
+      <h3>Force Property</h3>
+      <Form.Item
+        label="Key"
+        name="key"
+        rules={[{ required: true }]}
+      >
+        <AutoComplete options={stateKeys} />
+      </Form.Item>
+      <Form.Item
+        label="Type"
+        name="valueType"
+      >
+        <Select
+          onChange={onValueTypeSelectChange}
+          options={[
+            { value: 'string', label: 'string' },
+            { value: 'number', label: 'number' },
+            { value: 'boolean', label: 'boolean' },
+            { value: 'nullish', label: 'nullish' },
+          ]}
+        />
+      </Form.Item>
+
+      <ValueFormItem valueType={valueType} />
+
+      <Button
+        type="primary"
+        htmlType="submit"
+        disabled={isLoading}
+        danger
+      >
+        Submit
+      </Button>
+    </Form>
+  );
+};
+
+type PlayersReadyStateProps = {
+  /**
+   * The game players
+   */
+  players: GamePlayers;
+};
+
+type PlayerStatus = {
+  readyPlayers: string[];
+  pendingPlayers: string[];
+};
+
+export function PlayersReadyState({ players }: PlayersReadyStateProps) {
+  const { readyPlayers, pendingPlayers }: PlayerStatus = Object.values(players).reduce(
+    (acc: PlayerStatus, player) => {
+      if (player.ready) {
+        acc.readyPlayers.push(player.name);
+      } else {
+        acc.pendingPlayers.push(player.name);
+      }
+
+      return acc;
+    },
+    {
+      readyPlayers: [],
+      pendingPlayers: [],
+    },
+  );
+
+  return (
+    <li className={styles.adminPlayersReadyState}>
+      <h3>Players Ready State</h3>
+      <div className={styles.entry}>
+        <CheckCircleFilled
+          style={{ color: 'green' }}
+          title="Ready:"
+        />
+        <ul className={styles.list}>
+          {readyPlayers.map((playerName) => (
+            <li
+              key={`admin-player-${playerName}`}
+              className={styles.item}
+            >
+              {playerName}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className={styles.entry}>
+        <MinusCircleFilled
+          style={{ color: 'orange' }}
+          title="Ready:"
+        />
+        <ul className={styles.list}>
+          {pendingPlayers.map((playerName) => (
+            <li
+              key={`admin-player-${playerName}`}
+              className={styles.item}
+            >
+              {playerName}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </li>
+  );
+}

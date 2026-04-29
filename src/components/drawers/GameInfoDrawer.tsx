@@ -38,6 +38,9 @@ type GameInfoDrawerProps = {
   userId: string;
 };
 
+/**
+ * Drawer component that displays game information, player rankings, and settings
+ */
 export function GameInfoDrawer({ players, state, userId }: GameInfoDrawerProps) {
   const info = useGameInfoContext();
   const { language } = useLanguage();

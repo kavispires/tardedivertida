@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import type { ReactNode } from 'react';
 // Sass
 import styles from './rules.module.scss';
-// Styles
 
 type RulesListProps = {
   /**
@@ -15,6 +14,9 @@ type RulesListProps = {
   className?: string;
 };
 
+/**
+ * Unordered list component styled for displaying game rules
+ */
 export function RulesList({ children, className = '' }: RulesListProps) {
   return <ul className={clsx(styles.rulesList, className)}>{children}</ul>;
 }

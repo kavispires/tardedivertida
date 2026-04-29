@@ -3,12 +3,7 @@ import utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
 
-export const handleSubmitWords = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  words: UID[],
-) => {
+export const handleSubmitWords = async (gameName: string, gameId: UID, playerId: UID, words: UID[]) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,

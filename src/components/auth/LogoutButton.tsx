@@ -8,6 +8,9 @@ import { signOut } from 'services/firebase';
 import { Popconfirm } from 'components/general/Popconfirm';
 import { Translate } from 'components/language/Translate';
 
+/**
+ * Button that signs the user out and redirects to the home page with confirmation
+ */
 export function LogoutButton(props: ButtonProps) {
   const navigate = useNavigate();
   const { message } = App.useApp();

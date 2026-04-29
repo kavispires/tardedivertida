@@ -41,12 +41,7 @@ export const handleSubmitStory = async (
  * @param cardId
  * @returns
  */
-export const handlePlayCard = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  cardId: string,
-) => {
+export const handlePlayCard = async (gameName: string, gameId: UID, playerId: UID, cardId: string) => {
   const actionText = 'play a card';
 
   return await utils.firestore.updatePlayer({
@@ -70,12 +65,7 @@ export const handlePlayCard = async (
  * @param vote
  * @returns
  */
-export const handleSubmitVote = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  vote: UID,
-) => {
+export const handleSubmitVote = async (gameName: string, gameId: UID, playerId: UID, vote: UID) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,

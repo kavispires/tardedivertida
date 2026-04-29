@@ -65,10 +65,7 @@ export const prepareSetupPhase = async (
   const doorsDeck = sampleSize(imageCardsParts[0], DOOR_OPTIONS_PER_ROUND * DOOR_LEVELS);
 
   // Use the other two decks as book pages
-  const pagesDeck = sampleSize(
-    [...imageCardsParts[1], ...imageCardsParts[2]],
-    PAGES_PER_ROUND * MAX_ROUNDS,
-  );
+  const pagesDeck = sampleSize([...imageCardsParts[1], ...imageCardsParts[2]], PAGES_PER_ROUND * MAX_ROUNDS);
 
   const magic = MAGIC_UNITS_PER_PLAYER_COUNT[playerCount];
 
@@ -122,9 +119,7 @@ export const prepareBookPossessionPhase = async (
     : {
         doors: state.doors,
         newDoorIndex: store.doorsDeckIndex,
-        answerDoorId: sample(
-          state.doors.filter((doorId: UID) => doorId !== state.answerDoorId),
-        ),
+        answerDoorId: sample(state.doors.filter((doorId: UID) => doorId !== state.answerDoorId)),
       };
 
   const pages = getBookPages(store.pagesDeck, store.pagesDeckIndex, trap as Trap);

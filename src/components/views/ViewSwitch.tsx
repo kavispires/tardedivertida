@@ -11,6 +11,9 @@ type ViewSwitchProps = {
   children: ReactNode[];
 };
 
+/**
+ * Conditional view switcher that renders children based on corresponding boolean cases
+ */
 export function ViewSwitch({ cases, children }: ViewSwitchProps) {
   if (cases.length > 5) {
     throw Error('ViewSwitch only supports up to 5 cases');

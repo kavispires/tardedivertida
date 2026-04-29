@@ -26,6 +26,9 @@ type SignInProps = {
   onSuccess: () => void;
 };
 
+/**
+ * Sign-in component with options for Google or email/password authentication
+ */
 export function SignIn({ onSuccess }: SignInProps) {
   const [view, setView] = useState('google');
 
@@ -60,6 +63,9 @@ export function SignIn({ onSuccess }: SignInProps) {
   );
 }
 
+/**
+ * Google sign-in button component with built-in authentication handling
+ */
 export function SignInWithGoogle({ onSuccess, ...buttonProps }: SignInProps & ButtonProps) {
   const { isPending, mutate, isError } = useMutation<UserCredential, Error, void, unknown>({
     mutationFn: async () => await signInWithGoogle(),

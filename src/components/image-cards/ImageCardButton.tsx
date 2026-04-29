@@ -59,6 +59,9 @@ type ImageCardButtonProps = {
   throttle?: boolean;
 } & Omit<ComponentPropsWithoutRef<'div'>, 'onClick' | 'children'>;
 
+/**
+ * Interactive image card component with optional action button and blur functionality
+ */
 export function ImageCardButton({
   cardId,
   children,

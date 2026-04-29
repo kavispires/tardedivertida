@@ -33,6 +33,9 @@ import styles from './PhaseLobby.module.scss';
 
 const Paragraph = motion.create(Typography.Paragraph);
 
+/**
+ * Phase component that displays the lobby where players join, configure settings, and prepare to start the game
+ */
 export function PhaseLobby({ players, meta }: PhaseProps) {
   const { step, setStep } = useStep();
   const { currentUser, isAuthenticated } = useCurrentUserContext();

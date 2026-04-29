@@ -102,6 +102,9 @@ type RankingBoardProps = {
   victoryIndex?: number;
 };
 
+/**
+ * Displays a ranking board with player positions, points gained, and optional victory indicators
+ */
 export function RankingBoard({
   players,
   ranking,

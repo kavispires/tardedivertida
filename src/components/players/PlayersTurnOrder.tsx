@@ -45,6 +45,9 @@ type PlayersTurnOrderProps = {
   additionalInfoParser?: (player: GamePlayer) => ReactNode;
 };
 
+/**
+ * Horizontal turn order display with player avatars arranged in sequence
+ */
 export function PlayersTurnOrder({
   players,
   order,

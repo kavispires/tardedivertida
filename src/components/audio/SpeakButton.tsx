@@ -17,6 +17,9 @@ type SpeakButtonProps = {
   text: DualLanguageValue;
 } & ButtonProps;
 
+/**
+ * Button component that plays text-to-speech audio in the selected language when clicked
+ */
 export function SpeakButton({ text, icon, ...buttonProps }: SpeakButtonProps) {
   const [volume] = useGlobalLocalStorage('volume');
   const { language } = useLanguage();

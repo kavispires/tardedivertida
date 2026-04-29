@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "R",
   "gameName": "namoro-ou-amizade",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "release": "planned",
   "releaseDate": "0000-00-00",
   "available": false,
@@ -27,19 +27,11 @@
     "videoBackground": true
   },
   "rules": {
-    "pt": [
-      "TBD"
-    ],
-    "en": [
-      "TBD"
-    ]
+    "pt": ["TBD"],
+    "en": ["TBD"]
   },
   "playerCount": {
-    "recommended": [
-      4,
-      5,
-      6
-    ],
+    "recommended": [4, 5, 6],
     "min": 2,
     "max": 8,
     "best": 0
@@ -48,11 +40,6 @@
     "base": 0,
     "perPlayer": 0
   },
-  "mechanics": [
-    "cooperative",
-    "competitive",
-    "guessing",
-    "images"
-  ],
+  "mechanics": ["cooperative", "competitive", "guessing", "images"],
   "features": []
 }

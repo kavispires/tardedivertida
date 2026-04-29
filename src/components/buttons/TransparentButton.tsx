@@ -4,7 +4,7 @@ import { isIOS } from 'react-device-detect';
 // Sass
 import styles from './TransparentButton.module.scss';
 
-interface TransparentButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+type TransparentButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   /**
    * The content of the button
    */
@@ -25,7 +25,7 @@ interface TransparentButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
    * Behavior when the mouse hovers the button (default: scale)
    */
   hoverType?: 'scale' | 'sepia' | 'tint' | 'none';
-}
+};
 
 /**
  * Transparent button that has all the functionality of a button but no visible styling

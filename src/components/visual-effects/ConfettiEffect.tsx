@@ -1,6 +1,9 @@
 // Sass
 import styles from './ConfettiEffect.module.scss';
 
+/**
+ * Component that renders an animated confetti effect with falling pieces
+ */
 export function ConfettiEffect() {
   // Generate 50 confetti pieces for a fuller effect
   const confettiPieces = Array.from({ length: 50 }, (_, i) => <span key={i} />);

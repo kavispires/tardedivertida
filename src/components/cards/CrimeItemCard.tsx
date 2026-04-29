@@ -39,6 +39,9 @@ type CrimeItemCardProps = {
   activeColor?: string;
 };
 
+/**
+ * Displays a crime item card with selection state and blur support
+ */
 export function CrimeItemCard({
   item,
   cardWidth,

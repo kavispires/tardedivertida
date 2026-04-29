@@ -16,6 +16,9 @@ type HostOnlyButtonProps = {
   children: ReactNode;
 } & ButtonProps;
 
+/**
+ * Convenience component combining HostOnlyContainer and HostButton for host-only actions
+ */
 export function HostOnlyButton({ onClick, children, ...buttonProps }: HostOnlyButtonProps) {
   return (
     <HostOnlyContainer>

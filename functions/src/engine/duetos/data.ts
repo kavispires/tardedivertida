@@ -24,9 +24,7 @@ export const getResourceData = async (language: Language, options?: DuetosOption
     specialDeckTypes.push('images');
   }
   if (options?.specialRounds.includes('avatars')) {
-    specialDeckTypes.push(
-      sample(['superHeroes', 'clubbers', 'superHeroes', 'clubbers', 'costumes']),
-    );
+    specialDeckTypes.push(sample(['superHeroes', 'clubbers', 'superHeroes', 'clubbers', 'costumes']));
   }
   if (options?.specialRounds.includes('sprites')) {
     specialDeckTypes.push(sample(['emojis', 'glyphs', 'glyphs']));
@@ -70,26 +68,17 @@ export const getResourceData = async (language: Language, options?: DuetosOption
 
   let superHeroes: number[] = [];
   if (specialDeckTypes.includes('superHeroes')) {
-    superHeroes = sampleSize(
-      utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.SUPER_HEROES),
-      quantityNeeded,
-    );
+    superHeroes = sampleSize(utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.SUPER_HEROES), quantityNeeded);
   }
 
   let clubbers: number[] = [];
   if (specialDeckTypes.includes('clubbers')) {
-    clubbers = sampleSize(
-      utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.CLUBBERS),
-      quantityNeeded,
-    );
+    clubbers = sampleSize(utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.CLUBBERS), quantityNeeded);
   }
 
   let costumes: number[] = [];
   if (specialDeckTypes.includes('costumes')) {
-    costumes = sampleSize(
-      utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES),
-      quantityNeeded,
-    );
+    costumes = sampleSize(utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES), quantityNeeded);
   }
 
   let words: TextCard[] = [];

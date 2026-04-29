@@ -16,6 +16,9 @@ type PlayerAvatarTooltipProps = {
   tooltipProps?: TooltipProps;
 } & AvatarProps;
 
+/**
+ * Player avatar wrapped in a tooltip displaying the player's name
+ */
 export function PlayerAvatarTooltip({ player, tooltipProps, ...avatarProps }: PlayerAvatarTooltipProps) {
   return (
     <Tooltip

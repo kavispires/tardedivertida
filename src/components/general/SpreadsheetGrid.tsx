@@ -26,6 +26,9 @@ type SpreadsheetGridProps = {
   className?: string;
 };
 
+/**
+ * Grid component that renders a spreadsheet-like table structure with columns and rows
+ */
 export function SpreadsheetGrid({ columns, rows, topLeftCorner, children, className }: SpreadsheetGridProps) {
   return (
     <div
@@ -54,6 +57,9 @@ type SpreadsheetCellProps = {
   className?: string;
 };
 
+/**
+ * Cell component for use within SpreadsheetGrid with optional header styling
+ */
 export function SpreadsheetCell({ children, header, className }: SpreadsheetCellProps) {
   return (
     <span

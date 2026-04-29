@@ -36,9 +36,7 @@ type ListOfPlayersProps = {
 } & React.HTMLAttributes<HTMLSpanElement>;
 
 /**
- * Renders player names from a list of playerIds
- * @param props
- * @returns
+ * Component that renders a list of player names or avatars from a list of player IDs
  */
 export function ListOfPlayers({
   players,

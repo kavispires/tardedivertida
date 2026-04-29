@@ -28,6 +28,9 @@ type RateGameWidgetProps = {
   customText?: ReactNode;
 };
 
+/**
+ * Widget component that prompts users to rate the game with customizable text
+ */
 export function RateGameWidget({ customText }: RateGameWidgetProps) {
   const [hideWidget, setHideWidget] = useState(false);
 

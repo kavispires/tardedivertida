@@ -11,6 +11,9 @@ import { Title } from 'components/text/Title';
 // Internal
 import { PhaseContainer } from './PhaseContainer';
 
+/**
+ * Phase component that displays a waiting screen while the game transitions between phases
+ */
 export function PhaseWait({ state }: PhaseProps) {
   return (
     <PhaseContainer

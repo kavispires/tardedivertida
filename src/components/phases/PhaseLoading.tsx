@@ -3,6 +3,9 @@ import type { PhaseProps } from 'types/game';
 // Components
 import { LoadingPage } from 'components/loaders/LoadingPage';
 
+/**
+ * Phase component that displays a loading screen while fetching game phase data
+ */
 export function PhaseLoading(_props: PhaseProps) {
   return (
     <LoadingPage

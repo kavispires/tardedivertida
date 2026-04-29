@@ -17,6 +17,9 @@ type MedalProps = {
   width?: number;
 };
 
+/**
+ * Component that renders an SVG medal icon with customizable size and style
+ */
 export const Medal = ({ id = 'star', className = '', width = 64, ...props }: MedalProps) => {
   return (
     <svg

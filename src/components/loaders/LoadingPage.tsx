@@ -20,6 +20,9 @@ type LoadingPageProps = {
   message?: DualLanguageValue;
 };
 
+/**
+ * Full-page loading screen with animated icon and optional message
+ */
 export function LoadingPage({ message }: LoadingPageProps) {
   return (
     <LoadingPageLayout className={styles.loadingPage}>

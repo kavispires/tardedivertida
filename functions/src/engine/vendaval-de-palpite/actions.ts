@@ -125,12 +125,7 @@ export const handleSubmitEvaluation = async (
  * @param outcome
  * @returns
  */
-export const handleSubmitOutcome = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  outcome: string,
-) => {
+export const handleSubmitOutcome = async (gameName: string, gameId: UID, playerId: UID, outcome: string) => {
   return await utils.firestore.updateState({
     gameName,
     gameId,
@@ -151,12 +146,7 @@ export const handleSubmitOutcome = async (
  * @param clueId
  * @returns
  */
-export const handleSubmitHelp = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  clueId: ClueId,
-) => {
+export const handleSubmitHelp = async (gameName: string, gameId: UID, playerId: UID, clueId: ClueId) => {
   return await utils.firestore.updateState({
     gameName,
     gameId,

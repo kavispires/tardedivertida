@@ -38,6 +38,9 @@ export type StepTitleProps = {
   wait?: boolean;
 } & TitleProps;
 
+/**
+ * Title component for game steps with optional icon and animated clock indicator
+ */
 export const StepTitle = ({
   colorScheme,
   children,

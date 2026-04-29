@@ -7,6 +7,9 @@ type ViewProps = {
   children: ReactNode;
 };
 
+/**
+ * Simple wrapper component that renders children within a React fragment
+ */
 export function View({ children }: ViewProps) {
   return <>{children}</>;
 }

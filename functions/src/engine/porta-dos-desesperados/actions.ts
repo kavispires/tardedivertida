@@ -4,12 +4,7 @@ import { shuffle } from 'lodash';
 // Internal functions
 import { getNextPhase } from './index';
 
-export const handleSubmitPages = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  pageIds: UID[],
-) => {
+export const handleSubmitPages = async (gameName: string, gameId: UID, playerId: UID, pageIds: UID[]) => {
   return await utils.firestore.updateState({
     gameName,
     gameId,

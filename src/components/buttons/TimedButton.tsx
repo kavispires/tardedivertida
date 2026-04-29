@@ -5,9 +5,8 @@ import { Button, type ButtonProps } from 'antd';
 import { useCountdown } from 'hooks/useCountdown';
 // Sass
 import styles from './TimedButton.module.scss';
-// Hook and Utils
 
-interface TimedButtonProps extends Omit<ButtonProps, 'onClick'> {
+type TimedButtonProps = Omit<ButtonProps, 'onClick'> & {
   /**
    * Duration to call onExpire in seconds
    */
@@ -24,7 +23,7 @@ interface TimedButtonProps extends Omit<ButtonProps, 'onClick'> {
    * Flag indicating if the timer should be hidden (this cancels the onExpire function)
    */
   hideTimer?: boolean;
-}
+};
 
 /**
  * Button component that triggers a function when given duration is over

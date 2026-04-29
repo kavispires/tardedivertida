@@ -19,6 +19,9 @@ type ImageBlurButtonProps = {
   ghost?: boolean;
 };
 
+/**
+ * Button component that toggles blur effect for sensitive image content
+ */
 export function ImageBlurButton({ cardId, ghost = true }: ImageBlurButtonProps) {
   const { blurCard, isBlurEnabled, shouldBeBlurred } = useBlurCards();
 

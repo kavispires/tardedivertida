@@ -14,12 +14,24 @@ import { Translate } from 'components/language/Translate';
 // Sass
 import styles from './MonsterCard.module.scss';
 
-interface MonsterCardProps extends SpaceProps {
+type MonsterCardProps = SpaceProps & {
+  /**
+   * The current monster to display
+   */
   currentMonster: MonsterImage;
+  /**
+   * Flag to show or hide orientation control buttons
+   */
   showControls?: boolean;
+  /**
+   * Custom width for the monster card
+   */
   cardWidth?: number;
-}
+};
 
+/**
+ * Displays a monster card with optional orientation controls
+ */
 export function MonsterCard({ currentMonster, showControls = true, cardWidth, ...props }: MonsterCardProps) {
   const [monsterOrientation, setMonsterOrientation] = useGlobalState('monsterOrientation');
   const defaultCardWidth = useCardWidth(5, { gap: 16, maxWidth: 360 });

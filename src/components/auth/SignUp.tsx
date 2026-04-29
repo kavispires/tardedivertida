@@ -19,6 +19,9 @@ type SignUpProps = {
   onSuccess: () => void;
 };
 
+/**
+ * Sign-up form component for creating new user accounts with email and password
+ */
 export function SignUp({ onSuccess }: SignUpProps) {
   const [form] = Form.useForm();
 
@@ -60,6 +63,9 @@ type SignUpFormProps = {
   isLoading: boolean;
 };
 
+/**
+ * Reusable sign-up form component with username/password fields and validation
+ */
 export function SignUpForm({ form, onFinish, isError, isLoading }: SignUpFormProps) {
   const { translate } = useLanguage();
   return (

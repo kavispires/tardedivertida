@@ -5,6 +5,9 @@ import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { PageError } from 'components/errors/PageError';
 
+/**
+ * Phase component that displays an error screen with translated error message
+ */
 export function PhaseError({ state }: PhaseProps) {
   const { dualTranslate } = useLanguage();
   return (

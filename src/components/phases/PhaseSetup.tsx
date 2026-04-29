@@ -18,6 +18,9 @@ import { PhaseContainer } from './PhaseContainer';
 import { VideoBackground } from './lobby/VideoBackground';
 import { ImageBackground } from './lobby/ImageBackground';
 
+/**
+ * Phase component that displays a setup screen while the game initializes
+ */
 export function PhaseSetup({ state }: PhaseProps) {
   const gameId = useGameId();
   const queryClient = useQueryClient();

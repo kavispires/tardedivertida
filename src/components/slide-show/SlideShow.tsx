@@ -45,8 +45,6 @@ type SlideShowProps = {
 
 /**
  * Display Slick show with a left and right sides with full navigation controls
- * @param props
- * @returns
  */
 export function SlideShow({
   children,

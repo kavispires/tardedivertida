@@ -15,6 +15,9 @@ type RibbonProps = {
   position?: 'absolute' | 'static';
 };
 
+/**
+ * Decorative ribbon label component with customizable positioning
+ */
 export function Ribbon({ label, position = 'absolute' }: RibbonProps) {
   return (
     <div className={clsx(styles.ribbon, position === 'absolute' && styles.ribbonAbsolute)}>

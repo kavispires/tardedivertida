@@ -48,6 +48,9 @@ type GameOverWrapperProps = {
   rateWidgetCustomText?: ReactNode;
 };
 
+/**
+ * Wrapper component for game over screen with announcement banner, achievements modal, and rate widget
+ */
 export function GameOverWrapper({
   state,
   players,

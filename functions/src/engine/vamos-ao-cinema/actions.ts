@@ -11,12 +11,7 @@ import { getNextPhase } from '.';
  * @param guess
  * @returns
  */
-export const handleSelectMovie = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  movieId: UID,
-) => {
+export const handleSelectMovie = async (gameName: string, gameId: UID, playerId: UID, movieId: UID) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,
@@ -36,12 +31,7 @@ export const handleSelectMovie = async (
  * @param clue
  * @returns
  */
-export const handleEliminateMovie = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  movieId: UID,
-) => {
+export const handleEliminateMovie = async (gameName: string, gameId: UID, playerId: UID, movieId: UID) => {
   return await utils.firestore.updateStore({
     gameName,
     gameId,

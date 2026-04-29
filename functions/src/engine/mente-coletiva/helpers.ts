@@ -69,9 +69,7 @@ export const determineRoundType = (playerCount: number, currentRound: number, pl
     return isSmallGame ? sample([1, 2, 2]) : sample([2, 2, 3]);
   }
 
-  return isSmallGame
-    ? sample([1, 1, 1, 1, 1, 2, 0])
-    : sample([1, 1, 1, 1, 2, 2, 3, 0]);
+  return isSmallGame ? sample([1, 1, 1, 1, 1, 2, 0]) : sample([1, 1, 1, 1, 2, 2, 3, 0]);
 };
 
 /**

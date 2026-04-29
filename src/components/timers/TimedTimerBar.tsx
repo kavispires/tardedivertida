@@ -29,6 +29,9 @@ type TimedTimerBarProps = {
   className?: string;
 };
 
+/**
+ * Timer progress bar that automatically counts down and triggers callback on expiration
+ */
 export function TimedTimerBar({ duration, onExpire, type, steps = 10, className }: TimedTimerBarProps) {
   const { timeLeft } = useCountdown({
     duration,

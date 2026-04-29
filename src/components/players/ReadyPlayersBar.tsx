@@ -28,6 +28,9 @@ type ReadyPlayersBarProps = {
   hideNames?: boolean;
 };
 
+/**
+ * Component that displays the count and list of players who are ready versus not ready
+ */
 export function ReadyPlayersBar({
   players,
   readyText,

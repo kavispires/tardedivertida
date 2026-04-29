@@ -37,6 +37,9 @@ type ImageCardSelectButtonProps = {
   standalone?: boolean;
 };
 
+/**
+ * Toggle button component for selecting and deselecting image cards with customizable labels
+ */
 export function ImageCardSelectButton({
   onClick,
   cardId,

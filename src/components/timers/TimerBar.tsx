@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Progress, type ProgressProps } from 'antd';
 
-interface TimerBarProps extends ProgressProps {
+type TimerBarProps = ProgressProps & {
   /**
    * Number of steps to divide the progress into
    */
@@ -14,7 +14,7 @@ interface TimerBarProps extends ProgressProps {
    * The total value of the timer
    */
   total: number;
-}
+};
 
 /**
  * Time Bar presentational component used in timed operations

@@ -6,12 +6,12 @@ import { useLanguage } from 'hooks/useLanguage';
 // Images
 import avatars from 'assets/images/avatars.svg?url';
 
-export interface PlayerAvatarProps extends AvatarProps {
+export type PlayerAvatarProps = AvatarProps & {
   /**
    * The id of the player avatar
    */
   avatarId: string;
-}
+};
 
 /**
  * Displays an Avatar svg image for given player

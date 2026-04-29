@@ -43,7 +43,13 @@ const PLACEHOLDER_GAME_INFO: GameInfo = {
 export const GameInfoContext = createContext<GameInfo>(PLACEHOLDER_GAME_INFO);
 
 type GameInfoContextType = {
+  /**
+   * The game collection identifier
+   */
   gameCollection: string;
+  /**
+   * The children components to render within the provider
+   */
   children: ReactNode;
 };
 

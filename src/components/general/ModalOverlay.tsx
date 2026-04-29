@@ -20,11 +20,8 @@ type ModalOverlayProps = {
 };
 
 /**
- * ModalOverlay component provides a modal with various transformation controls.
- * @param props.children - The content to be displayed inside the modal.
- * @param props.onClose - The function to call when the modal is closed.
- * @param props.open - A boolean indicating whether the modal is open or not.
- * @returns The rendered modal overlay component or null if not open.
+/**
+ * Modal overlay component with transformation controls for scaling, rotating, and flipping content
  */
 export const ModalOverlay: React.FC<ModalOverlayProps> = ({ children, onClose, open }) => {
   const [scale, setScale] = useState(1);

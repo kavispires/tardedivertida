@@ -20,6 +20,9 @@ type PopoverRuleProps = {
   showLabel?: boolean;
 };
 
+/**
+ * Fixed position popover button that displays game rules in a popup
+ */
 export function PopoverRule({ content, label, showLabel = false }: PopoverRuleProps) {
   return (
     <FixedMenuButton

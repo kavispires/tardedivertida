@@ -22,6 +22,9 @@ type SpeechBubbleProps = {
   size?: 'small' | 'medium' | 'large';
 } & ComponentProps<'div'>;
 
+/**
+ * Speech bubble component with customizable direction, shadow, and size
+ */
 export function SpeechBubble({ children, direction = 'left', shadow, size, ...rest }: SpeechBubbleProps) {
   const directionClass = {
     left: styles.speechBubbleLeft,

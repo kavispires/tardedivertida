@@ -23,6 +23,9 @@ type JoinedPlayersProps = {
   orientation: 'horizontal' | 'vertical';
 };
 
+/**
+ * Component that displays the list of players who have joined the lobby session
+ */
 export function JoinedPlayers({ players, orientation }: JoinedPlayersProps) {
   const orderedPlayers = useMemo(
     () => orderBy(Object.values(players), ['updatedAt', 'name'], ['asc']),

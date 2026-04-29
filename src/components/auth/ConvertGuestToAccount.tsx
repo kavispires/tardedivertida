@@ -28,6 +28,9 @@ type ConvertGuestToAccountProps = {
   onSuccess: () => void;
 };
 
+/**
+ * Form component that allows guest users to convert their temporary account to a permanent account
+ */
 export function ConvertGuestToAccount({ onSuccess }: ConvertGuestToAccountProps) {
   const [form] = Form.useForm();
 

@@ -19,6 +19,9 @@ type HighlightTextProps = {
   highlightClassName?: string;
 } & ElementProps<HTMLSpanElement>;
 
+/**
+ * Highlights specific words or phrases within a paragraph of text
+ */
 export const ParagraphHighlighter: React.FC<HighlightTextProps> = ({
   text,
   highlights,

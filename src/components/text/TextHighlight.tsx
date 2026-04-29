@@ -9,6 +9,9 @@ type TextHighlightProps = {
   dark?: boolean;
 } & ElementPropsWithChildren;
 
+/**
+ * Highlights text with a colored background, optionally using dark styling
+ */
 export function TextHighlight({ children, className, dark, ...props }: TextHighlightProps) {
   return (
     <span

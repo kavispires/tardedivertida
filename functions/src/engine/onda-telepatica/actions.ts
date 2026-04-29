@@ -36,12 +36,7 @@ export const handleSubmitCategory = async (
  * @param clue
  * @returns
  */
-export const handleSubmitClue = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  clue: string,
-) => {
+export const handleSubmitClue = async (gameName: string, gameId: UID, playerId: UID, clue: string) => {
   return await utils.firestore.updateStore({
     gameName,
     gameId,

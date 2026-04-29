@@ -29,6 +29,7 @@ export function Translate({ en, pt, custom }: TransLateProps) {
 
   if (!language) {
     const errorMessage = 'Could not reach the useLanguage hook';
+    // biome-ignore lint/suspicious/noConsole: for debug purposes
     console.error(errorMessage);
     message.error(errorMessage);
     return <span>?</span>;
@@ -40,6 +41,7 @@ export function Translate({ en, pt, custom }: TransLateProps) {
 
   if (!pt || !en) {
     const errorMessage = '`pt` or `en` translation was not provided';
+    // biome-ignore lint/suspicious/noConsole: for debug purposes
     console.error(errorMessage);
     message.error(errorMessage);
     return <span>?</span>;

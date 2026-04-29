@@ -22,6 +22,9 @@ type AlienTextProps = {
   withTranslation?: boolean;
 } & ElementProps;
 
+/**
+ * Displays text using alien language symbols with optional translation tooltip
+ */
 export function AlienText({ value, withTranslation = false, className, ...divProps }: AlienTextProps) {
   const { isLoading, data: attributes = {} } = useAlienAttributes(true);
   const { dualTranslate } = useLanguage();

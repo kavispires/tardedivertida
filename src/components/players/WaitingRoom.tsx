@@ -36,6 +36,9 @@ type WaitingRoomProps = {
   icon?: ReactNode;
 };
 
+/**
+ * Component that displays a waiting room screen with player list while waiting for other players
+ */
 export function WaitingRoom({ players, title, instruction, children, icon }: WaitingRoomProps) {
   useTemporarilyHidePlayersBar();
 

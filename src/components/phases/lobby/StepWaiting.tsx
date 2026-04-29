@@ -38,6 +38,9 @@ type StepWaitingProps = {
   players: GamePlayers;
 };
 
+/**
+ * Lobby step component that displays waiting state while the host prepares to start the game
+ */
 export function StepWaiting({ players }: StepWaitingProps) {
   const info = useGameInfoContext();
   const { message, notification } = App.useApp();

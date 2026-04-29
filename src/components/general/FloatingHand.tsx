@@ -29,6 +29,9 @@ type FloatingHandProps = {
   icon?: ReactNode;
 };
 
+/**
+ * Component that displays a floating expandable hand of cards at the bottom of the screen
+ */
 export function FloatingHand({ children, icon, title }: FloatingHandProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const { translate } = useLanguage();
@@ -73,6 +76,9 @@ export function FloatingHand({ children, icon, title }: FloatingHandProps) {
   );
 }
 
+/**
+ * Drawer variant of FloatingHand that opens in a side drawer instead of expanding in place
+ */
 export function FloatingHandDrawer({ children, icon, title }: FloatingHandProps) {
   const [open, toggleDrawer] = useToggle(false);
   const { translate } = useLanguage();

@@ -5,7 +5,7 @@ import { ImageBlurButton } from './ImageBlurButton';
 // Sass
 import styles from './ImageBlurButtonContainer.module.scss';
 
-interface ImageBlurButtonContainerProps extends React.HTMLAttributes<HTMLDivElement> {
+type ImageBlurButtonContainerProps = React.HTMLAttributes<HTMLDivElement> & {
   /**
    * The card to be blurred
    */
@@ -26,8 +26,11 @@ interface ImageBlurButtonContainerProps extends React.HTMLAttributes<HTMLDivElem
    * Determines if the button is ghost or not (default: true)
    */
   ghost?: boolean;
-}
+};
 
+/**
+ * Container component for image blur button with customizable positioning around image cards
+ */
 export function ImageBlurButtonContainer({
   cardId,
   children,

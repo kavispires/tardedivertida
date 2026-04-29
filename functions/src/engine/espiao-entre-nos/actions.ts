@@ -59,12 +59,7 @@ export const handleGuessLocation = async (
  * @param vote
  * @returns
  */
-export const handleMakeAccusation = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  targetId: UID,
-) => {
+export const handleMakeAccusation = async (gameName: string, gameId: UID, playerId: UID, targetId: UID) => {
   return await utils.firestore.updateStore({
     gameName,
     gameId,
@@ -87,12 +82,7 @@ export const handleMakeAccusation = async (
  * @param vote
  * @returns
  */
-export const handleSubmitVote = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  vote: UID,
-) => {
+export const handleSubmitVote = async (gameName: string, gameId: UID, playerId: UID, vote: UID) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,

@@ -40,6 +40,9 @@ type AchievementsProps = {
 
 const unknownText = { pt: 'Desconhecido', en: 'Unknown' };
 
+/**
+ * Component that displays a list of achievements for players with medal icons and descriptions
+ */
 export function Achievements({ players, achievements, reference, colorScheme }: AchievementsProps) {
   return (
     <TitledContainer

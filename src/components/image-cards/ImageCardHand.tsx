@@ -76,6 +76,9 @@ type ImageCardHandProps = {
   imageGroupPreviewClassNames?: GetProps<typeof Image.PreviewGroup>['classNames'];
 };
 
+/**
+ * Component that displays a hand of selectable image cards with preview functionality
+ */
 export function ImageCardHand({
   hand = [],
   onSelectCard,

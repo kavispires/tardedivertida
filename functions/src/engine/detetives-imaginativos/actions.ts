@@ -13,12 +13,7 @@ import type { FirebaseStateData } from './types';
  * @param clue
  * @returns
  */
-export const handleSubmitClue = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  clue: string,
-) => {
+export const handleSubmitClue = async (gameName: string, gameId: UID, playerId: UID, clue: string) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,
@@ -39,12 +34,7 @@ export const handleSubmitClue = async (
  * @param cardId
  * @returns
  */
-export const handlePlayCard = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  cardId: string,
-) => {
+export const handlePlayCard = async (gameName: string, gameId: UID, playerId: UID, cardId: string) => {
   const actionText = 'play a card';
 
   const { sessionRef, state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
@@ -105,12 +95,7 @@ export const handlePlayCard = async (
   return true;
 };
 
-export const handleDefend = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  defenseTime: number,
-) => {
+export const handleDefend = async (gameName: string, gameId: UID, playerId: UID, defenseTime: number) => {
   const actionText = 'defend';
 
   const { sessionRef, state } = await utils.firestore.getStateReferences<FirebaseStateData>(
@@ -144,12 +129,7 @@ export const handleDefend = async (
   return true;
 };
 
-export const handleSubmitVote = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  vote: UID,
-) => {
+export const handleSubmitVote = async (gameName: string, gameId: UID, playerId: UID, vote: UID) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,

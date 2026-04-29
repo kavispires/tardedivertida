@@ -8,9 +8,8 @@ import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useGlobalState } from 'hooks/useGlobalState';
 // Sass
 import styles from './AdminOnlyContainer.module.scss';
-// Styles
 
-interface AdminOnlyContainerProps extends SpaceProps {
+type AdminOnlyContainerProps = SpaceProps & {
   /**
    * The content of the component
    */
@@ -19,8 +18,11 @@ interface AdminOnlyContainerProps extends SpaceProps {
    * Optional custom class name
    */
   className?: string;
-}
+};
 
+/**
+ * Container that renders its children only for admin users when admin features are enabled
+ */
 export const AdminOnlyContainer = ({ children, className = '', ...props }: AdminOnlyContainerProps) => {
   const { isAdmin } = useCurrentUserContext();
   const [isAdminEnabled] = useGlobalState('isAdminEnabled');

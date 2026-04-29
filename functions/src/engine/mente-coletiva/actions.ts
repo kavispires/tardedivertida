@@ -164,12 +164,7 @@ export const handleNextAnswers = async (
  * @param answer
  * @returns
  */
-export const handleAddAnswer = async (
-  gameName: string,
-  gameId: UID,
-  _playerId: UID,
-  answer: AnswerEntry,
-) => {
+export const handleAddAnswer = async (gameName: string, gameId: UID, _playerId: UID, answer: AnswerEntry) => {
   const actionText = 'add answer';
 
   const { sessionRef, state } = await utils.firestore.getStateReferences<FirebaseStateData>(

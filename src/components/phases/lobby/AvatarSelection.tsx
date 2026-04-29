@@ -40,6 +40,9 @@ type AvatarSelectionProps = {
   maxPlayers: number;
 };
 
+/**
+ * Component that displays avatar selection interface with grid of available avatars
+ */
 export function AvatarSelection({
   players,
   setSelectedAvatar,

@@ -29,10 +29,19 @@ const Title = motion.create(Typography.Title);
 const randomName = isDevEnv ? mockPlayerName() : undefined;
 
 type StepInfoProps = {
+  /**
+   * The current game players object
+   */
   players: GamePlayers;
+  /**
+   * Function to navigate to a different lobby step
+   */
   setStep: UseStep['setStep'];
 };
 
+/**
+ * Lobby step component where players configure their avatar and username before joining a game
+ */
 export function StepInfo({ players, setStep }: StepInfoProps) {
   const { currentUser, isGuest } = useCurrentUserContext();
   const info = useGameInfoContext();

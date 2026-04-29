@@ -24,6 +24,9 @@ type LobbyRulesProps = {
   players: GamePlayers;
 };
 
+/**
+ * Component that displays game rules in the lobby with optional video tutorial
+ */
 export function LobbyRules({ players }: LobbyRulesProps) {
   const BASE_URL = useTDBaseUrl('assets');
   const info = useGameInfoContext();

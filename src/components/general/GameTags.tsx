@@ -80,6 +80,9 @@ type GameMechanicTagsProps = {
   gameCode: string;
 } & SpaceProps;
 
+/**
+ * Component that displays game mechanic and feature tags with modal details
+ */
 export function GameTags({ mechanics = [], features = [], gameCode, ...rest }: GameMechanicTagsProps) {
   const { language } = useLanguage();
 

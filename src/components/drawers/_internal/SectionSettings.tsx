@@ -14,6 +14,9 @@ import { BlurOptions } from './BlurOptions';
 // Sass
 import styles from '../drawers.module.scss';
 
+/**
+ * Section component for managing game settings including admin mode, debug features, and blur options
+ */
 export function SectionSettings() {
   const { isAdmin } = useCurrentUserContext();
   const [isAdminEnabled, setIsAdminEnabled] = useGlobalState('isAdminEnabled');

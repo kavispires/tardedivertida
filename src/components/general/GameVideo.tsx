@@ -40,6 +40,9 @@ type GameVideoProps = {
   static?: boolean;
 };
 
+/**
+ * Component that displays a game video with animated logo overlay and optional title
+ */
 export function GameVideo({
   gameName,
   width,

@@ -57,7 +57,7 @@ export function SelectableObjectsGrid({
       </Title>
       <div className="objects-grid">
         {items.map((item) =>
-          Boolean(item.offerings.length) || (isAlienRequest && item.type !== 'ITEM') ? (
+          item.offerings.length || (isAlienRequest && item.type !== 'ITEM') ? (
             <div
               className={clsx('objects-grid__item', `objects-grid__item--${item.type}`)}
               key={`selectable-${item.id}`}

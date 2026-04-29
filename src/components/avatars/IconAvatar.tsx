@@ -4,12 +4,12 @@ import { isIOS, isSafari } from 'react-device-detect';
 // Ant Design Resources
 import { Avatar, type AvatarProps } from 'antd';
 
-interface IconAvatarProps extends AvatarProps {
+type IconAvatarProps = AvatarProps & {
   /**
    * The TD icon component
    */
   icon?: ReactNode;
-}
+};
 
 /**
  * Avatar wrapper to icons

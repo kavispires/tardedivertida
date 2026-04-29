@@ -37,6 +37,9 @@ type SlideShowControlsProps = {
   nextButtonProps?: ButtonProps;
 };
 
+/**
+ * Controls component for slide show navigation with automatic progression and duration bar
+ */
 export function SlideShowControls({
   config,
   disableControls,

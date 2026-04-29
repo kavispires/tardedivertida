@@ -32,12 +32,7 @@ export const handleSkipTurn = async (gameName: string, gameId: UID, playerId: UI
   });
 };
 
-export const handleSubmitCards = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  cardsIds: UID[],
-) => {
+export const handleSubmitCards = async (gameName: string, gameId: UID, playerId: UID, cardsIds: UID[]) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,

@@ -53,6 +53,9 @@ type StepRankingWrapperProps = {
   delay?: number;
 };
 
+/**
+ * Step wrapper component that displays ranking board with optional title, subtitle, and additional content
+ */
 export function StepRankingWrapper({
   players,
   ranking,

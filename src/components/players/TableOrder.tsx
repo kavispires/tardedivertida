@@ -48,9 +48,7 @@ type TableOrderProps = {
 };
 
 /**
- * Circular Table/Turn order display
- * @param props
- * @returns
+ * Circular table turn order display with player avatars positioned in a ring
  */
 export function TableOrder({
   players,

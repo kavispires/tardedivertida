@@ -10,10 +10,19 @@ import avatars from 'assets/images/avatars.svg?url';
 import styles from '../PhaseLobby.module.scss';
 
 type UsualAvatarsSelectionProps = {
+  /**
+   * Callback function to set the selected avatar ID
+   */
   setSelectedAvatar: (avatarId: string) => void;
+  /**
+   * Array of frequently used avatar IDs to display
+   */
   avatarsIds: string[];
 };
 
+/**
+ * Component that displays a quick selection of frequently used avatars for convenience
+ */
 export function UsualAvatarsSelection({ avatarsIds, setSelectedAvatar }: UsualAvatarsSelectionProps) {
   return (
     <div className={styles.lobbyUsualAvatarSelection}>

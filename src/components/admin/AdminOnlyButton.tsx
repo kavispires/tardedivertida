@@ -14,6 +14,9 @@ type AdminOnlyButtonProps = {
   label: ReactNode;
 };
 
+/**
+ * Convenience component combining AdminOnlyContainer and AdminButton for admin-only actions
+ */
 export function AdminOnlyButton({ onClick, label }: AdminOnlyButtonProps) {
   return (
     <AdminOnlyContainer>

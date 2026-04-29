@@ -24,6 +24,9 @@ type MovieReviewCardProps = {
   className?: string;
 };
 
+/**
+ * Displays a movie review card with positive or negative styling and optional highlighting
+ */
 export const MovieReviewCard = ({ type, text, highlights = [], className = '' }: MovieReviewCardProps) => {
   return (
     <div

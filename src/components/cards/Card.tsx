@@ -50,6 +50,9 @@ type CardProps = {
   hideHeader?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
+/**
+ * Generic card component with customizable header, footer, color, and size
+ */
 export const Card = ({
   children,
   header = 'Carta',

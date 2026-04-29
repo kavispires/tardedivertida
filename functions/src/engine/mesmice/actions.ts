@@ -21,12 +21,7 @@ export const handleSubmitObject = async (
   });
 };
 
-export const handleSubmitFeature = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  featureId: UID,
-) => {
+export const handleSubmitFeature = async (gameName: string, gameId: UID, playerId: UID, featureId: UID) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,

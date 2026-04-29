@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "barrados-na-alfandega",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "release": "planned",
   "releaseDate": "0000-00-00",
   "available": false,
@@ -27,19 +27,11 @@
     "en": "???"
   },
   "rules": {
-    "pt": [
-      "TBD"
-    ],
-    "en": [
-      "TBD"
-    ]
+    "pt": ["TBD"],
+    "en": ["TBD"]
   },
   "playerCount": {
-    "recommended": [
-      3,
-      4,
-      5
-    ],
+    "recommended": [3, 4, 5],
     "min": 3,
     "max": 6,
     "best": 0
@@ -48,8 +40,6 @@
     "base": 0,
     "perPlayer": 0
   },
-  "mechanics": [
-    "competitive"
-  ],
+  "mechanics": ["competitive"],
   "features": []
 }

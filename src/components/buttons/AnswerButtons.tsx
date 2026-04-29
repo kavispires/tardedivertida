@@ -20,6 +20,9 @@ type AnswerButtonProps = {
   size?: number;
 } & Omit<ComponentProps<typeof TransparentButton>, 'children'>;
 
+/**
+ * Yes/confirm button with checkmark icon for affirmative answer selections
+ */
 export function AnswerYesButton({ className, ...props }: AnswerButtonProps) {
   return (
     <TransparentButton
@@ -40,6 +43,9 @@ export function AnswerYesButton({ className, ...props }: AnswerButtonProps) {
   );
 }
 
+/**
+ * No/reject button with X icon for negative answer selections
+ */
 export function AnswerNoButton({ className, ...props }: AnswerButtonProps) {
   return (
     <TransparentButton
@@ -60,6 +66,9 @@ export function AnswerNoButton({ className, ...props }: AnswerButtonProps) {
   );
 }
 
+/**
+ * Maybe yes/leaning positive button with plus icon for tentative affirmative answers
+ */
 export function AnswerMaybeYesButton({ className, ...props }: AnswerButtonProps) {
   return (
     <TransparentButton
@@ -80,6 +89,9 @@ export function AnswerMaybeYesButton({ className, ...props }: AnswerButtonProps)
   );
 }
 
+/**
+ * Kinda no/leaning negative button with minus icon for tentative negative answers
+ */
 export function AnswerKindaNoButton({ className, ...props }: AnswerButtonProps) {
   return (
     <TransparentButton

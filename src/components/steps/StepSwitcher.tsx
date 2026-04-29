@@ -71,6 +71,9 @@ type StepSwitcherProps = {
   };
 };
 
+/**
+ * Conditional step switcher that renders different step content based on step number and conditions
+ */
 export function StepSwitcher({ children, step, conditions, players, waitingRoom = {} }: StepSwitcherProps) {
   if (!players) print('SetSwitcher is being used without `players`, please add it.', 'warn');
 

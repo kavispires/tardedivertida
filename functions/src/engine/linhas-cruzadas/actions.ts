@@ -37,12 +37,7 @@ export const handleSubmitPrompt = async (
  * @param drawing
  * @returns
  */
-export const handleSubmitDrawing = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  drawing: string,
-) => {
+export const handleSubmitDrawing = async (gameName: string, gameId: UID, playerId: UID, drawing: string) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,
@@ -62,12 +57,7 @@ export const handleSubmitDrawing = async (
  * @param guess
  * @returns
  */
-export const handleSubmitGuess = async (
-  gameName: string,
-  gameId: UID,
-  playerId: UID,
-  guess: string,
-) => {
+export const handleSubmitGuess = async (gameName: string, gameId: UID, playerId: UID, guess: string) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,

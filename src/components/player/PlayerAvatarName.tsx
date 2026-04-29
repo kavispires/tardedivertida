@@ -42,6 +42,9 @@ export type PlayerAvatarNameProps = {
   upright?: boolean;
 } & React.HTMLAttributes<HTMLSpanElement>;
 
+/**
+ * Displays a player's avatar with their name, with options for styling and user identification
+ */
 export const PlayerAvatarName = ({
   player,
   size = 'small',
@@ -76,6 +79,9 @@ export const PlayerAvatarName = ({
   );
 };
 
+/**
+ * Displays an NPC/bot player avatar with name, styled for non-player characters
+ */
 export const NPCPlayerAvatarName = ({
   size = 'small',
   className = '',
