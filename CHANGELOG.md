@@ -8,6 +8,63 @@ Games are listed by their Portuguese names. Game folder keys used in commits are
 
 ## 2026
 
+### April 2026
+
+#### New Games
+
+- **Na Fila do Banco** — Released with updated rules and achievements
+
+#### Game Updates
+
+- **Esquiadores** — Changed betting mechanics: now bet on lodge instead of player; fixed skier choices and rebalanced betting chips
+- **Colegas de Quarto** — Replaced snake with teddy bear in sprite order
+- **Labirinto Secreto** — Added visual path lines showing color-coded player journeys through forest; added mulligan feature allowing one-time hand discard for new cards; increased deck size; added option to include/exclude private easter egg tree words; fixed negate cards toggle; refactored userMapping to playerMapping
+- **Planejamento Urbano** — Prevented adjacent cone placement in city grid
+- **Senso Literário** — Fixed gallery key typo
+- **Testemunha Ocular** — Fixed rules
+- **Bomba Relógio** — Fixed UI issues
+- **Metalinguagem** — Updated results to display original name of items
+- **Contadores Histórias** — CSS Modules UI fixes
+- **Trevo da Sorte & Sonhos Pesadelos** — Retired from platform
+
+#### Daily Challenges
+
+- **Palavreado** — Added Smart Shuffle hint button with vowel/consonant swapping logic
+- **Filmaço** — Made spaces lighter for clearer prompt spacing
+- **Arte Ruim** — Fixed carousel not rendering by adding width container wrapper
+- **Conexões** — New contribution game added - evaluate image pair relationships
+- **Daily Hub** — Layout and styling improvements; consolidated HUB_NAME into NAME for all daily games; updated game button colors for more muted and uniform appearance; added news list entry for Conexões; removed app class from Layout; fixed extra padding in image background
+
+#### Platform & Infrastructure
+
+- **Dependency Updates** — Bumped dependencies multiple times; upgraded antd (later downgraded due to image mask preview issue); upgraded react-zoom-pan-pinch to v4.0.3; upgraded @tanstack/react-store to v0.11.0
+- **Library Migration** — Replaced moment.js with date-fns
+- **Functions** — Bumped firebase-functions and dependencies; removed deprecated helpers; updated players-utils docstrings and enhanced addPropertiesToPlayers to accept function parameter; migrated random/shuffle helpers to lodash (shuffle, sample, sampleSize, random); removed buildDictionaryFromList in favor of lodash.keyBy; removed flattenArray in favor of .flat or flatMap; organized functions between helpers and game-utils; migrated all games to use turn-order-utils; moved turn-order functions to its own file; updated deck utility functions
+- **Scripts** — Updated scripts with revert-game-version and scripts:list; removed scripts that td-cli can do
+- **Cleanup** — Removed unused lint-staged and updated vite-plugin-checker; fixed yarn.lock
+
+#### UI/UX Improvements
+
+- **Components** — Renamed TurnOrder to PlayersTurnOrder to solve type name clash; updated env sprite url; fixed ImageCardHand spacing issues; added optional zoom state persistence to ZoomPanPinchContainer
+- **Icons** — Fixed colors in AnimatedVideoConferenceIcon
+- **Localization** — Updated motoboy name in English to courier
+
+#### Performance & Optimization
+
+- Eliminated all barrel exports from src/components
+
+#### Bug Fixes
+
+- Fixed infinite useUser loop
+- Migrated deprecated Select.Option, direction, iconPosition, and deepCopy to modern patterns
+- Removed GenericFunction from component types
+
+#### Documentation
+
+- Added JSDoc docstrings to all component functions in src/components/
+
+---
+
 ### March 2026
 
 #### Game Updates
