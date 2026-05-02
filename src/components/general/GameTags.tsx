@@ -9,14 +9,13 @@ import { TAG_DICT } from 'utils/constants';
 // Icons
 import { BrainIcon } from 'icons/BrainIcon';
 import { CloverIcon } from 'icons/CloverIcon';
-import { AudienceIcon, PlayerDropIcon, SoundEffectsIcon } from 'icons/collection';
+import { AudienceIcon, BadgeIcon, PlayerDropIcon, SoundEffectsIcon } from 'icons/collection';
 import { CompetitiveGameIcon } from 'icons/CompetitiveGameIcon';
 import { CooperativeGameIcon } from 'icons/CooperativeGameIcon';
 import { DrawingIcon } from 'icons/DrawingIcon';
 import { EvaluateIcon } from 'icons/EvaluateIcon';
 import { GamblingChipIcon } from 'icons/GamblingChipIcon';
 import { ImageCardsIcon } from 'icons/ImageCardsIcon';
-import { MedalIcon } from 'icons/MedalIcon';
 import { PuzzleIcon } from 'icons/PuzzleIcon';
 import { RobotIcon } from 'icons/RobotIcon';
 import { SmartphoneIcon } from 'icons/SmartphoneIcon';
@@ -66,7 +65,7 @@ const icons: Dictionary<React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
   betting: GamblingChipIcon,
   puzzle: PuzzleIcon,
   // Technical Features
-  achievements: MedalIcon,
+  achievements: BadgeIcon,
   audience: AudienceIcon,
   bots: RobotIcon,
   'mobile-friendly': SmartphoneIcon,

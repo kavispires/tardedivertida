@@ -163,6 +163,26 @@ $shade-levels: (
   }
 }
 
+.dev-icons-submenu {
+  padding: get-unit(4 6);
+  background: get-color("white", 6);
+  border-bottom: 1px solid get-color("gray", 3);
+}
+
+.dev-icons-search {
+  width: 300px;
+}
+
+.dev-icon {
+  width: 90px;
+}
+
+.dev-icon-label {
+  width: 90px;
+  overflow: hidden;
+  text-align: center;
+}
+
 .icons-grid {
   width: 100%;
   display: flex;

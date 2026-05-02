@@ -5,7 +5,7 @@ import type { TopicCard } from 'types/tdr';
 import { useStep } from 'hooks/useStep';
 // Icons
 import { LockIcon } from 'icons/LockIcon';
-import { TimeWritingIcon } from 'icons/TimedWritingIcon';
+import { TimedWritingIcon } from 'icons/TimedWritingIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { Translate } from 'components/language/Translate';
@@ -77,7 +77,7 @@ export function PhaseAnswering({ players, state, user }: PhaseProps<PhaseAnsweri
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          icon={<TimeWritingIcon />}
+          icon={<TimedWritingIcon />}
           title={
             <Translate
               pt="Adedanhe!"

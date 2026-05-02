@@ -18,7 +18,7 @@ import { getFirestoreConsoleUrl, logAnalyticsEvent } from 'services/firebase';
 import { getAnimation } from 'utils/animations';
 import { getToday, isDevEnv } from 'utils/helpers';
 // Icons
-import { DailyContributionGame } from 'icons/DailyContributionGame';
+import { DailyContributionGameIcon } from 'icons/DailyContributionGameIcon';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
@@ -44,7 +44,7 @@ const _COMING_SOON_ENTRY: Entry = {
   RELEASE_DATE: format(addYears(new Date(), 1), 'yyyy-MM-dd'),
   EMOJI: '',
   COLOR: '',
-  HUB_ICON: DailyContributionGame,
+  HUB_ICON: DailyContributionGameIcon,
   NAME: { pt: '', en: '' },
   TAGLINE: { pt: '', en: '' },
   disabled: true,
