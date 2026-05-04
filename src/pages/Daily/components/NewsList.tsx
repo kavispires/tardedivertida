@@ -17,6 +17,26 @@ type NewsItem = {
 
 export const NEWS_LIST: NewsItem[] = [
   {
+    date: '2026-05-03',
+    content: (
+      <>
+        <IconAvatar
+          icon={<NewFeatureIcon />}
+          size="small"
+        />{' '}
+        Vários jogos agora estão com nomes atualizados para refletir melhor a experiência do jogo:
+        <br />
+        <strong>
+          <DualTranslate>{ALL_SETTINGS.INVESTIGACAO.NAME}</DualTranslate>,{' '}
+          <DualTranslate>{ALL_SETTINGS.ALIENADO.NAME}</DualTranslate>,{' '}
+          <DualTranslate>{ALL_SETTINGS.VITRAL.NAME}</DualTranslate>, e{' '}
+          <DualTranslate>{ALL_SETTINGS.ESTOQUISTA.NAME}</DualTranslate>
+        </strong>
+        !
+      </>
+    ),
+  },
+  {
     date: '2026-04-05',
     content: (
       <>

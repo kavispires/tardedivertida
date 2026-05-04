@@ -10,23 +10,23 @@ import { LoginModal } from 'pages/Me/components/LoginModal';
 import { DailyChrome } from './components/DailyChrome';
 import { DailyAquiOGame } from './games/AquiO/DailyAquiOGame';
 import { DailyArteRuimGame } from './games/ArteRuim/DailyArteRuimGame';
-import { DailyControleDeEstoqueGame } from './games/ControleDeEstoque/DailyControleDeEstoqueGame';
+import { DailyAlienadoGame } from './games/Alienado/DailyAlienadoGame';
+import { DailyEstoquistaGame } from './games/Estoquista/DailyEstoquistaGame';
 import { DebugPage } from './games/Debug';
 import { DailyFilmacoGame } from './games/Filmaco/DailyFilmacoGame';
 import { Hub } from './games/Hub';
 import { DailyPalavreadoGame } from './games/Palavreado/DailyPalavreadoGame';
 import { DailyPicacoGame } from './games/Picaco/DailyPicacoGame';
-import { DailyTeoriaDeConjuntosGame } from './games/TeoriaDeConjuntos/DailyTeoriaDeConjuntosGame';
+import { DailyConjuntosGame } from './games/Conjuntos/DailyConjuntosGame';
 import { getDailyName } from './utils';
 import { DailyContextProvider } from './hooks/useDailyChallenge';
-import { DailyComunicacaoAlienigenaGame } from './games/ComunicacaoAlienigena/DailyComunicacaoAlienigenaGame';
-import { DailyPortaisMagicosGame } from './games/PortaisMagicos/DailyPortaisMagicosGame';
+import { DailyPortaisGame } from './games/Portais/DailyPortaisGame';
 import { DailyQuartetosGame } from './games/Quartetos/DailyQuartetosGame';
 import { DailyTaNaCaraGame } from './games/TaNaCara/DailyTaNaCaraGame';
 import { DailyConexoesGame } from './games/Conexoes/DailyConexoesGame';
-import { DailyEspionagemGame } from './games/Espionagem/DailyEspionagemGame';
+import { DailyInvestigacaoGame } from './games/Investigacao/DailyInvestigacaoGame';
 import { DailyOrganikuGame } from './games/Organiku/DailyOrganikuGame';
-import { DailyVitraisGame } from './games/Vitrais/DailyVitraisGame';
+import { DailyVitralGame } from './games/Vitral/DailyVitralGame';
 import { DailyDemoPage } from './games/Demo/DailyDemoPage';
 import { VitraisInfinitosGame } from './games/VitraisInfinitos/VitraisInfinitosGame';
 // Sass
@@ -65,19 +65,26 @@ function DailyPage() {
       '': Hub,
       hub: Hub,
       // Games
+      alienado: DailyAlienadoGame,
       'aqui-o': DailyAquiOGame,
       'arte-ruim': DailyArteRuimGame,
-      'comunicacao-alienigena': DailyComunicacaoAlienigenaGame,
-      'controle-de-estoque': DailyControleDeEstoqueGame,
-      espionagem: DailyEspionagemGame,
+      'comunicacao-alienigena': DailyAlienadoGame, // Backwards compatibility
+      conjuntos: DailyConjuntosGame,
+      'controle-de-estoque': DailyEstoquistaGame, // Backwards compatibility
+      espionagem: DailyInvestigacaoGame, // Backwards compatibility
+      estoquista: DailyEstoquistaGame,
+      investigacao: DailyInvestigacaoGame,
       filmaco: DailyFilmacoGame,
       organiku: DailyOrganikuGame,
       palavreado: DailyPalavreadoGame,
-      'portais-magicos': DailyPortaisMagicosGame,
+      portais: DailyPortaisGame,
+      'portais-magicos': DailyPortaisGame, // Backwards compatibility
       quartetos: DailyQuartetosGame,
-      'teoria-de-conjuntos': DailyTeoriaDeConjuntosGame,
-      vitrais: DailyVitraisGame,
+      'teoria-de-conjuntos': DailyConjuntosGame, // Backwards compatibility
+      vitral: DailyVitralGame,
+      vitrais: DailyVitralGame, // Backwards compatibility
       // Contribute
+      artista: DailyPicacoGame, // Backwards compatibility
       conexoes: DailyConexoesGame,
       picaco: DailyPicacoGame,
       'ta-na-cara': DailyTaNaCaraGame,

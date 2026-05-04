@@ -19,16 +19,16 @@ import { checkWasPlayedToday, getSourceName, wait } from '../utils';
 import { useDailyChallenge } from '../hooks/useDailyChallenge';
 import type { DailyAquiOEntry } from '../games/AquiO/utils/types';
 import type { DailyArteRuimEntry } from '../games/ArteRuim/utils/types';
-import type { DailyComunicacaoAlienigenaEntry } from '../games/ComunicacaoAlienigena/utils/types';
-import type { DailyControleDeEstoqueEntry } from '../games/ControleDeEstoque/utils/types';
-import type { DailyEspionagemEntry } from '../games/Espionagem/utils/types';
+import type { DailyAlienadoEntry } from '../games/Alienado/utils/types';
+import type { DailyEstoquistaEntry } from '../games/Estoquista/utils/types';
+import type { DailyInvestigacaoEntry } from '../games/Investigacao/utils/types';
 import type { DailyFilmacoEntry } from '../games/Filmaco/utils/types';
 import type { DailyOrganikuEntry } from '../games/Organiku/utils/types';
 import type { DailyPalavreadoEntry } from '../games/Palavreado/utils/types';
-import type { DailyPortaisMagicosEntry } from '../games/PortaisMagicos/utils/types';
+import type { DailyPortaisEntry } from '../games/Portais/utils/types';
 import type { DailyQuartetosEntry } from '../games/Quartetos/utils/types';
-import type { DailyTeoriaDeConjuntosEntry } from '../games/TeoriaDeConjuntos/utils/types';
-import type { DailyVitraisEntry } from '../games/Vitrais/utils/types';
+import type { DailyConjuntosEntry } from '../games/Conjuntos/utils/types';
+import type { DailyVitralEntry } from '../games/Vitral/utils/types';
 
 type BundleResultsProps = {
   list: (GameSettings & { disabled?: boolean })[];
@@ -170,21 +170,24 @@ function getResultForGame(data: DailyResponse[keyof DailyResponse], language: La
         language,
       });
     }
-    case 'comunicacao-alienigena': {
-      return ALL_HELPERS.COMUNICACAO_ALIENIGENA.getWrittenResult({
-        data: data as DailyComunicacaoAlienigenaEntry,
+    case 'comunicacao-alienigena':
+    case 'alienado': {
+      return ALL_HELPERS.ALIENADO.getWrittenResult({
+        data: data as DailyAlienadoEntry,
         language,
       });
     }
-    case 'controle-de-estoque': {
-      return ALL_HELPERS.CONTROLE_DE_ESTOQUE.getWrittenResult({
-        data: data as DailyControleDeEstoqueEntry,
+    case 'controle-de-estoque':
+    case 'estoquista': {
+      return ALL_HELPERS.ESTOQUISTA.getWrittenResult({
+        data: data as DailyEstoquistaEntry,
         language,
       });
     }
+    case 'investigacao':
     case 'espionagem': {
-      return ALL_HELPERS.ESPIONAGEM.getWrittenResult({
-        data: data as DailyEspionagemEntry,
+      return ALL_HELPERS.INVESTIGACAO.getWrittenResult({
+        data: data as DailyInvestigacaoEntry,
         language,
       });
     }
@@ -206,9 +209,10 @@ function getResultForGame(data: DailyResponse[keyof DailyResponse], language: La
         language,
       });
     }
-    case 'portais-magicos': {
-      return ALL_HELPERS.PORTAIS_MAGICOS.getWrittenResult({
-        data: data as DailyPortaisMagicosEntry,
+    case 'portais-magicos':
+    case 'portais': {
+      return ALL_HELPERS.PORTAIS.getWrittenResult({
+        data: data as DailyPortaisEntry,
         language,
       });
     }
@@ -218,15 +222,17 @@ function getResultForGame(data: DailyResponse[keyof DailyResponse], language: La
         language,
       });
     }
-    case 'teoria-de-conjuntos': {
-      return ALL_HELPERS.TEORIA_DE_CONJUNTOS.getWrittenResult({
-        data: data as DailyTeoriaDeConjuntosEntry,
+    case 'teoria-de-conjuntos':
+    case 'conjuntos': {
+      return ALL_HELPERS.CONJUNTOS.getWrittenResult({
+        data: data as DailyConjuntosEntry,
         language,
       });
     }
-    case 'vitrais': {
-      return ALL_HELPERS.VITRAIS.getWrittenResult({
-        data: data as DailyVitraisEntry,
+    case 'vitrais':
+    case 'vitral': {
+      return ALL_HELPERS.VITRAL.getWrittenResult({
+        data: data as DailyVitralEntry,
         language,
       });
     }

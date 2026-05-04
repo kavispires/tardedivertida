@@ -19,7 +19,7 @@ export type SessionState = {
 export type DailyPicacoEntry = {
   id: DateKey;
   number: number;
-  type: 'artista';
+  type: 'artista' | 'picaco';
   cards: ArteRuimCard[];
 };
 
