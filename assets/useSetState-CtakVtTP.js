@@ -1,1 +1,0 @@
-import{s as e}from"./jsx-runtime-pnrAbbe4.js";import{ri as t}from"./PageLayout-DvNFxWe1.js";var n=e(t()),r=function(e){e===void 0&&(e={});var t=(0,n.useState)(e),r=t[0],i=t[1];return[r,(0,n.useCallback)(function(e){i(function(t){return Object.assign({},t,e instanceof Function?e(t):e)})},[])]};export{r as t};

@@ -1,0 +1,1 @@
+import{a as e}from"./rolldown-runtime-BYbx6iT9.js";import{t}from"./jsx-runtime-uYTtOPVM.js";import{Ns as n}from"./index-CFv44J6y.js";var r=e(n(),1),i=t();function a({goToNextStep:e}){let t=(0,r.useRef)(!1);return(0,r.useEffect)(()=>{if(t.current)return;t.current=!0;let n=()=>new Promise(e=>setTimeout(e,100));(async()=>{await n(),e()})()},[e]),(0,i.jsx)(`div`,{})}export{a as t};
