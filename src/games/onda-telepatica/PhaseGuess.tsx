@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -15,11 +16,12 @@ import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 import { ONDA_TELEPATICA_PHASES } from './utils/constants';
+import type { PhaseGuessState } from './utils/types';
 import { NeedleChoice } from './components/NeedleChoice';
 import { StepGuess } from './StepGuess';
 import { StepPsychicGuess } from './StepPsychicGuess';
 
-export function PhaseGuess({ state, players, user }: PhaseProps) {
+export function PhaseGuess({ state, players, user }: PhaseProps<PhaseGuessState>) {
   const { step, setStep } = useStep(0);
 
   const [, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
@@ -67,20 +69,22 @@ export function PhaseGuess({ state, players, user }: PhaseProps) {
         }}
       >
         {/* Step 0 */}
-        <ViewIf condition={isUserThePsychic}>
-          <StepPsychicGuess
-            currentCategory={state.currentCategory}
-            onSendGuess={onSendGuess}
-            announcement={announcement}
-          />
-        </ViewIf>
-        <ViewIf condition={!isUserThePsychic}>
-          <StepGuess
-            currentCategory={state.currentCategory}
-            onSendGuess={onSendGuess}
-            announcement={announcement}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isUserThePsychic}>
+            <StepPsychicGuess
+              currentCategory={state.currentCategory}
+              onSendGuess={onSendGuess}
+              announcement={announcement}
+            />
+          </ViewIf>
+          <ViewIf condition={!isUserThePsychic}>
+            <StepGuess
+              currentCategory={state.currentCategory}
+              onSendGuess={onSendGuess}
+              announcement={announcement}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

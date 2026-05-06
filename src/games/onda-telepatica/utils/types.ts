@@ -81,6 +81,10 @@ export type PhaseDialClueState = {
    * Target position on the spectrum for this round
    */
   target: number;
+  /**
+   * When the psychic selects a category, this becomes available during the phase
+   */
+  currentCategoryId?: string;
 };
 
 /**

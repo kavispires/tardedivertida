@@ -13,10 +13,11 @@ import { StepSwitcher } from 'components/steps/StepSwitcher';
 import { Instruction } from 'components/text/Instruction';
 // Internal
 import { ONDA_TELEPATICA_PHASES } from './utils/constants';
+import type { PhaseRevealState } from './utils/types';
 import { StepReveal } from './StepReveal';
 import { StepRanking } from './StepRanking';
 
-export function PhaseReveal({ state, players }: PhaseProps) {
+export function PhaseReveal({ state, players }: PhaseProps<PhaseRevealState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const [psychic] = useWhichPlayerIsThe('psychicId', state, players);
 

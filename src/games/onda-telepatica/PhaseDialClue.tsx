@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -18,11 +19,12 @@ import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import { useOnSubmitCategoryAPIRequest, useOnSubmitClueAPIRequest } from './utils/api-requests';
 import { ONDA_TELEPATICA_PHASES } from './utils/constants';
+import type { PhaseDialClueState } from './utils/types';
 import { StepClueWriting } from './StepClueWriting';
 import { StepClueWaiting } from './StepClueWaiting';
 import { StepCategorySelection } from './StepCategorySelection';
 
-export function PhaseDialClue({ state, players }: PhaseProps) {
+export function PhaseDialClue({ state, players }: PhaseProps<PhaseDialClueState>) {
   const { step, goToNextStep } = useStep(0);
   const [psychic, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
 
@@ -93,32 +95,34 @@ export function PhaseDialClue({ state, players }: PhaseProps) {
         />
 
         {/* Step 1 */}
-        <ViewIf condition={isUserThePsychic}>
-          <ViewIf condition={!state.currentCategoryId}>
-            <StepCategorySelection
+        <Fragment>
+          <ViewIf condition={isUserThePsychic}>
+            <ViewIf condition={!state.currentCategoryId}>
+              <StepCategorySelection
+                currentCategories={state.currentCategories}
+                onSendChosenSide={onSendChosenSide}
+                announcement={announcement}
+              />
+            </ViewIf>
+            <ViewIf condition={!!state.currentCategoryId}>
+              <StepClueWriting
+                currentCategories={state.currentCategories}
+                currentCategoryId={state.currentCategoryId}
+                target={state.target}
+                onSendClue={onSendClue}
+              />
+            </ViewIf>
+          </ViewIf>
+          <ViewIf condition={!isUserThePsychic}>
+            <StepClueWaiting
+              players={players}
+              psychic={psychic}
               currentCategories={state.currentCategories}
-              onSendChosenSide={onSendChosenSide}
+              currentCategoryId={state.currentCategoryId}
               announcement={announcement}
             />
           </ViewIf>
-          <ViewIf condition={state.currentCategoryId}>
-            <StepClueWriting
-              currentCategories={state.currentCategories}
-              currentCategoryId={state.currentCategoryId}
-              target={state.target}
-              onSendClue={onSendClue}
-            />
-          </ViewIf>
-        </ViewIf>
-        <ViewIf condition={!isUserThePsychic}>
-          <StepClueWaiting
-            players={players}
-            psychic={psychic}
-            currentCategories={state.currentCategories}
-            currentCategoryId={state.currentCategoryId}
-            announcement={announcement}
-          />
-        </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

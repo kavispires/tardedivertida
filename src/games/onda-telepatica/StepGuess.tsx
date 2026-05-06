@@ -6,43 +6,15 @@ import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
 import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { Step, type StepProps } from 'components/steps/Step';
 import { RuleInstruction } from 'components/text/RuleInstruction';
 import { StepTitle } from 'components/text/StepTitle';
+import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import type { CurrentCategory, SubmitGuessPayload } from './utils/types';
 import { mockGuess } from './utils/mock';
 import { Dial } from './components/Dial';
-
-type PromptProps = {
-  currentCategory: CurrentCategory;
-};
-
-function Prompt({ currentCategory }: PromptProps) {
-  return (
-    <RuleInstruction type="action">
-      <Translate
-        pt="Qual número melhor indica"
-        en="What number best translates"
-      />
-      <span className="o-dial-guess-selection__clue">{currentCategory.clue}</span>{' '}
-      <Translate
-        pt="na escala"
-        en="on the scale"
-      />{' '}
-      <strong>
-        {currentCategory.left}-{currentCategory.right}
-      </strong>
-      ?
-      <br />
-      <Translate
-        pt="Clique no número ou use a barra abaixo para alinhar o ponteiro na sua resposta, então aperte Enviar."
-        en="Click on the number or use the slider below to position the pointer on your guess, then press Submit."
-      />
-    </RuleInstruction>
-  );
-}
 
 type StepGuessProps = {
   currentCategory: CurrentCategory;
@@ -68,7 +40,27 @@ export function StepGuess({ currentCategory, onSendGuess, announcement }: StepGu
           en="Time to shine telepathically!"
         />
       </StepTitle>
-      <Prompt currentCategory={currentCategory} />
+
+      <RuleInstruction
+        type="action"
+        className="text-center"
+      >
+        <Translate
+          pt="Selecione o número que melhor representa"
+          en="Select the number that best represents"
+        />
+        <br />
+        <TextHighlight style={{ fontSize: '1.1em' }}>{currentCategory.clue}</TextHighlight> <br />
+        <Translate
+          pt="na escala"
+          en="on the scale"
+        />{' '}
+        <br />
+        <strong>
+          {currentCategory.left} vs {currentCategory.right}
+        </strong>
+      </RuleInstruction>
+
       <Dial
         card={currentCategory}
         target={currentCategory.target}
@@ -77,6 +69,7 @@ export function StepGuess({ currentCategory, onSendGuess, announcement }: StepGu
         showTarget={false}
         setNeedle={setNeedle}
       />
+
       <Slider
         style={{ width: '100%' }}
         defaultValue={0}
@@ -85,7 +78,15 @@ export function StepGuess({ currentCategory, onSendGuess, announcement }: StepGu
         onChange={setNeedle}
         value={needle}
       />
-      <SpaceContainer>
+
+      <RuleInstruction type="tip">
+        <Translate
+          en="You can click on the numbers, the card or the slider to select your guess!"
+          pt="Você pode clicar nos números, na carta ou no slider para selecionar sua resposta!"
+        />
+      </RuleInstruction>
+
+      <SpaceFloat className="mt-6">
         <Button
           type="primary"
           onClick={() => onSendGuess({ guess: needle })}
@@ -94,12 +95,12 @@ export function StepGuess({ currentCategory, onSendGuess, announcement }: StepGu
           loading={isLoading}
         >
           <Translate
-            pt="Enviar"
-            en="Submit"
+            pt="Enviar:"
+            en="Submit:"
           />
-          : {needle < 0 ? currentCategory.left : currentCategory.right} » {Math.abs(needle)}
+          {needle < 0 ? currentCategory.left : currentCategory.right} » {Math.abs(needle)}
         </Button>
-      </SpaceContainer>
+      </SpaceFloat>
     </Step>
   );
 }

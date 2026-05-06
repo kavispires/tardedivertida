@@ -7,7 +7,7 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 import { WaitingRoom } from 'components/players/WaitingRoom';
 import { Step, type StepProps } from 'components/steps/Step';
-import { Instruction } from 'components/text/Instruction';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import { OpposingIdeasCard } from './components/OpposingIdeasCard';
@@ -16,7 +16,7 @@ type StepClueWaitingProps = {
   players: GamePlayers;
   psychic: GamePlayer;
   currentCategories: SpectrumCard[];
-  currentCategoryId: string;
+  currentCategoryId?: string;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepClueWaiting({
@@ -38,9 +38,9 @@ export function StepClueWaiting({
             en={'Focus...'}
           />
         }
-        instruction=""
+        instruction=" "
       >
-        <Instruction contained>
+        <RuleInstruction type="wait">
           {!currentCategoryId || !card ? (
             <p>
               <Translate
@@ -81,21 +81,23 @@ export function StepClueWaiting({
                     <>
                       Agora, é uma boa ideia pra discutir com o grupo em voz alta o que vocês acham ser super
                       pra esquerda <TextHighlight>{card.left}</TextHighlight> e super pra direita{' '}
-                      <TextHighlight>{card.right}</TextHighlight>. Isso ajuda o medium!
+                      <TextHighlight>{card.right}</TextHighlight>.<br />
+                      <strong>Isso ajuda o medium!</strong>
                     </>
                   }
                   en={
                     <>
                       Now it's a good idea to discuss with the group out loud what you guys think it's extreme
                       left <TextHighlight>{card.left}</TextHighlight> and extreme right{' '}
-                      <TextHighlight>{card.right}</TextHighlight>. This might help the psychic!
+                      <TextHighlight>{card.right}</TextHighlight>.<br />
+                      <strong>This might help the psychic!</strong>
                     </>
                   }
                 />
               </p>
             </>
           )}
-        </Instruction>
+        </RuleInstruction>
       </WaitingRoom>
     </Step>
   );

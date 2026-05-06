@@ -13,8 +13,9 @@ import { Translate } from 'components/language/Translate';
 import { Title } from 'components/text/Title';
 // Internal
 import { achievementsReference } from './utils/achievements';
+import type { CurrentCategory, PhaseGameOverState } from './utils/types';
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   return (
     <GameOverWrapper
       state={state}
@@ -52,7 +53,8 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
             align="center"
             className="o-past-category"
           >
-            {state.pastCategories.map((category: any) => {
+            {state.pastCategories.map((category: CurrentCategory) => {
+              const { target = 0, psychicId = '' } = category;
               return (
                 <div
                   key={category.id}
@@ -63,15 +65,13 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
                     size={48}
                   />
                   <header className="o-past-category-entry__category">
-                    {category.target < 0 && category.left}
-                    {category.target > 0 && category.right}
-                    {category.target === 0 && `${category.left}-${category.right}`}
-                    <div className="o-past-category-entry__number">{Math.abs(category.target)}</div>
+                    {target < 0 && category.left}
+                    {target > 0 && category.right}
+                    {target === 0 && `${category.left}-${category.right}`}
+                    <div className="o-past-category-entry__number">{Math.abs(target)}</div>
                   </header>
                   <div className="o-past-category-entry__clue">{category.clue}</div>
-                  <div className="o-past-category-entry__author">
-                    by {players?.[category.psychicId]?.name ?? '?'}
-                  </div>
+                  <div className="o-past-category-entry__author">by {players?.[psychicId]?.name ?? '?'}</div>
                 </div>
               );
             })}

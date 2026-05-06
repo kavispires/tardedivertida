@@ -1,5 +1,4 @@
 /** biome-ignore-all lint/a11y/noStaticElementInteractions: interactive svg */
-/** biome-ignore-all lint/correctness/useUniqueElementIds: ugh */
 import clsx from 'clsx';
 // Types
 import type { SpectrumCard } from 'types/tdr';
@@ -14,7 +13,7 @@ type DialProps = {
   target?: number;
   showTarget?: boolean;
   animate?: boolean;
-  setNeedle?: GenericFunction;
+  setNeedle?: (value: number) => void;
 };
 
 export function Dial({

@@ -10,7 +10,7 @@ import { useMock } from 'hooks/useMock';
 // Components
 import { SendButton } from 'components/buttons/SendButton';
 import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { Step } from 'components/steps/Step';
 import { RuleInstruction } from 'components/text/RuleInstruction';
 import { StepTitle } from 'components/text/StepTitle';
@@ -18,12 +18,12 @@ import { StepTitle } from 'components/text/StepTitle';
 import { mockHint } from './utils/mock';
 import type { SubmitCluePayload } from './utils/types';
 import { Dial } from './components/Dial';
-import { ClueWritingRules } from './components/RulesBlobs';
+import { RulesEn, RulesPt } from './components/RulesBlobs';
 import { TargetSideHighlight, WavelengthHighlight } from './components/Highlights';
 
 type StepClueWritingProps = {
   currentCategories: SpectrumCard[];
-  currentCategoryId: string;
+  currentCategoryId?: string;
   target: number;
   onSendClue: (payload: SubmitCluePayload) => void;
 };
@@ -71,10 +71,9 @@ export function StepClueWriting({
                 target={target}
                 card={card}
               />
-              . <strong>Escreva</strong> uma dica que ajude os outros jogadores a escolher exatamente esse
+              .<br />
+              <strong>Escreva</strong> uma dica que ajude os outros jogadores a escolher exatamente esse
               número!
-              <br />
-              Revise as regras de quais dicas são válidas clicando no Ícone de Livrinho.
             </>
           }
           en={
@@ -84,14 +83,13 @@ export function StepClueWriting({
                 target={target}
                 card={card}
               />
-              . <strong>Write</strong> a clue that will help the other players to choose this exact number!
-              <br />
-              Revise the rules for clue writing by clicking on the top left Book Icon.
+              .<br />
+              <strong>Write</strong> a clue that will help the other players to choose this exact number!
             </>
           }
         />
-        <ClueWritingRules />
       </RuleInstruction>
+
       {!!card && (
         <Dial
           target={target}
@@ -99,7 +97,7 @@ export function StepClueWriting({
           showTarget
         />
       )}
-      <SpaceContainer>
+      <SpaceFloat>
         <Input
           onChange={onChangeInput}
           onPressEnter={onSubmitClue}
@@ -117,7 +115,14 @@ export function StepClueWriting({
             en="Send"
           />
         </SendButton>
-      </SpaceContainer>
+      </SpaceFloat>
+
+      <RuleInstruction type="rule">
+        <Translate
+          pt={<RulesPt />}
+          en={<RulesEn />}
+        />
+      </RuleInstruction>
     </Step>
   );
 }

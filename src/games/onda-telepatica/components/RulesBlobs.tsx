@@ -1,10 +1,9 @@
 // Components
 import { Translate } from 'components/language/Translate';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PopoverRule } from 'components/rules/PopoverRule';
 import { Instruction } from 'components/text/Instruction';
 
-function RulesPt() {
+export function RulesPt() {
   return (
     <ul>
       <li>
@@ -18,7 +17,7 @@ function RulesPt() {
   );
 }
 
-function RulesEn() {
+export function RulesEn() {
   return (
     <ul>
       <li>
@@ -30,19 +29,6 @@ function RulesEn() {
       <li>Don't use number to suggest the position of the needle.</li>
       <li>Don't use parts or synonyms of the words in the cards.</li>
     </ul>
-  );
-}
-
-export function ClueWritingRules() {
-  return (
-    <PopoverRule
-      content={
-        <Translate
-          pt={<RulesPt />}
-          en={<RulesEn />}
-        />
-      }
-    />
   );
 }
 

@@ -11,6 +11,7 @@ import { type AnimationType, getAnimationClass } from 'utils/helpers';
 // Components
 import { TimedButton } from 'components/buttons/TimedButton';
 import { Translate } from 'components/language/Translate';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Title } from 'components/text/Title';
 // Sass
 import styles from './PhaseAnnouncement.module.scss';
@@ -169,7 +170,7 @@ export function PhaseAnnouncement({
 
           <span className={styles.phaseAnnouncementIcon}>{icon}</span>
 
-          {children}
+          <SpaceContainer>{children}</SpaceContainer>
 
           {withoutTimer ? (
             <Button

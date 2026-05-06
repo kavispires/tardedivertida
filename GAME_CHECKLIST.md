@@ -537,10 +537,10 @@ Legend
 - Collects Data: 🔘
 - Image Background: ✅
 - Phase Delegator Migration: ✅
-- PhaseProps Migration: 🔘
+- PhaseProps Migration: ✅
 - Role-base View Migration: 🔘
-- Float Submit Migration: 🔘
-- Host Timer Bar Migration: 🔘
+- Float Submit Migration: ✅
+- Host Timer Bar Migration: ⛔️
 
 ## Planejamento Urbano
 

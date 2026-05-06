@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "O",
   "gameName": "onda-telepatica",
-  "version": "4.0.101",
+  "version": "4.0.102",
   "releaseDate": "2021-05-18",
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Onda Telepática",
     "en": "Telepathic Waves"
@@ -64,7 +64,7 @@
       "key": "fixedRounds",
       "kind": "switch",
       "label": "End Game",
-      "description": "Determines how the game ends",
+      "description": "Determines how the game ends. Each Player is recommended only for up to 6 players",
       "values": [
         {
           "label": "10 points (10 rounds max)",
