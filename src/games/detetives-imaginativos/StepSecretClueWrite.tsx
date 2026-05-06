@@ -1,7 +1,7 @@
 import { mockClue } from 'mock/clues';
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Input } from 'antd';
+import { Input } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
@@ -9,6 +9,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Components
+import { SendButton } from 'components/buttons/SendButton';
 import { ImageCardHand } from 'components/image-cards/ImageCardHand';
 import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -16,9 +17,9 @@ import { CardHighlight } from 'components/metrics/CardHighlight';
 import { Step, type StepProps } from 'components/steps/Step';
 import { RuleInstruction } from 'components/text/RuleInstruction';
 import { StepTitle } from 'components/text/StepTitle';
-import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import type { SubmitSecretCluePayload } from './utils/types';
+import { ImpostorHighlight } from './components/Highlights';
 
 type SecretClueWriteProps = {
   onSubmitClue: (payload: SubmitSecretCluePayload) => void;
@@ -77,14 +78,16 @@ export function StepSecretClueWrite({ user, onSubmitClue, announcement }: Secret
         <Translate
           pt={
             <>
-              Você ganha pontos somente se o <TextHighlight>Impostor NÃO for encontrado</TextHighlight>, então
-              escolha algo fácil e generalizado.
+              Você ganha pontos somente se o <ImpostorHighlight>Impostor</ImpostorHighlight>{' '}
+              <strong>NÃO</strong> for encontrado, então escolha algo fácil e generalizado para que haja
+              cartas que se encaixem.
             </>
           }
           en={
             <>
-              You only get points if <TextHighlight>the Impostor is NOT found</TextHighlight> by the others,
-              so choose something easy and general.
+              You only get points if the <ImpostorHighlight>Impostor</ImpostorHighlight>{' '}
+              <strong>is NOT</strong> found by the others, so choose something easy and general that may
+              possibly fit the cards.
             </>
           }
         />
@@ -96,18 +99,20 @@ export function StepSecretClueWrite({ user, onSubmitClue, announcement }: Secret
           placeholder={translate('Escreva sua pista aqui', 'Write your clue here')}
           onChange={(e) => setClue(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && onEnterInput(e)}
+          size="large"
         />
 
-        <Button
+        <SendButton
           type="primary"
           disabled={isLoading || clue.length < 1}
           onClick={onButtonClick}
+          size="large"
         >
           <Translate
             pt="Enviar pista secreta"
             en="Send secret clue"
           />
-        </Button>
+        </SendButton>
       </SpaceContainer>
 
       <ImageCardHand

@@ -226,6 +226,7 @@ export const collectionByGame: Record<string, string[]> = {
   'detetives-imaginativos': [
     'AnimatedLoaderIcon',
     'DefenseIcon',
+    'DisguiseIcon',
     'HangingPhotographIcon',
     'ImageCardsIcon',
     'RankIcon',

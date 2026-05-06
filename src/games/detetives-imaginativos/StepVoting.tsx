@@ -12,6 +12,7 @@ import { ViewIf } from 'components/views/ViewIf';
 import type { CardEntry } from './utils/types';
 import { Table } from './components/Table';
 import { VotingOptions } from './components/VotingOptions';
+import { ImpostorHighlight } from './components/Highlights';
 
 type StepVotingProps = {
   isLoading: boolean;
@@ -67,8 +68,9 @@ export function StepVoting({
           <Translate
             pt={
               <>
-                Vote para quem você acha que pode ser o impostor! Lembre-se, o impostor só perde se{' '}
-                <PlayersHighlight>2+</PlayersHighlight> detetives votarem nele.
+                Vote para quem você acha que pode ser o <ImpostorHighlight>impostor</ImpostorHighlight>!
+                Lembre-se, o impostor só perde se <PlayersHighlight>2+</PlayersHighlight> detetives votarem
+                nele.
               </>
             }
             en={
@@ -102,6 +104,7 @@ export function StepVoting({
       <Table
         table={table}
         players={players}
+        animateAllCards
       />
 
       <ReadyPlayersBar players={players} />

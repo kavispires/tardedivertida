@@ -70,7 +70,7 @@ export function StepPlayCardAction({
     8,
   );
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: we only want to trigger this effect when the current player changes, not when the user receives new cards in hand for example, which would cause the message to be displayed again
   useEffect(() => {
     if (
       table.length !== 0 &&

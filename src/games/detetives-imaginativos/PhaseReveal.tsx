@@ -16,9 +16,10 @@ import { Instruction } from 'components/text/Instruction';
 import { DETETIVES_IMAGINATIVOS_PHASES } from './utils/constants';
 import type { PhaseRevealState } from './utils/types';
 import { StepReveal } from './StepReveal';
+import { StepRanking } from './StepRanking';
 
 export function PhaseReveal({ state, players }: PhaseProps<PhaseRevealState>) {
-  const { step } = useStep(0);
+  const { step, goToNextStep, goToPreviousStep } = useStep();
   const [impostor] = useWhichPlayerIsThe('impostorId', state, players);
 
   const announcement = (
@@ -76,10 +77,16 @@ export function PhaseReveal({ state, players }: PhaseProps<PhaseRevealState>) {
           impostorVotes={state.impostorVotes}
           players={players}
           leaderId={state.leaderId}
-          round={state.round}
-          ranking={state.ranking}
           table={state.table}
           announcement={announcement}
+          goToNextStep={goToNextStep}
+        />
+
+        <StepRanking
+          players={players}
+          round={state.round}
+          ranking={state.ranking}
+          goToPreviousStep={goToPreviousStep}
         />
       </StepSwitcher>
     </PhaseContainer>

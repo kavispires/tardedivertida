@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
@@ -89,22 +90,24 @@ export function PhaseSecretClue({ state, players, user }: PhaseProps<PhaseSecret
         />
 
         {/* Step 1 */}
-        <ViewIf condition={isUserTheLeader}>
-          <StepSecretClueWrite
-            user={user}
-            onSubmitClue={onSubmitSecretClue}
-            announcement={announcement}
-          />
-        </ViewIf>
-        <ViewIf condition={!isUserTheLeader}>
-          <StepSecretClueWaiting
-            user={user}
-            leader={leader}
-            players={players}
-            turnOrder={state.turnOrder}
-            announcement={announcement}
-          />
-        </ViewIf>
+        <Fragment>
+          <ViewIf condition={isUserTheLeader}>
+            <StepSecretClueWrite
+              user={user}
+              onSubmitClue={onSubmitSecretClue}
+              announcement={announcement}
+            />
+          </ViewIf>
+          <ViewIf condition={!isUserTheLeader}>
+            <StepSecretClueWaiting
+              user={user}
+              leader={leader}
+              players={players}
+              turnOrder={state.turnOrder}
+              announcement={announcement}
+            />
+          </ViewIf>
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

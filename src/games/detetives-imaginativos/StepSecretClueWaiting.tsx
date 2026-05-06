@@ -1,7 +1,6 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Components
-import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCardHand } from 'components/image-cards/ImageCardHand';
 import { Translate } from 'components/language/Translate';
 import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
@@ -59,12 +58,10 @@ export function StepSecretClueWaiting({
         reorderByUser={leader.id}
       />
 
-      <FloatingHand>
-        <ImageCardHand
-          hand={user.hand}
-          sizeRatio={user.hand?.length}
-        />
-      </FloatingHand>
+      <ImageCardHand
+        hand={user.hand}
+        sizeRatio={user.hand?.length}
+      />
     </Step>
   );
 }

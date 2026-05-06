@@ -107,6 +107,7 @@ export * from './DiceIcon';
 export * from './DictionaryIcon';
 export * from './DirectionsIcon';
 export * from './DiscussionIcon';
+export * from './DisguiseIcon';
 export * from './DJIcon';
 export * from './DoorSignIcon';
 export * from './DrawingIcon';

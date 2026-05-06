@@ -20,13 +20,14 @@ import type { CardEntry } from '../utils/types';
 type TableProps = {
   table: CardEntry[];
   players: GamePlayers;
+  animateAllCards?: boolean;
 };
 
-export function Table({ table, players }: TableProps) {
-  const cardWidth = useCardWidth(12, { gap: 16 });
+export function Table({ table, players, animateAllCards }: TableProps) {
+  const cardWidth = useCardWidth(12, { gap: 16, maxWidth: 192 });
   const baseClass = 'd-table';
 
-  if (!table || !table?.length) {
+  if (!table?.length) {
     return (
       <div className={clsx(baseClass, `${baseClass}--center`)}>
         <IconAvatar icon={<AnimatedLoaderIcon />} />
@@ -36,7 +37,7 @@ export function Table({ table, players }: TableProps) {
 
   return (
     <div className={baseClass}>
-      {table.map((entry) => {
+      {table.map((entry, index) => {
         const { playerId, cards } = entry;
         const playerEntryKey = `table-${playerId}`;
         return (
@@ -45,7 +46,7 @@ export function Table({ table, players }: TableProps) {
             className="d-table__player-entry"
           >
             <div className="d-table__cards">
-              {cards.map((cardId) => {
+              {cards.map((cardId, cardIndex) => {
                 if (!cardId) {
                   return (
                     <div
@@ -56,10 +57,16 @@ export function Table({ table, players }: TableProps) {
                   );
                 }
 
+                const isLastCard = index === table.length - 1 && cardIndex === cards.length - 1;
+
                 return (
                   <motion.div
                     key={`${playerEntryKey}${cardId}`}
-                    {...getAnimation('flipInY', { delay: 0.5 })}
+                    {...(animateAllCards || isLastCard
+                      ? getAnimation('flipInY', {
+                          delay: 0.5 * (animateAllCards ? index + cardIndex * 0.5 : 1),
+                        })
+                      : {})}
                   >
                     <ImageBlurButtonContainer
                       cardId={cardId}

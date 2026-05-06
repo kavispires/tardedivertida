@@ -4,6 +4,8 @@ import { Flex } from 'antd';
 // Components
 import { Translate } from 'components/language/Translate';
 import { TextHighlight } from 'components/text/TextHighlight';
+// Internal
+import { ImpostorHighlight } from './Highlights';
 
 export function ImposterTitle() {
   return (
@@ -22,6 +24,7 @@ export function ImposterTitle() {
         pt="Você é o impostor!"
         en="You are the impostor!"
       />
+      <ImpostorHighlight> </ImpostorHighlight>
     </Flex>
   );
 }

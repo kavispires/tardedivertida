@@ -17,6 +17,7 @@ import { Instruction } from 'components/text/Instruction';
 import { useOnPlayCardAPIRequest } from './utils/api-requests';
 import { DETETIVES_IMAGINATIVOS_PHASES } from './utils/constants';
 import type { PhaseCardPlayState } from './utils/types';
+import { ImpostorHighlight } from './components/Highlights';
 import { StepPlayCard } from './StepPlayCard';
 
 export function PhaseCardPlay({ state, players, user }: PhaseProps<PhaseCardPlayState>) {
@@ -44,15 +45,16 @@ export function PhaseCardPlay({ state, players, user }: PhaseProps<PhaseCardPlay
           pt={
             <>
               Agora, jogadores selecionarão <CardHighlight>2</CardHighlight> cartas, uma de cada vez, como
-              evidência que eles não são o impostor. Enquanto isso, o impostor está prestando bastante atenção
-              nas cartas selecionadas e escolhendo algo que o(a) ajude a passar despercebido.
+              evidência que eles não são o impostor. Enquanto isso, o{' '}
+              <ImpostorHighlight>Impostor</ImpostorHighlight> está prestando bastante atenção nas cartas
+              selecionadas e escolhendo algo que o(a) ajude a passar despercebido.
             </>
           }
           en={
             <>
               Now players will play <CardHighlight>2</CardHighlight> cards, one at a time, as evidence that
-              they are not the impostor while the impostor is looking closely to what others are playing and
-              trying to go unnoticed.
+              they are not the impostor while the <ImpostorHighlight>Impostor</ImpostorHighlight> is looking
+              closely to what others are playing and trying to go unnoticed.
             </>
           }
         />

@@ -3,7 +3,6 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
-import { FloatingHand } from 'components/general/FloatingHand';
 import { ImageCardHand } from 'components/image-cards/ImageCardHand';
 import { Translate } from 'components/language/Translate';
 import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
@@ -76,13 +75,11 @@ export function StepPlayCardWaiting({
         reorderByUser={leaderId}
       />
 
-      <FloatingHand>
-        <ImageCardHand
-          hand={user.hand}
-          disabledSelectButton={isLoading}
-          sizeRatio={user.hand?.length}
-        />
-      </FloatingHand>
+      <ImageCardHand
+        hand={user.hand}
+        disabledSelectButton={isLoading}
+        sizeRatio={user.hand?.length}
+      />
     </>
   );
 }

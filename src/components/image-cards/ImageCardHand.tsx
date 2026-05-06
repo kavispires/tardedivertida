@@ -55,6 +55,10 @@ type ImageCardHandProps = {
    */
   minCardSize?: number;
   /**
+   * Maximum width of a card (default 160)
+   */
+  maxCardSize?: number;
+  /**
    * Cache showing which cards have been selected and should be highlighted
    */
   selectedCards?: Dictionary<boolean>;
@@ -88,7 +92,8 @@ export function ImageCardHand({
   selectButtonClass = '',
   sizeRatio = 8,
   cardSize,
-  minCardSize = 110,
+  minCardSize = 80,
+  maxCardSize = 160,
   disabledSelectButton = false,
   selectedCards = {},
   cardClassName = '',
@@ -99,6 +104,7 @@ export function ImageCardHand({
   // Prefers cardSize otherwise calculates width based on screen and ratio
   const [cardWidth, containerRef] = useCardWidthByContainerRef(Math.max(sizeRatio, 6), {
     minWidth: minCardSize,
+    maxWidth: maxCardSize,
   });
 
   return (

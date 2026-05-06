@@ -1,10 +1,9 @@
 import { orderBy } from 'lodash';
 import { useMemo } from 'react';
-// Ant Design Resources
-import { Button } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Components
+import { SendButton } from 'components/buttons/SendButton';
 import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PlayerAvatar } from 'components/player/PlayerAvatar';
@@ -15,7 +14,7 @@ type VotingOptionsProps = {
   leaderId: UID;
   players: GamePlayers;
   user?: GamePlayer;
-  onVote: GenericFunction;
+  onVote?: (payload: { vote: UID }) => void;
   isLoading?: boolean;
 };
 
@@ -38,7 +37,7 @@ export function VotingOptions({
   );
 
   return (
-    <SpaceContainer className="d-voting-options">
+    <SpaceContainer className="d-voting-options contained">
       {votingOptions?.map((playerOption) => {
         const votedForPlayer = Object.values(players).filter((player) => player?.vote === playerOption.id);
         return (
@@ -46,17 +45,25 @@ export function VotingOptions({
             className="d-voting-options__container"
             key={`voting-button-${playerOption.name}`}
           >
-            <Button
-              onClick={() => onVote({ vote: playerOption.id })}
-              ghost
-              size="large"
-              disabled={isAllDisabled || user?.vote || isLoading || user?.name === playerOption.name}
-            >
+            {onVote ? (
+              <SendButton
+                onClick={() => onVote({ vote: playerOption.id })}
+                ghost
+                size="large"
+                disabled={isAllDisabled || user?.vote || isLoading || user?.name === playerOption.name}
+              >
+                <PlayerAvatarName
+                  player={playerOption}
+                  uppercase
+                />
+              </SendButton>
+            ) : (
               <PlayerAvatarName
                 player={playerOption}
                 uppercase
               />
-            </Button>
+            )}
+
             <div className="d-voting-options__vote-container">
               <Translate
                 pt="Votos"
