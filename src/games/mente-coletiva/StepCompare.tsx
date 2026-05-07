@@ -1,5 +1,3 @@
-// Ant Design Resources
-import { Divider } from 'antd';
 // Types
 import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Components
@@ -29,7 +27,7 @@ type StepCompareProps = {
   onNextAnswer: (payload: NextAnswersPayload) => void;
   remainingGroupsCount: number;
   allowedList: AllowedList;
-  setAllowedList: GenericFunction;
+  setAllowedList: React.Dispatch<React.SetStateAction<AllowedList>>;
   round: GameRound;
 } & Pick<StepProps, 'announcement'>;
 
@@ -64,7 +62,7 @@ export function StepCompare({
           pt="Pronto!"
           en="All done!"
         />
-        <Divider />
+
         <HostNextPhaseButton round={round} />
       </Step>
     );
@@ -83,13 +81,13 @@ export function StepCompare({
         allowUserAnswer={allowUserAnswer}
         remainingGroupsCount={remainingGroupsCount}
       />
-      <Divider />
+
       <UserAnswers
         user={user}
         answerGroup={answerGroup}
         onAddAnswer={onAddAnswer}
       />
-      <Divider />
+
       <AdminAnswerControl
         key={answerGroup.answer}
         answerGroup={answerGroup}

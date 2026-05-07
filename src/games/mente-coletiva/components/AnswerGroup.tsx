@@ -112,5 +112,3 @@ export function AnswerGroup({
     </Step>
   );
 }
-
-export default AnswerGroup;

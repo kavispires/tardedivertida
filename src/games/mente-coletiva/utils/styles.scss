@@ -32,6 +32,7 @@
     top: 0;
     left: 0;
     right: 0;
+    border-radius: var(--border-radius);
   }
 
   &__fence {
@@ -46,6 +47,7 @@
 .m-pasture-names {
   display: block;
   margin: 0 auto;
+  margin-top: get-unit(6);
 }
 
 .m-enclosure-names {
@@ -65,7 +67,9 @@
 
 .m-enclosures {
   display: grid;
+  padding: get-unit(3 2);
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 0.65fr;
+  gap: get-unit(1);
   height: 100%;
 }
 
@@ -111,7 +115,7 @@
   width: 50px;
   display: block;
   position: absolute;
-  bottom: 12%;
+  bottom: 15%;
   left: 0;
   transition: all 1000ms;
 

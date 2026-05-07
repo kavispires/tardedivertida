@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { Fragment, useMemo, useState } from 'react';
 // Ant Design Resources
 import { PlusCircleFilled, RocketFilled } from '@ant-design/icons';
 import { Button } from 'antd';
@@ -13,6 +13,7 @@ import { HostOnlyContainer } from 'components/host/HostOnlyContainer';
 import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { WaitingTime } from 'components/timers/WaitingTime';
 // Internal
 import type {
   AddAnswerPayload,
@@ -65,7 +66,7 @@ export function AdminAnswerControl({
     // Dev
     if (isDevEnv) return 1;
     // When all players are in
-    if (playerCount === answersCount) return 1;
+    if (playerCount === answersCount) return 2;
     // When only 2 or less answers left
     if (answersCount < 3 && remainingGroupsCount < 3) return 3;
     // When only 1 answer in
@@ -75,50 +76,57 @@ export function AdminAnswerControl({
   }, [answerGroup.entries.length, isDevEnv, playerCount, remainingGroupsCount]);
 
   return (
-    <HostOnlyContainer
-      className="m-admin"
-      orientation="vertical"
-      align="center"
-    >
-      <TimedButton
-        onClick={() => onNextAnswer({ allowedList: Object.keys(allowedList) })}
-        disabled={disableButton || isLoading}
-        type="primary"
+    <Fragment>
+      <WaitingTime
         duration={waitDuration}
-        icon={<RocketFilled />}
-        onExpire={() => setDisableButton(false)}
-      >
-        <Translate
-          pt="Confirmar e ir para próxima resposta"
-          en="Confirm and go to next answer"
-        />
-      </TimedButton>
+        timeLeft={waitDuration}
+      />
 
-      {filteredAnswers.length > 0 && (
-        <p>
+      <HostOnlyContainer
+        className="m-admin"
+        orientation="vertical"
+        align="center"
+      >
+        <TimedButton
+          onClick={() => onNextAnswer({ allowedList: Object.keys(allowedList) })}
+          disabled={disableButton || isLoading}
+          type="primary"
+          duration={waitDuration}
+          icon={<RocketFilled />}
+          onExpire={() => setDisableButton(false)}
+        >
           <Translate
-            pt="Essas são as respostas dos jogadores que não deram match com a atual resposta. Somente adicione elas se os jogadores estiverem comendo mosca"
-            en="These are the players who haven't matched the current answer. Only add them if a player failed to do so for themselves."
+            pt="Confirmar e ir para próxima resposta"
+            en="Confirm and go to next answer"
           />
-        </p>
-      )}
-      <SpaceContainer wrap>
-        {filteredAnswers.map((answer) => {
-          return (
-            <Button
-              size="large"
-              disabled={isLoading}
-              className="m-admin__answer"
-              icon={<PlusCircleFilled />}
-              loading={isLoading}
-              key={`admin-${answer.id}`}
-              onClick={() => onAddAnswer({ answer: { ...answer } })}
-            >
-              <PlayerAvatar avatarId={players[answer.playerId].avatarId} /> {answer.answer}
-            </Button>
-          );
-        })}
-      </SpaceContainer>
-    </HostOnlyContainer>
+        </TimedButton>
+
+        {filteredAnswers.length > 0 && (
+          <p>
+            <Translate
+              pt="Essas são as respostas dos jogadores que não deram match com a atual resposta. Somente adicione elas se os jogadores estiverem comendo mosca"
+              en="These are the players who haven't matched the current answer. Only add them if a player failed to do so for themselves."
+            />
+          </p>
+        )}
+        <SpaceContainer wrap>
+          {filteredAnswers.map((answer) => {
+            return (
+              <Button
+                size="large"
+                disabled={isLoading}
+                className="m-admin__answer"
+                icon={<PlusCircleFilled />}
+                loading={isLoading}
+                key={`admin-${answer.id}`}
+                onClick={() => onAddAnswer({ answer: { ...answer } })}
+              >
+                <PlayerAvatar avatarId={players[answer.playerId].avatarId} /> {answer.answer}
+              </Button>
+            );
+          })}
+        </SpaceContainer>
+      </HostOnlyContainer>
+    </Fragment>
   );
 }

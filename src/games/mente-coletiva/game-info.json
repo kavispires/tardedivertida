@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "M",
   "gameName": "mente-coletiva",
-  "version": "5.2.101",
+  "version": "6.0.0",
   "release": "stable",
   "releaseDate": "2021-08-27",
   "available": true,
@@ -30,19 +30,19 @@
   "rules": {
     "en": [
       "You are sheep in an overcrowded pasture. To make space, someone has to go… and the odd ones out are the first to be expelled.",
-      "The pasture has 5 sections. Everyone starts in section 1.",
+      "The pasture has sections. Everyone starts in the first section on the left.",
       "Each round, a prompt is given (e.g., “Name 3 fruits”), and all players write their answers.",
       "After revealing all answers, identical responses are grouped. You earn 1 point for each player who gave the same answer as you (including yourself).",
       "After scoring, the player(s) with the fewest points move one section to the right. Points reset each round.",
-      "If you move beyond section 5, you fall off the cliff and are out of the game. The last sheep remaining wins."
+      "If you move beyond the last section, you fall off the cliff and die. And everyone else wins the game."
     ],
     "pt": [
       "Somos ovelhas em um pasto superlotado. Para abrir espaço, alguém precisa sair… e as mais diferentes são as primeiras a serem expulsas.",
-      "O pasto tem 5 partes. Todos começam na parte 1.",
+      "O pasto tem seções. Todos começam na primeira seção à esquerda.",
       "A cada rodada, um desafio é apresentado (ex: “Cite 3 frutas”), e todos escrevem suas respostas.",
       "Após revelar as respostas, agrupamos as iguais. Você ganha 1 ponto para cada jogador que deu a mesma resposta que você (incluindo você mesmo).",
-      "Depois da pontuação, o(s) jogador(es) com menos pontos avança(m) uma parte para a direita. Os pontos são zerados a cada rodada.",
-      "Se você passar da parte 5, cai no precipício e está fora do jogo. A última ovelha restante vence."
+      "Depois da pontuação, o(s) jogador(es) com menos pontos avança(m) uma seção para a direita. Os pontos são zerados a cada rodada.",
+      "Se você passar da última seção, você cai no precipício e morre. E todos os outros ganham o jogo."
     ]
   },
   "playerCount": {

@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { AnimatePresence, motion } from 'motion/react';
 import { useMemo } from 'react';
 import { useWindowSize } from 'react-use';
 // Types
@@ -16,29 +17,38 @@ type PastureProps = {
 };
 
 export function Pasture({ players, pastureSize = 5, roundType }: PastureProps) {
-  const BASE_URL = useTDBaseUrl('assets');
   const { width } = useWindowSize();
-  const isShortPasture = pastureSize === 3;
+  const BASE_URL = useTDBaseUrl('assets');
 
-  const pastureBase = Math.min(width, 1360) - 36;
-  const pastureWidth = Math.max(pastureBase * (isShortPasture ? 0.65 : 1), 300);
-  const pastureHeight = pastureBase / 4;
-  const sheepWidth = Math.min(width, 1360) / 22;
-  const gridStyleDistribution = {
-    gridTemplateColumns: isShortPasture ? '1fr 1fr 1fr 0.65fr' : '1fr 1fr 1fr 1fr 1fr 0.65fr',
-  };
+  const { pastureWidth, pastureHeight, sheepWidth, gridStyleDistribution, sheepPerEnclosure } =
+    useMemo(() => {
+      const isShortPasture = pastureSize === 3;
 
-  const sheepPerEnclosure = useMemo(() => {
-    const spe = Array(pastureSize + 1).fill(null);
-    Object.values(players).forEach((player) => {
-      if (spe[player.level] === null) {
-        spe[player.level] = [];
-      }
-      spe[player.level].push(player);
-    });
+      const pastureBase = Math.min(width, 1360) - 36;
+      const pastureWidth = Math.max(pastureBase * (isShortPasture ? 0.65 : 1), 300);
+      const pastureHeight = pastureWidth / (pastureSize === 5 ? 5 : 3.25);
+      const sheepWidth = Math.min(width, 1360) / 22;
+      const gridStyleDistribution = {
+        gridTemplateColumns: isShortPasture ? '1fr 1fr 1fr 0.65fr' : '1fr 1fr 1fr 1fr 1fr 0.65fr',
+      };
 
-    return spe;
-  }, [players, pastureSize]);
+      const sheepPerEnclosure = Array(pastureSize + 1).fill(null);
+
+      Object.values(players).forEach((player) => {
+        if (sheepPerEnclosure[player.level] === null) {
+          sheepPerEnclosure[player.level] = [];
+        }
+        sheepPerEnclosure[player.level].push(player);
+      });
+
+      return {
+        pastureWidth,
+        pastureHeight,
+        sheepWidth,
+        gridStyleDistribution,
+        sheepPerEnclosure,
+      };
+    }, [players, pastureSize, width]);
 
   return (
     <div
@@ -57,7 +67,7 @@ export function Pasture({ players, pastureSize = 5, roundType }: PastureProps) {
         style={{ height: `${pastureHeight}px` }}
       >
         <img
-          src={`${BASE_URL}/game/m-pasture-${pastureSize}.png`}
+          src={`${BASE_URL}/game/m-pasture-${pastureSize}.jpg`}
           alt="pasture background"
           className="m-pasture__background"
         />
@@ -66,45 +76,48 @@ export function Pasture({ players, pastureSize = 5, roundType }: PastureProps) {
           className="m-enclosures"
           style={gridStyleDistribution}
         >
-          {sheepPerEnclosure.map((sheepPlayers, enclosureId) => {
-            const enclosureKey = `m-enclosure-${enclosureId}`;
-            return (
-              <div
-                className={clsx('m-enclosure', enclosureKey)}
-                key={enclosureKey}
-              >
-                {sheepPlayers?.map((player: GamePlayer, index: number) => {
-                  const sheepKey = `${enclosureKey}-${player.id}`;
-                  const sheepClassName = `m-sheep--pos-${index}`;
+          <AnimatePresence mode="popLayout">
+            {sheepPerEnclosure.map((sheepPlayers, enclosureId) => {
+              const enclosureKey = `m-enclosure-${enclosureId}`;
+              return (
+                <div
+                  className={clsx('m-enclosure', enclosureKey)}
+                  key={enclosureKey}
+                >
+                  {sheepPlayers?.map((player: GamePlayer, index: number) => {
+                    const sheepClassName = `m-sheep--pos-${index}`;
 
-                  return (
-                    <SheepAvatar
-                      key={sheepKey}
-                      id={player.avatarId}
-                      sheepId={player.sheepId}
-                      className={clsx(
-                        'm-sheep',
-                        sheepClassName,
-                        player.animateRight && 'm-sheep--animate-right',
-                        player.animateLeft && 'm-sheep--animate-left',
-                        player.animateRebound && 'm-sheep--animate-rebound',
-                        player.level === pastureSize && 'm-sheep--animate-die',
-                      )}
-                      width={sheepWidth}
-                      animate
-                    />
-                  );
-                })}
-              </div>
-            );
-          })}
+                    return (
+                      <motion.div
+                        key={player.id}
+                        layout
+                        transition={{
+                          layout: { duration: 0.4, ease: 'easeInOut' },
+                        }}
+                      >
+                        <SheepAvatar
+                          id={player.avatarId}
+                          sheepId={player.sheepId}
+                          className={clsx(
+                            'm-sheep',
+                            sheepClassName,
+                            player.animateRight && 'm-sheep--animate-right',
+                            player.animateLeft && 'm-sheep--animate-left',
+                            player.animateRebound && 'm-sheep--animate-rebound',
+                            player.level === pastureSize && 'm-sheep--animate-die',
+                          )}
+                          width={sheepWidth}
+                          animate
+                        />
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </AnimatePresence>
         </div>
 
-        <img
-          src={`${BASE_URL}/game/m-fence-${pastureSize}.svg`}
-          alt="fence"
-          className="m-pasture__fence"
-        />
         <div className="m-pasture-names">
           <div
             className="m-enclosures m-enclosures--names"
@@ -112,9 +125,10 @@ export function Pasture({ players, pastureSize = 5, roundType }: PastureProps) {
           >
             {sheepPerEnclosure.map((sheepPlayers, index) => {
               const names = sheepPlayers?.map((p: GamePlayer) => p.name)?.join(',\n') ?? '';
+
               return (
                 <span
-                  key={`m-enclosure-${index}`}
+                  key={index}
                   className={clsx('m-enclosure-names', names && 'm-enclosure-names--has-names')}
                 >
                   {names}

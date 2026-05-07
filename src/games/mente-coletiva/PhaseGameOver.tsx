@@ -33,7 +33,7 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
             return (
               <div
                 className="m-sheep-rip__entry"
-                key={'sheep-player-1'}
+                key={`sheep-player-${player.id}`}
               >
                 <SheepAvatar
                   id={player.avatarId}

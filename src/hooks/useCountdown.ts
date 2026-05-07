@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useTimer } from 'react-timer-hook';
 // Utils
 import { inNSeconds } from 'utils/helpers';
@@ -35,8 +36,9 @@ export function useCountdown({
   disabled = false,
   ...rest
 }: useCountdownSettings): useCountdownReturnValue {
+  const expirationTimeStamp = useMemo(() => inNSeconds(duration), [duration]);
   const timer = useTimer({
-    expiryTimestamp: inNSeconds(duration),
+    expiryTimestamp: expirationTimeStamp,
     onExpire: disabled ? undefined : onExpire,
     ...rest,
   });

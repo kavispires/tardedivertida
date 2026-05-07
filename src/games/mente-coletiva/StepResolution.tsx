@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { motion } from 'motion/react';
 import { useEffect, useMemo, useState } from 'react';
 // Ant Design Resources
 import { HeartFilled } from '@ant-design/icons';
@@ -6,15 +6,13 @@ import { HeartFilled } from '@ant-design/icons';
 import type { GameRanking, GameRound, GamePlayers } from 'types/game';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
-// Utils
-import { getAnimationClass } from 'utils/helpers';
 // Components
 import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
 import { Translate } from 'components/language/Translate';
 import { RankingBoard } from 'components/ranking/RankingBoard';
 import { Step, type StepProps } from 'components/steps/Step';
 import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import { Pasture } from './components/Pasture';
@@ -96,26 +94,52 @@ export function StepResolution({
         </Step>
 
         <Step key={1}>
-          {showAnnounceSave && (
-            <Instruction
-              contained
-              className={clsx('m-save-card', getAnimationClass('zoomInDown'))}
+          <motion.div
+            animate={{
+              opacity: showAnnounceSave ? 1 : 0,
+              scale: showAnnounceSave ? 1 : 0.5,
+              y: showAnnounceSave ? 0 : -50,
+            }}
+            transition={{
+              duration: 0.5,
+              ease: 'backOut',
+              scale: { type: 'spring', stiffness: 200, damping: 15 },
+            }}
+          >
+            <RuleInstruction
+              type="alert"
+              className="m-save-card"
             >
               <HeartFilled style={{ color: 'red' }} />{' '}
               <Translate
                 pt="Vamos dar uma última chance para a pobre ovelhinha que
-              ia morrer agora"
+                ia morrer agora"
                 en="Let's give one more chance to the poor sheep about to die. The last one!"
               />{' '}
               <HeartFilled style={{ color: 'red' }} />
-            </Instruction>
-          )}
+            </RuleInstruction>
+          </motion.div>
+
           <Pasture
             players={pastureChange[pastureIndex]}
             pastureSize={pastureSize}
             roundType={step > 0 ? roundType : undefined}
           />
-          <HostNextPhaseButton round={round} />
+
+          <RuleInstruction
+            type="event"
+            style={{ marginTop: 100, zIndex: 10 }}
+          >
+            <Translate
+              en="Points reset to 0 every round, so don't worry if you didn't do well this time!"
+              pt="Os pontos resetam para 0 toda rodada, então não se preocupe se você não foi bem dessa vez!"
+            />
+          </RuleInstruction>
+
+          <HostNextPhaseButton
+            round={round}
+            withWaitingTimeBar
+          />
         </Step>
       </StepSwitcher>
     </Step>

@@ -32,7 +32,7 @@ export function PhaseEverybodyWrites({ state, players, meta, user }: PhaseProps<
         />
       }
       currentRound={state?.round?.current}
-      duration={state?.round?.current < 3 ? 20 : undefined}
+      duration={state?.round?.current === 1 ? 20 : undefined}
       type="overlay"
     >
       <AnsweringRules />
