@@ -4,6 +4,7 @@ import { useLocalStorage } from 'react-use';
 import { getToday } from 'utils/helpers';
 // Internal
 import type { WithRequiredId } from '../utils/types';
+import { updateStreak } from '../utils/streakManager';
 import { composeLocalPlayedKey, composeLocalTodayKey } from '../utils';
 
 type UseDailyLocalTodayProps<TLocal> = {
@@ -27,23 +28,23 @@ export function useDailyLocalToday<TLocal extends WithRequiredId>({
 }: UseDailyLocalTodayProps<TLocal>) {
   const localKey = composeLocalTodayKey(key);
   const [localToday, setLocalToday] = useLocalStorage<TLocal>(localKey, {
-    status: 'idle',
     ...defaultValue,
     id: gameId,
   });
 
   const updateLocalStorage = (value: Partial<TLocal>) => {
-    setLocalToday((prev) => ({ ...(prev ?? defaultValue), id: gameId, ...value }));
+    const updated = { ...(localToday ?? defaultValue), ...value };
+    setLocalToday(updated);
   };
 
   return {
-    localToday,
+    localToday: localToday ?? defaultValue,
     updateLocalStorage,
   };
 }
 
 /**
- * Marks a key as played if it is complete.
+ * Marks a key as played if it is complete and updates the daily streak.
  * @param key - The key to mark as played.
  * @param isComplete - Whether the key is complete.
  */
@@ -52,8 +53,14 @@ export function useMarkAsPlayed({ key, isComplete }: { key: string; isComplete: 
   const [played, setPlayed] = useLocalStorage<string>(localPlayedKey, 'unplayed');
 
   useEffect(() => {
-    if (played !== getToday() && isComplete) {
-      setPlayed(getToday());
+    const today = getToday();
+
+    if (played !== today && isComplete) {
+      // Mark as played
+      setPlayed(today);
+
+      // Update streak
+      updateStreak(key, today);
     }
-  }, [isComplete, played, setPlayed]);
+  }, [isComplete, played, setPlayed, key]);
 }

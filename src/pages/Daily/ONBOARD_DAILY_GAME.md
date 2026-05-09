@@ -384,7 +384,7 @@ const imageUrl = useTDImageCardUrl(cardId);
 
 ### Alienado (Alien Communication)
 
-**Type**: `'comunicacao-alienigena' | 'alienado'`
+**Type**: `'alienado'`
 
 **Data Entry Structure**:
 ```typescript
@@ -392,7 +392,7 @@ type DailyAlienadoEntry = {
   id: DateKey;
   setId: string;
   number: number;
-  type: 'comunicacao-alienigena' | 'alienado';
+  type: 'alienado';
   attributes: Array<{
     id: string;
     name: string;

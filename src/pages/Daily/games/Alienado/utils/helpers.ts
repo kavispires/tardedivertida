@@ -81,7 +81,7 @@ export function writeResult({
 export function getWrittenResult({ data, language }: { data: DailyAlienadoEntry; language: Language }) {
   const state = getInitialState(data);
   return writeResult({
-    type: 'comunicacao-alienigena',
+    type: 'alienado',
     hideLink: true,
     challengeNumber: state.number,
     language,

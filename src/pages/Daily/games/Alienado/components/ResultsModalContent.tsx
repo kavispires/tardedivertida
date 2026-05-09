@@ -50,7 +50,7 @@ export function ResultsModalContent({
   const result = useMemo(
     () =>
       writeResult({
-        type: 'comunicacao-alienigena',
+        type: 'alienado',
         language,
         challengeNumber,
         totalHearts: SETTINGS.HEARTS,

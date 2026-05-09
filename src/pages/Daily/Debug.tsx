@@ -6,8 +6,8 @@ import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Utils
 import { getToday } from 'utils/helpers';
 // Internal
-import { ALL_SETTINGS } from '../utils/settings';
-import { DailyChrome } from '../components/DailyChrome';
+import { ALL_SETTINGS } from './utils/settings';
+import { DailyChrome } from './components/DailyChrome';
 
 const PRIORITY_LIST = Object.values(ALL_SETTINGS);
 

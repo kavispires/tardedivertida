@@ -170,21 +170,18 @@ function getResultForGame(data: DailyResponse[keyof DailyResponse], language: La
         language,
       });
     }
-    case 'comunicacao-alienigena':
     case 'alienado': {
       return ALL_HELPERS.ALIENADO.getWrittenResult({
         data: data as DailyAlienadoEntry,
         language,
       });
     }
-    case 'controle-de-estoque':
     case 'estoquista': {
       return ALL_HELPERS.ESTOQUISTA.getWrittenResult({
         data: data as DailyEstoquistaEntry,
         language,
       });
     }
-    case 'investigacao':
     case 'espionagem': {
       return ALL_HELPERS.INVESTIGACAO.getWrittenResult({
         data: data as DailyInvestigacaoEntry,
@@ -209,7 +206,6 @@ function getResultForGame(data: DailyResponse[keyof DailyResponse], language: La
         language,
       });
     }
-    case 'portais-magicos':
     case 'portais': {
       return ALL_HELPERS.PORTAIS.getWrittenResult({
         data: data as DailyPortaisEntry,
@@ -222,14 +218,12 @@ function getResultForGame(data: DailyResponse[keyof DailyResponse], language: La
         language,
       });
     }
-    case 'teoria-de-conjuntos':
     case 'conjuntos': {
       return ALL_HELPERS.CONJUNTOS.getWrittenResult({
         data: data as DailyConjuntosEntry,
         language,
       });
     }
-    case 'vitrais':
     case 'vitral': {
       return ALL_HELPERS.VITRAL.getWrittenResult({
         data: data as DailyVitralEntry,

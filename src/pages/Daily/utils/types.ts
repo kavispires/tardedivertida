@@ -55,6 +55,40 @@ export interface WithRequiredId {
   id: string;
 }
 
+/**
+ * Streak tracking data for daily games.
+ * Tracks consecutive days played (playing any game counts).
+ */
+export type DailyStreakData = {
+  /**
+   * Current consecutive days streak
+   */
+  currentStreak: number;
+  /**
+   * Longest streak ever achieved
+   */
+  longestStreak: number;
+  /**
+   * Total days played (non-consecutive)
+   */
+  totalDaysPlayed: number;
+  /**
+   * Last date a game was played (YYYY-MM-DD)
+   */
+  lastPlayedDate: DateKey | null;
+  /**
+   * History of which games were played on each date
+   * Limited to last 30 days to manage storage size
+   */
+  history: {
+    [date: DateKey]: string[]; // Array of game KEYs played on that date
+  };
+  /**
+   * Last date streak was calculated (to avoid recalculating on every load)
+   */
+  lastCalculatedDate: DateKey | null;
+};
+
 export interface GameSettings {
   /**
    * Unique key for the game used for local storage

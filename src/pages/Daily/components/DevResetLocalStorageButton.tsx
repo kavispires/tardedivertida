@@ -3,15 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import { BugOutlined } from '@ant-design/icons';
 import { App, Button, Flex, Space } from 'antd';
 // Utils
-import { isDevEnv } from 'utils/helpers';
+import { getToday, isDevEnv } from 'utils/helpers';
 // Components
 import { Popconfirm } from 'components/general/Popconfirm';
 import { Translate } from 'components/language/Translate';
 // Internal
 import { ALL_SETTINGS } from '../utils/settings';
+import { resetStreak } from '../utils/streakManager';
 import { composeLocalPlayedKey, composeLocalTodayKey } from '../utils';
 
 const keys = Object.values(ALL_SETTINGS);
+const STREAK_KEY = 'TD_DAILY_STREAK';
 
 type DevResetLocalStorageButtonProps = {
   localStorageKey?: string;
@@ -23,13 +25,31 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
 
   const onReset = () => {
     if (localStorageKey) {
+      // Reset specific game
       localStorage.removeItem(composeLocalTodayKey(localStorageKey));
       localStorage.removeItem(composeLocalPlayedKey(localStorageKey));
+
+      // Also remove from streak history for today
+      try {
+        const today = getToday();
+        const streak = JSON.parse(localStorage.getItem(STREAK_KEY) || '{}');
+        if (streak.history?.[today]) {
+          streak.history[today] = streak.history[today].filter((key: string) => key !== localStorageKey);
+          localStorage.setItem(STREAK_KEY, JSON.stringify(streak));
+        }
+      } catch (error) {
+        // biome-ignore lint/suspicious/noConsole: error logging
+        console.error('Failed to remove from streak history:', error);
+      }
     } else {
+      // Reset all games
       keys.forEach((key) => {
         localStorage.removeItem(composeLocalTodayKey(key.KEY));
         localStorage.removeItem(composeLocalPlayedKey(key.KEY));
       });
+
+      // Reset streak
+      resetStreak();
     }
     message.success(
       <Translate
@@ -38,6 +58,16 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
       />,
     );
     navigate('/diario');
+  };
+
+  const onResetStreakOnly = () => {
+    resetStreak();
+    message.success(
+      <Translate
+        pt="Streak resetada"
+        en="Streak reset"
+      />,
+    );
   };
 
   const onDayBefore = () => {
@@ -66,6 +96,31 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
       } else {
         alert(JSON.stringify(value, null, 2));
       }
+    } else {
+      // Log streak data
+      const streak = JSON.parse(localStorage.getItem(STREAK_KEY) ?? '{}');
+
+      // Log all game keys
+      const allGameData: PlainObject = {};
+      keys.forEach((key) => {
+        const todayData = localStorage.getItem(composeLocalTodayKey(key.KEY));
+        const playedData = localStorage.getItem(composeLocalPlayedKey(key.KEY));
+        if (todayData || playedData) {
+          allGameData[key.KEY] = {
+            today: todayData ? JSON.parse(todayData) : null,
+            played: playedData ? JSON.parse(playedData) : null,
+          };
+        }
+      });
+
+      if (isDevEnv) {
+        // biome-ignore lint/suspicious/noConsole: dev only
+        console.log('All Game Data:', allGameData);
+        // biome-ignore lint/suspicious/noConsole: dev only
+        console.log('Streak Data:', streak);
+      } else {
+        alert(`Games: ${JSON.stringify(allGameData, null, 2)}\n\nStreak: ${JSON.stringify(streak, null, 2)}`);
+      }
     }
   };
 
@@ -74,7 +129,10 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
       justify="center"
       gap={12}
     >
-      <Space.Compact>
+      <Space
+        wrap
+        size="small"
+      >
         <Popconfirm
           title={
             <Translate
@@ -96,14 +154,24 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
           </Button>
         </Popconfirm>
         {isDevEnv && (
-          <Button
-            size="large"
-            type="dashed"
-            onClick={onDayBefore}
-            icon={<BugOutlined />}
-          >
-            Yesterday LS
-          </Button>
+          <>
+            <Button
+              size="large"
+              type="dashed"
+              onClick={onDayBefore}
+              icon={<BugOutlined />}
+            >
+              Yesterday LS
+            </Button>
+            <Button
+              size="large"
+              type="dashed"
+              onClick={onResetStreakOnly}
+              icon={<BugOutlined />}
+            >
+              Reset Streak
+            </Button>
+          </>
         )}
         <Button
           size="large"
@@ -112,7 +180,7 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
         >
           Log
         </Button>
-      </Space.Compact>
+      </Space>
     </Flex>
   );
 }

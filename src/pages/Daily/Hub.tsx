@@ -6,8 +6,8 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTimer } from 'react-timer-hook';
 // Ant Design Resources
-import { BugFilled, MutedOutlined, SoundFilled } from '@ant-design/icons';
-import { Alert, Button, Collapse, Divider, Space, Switch, Typography } from 'antd';
+import { MutedOutlined, SoundFilled } from '@ant-design/icons';
+import { Alert, Divider, Flex, Space, Switch, Typography } from 'antd';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
@@ -16,7 +16,7 @@ import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 import { getFirestoreConsoleUrl, logAnalyticsEvent } from 'services/firebase';
 // Utils
 import { getAnimation } from 'utils/animations';
-import { getToday, isDevEnv } from 'utils/helpers';
+import { getToday } from 'utils/helpers';
 // Icons
 import { DailyContributionGameIcon } from 'icons/DailyContributionGameIcon';
 import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
@@ -25,13 +25,17 @@ import { IconAvatar } from 'components/avatars/IconAvatar';
 import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 // Internal
-import { dailySoundEffects, playSFX, SFXAllNames } from '../utils/soundEffects';
-import type { GameSettings } from '../utils/types';
-import { ALL_SETTINGS } from '../utils/settings';
-import { DailyChrome } from '../components/DailyChrome';
-import { News } from '../components/News';
-import { BundleResults } from '../components/BundleResults';
-import { checkWasPlayedToday, daysSinceRelease, hasBeenReleased } from '../utils';
+import { dailySoundEffects, playSFX } from './utils/soundEffects';
+import type { GameSettings } from './utils/types';
+import { ALL_SETTINGS } from './utils/settings';
+import { DailyChrome } from './components/DailyChrome';
+import { News } from './components/News';
+import { BundleResults } from './components/BundleResults';
+import { StreakDisplay } from './components/StreakDisplay';
+import { StreakMilestoneModal } from './components/StreakMilestoneModal';
+import { HubDevTools } from './components/HubDevTools';
+import { checkWasPlayedToday, daysSinceRelease, hasBeenReleased } from './utils';
+import { useStreakMilestone } from './hooks/useStreakData';
 
 type Entry = GameSettings & {
   disabled?: boolean;
@@ -102,13 +106,20 @@ export function Hub() {
   const { isAdmin } = useCurrentUserContext();
   const [width, ref] = useCardWidthByContainerRef(3, { maxWidth: 128, minWidth: 48, gap: 16 });
   const today = getToday();
+  const { milestone, onClose } = useStreakMilestone();
 
   return (
     <DailyChrome>
       <div className="menu menu--hub">
         <News />
-        <TimeLeft />
-        <SoundFXToggle />
+        <Flex
+          align="center"
+          gap={6}
+        >
+          <TimeLeft />
+          <SoundFXToggle />
+        </Flex>
+        <StreakDisplay />
       </div>
       <div
         className="hub"
@@ -179,14 +190,20 @@ export function Hub() {
         </div>
       )}
 
+      <StreakMilestoneModal
+        milestone={milestone}
+        onClose={onClose}
+      />
+
       {isAdmin && (
         <Alert
-          style={{ marginTop: '64px' }}
+          style={{ marginTop: '64px', maxWidth: '100vw' }}
           showIcon={false}
           title={
             <Space
               size="small"
               separator={<Divider orientation="vertical" />}
+              wrap
             >
               <Link to="/daily/debug">Debug</Link>
               <Link to="/daily/demo">Demo</Link>
@@ -203,7 +220,8 @@ export function Hub() {
           banner
         />
       )}
-      <SFXTest />
+
+      <HubDevTools />
     </DailyChrome>
   );
 }
@@ -364,36 +382,4 @@ function TimeLeft() {
       <span key={`s${seconds}`}>{String(seconds).padStart(2, '0')}</span>
     </div>
   );
-}
-
-function SFXTest() {
-  if (!isDevEnv) {
-    return null;
-  }
-
-  const items = [
-    {
-      key: 'sounds',
-      label: (
-        <>
-          <BugFilled /> Sound Effects Library
-        </>
-      ),
-      children: (
-        <div className="hub-list">
-          {SFXAllNames.map((name) => (
-            <Button
-              key={name}
-              onClick={() => dailySoundEffects.play(name)}
-              block
-            >
-              {name}
-            </Button>
-          ))}
-        </div>
-      ),
-    },
-  ];
-
-  return <Collapse items={items} />;
 }

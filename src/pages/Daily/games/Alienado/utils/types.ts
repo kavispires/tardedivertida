@@ -32,7 +32,7 @@ export type DailyAlienadoEntry = {
   id: DateKey;
   setId: string;
   number: number;
-  type: 'comunicacao-alienigena' | 'alienado';
+  type: 'alienado';
   attributes: DailyAlienGameAttribute[];
   requests: DailyAlienGameRequest[];
   solution: string;
