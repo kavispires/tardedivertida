@@ -37,11 +37,6 @@ export type DailyInvestigacaoEntry = {
   level: number;
 };
 
-/**
- * @deprecated Use DailyInvestigacaoEntry instead. Kept for backwards compatibility.
- */
-export type DailyEspionagemEntry = DailyInvestigacaoEntry;
-
 export type SessionState = {
   activeSuspectId: string | null;
 };

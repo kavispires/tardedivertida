@@ -3,17 +3,17 @@ import type { ComponentType, SVGProps } from 'react';
 import type { DailyAquiOEntry } from '../games/AquiO/utils/types';
 import type { DailyArteRuimEntry } from '../games/ArteRuim/utils/types';
 import type { DailyPicacoEntry } from '../games/Picaco/utils/types';
-import type { DailyEstoquistaEntry, DailyControleDeEstoqueEntry } from '../games/Estoquista/utils/types';
+import type { DailyEstoquistaEntry } from '../games/Estoquista/utils/types';
 import type { DailyFilmacoEntry } from '../games/Filmaco/utils/types';
 import type { DailyPalavreadoEntry } from '../games/Palavreado/utils/types';
-import type { DailyConjuntosEntry, DailyTeoriaDeConjuntosEntry } from '../games/Conjuntos/utils/types';
-import type { DailyAlienadoEntry, DailyComunicacaoAlienigenaEntry } from '../games/Alienado/utils/types';
+import type { DailyConjuntosEntry } from '../games/Conjuntos/utils/types';
+import type { DailyAlienadoEntry } from '../games/Alienado/utils/types';
 import type { DailyQuartetosEntry } from '../games/Quartetos/utils/types';
 import type { DailyTaNaCaraEntry } from '../games/TaNaCara/utils/types';
-import type { DailyPortaisEntry, DailyPortaisMagicosEntry } from '../games/Portais/utils/types';
+import type { DailyPortaisEntry } from '../games/Portais/utils/types';
 import type { DailyOrganikuEntry } from '../games/Organiku/utils/types';
-import type { DailyInvestigacaoEntry, DailyEspionagemEntry } from '../games/Investigacao/utils/types';
-import type { DailyVitralEntry, DailyVitraisEntry } from '../games/Vitral/utils/types';
+import type { DailyInvestigacaoEntry } from '../games/Investigacao/utils/types';
+import type { DailyVitralEntry } from '../games/Vitral/utils/types';
 import type { DailyConexoesEntry } from '../games/Conexoes/utils/types';
 
 export type DateKey = string; // Format YYYY-MM-DD
@@ -23,24 +23,17 @@ export type DailyResponse = {
   // Games
   'arte-ruim': DailyArteRuimEntry;
   'aqui-o': DailyAquiOEntry;
-  'comunicacao-alienigena': DailyComunicacaoAlienigenaEntry; // Backwards compatibility
   alienado: DailyAlienadoEntry;
-  'controle-de-estoque': DailyControleDeEstoqueEntry; // Backwards compatibility
   estoquista: DailyEstoquistaEntry;
-  espionagem: DailyEspionagemEntry; // Backwards compatibility
   investigacao: DailyInvestigacaoEntry;
   filmaco: DailyFilmacoEntry;
   organiku?: DailyOrganikuEntry;
   palavreado: DailyPalavreadoEntry;
-  'portais-magicos': DailyPortaisMagicosEntry; // Backwards compatibility
   portais: DailyPortaisEntry;
   quartetos: DailyQuartetosEntry;
-  'teoria-de-conjuntos': DailyTeoriaDeConjuntosEntry; // Backwards compatibility
   conjuntos: DailyConjuntosEntry;
-  vitrais?: DailyVitraisEntry; // Backwards compatibility
   vitral?: DailyVitralEntry;
   // Contributions
-  artista: DailyPicacoEntry; // Backwards compatibility
   conexoes: DailyConexoesEntry;
   picaco: DailyPicacoEntry;
   'ta-na-cara': DailyTaNaCaraEntry;

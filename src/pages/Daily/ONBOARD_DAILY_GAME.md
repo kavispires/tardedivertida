@@ -421,7 +421,6 @@ type DailyAlienadoEntry = {
 - Key: `ALIENADO`
 
 **Special Considerations**:
-- Uses backwards compatibility with `'comunicacao-alienigena'`
 - Solution format: item IDs concatenated with hyphens
 
 ---
@@ -549,7 +548,6 @@ type DailyConjuntosEntry = {
 
 **Special Considerations**:
 - Weekend mode: +1 heart, 5 items instead of 4 in hand
-- Uses backwards compatibility with `'teoria-de-conjuntos'`
 - Venn diagram visualization
 - Three sections: Rule1 only, Rule2 only, Intersection
 
@@ -583,7 +581,6 @@ type DailyEstoquistaEntry = {
 
 **Special Considerations**:
 - Three phases: STOCKING → FULFILLING → DELIVERING
-- Uses backwards compatibility with `'controle-de-estoque'`
 - Warehouse size determined by goods count
 
 ---
@@ -662,7 +659,6 @@ type DailyInvestigacaoEntry = {
 - Key: `INVESTIGACAO`
 
 **Special Considerations**:
-- Uses backwards compatibility with `'espionagem'`
 - Progressive clue revelation
 - Suspect elimination mechanics
 
@@ -766,7 +762,6 @@ type DailyPortaisEntry = {
 - Key: `PORTAIS`
 
 **Special Considerations**:
-- Uses backwards compatibility with `'portais-magicos'`
 - Three corridors with word assembly
 - Passcode construction from shuffled words
 
@@ -840,7 +835,6 @@ type DailyVitralEntry = {
 - Key: `VITRAL`
 
 **Special Considerations**:
-- Uses backwards compatibility with `'vitrais'`
 - Jigsaw puzzle mechanics
 - Time-based heart depletion
 - Scoring based on time and swaps
@@ -921,8 +915,6 @@ import { SETTINGS as {GAME_KEY} } from '../games/{GameName}/utils/settings';
 export const ALL_SETTINGS = {
   // ... existing games
   {GAME_KEY},
-  // Add backwards compatibility aliases if needed
-  // OLD_NAME: {GAME_KEY},
 };
 ```
 
@@ -990,7 +982,6 @@ Backend data generation is handled by the `td-admin` tool. Ensure:
 
 - [ ] Game appears in Daily hub
 - [ ] Route works correctly
-- [ ] Backwards compatibility aliases (if needed)
 - [ ] No console errors
 - [ ] Mobile responsive
 - [ ] Accessibility features work

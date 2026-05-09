@@ -8,7 +8,7 @@ import './utils/styles.scss';
 export function DailyAlienadoGame() {
   return (
     <DailyGame
-      gameName="comunicacao-alienigena"
+      gameName="alienado"
       GameComponent={DailyAlienado}
     />
   );

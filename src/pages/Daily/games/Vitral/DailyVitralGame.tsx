@@ -8,7 +8,7 @@ import './utils/styles.scss';
 export function DailyVitralGame() {
   return (
     <DailyGame
-      gameName="vitrais"
+      gameName="vitral"
       GameComponent={DailyVitral}
     />
   );

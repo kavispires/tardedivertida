@@ -39,6 +39,3 @@ export type DailyAlienadoEntry = {
   itemsIds: string[];
   valid: boolean;
 };
-
-// Backwards compatibility
-export type DailyComunicacaoAlienigenaEntry = DailyAlienadoEntry;

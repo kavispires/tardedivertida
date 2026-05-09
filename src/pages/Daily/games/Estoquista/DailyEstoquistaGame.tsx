@@ -8,7 +8,7 @@ import './utils/styles.scss';
 export function DailyEstoquistaGame() {
   return (
     <DailyGame
-      gameName="controle-de-estoque"
+      gameName="estoquista"
       GameComponent={DailyEstoquista}
     />
   );

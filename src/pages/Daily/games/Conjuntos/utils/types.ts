@@ -26,9 +26,6 @@ export type DailyConjuntosEntry = {
   things: TThing[];
 };
 
-// Backwards compatibility
-export type DailyTeoriaDeConjuntosEntry = DailyConjuntosEntry;
-
 export type Guess = { thingId: string; sectionId: number; result: number | false };
 
 export type GameState = {

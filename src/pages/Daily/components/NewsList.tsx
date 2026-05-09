@@ -78,7 +78,7 @@ export const NEWS_LIST: NewsItem[] = [
           size="small"
         />{' '}
         <strong>
-          <DualTranslate>{ALL_SETTINGS.ESPIONAGEM.NAME}</DualTranslate>
+          <DualTranslate>{ALL_SETTINGS.INVESTIGACAO.NAME}</DualTranslate>
         </strong>{' '}
         é mais desafiante nos fins de semana com 16 suspeitos para investigar!
       </>
@@ -139,11 +139,11 @@ export const NEWS_LIST: NewsItem[] = [
         <em>Novo jogo adicionado:</em>
         <br />
         <IconAvatar
-          icon={<ALL_SETTINGS.VITRAIS.HUB_ICON />}
+          icon={<ALL_SETTINGS.VITRAL.HUB_ICON />}
           size="small"
         />{' '}
         <strong>
-          <DualTranslate>{ALL_SETTINGS.VITRAIS.NAME}</DualTranslate>
+          <DualTranslate>{ALL_SETTINGS.VITRAL.NAME}</DualTranslate>
         </strong>{' '}
         - desvende a imagem neste quebra-cabeça!
       </>
@@ -176,7 +176,7 @@ export const NEWS_LIST: NewsItem[] = [
         />{' '}
         Se você clicar e segurar um ícone do{' '}
         <strong>
-          <DualTranslate>{ALL_SETTINGS.TEORIA_DE_CONJUNTOS.NAME}</DualTranslate>
+          <DualTranslate>{ALL_SETTINGS.CONJUNTOS.NAME}</DualTranslate>
         </strong>
         , o jogo te mostrará quantas letras, vogais e consoantes tem o nome do item! Que prático!
       </>
@@ -219,11 +219,11 @@ export const NEWS_LIST: NewsItem[] = [
         <em>Novo jogo adicionado:</em>
         <br />
         <IconAvatar
-          icon={<ALL_SETTINGS.ESPIONAGEM.HUB_ICON />}
+          icon={<ALL_SETTINGS.INVESTIGACAO.HUB_ICON />}
           size="small"
         />{' '}
         <strong>
-          <DualTranslate>{ALL_SETTINGS.ESPIONAGEM.NAME}</DualTranslate>
+          <DualTranslate>{ALL_SETTINGS.INVESTIGACAO.NAME}</DualTranslate>
         </strong>{' '}
         - descubra quem é o culpado!
       </>
@@ -285,7 +285,7 @@ export const NEWS_LIST: NewsItem[] = [
           size="small"
         />{' '}
         <strong>
-          <DualTranslate>{ALL_SETTINGS.TEORIA_DE_CONJUNTOS.NAME}</DualTranslate>
+          <DualTranslate>{ALL_SETTINGS.CONJUNTOS.NAME}</DualTranslate>
         </strong>{' '}
         é mais desafiante nos fins de semana com 5 items a serem posicionados!
       </>
@@ -300,7 +300,7 @@ export const NEWS_LIST: NewsItem[] = [
           size="small"
         />{' '}
         <strong>
-          <DualTranslate>{ALL_SETTINGS.COMUNICACAO_ALIENIGENA.NAME}</DualTranslate>
+          <DualTranslate>{ALL_SETTINGS.ALIENADO.NAME}</DualTranslate>
         </strong>{' '}
         agora tem dicas do que os símbolos representam!
       </>
@@ -313,11 +313,11 @@ export const NEWS_LIST: NewsItem[] = [
         <em>Novo jogo adicionado:</em>
         <br />
         <IconAvatar
-          icon={<ALL_SETTINGS.PORTAIS_MAGICOS.HUB_ICON />}
+          icon={<ALL_SETTINGS.PORTAIS.HUB_ICON />}
           size="small"
         />{' '}
         <strong>
-          <DualTranslate>{ALL_SETTINGS.PORTAIS_MAGICOS.NAME}</DualTranslate>
+          <DualTranslate>{ALL_SETTINGS.PORTAIS.NAME}</DualTranslate>
         </strong>{' '}
         - abra as portas resolvendo as palavras chaves!
       </>
@@ -391,11 +391,11 @@ export const NEWS_LIST: NewsItem[] = [
         <em>Novo jogo adicionado:</em>
         <br />
         <IconAvatar
-          icon={<ALL_SETTINGS.COMUNICACAO_ALIENIGENA.HUB_ICON />}
+          icon={<ALL_SETTINGS.ALIENADO.HUB_ICON />}
           size="small"
         />{' '}
         <strong>
-          <DualTranslate>{ALL_SETTINGS.COMUNICACAO_ALIENIGENA.NAME}</DualTranslate>
+          <DualTranslate>{ALL_SETTINGS.ALIENADO.NAME}</DualTranslate>
         </strong>{' '}
         - desvende a linguagem alienígena e salve o planeta!
       </>

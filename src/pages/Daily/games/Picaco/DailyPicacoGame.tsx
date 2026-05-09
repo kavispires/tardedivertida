@@ -8,7 +8,7 @@ import './utils/styles.scss';
 export function DailyPicacoGame() {
   return (
     <DailyGame
-      gameName="artista"
+      gameName="picaco"
       GameComponent={DailyPicaco}
     />
   );

@@ -20,12 +20,8 @@ export const ALL_SETTINGS = {
   ALIENADO,
   AQUI_O,
   ARTE_RUIM,
-  ARTISTA: PICACO, // Backwards compatibility
-  COMUNICACAO_ALIENIGENA: ALIENADO, // Backwards compatibility
   CONEXOES,
   CONJUNTOS,
-  CONTROLE_DE_ESTOQUE: ESTOQUISTA, // Backwards compatibility
-  ESPIONAGEM: INVESTIGACAO, // Backwards compatibility
   ESTOQUISTA,
   INVESTIGACAO,
   FILMACO,
@@ -33,12 +29,9 @@ export const ALL_SETTINGS = {
   PALAVREADO,
   PICACO,
   PORTAIS,
-  PORTAIS_MAGICOS: PORTAIS, // Backwards compatibility
   QUARTETOS,
-  TEORIA_DE_CONJUNTOS: CONJUNTOS, // Backwards compatibility
   TA_NA_CARA,
   VITRAL,
-  VITRAIS: VITRAL, // Backwards compatibility
   ENDLESS_VITRAIS,
 };
 

@@ -24,9 +24,6 @@ export type DailyVitralEntry = {
   pieces: number[]; // shuffled array of pieces ids. Each id is composed of a number that represents the piece index (0-N) of the puzzle in the correct order
 };
 
-// Backwards compatibility
-export type DailyVitraisEntry = DailyVitralEntry;
-
 export type GameState = {
   id: DateKey;
   number: number;

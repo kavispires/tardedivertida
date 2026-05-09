@@ -25,43 +25,7 @@ export function DailyGame({ gameName, GameComponent }: DailyGameProps) {
     return <DailyLoading />;
   }
 
-  // Handle backwards compatibility: try primary gameName, then fallback for investigacao/espionagem
-  let dailyData = challengeQuery?.data?.[gameName];
-
-  // Fallback logic for investigacao/espionagem rename
-  if (!dailyData && (gameName === 'investigacao' || gameName === 'espionagem')) {
-    dailyData = challengeQuery?.data?.investigacao || challengeQuery?.data?.espionagem;
-  }
-
-  // Fallback logic for picaco/artista rename
-  if (!dailyData && (gameName === 'picaco' || gameName === 'artista')) {
-    dailyData = challengeQuery?.data?.picaco || challengeQuery?.data?.artista;
-  }
-
-  // Fallback logic for alienado/comunicacao-alienigena rename
-  if (!dailyData && (gameName === 'alienado' || gameName === 'comunicacao-alienigena')) {
-    dailyData = challengeQuery?.data?.alienado || challengeQuery?.data?.['comunicacao-alienigena'];
-  }
-
-  // Fallback logic for estoquista/controle-de-estoque rename
-  if (!dailyData && (gameName === 'estoquista' || gameName === 'controle-de-estoque')) {
-    dailyData = challengeQuery?.data?.estoquista || challengeQuery?.data?.['controle-de-estoque'];
-  }
-
-  // Fallback logic for portais/portais-magicos rename
-  if (!dailyData && (gameName === 'portais' || gameName === 'portais-magicos')) {
-    dailyData = challengeQuery?.data?.portais || challengeQuery?.data?.['portais-magicos'];
-  }
-
-  // Fallback logic for conjuntos/teoria-de-conjuntos rename
-  if (!dailyData && (gameName === 'conjuntos' || gameName === 'teoria-de-conjuntos')) {
-    dailyData = challengeQuery?.data?.conjuntos || challengeQuery?.data?.['teoria-de-conjuntos'];
-  }
-
-  // Fallback logic for vitral/vitrais rename
-  if (!dailyData && (gameName === 'vitral' || gameName === 'vitrais')) {
-    dailyData = challengeQuery?.data?.vitral || challengeQuery?.data?.vitrais;
-  }
+  const dailyData = challengeQuery?.data?.[gameName];
 
   if (challengeQuery.isError || !dailyData || typeof dailyData !== 'object') {
     return <DailyError />;

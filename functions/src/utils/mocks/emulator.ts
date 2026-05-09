@@ -113,9 +113,9 @@ export const feedEmulatorDaily = async () => {
     // palavreado: JSON.parse(
     //   '{"id":"2025-09-20","type":"palavreado","number":498,"keyword":"praça","words":["pente","úrico","adaga","suíço","malha"],"letters":["p","o","l","a","m","s","r","n","u","h","a","e","a","c","í","t","a","i","ç","d","e","o","ú","g","a"]}',
     // ),
-    artista: {
+    picaco: {
       id: '2023-10-31',
-      type: 'artista',
+      type: 'picaco',
       number: 0,
       cards: Array(12)
         .fill(0)
@@ -131,14 +131,14 @@ export const feedEmulatorDaily = async () => {
     // filmaco: JSON.parse(
     //   '{"id":"2023-10-31","number":0,"type":"filmaco","setId":"dms-5-pt","title":"007 - O Espião que era sexy pra cacete × Olha quem está olhando","itemsIds":["763","1971","1988", "2", "2187"],"year":"1977 × 2014", "isDoubleFeature": true}',
     // ),
-    'controle-de-estoque': JSON.parse(
-      '{"number":0,"goods":["good-1","good-2","good-3","good-4","good-5","good-6","good-7","good-8","good-9","good-10","good-11","good-12","good-13","good-14","good-15","good-16"],"language":"pt","orders":["good-1","good-2","good-3","good-4","good-17"],"id":"2023-10-31","type":"controle-de-estoque","title":"Demo-feira"}',
+    estoquista: JSON.parse(
+      '{"number":0,"goods":["good-1","good-2","good-3","good-4","good-5","good-6","good-7","good-8","good-9","good-10","good-11","good-12","good-13","good-14","good-15","good-16"],"language":"pt","orders":["good-1","good-2","good-3","good-4","good-17"],"id":"2023-10-31","type":"estoquista","title":"Demo-feira"}',
     ),
-    'teoria-de-conjuntos': JSON.parse(
-      '{"id":"2023-10-31","type":"teoria-de-conjuntos","number":0,"title":"Contagem vs Gramática","level":1,"rule1":{"id":"ddr-46-pt","text":"é monossílaba","level":1,"thing":{"id":"37","name":"spray"}},"rule2":{"id":"ddr-37-pt","text":"tem acento","level":1,"thing":{"id":"812","name":"balão"}},"intersectingThing":{"id":"1381","name":"pó"},"things":[{"id":"2439","name":"noz","rule":1},{"id":"1256","name":"cronômetro","rule":2},{"id":"1897","name":"pé","rule":0},{"id":"550","name":"trem","rule":1},{"id":"1364","name":"chalé","rule":2},{"id":"328","name":"gol","rule":1},{"id":"1153","name":"fax","rule":1},{"id":"234","name":"ladrão","rule":2},{"id":"2340","name":"coiso","rule":2},{"id":"3118","name":"pum","rule":1}]}',
+    conjuntos: JSON.parse(
+      '{"id":"2023-10-31","type":"conjuntos","number":0,"title":"Contagem vs Gramática","level":1,"rule1":{"id":"ddr-46-pt","text":"é monossílaba","level":1,"thing":{"id":"37","name":"spray"}},"rule2":{"id":"ddr-37-pt","text":"tem acento","level":1,"thing":{"id":"812","name":"balão"}},"intersectingThing":{"id":"1381","name":"pó"},"things":[{"id":"2439","name":"noz","rule":1},{"id":"1256","name":"cronômetro","rule":2},{"id":"1897","name":"pé","rule":0},{"id":"550","name":"trem","rule":1},{"id":"1364","name":"chalé","rule":2},{"id":"328","name":"gol","rule":1},{"id":"1153","name":"fax","rule":1},{"id":"234","name":"ladrão","rule":2},{"id":"2340","name":"coiso","rule":2},{"id":"3118","name":"pum","rule":1}]}',
     ),
-    'comunicacao-alienigena': JSON.parse(
-      '{"id":"2023-10-31","setId":"big-con-odo","number":0,"type":"comunicacao-alienigena","attributes":[{"id":"odo","name":"Cheiro","description":"cheiro, odor, aroma","spriteId":"31","itemsIds":["2548","2613","95"]},{"id":"con","name":"Construção","description":"construção, estrutura, arquitetura, housing","spriteId":"29","itemsIds":["1805","1561"]},{"id":"big","name":"Grande","description":"tamanho, magnitude","spriteId":"25","itemsIds":["106","116","51"]}],"requests":[{"spritesIds":["29","25"],"itemId":"1577"},{"spritesIds":["31","25"],"itemId":"46"},{"spritesIds":["31","29","25"],"itemId":"1824"},{"spritesIds":["31","29"],"itemId":"893"}],"solution":"1577-46-1824-893","itemsIds":["1577","893","1824","185","46","2626","2633"],"valid":true}',
+    alienado: JSON.parse(
+      '{"id":"2023-10-31","setId":"big-con-odo","number":0,"type":"alienado","attributes":[{"id":"odo","name":"Cheiro","description":"cheiro, odor, aroma","spriteId":"31","itemsIds":["2548","2613","95"]},{"id":"con","name":"Construção","description":"construção, estrutura, arquitetura, housing","spriteId":"29","itemsIds":["1805","1561"]},{"id":"big","name":"Grande","description":"tamanho, magnitude","spriteId":"25","itemsIds":["106","116","51"]}],"requests":[{"spritesIds":["29","25"],"itemId":"1577"},{"spritesIds":["31","25"],"itemId":"46"},{"spritesIds":["31","29","25"],"itemId":"1824"},{"spritesIds":["31","29"],"itemId":"893"}],"solution":"1577-46-1824-893","itemsIds":["1577","893","1824","185","46","2626","2633"],"valid":true}',
     ),
     // investigacao: JSON.parse(
     //   '{"id":"2023-10-31","type":"investigacao","number":1,"isNsfw":false,"culpritId":"us-003","statements":[{"key":"testimony.t-12-pt","text":"O(a) suspeito(a) nunca foi no parque Guanabara (parque de diversões local)","excludes":["us-017"],"type":"testimony"},{"key":"not.feature.orangeClothes","text":"O(a) suspeito(a) não está vestindo roupas laranjas","excludes":["us-011","us-016","us-017","us-026"],"type":"feature"},{"key":"testimony.t-24-pt","text":"O(a) suspeito(a) não faz trabalho voluntário","excludes":["us-006","us-021","us-020","us-108","us-011","us-016","us-005","us-090","us-010","us-026"],"type":"testimony"},{"key":"not.feature.showTeeth","text":"O(a) suspeito(a) não está mostrando os dentes","excludes":["us-006","us-021","us-108","us-005","us-090","us-026"],"type":"feature"},{"key":"not.grid.column3","text":"O(a) suspeito(a) não está na terceira coluna","excludes":["us-017","us-005","us-010"],"type":"grid"},{"key":"not.feature.large","text":"O(a) suspeito(a) não é gordo(a)","excludes":["us-021","us-020","us-017","us-026"],"type":"feature"}],"additionalStatements":[{"key":"not.feature.brownHair","text":"O(a) suspeito(a) não tem cabelo castanho","excludes":["us-108","us-011","us-010","us-017"],"type":"feature"},{"key":"not.grid.row3","text":"O(a) suspeito(a) não está na terceira linha","excludes":["us-021","us-011","us-010","us-026"],"type":"grid"}],"suspects":[{"id":"us-003","name":{"en":"Cameron","pt":"Conrado"},"gender":"male","features":["male","adult","white","medium","average"]},{"id":"us-006","name":{"en":"Fredrick","pt":"Frederico"},"gender":"male","features":["male","adult","white","tall","muscular","showTeeth"]},{"id":"us-017","name":{"en":"Flick","pt":"Fagner"},"gender":"male","features":["male","adult","brown","medium","large","brownHair","orangeClothes"]},{"id":"us-020","name":{"en":"Tonya","pt":"Tânia"},"gender":"female","features":["female","senior","white","short","large"]},{"id":"us-016","name":{"en":"Prisca","pt":"Priscila"},"gender":"female","features":["female","adult","brown","short","thin","orangeClothes"]},{"id":"us-090","name":{"en":"Kathleen","pt":"Kelly"},"gender":"female","features":["female","adult","white","tall","average","showTeeth"]},{"id":"us-005","name":{"en":"Jesse","pt":"Jéferson"},"gender":"male","features":["male","young","white","medium","average","showTeeth"]},{"id":"us-108","name":{"en":"Clayton","pt":"Cleiton"},"gender":"male","features":["male","adult","brown","tall","average","brownHair","showTeeth"]},{"id":"us-021","name":{"en":"Una","pt":"Úrsula"},"gender":"female","features":["female","adult","brown","short","large","showTeeth"]},{"id":"us-011","name":{"en":"Norton","pt":"Nelson"},"gender":"male","features":["male","adult","white","tall","average","brownHair","orangeClothes"]},{"id":"us-010","name":{"en":"Levi","pt":"Levi"},"gender":"male","features":["male","senior","white","tall","average","brownHair"]},{"id":"us-026","name":{"en":"Coach","pt":"Adamastor"},"gender":"male","features":["male","senior","white","medium","large","showTeeth","orangeClothes"]}],"reason":{"en":"Sold haunted house tours in places that weren\'t haunted... until now.","pt":"Vendeu passeios por casas assombradas que não eram assombradas... até agora."},"setId":"us-003::cr-115::testimony.t-12-pt","level":3}',
@@ -156,8 +156,8 @@ export const feedEmulatorDaily = async () => {
     quartetos: JSON.parse(
       '{"id":"2023-10-31","setId":"1","number":0,"type":"quartetos","difficulty":0,"grid":["483","2633","194","167","2601","632","179","2630","416","580","471","2746","27","190","1280","347"],"sets":[{"id":"27-167-179-580","title":"Duas rodas","itemsIds":["27","167","179","580"],"level":0},{"id":"1280-2601-2630-2633","title":"Animais Extintos","itemsIds":["1280","2601","2633","2630"],"level":1},{"id":"194-416-471-632","title":"Coisas que enchem de ar","itemsIds":["194","416","471","632"],"level":2},{"id":"190-347-483-2746","title":"Video Game","itemsIds":["190","2746","347","483"],"level":3}]}',
     ),
-    'portais-magicos': JSON.parse(
-      '{"id":"2025-09-20","type":"portais-magicos","setId":"1e43c;;431df;;83406","number":162,"corridors":[{"passcode":"incêndio","imagesIds":["td-d12-52","td-d12-162","td-d12-220"],"words":["rio","nau","oco","ipê","zen","dar","piá","ovo"],"goal":8},{"passcode":"aprender","imagesIds":["td-d1-234","td-d3-26"],"words":["asa","top","par","mel","ano","dia","ela","rir"],"goal":10},{"passcode":"penumbra","imagesIds":["td-d1-48"],"words":["par","eca","nem","uso","tom","boi","grã","aia"],"goal":13}],"goal":31}',
+    portais: JSON.parse(
+      '{"id":"2025-09-20","type":"portais","setId":"1e43c;;431df;;83406","number":162,"corridors":[{"passcode":"incêndio","imagesIds":["td-d12-52","td-d12-162","td-d12-220"],"words":["rio","nau","oco","ipê","zen","dar","piá","ovo"],"goal":8},{"passcode":"aprender","imagesIds":["td-d1-234","td-d3-26"],"words":["asa","top","par","mel","ano","dia","ela","rir"],"goal":10},{"passcode":"penumbra","imagesIds":["td-d1-48"],"words":["par","eca","nem","uso","tom","boi","grã","aia"],"goal":13}],"goal":31}',
     ),
     // 5 grid
     // organiku: JSON.parse(
@@ -167,8 +167,8 @@ export const feedEmulatorDaily = async () => {
     organiku: JSON.parse(
       '{"id":"2023-10-31","number":0,"setId":"50896","type":"organiku","title":"Banheiro","grid":["3142","2107","289","2197","1784","602","289","3142","2197","1784","602","2107","2107","602","1784","289","3142","2197","1784","2197","2107","602","289","3142","2197","289","602","3142","2107","1784","602","1784","3142","2107","2197","289"],"defaultRevealedIndexes":[30,5,18,29,35,22,19,24,23,16,11,33,10,13],"itemsIds":["602","1784","289","2197","3142","2107"]}',
     ),
-    vitrais: JSON.parse(
-      '{"id":"example","number":1,"type":"vitrais","title":"Example Puzzle","cardId":"td-d5-208","pieces":[9,13,17,16,6,5,8,15,0,1,7,11,14,10,3,12,2,4]}',
+    vitral: JSON.parse(
+      '{"id":"example","number":1,"type":"vitral","title":"Example Puzzle","cardId":"td-d5-208","pieces":[9,13,17,16,6,5,8,15,0,1,7,11,14,10,3,12,2,4]}',
     ),
     //
     dictionary: {

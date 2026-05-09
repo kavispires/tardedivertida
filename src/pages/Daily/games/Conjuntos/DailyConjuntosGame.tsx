@@ -8,7 +8,7 @@ import './utils/styles.scss';
 export function DailyConjuntosGame() {
   return (
     <DailyGame
-      gameName="teoria-de-conjuntos"
+      gameName="conjuntos"
       GameComponent={DailyConjuntos}
     />
   );

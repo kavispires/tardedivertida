@@ -68,23 +68,16 @@ function DailyPage() {
       alienado: DailyAlienadoGame,
       'aqui-o': DailyAquiOGame,
       'arte-ruim': DailyArteRuimGame,
-      'comunicacao-alienigena': DailyAlienadoGame, // Backwards compatibility
       conjuntos: DailyConjuntosGame,
-      'controle-de-estoque': DailyEstoquistaGame, // Backwards compatibility
-      espionagem: DailyInvestigacaoGame, // Backwards compatibility
       estoquista: DailyEstoquistaGame,
       investigacao: DailyInvestigacaoGame,
       filmaco: DailyFilmacoGame,
       organiku: DailyOrganikuGame,
       palavreado: DailyPalavreadoGame,
       portais: DailyPortaisGame,
-      'portais-magicos': DailyPortaisGame, // Backwards compatibility
       quartetos: DailyQuartetosGame,
-      'teoria-de-conjuntos': DailyConjuntosGame, // Backwards compatibility
       vitral: DailyVitralGame,
-      vitrais: DailyVitralGame, // Backwards compatibility
       // Contribute
-      artista: DailyPicacoGame, // Backwards compatibility
       conexoes: DailyConexoesGame,
       picaco: DailyPicacoGame,
       'ta-na-cara': DailyTaNaCaraGame,

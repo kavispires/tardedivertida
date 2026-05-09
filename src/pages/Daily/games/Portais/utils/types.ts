@@ -25,6 +25,3 @@ export type DailyPortaisEntry = {
     goal: number;
   }[];
 };
-
-// Backwards compatibility
-export type DailyPortaisMagicosEntry = DailyPortaisEntry;

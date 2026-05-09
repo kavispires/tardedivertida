@@ -33,6 +33,3 @@ export type DailyEstoquistaEntry = {
   goods: string[];
   orders: string[];
 };
-
-// Backwards compatibility
-export type DailyControleDeEstoqueEntry = DailyEstoquistaEntry;
