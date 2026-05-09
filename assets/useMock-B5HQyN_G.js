@@ -1,1 +1,0 @@
-import{a as e}from"./rolldown-runtime-BYbx6iT9.js";import{f as t}from"./Session-krcXIlHa.js";import{Jt as n,Ns as r,at as i}from"./index-CFv44J6y.js";import{o as a}from"./speech-CIsUOwgn.js";var o=e(r(),1);function s(e,r=[],s){t();let[c]=n(`userId`),[l,u]=(0,o.useState)(!1);return a({duration:s??i([3,4,4,5,6]),onExpire:()=>{},disabled:l})}export{s as t};

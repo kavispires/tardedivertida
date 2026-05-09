@@ -1,0 +1,1 @@
+import{a as e}from"./rolldown-runtime-BYbx6iT9.js";import{Ns as t}from"./index-CtvUQIQQ.js";var n=e(t()),r=function(e){e===void 0&&(e={});var t=(0,n.useState)(e),r=t[0],i=t[1];return[r,(0,n.useCallback)(function(e){i(function(t){return Object.assign({},t,e instanceof Function?e(t):e)})},[])]};export{r as t};

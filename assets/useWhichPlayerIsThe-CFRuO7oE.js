@@ -1,1 +1,0 @@
-import{a as e}from"./rolldown-runtime-BYbx6iT9.js";import{Jt as t,Ns as n,Qt as r,xr as i}from"./index-CFv44J6y.js";var a=i(),o=e(n(),1);function s(e=`activePlayerId`,n={},i={}){let[s]=t(`userId`);return(0,o.useMemo)(()=>{let t=(0,a.get)(n,e);return[i?.[t]??r,t===s]},[i,e,n,s])}export{s as t};
