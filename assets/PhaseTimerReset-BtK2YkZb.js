@@ -1,0 +1,1 @@
+import{o as e,t}from"./jsx-runtime-DBS2Xqfh.js";import{ci as n}from"./PageLayout-DBSPIFx0.js";var r=e(n(),1),i=t();function a({goToNextStep:e}){let t=(0,r.useRef)(!1);return(0,r.useEffect)(()=>{if(t.current)return;t.current=!0;let n=()=>new Promise(e=>setTimeout(e,100));(async()=>{await n(),e()})()},[e]),(0,i.jsx)(`div`,{})}export{a as t};
