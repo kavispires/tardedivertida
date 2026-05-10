@@ -1,1 +1,0 @@
-import{t as e}from"./progress-D2gx6tyl.js";import{t}from"./jsx-runtime-uYTtOPVM.js";var n=t();function r({steps:t,strokeLinecap:r,total:i,type:a=`line`,value:o,status:s=`active`,...c}){return(0,n.jsx)(e,{percent:100-o*100/i,steps:t,showInfo:!1,style:{marginBottom:`1rem`},size:t&&t>30?`small`:void 0,type:a,...c})}export{r as t};

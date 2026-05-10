@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-uYTtOPVM.js";import{oi as t}from"./collection-kF4itki0.js";import{t as n}from"./MetricHighlight-7AW9gkkB.js";var r=e();function i({children:e,type:i,iconSize:a,className:o}){return(0,r.jsx)(n,{icon:(0,r.jsx)(t,{}),type:i,iconSize:a,className:o,children:e})}export{i as t};

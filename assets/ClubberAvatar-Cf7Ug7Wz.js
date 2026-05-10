@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-uYTtOPVM.js";import{t}from"./CustomAvatarWrapper-DY6QJYSx.js";var n=`/tardedivertida/assets/clubbers-BX3QroLG.svg`,r=e(),i=e=>(0,r.jsx)(t,{sprite:n,prefix:`clubber`,...e});export{i as t};
