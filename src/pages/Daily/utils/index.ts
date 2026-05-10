@@ -1,6 +1,6 @@
 import { parse, getDay, format, isAfter, differenceInDays, subDays } from 'date-fns';
 // Utils
-import { getToday } from 'utils/helpers';
+import { getToday, stringRemoveAccents } from 'utils/helpers';
 // Internal
 import type { BasicResultsOptions, WithRequiredId } from './types';
 import { getSettings } from './settings';
@@ -219,4 +219,27 @@ export function generateShareableResult(
     .filter(Boolean)
     .map((line) => (line as string).trim())
     .join('\n');
+}
+
+/**
+ * Removes diacritical marks from a given character and converts it to lowercase.
+ *
+ * @param char - The character to be cleaned up.
+ * @returns The cleaned up character.
+ */
+export function cleanupLetter(char: string): string {
+  return stringRemoveAccents(char).toLowerCase();
+}
+
+/**
+ * Checks if a character is a letter.
+ *
+ * @param char - The character to check.
+ * @returns `true` if the character is a letter, `false` otherwise.
+ */
+export function isLetter(char: string, allowNumbers?: boolean): boolean {
+  if (allowNumbers) {
+    return cleanupLetter(char).match(/[a-zA-Z0-9]/) !== null;
+  }
+  return cleanupLetter(char).match(/[a-zA-Z]/) !== null;
 }

@@ -64,26 +64,6 @@ export function getLettersInWord(text: string): Dictionary<boolean> {
 }
 
 /**
- * Removes diacritical marks from a given character and converts it to lowercase.
- *
- * @param char - The character to be cleaned up.
- * @returns The cleaned up character.
- */
-export function cleanupLetter(char: string): string {
-  return stringRemoveAccents(char).toLowerCase();
-}
-
-/**
- * Checks if a character is a letter.
- *
- * @param char - The character to check.
- * @returns `true` if the character is a letter, `false` otherwise.
- */
-export function isLetter(char: string): boolean {
-  return cleanupLetter(char).match(/[a-zA-Z]/) !== null;
-}
-
-/**
  * Generates a shareable result string for the game.
  */
 export function writeResult({

@@ -6,9 +6,8 @@ import { BoxBlankIcon } from 'icons/BoxBlankIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
 // Pages
+import { cleanupLetter, isLetter } from 'pages/Daily/utils';
 import type { LettersDictionary } from 'pages/Daily/utils/types';
-// Internal
-import { cleanupLetter, isLetter } from '../utils/helpers';
 
 type PromptProps = {
   text: string;
