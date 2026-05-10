@@ -1,6 +1,5 @@
 import { intersectionBy } from 'lodash';
 import { useEffect, useMemo, useState } from 'react';
-import { useLocalStorage } from 'react-use';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
 // Services
@@ -12,6 +11,7 @@ import { speak } from 'utils/speech';
 import { useDailyChallenge } from 'pages/Daily/hooks/useDailyChallenge';
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
+import { usePreference } from 'pages/Daily/hooks/useDailyPreferences';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { checkWeekend, getAnalyticsEventName } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
@@ -26,8 +26,8 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
   const { itemsDictionary } = useDailyChallenge();
   const [timesUp, setTimesUp] = useState(false);
 
-  const [mode, setMode] = useLocalStorage(SETTINGS.TD_DAILY_AQUI_O_MODE, 'normal');
-  const [voice, setVoice] = useLocalStorage(SETTINGS.TD_DAILY_AQUI_O_VOICE, 'off');
+  const [mode, setMode] = usePreference('aquiOMode');
+  const [voice, setVoice] = usePreference('aquiOVoice');
 
   const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
   const { session, setSession, updateSession } = useDailySessionState<SessionState>({

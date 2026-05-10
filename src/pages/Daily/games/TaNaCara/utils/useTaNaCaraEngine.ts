@@ -1,11 +1,11 @@
 import { cloneDeep, sampleSize } from 'lodash';
 import { useEffect } from 'react';
-import { useLocalStorage } from 'react-use';
 // Services
 import { logAnalyticsEvent } from 'services/firebase';
 // Pages
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
+import { usePreference } from 'pages/Daily/hooks/useDailyPreferences';
 import { useDailySaveTestimonies } from 'pages/Daily/hooks/useDailySave';
 import { getAnalyticsEventName } from 'pages/Daily/utils';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
@@ -16,7 +16,7 @@ import type { DailyTaNaCaraEntry, GameState, SessionState } from './types';
 export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameState) {
   const { state, updateState } = useDailyGameState<GameState>(initialState);
 
-  const [mode, setMode] = useLocalStorage(SETTINGS.TD_DAILY_TA_NA_CARA_MODE, 'normal');
+  const [mode, setMode] = usePreference('taNaCaraMode');
 
   const { session, setSession, updateSession } = useDailySessionState<SessionState>({
     questionIndex: 0,
