@@ -5,16 +5,13 @@ import { Layout, Modal, Typography } from 'antd';
 import type { Me } from 'types/user';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-// Icons
-import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
 // Components
-import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { DailyItem } from 'pages/Daily/components/DailyItem';
-import { Header } from 'pages/Daily/components/Header';
+import { GameHeader } from 'pages/Daily/components/Header';
 import { Keyboard } from 'pages/Daily/components/Keyboard';
 import { Menu } from 'pages/Daily/components/Menu';
 import { Region } from 'pages/Daily/components/Region';
@@ -41,12 +38,10 @@ export function DailyFilmaco({ data }: DailyFilmacoProps) {
 
   return (
     <Layout>
-      <Header
-        icon={<DailyMovieGameIcon />}
-        localStorageKey={SETTINGS.KEY}
-      >
-        TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
-      </Header>
+      <GameHeader
+        settings={SETTINGS}
+        number={data.number}
+      />
       <Menu
         hearts={hearts}
         total={SETTINGS.HEARTS}

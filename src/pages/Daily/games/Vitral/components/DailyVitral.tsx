@@ -6,13 +6,9 @@ import { Layout, Modal, Typography } from 'antd';
 import type { Me } from 'types/user';
 // Hooks
 import { useTDImageCardUrl } from 'hooks/useTDImageCardUrl';
-// Icons
-import { DailyPuzzleGameIcon } from 'icons/DailyPuzzleGameIcon';
-// Components
-import { DualTranslate } from 'components/language/DualTranslate';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { Header } from 'pages/Daily/components/Header';
+import { GameHeader } from 'pages/Daily/components/Header';
 import { Menu } from 'pages/Daily/components/Menu';
 import { Region } from 'pages/Daily/components/Region';
 import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
@@ -59,12 +55,10 @@ export function DailyVitral({ data }: DailyVitralProps) {
 
   return (
     <Layout>
-      <Header
-        icon={<DailyPuzzleGameIcon />}
-        localStorageKey={SETTINGS.KEY}
-      >
-        TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
-      </Header>
+      <GameHeader
+        settings={SETTINGS}
+        number={data.number}
+      />
       <DailyContent ref={containerRef}>
         <Menu
           hearts={hearts}

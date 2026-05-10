@@ -8,19 +8,17 @@ import type { Me } from 'types/user';
 import { getAnimationClass } from 'utils/helpers';
 // Icons
 import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
-import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
 import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { Card } from 'components/cards/Card';
-import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { Instruction } from 'components/text/Instruction';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { Header } from 'pages/Daily/components/Header';
+import { GameHeader } from 'pages/Daily/components/Header';
 import { Menu } from 'pages/Daily/components/Menu';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 // Internal
@@ -52,12 +50,10 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
 
   return (
     <Layout>
-      <Header
-        icon={<DailyDrawingGameIcon />}
-        localStorageKey={SETTINGS.KEY}
-      >
-        TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
-      </Header>
+      <GameHeader
+        settings={SETTINGS}
+        number={data.number}
+      />
       <Menu
         hearts={0}
         total={0}

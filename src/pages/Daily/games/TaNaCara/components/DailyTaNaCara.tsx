@@ -18,20 +18,18 @@ import { useLanguage } from 'hooks/useLanguage';
 import { getAnimation } from 'utils/animations';
 // Icons
 import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
-import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
 import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { Card } from 'components/cards/Card';
 import { SuspectCard } from 'components/cards/SuspectCard';
 import { ImageCardPreloadHand } from 'components/image-cards/ImageCardPreloadHand';
-import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction } from 'components/text/Instruction';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { Header } from 'pages/Daily/components/Header';
+import { GameHeader } from 'pages/Daily/components/Header';
 import { Menu } from 'pages/Daily/components/Menu';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { Region } from 'pages/Daily/components/Region';
@@ -79,12 +77,10 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
 
   return (
     <Layout>
-      <Header
-        icon={<DailyDrawingGameIcon />}
-        localStorageKey={SETTINGS.KEY}
-      >
-        TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
-      </Header>
+      <GameHeader
+        settings={SETTINGS}
+        number={data.number}
+      />
       <DailyContent ref={ref}>
         <ImageCardPreloadHand hand={allSuspects} />
         <div>

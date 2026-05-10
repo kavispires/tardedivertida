@@ -3,14 +3,11 @@ import { useState } from 'react';
 import { Layout, Modal } from 'antd';
 // Types
 import type { Me } from 'types/user';
-// Icons
-import { DailyArtGameIcon } from 'icons/DailyArtGameIcon';
 // Components
-import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { Header } from 'pages/Daily/components/Header';
+import { GameHeader } from 'pages/Daily/components/Header';
 import { Keyboard } from 'pages/Daily/components/Keyboard';
 import { Menu } from 'pages/Daily/components/Menu';
 import { RegionText } from 'pages/Daily/components/Region';
@@ -38,12 +35,10 @@ export function DailyArteRuim({ data }: DailyArteRuimProps) {
 
   return (
     <Layout>
-      <Header
-        icon={<DailyArtGameIcon />}
-        localStorageKey={SETTINGS.KEY}
-      >
-        TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
-      </Header>
+      <GameHeader
+        settings={SETTINGS}
+        number={data.number}
+      />
       <Menu
         hearts={hearts}
         total={SETTINGS.HEARTS}

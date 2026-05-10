@@ -7,15 +7,12 @@ import { Layout, Modal, Rate, Tooltip, Typography } from 'antd';
 import type { Me } from 'types/user';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
-// Icons
-import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
 // Components
 import { TransparentButton } from 'components/buttons/TransparentButton';
-import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { Header } from 'pages/Daily/components/Header';
+import { GameHeader } from 'pages/Daily/components/Header';
 import { Menu } from 'pages/Daily/components/Menu';
 import { Region, RegionText } from 'pages/Daily/components/Region';
 import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
@@ -67,12 +64,10 @@ export function DailyConjuntos({ data }: DailyConjuntosProps) {
 
   return (
     <Layout>
-      <Header
-        icon={<DailyDiagramGameIcon />}
-        localStorageKey={SETTINGS.KEY}
-      >
-        <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
-      </Header>
+      <GameHeader
+        settings={SETTINGS}
+        number={data.number}
+      />
       <DailyContent ref={contentRef}>
         <Menu
           hearts={hearts}

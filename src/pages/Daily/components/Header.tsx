@@ -3,6 +3,7 @@ import { type ReactNode, useState } from 'react';
 import { Layout, Typography } from 'antd';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
+import { DualTranslate } from 'components/language/DualTranslate';
 // Internal
 import { DevResetLocalStorageButton } from './DevResetLocalStorageButton';
 
@@ -35,5 +36,31 @@ export function Header({ icon, children, localStorageKey }: HeaderProps) {
       </button>
       {count >= 5 && <DevResetLocalStorageButton localStorageKey={localStorageKey} />}
     </Layout.Header>
+  );
+}
+
+type GameHeaderProps = {
+  /**
+   * Settings object containing hub icon, key, and name
+   */
+  settings: {
+    HUB_ICON: React.ComponentType;
+    KEY: string;
+    NAME: DualLanguageValue;
+  } & Record<string, unknown>;
+  /**
+   * Puzzle number
+   */
+  number: number;
+};
+
+export function GameHeader({ settings, number }: GameHeaderProps) {
+  return (
+    <Header
+      icon={<settings.HUB_ICON />}
+      localStorageKey={settings.KEY}
+    >
+      TD <DualTranslate>{settings.NAME}</DualTranslate> #{number}
+    </Header>
   );
 }

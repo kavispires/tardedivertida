@@ -20,11 +20,10 @@ import { Button, Flex, Layout } from 'antd';
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { useTDImageCardUrl } from 'hooks/useTDImageCardUrl';
 // Components
-import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { Header } from 'pages/Daily/components/Header';
+import { GameHeader } from 'pages/Daily/components/Header';
 import { Menu } from 'pages/Daily/components/Menu';
 import { RegionText } from 'pages/Daily/components/Region';
 // Internal
@@ -613,12 +612,10 @@ export function EndlessVitraisContent({ data, isLoading }: EndlessVitraisDemoPro
 
   return (
     <Layout>
-      <Header
-        icon={<SETTINGS.HUB_ICON />}
-        localStorageKey=""
-      >
-        TD <DualTranslate>{SETTINGS.NAME}</DualTranslate>
-      </Header>
+      <GameHeader
+        settings={SETTINGS}
+        number={data.number}
+      />
       <DailyContent
         ref={ref}
         isLoading={isLoading}

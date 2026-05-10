@@ -9,19 +9,16 @@ import type { Me } from 'types/user';
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
-// Icons
-import { DailyAlienGameIcon } from 'icons/DailyAlienGameIcon';
 // Components
 import { DivButton } from 'components/buttons/DivButton';
 import { TransparentButton } from 'components/buttons/TransparentButton';
 import { SignCard } from 'components/cards/SignCard';
-import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { DailyItem } from 'pages/Daily/components/DailyItem';
-import { Header } from 'pages/Daily/components/Header';
+import { GameHeader } from 'pages/Daily/components/Header';
 import { Menu } from 'pages/Daily/components/Menu';
 import { Region } from 'pages/Daily/components/Region';
 import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
@@ -65,12 +62,10 @@ export function DailyAlienado({ data }: DailyAlienadoProps) {
 
   return (
     <Layout>
-      <Header
-        icon={<DailyAlienGameIcon />}
-        localStorageKey={SETTINGS.KEY}
-      >
-        TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
-      </Header>
+      <GameHeader
+        settings={SETTINGS}
+        number={data.number}
+      />
       <Menu
         hearts={hearts}
         total={SETTINGS.HEARTS}

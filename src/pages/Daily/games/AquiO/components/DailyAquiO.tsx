@@ -5,8 +5,6 @@ import { Button, Flex, FloatButton, Layout, Modal, Space, Switch, Typography } f
 // Utils
 import { getAnimation } from 'utils/animations';
 import { isDevEnv } from 'utils/helpers';
-// Icons
-import { DailyFindingGameIcon } from 'icons/DailyFindingGameIcon';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
 import { DualTranslate } from 'components/language/DualTranslate';
@@ -15,7 +13,7 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TimerBar } from 'components/timers/TimerBar';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { Header } from 'pages/Daily/components/Header';
+import { GameHeader } from 'pages/Daily/components/Header';
 import { Menu } from 'pages/Daily/components/Menu';
 import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
 // Internal
@@ -72,12 +70,10 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
 
   return (
     <Layout>
-      <Header
-        icon={<DailyFindingGameIcon />}
-        localStorageKey={SETTINGS.KEY}
-      >
-        TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
-      </Header>
+      <GameHeader
+        settings={SETTINGS}
+        number={data.number}
+      />
       <Menu
         hearts={hearts}
         total={SETTINGS.HEARTS}

@@ -5,14 +5,11 @@ import { Layout, Modal, Typography } from 'antd';
 import type { Me } from 'types/user';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
-// Icons
-import { DailyMemoryGridGameIcon } from 'icons/DailyMemoryGridGameIcon';
 // Components
-import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { Header } from 'pages/Daily/components/Header';
+import { GameHeader } from 'pages/Daily/components/Header';
 import { Menu } from 'pages/Daily/components/Menu';
 import { Region, RegionText } from 'pages/Daily/components/Region';
 import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
@@ -53,12 +50,10 @@ export function DailyOrganiku({ data }: DailyOrganikuProps) {
 
   return (
     <Layout>
-      <Header
-        icon={<DailyMemoryGridGameIcon />}
-        localStorageKey={SETTINGS.KEY}
-      >
-        TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
-      </Header>
+      <GameHeader
+        settings={SETTINGS}
+        number={data.number}
+      />
       <Menu
         hearts={hearts}
         total={SETTINGS.HEARTS}

@@ -5,14 +5,11 @@ import { BulbOutlined } from '@ant-design/icons';
 import { Button, Divider, Flex, Layout, Modal, Popconfirm, Space, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
-// Icons
-import { DailyWordGameIcon } from 'icons/DailyWordGameIcon';
 // Components
-import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { Header } from 'pages/Daily/components/Header';
+import { GameHeader } from 'pages/Daily/components/Header';
 import { Menu } from 'pages/Daily/components/Menu';
 import { Region } from 'pages/Daily/components/Region';
 import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
@@ -54,12 +51,10 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
 
   return (
     <Layout>
-      <Header
-        icon={<DailyWordGameIcon />}
-        localStorageKey={SETTINGS.KEY}
-      >
-        TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
-      </Header>
+      <GameHeader
+        settings={SETTINGS}
+        number={data.number}
+      />
       <Menu
         hearts={hearts}
         total={Math.max(SETTINGS.HEARTS, size)}

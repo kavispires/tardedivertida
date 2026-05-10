@@ -8,16 +8,13 @@ import type { Me } from 'types/user';
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
-// Icons
-import { DailyGroupingGameIcon } from 'icons/DailyGroupingGameIcon';
 // Components
 import { TransparentButton } from 'components/buttons/TransparentButton';
-import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { DailyItem } from 'pages/Daily/components/DailyItem';
-import { Header } from 'pages/Daily/components/Header';
+import { GameHeader } from 'pages/Daily/components/Header';
 import { Menu } from 'pages/Daily/components/Menu';
 import { Region, RegionHint, RegionText } from 'pages/Daily/components/Region';
 import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
@@ -58,12 +55,10 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
 
   return (
     <Layout>
-      <Header
-        icon={<DailyGroupingGameIcon />}
-        localStorageKey={SETTINGS.KEY}
-      >
-        TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
-      </Header>
+      <GameHeader
+        settings={SETTINGS}
+        number={data.number}
+      />
       <Menu
         hearts={hearts}
         total={SETTINGS.HEARTS}

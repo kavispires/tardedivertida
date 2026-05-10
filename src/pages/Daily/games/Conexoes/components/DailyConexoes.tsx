@@ -16,13 +16,12 @@ import { IconAvatar } from 'components/avatars/IconAvatar';
 import { AnswerNoButton, AnswerYesButton } from 'components/buttons/AnswerButtons';
 import { ImageCard } from 'components/image-cards/ImageCard';
 import { ImageCardPreloadHand } from 'components/image-cards/ImageCardPreloadHand';
-import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { Instruction } from 'components/text/Instruction';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { Header } from 'pages/Daily/components/Header';
+import { GameHeader } from 'pages/Daily/components/Header';
 import { Menu } from 'pages/Daily/components/Menu';
 import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { Region, RegionHint, RegionText } from 'pages/Daily/components/Region';
@@ -68,12 +67,10 @@ export function DailyConexoes({ data }: DailyConexoesProps) {
 
   return (
     <Layout>
-      <Header
-        icon={<SETTINGS.HUB_ICON />}
-        localStorageKey={SETTINGS.KEY}
-      >
-        TD <DualTranslate>{SETTINGS.NAME}</DualTranslate> #{data.number}
-      </Header>
+      <GameHeader
+        settings={SETTINGS}
+        number={data.number}
+      />
       <DailyContent>
         <div>
           <Menu
