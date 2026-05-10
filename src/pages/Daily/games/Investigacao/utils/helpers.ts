@@ -194,7 +194,7 @@ export function writeResult({
 export function getWrittenResult({ data, language }: { data: DailyInvestigacaoEntry; language: Language }) {
   const state = getInitialState(data);
   return writeResult({
-    type: 'investigacao',
+    type: SETTINGS.ROUTE,
     hideLink: true,
     language,
     challengeNumber: state.number,

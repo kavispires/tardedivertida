@@ -111,7 +111,7 @@ export function writeResult({
 export function getWrittenResult({ data, language }: { data: DailyConjuntosEntry; language: Language }) {
   const state = getInitialState(data);
   return writeResult({
-    type: 'teoria-de-conjuntos',
+    type: SETTINGS.ROUTE,
     hideLink: true,
     challengeNumber: state.number,
     language,

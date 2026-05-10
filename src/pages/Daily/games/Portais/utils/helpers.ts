@@ -95,7 +95,7 @@ export function writeResult({
 export function getWrittenResult({ data, language }: { data: DailyPortaisEntry; language: Language }) {
   const state = getInitialState(data);
   return writeResult({
-    type: 'portais-magicos',
+    type: SETTINGS.ROUTE,
     hideLink: true,
     challengeNumber: state.number,
     language,

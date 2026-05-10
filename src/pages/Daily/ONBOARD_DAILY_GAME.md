@@ -510,14 +510,14 @@ type DailyArteRuimEntry = {
 
 ### Conjuntos (Set Theory)
 
-**Type**: `'teoria-de-conjuntos' | 'conjuntos'`
+**Type**: `'conjuntos'`
 
 **Data Entry Structure**:
 ```typescript
 type DailyConjuntosEntry = {
   id: DateKey;
   number: number;
-  type: 'teoria-de-conjuntos' | 'conjuntos';
+  type: 'conjuntos';
   title: string;
   level: number;
   rule1: {
@@ -555,14 +555,14 @@ type DailyConjuntosEntry = {
 
 ### Estoquista (Warehouse Manager)
 
-**Type**: `'controle-de-estoque' | 'estoquista'`
+**Type**: `'estoquista'`
 
 **Data Entry Structure**:
 ```typescript
 type DailyEstoquistaEntry = {
   id: DateKey;
   number: number;
-  type: 'controle-de-estoque' | 'estoquista';
+  type: 'estoquista';
   title: DualLanguageValue;
   language: 'en' | 'pt';
   goods: string[];           // Good IDs to stock
@@ -621,14 +621,14 @@ type DailyFilmacoEntry = {
 
 ### Investigacao (Investigation)
 
-**Type**: `'espionagem' | 'investigacao'`
+**Type**: `'investigacao'`
 
 **Data Entry Structure**:
 ```typescript
 type DailyInvestigacaoEntry = {
   id: DateKey;
   number: number;
-  type: 'espionagem' | 'investigacao';
+  type: 'investigacao';
   setId: string;
   suspects: Array<{
     id: string;
@@ -733,7 +733,7 @@ type DailyPalavreadoEntry = {
 
 ### Portais (Portals)
 
-**Type**: `'portais-magicos' | 'portais'`
+**Type**: `'portais'`
 
 **Data Entry Structure**:
 ```typescript
@@ -741,7 +741,7 @@ type DailyPortaisEntry = {
   id: DateKey;
   setId: string;
   number: number;
-  type: 'portais-magicos' | 'portais';
+  type: 'portais';
   goal: number;              // Total moves target
   corridors: Array<{
     passcode: string;        // Solution passcode
@@ -808,14 +808,14 @@ type DailyQuartetosEntry = {
 
 ### Vitral (Stained Glass)
 
-**Type**: `'vitrais' | 'vitral'`
+**Type**: `'vitral'`
 
 **Data Entry Structure**:
 ```typescript
 type DailyVitralEntry = {
   id: DateKey;
   number: number;
-  type: 'vitrais' | 'vitral';
+  type: 'vitral';
   title: DualLanguageValue;
   cardId: string;            // Image card for puzzle
   pieces: number[];          // Shuffled piece indices

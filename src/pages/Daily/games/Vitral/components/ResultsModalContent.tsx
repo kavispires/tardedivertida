@@ -39,7 +39,7 @@ export function ResultsModalContent({
   const result = useMemo(
     () =>
       writeResult({
-        type: 'vitrais',
+        type: SETTINGS.ROUTE,
         language,
         challengeNumber,
         remainingHearts: hearts,

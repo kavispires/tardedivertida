@@ -44,7 +44,7 @@ export function ResultsModalContent({
   const result = useMemo(
     () =>
       writeResult({
-        type: 'portais-magicos',
+        type: SETTINGS.ROUTE,
         challengeNumber,
         guesses,
         win,

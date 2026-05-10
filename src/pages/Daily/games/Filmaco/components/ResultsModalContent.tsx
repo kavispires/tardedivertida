@@ -38,7 +38,7 @@ export function ResultsModalContent({
   const result = useMemo(
     () =>
       writeResult({
-        type: 'filmaco',
+        type: SETTINGS.ROUTE,
         language,
         challengeNumber,
         totalHearts: SETTINGS.HEARTS,

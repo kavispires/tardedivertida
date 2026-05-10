@@ -103,7 +103,7 @@ export function ResultsModalContent({
   const result = useMemo(
     () =>
       writeResult({
-        type: 'aqui-o',
+        type: SETTINGS.ROUTE,
         title: dualTranslate(challengeTitle),
         remainingHearts: hearts,
         totalHearts: SETTINGS.HEARTS,

@@ -114,7 +114,7 @@ export function writeResult({
 export function getWrittenResult({ data, language }: { data: DailyOrganikuEntry; language: Language }) {
   const state = getInitialState(data);
   return writeResult({
-    type: 'organiku',
+    type: SETTINGS.ROUTE,
     language,
     hideLink: true,
     challengeNumber: state.number,

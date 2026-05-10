@@ -39,7 +39,7 @@ export function ResultsModalContent({
   const result = useMemo(
     () =>
       writeResult({
-        type: 'quartetos',
+        type: SETTINGS.ROUTE,
         challengeNumber,
         sets,
         guesses,

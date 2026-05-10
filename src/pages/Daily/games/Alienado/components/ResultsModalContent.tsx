@@ -50,7 +50,7 @@ export function ResultsModalContent({
   const result = useMemo(
     () =>
       writeResult({
-        type: 'alienado',
+        type: SETTINGS.ROUTE,
         language,
         challengeNumber,
         totalHearts: SETTINGS.HEARTS,

@@ -48,7 +48,7 @@ export function ResultsModalContent({
   const result = useMemo(
     () =>
       writeResult({
-        type: 'investigacao',
+        type: SETTINGS.ROUTE,
         language,
         challengeNumber: challengeNumber,
         remainingHearts: hearts,

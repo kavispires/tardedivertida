@@ -17,7 +17,7 @@ export type TRule = {
 export type DailyConjuntosEntry = {
   id: DateKey;
   number: number;
-  type: 'teoria-de-conjuntos' | 'conjuntos';
+  type: 'conjuntos';
   title: string;
   level: number;
   rule1: TRule;

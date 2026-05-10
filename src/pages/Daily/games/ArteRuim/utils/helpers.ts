@@ -110,7 +110,7 @@ export function writeResult({
 export function getWrittenResult({ data, language }: { data: DailyArteRuimEntry; language: Language }) {
   const state = getInitialState(data);
   return writeResult({
-    type: 'arte-ruim',
+    type: SETTINGS.ROUTE,
     hideLink: true,
     challengeNumber: state.number,
     language,

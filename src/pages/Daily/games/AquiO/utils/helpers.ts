@@ -176,7 +176,7 @@ export function writeResult({
 export function getWrittenResult({ data, language }: { data: DailyAquiOEntry; language: Language }) {
   const state = getInitialState(data);
   return writeResult({
-    type: 'aqui-o',
+    type: SETTINGS.ROUTE,
     hideLink: true,
     language,
     challengeNumber: state.number,

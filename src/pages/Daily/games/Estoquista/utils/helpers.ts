@@ -115,7 +115,7 @@ export function writeResult({
 export function getWrittenResult({ data, language }: { data: DailyEstoquistaEntry; language: Language }) {
   const state = getInitialState(data);
   return writeResult({
-    type: 'controle-de-estoque',
+    type: SETTINGS.ROUTE,
     hideLink: true,
     language,
     challengeNumber: state.number,

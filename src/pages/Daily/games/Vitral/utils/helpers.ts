@@ -70,7 +70,7 @@ export function writeResult({
 export function getWrittenResult({ data, language }: { data: DailyVitralEntry; language: Language }) {
   const state = getInitialState(data);
   return writeResult({
-    type: 'vitrais',
+    type: SETTINGS.ROUTE,
     language,
     hideLink: true,
     challengeNumber: state.number,

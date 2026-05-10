@@ -42,7 +42,7 @@ export function ResultsModalContent({
   const result = useMemo(
     () =>
       writeResult({
-        type: 'teoria-de-conjuntos',
+        type: SETTINGS.ROUTE,
         challengeNumber,
         remainingHearts: hearts,
         totalHearts: SETTINGS.HEARTS,

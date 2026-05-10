@@ -55,7 +55,7 @@ export function ResultsModalContent({
   const result = useMemo(
     () =>
       writeResult({
-        type: 'organiku',
+        type: SETTINGS.ROUTE,
         language,
         challengeNumber,
         remainingHearts: hearts,

@@ -18,7 +18,7 @@ export type ActiveDrag = {
 export type DailyVitralEntry = {
   id: string;
   number: number;
-  type: 'vitrais' | 'vitral';
+  type: 'vitral';
   title: string;
   cardId: string;
   pieces: number[]; // shuffled array of pieces ids. Each id is composed of a number that represents the piece index (0-N) of the puzzle in the correct order

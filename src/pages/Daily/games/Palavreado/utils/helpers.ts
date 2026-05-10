@@ -260,7 +260,7 @@ export function writeResult({
 export function getWrittenResult({ data, language }: { data: DailyPalavreadoEntry; language: Language }) {
   const state = getInitialState(data);
   return writeResult({
-    type: 'palavreado',
+    type: SETTINGS.ROUTE,
     hideLink: true,
     challengeNumber: state.number,
     language,

@@ -27,7 +27,7 @@ export type SessionState = {
 export type DailyEstoquistaEntry = {
   id: DateKey;
   number: number;
-  type: 'controle-de-estoque' | 'estoquista';
+  type: 'estoquista';
   language: Language;
   title: string;
   goods: string[];

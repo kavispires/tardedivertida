@@ -37,7 +37,7 @@ export function ResultsModalContent({
   const result = useMemo(
     () =>
       writeResult({
-        type: 'controle-de-estoque',
+        type: SETTINGS.ROUTE,
         language,
         title,
         challengeNumber,

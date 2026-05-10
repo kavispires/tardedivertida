@@ -118,7 +118,7 @@ export function writeResult({
 export function getWrittenResult({ data, language }: { data: DailyFilmacoEntry; language: Language }) {
   const state = getInitialState(data);
   return writeResult({
-    type: 'filmaco',
+    type: SETTINGS.ROUTE,
     hideLink: true,
     challengeNumber: state.number,
     language,

@@ -16,7 +16,7 @@ export type DailyPortaisEntry = {
   id: DateKey;
   setId: string;
   number: number;
-  type: 'portais-magicos' | 'portais';
+  type: 'portais';
   goal: number;
   corridors: {
     passcode: string;
