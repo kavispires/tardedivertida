@@ -216,8 +216,12 @@
     }
 
     &--enter {
-      flex: 5;
+      flex: 3;
       font-size: 0.75em;
+    }
+
+    &--space {
+      flex: 7;
     }
 
     &:disabled,

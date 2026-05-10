@@ -91,6 +91,7 @@ export * from './DailyFindingGameIcon';
 export * from './DailyGroupingGameIcon';
 export * from './DailyImagesGameIcon';
 export * from './DailyJudgingGameIcon';
+export * from './DailyMapsGameIcon';
 export * from './DailyMemoryGridGameIcon';
 export * from './DailyMovieGameIcon';
 export * from './DailyPuzzleGameIcon';

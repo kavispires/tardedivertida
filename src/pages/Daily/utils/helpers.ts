@@ -6,6 +6,7 @@ import * as ESTOQUISTA from '../games/Estoquista/utils/helpers';
 import * as INVESTIGACAO from '../games/Investigacao/utils/helpers';
 import * as FILMACO from '../games/Filmaco/utils/helpers';
 import * as ORGANIKU from '../games/Organiku/utils/helpers';
+import * as MAPEAMENTO from '../games/Mapeamento/utils/helpers';
 import * as PALAVREADO from '../games/Palavreado/utils/helpers';
 import * as PICACO from '../games/Picaco/utils/helpers';
 import * as PORTAIS from '../games/Portais/utils/helpers';
@@ -23,6 +24,7 @@ export const ALL_HELPERS = {
   INVESTIGACAO,
   FILMACO,
   ORGANIKU,
+  MAPEAMENTO,
   PALAVREADO,
   PICACO,
   PORTAIS,

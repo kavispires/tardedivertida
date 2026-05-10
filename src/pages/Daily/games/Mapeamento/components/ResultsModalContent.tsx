@@ -20,18 +20,18 @@ import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult
 
 type ResultsModalContentProps = {
   challengeNumber: number;
-  text: string;
   win: boolean;
   hearts: number;
-  solution: Dictionary<boolean>;
+  guesses: string[];
+  location: string;
 };
 
 export function ResultsModalContent({
-  text,
   challengeNumber,
   win,
   hearts,
-  solution,
+  guesses,
+  location,
 }: ResultsModalContentProps) {
   const { language } = useLanguage();
 
@@ -43,9 +43,9 @@ export function ResultsModalContent({
         language,
         totalHearts: SETTINGS.HEARTS,
         remainingHearts: hearts,
-        solution,
+        guesses,
       }),
-    [challengeNumber, hearts, language, solution],
+    [challengeNumber, hearts, language, guesses],
   );
 
   return (
@@ -87,7 +87,7 @@ export function ResultsModalContent({
       </Typography.Paragraph>
 
       <TextHighlight className="result-answer">
-        <Typography.Paragraph className="text-center">{text}</Typography.Paragraph>
+        <Typography.Paragraph className="text-center">{location}</Typography.Paragraph>
       </TextHighlight>
 
       <CopyToClipboardResult

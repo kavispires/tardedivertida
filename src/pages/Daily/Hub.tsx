@@ -98,6 +98,7 @@ const DEMOS: Entry[] = [
   //   COLOR: 'rgba(243, 232, 145, 0.85)',
   //   VERSION: 'disabled',
   // },
+  ALL_SETTINGS.MAPEAMENTO,
 ];
 
 const ENDLESS: Entry[] = [ALL_SETTINGS.ENDLESS_VITRAIS];

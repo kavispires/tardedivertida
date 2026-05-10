@@ -5,6 +5,7 @@ import { SETTINGS as ALIENADO } from '../games/Alienado/utils/settings';
 import { SETTINGS as ESTOQUISTA } from '../games/Estoquista/utils/settings';
 import { SETTINGS as INVESTIGACAO } from '../games/Investigacao/utils/settings';
 import { SETTINGS as FILMACO } from '../games/Filmaco/utils/settings';
+import { SETTINGS as MAPEAMENTO } from '../games/Mapeamento/utils/settings';
 import { SETTINGS as ORGANIKU } from '../games/Organiku/utils/settings';
 import { SETTINGS as PALAVREADO } from '../games//Palavreado/utils/settings';
 import { SETTINGS as PICACO } from '../games/Picaco/utils/settings';
@@ -25,6 +26,7 @@ export const ALL_SETTINGS = {
   ESTOQUISTA,
   INVESTIGACAO,
   FILMACO,
+  MAPEAMENTO,
   ORGANIKU,
   PALAVREADO,
   PICACO,

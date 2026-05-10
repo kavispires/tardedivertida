@@ -13,12 +13,13 @@ const SECOND_ROW = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'];
 const THIRD_ROW = ['z', 'x', 'c', 'v', 'b', 'n', 'm'];
 
 type KeyboardProps = {
-  onLetterClick: GenericFunction;
+  onLetterClick: (letter: string) => void;
   lettersState?: LettersDictionary;
   disabled?: boolean;
-  onEnterClick?: GenericFunction;
-  onBackspaceClick?: GenericFunction;
+  onEnterClick?: () => void;
+  onBackspaceClick?: () => void;
   withNumbers?: boolean;
+  withSpaceBar?: boolean;
 };
 
 export function Keyboard({
@@ -28,6 +29,7 @@ export function Keyboard({
   onBackspaceClick,
   onEnterClick,
   withNumbers,
+  withSpaceBar,
 }: KeyboardProps) {
   const width = useCardWidth(FIRST_ROW.length + 2, {
     margin: 16,
@@ -105,17 +107,6 @@ export function Keyboard({
         ))}
       </Flex>
       <Flex className="daily-keyboard__row">
-        {!!onEnterClick && (
-          <button
-            type="button"
-            style={{ width }}
-            className="daily-keyboard__key daily-keyboard__key--enter"
-            onClick={onEnterClick}
-            disabled={disabled}
-          >
-            Enter
-          </button>
-        )}
         {THIRD_ROW.map((letter) => (
           <Key
             key={letter}
@@ -126,10 +117,34 @@ export function Keyboard({
             disabled={disabled || lettersState?.[letter]?.disabled}
           />
         ))}
+      </Flex>
+      <Flex className="daily-keyboard__row">
+        {!!onEnterClick && (
+          <button
+            type="button"
+            style={{ width: width * 1.5 }}
+            className="daily-keyboard__key daily-keyboard__key--enter"
+            onClick={onEnterClick}
+            disabled={disabled}
+          >
+            Enter
+          </button>
+        )}
+        {withSpaceBar && (
+          <button
+            type="button"
+            style={{ width: width * 5 }}
+            className="daily-keyboard__key daily-keyboard__key--space"
+            onClick={() => onLetterClick(' ')}
+            disabled={disabled}
+          >
+            ␣
+          </button>
+        )}
         {!!onBackspaceClick && (
           <button
             type="button"
-            style={{ width }}
+            style={{ width: width * 2 }}
             className="daily-keyboard__key daily-keyboard__key--backspace"
             onClick={onBackspaceClick}
             disabled={disabled}

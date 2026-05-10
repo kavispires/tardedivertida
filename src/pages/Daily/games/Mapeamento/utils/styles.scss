@@ -1,0 +1,78 @@
+@use "styles/sass" as *;
+
+.mapeamento-clues {
+  box-sizing: border-box;
+  max-width: 480px;
+  margin: get-unit(1 auto);
+  width: 96vw;
+  display: grid;
+  gap: get-unit(2);
+
+  &__clue {
+    display: grid;
+    grid-template-columns: 2em 1fr;
+    gap: get-unit(2);
+  }
+
+  &__clue-number {
+    background: get-color("white", 5, 0.85);
+    padding: get-unit(1 4);
+
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    align-self: center;
+    text-align: center;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  &__clue-text {
+    background: get-color("white", 5, 0.85);
+    padding: get-unit(1 4);
+
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+
+    &--unavailable {
+      background: get-color("white", 7, 0.85);
+      color: get-color("gray", 5, 0.85);
+    }
+  }
+}
+
+.guessed-location {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: get-unit(1);
+  margin: get-unit(10 2);
+  text-transform: uppercase;
+  font-size: 1.25em;
+
+  &__highlighted {
+    font-weight: bold;
+    color: get-color("green");
+  }
+}
+
+.location-fragments {
+  // background: get-color("white", 5, 0.85);
+  padding: get-unit(1 4);
+  margin: get-unit(4 auto);
+  color: get-color("green");
+
+  border-radius: var(--border-radius);
+  font-weight: bold;
+  text-align: center;
+  // box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+
+  &__unknown {
+    background: get-color("gray", 1, 0.85);
+    display: inline-block;
+    width: 3em;
+    margin: get-unit(0 1);
+    border-radius: var(--border-radius);
+    color: get-color("gray", 1, 0.85);
+  }
+}

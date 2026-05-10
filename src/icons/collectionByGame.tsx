@@ -94,6 +94,7 @@ export const collectionByCategory: Record<string, string[]> = {
     'DailyFindingGameIcon',
     'DailyGroupingGameIcon',
     'DailyImagesGameIcon',
+    'DailyMapsGameIcon',
     'DailyMemoryGridGameIcon',
     'DailyMovieGameIcon',
     'DailyWarehouseGameIcon',
