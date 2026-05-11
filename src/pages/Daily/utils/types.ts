@@ -87,6 +87,11 @@ export type DailyStreakData = {
    * Last date streak was calculated (to avoid recalculating on every load)
    */
   lastCalculatedDate: DateKey | null;
+  /**
+   * Last date the milestone modal was displayed (YYYY-MM-DD)
+   * Used to prevent showing the modal multiple times in the same day
+   */
+  lastMilestoneModalDisplayedDate: DateKey | null;
 };
 
 export interface GameSettings {
