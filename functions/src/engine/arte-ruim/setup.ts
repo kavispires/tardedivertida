@@ -16,7 +16,7 @@ import {
   getAchievements,
   getGameSettings,
   getNewPastDrawings,
-  getTheTwoLevel5Cards,
+  getTwoUniquePairCards,
 } from './helpers';
 import { saveUsedCards } from './data';
 
@@ -121,7 +121,7 @@ export const prepareEvaluationPhase = async (
 
   // Shuffle cards
   const shuffledCards: ArteRuimCard[] =
-    level === 5 ? getTheTwoLevel5Cards(store.currentCards) : shuffle(store.currentCards);
+    level === 4 ? getTwoUniquePairCards(store.currentCards) : shuffle(store.currentCards);
 
   // Shuffle drawings
   const shuffledDrawings = shuffle(

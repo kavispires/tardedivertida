@@ -18,6 +18,7 @@ describe('arte-ruim/helpers', () => {
       const cards: ResourceData = {
         allCards: mockArteRuimCardDatabase,
         availableCards: mockCardsByLevel,
+        cardsPairs: [],
         cardsGroups: [],
         specialLevels: {
           cards: [],

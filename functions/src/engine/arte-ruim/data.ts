@@ -3,7 +3,7 @@ import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { sampleSize, shuffle } from 'lodash';
 // Types
 import type { ArteRuimCard, ArteRuimGroup, ArteRuimPair, TextCard } from '../../types/tdr';
-import type { ResourceData, ArteRuimDrawing, ArteRuimGameOptions, Level5Type } from './types';
+import type { ResourceData, ArteRuimDrawing, ArteRuimGameOptions, Level4Type } from './types';
 // Helpers
 import * as globalUtils from '../global';
 import * as dataUtils from '../collections';
@@ -13,25 +13,25 @@ import {
   determineNumberOfCards,
   distributeCardsByLevel,
   getAvailableCards,
-  getEnoughLevel5Cards,
+  getEnoughLevel4Cards,
   getGameSettings,
 } from './helpers';
 import { SPECIAL_LEVELS_LIBRARIES } from './constants';
 
-const getFinalLevel = async (language: string, playerCount: number, options: ArteRuimGameOptions) => {
+const getPairsLevel = async (language: string, playerCount: number, options: ArteRuimGameOptions) => {
   const cardsPerRound = determineNumberOfCards(playerCount);
   const levelQuantity = options.forPoints ? 2 : 1;
 
-  // Regular level 5 uses pairs
+  // Regular level 4 uses pairs
   if (!options.specialLevels) {
     const allCardPairsResponse = await resourceUtils.fetchResource<Dictionary<ArteRuimPair>>(
       TDR_RESOURCES.ARTE_RUIM_PAIRS,
       language,
     );
-    const shuffledLevel5Deck = shuffle(Object.values(allCardPairsResponse));
+    const shuffledLevel4Deck = shuffle(Object.values(allCardPairsResponse));
     return {
-      cards: getEnoughLevel5Cards(shuffledLevel5Deck, cardsPerRound),
-      types: Array(levelQuantity).fill('pairs' as Level5Type),
+      cards: getEnoughLevel4Cards(shuffledLevel4Deck, cardsPerRound),
+      types: Array(levelQuantity).fill('pairs' as Level4Type),
     };
   }
 
@@ -53,7 +53,7 @@ const getFinalLevel = async (language: string, playerCount: number, options: Art
       const newCard = {
         text: card.text,
         id: card.id,
-        level: 5,
+        level: 4,
       };
 
       if (library === 'contenders') {
@@ -111,20 +111,27 @@ export const getCards = async (
   const needsLevel4 = !options.basicLevelsOnly;
   const needsLevel5 = !options.basicLevelsOnly;
 
-  // Get level 4 cards (if not basic levels only)
-  const allCardsGroupResponse = needsLevel4
+  // Get level 4 cards - pairs (if not basic levels only)
+  const allCardPairsResponse = needsLevel4
+    ? await resourceUtils.fetchResource<Dictionary<ArteRuimPair>>(TDR_RESOURCES.ARTE_RUIM_PAIRS, language)
+    : {};
+  const cardsPairs: ArteRuimPair[] = Object.values(allCardPairsResponse);
+
+  // Get level 5 cards - groups (if not basic levels only)
+  const allCardsGroupResponse = needsLevel5
     ? await resourceUtils.fetchResource<Dictionary<ArteRuimGroup>>(TDR_RESOURCES.ARTE_RUIM_GROUPS, language)
     : {};
   const cardsGroups: ArteRuimGroup[] = Object.values(allCardsGroupResponse);
 
-  // Determine level 5 options.specialLevels (adjectives, contenders, movies)
-  const specialLevels = needsLevel5 ? await getFinalLevel(language, playerCount, options) : null;
+  // Determine level 4 special levels (adjectives, contenders, movies)
+  const specialLevels = needsLevel4 ? await getPairsLevel(language, playerCount, options) : null;
 
   // If no need for used cards check
   if (options.useAllCards) {
     return {
       allCards: allCardsResponse,
       availableCards: cardsByLevel,
+      cardsPairs,
       cardsGroups,
       specialLevels,
     };
@@ -152,6 +159,7 @@ export const getCards = async (
   return {
     allCards: allCardsResponse,
     availableCards: cards,
+    cardsPairs,
     cardsGroups,
     specialLevels,
   };

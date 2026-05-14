@@ -1,4 +1,4 @@
-import type { ArteRuimCard, ArteRuimGroup } from '../../types/tdr';
+import type { ArteRuimCard, ArteRuimGroup, ArteRuimPair } from '../../types/tdr';
 import type { ARTE_RUIM_ACHIEVEMENTS, ARTE_RUIM_ACTIONS } from './constants';
 
 export type ArteRuimGameOptions = {
@@ -19,22 +19,23 @@ export type ArteRuimGameOptions = {
    */
   randomize: boolean;
   /**
-   * Use special surprise twist for level 5
+   * Use special surprise twist for level 4
    */
   specialLevels: boolean;
 };
 
 export type CardsByLevel = Record<string, ArteRuimCard[]>;
 
-export type Level5Type = 'pairs' | 'contenders' | 'movies' | 'adjectives';
+export type Level4Type = 'pairs' | 'contenders' | 'movies' | 'adjectives';
 
 export type ResourceData = {
   allCards: Dictionary<ArteRuimCard>;
   availableCards: CardsByLevel;
+  cardsPairs: ArteRuimPair[];
   cardsGroups: ArteRuimGroup[];
   specialLevels: {
     cards: ArteRuimCard[];
-    types: Level5Type[];
+    types: Level4Type[];
   } | null;
 };
 

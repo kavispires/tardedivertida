@@ -1,4 +1,4 @@
-import type { Level5Type } from './types';
+import type { Level4Type } from './types';
 
 export const ARTE_RUIM_PHASES = {
   SETUP: 'SETUP',
@@ -35,4 +35,4 @@ export const BASIC_LEVELS = [1, 2, 3, 1, 2, 3];
 
 export const GAME_OVER_SCORE_THRESHOLD = [20, 20, 20, 30, 30, 50, 50, 75, 75, 100];
 
-export const SPECIAL_LEVELS_LIBRARIES: Level5Type[] = ['adjectives', 'movies', 'contenders'];
+export const SPECIAL_LEVELS_LIBRARIES: Level4Type[] = ['adjectives', 'movies', 'contenders'];

@@ -149,13 +149,13 @@ export const getAvailableCards = (
 };
 
 /**
- * Get enough level 4 cards
+ * Get enough level 5 cards
  * @param deck
  * @param usedCards
  * @param cardsNeeded
  * @returns
  */
-export const getEnoughUnusedLevel4Cards = (
+export const getEnoughUnusedLevel5Cards = (
   deck: ArteRuimGroup[],
   usedCards: PlainObject,
   cardsNeeded: number,
@@ -212,33 +212,33 @@ export const buildDeck = (
   availableCards[3] = shuffle(availableCards[3]);
 
   const usedCardIdDict = {};
-  const shuffledLevel4Deck = shuffle(cardsGroups);
-  let level4Hand: UID[] = [];
+  const shuffledLevel5Deck = shuffle(cardsGroups);
+  let level5Hand: UID[] = [];
 
   return Array(cardsNeeded)
     .fill(0)
     .map((e, i) => {
       const level = levels[Math.floor((e + i) / cardsPerRound)];
 
-      // Level 4 (cards within a common theme)
-      if (level === 4) {
-        // When no level 4 cards are available, fetch a new hand with the minimum needed for a round
-        if (level4Hand.length === 0) {
-          level4Hand = getEnoughUnusedLevel4Cards(shuffledLevel4Deck, usedCardIdDict, cardsPerRound);
-        }
-        const cardId = level4Hand.pop();
-        if (cardId) {
-          return {
-            ...allCards[cardId],
-            level: 4,
-          };
-        }
-      }
-      // Only two similar cards
-      else if (level === 5 && specialLevels) {
+      // Level 4 (pairs or special levels)
+      if (level === 4 && specialLevels) {
         const card = specialLevels.cards.pop();
         if (card) {
           return card;
+        }
+      }
+      // Level 5 (cards within a common theme)
+      else if (level === 5) {
+        // When no level 5 cards are available, fetch a new hand with the minimum needed for a round
+        if (level5Hand.length === 0) {
+          level5Hand = getEnoughUnusedLevel5Cards(shuffledLevel5Deck, usedCardIdDict, cardsPerRound);
+        }
+        const cardId = level5Hand.pop();
+        if (cardId) {
+          return {
+            ...allCards[cardId],
+            level: 5,
+          };
         }
       } else {
         const card = availableCards[level].pop();
@@ -257,14 +257,14 @@ export const buildDeck = (
     .reverse();
 };
 
-export const getEnoughLevel5Cards = (cards: ArteRuimPair[], playerCount: number) => {
+export const getEnoughLevel4Cards = (cards: ArteRuimPair[], playerCount: number) => {
   let result: ArteRuimCard[] = [];
 
   function buildNecessaryArray(card: ArteRuimPair, count: number): ArteRuimCard[] {
     const newCards: ArteRuimCard[] = card.values.map((value, index) => ({
       id: `${card.id}--${index}`,
       text: value,
-      level: 5,
+      level: 4,
     }));
 
     const cardsArr0 = new Array(count * 2).fill(newCards[0]).map((c, i) => ({ ...c, id: `${c.id}--${i}` }));
@@ -285,11 +285,11 @@ export const getEnoughLevel5Cards = (cards: ArteRuimPair[], playerCount: number)
 };
 
 /**
- * Returns a unique set of cards
+ * Returns a unique set of cards for pairs level
  * @param cards
  * @returns
  */
-export const getTheTwoLevel5Cards = (cards: ArteRuimCard[]): ArteRuimCard[] => {
+export const getTwoUniquePairCards = (cards: ArteRuimCard[]): ArteRuimCard[] => {
   const cache: Dictionary<boolean> = {};
 
   const selectedCards = cards.filter((card) => {
@@ -302,7 +302,7 @@ export const getTheTwoLevel5Cards = (cards: ArteRuimCard[]): ArteRuimCard[] => {
 
   return selectedCards.map((card) => ({
     ...card,
-    id: getLevel5Id(card.id),
+    id: getPairCardId(card.id),
   }));
 };
 
@@ -344,7 +344,7 @@ export const dealCards = (players: Players, store: FirebaseStoreData) => {
   });
 };
 
-const getLevel5Id = (id: string): string => {
+const getPairCardId = (id: string): string => {
   const split = id.split('--');
   return split.length === 1 ? id : `${split[0]}--${split[1]}`;
 };
@@ -363,7 +363,7 @@ export const buildGallery = (
 ) =>
   drawings.map((drawingEntry) => {
     const playerCount = utils.players.getPlayerCount(players);
-    const correctAnswer = getLevel5Id(drawingEntry.id);
+    const correctAnswer = getPairCardId(drawingEntry.id);
     const artistId = drawingEntry.playerId;
 
     const newGalleryEntry = {
@@ -394,7 +394,7 @@ export const buildGallery = (
 
       if (artistId) {
         // Calculate what players say
-        const currentVote = getLevel5Id(pObject.votes[drawingEntry.id]);
+        const currentVote = getPairCardId(pObject.votes[drawingEntry.id]);
 
         const peopleSayId = currentVote;
 
@@ -421,7 +421,7 @@ export const buildGallery = (
         }
 
         // Achievement: tableVotes
-        if (drawingEntry.level < 5 && tableCardsIds.includes(currentVote)) {
+        if (drawingEntry.level < 4 && tableCardsIds.includes(currentVote)) {
           utils.achievements.increase(store, playerId, 'tableVotes', 1);
         }
       }
@@ -464,7 +464,7 @@ export const buildRanking = (drawings: ArteRuimDrawing[], players: Players) => {
   const scores = new utils.players.Scores(players, [0, 0]);
 
   drawings.forEach((drawingEntry) => {
-    const correctAnswer = getLevel5Id(drawingEntry.id);
+    const correctAnswer = getPairCardId(drawingEntry.id);
     const artistId = drawingEntry.playerId;
 
     utils.players.getListOfPlayers(players).forEach((player) => {
@@ -472,7 +472,7 @@ export const buildRanking = (drawings: ArteRuimDrawing[], players: Players) => {
 
       if (artistId) {
         // Calculate what players say
-        const currentVote = getLevel5Id(player.votes[drawingEntry.id]);
+        const currentVote = getPairCardId(player.votes[drawingEntry.id]);
 
         // Calculate player points
         if (currentVote === correctAnswer) {
@@ -627,10 +627,10 @@ export function determineLevelType(
     1: 'easy',
     2: 'medium',
     3: 'hard',
-    4: 'themed',
+    5: 'themed',
   };
 
-  if (level < 5) return levelTypes[level];
+  if (level !== 4) return levelTypes[level];
 
-  return specialLevels[countValueOccurrencesBeforeIndex(levels, currentRound, 5)];
+  return specialLevels[countValueOccurrencesBeforeIndex(levels, currentRound, 4)];
 }

@@ -101,7 +101,7 @@ export function StepEvaluation({
 
   const selectOwnDrawing = useCallback(() => {
     const playersDrawing = (drawings ?? []).find((drawing: ArteRuimDrawing) => drawing.playerId === user.id);
-    if (playersDrawing && playersDrawing.level !== 5) {
+    if (playersDrawing && playersDrawing.level !== 4) {
       const drawingKey = getEntryId(['drawing', playersDrawing.id]);
       const cardIndex = (cards ?? []).findIndex((card: ArteRuimCustomCard) => card.playerId === user.id);
       const cardKey = getEntryId(['card', playersDrawing.id, LETTERS[cardIndex]]);
