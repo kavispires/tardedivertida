@@ -46,8 +46,14 @@ export function useStreakMilestone() {
     const { currentStreak, lastMilestoneModalDisplayedDate } = streakData;
     const today = getToday();
 
+    // Convert dates to milliseconds (ignoring time)
+    const lastMilestoneMs = lastMilestoneModalDisplayedDate
+      ? new Date(lastMilestoneModalDisplayedDate).setHours(0, 0, 0, 0)
+      : 0;
+    const todayMs = new Date(today).setHours(0, 0, 0, 0);
+
     // Only show modal if we haven't shown it today
-    if (lastMilestoneModalDisplayedDate !== today) {
+    if (todayMs >= lastMilestoneMs) {
       // Check if we've reached a milestone
       const milestones = [3, 7, 14, 30, 50, 100, 200, 365];
 
