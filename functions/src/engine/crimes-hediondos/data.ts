@@ -9,7 +9,8 @@ import * as resourceUtils from '../resource';
 import { CARDS_PER_GAME } from './constants';
 /**
  * Get question resource based on the game's language
- * @returns
+ * @param options - Game options including location and victim settings
+ * @returns Resource data containing weapons, evidence, scenes, locations, and victims
  */
 export const getData = async (options: CrimesHediondosOptions): Promise<ResourceData> => {
   // Get weapon cards

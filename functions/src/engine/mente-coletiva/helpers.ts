@@ -25,11 +25,10 @@ import type {
 import utils from '../../utils';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @param isGameOver
- * @returns
+ * Determines the next phase based on the current phase and game state
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param isGameOver - Whether the game is over
  */
 export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
   const { SETUP, QUESTION_SELECTION, EVERYBODY_WRITES, COMPARE, RESOLUTION, GAME_OVER } =

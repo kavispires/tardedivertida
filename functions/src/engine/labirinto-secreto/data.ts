@@ -11,9 +11,10 @@ import utils from '../../utils';
 
 /**
  * Get cards resources based on the game's language
- * @param language
- * @param playerCount
- * @returns
+ * @param language - The language code for localized resources
+ * @param playerCount - Number of players in the game
+ * @param options - Game options including tree type and NSFW setting
+ * @returns Resource data containing forest cards and adjective cards
  */
 export const getData = async (
   language: Language,
@@ -57,7 +58,10 @@ export const getData = async (
   };
 };
 
-// TODO: Add to game over
+/**
+ * Save used adjectives to global document
+ * @param usedAdjectives - Dictionary of used adjective IDs
+ */
 export const saveData = async (
   usedAdjectives: Dictionary<boolean>,
   // usedTreeCards: Dictionary<boolean>,

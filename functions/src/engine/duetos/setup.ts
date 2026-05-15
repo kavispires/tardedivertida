@@ -11,10 +11,11 @@ import { addItems, addSpecial, calculateResults, getAchievements } from './helpe
 import { savedData } from './data';
 
 /**
- * Setup
- * Build the card deck
- * Resets previous changes to the store
- * @returns
+ * Setup phase - initializes game state and resources
+ * @param _store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ * @param resourceData - Resource data
  */
 export const prepareSetupPhase = async (
   _store: FirebaseStoreData,
@@ -101,6 +102,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * Pair phase - players create pairs from their cards
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const preparePairPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -128,6 +135,12 @@ export const preparePairPhase = async (
   };
 };
 
+/**
+ * Results phase - calculates scores based on matching pairs
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -154,6 +167,13 @@ export const prepareResultsPhase = async (
   };
 };
 
+/**
+ * Game Over phase - determines winners and saves game data
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

@@ -6,8 +6,8 @@ import type { CustomDeck } from './types';
 
 /**
  * Get tweet cards resource based on the game's language
- * @param language
- * @returns
+ * @param language - The language code for localized resources
+ * @returns Custom deck of tweet cards
  */
 export const getTweets = async (language: string) => {
   return await resourceUtils.fetchResource<CustomDeck>(TDR_RESOURCES.TWEETS, language);

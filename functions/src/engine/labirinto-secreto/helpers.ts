@@ -27,6 +27,10 @@ import utils from '../../utils';
 import type { TextCard } from '../../types/tdr';
 import { random, sample, shuffle } from 'lodash';
 
+/**
+ * Determines if the game is over by checking if all player maps are complete
+ * @param players - The collection of players in the game
+ */
 export const determineGameOver = (players: Players) => {
   // After 5 rounds or all paths are completed
   return utils.players
@@ -35,11 +39,12 @@ export const determineGameOver = (players: Players) => {
 };
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @param isGameOver
- * @returns
+ * Determines the next phase based on the current phase and game state
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param isGameOver - Whether the game is over
+ * @param turnOrder - The turn order object
+ * @param activePlayerId - The ID of the active player
  */
 export const determineNextPhase = (
   currentPhase: string,
@@ -522,6 +527,10 @@ export const updateMaps = (players: Players) => {
   });
 };
 
+/**
+ * Gets all player IDs who have completed their maps
+ * @param players - The collection of players in the game
+ */
 export const getAllCompletePlayerIds = (players: Players): UID[] => {
   return utils.players
     .getListOfPlayers(players)
@@ -529,10 +538,18 @@ export const getAllCompletePlayerIds = (players: Players): UID[] => {
     .map((player) => player.id);
 };
 
+/**
+ * Gets the list of players who have not completed their maps
+ * @param players - The collection of players in the game
+ */
 export const getPlayersWhoHaveNotCompletedTheirMaps = (players: Players): Player[] => {
   return utils.players.getListOfPlayers(players).filter((player) => !getIsPlayerMapComplete(player));
 };
 
+/**
+ * Checks if a player's map is complete
+ * @param player - The player object to check
+ */
 export const getIsPlayerMapComplete = (player: Player): boolean => {
   return player.map.every((segment: MapSegment) => segment.passed);
 };

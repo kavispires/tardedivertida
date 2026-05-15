@@ -87,6 +87,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Character Filtering Phase] - Players filter their available characters
+ * @param _store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareCharacterFilteringPhase = async (
   _store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -106,6 +112,12 @@ export const prepareCharacterFilteringPhase = async (
   };
 };
 
+/**
+ * [Character Description Phase] - Players describe their characters with glyphs
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareCharacterDescriptionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -181,6 +193,12 @@ export const prepareCharacterDescriptionPhase = async (
   };
 };
 
+/**
+ * [Guessing Phase] - Players guess which character belongs to whom
+ * @param store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGuessingPhase = async (
   store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -239,6 +257,12 @@ export const prepareGuessingPhase = async (
   };
 };
 
+/**
+ * [Results Phase] - Display guessing results and calculate scores
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -279,6 +303,13 @@ export const prepareResultsPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

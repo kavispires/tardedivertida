@@ -6,9 +6,8 @@ import utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
- * @param state
- * @param store
- * @returns
+ * @param state - The current state of the game
+ * @param store - The Firebase store data
  */
 export const determineNextPhase = (state: TaNaCaraState, store: TaNaCaraStore): string => {
   const { SETUP, PROMPT, ANSWERING, GUESSING, REVEAL, GAME_OVER } = TA_NA_CARA_PHASES;
@@ -31,6 +30,13 @@ export const determineNextPhase = (state: TaNaCaraState, store: TaNaCaraStore): 
   return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Builds ranking and determines guess outcomes
+ * @param players - The collection of players in the game
+ * @param targetId - The ID of the target player
+ * @param points - The number of points to award
+ * @param charactersDict - The dictionary of character faces
+ */
 export const buildRankingAndOutcome = (
   players: Players,
   targetId: UID,

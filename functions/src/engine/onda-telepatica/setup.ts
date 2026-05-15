@@ -61,6 +61,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Dial Clue Phase] - The psychic selects a category and dials a clue
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareDialCluePhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -94,6 +100,12 @@ export const prepareDialCluePhase = async (
   };
 };
 
+/**
+ * [Guess Phase] - Players guess the psychic's target number
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGuessPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -134,6 +146,12 @@ export const prepareGuessPhase = async (
   };
 };
 
+/**
+ * [Reveal Phase] - Reveal target and calculate scores
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareRevealPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -159,6 +177,13 @@ export const prepareRevealPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

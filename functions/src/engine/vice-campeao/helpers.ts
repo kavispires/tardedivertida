@@ -5,10 +5,9 @@ import type { FirebaseStoreData, RunActivity, RunnerCard, ViceCampeaoAchievement
 import { cloneDeep, groupBy, orderBy, sampleSize, uniq } from 'lodash';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and round
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const { SETUP, CARD_SELECTION, RUN, GAME_OVER } = VICE_CAMPEAO_PHASES;
@@ -26,6 +25,13 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
 
 type OngoingPlayerEffectsType = Record<string, string | null>;
 
+/**
+ * Builds the race run sequence by processing all player card plays in order
+ * @param players - The collection of players in the game
+ * @param cardsDict - The dictionary of runner cards
+ * @param turnOrder - The array of player IDs in turn order
+ * @param store - The Firebase store data for tracking achievements
+ */
 export const buildRun = (
   players: Players,
   cardsDict: Dictionary<RunnerCard>,

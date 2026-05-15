@@ -55,6 +55,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Clue Writing Phase] - Players write clues for their items
+ * @param store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareClueWritingPhase = async (
   store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -89,6 +95,12 @@ export const prepareClueWritingPhase = async (
   };
 };
 
+/**
+ * [Object Feature Elimination Phase] - Players vote to eliminate object features
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareObjectFeatureEliminationPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -161,6 +173,12 @@ export const prepareObjectFeatureEliminationPhase = async (
   };
 };
 
+/**
+ * [Result Phase] - Display voting results and update scores
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResultPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -254,6 +272,13 @@ export const prepareResultPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

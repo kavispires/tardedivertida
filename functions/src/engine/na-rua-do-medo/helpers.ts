@@ -26,11 +26,10 @@ import utils from '../../utils';
 import { sampleSize, shuffle } from 'lodash';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @param outcome
- * @returns
+ * Determines the next phase based on the current phase and outcome
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param outcome - The outcome of the round
  */
 export const determineNextPhase = (currentPhase: string, round: Round, outcome: Outcome): string => {
   const { SETUP, TRICK_OR_TREAT, RESULT, STREET_END, GAME_OVER } = NA_RUA_DO_MEDO_PHASES;

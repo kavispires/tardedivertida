@@ -29,11 +29,12 @@ import { handleSubmitDoor, handleSubmitPages } from './actions';
 import { getData } from './data';
 
 /**
- * Get Initial Game State
- * @param gameId
- * @param uid
- * @param language
- * @returns
+ * Gets the initial state for a new game session
+ * @param gameId - The game session ID
+ * @param uid - The user ID of the game creator
+ * @param language - The language code
+ * @param version - The game version
+ * @param options - Optional game configuration options
  */
 export const getInitialState = (
   gameId: UID,
@@ -68,16 +69,14 @@ export const getInitialState = (
 };
 
 /**
- * Exposes min and max player count
+ * Gets the player count requirements for the game
  */
 export const getPlayerCounts = () => PLAYER_COUNTS;
 
 /**
- *
- * @param gameName
- * @param gameId
- * @param players
- * @returns
+ * Handles phase progression and prepares the next game phase
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
  */
 export const getNextPhase = async (
   gameName: string,
@@ -142,9 +141,8 @@ export const getNextPhase = async (
 };
 
 /**
- * Perform action submitted by the app
- * @param data
- * @returns
+ * Handles player action submissions and routes to appropriate handlers
+ * @param data - The action data containing player information and action payload
  */
 export const submitAction = async (data: PortaDosDesesperadosSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;

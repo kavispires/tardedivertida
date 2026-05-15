@@ -7,10 +7,11 @@ import type { FirebaseStoreData, QualQuesitoAchievement, QualQuesitoPhase } from
 import type { Item } from '../../types/tdr';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and skip status
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param skipTurn - Whether the current turn should be skipped
+ * @param players - The collection of players in the game
  */
 export const determineNextPhase = (
   currentPhase: QualQuesitoPhase,
@@ -44,6 +45,11 @@ export const determineNextPhase = (
   return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Builds a dictionary of cards from all players' hands
+ * @param players - The collection of players in the game
+ * @param deckDict - The dictionary of all item cards
+ */
 export const buildCardsDictFromPlayersHands = (
   players: Players,
   deckDict: Dictionary<Item>,
@@ -62,8 +68,8 @@ export const buildCardsDictFromPlayersHands = (
 // };
 
 /**
- * Get achievements:
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<QualQuesitoAchievement>[] = [];

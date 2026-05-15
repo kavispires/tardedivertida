@@ -11,8 +11,8 @@ import utils from '../../utils';
 
 /**
  * Get question cards resource based on the game's language
- * @param language
- * @returns
+ * @param language - The language code for localized resources
+ * @returns Resource data containing group question cards
  */
 export const getQuestions = async (language: string): Promise<ResourceData> => {
   // Get full deck
@@ -42,7 +42,7 @@ export const getQuestions = async (language: string): Promise<ResourceData> => {
 
 /**
  * Save past past questions to global document
- * @param pastQuestions
+ * @param pastQuestions - Array of question IDs used in the game
  */
 export const saveData = async (pastQuestions: string[]) => {
   const pastQuestionsObj = pastQuestions.reduce((acc: Dictionary<string>[], id: string) => {

@@ -6,9 +6,8 @@ import { CARD_PER_ROUND, MAX_ROUNDS, STARTING_CARDS } from './constants';
 
 /**
  * Get characters based on the game's language
- * @param language
- * @param allowNSFW
- * @returns
+ * @param playerCount - Number of players in the game
+ * @returns Resource data containing shuffled runner cards
  */
 export const getResourceData = async (playerCount: number): Promise<ResourceData> => {
   // Build deck multiplying all total quantities

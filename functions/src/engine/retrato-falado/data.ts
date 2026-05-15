@@ -12,7 +12,7 @@ import * as dataUtils from '../collections';
 
 /**
  * Get monster cards ids
- * @returns
+ * @returns Resource data containing available monster images
  */
 export const getMonsterCards = async (): Promise<ResourceData> => {
   // Get images info
@@ -38,7 +38,8 @@ export const getMonsterCards = async (): Promise<ResourceData> => {
 
 /**
  * Save used cards to the global document
- * @param pastSketches
+ * @param sketches - Array of monster sketches with player drawings
+ * @param language - The language code for the saved data
  */
 export const saveData = async (sketches: MonsterSketch[], language: Language): Promise<void> => {
   const usedIds: Dictionary<boolean> = {};

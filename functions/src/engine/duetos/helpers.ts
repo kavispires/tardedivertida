@@ -8,11 +8,9 @@ import type { DuetosAchievement, FirebaseStoreData, Gallery, GalleryItem, ItemEn
 import utils from '../../utils';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @param isGameOver
- * @returns
+ * Determines the next phase based on the current phase and round
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const { SETUP, PAIRING, RESULTS, GAME_OVER } = DUETOS_PHASES;
@@ -25,6 +23,12 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
   return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Adds items from the pool to the receiver array
+ * @param pool - The pool of available items
+ * @param quantity - The number of items to add
+ * @param receiver - The array to receive the items
+ */
 export const addItems = (pool: Item[], quantity: number, receiver: any[]) => {
   for (let i = 0; i < quantity; i++) {
     const item = pool.pop();
@@ -41,6 +45,13 @@ export const addItems = (pool: Item[], quantity: number, receiver: any[]) => {
   }
 };
 
+/**
+ * Adds special elements from the pool to the receiver array
+ * @param pool - The pool of available special elements
+ * @param quantity - The number of elements to add
+ * @param receiver - The array to receive the elements
+ * @param type - The type of special element
+ */
 export const addSpecial = (pool: any[], quantity: number, receiver: any[], type: string) => {
   for (let i = 0; i < quantity; i++) {
     const element = pool.pop();
@@ -57,6 +68,12 @@ export const addSpecial = (pool: any[], quantity: number, receiver: any[], type:
 
 const PAIR_SEPARATOR = '+';
 
+/**
+ * Calculates results by scoring player pairs and determining rankings
+ * @param players - The collection of players in the game
+ * @param pool - The array of item entries in the pool
+ * @param store - The Firebase store data for tracking achievements
+ */
 export const calculateResults = (players: Players, pool: ItemEntry[], store: FirebaseStoreData) => {
   const poolIds = pool.map((item) => item.id);
 
@@ -158,8 +175,8 @@ export const calculateResults = (players: Players, pool: ItemEntry[], store: Fir
 };
 
 /**
- * Get achievements
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<DuetosAchievement>[] = [];

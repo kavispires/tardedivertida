@@ -71,8 +71,12 @@ export const prepareSetupPhase = async (
  * @param state
  * @param players
  * @returns
- */
-export const prepareMovieGenreSelectionPhase = async (
+ *//**
+ * [Movie Genre Selection Phase] - Director selects movie genre
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */ export const prepareMovieGenreSelectionPhase = async (
   _store: FirebaseStoreData,
   _state: FirebaseStateData,
   players: Players,
@@ -103,6 +107,12 @@ export const prepareMovieGenreSelectionPhase = async (
  * @param state
  * @param players
  * @returns
+ */
+/**
+ * [Actor Selection Phase] - Players select actors for the movie
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
  */
 export const prepareActorSelectionPhase = async (
   store: FirebaseStoreData,
@@ -145,6 +155,12 @@ export const prepareActorSelectionPhase = async (
   };
 };
 
+/**
+ * [Result Phase] - Display selected actors and calculate scores
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResultPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -173,6 +189,13 @@ export const prepareResultPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

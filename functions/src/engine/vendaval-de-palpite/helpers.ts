@@ -8,10 +8,9 @@ import utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @param outcome
- * @returns
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param outcome - The outcome of the clue evaluation
  */
 export const determineNextPhase = (currentPhase: string, round: Round, outcome?: string): string => {
   const { SETUP, BOSS_SELECTION, SECRET_WORD_SELECTION, PLAYERS_CLUES, CLUE_EVALUATIONS, GAME_OVER } =
@@ -30,6 +29,13 @@ const buildClueId = (playerId: UID, currentRound: number, index: number, guess =
   return `${playerId}:${currentRound}:${index}${guess}`;
 };
 
+/**
+ * Gathers all player clues and guesses into a structured format
+ * @param clues - The dictionary of all clues
+ * @param board - The game board object
+ * @param players - The collection of players in the game
+ * @param currentRound - The current round number
+ */
 export const gatherClues = (
   clues: Clues,
   board: Board,
@@ -78,6 +84,13 @@ export const gatherClues = (
   return { clues, board };
 };
 
+/**
+ * Verifies if any guesses match the secret word and determines outcome
+ * @param clues - The dictionary of all clues
+ * @param latestBoardEntry - The latest board entry with clues
+ * @param finalAnswersLeft - The number of final answer attempts remaining
+ * @param secretWord - The secret word to guess
+ */
 export const verifyGuesses = (
   clues: Clues,
   latestBoardEntry: BoardEntry,

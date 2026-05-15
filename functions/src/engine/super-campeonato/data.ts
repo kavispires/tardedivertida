@@ -11,10 +11,10 @@ import { CHALLENGES_PER_GAME, CONTENDERS_PER_PLAYER, CONTENDERS_PER_ROUND } from
 
 /**
  * Get challenges and contenders  based on the game's language
- * @param language
- * @param playerCount
- * @param allowNSFW
- * @returns
+ * @param language - The language code for localized resources
+ * @param playerCount - Number of players in the game
+ * @param options - Game options including NSFW setting and contender decks
+ * @returns Resource data containing challenge cards and contender cards
  */
 export const getResourceData = async (
   language: Language,
@@ -52,6 +52,10 @@ export const getResourceData = async (
   };
 };
 
+/**
+ * Save used challenges and contenders to global documents
+ * @param pastBattles - Array of past battles with challenges and contenders
+ */
 export const saveData = async (pastBattles: PastBattles) => {
   const challengeIds: Dictionary<boolean> = {};
   const contenderIds: Dictionary<boolean> = {};

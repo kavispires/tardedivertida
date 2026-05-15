@@ -17,10 +17,10 @@ import { CRUZA_PALAVRAS_PHASES, CRUZA_PALAVRAS_ACHIEVEMENTS } from './constants'
 import utils from '../../utils';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and game options
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param options - Optional game configuration options
  */
 export const determineNextPhase = (
   currentPhase: string,
@@ -43,6 +43,13 @@ export const determineNextPhase = (
   return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Builds a grid with coordinates from words or player clues
+ * @param words - The deck of available words
+ * @param playersClues - The array of clues submitted by players
+ * @param wordsPerCoordinate - The number of words per coordinate axis
+ * @param shouldUsePlayersClues - Whether to use player clues instead of words
+ */
 export const buildGrid = (
   words: Deck,
   playersClues: TextCard[],
@@ -133,9 +140,8 @@ export const buildGrid = (
 
 /**
  * Distribute the available coordinates among players, returning a list of modified grid
- * @param players - this function modifies players
- * @param grid
- * @returns the modified grid
+ * @param players - The collection of players in the game (this function modifies players)
+ * @param grid - The game grid containing cells
  */
 export const distributeCoordinates = (players: Players, grid: GridCell[]): GridCell[] => {
   const available = grid.filter((entry) => entry.available && !entry.playerId);
@@ -183,9 +189,8 @@ export const distributeCoordinates = (players: Players, grid: GridCell[]): GridC
 
 /**
  * Update grid with players clues
- * @param players
- * @param grid
- * @returns the modified grid
+ * @param players - The collection of players in the game
+ * @param grid - The game grid containing cells
  */
 export const updateGridWithPlayersClues = (players: Players, grid: GridCell[]): GridCell[] => {
   utils.players.getListOfPlayers(players).forEach((player) => {
@@ -202,9 +207,8 @@ export const updateGridWithPlayersClues = (players: Players, grid: GridCell[]): 
 };
 
 /**
- * Get clues and coordinates of each player into an array
- * @param players
- * @returns
+ * Gets clues and coordinates of each player into an array
+ * @param players - The collection of players in the game
  */
 export const getPlayerClues = (players: Players): ClueEntry[] => {
   return utils.players.getListOfPlayers(players).map((player) => {
@@ -223,10 +227,10 @@ export const getPlayerClues = (players: Players): ClueEntry[] => {
 };
 
 /**
- * Build round ranking
- * @param players - it modifies players
- * @param gallery
- * @returns
+ * Builds round ranking by scoring player guesses and clues
+ * @param players - The collection of players in the game
+ * @param clues - The array of clue entries for the round
+ * @param store - The Firebase store data for tracking achievements
  */
 export const buildRanking = (players: Players, clues: ClueEntry[], store: FirebaseStoreData) => {
   // Gained Points: [from guesses, one coordinate right, from others, lost points]
@@ -300,6 +304,12 @@ export const buildRanking = (players: Players, clues: ClueEntry[], store: Fireba
   };
 };
 
+/**
+ * Updates past clues dictionary with new clues from the current round
+ * @param grid - The game grid containing cells
+ * @param pastClues - The dictionary of past clues
+ * @param clues - The array of new clue entries
+ */
 export const updatePastClues = (grid: GridCell[], pastClues: PastClues, clues: ClueEntry[]) => {
   clues.forEach(({ coordinate, clue }) => {
     const cell = grid[coordinate];
@@ -326,8 +336,8 @@ export const updatePastClues = (grid: GridCell[], pastClues: PastClues, clues: C
 };
 
 /**
- * Get achievements
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<CruzaPalavrasAchievement>[] = [];

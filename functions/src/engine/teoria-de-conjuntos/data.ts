@@ -11,10 +11,10 @@ import * as resourceUtils from '../resource';
 
 /**
  * Get items and diagrams for the game
- * @param language
- * @param playerCount
- * @param allowNSFW
- * @returns
+ * @param language - The language code for localized resources
+ * @param playerCount - Number of players in the game
+ * @param options - Game options including NSFW setting
+ * @returns Resource data containing items and diagram topics
  */
 export const getResourceData = async (
   language: Language,

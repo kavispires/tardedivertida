@@ -9,10 +9,11 @@ import type {
 import utils from '../../utils';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and outcome
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param outcome - The outcome of the round
+ * @param playerCount - The number of players in the game
  */
 export const determineNextPhase = (
   currentPhase: string,
@@ -44,12 +45,10 @@ export const determineNextPhase = (
 };
 
 /**
- * Determine the outcome of the phase
- * It modifies `features`, make sure to save it
- * @param playersChoice
- * @param activePlayer
- * @param features
- * @returns
+ * Determine the outcome of the phase by checking if player eliminated the target or still has features to eliminate
+ * @param playersChoice - The ID of the feature chosen by players
+ * @param target - The ID of the target feature
+ * @param features - The array of feature cards (this function modifies it)
  */
 export const determineOutcome = (
   playersChoice: string,
@@ -76,8 +75,8 @@ export const determineOutcome = (
 };
 
 /**
- * Get achievements
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<MesmiceAchievements>[] = [];
@@ -158,6 +157,11 @@ export const getAchievements = (store: FirebaseStoreData) => {
   return achievements;
 };
 
+/**
+ * Calculates the final group score and outcome based on gallery history
+ * @param gallery - The array of gallery entries with scoring history
+ * @param groupScore - The current group score
+ */
 export const calculateFinalGroupScore = (gallery: MesmiceGalleryEntry[], groupScore: number) => {
   const goal = gallery.reduce((acc, entry) => {
     let count = 0;

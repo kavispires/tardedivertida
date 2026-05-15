@@ -7,6 +7,8 @@ import { sampleSize } from 'lodash';
 /**
  * Example data structure for game data
  * Update this based on your game requirements
+ * @param options - Game options including NSFW setting
+ * @returns Resource data containing items organized by age (0-5)
  */
 export const getResourceData = async (options: IdadeDaPredaOptions): Promise<ResourceData> => {
   const allowNSFW = !!options.nsfw;

@@ -12,8 +12,8 @@ import utils from '../../utils';
 
 /**
  * Get question resource based on the game's language
- * @param language
- * @returns
+ * @param language - The language code for localized resources
+ * @returns Resource data containing spectrum category cards
  */
 export const getCategories = async (language: string): Promise<ResourceData> => {
   // Get full deck
@@ -40,7 +40,7 @@ export const getCategories = async (language: string): Promise<ResourceData> => 
 
 /**
  * Save used categories to the global document
- * @param pastCategories
+ * @param pastCategories - Dictionary of category IDs to their associated clues
  */
 export const saveData = async (pastCategories: PastCategories): Promise<void> => {
   await dataUtils.updateOpposingIdeasClues(pastCategories);

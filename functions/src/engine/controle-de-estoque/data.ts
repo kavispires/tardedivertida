@@ -10,8 +10,8 @@ import { GOODS_LIBRARY_COUNT } from './constants';
 import utils from '../../utils';
 
 /**
- * Get data
- * @returns
+ * Get warehouse boss ideas and goods IDs
+ * @returns Resource data containing boss ideas and goods IDs
  */
 export const getData = async (): Promise<ResourceData> => {
   // Get full deck

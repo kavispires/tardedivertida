@@ -16,10 +16,11 @@ import { buildTable, buildTableDeck, getAchievements, getTableCards, scoreRound 
 import { saveData } from './data';
 
 /**
- * Setup
- * Build the card deck
- * Resets previous changes to the store
- * @returns
+ * Setup phase - initializes game state and resources
+ * @param store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ * @param data - Resource data
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
@@ -70,11 +71,10 @@ export const prepareSetupPhase = async (
 };
 
 /**
- * Prepares Write Story Phase where players get their hand of cards, and a storyteller must write a story/prompt
- * @param store
- * @param state
- * @param players
- * @returns
+ * Story phase - storyteller writes a story/prompt for their card
+ * @param _store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
  */
 export const prepareStoryPhase = async (
   _store: FirebaseStoreData,
@@ -107,6 +107,12 @@ export const prepareStoryPhase = async (
   };
 };
 
+/**
+ * Card Play phase - players select cards to match the storyteller's story
+ * @param _store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareCardPlayPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -137,6 +143,12 @@ export const prepareCardPlayPhase = async (
   };
 };
 
+/**
+ * Voting phase - players vote on which card they think matches the story
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareVotingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -172,6 +184,12 @@ export const prepareVotingPhase = async (
   };
 };
 
+/**
+ * Resolution phase - reveals votes and calculates scores
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResolutionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -207,6 +225,13 @@ export const prepareResolutionPhase = async (
   };
 };
 
+/**
+ * Game Over phase - determines winners and saves game data
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

@@ -4,12 +4,11 @@ import utils from '../../utils';
 import { getNextPhase } from '.';
 
 /**
- * When each player submit their round's movie choice
- * @param gameName
- * @param gameId
- * @param playerId
- * @param guess
- * @returns
+ * Submits each player's movie choice for the round
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID selecting a movie
+ * @param movieId - The selected movie ID
  */
 export const handleSelectMovie = async (gameName: string, gameId: UID, playerId: UID, movieId: UID) => {
   return await utils.firestore.updatePlayer({
@@ -24,12 +23,11 @@ export const handleSelectMovie = async (gameName: string, gameId: UID, playerId:
 };
 
 /**
- * When a player tries to eliminate one of the movies
- * @param gameName
- * @param gameId
- * @param playerId
- * @param clue
- * @returns
+ * Attempts to eliminate one of the movies from the pool
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID eliminating the movie
+ * @param movieId - The movie ID to eliminate
  */
 export const handleEliminateMovie = async (gameName: string, gameId: UID, playerId: UID, movieId: UID) => {
   return await utils.firestore.updateStore({
@@ -45,12 +43,12 @@ export const handleEliminateMovie = async (gameName: string, gameId: UID, player
 };
 
 /**
- * During reveal players may vote for the poster
- * @param gameName
- * @param gameId
- * @param playerId
- * @param clue
- * @returns
+ * Submits a player's vote for their favorite movie poster
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID voting for a poster
+ * @param movieId - The movie ID associated with the poster
+ * @param posterId - The poster ID being voted for
  */
 export const handleVoteForPoster = async (
   gameName: string,

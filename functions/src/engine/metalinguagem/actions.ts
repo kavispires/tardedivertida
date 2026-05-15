@@ -4,13 +4,13 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 /**
- * Submits word
- * @param gameName
- * @param gameId
- * @param playerId
- * @param names
- * @param newWord
- * @returns
+ * Submits a word created from character names
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the word
+ * @param names - Array of character names used
+ * @param indexes - Array of character indexes used
+ * @param newWord - The created word
  */
 export const handleSubmitWord = async (
   gameName: string,
@@ -37,12 +37,11 @@ export const handleSubmitWord = async (
 };
 
 /**
- * Submits guesses
- * @param gameName
- * @param gameId
- * @param playerId
- * @param cardId
- * @returns
+ * Submits guesses matching words to players
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting guesses
+ * @param guesses - Array of player IDs in guess order
  */
 export const handleSubmitGuess = async (gameName: string, gameId: UID, playerId: UID, guesses: UID[]) => {
   return await utils.firestore.updatePlayer({

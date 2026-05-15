@@ -25,10 +25,9 @@ import type {
 import type { CrimeSceneTile, DatingCandidateCard, MovieReviewCard, TextCard } from '../../types/tdr';
 
 /**
- * Get the next phase based on the current one
- * @param currentPhase - current phase
- * @param round - round data
- * @returns next phase
+ * Determines the next phase based on the current phase
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const { SETUP, SEEDING, TRACK, RESULT, GAME_OVER } = MEGAMIX_PHASES;

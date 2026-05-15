@@ -11,9 +11,9 @@ import * as resourceUtils from '../resource';
 
 /**
  * Get characters based on the game's language
- * @param language
- * @param allowNSFW
- * @returns
+ * @param language - The language code for localized resources
+ * @param options - Game options including NSFW setting and special rounds selection
+ * @returns Resource data containing items and special deck types for duetos
  */
 export const getResourceData = async (language: Language, options?: DuetosOptions): Promise<ResourceData> => {
   const allowNSFW = !!options?.nsfw;
@@ -123,8 +123,8 @@ export const getResourceData = async (language: Language, options?: DuetosOption
 
 /**
  * Saved used alien item ids
- * @param items
- * @returns
+ * @param gallery - Gallery of paired items created by players
+ * @returns True if save was successful
  */
 export const savedData = async (gallery: Gallery): Promise<boolean> => {
   // Save only pairs that were created by more than 2 players

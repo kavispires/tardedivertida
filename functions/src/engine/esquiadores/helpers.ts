@@ -5,10 +5,9 @@ import type { EsquiadoresAchievement, FirebaseStoreData, Lodge } from './types';
 import { cloneDeep, uniq } from 'lodash';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and round
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const {
@@ -39,6 +38,13 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
   return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Applies player bets to lodges and updates lodge player lists
+ * @param players - The collection of players in the game
+ * @param skierId - The ID of the player who is the skier
+ * @param lodges - The array of lodge objects
+ * @param betType - The type of bet being placed
+ */
 export const applyBetsToLodges = (players: Players, skierId: UID, lodges: Lodge[], betType: string) => {
   const allPlayersBySkier = utils.players.getListOfPlayers(players, true, [skierId]);
   // Also update lodges with players
@@ -55,6 +61,12 @@ export const applyBetsToLodges = (players: Players, skierId: UID, lodges: Lodge[
   });
 };
 
+/**
+ * Aggregates bets across rounds for each player
+ * @param players - The collection of players in the game
+ * @param skierId - The ID of the player who is the skier
+ * @param betType - The type of bet being aggregated
+ */
 export const aggregateBets = (players: Players, skierId: UID, betType: string) => {
   const allPlayersBySkier = utils.players.getListOfPlayers(players, true, [skierId]);
 
@@ -71,6 +83,13 @@ export const aggregateBets = (players: Players, skierId: UID, betType: string) =
   });
 };
 
+/**
+ * Calculates scores for all players based on betting outcomes
+ * @param players - The collection of players in the game
+ * @param skierId - The ID of the player who is the skier
+ * @param lodges - The array of lodge objects
+ * @param store - The Firebase store data for tracking achievements
+ */
 export const calculateScores = (
   players: Players,
   skierId: UID,
@@ -143,6 +162,13 @@ export const calculateScores = (
   return scores.rank(players, true);
 };
 
+/**
+ * Calculates bet-related achievements for players
+ * @param players - The collection of players in the game
+ * @param skierId - The ID of the player who is the skier
+ * @param lodges - The array of lodge objects
+ * @param store - The Firebase store data for tracking achievements
+ */
 export const calculateBetAchievements = (
   players: Players,
   skierId: UID,
@@ -219,6 +245,10 @@ export const calculateBetAchievements = (
   });
 };
 
+/**
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
+ */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<EsquiadoresAchievement>[] = [];
 

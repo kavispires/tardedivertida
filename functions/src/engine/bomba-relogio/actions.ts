@@ -3,6 +3,13 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 import type { Declaration, Target } from './types';
 
+/**
+ * Handles player declaration submissions for their role
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting declarations
+ * @param declarations - The declarations submitted by the player
+ */
 export const handleSubmitDeclarations = async (
   gameName: string,
   gameId: UID,
@@ -20,6 +27,13 @@ export const handleSubmitDeclarations = async (
   });
 };
 
+/**
+ * Updates the current target player in the game state
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID making the update
+ * @param targetPlayerId - The ID of the new target player
+ */
 export const handleUpdateTargetPlayer = async (
   gameName: string,
   gameId: UID,
@@ -37,6 +51,13 @@ export const handleUpdateTargetPlayer = async (
   });
 };
 
+/**
+ * Handles target submission for cutting a wire
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the target
+ * @param target - The target object containing card and player information
+ */
 export const handleSubmitTarget = async (gameName: string, gameId: UID, playerId: UID, target: Target) => {
   return await utils.firestore.updateState({
     gameName,

@@ -27,10 +27,9 @@ import { orderBy, sampleSize, shuffle } from 'lodash';
 import utils from '../../utils';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and round
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const { SETUP, CRIME_SELECTION, SCENE_MARKING, GUESSING, REVEAL, GAME_OVER } = CRIMES_HEDIONDOS_PHASES;
@@ -58,6 +57,10 @@ type ParsedTiles = {
   sceneTiles: CrimeSceneTile[];
 };
 
+/**
+ * Parses scene tiles into categorized groups for crime construction
+ * @param sceneTiles - The array of crime scene tiles to parse
+ */
 export const parseTiles = (sceneTiles: CrimeSceneTile[]): ParsedTiles => {
   const result = sceneTiles.reduce(
     (acc: ParsedTiles, tile: CrimeSceneTile) => {
@@ -91,6 +94,14 @@ export const parseTiles = (sceneTiles: CrimeSceneTile[]): ParsedTiles => {
   return result;
 };
 
+/**
+ * Cleans up item likelihood data to only include relevant scenes
+ * @param weapons - The array of weapon cards
+ * @param evidence - The array of evidence cards
+ * @param victims - The array of victim cards
+ * @param locations - The array of location cards
+ * @param scenesIds - The array of scene IDs to keep in likelihood data
+ */
 export const cleanupItemsLikelihood = (
   weapons: CrimesHediondosCard[],
   evidence: CrimesHediondosCard[],
@@ -117,6 +128,13 @@ type GroupItems = {
   groupedItems: GroupedItems;
 };
 
+/**
+ * Groups items into equal chunks for distribution to players
+ * @param weapons - The array of weapon cards
+ * @param evidence - The array of evidence cards
+ * @param victims - The array of victim cards
+ * @param locations - The array of location cards
+ */
 export const groupItems = (
   weapons: CrimesHediondosCard[],
   evidence: CrimesHediondosCard[],
@@ -153,12 +171,24 @@ export const groupItems = (
   };
 };
 
+/**
+ * Assigns random item group indices to each player
+ * @param players - The collection of players in the game
+ */
 export const dealItemGroups = (players: Players) => {
   utils.players.getListOfPlayersIds(players, true).forEach((playerId) => {
     players[playerId].itemGroupIndex = Math.round(Math.random() * 100) % ITEMS_GROUP_COUNT;
   });
 };
 
+/**
+ * Builds crime objects for each player based on their selections
+ * @param players - The collection of players in the game
+ * @param causeOfDeathTile - The selected cause of death scene tile
+ * @param reasonForEvidenceTile - The selected evidence reason scene tile
+ * @param locationTile - The selected location scene tile
+ * @param victimTile - The selected victim scene tile
+ */
 export const buildCrimes = (
   players: Players,
   causeOfDeathTile: CrimeSceneTile,
@@ -191,6 +221,13 @@ type BuiltScenes = {
   order: string[];
 };
 
+/**
+ * Builds the scenes dictionary and order from the selected tiles
+ * @param causeOfDeathTile - The selected cause of death scene tile
+ * @param reasonForEvidenceTile - The selected evidence reason scene tile
+ * @param victimTile - The selected victim scene tile
+ * @param locationTile - The selected location scene tile
+ */
 export const buildScenes = (
   causeOfDeathTile: CrimeSceneTile,
   reasonForEvidenceTile: CrimeSceneTile,
@@ -209,6 +246,12 @@ export const buildScenes = (
   return { scenes, order };
 };
 
+/**
+ * Updates crime scene markings with player selections for the current scene
+ * @param crimes - The array of crime objects
+ * @param players - The collection of players in the game
+ * @param currentScene - The current scene tile being marked
+ */
 export const updateCrime = (crimes: Crime[], players: Players, currentScene: CrimeSceneTile): Crime[] => {
   return crimes.map((crime) => {
     crime.scenes[currentScene.id] = players[crime.playerId].sceneIndex;
@@ -216,6 +259,14 @@ export const updateCrime = (crimes: Crime[], players: Players, currentScene: Cri
   });
 };
 
+/**
+ * Updates or creates guess history for all players and tracks wrong guesses
+ * @param crimes - The array of crime objects
+ * @param players - The collection of players in the game
+ * @param groupedItems - The dictionary of grouped items
+ * @param store - The Firebase store data for tracking achievements
+ * @param currentRound - The current round number
+ */
 export const updateOrCreateGuessHistory = (
   crimes: Crime[],
   players: Players,
@@ -401,6 +452,11 @@ type BuiltRanking = {
 
 type HistoryEntry = [UID, GuessHistoryEntry[]];
 
+/**
+ * Builds player rankings and determines winners based on correct guesses
+ * @param players - The collection of players in the game
+ * @param currentRound - The current round number
+ */
 export const buildRanking = (players: Players, currentRound: number): BuiltRanking => {
   const winners: UID[] = [];
   // Points granted in reverse round order 1:12, 2:11, 3:10, 4:9, 5:8, 7:6
@@ -477,6 +533,16 @@ export const buildRanking = (players: Players, currentRound: number): BuiltRanki
   };
 };
 
+/**
+ * Creates mock crime data for bot players
+ * @param players - The collection of players in the game
+ * @param groupedItems - The dictionary of grouped items
+ * @param items - The dictionary of all crime items
+ * @param causeOfDeathTile - The selected cause of death scene tile
+ * @param reasonForEvidenceTile - The selected evidence reason scene tile
+ * @param locationTile - The selected location scene tile
+ * @param victimTile - The selected victim scene tile
+ */
 export const mockCrimeForBots = (
   players: Players,
   groupedItems: GroupedItems,
@@ -523,6 +589,10 @@ export const mockCrimeForBots = (
   });
 };
 
+/**
+ * Creates mock guesses for bot players
+ * @param players - The collection of players in the game
+ */
 export const mockGuessingForBots = (players: Players) => {
   utils.players.getListOfBots(players).forEach((bot) => {
     const guesses: Guesses = {};
@@ -539,6 +609,12 @@ export const mockGuessingForBots = (players: Players) => {
   });
 };
 
+/**
+ * Creates mock scene marking for bot players
+ * @param players - The collection of players in the game
+ * @param scene - The current scene tile being marked
+ * @param items - The dictionary of all crime items
+ */
 export const mockSceneMarkForBots = (
   players: Players,
   scene: CrimeSceneTile,
@@ -706,8 +782,8 @@ const botSmartSceneMarking = (
 };
 
 /**
- * Get achievements
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<CrimesHediondosAchievement>[] = [];

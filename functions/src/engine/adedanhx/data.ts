@@ -9,8 +9,8 @@ import { LETTERS_ENTRIES_BY_LANGUAGE } from './constants';
 
 /**
  * Get topics resource based on the game's language
- * @param language
- * @returns
+ * @param language - The language code for localized resources
+ * @returns Resource data containing topic cards and available letters
  */
 export const getTopics = async (language: string): Promise<ResourceData> => {
   // Get full deck

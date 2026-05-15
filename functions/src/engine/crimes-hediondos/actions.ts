@@ -4,6 +4,13 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 import type { Guesses } from './types';
 
+/**
+ * Handles crime scene submission with all crime details
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the crime
+ * @param data - Object containing all crime scene details
+ */
 export const handleSubmitCrime = async (
   gameName: string,
   gameId: UID,
@@ -46,6 +53,13 @@ export const handleSubmitCrime = async (
   });
 };
 
+/**
+ * Handles marking a scene index
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the mark
+ * @param sceneIndex - The scene index being marked
+ */
 export const handleSubmitMark = async (gameName: string, gameId: UID, playerId: UID, sceneIndex: number) => {
   return await utils.firestore.updatePlayer({
     gameName,

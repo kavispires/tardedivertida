@@ -12,10 +12,9 @@ import type { AlienItem } from '../../utils/tool-kits/alien-attributes';
 import { SEPARATOR } from '../../utils/constants';
 
 /**
- * Determine the next phase based on the current one
- * @param state
- * @param store
- * @returns
+ * Determines the next phase based on the current state and game configuration
+ * @param state - The current state of the game
+ * @param store - The Firebase store data
  */
 export const determineNextPhase = (
   state: ComunicacaoAlienigenaState,
@@ -82,14 +81,15 @@ export const determineNextPhase = (
 };
 
 /**
- * Check if game has an alien bot
- * @param store
- * @returns
+ * Checks if the game has an alien bot
+ * @param store - The Firebase store data
  */
 export const checkIsBot = (store: FirebaseStoreData) => Boolean(store?.options?.botAlien);
 
 /**
- * Integrate players seeds into the bot knowledge
+ * Integrates player seeds into the bot knowledge
+ * @param items - The array of alien items
+ * @param players - The collection of players in the game
  */
 export function applySeedsToAlienItemKnowledge(items: AlienItem[], players: Players) {
   utils.players.getListOfPlayers(players).forEach((player) => {
@@ -106,8 +106,11 @@ export function applySeedsToAlienItemKnowledge(items: AlienItem[], players: Play
 }
 
 /**
- * Get achievements
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
+ * @param hasBot - Whether the game has a bot alien
+ * @param playerCount - The number of players in the game
+ * @param alienId - The ID of the player who was the alien
  */
 export const getAchievements = (
   store: FirebaseStoreData,

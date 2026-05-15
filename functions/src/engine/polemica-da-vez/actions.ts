@@ -4,13 +4,12 @@ import utils from '../../utils';
 import { getNextPhase } from '.';
 
 /**
- * When active player chooses the round's tweet
- * @param gameName
- * @param gameId
- * @param playerId
- * @param tweetId
- * @param customTweet
- * @returns
+ * Submits the active player's chosen tweet for the round
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID choosing the tweet
+ * @param tweetId - The selected tweet ID
+ * @param [customTweet] - Custom tweet text if creating a new tweet
  */
 export const handleSubmitTweet = async (
   gameName: string,
@@ -33,13 +32,12 @@ export const handleSubmitTweet = async (
 };
 
 /**
- * When each player submit their round's reaction and likes guess
- * @param gameName
- * @param gameId
- * @param playerId
- * @param reaction
- * @param likesGuess
- * @returns
+ * Submits each player's reaction and likes guess for the round
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the reaction
+ * @param reaction - The player's reaction (boolean)
+ * @param likesGuess - The player's guess for number of likes
  */
 export const handleSubmitReaction = async (
   gameName: string,

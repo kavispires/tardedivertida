@@ -18,12 +18,11 @@ import type {
 } from './types';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @param tier
- * @param autoContenders - if players won't have contenders, they don't need to select
- * @returns
+ * Determines the next phase based on the current phase, tier, and configuration
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param tier - The current tournament tier
+ * @param autoContenders - Whether contenders are automatically assigned
  */
 export const determineNextPhase = (
   currentPhase: string,
@@ -59,13 +58,17 @@ export const determineNextPhase = (
 
 /**
  * Check if it is the final voting round
- * @param round
- * @returns
+ * @param round - The round object containing current round information
  */
 export const isFinalRound = (round: Round): boolean => {
   return round.current === TOTAL_ROUNDS;
 };
 
+/**
+ * Gets table contenders to fill brackets when needed
+ * @param contendersDeck - The deck of contender cards
+ * @param players - The collection of players in the game
+ */
 export const getTableContenders = (contendersDeck: ContendersDeck, players: Players): FightingContender[] => {
   const playerCount = utils.players.getPlayerCount(players);
   const neededContendersPerRound =
@@ -96,6 +99,11 @@ export const getTableContenders = (contendersDeck: ContendersDeck, players: Play
   }));
 };
 
+/**
+ * Gets the most voted challenge from player votes
+ * @param players - The collection of players in the game
+ * @param challenges - The array of challenge cards
+ */
 export const getMostVotedChallenge = (players: Players, challenges: TextCard[]) => {
   const votes: Dictionary<number> = {};
 
@@ -131,6 +139,12 @@ const getBracketTier = (position: number): BracketTier => {
   return 'winner';
 };
 
+/**
+ * Makes tournament brackets from player and table contenders
+ * @param players - The collection of players in the game
+ * @param deck - The array of fighting contenders
+ * @param currentRound - The current round number
+ */
 export const makeBrackets = (players: Players, deck: FightingContender[], currentRound: number) => {
   const contenders: FightingContender[] = [];
   // Gather contenders selected by players, remove those from the players cards
@@ -184,6 +198,10 @@ export const makeBrackets = (players: Players, deck: FightingContender[], curren
   return emptyBracketArray;
 };
 
+/**
+ * Gets the next championship tier in progression
+ * @param currentTier - The current championship tier
+ */
 export const getChampionshipTier = (currentTier?: string) => {
   switch (currentTier) {
     case CHAMPIONSHIP_ORDER[0]:
@@ -195,6 +213,11 @@ export const getChampionshipTier = (currentTier?: string) => {
   }
 };
 
+/**
+ * Updates brackets with player votes and determines winners
+ * @param players - The collection of players in the game
+ * @param brackets - The array of bracket objects
+ */
 export const updateBracketsWithVotes = (players: Players, brackets: Bracket[]) => {
   // Target Position: Voted Position: Votes
   const votes: Record<number, Record<number, number>> = {};
@@ -247,6 +270,11 @@ export const updateBracketsWithVotes = (players: Players, brackets: Bracket[]) =
   return brackets;
 };
 
+/**
+ * Builds player rankings based on betting outcomes
+ * @param players - The collection of players in the game
+ * @param brackets - The array of bracket objects
+ */
 export const buildRanking = (players: Players, brackets: Bracket[]) => {
   // Gained points: final, semi, quarter, own contender
   const scores = new utils.players.Scores(players, [0, 0, 0, 0]);
@@ -280,6 +308,10 @@ export const buildRanking = (players: Players, brackets: Bracket[]) => {
   return scores.rank(players);
 };
 
+/**
+ * Makes final championship brackets from qualified contenders
+ * @param brackets - The array of bracket objects
+ */
 export const makeFinalBrackets = (brackets: Bracket[]) => {
   // Make brackets
   const shuffledContenders = shuffle(brackets);

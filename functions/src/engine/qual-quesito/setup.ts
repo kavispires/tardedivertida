@@ -68,6 +68,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Category Creation Phase] - Creator defines a category for items
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareCategoryCreationPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -105,6 +111,12 @@ export const prepareCategoryCreationPhase = async (
   };
 };
 
+/**
+ * [Card Play Phase] - Players play cards matching the category
+ * @param _store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareCardPlayPhase = async (
   _store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -125,6 +137,12 @@ export const prepareCardPlayPhase = async (
   };
 };
 
+/**
+ * [Skip Announcement Phase] - Announce creator skipped their turn
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareSkipAnnouncementPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -161,6 +179,12 @@ export const prepareSkipAnnouncementPhase = async (
   };
 };
 
+/**
+ * [Verification Phase] - Players verify if cards match the category
+ * @param _store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareVerificationPhase = async (
   _store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -192,6 +216,12 @@ export const prepareVerificationPhase = async (
   };
 };
 
+/**
+ * [Results Phase] - Calculate scores and display round results
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -332,6 +362,13 @@ export const prepareResultsPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

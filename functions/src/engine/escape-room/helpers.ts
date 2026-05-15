@@ -6,10 +6,10 @@ import { ESCAPE_ROOM_PHASES } from './constants';
 import utils from '../../utils';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and outcome
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param outcome - The outcome of the mission
  */
 export const determineNextPhase = (currentPhase: string, round: Round, outcome: Outcome): string => {
   const { SETUP, MISSION, MISSION_EVALUATION, RESULTS, GAME_OVER } = ESCAPE_ROOM_PHASES;

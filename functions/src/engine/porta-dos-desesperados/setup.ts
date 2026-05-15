@@ -94,6 +94,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Book Possession Phase] - A player gets possessed and reads book pages
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareBookPossessionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -152,6 +158,12 @@ export const prepareBookPossessionPhase = async (
   };
 };
 
+/**
+ * [Door Choice Phase] - Players choose which door to enter
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareDoorChoicePhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -212,6 +224,12 @@ export const prepareDoorChoicePhase = async (
   };
 };
 
+/**
+ * [Resolution Phase] - Resolve door choices and calculate outcomes
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResolutionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -328,6 +346,13 @@ export const prepareResolutionPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

@@ -11,8 +11,9 @@ import * as resourceUtils from '../resource';
 
 /**
  * Get question resource based on the game's language
- * @param language
- * @returns
+ * @param language - The language code for localized resources
+ * @param options - Game options including NSFW setting
+ * @returns Resource data containing testimony question cards and suspect cards
  */
 export const getResourceData = async (language: string, options: TaNaCaraOptions): Promise<ResourceData> => {
   // Get full deck

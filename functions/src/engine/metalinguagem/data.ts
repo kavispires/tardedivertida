@@ -5,8 +5,8 @@ import { sampleSize } from 'lodash';
 
 /**
  * Get items for the game
- * @param options
- * @returns
+ * @param options - Game options including NSFW setting
+ * @returns Resource data containing dream and meta items
  */
 export const getResourceData = async (options: MetalinguagemOptions): Promise<ResourceData> => {
   const allowNSFW = !!options.nsfw;

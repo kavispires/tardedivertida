@@ -62,6 +62,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Prompt Selection Phase] - Players select their prompts for drawing
+ * @param store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ */
 export const preparePromptSelectionPhase = async (
   store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -84,6 +90,12 @@ export const preparePromptSelectionPhase = async (
   };
 };
 
+/**
+ * [Drawing Phase] - Players draw based on their selected prompts
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareDrawingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -138,6 +150,12 @@ export const prepareDrawingPhase = async (
   };
 };
 
+/**
+ * [Naming Phase] - Players name other players' drawings
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareNamingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -174,6 +192,12 @@ export const prepareNamingPhase = async (
   };
 };
 
+/**
+ * [Presentation Phase] - Display all drawings and names to players
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const preparePresentationPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -209,6 +233,13 @@ export const preparePresentationPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

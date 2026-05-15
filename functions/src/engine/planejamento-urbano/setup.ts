@@ -105,6 +105,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Planning Phase] - The architect plans city locations
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const preparePlanningPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -209,6 +215,12 @@ export const preparePlanningPhase = async (
   };
 };
 
+/**
+ * [Placing Phase] - Players place their votes on the city grid
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const preparePlacingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -245,6 +257,11 @@ export const preparePlacingPhase = async (
   };
 };
 
+/**
+ * [Resolution Phase] - Calculate scores and update city grid
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ */
 export const prepareResolutionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,

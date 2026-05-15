@@ -11,8 +11,9 @@ import { TOTAL_ROUNDS, WORDS_IN_POOL } from './constants';
 
 /**
  * Get words resource based on the game's language
- * @param language
- * @returns
+ * @param language - The language code for localized resources
+ * @param options - Game options including words source selection
+ * @returns Resource data containing deck of word cards
  */
 export const getWords = async (
   language: Language,
@@ -34,6 +35,11 @@ export const getWords = async (
   return { deck };
 };
 
+/**
+ * Save used cards and player clues
+ * @param language - The language code for the saved data
+ * @param pastClues - Dictionary of card IDs to their associated clues
+ */
 export const saveData = async (language: Language, pastClues: PastClues) => {
   const usedIds = utils.helpers.buildBooleanDictionary(Object.keys(pastClues));
   await utils.tdr.saveUsedSingleWords(usedIds);

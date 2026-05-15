@@ -4,12 +4,11 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 /**
- * Submits the pairs
- * @param gameName
- * @param gameId
- * @param playerId
- * @param pairs
- * @returns
+ * Submits paired selections
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting pairs
+ * @param pairs - Array of paired item IDs
  */
 export const handleSubmitPairs = async (gameName: string, gameId: UID, playerId: UID, pairs: UID[]) => {
   return await utils.firestore.updatePlayer({

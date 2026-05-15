@@ -24,11 +24,12 @@ import { getCategories } from './data';
 import { handleSubmitCategory, handleSubmitClue, handleSubmitGuess } from './actions';
 
 /**
- * Get Initial Game State
- * @param gameId
- * @param uid
- * @param language
- * @returns
+ * Gets the initial state for a new game session
+ * @param gameId - The game session ID
+ * @param uid - The user ID of the game creator
+ * @param language - The language code
+ * @param version - The game version
+ * @param options - Optional game configuration options
  */
 export const getInitialState = (
   gameId: UID,
@@ -55,10 +56,15 @@ export const getInitialState = (
 };
 
 /**
- * Exposes min and max player count
+ * Gets the player count requirements for the game
  */
 export const getPlayerCounts = () => PLAYER_COUNTS;
 
+/**
+ * Handles phase progression and prepares the next game phase
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ */
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
@@ -115,8 +121,8 @@ export const getNextPhase = async (
 };
 
 /**
- * Handles categories and guesses submissions
- * May trigger next phase
+ * Handles player action submissions and routes to appropriate handlers
+ * @param data - The action data containing player information and action payload
  */
 export const submitAction = async (data: OndaTelepaticaSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;

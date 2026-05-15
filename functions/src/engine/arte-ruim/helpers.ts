@@ -93,6 +93,13 @@ export const distributeCardsByLevel = (cards: ArteRuimCard[]): CardsByLevel => {
   return cardsPerLevel;
 };
 
+/**
+ * Gets available cards by level, filtering out used cards, and determines if reset is needed
+ * @param cardsByLevel - Cards organized by level
+ * @param usedCardsIds - Dictionary of used card IDs
+ * @param roundLevels - Array of levels for each round
+ * @param playerCount - Number of players
+ */
 export const getAvailableCards = (
   cardsByLevel: CardsByLevel,
   usedCardsIds: Dictionary<boolean>,
@@ -257,6 +264,11 @@ export const buildDeck = (
     .reverse();
 };
 
+/**
+ * Gets enough level 4 cards for all players by creating duplicates from pairs
+ * @param cards - Array of level 4 card pairs
+ * @param playerCount - Number of players
+ */
 export const getEnoughLevel4Cards = (cards: ArteRuimPair[], playerCount: number) => {
   let result: ArteRuimCard[] = [];
 
@@ -286,8 +298,7 @@ export const getEnoughLevel4Cards = (cards: ArteRuimPair[], playerCount: number)
 
 /**
  * Returns a unique set of cards for pairs level
- * @param cards
- * @returns
+ * @param cards - Array of cards to filter for uniqueness
  */
 export const getTwoUniquePairCards = (cards: ArteRuimCard[]): ArteRuimCard[] => {
   const cache: Dictionary<boolean> = {};
@@ -617,6 +628,13 @@ function countValueOccurrencesBeforeIndex(arr: number[], index: number, value: n
   return count;
 }
 
+/**
+ * Determines the type/theme of a level based on its number and special level configuration
+ * @param level - The level number
+ * @param specialLevels - Array of special level themes
+ * @param levels - Array of all levels in the game
+ * @param currentRound - The current round number
+ */
 export function determineLevelType(
   level: number,
   specialLevels: string[],

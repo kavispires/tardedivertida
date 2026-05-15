@@ -55,6 +55,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Seeding Phase] - Players select their music and avatar preferences
+ * @param store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareSeedingPhase = async (
   store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -86,6 +92,12 @@ export const prepareSeedingPhase = async (
   };
 };
 
+/**
+ * [Track Phase] - Players vote on the current music track
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareTrackPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -144,6 +156,12 @@ export const prepareTrackPhase = async (
   };
 };
 
+/**
+ * [Result Phase] - Display voting results and team assignments
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResultPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -178,6 +196,13 @@ export const prepareResultPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

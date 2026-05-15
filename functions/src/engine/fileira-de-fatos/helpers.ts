@@ -4,10 +4,9 @@ import { FILEIRA_DE_FATOS_ACHIEVEMENTS, FILEIRA_DE_FATOS_PHASES } from './consta
 import type { FileiraDeFatosAchievement, FirebaseStoreData } from './types';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and round
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const { SETUP, ORDERING, RESULTS, GAME_OVER } = FILEIRA_DE_FATOS_PHASES;
@@ -22,6 +21,13 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
   return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Builds player rankings by comparing their orders to the active player's order
+ * @param players - The collection of players in the game
+ * @param activePlayerId - The ID of the active player whose order is correct
+ * @param roundType - The type of round determining special scoring rules
+ * @param store - The Firebase store data for tracking achievements
+ */
 export const buildRanking = (
   players: Players,
   activePlayerId: UID,
@@ -105,8 +111,8 @@ export const buildRanking = (
 };
 
 /**
- * Get achievements
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<FileiraDeFatosAchievement>[] = [];

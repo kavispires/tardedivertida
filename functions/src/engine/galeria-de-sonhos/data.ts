@@ -12,8 +12,8 @@ import utils from '../../utils';
 
 /**
  * Get words resource based on the game's language
- * @param language
- * @returns
+ * @param language - The language code for localized resources
+ * @returns Resource data containing theme words and image card IDs
  */
 export const getWords = async (language: Language): Promise<ResourceData> => {
   // Get full deck
@@ -30,6 +30,11 @@ export const getWords = async (language: Language): Promise<ResourceData> => {
   };
 };
 
+/**
+ * Save used image cards and their associated text clues
+ * @param language - The language code for the saved data
+ * @param bestMatches - Array of image card matches with text descriptions
+ */
 export const saveData = async (language: Language, bestMatches: ImageCardMatch[]) => {
   const usedCardsIds: Dictionary<boolean> = {};
   const clues = bestMatches.reduce((acc, entry) => {

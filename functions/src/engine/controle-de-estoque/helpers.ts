@@ -8,10 +8,10 @@ import utils from '../../utils';
 import { BOSS_IDEAS } from './data';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and game state
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param state - The current state of the game
  */
 export const determineNextPhase = (
   currentPhase: string,
@@ -263,6 +263,12 @@ const updateWarehouseByEdgeAvailability = (warehouseGrid: Dictionary<WarehouseSl
   }
 };
 
+/**
+ * Conceals all exposed goods and returns an event recording the action
+ * @param goodsDict - The dictionary of all goods
+ * @param actorId - The ID of the actor performing the action
+ * @param type - The type of event
+ */
 export const concealAllGoods = (
   goodsDict: Dictionary<Good>,
   actorId: Event['actorId'],
@@ -284,6 +290,15 @@ export const concealAllGoods = (
   };
 };
 
+/**
+ * Conceals a specific good, places it in a warehouse slot, and returns an event
+ * @param goodsDict - The dictionary of all goods
+ * @param warehouseGrid - The warehouse grid containing slots
+ * @param goodId - The ID of the good to conceal
+ * @param selectedWarehouseSlot - The slot index where the good is placed
+ * @param actorId - The ID of the actor performing the action
+ * @param type - The type of event
+ */
 export const concealGoodsForEvent = (
   goodsDict: Dictionary<Good>,
   warehouseGrid: Dictionary<WarehouseSlot>,
@@ -310,6 +325,13 @@ export const concealGoodsForEvent = (
   };
 };
 
+/**
+ * Builds player rankings and gallery based on order fulfillment
+ * @param players - The collection of players in the game
+ * @param goodsDict - The dictionary of all goods
+ * @param warehouseGrid - The warehouse grid containing slots
+ * @param store - The Firebase store data for tracking achievements
+ */
 export const buildRanking = (
   players: Players,
   goodsDict: Dictionary<Good>,

@@ -3,6 +3,14 @@ import utils from '../../utils';
 // Internal
 import { getNextPhase } from '.';
 
+/**
+ * Submits the gossiper and detective player roles
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the roles
+ * @param gossiperPlayerId - The player ID assigned as gossiper
+ * @param detectivePlayerId - The player ID assigned as detective
+ */
 export const handleSubmitPlayersRoles = async (
   gameName: string,
   gameId: UID,
@@ -25,6 +33,13 @@ export const handleSubmitPlayersRoles = async (
   });
 };
 
+/**
+ * Submits the player's associated social group
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID associating a group
+ * @param associatedSocialGroupId - The social group ID to associate
+ */
 export const handleSubmitAssociatedSocialGroup = async (
   gameName: string,
   gameId: UID,
@@ -44,6 +59,14 @@ export const handleSubmitAssociatedSocialGroup = async (
   });
 };
 
+/**
+ * Submits the detective's movement to a new location
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID moving the detective
+ * @param locationIndex - The index of the location to move to
+ * @param [shouldReady] - Whether the player should be marked as ready
+ */
 export const handleSubmitDetectiveLocation = async (
   gameName: string,
   gameId: UID,
@@ -64,6 +87,15 @@ export const handleSubmitDetectiveLocation = async (
   });
 };
 
+/**
+ * Submits the intimidation of a student
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID intimidating a student
+ * @param intimidatedStudentId - The student ID being intimidated
+ * @param [intimidatedStudentsIds] - Array of all intimidated student IDs
+ * @param [shouldGoToTheNextPhase] - Whether to trigger phase transition
+ */
 export const handleSubmitIntimidation = async (
   gameName: string,
   gameId: UID,
@@ -87,6 +119,15 @@ export const handleSubmitIntimidation = async (
   });
 };
 
+/**
+ * Submits a rumor about a student or skips the rumor phase
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the rumor
+ * @param skipRumor - Whether to skip rumoring
+ * @param [rumoredStudentId] - The student ID being rumored about
+ * @param [rumorIndex] - The index of the rumor
+ */
 export const handleSubmitRumor = async (
   gameName: string,
   gameId: UID,

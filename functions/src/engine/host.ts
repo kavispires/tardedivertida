@@ -18,11 +18,9 @@ export type CreateGamePayload = {
 };
 
 /**
- * Creates a new game.
- *
- * @param data - The payload containing game information.
- * @param context - The Firebase context.
- * @returns The metadata of the created game.
+ * Creates a new game
+ * @param data - The payload containing game information
+ * @param auth - The Firebase authentication object
  */
 const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
   if (utils.firebase.isEmulatingEnvironment()) {
@@ -111,11 +109,8 @@ export type BasicGamePayload = {
 };
 
 /**
- * Locks a game and updates its state and metadata.
- *
- * @param data - The payload containing the game ID and game name.
- * @returns A boolean indicating whether the game was successfully locked.
- * @throws Throws an exception if the game has an insufficient number of players or if there are more players than the game supports.
+ * Locks a game and updates its state and metadata
+ * @param data - The payload containing the game ID and game name
  */
 const lockGame = async (data: BasicGamePayload) => {
   const { gameId, gameName } = data;
@@ -167,10 +162,8 @@ const lockGame = async (data: BasicGamePayload) => {
 };
 
 /**
- * Unlocks the game and resets it to the initial state.
- *
- * @param data - The payload containing the game ID and game name.
- * @returns A boolean indicating whether the game was successfully unlocked and reset.
+ * Unlocks the game and resets it to the initial state
+ * @param data - The payload containing the game ID and game name
  */
 const unlockAndResetGame = async (data: BasicGamePayload) => {
   const { gameId, gameName } = data;
@@ -204,10 +197,8 @@ const unlockAndResetGame = async (data: BasicGamePayload) => {
 };
 
 /**
- * Goes to the next phase of the game.
- *
- * @param data - The payload containing the game ID and game name.
- * @returns A promise that resolves to the result of the next phase.
+ * Advances the game to the next phase
+ * @param data - The payload containing the game ID and game name
  */
 const goToNextPhase = async (data: BasicGamePayload) => {
   const { gameId, gameName } = data;
@@ -222,10 +213,8 @@ const goToNextPhase = async (data: BasicGamePayload) => {
 };
 
 /**
- * Forces a state property update for a game.
- *
- * @param data - The data object containing the game ID, game name, and state.
- * @returns A boolean indicating whether the state property update was successful.
+ * Forces a state property update for a game
+ * @param data - The payload containing the game ID, game name, and state to update
  */
 const forceStateProperty = async (data: BasicGamePayload) => {
   const { gameId, gameName, state } = data;
@@ -246,10 +235,8 @@ const forceStateProperty = async (data: BasicGamePayload) => {
 };
 
 /**
- * Forces the last round of the game.
- *
- * @param data - The basic game payload.
- * @returns A boolean indicating whether the last round was successfully forced.
+ * Forces the last round of the game
+ * @param data - The payload containing the game ID and game name
  */
 const forceLastRound = async (data: BasicGamePayload) => {
   const { gameId, gameName } = data;
@@ -271,10 +258,8 @@ const forceLastRound = async (data: BasicGamePayload) => {
 };
 
 /**
- * Resets the game state and allows players to play the game again.
- *
- * @param data - The payload containing the game ID and game name.
- * @returns A boolean indicating whether the game was successfully reset.
+ * Resets the game state and allows players to play the game again
+ * @param data - The payload containing the game ID and game name
  */
 const playAgain = async (data: BasicGamePayload) => {
   const { gameId, gameName } = data;
@@ -331,11 +316,8 @@ export type RetireGamesPayload = {
 };
 
 /**
- * Retires games from all user profiles by removing game data and updating statistics.
- * This is an admin-only operation for cleaning up deprecated/cancelled games.
- *
+ * Retires games from all user profiles by removing game data and updating statistics for deprecated or cancelled games
  * @param data - The payload containing the array of game names to retire
- * @returns Result of the cleanup operation including counts and summary
  */
 const retireGames = async (data: RetireGamesPayload) => {
   const { gameNames } = data;
@@ -371,15 +353,8 @@ const HOST_API_ACTIONS = {
 };
 
 /**
- * Executes the user engine function.
- *
- * @param request - The callable request object.
- * @returns The result of the user engine function.
- */
-/**
- * Executes the game host engine.
- *
- * @param request - The CallableRequest object.
+ * Executes the game host engine by delegating to the appropriate action
+ * @param request - The callable request object
  */
 export const hostEngine = (
   request: CallableRequest<CreateGamePayload | BasicGamePayload | RetireGamesPayload>,

@@ -4,12 +4,11 @@ import utils from '../../utils';
 import { getNextPhase } from '.';
 
 /**
- * Save player choice between the two challenges
- * @param gameName
- * @param gameId
- * @param playerId
- * @param challengeId
- * @returns
+ * Submits the player's challenge choice between two options
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID choosing a challenge
+ * @param challengeId - The selected challenge ID
  */
 export const handleSubmitChallenge = async (
   gameName: string,
@@ -29,12 +28,11 @@ export const handleSubmitChallenge = async (
 };
 
 /**
- * Save player choice of contender for the round
- * @param gameName
- * @param gameId
- * @param playerId
- * @param contendersId
- * @returns
+ * Submits the player's contender choice for the round
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID choosing a contender
+ * @param contendersId - The selected contender ID
  */
 export const handleSubmitContenders = async (
   gameName: string,
@@ -54,14 +52,13 @@ export const handleSubmitContenders = async (
 };
 
 /**
- * Save player bets for the round
- * @param gameName
- * @param gameId
- * @param playerId
- * @param quarter
- * @param semi
- * @param final
- * @returns
+ * Submits the player's bets for quarter, semi, and final rounds
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting bets
+ * @param quarter - The quarter-final bet
+ * @param semi - The semi-final bet
+ * @param final - The final bet
  */
 export const handleSubmitBets = async (
   gameName: string,
@@ -83,12 +80,11 @@ export const handleSubmitBets = async (
 };
 
 /**
- * Save player votes for the tier
- * @param gameName
- * @param gameId
- * @param playerId
- * @param votes
- * @returns
+ * Submits the player's votes for contenders in the tier
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting votes
+ * @param votes - Dictionary mapping contender IDs to vote counts
  */
 export const handleSubmitVotes = async (
   gameName: string,

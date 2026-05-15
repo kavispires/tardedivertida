@@ -99,6 +99,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Challenge Selection Phase] - Players vote on challenge for the round
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareChallengeSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -138,6 +144,12 @@ export const prepareChallengeSelectionPhase = async (
   };
 };
 
+/**
+ * [Contender Selection Phase] - Players select contenders for the brackets
+ * @param _store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareContenderSelectionPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -160,6 +172,12 @@ export const prepareContenderSelectionPhase = async (
   };
 };
 
+/**
+ * [Bets Phase] - Players place bets on the championship brackets
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareBetsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -195,6 +213,12 @@ export const prepareBetsPhase = async (
   };
 };
 
+/**
+ * [Battle Phase] - Display battles and gather votes
+ * @param _store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareBattlePhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -220,6 +244,12 @@ export const prepareBattlePhase = async (
   };
 };
 
+/**
+ * [Results Phase] - Calculate battle results and update scores
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -281,6 +311,13 @@ export const prepareResultsPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

@@ -34,6 +34,15 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
   return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Builds game grid with distributed topics and letters across rounds
+ * @param allTopics - All available topics
+ * @param allLetters - All available letters
+ * @param topicsQuantity - Number of topics per round
+ * @param lettersQuantity - Number of letters per round
+ * @param roundsCount - Total number of rounds
+ * @param allowNSFW - Whether to allow NSFW content
+ */
 export const buildGrid = (
   allTopics: TopicCard[],
   allLetters: LetterEntry[],
@@ -173,6 +182,14 @@ export const buildGrid = (
   return { topics, letters };
 };
 
+/**
+ * Gets the current grid for the round based on topics and letters
+ * @param topics - All available topics
+ * @param letters - All available letters
+ * @param currentRound - The current round number
+ * @param topicsQuantity - Number of topics per round
+ * @param lettersQuantity - Number of letters per round
+ */
 export const getCurrentGrid = (
   topics: TopicCard[],
   letters: LetterEntry[],
@@ -195,6 +212,13 @@ export const getCurrentGrid = (
   };
 };
 
+/**
+ * Groups all player answers by grid cell and prepares them for evaluation
+ * @param players - The players object
+ * @param topics - Array of topics for the current round
+ * @param letters - Array of letters for the current round
+ * @param store - The Firebase store data
+ */
 export const groupAnswers = (
   players: Players,
   topics: TopicCard[],
@@ -250,6 +274,11 @@ export const groupAnswers = (
   return result;
 };
 
+/**
+ * Auto-evaluates an answer against letter entry rules
+ * @param answer - The answer to evaluate
+ * @param letterEntry - The letter entry with evaluation rules
+ */
 const autoEvaluateAnswer = (answer: string, letterEntry: LetterEntry): boolean => {
   const { type, letters } = letterEntry;
   const letter = letters.toLowerCase();
@@ -279,6 +308,10 @@ const autoEvaluateAnswer = (answer: string, letterEntry: LetterEntry): boolean =
   return false;
 };
 
+/**
+ * Checks if a word contains special accent characters
+ * @param word - The word to check
+ */
 function isAccent(word: string): boolean {
   // Define a regular expression to match the accents
   const accentRegex = /[˜ˆ´]/;
@@ -299,6 +332,12 @@ function isAccent(word: string): boolean {
 //   return accentRegex.test(word);
 // }
 
+/**
+ * Evaluates all answers based on player rejections and calculates scores
+ * @param players - The players object
+ * @param answersGroups - Grouped answers by cell
+ * @param store - The Firebase store data
+ */
 export const evaluateAnswers = (
   players: Players,
   answersGroups: GroupAnswerEvaluationEntry[],
@@ -391,6 +430,13 @@ export const evaluateAnswers = (
   return { answersGrid, ranking: scores.rank(players) };
 };
 
+/**
+ * Stores gallery data for top answers and cells with no answers
+ * @param store - The Firebase store data
+ * @param topics - Array of topics
+ * @param letters - Array of letters
+ * @param answersGrid - Grid of evaluated answers
+ */
 export const storeGalleryData = (
   store: FirebaseStoreData,
   topics: TopicCard[],

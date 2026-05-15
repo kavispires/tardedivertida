@@ -21,7 +21,12 @@ import {
 import { handleSubmitCard } from './actions';
 
 /**
- * Get Initial Game State
+ * Gets the initial state for a new game session
+ * @param gameId - The game session ID
+ * @param uid - The user ID of the game creator
+ * @param language - The language code
+ * @param version - The game version
+ * @param options - Optional game configuration options
  */
 export const getInitialState = (
   gameId: UID,
@@ -44,10 +49,15 @@ export const getInitialState = (
 };
 
 /**
- * Exposes min and max player count
+ * Gets the player count requirements for the game
  */
 export const getPlayerCounts = () => PLAYER_COUNTS;
 
+/**
+ * Handles phase progression and prepares the next game phase
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ */
 export const getNextPhase = async (
   gameName: string,
   gameId: string,

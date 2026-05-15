@@ -3,6 +3,13 @@ import utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
 
+/**
+ * Submits the player's urban planning proposal
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the planning
+ * @param planning - Dictionary of planning data
+ */
 export const handleSubmitPlanning = async (
   gameName: string,
   gameId: UID,
@@ -20,6 +27,13 @@ export const handleSubmitPlanning = async (
   });
 };
 
+/**
+ * Submits the player's evaluations of other players' placements
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting evaluations
+ * @param evaluations - Dictionary of evaluation data
+ */
 export const handleSubmitPlacements = async (
   gameName: string,
   gameId: UID,

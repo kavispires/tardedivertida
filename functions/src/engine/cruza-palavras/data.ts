@@ -10,8 +10,9 @@ import { TDR_RESOURCES } from '../../utils/constants';
 
 /**
  * Get words resource based on the game's language
- * @param language
- * @returns
+ * @param language - The language code for localized resources
+ * @param options - Game options including grid type and NSFW setting
+ * @returns Resource data containing deck of cards for the grid
  */
 export const getWords = async (language: Language, options?: CruzaPalavrasOptions): Promise<ResourceData> => {
   const allowNSFW = !!options?.nsfw;
@@ -67,6 +68,12 @@ export const getWords = async (language: Language, options?: CruzaPalavrasOption
   return { deck };
 };
 
+/**
+ * Save used cards and player clues
+ * @param language - The language code for the saved data
+ * @param pastClues - Dictionary of card IDs to their associated clues
+ * @param isContenderGrid - Whether the grid uses contenders instead of regular cards
+ */
 export const saveData = async (language: Language, pastClues: PastClues, isContenderGrid: boolean) => {
   // Save used cards
   if (!isContenderGrid) {

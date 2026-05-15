@@ -5,6 +5,13 @@ import utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
 
+/**
+ * Submits the player's chosen word for the round
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the word
+ * @param wordId - The selected word ID
+ */
 export const handleSubmitWord = async (gameName: string, gameId: UID, playerId: UID, wordId: string) => {
   return await utils.firestore.updateStore({
     gameName,
@@ -16,6 +23,13 @@ export const handleSubmitWord = async (gameName: string, gameId: UID, playerId: 
   });
 };
 
+/**
+ * Submits the player's selected cards for the round
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting cards
+ * @param cardsIds - Array of selected card IDs
+ */
 export const handleSubmitCards = async (gameName: string, gameId: UID, playerId: UID, cardsIds: string[]) => {
   const cards = cardsIds.reduce((acc: PlainObject, cardId) => {
     acc[cardId] = {
@@ -38,6 +52,13 @@ export const handleSubmitCards = async (gameName: string, gameId: UID, playerId:
   });
 };
 
+/**
+ * Plays a card during the player's turn
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID playing a card
+ * @param cardId - The card ID being played
+ */
 export const handlePlayCard = async (gameName: string, gameId: UID, playerId: UID, cardId: string) => {
   const actionText = 'play a card';
 

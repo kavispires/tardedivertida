@@ -6,11 +6,9 @@ import utils from '../../utils';
 import type { Concept, FirebaseStoreData, GalleryEntry, NewNameEntry } from './types';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @param isGameOver
- * @returns
+ * Determines the next phase based on the current phase and round
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
  */
 export const determineNextPhase = (
   currentPhase: keyof typeof IDADE_DA_PREDA_PHASES,
@@ -35,6 +33,11 @@ export const determineNextPhase = (
   return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Gathers all concepts proposed by players and tracks sound usage
+ * @param players - The collection of players in the game
+ * @param store - The Firebase store data for tracking achievements
+ */
 export const gatherConcepts = (players: Players, store: FirebaseStoreData): Concept[] => {
   const allConcepts: Concept[] = [];
 
@@ -75,6 +78,12 @@ export const gatherConcepts = (players: Players, store: FirebaseStoreData): Conc
   return allConcepts;
 };
 
+/**
+ * Builds gallery and player rankings based on naming guesses
+ * @param newNames - The array of new name entries submitted by players
+ * @param players - The collection of players in the game
+ * @param store - The Firebase store data for tracking achievements
+ */
 export const buildGalleryAndRanking = (
   newNames: NewNameEntry[],
   players: Players,

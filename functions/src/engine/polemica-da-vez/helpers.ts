@@ -22,10 +22,9 @@ import utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @param isGameOver
- * @returns
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param isGameOver - Whether the game is over
  */
 export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
   const { SETUP, TOPIC_SELECTION, REACT, RESOLUTION, GAME_OVER } = POLEMICA_DA_VEZ_PHASES;
@@ -68,6 +67,11 @@ export const buildDeck = (allTweets: CustomTweet[]): Decks => {
   };
 };
 
+/**
+ * Counts total likes across all players and tracks achievements
+ * @param players - The collection of players in the game
+ * @param store - The Firebase store data for tracking achievements
+ */
 export const countLikes = (players: Players, store: FirebaseStoreData): number => {
   return utils.players.getListOfPlayers(players).reduce((acc, player) => {
     if (player.reaction) {
@@ -105,9 +109,10 @@ export const getRanking = (players: Players, totalLikes: number, store: Firebase
 };
 
 /**
- * Determine if a player has passed level 4 and it should be game over
- * @param players
- * @returns
+ * Determine if a player has passed the score goal and game should be over
+ * @param players - The collection of players in the game
+ * @param options - The game configuration options
+ * @param round - The round object containing current round information
  */
 export const determineGameOver = (players: Players, options: PolemicaDaVezOptions, round: Round) => {
   if (!options.fixedRounds) {
@@ -123,8 +128,8 @@ export const determineGameOver = (players: Players, options: PolemicaDaVezOption
 };
 
 /**
- * Get achievements
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<PolemicaDaVezAchievement>[] = [];

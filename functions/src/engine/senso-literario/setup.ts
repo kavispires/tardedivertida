@@ -61,7 +61,10 @@ export const prepareSetupPhase = async (
 };
 
 /**
- * Prepare pattern creation phase
+ * [Pattern Creation Phase] - Players create book title patterns
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
  */
 export const preparePatternCreationPhase = async (
   store: FirebaseStoreData,
@@ -92,7 +95,10 @@ export const preparePatternCreationPhase = async (
 };
 
 /**
- * Prepare result phase
+ * [Result Phase] - Calculate pattern matches and update scores
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
  */
 export const prepareResultPhase = async (
   store: FirebaseStoreData,
@@ -122,7 +128,11 @@ export const prepareResultPhase = async (
 };
 
 /**
- * Prepare game over phase
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
  */
 export const prepareGameOverPhase = async (
   gameId: UID,

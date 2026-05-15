@@ -4,12 +4,11 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 /**
- * Update store with the current orientation
- * @param gameName
- * @param gameId
- * @param playerId
- * @param orientation
- * @returns
+ * Submits the current orientation for the sketch
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the orientation
+ * @param orientation - The orientation string
  */
 export const handleSubmitOrientation = async (
   gameName: string,
@@ -27,12 +26,11 @@ export const handleSubmitOrientation = async (
 };
 
 /**
- * Update player with their sketch
- * @param gameName
- * @param gameId
- * @param playerId
- * @param sketch
- * @returns
+ * Submits the player's sketch drawing
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the sketch
+ * @param sketch - The sketch data string
  */
 export const handleSubmitSketch = async (gameName: string, gameId: UID, playerId: UID, sketch: string) => {
   return await utils.firestore.updatePlayer({
@@ -47,12 +45,11 @@ export const handleSubmitSketch = async (gameName: string, gameId: UID, playerId
 };
 
 /**
- * Update player with their vote
- * @param gameName
- * @param gameId
- * @param playerId
- * @param vote
- * @returns
+ * Submits the player's vote for a sketch
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the vote
+ * @param vote - The player ID being voted for
  */
 export const handleSubmitVote = async (gameName: string, gameId: UID, playerId: UID, vote: UID) => {
   return await utils.firestore.updatePlayer({

@@ -10,9 +10,11 @@ import { GAME_NAMES } from '../../utils/constants';
 import { print } from '../../utils/helpers';
 
 /**
- * Setup
- * Build the card deck
- * Resets previous changes to the store
+ * Setup phase - initializes game state and resources
+ * @param store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ * @param resourceData - Resource data
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
@@ -62,6 +64,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * Asking For Something phase - requester gives clue for items they need
+ * @param _store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareAskingForSomething = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -94,6 +102,12 @@ export const prepareAskingForSomething = async (
   };
 };
 
+/**
+ * Delivering Something phase - answerer delivers items based on clue
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareDeliveringSomethingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -153,6 +167,12 @@ export const prepareDeliveringSomethingPhase = async (
   };
 };
 
+/**
+ * Verification phase - checks if delivered item is correct and updates game state
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareVerificationPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -318,6 +338,13 @@ export const prepareVerificationPhase = async (
   };
 };
 
+/**
+ * Game Over phase - determines winners and saves game data
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

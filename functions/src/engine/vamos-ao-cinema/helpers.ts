@@ -15,9 +15,9 @@ import utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
- * @param currentPhase
- * @param pointsToVictory
- * @returns
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param outcome - The outcome of the reveal phase
  */
 export const determineNextPhase = (currentPhase: string, round: Round, outcome?: string): string => {
   const { SETUP, MOVIE_SELECTION, MOVIE_ELIMINATION, REVEAL, GAME_OVER } = VAMOS_AO_CINEMA_PHASES;
@@ -36,6 +36,10 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome?:
   return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Determines the outcome based on the current game state
+ * @param state - The current Firebase state data
+ */
 export const determineOutcome = (state: FirebaseStateData): string => {
   // During reveal
   if (state.phase === VAMOS_AO_CINEMA_PHASES.REVEAL) {
@@ -53,6 +57,12 @@ export const determineOutcome = (state: FirebaseStateData): string => {
   return OUTCOME.CONTINUE;
 };
 
+/**
+ * Gets the phase outcome based on mistakes and eliminated movies
+ * @param wasMistake - Whether the last selection was a mistake
+ * @param mistakes - The array of mistake IDs
+ * @param eliminatedMovies - The array of eliminated movie IDs
+ */
 export const getPhaseOutcome = (wasMistake: boolean, mistakes: UID[], eliminatedMovies: UID[]) => {
   if (eliminatedMovies.length === TOTAL_MOVIE_OPTIONS - 1) {
     return OUTCOME.DONE;
@@ -83,6 +93,11 @@ export const getFinalMovieId = (eliminatedMovies: UID[]) => {
   return moviesLeft.length === 1 ? moviesLeft[0] : undefined;
 };
 
+/**
+ * Gets the movie title from movies array based on letter
+ * @param movies - The array of movie cards
+ * @param letter - The letter representing the movie
+ */
 export const getMovieTitle = (movies: MovieCard[], letter: string) => {
   return {
     A: `${movies[0].prefix} ${movies[1].suffix}`,
@@ -122,6 +137,12 @@ const getMostFrequentElementFromList = (list: string[]) => {
   return item;
 };
 
+/**
+ * Builds the final movies list with voted poster IDs
+ * @param movies - The dictionary of final movie objects
+ * @param players - The collection of players in the game
+ * @param posters - The dictionary of poster IDs per session
+ */
 export const getFinalMovies = (
   movies: Record<string, FinalMovie>,
   players: Players,
@@ -153,10 +174,17 @@ export const getFinalMovies = (
   return finalMovies;
 };
 
+/**
+ * Gets the array of movie poster IDs
+ */
 export const getMoviePosterIds = () => {
   return makeArray(MOVIE_POSTERS_COUNT, 1).map((id) => `mv-${id}`);
 };
 
+/**
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
+ */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<VamosAoCinemaAchievement>[] = [];
 

@@ -7,10 +7,9 @@ import type { TextCard } from '../../types/tdr';
 import type { FirebaseStoreData, GalleryEntry, Guess, MedidasNaoExatasAchievement } from './types';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and round
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const { SETUP, METRICS_BUILDING, GUESSING, RESULTS, GAME_OVER } = MEDIDAS_NAO_EXATAS_PHASES;
@@ -25,6 +24,17 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
   return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Determines results by scoring player guesses and categorizing them into brackets
+ * @param players - The collection of players in the game
+ * @param presenterId - The ID of the presenter player
+ * @param secretWordId - The ID of the secret word
+ * @param wordsDict - The dictionary of all word cards
+ * @param store - The Firebase store data for tracking achievements
+ * @param metricsDescriptors - The dictionary of metric descriptors for each metric ID
+ * @param metrics - The dictionary of metric values for each metric ID
+ * @param pointsBrackets - The array of point values for each bracket
+ */
 export const determineResults = (
   players: Players,
   presenterId: UID,
@@ -158,6 +168,10 @@ export const determineResults = (
   };
 };
 
+/**
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
+ */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<MedidasNaoExatasAchievement>[] = [];
 

@@ -6,6 +6,12 @@ import type { FirebaseStateData, FirebaseStoreData } from './types';
 // Utils
 import utils from '../../utils';
 
+/**
+ * [Setup Phase] - Initialize game and reset player properties
+ * @param _store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareSetupPhase = async (
   _store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -28,6 +34,12 @@ export const prepareSetupPhase = async (
     },
   };
 };
+/**
+ * [Targeting Phase] - Players select their targets
+ * @param _store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareTargetingPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -55,6 +67,12 @@ export const prepareTargetingPhase = async (
     },
   };
 };
+/**
+ * [Standoff Phase] - Display targeting results
+ * @param _store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareStandoffPhase = async (
   _store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -72,6 +90,12 @@ export const prepareStandoffPhase = async (
     },
   };
 };
+/**
+ * [Duel Phase] - Resolve duels between players
+ * @param _store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareDuelPhase = async (
   _store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -87,6 +111,12 @@ export const prepareDuelPhase = async (
     },
   };
 };
+/**
+ * [Resolution Phase] - Display duel results
+ * @param _store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResolutionPhase = async (
   _store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -103,6 +133,13 @@ export const prepareResolutionPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

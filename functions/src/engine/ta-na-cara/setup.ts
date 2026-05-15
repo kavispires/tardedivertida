@@ -87,6 +87,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Prompt Phase] - Active player selects the secret word
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const preparePromptPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -119,8 +125,12 @@ export const preparePromptPhase = async (
     },
   };
 };
-
-export const prepareAnsweringPhase = async (
+/**
+ * [Answering Phase] - Players answer questions about the secret word
+ * @param _store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */ export const prepareAnsweringPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
@@ -144,8 +154,12 @@ export const prepareAnsweringPhase = async (
     },
   };
 };
-
-export const prepareGuessingPhase = async (
+/**
+ * [Guessing Phase] - Players guess the secret word
+ * @param _store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */ export const prepareGuessingPhase = async (
   store: FirebaseStoreData,
   _state: FirebaseStateData,
   players: Players,
@@ -170,6 +184,12 @@ export const prepareGuessingPhase = async (
   };
 };
 
+/**
+ * [Reveal Phase] - Reveal secret word and calculate scores
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareRevealPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -217,6 +237,13 @@ export const prepareRevealPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

@@ -5,9 +5,8 @@ import type { PastCategories } from './onda-telepatica/types';
 
 /**
  * Gets document from data in firestore
- * @param documentName
- * @param fallback
- * @returns
+ * @param documentName - The name of the document to retrieve
+ * @param fallback - The fallback value if the document doesn't exist
  */
 export const getDataFirebaseDocData = async (documentName: string, fallback: any = {}): Promise<any> => {
   let response: any;
@@ -28,9 +27,8 @@ export const getDataFirebaseDocData = async (documentName: string, fallback: any
 
 /**
  * Saves data to data in firestore
- * @param documentName
- * @param data
- * @returns
+ * @param documentName - The name of the document to update
+ * @param data - The data to save
  */
 export const updateDataFirebaseDoc = async (documentName: string, data: any): Promise<boolean> => {
   const expectedType = Array.isArray(data) ? 'array' : typeof data;
@@ -63,6 +61,12 @@ export const updateDataFirebaseDoc = async (documentName: string, data: any): Pr
   return true;
 };
 
+/**
+ * Recursively updates data collection for drawings or monster drawings with retry logic
+ * @param prefix - The collection prefix type
+ * @param language - The language code
+ * @param data - The data to update
+ */
 export const updateDataCollectionRecursively = async (
   prefix: 'drawings' | 'monsterDrawings',
   language: Language,
@@ -101,6 +105,12 @@ export const updateDataCollectionRecursively = async (
   return true;
 };
 
+/**
+ * Updates card data collection by merging new clues with existing ones
+ * @param type - The type of cards
+ * @param language - The language code
+ * @param data - The card clues data to merge
+ */
 export const updateCardDataCollection = async (
   type: 'cards' | 'imageCards',
   language: Language,
@@ -131,7 +141,11 @@ export const updateCardDataCollection = async (
 
 type OpposingIdeaClue = Record<UID, Record<string | number, any>>;
 
-// TODO: Delete after its run once
+/**
+ * Updates opposing ideas clues from past categories
+ * TODO: Delete after its run once
+ * @param pastCategories - The past categories data to process
+ */
 export const updateOpposingIdeasClues = async (pastCategories: PastCategories) => {
   const previouslySavedCategories: OpposingIdeaClue = await getDataFirebaseDocData(
     DATA_DOCUMENTS.OPPOSING_IDEAS_CLUES,
@@ -165,6 +179,10 @@ export const updateOpposingIdeasClues = async (pastCategories: PastCategories) =
     .update(previouslySavedCategories);
 };
 
+/**
+ * Updates image cards relationships by merging new relationships with existing ones
+ * @param relationships - The image card relationships to merge
+ */
 export const updateImageCardsRelationships = async (relationships: ImageCardRelationship) => {
   const previouslySavedRelationships: ImageCardRelationship = await getDataFirebaseDocData(
     DATA_DOCUMENTS.IMAGE_CARDS_RELATIONSHIPS,
@@ -188,6 +206,11 @@ export const updateImageCardsRelationships = async (relationships: ImageCardRela
     .update(parsedRelationships);
 };
 
+/**
+ * Transpiles relationships from source to result by creating bidirectional connections
+ * @param source - The source relationships to transpile
+ * @param result - The result object to populate with bidirectional relationships
+ */
 function transpileRelationships(source: ImageCardRelationship, result: ImageCardRelationship) {
   Object.entries(source).forEach(([cardId, relatedIds]) => {
     if (result[cardId] === undefined) {

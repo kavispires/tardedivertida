@@ -95,6 +95,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Movie Selection Phase] - Players select movies from available titles
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareMovieSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -139,6 +145,12 @@ export const prepareMovieSelectionPhase = async (
   };
 };
 
+/**
+ * [Movie Elimination Phase] - Players eliminate movies they don't want to watch
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareMovieEliminationPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -169,6 +181,12 @@ export const prepareMovieEliminationPhase = async (
   };
 };
 
+/**
+ * [Reveal Phase] - Reveal selected movie and calculate scores
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareRevealPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -276,6 +294,13 @@ export const prepareRevealPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

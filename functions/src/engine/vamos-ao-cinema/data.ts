@@ -11,8 +11,8 @@ import utils from '../../utils';
 
 /**
  * Get movie titles and reviews based on game's language
- * @param language
- * @returns
+ * @param language - The language code for localized resources
+ * @returns Resource data containing movie cards and review cards
  */
 export const getCards = async (language: string): Promise<ResourceData> => {
   // Get full movies deck
@@ -51,7 +51,9 @@ export const getCards = async (language: string): Promise<ResourceData> => {
 
 /**
  * Save used movies and reviews to the global document
- * @param pastMoviesAndReviews
+ * @param movies - Array of movie cards used in the game
+ * @param goodReviews - Array of good review cards used
+ * @param badReviews - Array of bad review cards used
  */
 export const saveData = async (
   movies: MovieCard[],

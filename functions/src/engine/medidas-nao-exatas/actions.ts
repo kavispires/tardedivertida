@@ -4,6 +4,14 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 import type { Guess } from './types';
 
+/**
+ * Submits the pool of items and secret word for the round
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the pool
+ * @param poolIds - Array of item IDs in the pool
+ * @param secretWordId - The secret word ID
+ */
 export const handleSubmitPool = async (
   gameName: string,
   gameId: UID,
@@ -20,6 +28,13 @@ export const handleSubmitPool = async (
   });
 };
 
+/**
+ * Submits the metrics for the items
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting metrics
+ * @param metrics - Dictionary mapping item IDs to metric values
+ */
 export const handleSubmitMetrics = async (
   gameName: string,
   gameId: UID,
@@ -36,6 +51,13 @@ export const handleSubmitMetrics = async (
   });
 };
 
+/**
+ * Submits the player's guesses for item positions
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting guesses
+ * @param guesses - Array of guess objects
+ */
 export const handleSubmitGuess = async (gameName: string, gameId: UID, playerId: UID, guesses: Guess[]) => {
   return await utils.firestore.updatePlayer({
     gameName,

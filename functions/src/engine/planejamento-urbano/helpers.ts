@@ -6,10 +6,8 @@ import type { FirebaseStoreData, PlanejamentoUrbanoAchievement } from './types';
 
 /**
  * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @param isGameOver
- * @returns
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const { SETUP, PLANNING, PLACING, RESOLUTION, GAME_OVER } = PLANEJAMENTO_URBANO_PHASES;
@@ -22,6 +20,10 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
   return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
+ */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<PlanejamentoUrbanoAchievement>[] = [];
 

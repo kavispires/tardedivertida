@@ -5,11 +5,10 @@ import utils from '../../utils';
 import type { FirebaseStoreData, QuemSouEuAchievement } from './types';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @param isGameOver
- * @returns
+ * Determines the next phase based on the current phase and game mode
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param imageCardsMode - Whether the game is in image cards mode
  */
 export const determineNextPhase = (currentPhase: string, round: Round, imageCardsMode: boolean): string => {
   const { SETUP, CHARACTER_FILTERING, CHARACTER_DESCRIPTION, GUESSING, RESULTS, GAME_OVER } =
@@ -28,9 +27,9 @@ export const determineNextPhase = (currentPhase: string, round: Round, imageCard
 };
 
 /**
- * Build round ranking
- * @param players - it modifies players
- * @returns
+ * Build round ranking by scoring player guesses
+ * @param players - The collection of players in the game (this function modifies players)
+ * @param currentRound - The current round number
  */
 export const buildRanking = (players: Players, currentRound: number) => {
   // Gained Points: [from guesses, from others]
@@ -72,6 +71,12 @@ type GalleryEntry = {
   playersPoints: Record<UID, number>;
 };
 
+/**
+ * Builds gallery entries with player guesses and points
+ * @param store - The Firebase store data for tracking achievements
+ * @param players - The collection of players in the game
+ * @param currentRound - The current round number
+ */
 export const buildGallery = (store: PlainObject, players: Players, currentRound: number): GalleryEntry[] => {
   const listOfPlayers = utils.players.getListOfPlayers(players);
 
@@ -126,8 +131,8 @@ export const buildGallery = (store: PlainObject, players: Players, currentRound:
 };
 
 /**
- * Get achievements
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<QuemSouEuAchievement>[] = [];

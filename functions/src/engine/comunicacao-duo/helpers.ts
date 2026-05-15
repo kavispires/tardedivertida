@@ -12,10 +12,10 @@ import {
 import type { ContenderCard, Item, SuspectCard, TextCard } from '../../types/tdr';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and round
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param nextPhase - Optional specific next phase to use
  */
 export const determineNextPhase = (
   currentPhase: string,
@@ -34,6 +34,11 @@ export const determineNextPhase = (
   return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Applies data from the list to the deck entries based on the type
+ * @param list - The list of data to apply to the deck
+ * @param type - The type of data being applied (images, items, words, contenders, suspects)
+ */
 export const applyDataToDeck = (list: unknown[], type: string): DeckEntry[] => {
   return shuffle(DECK).map((entry, index) => {
     if (type === 'images') {
@@ -101,6 +106,10 @@ export const applyDataToDeck = (list: unknown[], type: string): DeckEntry[] => {
   });
 };
 
+/**
+ * Counts the number of deliverable items remaining in the deck for each player
+ * @param deck - The array of deck entries
+ */
 export const countDeliverablesLeft = (deck: DeckEntry[]): Summary => {
   let deliverablesLeftForA = 0;
   let deliverablesLeftForB = 0;
@@ -129,8 +138,8 @@ export const countDeliverablesLeft = (deck: DeckEntry[]): Summary => {
 };
 
 /**
- * Get achievements
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<ComunicacaoDuoAchievement>[] = [];

@@ -93,6 +93,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Word Selection Phase] - Active player selects secret word
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareWordSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -134,6 +140,12 @@ export const prepareWordSelectionPhase = async (
   };
 };
 
+/**
+ * [Suggest Phase] - Players suggest clues for the secret word
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareSuggestPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -169,8 +181,12 @@ export const prepareSuggestPhase = async (
     },
   };
 };
-
-export const prepareComparePhase = async (
+/**
+ * [Compare Phase] - Players compare and group their clues
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */ export const prepareComparePhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
@@ -195,8 +211,12 @@ export const prepareComparePhase = async (
     },
   };
 };
-
-export const prepareGuessPhase = async (
+/**
+ * [Guess Phase] - Active player guesses based on clues
+ * @param _store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */ export const prepareGuessPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
@@ -214,8 +234,12 @@ export const prepareGuessPhase = async (
     },
   };
 };
-
-export const prepareVerifyGuessPhase = async (
+/**
+ * [Verify Guess Phase] - Players verify if the guess was correct
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */ export const prepareVerifyGuessPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
@@ -252,6 +276,12 @@ export const prepareVerifyGuessPhase = async (
   };
 };
 
+/**
+ * [Result Phase] - Display round results and update scores
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResultPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -321,6 +351,13 @@ export const prepareResultPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

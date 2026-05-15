@@ -114,6 +114,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Card Selection Phase] - Players select cards for the current CAPTCHA challenge
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareCardSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -145,6 +151,12 @@ export const prepareCardSelectionPhase = async (
   };
 };
 
+/**
+ * [Are You A Robot Phase] - Players identify robot vs human cards
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareAreYouARobotPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -196,6 +208,12 @@ export const prepareAreYouARobotPhase = async (
   };
 };
 
+/**
+ * [Results Phase] - Display round results and update scores
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -233,6 +251,13 @@ export const prepareResultsPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

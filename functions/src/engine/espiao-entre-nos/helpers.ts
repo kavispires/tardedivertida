@@ -7,11 +7,10 @@ import type { FirebaseStateData, FirebaseStoreData, Outcome } from './types';
 import utils from '../../utils';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @param outcome
- * @returns
+ * Determines the next phase based on the current phase and outcome
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param outcome - The outcome of the investigation
  */
 export const determineNextPhase = (currentPhase: string, round: Round, outcome: Outcome): string => {
   const { SETUP, ASSIGNMENT, INVESTIGATION, ASSESSMENT, FINAL_ASSESSMENT, RESOLUTION, GAME_OVER } =
@@ -48,10 +47,9 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
 };
 
 /**
- * Created a list of roles, if the roles available is less than the number of players, it repeats the first role any number of times necessary
- * @param roles
- * @param playerCount
- * @returns
+ * Creates a list of roles, repeating the first role if needed to match player count
+ * @param roles - The array of available roles
+ * @param playerCount - The number of players in the game
  */
 export const createRolesPool = (roles: string[], playerCount: number): string[] => {
   const shuffledRoles = shuffle(roles);
@@ -68,12 +66,10 @@ export const createRolesPool = (roles: string[], playerCount: number): string[] 
 };
 
 /**
- * Give a role to each player
- * It modifies Players!
- * @param roles
- * @param locationName
- * @param players
- * @returns
+ * Distributes roles to each player and identifies the spy
+ * @param roles - The array of roles to distribute
+ * @param locationName - The name of the location
+ * @param players - The collection of players in the game
  */
 export const distributeRoles = (roles: string[], locationName: string, players: Players) => {
   let currentSpyId = '';
@@ -93,10 +89,21 @@ export const distributeRoles = (roles: string[], locationName: string, players: 
   return currentSpyId;
 };
 
+/**
+ * Calculates the remaining time based on the timer state
+ * @param timeRemaining - The time remaining in milliseconds
+ * @param timerUpdatedAt - The timestamp when the timer was last updated
+ */
 export const calculateTimeRemaining = (timeRemaining: number, timerUpdatedAt: number): number => {
   return (timeRemaining ?? GAME_DURATION) - (timerUpdatedAt ? Date.now() - timerUpdatedAt : 0);
 };
 
+/**
+ * Checks the current game outcome based on timer, voting, and spy actions
+ * @param state - The current state data from Firebase
+ * @param store - The Firebase store data
+ * @param players - The collection of players in the game
+ */
 export const checkOutcome = (
   state: FirebaseStateData,
   store: FirebaseStoreData,
@@ -158,6 +165,14 @@ export const checkOutcome = (
   };
 };
 
+/**
+ * Calculates player scores based on spy outcomes and accusations
+ * @param players - The collection of players in the game
+ * @param isSpyGuess - Whether the spy made a guess
+ * @param isSpyWin - Whether the spy won
+ * @param currentSpyId - The ID of the current spy player
+ * @param accuserId - The ID of the player who accused the spy
+ */
 export const calculateScore = (
   players: Players,
   isSpyGuess: boolean,
@@ -189,6 +204,11 @@ export const calculateScore = (
   });
 };
 
+/**
+ * Determines the player order for final assessment starting from the last player
+ * @param lastPlayerId - The ID of the last player
+ * @param gameOrder - The array of player IDs in game order
+ */
 export const determineFinalAssessmentPlayerOrder = (lastPlayerId: UID, gameOrder: UID[]): UID[] => {
   const lastPlayerIndex = gameOrder.indexOf(lastPlayerId);
 

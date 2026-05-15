@@ -5,12 +5,11 @@ import { getNextPhase } from '.';
 import type { ClueId } from './types';
 
 /**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param bossId
- * @returns
+ * Submits the boss player ID for the round
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the boss selection
+ * @param bossId - The selected boss player ID
  */
 export const handleSubmitBossPlayer = async (
   gameName: string,
@@ -31,13 +30,12 @@ export const handleSubmitBossPlayer = async (
 };
 
 /**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param secretWord
- * @param categories
- * @returns
+ * Submits the secret word and associated categories
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The boss player ID submitting the word
+ * @param secretWord - The secret word string
+ * @param categories - Array of category strings
  */
 export const handleSubmitSecretWord = async (
   gameName: string,
@@ -60,13 +58,12 @@ export const handleSubmitSecretWord = async (
 };
 
 /**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param clues
- * @param guesses
- * @returns
+ * Submits player's clues and optional guesses
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting clues
+ * @param clues - Array of clue strings
+ * @param [guesses] - Optional array of guess strings
  */
 export const handleSubmitPlayerClues = async (
   gameName: string,
@@ -87,12 +84,11 @@ export const handleSubmitPlayerClues = async (
 };
 
 /**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param evaluation
- * @returns
+ * Submits the boss's evaluation of submitted clues
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The boss player ID submitting evaluation
+ * @param evaluation - Dictionary mapping clue IDs to validity (boolean)
  */
 export const handleSubmitEvaluation = async (
   gameName: string,
@@ -116,14 +112,12 @@ export const handleSubmitEvaluation = async (
   });
 };
 
-// TODO: SUBMIT_FAIL
 /**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param outcome
- * @returns
+ * Submits the outcome of the guessing phase
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the outcome
+ * @param outcome - The outcome string
  */
 export const handleSubmitOutcome = async (gameName: string, gameId: UID, playerId: UID, outcome: string) => {
   return await utils.firestore.updateState({
@@ -139,12 +133,11 @@ export const handleSubmitOutcome = async (gameName: string, gameId: UID, playerI
 };
 
 /**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param clueId
- * @returns
+ * Submits a request to use a helper for a specific clue
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID requesting help
+ * @param clueId - The clue ID to resolve with help
  */
 export const handleSubmitHelp = async (gameName: string, gameId: UID, playerId: UID, clueId: ClueId) => {
   return await utils.firestore.updateState({

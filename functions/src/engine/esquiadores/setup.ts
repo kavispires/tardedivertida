@@ -20,10 +20,11 @@ import { aggregateBets, applyBetsToLodges, calculateScores, getAchievements } fr
 import { makeArray } from '../../utils/helpers';
 
 /**
- * Setup
- * Build the card deck
- * Resets previous changes to the store
- * @returns
+ * Setup phase - initializes game state and resources
+ * @param _store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ * @param resourceData - Resource data
  */
 export const prepareSetupPhase = async (
   _store: FirebaseStoreData,
@@ -68,6 +69,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * Bets phase - players place bets on skier positions
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareBetsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -146,6 +153,12 @@ export const prepareBetsPhase = async (
   };
 };
 
+/**
+ * Starting Results phase - shows initial race positions
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareStartingResultsPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -220,6 +233,12 @@ export const prepareStartingResultsPhase = async (
   };
 };
 
+/**
+ * Boosts phase - players use boosts to affect skier positions
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareBoostsPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -254,6 +273,12 @@ export const prepareBoostsPhase = async (
   };
 };
 
+/**
+ * Preliminary Results phase - shows updated positions after boosts
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const preparePreliminaryResultsPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -291,6 +316,12 @@ export const preparePreliminaryResultsPhase = async (
   };
 };
 
+/**
+ * Last Change phase - final opportunity to change bets
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareLastChangePhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -325,6 +356,12 @@ export const prepareLastChangePhase = async (
   };
 };
 
+/**
+ * Results phase - reveals final positions and calculates scores
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -390,6 +427,13 @@ export const prepareResultsPhase = async (
   };
 };
 
+/**
+ * Game Over phase - determines winners and saves game data
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

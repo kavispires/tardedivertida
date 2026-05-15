@@ -103,6 +103,10 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Witness Selection Phase] - Select the witness for the round
+ * @param players - The players object
+ */
 export const prepareWitnessSelectionPhase = async (players: Players): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
 
@@ -117,6 +121,12 @@ export const prepareWitnessSelectionPhase = async (players: Players): Promise<Sa
   };
 };
 
+/**
+ * [Question Selection Phase] - Witness selects questions to answer
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareQuestionSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -194,8 +204,12 @@ export const prepareQuestionSelectionPhase = async (
     },
   };
 };
-
-export const prepareQuestioningPhase = async (
+/**
+ * [Questioning Phase] - Players question the witness
+ * @param _store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */ export const prepareQuestioningPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
@@ -217,8 +231,12 @@ export const prepareQuestioningPhase = async (
     },
   };
 };
-
-export const prepareTrialPhase = async (
+/**
+ * [Trial Phase] - Players vote on suspect identifications
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */ export const prepareTrialPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
@@ -267,6 +285,13 @@ export const prepareTrialPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

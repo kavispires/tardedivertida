@@ -18,11 +18,10 @@ import type {
 import utils from '../../utils';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @param isGameOver
- * @returns
+ * Determines the next phase based on the current phase and game state
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param isGameOver - Whether the game is over
  */
 export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
   const { SETUP, STORY, CARD_PLAY, VOTING, RESOLUTION, GAME_OVER } = CONTADORES_HISTORIAS_PHASES;
@@ -37,10 +36,21 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
   return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Builds the table deck by extracting the specified number of cards
+ * @param allCards - The array of all available card IDs
+ * @param quantity - The number of cards to extract for the table deck
+ */
 export const buildTableDeck = (allCards: UID[], quantity: number): UID[] => {
   return allCards.splice(0, quantity);
 };
 
+/**
+ * Gets a slice of table cards from the deck starting at the specified index
+ * @param tableDeck - The array of table card IDs
+ * @param deckIndex - The starting index in the deck
+ * @param quantity - The number of cards to retrieve
+ */
 export const getTableCards = (tableDeck: UID[], deckIndex: number, quantity: number): UID[] => {
   return Array(quantity)
     .fill(1)
@@ -49,6 +59,12 @@ export const getTableCards = (tableDeck: UID[], deckIndex: number, quantity: num
     });
 };
 
+/**
+ * Builds and shuffles the table with player cards and NPC cards
+ * @param players - The collection of players in the game
+ * @param tableCards - The array of card IDs to add to the table
+ * @param storyteller - The ID of the player who is the storyteller
+ */
 export const buildTable = (players: Players, tableCards: UID[], storyteller: UID): Table => {
   const table: Table = [];
 
@@ -73,6 +89,10 @@ export const buildTable = (players: Players, tableCards: UID[], storyteller: UID
   return shuffle(table);
 };
 
+/**
+ * Builds an index mapping cards to their positions and identifies the solution
+ * @param table - The table array containing card entries
+ */
 export const buildCardIndex = (table: Table) => {
   let solutionIndex = -1;
 
@@ -91,6 +111,12 @@ export const buildCardIndex = (table: Table) => {
   };
 };
 
+/**
+ * Determines the outcome based on how many players voted for the solution
+ * @param table - The table array containing card entries
+ * @param solutionIndex - The index of the solution card in the table
+ * @param playerCount - The number of players in the game
+ */
 export const determineOutcome = (table: Table, solutionIndex: number, playerCount: number): string => {
   if (table[solutionIndex].votes.length === playerCount) {
     return OUTCOME.EVERYBODY_GOT;
@@ -103,6 +129,14 @@ export const determineOutcome = (table: Table, solutionIndex: number, playerCoun
   return OUTCOME.NORMAL;
 };
 
+/**
+ * Calculates player rankings based on votes and outcome
+ * @param table - The table array containing card entries
+ * @param players - The collection of players in the game
+ * @param outcome - The outcome of the round
+ * @param storytellerId - The ID of the player who is the storyteller
+ * @param store - The Firebase store data for tracking achievements
+ */
 export const getRanking = (
   table: Table,
   players: Players,
@@ -161,6 +195,13 @@ export const getRanking = (
   return scores.rank(players);
 };
 
+/**
+ * Scores a round by processing votes and calculating rankings
+ * @param players - The collection of players in the game
+ * @param table - The table array containing card entries
+ * @param storyteller - The ID of the player who is the storyteller
+ * @param store - The Firebase store data for tracking achievements
+ */
 export const scoreRound = (players: Players, table: Table, storyteller: UID, store: FirebaseStoreData) => {
   const { solutionIndex, cardIndexDictionary } = buildCardIndex(table);
 
@@ -185,8 +226,9 @@ export const scoreRound = (players: Players, table: Table, storyteller: UID, sto
  * Determine if a game should be over
  * If "for points", if a player has passed 30 points
  * If "normal", if a player has been the storyteller twice (1-5p) or once (6p+)
- * @param players
- * @returns
+ * @param players - The collection of players in the game
+ * @param options - The game configuration options
+ * @param round - The round object containing current round information
  */
 export const determineGameOver = (
   players: Players,
@@ -208,8 +250,8 @@ export const determineGameOver = (
 };
 
 /**
- * Get achievements:
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<ContadoresHistoriasAchievement>[] = [];

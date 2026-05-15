@@ -9,8 +9,9 @@ import { orderBy, sample } from 'lodash';
 
 /**
  * Get words resource based on the game's language
- * @param language
- * @returns
+ * @param language - The language code for localized resources
+ * @param options - Game options including NSFW setting and deck type selection
+ * @returns Resource data containing deck based on selected type (items, images, words, contenders, or suspects)
  */
 export const getDeck = async (language: Language, options: ComunicacaoDuoOptions): Promise<ResourceData> => {
   const allowNSFW = !!options?.nsfw;

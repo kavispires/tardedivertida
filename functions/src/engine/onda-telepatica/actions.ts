@@ -4,12 +4,11 @@ import utils from '../../utils';
 import { getNextPhase } from '.';
 
 /**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param categoryId
- * @returns
+ * Submits the category for the round
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the category
+ * @param categoryId - The selected category ID
  */
 export const handleSubmitCategory = async (
   gameName: string,
@@ -29,12 +28,11 @@ export const handleSubmitCategory = async (
 };
 
 /**
- * When psychic submits the round's clue
- * @param gameName
- * @param gameId
- * @param playerId
- * @param clue
- * @returns
+ * Submits the psychic's clue for the round
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The psychic player ID submitting the clue
+ * @param clue - The clue text
  */
 export const handleSubmitClue = async (gameName: string, gameId: UID, playerId: UID, clue: string) => {
   return await utils.firestore.updateStore({
@@ -50,12 +48,11 @@ export const handleSubmitClue = async (gameName: string, gameId: UID, playerId: 
 };
 
 /**
- * When each player submit their round's guess
- * @param gameName
- * @param gameId
- * @param playerId
- * @param guess
- * @returns
+ * Submits each player's guess for the round
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the guess
+ * @param guess - The guess value (number or boolean)
  */
 export const handleSubmitGuess = async (
   gameName: string,

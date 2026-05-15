@@ -4,6 +4,13 @@ import { shuffle } from 'lodash';
 // Internal functions
 import { getNextPhase } from './index';
 
+/**
+ * Submits the player's selected characters
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting characters
+ * @param characters - Array of character IDs
+ */
 export const handleSubmitCharacters = async (
   gameName: string,
   gameId: UID,
@@ -21,6 +28,13 @@ export const handleSubmitCharacters = async (
   });
 };
 
+/**
+ * Submits the player's selected glyphs for communication
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting glyphs
+ * @param glyphs - Dictionary of glyph selections
+ */
 export const handleSubmitGlyphs = async (
   gameName: string,
   gameId: UID,
@@ -38,6 +52,14 @@ export const handleSubmitGlyphs = async (
   });
 };
 
+/**
+ * Submits the player's guesses matching players to characters
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting guesses
+ * @param guesses - Dictionary mapping player IDs to character IDs
+ * @param choseRandomly - Whether guesses were chosen randomly
+ */
 export const handleSubmitGuesses = async (
   gameName: string,
   gameId: UID,

@@ -16,7 +16,11 @@ import { buildGalleryAndRanking, gatherConcepts } from './helpers';
 import type { Item } from '../../types/tdr';
 
 /**
- * Setup
+ * Setup phase - initializes game state and resources
+ * @param _store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ * @param additionalData - Resource data
  */
 export const prepareSetupPhase = async (
   _store: FirebaseStoreData,
@@ -233,7 +237,18 @@ export const prepareResultsPhase = async (
     },
   };
 };
-
+/**
+ * Guessing phase - players guess concepts from drawings
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ *//**
+ * Game Over phase - determines winners and saves game data
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

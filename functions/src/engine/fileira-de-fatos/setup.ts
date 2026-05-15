@@ -11,10 +11,11 @@ import utils from '../../utils';
 import { buildRanking, getAchievements } from './helpers';
 
 /**
- * Setup
- * Build the card deck
- * Resets previous changes to the store
- * @returns
+ * Setup phase - initializes game state and resources
+ * @param _store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ * @param resourceData - Resource data
  */
 export const prepareSetupPhase = async (
   _store: FirebaseStoreData,
@@ -57,6 +58,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * Scenario Ordering phase - players order scenarios chronologically
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareScenarioOrderingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -92,6 +99,12 @@ export const prepareScenarioOrderingPhase = async (
   };
 };
 
+/**
+ * Results phase - reveals correct order and calculates scores
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -126,6 +139,13 @@ export const prepareResultsPhase = async (
   };
 };
 
+/**
+ * Game Over phase - determines winners and saves game data
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

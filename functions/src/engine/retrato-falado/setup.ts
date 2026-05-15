@@ -52,6 +52,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Composite Sketch Phase] - Witness describes monster, players draw
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareCompositeSketchPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -82,6 +88,12 @@ export const prepareCompositeSketchPhase = async (
   };
 };
 
+/**
+ * [Evaluation Phase] - Players vote on the best sketch
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareEvaluationPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -110,6 +122,12 @@ export const prepareEvaluationPhase = async (
   };
 };
 
+/**
+ * [Reveal Phase] - Display voting results and reveal monster
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareRevealPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -146,6 +164,13 @@ export const prepareRevealPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

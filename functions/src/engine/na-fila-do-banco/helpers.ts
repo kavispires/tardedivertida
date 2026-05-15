@@ -14,10 +14,10 @@ import utils from '../../utils';
 import { AVATARS_COLORS } from '../../utils/constants';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and outcome
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param outcome - The outcome of the round
  */
 export const determineNextPhase = (currentPhase: string, round: Round, outcome: string): string => {
   const { SETUP, CARD_PLAY, ROUND_RESOLUTION, GAME_OVER } = NA_FILA_DO_BANCO_PHASES;
@@ -38,6 +38,10 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
   return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Builds the deck of client cards for all players
+ * @param players - The collection of players in the game
+ */
 export const buildDeck = (players: Players): ClientCard[] => {
   const deck: ClientCard[] = [];
   let decksCount = -1;
@@ -143,6 +147,11 @@ export const getDistantColors = (players: Players, minDistance = 2): string[] =>
   return selectedIds;
 };
 
+/**
+ * Builds tellers with capacities adjusted for player count and current round
+ * @param playerCount - The number of players in the game
+ * @param currentRound - The current round number
+ */
 export const buildTellers = (playerCount: number, currentRound: number): Dictionary<Teller> => {
   const tellers: Dictionary<Teller> = {};
   const cuttingCapacity = [0, 0, 3, 3, 4, 5][playerCount]; // The number of capacities to remove from the end of the array based on player count, to adjust the game difficulty. For example, with 3 players, it removes the last 3 capacities, which are the higher ones, to make the game easier with less players
@@ -161,8 +170,8 @@ export const buildTellers = (playerCount: number, currentRound: number): Diction
 };
 
 /**
- * Get achievements
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<NaFilaDoBancoAchievement>[] = [];

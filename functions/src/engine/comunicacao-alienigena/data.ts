@@ -14,11 +14,10 @@ import type { AlienItem } from '../../utils/tool-kits/alien-attributes';
 
 /**
  * Get characters based on the game's language
- * @param language
- * @param playerCount
- * @param botAlien
- * @param allowNSFW
- * @returns
+ * @param language - The language code for localized resources
+ * @param playerCount - Number of players in the game
+ * @param options - Game options including NSFW setting and bot alien flag
+ * @returns Resource data containing alien items and attributes
  */
 export const getResourceData = async (
   language: Language,
@@ -87,8 +86,8 @@ export const getResourceData = async (
 
 /**
  * Saved used alien item ids
- * @param items
- * @returns
+ * @param items - Array of alien items used in the game
+ * @returns True if save was successful
  */
 export const saveUsedItems = async (items: AlienItem[]): Promise<boolean> => {
   return await utils.tdr.saveUsedAlienItems(items);

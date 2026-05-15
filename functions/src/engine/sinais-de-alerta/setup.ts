@@ -64,6 +64,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Drawing Phase] - Players draw based on their assigned cards
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareDrawingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -100,6 +106,12 @@ export const prepareDrawingPhase = async (
   };
 };
 
+/**
+ * [Evaluation Phase] - Players guess the subject and descriptor of drawings
+ * @param _store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareEvaluationPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -137,6 +149,12 @@ export const prepareEvaluationPhase = async (
   };
 };
 
+/**
+ * [Gallery Phase] - Display all drawings and their evaluations
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGalleryPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -164,6 +182,13 @@ export const prepareGalleryPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

@@ -15,13 +15,10 @@ import utils from '../../utils';
 import type { FirebaseStoreData, TestemunhaOcularAchievement } from './types';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param currentRound
- * @param lose
- * @param win
- * @param triggerLastRound
- * @returns
+ * Determine the next phase based on the current phase and outcome
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param outcome - The outcome of the trial
  */
 export const determineNextPhase = (currentPhase: string, round: Round, outcome: Outcome): string => {
   const { SETUP, WITNESS_SELECTION, QUESTION_SELECTION, QUESTIONING, TRIAL, FINAL_TRIAL, GAME_OVER } =
@@ -47,6 +44,14 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
   return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Gets a pool of suspects based on game configuration
+ * @param allSuspects - The array of all suspect cards
+ * @param language - The game language
+ * @param largerPool - Whether to use a larger pool of suspects
+ * @param targetedPool - Whether to use a targeted pool based on attributes
+ * @param isGbExclusive - Whether to use GB exclusive suspects only
+ */
 export const getPoolOfSuspects = (
   allSuspects: SuspectCard[],
   language: string,
@@ -84,6 +89,10 @@ export const getPoolOfSuspects = (
   return orderBy(orderedPool.slice(startIndex, startIndex + poolSize), [`name.${language}`], ['asc']);
 };
 
+/**
+ * Builds a questions deck organized by difficulty level
+ * @param allQuestions - The array of all testimony question cards
+ */
 export function buildQuestionsDeck(allQuestions: TestimonyQuestionCard[]): TestimonyQuestionCard[] {
   // Separate the questions by level
   const questionsByLevel: Dictionary<TestimonyQuestionCard[]> = {};
@@ -167,8 +176,9 @@ export const calculateScore = (
 };
 
 /**
- * Get achievements:
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
+ * @param witnessId - The ID of the player who was the witness
  */
 export const getAchievements = (store: FirebaseStoreData, witnessId: UID) => {
   const achievements: Achievement<TestemunhaOcularAchievement>[] = [];

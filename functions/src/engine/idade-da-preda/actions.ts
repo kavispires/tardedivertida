@@ -3,6 +3,13 @@ import utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
 
+/**
+ * Submits the player's proposed concepts for items
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting concepts
+ * @param proposedConcepts - Array of concept objects with meanings and associated items
+ */
 export const handleSubmitConcepts = async (
   gameName: string,
   gameId: UID,
@@ -28,6 +35,13 @@ export const handleSubmitConcepts = async (
   });
 };
 
+/**
+ * Submits the player's downvoted concept IDs
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID downvoting concepts
+ * @param conceptIds - Array of concept IDs to downvote
+ */
 export const handleDownvoteConcepts = async (
   gameName: string,
   gameId: UID,
@@ -45,6 +59,15 @@ export const handleDownvoteConcepts = async (
   });
 };
 
+/**
+ * Submits a proposed name for an item using concepts
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID proposing a name
+ * @param itemId - The item ID being named
+ * @param name - The proposed name
+ * @param conceptsIds - Array of concept IDs used in the name
+ */
 export const handleSubmitName = async (
   gameName: string,
   gameId: UID,
@@ -70,6 +93,14 @@ export const handleSubmitName = async (
   });
 };
 
+/**
+ * Submits the player's guesses matching items to names
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting guesses
+ * @param guesses - Dictionary mapping item IDs to name IDs
+ * @param choseRandomly - Whether guesses were chosen randomly
+ */
 export const handleSubmitGuesses = async (
   gameName: string,
   gameId: UID,

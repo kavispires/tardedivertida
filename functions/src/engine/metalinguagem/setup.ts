@@ -56,6 +56,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Word Creation Phase] - Creator makes a word from item names
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareWordCreationPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -95,6 +101,12 @@ export const prepareWordCreationPhase = async (
   };
 };
 
+/**
+ * [Guessing Phase] - Players guess which items form the word
+ * @param _store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGuessingPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -124,6 +136,12 @@ export const prepareGuessingPhase = async (
   };
 };
 
+/**
+ * [Results Phase] - Display round results and update word lengths
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -245,6 +263,13 @@ export const prepareResultsPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

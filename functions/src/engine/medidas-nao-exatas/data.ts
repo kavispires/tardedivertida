@@ -9,7 +9,8 @@ import * as resourceUtils from '../resource';
 
 /**
  * Get resource data for the game
- * @param language
+ * @param language - The language code for localized resources
+ * @returns Resource data containing single words and descriptor cards
  */
 export const getResourceData = async (language: Language): Promise<ResourceData> => {
   // Text cards to make the pool

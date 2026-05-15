@@ -7,8 +7,8 @@ import { findDuplicateSuggestions } from './helpers';
 
 /**
  * Get word cards resource based on the game's language
- * @param language
- * @returns
+ * @param language - The language code for localized resources
+ * @returns Array of single word text cards
  */
 export const getWords = async (language: Language) => {
   return await utils.tdr.getSingleWords(language);
@@ -16,8 +16,8 @@ export const getWords = async (language: Language) => {
 
 /**
  * Saves used cards and created data
- * @param pastSuggestions
- * @param language
+ * @param pastSuggestions - Array of past suggestions with card IDs and player suggestions
+ * @param language - The language code for the saved data
  */
 export const saveData = async (pastSuggestions: PastSuggestion[], language: Language) => {
   // Save used cards

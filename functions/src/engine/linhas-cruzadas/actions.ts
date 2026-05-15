@@ -4,12 +4,12 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 /**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param promptId
- * @returns
+ * Submits the player's selected prompt
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the prompt
+ * @param promptId - The selected prompt ID
+ * @param [randomSelection] - Whether the selection was random
  */
 export const handleSubmitPrompt = async (
   gameName: string,
@@ -30,12 +30,11 @@ export const handleSubmitPrompt = async (
 };
 
 /**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param drawing
- * @returns
+ * Submits the player's drawing
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the drawing
+ * @param drawing - The drawing data string
  */
 export const handleSubmitDrawing = async (gameName: string, gameId: UID, playerId: UID, drawing: string) => {
   return await utils.firestore.updatePlayer({
@@ -50,12 +49,11 @@ export const handleSubmitDrawing = async (gameName: string, gameId: UID, playerI
 };
 
 /**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param guess
- * @returns
+ * Submits the player's guess for a drawing
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the guess
+ * @param guess - The guess string
  */
 export const handleSubmitGuess = async (gameName: string, gameId: UID, playerId: UID, guess: string) => {
   return await utils.firestore.updatePlayer({

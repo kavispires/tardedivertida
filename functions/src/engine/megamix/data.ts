@@ -46,10 +46,10 @@ import {
 
 /**
  * Get data based on the track options selected by the players
- * @param language
- * @param options
- * @param playerCount
- * @returns
+ * @param language - The language code for localized resources
+ * @param options - Game options including tracks selection and NSFW setting
+ * @param playerCount - Number of players in the game
+ * @returns Resource data containing custom tracks for the megamix game
  */
 export const getData = async (
   language: Language,

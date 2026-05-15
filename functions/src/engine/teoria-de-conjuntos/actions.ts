@@ -7,14 +7,11 @@ import type { DiagramArea, FirebaseStateData, Guess } from './types';
 import { OUTCOME } from './constants';
 
 /**
- * Submits the selected judge player ID for a given game.
- * @function
- * @async
- * @param gameName - The name of the game.
- * @param gameId - The ID of the game.
- * @param playerId - The ID of the player who is submitting the judge ID.
- * @param judgeId - The ID of the selected judge player.
- * @returns - A promise that resolves after the update is complete.
+ * Submits the selected judge player ID for the game
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the judge selection
+ * @param judgeId - The ID of the selected judge player
  */
 export const handleSubmitJudge = async (gameName: string, gameId: UID, playerId: UID, judgeId: UID) => {
   return await utils.firestore.updateState({
@@ -30,6 +27,14 @@ export const handleSubmitJudge = async (gameName: string, gameId: UID, playerId:
   });
 };
 
+/**
+ * Submits an item placement on the Venn diagram
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID placing the item
+ * @param itemId - The item ID being placed
+ * @param position - The position/area on the diagram
+ */
 export const handleSubmitItemDiagram = async (
   gameName: string,
   gameId: UID,
@@ -56,6 +61,13 @@ export const handleSubmitItemDiagram = async (
   });
 };
 
+/**
+ * Submits the judge's evaluation of an item placement
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The judge player ID submitting evaluation
+ * @param evaluation - The evaluation string (correct area)
+ */
 export const handleSubmitEvaluation = async (
   gameName: string,
   gameId: UID,
@@ -74,6 +86,15 @@ export const handleSubmitEvaluation = async (
   });
 };
 
+/**
+ * Fixes a previously submitted evaluation by moving an item to a new area
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The judge player ID fixing the evaluation
+ * @param itemId - The item ID to move
+ * @param currentArea - The current area where the item is located
+ * @param newEvaluation - The new correct area for the item
+ */
 export const handleSubmitEvaluationFix = async (
   gameName: string,
   gameId: UID,

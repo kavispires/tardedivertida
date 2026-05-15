@@ -16,9 +16,11 @@ import { determineStudentsThatCanBeRumored } from './helpers';
 import type { TeenageRumor } from '../../types/tdr';
 
 /**
- * Setup
- * Build the card deck
- * Resets previous changes to the store
+ * Setup phase - initializes game state and resources
+ * @param store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ * @param resourceData - Resource data
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
@@ -111,6 +113,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * Gossiper Selection phase - players select who will be the gossiper
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGossiperSelectionPhase = async (
   _store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -129,6 +137,12 @@ export const prepareGossiperSelectionPhase = async (
   };
 };
 
+/**
+ * Board Setup phase - sets up the school board with locations
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareBoardSetupPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -158,6 +172,12 @@ export const prepareBoardSetupPhase = async (
   };
 };
 
+/**
+ * Intimidation phase - gossiper intimidates other players
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareIntimidationPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -198,6 +218,12 @@ export const prepareIntimidationPhase = async (
   };
 };
 
+/**
+ * Rumor phase - gossiper spreads a rumor
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareRumorPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -237,6 +263,12 @@ export const prepareRumorPhase = async (
   };
 };
 
+/**
+ * Response phase - players respond to the rumor
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResponsePhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,

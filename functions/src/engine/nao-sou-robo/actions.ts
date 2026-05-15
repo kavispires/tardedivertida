@@ -4,12 +4,11 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 /**
- * Submits card
- * @param gameName
- * @param gameId
- * @param playerId
- * @param cardIds
- * @returns
+ * Submits the player's selected cards for the robot test
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting cards
+ * @param cardIds - Array of selected card IDs
  */
 export const handleSubmitCards = async (gameName: string, gameId: UID, playerId: UID, cardIds: UID[]) => {
   return await utils.firestore.updatePlayer({
@@ -26,12 +25,11 @@ export const handleSubmitCards = async (gameName: string, gameId: UID, playerId:
 };
 
 /**
- * Submits card guess
- * @param gameName
- * @param gameId
- * @param playerId
- * @param guess
- * @returns
+ * Submits the player's guess identifying non-robot cards
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the guess
+ * @param guess - Array of card IDs guessed as non-robot
  */
 export const handleSubmitCardGuess = async (gameName: string, gameId: UID, playerId: UID, guess: UID[]) => {
   return await utils.firestore.updatePlayer({

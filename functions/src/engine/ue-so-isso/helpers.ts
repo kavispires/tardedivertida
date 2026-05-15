@@ -17,11 +17,11 @@ import { CORRECT_GUESS_SCORE, OUTCOME, UE_SO_ISSO_ACHIEVEMENTS, UE_SO_ISSO_PHASE
 import utils from '../../utils';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @param roundsToEndGame
- * @returns
+ * Determines the next phase based on the current phase and outcome
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param group - The group progress object
+ * @param currentOutcome - The current outcome of the round
  */
 export const determineNextPhase = (
   currentPhase: string,
@@ -212,6 +212,10 @@ export const validateSuggestions = (currentSuggestions: CurrentSuggestions): Pla
   }, []);
 };
 
+/**
+ * Finds suggestions that appear more than once in past suggestions
+ * @param pastSuggestion - The past suggestion object to check for duplicates
+ */
 export function findDuplicateSuggestions(pastSuggestion: PastSuggestion): string[] {
   const seenSuggestions = new Set<string>();
   const duplicateSuggestions: string[] = [];
@@ -230,6 +234,10 @@ export function findDuplicateSuggestions(pastSuggestion: PastSuggestion): string
   return duplicateSuggestions;
 }
 
+/**
+ * Counts achievements from past suggestions for all players
+ * @param store - The Firebase store data for tracking achievements
+ */
 export function countAchievements(store: FirebaseStoreData) {
   const pastSuggestions: PastSuggestion[] = store.pastSuggestions;
 
@@ -271,8 +279,8 @@ export function countAchievements(store: FirebaseStoreData) {
 }
 
 /**
- * Get achievements
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<UeSoIssoAchievement>[] = [];

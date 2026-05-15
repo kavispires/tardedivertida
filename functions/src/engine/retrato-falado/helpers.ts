@@ -8,10 +8,9 @@ import type { AllMonsters, FirebaseStoreData, MonsterSketch, RetratoFaladoAchiev
 import utils from '../../utils';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and round
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const { SETUP, COMPOSITE_SKETCH, EVALUATION, REVEAL, GAME_OVER } = RETRATO_FALADO_PHASES;
@@ -27,20 +26,19 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
 };
 
 /**
- * Build the deck to be used on the game
- * @param allMonsters
- * @param playerCount
- * @returns
+ * Build the deck to be used in the game
+ * @param allMonsters - The dictionary of all monster images
+ * @param playerCount - The number of players in the game
  */
 export const buildDeck = (allMonsters: AllMonsters, playerCount: number) => {
   return sampleSize(Object.values(allMonsters), playerCount);
 };
 
 /**
- * Builds the sketches array
- * @param players
- * @param currentMonster
- * @returns
+ * Gathers all sketches from players except the witness
+ * @param players - The collection of players in the game
+ * @param currentMonster - The current monster being sketched
+ * @param witnessId - The ID of the witness player
  */
 export const gatherSketches = (
   players: Players,
@@ -63,10 +61,10 @@ export const gatherSketches = (
 };
 
 /**
- * Score and rank
- * @param players
- * @param witnessId
- * @param store
+ * Scores sketches and builds player rankings based on votes
+ * @param players - The collection of players in the game
+ * @param witnessId - The ID of the witness player
+ * @param store - The Firebase store data for tracking achievements
  */
 export const buildRanking = (players: Players, witnessId: UID, store: FirebaseStoreData) => {
   // Gained points [Most Voted, votes, witness vote]
@@ -147,8 +145,8 @@ export const buildRanking = (players: Players, witnessId: UID, store: FirebaseSt
 };
 
 /**
- * Get achievements
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<RetratoFaladoAchievement>[] = [];

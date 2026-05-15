@@ -11,12 +11,9 @@ type DailyGetterPayload = {
 };
 
 /**
- * Retrieves the daily data based on the provided parameters.
- *
- * @param data - The payload containing the necessary data for retrieving the daily data.
- * @param auth - The authentication object containing the user's information.
- * @returns The daily data object.
- * @throws An exception if the user is not authenticated or if the daily data does not exist.
+ * Retrieves the daily data based on the provided parameters
+ * @param data - The payload containing the date and document name
+ * @param auth - The Firebase authentication object
  */
 const getDaily = async (data: DailyGetterPayload, auth: FirebaseAuth) => {
   if (utils.firebase.isEmulatingEnvironment()) {
@@ -62,11 +59,9 @@ export type DailySetterPayload = {
 };
 
 /**
- * Saves the daily data for a user.
- *
- * @param data - The daily data to be saved.
- * @param auth - The authentication information of the user.
- * @returns A boolean indicating whether the save operation was successful.
+ * Saves the daily data for a user
+ * @param data - The daily data to be saved
+ * @param auth - The Firebase authentication object
  */
 const saveDaily = async (data: DailySetterPayload, auth: FirebaseAuth) => {
   const actionText = 'save daily';
@@ -113,11 +108,9 @@ type DailySaveDrawingPayload = {
 };
 
 /**
- * Saves the drawing data to the 'drawings' collection.
- *
- * @param data - The payload containing the drawing data.
- * @param auth - The authentication object.
- * @returns A boolean indicating whether the saving was successful.
+ * Saves the drawing data to the drawings collection
+ * @param data - The payload containing the drawings and language
+ * @param auth - The Firebase authentication object
  */
 const saveDrawing = async (data: DailySaveDrawingPayload, auth: FirebaseAuth) => {
   const actionText = 'save drawings';
@@ -149,6 +142,11 @@ interface FirestoreParsedTestimonyData {
   };
 }
 
+/**
+ * Saves testimony answers by aggregating related and unrelated suspect relationships
+ * @param data - The payload containing testimony answers
+ * @param auth - The Firebase authentication object
+ */
 const saveTestimonies = async (data: DailySaveTestimoniesPayload, auth: FirebaseAuth) => {
   const actionText = 'save suspects';
   const uid = auth?.uid;
@@ -218,11 +216,9 @@ type DailySaveConexoesPayload = {
 };
 
 /**
- * Saves the image connections/relationships data.
- *
- * @param data - The payload containing the relationships data.
- * @param auth - The authentication object.
- * @returns A boolean indicating whether the saving was successful.
+ * Saves image connections and relationships data with bidirectional mapping
+ * @param data - The payload containing image pairs
+ * @param auth - The Firebase authentication object
  */
 const saveConexoes = async (data: DailySaveConexoesPayload, auth: FirebaseAuth) => {
   const actionText = 'save conexoes';
@@ -289,8 +285,7 @@ const DAILY_API_ACTIONS = {
 };
 
 /**
- * Executes the daily engine.
- *
- * @param request - The CallableRequest object.
+ * Executes the daily engine by delegating to the appropriate action
+ * @param request - The callable request object
  */
 export const dailyEngine = (request: CallableRequest) => apiDelegator(request, DAILY_API_ACTIONS);

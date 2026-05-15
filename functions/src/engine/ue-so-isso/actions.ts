@@ -5,12 +5,11 @@ import { getNextPhase } from '.';
 import type { PlayerSuggestion } from './types';
 
 /**
- * Submit the chosen words for the round
- * @param gameName
- * @param gameId
- * @param playerId
- * @param votes
- * @returns
+ * Submits the chosen words for the round voting
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting votes
+ * @param votes - Array of word IDs voted for
  */
 export const handleSubmitWordSelectionVotes = async (
   gameName: string,
@@ -30,12 +29,11 @@ export const handleSubmitWordSelectionVotes = async (
 };
 
 /**
- * Submit a player's suggestions (1 or 2 depending on player count)
- * @param gameName
- * @param gameId
- * @param playerId
- * @param suggestions
- * @returns
+ * Submits a player's suggestions for the round
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting suggestions
+ * @param suggestions - Array of suggestion strings
  */
 export const handleSubmitSuggestions = async (
   gameName: string,
@@ -55,12 +53,11 @@ export const handleSubmitSuggestions = async (
 };
 
 /**
- * Live updates the valid clues
- * @param gameName
- * @param gameId
- * @param playerId
- * @param suggestions
- * @returns
+ * Updates the valid suggestions in real-time
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID updating suggestions
+ * @param suggestions - Dictionary of suggestion validations
  */
 export const handleUpdateValidSuggestions = async (
   gameName: string,
@@ -80,12 +77,11 @@ export const handleUpdateValidSuggestions = async (
 };
 
 /**
- * Confirms the valid clues
- * @param gameName
- * @param gameId
- * @param playerId
- * @param validSuggestions
- * @returns
+ * Confirms the valid suggestions after evaluation
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID confirming validation
+ * @param validSuggestions - Array of validated player suggestion objects
  */
 export const handleSubmitValidation = async (
   gameName: string,
@@ -106,12 +102,11 @@ export const handleSubmitValidation = async (
 };
 
 /**
- * Submits the active player's guess
- * @param gameName
- * @param gameId
- * @param playerId
- * @param guess
- * @returns
+ * Submits the active player's guess for the secret word
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID sending the guess
+ * @param guess - The guess string
  */
 export const handleSendGuess = async (gameName: string, gameId: UID, playerId: UID, guess: string) => {
   return await utils.firestore.updateState({
@@ -127,12 +122,11 @@ export const handleSendGuess = async (gameName: string, gameId: UID, playerId: U
 };
 
 /**
- * Confirms if the active player's guess is correct or not
- * @param gameName
- * @param gameId
- * @param playerId
- * @param outcome
- * @returns
+ * Confirms whether the active player's guess is correct or not
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID confirming the guess
+ * @param outcome - The outcome string (correct/incorrect)
  */
 export const handleConfirmGuess = async (gameName: string, gameId: UID, playerId: UID, outcome: string) => {
   return await utils.firestore.updateStore({

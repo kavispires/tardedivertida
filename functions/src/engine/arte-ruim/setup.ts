@@ -21,10 +21,11 @@ import {
 import { saveUsedCards } from './data';
 
 /**
- * Setup
- * Build the card deck
- * Resets previous changes to the store
- * @returns
+ * Setup phase - builds the card deck and initializes game settings
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ * @param resourceData - Resource data containing cards and themes
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
@@ -75,6 +76,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * Draw phase - deals cards to players for the current round
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareDrawPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -108,6 +115,12 @@ export const prepareDrawPhase = async (
   };
 };
 
+/**
+ * Evaluation phase - prepares players to vote on which drawing matches which card
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareEvaluationPhase = async (
   store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -141,6 +154,12 @@ export const prepareEvaluationPhase = async (
   };
 };
 
+/**
+ * Gallery phase - builds the gallery of drawings and calculates scores and rankings
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGalleryPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -180,6 +199,13 @@ export const prepareGalleryPhase = async (
   };
 };
 
+/**
+ * Game Over phase - determines winners, calculates achievements, and saves game data
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

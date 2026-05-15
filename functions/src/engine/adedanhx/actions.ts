@@ -3,6 +3,14 @@ import utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
 
+/**
+ * Handles player answer submission and optional game stop
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting answers
+ * @param answers - Dictionary of answers by cell
+ * @param stop - Optional flag to stop the game
+ */
 export const handleSubmitAnswers = async (
   gameName: string,
   gameId: UID,
@@ -31,6 +39,13 @@ export const handleSubmitAnswers = async (
   });
 };
 
+/**
+ * Handles player evaluation submissions for other players' answers
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting evaluations
+ * @param evaluations - Dictionary of evaluations by evaluation key
+ */
 export const handleSubmitEvaluationsAnswers = async (
   gameName: string,
   gameId: UID,

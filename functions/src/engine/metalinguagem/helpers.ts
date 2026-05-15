@@ -4,10 +4,10 @@ import { METALINGUAGEM_ACHIEVEMENTS, METALINGUAGEM_PHASES, WORD_LENGTH_STATUS } 
 import type { FirebaseStoreData, MetalinguagemAchievement, WordLength } from './types';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and word lengths
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param wordLengths - The array of word lengths with their statuses
  */
 export const determineNextPhase = (currentPhase: string, round: Round, wordLengths: WordLength[]): string => {
   const { SETUP, WORD_CREATION, GUESSING, RESULTS, GAME_OVER } = METALINGUAGEM_PHASES;
@@ -35,8 +35,8 @@ export const determineNextPhase = (currentPhase: string, round: Round, wordLengt
 };
 
 /**
- * Get achievements
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<MetalinguagemAchievement>[] = [];

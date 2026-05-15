@@ -75,11 +75,10 @@ const getPairsLevel = async (language: string, playerCount: number, options: Art
 
 /**
  * Get expression cards resource based on the game's language
- * @param language
- * @param playerCount
- * @param isShortGame
- * @param useAllCards
- * @returns
+ * @param language - The language code for localized resources
+ * @param playerCount - Number of players in the game
+ * @param options - Game options including special levels, points mode, and card selection
+ * @returns Resource data containing arte ruim cards by level and special level types
  */
 export const getCards = async (
   language: string,
@@ -167,8 +166,8 @@ export const getCards = async (
 
 /**
  * Saves past drawings into a public document depending on the language
- * @param pastDrawings
- * @param language
+ * @param pastDrawings - Array of arte ruim drawings from the game
+ * @param language - The language code for the saved data
  */
 export const saveUsedCards = async (pastDrawings: ArteRuimDrawing[], language: Language) => {
   const onlyARPDEntries = pastDrawings.filter((entry) => entry.id.includes('a-'));

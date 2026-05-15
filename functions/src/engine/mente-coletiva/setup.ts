@@ -83,6 +83,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Question Selection Phase] - Active player selects a question
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareQuestionSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -122,6 +128,12 @@ export const prepareQuestionSelectionPhase = async (
   };
 };
 
+/**
+ * [Everybody Writes Phase] - All players write their answers
+ * @param store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareEverybodyWritesPhase = async (
   store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -155,6 +167,12 @@ export const prepareEverybodyWritesPhase = async (
   };
 };
 
+/**
+ * [Compare Phase] - Players compare and match their answers
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareComparePhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -187,6 +205,12 @@ export const prepareComparePhase = async (
   };
 };
 
+/**
+ * [Resolution Phase] - Calculate scores and pasture changes
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResolutionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -254,6 +278,13 @@ export const prepareResolutionPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

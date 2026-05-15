@@ -3,6 +3,14 @@ import utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
 
+/**
+ * Handles request submission with clue and quantity
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the request
+ * @param clue - The clue string
+ * @param clueQuantity - The number of items the clue refers to
+ */
 export const handleSubmitRequest = async (
   gameName: string,
   gameId: UID,
@@ -22,6 +30,13 @@ export const handleSubmitRequest = async (
   });
 };
 
+/**
+ * Handles delivery submission by the responding player
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the delivery
+ * @param delivery - The delivery string
+ */
 export const handleSubmitDelivery = async (
   gameName: string,
   gameId: UID,
@@ -40,6 +55,12 @@ export const handleSubmitDelivery = async (
   });
 };
 
+/**
+ * Handles player stopping their delivery
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID stopping delivery
+ */
 export const handleStopDelivering = async (gameName: string, gameId: UID, playerId: UID) => {
   return await utils.firestore.updatePlayer({
     gameName,

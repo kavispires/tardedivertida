@@ -3,6 +3,15 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 import type { FirebaseStateData } from './types';
 
+/**
+ * Submits a hint for a target instrument
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the hint
+ * @param hint - The hint text
+ * @param targetId - The target instrument ID
+ * @param position - The position of the hint
+ */
 export const handleSubmitHint = async (
   gameName: string,
   gameId: UID,
@@ -28,6 +37,13 @@ export const handleSubmitHint = async (
   });
 };
 
+/**
+ * Submits the player's conclusions about instruments
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting conclusions
+ * @param conclusions - Dictionary of conclusion data
+ */
 export const handleSubmitConclusions = async (
   gameName: string,
   gameId: UID,
@@ -58,6 +74,13 @@ export const handleSubmitConclusions = async (
   });
 };
 
+/**
+ * Submits the player's code guess
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the code
+ * @param code - The code guess string
+ */
 export const handleSubmitCode = async (gameName: string, gameId: UID, playerId: UID, code: string) => {
   const actionText = 'submit conclusions';
 

@@ -4,12 +4,11 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 /**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param locationId
- * @returns
+ * Sets the last player to question before accusations
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID setting the last questioner
+ * @param lastPlayerId - The ID of the last player to question
  */
 export const handleLastQuestioner = async (
   gameName: string,
@@ -28,12 +27,11 @@ export const handleLastQuestioner = async (
 };
 
 /**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param locationId
- * @returns
+ * Handles spy's guess for the location
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID making the guess
+ * @param locationId - The guessed location ID
  */
 export const handleGuessLocation = async (
   gameName: string,
@@ -52,12 +50,11 @@ export const handleGuessLocation = async (
 };
 
 /**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param vote
- * @returns
+ * Handles making an accusation against another player
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID making the accusation
+ * @param targetId - The ID of the accused player
  */
 export const handleMakeAccusation = async (gameName: string, gameId: UID, playerId: UID, targetId: UID) => {
   return await utils.firestore.updateStore({

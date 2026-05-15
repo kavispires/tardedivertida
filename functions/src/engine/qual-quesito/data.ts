@@ -7,7 +7,9 @@ import { CARDS_PER_PLAYER, DECK_PER_PLAYER } from './constants';
 
 /**
  * Get resource data for the game
- * @param options
+ * @param options - Game options including NSFW setting
+ * @param playerCount - Number of players in the game
+ * @returns Resource data containing items from alien, dream, and evidence decks
  */
 export const getResourceData = async (
   options: QualQuesitoOptions,

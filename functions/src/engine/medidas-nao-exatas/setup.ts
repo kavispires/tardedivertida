@@ -67,6 +67,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Metrics Building Phase] - The presenter builds metrics for their secret word
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareMetricsBuildingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -121,6 +127,12 @@ export const prepareMetricsBuildingPhase = async (
   };
 };
 
+/**
+ * [Guessing Phase] - Players guess which word matches the metrics
+ * @param _store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGuessingPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -153,6 +165,12 @@ export const prepareGuessingPhase = async (
   };
 };
 
+/**
+ * [Results Phase] - Calculate and display round results
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -193,6 +211,13 @@ export const prepareResultsPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

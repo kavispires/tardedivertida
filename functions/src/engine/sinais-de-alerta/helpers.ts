@@ -14,11 +14,10 @@ import utils from '../../utils';
 import type { TextCard } from '../../types/tdr';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @param isGameOver
- * @returns
+ * Determines the next phase based on the current phase and game state
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param isGameOver - Whether the game is over
  */
 export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
   const { SETUP, DRAWING, EVALUATION, GALLERY, GAME_OVER } = SINAIS_DE_ALERTA_PHASES;
@@ -35,6 +34,11 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
   return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Deals subject and descriptor cards to all players and table
+ * @param players - The collection of players in the game
+ * @param store - The Firebase store data
+ */
 export const dealCardsToPlayers = (players: Players, store: FirebaseStoreData) => {
   const playersArray = utils.players.getListOfPlayers(players);
 
@@ -79,6 +83,13 @@ const getTitle = (cards: Dictionary<TextCard>, descriptorId: UID, subjectId: UID
   return `${cards[descriptorId].text} ${cards[subjectId].text}`;
 };
 
+/**
+ * Evaluates player guesses against actual drawings and calculates scores
+ * @param drawings - The array of drawing entries
+ * @param players - The collection of players in the game
+ * @param cards - The dictionary of all text cards
+ * @param store - The Firebase store data for tracking achievements
+ */
 export const evaluateAnswers = (
   drawings: DrawingEntry[],
   players: Players,
@@ -199,8 +210,8 @@ export const evaluateAnswers = (
 };
 
 /**
- * Get achievements
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<SinaisDeAlertaAchievement>[] = [];

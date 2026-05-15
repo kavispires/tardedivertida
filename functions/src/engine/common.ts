@@ -9,8 +9,7 @@ type LoadGamePayload = {
 
 /**
  * Loads a new game instance
- * @param data
- * @returns
+ * @param data - The payload containing the game ID
  */
 const loadGame = async (data: LoadGamePayload) => {
   const { gameId } = data;
@@ -42,8 +41,8 @@ interface JoinGamePayload {
 
 /**
  * Add player to a game given gameId
- * @param data
- * @returns
+ * @param data - The payload containing game and player information
+ * @param auth - The Firebase authentication object
  */
 const joinGame = async (data: JoinGamePayload, auth: FirebaseAuth) => {
   const { gameId, gameName, playerName, playerAvatarId, isGuest } = data;
@@ -111,9 +110,8 @@ const joinGame = async (data: JoinGamePayload, auth: FirebaseAuth) => {
 };
 
 /**
- * Makes player ready, if all players are ready
- * @param data
- * @returns
+ * Makes player ready, if all players are ready triggers the next phase
+ * @param data - The payload containing game and player information
  */
 const makeMeReady = async (data: Payload<{ onlyReady?: boolean }>) => {
   const { gameId, gameName, playerId, onlyReady } = data;
@@ -157,6 +155,11 @@ const makeMeReady = async (data: Payload<{ onlyReady?: boolean }>) => {
   }
 };
 
+/**
+ * Saves game ratings to user profile or public ratings collection
+ * @param data - The extended payload containing ratings information
+ * @param auth - The Firebase authentication object
+ */
 const rateGame = async (data: ExtendedPayload, auth: FirebaseAuth) => {
   const { gameId, gameName, playerId } = data;
   const actionText = 'submit ratings';

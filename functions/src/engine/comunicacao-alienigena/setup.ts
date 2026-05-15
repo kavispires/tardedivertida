@@ -22,9 +22,11 @@ import {
 } from '../../utils/tool-kits/alien-attributes';
 
 /**
- * Setup
- * Resets previous changes to the store
- * @returns
+ * Setup phase - initializes game state and resources
+ * @param store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ * @param additionalData - Resource data
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
@@ -92,6 +94,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * Alien Selection phase - players select who will be the alien
+ * @param _store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareAlienSelectionPhase = async (
   _store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -108,6 +116,12 @@ export const prepareAlienSelectionPhase = async (
   };
 };
 
+/**
+ * Alien Seeding phase - players seed unclear attribute values for items
+ * @param _store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareAlienSeedingPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -163,6 +177,12 @@ export const prepareAlienSeedingPhase = async (
   };
 };
 
+/**
+ * Human Ask phase - humans select items to inquire about
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareHumanAskPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -228,6 +248,12 @@ export const prepareHumanAskPhase = async (
   };
 };
 
+/**
+ * Alien Answer phase - alien provides attribute response to human inquiry
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareAlienAnswerPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -293,6 +319,12 @@ export const prepareAlienAnswerPhase = async (
   };
 };
 
+/**
+ * Alien Request phase - alien requests items from humans
+ * @param _store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareAlienRequestPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -327,6 +359,12 @@ export const prepareAlienRequestPhase = async (
   };
 };
 
+/**
+ * Offerings phase - humans offer items to the alien based on request
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareOfferingsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -411,6 +449,12 @@ export const prepareOfferingsPhase = async (
   };
 };
 
+/**
+ * Reveal phase - reveals whether offered items matched alien request
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareRevealPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -499,6 +543,13 @@ export const prepareRevealPhase = async (
   };
 };
 
+/**
+ * Game Over phase - determines winners and saves game data
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

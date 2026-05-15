@@ -16,10 +16,10 @@ import type { FirebaseStoreData, PortaDosDesesperadosAchievement, Trap } from '.
 import { sample, sampleSize, shuffle } from 'lodash';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and game state
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param isGameOver - Whether the game is over
  */
 export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
   const { SETUP, BOOK_POSSESSION, DOOR_CHOICE, RESOLUTION, GAME_OVER } = PORTA_DOS_DESESPERADOS_PHASES;
@@ -71,8 +71,7 @@ export const determineGameOver = (
 };
 
 /**
- * Randomly choose order of traps, always starting with NONE
- * @returns
+ * Randomly choose order of traps, always starting with NONE and ensuring no consecutive traps of the same level
  */
 export const createTrapOrder = (): string[] => {
   const trapKeys = Object.keys(TRAPS);
@@ -97,6 +96,10 @@ export const createTrapOrder = (): string[] => {
   return orderedTraps.slice(0, DOOR_LEVELS + 1); // There are 7 doors, so we need 6 traps + NONE
 };
 
+/**
+ * Calculates dungeon difficulty based on trap levels
+ * @param trapsKeys - The array of trap keys in order
+ */
 export const calculateDifficulty = (trapsKeys: string[]) => {
   // There a 7 traps from levels 1 to 3, and the same level cannot be repeated twice in a row.
   // Calculate the difficulty of the dungeon from 1 - 5 based on the traps levels in the game, the minimum sum is 9 (since the first is NONE) and the maximum is 15.
@@ -115,6 +118,12 @@ export const calculateDifficulty = (trapsKeys: string[]) => {
   return 5;
 };
 
+/**
+ * Gets a set of doors from the deck and selects an answer door
+ * @param doorDeck - The array of door card IDs
+ * @param doorDeckIndex - The current index in the door deck
+ * @param trap - The current trap affecting the game
+ */
 export const getDoorSet = (doorDeck: UID[], doorDeckIndex: number, trap: Trap) => {
   const quantity = trap === TRAPS.EXTRA_DOOR ? DOOR_OPTIONS_PER_ROUND + 1 : DOOR_OPTIONS_PER_ROUND;
 
@@ -128,6 +137,12 @@ export const getDoorSet = (doorDeck: UID[], doorDeckIndex: number, trap: Trap) =
   };
 };
 
+/**
+ * Gets book pages from the deck based on current trap
+ * @param pagesDeck - The array of page card IDs
+ * @param pagesDeckIndex - The current index in the pages deck
+ * @param trap - The current trap affecting the game
+ */
 export const getBookPages = (pagesDeck: UID[], pagesDeckIndex: number, trap: Trap) => {
   let quantity = trap === TRAPS.FEWER_PAGES ? PAGES_PER_ROUND / 2 : PAGES_PER_ROUND;
 
@@ -169,8 +184,8 @@ export const botDoorSelection = (players: Players, doors: UID[], doorAnswerId: U
 };
 
 /**
- * Get achievements
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<PortaDosDesesperadosAchievement>[] = [];

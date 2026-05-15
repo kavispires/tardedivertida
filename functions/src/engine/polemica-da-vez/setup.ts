@@ -61,6 +61,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Tweet Selection Phase] - Active player selects a tweet to react to
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareTweetSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -103,6 +109,12 @@ export const prepareTweetSelectionPhase = async (
   };
 };
 
+/**
+ * [React Phase] - Players react to the selected tweet
+ * @param store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareReactPhase = async (
   store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -133,6 +145,12 @@ export const prepareReactPhase = async (
   };
 };
 
+/**
+ * [Resolution Phase] - Calculate total likes and update scores
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResolutionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -170,6 +188,13 @@ export const prepareResolutionPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

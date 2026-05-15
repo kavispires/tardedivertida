@@ -8,10 +8,11 @@ import utils from '../../utils';
 // Internal
 
 /**
- * Setup
- * Build the card deck
- * Resets previous changes to the store
- * @returns
+ * Setup phase - initializes game state and resources
+ * @param store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ * @param resourceData - Resource data
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
@@ -54,6 +55,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * Mission phase - players attempt to complete the current mission
+ * @param store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareMissionPhase = async (
   store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -74,6 +81,12 @@ export const prepareMissionPhase = async (
   };
 };
 
+/**
+ * Mission Evaluation phase - evaluates success of the mission attempt
+ * @param store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareMissionEvaluationPhase = async (
   store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -94,6 +107,12 @@ export const prepareMissionEvaluationPhase = async (
   };
 };
 
+/**
+ * Results phase - calculates scores and rankings
+ * @param store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -114,6 +133,13 @@ export const prepareResultsPhase = async (
   };
 };
 
+/**
+ * Game Over phase - determines winners and saves game data
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

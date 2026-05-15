@@ -4,10 +4,9 @@ import { DETETIVES_IMAGINATIVOS_ACHIEVEMENTS, DETETIVES_IMAGINATIVOS_PHASES } fr
 import type { DetetivesImaginativosAchievement, FirebaseStoreData } from './types';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and round
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
  */
 export const determineNextPhase = (
   currentPhase: (typeof DETETIVES_IMAGINATIVOS_PHASES)[keyof typeof DETETIVES_IMAGINATIVOS_PHASES],
@@ -26,7 +25,10 @@ export const determineNextPhase = (
 };
 
 /**
- * Count impostor votes and assign achievements accordingly.
+ * Count impostor votes and assign achievements accordingly
+ * @param players - The collection of players in the game
+ * @param impostorId - The ID of the impostor player
+ * @param store - The Firebase store data for tracking achievements
  */
 export const countImpostorVotes = (players: Players, impostorId: UID, store: FirebaseStoreData): number =>
   utils.players.getListOfPlayers(players).reduce((total: number, player: Player) => {
@@ -49,12 +51,11 @@ export const countImpostorVotes = (players: Players, impostorId: UID, store: Fir
   }, 0);
 
 /**
- *
- * @param players
- * @param impostorVotes
- * @param impostorId
- * @param leaderId
- * @returns
+ * Calculates player rankings based on voting results and roles
+ * @param players - The collection of players in the game
+ * @param impostorVotes - The number of votes the impostor received
+ * @param impostorId - The ID of the impostor player
+ * @param leaderId - The ID of the leader player
  */
 export const calculateRanking = (
   players: Players,
@@ -90,8 +91,8 @@ export const calculateRanking = (
 };
 
 /**
- * Get achievements
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<DetetivesImaginativosAchievement>[] = [];

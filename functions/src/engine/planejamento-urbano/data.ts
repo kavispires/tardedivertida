@@ -8,8 +8,7 @@ import type { CityLocation } from '../../types/tdr';
 
 /**
  * Get city locations resource based on the game's language
- * @param language
- * @returns
+ * @returns Resource data containing all city location cards
  */
 export const getLocations = async (): Promise<ResourceData> => {
   // Get full deck

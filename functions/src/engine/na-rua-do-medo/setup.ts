@@ -81,6 +81,13 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Trick or Treat Phase] - Players decide to continue or go home
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ * @param outcome - The outcome determining how to proceed
+ */
 export const prepareTrickOrTreatPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -163,6 +170,12 @@ export const prepareTrickOrTreatPhase = async (
   };
 };
 
+/**
+ * [Result Phase] - Display results of the decision round
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResultPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -206,6 +219,13 @@ export const prepareResultPhase = async (
   };
 };
 
+/**
+ * [Street End Phase] - Handle end of street outcomes
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ * @param outcome - The outcome determining the ending scenario
+ */
 export const prepareStreetEndPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -266,6 +286,13 @@ export const prepareStreetEndPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

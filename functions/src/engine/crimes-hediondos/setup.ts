@@ -23,9 +23,11 @@ import {
 } from './helpers';
 
 /**
- * Setup
- * Resets previous changes to the store
- * @returns
+ * Setup phase - initializes game state and resources
+ * @param _store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ * @param resourceData - Resource data
  */
 export const prepareSetupPhase = async (
   _store: FirebaseStoreData,
@@ -92,6 +94,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * Crime Selection phase - players select which crime scene to investigate
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareCrimeSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -131,6 +139,12 @@ export const prepareCrimeSelectionPhase = async (
   };
 };
 
+/**
+ * Scene Marking phase - players mark evidence on the crime scene
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareSceneMarkingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -172,6 +186,12 @@ export const prepareSceneMarkingPhase = async (
   };
 };
 
+/**
+ * Guessing phase - players attempt to solve the crime
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGuessingPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -238,6 +258,12 @@ export const prepareGuessingPhase = async (
   };
 };
 
+/**
+ * Reveal phase - reveals the solution and evaluates guesses
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareRevealPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -275,6 +301,13 @@ export const prepareRevealPhase = async (
   };
 };
 
+/**
+ * Game Over phase - determines winners and saves game data
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

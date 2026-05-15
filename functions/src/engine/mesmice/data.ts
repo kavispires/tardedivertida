@@ -11,8 +11,10 @@ import { sampleSize } from 'lodash';
 
 /**
  * Get object features and items
- * @param language
- * @returns
+ * @param language - The language code for localized resources
+ * @param options - Game options including NSFW, complex mode, and hard mode settings
+ * @param playerCount - Number of players in the game
+ * @returns Resource data containing object features and manufactured items
  */
 export const getData = async (
   language: string,

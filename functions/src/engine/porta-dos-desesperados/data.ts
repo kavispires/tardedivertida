@@ -10,7 +10,7 @@ import * as globalUtils from '../global';
 
 /**
  * Get image decks card
- * @returns
+ * @returns Resource data containing image card IDs
  */
 export const getData = async (): Promise<ResourceData> => {
   // Get image cards
@@ -23,8 +23,7 @@ export const getData = async (): Promise<ResourceData> => {
 
 /**
  * Save used image cards and image to image relationships
- * @param something
- * @returns
+ * @param relationships - Dictionary of image card relationships
  */
 export const saveData = async (relationships: ImageCardRelationship): Promise<void> => {
   // Collect all ids

@@ -21,10 +21,11 @@ import {
 import { saveData } from './data';
 
 /**
- * Setup
- * Build the card deck
- * Resets previous changes to the store
- * @returns
+ * Setup phase - initializes game state and resources
+ * @param _store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ * @param resourceData - Resource data
  */
 export const prepareSetupPhase = async (
   _store: FirebaseStoreData,
@@ -132,7 +133,17 @@ export const prepareWordSelectionPhase = async (
     },
   };
 };
-
+/**
+ * Word Selection phase - players select words for their dreams
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ *//**
+ * Dreams Selection phase - players select dream cards to match the word
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareDreamsSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -162,6 +173,12 @@ export const prepareDreamsSelectionPhase = async (
   };
 };
 
+/**
+ * Card Play phase - players play cards for the current word
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareCardPlayPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -196,6 +213,12 @@ export const prepareCardPlayPhase = async (
   };
 };
 
+/**
+ * Resolution phase - reveals votes and calculates scores
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResolutionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -228,6 +251,13 @@ export const prepareResolutionPhase = async (
   };
 };
 
+/**
+ * Game Over phase - determines winners and saves game data
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

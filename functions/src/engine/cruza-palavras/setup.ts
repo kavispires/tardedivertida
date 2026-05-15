@@ -19,10 +19,11 @@ import {
 import { saveData } from './data';
 
 /**
- * Setup
- * Build the card deck
- * Resets previous changes to the store
- * @returns
+ * Setup phase - initializes game state and resources
+ * @param store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ * @param resourceData - Resource data
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
@@ -72,6 +73,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * Words Selection phase - players select words to place on the grid
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareWordsSelectionPhase = async (
   store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -92,6 +99,12 @@ export const prepareWordsSelectionPhase = async (
   };
 };
 
+/**
+ * Clue Writing phase - players write clues for their word coordinates
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareClueWritingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -173,6 +186,12 @@ export const prepareClueWritingPhase = async (
   };
 };
 
+/**
+ * Guessing phase - players attempt to locate words based on clues
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGuessingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -207,6 +226,12 @@ export const prepareGuessingPhase = async (
   };
 };
 
+/**
+ * Reveal phase - reveals correct locations and calculates scores
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareRevealPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -234,6 +259,13 @@ export const prepareRevealPhase = async (
   };
 };
 
+/**
+ * Game Over phase - determines winners and saves game data
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

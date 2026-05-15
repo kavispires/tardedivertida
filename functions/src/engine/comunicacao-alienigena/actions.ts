@@ -4,14 +4,11 @@ import utils from '../../utils';
 import { getNextPhase } from '.';
 
 /**
- * Submits the selected alien player ID for a given game.
- * @function
- * @async
- * @param gameName - The name of the game.
- * @param gameId - The ID of the game.
+ * Submits the selected alien player ID for a given game
+ * @param gameName - The name of the game
+ * @param gameId - The ID of the game
  * @param playerId - The ID of the player who is submitting the action
- * @param alienId - The ID of the selected alien player.
- * @returns - it triggers the next state.
+ * @param alienId - The ID of the selected alien player
  */
 export const handleSubmitAlien = async (gameName: string, gameId: UID, playerId: UID, alienId: UID) => {
   return await utils.firestore.updateState({
@@ -28,12 +25,11 @@ export const handleSubmitAlien = async (gameName: string, gameId: UID, playerId:
 };
 
 /**
- * Submits the seeding performed by a player.
- * @param gameName - The name of the game.
- * @param gameId - The ID of the game.
+ * Submits the seeding performed by a player
+ * @param gameName - The name of the game
+ * @param gameId - The ID of the game
  * @param playerId - The ID of the player who is submitting the action
- * @param seeds - The seeds submitted by the player.
- * @returns - it triggers the next state when all players are ready.
+ * @param seeds - The seeds submitted by the player
  */
 export const handleSubmitSeeds = async (
   gameName: string,

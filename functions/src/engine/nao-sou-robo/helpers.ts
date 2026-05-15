@@ -21,11 +21,10 @@ import type {
 } from './types';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @param isGameOver
- * @returns
+ * Determines the next phase based on the current phase and outcome
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param outcome - The outcome of the round
  */
 export const determineNextPhase = (currentPhase: string, round: Round, outcome: string): string => {
   const { SETUP, CARD_SELECTION, ARE_YOU_A_ROBOT, RESULTS, GAME_OVER } = NAO_SOU_ROBO_PHASES;
@@ -40,6 +39,12 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
   return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Distributes cards to players' hands from the deck
+ * @param store - The Firebase store data
+ * @param players - The collection of players in the game
+ * @param cards - The array of card IDs to distribute
+ */
 export const distributeCards = (store: FirebaseStoreData, players: Players, cards: UID[]) => {
   const playerCount = utils.players.getPlayerCount(players);
   const deckPerPlayer = STARTING_HAND + MAX_ROUNDS * (CARD_SELECTION_PER_PLAYER_COUNT[playerCount] ?? 3);
@@ -49,6 +54,14 @@ export const distributeCards = (store: FirebaseStoreData, players: Players, card
   utils.deck.deal(store, players, STARTING_HAND);
 };
 
+/**
+ * Calculates results by scoring player guesses and tracking robot progress
+ * @param players - The collection of players in the game
+ * @param robot - The robot state object
+ * @param options - The dictionary of captcha card options
+ * @param captcha - The current captcha object
+ * @param store - The Firebase store data for tracking achievements
+ */
 export const calculateResults = (
   players: Players,
   robot: Robot,
@@ -158,8 +171,8 @@ export const calculateResults = (
 };
 
 /**
- * Get achievements
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<NaoSouRoboAchievement>[] = [];

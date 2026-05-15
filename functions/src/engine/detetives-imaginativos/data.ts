@@ -9,8 +9,8 @@ import * as globalUtils from '../global';
 
 /**
  * Get image decks card
- * @param playerCount
- * @returns
+ * @param players - Players dictionary for game setup
+ * @returns Resource data containing shuffled image card IDs
  */
 export const getData = async (players: Players): Promise<ResourceData> => {
   // We build the used cards deck all at once to avoid having to generate and
@@ -27,6 +27,11 @@ export const getData = async (players: Players): Promise<ResourceData> => {
   };
 };
 
+/**
+ * Save used image cards and their associated clues
+ * @param usedCards - Array of used cards with clues
+ * @param language - The language code for the saved data
+ */
 export const saveData = async (usedCards: UsedCards[], language: Language) => {
   const usedCardsIds: Dictionary<boolean> = {};
   const clues = usedCards.reduce((acc, entry) => {

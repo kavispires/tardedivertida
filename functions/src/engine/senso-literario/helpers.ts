@@ -12,10 +12,9 @@ import utils from '../../utils';
 import type { FirebaseStoreData, GalleryEntry, SensoLiterarioAchievement } from './types';
 import { orderBy, shuffle } from 'lodash';
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and round
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const { SETUP, PATTERN_CREATION, RESULT, GAME_OVER } = SENSO_LITERARIO_PHASES;
@@ -76,6 +75,12 @@ export function buildSequence(deck: UID[], currentRound: number) {
   return shuffle(sequence);
 }
 
+/**
+ * Builds player rankings and gallery based on pattern matching
+ * @param store - The Firebase store data for tracking achievements
+ * @param players - The collection of players in the game
+ * @param sequence - The array of card IDs in the current sequence
+ */
 export function buildRanking(store: FirebaseStoreData, players: Players, sequence: UID[]) {
   // Gained Points: [each part match, bonus for all match]
   const scores = new utils.players.Scores(players, [0, 0]);
@@ -166,7 +171,8 @@ export function buildRanking(store: FirebaseStoreData, players: Players, sequenc
 }
 
 /**
- * Get achievements for Senso Literario
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<SensoLiterarioAchievement>[] = [];

@@ -5,6 +5,13 @@ import utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
 
+/**
+ * Submits the player's decision during a challenge
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID making the decision
+ * @param decision - The decision object
+ */
 export const handleSubmitDecision = async (
   gameName: string,
   gameId: UID,

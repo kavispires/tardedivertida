@@ -14,10 +14,9 @@ import { COLEGAS_DE_QUARTO_ACHIEVEMENTS, COLEGAS_DE_QUARTO_PHASES, POINTS, TARGE
 import utils from '../../utils';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and round
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const { SETUP, WORDS_SELECTION, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER } = COLEGAS_DE_QUARTO_PHASES;
@@ -32,6 +31,13 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
   return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Builds ranking, gallery, and happiness data based on player guesses
+ * @param store - The Firebase store data containing achievement counters
+ * @param players - The collection of players in the game
+ * @param board - The array of board entries containing words
+ * @param happiness - The current house happiness object
+ */
 export function buildRanking(
   store: FirebaseStoreData,
   players: Players,
@@ -115,8 +121,8 @@ export function buildRanking(
 }
 
 /**
- * Get achievements
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<ColegasDeQuartoAchievement>[] = [];

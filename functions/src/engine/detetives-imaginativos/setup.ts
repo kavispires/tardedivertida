@@ -11,10 +11,11 @@ import { calculateRanking, countImpostorVotes, getAchievements } from './helpers
 import { saveData } from './data';
 
 /**
- * Setup
- * Build the card deck
- * Resets previous changes to the store
- * @returns
+ * Setup phase - initializes game state and resources
+ * @param _store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ * @param data - Resource data
  */
 export const prepareSetupPhase = async (
   _store: FirebaseStoreData,
@@ -63,6 +64,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * Secret Clue phase - storyteller provides a secret clue for the scene
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareSecretCluePhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -95,6 +102,12 @@ export const prepareSecretCluePhase = async (
   };
 };
 
+/**
+ * Card Play phase - players select cards to support or oppose the storyteller
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareCardPlayPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -118,6 +131,12 @@ export const prepareCardPlayPhase = async (
   };
 };
 
+/**
+ * Defense phase - storyteller defends their card choices
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareDefensePhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -163,6 +182,12 @@ export const prepareDefensePhase = async (
   };
 };
 
+/**
+ * Voting phase - players vote on which card doesn't match the clue
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareVotingPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -183,6 +208,12 @@ export const prepareVotingPhase = async (
   };
 };
 
+/**
+ * Reveal phase - reveals the impostor card and calculates scores
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareRevealPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -217,6 +248,13 @@ export const prepareRevealPhase = async (
   };
 };
 
+/**
+ * Game Over phase - determines winners and saves game data
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

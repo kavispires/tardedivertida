@@ -4,12 +4,12 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 /**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param cardId
- * @returns
+ * Handles story submission for a given card
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the story
+ * @param story - The story text
+ * @param cardId - The card ID the story is about
  */
 export const handleSubmitStory = async (
   gameName: string,
@@ -34,12 +34,11 @@ export const handleSubmitStory = async (
 };
 
 /**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param cardId
- * @returns
+ * Handles card play submission
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID playing the card
+ * @param cardId - The card ID being played
  */
 export const handlePlayCard = async (gameName: string, gameId: UID, playerId: UID, cardId: string) => {
   const actionText = 'play a card';

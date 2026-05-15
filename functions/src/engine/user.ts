@@ -5,12 +5,9 @@ import type { FirebaseUserDB } from '../utils/user';
 import { apiDelegator } from '../utils/firebase';
 
 /**
- * Retrieves the user data based on the provided parameters.
- *
- * @param payload - The optional payload containing the date.
- * @param auth - The authentication object.
- * @returns - A promise that resolves to the user data.
- * @throws - Throws an exception if the user is not authenticated.
+ * Retrieves the user data based on the provided parameters
+ * @param _ - Unused parameter
+ * @param auth - The Firebase authentication object
  */
 const getUser = async (_: unknown, auth: FirebaseAuth) => {
   const uid = auth?.uid;
@@ -35,12 +32,9 @@ const getUser = async (_: unknown, auth: FirebaseAuth) => {
 };
 
 /**
- * Retrieves a user by their ID.
- *
- * @param userUid - The ID of the user to retrieve.
- * @param auth - The FirebaseAuth object for authentication.
- * @returns A Promise that resolves to the serialized user data.
- * @throws An exception if the user is not authenticated or if the user does not exist.
+ * Retrieves a user by their ID
+ * @param userUid - The ID of the user to retrieve
+ * @param auth - The Firebase authentication object
  */
 const getUserById = async (userUid: string, auth: FirebaseAuth) => {
   const uid = auth?.uid;
@@ -62,11 +56,9 @@ const getUserById = async (userUid: string, auth: FirebaseAuth) => {
 };
 
 /**
- * Retrieves the list of users.
- *
- * @param _ - Unused parameter.
- * @param auth - The FirebaseAuth object containing the user's authentication information.
- * @returns A Promise that resolves to an array of user documents.
+ * Retrieves the list of users
+ * @param _ - Unused parameter
+ * @param auth - The Firebase authentication object
  */
 const getUsers = async (_: unknown, auth: FirebaseAuth) => {
   const uid = auth?.uid;
@@ -80,11 +72,9 @@ const getUsers = async (_: unknown, auth: FirebaseAuth) => {
 };
 
 /**
- * Updates the user in the Firebase database.
- *
- * @param data - The user data to update.
- * @param auth - The authentication information.
- * @returns A boolean indicating whether the update was successful.
+ * Updates the user in the Firebase database
+ * @param data - The user data to update
+ * @param auth - The Firebase authentication object
  */
 const updateUserDB = async (data: FirebaseUserDB, auth: FirebaseAuth) => {
   const uid = auth?.uid;
@@ -111,9 +101,7 @@ const USER_API_ACTIONS = {
 };
 
 /**
- * Executes the user engine function.
- *
- * @param request - The callable request object.
- * @returns The result of the user engine function.
+ * Executes the user engine function by delegating to the appropriate action
+ * @param request - The callable request object
  */
 export const userEngine = (request: CallableRequest) => apiDelegator(request, USER_API_ACTIONS);

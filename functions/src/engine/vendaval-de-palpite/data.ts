@@ -10,8 +10,8 @@ import { TOTAL_WORDS_NEEDED } from './constants';
 
 /**
  * Get word cards and categories resource based on the game's language
- * @param language
- * @returns
+ * @param language - The language code for localized resources
+ * @returns Resource data containing categories and single words
  */
 export const getData = async (language: Language): Promise<ResourceData> => {
   const words = await utils.tdr.getSingleWords(language, TOTAL_WORDS_NEEDED);

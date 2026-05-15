@@ -15,10 +15,9 @@ import utils from '../../utils';
 import type { ArteRuimCard, TextCard } from '../../types/tdr';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and round
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const { SETUP, PROMPT_SELECTION, DRAWING, NAMING, PRESENTATION, GAME_OVER } = LINHAS_CRUZADAS_PHASES;
@@ -40,6 +39,13 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
   return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Deals prompt options to players based on game configuration
+ * @param players - The collection of players in the game
+ * @param expressionDeck - The deck of expression cards
+ * @param wordsDeck - The deck of word cards
+ * @param options - The game configuration options
+ */
 export const dealPromptOptions = (
   players: Players,
   expressionDeck: ArteRuimCard[],
@@ -71,6 +77,10 @@ export const dealPromptOptions = (
   }
 };
 
+/**
+ * Builds the album structure for all players
+ * @param players - The collection of players in the game
+ */
 export const buildAlbum = (players: Players): Album => {
   return utils.players.getListOfPlayers(players).reduce((album: Album, player) => {
     const card = player.prompts.find((card: Card) => card.id === player.promptId) ?? {};
@@ -97,6 +107,11 @@ export const buildAlbum = (players: Players): Album => {
   }, {});
 };
 
+/**
+ * Adds a new slide to the album with player drawings and names
+ * @param album - The current album object
+ * @param players - The collection of players in the game
+ */
 export const addSlideToAlbum = (album: Album, players: Players): Album => {
   utils.players.getListOfPlayers(players).forEach((player) => {
     album[player.currentPrompt.id].slides.push({
@@ -145,8 +160,8 @@ export const assignSlideToPlayers = (
 };
 
 /**
- * Get achievements
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<LinhasCruzadasAchievement>[] = [];

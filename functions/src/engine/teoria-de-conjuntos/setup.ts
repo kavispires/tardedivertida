@@ -95,8 +95,12 @@ export const prepareSetupPhase = async (
     },
   };
 };
-
-export const prepareJudgeSelectionPhase = async (
+/**
+ * [Judge Selection Phase] - Select judge and setup diagrams
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */ export const prepareJudgeSelectionPhase = async (
   _store: FirebaseStoreData,
   _state: FirebaseStateData,
   players: Players,
@@ -238,7 +242,17 @@ export const prepareItemPlacementPhase = async (
     },
   };
 };
-
+/**
+ * [Item Placement Phase] - Players place items in the Venn diagram
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ *//**
+ * [Evaluation Phase] - Judge evaluates item placements
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareEvaluationPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,

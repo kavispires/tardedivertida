@@ -4,14 +4,13 @@ import utils from '../../utils';
 import { getNextPhase } from './index';
 
 /**
- * Submits the card
- * @param gameName
- * @param gameId
- * @param playerId
- * @param cardId - the card that the player wants to play, it can be a card from their hand or a card that is already in a teller if they want to move it to another teller
- * @param tellerId - the teller where the card will be placed, it can be the same as the current teller of the card if the player is just moving a card from one teller to another without playing a card from their hand
- * @param newCardId - the card that will be placed in the teller after the move, it can be the same as cardId if the player is just moving a card from one teller to another without playing a card from their hand
- * @returns
+ * Submits the card to a specific teller
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the card
+ * @param cardId - The card that the player wants to play
+ * @param tellerId - The teller where the card will be placed
+ * @param newCardId - The card that will replace the current card in the teller
  */
 export const handleSubmitCard = async (
   gameName: string,

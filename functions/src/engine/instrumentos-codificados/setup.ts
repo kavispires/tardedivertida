@@ -16,10 +16,11 @@ import utils from '../../utils';
 import { buildCode, buildCodeFragment, buildTable } from './helpers';
 
 /**
- * Setup
- * Build the card deck
- * Resets previous changes to the store
- * @returns
+ * Setup phase - initializes game state and resources
+ * @param _store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ * @param cards - Resource data
  */
 export const prepareSetupPhase = async (
   _store: FirebaseStoreData,
@@ -64,6 +65,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * Hint Giving phase - players give hints for code fragments
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareHintGivingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -87,6 +94,12 @@ export const prepareHintGivingPhase = async (
   };
 };
 
+/**
+ * Hint Receiving phase - players receive and review hints
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareHintReceivingPhase = async (
   _store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -106,6 +119,12 @@ export const prepareHintReceivingPhase = async (
   };
 };
 
+/**
+ * Guess The Code phase - players attempt to guess the code
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGuessTheCodePhase = async (
   _store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -125,6 +144,12 @@ export const prepareGuessTheCodePhase = async (
   };
 };
 
+/**
+ * Solution phase - reveals the code and evaluates guesses
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareSolutionPhase = async (
   _store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -144,6 +169,13 @@ export const prepareSolutionPhase = async (
   };
 };
 
+/**
+ * Game Over phase - determines winners and saves game data
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

@@ -4,10 +4,12 @@ import type { DiagramArea, FirebaseStoreData, Guess, TeoriaDeConjuntosAchievemen
 import utils from '../../utils';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and guess state
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param currentGuess - The current guess object
+ * @param turnOrder - The array of player IDs in turn order
+ * @param activePlayerId - The ID of the active player
  */
 export const determineNextPhase = (
   currentPhase: string,
@@ -40,6 +42,10 @@ export const determineNextPhase = (
   return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Creates a Venn diagram structure with appropriate areas
+ * @param hasContextArea - Whether to include the context area in the diagram
+ */
 export const createVennDiagram = (hasContextArea: boolean): Dictionary<DiagramArea> => {
   const areas: Dictionary<DiagramArea> = {};
 
@@ -70,6 +76,11 @@ export const createVennDiagram = (hasContextArea: boolean): Dictionary<DiagramAr
   return areas;
 };
 
+/**
+ * Determines the outcome of a guess based on correctness
+ * @param currentGuess - The current guess object
+ * @param currentPlayer - The current player object
+ */
 export const determineOutcome = (currentGuess?: Guess, currentPlayer?: Player): Partial<Guess> => {
   // Beginning of the game
   if (!currentGuess || !currentPlayer) {
@@ -99,8 +110,8 @@ export const determineOutcome = (currentGuess?: Guess, currentPlayer?: Player): 
 };
 
 /**
- * Get achievements
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<TeoriaDeConjuntosAchievement>[] = [];

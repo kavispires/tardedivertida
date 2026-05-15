@@ -9,9 +9,8 @@ import type { TeenageMotivation, TeenageRumor, TeenageStudent } from '../../type
 import { TOTAL_RUMORS, TOTAL_STUDENTS } from './constants';
 
 /**
- * Get dilemmas resource based on the game's language
- * @param language
- * @returns
+ * Get teenage students, rumors, motivations, and social groups
+ * @returns Resource data containing teenagers, rumors, motivations, social groups, locations, and staff
  */
 export const getData = async (): Promise<ResourceData> => {
   // Get all teenagers

@@ -14,13 +14,10 @@ import type {
 import type { Item } from '../../types/tdr';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param currentRound
- * @param lose
- * @param win
- * @param triggerLastRound
- * @returns
+ * Determines the next phase based on the current phase and game state
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param state - The current Firebase state data
  */
 export const determineNextPhase = (currentPhase: string, round: Round, state: FirebaseStateData): string => {
   const { SETUP, MOVIE_GENRE_SELECTION, ACTOR_SELECTION, RESULT, GAME_OVER } = TESTE_DE_ELENCO_PHASES;
@@ -39,9 +36,8 @@ export const determineNextPhase = (currentPhase: string, round: Round, state: Fi
 };
 
 /**
- *
- * @param players
- * @returns
+ * Determines movie genre and props from player votes
+ * @param players - The collection of players in the game
  */
 const determineMovieVotes = (
   players: Players,
@@ -66,10 +62,20 @@ const determineMovieVotes = (
   };
 };
 
+/**
+ * Determines the order in which movie roles will be cast
+ * @param movie - The movie genre object
+ */
 export const determineCastingOrder = (movie: MovieGenre): string[] => {
   return movie.roles.map((role) => role.id).reverse();
 };
 
+/**
+ * Builds the movie object with all roles and candidates
+ * @param players - The collection of players in the game
+ * @param store - The Firebase store data
+ * @param movieProps - The array of movie prop items
+ */
 export const buildMovie = (players: Players, store: FirebaseStoreData, movieProps: Item[]): Movie => {
   const { genre, selectedProps, movieTitle } = determineMovieVotes(players);
 
@@ -187,6 +193,11 @@ export const determineCast = (players: Players, state: FirebaseStateData, store:
   };
 };
 
+/**
+ * Gets the next role ID that hasn't been cast yet
+ * @param movie - The movie object
+ * @param currentId - The current role ID
+ */
 export const getNextRoleId = (movie: Movie, currentId: string) => {
   const startIndex = movie.rolesOrder.indexOf(currentId);
 
@@ -204,8 +215,9 @@ export const getNextRoleId = (movie: Movie, currentId: string) => {
 };
 
 /**
- * Get achievements
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
+ * @param players - The collection of players in the game
  */
 export const getAchievements = (store: FirebaseStoreData, players: Players) => {
   const achievements: Achievement<TesteDeElencoAchievement>[] = [];

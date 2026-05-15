@@ -13,9 +13,9 @@ import * as resourceUtils from '../resource';
 
 /**
  * Get data
- * @param language
- * @param playerCount
- * @returns
+ * @param language - The language code for localized resources
+ * @param playerCount - Number of players in the game
+ * @returns Resource data containing images, emoji, words, glyphs, colors, emotions, and bot cards
  */
 export const getResourceData = async (language: Language, playerCount: number): Promise<ResourceData> => {
   // Calculate cards needed: player cards (starting hand + cards per round) + bot cards per round
@@ -68,8 +68,9 @@ export const getResourceData = async (language: Language, playerCount: number): 
 
 /**
  * Saved used data
- * @param items
- * @returns
+ * @param language - The language code for the saved data
+ * @param gallery - Array of gallery entries with image cards and clues
+ * @returns True if save was successful
  */
 export const saveData = async (language: Language, gallery: GalleryEntry[]): Promise<boolean> => {
   const usedImageCards: Dictionary<boolean> = {};

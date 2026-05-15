@@ -2,9 +2,8 @@ import utils from '../utils';
 
 /**
  * Gets document from public in firestore
- * @param documentName
- * @param fallback
- * @returns
+ * @param documentName - The name of the document to retrieve
+ * @param fallback - The fallback value if the document doesn't exist
  */
 export const getPublicFirebaseDocData = async (documentName: string, fallback: any = {}): Promise<any> => {
   let response: Promise<any>;
@@ -25,9 +24,8 @@ export const getPublicFirebaseDocData = async (documentName: string, fallback: a
 
 /**
  * Saves data to public in firestore
- * @param documentName
- * @param data
- * @returns
+ * @param documentName - The name of the document to update
+ * @param data - The data to save
  */
 export const updatePublicFirebaseDoc = async (documentName: string, data: any): Promise<boolean> => {
   const expectedType = Array.isArray(data) ? 'array' : typeof data;

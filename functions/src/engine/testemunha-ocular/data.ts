@@ -13,8 +13,9 @@ import * as dataUtils from '../collections';
 
 /**
  * Get question resource based on the game's language
- * @param language
- * @returns
+ * @param language - The language code for localized resources
+ * @param options - Game options including NSFW setting
+ * @returns Resource data containing testimony questions, suspects, and crime reasons
  */
 export const getQuestionsAndSuspects = async (
   language: string,
@@ -43,7 +44,11 @@ export const getQuestionsAndSuspects = async (
 
 /**
  * Save used questions to the global document
- * @param pastQuestions
+ * @param gameId - Unique game identifier
+ * @param history - Array of testimony history entries
+ * @param win - Whether players won the game
+ * @param perpetratorId - ID of the perpetrator suspect
+ * @param playerCount - Number of players in the game
  */
 export const saveData = async (
   gameId: UID,

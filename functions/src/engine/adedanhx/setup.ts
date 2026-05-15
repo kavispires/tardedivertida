@@ -23,10 +23,11 @@ import {
 } from './helpers';
 
 /**
- * Setup
- * Build the card deck
- * Resets previous changes to the store
- * @returns
+ * Setup phase - builds the card deck and resets previous changes to the store
+ * @param store - The Firebase store data
+ * @param _state - The Firebase state data (unused)
+ * @param players - The players object
+ * @param resourceData - Resource data containing topics and letters
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
@@ -77,6 +78,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * Answering phase - sets up the grid for the current round and prepares players to submit answers
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareAnsweringPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -114,6 +121,12 @@ export const prepareAnsweringPhase = async (
   };
 };
 
+/**
+ * Evaluation phase - groups answers and prepares them for player evaluation
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareEvaluationPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -146,6 +159,12 @@ export const prepareEvaluationPhase = async (
   };
 };
 
+/**
+ * Results phase - evaluates answers and calculates scores and rankings
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -175,6 +194,13 @@ export const prepareResultsPhase = async (
   };
 };
 
+/**
+ * Game Over phase - determines winners, calculates achievements, and saves game data
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

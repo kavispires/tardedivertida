@@ -16,10 +16,10 @@ import {
 } from './helpers';
 
 /**
- * Setup
- * Build the card deck
- * Resets previous changes to the store
- * @returns
+ * Setup phase - initializes game state and resources
+ * @param _store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
  */
 export const prepareSetupPhase = async (
   _store: FirebaseStoreData,
@@ -55,6 +55,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * Declaration phase - assigns roles and distributes cards to players
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareDeclarationPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -119,6 +125,13 @@ export const prepareDeclarationPhase = async (
   };
 };
 
+/**
+ * Examination phase - reveals cut cards and checks win/lose conditions
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareExaminationPhase = async (
   gameId: UID,
   store: FirebaseStoreData,
@@ -233,6 +246,13 @@ export const prepareExaminationPhase = async (
   };
 };
 
+/**
+ * Game Over phase - determines winners and saves game data
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

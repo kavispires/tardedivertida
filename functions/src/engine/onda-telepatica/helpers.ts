@@ -21,11 +21,10 @@ import { shuffle } from 'lodash';
 import utils from '../../utils';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @param isGameOver
- * @returns
+ * Determines the next phase based on the current phase and game state
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param isGameOver - Whether the game is over
  */
 export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
   const { SETUP, DIAL_CLUE, GUESS, REVEAL, GAME_OVER } = ONDA_TELEPATICA_PHASES;
@@ -41,9 +40,10 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
 };
 
 /**
- * Determine if a player has passed the points  threshold and it should be game over
- * @param players
- * @returns
+ * Determine if a player has passed the points threshold and game should be over
+ * @param players - The collection of players in the game
+ * @param options - The game configuration options
+ * @param round - The round object containing current round information
  */
 export const determineGameOver = (
   players: Players,
@@ -65,9 +65,8 @@ export const determineGameOver = (
 };
 
 /**
- * Gets 2 unique categories per round
- * @param data
- * @returns
+ * Gets 2 unique categories per round from the resource data
+ * @param data - The resource data containing all categories
  */
 export const buildDeck = (data: ResourceData): Deck => {
   const neededQuestionsAmount = MAX_ROUNDS * CATEGORIES_PER_ROUND;
@@ -99,12 +98,11 @@ const determineScore = (guess: number, target: number): number => {
 };
 
 /**
- *
- * @param players - it modifies players
- * @param currentCategory
- * @param psychicId
- * @param store
- * @returns
+ * Builds player rankings based on accuracy and psychic predictions
+ * @param players - The collection of players in the game (this function modifies players)
+ * @param currentCategory - The current category card
+ * @param psychicId - The ID of the psychic player
+ * @param store - The Firebase store data for tracking achievements
  */
 export const buildRanking = (
   players: Players,
@@ -158,8 +156,8 @@ export const buildRanking = (
 };
 
 /**
- * Get achievements:
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<OndaTelepaticaAchievement>[] = [];

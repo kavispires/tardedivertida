@@ -7,12 +7,11 @@ import { buildListOfAnswers } from './helpers';
 import type { AnswerEntry, AnswerGroupEntry, FirebaseStateData } from './types';
 
 /**
- * When active player chooses the round's question
- * @param gameName
- * @param gameId
- * @param playerId
- * @param questionId
- * @returns
+ * Submits the active player's chosen question for the round
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID choosing the question
+ * @param questionId - The selected question ID
  */
 export const handleSubmitQuestion = async (
   gameName: string,
@@ -33,12 +32,11 @@ export const handleSubmitQuestion = async (
 };
 
 /**
- * When active player writes the round's question
- * @param gameName
- * @param gameId
- * @param playerId
- * @param customQuestion
- * @returns
+ * Submits the active player's custom written question for the round
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID writing the question
+ * @param customQuestion - The custom question object
  */
 export const handleSubmitCustomQuestion = async (
   gameName: string,
@@ -59,12 +57,11 @@ export const handleSubmitCustomQuestion = async (
 };
 
 /**
- * When each player submit their round's answers
- * @param gameName
- * @param gameId
- * @param playerId
- * @param answers
- * @returns
+ * Submits each player's answers for the round
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting answers
+ * @param answers - Dictionary of answer IDs to answer text
  */
 export const handleSubmitAnswers = async (
   gameName: string,
@@ -84,12 +81,11 @@ export const handleSubmitAnswers = async (
 };
 
 /**
- * When admin iterate through answer groups
- * @param gameName
- * @param gameId
- * @param playerId
- * @param allowedList
- * @returns
+ * Advances through answer groups during admin evaluation
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param _playerId - The admin player ID (unused)
+ * @param allowedList - Array of allowed answer IDs
  */
 export const handleNextAnswers = async (
   gameName: string,

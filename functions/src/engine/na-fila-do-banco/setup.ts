@@ -15,6 +15,12 @@ import type { ClientCard, FirebaseStateData, FirebaseStoreData, Teller } from '.
 import { buildDeck, buildTellers, getAchievements } from './helpers';
 import { GAME_NAMES } from '../../utils/constants';
 
+/**
+ * [Setup Phase] - Initialize game, create deck, and setup achievements
+ * @param _store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareSetupPhase = async (
   _store: FirebaseStoreData,
   _state: FirebaseStateData,
@@ -63,6 +69,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Card Play Phase] - Players play cards to bank teller queues
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareCardPlayPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -339,6 +351,12 @@ export const prepareCardPlayPhase = async (
   };
 };
 
+/**
+ * [Round Resolution Phase] - Calculate scores and finalize the round
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareRoundResolutionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -416,7 +434,11 @@ export const prepareRoundResolutionPhase = async (
 };
 
 /**
- * Prepare game over phase
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
  */
 export const prepareGameOverPhase = async (
   gameId: UID,

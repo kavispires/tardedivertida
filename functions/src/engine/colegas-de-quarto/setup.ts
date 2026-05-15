@@ -18,10 +18,11 @@ import { saveData } from './data';
 import type { TextCard } from '../../types/tdr';
 
 /**
- * Setup
- * Build the card deck
- * Resets previous changes to the store
- * @returns
+ * Setup phase - initializes game state and resources
+ * @param _store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ * @param resourceData - Resource data
  */
 export const prepareSetupPhase = async (
   _store: FirebaseStoreData,
@@ -65,6 +66,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * Words Selection phase - players select words from a pool for the board
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareWordsSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -98,6 +105,12 @@ export const prepareWordsSelectionPhase = async (
   };
 };
 
+/**
+ * Clue Writing phase - players write clues for their assigned word pairs
+ * @param _store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareClueWritingPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -175,6 +188,12 @@ export const prepareClueWritingPhase = async (
   };
 };
 
+/**
+ * Guessing phase - players attempt to identify word pairs based on clues
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGuessingPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -217,6 +236,12 @@ export const prepareGuessingPhase = async (
   };
 };
 
+/**
+ * Reveal phase - shows which items were successfully purchased and updates happiness
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareRevealPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -257,6 +282,13 @@ export const prepareRevealPhase = async (
   };
 };
 
+/**
+ * Game Over phase - determines winners and saves game data
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

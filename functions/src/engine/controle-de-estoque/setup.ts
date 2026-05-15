@@ -32,10 +32,11 @@ import {
 import { BOSS_IDEAS } from './data';
 
 /**
- * Setup
- * Build the card deck
- * Resets previous changes to the store
- * @returns
+ * Setup phase - initializes game state and resources
+ * @param _store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ * @param resourceData - Resource data
  */
 export const prepareSetupPhase = async (
   _store: FirebaseStoreData,
@@ -142,6 +143,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * The Warehouse phase - players view the warehouse and prepare for placement
+ * @param _store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareTheWarehousePhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -169,6 +176,12 @@ export const prepareTheWarehousePhase = async (
   };
 };
 
+/**
+ * Good Placement phase - players place goods in the warehouse grid
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGoodPlacementPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -338,6 +351,12 @@ export const prepareGoodPlacementPhase = async (
   };
 };
 
+/**
+ * Placement Confirmation phase - supervisor confirms or rejects placements
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const preparePlacementConfirmationPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -361,6 +380,12 @@ export const preparePlacementConfirmationPhase = async (
   };
 };
 
+/**
+ * Fulfillment phase - players fulfill orders from the warehouse
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareFulfillmentPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -421,6 +446,12 @@ export const prepareFulfillmentPhase = async (
   };
 };
 
+/**
+ * Results phase - calculates scores and rankings for the round
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -446,6 +477,13 @@ export const prepareResultsPhase = async (
   };
 };
 
+/**
+ * Game Over phase - determines winners and saves game data
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

@@ -63,6 +63,12 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * [Card Selection Phase] - Players select betting cards
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareCardSelectionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -117,6 +123,12 @@ export const prepareCardSelectionPhase = async (
   };
 };
 
+/**
+ * [Run Phase] - Simulate the race with player bets
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareRunPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -182,6 +194,13 @@ export const prepareRunPhase = async (
   };
 };
 
+/**
+ * [Game Over Phase] - Finalize game and save results
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

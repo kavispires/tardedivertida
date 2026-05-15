@@ -8,8 +8,9 @@ import type { DilemmaCard } from '../../types/tdr';
 
 /**
  * Get dilemmas resource based on the game's language
- * @param language
- * @returns
+ * @param language - The language code for localized resources
+ * @param options - Game options including NSFW setting
+ * @returns Resource data containing dilemma cards
  */
 export const getDilemmas = async (language: string, options: EsquiadoresOptions): Promise<ResourceData> => {
   // Get full deck

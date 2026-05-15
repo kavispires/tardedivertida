@@ -8,10 +8,9 @@ import { GALERIA_DE_SONHOS_ACHIEVEMENTS, GALERIA_DE_SONHOS_PHASES, WORD_DECK_TOT
 import utils from '../../utils';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and round
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const { SETUP, WORD_SELECTION, DREAMS_SELECTION, CARD_PLAY, RESOLUTION, GAME_OVER } =
@@ -38,6 +37,12 @@ const replaceTableCards = (
   return table;
 };
 
+/**
+ * Builds the table by adding new cards and replacing old ones based on the round
+ * @param deck - The deck of image cards
+ * @param table - The current table of image cards
+ * @param currentRound - The current round number
+ */
 export const buildTable = (
   deck: ImageCard[],
   table: ImageCard[],
@@ -60,15 +65,29 @@ export const buildTable = (
   return [deck, newCleanTable];
 };
 
+/**
+ * Builds a deck from all available words by sampling
+ * @param allWords - The dictionary of all available words
+ */
 export const buildDeck = (allWords: AllWords): TextCard[] => {
   return sampleSize(Object.values(allWords), WORD_DECK_TOTAL);
 };
 
+/**
+ * Gets words for the current round by drawing from the deck
+ * @param wordsDeck - The deck of word cards
+ */
 export const getRoundWords = (wordsDeck: TextCard[]): [TextCard[], TextCard[]] => {
   const selectedWords = wordsDeck.splice(0, 3);
   return [wordsDeck, selectedWords];
 };
 
+/**
+ * Builds player rankings based on card matches and nightmare penalties
+ * @param players - The collection of players in the game
+ * @param store - The Firebase store data for tracking achievements
+ * @param playerInNightmareId - Optional ID of the player having a nightmare
+ */
 export const buildRanking = (players: Players, store: FirebaseStoreData, playerInNightmareId?: UID) => {
   const listOfPlayers = utils.players.getListOfPlayers(players);
   // Gained points: super sparks, sparks, nightmare
@@ -126,6 +145,10 @@ export const buildRanking = (players: Players, store: FirebaseStoreData, playerI
   return scores.rank(players);
 };
 
+/**
+ * Gets the IDs of players who have the maximum number of dream cards
+ * @param players - The collection of players in the game
+ */
 export const getPlayersWithMaxDreams = (players: Players) => {
   // Count selected cards per player
   const cardCount = utils.players
@@ -146,6 +169,11 @@ export const getPlayersWithMaxDreams = (players: Players) => {
   }, []);
 };
 
+/**
+ * Gets the most voted cards for a given word
+ * @param table - The array of image cards on the table
+ * @param word - The word card being matched
+ */
 export const getMostVotedCards = (table: ImageCard[], word: TextCard): ImageCard[] => {
   const mostNumberOfMatches = Math.max(...table.map((entry) => entry?.matchedPlayers?.length ?? 0));
 
@@ -155,12 +183,9 @@ export const getMostVotedCards = (table: ImageCard[], word: TextCard): ImageCard
 };
 
 /**
- * Simulate player cards for bots based on other players choices:
- * - 1 card with the most matches (between all players)
- * - 1 card for each player
- * - 4 random cards
- * @param players
- * @table
+ * Simulates bot card selections based on player choices and matching patterns
+ * @param players - The collection of players in the game
+ * @param table - The array of image cards on the table
  */
 export const simulateBotCards = (players: Players, table: ImageCard[]) => {
   const playersCount = utils.players.getListOfPlayers(players).length;
@@ -259,8 +284,8 @@ export const simulateBotCards = (players: Players, table: ImageCard[]) => {
 };
 
 /**
- * Get achievements:
- * @param store
+ * Calculates and returns player achievements based on game statistics
+ * @param store - The Firebase store data containing achievement counters
  */
 export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<GaleriaDeSonhosAchievement>[] = [];

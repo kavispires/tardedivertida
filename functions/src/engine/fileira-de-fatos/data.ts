@@ -8,8 +8,9 @@ import type { TextCard } from '../../types/tdr';
 
 /**
  * Get scenarios resource based on the game's language
- * @param language
- * @returns
+ * @param language - The language code for localized resources
+ * @param options - Game options including NSFW setting
+ * @returns Resource data containing scenario text cards
  */
 export const getScenarios = async (
   language: string,

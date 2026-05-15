@@ -6,12 +6,11 @@ import { getNextPhase } from './index';
 import type { FirebaseStateData } from './types';
 
 /**
- *  Submit a clue for the current player.
- * @param gameName
- * @param gameId
- * @param playerId
- * @param clue
- * @returns
+ * Submits a clue for the current player
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the clue
+ * @param clue - The clue text
  */
 export const handleSubmitClue = async (gameName: string, gameId: UID, playerId: UID, clue: string) => {
   return await utils.firestore.updatePlayer({
@@ -27,12 +26,11 @@ export const handleSubmitClue = async (gameName: string, gameId: UID, playerId: 
 };
 
 /**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param cardId
- * @returns
+ * Handles card play submission
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID playing the card
+ * @param cardId - The card ID being played
  */
 export const handlePlayCard = async (gameName: string, gameId: UID, playerId: UID, cardId: string) => {
   const actionText = 'play a card';

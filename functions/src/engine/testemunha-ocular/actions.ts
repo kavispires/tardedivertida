@@ -4,6 +4,13 @@ import { OUTCOME } from './constants';
 import { getNextPhase } from './index';
 import type { FirebaseStateData } from './types';
 
+/**
+ * Selects the witness player for questioning
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID selecting the witness
+ * @param witnessId - The selected witness player ID
+ */
 export const handleSelectWitness = async (gameName: string, gameId: UID, playerId: UID, witnessId: UID) => {
   return await utils.firestore.updateState({
     gameName,
@@ -17,6 +24,13 @@ export const handleSelectWitness = async (gameName: string, gameId: UID, playerI
   });
 };
 
+/**
+ * Selects the question to ask the witness
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID selecting the question
+ * @param questionId - The selected question ID
+ */
 export const handleSelectQuestion = async (gameName: string, gameId: UID, playerId: UID, questionId: UID) => {
   return await utils.firestore.updateState({
     gameName,
@@ -30,6 +44,13 @@ export const handleSelectQuestion = async (gameName: string, gameId: UID, player
   });
 };
 
+/**
+ * Submits the witness's testimony answer
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The witness player ID giving testimony
+ * @param testimony - The testimony answer (true/false)
+ */
 export const handleGiveTestimony = async (
   gameName: string,
   gameId: UID,
@@ -49,21 +70,11 @@ export const handleGiveTestimony = async (
 };
 
 /**
- * Handles the elimination action in the game.
- *
- * @param gameName - The name of the game.
- * @param gameId - The unique identifier of the game.
- * @param actionText - The text describing the action.
- * @param additionalPayload - Additional data required for the action.
- * @returns A promise that resolves to the next phase of the game or true if no phase change is needed.
- *
- * The function performs the following steps:
- * 1. Retrieves the current game state and session reference.
- * 2. Determines if the game should proceed to the next phase based on the action and game state.
- * 3. Checks if the suspect is the perpetrator or an innocent person.
- * 4. Updates the game state with the eliminated suspect if they are innocent.
- * 5. Determines if the game is won or lost based on the number of eliminated suspects.
- * 6. Proceeds to the next phase if necessary, handling any errors that occur.
+ * Handles the elimination action to remove a suspect or pass
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param actionText - The text describing the action
+ * @param additionalPayload - Object containing pass flag or suspect ID
  */
 export const handleElimination = async (
   gameName: string,
@@ -140,6 +151,13 @@ export const handleElimination = async (
   return true;
 };
 
+/**
+ * Submits the player's final elimination guess for the perpetrator
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID making the final guess
+ * @param suspectId - The suspected perpetrator ID (boolean type in signature)
+ */
 export const handleFinalElimination = async (
   gameName: string,
   gameId: UID,

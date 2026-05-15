@@ -22,10 +22,11 @@ import {
 } from './helpers';
 
 /**
- * Setup
- * Save locations to store
- * Resets previous changes to the store
- * @returns
+ * Setup phase - initializes game state and resources
+ * @param _store - The Firebase store data
+ * @param _state - The Firebase state data
+ * @param players - The players object
+ * @param resourceData - Resource data
  */
 export const prepareSetupPhase = async (
   _store: FirebaseStoreData,
@@ -108,6 +109,12 @@ export const prepareAssignmentPhase = async (
   };
 };
 
+/**
+ * Investigation phase - players ask and answer questions to find the spy
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareInvestigationPhase = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -140,7 +147,17 @@ export const prepareInvestigationPhase = async (
     },
   };
 };
-
+/**
+ * Assignment phase - assigns roles and locations to players
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ *//**
+ * Assessment phase - players vote on who they think is the spy
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareAssessmentPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -180,6 +197,12 @@ export const prepareAssessmentPhase = async (
   };
 };
 
+/**
+ * Final Assessment phase - final vote to identify the spy
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareFinalAssessmentPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -214,6 +237,12 @@ export const prepareFinalAssessmentPhase = async (
   };
 };
 
+/**
+ * Resolution phase - reveals the spy and calculates scores
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareResolutionPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -261,6 +290,13 @@ export const prepareResolutionPhase = async (
   };
 };
 
+/**
+ * Game Over phase - determines winners and saves game data
+ * @param gameId - The game session ID
+ * @param store - The Firebase store data
+ * @param state - The Firebase state data
+ * @param players - The players object
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

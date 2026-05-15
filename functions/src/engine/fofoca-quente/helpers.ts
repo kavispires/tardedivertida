@@ -4,10 +4,10 @@ import { FOFOCA_QUENTE_PHASES } from './constants';
 import type { SchoolLocation, Student } from './types';
 
 /**
- * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * Determines the next phase based on the current phase and game state
+ * @param currentPhase - The current phase of the game
+ * @param round - The round object containing current round information
+ * @param nextPhase - Optional specific next phase to use
  */
 export const determineNextPhase = (
   currentPhase: string,
@@ -48,6 +48,14 @@ export const determineNextPhase = (
   return utils.game.nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Determines which students can be rumored based on game rules and motivations
+ * @param students - The dictionary of student objects
+ * @param schoolBoard - The array of school locations
+ * @param detectiveLocationIndexes - The array of detective location indices
+ * @param gossiperId - The ID of the player who is gossiping
+ * @param motivationId - The ID of the current motivation affecting rules
+ */
 export const determineStudentsThatCanBeRumored = (
   students: Dictionary<Student>,
   schoolBoard: SchoolLocation[],

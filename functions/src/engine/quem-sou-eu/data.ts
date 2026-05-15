@@ -11,9 +11,10 @@ import type { ContenderCard } from '../../types/tdr';
 
 /**
  * Get characters based on the game's language
- * @param language
- * @param playerCount
- * @returns
+ * @param language - The language code for localized resources
+ * @param playerCount - Number of players in the game
+ * @param options - Game options including NSFW setting, image cards mode, and contender decks
+ * @returns Resource data containing character cards or image cards
  */
 export const getResourceData = async (
   language: Language,
@@ -47,8 +48,8 @@ export const getResourceData = async (
 
 /**
  * Saved given contender glyphs
- * @param contendersGlyphs
- * @returns
+ * @param contendersGlyphs - Dictionary mapping contender IDs to their associated glyphs
+ * @returns True if save was successful
  */
 export const saveData = async (contendersGlyphs: Dictionary<Dictionary<boolean>>): Promise<boolean> => {
   const contenderIds = Object.keys(contendersGlyphs).reduce((acc, id) => {
