@@ -8,6 +8,16 @@ import { buildBooleanDictionary } from './helpers';
 import { updateDataFirebaseDoc } from '../engine/collections';
 import { every, sampleSize, shuffle, some } from 'lodash';
 
+/**
+ * Retrieves items with optional filtering and NSFW handling
+ * @param quantity - The number of items to return, or all if undefined
+ * @param options - Configuration options for filtering items
+ * @param options.allowNSFW - Whether to include NSFW items
+ * @param options.decks - Array of deck names to filter by
+ * @param options.deckFiltering - Whether to filter by 'OR' or 'AND' logic for decks
+ * @param options.filters - Array of filter functions to apply to items
+ * @param options.cleanUp - Optional function to clean up item objects before returning
+ */
 export const getItems = async (
   quantity?: number,
   options: {
@@ -90,6 +100,9 @@ export const getItems = async (
   return sampleSize(list, quantity).map(options.cleanUp ?? ((item) => item));
 };
 
+/**
+ * Utility functions for filtering and manipulating Item objects
+ */
 export const itemUtils = {
   /**
    * Filter alien only if safe for work
@@ -172,11 +185,11 @@ export const saveUsedSingleWords = async (usedWords: Dictionary<boolean>) => {
 };
 
 /**
- * Get contenders
- * @param language
- * @param allowNSFW
- * @param quantity
- * @returns
+ * Retrieves contender cards with language and deck filtering
+ * @param language - The language to fetch contenders for
+ * @param allowNSFW - Whether to include NSFW contenders
+ * @param decks - Array of deck names to filter by
+ * @param quantity - The number of contenders to return, or all if undefined
  */
 export const getContenders = async (
   language: Language,

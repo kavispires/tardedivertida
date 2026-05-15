@@ -14,8 +14,7 @@ const generateDeck = (deckPrefix: string, quantity: number) => {
 
 /**
  * Gets cards from decks of image cards
- * @param quantity the number of cards needed
- * @returns
+ * @param quantity - The number of cards needed
  */
 export const getImageCards = async (quantity: number): Promise<UID[]> => {
   const cardInfo: Record<string, number> = await fetchResource('images-decks');
@@ -53,9 +52,8 @@ export const getImageCards = async (quantity: number): Promise<UID[]> => {
 };
 
 /**
- * Get several image card decks
- * @param quantity
- * @returns
+ * Gets several image card decks
+ * @param quantity - The number of decks to retrieve
  */
 export const getImageCardsDecks = async (quantity: number): Promise<UID[][]> => {
   const cardInfo: any = await fetchResource('images-decks');

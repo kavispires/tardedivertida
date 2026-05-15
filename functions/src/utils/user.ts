@@ -347,11 +347,18 @@ const PLACEHOLDER_GAME_USER_ENTRY: GameUserEntry = {
 
 /**
  * Generates a brand new user with given uid
+ * @param uid - The unique identifier for the user
+ * @param isGuest - Whether the user is a guest account
  */
 export const generateNewUser = (uid: string, isGuest?: boolean): FirebaseUserDB => {
   return { ...DEFAULT_FIREBASE_USER_DB, id: uid, isGuest: Boolean(isGuest) };
 };
 
+/**
+ * Merges provided user data with default user structure
+ * @param uid - The unique identifier for the user
+ * @param userData - Existing user data from Firestore
+ */
 export const mergeUserData = (uid: string, userData?: FirebaseFirestore.DocumentData): FirebaseUserDB => {
   return { ...DEFAULT_FIREBASE_USER_DB, ...(userData ?? {}), id: uid };
 };
@@ -362,10 +369,8 @@ const isWinnableGame = (gameName: string): boolean => {
 };
 
 /**
- * Serialize user for the UI
- * @param dbUser
- * @param dailyDate - format YYYY-MM-DD
- * @returns
+ * Serializes user database data for the UI
+ * @param dbUser - The user database object to serialize
  */
 export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
   // Get top avatars
@@ -673,6 +678,11 @@ export const saveGameToUsers = async ({
   }
 };
 
+/**
+ * Calculates player placements based on their scores
+ * @param players - Array of players to rank
+ * @returns Dictionary mapping player IDs to their placement ranks
+ */
 function getPlayersPlacement(players: Player[]): Dictionary<number> {
   // Sort players by score in descending order
   const sortedPlayers = players.sort((a, b) => b.score - a.score);
@@ -697,6 +707,16 @@ function getPlayersPlacement(players: Player[]): Dictionary<number> {
   return rankings;
 }
 
+/**
+ * Fetches a user document from Firestore by user ID
+ * @param id - The user ID to fetch
+ * @returns The user data or null if user doesn't exist
+ */
+/**
+ * Fetches a user document from Firestore by user ID
+ * @param id - The user ID to fetch
+ * @returns The user data or null if user doesn't exist
+ */
 async function fetchUser(id: string) {
   const user = await getUserRef().doc(id).get();
 
@@ -709,6 +729,11 @@ async function fetchUser(id: string) {
   return mergeUserData(id, data);
 }
 
+/**
+ * Saves updated user data to Firestore
+ * @param id - The user ID to update
+ * @param data - The user data to save
+ */
 async function saveNewUserData(id: string, data: FirebaseUserDB) {
   const userRef = getUserRef().doc(id);
   await userRef.update({ ...data });

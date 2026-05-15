@@ -50,6 +50,9 @@ export const feedEmulatorDB = async () => {
   await Promise.all(usedEntries);
 };
 
+/**
+ * Feeds user data to the emulator DB for testing
+ */
 export const feedEmulatorUser = async () => {
   if (!utils.firebase.isEmulatingFirestore()) {
     console.log('\x1b[33m%s\x1b[0m', '📛 Skipping Emulator seeding: Not Emulating Firestore');
@@ -78,6 +81,9 @@ export const feedEmulatorUser = async () => {
   await utils.firestore.getUserRef().doc(emulateUid).set(emulateUser);
 };
 
+/**
+ * Feeds daily challenge data to the emulator DB for testing
+ */
 export const feedEmulatorDaily = async () => {
   if (!utils.firebase.isEmulatingFirestore()) {
     console.log('\x1b[33m%s\x1b[0m', '📛 Skipping Emulator seeding: Not Emulating Firestore');

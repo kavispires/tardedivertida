@@ -611,6 +611,9 @@ const getInquirySuggestions = (
   );
 };
 
+/**
+ * Utility functions for managing alien items and attributes in TD games
+ */
 export const alienAttributesUtils = {
   createAlienItem,
   createAlienAttribute,

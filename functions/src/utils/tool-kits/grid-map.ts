@@ -686,6 +686,9 @@ function createPaths<TCellData>(
   return paths;
 }
 
+/**
+ * Utility functions for creating and manipulating grid maps in TD games
+ */
 export const gridMapUtils = {
   createGridMap,
   getCellById,
