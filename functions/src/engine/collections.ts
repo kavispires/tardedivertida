@@ -7,15 +7,18 @@ import { DATA_DOCUMENTS } from '../utils/constants';
  * @param documentName - The name of the document to retrieve
  * @param fallback - The fallback value if the document doesn't exist
  */
-export const getDataFirebaseDocData = async (documentName: string, fallback: any = {}): Promise<any> => {
-  let response: any;
+export const getDataFirebaseDocData = async <T = PlainObject>(
+  documentName: string,
+  fallback: T = {} as T,
+): Promise<T> => {
+  let response: T;
 
   if (utils.firebase.isEmulatingEnvironment()) {
     return fallback;
   }
 
   try {
-    response = (await utils.firestore.getDataRef().doc(documentName)?.get())?.data() ?? fallback;
+    response = ((await utils.firestore.getDataRef().doc(documentName)?.get())?.data() ?? fallback) as T;
   } catch (e) {
     // biome-ignore lint/suspicious/noConsole: Log error but don't error for the user
     console.error(e);
@@ -29,29 +32,10 @@ export const getDataFirebaseDocData = async (documentName: string, fallback: any
  * @param documentName - The name of the document to update
  * @param data - The data to save
  */
-export const updateDataFirebaseDoc = async (documentName: string, data: any): Promise<boolean> => {
-  const expectedType = Array.isArray(data) ? 'array' : typeof data;
+export const updateDataFirebaseDoc = async (documentName: string, data: PlainObject): Promise<boolean> => {
+  const currentData = await getDataFirebaseDocData(documentName, {});
 
-  const defaultCurrentData =
-    {
-      object: {},
-      array: [],
-      string: '',
-      number: 0,
-      boolean: false,
-    }?.[expectedType] ?? {};
-
-  const currentData = await getDataFirebaseDocData(documentName, defaultCurrentData);
-
-  let newData: any = null;
-  switch (expectedType) {
-    case 'array':
-    case 'object':
-      newData = merge(currentData, data);
-      break;
-    default:
-      newData = currentData;
-  }
+  const newData: PlainObject = merge(currentData, data);
 
   if (newData) {
     await utils.firestore.getDataRef().doc(documentName).update(newData);
@@ -69,7 +53,7 @@ export const updateDataFirebaseDoc = async (documentName: string, data: any): Pr
 export const updateDataCollectionRecursively = async (
   prefix: 'drawings' | 'monsterDrawings',
   language: Language,
-  data: any,
+  data: PlainObject,
 ): Promise<boolean> => {
   // Get suffix counts
   const documentPrefix = prefix === 'drawings' ? `${prefix}${language.toUpperCase()}` : `${prefix}`;
@@ -143,9 +127,8 @@ export const updateCardDataCollection = async (
  * @param relationships - The image card relationships to merge
  */
 export const updateImageCardsRelationships = async (relationships: ImageCardRelationship) => {
-  const previouslySavedRelationships: ImageCardRelationship = await getDataFirebaseDocData(
-    DATA_DOCUMENTS.IMAGE_CARDS_RELATIONSHIPS,
-  );
+  const previouslySavedRelationships: ImageCardRelationship =
+    await getDataFirebaseDocData<ImageCardRelationship>(DATA_DOCUMENTS.IMAGE_CARDS_RELATIONSHIPS);
 
   const parsedRelationships: ImageCardRelationship = {};
 
@@ -166,7 +149,7 @@ export const updateImageCardsRelationships = async (relationships: ImageCardRela
 };
 
 /**
- * Transpiles relationships from source to result by creating bidirectional connections
+ * Transpile relationships from source to result by creating bidirectional connections
  * @param source - The source relationships to transpile
  * @param result - The result object to populate with bidirectional relationships
  */
