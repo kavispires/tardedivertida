@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-DBS2Xqfh.js";import{nt as t}from"./PageLayout-DBSPIFx0.js";import{t as n}from"./PlayerAvatar-BbYKnv0W.js";var r=e();function i({player:e,tooltipProps:i,...a}){return(0,r.jsx)(t,{title:e.name,...i,children:(0,r.jsx)(n,{avatarId:e.avatarId,...a})})}export{i as t};
