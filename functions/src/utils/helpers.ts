@@ -98,29 +98,6 @@ export function getUniqueItems(array1: any[], array2: any[]): any[] {
 }
 
 /**
- * Merges the properties of multiple objects into one object.
- * @deprecated Use lodash _.merge instead
- * @param {object} target - The target object to merge the source objects into.
- * @param {...any} sources - The source objects to merge into the target object.
- * @returns {any} The target object with the properties of the source objects merged in.
- */
-export function merge(target: any, ...sources: any[]): any {
-  sources.forEach((source) => {
-    for (const key in source) {
-      if (source[key] !== null || source[key] !== undefined) {
-        if (typeof target[key] === 'object' && typeof source[key] === 'object') {
-          merge(target[key], source[key]);
-        } else {
-          target[key] = source[key];
-        }
-      }
-    }
-  });
-
-  return target;
-}
-
-/**
  * Calculates the average (mean) of an array of numbers.
  * @param values - The array of numbers to average
  * @param round - Whether to round the result to the nearest integer

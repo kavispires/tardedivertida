@@ -7,7 +7,6 @@ import type { PastCategories, ResourceData } from './types';
 // Utils
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
-import * as dataUtils from '../collections';
 import utils from '../../utils';
 
 /**
@@ -43,8 +42,6 @@ export const getCategories = async (language: string): Promise<ResourceData> => 
  * @param pastCategories - Dictionary of category IDs to their associated clues
  */
 export const saveData = async (pastCategories: PastCategories): Promise<void> => {
-  await dataUtils.updateOpposingIdeasClues(pastCategories);
-
   // Save usedTestemunhaOcularCards to global
   const usedOndaTelepaticaCategories = utils.helpers.buildBooleanDictionary(pastCategories);
   await globalUtils.updateGlobalFirebaseDoc(

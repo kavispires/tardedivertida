@@ -1,7 +1,6 @@
-import { uniq } from 'lodash';
+import { merge, uniq } from 'lodash';
 import utils from '../utils';
 import { DATA_DOCUMENTS } from '../utils/constants';
-import type { PastCategories } from './onda-telepatica/types';
 
 /**
  * Gets document from data in firestore
@@ -48,7 +47,7 @@ export const updateDataFirebaseDoc = async (documentName: string, data: any): Pr
   switch (expectedType) {
     case 'array':
     case 'object':
-      newData = utils.helpers.merge(currentData, data);
+      newData = merge(currentData, data);
       break;
     default:
       newData = currentData;
@@ -137,46 +136,6 @@ export const updateCardDataCollection = async (
   }
 
   return true;
-};
-
-type OpposingIdeaClue = Record<UID, Record<string | number, any>>;
-
-/**
- * Updates opposing ideas clues from past categories
- * TODO: Delete after its run once
- * @param pastCategories - The past categories data to process
- */
-export const updateOpposingIdeasClues = async (pastCategories: PastCategories) => {
-  const previouslySavedCategories: OpposingIdeaClue = await getDataFirebaseDocData(
-    DATA_DOCUMENTS.OPPOSING_IDEAS_CLUES,
-  );
-
-  Object.keys(previouslySavedCategories).forEach((cardId) => {
-    Object.keys(previouslySavedCategories[cardId]).forEach((target) => {
-      if (!Array.isArray(previouslySavedCategories[cardId][target]))
-        previouslySavedCategories[cardId][target] = [previouslySavedCategories[cardId][target]];
-    });
-  });
-
-  pastCategories.forEach((entry) => {
-    const target = String(entry.target ?? 11);
-
-    if (previouslySavedCategories[entry.id] === undefined) {
-      previouslySavedCategories[entry.id] = {};
-    }
-
-    if (previouslySavedCategories[entry.id][target] === undefined) {
-      previouslySavedCategories[entry.id][target] = [];
-    }
-    if (entry.clue && Array.isArray(previouslySavedCategories[entry.id][target])) {
-      previouslySavedCategories[entry.id][target].push(entry.clue);
-    }
-  });
-
-  await utils.firestore
-    .getDataRef()
-    .doc(DATA_DOCUMENTS.OPPOSING_IDEAS_CLUES)
-    .update(previouslySavedCategories);
 };
 
 /**
