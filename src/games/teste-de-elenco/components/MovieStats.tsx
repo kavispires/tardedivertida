@@ -56,7 +56,7 @@ export function MovieStats({ movie }: MovieStatsProps) {
         }
       >
         <div>
-          <MetricHighlight icon={<CulturesIcon />}>{summary.ethnicityDiversity}%</MetricHighlight>
+          <MetricHighlight icon={<CulturesIcon />}>{summary.raceDiversity}%</MetricHighlight>
         </div>
       </Tooltip>
       {summary.isLGBTQA && (

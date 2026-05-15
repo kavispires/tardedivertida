@@ -1,5 +1,5 @@
 // Types
-import type { SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
+import type { TestimonyQuestionCard } from '../../types/tdr';
 import type { ResourceData, TaNaCaraOptions } from './types';
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
@@ -24,7 +24,11 @@ export const getResourceData = async (language: string, options: TaNaCaraOptions
   // Get used deck
   const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS, {});
   // Get images info
-  const allSuspects = await resourceUtils.fetchResource<Dictionary<SuspectCard>>(TDR_RESOURCES.SUSPECTS);
+  const allSuspects = await utils.tdr.getSuspects({
+    styleVariant: options.styleVariant,
+    cleanup: true,
+    decks: ['adult'],
+  });
 
   // Filter out used cards
   const availableCards = Object.values(utils.game.filterOutByIds(allCards, usedCards)).filter((card) =>
@@ -42,6 +46,6 @@ export const getResourceData = async (language: string, options: TaNaCaraOptions
 
   return {
     allCards: availableCards,
-    allSuspects: utils.tdr.modifySuspectIdsByOptions(Object.values(allSuspects), options, true),
+    allSuspects,
   };
 };

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "ta-na-cara",
-  "version": "1.1.108",
+  "version": "1.1.109",
   "release": "deprecated",
   "releaseDate": "2023-03-25",
   "available": false,
@@ -60,26 +60,26 @@
       ]
     },
     {
-      "key": "deckType",
+      "key": "styleVariant",
       "label": "Deck",
       "kind": "radio",
       "description": "Choose the suspect type of deck to play with",
       "values": [
         {
           "label": "Ghibli (recommended)",
-          "value": "ghibli"
+          "value": "gb"
         },
         {
           "label": "Realistic",
-          "value": "realistic"
+          "value": "rl"
         },
         {
           "label": "Pixar",
-          "value": "pixar"
+          "value": "px"
         },
         {
           "label": "Fox Animation",
-          "value": "fox"
+          "value": "fx"
         }
       ]
     }

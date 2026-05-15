@@ -579,6 +579,10 @@ export type SuspectCard = {
    */
   name: DualLanguageValue;
   /**
+   * The deck the suspect belongs to
+   */
+  deck: 'adult' | 'kid' | 'pet' | 'teen' | 'other' | (string & NonNullable<unknown>);
+  /**
    * The gender of the suspect
    */
   gender: 'male' | 'female' | (string & NonNullable<unknown>);
@@ -595,13 +599,10 @@ export type SuspectCard = {
     | 'other'
     | (string & NonNullable<unknown>);
   /**
-   * Backwards compatibility (to be removed)
-   */
-  ethnicity: string;
-  /**
    * The age range of the suspect
    */
   age:
+    | '0-10'
     | '18-21'
     | '21-30'
     | '30-40'
@@ -626,7 +627,7 @@ export type SuspectCard = {
   /**
    * Flag indicating if the suspect is exclusive to the gb style
    */
-  gbExclusive?: boolean;
+  gbExclusive?: true;
 };
 
 /**

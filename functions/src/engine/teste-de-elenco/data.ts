@@ -1,5 +1,5 @@
 // Types
-import type { SuspectCard, MovieCard, TestimonyQuestionCard } from '../../types/tdr';
+import type { MovieCard, TestimonyQuestionCard } from '../../types/tdr';
 import type { ResourceData, TesteDeElencoOptions } from './types';
 import { sampleSize } from 'lodash';
 // Constants
@@ -21,7 +21,11 @@ export const getData = async (language: string, options: TesteDeElencoOptions): 
     language,
   );
   // Get images info
-  const allSuspects = await resourceUtils.fetchResource<Dictionary<SuspectCard>>(TDR_RESOURCES.SUSPECTS);
+  const allActors = await utils.tdr.getSuspects({
+    styleVariant: options.styleVariant,
+    cleanup: true,
+    decks: ['adult'],
+  });
 
   // Filter out used cards
   const availableCards = Object.values(allCards).filter((card) => (options.nsfw ? card : !card.nsfw));
@@ -40,6 +44,6 @@ export const getData = async (language: string, options: TesteDeElencoOptions): 
     moviesSamples: sampleSize(allMovies, 6),
     itemsSamples: items,
     allCards: availableCards,
-    allActors: utils.tdr.modifySuspectIdsByOptions(Object.values(allSuspects), options, true),
+    allActors,
   };
 };

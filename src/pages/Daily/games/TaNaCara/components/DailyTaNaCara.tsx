@@ -148,12 +148,12 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                           pt: '',
                         },
                         gender: '',
-                        ethnicity: '',
                         race: '',
                         age: '',
                         build: '',
                         height: '',
                         features: [],
+                        deck: '',
                       }}
                       variant={variant}
                       width={width}

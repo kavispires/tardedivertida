@@ -1,5 +1,5 @@
 // Types
-import type { CrimeReason, SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
+import type { CrimeReason, TestimonyQuestionCard } from '../../types/tdr';
 import type { ResourceData, TestemunhaOcularHistoryEntry, TestemunhaOcularOptions } from './types';
 import { set } from 'lodash';
 // Constants
@@ -29,7 +29,12 @@ export const getQuestionsAndSuspects = async (
     QUESTION_COUNT,
   );
 
-  const allSuspects = await resourceUtils.fetchResource<Dictionary<SuspectCard>>(TDR_RESOURCES.SUSPECTS);
+  const allSuspects = await utils.tdr.getSuspects({
+    styleVariant: options.styleVariant,
+    onlyGbExclusive: options.gbExclusive,
+    cleanup: true,
+    decks: ['adult'],
+  });
 
   const crimeReasons = await resourceUtils.fetchResource<Dictionary<CrimeReason>>(
     TDR_RESOURCES.CRIME_REASONS,
@@ -37,7 +42,7 @@ export const getQuestionsAndSuspects = async (
 
   return {
     allCards: availableCards,
-    allSuspects: utils.tdr.modifySuspectIdsByOptions(Object.values(allSuspects), options, true),
+    allSuspects,
     allReasons: crimeReasons,
   };
 };

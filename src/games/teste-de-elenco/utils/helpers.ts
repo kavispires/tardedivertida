@@ -33,9 +33,7 @@ export const chatGPTMoviePrompt = (movie: FeatureFilm, language: Language): stri
         prompt += `- ${role.description.en}:`;
 
         const actor = role.candidates[role.actor ?? ''];
-        prompt += ` ${actor.name[language].split(' ')[0]}, ${actor.gender}, age ${actor.age}, ${
-          actor.ethnicity
-        },`;
+        prompt += ` ${actor.name[language].split(' ')[0]}, ${actor.gender}, age ${actor.age}, ${actor.race},`;
         prompt += ` with the traits: ${role.traits.join(', ')}.\n`;
       }
     });
@@ -60,7 +58,7 @@ export const chatGPTMoviePrompt = (movie: FeatureFilm, language: Language): stri
       const actor = role.candidates[role.actor ?? ''];
       prompt += ` ${actor.name[language].split(' ')[0]},  ${
         actor.gender === 'male' ? 'homem' : 'mulher'
-      }, idade entre ${actor.age}, ${actor.ethnicity},`;
+      }, idade entre ${actor.age}, ${actor.race},`;
       prompt += ` com as características: ${role.traits.join(', ')}.\n`;
     }
   });
@@ -95,8 +93,8 @@ export const getMovieSummary = (movie: FeatureFilm) => {
 
   // Calculate Ethnicity diversity
   // biome-ignore lint/style/noNonNullAssertion: <explanation>
-  const uniqueRaces = new Set(roles.map((role) => role.candidates[role.actor!].ethnicity));
-  const ethnicityDiversity = (() => {
+  const uniqueRaces = new Set(roles.map((role) => role.candidates[role.actor!].race));
+  const raceDiversity = (() => {
     if (uniqueRaces.size <= 1) return 0;
 
     return Math.round(((uniqueRaces.size - 1) / (totalActors - 1)) * 100);
@@ -120,7 +118,7 @@ export const getMovieSummary = (movie: FeatureFilm) => {
   return {
     genderDiversity,
     ageDiversity,
-    ethnicityDiversity,
+    raceDiversity,
     isLGBTQA,
   };
 };

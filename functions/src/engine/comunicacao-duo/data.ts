@@ -1,11 +1,7 @@
 import type { ComunicacaoDuoOptions, ResourceData } from './types';
 import utils from '../../utils';
-import * as resourceUtils from '../resource';
 import { TOTAL_ITEMS } from './constants';
 import { applyDataToDeck } from './helpers';
-import { TDR_RESOURCES } from '../../utils/constants';
-import type { SuspectCard } from '../../types/tdr';
-import { orderBy, sample } from 'lodash';
 
 /**
  * Get words resource based on the game's language
@@ -42,18 +38,13 @@ export const getDeck = async (language: Language, options: ComunicacaoDuoOptions
   }
 
   if (deckType === 'suspects') {
-    const allSuspects = await resourceUtils.fetchResource<Dictionary<SuspectCard>>(TDR_RESOURCES.SUSPECTS);
-    const suspects = orderBy(
-      utils.tdr.modifySuspectIdsByOptions(
-        Object.values(allSuspects),
-        {
-          deckType: sample(['ghibli', 'realistic', 'pixar', 'fox']),
-        },
-        true,
-      ),
-      [`name.${language}`],
-      ['asc'],
-    );
+    const suspects = await utils.tdr.getSuspects({
+      randomStyleVariant: true,
+      quantity: TOTAL_ITEMS,
+      cleanup: true,
+      sortBy: `name.${language}`,
+    });
+
     return { deck: applyDataToDeck(suspects, 'suspects') };
   }
 

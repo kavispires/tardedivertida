@@ -1,13 +1,12 @@
 // Constants
 import { EXTRA_ITEMS, PAIRS_PER_ROUND, TOTAL_ROUNDS } from './constants';
-import { AVATAR_SPRITE_LIBRARIES, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
+import { AVATAR_SPRITE_LIBRARIES, SPRITE_LIBRARIES } from '../../utils/constants';
 import { isEmpty, sample, sampleSize } from 'lodash';
 // Type
 import type { ContenderCard, SuspectCard, TextCard } from '../../types/tdr';
 import type { DuetosOptions, Gallery, ResourceData } from './types';
 // Helpers
 import utils from '../../utils';
-import * as resourceUtils from '../resource';
 
 /**
  * Get characters based on the game's language
@@ -88,17 +87,12 @@ export const getResourceData = async (language: Language, options?: DuetosOption
 
   let suspects: SuspectCard[] = [];
   if (specialDeckTypes.includes('suspects')) {
-    const allSuspects = await resourceUtils.fetchResource<Dictionary<SuspectCard>>(TDR_RESOURCES.SUSPECTS);
-    suspects = sampleSize(
-      utils.tdr.modifySuspectIdsByOptions(
-        Object.values(allSuspects),
-        {
-          deckType: sample(['ghibli', 'realistic', 'pixar', 'fox']),
-        },
-        true,
-      ),
-      quantityNeeded,
-    );
+    suspects = await utils.tdr.getSuspects({
+      randomStyleVariant: true,
+      quantity: quantityNeeded,
+      cleanup: true,
+      sortBy: `name.${language}`,
+    });
   }
 
   let contenders: ContenderCard[] = [];

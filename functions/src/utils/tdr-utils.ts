@@ -6,7 +6,7 @@ import * as firestoreUtils from './firestore';
 import * as gameUtils from './game-utils';
 import { buildBooleanDictionary } from './helpers';
 import { updateDataFirebaseDoc } from '../engine/collections';
-import { every, sampleSize, shuffle, some } from 'lodash';
+import { every, orderBy, sample, sampleSize, shuffle, some } from 'lodash';
 
 /**
  * Retrieves items with optional filtering and NSFW handling
@@ -332,56 +332,186 @@ export const getUnusedResources = async <T extends { id: string; nsfw?: boolean 
 };
 
 /**
- * Modifies the IDs of suspect cards based on the given options.
- *
- * @param suspects - An array of suspect cards to modify
- * @param options - Optional configuration options for suspect cards
- * @param cleanup - If true, only essential properties of suspects will be included in the result
- * @returns An array of suspect cards with modified IDs
- *
- * The function transforms suspect IDs to follow the format `us-[deckType]-[originalId]`, where:
- * - `us` is a fixed prefix
- * - `deckType` is a two-letter code (gb: ghibli, px: pixar, rl: realistic, fx: fox)
- * - `originalId` is the original ID number extracted from the suspect's ID
- *
- * When cleanup is true, only the following properties are included in each suspect:
- * name, gender, age, ethnicity, build, height, and an empty features array.
+ * Retrieves suspect cards with style variant, deck filtering, and cleanup options
+ * @param styleVariant - Style variant for suspect cards (gb, px, rl, fx), defaults to 'gb'
+ * @param decks - Array of deck names to filter suspects by, defaults to ['adult']
+ * @param quantity - Number of suspect cards to return, or all if undefined
+ * @param cleanup - If true, returns only essential properties with modified IDs
+ * @param randomStyleVariant - If true, randomly selects style variant for each suspect
+ * @param onlyGbExclusive - If true, returns only suspects exclusive to GB style
+ * @returns Array of suspect cards matching the specified criteria
  */
-export const modifySuspectIdsByOptions = (
-  suspects: SuspectCard[],
-  options?: SuspectCardsOptions,
-  cleanup?: boolean,
-): SuspectCard[] => {
-  const deckType =
-    {
-      ghibli: 'gb',
-      pixar: 'px',
-      realistic: 'rl',
-      fox: 'fx',
-    }[options?.deckType ?? 'ghibli'] ?? 'gb';
+export const getSuspects = async ({
+  styleVariant = 'gb',
+  decks = ['adult'],
+  quantity,
+  cleanup = false,
+  randomStyleVariant = false,
+  onlyGbExclusive = false,
+  sortBy,
+}: {
+  /**
+   * Optional style variant for suspect cards, which determines the images used. If not provided, defaults to 'gb' (Ghibli style).
+   */
+  styleVariant?: SuspectCardsOptions['styleVariant'];
+  /**
+   * Optional array of deck names to filter suspects by. If not provided, only adults will be returned. If 'any' is included, suspects from all decks will be returned.
+   */
+  decks?: string[];
+  /**
+   * Number of suspect cards to return. If not provided, returns all suspects that match the style variant.
+   */
+  quantity?: number;
+  /**
+   * If true, only essential properties of suspects will be included in the result, and IDs will be modified to follow the format `us-[deckType]-[originalId]`. Defaults to false.
+   */
+  cleanup?: boolean;
+  /**
+   * If true, the style variant will be randomly selected for each suspect card, instead of using the provided styleVariant for all cards. Defaults to false.
+   */
+  randomStyleVariant?: boolean;
+  /**
+   * If true, only suspects that are exclusive to the GB style will be included, regardless of the provided styleVariant. Defaults to false.
+   */
+  onlyGbExclusive?: boolean;
+  /**
+   * Sorts the resulting suspects by the specified property. Usually name.pt or name.en, default is by id.
+   */
+  sortBy?: string;
+}): Promise<SuspectCard[]> => {
+  const allSuspects = await fetchResource<Dictionary<SuspectCard>>(TDR_RESOURCES.SUSPECTS);
+  const suspectsArray = Object.values(allSuspects);
 
-  return suspects.map((suspect) => ({
-    ...(cleanup
-      ? {
-          name: suspect.name,
-          gender: suspect.gender,
-          age: suspect.age,
-          ethnicity: suspect.ethnicity,
-          race: suspect.race,
-          build: suspect.build,
-          height: suspect.height,
-          features: [],
-          gbExclusive: suspect.gbExclusive ?? false,
-        }
-      : suspect),
-    id: `us-${deckType}-${suspect.id.split('-')[1]}`,
+  function applyStyleVariantOnId(id: string, styleVariant: SuspectCardsOptions['styleVariant']): string {
+    return `us-${styleVariant ?? 'gb'}-${id.split('-')[1]}`;
+  }
+
+  function cleanUpSuspect(suspect: SuspectCard): SuspectCard {
+    return {
+      id: suspect.id,
+      name: suspect.name,
+      gender: suspect.gender,
+      age: suspect.age,
+      race: suspect.race,
+      build: suspect.build,
+      height: suspect.height,
+      features: [],
+      deck: suspect.deck,
+    };
+  }
+
+  function filterByDecks(list: SuspectCard[]) {
+    return list.filter((suspect) => {
+      if (decks?.includes('any')) {
+        return true;
+      }
+
+      if (decks?.includes(suspect.deck)) {
+        return true;
+      }
+      return false;
+    });
+  }
+
+  // Filter by decks
+  let pool = filterByDecks(suspectsArray);
+
+  if (onlyGbExclusive) {
+    const gbExclusivePool = pool.filter((suspect) => suspect.gbExclusive);
+    if (quantity && quantity > gbExclusivePool.length) {
+      throw new Error(
+        `Not enough suspects that are exclusive to GB style. Requested: ${quantity}, Available: ${gbExclusivePool.length}`,
+      );
+    }
+
+    pool = gbExclusivePool;
+  }
+
+  const selectedStyleVariant = onlyGbExclusive
+    ? 'gb'
+    : styleVariant || (randomStyleVariant ? sample(['gb', 'px', 'rl', 'fx']) : 'gb');
+
+  if (quantity) {
+    pool = sampleSize(pool, quantity);
+  }
+
+  if (cleanup) {
+    return orderBy(
+      pool.map((suspect) => {
+        return {
+          ...cleanUpSuspect(suspect),
+          id: applyStyleVariantOnId(suspect.id, selectedStyleVariant),
+        };
+      }),
+      [sortBy || ((o) => Number(o.id.split('-')[2]))],
+      ['asc', 'asc'],
+    );
+  }
+
+  return pool.map((suspect) => ({
+    ...suspect,
+    id: applyStyleVariantOnId(suspect.id, selectedStyleVariant),
   }));
 };
 
+// /**
+//  * Modifies the IDs of suspect cards based on the given options.
+//  *
+//  * @param suspects - An array of suspect cards to modify
+//  * @param options - Optional configuration options for suspect cards
+//  * @param cleanup - If true, only essential properties of suspects will be included in the result
+//  * @returns An array of suspect cards with modified IDs
+//  *
+//  * The function transforms suspect IDs to follow the format `us-[deckType]-[originalId]`, where:
+//  * - `us` is a fixed prefix
+//  * - `deckType` is a two-letter code (gb: ghibli, px: pixar, rl: realistic, fx: fox)
+//  * - `originalId` is the original ID number extracted from the suspect's ID
+//  *
+//  * When cleanup is true, only the following properties are included in each suspect:
+//  * name, gender, age, race, build, height, and an empty features array.
+//  */
+// export const modifySuspectIdsByOptions = (
+//   suspects: SuspectCard[],
+//   options?: SuspectCardsOptions,
+//   cleanup?: boolean,
+// ): SuspectCard[] => {
+//   const deckType =
+//     {
+//       ghibli: 'gb',
+//       pixar: 'px',
+//       realistic: 'rl',
+//       fox: 'fx',
+//     }[options?.styleVariant ?? 'ghibli'] ?? 'gb';
+
+//   return suspects.map((suspect) => {
+//     const hasOtherStyles = !suspect.gbExclusive;
+//     const newId = '';
+
+//     if (cleanup) {
+//       return {
+//         id: newId,
+//         name: suspect.name,
+//         gender: suspect.gender,
+//         age: suspect.age,
+//         race: suspect.race,
+//         build: suspect.build,
+//         height: suspect.height,
+//         features: [],
+//         deck: suspect.deck,
+//       };
+//     }
+
+//     return {
+//       ...suspect,
+//       id: newId,
+//     };
+//   });
+// };
+
 /**
  * Saves list of used adjectives ids into the global used document
- * @param usedAdjectives
- * @returns
+ * @param usedAdjectives - Dictionary of used adjectives ids
+ * @returns Promise that resolves when the update is complete
  */
 export const saveUsedAdjectives = async (usedAdjectives: Dictionary<boolean>) => {
   return updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ADJECTIVES, usedAdjectives);
@@ -389,8 +519,8 @@ export const saveUsedAdjectives = async (usedAdjectives: Dictionary<boolean>) =>
 
 /**
  * Saves list of used items ids into the global used document
- * @param items
- * @returns
+ * @param items- Array of items to save as used
+ * @returns Promise that resolves when the update is complete
  */
 export const savePairs = async (pairs: Dictionary<boolean>) => {
   return updateDataFirebaseDoc(DATA_DOCUMENTS.PAIRS, pairs);

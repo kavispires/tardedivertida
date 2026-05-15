@@ -50,27 +50,14 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
  * @param language - The game language
  * @param largerPool - Whether to use a larger pool of suspects
  * @param targetedPool - Whether to use a targeted pool based on attributes
- * @param isGbExclusive - Whether to use GB exclusive suspects only
  */
 export const getPoolOfSuspects = (
   allSuspects: SuspectCard[],
   language: string,
   largerPool: boolean,
   targetedPool: boolean,
-  isGbExclusive: boolean,
 ) => {
   const poolSize = largerPool ? SUSPECT_COUNT + HARD_MODE_EXTRA_SUSPECT_COUNT : SUSPECT_COUNT;
-
-  if (isGbExclusive) {
-    return orderBy(
-      sampleSize(
-        allSuspects.filter((s) => s.gbExclusive),
-        poolSize,
-      ),
-      [`name.${language}`],
-      ['asc'],
-    );
-  }
 
   if (!targetedPool) {
     return orderBy(sampleSize(allSuspects, poolSize), [`name.${language}`], ['asc']);

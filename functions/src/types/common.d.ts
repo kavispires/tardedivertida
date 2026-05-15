@@ -767,7 +767,7 @@ type SuspectCardsOptions = {
   /**
    * Determines the images used in the suspect cards
    */
-  deckType: 'ghibli' | 'realistic' | 'pixar' | 'fox';
+  styleVariant: 'gb' | 'rl' | 'px' | 'fx' | (string & NonNullable<unknown>);
 };
 
 /**

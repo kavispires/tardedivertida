@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "teste-de-elenco",
-  "version": "2.0.87",
+  "version": "2.0.88",
   "release": "stable",
   "releaseDate": "2023-11-04",
   "available": false,
@@ -73,26 +73,26 @@
       ]
     },
     {
-      "key": "deckType",
+      "key": "styleVariant",
       "label": "Deck",
       "kind": "radio",
       "description": "Choose the suspect type of deck to play with",
       "values": [
         {
           "label": "Ghibli (recommended)",
-          "value": "ghibli"
+          "value": "gb"
         },
         {
           "label": "Realistic",
-          "value": "realistic"
+          "value": "rl"
         },
         {
           "label": "Pixar",
-          "value": "pixar"
+          "value": "px"
         },
         {
           "label": "Fox Animation",
-          "value": "fox"
+          "value": "fx"
         }
       ]
     }

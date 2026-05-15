@@ -17,7 +17,6 @@ import type {
   MovieCard,
   MovieReviewCard,
   SpectrumCard,
-  SuspectCard,
   TestimonyQuestionCard,
   TextCard,
 } from '../../types/tdr';
@@ -394,16 +393,18 @@ export const getData = async (
         language,
       ),
     );
-    const suspects: SuspectCard[] = Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.SUSPECTS));
-    const deckType = sample(['ct', 'gb', 'ai']);
+    const suspects = await utils.tdr.getSuspects({
+      randomStyleVariant: true,
+      quantity: 3,
+      cleanup: true,
+      decks: ['adult'],
+    });
+
     customTracks.push({
       game: GAME_NAMES.TESTEMUNHA_OCULAR,
       data: {
         question: sample(testimonyQuestions),
-        suspects: sampleSize(suspects, 3).map((suspect) => ({
-          ...suspect,
-          id: `us-${deckType}-${suspect.id.split('-')[1]}`,
-        })),
+        suspects: suspects,
         answer: Boolean(sample([true, false])),
       },
     });
@@ -418,16 +419,20 @@ export const getData = async (
         language,
       ),
     );
-    const suspects: SuspectCard[] = Object.values(await resourceUtils.fetchResource(TDR_RESOURCES.SUSPECTS));
-    const deckType = sampleSize(['ct', 'gb', 'ai'], 1)[0];
-    const suspect = sampleSize(suspects, 1)[0];
+
+    const suspects = await utils.tdr.getSuspects({
+      randomStyleVariant: true,
+      quantity: 1,
+      cleanup: true,
+      decks: ['adult'],
+    });
+
     customTracks.push({
       game: GAME_NAMES.TA_NA_CARA,
-
       variant: 'witness',
       data: {
         question: sampleSize(testimonyQuestions, 1)[0],
-        suspect: { ...suspect, id: `us-${deckType}-${suspect.id.split('-')[1]}` },
+        suspect: suspects[0],
       },
     });
   }
