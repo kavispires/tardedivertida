@@ -15,6 +15,7 @@ import { Translate } from 'components/language/Translate';
 // Internal
 import type { DailyResponse, GameSettings } from '../utils/types';
 import { ALL_HELPERS } from '../utils/helpers';
+import { ALL_SETTINGS } from '../utils/settings';
 import { checkWasPlayedToday, getSourceName, wait } from '../utils';
 import { useDailyChallenge } from '../hooks/useDailyChallenge';
 import type { DailyAquiOEntry } from '../games/AquiO/utils/types';
@@ -158,73 +159,73 @@ function getResultForGame(data: DailyResponse[keyof DailyResponse], language: La
   }
 
   switch (data.type) {
-    case 'aqui-o': {
+    case ALL_SETTINGS.AQUI_O.ROUTE: {
       return ALL_HELPERS.AQUI_O.getWrittenResult({
         data: data as DailyAquiOEntry,
         language,
       });
     }
-    case 'arte-ruim': {
+    case ALL_SETTINGS.ARTE_RUIM.ROUTE: {
       return ALL_HELPERS.ARTE_RUIM.getWrittenResult({
         data: data as DailyArteRuimEntry,
         language,
       });
     }
-    case 'alienado': {
+    case ALL_SETTINGS.ALIENADO.ROUTE: {
       return ALL_HELPERS.ALIENADO.getWrittenResult({
         data: data as DailyAlienadoEntry,
         language,
       });
     }
-    case 'estoquista': {
+    case ALL_SETTINGS.ESTOQUISTA.ROUTE: {
       return ALL_HELPERS.ESTOQUISTA.getWrittenResult({
         data: data as DailyEstoquistaEntry,
         language,
       });
     }
-    case 'espionagem': {
+    case ALL_SETTINGS.INVESTIGACAO.ROUTE: {
       return ALL_HELPERS.INVESTIGACAO.getWrittenResult({
         data: data as DailyInvestigacaoEntry,
         language,
       });
     }
-    case 'filmaco': {
+    case ALL_SETTINGS.FILMACO.ROUTE: {
       return ALL_HELPERS.FILMACO.getWrittenResult({
         data: data as DailyFilmacoEntry,
         language,
       });
     }
-    case 'organiku': {
+    case ALL_SETTINGS.ORGANIKU.ROUTE: {
       return ALL_HELPERS.ORGANIKU.getWrittenResult({
         data: data as DailyOrganikuEntry,
         language,
       });
     }
-    case 'palavreado': {
+    case ALL_SETTINGS.PALAVREADO.ROUTE: {
       return ALL_HELPERS.PALAVREADO.getWrittenResult({
         data: data as DailyPalavreadoEntry,
         language,
       });
     }
-    case 'portais': {
+    case ALL_SETTINGS.PORTAIS.ROUTE: {
       return ALL_HELPERS.PORTAIS.getWrittenResult({
         data: data as DailyPortaisEntry,
         language,
       });
     }
-    case 'quartetos': {
+    case ALL_SETTINGS.QUARTETOS.ROUTE: {
       return ALL_HELPERS.QUARTETOS.getWrittenResult({
         data: data as DailyQuartetosEntry,
         language,
       });
     }
-    case 'conjuntos': {
+    case ALL_SETTINGS.CONJUNTOS.ROUTE: {
       return ALL_HELPERS.CONJUNTOS.getWrittenResult({
         data: data as DailyConjuntosEntry,
         language,
       });
     }
-    case 'vitral': {
+    case ALL_SETTINGS.VITRAL.ROUTE: {
       return ALL_HELPERS.VITRAL.getWrittenResult({
         data: data as DailyVitralEntry,
         language,
