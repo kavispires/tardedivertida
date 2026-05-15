@@ -23,9 +23,7 @@ type DebugOnlyProps = {
 };
 
 /**
- * Wrapper component for information only displayed if the debug mode is on
- * @param props
- * @returns
+ * Wrapper component that conditionally renders children based on debug mode or development environment
  */
 export function DebugOnly({ children, div = false, dev = false, devOnly = false }: DebugOnlyProps) {
   const { isDebugEnabled, isDevEnv } = useDevFeatures();

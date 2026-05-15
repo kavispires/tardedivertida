@@ -25,6 +25,9 @@ type AvatarNPCProps = {
   uppercase?: boolean;
 };
 
+/**
+ * Displays an NPC/bot player avatar with optional description, uppercase styling, and animated robot icon
+ */
 export const NPCPlayerAvatar = ({
   size = 'small',
   className = '',

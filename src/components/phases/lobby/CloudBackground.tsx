@@ -50,6 +50,9 @@ function MultiCloud({ type, index, baseUrl }: { type: string; index: number; bas
   );
 }
 
+/**
+ * Returns the appropriate cloud component (SingleCloud or MultiCloud) based on the cloud type string
+ */
 function getCloudComponent(type: string) {
   if (type) {
     const plural = type.split('-cloud')?.[1];
@@ -119,6 +122,9 @@ export function CloudBackground() {
   );
 }
 
+/**
+ * Generates Framer Motion animation configuration for cloud animations (falling, rising, orbit, or flow)
+ */
 const getAnimationProps = (type: string, id: number, config: AnimationConfig): MotionProps => {
   const randomScale = config.scales[id];
   const randomDuration = config.durations[id];

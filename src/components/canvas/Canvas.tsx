@@ -15,9 +15,7 @@ type CanvasProps = {
 };
 
 /**
- *
- * @param props
- * @returns
+ * Renders a Konva canvas displaying drawing data from JSON or array of canvas lines
  */
 export const Canvas = ({ drawing = '[]', className = '' }: CanvasProps) => {
   const lines = typeof drawing === 'string' ? JSON.parse(drawing) : drawing;

@@ -108,6 +108,9 @@ export function AlienText({ value, withTranslation = false, className, ...divPro
   );
 }
 
+/**
+ * Splits a string into an array of chunks with 4 characters each for display formatting
+ */
 function splitStringEvery4(str: string): string[] {
   const result: string[] = [];
   for (let i = 0; i < str.length; i += 4) {

@@ -11,9 +11,7 @@ type DualTransLateProps = {
 };
 
 /**
- * Delegate between two strings depending on the active language
- * @param props
- * @returns the text/element according to the current language
+ * Renders the appropriate text or element based on the current active language (English or Portuguese)
  */
 export function DualTranslate({ children }: DualTransLateProps) {
   const { message } = App.useApp();

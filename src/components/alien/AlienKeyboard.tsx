@@ -183,6 +183,9 @@ const HELPER_KEYS = [
   },
 ];
 
+/**
+ * Updates the alien sentence by adding attributes or helpers based on the current state and key pressed
+ */
 const updateSentence = (prev: string, key: string, type: 'attribute' | 'helper') => {
   const lastChar = prev[prev.length - 1] ?? '';
   const isLastHelper = !LETTERS.includes(lastChar.toUpperCase());

@@ -40,7 +40,7 @@ type PlayersTurnOrderProps = {
    */
   reorderByUser?: UID;
   /**
-   *
+   * Optional function to parse and display additional player information
    */
   additionalInfoParser?: (player: GamePlayer) => ReactNode;
 };

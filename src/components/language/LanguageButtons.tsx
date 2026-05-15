@@ -5,6 +5,9 @@ import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Components
 import { TransparentButton } from 'components/buttons/TransparentButton';
 
+/**
+ * Button group for switching between Portuguese and English languages using flag icons
+ */
 export function LanguageButtons() {
   const [language, setLanguage] = useGlobalLocalStorage('language');
 
@@ -31,6 +34,9 @@ export function LanguageButtons() {
   );
 }
 
+/**
+ * SVG icon component displaying the Brazilian flag for Portuguese language selection
+ */
 export function BrazilFlag(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -60,6 +66,9 @@ export function BrazilFlag(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+/**
+ * SVG icon component displaying the United States flag for English language selection
+ */
 export function UnitedStatesFlag(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg

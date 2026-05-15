@@ -21,7 +21,6 @@ export type PlayerAvatarProps = AvatarProps & {
  * @param props.alt The alt text for the avatar (default: 'Fulano' or 'John Doe' depending on language)
  * @param props.className Optional custom class name
  * @param rest All other Avatar props
- * @returns
  */
 export const PlayerAvatar = ({ avatarId, size, shape, alt, className, ...rest }: PlayerAvatarProps) => {
   const { translate } = useLanguage();

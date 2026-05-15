@@ -119,9 +119,7 @@ export const PlayerAvatarCard = ({
 };
 
 /**
- * Output css size parameters for given size
- * @param size
- * @returns
+ * Returns CSS size parameters (width and avatar size) based on the specified size variant
  */
 const getSize = (size: 'small' | 'default' | 'large') => {
   switch (size) {

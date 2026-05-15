@@ -58,15 +58,13 @@ type HostNextPhaseButtonProps = {
    */
   autoTriggerTime?: number;
   /**
-   *
+   * Whether to show a waiting time bar (default: false)
    */
   withWaitingTimeBar?: boolean;
 };
 
 /**
- * Button only available to the Host to go to the next phase.
- * It will be auto-triggered after 60 seconds unless value is overridden with a 0
- * It may be paused
+ * Button only available to the Host to go to the next phase with auto-trigger after 60 seconds (unless paused or set to 0)
  */
 export function HostNextPhaseButton({
   round,

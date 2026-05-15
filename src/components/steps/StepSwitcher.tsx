@@ -8,6 +8,9 @@ import { Translate } from 'components/language/Translate';
 import { Loading } from 'components/loaders/Loading';
 import { WaitingRoom } from 'components/players/WaitingRoom';
 
+/**
+ * Returns the appropriate waiting room instruction message based on the kind of wait (SERVER, PLAYERS, or default)
+ */
 const getWaitingRoomInstruction = (kind: string) => {
   switch (kind) {
     case 'SERVER':

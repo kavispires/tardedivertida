@@ -10,6 +10,9 @@ import { BrazilFlag, UnitedStatesFlag } from './LanguageButtons';
 // Sass
 import styles from './LanguageSwitch.module.scss';
 
+/**
+ * Toggle switch component for switching between Portuguese and English languages with flag icons
+ */
 export function LanguageSwitch() {
   const [language, setLanguage] = useGlobalLocalStorage('language');
 

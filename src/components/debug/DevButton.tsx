@@ -5,8 +5,7 @@ import { Button, type ButtonProps } from 'antd';
 import { DebugOnly } from './DebugOnly';
 
 /**
- * Button only available during dev only
- * @returns
+ * Button only available during development environment with bug icon
  */
 export function DevButton({ children, ghost, type, ...rest }: ButtonProps) {
   return (

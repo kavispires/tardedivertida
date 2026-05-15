@@ -26,6 +26,9 @@ export function IconAvatar({ icon, shape, size, ...rest }: IconAvatarProps) {
   );
 }
 
+/**
+ * Creates and injects a dynamic CSS class into the DOM for Safari-specific SVG sizing fixes
+ */
 function createDynamicClass(className: string, styles: string) {
   const styleElement = document.createElement('style');
   styleElement.innerHTML = `.${className} > svg { ${styles} }`;

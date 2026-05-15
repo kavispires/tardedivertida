@@ -176,8 +176,7 @@ export const DrawingCanvas = ({
   };
 
   /**
-   * Handles when mouse reenters the state
-   * @param e
+   * Handles when mouse reenters the canvas area, resuming drawing if in progress
    */
   const handleMouseEnter = (e: any) => {
     if (isDrawing.current) {

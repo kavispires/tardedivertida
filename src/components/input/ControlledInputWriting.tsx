@@ -50,6 +50,9 @@ type ControlledInputWritingProps = {
   submitButtonLabel: ReactNode;
 };
 
+/**
+ * Controlled input component with dynamic input fields that validates and submits multiple text values
+ */
 export function ControlledInputWriting({
   onSubmit,
   inputQuantity = 1,

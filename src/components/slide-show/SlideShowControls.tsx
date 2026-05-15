@@ -159,6 +159,9 @@ export function SlideShowControls({
   );
 }
 
+/**
+ * Calculates progress percentage from total duration and remaining time, handling zero division edge case
+ */
 function calculateProgress(totalDuration: number, timeLeft: number): number {
   if (totalDuration === 0) return 100; // Handle case to avoid division by zero
   return (1 - timeLeft / totalDuration) * 100;

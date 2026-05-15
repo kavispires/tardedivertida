@@ -30,6 +30,9 @@ import { WritingIcon } from 'icons/WritingIcon';
 // Sass
 import styles from './GameTags.module.scss';
 
+/**
+ * Sorts tags array based on TAG_DICT index values with fallback positioning for unknown tags
+ */
 const sortTags = (tags: string[]) => {
   const sortedTags: string[] = [];
 

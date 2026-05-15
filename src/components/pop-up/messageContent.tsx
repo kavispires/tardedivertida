@@ -6,13 +6,7 @@ import { VideoGameControllerIcon } from 'icons/VideoGameControllerIcon';
 import { Translate } from 'components/language/Translate';
 
 /**
- * Pops up a modal with a confirmation button but also closing timeout
- * @param title
- * @param description
- * @param id
- * @param duration
- * @param type
- * @returns
+ * Creates a modal message with a confirmation button and auto-close timeout for control or rules notifications
  */
 export const messageContent = (
   title: ReactNode,

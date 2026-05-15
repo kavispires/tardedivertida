@@ -1,7 +1,5 @@
 /**
- * Builds paths from canvas lines
- * @param lines
- * @returns
+ * Builds SVG paths from canvas lines by converting line coordinates to path strings
  */
 const getPathFromKonvaLines = (lines: CanvasLine[]) => {
   const result = lines.map((lineArr) => {

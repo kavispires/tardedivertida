@@ -49,10 +49,7 @@ type AdminNextPhaseButtonProps = {
 };
 
 /**
- * Button only available to the admin to go to the next phase.
- * It can be auto-triggered by using the autoTriggerTime
- * @param props
- * @returns
+ * Button only available to admin to advance to the next phase with optional auto-trigger after specified time
  */
 export function AdminNextPhaseButton({
   className = '',

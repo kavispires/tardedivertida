@@ -17,9 +17,7 @@ type TimerBarProps = ProgressProps & {
 };
 
 /**
- * Time Bar presentational component used in timed operations
- * @param props
- * @returns
+ * Progress bar component for displaying timed operations with customizable steps and status
  */
 export function TimerBar({
   steps,
