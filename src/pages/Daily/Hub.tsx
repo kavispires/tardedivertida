@@ -63,6 +63,7 @@ const GAMES: Entry[] = orderBy(
     ALL_SETTINGS.ESTOQUISTA,
     ALL_SETTINGS.INVESTIGACAO,
     ALL_SETTINGS.FILMACO,
+    ALL_SETTINGS.MAPEAMENTO,
     ALL_SETTINGS.ORGANIKU,
     ALL_SETTINGS.PALAVREADO,
     ALL_SETTINGS.PORTAIS,
@@ -98,7 +99,6 @@ const DEMOS: Entry[] = [
   //   COLOR: 'rgba(243, 232, 145, 0.85)',
   //   VERSION: 'disabled',
   // },
-  ALL_SETTINGS.MAPEAMENTO,
 ];
 
 const ENDLESS: Entry[] = [ALL_SETTINGS.ENDLESS_VITRAIS];
@@ -249,7 +249,9 @@ function HubList({ list, width, startingIndex }: HubListProps) {
             version={VERSION}
             releaseDate={RELEASE_DATE}
             disabled={
-              disabled || ['disabled', 'maintenance'].includes(VERSION) || hasBeenReleased(RELEASE_DATE)
+              disabled ||
+              ['disabled', 'maintenance', 'soon'].includes(VERSION) ||
+              hasBeenReleased(RELEASE_DATE)
             }
             index={startingIndex + index}
           />

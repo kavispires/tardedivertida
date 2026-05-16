@@ -15,6 +15,7 @@ import type { DailyOrganikuEntry } from '../games/Organiku/utils/types';
 import type { DailyInvestigacaoEntry } from '../games/Investigacao/utils/types';
 import type { DailyVitralEntry } from '../games/Vitral/utils/types';
 import type { DailyConexoesEntry } from '../games/Conexoes/utils/types';
+import type { DailyMapeamentoEntry } from '../games/Mapeamento/utils/types';
 
 export type DateKey = string; // Format YYYY-MM-DD
 
@@ -27,12 +28,13 @@ export type DailyResponse = {
   estoquista: DailyEstoquistaEntry;
   investigacao: DailyInvestigacaoEntry;
   filmaco: DailyFilmacoEntry;
-  organiku?: DailyOrganikuEntry;
+  mapeamento?: DailyMapeamentoEntry;
+  organiku: DailyOrganikuEntry;
   palavreado: DailyPalavreadoEntry;
   portais: DailyPortaisEntry;
   quartetos: DailyQuartetosEntry;
   conjuntos: DailyConjuntosEntry;
-  vitral?: DailyVitralEntry;
+  vitral: DailyVitralEntry;
   // Contributions
   conexoes: DailyConexoesEntry;
   picaco: DailyPicacoEntry;

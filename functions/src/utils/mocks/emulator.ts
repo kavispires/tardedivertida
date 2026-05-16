@@ -176,7 +176,9 @@ export const feedEmulatorDaily = async () => {
     vitral: JSON.parse(
       '{"id":"example","number":1,"type":"vitral","title":"Example Puzzle","cardId":"td-d5-208","pieces":[9,13,17,16,6,5,8,15,0,1,7,11,14,10,3,12,2,4]}',
     ),
-    //
+    mapeamento: JSON.parse(
+      '{"id":"2023-10-31","number":0,"type":"mapeamento","setId":"demo-set","language":"pt","location":"Reino do Cogumelo","clues":["Mundo colorido de canos","Habitado por pequenos Toads","Constantemente invadido por Bowser","Governado pela Princesa Peach","Onde Mario vive aventuras"]}',
+    ),
     dictionary: {
       0: 'td',
       1: 'tapete de ioga',

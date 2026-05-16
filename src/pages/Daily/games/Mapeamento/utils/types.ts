@@ -14,10 +14,7 @@ export type DailyMapeamentoEntry = {
   number: number;
   type: 'mapeamento';
   language: Language;
+  setId: string;
   location: string;
   clues: string[];
 };
-
-// Player must guess the secret location by seeing a clue and typing it
-// If they typed the correct name they win
-// If they are wrong, they lose a hard, see a new clue, and the correct letters are revealed part of the name of the location (tbd how this works)
