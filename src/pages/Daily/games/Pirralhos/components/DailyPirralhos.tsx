@@ -201,14 +201,6 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
             );
           })}
         </div>
-
-        {guesses.length > 0 && (
-          <RegionText>
-            {guesses.map((guess, i) => (
-              <div key={i}>{guess.toUpperCase()}</div>
-            ))}
-          </RegionText>
-        )}
       </DailyContent>
     </Layout>
   );
