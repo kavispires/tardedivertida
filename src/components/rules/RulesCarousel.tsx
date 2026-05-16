@@ -75,7 +75,7 @@ export function RulesCarousel({
               src={
                 index === 0
                   ? `${PUBLIC_URL.BANNERS}${info.gameName}.jpg`
-                  : `${BASE_URL}/rules/game-rule-${info.gameName}-${index}.jpg`
+                  : `${BASE_URL}/rules/${info.gameName}/${index}.jpg`
               }
               fallback={`${BASE_URL}/rules/no-rules.jpg`}
               alt={rule}
