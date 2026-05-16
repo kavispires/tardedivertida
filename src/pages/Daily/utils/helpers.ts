@@ -9,6 +9,7 @@ import * as ORGANIKU from '../games/Organiku/utils/helpers';
 import * as MAPEAMENTO from '../games/Mapeamento/utils/helpers';
 import * as PALAVREADO from '../games/Palavreado/utils/helpers';
 import * as PICACO from '../games/Picaco/utils/helpers';
+import * as PIRRALHOS from '../games/Pirralhos/utils/helpers';
 import * as PORTAIS from '../games/Portais/utils/helpers';
 import * as QUARTETOS from '../games/Quartetos/utils/helpers';
 import * as CONJUNTOS from '../games/Conjuntos/utils/helpers';
@@ -27,6 +28,7 @@ export const ALL_HELPERS = {
   MAPEAMENTO,
   PALAVREADO,
   PICACO,
+  PIRRALHOS,
   PORTAIS,
   QUARTETOS,
   TA_NA_CARA,

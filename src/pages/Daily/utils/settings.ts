@@ -12,6 +12,7 @@ import { SETTINGS as MAPEAMENTO } from '../games/Mapeamento/utils/settings';
 import { SETTINGS as ORGANIKU } from '../games/Organiku/utils/settings';
 import { SETTINGS as PALAVREADO } from '../games//Palavreado/utils/settings';
 import { SETTINGS as PICACO } from '../games/Picaco/utils/settings';
+import { SETTINGS as PIRRALHOS } from '../games/Pirralhos/utils/settings';
 import { SETTINGS as PORTAIS } from '../games/Portais/utils/settings';
 import { SETTINGS as QUARTETOS } from '../games/Quartetos/utils/settings';
 import { SETTINGS as VITRAL } from '../games/Vitral/utils/settings';
@@ -30,6 +31,7 @@ export const ALL_SETTINGS = {
   ORGANIKU,
   PALAVREADO,
   PICACO,
+  PIRRALHOS,
   PORTAIS,
   QUARTETOS,
   TA_NA_CARA,

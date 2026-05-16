@@ -30,6 +30,7 @@ import { DailyVitralGame } from './games/Vitral/DailyVitralGame';
 import { DailyDemoPage } from './games/Demo/DailyDemoPage';
 import { VitraisInfinitosGame } from './games/VitraisInfinitos/VitraisInfinitosGame';
 import { DailyMapeamentoGame } from './games/Mapeamento/DailyMapeamentoGame';
+import { DailyPirralhosGame } from './games/Pirralhos/DailyPirralhosGame';
 // Sass
 import './utils/daily.scss';
 
@@ -76,6 +77,7 @@ function DailyPage() {
       mapeamento: DailyMapeamentoGame,
       organiku: DailyOrganikuGame,
       palavreado: DailyPalavreadoGame,
+      pirralhos: DailyPirralhosGame,
       portais: DailyPortaisGame,
       quartetos: DailyQuartetosGame,
       vitral: DailyVitralGame,

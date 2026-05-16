@@ -1,0 +1,126 @@
+@use "styles/sass" as *;
+
+.kid-container {
+  box-sizing: border-box;
+  position: relative;
+
+  &__kid-data {
+    position: absolute;
+    z-index: 15;
+    rotate: -5deg;
+
+    top: get-unit(1);
+    left: get-unit(1);
+  }
+
+  &__kid-name {
+    font-size: 0.85em;
+    color: get-color("white");
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    word-break: keep-all;
+    white-space: nowrap;
+    display: block;
+    padding-left: get-unit(3);
+  }
+
+  &__kid-info {
+    font-size: 0.85em;
+    color: get-color("black");
+    display: block;
+    padding: get-unit(0 1);
+    background: get-color("white");
+    border-radius: get-unit(1);
+    box-shadow: 0 0 get-unit(2) rgba(0, 0, 0, 0.65);
+  }
+
+  &__footer {
+    position: absolute;
+    z-index: 15;
+    bottom: get-unit(-1);
+    left: get-unit(-1);
+    right: 0;
+  }
+
+  &__assessment {
+    position: absolute;
+    z-index: 15;
+    top: get-unit(-1);
+    right: get-unit(-1);
+  }
+}
+
+.kid-container__statement {
+  text-align: center;
+  font-family: "Comic Sans MS", system-ui;
+  background: get-color("white");
+  border-radius: get-unit(4);
+  box-shadow: 0 0 get-unit(2) rgba(0, 0, 0, 0.65);
+  font-size: 0.85em;
+  font-style: italic;
+  position: relative;
+
+  // Speech bubble caret pointing upward on the right side
+  &::before {
+    content: "";
+    position: absolute;
+    top: get-unit(-1.5);
+    right: 20%;
+    width: 0;
+    height: 0;
+    border-left: get-unit(2) solid transparent;
+    border-right: get-unit(2) solid transparent;
+    border-bottom: get-unit(2) solid get-color("white");
+    filter: drop-shadow(0 -1px 1px rgba(0, 0, 0, 0.15));
+  }
+}
+
+.kid-gender {
+  display: inline-flex;
+  place-items: center;
+  font-size: 0.85em;
+  width: 1.5em;
+  height: 1.5em;
+  background: get-color("black");
+  text-align: center;
+  line-height: 1.5em;
+
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+
+  &--boy {
+    color: get-color("teal", 2);
+    background: get-color("teal", 7);
+  }
+
+  &--girl {
+    color: get-color("pink", 2);
+    background: get-color("pink", 7);
+  }
+}
+
+.kids-container {
+  position: relative;
+  width: 90vw;
+  max-width: 500px;
+  margin: 0 auto;
+
+  // 2:3 aspect ratio (width:height) for vertical oblong shape
+  // aspect-ratio: 2 / 3;
+  // min-height: 600px;
+
+  &__item-wrapper {
+    position: absolute;
+    // Transform origin at center for proper rotation
+    transform-origin: center center;
+    // Translate adjustment to center the item at the calculated position
+    translate: -50% -50%;
+  }
+
+  &__arrow-wrapper {
+    position: absolute;
+    // Transform origin at center for proper rotation
+    transform-origin: center center;
+    translate: -50% -50%;
+  }
+}

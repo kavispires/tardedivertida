@@ -1,18 +1,6 @@
-export interface DualLanguageValue {
-  en: string;
-  pt: string;
-}
-
-export type Gender = 'Boy' | 'Girl';
-
-export interface Kid {
-  id: number;
-  cardId: string;
-  name: DualLanguageValue;
-  gender: Gender;
-  height: number;
-  color: string;
-}
+import { sampleSize } from 'lodash';
+// Internal
+import type { DailyPirralhosEntry, Kid } from './types';
 
 export interface StatementContext {
   speaker: Kid;
@@ -38,80 +26,90 @@ export interface StatementInstance {
   evaluate: (ctx: StatementContext) => boolean;
 }
 
-export interface GeneratedKid extends Kid {
-  statement: DualLanguageValue;
-}
-
-export interface FoiUmPirralhoEntry {
-  id: string;
-  kids: GeneratedKid[];
-  culprits: Kid[];
-  liars: Kid[];
-  numberOfCulprits: number;
-  possibleLiars: number[];
-  difficulty: number; // The calculated 1-100 difficulty score
-}
-
 export const ALL_KIDS: Kid[] = [
   {
     id: 1,
-    cardId: 'us-gb-201',
-    name: { en: 'Ben', pt: 'Bruno' },
-    gender: 'Boy',
-    height: 119,
+    cardId: 'us-gb-231',
+    name: { en: 'Miles', pt: 'Marcus Vinícius' },
+    gender: 'boy',
+    height: 124,
     color: '#2b72ff',
   },
   {
     id: 2,
-    cardId: 'us-gb-202',
+    cardId: 'us-gb-232',
     name: { en: 'Penny', pt: 'Penélope' },
-    gender: 'Girl',
-    height: 112,
+    gender: 'girl',
+    height: 120,
     color: '#ff69c0',
   },
   {
     id: 3,
-    cardId: 'us-gb-203',
+    cardId: 'us-gb-233',
     name: { en: 'Dylan', pt: 'Daniel' },
-    gender: 'Boy',
-    height: 108,
+    gender: 'boy',
+    height: 109,
     color: '#41a00b',
   },
   {
     id: 4,
-    cardId: 'us-gb-204',
+    cardId: 'us-gb-234',
     name: { en: 'Sandy', pt: 'Sabrina' },
-    gender: 'Girl',
+    gender: 'girl',
     height: 100,
     color: '#962196',
   },
   {
     id: 5,
-    cardId: 'us-gb-205',
-    name: { en: 'Peter', pt: 'Pedro' },
-    gender: 'Boy',
-    height: 114,
+    cardId: 'us-gb-235',
+    name: { en: 'Brent', pt: 'Breno' },
+    gender: 'boy',
+    height: 122,
     color: '#e54122',
   },
   {
     id: 6,
-    cardId: 'us-gb-206',
-    name: { en: 'Hannah', pt: 'Aninha' },
-    gender: 'Girl',
-    height: 116,
+    cardId: 'us-gb-236',
+    name: { en: 'Alice', pt: 'Alice' },
+    gender: 'girl',
+    height: 117,
     color: '#ffd800',
   },
   {
     id: 7,
-    cardId: 'us-gb-207',
+    cardId: 'us-gb-237',
     name: { en: 'Isaac', pt: 'Igor' },
-    gender: 'Boy',
-    height: 123,
+    gender: 'boy',
+    height: 127,
     color: 'white',
+  },
+  {
+    id: 8,
+    cardId: 'us-gb-238',
+    name: { en: 'Anna', pt: 'Aninha' },
+    gender: 'girl',
+    height: 104,
+    color: 'orange',
+  },
+  {
+    id: 9,
+    cardId: 'us-gb-239',
+    name: { en: 'Linus', pt: 'Lino' },
+    gender: 'boy',
+    height: 112,
+    color: 'teal',
+  },
+  {
+    id: 10,
+    cardId: 'us-gb-240',
+    name: { en: 'Matilda', pt: 'Matilda' },
+    gender: 'girl',
+    height: 115,
+    color: 'brown',
   },
 ];
 
-const HEIGHT_THRESHOLDS = [105, 110, 115, 120];
+const HEIGHT_THRESHOLDS = ALL_KIDS.map((k) => k.height).sort();
 
 const getNeighbors = (kid: Kid, allKids: Kid[]) => {
   const index = allKids.findIndex((k) => k.id === kid.id);
@@ -130,7 +128,10 @@ const STATEMENT_POOL: StatementDef[] = [
     build: (_, allKids, param) => {
       const target = allKids.find((k) => k.id === param)!;
       return {
-        text: { en: `${target.name.en} did it`, pt: `Foi ${target.name.pt} quem pegou o brinquedo` },
+        text: {
+          en: `${target.name.en} did it`,
+          pt: `Foi ${target.gender === 'boy' ? 'o' : 'a'} ${target.name.pt}!`,
+        },
         evaluate: (ctx) => ctx.culprits.some((c) => c.id === target.id),
       };
     },
@@ -142,7 +143,10 @@ const STATEMENT_POOL: StatementDef[] = [
     build: (_, allKids, param) => {
       const target = allKids.find((k) => k.id === param)!;
       return {
-        text: { en: `${target.name.en} didn't do it`, pt: `${target.name.pt} não pegou o brinquedo` },
+        text: {
+          en: `${target.name.en} didn't do it`,
+          pt: `Não foi ${target.gender === 'boy' ? 'o' : 'a'} ${target.name.pt}`,
+        },
         evaluate: (ctx) => !ctx.culprits.some((c) => c.id === target.id),
       };
     },
@@ -154,7 +158,7 @@ const STATEMENT_POOL: StatementDef[] = [
     build: (_, allKids, param) => {
       const target = allKids.find((k) => k.id === param)!;
       return {
-        text: { en: `${target.name.en} is lying`, pt: `${target.name.pt} está mentindo` },
+        text: { en: `${target.name.en} is lying`, pt: `${target.name.pt} tá mentindo` },
         evaluate: (ctx) => ctx.liars.some((l) => l.id === target.id),
       };
     },
@@ -166,7 +170,10 @@ const STATEMENT_POOL: StatementDef[] = [
     build: (speaker, allKids, param) => {
       const target = allKids.find((k) => k.id === param)!;
       return {
-        text: { en: `${target.name.en} or I did it`, pt: `${target.name.pt} ou eu pegamos o brinquedo` },
+        text: {
+          en: `${target.name.en} or I did it`,
+          pt: `Foi ${target.gender === 'boy' ? 'o' : 'a'} ${target.name.pt} ou eu `,
+        },
         evaluate: (ctx) => ctx.culprits.some((c) => c.id === target.id || c.id === speaker.id),
       };
     },
@@ -176,8 +183,8 @@ const STATEMENT_POOL: StatementDef[] = [
     difficultyWeight: 2,
     generateParam: () => undefined,
     build: () => ({
-      text: { en: 'A boy did it', pt: 'Um menino pegou o brinquedo' },
-      evaluate: (ctx) => ctx.culprits.some((c) => c.gender === 'Boy'),
+      text: { en: 'A boy did it', pt: 'Foi um menino' },
+      evaluate: (ctx) => ctx.culprits.some((c) => c.gender === 'boy'),
     }),
   },
   {
@@ -185,8 +192,8 @@ const STATEMENT_POOL: StatementDef[] = [
     difficultyWeight: 2,
     generateParam: () => undefined,
     build: () => ({
-      text: { en: 'A girl did it', pt: 'Uma menina pegou o brinquedo' },
-      evaluate: (ctx) => ctx.culprits.some((c) => c.gender === 'Girl'),
+      text: { en: 'A girl did it', pt: 'Foi uma menina' },
+      evaluate: (ctx) => ctx.culprits.some((c) => c.gender === 'girl'),
     }),
   },
   {
@@ -194,7 +201,7 @@ const STATEMENT_POOL: StatementDef[] = [
     difficultyWeight: 3,
     generateParam: () => undefined,
     build: (speaker) => ({
-      text: { en: 'Someone taller than me did it', pt: 'Alguém mais alto que eu pegou o brinquedo' },
+      text: { en: 'Someone taller than me did it', pt: 'Foi alguém mais alto que eu' },
       evaluate: (ctx) => ctx.culprits.some((c) => c.height > speaker.height),
     }),
   },
@@ -205,7 +212,7 @@ const STATEMENT_POOL: StatementDef[] = [
     build: (_, __, param) => ({
       text: {
         en: `Someone shorter than ${param} cm did it`,
-        pt: `Alguém menor que ${param} cm pegou o brinquedo`,
+        pt: `Foi alguém menor que ${param} cm`,
       },
       evaluate: (ctx) => ctx.culprits.some((c) => c.height < param!),
     }),
@@ -215,7 +222,7 @@ const STATEMENT_POOL: StatementDef[] = [
     difficultyWeight: 3,
     generateParam: () => undefined,
     build: (speaker, allKids) => ({
-      text: { en: 'Someone next to me did it', pt: 'Alguém do meu lado pegou o brinquedo' },
+      text: { en: 'Someone next to me did it', pt: 'Foi alguém do meu lado' },
       evaluate: (ctx) => {
         const { left, right } = getNeighbors(speaker, allKids);
         return ctx.culprits.some((c) => c.id === left.id || c.id === right.id);
@@ -360,8 +367,8 @@ export function generatePuzzle(
   numCulprits: number,
   exactLiars: number,
   avoidIds: string[] = [],
-): FoiUmPirralhoEntry {
-  const activeKids = ALL_KIDS.slice(0, numKids);
+): DailyPirralhosEntry {
+  const activeKids = sampleSize(ALL_KIDS, numKids);
   const possibleCulpritCombos = getCombinations(activeKids, numCulprits);
   const possibleLiarCombos = getCombinations(activeKids, exactLiars);
 
@@ -418,11 +425,12 @@ export function generatePuzzle(
 
       return {
         id: puzzleId,
+        type: 'pirralhos',
+        number: 0,
         kids: kidStatements.map((ks) => ({ ...ks.kid, statement: ks.stmt.text })),
-        culprits: trueCulprits,
-        liars: trueLiars,
-        numberOfCulprits: numCulprits,
-        possibleLiars: [exactLiars],
+        culpritsIds: trueCulprits.map((c) => c.cardId),
+        liarsIds: trueLiars.map((l) => l.cardId),
+        possibleLiars: exactLiars,
         difficulty,
       };
     }
@@ -431,7 +439,7 @@ export function generatePuzzle(
   throw new Error('Could not generate a unique puzzle after 5000 attempts. Try adjusting the parameters.');
 }
 
-export function getPuzzleById(hashId: string): FoiUmPirralhoEntry {
+export function getPuzzleById(hashId: string): DailyPirralhosEntry {
   const { numKids, numCulprits, exactLiars, parsedStmts } = decodePuzzleId(hashId);
   const activeKids = ALL_KIDS.slice(0, numKids);
 
@@ -455,11 +463,12 @@ export function getPuzzleById(hashId: string): FoiUmPirralhoEntry {
 
   return {
     id: hashId,
+    type: 'pirralhos',
+    number: 0,
     kids: kidStatements.map((ks) => ({ ...ks.kid, statement: ks.stmt.text })),
-    culprits: solution.finalCulprits,
-    liars: solution.finalLiars,
-    numberOfCulprits: numCulprits,
-    possibleLiars: [exactLiars],
+    culpritsIds: solution.finalCulprits.map((c) => c.cardId),
+    liarsIds: solution.finalLiars.map((l) => l.cardId),
+    possibleLiars: exactLiars,
     difficulty,
   };
 }
