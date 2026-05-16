@@ -203,7 +203,7 @@ function SessionBackgroundImage({ phase }: SessionBackgroundImageProps) {
   const TEST_IMAGE_URL = '';
 
   // Don't show background in these phases
-  const excludedPhases = [PHASES.DEFAULT.LOBBY, PHASES.DEFAULT.SETUP, PHASES.DEFAULT.GAME_OVER];
+  const excludedPhases = [PHASES.DEFAULT.LOBBY, PHASES.DEFAULT.SETUP];
 
   // Temporarily disable imageBackground check for testing
   const isTestMode = Boolean(TEST_IMAGE_URL);
