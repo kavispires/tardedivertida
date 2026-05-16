@@ -18,6 +18,7 @@ const DEFAULT_STREAK_DATA: DailyStreakData = {
   history: {},
   lastCalculatedDate: null,
   lastMilestoneModalDisplayedDate: null,
+  lastCelebratedMilestone: null,
 };
 
 /**

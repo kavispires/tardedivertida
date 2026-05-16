@@ -94,6 +94,11 @@ export type DailyStreakData = {
    * Used to prevent showing the modal multiple times in the same day
    */
   lastMilestoneModalDisplayedDate: DateKey | null;
+  /**
+   * The highest milestone that has been celebrated
+   * Used to prevent showing the same milestone modal multiple times
+   */
+  lastCelebratedMilestone: number | null;
 };
 
 export interface GameSettings {

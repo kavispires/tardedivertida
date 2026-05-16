@@ -43,31 +43,34 @@ export function useStreakMilestone() {
 
   useEffect(() => {
     const streakData = loadStreakData();
-    const { currentStreak, lastMilestoneModalDisplayedDate } = streakData;
+    const { currentStreak, lastCelebratedMilestone } = streakData;
     const today = getToday();
 
-    // Convert dates to milliseconds (ignoring time)
-    const lastMilestoneMs = lastMilestoneModalDisplayedDate
-      ? new Date(lastMilestoneModalDisplayedDate).setHours(0, 0, 0, 0)
-      : 0;
-    const todayMs = new Date(today).setHours(0, 0, 0, 0);
+    // Check if we've reached a NEW milestone (higher than the last celebrated one)
+    const milestones = [3, 7, 14, 30, 50, 100, 200, 365];
+    let newMilestone: number | null = null;
 
-    // Only show modal if we haven't shown it today
-    if (todayMs >= lastMilestoneMs) {
-      // Check if we've reached a milestone
-      const milestones = [3, 7, 14, 30, 50, 100, 200, 365];
-
-      for (const milestone of milestones) {
-        if (currentStreak >= milestone) {
-          setCurrentMilestone(milestone);
-          // Update the last displayed date
-          saveStreakData({
-            ...streakData,
-            lastMilestoneModalDisplayedDate: today,
-          });
-          break;
-        }
+    // Find the highest milestone reached that hasn't been celebrated yet
+    for (let i = milestones.length - 1; i >= 0; i--) {
+      const milestone = milestones[i];
+      if (
+        currentStreak >= milestone &&
+        (lastCelebratedMilestone === null || milestone > lastCelebratedMilestone)
+      ) {
+        newMilestone = milestone;
+        break;
       }
+    }
+
+    // Only show modal if there's a new milestone to celebrate
+    if (newMilestone !== null) {
+      setCurrentMilestone(newMilestone);
+      // Update both the last displayed date and the celebrated milestone
+      saveStreakData({
+        ...streakData,
+        lastMilestoneModalDisplayedDate: today,
+        lastCelebratedMilestone: newMilestone,
+      });
     }
   }, []);
 
