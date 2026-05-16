@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "qual-quesito",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "release": "stable",
   "releaseDate": "2026-01-01",
   "available": true,
@@ -29,19 +29,23 @@
   },
   "rules": {
     "en": [
+      "In And the Category Is, you are trying to get rid of all of your items.",
       "Each round, one player creates a category that connects at least 2 items from their hand.",
       "All other players try to add their own items to the category.",
       "The group votes whether each item fits the category.",
       "The creator earns 2 points for each of their accepted items. Other players earn 3 points for each accepted item.",
       "Items rejected for 2 consecutive rounds cause their owner to lose 1 point.",
+      "Try to be very specific with your categories to make it harder for other players to add their items.",
       "The game ends when a player gets rid of all their items, but the player with the most points wins."
     ],
     "pt": [
+      "Em Qual O Quesito?, você tenta se livrar de todos os seus itens.",
       "A cada rodada, um jogador cria uma categoria que conecte pelo menos 2 itens de sua mão.",
       "Todos os outros jogadores tentam adicionar seus próprios itens à categoria.",
       "O grupo vota se cada item se encaixa na categoria.",
       "O criador ganha 2 pontos para cada um de seus itens aceitos. Os outros jogadores ganham 3 pontos para cada item aceito.",
       "Itens rejeitados por 2 rodadas consecutivas fazem seu dono perder 1 ponto.",
+      "Tente ser muito específico com suas categorias para dificultar que outros jogadores adicionem seus itens.",
       "O jogo termina quando um jogador se livra de todos os seus itens, mas o jogador com mais pontos vence."
     ]
   },
