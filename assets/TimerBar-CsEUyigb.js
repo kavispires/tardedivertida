@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-DBS2Xqfh.js";import{t}from"./progress-lILbfj6m.js";var n=e();function r({steps:e,strokeLinecap:r,total:i,type:a=`line`,value:o,status:s=`active`,...c}){return(0,n.jsx)(t,{percent:100-o*100/i,steps:e,showInfo:!1,style:{marginBottom:`1rem`},size:e&&e>30?`small`:void 0,type:a,...c})}export{r as t};
