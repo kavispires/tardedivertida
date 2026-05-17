@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "G",
   "gameName": "galeria-de-sonhos",
-  "version": "4.2.34",
+  "version": "4.2.35",
   "release": "stable",
   "releaseDate": "2022-01-26",
   "available": true,
@@ -34,15 +34,17 @@
       "Then, in turn order, players reveal one of their selected dreams at a time.",
       "If exactly one other player selected the same dream, you both earn 3 points. If more players selected it, everyone involved earns 2 points.",
       "If no one matches your dream, you are out for the rest of the round and your remaining dreams score no points.",
+      "Even when you are out, your dreams can still be matched by other players, earning them points.",
       "Watch out: if you are the only player who selected the most dreams and you get no matches, you lose 1 point for each dream you selected.",
       "After 4 rounds, the player with the most points wins."
     ],
     "en": [
       "Em Galeria dos Sonhos, vocês são Caçadores de Sonhos tentando se encontrar em um mundo de sonhos.",
       "Cada rodada tem uma palavra-tema. A partir de 15 cartas de sonhos, selecione secretamente de 1 a 10 sonhos que você acha que outros jogadores também escolherão.",
-      "Depois, em ordem de turno, os jogadores revelam um de seus sonhos selecionados por vez.",
+      "Depois, em ordem, os jogadores revelam um de seus sonhos selecionados por vez.",
       "Se exatamente outro jogador tiver escolhido o mesmo sonho, ambos ganham 3 pontos. Se mais jogadores escolheram, todos ganham 2 pontos.",
       "Se ninguém combinar com o seu sonho, você está fora do resto da rodada e seus outros sonhos não pontuam.",
+      "Mesmo quando você está fora, seus sonhos ainda podem ser combinados por outros jogadores, ganhando pontos para eles.",
       "Cuidado: se você for o único jogador que escolheu mais sonhos e não fizer nenhum match, você perde 1 ponto por cada sonho escolhido.",
       "Após 4 rodadas, vence quem tiver mais pontos."
     ]

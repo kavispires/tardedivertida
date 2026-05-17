@@ -13,6 +13,8 @@ import { PhaseDreamsSelection } from './PhaseDreamsSelection';
 import { PhaseCardPlay } from './PhaseCardPlay';
 import { PhaseResolution } from './PhaseResolution';
 import { PhaseGameOver } from './PhaseGameOver';
+// Sass
+import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
   switch (state.phase) {
