@@ -29,7 +29,7 @@ export function Tips({ children }: TipsProps) {
             </strong>
             <br />
             Nunca declare que você tem a bomba! Se você é um agente e um outro jogador estiver prestes a
-            examinar uma de suas cartas, aí sim, você pode declarar verbalmente que tem a bomba.
+            examinar uma de suas cartas, aí sim, você pode anunciar verbalmente que tem a bomba.
             <br />
             Agentes normalmente falam a verdade (a não ser que você tenha a carta da Bomba) ou...
             <br />
@@ -45,7 +45,7 @@ export function Tips({ children }: TipsProps) {
             </strong>
             <br />
             Never declare that you have the bomb! If you are an agent and another player is about to examine
-            one of your cards, only then you may verbally declare that you have the bomb.
+            one of your cards, only then you may verbally announce that you have the bomb.
             <br />
             Agents usually tell the truth (unless you have the bomb card), or...
             <br />

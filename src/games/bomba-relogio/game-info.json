@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "bomba-relogio",
-  "version": "0.9.30",
+  "version": "0.9.31",
   "release": "beta",
   "releaseDate": "2026-01-11",
   "available": true,
@@ -30,19 +30,21 @@
   "rules": {
     "en": [
       "Players are agents trying to defuse a bomb by cutting all the red wires. However, some players may be terrorists trying to make it explode.",
-      "Each round, players receive cards that may contain a red wire, a useless gray wire, or the bomb. They look at their cards and place them face down in front of them, shuffled. You know which cards you have, but not their positions.",
-      "Players then declare what they have, such as \"I have a red wire\" or \"I have nothing.\" This is the time to bluff and figure out who might be lying. The total number of red wires equals the number of players — does what people claim add up?",
-      "One player becomes the investigator and chooses another player to reveal one of their cards. If it’s a gray wire, nothing happens. If it’s a red wire, progress is made. If it’s the bomb, KABOOM — the terrorists win! The revealed player then becomes the new investigator.",
+      "Each round, players receive cards that may contain a red wire, nothing, or even the bomb. And must play the game strategically based on their role: Agent or Terrorist.",
+      "Players then declare what they have. This is the time to bluff! If you a terrorista you might say you have more red wires than you actually do.",
+      "Then, one player becomes the investigator and chooses another player and reveal one of their cards, and then that player becomes the investigator and choses another player, and so on.",
+      "If the revealed card a blank, nothing happens. If it's a red wire, progress is made. If it's the bomb, KABOOM — the terrorists win!",
       "Agents win if all red wires are found. Terrorists win if the bomb is revealed at any time, or if all red wires are not found after 4 rounds.",
       "A round ends when the number of revealed cards equals the number of players. Then, all cards are reshuffled and dealt again, with each player receiving one fewer card than in the previous round."
     ],
     "pt": [
-      "Os jogadores são agentes tentando desarmar uma bomba cortando todos os fios vermelhos. Porém, alguns podem ser terroristas tentando fazer a bomba explodir.",
-      "A cada rodada, os jogadores recebem cartas que podem conter um fio vermelho, um fio cinza inútil ou a bomba. Eles olham suas cartas e as colocam embaralhadas viradas para baixo à sua frente. Você sabe quais cartas tem, mas não a posição de cada uma.",
-      "Em seguida, os jogadores declaram o que possuem, como \"Tenho um fio vermelho\" ou \"Não tenho nada\". Este é o momento de blefar e tentar descobrir quem está mentindo. O número de fios vermelhos é igual ao número de jogadores — será que as declarações batem?",
-      "Um jogador se torna o investigador e escolhe outro jogador para revelar uma de suas cartas. Se for um fio cinza, nada acontece. Se for um fio vermelho, estamos mais perto de desarmar a bomba. Se for a bomba, CABUM — os terroristas vencem! O jogador revelado se torna o novo investigador.",
-      "Os agentes vencem se encontrarem todos os fios vermelhos. Os terroristas vencem se a bomba for revelada a qualquer momento ou se, após 4 rodadas, todos os fios vermelhos não forem encontrados.",
-      "Uma rodada termina quando o número de cartas reveladas for igual ao número de jogadores. Depois, todas as cartas são embaralhadas novamente e distribuídas, com cada jogador recebendo uma carta a menos que na rodada anterior."
+      "Os jogadores são agentes tentando desarmar uma bomba cortando todos os fios vermelhos. Porém, alguns jogadores podem ser terroristas tentando fazer a bomba explodir.",
+      "A cada rodada, os jogadores recebem cartas que podem conter um fio vermelho, nada ou até mesmo a bomba. E devem jogar estrategicamente com base em seu papel: Agente ou Terrorista.",
+      "Em seguida, os jogadores declaram o que possuem. Este é o momento de blefar! Se você for um terrorista, pode dizer que tem mais fios vermelhos do que realmente possui.",
+      "Então, um jogador se torna o investigador e escolhe outro jogador para revelar uma de suas cartas, e então esse jogador se torna o investigador e escolhe outro jogador, e assim por diante.",
+      "Se a carta revelada for em branco, nada acontece. Se for um fio vermelho, o progresso é feito. Se for a bomba, KABOOM — os terroristas vencem!",
+      "Os agentes vencem se todos os fios vermelhos forem encontrados. Os terroristas vencem se a bomba for revelada a qualquer momento, ou se todos os fios vermelhos não forem encontrados após 4 rodadas.",
+      "Uma rodada termina quando o número de cartas reveladas é igual ao número de jogadores. Então, todas as cartas são embaralhadas novamente e distribuídas, com cada jogador recebendo uma carta a menos do que na rodada anterior."
     ]
   },
   "playerCount": {
