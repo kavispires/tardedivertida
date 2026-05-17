@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vice-campeao",
-  "version": "1.0.43",
+  "version": "1.0.44",
   "release": "stable",
   "releaseDate": "2025-04-08",
   "available": true,
@@ -32,12 +32,14 @@
       "Em Vice-Campeão, vocês são corredores em uma maratona onde o objetivo é terminar em segundo lugar.",
       "A cada rodada, todos os jogadores escolhem uma carta — que pode ser de movimento ou um efeito especial.",
       "O plot twist: você pode usar sua carta em você mesmo ou em outro jogador.",
+      "Durante a corrida, as cartas especiais vão primeiro, depois as cartas de movimento.",
       "Após 5 rodadas, quem estiver em segundo lugar vence!"
     ],
     "en": [
       "In Runner-Up, you are runners in a marathon where the goal is to finish in second place.",
       "Each round, all players choose a card — either a movement card or a special effect.",
       "Here’s the twist: you can play your card on yourself or on another player.",
+      "During the race, special effect cards are resolved first, followed by movement cards.",
       "After 5 rounds, whoever is in second place wins the game!"
     ]
   },
