@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "senso-literario",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "release": "stable",
   "releaseDate": "2026-01-31",
   "available": true,
@@ -31,14 +31,14 @@
   "rules": {
     "en": [
       "In Book Sense, players are librarians using common sense to organize 5 shelves.",
-      "Each round, a sequence of 5 books is shown, but one position is missing.",
+      "Each round, a sequence of books is shown, but one position is missing a book.",
       "Players must choose which book best completes the sequence based on patterns like color, genre, or starting letter.",
       "You earn points for each attribute your choice shares with another player's choice — there is no single correct answer, only common sense.",
       "After 5 rounds, the player with the most points wins."
     ],
     "pt": [
       "Em Senso Literário, os jogadores são bibliotecários usando o bom senso para organizar 5 prateleiras.",
-      "A cada rodada, uma sequência de 5 livros é apresentada, mas uma posição está faltando.",
+      "A cada rodada, uma sequência de livros é apresentada, mas uma posição está faltando um livro.",
       "Os jogadores devem escolher qual livro melhor completa a sequência com base em padrões como cor, gênero ou letra inicial.",
       "Você ganha pontos para cada atributo que sua escolha tiver em comum com a de outro jogador — não há resposta correta, apenas senso comum.",
       "Após 5 rodadas, o jogador com mais pontos vence."
