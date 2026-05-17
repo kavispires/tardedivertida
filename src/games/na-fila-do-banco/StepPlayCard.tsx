@@ -1,5 +1,4 @@
-import { orderBy } from 'lodash';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
@@ -14,6 +13,7 @@ import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { ClientCard, SubmitPlayCardPayload, Teller } from './utils/types';
 import { mockPlay } from './utils/mock';
+import { useOrderedTellers } from './utils/hooks';
 import { TellerBoard } from './components/TellerBoard';
 import { DrawDecksModal } from './components/DrawDecksModal';
 import { PeopleOrder } from './components/PeopleOrder';
@@ -49,9 +49,7 @@ export function StepPlayCard({
   const [tellerId, setTellerId] = useState<string | null>(null);
   const [cardId, setCardId] = useState<string | null>(null);
 
-  const tellersList = useMemo(() => {
-    return orderBy(Object.values(tellers), ['id'], ['asc']);
-  }, [tellers]);
+  const tellersList = useOrderedTellers(tellers);
 
   useMock(() => {
     onSubmitCard(mockPlay(user, tellers, deckDict, drawDeck));

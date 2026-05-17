@@ -1,5 +1,3 @@
-import { orderBy } from 'lodash';
-import { useMemo } from 'react';
 // Types
 import type { GameRound } from 'types/game';
 // Components
@@ -11,7 +9,7 @@ import { RuleInstruction } from 'components/text/RuleInstruction';
 import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { ClientCard, Teller } from './utils/types';
-import { useNextStepDuration } from './utils/hooks';
+import { useNextStepDuration, useOrderedTellers } from './utils/hooks';
 import { TellerBoardResolution } from './components/TellerBoardResolution';
 
 type StepResolutionProps = {
@@ -23,9 +21,7 @@ type StepResolutionProps = {
 };
 
 export function StepResolution({ tellers, deckDict, goToNextStep, cardWidth, round }: StepResolutionProps) {
-  const tellersList = useMemo(() => {
-    return orderBy(Object.values(tellers), ['id'], ['asc']);
-  }, [tellers]);
+  const tellersList = useOrderedTellers(tellers);
   const duration = useNextStepDuration(tellersList);
 
   return (

@@ -1,5 +1,3 @@
-import { orderBy } from 'lodash';
-import { useMemo } from 'react';
 // Types
 import type { GamePlayers, GamePlayer, GameRound } from 'types/game';
 // Components
@@ -12,7 +10,7 @@ import { StepTitle } from 'components/text/StepTitle';
 import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import type { ClientCard, Teller } from './utils/types';
-import { useNextStepDuration } from './utils/hooks';
+import { useNextStepDuration, useOrderedTellers } from './utils/hooks';
 import { OUTCOME } from './utils/constants';
 import { TellerBoard } from './components/TellerBoard';
 import { PeopleOrder } from './components/PeopleOrder';
@@ -51,9 +49,7 @@ export function StepAnimatePreviousAction({
   round,
   isNewRound,
 }: StepAnimatePreviousActionProps) {
-  const tellersList = useMemo(() => {
-    return orderBy(Object.values(tellers), ['id'], ['asc']);
-  }, [tellers]);
+  const tellersList = useOrderedTellers(tellers);
 
   const duration = useNextStepDuration(tellersList);
 
