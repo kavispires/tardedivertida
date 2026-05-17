@@ -57,10 +57,7 @@ export function StepDraw({ secretCard, onSubmitDrawing, startDrawingTimer, annou
     });
 
   useMock(() => {
-    onSubmitDrawing({
-      drawing: JSON.stringify(mockDrawing()),
-      cardId: secretCard.id,
-    });
+    onMockDrawing();
   });
 
   return (
@@ -88,14 +85,17 @@ export function StepDraw({ secretCard, onSubmitDrawing, startDrawingTimer, annou
 
         <DevButton onClick={onMockDrawing}>Mock Drawing</DevButton>
 
-        {isTimesUp ? (
-          <PanicIcon style={{ background: 'white', width: '500px', padding: '2em' }} />
-        ) : (
-          <DrawingCanvas
-            lines={lines}
-            setLines={setLines}
-          />
-        )}
+        <div className="disable-mobile-drag">
+          {isTimesUp ? (
+            <PanicIcon style={{ background: 'white', width: '500px', padding: '2em' }} />
+          ) : (
+            <DrawingCanvas
+              lines={lines}
+              setLines={setLines}
+              showControls
+            />
+          )}
+        </div>
       </Flex>
     </Step>
   );
