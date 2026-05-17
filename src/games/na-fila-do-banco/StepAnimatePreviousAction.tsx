@@ -1,3 +1,5 @@
+import { orderBy } from 'lodash';
+import { useMemo } from 'react';
 // Types
 import type { GamePlayers, GamePlayer, GameRound } from 'types/game';
 // Components
@@ -49,7 +51,10 @@ export function StepAnimatePreviousAction({
   round,
   isNewRound,
 }: StepAnimatePreviousActionProps) {
-  const tellersList = Object.values(tellers);
+  const tellersList = useMemo(() => {
+    return orderBy(Object.values(tellers), ['id'], ['asc']);
+  }, [tellers]);
+
   const duration = useNextStepDuration(tellersList);
 
   return (

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { orderBy } from 'lodash';
+import { useMemo, useState } from 'react';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
@@ -48,7 +49,9 @@ export function StepPlayCard({
   const [tellerId, setTellerId] = useState<string | null>(null);
   const [cardId, setCardId] = useState<string | null>(null);
 
-  const tellersList = Object.values(tellers);
+  const tellersList = useMemo(() => {
+    return orderBy(Object.values(tellers), ['id'], ['asc']);
+  }, [tellers]);
 
   useMock(() => {
     onSubmitCard(mockPlay(user, tellers, deckDict, drawDeck));
