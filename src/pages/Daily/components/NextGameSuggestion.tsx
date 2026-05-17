@@ -17,7 +17,7 @@ import { checkWasPlayedToday, getAnalyticsEventName } from '../utils';
 
 const PRIORITY_LIST = orderBy(
   [
-    ALL_SETTINGS.VITRAL,
+    ALL_SETTINGS.MAPEAMENTO,
     ALL_SETTINGS.AQUI_O,
     ALL_SETTINGS.ARTE_RUIM,
     ALL_SETTINGS.ALIENADO,
@@ -29,8 +29,7 @@ const PRIORITY_LIST = orderBy(
     ALL_SETTINGS.ORGANIKU,
     ALL_SETTINGS.PORTAIS,
     ALL_SETTINGS.QUARTETOS,
-    ALL_SETTINGS.TA_NA_CARA,
-    ALL_SETTINGS.PICACO,
+    ALL_SETTINGS.VITRAL,
   ],
   [
     (o) => {

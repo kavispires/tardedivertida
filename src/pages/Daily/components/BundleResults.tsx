@@ -30,6 +30,7 @@ import type { DailyPortaisEntry } from '../games/Portais/utils/types';
 import type { DailyQuartetosEntry } from '../games/Quartetos/utils/types';
 import type { DailyConjuntosEntry } from '../games/Conjuntos/utils/types';
 import type { DailyVitralEntry } from '../games/Vitral/utils/types';
+import type { DailyMapeamentoEntry } from '../games/Mapeamento/utils/types';
 
 type BundleResultsProps = {
   list: (GameSettings & { disabled?: boolean })[];
@@ -192,6 +193,12 @@ function getResultForGame(data: DailyResponse[keyof DailyResponse], language: La
     case ALL_SETTINGS.FILMACO.ROUTE: {
       return ALL_HELPERS.FILMACO.getWrittenResult({
         data: data as DailyFilmacoEntry,
+        language,
+      });
+    }
+    case ALL_SETTINGS.MAPEAMENTO.ROUTE: {
+      return ALL_HELPERS.MAPEAMENTO.getWrittenResult({
+        data: data as DailyMapeamentoEntry,
         language,
       });
     }

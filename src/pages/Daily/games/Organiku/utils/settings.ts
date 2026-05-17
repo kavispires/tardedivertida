@@ -16,7 +16,7 @@ export const SETTINGS: GameSettings = {
     en: 'Can you organize the table?',
     pt: 'Consegue organizar a mesa?',
   },
-  VERSION: 'beta',
+  VERSION: 'stable',
   // Custom settings
   HEARTS: 5,
 };

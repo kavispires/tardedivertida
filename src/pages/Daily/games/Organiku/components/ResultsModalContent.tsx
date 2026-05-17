@@ -26,7 +26,6 @@ type ResultsModalContentProps = {
   challengeNumber: number;
   win: boolean;
   hearts: number;
-  culpritId?: string;
   itemsIds: DailyOrganikuEntry['itemsIds'];
   title: DailyOrganikuEntry['title'];
   foundCount: Record<string, number>;
