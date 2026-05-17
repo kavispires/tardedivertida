@@ -83,6 +83,7 @@ export * from './CustomerReviewIcon';
 export * from './CyberBullyingIcon';
 export * from './DailyAlienGameIcon';
 export * from './DailyArtGameIcon';
+export * from './DailyButtonGameIcon';
 export * from './DailyChildrenGameIcon';
 export * from './DailyContributionGameIcon';
 export * from './DailyCrimeGameIcon';

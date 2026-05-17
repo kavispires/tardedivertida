@@ -17,6 +17,7 @@ import { SETTINGS as PORTAIS } from '../games/Portais/utils/settings';
 import { SETTINGS as QUARTETOS } from '../games/Quartetos/utils/settings';
 import { SETTINGS as VITRAL } from '../games/Vitral/utils/settings';
 import { SETTINGS as TA_NA_CARA } from '../games/TaNaCara/utils/settings';
+import { SETTINGS as PANICO } from '../games/Panico/utils/settings';
 
 export const ALL_SETTINGS = {
   ALIENADO,
@@ -30,6 +31,7 @@ export const ALL_SETTINGS = {
   MAPEAMENTO,
   ORGANIKU,
   PALAVREADO,
+  PANICO,
   PICACO,
   PIRRALHOS,
   PORTAIS,

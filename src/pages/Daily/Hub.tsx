@@ -100,6 +100,7 @@ const DEMOS: Entry[] = [
   //   VERSION: 'disabled',
   // },
   ALL_SETTINGS.PIRRALHOS,
+  // ALL_SETTINGS.PANICO,
 ];
 
 const ENDLESS: Entry[] = [ALL_SETTINGS.ENDLESS_VITRAIS];
