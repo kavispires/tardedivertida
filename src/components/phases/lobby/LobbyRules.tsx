@@ -104,7 +104,7 @@ export function LobbyRules({ players }: LobbyRulesProps) {
               >
                 {index > 0 && (
                   <Image
-                    src={`${BASE_URL}/rules/game-rule-${info.gameName}-${index}.jpg`}
+                    src={`${BASE_URL}/rules/${info.gameName}/${index}.jpg`}
                     width={96}
                     className="border-radius"
                     fallback={`${BASE_URL}/rules/no-rules.jpg`}
