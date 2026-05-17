@@ -214,3 +214,12 @@ body {
   min-width: calc(var(--max-width) / 2);
   width: 64vw;
 }
+
+.disable-mobile-drag {
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  & > * {
+    -ms-touch-action: none;
+    touch-action: none;
+  }
+}

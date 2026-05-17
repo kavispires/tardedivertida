@@ -61,7 +61,7 @@ export function DragAndDropCityMap({
       sensors={sensors}
       onDragEnd={handleDragEnd}
     >
-      <div className="city-map-actions-container">
+      <div className="city-map-actions-container disable-mobile-drag">
         <CityMap
           city={city}
           cityLocationsDict={cityLocationsDict}
