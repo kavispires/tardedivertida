@@ -147,6 +147,7 @@ export function StepPlayCard({
         onSelectCard={setCardId}
         selectedCardId={cardId}
         drawDeck={drawDeck}
+        players={players}
       />
 
       <PeopleOrder />

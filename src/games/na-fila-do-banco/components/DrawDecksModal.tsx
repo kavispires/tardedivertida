@@ -120,6 +120,7 @@ export function DrawDecksModal({
               cardId={`nfdb-${deckDict[drawDeck[0]].color}-back`}
               cardWidth={cardWidth}
               className={clsx({ 'f-selected-card': newCardId === drawDeck[0] })}
+              preview={false}
             />
           </ImageCardButton>
         )}
@@ -134,6 +135,7 @@ export function DrawDecksModal({
               cardId={`nfdb-${deckDict[drawDeck[1]].color}-back`}
               cardWidth={cardWidth}
               className={clsx({ 'f-selected-card': newCardId === drawDeck[1] })}
+              preview={false}
             />
           </ImageCardButton>
         )}
@@ -148,6 +150,7 @@ export function DrawDecksModal({
               cardId={`nfdb-${deckDict[drawDeck[2]].color}-back`}
               cardWidth={cardWidth}
               className={clsx({ 'f-selected-card': newCardId === drawDeck[2] })}
+              preview={false}
             />
           </ImageCardButton>
         )}

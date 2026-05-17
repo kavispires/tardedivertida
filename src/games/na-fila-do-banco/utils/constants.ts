@@ -138,7 +138,7 @@ export const CHARACTER_TYPES: Dictionary<{
     },
     cutSpeech: {
       pt: 'Eu sou gostosa e vou entrar na frente do motoboy',
-      en: "I'm hot and I'm cutting in front of the motoboy",
+      en: "I'm hot and I'm cutting in front of the courier",
     },
     thankYouSpeech: {
       pt: 'Obrigada por me deixar passar na frente, gatinho',

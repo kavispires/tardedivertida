@@ -21,6 +21,7 @@ export function TellerCard({ teller, cardWidth }: TellerCardProps) {
         <ImageCard
           cardId={teller.imageId}
           cardWidth={cardWidth}
+          preview={false}
         />
         <Flex
           className="teller-card__doublers"

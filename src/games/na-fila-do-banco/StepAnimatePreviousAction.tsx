@@ -116,6 +116,7 @@ export function StepAnimatePreviousAction({
         isTheActivePlayer={isTheActivePlayer}
         cardWidth={cardWidth}
         drawDeck={drawDeck}
+        players={players}
       />
 
       <PeopleOrder />

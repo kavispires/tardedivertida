@@ -1,13 +1,15 @@
 import clsx from 'clsx';
-import { Fragment } from 'react';
+import { orderBy } from 'lodash';
+import { Fragment, useMemo } from 'react';
 // Ant Design Resources
-import { Flex, Tooltip } from 'antd';
+import { Flex, Popover, Tooltip } from 'antd';
 // Types
-import type { GamePlayer } from 'types/game';
+import type { GamePlayer, GamePlayers } from 'types/game';
 // Components
 import { ImageCardButton } from 'components/image-cards/ImageCardButton';
 import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 import { Instruction } from 'components/text/Instruction';
 import { ViewIf } from 'components/views/ViewIf';
 // Internal
@@ -24,6 +26,7 @@ type MyHandProps = {
   onSelectCard?: (cardId: string | null) => void;
   selectedCardId?: string | null;
   drawDeck: UID[];
+  players: GamePlayers;
 };
 
 export function MyHand({
@@ -34,8 +37,20 @@ export function MyHand({
   onSelectCard,
   selectedCardId,
   drawDeck,
+  players,
 }: MyHandProps) {
   const showActions = isTheActivePlayer && !!onSelectCard;
+
+  const playersColors = useMemo(() => {
+    return orderBy(
+      Object.values(players).filter((player) => {
+        return player.id !== user.id && player.deckColor !== user.deckColor;
+      }),
+      ['name'],
+      ['asc'],
+    );
+  }, [players, user]);
+
   return (
     <Instruction contained>
       <Flex
@@ -43,18 +58,45 @@ export function MyHand({
         justify="space-between"
         align="center"
       >
-        <Tooltip
+        <Popover
           title={
             <Translate
-              en="This is your deck color. You only score if these colors of cards make it to the teller"
+              en="Deck colors"
               pt="Esta é a cor do seu baralho. Você só pontua se estas cores de cartas chegarem ao caixa"
             />
+          }
+          content={
+            <Flex vertical>
+              <div>
+                <DeckColorHighlight color={user?.deckColor} /> ={' '}
+                <Translate
+                  en="This is your deck color. You only score if these colors of cards make it to the teller"
+                  pt="Esta é a cor do seu baralho. Você só pontua se estas cores de cartas chegarem ao caixa"
+                />
+              </div>
+              {playersColors.map((player) => (
+                <div key={player.id}>
+                  <DeckColorHighlight color={player.deckColor} /> ={' '}
+                  <PlayerAvatarName
+                    player={player}
+                    size="small"
+                  />
+                </div>
+              ))}
+              <div>
+                <DeckColorHighlight color="neutral" /> ={' '}
+                <Translate
+                  en="This color is neutral, it can be used by anyone but it doesn't score for anyone"
+                  pt="Esta cor é neutra, pode ser usada por qualquer um mas não pontua para ninguém"
+                />
+              </div>
+            </Flex>
           }
         >
           <div>
             <DeckColorHighlight color={user?.deckColor} />
           </div>
-        </Tooltip>
+        </Popover>
         <Flex
           className="full-width"
           justify="center"
