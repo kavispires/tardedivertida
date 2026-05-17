@@ -17,6 +17,23 @@ type NewsItem = {
 
 export const NEWS_LIST: NewsItem[] = [
   {
+    date: '2026-05-17',
+    content: (
+      <>
+        <em>Novo jogo adicionado:</em>
+        <br />
+        <IconAvatar
+          icon={<ALL_SETTINGS.MAPEAMENTO.HUB_ICON />}
+          size="small"
+        />{' '}
+        <strong>
+          <DualTranslate>{ALL_SETTINGS.MAPEAMENTO.NAME}</DualTranslate>
+        </strong>{' '}
+        - que lugar é esse?
+      </>
+    ),
+  },
+  {
     date: '2026-05-03',
     content: (
       <>

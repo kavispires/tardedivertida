@@ -12,7 +12,7 @@ export const SETTINGS: GameSettings = {
   EMOJI: '🗺️',
   HUB_ICON: DailyMapsGameIcon,
   NAME: { pt: 'Mapeamento', en: 'Mapping' },
-  VERSION: 'soon',
+  VERSION: 'stable',
   TAGLINE: {
     pt: 'Onde estou? Quem sou eu? Pra onde vou?',
     en: 'Where am I? Who am I? Where am I going?',
