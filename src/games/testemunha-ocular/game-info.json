@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "testemunha-ocular",
-  "version": "6.1.25",
+  "version": "6.1.26",
   "release": "stable",
   "releaseDate": "2021-08-01",
   "available": true,
@@ -29,22 +29,18 @@
   },
   "rules": {
     "en": [
-      "One crime. One witness. But judging by appearances is never that simple...",
       "One player is the witness to a terrible crime. All other players are detectives.",
-      "Each round, the detectives ask the witness a yes-or-no question.",
+      "Each round, a detective asks the witness a yes-or-no question that the witness must answer.",
       "Then, the detectives must eliminate at least one suspect.",
       "If the detectives eliminate the criminal, everyone loses.",
-      "When only two suspects remain, the group must decide who the criminal is. If they guess correctly, everyone wins.",
-      "There’s a catch: the witness cannot describe physical traits. Their answers are based on appearance, but they cannot explain why."
+      "When only two suspects remain, the group must decide who the criminal is. If they guess correctly, everyone wins."
     ],
     "pt": [
-      "Um crime. Uma testemunha. Mas julgar pelas aparências nunca é tão simples...",
       "Um jogador é a testemunha de um crime terrível. Os outros são detetives.",
-      "A cada rodada, os detetives fazem uma pergunta de sim ou não para a testemunha.",
+      "A cada rodada, um detetive faz uma pergunta de sim ou não para a testemunha, que deve respondê-la.",
       "Em seguida, os detetives devem eliminar pelo menos um suspeito.",
       "Se os detetives eliminarem o criminoso, todos perdem.",
-      "Quando restarem apenas dois suspeitos, o grupo deve decidir quem é o criminoso. Se acertarem, todos vencem.",
-      "Mas há um porém: a testemunha não pode descrever características físicas. Suas respostas são baseadas na aparência, mas ela não pode explicar o porquê."
+      "Quando restarem apenas dois suspeitos, o grupo deve decidir quem é o criminoso. Se acertarem, todos vencem."
     ]
   },
   "playerCount": {
