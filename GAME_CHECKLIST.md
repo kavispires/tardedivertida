@@ -36,7 +36,7 @@ Legend
 - Optional Variations: ✅
 - Rules: ✅
 - Rules MD: 🔘
-- Rules Images: ✴️
+- Rules Images: ✅
 - Bots: 🔘
 - Collects Data: ✅
 - Image Background: ✅
@@ -66,16 +66,16 @@ Legend
 
 - Collection: `bomba-relogio`
 - Code: `B`
-- Rules: 🔘
+- Rules: ✅
 - Rules MD: 🔘
-- Rules Images: 🔘
+- Rules Images: ✅
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: ✅
 - Phase Delegator Migration: ✅
-- PhaseProps Migration: 🔘
+- PhaseProps Migration: ✅
 - Role-base View Migration: 🔘
-- Float Submit Migration: 🔘
+- Float Submit Migration: ✅
 - Host Timer Bar Migration: 🔘
 
 ## Colegas de Quarto
@@ -324,7 +324,7 @@ Legend
 - Code: `G`
 - Rules: ✅
 - Rules MD: 🔘
-- Rules Images: 🔘
+- Rules Images: ✅
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: ✅
@@ -388,7 +388,7 @@ Legend
 - Code: `Z`
 - Rules: ✅
 - Rules MD: 🔘
-- Rules Images: 🔘
+- Rules Images: ✅
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: ✅
@@ -497,17 +497,17 @@ Legend
 ## Na Fila do Banco
 
 - Collection: `na-fila-do-banco`
-- Code: 🔘
-- Rules: 🔘
+- Code: `F`
+- Rules: ✅
 - Rules MD: 🔘
-- Rules Images: 🔘
+- Rules Images: ✅
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: ✅
 - Phase Delegator Migration: ✅
-- PhaseProps Migration: 🔘
+- PhaseProps Migration: ✅
 - Role-base View Migration: 🔘
-- Float Submit Migration: 🔘
+- Float Submit Migration: ✅
 - Host Timer Bar Migration: 🔘
 
 ## Na Rua do Medo
@@ -516,7 +516,7 @@ Legend
 - Code: `N`
 - Rules: ✅
 - Rules MD: 🔘
-- Rules Images: 🔘
+- Rules Images: ✅
 - Bots: 🔘
 - Collects Data: ⛔️
 - Image Background: ✅
@@ -548,7 +548,7 @@ Legend
 - Code: `U`
 - Rules: ✅
 - Rules MD: 🔘
-- Rules Images: 🔘
+- Rules Images: ✅
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: ✅
@@ -596,7 +596,7 @@ Legend
 - Code: `Q`
 - Rules: ✅
 - Rules MD: 🔘
-- Rules Images: 🔘
+- Rules Images: ✅
 - Bots: 🔘
 - Collects Data: 🔘
 - Image Background: ✅
@@ -724,7 +724,7 @@ Legend
 - Code: `T`
 - Rules: ✅
 - Rules MD: 🔘
-- Rules Images: 🔘
+- Rules Images: ✅
 - Bots: 🔘
 - Collects Data: ✅
 - Image Background: ✅
