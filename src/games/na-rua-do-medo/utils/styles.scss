@@ -52,6 +52,7 @@ $n-pink: #ffb1b4;
     flex-direction: column;
     align-items: center;
     background-color: $n-pink;
+    color: contrast-color($n-pink);
     width: $card-width;
     height: 120px;
     margin: 8px 1px 0 1px;
@@ -79,10 +80,12 @@ $n-pink: #ffb1b4;
 
     #{$self}--horror & {
       background-color: get-color("brown");
+      color: contrast-color(get-color("brown"));
     }
 
     #{$self}--jackpot & {
       background-color: get-color("yellow");
+      color: contrast-color(get-color("yellow"));
     }
   }
 
@@ -214,9 +217,9 @@ $stats-height: get-unit(40);
   border-radius: get-unit(2);
   transition: all 3s;
 
-  @include mobile {
-    display: block;
-  }
+  // @include mobile {
+  //   display: block;
+  // }
 
   &__section {
     display: flex;
@@ -381,10 +384,12 @@ $stats-height: get-unit(40);
 
     #{$self}--horror & {
       background-color: get-color("brown");
+      color: contrast-color(get-color("brown"));
     }
 
     #{$self}--jackpot & {
       background-color: get-color("yellow");
+      color: contrast-color(get-color("yellow"));
     }
   }
 }

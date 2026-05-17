@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "N",
   "gameName": "na-rua-do-medo",
-  "version": "3.1.94",
+  "version": "3.1.95",
   "release": "stable",
   "releaseDate": "2022-02-09",
   "available": true,
@@ -31,17 +31,17 @@
     "en": [
       "It's Halloween, and you are a group of scared kids going trick-or-treating through the Fear Streets.",
       "As you go door to door, you collect candy together. All candy must be shared equally, and any leftovers are left on the sidewalk.",
-      "If you encounter a monster, no problem — you can handle it once. But if the same monster appears a second time, you panic, drop all your candy, and run home!",
       "After each house card is revealed (showing candy or a monster), you must decide whether to keep going or head back home.",
+      "If you encounter a monster, no problem — you can handle it once. But if the same monster appears a second time, you panic, drop all your candy, and run home!",
       "If you choose to go home, you collect all candy left on the sidewalk and secure it as points.",
       "The game lasts 5 (or 3) rounds (streets), and the player with the most candy wins!"
     ],
     "pt": [
       "É Halloween, e vocês são um grupo de crianças medrosas fazendo doces ou travessuras nas Ruas do Medo.",
       "Ao visitar as casas, vocês coletam doces juntos. Todos os doces devem ser divididos igualmente, e qualquer sobra fica no passeio.",
-      "Se encontrarem alguém fantasiado de monstro, tudo bem — vocês aguentam uma vez. Mas se o mesmo monstro aparecer uma segunda vez, vocês entram em desespero, jogam os doces para o alto e saem correndo!",
       "Após cada carta de casa ser revelada (mostrando doces ou monstros), você decide se quer continuar ou voltar para casa.",
       "Se você decidir voltar para casa, coleta todos os doces deixados no passeio e garante esses doces como pontos.",
+      "Se encontrarem alguém fantasiado de monstro, tudo bem — vocês aguentam uma vez. Mas se o mesmo monstro aparecer uma segunda vez, vocês entram em desespero, jogam os doces para o alto e saem correndo!",
       "O jogo dura 5 (ou 3) rodadas (ruas), e quem tiver mais doces vence!"
     ]
   },
