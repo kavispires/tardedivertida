@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "labirinto-secreto",
-  "version": "3.2.6",
+  "version": "3.2.7",
   "release": "stable",
   "releaseDate": "2023-06-24",
   "available": true,
@@ -30,7 +30,7 @@
   "rules": {
     "pt": [
       "Em Labirinto Secreto, os jogadores exploram uma floresta onde cada árvore tem um nome único.",
-      "Cada jogador recebe secretamente um caminho que passa por 10 das 35 árvores, em uma ordem específica.",
+      "Cada jogador recebe um caminho secreto que passa por 10 das 35 árvores, em uma ordem específica.",
       "Os jogadores também recebem uma mão de cartas com adjetivos, que usam para descrever seu caminho e guiar os outros.",
       "Com base nessas pistas, os outros jogadores tentam reconstruir o caminho na ordem correta.",
       "Para cada etapa correta do caminho (árvore certa na posição certa), tanto quem adivinhou quanto o dono do caminho ganham 1 ponto.",
@@ -38,7 +38,7 @@
     ],
     "en": [
       "In Secret Labyrinth, players explore a forest where each tree has a unique name.",
-      "Each player secretly receives a path that passes through 10 of the 35 trees in a specific order.",
+      "Each player receives a secret path that goes through 10 of the 35 trees in a specific order.",
       "Players also receive a hand of adjective cards, which they use to describe their path and guide others.",
       "Using these clues, other players try to reconstruct each player's path in the correct order.",
       "For each correct step in a path (a correct tree in the correct position), both the guesser and the path owner earn 1 point.",

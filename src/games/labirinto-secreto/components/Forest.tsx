@@ -171,7 +171,6 @@ export function Forest({
                       )}
                       width={treeWidth}
                     />
-                    {tree.id}
                     {isSelected && currentTreeId !== tree.id && (
                       <>
                         <span

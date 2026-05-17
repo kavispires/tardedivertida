@@ -83,7 +83,6 @@ export function ForestTree({
           'forest__tree--passed': isPassed,
           'forest__tree--current': isCurrentTree,
         },
-
         className,
       )}
     >
