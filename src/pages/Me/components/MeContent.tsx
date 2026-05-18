@@ -34,8 +34,6 @@ import { StatisticCard } from './StatisticCard';
 import { InfoCard } from './InfoCard';
 import { GameCheckCard } from './GameCheckCard';
 import { AchievementsCompleteList } from './AchievementsCompleteList';
-// Sass
-import '../Me.scss';
 
 type MeContentProps = {
   user: Me;
@@ -55,7 +53,7 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
 
   const tabItems: TabsProps['items'] = [
     {
-      key: '1',
+      key: 'all-games',
       icon: (
         <IconAvatar
           icon={<CatalogIcon />}
@@ -76,7 +74,7 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
       ),
     },
     {
-      key: '2',
+      key: 'all-achievements',
       icon: (
         <IconAvatar
           icon={<SealOfApprovalIcon />}

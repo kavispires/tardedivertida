@@ -72,6 +72,12 @@
     font-size: 1.15rem;
     padding: get-unit(4);
   }
+
+  &__rules-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: get-unit(4);
+  }
 }
 
 .achievement-card {
