@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-DBS2Xqfh.js";import{t}from"./BugFilled-CAQb4YTf.js";import{y as n}from"./index-DsfLE5T8.js";import{n as r}from"./timers.module-BsUuMsX3.js";var i=e();function a({children:e,ghost:a,type:o,...s}){return(0,i.jsx)(r,{devOnly:!0,children:(0,i.jsx)(n,{icon:(0,i.jsx)(t,{}),ghost:a??!0,type:o??`primary`,...s,children:e})})}export{a as t};
