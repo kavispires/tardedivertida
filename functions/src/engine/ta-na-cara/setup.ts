@@ -86,14 +86,12 @@ export const preparePromptPhase = async (
       player.answers.push(player.currentAnswer || 0);
     });
 
-    players[previousPlayerId].suggestedQuestions =
-      players[previousPlayerId].suggestedQuestions.filter(
-        (question: TestimonyQuestionCard) => question.id !== state.currentQuestion?.id,
-      ) || [];
+    players[previousPlayerId].suggestedQuestions = [];
   }
 
   // Every round a player will be the asker
   const activePlayerId = utils.turnOrder.getNextPlayerId(state.turnOrder, state.activePlayerId);
+
   // Add questions until the active player has 2 suggested questions
   while (players[activePlayerId].suggestedQuestions.length < 2) {
     const question = questions.pop();
@@ -237,6 +235,8 @@ export const prepareGameOverPhase = async (
     achievements: [],
     language: store.language,
   });
+
+  utils.players.unReadyPlayers(players);
 
   return {
     set: {

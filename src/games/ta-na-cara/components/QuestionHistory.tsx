@@ -68,8 +68,8 @@ export function QuestionHistory({ players, questionsHistory }: QuestionHistoryPr
                     />
                     <div>
                       <Translate
-                        pt="Talvez Não"
-                        en="Kinda No"
+                        pt="Não"
+                        en="No"
                       />
                     </div>
                   </Flex>
@@ -89,8 +89,8 @@ export function QuestionHistory({ players, questionsHistory }: QuestionHistoryPr
                     />
                     <div>
                       <Translate
-                        pt="Não"
-                        en="No"
+                        pt="Talvez Não"
+                        en="Kinda No"
                       />
                     </div>
                   </Flex>
