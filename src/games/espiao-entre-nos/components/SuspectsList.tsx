@@ -53,7 +53,7 @@ export function SuspectsList({ players }: SuspectsListProps) {
           pt="Suspeitos"
           en="Suspects"
         />
-        <Tooltip title={translate('Desmarcar todos', 'Unselect all')}>
+        <Tooltip title={translate({ pt: 'Desmarcar todos', en: 'Unselect all' })}>
           <Button
             shape="circle"
             ghost

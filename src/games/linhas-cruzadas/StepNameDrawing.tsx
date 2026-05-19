@@ -78,7 +78,7 @@ export function StepNameDrawing({
       <Input
         onChange={onTitleChange}
         size="large"
-        placeholder={translate('Escreva seu chute aqui', 'Write your guess here')}
+        placeholder={translate({ pt: 'Escreva seu chute aqui', en: 'Write your guess here' })}
         className="l-drawing-guess-input"
         onPressEnter={onSubmitTitle}
       />

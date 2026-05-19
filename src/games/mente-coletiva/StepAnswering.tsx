@@ -115,7 +115,10 @@ export function StepAnswering({
                   <Input
                     className="m-answers__input"
                     id={id}
-                    placeholder={translate(`Escreva a resposta ${num} aqui`, `Write answer ${num} here`)}
+                    placeholder={translate({
+                      pt: `Escreva a resposta ${num} aqui`,
+                      en: `Write answer ${num} here`,
+                    })}
                     autoComplete="off"
                     onChange={onWriteAnswer}
                     onPressEnter={onPressEnter}

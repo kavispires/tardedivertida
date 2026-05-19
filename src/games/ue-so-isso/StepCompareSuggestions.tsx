@@ -78,8 +78,8 @@ export function StepCompareSuggestions({
     if (isUserTheController && !wasMessageShown && !isLoading) {
       message.info(
         messageContent(
-          translate('Você controla!', 'You control!'),
-          translate('Siga as instruções na página', 'Follow the instructions on the page'),
+          translate({ pt: 'Você controla!', en: 'You control!' }),
+          translate({ pt: 'Siga as instruções na página', en: 'Follow the instructions on the page' }),
           controller.id,
           3,
         ),

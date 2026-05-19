@@ -128,7 +128,7 @@ export function StepWriteClues({
             </Space.Addon>
 
             <Input
-              placeholder={translate('Escreva sua pista aqui', 'Write your clue here')}
+              placeholder={translate({ pt: 'Escreva sua pista aqui', en: 'Write your clue here' })}
               value={clues[index]}
               onChange={(e) => handleClueChange(index, e.target.value)}
             />

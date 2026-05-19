@@ -77,7 +77,7 @@ export function StepDraw({
     <Step announcement={announcement}>
       <Card
         size="large"
-        header={translate('Desenhe', 'Draw')}
+        header={translate({ pt: 'Desenhe', en: 'Draw' })}
         className="sda-card"
         color="yellow"
       >

@@ -46,7 +46,7 @@ export function StepNameAThing({
   pool,
   onSubmitName,
 }: StepNameAThingProps) {
-  const { language, dualTranslate } = useLanguage();
+  const { language, translate } = useLanguage();
   const hand: Item[] = user.hand ?? [];
   const itemWidth = useSpriteWidth();
   const [selectedItem, setSelectedItem] = useState<Item | null>(null);
@@ -127,7 +127,7 @@ export function StepNameAThing({
                 key={item.id}
                 itemId={item.id}
                 width={itemWidth}
-                title={dualTranslate(item.name)}
+                title={translate(item.name)}
               />
             </TransparentButton>
           ))}

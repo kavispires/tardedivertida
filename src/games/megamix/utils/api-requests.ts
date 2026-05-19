@@ -12,11 +12,11 @@ export function useOnSubmitSeedAPIRequest(setStep: UseStep['setStep']) {
   const request = useGameActionRequest({
     actionName: 'submit-seed',
     onSuccess: () => setStep(3),
-    successMessage: translate('Dados enviados com sucesso', 'Data submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seus dados',
-      'Oops, the application found an error while trying to submit your data',
-    ),
+    successMessage: translate({ pt: 'Dados enviados com sucesso', en: 'Data submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seus dados',
+      en: 'Oops, the application found an error while trying to submit your data',
+    }),
   });
 
   return (payload: SubmitAnswerPayload) => {
@@ -33,11 +33,11 @@ export function useOnSubmitTrackAnswerAPIRequest(setStep: UseStep['setStep']) {
   const request = useGameActionRequest({
     actionName: 'submit-task',
     onSuccess: () => setStep(3),
-    successMessage: translate('Tarefa enviada com sucesso', 'Track submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua tarefa',
-      'Oops, the application found an error while trying to submit your task',
-    ),
+    successMessage: translate({ pt: 'Tarefa enviada com sucesso', en: 'Track submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua tarefa',
+      en: 'Oops, the application found an error while trying to submit your task',
+    }),
   });
 
   return (payload: SubmitAnswerPayload) => {

@@ -21,11 +21,11 @@ export function useOnSubmitAlienAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-action',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Ação submetida com sucesso', en: 'Action submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitAlienPayload) => {
@@ -43,11 +43,11 @@ export function useOnSubmitSeedingAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-seeds',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Análise submetida com sucesso', 'Analyses submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua análise',
-      'Oops, the application found an error while trying to submit your analyses',
-    ),
+    successMessage: translate({ pt: 'Análise submetida com sucesso', en: 'Analyses submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua análise',
+      en: 'Oops, the application found an error while trying to submit your analyses',
+    }),
   });
 
   return (payload: SubmitSeedingPayload) => {
@@ -65,11 +65,11 @@ export function useOnSubmitHumanInquiryAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-action',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Ação submetida com sucesso', en: 'Action submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitHumanInquiryPayload) => {
@@ -85,11 +85,11 @@ export function useOnSubmitAlienResponseAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'submit-action',
-    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Ação submetida com sucesso', en: 'Action submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitAlienResponsePayload) => {
@@ -111,11 +111,11 @@ export function useOnSubmitAlienRequestAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-action',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Ação submetida com sucesso', en: 'Action submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitAlienRequestPayload) => {
@@ -133,11 +133,11 @@ export function useOnSubmitOfferingsAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-action',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Ação submetida com sucesso', en: 'Action submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitOfferingsPayload) => {

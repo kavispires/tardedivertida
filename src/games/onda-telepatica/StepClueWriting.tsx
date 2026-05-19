@@ -101,7 +101,7 @@ export function StepClueWriting({
         <Input
           onChange={onChangeInput}
           onPressEnter={onSubmitClue}
-          placeholder={translate('Escreva aqui', 'Write here')}
+          placeholder={translate({ pt: 'Escreva aqui', en: 'Write here' })}
           size="large"
         />
         <SendButton

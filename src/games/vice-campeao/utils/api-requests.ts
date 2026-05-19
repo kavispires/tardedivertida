@@ -13,11 +13,11 @@ export function useOnSubmitCardAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-card',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Carta submetida com sucesso', 'Card submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Carta submetida com sucesso', en: 'Card submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitCardPayload) => {

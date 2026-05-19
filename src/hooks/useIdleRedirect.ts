@@ -17,10 +17,10 @@ export function useIdleRedirect() {
   useEffect(() => {
     if (isIdle) {
       notification.warning({
-        title: translate(
-          'Página parada por um longo tempo, redirecionando...',
-          'The page has been idle for too long, redirecting...',
-        ),
+        title: translate({
+          pt: 'Página parada por um longo tempo, redirecionando...',
+          en: 'The page has been idle for too long, redirecting...',
+        }),
         duration: 5,
         onClose: () => navigate('/'),
         placement: 'top',

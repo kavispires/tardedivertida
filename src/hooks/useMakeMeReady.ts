@@ -13,12 +13,12 @@ export function useOnMakeMeReady(args: UseOnMakeMeReady) {
 
   const request = useGameActionRequest({
     actionName: 'be-ready',
-    successMessage: translate('Você está pronto!', 'You are ready!', successMessage),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar marcar você como pronto',
-      'Oops, the application found an error while trying to set you ready',
-      errorMessage,
-    ),
+    successMessage: translate({ pt: 'Você está pronto!', en: 'You are ready!', custom: successMessage }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar marcar você como pronto',
+      en: 'Oops, the application found an error while trying to set you ready',
+      custom: errorMessage,
+    }),
     ...rest,
   });
 

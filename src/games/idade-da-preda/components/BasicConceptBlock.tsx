@@ -23,7 +23,7 @@ export function BasicConceptBlock({
   onSelect,
 }: BasicConceptBlockProps) {
   const itemWidth = useSpriteWidth();
-  const { dualTranslate } = useLanguage();
+  const { translate } = useLanguage();
 
   return (
     <Card
@@ -50,7 +50,7 @@ export function BasicConceptBlock({
       </Flex>
 
       <Input
-        defaultValue={dualTranslate(BASIC_CONCEPTS_TRANSLATIONS[concept.meaning])}
+        defaultValue={translate(BASIC_CONCEPTS_TRANSLATIONS[concept.meaning])}
         readOnly
         variant="filled"
         className="mt-2"

@@ -23,10 +23,10 @@ export function useGameId() {
       setGameId(urlGameId);
     } else {
       message.error(
-        translate(
-          'Vixi, a id do jogo na barra de endereços tá errada',
-          'Oops, the game id in the address bar is invalid',
-        ),
+        translate({
+          pt: 'Vixi, a id do jogo na barra de endereços tá errada',
+          en: 'Oops, the game id in the address bar is invalid',
+        }),
       );
       setGameId('');
       navigate('/');

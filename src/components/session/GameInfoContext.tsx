@@ -60,12 +60,12 @@ type GameInfoContextType = {
  * @returns The provider component that wraps its children with game information context.
  */
 export const GameInfoProvider = ({ gameCollection, children }: GameInfoContextType) => {
-  const { dualTranslate } = useLanguage();
+  const { translate } = useLanguage();
   const { data: gameList, isLoading } = useGameList();
 
   const info =
     gameCollection && gameList?.[gameCollection] ? gameList[gameCollection] : PLACEHOLDER_GAME_INFO;
-  const gameName = dualTranslate(info?.title ?? PLACEHOLDER_GAME_INFO.title);
+  const gameName = translate(info?.title ?? PLACEHOLDER_GAME_INFO.title);
 
   useTitle(`${gameName ? `${gameName} | ` : ''}Tarde Divertida`);
 

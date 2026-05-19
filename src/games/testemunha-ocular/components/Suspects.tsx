@@ -43,10 +43,10 @@ export function Suspects({
           return (
             <Popconfirm
               key={suspect.id}
-              title={translate(
-                `Tem certeza que quer liberar ${name}?`,
-                `Are you sure you want to release ${name}?`,
-              )}
+              title={translate({
+                pt: `Tem certeza que quer liberar ${name}?`,
+                en: `Are you sure you want to release ${name}?`,
+              })}
               onConfirm={() => onCardClick(suspect.id)}
               type="yes-no"
               disabled={wasEliminated || isLoading}

@@ -13,11 +13,14 @@ export function useOnSubmitPlanningAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-planning',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Planejamento submetido com sucesso', 'Planning submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu planejamento',
-      'Oops, the application found an error while trying to submit your planning',
-    ),
+    successMessage: translate({
+      pt: 'Planejamento submetido com sucesso',
+      en: 'Planning submitted successfully',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seu planejamento',
+      en: 'Oops, the application found an error while trying to submit your planning',
+    }),
   });
 
   return (payload: SubmitPlanningPayload) => {
@@ -35,11 +38,14 @@ export function useOnSubmitPlacingAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-placing',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Construção submetida com sucesso', 'Construction submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua construção',
-      'Oops, the application found an error while trying to submit your construction',
-    ),
+    successMessage: translate({
+      pt: 'Construção submetida com sucesso',
+      en: 'Construction submitted successfully',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua construção',
+      en: 'Oops, the application found an error while trying to submit your construction',
+    }),
   });
 
   return (payload: SubmitPlacingPayload) => {

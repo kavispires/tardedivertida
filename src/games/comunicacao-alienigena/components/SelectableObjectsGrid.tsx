@@ -41,7 +41,7 @@ export function SelectableObjectsGrid({
   status,
 }: SelectableObjectsGridProps) {
   const { isLoading } = useLoading();
-  const { dualTranslate } = useLanguage();
+  const { translate } = useLanguage();
   const width = useSpriteWidth();
 
   return (
@@ -65,12 +65,12 @@ export function SelectableObjectsGrid({
               <Badge
                 count={item.inquiries}
                 color="orange"
-                title={dualTranslate(BADGE_INSTRUCTION)}
+                title={translate(BADGE_INSTRUCTION)}
               >
                 <ItemCard
                   itemId={`${item.id}`}
                   className={clsx(item.offerings.length && 'objects-grid__item-offered')}
-                  title={item.name ? dualTranslate(item.name) : undefined}
+                  title={item.name ? translate(item.name) : undefined}
                   width={width}
                 />
               </Badge>
@@ -92,12 +92,12 @@ export function SelectableObjectsGrid({
               <Badge
                 count={item.inquiries}
                 color="orange"
-                title={dualTranslate(BADGE_INSTRUCTION)}
+                title={translate(BADGE_INSTRUCTION)}
               >
                 <ItemCard
                   itemId={`${item.id}`}
                   className={clsx(item.offerings.length && 'objects-grid__item-offered')}
-                  title={item.name ? dualTranslate(item.name) : undefined}
+                  title={item.name ? translate(item.name) : undefined}
                   width={width}
                 />
               </Badge>

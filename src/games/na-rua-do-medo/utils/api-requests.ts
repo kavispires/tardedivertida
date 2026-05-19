@@ -13,11 +13,11 @@ export function useOnSubmitDecisionAPIRequest() {
     onSuccess: () => {
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     },
-    successMessage: translate('Decisão submetida com sucesso', 'Decision submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua decisão',
-      'Oops, the application found an error while trying to submit your decision',
-    ),
+    successMessage: translate({ pt: 'Decisão submetida com sucesso', en: 'Decision submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua decisão',
+      en: 'Oops, the application found an error while trying to submit your decision',
+    }),
   });
 
   return (payload: SubmitDecisionPayload) => {

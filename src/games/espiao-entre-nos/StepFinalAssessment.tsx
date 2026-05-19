@@ -45,7 +45,7 @@ export function StepFinalAssessment({
   useEffect(() => {
     if (outcome?.type === 'VOTE_FAIL') {
       notification.info({
-        title: translate('A votação não foi unânime', 'The voting was not unanimous'),
+        title: translate({ pt: 'A votação não foi unânime', en: 'The voting was not unanimous' }),
         description: outcome.votedYes ? `Votaram sim: ${outcome.votedYes}` : 'Ninguém votou sim',
         duration: 10,
       });

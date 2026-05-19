@@ -23,7 +23,7 @@ type ItemsBoardProps = {
 };
 
 export function ItemsBoard({ items, selectedItems = [], onSelectItem, currentAge }: ItemsBoardProps) {
-  const { dualTranslate, language } = useLanguage();
+  const { translate, language } = useLanguage();
   const orderedItems = useMemo(
     () => orderBy(Object.values(items), [(o) => stringRemoveAccents(o.name[language])], ['asc']),
     [items, language],
@@ -52,7 +52,7 @@ export function ItemsBoard({ items, selectedItems = [], onSelectItem, currentAge
               <ItemCard
                 key={item.id}
                 itemId={item.id}
-                title={dualTranslate(item.name)}
+                title={translate(item.name)}
                 width={itemWidth}
                 className={clsx({
                   'idade-items-board__item--selected': selectedItems.includes(item.id),

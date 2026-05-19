@@ -13,11 +13,14 @@ export function useOnSubmitCategoryAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-category',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Categoria submetida com sucesso', 'Category submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua categoria',
-      'Oops, the application found an error while trying to submit your category',
-    ),
+    successMessage: translate({
+      pt: 'Categoria submetida com sucesso',
+      en: 'Category submitted successfully',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua categoria',
+      en: 'Oops, the application found an error while trying to submit your category',
+    }),
   });
 
   return (payload: SubmitCategoryPayload) => {
@@ -33,11 +36,11 @@ export function useOnSkipTurnAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'skip-turn',
-    successMessage: translate('Vez pulada com sucesso', 'Turn skipped successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar pular sua vez',
-      'Oops, the application found an error while trying to skip your turn',
-    ),
+    successMessage: translate({ pt: 'Vez pulada com sucesso', en: 'Turn skipped successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar pular sua vez',
+      en: 'Oops, the application found an error while trying to skip your turn',
+    }),
   });
 
   return () => {
@@ -54,11 +57,11 @@ export function useOnSubmitCardsAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-cards',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Cartas submetidas com sucesso', 'Cards submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar suas cartas',
-      'Oops, the application found an error while trying to submit your cards',
-    ),
+    successMessage: translate({ pt: 'Cartas submetidas com sucesso', en: 'Cards submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar suas cartas',
+      en: 'Oops, the application found an error while trying to submit your cards',
+    }),
   });
 
   return (payload: SubmitCardsPayload) => {
@@ -76,11 +79,14 @@ export function useOnSubmitEvaluationsAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-evaluations',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Avaliações submetidas com sucesso', 'Evaluations submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar suas avaliações',
-      'Oops, the application found an error while trying to submit your evaluations',
-    ),
+    successMessage: translate({
+      pt: 'Avaliações submetidas com sucesso',
+      en: 'Evaluations submitted successfully',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar suas avaliações',
+      en: 'Oops, the application found an error while trying to submit your evaluations',
+    }),
   });
 
   return (payload: SubmitEvaluationsPayload) => {

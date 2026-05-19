@@ -64,7 +64,7 @@ export const PlayerAvatarStrip = ({
   const { translate } = useLanguage();
 
   const isUser = player.id === userId;
-  const addressedUser = translate('Você', 'You');
+  const addressedUser = translate({ pt: 'Você', en: 'You' });
 
   const sizes = getSize(size);
 

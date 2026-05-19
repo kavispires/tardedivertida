@@ -19,11 +19,11 @@ export function useOnSubmitQuestionAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-question',
     onSuccess: () => setStep(3),
     onError: () => setStep(1),
-    successMessage: translate('Pergunta enviada com sucesso!', 'Question send successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar a pergunta',
-      'Oops, the application failed to submit the question',
-    ),
+    successMessage: translate({ pt: 'Pergunta enviada com sucesso!', en: 'Question send successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar a pergunta',
+      en: 'Oops, the application failed to submit the question',
+    }),
   });
 
   return (payload: SubmitQuestionPayload) => {
@@ -41,11 +41,11 @@ export function useOnSubmitCustomQuestionAPIRequest(setStep: UseStep['setStep'])
     actionName: 'submit-question',
     onSuccess: () => setStep(3),
     onError: () => setStep(1),
-    successMessage: translate('Pergunta enviada com sucesso!', 'Question send successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar a pergunta',
-      'Oops, the application failed to submit the question',
-    ),
+    successMessage: translate({ pt: 'Pergunta enviada com sucesso!', en: 'Question send successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar a pergunta',
+      en: 'Oops, the application failed to submit the question',
+    }),
   });
 
   return (payload: SubmitCustomQuestionPayload) => {
@@ -63,11 +63,11 @@ export function useOnSubmitAnswersAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-answers',
     onSuccess: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Respostas enviadas com sucesso!', 'Answers send successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar respostas',
-      'Oops, the application failed to submit answers',
-    ),
+    successMessage: translate({ pt: 'Respostas enviadas com sucesso!', en: 'Answers send successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar respostas',
+      en: 'Oops, the application failed to submit answers',
+    }),
   });
 
   return (payload: SubmitAnswersPayload) => {
@@ -83,11 +83,11 @@ export function useOnAddAnswerAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'add-answer',
-    successMessage: translate('Resposta adicionada com sucesso!', 'Answer added successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar adicionar respostar',
-      'Oops, the application failed to add answer',
-    ),
+    successMessage: translate({ pt: 'Resposta adicionada com sucesso!', en: 'Answer added successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar adicionar respostar',
+      en: 'Oops, the application failed to add answer',
+    }),
   });
 
   return (payload: AddAnswerPayload) => {
@@ -104,14 +104,14 @@ export function useOnNextAnswersAPIRequest(clearAllowList: GenericFunction) {
   const request = useGameActionRequest({
     actionName: 'next-answers',
     onSuccess: clearAllowList,
-    successMessage: translate(
-      'Próximas respostas acionadas com sucesso!',
-      'Next answers triggered successfully!',
-    ),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar avançar',
-      'Oops, the application failed to advance',
-    ),
+    successMessage: translate({
+      pt: 'Próximas respostas acionadas com sucesso!',
+      en: 'Next answers triggered successfully!',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar avançar',
+      en: 'Oops, the application failed to advance',
+    }),
   });
 
   return (payload: NextAnswersPayload) => {

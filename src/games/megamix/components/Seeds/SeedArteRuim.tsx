@@ -90,7 +90,7 @@ export function SeedArteRuim({ seed, updateData }: SeedArteRuimProps) {
 
         <Card
           size="large"
-          header={translate('Desenhe', 'Draw')}
+          header={translate({ pt: 'Desenhe', en: 'Draw' })}
           className="a-draw__card"
           color="yellow"
         >

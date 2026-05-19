@@ -76,7 +76,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
               className="final-gallery"
             >
               <Card
-                header={translate('Desafio', 'Challenge')}
+                header={translate({ pt: 'Desafio', en: 'Challenge' })}
                 color="purple"
                 className="final-gallery__card"
               >

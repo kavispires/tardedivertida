@@ -44,7 +44,7 @@ export function StepCreateConcepts({
   concepts,
   onSubmitConcepts,
 }: StepCreateConceptsProps) {
-  const { dualTranslate } = useLanguage();
+  const { translate } = useLanguage();
 
   useMock(() =>
     onSubmitConcepts({ proposedConcepts: mockConcept(user, concepts, items, maxProposals, round.current) }),
@@ -229,7 +229,7 @@ export function StepCreateConcepts({
             <ItemCard
               key={item.id}
               itemId={item.id}
-              title={dualTranslate(item.name)}
+              title={translate(item.name)}
               width={48}
             />
           ))}

@@ -134,7 +134,7 @@ export function StepInfo({ players, setStep }: StepInfoProps) {
           options={nameOptions}
           onChange={(value) => setName(value.trim())}
           onSelect={(value) => setName(value.trim())}
-          placeholder={translate('Digite seu nome', 'Type your name')}
+          placeholder={translate({ pt: 'Digite seu nome', en: 'Type your name' })}
           maxLength={10}
           value={name || randomName}
         />

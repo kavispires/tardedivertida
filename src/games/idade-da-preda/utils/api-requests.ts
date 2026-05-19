@@ -19,11 +19,11 @@ export function useOnSubmitConceptsAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-concept',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Conceito submetido com sucesso', 'Concept submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu conceito',
-      'Oops, the application found an error while trying to submit your concept',
-    ),
+    successMessage: translate({ pt: 'Conceito submetido com sucesso', en: 'Concept submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seu conceito',
+      en: 'Oops, the application found an error while trying to submit your concept',
+    }),
   });
 
   return (payload: SubmitConceptsPayload) => {
@@ -39,14 +39,14 @@ export function useOnMakeReady(setStep: UseStep['setStep']) {
 
   return useOnMakeMeReady({
     onSuccess: () => setStep(2),
-    successMessage: translate(
-      'Pronto! Aguarde os outros jogadores estarem prontos',
-      'Done! Now wait for the other players',
-    ),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar confirmar sua porta',
-      'Oops, the application failed to confirm your door',
-    ),
+    successMessage: translate({
+      pt: 'Pronto! Aguarde os outros jogadores estarem prontos',
+      en: 'Done! Now wait for the other players',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar confirmar sua porta',
+      en: 'Oops, the application failed to confirm your door',
+    }),
   });
 }
 
@@ -57,11 +57,11 @@ export function useOnSubmitDownvoteConceptsAPIRequest(setStep: UseStep['setStep'
     actionName: 'downvote-concept',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Conceito votado com sucesso', 'Concept downvoted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar votar no conceito',
-      'Oops, the application found an error while trying to downvote the concept',
-    ),
+    successMessage: translate({ pt: 'Conceito votado com sucesso', en: 'Concept downvoted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar votar no conceito',
+      en: 'Oops, the application found an error while trying to downvote the concept',
+    }),
   });
 
   return (payload: SubmitDownvoteConceptsPayload) => {
@@ -79,11 +79,11 @@ export function useOnSubmitNameAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-name',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Nome submetido com sucesso', 'Name submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu nome',
-      'Oops, the application found an error while trying to submit your name',
-    ),
+    successMessage: translate({ pt: 'Nome submetido com sucesso', en: 'Name submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seu nome',
+      en: 'Oops, the application found an error while trying to submit your name',
+    }),
   });
 
   return (payload: SubmitNamePayload) => {
@@ -100,11 +100,11 @@ export function useOnSubmitGuessesAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-guesses',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Palpite submetido com sucesso', 'Guess submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu palpite',
-      'Oops, the application found an error while trying to submit your guess',
-    ),
+    successMessage: translate({ pt: 'Palpite submetido com sucesso', en: 'Guess submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seu palpite',
+      en: 'Oops, the application found an error while trying to submit your guess',
+    }),
   });
 
   return (payload: SubmitGuessesPayload) => {

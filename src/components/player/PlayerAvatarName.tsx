@@ -59,7 +59,7 @@ export const PlayerAvatarName = ({
   const { language, translate } = useLanguage();
 
   const isUser = player.id === userId;
-  const addressedUser = translate('VOCÊ', 'YOU');
+  const addressedUser = translate({ pt: 'VOCÊ', en: 'YOU' });
 
   return (
     <span

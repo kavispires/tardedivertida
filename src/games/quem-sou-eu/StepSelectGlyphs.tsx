@@ -163,7 +163,7 @@ export function StepSelectGlyphs({
                   {id !== undefined ? (
                     <TransparentButton
                       onClick={() => updatePositive(id)}
-                      title={translate('Remover', 'Remove')}
+                      title={translate({ pt: 'Remover', en: 'Remove' })}
                     >
                       <Tooltip
                         title={

@@ -50,7 +50,7 @@ export function AnswerGroup({
         />
       </Title>
       <Card
-        header={translate('Pergunta', 'Question')}
+        header={translate({ pt: 'Pergunta', en: 'Question' })}
         color={['yellow', 'orange', 'green', 'blue', 'purple'][remainingGroupsCount % 5]}
         className="m-question-card"
         footer={Array(remainingGroupsCount).fill('•').join('')}

@@ -11,11 +11,14 @@ export function useOnSubmitCategoryAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'submit-category',
-    successMessage: translate('Categoria enviada com sucesso!', 'Category submitted successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar a categoria',
-      'Oops, the application failed to submit the category',
-    ),
+    successMessage: translate({
+      pt: 'Categoria enviada com sucesso!',
+      en: 'Category submitted successfully!',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar a categoria',
+      en: 'Oops, the application failed to submit the category',
+    }),
   });
 
   return (payload: SubmitCategoryPayload) => {
@@ -31,11 +34,14 @@ export function useOnSubmitClueAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'submit-category',
-    successMessage: translate('Categoria enviada com sucesso!', 'Category submitted successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar a categoria',
-      'Oops, the application failed to submit the category',
-    ),
+    successMessage: translate({
+      pt: 'Categoria enviada com sucesso!',
+      en: 'Category submitted successfully!',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar a categoria',
+      en: 'Oops, the application failed to submit the category',
+    }),
   });
 
   return (payload: SubmitCluePayload) => {
@@ -53,11 +59,11 @@ export function useOnSubmitGuessAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-guess',
     onSuccess: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Resposta enviado com sucesso!', 'Guess submitted successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua resposta',
-      'Oops, the application failed to submit your guess',
-    ),
+    successMessage: translate({ pt: 'Resposta enviado com sucesso!', en: 'Guess submitted successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua resposta',
+      en: 'Oops, the application failed to submit your guess',
+    }),
   });
 
   return (payload: SubmitGuessPayload) => {

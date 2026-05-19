@@ -24,7 +24,7 @@ type ItemEntryProps = {
 };
 
 export function ItemEntry({ itemEntry, className, size, looseItem }: ItemEntryProps) {
-  const { dualTranslate } = useLanguage();
+  const { translate } = useLanguage();
 
   const sizeMultiplier = size === 'small' ? 0.75 : 1;
 
@@ -34,7 +34,7 @@ export function ItemEntry({ itemEntry, className, size, looseItem }: ItemEntryPr
         itemId={itemEntry.value.id}
         width={75 * sizeMultiplier}
         className={className}
-        title={dualTranslate(itemEntry.value.name)}
+        title={translate(itemEntry.value.name)}
       />
     );
   }

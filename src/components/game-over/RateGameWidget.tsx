@@ -82,8 +82,8 @@ function RateGameWidgetContent({ customText, hideWidget, setHideWidget }: RateGa
 
   const onSendRating = useGameActionRequest({
     actionName: 'rating',
-    successMessage: translate('Obrigado por avaliar o jogo', 'Thanks for rating the game'),
-    errorMessage: translate('Envio de avaliação falhou', 'Rating submission has failed'),
+    successMessage: translate({ pt: 'Obrigado por avaliar o jogo', en: 'Thanks for rating the game' }),
+    errorMessage: translate({ pt: 'Envio de avaliação falhou', en: 'Rating submission has failed' }),
     onBeforeCall: () => setThankYouMessage(true),
     onAfterCall: start,
   });
@@ -116,7 +116,7 @@ function RateGameWidgetContent({ customText, hideWidget, setHideWidget }: RateGa
     >
       {thankYouMessage ? (
         <Alert
-          title={translate('Obrigado', 'Thank you')}
+          title={translate({ pt: 'Obrigado', en: 'Thank you' })}
           type="success"
           showIcon
         />

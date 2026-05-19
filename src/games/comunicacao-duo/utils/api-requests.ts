@@ -10,11 +10,11 @@ export function useOnSubmitRequestAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'submit-request',
-    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Ação submetida com sucesso', en: 'Action submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitRequestPayload) => {
@@ -30,11 +30,11 @@ export function useOnSubmitDeliveryAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'submit-delivery',
-    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Ação submetida com sucesso', en: 'Action submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitDeliveryPayload) => {
@@ -51,11 +51,11 @@ export function useOnStopDeliveryAPIRequest() {
   const request = useGameActionRequest({
     actionName: 'stop-delivery',
 
-    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Ação submetida com sucesso', en: 'Action submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return () => {

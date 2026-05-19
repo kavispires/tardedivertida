@@ -11,11 +11,11 @@ export function useOnSubmitTargetAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'submit-target',
-    successMessage: translate('Alvo selecionado com sucesso', 'Target set successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu alvo',
-      'Oops, the application failed to send your target',
-    ),
+    successMessage: translate({ pt: 'Alvo selecionado com sucesso', en: 'Target set successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seu alvo',
+      en: 'Oops, the application failed to send your target',
+    }),
   });
 
   return (payload: SubmitTargetPayload) => {
@@ -31,11 +31,11 @@ export function useOnSubmitMessageAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'submit-message',
-    successMessage: translate('Mensagem enviada com sucesso!', 'Message sent successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar a mensagem',
-      'Oops, the application failed to send the message',
-    ),
+    successMessage: translate({ pt: 'Mensagem enviada com sucesso!', en: 'Message sent successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar a mensagem',
+      en: 'Oops, the application failed to send the message',
+    }),
   });
 
   return (payload: SubmitMessagePayload) => {
@@ -53,11 +53,11 @@ export function useOnSubmitDecisionAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-decision',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Decisão enviada com sucesso!', 'Decision sent successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar a sua decisão',
-      'Oops, the application failed to send your decision',
-    ),
+    successMessage: translate({ pt: 'Decisão enviada com sucesso!', en: 'Decision sent successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar a sua decisão',
+      en: 'Oops, the application failed to send your decision',
+    }),
   });
 
   return (payload: SubmitDecisionPayload) => {

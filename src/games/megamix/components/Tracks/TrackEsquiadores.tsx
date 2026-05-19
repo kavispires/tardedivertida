@@ -101,7 +101,7 @@ export const TrackEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) =>
             />
           </div>
           <Card
-            header={translate('Dica', 'Clue')}
+            header={translate({ pt: 'Dica', en: 'Clue' })}
             color="red"
           >
             {track.data.dilemma.prompt}

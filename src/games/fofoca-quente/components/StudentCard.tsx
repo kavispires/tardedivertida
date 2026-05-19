@@ -72,7 +72,7 @@ export function StudentCard({ student, socialGroup, showInfo, className }: Stude
             />
           </Flex>
           <div className="student-card__name">
-            {translate(student.name.pt, student.name.en).split(' ')[0]}
+            {translate({ pt: student.name.pt, en: student.name.en }).split(' ')[0]}
           </div>
         </div>
       )}

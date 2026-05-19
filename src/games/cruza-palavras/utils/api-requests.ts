@@ -13,11 +13,11 @@ export function useOnSubmitWordsAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-words',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Palavras enviadas com sucesso', 'Words submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar suas palavras',
-      'Oops, the application failed to send your words',
-    ),
+    successMessage: translate({ pt: 'Palavras enviadas com sucesso', en: 'Words submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar suas palavras',
+      en: 'Oops, the application failed to send your words',
+    }),
   });
 
   return (payload: SubmitWordsPayload) => {
@@ -35,11 +35,11 @@ export function useOnSubmitClueAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-clue',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
-    successMessage: translate('Dica enviada com sucesso', 'Clue submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua dica',
-      'Oops, the application failed to send your clue',
-    ),
+    successMessage: translate({ pt: 'Dica enviada com sucesso', en: 'Clue submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua dica',
+      en: 'Oops, the application failed to send your clue',
+    }),
   });
 
   return (payload: SubmitCluePayload) => {
@@ -57,11 +57,11 @@ export function useOnSubmitGuessesAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-guesses',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Respostas enviadas com sucesso', 'Guesses submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar suas respostas',
-      'Oops, the application failed to send your guesses',
-    ),
+    successMessage: translate({ pt: 'Respostas enviadas com sucesso', en: 'Guesses submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar suas respostas',
+      en: 'Oops, the application failed to send your guesses',
+    }),
   });
 
   return (payload: SubmitGuessesPayload) => {

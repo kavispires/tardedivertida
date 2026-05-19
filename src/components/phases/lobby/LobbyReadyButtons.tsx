@@ -46,17 +46,17 @@ export function LobbyReadyButtons({ players }: LobbyReadyButtonsProps) {
     setIsAdminEnabled(true);
   });
 
-  const errorMessage = translate(
-    'Vixi, o aplicativo encontrou um erro ao tentar continuar',
-    'Oh no! The application found an error when trying to continue',
-  );
+  const errorMessage = translate({
+    pt: 'Vixi, o aplicativo encontrou um erro ao tentar continuar',
+    en: 'Oh no! The application found an error when trying to continue',
+  });
 
   const onBeReady = useGameActionRequest({
     actionName: 'be-ready',
-    successMessage: translate(
-      'Pronto! Aguarde os outros jogadores estarem prontos',
-      'Done! Now wait for the other players',
-    ),
+    successMessage: translate({
+      pt: 'Pronto! Aguarde os outros jogadores estarem prontos',
+      en: 'Done! Now wait for the other players',
+    }),
     errorMessage,
     onSuccess: () => {
       speak(getRandomPositiveReadyMessage(user.name), language, volume);
@@ -65,10 +65,10 @@ export function LobbyReadyButtons({ players }: LobbyReadyButtonsProps) {
 
   const onBeReadyIDK = useGameActionRequest({
     actionName: 'be-ready',
-    successMessage: translate(
-      'Pronto! Aguarde os outros jogadores estarem prontos',
-      'Done! Now wait for the other players',
-    ),
+    successMessage: translate({
+      pt: 'Pronto! Aguarde os outros jogadores estarem prontos',
+      en: 'Done! Now wait for the other players',
+    }),
     errorMessage,
     onSuccess: () => {
       speak(getRandomNeutralReadyMessage(user.name), language, volume);
@@ -77,10 +77,10 @@ export function LobbyReadyButtons({ players }: LobbyReadyButtonsProps) {
 
   const onBeReadyQue = useGameActionRequest({
     actionName: 'be-ready',
-    successMessage: translate(
-      'Vixi, se fudeu então, porque o jogo vai começar!',
-      'Sorry, you are screwed because the game is starting anyway!',
-    ),
+    successMessage: translate({
+      pt: 'Vixi, se fudeu então, porque o jogo vai começar!',
+      en: 'Sorry, you are screwed because the game is starting anyway!',
+    }),
     errorMessage,
     onSuccess: () => {
       speak(getRandomNegativeReadyMessage(user.name), language, volume);

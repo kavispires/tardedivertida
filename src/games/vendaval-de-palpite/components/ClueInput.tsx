@@ -37,7 +37,9 @@ export function ClueInput({
       <div className="v-clue-input__inner">
         <Input
           placeholder={
-            disabled ? translate('Acabou o tempo', "Time's up") : translate('Escreva dica aqui', 'Write here')
+            disabled
+              ? translate({ pt: 'Acabou o tempo', en: "Time's up" })
+              : translate({ pt: 'Escreva dica aqui', en: 'Write here' })
           }
           key={id}
           id={id}

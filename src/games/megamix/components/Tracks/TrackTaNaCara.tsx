@@ -48,7 +48,7 @@ export const TrackTaNaCara = ({ track, onSubmitAnswer }: TrackProps) => {
       </RuleInstruction>
 
       <Card
-        header={translate('Pergunta', 'Question')}
+        header={translate({ pt: 'Pergunta', en: 'Question' })}
         color="orange"
       >
         {track.data.question.question}

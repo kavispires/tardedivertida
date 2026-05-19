@@ -18,11 +18,14 @@ export function useOnSubmitSecretClueAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-secret-clue',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
-    successMessage: translate('Pista Secreta submetida com sucesso', 'Secret clue submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua pista secreta',
-      'Oops, the application found an error while trying to submit your secret clue',
-    ),
+    successMessage: translate({
+      pt: 'Pista Secreta submetida com sucesso',
+      en: 'Secret clue submitted successfully',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua pista secreta',
+      en: 'Oops, the application found an error while trying to submit your secret clue',
+    }),
   });
 
   return (payload: SubmitSecretCluePayload) => {
@@ -38,11 +41,11 @@ export function useOnPlayCardAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'play-card',
-    successMessage: translate('Carta enviada com sucesso', 'Card submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
-      'Oops, the application found an error while trying to submit your card',
-    ),
+    successMessage: translate({ pt: 'Carta enviada com sucesso', en: 'Card submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
+      en: 'Oops, the application found an error while trying to submit your card',
+    }),
   });
 
   return (payload: SubmitPlayCardPayload) => {
@@ -58,11 +61,11 @@ export function useOnFinishDefenseRequest() {
 
   const request = useGameActionRequest({
     actionName: 'finish-defense',
-    successMessage: translate('Defesa concluída com sucesso', 'Defense concluded successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar concluir sua defesa',
-      'Oops, the application found an error while trying to conclude your defense',
-    ),
+    successMessage: translate({ pt: 'Defesa concluída com sucesso', en: 'Defense concluded successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar concluir sua defesa',
+      en: 'Oops, the application found an error while trying to conclude your defense',
+    }),
   });
 
   return (payload: SubmitDefensePayload) => {
@@ -78,11 +81,11 @@ export function useOnSubmitVoteAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'submit-vote',
-    successMessage: translate('Voto enviado com sucesso', 'Vote submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu voto',
-      'Oops, the application found an error while trying to submit your vote',
-    ),
+    successMessage: translate({ pt: 'Voto enviado com sucesso', en: 'Vote submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seu voto',
+      en: 'Oops, the application found an error while trying to submit your vote',
+    }),
   });
 
   return (payload: SubmitVotePayload) => {

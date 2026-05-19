@@ -13,11 +13,11 @@ export function useOnSubmitOrderingAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-order',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Ordem submetida com sucesso', 'Order submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ordem',
-      'Oops, the application found an error while trying to submit your order',
-    ),
+    successMessage: translate({ pt: 'Ordem submetida com sucesso', en: 'Order submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ordem',
+      en: 'Oops, the application found an error while trying to submit your order',
+    }),
   });
 
   return (payload: SubmitScenarioOrderPayload) => {

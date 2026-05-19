@@ -44,17 +44,17 @@ export function useAddPlayer(name: string, avatarId: string, isGuest: boolean, o
       localStorage.setItem(getKey('gameId'), gameId);
 
       if (volume) {
-        speak(getRandomWelcomeMessage(name ?? translate('vei', 'babe')), language, volume);
+        speak(getRandomWelcomeMessage(name ?? translate({ pt: 'vei', en: 'babe' })), language, volume);
       }
 
       onSuccess();
     },
     onError: (e: Error) => {
       notification.error({
-        title: translate(
-          'Vixi, o aplicativo encontrou um erro ao tentar te adicionar como jogador',
-          'Oops, the application failed when trying to add you as a player',
-        ),
+        title: translate({
+          pt: 'Vixi, o aplicativo encontrou um erro ao tentar te adicionar como jogador',
+          en: 'Oops, the application failed when trying to add you as a player',
+        }),
         description: JSON.stringify(e.message),
         placement: 'bottomLeft',
       });

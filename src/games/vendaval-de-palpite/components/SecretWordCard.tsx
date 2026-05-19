@@ -12,7 +12,7 @@ export function SecretWordCard({ secretWord }: SecretWordCardProps) {
 
   return (
     <Card
-      header={translate('Palavra Secreta', 'Secret Word')}
+      header={translate({ pt: 'Palavra Secreta', en: 'Secret Word' })}
       color="red"
     >
       {secretWord}

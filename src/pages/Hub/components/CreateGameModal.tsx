@@ -170,11 +170,11 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
       }
     } catch (e: unknown) {
       notification.error({
-        title: translate(
-          'Aplicativo encontrou um erro ao tentar criar o jogo',
-          'The application found an error while trying to create a game',
-          language,
-        ),
+        title: translate({
+          pt: 'Aplicativo encontrou um erro ao tentar criar o jogo',
+          en: 'The application found an error while trying to create a game',
+          custom: language,
+        }),
         description: JSON.stringify((e as Error).message),
         placement: 'bottomLeft',
       });
@@ -192,14 +192,17 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
       navigate(`/${gameId}`);
     } else {
       message.info(
-        translate('Péra! O jogo ainda não foi inicializado.', 'Wait! The game has not been created'),
+        translate({
+          pt: 'Péra! O jogo ainda não foi inicializado.',
+          en: 'Wait! The game has not been created',
+        }),
       );
     }
   };
 
   return (
     <Modal
-      title={`${translate('Criando novo jogo', 'Creating new game')}: ${gameInfo.title[language]}`}
+      title={`${translate({ pt: 'Criando novo jogo', en: 'Creating new game' })}: ${gameInfo.title[language]}`}
       open={open}
       onCancel={() => setOpen(false)}
       footer={null}
@@ -241,7 +244,7 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
             />
           </Instruction>
           <Loading
-            message={translate('Gerando...', 'Generating...')}
+            message={translate({ pt: 'Gerando...', en: 'Generating...' })}
             margin
           />
         </>

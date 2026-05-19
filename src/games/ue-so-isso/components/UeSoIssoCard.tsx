@@ -16,7 +16,7 @@ export function UeSoIssoCard({ word, header }: UeSoIssoCardProps) {
   return (
     <Card
       color="purple"
-      header={translate('A Palavra Secreta é', 'Secret Word', header)}
+      header={translate({ pt: 'A Palavra Secreta é', en: 'Secret Word', custom: header })}
       size="large"
     >
       {word ?? <WarningOutlined />}

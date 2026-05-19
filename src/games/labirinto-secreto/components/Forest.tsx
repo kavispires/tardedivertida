@@ -274,7 +274,7 @@ function PlayerPositions({ players, playerIds, user }: PlayerPositionsProps) {
     <AvatarGroup
       list={list}
       user={user}
-      tooltipPrefix={translate('Último lugar visitado por: ', 'Last visited place by: ')}
+      tooltipPrefix={translate({ pt: 'Último lugar visitado por: ', en: 'Last visited place by: ' })}
     />
   );
 }

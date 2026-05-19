@@ -13,11 +13,11 @@ export function useOnSubmitCardAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-action',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Carta submetida com sucesso', 'Card submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
-      'Oops, the application found an error while trying to submit your card',
-    ),
+    successMessage: translate({ pt: 'Carta submetida com sucesso', en: 'Card submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
+      en: 'Oops, the application found an error while trying to submit your card',
+    }),
   });
 
   return (payload: SubmitRobotCardsPayload) => {
@@ -35,11 +35,14 @@ export function useOnSubmitGuessAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-guess',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Adivinhação submetida com sucesso', 'Guess submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua adivinhação',
-      'Oops, the application found an error while trying to submit your guess',
-    ),
+    successMessage: translate({
+      pt: 'Adivinhação submetida com sucesso',
+      en: 'Guess submitted successfully',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua adivinhação',
+      en: 'Oops, the application found an error while trying to submit your guess',
+    }),
   });
 
   return (payload: SubmitRobotGuessPayload) => {

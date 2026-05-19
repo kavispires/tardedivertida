@@ -57,7 +57,7 @@ export function SuggestionEasel({ id, onChangeInput, onPressEnter, value }: Sugg
       >
         <div>
           <Input
-            placeholder={translate('Escreva dica aqui', 'Write here')}
+            placeholder={translate({ pt: 'Escreva dica aqui', en: 'Write here' })}
             key={id}
             id={id}
             value={value}

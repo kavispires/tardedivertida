@@ -98,7 +98,7 @@ export function StepVoteForFinalElimination({
 
       <SpaceContainer align="center">
         <Card
-          header={translate('O suspeito...', 'The perpetrator...')}
+          header={translate({ pt: 'O suspeito...', en: 'The perpetrator...' })}
           color={testimony ? 'green' : 'red'}
           className="t-card"
           size="large"

@@ -14,7 +14,7 @@ export function DailyLoading() {
       <DailyContent className="daily-loading">
         <SpaceContainer>
           <Loading
-            message={translate('Carregando desafio...', 'Loading challenge...')}
+            message={translate({ pt: 'Carregando desafio...', en: 'Loading challenge...' })}
             margin
           />
         </SpaceContainer>

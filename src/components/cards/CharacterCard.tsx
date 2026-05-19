@@ -42,7 +42,7 @@ type CharacterCardProps = {
  * Displays a character/contender card with optional color overlay and blur support
  */
 export function CharacterCard({ size, overlayColor, character, className, hideName }: CharacterCardProps) {
-  const { dualTranslate } = useLanguage();
+  const { translate } = useLanguage();
   const { shouldBeBlurred } = useBlurCards();
   const baseUrl = useTDBaseUrl('images');
 
@@ -55,7 +55,7 @@ export function CharacterCard({ size, overlayColor, character, className, hideNa
   return (
     <ImageBlurButtonContainer cardId={character.id}>
       <Tooltip
-        title={dualTranslate(description)}
+        title={translate(description)}
         placement="top"
       >
         <div
@@ -80,9 +80,9 @@ export function CharacterCard({ size, overlayColor, character, className, hideNa
             width={size}
             className={clsx(styles.characterCardImage, isBlurred && styles.characterCardImageBlur)}
             fallback={`${baseUrl}/game/w-no-image.jpg`}
-            alt={dualTranslate(character.name)}
+            alt={translate(character.name)}
             preview={false}
-            title={dualTranslate(character.name)}
+            title={translate(character.name)}
           />
         </div>
       </Tooltip>

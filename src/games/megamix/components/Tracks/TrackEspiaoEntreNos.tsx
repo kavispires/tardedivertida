@@ -72,7 +72,7 @@ export const TrackEspiaoEntreNos = ({ track, onSubmitAnswer, user }: TrackProps)
       <SpaceContainer vertical>
         <Input
           onChange={(e) => setAnswer(e.target.value)}
-          placeholder={translate('Escreva aqui', 'Answer here')}
+          placeholder={translate({ pt: 'Escreva aqui', en: 'Answer here' })}
           onPressEnter={onSubmit}
           disabled={isLoading || user.ready}
         />

@@ -19,7 +19,7 @@ type BoardEntryProps = {
   userSide: string;
 };
 export function BoardEntry({ entry, deckType, userSide }: BoardEntryProps) {
-  const { dualTranslate } = useLanguage();
+  const { translate } = useLanguage();
 
   const sideIndex = SIDES.indexOf(userSide);
 
@@ -43,7 +43,7 @@ export function BoardEntry({ entry, deckType, userSide }: BoardEntryProps) {
       >
         <ItemCard
           itemId={`${itemData.id}`}
-          title={itemData.name ? dualTranslate(itemData.name) : undefined}
+          title={itemData.name ? translate(itemData.name) : undefined}
         />
       </div>
     );
@@ -101,7 +101,7 @@ export function BoardEntry({ entry, deckType, userSide }: BoardEntryProps) {
         key={`cd-board-entry-${wordData.id}`}
         className={clsx('cd-board-entry', `cd-board-entry--${entry.affiliation[sideIndex]}`)}
       >
-        <Card hideHeader>{dualTranslate(wordData.text)}</Card>
+        <Card hideHeader>{translate(wordData.text)}</Card>
       </div>
     );
   }

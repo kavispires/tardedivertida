@@ -94,7 +94,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       if (user) {
         setAuthenticatedUser(user);
         setUserId(user.uid);
-        message.info(translate('Você está logado.', 'You are logged in'));
+        message.info(translate({ pt: 'Você está logado.', en: 'You are logged in' }));
       } else {
         setAuthenticatedUser(null);
       }

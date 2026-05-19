@@ -99,7 +99,7 @@ export function StepStoryWriting({ user, onSubmitStory, announcement }: StepStor
         wrap
       >
         <Input
-          placeholder={translate('Escreva aqui', 'Write your clue here')}
+          placeholder={translate({ pt: 'Escreva aqui', en: 'Write your clue here' })}
           onChange={(e) => setStory(e.target.value)}
           onPressEnter={onButtonClick}
           size="large"

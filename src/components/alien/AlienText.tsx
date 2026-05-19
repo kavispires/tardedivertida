@@ -27,7 +27,7 @@ type AlienTextProps = {
  */
 export function AlienText({ value, withTranslation = false, className, ...divProps }: AlienTextProps) {
   const { isLoading, data: attributes = {} } = useAlienAttributes(true);
-  const { dualTranslate } = useLanguage();
+  const { translate } = useLanguage();
 
   const characters = useMemo(() => {
     const splitLetters = splitStringEvery4(value);
@@ -69,7 +69,7 @@ export function AlienText({ value, withTranslation = false, className, ...divPro
         {characters.map((character) => {
           return (
             <Tooltip
-              title={dualTranslate(character.name)}
+              title={translate(character.name)}
               key={`${character.spriteId}-${character.variant}`}
             >
               <div
@@ -95,10 +95,10 @@ export function AlienText({ value, withTranslation = false, className, ...divPro
           {characters.map((character) => {
             return (
               <Tooltip
-                title={dualTranslate(character.description)}
+                title={translate(character.description)}
                 key={`${character.spriteId}-${character.variant}`}
               >
-                <span className={styles.text}>{dualTranslate(character.name)}</span>
+                <span className={styles.text}>{translate(character.name)}</span>
               </Tooltip>
             );
           })}

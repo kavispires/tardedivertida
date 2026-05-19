@@ -37,7 +37,7 @@ export const TrackMegamixBestOfThree = ({ track, onSubmitAnswer, user }: TrackPr
         className="contained margin"
       >
         <Card
-          header={translate('Pergunta', 'Question')}
+          header={translate({ pt: 'Pergunta', en: 'Question' })}
           color="orange"
         >
           {track.data.card.question}

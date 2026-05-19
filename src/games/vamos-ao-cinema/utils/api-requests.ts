@@ -14,11 +14,11 @@ export function useOnSubmitMovieSelectionAPIRequest(setStep: UseStep['setStep'])
 
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Ação submetida com sucesso', en: 'Action submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitMovieSelectionPayload) => {
@@ -42,11 +42,11 @@ export function useOnSubmitMovieEliminationAPIRequest(setStep: UseStep['setStep'
       }),
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Ação submetida com sucesso', en: 'Action submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitMovieEliminationPayload) => {
@@ -63,11 +63,11 @@ export function useOnSubmitMoviePosterAPIRequest(setStep: UseStep['setStep']) {
   const request = useGameActionRequest({
     actionName: 'submit-action',
     onError: () => setStep(0),
-    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Ação submetida com sucesso', en: 'Action submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitMovieEliminationPayload) => {

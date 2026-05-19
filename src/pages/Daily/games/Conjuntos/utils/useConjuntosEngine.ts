@@ -59,14 +59,14 @@ export function useConjuntosEngine(data: DailyConjuntosEntry, initialState: Game
       isCorrect = true;
       playSFX('correct');
       message.success({
-        content: translate('Correto!', 'Correct!'),
+        content: translate({ pt: 'Correto!', en: 'Correct!' }),
       });
     } else {
       isCorrect = false;
       playSFX('wrong');
       vibrate('wrong');
       message.error({
-        content: translate('Incorreto!', 'Incorrect!'),
+        content: translate({ pt: 'Incorreto!', en: 'Incorrect!' }),
       });
     }
 

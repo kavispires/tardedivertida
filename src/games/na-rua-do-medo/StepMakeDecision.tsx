@@ -58,7 +58,7 @@ export function StepMakeDecision({
   candyPerPlayer,
   candyInHand,
 }: StepMakeDecisionProps) {
-  const { dualTranslate } = useLanguage();
+  const { translate } = useLanguage();
   const { isLoading } = useLoading();
 
   // DEV: make decision
@@ -112,8 +112,8 @@ export function StepMakeDecision({
         )}
         {currentCard.type === 'horror' && (
           <Translate
-            pt={`Ahh! Cruz credo! Um(a) ${dualTranslate(currentCard.name)} super assustador(a)!`}
-            en={`Ahh! Yikes! A very scary ${dualTranslate(currentCard.name)}!`}
+            pt={`Ahh! Cruz credo! Um(a) ${translate(currentCard.name)} super assustador(a)!`}
+            en={`Ahh! Yikes! A very scary ${translate(currentCard.name)}!`}
           />
         )}
         {currentCard.type === 'jackpot' && (

@@ -13,11 +13,11 @@ export function useOnSubmitCharactersAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-characters',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Ação submetida com sucesso', en: 'Action submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitCharactersPayload) => {
@@ -35,11 +35,11 @@ export function useOnSubmitGlyphsAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-glyphs',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Ação submetida com sucesso', en: 'Action submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitGlyphsPayload) => {
@@ -57,11 +57,11 @@ export function useOnSubmitGuessesAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-guesses',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Ação submetida com sucesso', en: 'Action submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitGuessesPayload) => {

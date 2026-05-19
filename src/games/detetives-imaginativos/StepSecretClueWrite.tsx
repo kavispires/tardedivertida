@@ -96,7 +96,7 @@ export function StepSecretClueWrite({ user, onSubmitClue, announcement }: Secret
       <SpaceContainer align="center">
         <Input
           className="uppercase-input"
-          placeholder={translate('Escreva sua pista aqui', 'Write your clue here')}
+          placeholder={translate({ pt: 'Escreva sua pista aqui', en: 'Write your clue here' })}
           onChange={(e) => setClue(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && onEnterInput(e)}
           size="large"

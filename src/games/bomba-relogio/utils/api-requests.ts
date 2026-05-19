@@ -13,11 +13,14 @@ export function useOnSubmitDeclarationAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-declaration',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Declaração submetida com sucesso', 'Declaration submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua declaração',
-      'Oops, the application found an error while trying to submit your declaration',
-    ),
+    successMessage: translate({
+      pt: 'Declaração submetida com sucesso',
+      en: 'Declaration submitted successfully',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua declaração',
+      en: 'Oops, the application found an error while trying to submit your declaration',
+    }),
   });
 
   return (payload: SubmitDeclarationPayload) => {
@@ -33,11 +36,14 @@ export function useOnUpdateTargetPlayerAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'update-target-player',
-    successMessage: translate('Jogador alvo atualizado com sucesso', 'Target player updated successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar atualizar o jogador alvo',
-      'Oops, the application found an error while trying to update the target player',
-    ),
+    successMessage: translate({
+      pt: 'Jogador alvo atualizado com sucesso',
+      en: 'Target player updated successfully',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar atualizar o jogador alvo',
+      en: 'Oops, the application found an error while trying to update the target player',
+    }),
   });
 
   return (payload: UpdateTargetPlayerPayload) => {
@@ -53,11 +59,11 @@ export function useOnSubmitTargetAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'submit-target',
-    successMessage: translate('Alvo submetido com sucesso', 'Target submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu alvo',
-      'Oops, the application found an error while trying to submit your target',
-    ),
+    successMessage: translate({ pt: 'Alvo submetido com sucesso', en: 'Target submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seu alvo',
+      en: 'Oops, the application found an error while trying to submit your target',
+    }),
   });
 
   return (payload: SubmitTargetPayload) => {

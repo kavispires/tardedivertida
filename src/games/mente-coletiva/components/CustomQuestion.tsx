@@ -17,7 +17,7 @@ type CustomQuestionProps = {
 
 export function CustomQuestion({ onSubmit, userId }: CustomQuestionProps) {
   const { translate } = useLanguage();
-  const [questionType, setQuestionType] = useState(translate('Cite', 'What are'));
+  const [questionType, setQuestionType] = useState(translate({ pt: 'Cite', en: 'What are' }));
   const [questionNumber, setQuestionNumber] = useState<number>(3);
   const [questionText, setQuestionText] = useState('');
 
@@ -47,7 +47,7 @@ export function CustomQuestion({ onSubmit, userId }: CustomQuestionProps) {
             onChange={(e) => setQuestionType(e)}
             options={[
               {
-                value: translate('Cite', 'What are'),
+                value: translate({ pt: 'Cite', en: 'What are' }),
                 label: (
                   <Translate
                     pt="Cite"
@@ -56,7 +56,7 @@ export function CustomQuestion({ onSubmit, userId }: CustomQuestionProps) {
                 ),
               },
               {
-                value: translate('Complete a frase', 'Fill in the blank'),
+                value: translate({ pt: 'Complete a frase', en: 'Fill in the blank' }),
                 label: (
                   <Translate
                     pt="Complete a frase"
@@ -72,7 +72,7 @@ export function CustomQuestion({ onSubmit, userId }: CustomQuestionProps) {
             max={4}
             onChange={(e) => setQuestionNumber(e ?? 3)}
             value={questionNumber}
-            placeholder={translate('...escreva aqui', '...write here')}
+            placeholder={translate({ pt: '...escreva aqui', en: '...write here' })}
           />
           <Input onChange={(e) => setQuestionText(e.target.value)} />
         </Space>

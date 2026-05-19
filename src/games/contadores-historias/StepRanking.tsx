@@ -29,21 +29,21 @@ type StepRankingProps = {
 
 const getGainedPointsText = (
   outcome: Outcome,
-  translate: (pt: string, en: string, custom?: string | undefined) => string,
+  translate: ({ pt, en, custom }: { pt: string; en: string; custom?: string }) => string,
 ) => {
   switch (outcome) {
     case 'EVERYBODY_GOT':
-      return translate(
-        'Pontos porque o Contador de Histórias foi muito obscuro',
-        'Points because the Storyteller was too vague',
-      );
+      return translate({
+        pt: 'Pontos porque o Contador de Histórias foi muito obscuro',
+        en: 'Points because the Storyteller was too vague',
+      });
     case 'NOBODY_GOT':
-      return translate(
-        'Pontos porque o Contador de Histórias foi óbvio',
-        'Points because the Storyteller was too obvious',
-      );
+      return translate({
+        pt: 'Pontos porque o Contador de Histórias foi óbvio',
+        en: 'Points because the Storyteller was too obvious',
+      });
     default:
-      return translate('Pontos por acertar', 'Points for getting it right');
+      return translate({ pt: 'Pontos por acertar', en: 'Points for getting it right' });
   }
 };
 
@@ -61,7 +61,10 @@ export function StepRanking({
     <StepRankingWrapper
       players={players}
       ranking={ranking}
-      gainedPointsDescriptions={[getGainedPointsText(outcome, translate), 'Pontos por votos em sua carta']}
+      gainedPointsDescriptions={[
+        getGainedPointsText(outcome, translate),
+        translate({ pt: 'Pontos por votos em sua carta', en: 'Points for votes on your card' }),
+      ]}
       subtitle={
         <RuleInstruction type={outcome === 'NORMAL' ? 'event' : 'alert'}>
           {outcome === 'EVERYBODY_GOT' && (
@@ -119,7 +122,9 @@ export function StepRanking({
       <PopoverRule content={<ScoringRules storyteller={storyteller} />} />
 
       <SpaceContainer>
-        <Button onClick={goToPreviousStep}>{translate('Voltar para Solução', 'Back to Solution')}</Button>
+        <Button onClick={goToPreviousStep}>
+          {translate({ pt: 'Voltar para Solução', en: 'Back to Solution' })}
+        </Button>
       </SpaceContainer>
 
       <HostNextPhaseButton round={round} />

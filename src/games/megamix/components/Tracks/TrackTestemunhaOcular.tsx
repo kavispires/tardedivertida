@@ -56,7 +56,7 @@ export const TrackTestemunhaOcular = ({ track, onSubmitAnswer, user }: TrackProp
         </RuleInstruction>
 
         <Card
-          header={translate('Pergunta', 'Question')}
+          header={translate({ pt: 'Pergunta', en: 'Question' })}
           color="orange"
         >
           {track.data.question.question}

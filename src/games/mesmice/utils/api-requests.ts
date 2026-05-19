@@ -12,11 +12,11 @@ export function useOnSubmitObjectAPIRequest(setStep: UseStep['setStep']) {
   const request = useGameActionRequest({
     actionName: 'submit-object',
     onSuccess: () => setStep(3),
-    successMessage: translate('Objeto submetido com sucesso', 'Object submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu objeto',
-      'Oops, the application found an error while trying to submit your object',
-    ),
+    successMessage: translate({ pt: 'Objeto submetido com sucesso', en: 'Object submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seu objeto',
+      en: 'Oops, the application found an error while trying to submit your object',
+    }),
   });
 
   return (payload: SubmitObjectPayload) => {
@@ -34,11 +34,14 @@ export function useOnSubmitFeatureAPIRequest(setStep: UseStep['setStep'], errorS
     actionName: 'submit-feature',
     onSuccess: () => setStep(errorStep + 1),
     onError: () => setStep(errorStep),
-    successMessage: translate('Característica submetida com sucesso', 'Feature submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua característica',
-      'Oops, the application found an error while trying to submit your feature',
-    ),
+    successMessage: translate({
+      pt: 'Característica submetida com sucesso',
+      en: 'Feature submitted successfully',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua característica',
+      en: 'Oops, the application found an error while trying to submit your feature',
+    }),
   });
 
   return (payload: SubmitFeaturePayload) => {

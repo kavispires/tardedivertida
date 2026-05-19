@@ -98,13 +98,13 @@ export function ResultsModalContent({
   isWin,
   isLose,
 }: ResultsModalContentProps) {
-  const { language, dualTranslate } = useLanguage();
+  const { language, translate } = useLanguage();
 
   const result = useMemo(
     () =>
       writeResult({
         type: SETTINGS.ROUTE,
-        title: dualTranslate(challengeTitle),
+        title: translate(challengeTitle),
         remainingHearts: hearts,
         totalHearts: SETTINGS.HEARTS,
         progress: Math.max(progress, maxProgress),
@@ -114,17 +114,7 @@ export function ResultsModalContent({
         challengeNumber,
         attempts,
       }),
-    [
-      challengeTitle,
-      hearts,
-      progress,
-      maxProgress,
-      hardMode,
-      challengeNumber,
-      attempts,
-      dualTranslate,
-      language,
-    ],
+    [challengeTitle, hearts, progress, maxProgress, hardMode, challengeNumber, attempts, translate, language],
   );
 
   const title = getTitle(progress, hearts);

@@ -86,7 +86,7 @@ export function StepTweetSelection({
           <div className="p-tweet">{currentCustomTweet.text}</div>
           <Input
             className="p-custom-tweet__input"
-            placeholder={translate('Escreva aqui', 'Write here')}
+            placeholder={translate({ pt: 'Escreva aqui', en: 'Write here' })}
             onChange={(e) => setCustomTweet(e.target.value)}
             onPressEnter={onSubmitCustomTweet}
           />

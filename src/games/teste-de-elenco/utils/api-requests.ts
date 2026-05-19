@@ -13,11 +13,11 @@ export function useOnSubmitMovieGenreAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-genre',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Gênero submetido com sucesso', 'Genre submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Gênero submetido com sucesso', en: 'Genre submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitMovieGenrePayload) => {
@@ -35,11 +35,11 @@ export function useOnSubmitMovieActorAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-genre',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Ator submetido com sucesso', 'Actor submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Ator submetido com sucesso', en: 'Actor submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitMovieActorPayload) => {

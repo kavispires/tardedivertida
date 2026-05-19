@@ -114,8 +114,8 @@ export function StepVoting({
 
       <ReadyPlayersBar
         players={players}
-        readyText={translate('Votei', 'I voted')}
-        readyTextPlural={translate('Votamos', 'We voted')}
+        readyText={translate({ pt: 'Votei', en: 'I voted' })}
+        readyTextPlural={translate({ pt: 'Votamos', en: 'We voted' })}
         hideNames
       />
 

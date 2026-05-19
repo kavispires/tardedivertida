@@ -70,11 +70,11 @@ export function StepPlayDream({
     if (isActivePlayer && !isLoading && !showedMessage) {
       message.info(
         messageContent(
-          translate('Você controla!', 'You control!'),
-          translate(
-            'Selecione a carta-sonho que você acha que vai dar match com pelo menos um jogador!',
-            'Select the dream card you think will match at least one player',
-          ),
+          translate({ pt: 'Você controla!', en: 'You control!' }),
+          translate({
+            pt: 'Selecione a carta-sonho que você acha que vai dar match com pelo menos um jogador!',
+            en: 'Select the dream card you think will match at least one player',
+          }),
           activePlayer.id,
           3,
         ),
@@ -95,7 +95,7 @@ export function StepPlayDream({
         />
       </StepTitle>
       <Card
-        header={translate('Tema', 'Theme')}
+        header={translate({ pt: 'Tema', en: 'Theme' })}
         color="purple"
       >
         {word.text}

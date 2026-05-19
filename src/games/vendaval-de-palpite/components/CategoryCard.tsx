@@ -16,8 +16,8 @@ export function CategoryCard({ categories }: CategoryCardProps) {
     <Card
       header={pluralize(
         categories.length,
-        translate('Categoria', 'Category'),
-        translate('Categorias', 'Categories'),
+        translate({ pt: 'Categoria', en: 'Category' }),
+        translate({ pt: 'Categorias', en: 'Categories' }),
       )}
       color="brown"
     >

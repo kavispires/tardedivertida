@@ -24,7 +24,7 @@ export function EvaluationModal({ item, onSubmitEvaluation, solutions, onCancel 
   const [areaA, setA] = useState('');
   const [areaC, setC] = useState('');
   const [areaW, setW] = useState('');
-  const { dualTranslate } = useLanguage();
+  const { translate } = useLanguage();
 
   const evaluation = [areaA, areaW, areaC].join('') || 'O';
 
@@ -66,7 +66,7 @@ export function EvaluationModal({ item, onSubmitEvaluation, solutions, onCancel 
         setAttribute={setA}
         setWord={setW}
         setContext={setC}
-        itemName={dualTranslate(item.name)}
+        itemName={translate(item.name)}
         showHints
       />
 

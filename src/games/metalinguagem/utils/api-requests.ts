@@ -10,11 +10,11 @@ export function useOnSubmitNewWordAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'submit-new-word',
-    successMessage: translate('Palavra enviada com sucesso', 'Word submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua palavra',
-      'Oops, the application found an error while trying to submit your word',
-    ),
+    successMessage: translate({ pt: 'Palavra enviada com sucesso', en: 'Word submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua palavra',
+      en: 'Oops, the application found an error while trying to submit your word',
+    }),
   });
 
   return (payload: SubmitWordPayload) => {
@@ -32,11 +32,11 @@ export function useOnSubmitGuessAPIRequest(setStep: (step: number) => void) {
     actionName: 'submit-guess',
     onSuccess: () => setStep(1),
     onError: () => setStep(0),
-    successMessage: translate('Palavra enviada com sucesso', 'Word submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua palavra',
-      'Oops, the application found an error while trying to submit your word',
-    ),
+    successMessage: translate({ pt: 'Palavra enviada com sucesso', en: 'Word submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua palavra',
+      en: 'Oops, the application found an error while trying to submit your word',
+    }),
   });
 
   return (payload: SubmitGuessesPayload) => {

@@ -41,10 +41,10 @@ export function TextHighlightTest({ onResult, step }: TestStepProps) {
       >
         <MovieReviewCard
           type="negative"
-          text={translate(
-            'O abacate tem três pernas de bambu madeira',
-            'The avocado has three legs made of bamboo',
-          )}
+          text={translate({
+            pt: 'O abacate tem três pernas de bambu madeira',
+            en: 'The avocado has three legs made of bamboo',
+          })}
           highlights={['três pernas', 'three legs', 'madeira', 'bamboo']}
         />
       </SpaceContainer>

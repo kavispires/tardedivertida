@@ -20,7 +20,7 @@ type HistoryDeliverableEntryProps = {
 };
 
 export function HistoryDeliverableEntry({ deliverable, deckType, userSide }: HistoryDeliverableEntryProps) {
-  const { dualTranslate } = useLanguage();
+  const { translate } = useLanguage();
 
   const sideIndex = SIDES.indexOf(userSide);
 
@@ -44,7 +44,7 @@ export function HistoryDeliverableEntry({ deliverable, deckType, userSide }: His
       >
         <ItemCard
           itemId={`${itemData.id}`}
-          title={itemData.name ? dualTranslate(itemData.name) : undefined}
+          title={itemData.name ? translate(itemData.name) : undefined}
           width={64}
         />
       </div>

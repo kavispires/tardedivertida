@@ -74,8 +74,8 @@ export function RoundAnnouncement({
       <div className={styles.main}>
         <div className={clsx(styles.title, appearance.colorScheme === 'dark' && styles.titleDark)}>
           <img
-            src={translate(roundTitlePt, roundTitleEn)}
-            alt={translate('Rodada', 'Round')}
+            src={translate({ pt: roundTitlePt, en: roundTitleEn })}
+            alt={translate({ pt: 'Rodada', en: 'Round' })}
           />
         </div>
         <div className={clsx(styles.roundWrapper, getAnimationClass('zoomIn'))}>

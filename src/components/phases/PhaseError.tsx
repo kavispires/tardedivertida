@@ -9,10 +9,10 @@ import { PageError } from 'components/errors/PageError';
  * Phase component that displays an error screen with translated error message
  */
 export function PhaseError({ state }: PhaseProps) {
-  const { dualTranslate } = useLanguage();
+  const { translate } = useLanguage();
   return (
     <PageError
-      description={dualTranslate({
+      description={translate({
         en: `The phase "${state.phase}" is not defined for this game.`,
         pt: `A fase "${state.phase}" não está definida para este jogo.`,
       })}

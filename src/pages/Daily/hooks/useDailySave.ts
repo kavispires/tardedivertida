@@ -24,17 +24,17 @@ export function useDailySaveDrawings(onSuccess: GenericFunction) {
       }),
     onSuccess: () => {
       notification.success({
-        title: translate('Desenhos salvos com sucesso!', 'Drawings saved successfully!'),
+        title: translate({ pt: 'Desenhos salvos com sucesso!', en: 'Drawings saved successfully!' }),
         placement: 'bottomLeft',
       });
       onSuccess();
     },
     onError: (e: Error) => {
       notification.error({
-        title: translate(
-          'Vixi, o aplicativo encontrou um erro ao tentar salvar desenhos',
-          'Oops, the application failed when trying to save drawings',
-        ),
+        title: translate({
+          pt: 'Vixi, o aplicativo encontrou um erro ao tentar salvar desenhos',
+          en: 'Oops, the application failed when trying to save drawings',
+        }),
         description: JSON.stringify(e.message),
         placement: 'bottomLeft',
       });
@@ -59,17 +59,17 @@ export function useDailySaveTestimonies(onSuccess: () => void) {
       }),
     onSuccess: () => {
       notification.success({
-        title: translate('Respostas salvas com sucesso!', 'Answers saved successfully!'),
+        title: translate({ pt: 'Respostas salvas com sucesso!', en: 'Answers saved successfully!' }),
         placement: 'bottomLeft',
       });
       onSuccess();
     },
     onError: (e: Error) => {
       notification.error({
-        title: translate(
-          'Vixi, o aplicativo encontrou um erro ao tentar salvar respostas',
-          'Oops, the application failed when trying to save answers',
-        ),
+        title: translate({
+          pt: 'Vixi, o aplicativo encontrou um erro ao tentar salvar respostas',
+          en: 'Oops, the application failed when trying to save answers',
+        }),
         description: JSON.stringify(e.message),
         placement: 'bottomLeft',
       });
@@ -94,17 +94,17 @@ export function useDailySaveConexoes(onSuccess: () => void) {
       }),
     onSuccess: () => {
       notification.success({
-        title: translate('Relações salvas com sucesso!', 'Relationships saved successfully!'),
+        title: translate({ pt: 'Relações salvas com sucesso!', en: 'Relationships saved successfully!' }),
         placement: 'bottomLeft',
       });
       onSuccess();
     },
     onError: (e: Error) => {
       notification.error({
-        title: translate(
-          'Vixi, o aplicativo encontrou um erro ao tentar salvar relações',
-          'Oops, the application failed when trying to save relationships',
-        ),
+        title: translate({
+          pt: 'Vixi, o aplicativo encontrou um erro ao tentar salvar relações',
+          en: 'Oops, the application failed when trying to save relationships',
+        }),
         description: JSON.stringify(e.message),
         placement: 'bottomLeft',
       });

@@ -49,7 +49,7 @@ export function CrimeItemCard({
   isSelected = false,
   className = '',
 }: CrimeItemCardProps) {
-  const { dualTranslate } = useLanguage();
+  const { translate } = useLanguage();
   const { isDebugEnabled } = useDevFeatures();
   const baseUrl = useTDBaseUrl('images');
   const backgroundImage = `back/crime${capitalize(item.type)}`;
@@ -70,7 +70,7 @@ export function CrimeItemCard({
           ...(activeColor && isSelected ? { borderColor: activeColor, backgroundColor: activeColor } : {}),
         }}
       >
-        <Popover content={dualTranslate(item.name).toUpperCase()}>
+        <Popover content={translate(item.name).toUpperCase()}>
           <div
             className={styles.crimeItemCardName}
             style={{ maxWidth: `${cardWidth}px` }}

@@ -73,12 +73,12 @@ export function SeedMenteColetiva({ seed, updateData }: SeedMenteColetivaProps) 
           <Input
             onChange={(e) => setValue1(e.target.value)}
             size="large"
-            placeholder={translate('Resposta 1', 'Answer 1')}
+            placeholder={translate({ pt: 'Resposta 1', en: 'Answer 1' })}
           />
           <Input
             onChange={(e) => setValue2(e.target.value)}
             size="large"
-            placeholder={translate('Resposta 2', 'Answer 2')}
+            placeholder={translate({ pt: 'Resposta 2', en: 'Answer 2' })}
           />
         </SpaceContainer>
         <Button

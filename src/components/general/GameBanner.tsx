@@ -52,7 +52,7 @@ export function GameBanner({
   children,
   static: isStatic = false,
 }: BannerProps) {
-  const { language, dualTranslate } = useLanguage();
+  const { language, translate } = useLanguage();
   const logoHeight = width / 1.5; // Logo width/height ratio is 1.5
   const backgroundHeight = logoHeight;
 
@@ -79,7 +79,7 @@ export function GameBanner({
         onError={(e) => {
           (e.target as HTMLImageElement).src = `${PUBLIC_URL.LOGOS}/logo-em-breve-${language}.svg`;
         }}
-        alt={`${dualTranslate(title ?? { en: '', pt: '' })} logo`}
+        alt={`${translate(title ?? { en: '', pt: '' })} logo`}
         className={clsx(styles.gameBannerLogo, !showLogo && styles.gameBannerLogoHidden)}
         style={{
           width: `${width}px`,
@@ -147,7 +147,7 @@ export function GameStrip({
   showLogo = true,
   static: isStatic = false,
 }: GameStripProps) {
-  const { language, dualTranslate } = useLanguage();
+  const { language, translate } = useLanguage();
   const baseUrl = useTDBaseUrl('assets');
 
   const logoHeight = width / 1.5; // Logo width/height ratio is 1.5
@@ -167,7 +167,7 @@ export function GameStrip({
         onError={(e) => {
           (e.target as HTMLImageElement).src = `${baseUrl}/strips/strip-em-breve.jpg`;
         }}
-        alt={`${dualTranslate(title)} background`}
+        alt={`${translate(title)} background`}
         className={styles.gameStripImage}
       />
       <motion.img
@@ -175,7 +175,7 @@ export function GameStrip({
         onError={(e) => {
           (e.target as HTMLImageElement).src = `${PUBLIC_URL.LOGOS}/logo-em-breve-${language}.svg`;
         }}
-        alt={`${dualTranslate(title)} logo`}
+        alt={`${translate(title)} logo`}
         className={clsx(styles.gameStripLogo, !showLogo && styles.gameStripLogoHidden)}
         style={{
           width: `${width}px`,

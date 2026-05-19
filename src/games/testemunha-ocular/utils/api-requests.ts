@@ -17,11 +17,11 @@ export function useOnSelectWitnessAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'select-witness',
-    successMessage: translate('Testemunha enviada com sucesso', 'Witness submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar selecionar a testemunha',
-      'Oops, the application found an error while trying to submit the witness',
-    ),
+    successMessage: translate({ pt: 'Testemunha enviada com sucesso', en: 'Witness submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar selecionar a testemunha',
+      en: 'Oops, the application found an error while trying to submit the witness',
+    }),
   });
 
   return (payload: SelectWitnessPayload) => {
@@ -37,11 +37,11 @@ export function useOnSelectQuestionAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'select-question',
-    successMessage: translate('Pergunta enviada com sucesso', 'Question submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar pergunta',
-      'Oops, the application found an error while trying to submit question',
-    ),
+    successMessage: translate({ pt: 'Pergunta enviada com sucesso', en: 'Question submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar pergunta',
+      en: 'Oops, the application found an error while trying to submit question',
+    }),
   });
 
   return (payload: SelectQuestionPayload) => {
@@ -57,11 +57,14 @@ export function useOnSubmitTestimonyAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'submit-testimony',
-    successMessage: translate('Testemunho enviada com sucesso', 'Testimony submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu testemunho',
-      'Oops, the application found an error while trying to send your testimony',
-    ),
+    successMessage: translate({
+      pt: 'Testemunho enviada com sucesso',
+      en: 'Testimony submitted successfully',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seu testemunho',
+      en: 'Oops, the application found an error while trying to send your testimony',
+    }),
   });
 
   return (payload: SubmitTestimonyPayload) => {
@@ -77,11 +80,14 @@ export function useOnEliminateSuspectAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'eliminate-suspect',
-    successMessage: translate('Suspeito liberado com sucesso', 'Suspect release submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar liberar um suspeito',
-      'Oops, the application found an error while trying to release the suspect',
-    ),
+    successMessage: translate({
+      pt: 'Suspeito liberado com sucesso',
+      en: 'Suspect release submitted successfully',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar liberar um suspeito',
+      en: 'Oops, the application found an error while trying to release the suspect',
+    }),
   });
 
   return (payload: EliminatePayload) => {
@@ -98,11 +104,11 @@ export function useOnChooseTheCriminalAPIRequest(setStep: UseStep['setStep']) {
   const request = useGameActionRequest({
     actionName: 'final-elimination',
     onSuccess: () => setStep(1),
-    successMessage: translate('Criminoso escolhido com sucesso', 'Criminal chosen successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar escolher o criminoso',
-      'Oops, the application found an error while trying to choose the criminal',
-    ),
+    successMessage: translate({ pt: 'Criminoso escolhido com sucesso', en: 'Criminal chosen successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar escolher o criminoso',
+      en: 'Oops, the application found an error while trying to choose the criminal',
+    }),
   });
 
   return (payload: FinalEliminationPayload) => {

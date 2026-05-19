@@ -34,7 +34,7 @@ export function PlayerSelect({ players, onSend, isFinalAssessment = false }: Pla
       <Select
         onChange={onSelectPlayerId}
         className="e-select"
-        placeholder={translate('Acuse um jogador', 'Accuse a player')}
+        placeholder={translate({ pt: 'Acuse um jogador', en: 'Accuse a player' })}
         options={playersWithoutMe.map((player) => ({
           key: player.id,
           value: player.id,
@@ -45,11 +45,11 @@ export function PlayerSelect({ players, onSend, isFinalAssessment = false }: Pla
         title={`${
           isFinalAssessment
             ? ''
-            : translate(
-                'Você só pode acusar uma vez durante o jogo!',
-                'You may only make one accusation during the game!',
-              )
-        } ${translate('Tem certeza que quer acusar', 'Are you sure you want to accuse')} ${
+            : translate({
+                pt: 'Você só pode acusar uma vez durante o jogo!',
+                en: 'You may only make one accusation during the game!',
+              })
+        } ${translate({ pt: 'Tem certeza que quer acusar', en: 'Are you sure you want to accuse' })} ${
           players[selectedPlayerId]?.name
         }?`}
         onConfirm={() => onSend({ targetId: selectedPlayerId })}

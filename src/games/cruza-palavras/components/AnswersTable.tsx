@@ -30,28 +30,28 @@ export function AnswersTable({ players, grid, correctCoordinatesPerPlayer }: Ans
   const { translate } = useLanguage();
   const columns: TableProps<RowEntry>['columns'] = [
     {
-      title: translate('Jogador', 'Player'),
+      title: translate({ pt: 'Jogador', en: 'Player' }),
       dataIndex: 'player',
       key: 'player',
       render: (data) => <PlayerAvatarName player={data} />,
       sorter: (a, b) => a.playerName.localeCompare(b.playerName),
     },
     {
-      title: translate('Achou que', 'Thought that'),
+      title: translate({ pt: 'Achou que', en: 'Thought that' }),
       dataIndex: 'guess',
       key: 'guess',
       render: (guess: string) => guess.toUpperCase(),
       sorter: (a, b) => a.guess.localeCompare(b.guess),
     },
     {
-      title: translate('Era', 'Was'),
+      title: translate({ pt: 'Era', en: 'Was' }),
       dataIndex: 'clue',
       key: 'clue',
       render: (clue: string) => clue.toUpperCase(),
       sorter: (a, b) => a.clue.localeCompare(b.clue),
     },
     {
-      title: translate('Resultado', 'Result'),
+      title: translate({ pt: 'Resultado', en: 'Result' }),
       dataIndex: 'result',
       key: 'result',
       render: (value) =>

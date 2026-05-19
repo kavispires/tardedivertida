@@ -20,11 +20,11 @@ export function useOnSubmitBossPlayerAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-boss',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Chefe enviado com sucesso!', 'Boss submitted successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar o chefe',
-      'Oops, the application failed to send the boss player',
-    ),
+    successMessage: translate({ pt: 'Chefe enviado com sucesso!', en: 'Boss submitted successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar o chefe',
+      en: 'Oops, the application failed to send the boss player',
+    }),
   });
 
   return (payload: SubmitBossPlayerPayload) => {
@@ -42,11 +42,14 @@ export function useOnSubmitSecretWordAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-secret-word',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Palavra Secreta enviada com sucesso!', 'Secret word sent successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar palavra secreta',
-      'Oops, the application failed to send your secret word',
-    ),
+    successMessage: translate({
+      pt: 'Palavra Secreta enviada com sucesso!',
+      en: 'Secret word sent successfully!',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar palavra secreta',
+      en: 'Oops, the application failed to send your secret word',
+    }),
   });
 
   return (payload: SubmitSecretWordPayload) => {
@@ -64,11 +67,11 @@ export function useOnSubmitPlayerCluesAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-player-clues',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
-    successMessage: translate('Dica enviada com sucesso!', 'Clue sent successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar dica',
-      'Oops, the application failed to send clue',
-    ),
+    successMessage: translate({ pt: 'Dica enviada com sucesso!', en: 'Clue sent successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar dica',
+      en: 'Oops, the application failed to send clue',
+    }),
   });
 
   return (payload: SubmitPlayerCluesPayload) => {
@@ -86,11 +89,11 @@ export function useOnSubmitEvaluationAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-evaluation',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Avaliação enviada com sucesso!', 'Evaluation sent successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar avaliação',
-      'Oops, the application failed to send evaluation',
-    ),
+    successMessage: translate({ pt: 'Avaliação enviada com sucesso!', en: 'Evaluation sent successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar avaliação',
+      en: 'Oops, the application failed to send evaluation',
+    }),
   });
 
   return (payload: SubmitEvaluationPayload) => {
@@ -108,11 +111,11 @@ export function useOnSubmitOutcomeAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-outcome',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Resultado enviado com sucesso!', 'Outcome sent successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar resultado',
-      'Oops, the application failed to send outcome',
-    ),
+    successMessage: translate({ pt: 'Resultado enviado com sucesso!', en: 'Outcome sent successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar resultado',
+      en: 'Oops, the application failed to send outcome',
+    }),
   });
 
   return (payload: SubmitOutcomePayload) => {
@@ -130,11 +133,11 @@ export function useOnSubmitHelpAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-help',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
-    successMessage: translate('Ajuda enviada com sucesso!', 'Help sent successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar ajuda',
-      'Oops, the application failed to send help',
-    ),
+    successMessage: translate({ pt: 'Ajuda enviada com sucesso!', en: 'Help sent successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar ajuda',
+      en: 'Oops, the application failed to send help',
+    }),
   });
 
   return (payload: SubmitHelpPayload) => {

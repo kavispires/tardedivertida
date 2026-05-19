@@ -47,7 +47,7 @@ export function StepBuildMetrics({
   onSubmitPool,
   announcement,
 }: StepBuildMetricsProps) {
-  const { dualTranslate } = useLanguage();
+  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(secretWordId ? 3 : 1);
   const [selectedCardId, setSelectedCardId] = useState<UID | null>(secretWordId || null);
   const [selectedWords, setSelectedWords] = useState<UID[]>([]);
@@ -195,7 +195,7 @@ export function StepBuildMetrics({
             />
           </RuleInstruction>
           <Card
-            header={dualTranslate({ en: 'Keyword', pt: 'Palavra-chave' })}
+            header={translate({ en: 'Keyword', pt: 'Palavra-chave' })}
             color={getColorFromIndex(selectedCardIndex + 2)}
           >
             {selectedCard.text}
@@ -269,7 +269,7 @@ export function StepBuildMetrics({
           </RuleInstruction>
 
           <Card
-            header={dualTranslate({ en: 'Keyword', pt: 'Palavra-chave' })}
+            header={translate({ en: 'Keyword', pt: 'Palavra-chave' })}
             color={getColorFromIndex(selectedCardIndex + 3)}
           >
             {selectedCard.text}

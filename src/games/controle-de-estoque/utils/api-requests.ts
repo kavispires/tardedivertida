@@ -10,14 +10,14 @@ export function useOnMakeReady() {
   const { translate } = useLanguage();
 
   return useOnMakeMeReady({
-    successMessage: translate(
-      'Pronto! Aguarde os outros jogadores estarem prontos',
-      'Done! Now wait for the other players',
-    ),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar confirmar sua prontidão',
-      'Oops, the application failed to confirm your readiness',
-    ),
+    successMessage: translate({
+      pt: 'Pronto! Aguarde os outros jogadores estarem prontos',
+      en: 'Done! Now wait for the other players',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar confirmar sua prontidão',
+      en: 'Oops, the application failed to confirm your readiness',
+    }),
   });
 }
 
@@ -26,11 +26,11 @@ export function useOnPlaceGoodAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'submit-place-good',
-    successMessage: translate('Produto colocado com sucesso', 'Good placed successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Produto colocado com sucesso', en: 'Good placed successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: PlaceGoodPayload) => {
@@ -46,14 +46,14 @@ export function useOnConfirmGoodPlacementAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'submit-confirm-placement',
-    successMessage: translate(
-      'Localização do produto confirmada com sucesso',
-      'Product location confirmed successfully',
-    ),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar confirmar a localização do produto',
-      'Oops, the application found an error while trying to confirm the product location',
-    ),
+    successMessage: translate({
+      pt: 'Localização do produto confirmada com sucesso',
+      en: 'Product location confirmed successfully',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar confirmar a localização do produto',
+      en: 'Oops, the application found an error while trying to confirm the product location',
+    }),
   });
 
   return (payload: PlaceGoodPayload) => {

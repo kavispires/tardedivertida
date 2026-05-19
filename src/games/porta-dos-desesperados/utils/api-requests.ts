@@ -14,11 +14,11 @@ export function useOnSubmitPagesAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-pages',
     onBeforeCall: () => setStep(4),
     onError: () => setStep(2),
-    successMessage: translate('Cartas enviadas com sucesso', 'Cards submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
-      'Oops, the application failed to send your card',
-    ),
+    successMessage: translate({ pt: 'Cartas enviadas com sucesso', en: 'Cards submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
+      en: 'Oops, the application failed to send your card',
+    }),
   });
 
   return (payload: SubmitPagesPayload) => {
@@ -34,11 +34,11 @@ export function useOnSubmitDoorAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'submit-door',
-    successMessage: translate('Porta enviada com sucesso', 'Door submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua porta',
-      'Oops, the application failed to send your door',
-    ),
+    successMessage: translate({ pt: 'Porta enviada com sucesso', en: 'Door submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua porta',
+      en: 'Oops, the application failed to send your door',
+    }),
   });
 
   return (payload: SubmitDoorPayload) => {
@@ -54,13 +54,13 @@ export function useOnMakeReady(setStep: UseStep['setStep']) {
 
   return useOnMakeMeReady({
     onSuccess: () => setStep(3),
-    successMessage: translate(
-      'Pronto! Aguarde os outros jogadores estarem prontos',
-      'Done! Now wait for the other players',
-    ),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar confirmar sua porta',
-      'Oops, the application failed to confirm your door',
-    ),
+    successMessage: translate({
+      pt: 'Pronto! Aguarde os outros jogadores estarem prontos',
+      en: 'Done! Now wait for the other players',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar confirmar sua porta',
+      en: 'Oops, the application failed to confirm your door',
+    }),
   });
 }

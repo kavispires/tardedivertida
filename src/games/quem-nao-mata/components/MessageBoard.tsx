@@ -128,7 +128,7 @@ function PopOverMessageForm({ onSubmitMessage, players }: PopOverMessageFormProp
                     ...PLACEHOLDER_PLAYER,
                     id: 'unknown',
                     avatarId: 'N',
-                    name: translate('TODOS', 'EVERYBODY'),
+                    name: translate({ pt: 'TODOS', en: 'EVERYBODY' }),
                   }}
                 />
               ),

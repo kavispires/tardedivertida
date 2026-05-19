@@ -66,16 +66,19 @@ export function StepWaiting({ players }: StepWaitingProps) {
 
       if (data.isLocked) {
         message.success(
-          translate('Jogo trancado e iniciado com sucesso!', 'Game locked and initialized successfully'),
+          translate({
+            pt: 'Jogo trancado e iniciado com sucesso!',
+            en: 'Game locked and initialized successfully',
+          }),
         );
       }
     },
     onError: (e: Error) => {
       notification.error({
-        title: translate(
-          'Vixi, o aplicativo encontrou um erro ao tentar trancar e iniciar o jogo',
-          'Oops, the application found an error while trying to lock and start the game',
-        ),
+        title: translate({
+          pt: 'Vixi, o aplicativo encontrou um erro ao tentar trancar e iniciar o jogo',
+          en: 'Oops, the application found an error while trying to lock and start the game',
+        }),
         description: JSON.stringify(e.message),
         placement: 'bottomLeft',
       });
@@ -123,7 +126,7 @@ export function StepWaiting({ players }: StepWaitingProps) {
 
         <div className={styles.lobbyStepDescription}>
           <small>
-            {username || translate('Fulano', 'Unknown')},{' '}
+            {username || translate({ pt: 'Fulano', en: 'Unknown' })},{' '}
             <DualTranslate>{AVATARS[userAvatarId].description}</DualTranslate>
           </small>
         </div>

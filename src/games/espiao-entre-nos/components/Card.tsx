@@ -14,9 +14,9 @@ type EspiaoEntreNosCardProps = {
 export const EspiaoEntreNosCard = ({ location, role, header }: EspiaoEntreNosCardProps) => {
   const { translate } = useLanguage();
 
-  const spyHeader = translate('Local Desconhecido', 'Unknown Location');
-  const spyFooter = translate('Você é o espião', 'You are the spy');
-  const agentFooter = translate(`Você é um(a) ${role}`, `You are a ${role}`);
+  const spyHeader = translate({ pt: 'Local Desconhecido', en: 'Unknown Location' });
+  const spyFooter = translate({ pt: 'Você é o espião', en: 'You are the spy' });
+  const agentFooter = translate({ pt: `Você é um(a) ${role}`, en: `You are a ${role}` });
 
   return (
     <Card

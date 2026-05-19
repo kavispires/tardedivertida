@@ -17,11 +17,14 @@ export function useOnSubmitPromptAPIRequest(setStep: UseStep['setStep']) {
   const request = useGameActionRequest({
     actionName: 'submit-prompt',
     onSuccess: () => setStep(2),
-    successMessage: translate('Pergunta submetida com sucesso', 'Question submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua pergunta',
-      'Oops, the application found an error while trying to submit your question',
-    ),
+    successMessage: translate({
+      pt: 'Pergunta submetida com sucesso',
+      en: 'Question submitted successfully',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua pergunta',
+      en: 'Oops, the application found an error while trying to submit your question',
+    }),
   });
 
   return (payload: SubmitPromptPayload) => {
@@ -38,11 +41,11 @@ export function useOnSubmitTargetAPIRequest(setStep: UseStep['setStep']) {
   const request = useGameActionRequest({
     actionName: 'submit-target',
     onSuccess: () => setStep(2),
-    successMessage: translate('Alvo submetida com sucesso', 'Target submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu alvo',
-      'Oops, the application found an error while trying to submit your target',
-    ),
+    successMessage: translate({ pt: 'Alvo submetida com sucesso', en: 'Target submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seu alvo',
+      en: 'Oops, the application found an error while trying to submit your target',
+    }),
   });
 
   return (payload: SubmitTargetPayload) => {
@@ -58,11 +61,11 @@ export function useOnSubmitAnswerAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'submit-answer',
-    successMessage: translate('Resposta submetida com sucesso', 'Answer submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua resposta',
-      'Oops, the application found an error while trying to submit your answer',
-    ),
+    successMessage: translate({ pt: 'Resposta submetida com sucesso', en: 'Answer submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua resposta',
+      en: 'Oops, the application found an error while trying to submit your answer',
+    }),
   });
 
   return (payload: SubmitAnswerPayload) => {
@@ -79,11 +82,11 @@ export function useOnSubmitGuessAPIRequest(setStep: UseStep['setStep']) {
   const request = useGameActionRequest({
     onSuccess: () => setStep(2),
     actionName: 'submit-guess',
-    successMessage: translate('Palpite submetido com sucesso', 'Guess submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu palpite',
-      'Oops, the application found an error while trying to submit your guess',
-    ),
+    successMessage: translate({ pt: 'Palpite submetido com sucesso', en: 'Guess submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seu palpite',
+      en: 'Oops, the application found an error while trying to submit your guess',
+    }),
   });
 
   return (payload: SubmitGuessPayload) => {

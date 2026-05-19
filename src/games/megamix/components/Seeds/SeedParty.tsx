@@ -81,7 +81,7 @@ export function SeedParty({ seed, updateData }: SeedPartyProps) {
                     id={`input-${card.id}`}
                     size="large"
                     value={answers?.[card?.id] ?? ''}
-                    placeholder={translate('Escreva aqui', 'Write here')}
+                    placeholder={translate({ pt: 'Escreva aqui', en: 'Write here' })}
                     onChange={(event) => updateAnswers(card.id, event.target.value)}
                   />
                 </div>

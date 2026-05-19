@@ -42,7 +42,7 @@ export const TrackSuperCampeonato = ({ track, onSubmitAnswer, user }: TrackProps
 
       <SpaceContainer>
         <Card
-          header={translate('Desafio', 'Challenge')}
+          header={translate({ pt: 'Desafio', en: 'Challenge' })}
           color="purple"
         >
           {track.data.challenge.text}

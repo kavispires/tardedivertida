@@ -73,10 +73,10 @@ export function useAlienadoEngine(data: DailyAlienadoEntry, initialState: GameSt
 
     if (state.guesses.includes(newGuessString)) {
       message.warning({
-        content: translate(
-          'Você já tentou essa combinação. Tente outra!',
-          'You already tried this combination. Try another one!',
-        ),
+        content: translate({
+          pt: 'Você já tentou essa combinação. Tente outra!',
+          en: 'You already tried this combination. Try another one!',
+        }),
         duration: 5,
       });
 
@@ -91,7 +91,10 @@ export function useAlienadoEngine(data: DailyAlienadoEntry, initialState: GameSt
 
     if (!isCorrect) {
       message.warning({
-        content: translate('Combinação incorreta. Tente novamente!', 'Incorrect combination. Try again!'),
+        content: translate({
+          pt: 'Combinação incorreta. Tente novamente!',
+          en: 'Incorrect combination. Try again!',
+        }),
         duration: 3,
       });
     }

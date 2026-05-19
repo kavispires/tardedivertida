@@ -23,7 +23,7 @@ type HumanSignBoardProps = {
 
 export function HumanSignBoard({ attributes, startingAttributesIds = [] }: HumanSignBoardProps) {
   const { cache, setCache } = useCache();
-  const { language, dualTranslate } = useLanguage();
+  const { language, translate } = useLanguage();
 
   const updateCache = (signId: number | string, content: CanvasLine[]) => {
     setCache((prev) => {
@@ -79,7 +79,7 @@ export function HumanSignBoard({ attributes, startingAttributesIds = [] }: Human
                   key={attribute.id}
                 >
                   <Tooltip
-                    title={`${dualTranslate(attribute.description ? attribute.description : attribute.name)} (${dualTranslate({ pt: 'Item inicial', en: 'Starting item' })})`}
+                    title={`${translate(attribute.description ? attribute.description : attribute.name)} (${translate({ pt: 'Item inicial', en: 'Starting item' })})`}
                     placement="bottom"
                   >
                     <DualTranslate>{attribute.name}</DualTranslate>*
@@ -120,7 +120,7 @@ export function HumanSignBoard({ attributes, startingAttributesIds = [] }: Human
                   }
                 >
                   <Tooltip
-                    title={dualTranslate(attribute.description ? attribute.description : attribute.name)}
+                    title={translate(attribute.description ? attribute.description : attribute.name)}
                     placement="bottom"
                   >
                     <TransparentButton>

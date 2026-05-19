@@ -76,7 +76,13 @@ export function StepTargeting({
 
   const popRule = () => {
     message.info(
-      messageContent(translate('Você controla!', 'You control!'), <GeneralRules />, 'rules', 20, 'rules'),
+      messageContent(
+        translate({ pt: 'Você controla!', en: 'You control!' }),
+        <GeneralRules />,
+        'rules',
+        20,
+        'rules',
+      ),
     );
   };
 

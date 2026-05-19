@@ -18,7 +18,7 @@ type NewHouseCardProps = {
 };
 
 export function NewHouseCard({ card }: NewHouseCardProps) {
-  const { dualTranslate } = useLanguage();
+  const { translate } = useLanguage();
 
   const baseClass = 'n-new-house-card';
   const cardBaseClass = 'n-new-house-card__card';
@@ -42,7 +42,7 @@ export function NewHouseCard({ card }: NewHouseCardProps) {
           className={clsx(cardBaseClass)}
         />
 
-        <h3 className={`${baseClass}__name`}>{dualTranslate(card.name)}</h3>
+        <h3 className={`${baseClass}__name`}>{translate(card.name)}</h3>
       </div>
     </div>
   );

@@ -46,7 +46,9 @@ export function useQuartetosEngine(data: DailyQuartetosEntry, initialState: Game
     }
 
     if (!session.selection.includes(itemId) && session.selection.length === 4) {
-      message.info(translate('Você sô pode selecionar 4 de cada vez', 'You can only select 4 at a time'));
+      message.info(
+        translate({ pt: 'Você sô pode selecionar 4 de cada vez', en: 'You can only select 4 at a time' }),
+      );
       return;
     }
 
@@ -79,7 +81,9 @@ export function useQuartetosEngine(data: DailyQuartetosEntry, initialState: Game
     const guessId = session.selection.join('-');
 
     if (state.guesses.includes(guessId)) {
-      message.info(translate('Você já tentou essa combinação', 'You already tried this combination'));
+      message.info(
+        translate({ pt: 'Você já tentou essa combinação', en: 'You already tried this combination' }),
+      );
       return;
     }
 

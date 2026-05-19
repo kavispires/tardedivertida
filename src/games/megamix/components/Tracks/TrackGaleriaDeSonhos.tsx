@@ -54,7 +54,7 @@ export const TrackGaleriaDeSonhos = ({ track, onSubmitAnswer, user }: TrackProps
       </RuleInstruction>
 
       <Card
-        header={translate('Tema', 'Theme')}
+        header={translate({ pt: 'Tema', en: 'Theme' })}
         color="orange"
       >
         {track.data.theme.text}

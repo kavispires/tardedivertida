@@ -19,11 +19,11 @@ export function useOnSubmitPlayersRolesAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-player-roles',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Ação submetida com sucesso', en: 'Action submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitPlayersRoles) => {
@@ -39,11 +39,11 @@ export function useOnSubmitSocialGroupAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'submit-social-group',
-    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Ação submetida com sucesso', en: 'Action submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
   return (payload: SubmitAssociatedSocialGroupPayload) => {
     request({
@@ -58,11 +58,11 @@ export function useOnUpdateDetectiveLocationAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'update-detective-location',
-    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Ação submetida com sucesso', en: 'Action submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitDetectiveLocationPayload) => {
@@ -78,11 +78,11 @@ export function useOnSubmitIntimidationAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'submit-intimidation',
-    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Ação submetida com sucesso', en: 'Action submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitIntimidationPayload) => {
@@ -98,11 +98,11 @@ export function useOnSubmitRumorAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'submit-rumor',
-    successMessage: translate('Boato submetido com sucesso', 'Rumor submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Boato submetido com sucesso', en: 'Rumor submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitRumorPayload) => {

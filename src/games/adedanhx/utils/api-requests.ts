@@ -13,11 +13,14 @@ export function useOnSubmitAnswersAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-answers',
     onSuccess: () => setStep(3),
     onError: () => setStep(2),
-    successMessage: translate('Respostas submetidas com sucesso', 'Answers submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar suas respostas',
-      'Oops, the application found an error while trying to submit your answers',
-    ),
+    successMessage: translate({
+      pt: 'Respostas submetidas com sucesso',
+      en: 'Answers submitted successfully',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar suas respostas',
+      en: 'Oops, the application found an error while trying to submit your answers',
+    }),
   });
 
   return (payload: SubmitGridAnswersPayload) => {
@@ -34,11 +37,14 @@ export function useOnSubmitEvaluationsAPIRequest() {
   const request = useGameActionRequest({
     actionName: 'submit-evaluations',
 
-    successMessage: translate('Avaliação submetida com sucesso', 'Evaluation submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua avaliação',
-      'Oops, the application found an error while trying to submit your evaluation',
-    ),
+    successMessage: translate({
+      pt: 'Avaliação submetida com sucesso',
+      en: 'Evaluation submitted successfully',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua avaliação',
+      en: 'Oops, the application found an error while trying to submit your evaluation',
+    }),
   });
 
   return (payload: SubmitEvaluationsPayload) => {

@@ -13,11 +13,11 @@ export function useOnSubmitMapAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-map',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Mapa submetido com sucesso', 'Map submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu mapa',
-      'Oops, the application found an error while trying to submit your map',
-    ),
+    successMessage: translate({ pt: 'Mapa submetido com sucesso', en: 'Map submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seu mapa',
+      en: 'Oops, the application found an error while trying to submit your map',
+    }),
   });
 
   return (payload: SubmitMapPayload) => {
@@ -35,11 +35,11 @@ export function useOnSubmitPathAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-path',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Caminho submetido com sucesso', 'Path submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu caminho',
-      'Oops, the application found an error while trying to submit your path',
-    ),
+    successMessage: translate({ pt: 'Caminho submetido com sucesso', en: 'Path submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seu caminho',
+      en: 'Oops, the application found an error while trying to submit your path',
+    }),
   });
 
   return (payload: SubmitPathGuessPayload) => {

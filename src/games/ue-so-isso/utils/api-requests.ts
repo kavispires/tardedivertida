@@ -20,11 +20,11 @@ export function useOnSubmitVotesAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-votes',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
-    successMessage: translate('Votos enviados com sucesso!', 'Votes send successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seus votos',
-      'Oops, the application failed to send your votes',
-    ),
+    successMessage: translate({ pt: 'Votos enviados com sucesso!', en: 'Votes send successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seus votos',
+      en: 'Oops, the application failed to send your votes',
+    }),
   });
 
   return (payload: SubmitVotesPayload) => {
@@ -42,11 +42,11 @@ export function useOnSubmitSuggestionsAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-suggestion',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Dicas enviada com sucesso!', 'Suggestions sent successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar suas dicas',
-      'Oops, the application failed to send your suggestions',
-    ),
+    successMessage: translate({ pt: 'Dicas enviada com sucesso!', en: 'Suggestions sent successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar suas dicas',
+      en: 'Oops, the application failed to send your suggestions',
+    }),
   });
 
   return (payload: SubmitSuggestionsPayload) => {
@@ -64,11 +64,11 @@ export function useOnSubmitValidationsAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-validations',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Validação enviada com sucesso!', 'Validation sent successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar a validação das sugestões',
-      'Oops, the application failed to send the validation',
-    ),
+    successMessage: translate({ pt: 'Validação enviada com sucesso!', en: 'Validation sent successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar a validação das sugestões',
+      en: 'Oops, the application failed to send the validation',
+    }),
   });
 
   return (payload: SubmitValidationsPayload) => {
@@ -84,11 +84,11 @@ export function useOnValidateSuggestionAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'validate-suggestion',
-    successMessage: translate('Atualizado!', 'Updated!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar atualizar',
-      'Oops, the application failed to update',
-    ),
+    successMessage: translate({ pt: 'Atualizado!', en: 'Updated!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar atualizar',
+      en: 'Oops, the application failed to update',
+    }),
   });
 
   return (payload: ValidateSuggestionPayload) => {
@@ -106,11 +106,11 @@ export function useOnSubmitOutcomeAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-outcome',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
-    successMessage: translate('Resultado enviado com sucesso!', 'Outcome sent successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar o resultado',
-      'Oops, the application failed to submit the outcome',
-    ),
+    successMessage: translate({ pt: 'Resultado enviado com sucesso!', en: 'Outcome sent successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar o resultado',
+      en: 'Oops, the application failed to submit the outcome',
+    }),
   });
 
   return (payload: SubmitOutcomePayload) => {
@@ -126,11 +126,11 @@ export function useOnSendGuessAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'send-guess',
-    successMessage: translate('Chute enviado!', 'Guess sent!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar atualizar',
-      'Oops, the application failed to update',
-    ),
+    successMessage: translate({ pt: 'Chute enviado!', en: 'Guess sent!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar atualizar',
+      en: 'Oops, the application failed to update',
+    }),
   });
 
   return (payload: SendGuessPayload) => {

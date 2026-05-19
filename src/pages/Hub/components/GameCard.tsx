@@ -83,7 +83,9 @@ export function GameCard({ info, isAdmin = true }: GameCardProps) {
             >
               <span className="game-card__title-text">{info.title[language]}</span>{' '}
               <span>
-                <Tooltip title={translate('Código do jogo começará com', 'The game id will start with')}>
+                <Tooltip
+                  title={translate({ pt: 'Código do jogo começará com', en: 'The game id will start with' })}
+                >
                   <Tag>{info.gameCode}</Tag>
                 </Tooltip>
               </span>
@@ -98,7 +100,7 @@ export function GameCard({ info, isAdmin = true }: GameCardProps) {
           className="full-width"
         >
           <Card.Meta
-            description={`${translate('Inspirado por', 'Inspired by')} ${info.inspiredBy
+            description={`${translate({ pt: 'Inspirado por', en: 'Inspired by' })} ${info.inspiredBy
               .split('')
               .reverse()
               .join('')}`}
@@ -145,26 +147,26 @@ export function GameCard({ info, isAdmin = true }: GameCardProps) {
 
         <Space orientation="vertical">
           <Card.Meta
-            description={translate(
-              `Para ${info.playerCount.min}-${info.playerCount.max} jogadores`,
-              `For ${info.playerCount.min}-${info.playerCount.max} players`,
-            )}
+            description={translate({
+              pt: `Para ${info.playerCount.min}-${info.playerCount.max} jogadores`,
+              en: `For ${info.playerCount.min}-${info.playerCount.max} players`,
+            })}
           />
 
           <Card.Meta
             className="game-card__player-count"
-            description={translate(
-              `Melhor com ${info.playerCount.best || '?'} jogadores`,
-              `Best wih ${info.playerCount.best || '?'} players`,
-            )}
+            description={translate({
+              pt: `Melhor com ${info.playerCount.best || '?'} jogadores`,
+              en: `Best wih ${info.playerCount.best || '?'} players`,
+            })}
           />
 
           <Card.Meta
             className="game-card__player-count game-card__margin-bottom"
-            description={translate(
-              `Recomendado jogar com ${truncateRecommended(info.playerCount.recommended)}`,
-              `Recommended with ${truncateRecommended(info.playerCount.recommended)}`,
-            )}
+            description={translate({
+              pt: `Recomendado jogar com ${truncateRecommended(info.playerCount.recommended)}`,
+              en: `Recommended with ${truncateRecommended(info.playerCount.recommended)}`,
+            })}
           />
         </Space>
 

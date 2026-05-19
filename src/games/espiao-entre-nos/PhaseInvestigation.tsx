@@ -44,11 +44,11 @@ export function PhaseInvestigation({ state, players, user }: PhaseProps) {
   useEffect(() => {
     if (state.timeRemaining > 590000 && startingPlayer.name) {
       notification.info({
-        title: translate('10 minutos!', '10 minutes!'),
-        description: translate(
-          `${startingPlayer.name} começa perguntando!`,
-          `${startingPlayer.name} starts questioning!`,
-        ),
+        title: translate({ pt: '10 minutos!', en: '10 minutes!' }),
+        description: translate({
+          pt: `${startingPlayer.name} começa perguntando!`,
+          en: `${startingPlayer.name} starts questioning!`,
+        }),
         duration: 10,
       });
     }

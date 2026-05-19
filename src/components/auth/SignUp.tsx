@@ -90,7 +90,7 @@ export function SignUpForm({ form, onFinish, isError, isLoading }: SignUpFormPro
         rules={[
           {
             required: true,
-            message: translate('e-mail é um campo obrigatório', 'e-mail is required'),
+            message: translate({ pt: 'e-mail é um campo obrigatório', en: 'e-mail is required' }),
           },
         ]}
       >
@@ -108,10 +108,10 @@ export function SignUpForm({ form, onFinish, isError, isLoading }: SignUpFormPro
         rules={[
           {
             required: true,
-            message: translate('e-mail é um campo obrigatório', 'e-mail is required'),
+            message: translate({ pt: 'e-mail é um campo obrigatório', en: 'e-mail is required' }),
           },
         ]}
-        help={translate('Mínimo 6 caracteres', 'Minimum of 6 characters')}
+        help={translate({ pt: 'Mínimo 6 caracteres', en: 'Minimum of 6 characters' })}
       >
         <Input.Password />
       </Form.Item>
@@ -127,7 +127,7 @@ export function SignUpForm({ form, onFinish, isError, isLoading }: SignUpFormPro
         rules={[
           {
             required: true,
-            message: translate('e-mail é um campo obrigatório', 'e-mail is required'),
+            message: translate({ pt: 'e-mail é um campo obrigatório', en: 'e-mail is required' }),
           },
         ]}
       >

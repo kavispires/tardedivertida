@@ -22,10 +22,10 @@ export function CopyToClipboardResult({ result, rows = 4 }: CopyToClipboardResul
   useEffect(() => {
     if (state.value) {
       message.info(
-        translate(
-          `Copiado para a área de transferência: ${state.value}`,
-          `Copied to clipboard: ${state.value}`,
-        ),
+        translate({
+          pt: `Copiado para a área de transferência: ${state.value}`,
+          en: `Copied to clipboard: ${state.value}`,
+        }),
       );
     }
   }, [state, message, translate]);

@@ -18,10 +18,10 @@ export const DrawingGrade = ({ value }: DrawingGradeProps) => {
 
   return (
     <Tooltip
-      title={translate(
-        `Nota baseada em quantos acertos o desenho teve: ${value * 100}%`,
-        `Grade based on the number of correct guesses the artwork got: ${value * 100}%`,
-      )}
+      title={translate({
+        pt: `Nota baseada em quantos acertos o desenho teve: ${value * 100}%`,
+        en: `Grade based on the number of correct guesses the artwork got: ${value * 100}%`,
+      })}
     >
       <Avatar className={clsx(baseClass, `${baseClass}--${grade[0]}`)}>{grade}</Avatar>
     </Tooltip>

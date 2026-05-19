@@ -103,8 +103,11 @@ export function StepReviewCrime({
 
       <ReadyPlayersBar
         players={players}
-        readyText={translate('Já cometi meu crime', "I'm done committing my crime")}
-        readyTextPlural={translate('Já cometemos nossos crimes', "We're done committing our crimes")}
+        readyText={translate({ pt: 'Já cometi meu crime', en: "I'm done committing my crime" })}
+        readyTextPlural={translate({
+          pt: 'Já cometemos nossos crimes',
+          en: "We're done committing our crimes",
+        })}
       />
     </Step>
   );

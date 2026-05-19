@@ -59,10 +59,10 @@ export function GuesserWaitingRoom({
     return (45 * readyPlayers) / playerCount;
   }, [players, phase]);
 
-  const instructionPrefix = translate(
-    'Aguarde enquanto os outros jogadores',
-    'Please wait while the other players',
-  );
+  const instructionPrefix = translate({
+    pt: 'Aguarde enquanto os outros jogadores',
+    en: 'Please wait while the other players',
+  });
 
   return (
     <Step

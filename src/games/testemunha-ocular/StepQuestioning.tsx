@@ -88,7 +88,7 @@ export function StepQuestioning({
           />
 
           <Card
-            header={translate('O suspeito...', 'The perpetrator...')}
+            header={translate({ pt: 'O suspeito...', en: 'The perpetrator...' })}
             color="blue"
             className="t-card"
             size="large"
@@ -125,7 +125,7 @@ export function StepQuestioning({
           orientation="vertical"
         >
           <Card
-            header={translate('O suspeito...', 'The perpetrator...')}
+            header={translate({ pt: 'O suspeito...', en: 'The perpetrator...' })}
             color="blue"
             className="t-card"
             size="large"

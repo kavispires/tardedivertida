@@ -48,7 +48,7 @@ export function ConceptCreationBlock({
   className,
 }: ConceptCreationBlockProps) {
   const itemWidth = useSpriteWidth();
-  const { dualTranslate } = useLanguage();
+  const { translate } = useLanguage();
 
   const [meaning, setMeaning] = useState(concept.meaning);
 
@@ -94,7 +94,7 @@ export function ConceptCreationBlock({
           </DivButton>
         </div>
         <Tooltip
-          title={dualTranslate({
+          title={translate({
             en: `Created by ${players[concept.playerId].name}`,
             pt: `Criado por ${players[concept.playerId].name}`,
           })}
@@ -109,7 +109,7 @@ export function ConceptCreationBlock({
         <Input
           defaultValue={concept.meaning}
           readOnly={!isEditing}
-          placeholder={dualTranslate({ en: 'Write the meaning here', pt: 'Escreva o significado aqui' })}
+          placeholder={translate({ en: 'Write the meaning here', pt: 'Escreva o significado aqui' })}
           onChange={(e) => setMeaning(e.target.value)}
           variant={isEditing ? 'outlined' : 'filled'}
         />
@@ -152,7 +152,7 @@ export function ConceptCreationBlock({
           {isEditing ? (
             <>
               <Popconfirm
-                title={dualTranslate({
+                title={translate({
                   en: 'Are you sure you want to delete this concept?',
                   pt: 'Tem certeza de que deseja deletar este conceito?',
                 })}
@@ -176,7 +176,7 @@ export function ConceptCreationBlock({
               </Button>
             </>
           ) : (
-            <Tooltip title={dualTranslate({ en: 'Edit Concept', pt: 'Editar Conceito' })}>
+            <Tooltip title={translate({ en: 'Edit Concept', pt: 'Editar Conceito' })}>
               <Button
                 type="dashed"
                 size="small"
@@ -204,7 +204,7 @@ type NoteProps = {
 };
 
 function Note({ concept, userId }: NoteProps) {
-  const { dualTranslate } = useLanguage();
+  const { translate } = useLanguage();
   const { cache, setCache } = useCache();
 
   const note = cache[concept.id] ?? '';
@@ -212,7 +212,7 @@ function Note({ concept, userId }: NoteProps) {
   const isUserConcept = userId === concept.playerId;
   return (
     <Input
-      placeholder={dualTranslate({ en: 'Notes', pt: 'Anotações' })}
+      placeholder={translate({ en: 'Notes', pt: 'Anotações' })}
       className="concept-block__notes"
       size="small"
       value={isUserConcept ? concept.meaning : note}

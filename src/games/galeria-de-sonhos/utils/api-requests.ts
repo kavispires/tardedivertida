@@ -13,11 +13,11 @@ export function useOnSubmitWordAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-word',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(2),
-    successMessage: translate('Palavra enviada com sucesso', 'Word submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua palavra',
-      'Oops, the application failed to send your word',
-    ),
+    successMessage: translate({ pt: 'Palavra enviada com sucesso', en: 'Word submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua palavra',
+      en: 'Oops, the application failed to send your word',
+    }),
   });
 
   return (payload: SubmitWordPayload) => {
@@ -35,11 +35,11 @@ export function useOnSubmitCardsAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-cards',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Cartas enviadas com sucesso', 'Cards submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar suas cartas',
-      'Oops, the application failed to send your cards',
-    ),
+    successMessage: translate({ pt: 'Cartas enviadas com sucesso', en: 'Cards submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar suas cartas',
+      en: 'Oops, the application failed to send your cards',
+    }),
   });
 
   return (payload: SubmitCardsPayload) => {
@@ -56,11 +56,11 @@ export function useOnPlayCardAPIRequest(setStep: UseStep['setStep']) {
   const request = useGameActionRequest({
     actionName: 'play-card',
     onError: () => setStep(2),
-    successMessage: translate('Carta enviada com sucesso', 'Card submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
-      'Oops, the application failed to send your card',
-    ),
+    successMessage: translate({ pt: 'Carta enviada com sucesso', en: 'Card submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
+      en: 'Oops, the application failed to send your card',
+    }),
   });
 
   return (payload: PlayCardPayload) => {

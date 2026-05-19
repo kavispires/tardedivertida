@@ -117,7 +117,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
             />
             <Card
               hideHeader={!question.nsfw}
-              header={translate('Conteúdo Sensível', 'Sensitive Content')}
+              header={translate({ pt: 'Conteúdo Sensível', en: 'Sensitive Content' })}
               color="#ff69b4"
             >
               {question.question}

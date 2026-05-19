@@ -27,11 +27,11 @@ function Game() {
   if (isGameStale) {
     return (
       <PageError
-        message={translate('Jogo Expirado', 'Expired Game')}
-        description={translate(
-          'Este jogo ou é muito antigo ou não existe',
-          'This game is too old or does not exist',
-        )}
+        message={translate({ pt: 'Jogo Expirado', en: 'Expired Game' })}
+        description={translate({
+          pt: 'Este jogo ou é muito antigo ou não existe',
+          en: 'This game is too old or does not exist',
+        })}
       />
     );
   }

@@ -138,7 +138,7 @@ export function StepWriteClue({
       <SpaceContainer>
         <Input
           size="large"
-          placeholder={translate('Escreva seu objeto aqui', 'Write your object here')}
+          placeholder={translate({ pt: 'Escreva seu objeto aqui', en: 'Write your object here' })}
           onChange={(e) => setClue(e.target.value)}
           onPressEnter={handleSubmitClue}
         />

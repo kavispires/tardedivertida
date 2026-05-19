@@ -81,11 +81,11 @@ export function StepPlayCardAction({
     ) {
       message.info(
         messageContent(
-          translate('Escolha uma carta!', 'Choose a card to play'),
-          translate(
-            'Aperte o botão Selecionar acima da carta escolhida',
-            'Press the select button above each card',
-          ),
+          translate({ pt: 'Escolha uma carta!', en: 'Choose a card to play' }),
+          translate({
+            pt: 'Aperte o botão Selecionar acima da carta escolhida',
+            en: 'Press the select button above each card',
+          }),
 
           currentPlayer.id,
           3,

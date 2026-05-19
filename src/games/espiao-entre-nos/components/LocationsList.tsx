@@ -50,7 +50,7 @@ export function LocationsList({ locations }: LocationsListProps) {
           pt="Possíveis Locais"
           en="Possible Locations"
         />
-        <Tooltip title={translate('Desmarcar todos', 'Unselect all')}>
+        <Tooltip title={translate({ pt: 'Desmarcar todos', en: 'Unselect all' })}>
           <Button
             shape="circle"
             ghost

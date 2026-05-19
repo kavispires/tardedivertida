@@ -112,10 +112,10 @@ export function useEstoquistaEngine(data: DailyEstoquistaEntry, initialState: Ga
 
     if (state.guesses.includes(newGuessString)) {
       message.warning({
-        content: translate(
-          'Você já tentou essa combinação. Tente outra!',
-          'You already tried this combination. Try another one!',
-        ),
+        content: translate({
+          pt: 'Você já tentou essa combinação. Tente outra!',
+          en: 'You already tried this combination. Try another one!',
+        }),
         duration: 5,
       });
 
@@ -130,10 +130,10 @@ export function useEstoquistaEngine(data: DailyEstoquistaEntry, initialState: Ga
 
     if (!isAllCorrect) {
       message.warning({
-        content: translate(
-          'Um ou mais produtos estão fora de lugar. Tente novamente!',
-          'One or more products are out of place. Try again!',
-        ),
+        content: translate({
+          pt: 'Um ou mais produtos estão fora de lugar. Tente novamente!',
+          en: 'One or more products are out of place. Try again!',
+        }),
         duration: 3,
       });
       playSFX('wrong');

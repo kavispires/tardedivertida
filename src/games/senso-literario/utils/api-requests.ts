@@ -13,11 +13,11 @@ export function useOnSubmitPatternAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-pattern',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Carta submetida com sucesso', 'Card submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
-      'Oops, the application found an error while trying to submit your card',
-    ),
+    successMessage: translate({ pt: 'Carta submetida com sucesso', en: 'Card submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
+      en: 'Oops, the application found an error while trying to submit your card',
+    }),
   });
 
   return (payload: SubmitPatternPayload) => {

@@ -54,10 +54,10 @@ export function CharactersBoard({
           return (
             <Popconfirm
               key={character.id}
-              title={translate(
-                `Tem certeza que quer escolher ${name}?`,
-                `Are you sure you want to choose ${name}?`,
-              )}
+              title={translate({
+                pt: `Tem certeza que quer escolher ${name}?`,
+                en: `Are you sure you want to choose ${name}?`,
+              })}
               onConfirm={() => onCardClick({ characterId: character.id })}
               type="yes-no"
               disabled={unavailable || revealed || ownCharacter || isLoading}

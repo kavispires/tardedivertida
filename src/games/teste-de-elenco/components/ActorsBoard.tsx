@@ -41,10 +41,10 @@ export function ActorsBoard({ actors, user, onSubmitActor, selection }: ActorsBo
         return (
           <Popconfirm
             key={actor.id}
-            title={translate(
-              `Tem certeza que quer escolher ${name}?`,
-              `Are you sure you want to choose ${name}?`,
-            )}
+            title={translate({
+              pt: `Tem certeza que quer escolher ${name}?`,
+              en: `Are you sure you want to choose ${name}?`,
+            })}
             onConfirm={() => onSubmitActor({ actorId: actor.id })}
             type="yes-no"
             disabled={isLoading || user.ready}

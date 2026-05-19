@@ -56,7 +56,7 @@ export function SeedOndaTelepatica({ seed, updateData }: SeedOndaTelepaticaProps
         </Instruction>
 
         <Card
-          header={translate('Tarefa', 'Homework')}
+          header={translate({ pt: 'Tarefa', en: 'Homework' })}
           color="purple"
         >
           {/* TODO: Verify */}
@@ -66,7 +66,7 @@ export function SeedOndaTelepatica({ seed, updateData }: SeedOndaTelepaticaProps
         <Input
           onChange={(e) => setValue(e.target.value)}
           size="large"
-          placeholder={translate('Escreva aqui', 'Write here')}
+          placeholder={translate({ pt: 'Escreva aqui', en: 'Write here' })}
           onPressEnter={() => updateData({ wave: value }, true)}
         />
 

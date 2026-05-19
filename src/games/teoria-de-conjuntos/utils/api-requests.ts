@@ -18,11 +18,11 @@ export function useOnSubmitJudgeAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-judge',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Juiz submetido com sucesso', 'Judged submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Juiz submetido com sucesso', en: 'Judged submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitJudgePayload) => {
@@ -40,11 +40,11 @@ export function useOnSubmitItemPlacementAPIRequest(setStep: UseStep['setStep']) 
     actionName: 'submit-item-placement',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Item submetido com sucesso', 'Item submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({ pt: 'Item submetido com sucesso', en: 'Item submitted successfully' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitItemPlacementPayload) => {
@@ -62,11 +62,14 @@ export function useOnSubmitEvaluationAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-evaluation',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate('Avaliação submetida com sucesso', 'Evaluation submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({
+      pt: 'Avaliação submetida com sucesso',
+      en: 'Evaluation submitted successfully',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitEvaluationPayload) => {
@@ -82,11 +85,14 @@ export function useOnSubmitEvaluationFixAPIRequest() {
 
   const request = useGameActionRequest({
     actionName: 'submit-evaluation-fix',
-    successMessage: translate('Re-avaliação submetida com sucesso', 'Reevaluation submitted successfully'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
-      'Oops, the application found an error while trying to submit your action',
-    ),
+    successMessage: translate({
+      pt: 'Re-avaliação submetida com sucesso',
+      en: 'Reevaluation submitted successfully',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      en: 'Oops, the application found an error while trying to submit your action',
+    }),
   });
 
   return (payload: SubmitEvaluationFixPayload) => {

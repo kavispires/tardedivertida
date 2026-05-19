@@ -43,7 +43,7 @@ export function StepCreateWord({
   wordLengths,
   onSubmitWord,
 }: StepCreateWordProps) {
-  const { dualTranslate } = useLanguage();
+  const { translate } = useLanguage();
   const [beginsWithName, setBeginsWithName] = useState('');
   const [endsWithName, setEndsWithName] = useState('');
   const [beginningIndex, setBeginningIndex] = useState(0);
@@ -125,7 +125,7 @@ export function StepCreateWord({
                 autoComplete="off"
                 value={beginsWithName}
                 onChange={onBeginWithNameChange}
-                placeholder={dualTranslate({ pt: 'Escreva o nome', en: 'Write the name' })}
+                placeholder={translate({ pt: 'Escreva o nome', en: 'Write the name' })}
                 className="uppercase"
               />
             </Flex>
@@ -144,7 +144,7 @@ export function StepCreateWord({
                 autoComplete="off"
                 value={endsWithName}
                 onChange={onEndWithNameChange}
-                placeholder={dualTranslate({ pt: 'Escreva o nome', en: 'Write the name' })}
+                placeholder={translate({ pt: 'Escreva o nome', en: 'Write the name' })}
                 className="uppercase"
               />
             </Flex>
@@ -238,7 +238,7 @@ export function StepCreateWord({
 
           <SpaceContainer orientation="vertical">
             <Card
-              header={dualTranslate({
+              header={translate({
                 en: `Your new word (${newWord.length} letters)`,
                 pt: `Sua nova palavra (${newWord.length} letras)`,
               })}

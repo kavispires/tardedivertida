@@ -51,7 +51,7 @@ export function FloatingHand({ children, icon, title }: FloatingHandProps) {
             icon={icon ?? <HandOfCardsIcon />}
             size={isExpanded ? 30 : 40}
             className={styles.floatingHandIcon}
-            alt={translate('Mão de Cartas', 'Hand of Cards')}
+            alt={translate({ pt: 'Mão de Cartas', en: 'Hand of Cards' })}
           />
           <span className={styles.floatingHandLabelText}>
             {title ?? (
@@ -98,7 +98,7 @@ export function FloatingHandDrawer({ children, icon, title }: FloatingHandProps)
           <IconAvatar
             icon={icon ?? <HandOfCardsIcon />}
             className={styles.floatingHandDrawerIcon}
-            alt={translate('Mão de Cartas', 'Hand of Cards')}
+            alt={translate({ pt: 'Mão de Cartas', en: 'Hand of Cards' })}
           />
           <span className={styles.floatingHandDrawerLabelText}>
             {title ?? (
@@ -128,7 +128,7 @@ export function FloatingHandDrawer({ children, icon, title }: FloatingHandProps)
             <IconAvatar
               icon={icon ?? <HandOfCardsIcon />}
               className={styles.floatingHandDrawerIcon}
-              alt={translate('Mão de Cartas', 'Hand of Cards')}
+              alt={translate({ pt: 'Mão de Cartas', en: 'Hand of Cards' })}
             />
             <span className={styles.floatingHandDrawerLabelText}>
               {title ?? (

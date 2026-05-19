@@ -62,11 +62,11 @@ export function AdminNextPhaseButton({
 
   const onGoToNextPhase = useHostActionRequest({
     actionName: 'force-next-phase',
-    successMessage: translate('Funcionou, próxima fase!', 'It worked, next phase!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar ir para a próxima fase',
-      'The application found an error while trying to go to the next phase',
-    ),
+    successMessage: translate({ pt: 'Funcionou, próxima fase!', en: 'It worked, next phase!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar ir para a próxima fase',
+      en: 'The application found an error while trying to go to the next phase',
+    }),
   });
 
   const handleClick = () => onGoToNextPhase({ action: HOST_API_ACTIONS.GO_TO_NEXT_PHASE });

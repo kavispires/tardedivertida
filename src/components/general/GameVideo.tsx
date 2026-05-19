@@ -52,7 +52,7 @@ export function GameVideo({
   showLogo = true,
   static: isStatic = false,
 }: GameVideoProps) {
-  const { language, dualTranslate } = useLanguage();
+  const { language, translate } = useLanguage();
   const BASE_URL = useTDBaseUrl('assets');
 
   const logoHeight = width / 1.5; // Logo width/height ratio is 1.5
@@ -86,7 +86,7 @@ export function GameVideo({
           onError={(e) => {
             (e.target as HTMLImageElement).src = `${PUBLIC_URL.LOGOS}/logo-em-breve-${language}.svg`;
           }}
-          alt={`${dualTranslate(title ?? { en: '', pt: '' })} logo`}
+          alt={`${translate(title ?? { en: '', pt: '' })} logo`}
           className={styles.gameVideoLogo}
           style={{
             width: `${width}px`,

@@ -109,56 +109,56 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
 
   const playingOptions = [
     {
-      label: translate('Qualquer', 'Any'),
+      label: translate({ pt: 'Qualquer', en: 'Any' }),
       value: '',
     },
     {
-      label: translate('Recomendado com', 'Recommended with'),
+      label: translate({ pt: 'Recomendado com', en: 'Recommended with' }),
       value: 'recommended',
     },
     {
-      label: translate('Melhor com', 'Best with'),
+      label: translate({ pt: 'Melhor com', en: 'Best with' }),
       value: 'best',
     },
   ];
 
   const releaseStatusOptions = [
     {
-      label: translate('Estável', 'Stable'),
+      label: translate({ pt: 'Estável', en: 'Stable' }),
       value: 'stable',
     },
     {
-      label: translate('Beta/Dev', 'Beta/Dev'),
+      label: translate({ pt: 'Beta/Dev', en: 'Beta/Dev' }),
       value: 'dev',
     },
     {
-      label: translate('Em Breve', 'Coming Soon'),
+      label: translate({ pt: 'Em Breve', en: 'Coming Soon' }),
       value: 'soon',
     },
   ];
 
   const availableOptions = [
     {
-      label: translate('Todos', 'All'),
+      label: translate({ pt: 'Todos', en: 'All' }),
       value: '',
     },
     {
-      label: translate('Disponível', 'Available'),
+      label: translate({ pt: 'Disponível', en: 'Available' }),
       value: 'available',
     },
     {
-      label: translate('Indisponível', 'Unavailable'),
+      label: translate({ pt: 'Indisponível', en: 'Unavailable' }),
       value: 'unavailable',
     },
   ];
 
   const sortOptions = [
     {
-      label: translate('Título', 'Title'),
+      label: translate({ pt: 'Título', en: 'Title' }),
       value: 'title',
     },
     {
-      label: translate('Data de Lançamento', 'Release Date'),
+      label: translate({ pt: 'Data de Lançamento', en: 'Release Date' }),
       value: 'release-date',
     },
   ];
@@ -178,12 +178,12 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
         style={{ width: '100%', marginBottom: 16 }}
       >
         <span style={{ fontWeight: 'bold', fontSize: 16 }}>
-          <FilterOutlined /> {translate('Filtros', 'Filters')} ({availabilityCount})
+          <FilterOutlined /> {translate({ pt: 'Filtros', en: 'Filters' })} ({availabilityCount})
         </span>
 
         {/* Search Input */}
         <Input
-          placeholder={translate('Buscar por título ou nome...', 'Search by title or name...')}
+          placeholder={translate({ pt: 'Buscar por título ou nome...', en: 'Search by title or name...' })}
           prefix={<SearchOutlined />}
           value={filters.search}
           onChange={(e) => updateFilter('search', e.target.value)}
@@ -197,7 +197,7 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
             htmlFor="sort-by"
             style={{ fontSize: 14 }}
           >
-            {translate('Ordenar por:', 'Sort by:')}
+            {translate({ pt: 'Ordenar por:', en: 'Sort by:' })}
           </label>
           <Select
             id="sort-by"
@@ -216,7 +216,7 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
             size="small"
             danger
           >
-            {translate('Limpar', 'Clear')}
+            {translate({ pt: 'Limpar', en: 'Clear' })}
           </Button>
         )}
 
@@ -227,8 +227,8 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
           size="small"
         >
           {isExpanded
-            ? translate('Menos filtros', 'Fewer filters')
-            : translate('Mais filtros', 'More filters')}
+            ? translate({ pt: 'Menos filtros', en: 'Fewer filters' })
+            : translate({ pt: 'Mais filtros', en: 'More filters' })}
         </Button>
 
         <Button
@@ -247,7 +247,7 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
           size="small"
         >
           <Collapse.Panel
-            header={translate('Filtros de Jogadores e Tempo', 'Player & Time Filters')}
+            header={translate({ pt: 'Filtros de Jogadores e Tempo', en: 'Player & Time Filters' })}
             key="player-filters"
           >
             <Space
@@ -255,7 +255,7 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
               size="middle"
             >
               <div className="hub-filters__entry">
-                <label htmlFor="players-input">{translate('Jogadores', 'Players')}</label>
+                <label htmlFor="players-input">{translate({ pt: 'Jogadores', en: 'Players' })}</label>
                 <InputNumber
                   id="players-input"
                   min={0}
@@ -264,13 +264,13 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
                   className="hub-filters__input-number"
                   value={filters.players || undefined}
                   onChange={(value) => updateFilter('players', value ?? 0)}
-                  placeholder={translate('Todos', 'All')}
+                  placeholder={translate({ pt: 'Todos', en: 'All' })}
                 />
               </div>
 
               {filters.players > 0 && (
                 <div className="hub-filters__entry">
-                  <label htmlFor="playing-mode">{translate('Modo', 'Mode')}</label>
+                  <label htmlFor="playing-mode">{translate({ pt: 'Modo', en: 'Mode' })}</label>
                   <Select
                     id="playing-mode"
                     value={getCurrentPlayingValue()}
@@ -283,7 +283,7 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
               )}
 
               <div className="hub-filters__entry">
-                <label htmlFor="duration">{translate('Duração (min)', 'Duration (min)')}</label>
+                <label htmlFor="duration">{translate({ pt: 'Duração (min)', en: 'Duration (min)' })}</label>
                 <InputNumber
                   id="duration"
                   min={0}
@@ -292,14 +292,14 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
                   className="hub-filters__input-number"
                   value={filters.duration || undefined}
                   onChange={(value) => updateFilter('duration', value ?? 0)}
-                  placeholder={translate('Qualquer', 'Any')}
+                  placeholder={translate({ pt: 'Qualquer', en: 'Any' })}
                 />
               </div>
             </Space>
           </Collapse.Panel>
 
           <Collapse.Panel
-            header={translate('Filtros de Jogo', 'Game Filters')}
+            header={translate({ pt: 'Filtros de Jogo', en: 'Game Filters' })}
             key="game-filters"
           >
             <Space
@@ -309,7 +309,7 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
               style={{ width: '100%' }}
             >
               <div className="hub-filters__entry">
-                <label htmlFor="tags">{translate('Tags', 'Tags')}</label>
+                <label htmlFor="tags">{translate({ pt: 'Tags', en: 'Tags' })}</label>
                 <TagTreeSelect
                   value={filters.tags}
                   onTreeSelectChange={(tags: string[]) => updateFilter('tags', tags)}
@@ -317,7 +317,9 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
               </div>
 
               <div className="hub-filters__entry">
-                <label htmlFor="release-status">{translate('Status de Lançamento', 'Release Status')}</label>
+                <label htmlFor="release-status">
+                  {translate({ pt: 'Status de Lançamento', en: 'Release Status' })}
+                </label>
                 <Select
                   id="release-status"
                   mode="multiple"
@@ -326,13 +328,13 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
                   value={filters.releaseStatus}
                   onChange={(value) => updateFilter('releaseStatus', value)}
                   options={releaseStatusOptions}
-                  placeholder={translate('Todos os status', 'All statuses')}
+                  placeholder={translate({ pt: 'Todos os status', en: 'All statuses' })}
                   allowClear
                 />
               </div>
 
               <div className="hub-filters__entry">
-                <label htmlFor="available">{translate('Disponibilidade', 'Availability')}</label>
+                <label htmlFor="available">{translate({ pt: 'Disponibilidade', en: 'Availability' })}</label>
                 <Select
                   id="available"
                   style={{ minWidth: 200 }}
@@ -340,7 +342,7 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
                   value={filters.available}
                   onChange={(value) => updateFilter('available', value)}
                   options={availableOptions}
-                  placeholder={translate('Todos', 'All')}
+                  placeholder={translate({ pt: 'Todos', en: 'All' })}
                 />
               </div>
             </Space>
@@ -363,7 +365,7 @@ type TagTreeSelectProps = {
 };
 
 function TagTreeSelect({ value, onTreeSelectChange }: TagTreeSelectProps) {
-  const { dualTranslate, translate } = useLanguage();
+  const { translate } = useLanguage();
 
   const onChange = (tags: string[]) => {
     onTreeSelectChange(tags);
@@ -383,7 +385,7 @@ function TagTreeSelect({ value, onTreeSelectChange }: TagTreeSelectProps) {
 
       const children = acc[tagObj.group].children ?? [];
       children.push({
-        title: capitalize(dualTranslate(tagObj.label)),
+        title: capitalize(translate(tagObj.label)),
         key: `${tagObj.group}${SEPARATOR}${tagKey}`,
       });
       acc[tagObj.group].children = children;
@@ -392,7 +394,7 @@ function TagTreeSelect({ value, onTreeSelectChange }: TagTreeSelectProps) {
     }, {});
 
     return Object.values(groupedTags);
-  }, [dualTranslate]);
+  }, [translate]);
 
   return (
     <TreeSelect
@@ -401,7 +403,7 @@ function TagTreeSelect({ value, onTreeSelectChange }: TagTreeSelectProps) {
       onChange={onChange}
       treeCheckable={true}
       showCheckedStrategy={SHOW_PARENT}
-      placeholder={translate('Selecione tags de jogo', 'Select game tags')}
+      placeholder={translate({ pt: 'Selecione tags de jogo', en: 'Select game tags' })}
       size="small"
       style={{
         width: '100%',

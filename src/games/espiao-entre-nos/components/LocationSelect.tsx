@@ -31,7 +31,7 @@ export function LocationSelect({ locations, onSend }: LocationSelectProps) {
     <Space className="e-select-container e-select-container--locations">
       <Select
         onChange={onSelectLocation}
-        placeholder={translate('Chute um local', 'Guess location')}
+        placeholder={translate({ pt: 'Chute um local', en: 'Guess location' })}
         options={locations.map((location) => ({
           key: `select-${location.id}`,
           value: location.id,

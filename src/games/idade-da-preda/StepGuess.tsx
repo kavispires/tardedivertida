@@ -51,7 +51,7 @@ export function StepGuess({
   newNames,
   onSubmitGuesses,
 }: StepGuessProps) {
-  const { dualTranslate } = useLanguage();
+  const { translate } = useLanguage();
 
   const itemWidth = useSpriteWidth();
   const { votes, activateItem, isVotingComplete, isItemActive } = useVotingMatch(
@@ -172,7 +172,7 @@ export function StepGuess({
               <ItemCard
                 itemId={item.id}
                 width={itemWidth}
-                title={dualTranslate(item.name)}
+                title={translate(item.name)}
               />
             </TransparentButton>
           ))}

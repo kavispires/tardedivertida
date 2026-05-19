@@ -50,7 +50,9 @@ export function PhaseContainer({
 
   if (!phase) {
     return (
-      <PageError description={translate('Estado do jogo não está correto', 'Game state is not correct')} />
+      <PageError
+        description={translate({ pt: 'Estado do jogo não está correto', en: 'Game state is not correct' })}
+      />
     );
   }
 

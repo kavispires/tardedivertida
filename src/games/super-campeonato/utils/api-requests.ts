@@ -18,11 +18,11 @@ export function useOnSubmitChallengeAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-challenge',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
-    successMessage: translate('Desafio enviado com sucesso!', 'Challenge send successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar o desafio',
-      'Oops, the application failed to submit the challenge',
-    ),
+    successMessage: translate({ pt: 'Desafio enviado com sucesso!', en: 'Challenge send successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar o desafio',
+      en: 'Oops, the application failed to submit the challenge',
+    }),
   });
 
   return (payload: SubmitChallengePayload) => {
@@ -40,11 +40,11 @@ export function useOnSubmitContenderAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-contender',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Competidor enviado com sucesso!', 'Contender send successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar o competidor',
-      'Oops, the application failed to submit the contender',
-    ),
+    successMessage: translate({ pt: 'Competidor enviado com sucesso!', en: 'Contender send successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar o competidor',
+      en: 'Oops, the application failed to submit the contender',
+    }),
   });
 
   return (payload: SubmitContendersPayload) => {
@@ -62,11 +62,11 @@ export function useOnSubmitBetsAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-bets',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Apostas enviadas com sucesso!', 'Bets send successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar apostas',
-      'Oops, the application failed to submit bets',
-    ),
+    successMessage: translate({ pt: 'Apostas enviadas com sucesso!', en: 'Bets send successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar apostas',
+      en: 'Oops, the application failed to submit bets',
+    }),
   });
 
   return (payload: SubmitBetsPayload) => {
@@ -84,11 +84,11 @@ export function useOnSubmitVotesAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-votes',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Votos enviados com sucesso!', 'Votes send successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar votos',
-      'Oops, the application failed to submit votes',
-    ),
+    successMessage: translate({ pt: 'Votos enviados com sucesso!', en: 'Votes send successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar votos',
+      en: 'Oops, the application failed to submit votes',
+    }),
   });
 
   return (payload: SubmitBattleVotesPayload) => {

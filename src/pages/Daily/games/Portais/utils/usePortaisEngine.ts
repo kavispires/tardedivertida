@@ -74,14 +74,17 @@ export function usePortaisEngine(data: DailyPortaisEntry, initialState: GameStat
       if (isCorrect) {
         copy.currentCorridorIndex += 1;
         message.success({
-          content: translate(`Você acertou: ${passcode.toUpperCase()}!`, `Correct: ${passcode}`),
+          content: translate({ pt: `Você acertou: ${passcode.toUpperCase()}!`, en: `Correct: ${passcode}` }),
           duration: 3,
         });
         playSFX(copy.currentCorridorIndex === data.corridors.length ? 'win' : 'sparks');
       } else {
         copy.hearts -= 1;
         message.warning({
-          content: translate('Palavra-chave incorreta. Tente novamente!', 'Incorrect passcode. Try again!'),
+          content: translate({
+            pt: 'Palavra-chave incorreta. Tente novamente!',
+            en: 'Incorrect passcode. Try again!',
+          }),
           duration: 3,
         });
         playSFX(copy.hearts <= 0 ? 'lose' : 'wrong');

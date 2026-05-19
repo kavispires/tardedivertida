@@ -37,10 +37,10 @@ export function usePirralhosEngine(data: DailyPirralhosEntry, initialState: Game
     if (state.guesses.includes(kidId)) {
       playSFX('wrong');
       message.warning({
-        content: translate(
-          'Você já acusou esse pirralho e não foi ele(a)!',
-          'You have already accused this kid and it was not them!',
-        ),
+        content: translate({
+          pt: 'Você já acusou esse pirralho e não foi ele(a)!',
+          en: 'You have already accused this kid and it was not them!',
+        }),
         duration: 5,
       });
 
@@ -52,7 +52,10 @@ export function usePirralhosEngine(data: DailyPirralhosEntry, initialState: Game
 
     if (!isCulprit) {
       message.warning({
-        content: translate('Esse pirralho não é um dos culpados!', 'This kid is not one of the culprits!'),
+        content: translate({
+          pt: 'Esse pirralho não é um dos culpados!',
+          en: 'This kid is not one of the culprits!',
+        }),
         duration: 5,
       });
 

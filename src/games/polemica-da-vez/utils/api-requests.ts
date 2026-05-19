@@ -13,11 +13,11 @@ export function useOnSubmitTweetAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-tweet',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(2),
-    successMessage: translate('Assunto enviada com sucesso!', 'Tweet send successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu assunto',
-      'Oops, the application failed to submit the tweet',
-    ),
+    successMessage: translate({ pt: 'Assunto enviada com sucesso!', en: 'Tweet send successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seu assunto',
+      en: 'Oops, the application failed to submit the tweet',
+    }),
   });
 
   return (payload: SubmitTweetPayload) => {
@@ -35,11 +35,11 @@ export function useOnSubmitReactionAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-reaction',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Reação enviada com sucesso!', 'Reaction send successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua reação',
-      'Oops, the application failed to submit your reaction',
-    ),
+    successMessage: translate({ pt: 'Reação enviada com sucesso!', en: 'Reaction send successfully!' }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua reação',
+      en: 'Oops, the application failed to submit your reaction',
+    }),
   });
 
   return (payload: SubmitReactionPayload) => {

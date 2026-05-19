@@ -50,7 +50,7 @@ export const TrackMegamixThisThat = ({ track, onSubmitAnswer, user }: TrackProps
             disabled={isLoading || user.ready}
           >
             <Card
-              header={translate('Isso', 'This')}
+              header={translate({ pt: 'Isso', en: 'This' })}
               color="red"
             >
               {track.data.card.options[0]}
@@ -62,7 +62,7 @@ export const TrackMegamixThisThat = ({ track, onSubmitAnswer, user }: TrackProps
             disabled={isLoading || user.ready}
           >
             <Card
-              header={translate('Aquilo', 'That')}
+              header={translate({ pt: 'Aquilo', en: 'That' })}
               color="blue"
             >
               {track.data.card.options[1]}

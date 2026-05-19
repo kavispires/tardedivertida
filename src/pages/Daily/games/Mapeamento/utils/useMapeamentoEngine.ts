@@ -48,10 +48,10 @@ export function useMapeamentoEngine(data: DailyMapeamentoEntry, initialState: Ga
       if (!locationLettersSet.has(letter)) {
         playSFX('wrong');
         message.warning({
-          content: translate(
-            'Sua tentativa deve incluir todas as letras já reveladas nos fragmentos!',
-            'Your attempt must include all letters already revealed in the fragments!',
-          ),
+          content: translate({
+            pt: 'Sua tentativa deve incluir todas as letras já reveladas nos fragmentos!',
+            en: 'Your attempt must include all letters already revealed in the fragments!',
+          }),
           duration: 5,
         });
 

@@ -118,7 +118,7 @@ export function StepGuessing({
 
       <SpaceContainer>
         <Input
-          placeholder={translate('Digite aqui seu chute', 'Type your guess here')}
+          placeholder={translate({ pt: 'Digite aqui seu chute', en: 'Type your guess here' })}
           onChange={(e) => setGuess(e.target.value)}
           onPressEnter={onPressEnter}
           size="large"

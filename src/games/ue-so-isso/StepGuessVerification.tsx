@@ -54,8 +54,11 @@ export function StepGuessVerification({
     if (isUserTheController && !isLoading) {
       message.info(
         messageContent(
-          translate('Você controla!', 'You control!'),
-          translate('Selecione se o adivinhador acertou ou não', 'Select if the guesser got it right or not'),
+          translate({ pt: 'Você controla!', en: 'You control!' }),
+          translate({
+            pt: 'Selecione se o adivinhador acertou ou não',
+            en: 'Select if the guesser got it right or not',
+          }),
           controller.id,
           3,
         ),

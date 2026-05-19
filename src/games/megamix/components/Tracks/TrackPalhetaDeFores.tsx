@@ -47,7 +47,7 @@ export const TrackPalhetaDeCores = ({ track, onSubmitAnswer, user }: TrackProps)
         </RuleInstruction>
 
         <Card
-          header={translate('Dica', 'Clue')}
+          header={translate({ pt: 'Dica', en: 'Clue' })}
           color="red"
         >
           <CharacterCard

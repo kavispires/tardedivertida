@@ -59,7 +59,9 @@ export function BundleResults({ list }: BundleResultsProps) {
     if (challengeQuery.data) {
       copyToClipboard(prepareResults(selected, challengeQuery.data, language));
       await wait(250); // Wait for the copy to complete
-      message.info(translate('Jogos copiados para a área de transferência!', 'Games copied to clipboard!'));
+      message.info(
+        translate({ pt: 'Jogos copiados para a área de transferência!', en: 'Games copied to clipboard!' }),
+      );
     }
   };
 

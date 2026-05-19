@@ -47,7 +47,7 @@ export function HouseCard({
   active = false,
   preview,
 }: HouseCardProps) {
-  const { dualTranslate } = useLanguage();
+  const { translate } = useLanguage();
 
   const baseClass = 'n-house-card';
   const cardBaseClass = 'n-house-card__card';
@@ -79,7 +79,7 @@ export function HouseCard({
         preview={preview}
       />
 
-      <h3 className={`${baseClass}__name`}>{dualTranslate(card.name)}</h3>
+      <h3 className={`${baseClass}__name`}>{translate(card.name)}</h3>
 
       {active && (
         <span

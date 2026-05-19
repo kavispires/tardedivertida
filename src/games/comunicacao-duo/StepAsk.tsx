@@ -57,7 +57,7 @@ export function StepAsk({
   const { isLoading } = useLoading();
   const [sentence, setSentence] = useState<string>('');
   const [clueQuantity, setQuantity] = useState<number>(1);
-  const { dualTranslate } = useLanguage();
+  const { translate } = useLanguage();
 
   const onSubmit = () => {
     onSubmitRequest({ clue: sentence, clueQuantity });
@@ -196,7 +196,7 @@ export function StepAsk({
               size="large"
               value={sentence}
               onChange={(e) => setSentence(e.target.value)}
-              placeholder={dualTranslate({
+              placeholder={translate({
                 pt: 'Digite seu pedido aqui',
                 en: 'Type your request here',
               })}

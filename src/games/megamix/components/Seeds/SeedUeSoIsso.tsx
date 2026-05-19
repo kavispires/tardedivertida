@@ -87,7 +87,7 @@ export function SeedUeSoIsso({ seed, updateData }: SeedUeSoIssoProps) {
         <Input
           onChange={(e) => setValue(e.target.value)}
           size="large"
-          placeholder={translate('Escreva aqui', 'Write here')}
+          placeholder={translate({ pt: 'Escreva aqui', en: 'Write here' })}
           onPressEnter={() => updateData({ singleClue: value }, true)}
         />
 
