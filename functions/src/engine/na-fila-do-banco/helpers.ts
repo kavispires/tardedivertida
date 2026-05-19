@@ -59,7 +59,8 @@ export const buildDeck = (players: Players): ClientCard[] => {
 
   utils.players.getListOfPlayers(players).forEach((player) => {
     decksCount++;
-    const color = CARD_COLORS[decksCount];
+    let color = CARD_COLORS[decksCount];
+    player.deckColors = [color];
     player.deckColor = color;
     player.onlineTriggerCount = 0;
 
@@ -71,10 +72,14 @@ export const buildDeck = (players: Players): ClientCard[] => {
         color,
         imageId: `nfdb-${color}-${index}`,
       });
+    });
 
-      if (playerCount === 2) {
+    if (playerCount === 2) {
+      decksCount++;
+      color = CARD_COLORS[decksCount];
+      player.deckColors.push(color);
+      orderedCharacterTypes.forEach((type, index) => {
         // For 2 players, add an extra card of each type for each player to make the game more dynamic
-        decksCount++;
         deck.push({
           id: `${player.id}-${type}-${color}-2`,
           type,
@@ -82,8 +87,8 @@ export const buildDeck = (players: Players): ClientCard[] => {
           color,
           imageId: `nfdb-${color}-${index}`,
         });
-      }
-    });
+      });
+    }
   });
 
   // Add additional deck of neutral color

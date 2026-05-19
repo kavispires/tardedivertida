@@ -11,7 +11,7 @@ export const mockPlay = (
   drawDeck: UID[],
 ): SubmitPlayCardPayload => {
   const hand: UID[] = user.hand;
-  const deckColor: string = user.deckColor;
+  const deckColors: string[] = user.deckColors;
 
   // Helper: Check if a card can trigger a cut-in effect in a teller's queue
   const canTriggerCutIn = (cardId: UID, queue: UID[]): boolean => {
@@ -125,7 +125,7 @@ export const mockPlay = (
   if (drawDeck.length > 0) {
     const ownColorCard = drawDeck.find((cardId) => {
       const card = deckDict[cardId];
-      return card?.color === deckColor;
+      return deckColors.includes(card?.color);
     });
 
     const neutralCard = drawDeck.find((cardId) => {

@@ -44,7 +44,9 @@ export function MyHand({
   const playersColors = useMemo(() => {
     return orderBy(
       Object.values(players).filter((player) => {
-        return player.id !== user.id && player.deckColor !== user.deckColor;
+        return (
+          player.id !== user.id && !player.deckColors.some((color: string) => user.deckColors.includes(color))
+        );
       }),
       ['name'],
       ['asc'],
@@ -68,7 +70,13 @@ export function MyHand({
           content={
             <Flex vertical>
               <div>
-                <DeckColorHighlight color={user?.deckColor} /> ={' '}
+                {user?.deckColors.map((color: string) => (
+                  <DeckColorHighlight
+                    key={color}
+                    color={color}
+                  />
+                ))}{' '}
+                ={' '}
                 <Translate
                   en="This is your deck color. You only score if these colors of cards make it to the teller"
                   pt="Esta é a cor do seu baralho. Você só pontua se estas cores de cartas chegarem ao caixa"
@@ -76,7 +84,13 @@ export function MyHand({
               </div>
               {playersColors.map((player) => (
                 <div key={player.id}>
-                  <DeckColorHighlight color={player.deckColor} /> ={' '}
+                  {player.deckColors.map((color: string) => (
+                    <DeckColorHighlight
+                      key={color}
+                      color={color}
+                    />
+                  ))}{' '}
+                  ={' '}
                   <PlayerAvatarName
                     player={player}
                     size="small"
@@ -93,9 +107,14 @@ export function MyHand({
             </Flex>
           }
         >
-          <div>
-            <DeckColorHighlight color={user?.deckColor} />
-          </div>
+          <Flex gap={3}>
+            {user?.deckColors.map((color: string) => (
+              <DeckColorHighlight
+                key={color}
+                color={color}
+              />
+            ))}
+          </Flex>
         </Popover>
         <Flex
           className="full-width"
@@ -135,6 +154,7 @@ export function MyHand({
                     cardId={cardId}
                     deckDict={deckDict}
                     cardWidth={cardWidth}
+                    preview={false}
                   />
                 </div>
               </Tooltip>
