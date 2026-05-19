@@ -5,7 +5,7 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
-import { ChoiceIcon } from 'icons/ChoiceIcon';
+import { QuestionIcon } from 'icons/QuestionIcon';
 // Components
 import { Translate } from 'components/language/Translate';
 import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
@@ -15,21 +15,22 @@ import { StepSwitcher } from 'components/steps/StepSwitcher';
 import { Instruction } from 'components/text/Instruction';
 import { ViewIf } from 'components/views/ViewIf';
 // Internal
-import { useOnSubmitPromptAPIRequest, useOnSubmitTargetAPIRequest } from './utils/api-requests';
+import { useOnSubmitPromptAPIRequest, useOnTriggerGuessingAPIRequest } from './utils/api-requests';
 import { TA_NA_CARA_PHASES } from './utils/constants';
+import type { PhasePromptState } from './utils/types';
 import { StepSelectPrompt } from './StepSelectPrompt';
 import { StepWaitingForPrompt } from './StepWaitingForPrompt';
 
-export function PhasePrompt({ state, players, user }: PhaseProps) {
+export function PhasePrompt({ state, players, user }: PhaseProps<PhasePromptState>) {
   const { step, setStep } = useStep();
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
   const onSubmitPrompt = useOnSubmitPromptAPIRequest(setStep);
-  const onSubmitTarget = useOnSubmitTargetAPIRequest(setStep);
+  const onTriggerGuessing = useOnTriggerGuessingAPIRequest(setStep);
 
   const announcement = (
     <PhaseAnnouncement
-      icon={<ChoiceIcon />}
+      icon={<QuestionIcon />}
       title={
         <Translate
           pt="Pergunta"
@@ -80,13 +81,12 @@ export function PhasePrompt({ state, players, user }: PhaseProps) {
               announcement={announcement}
               players={players}
               user={user}
-              turnOrder={state.turnOrder}
-              charactersDict={state.charactersDict}
-              charactersIds={state.charactersIds}
-              questionsDict={state.questionsDict}
-              onSubmitPrompt={onSubmitPrompt}
-              onSubmitTarget={onSubmitTarget}
               activePlayerId={state.activePlayerId}
+              turnOrder={state.turnOrder}
+              characters={state.characters}
+              questionsHistory={state.questionsHistory}
+              onSubmitPrompt={onSubmitPrompt}
+              onTriggerGuessing={onTriggerGuessing}
             />
           </ViewIf>
           <ViewIf condition={!isUserTheActivePlayer}>
@@ -95,11 +95,9 @@ export function PhasePrompt({ state, players, user }: PhaseProps) {
               players={players}
               user={user}
               turnOrder={state.turnOrder}
-              charactersDict={state.charactersDict}
-              charactersIds={state.charactersIds}
-              questionsDict={state.questionsDict}
+              characters={state.characters}
+              questionsHistory={state.questionsHistory}
               activePlayer={activePlayer}
-              activePlayerId={state.activePlayerId}
             />
           </ViewIf>
         </Fragment>

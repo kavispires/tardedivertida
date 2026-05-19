@@ -3,11 +3,12 @@ import type { TestimonyQuestionCard } from '../../types/tdr';
 import type { ResourceData, TaNaCaraOptions } from './types';
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
-import { PLAYER_COUNTS, QUESTIONS_PER_PLAYER } from './constants';
+import { CHARACTER_COUNT, MAX_ROUNDS, PLAYER_COUNTS } from './constants';
 // Helpers
 import utils from '../../utils';
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
+import { sampleSize } from 'lodash';
 
 /**
  * Get question resource based on the game's language
@@ -27,7 +28,9 @@ export const getResourceData = async (language: string, options: TaNaCaraOptions
   const allSuspects = await utils.tdr.getSuspects({
     styleVariant: options.styleVariant,
     cleanup: true,
-    decks: ['adult'],
+    decks: options.everyoneDeck ? ['any'] : ['adult'],
+    quantity: CHARACTER_COUNT,
+    sortBy: `name.${language}`,
   });
 
   // Filter out used cards
@@ -35,17 +38,22 @@ export const getResourceData = async (language: string, options: TaNaCaraOptions
     options.nsfw ? card : !card.nsfw,
   );
 
+  const questionsQuantity = PLAYER_COUNTS.MAX * MAX_ROUNDS;
+
   // If not the minimum cards needed, reset and use all
-  if (Object.keys(availableCards).length < QUESTIONS_PER_PLAYER * PLAYER_COUNTS.MAX) {
+  if (Object.keys(availableCards).length < questionsQuantity) {
     await utils.firestore.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS);
     return {
-      allCards: options.nsfw ? Object.values(allCards) : Object.values(allCards).filter((card) => !card.nsfw),
-      allSuspects: Object.values(allSuspects),
+      questions: sampleSize(
+        options.nsfw ? Object.values(allCards) : Object.values(allCards).filter((card) => !card.nsfw),
+        questionsQuantity,
+      ),
+      characters: allSuspects,
     };
   }
 
   return {
-    allCards: availableCards,
-    allSuspects,
+    questions: sampleSize(availableCards, questionsQuantity),
+    characters: allSuspects,
   };
 };

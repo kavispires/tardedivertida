@@ -2,6 +2,7 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { ChatIcon } from 'icons/ChatIcon';
 // Components
@@ -12,10 +13,12 @@ import { StepSwitcher } from 'components/steps/StepSwitcher';
 // Internal
 import { useOnSubmitAnswerAPIRequest } from './utils/api-requests';
 import { TA_NA_CARA_PHASES } from './utils/constants';
+import type { PhaseAnsweringState } from './utils/types';
 import { StepAnswerTheQuestion } from './StepAnswerTheQuestion';
 
-export function PhaseAnswer({ state, players, user }: PhaseProps) {
+export function PhaseAnswer({ state, players, user }: PhaseProps<PhaseAnsweringState>) {
   const { step } = useStep();
+  const [activePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
   const onSubmitAnswer = useOnSubmitAnswerAPIRequest();
 
@@ -48,13 +51,12 @@ export function PhaseAnswer({ state, players, user }: PhaseProps) {
           announcement={announcement}
           players={players}
           user={user}
+          activePlayer={activePlayer}
           turnOrder={state.turnOrder}
-          charactersDict={state.charactersDict}
-          charactersIds={state.charactersIds}
-          questionId={state.currentQuestionId}
-          questionsDict={state.questionsDict}
+          characters={state.characters}
+          questionsHistory={state.questionsHistory}
           onSubmitAnswer={onSubmitAnswer}
-          activePlayerId={state.activePlayerId}
+          currentQuestion={state.currentQuestion}
         />
       </StepSwitcher>
     </PhaseContainer>

@@ -1,53 +1,58 @@
+import { useMemo, useState } from 'react';
+// Ant Design Resources
+import { Select } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
+import type { SuspectCard, TestimonyQuestionCard } from 'types/tdr';
 // Hooks
-import { useMock } from 'hooks/useMock';
-// Utils
-import { pluralize } from 'utils/helpers';
+import { useCacheV2 } from 'hooks/useCacheV2';
 // Components
+import { SendButton } from 'components/buttons/SendButton';
+import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { Step, type StepProps } from 'components/steps/Step';
-import { Instruction } from 'components/text/Instruction';
+import { RuleInstruction } from 'components/text/RuleInstruction';
 import { StepTitle } from 'components/text/StepTitle';
 // Internal
-import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
-import { mockGuess } from './utils/mock';
+import type { SubmitGuessPayload } from './utils/types';
 import { CharactersBoard } from './components/CharactersBoard';
-import { PlayerBoard } from './components/PlayersBoards';
+import { QuestionHistory } from './components/QuestionHistory';
 
 type StepGuessPlayerProps = {
   players: GamePlayers;
   user: GamePlayer;
   turnOrder: TurnOrder;
-  charactersIds: UID[];
-  charactersDict: CharactersDictionary;
-  questionsDict: QuestionsDictionary;
-  onSubmitGuess: GenericFunction;
-  targetedPlayer: GamePlayer;
-  activePlayerId: UID;
-  points: number;
+  characters: SuspectCard[];
+  questionsHistory: TestimonyQuestionCard[];
+  onSubmitGuess: (payload: SubmitGuessPayload) => void;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepGuessPlayer({
   players,
   user,
   announcement,
-  turnOrder,
-  charactersDict,
-  charactersIds,
-  targetedPlayer,
-  questionsDict,
+  characters,
+  questionsHistory,
   onSubmitGuess,
-  activePlayerId,
-  points,
 }: StepGuessPlayerProps) {
-  useMock(() => {
-    onSubmitGuess({ characterId: mockGuess(charactersDict, user, targetedPlayer.id) });
+  const [guess, setGuess] = useState<UID | null>(null);
+  const { cache } = useCacheV2<{ eliminated: Dictionary<boolean> }>({
+    eliminated: {},
   });
+
+  const nonEliminatedCharacterOptions = useMemo(() => {
+    return characters
+      .filter((character) => !cache.eliminated[character.id] && character.id !== user.secretCharacterId)
+      .map((character) => ({
+        label: <DualTranslate>{character.name}</DualTranslate>,
+        value: character.id,
+      }));
+  }, [characters, cache.eliminated, user.secretCharacterId]);
+
+  // useMock(() => {
+  //   onSubmitGuess({ characterId: mockGuess(charactersDict, user, targetedPlayer.id) });
+  // });
 
   return (
     <Step
@@ -61,53 +66,50 @@ export function StepGuessPlayer({
         />
       </StepTitle>
 
-      <Instruction contained>
+      <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Analise as respostas e selecione a pessoa que você acha que é{' '}
-              <PlayerAvatarName player={targetedPlayer} />. Se você acertar, você ganha{' '}
-              <PointsHighlight>
-                {points} {pluralize(points, 'ponto')}
-              </PointsHighlight>
-              . Clique na foto para votar.
-            </>
-          }
-          en={
-            <>
-              Analyze the answer and select the character you think{' '}
-              <PlayerAvatarName player={targetedPlayer} /> is. If you're correct you get{' '}
-              <PointsHighlight>
-                {points} {pluralize(points, 'point')}
-              </PointsHighlight>
-              . Click on the picture to vote.
-            </>
-          }
+          pt={<>Analise as respostas e selecione a pessoa que você acha que seu oponente é.</>}
+          en={<>Analyze the answers and select who you think your opponent is.</>}
         />
-      </Instruction>
+      </RuleInstruction>
 
       <SpaceContainer>
-        <PlayerBoard
-          player={targetedPlayer}
-          cardWidth={100}
-          questionsDict={questionsDict}
-          history={user.history?.[targetedPlayer.id]}
+        <Select
+          size="large"
+          options={nonEliminatedCharacterOptions}
+          style={{ minWidth: 256 }}
+          onChange={(value) => setGuess(value)}
+          placeholder={
+            <Translate
+              pt="Selecione um personagem"
+              en="Select a character"
+            />
+          }
         />
+
+        <SendButton
+          size="large"
+          disabled={!guess}
+          onClick={() => onSubmitGuess({ characterId: guess ?? '' })}
+        >
+          <Translate
+            pt="Enviar palpite"
+            en="Submit guess"
+          />
+        </SendButton>
       </SpaceContainer>
 
-      <CharactersBoard
-        charactersDict={charactersDict}
-        charactersIds={charactersIds}
-        userCharacterId={user.characterId}
-        onCardClick={onSubmitGuess}
-        historyEntry={user.history?.[targetedPlayer.id]}
-      />
-
-      <PlayersTurnOrder
-        players={players}
-        order={turnOrder}
-        activePlayerId={activePlayerId}
-      />
+      <SpaceContainer>
+        <CharactersBoard
+          characters={characters}
+          players={players}
+          user={user}
+        />
+        <QuestionHistory
+          players={players}
+          questionsHistory={questionsHistory}
+        />
+      </SpaceContainer>
     </Step>
   );
 }

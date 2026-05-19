@@ -1,18 +1,12 @@
 // Constants
-import {
-  BASE_POINTS,
-  MINIMUM_POINTS,
-  MINIMUM_SUSPECTS,
-  QUESTIONS_PER_PLAYER,
-  TA_NA_CARA_PHASES,
-} from './constants';
+import { MAX_ROUNDS, TA_NA_CARA_PHASES } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
-import { keyBy, sampleSize, shuffle } from 'lodash';
+import { shuffle } from 'lodash';
 // Types
-import type { CharacterFace, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
-import { buildRankingAndOutcome } from './helpers';
+import type { TestimonyQuestionCard } from '../../types/tdr';
 
 /**
  * Setup
@@ -20,68 +14,51 @@ import { buildRankingAndOutcome } from './helpers';
  * @returns
  */
 export const prepareSetupPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   _state: FirebaseStateData,
   players: Players,
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder: turnOrder, playerCount } = utils.turnOrder.create(players);
-
-  // Build characters list
-  const charactersCount = Math.max(playerCount * 2, MINIMUM_SUSPECTS);
-
-  const selectedCharacters: CharacterFace[] = sampleSize(additionalData.allSuspects, charactersCount).map(
-    (character) => ({
-      ...character,
-      revealed: false,
-    }),
-  );
-
-  const charactersDict = keyBy(selectedCharacters, 'id');
-
-  const gameQuestions = sampleSize(additionalData.allCards, playerCount * QUESTIONS_PER_PLAYER);
-
-  const questionsDict = keyBy(gameQuestions, 'id');
-
-  // Deal questions to players
-  utils.playerHand.dealDeck(players, Object.keys(questionsDict), QUESTIONS_PER_PLAYER, 'questions');
+  const { gameOrder: turnOrder } = utils.turnOrder.create(players);
 
   // Assign a random character to each player
-  let charactersIds = shuffle(Object.keys(charactersDict));
+  const charactersIds = shuffle(additionalData.characters);
+
+  utils.players.addPropertiesToPlayers(players, { answers: [] });
 
   utils.players.getListOfPlayers(players).forEach((player, index) => {
-    const cardId = charactersIds[index];
-    charactersDict[cardId].playerId = player.id;
-    player.characterId = cardId;
+    player.secretCharacterId = charactersIds[index].id;
+    player.suggestedQuestions = [];
+    player.answers = [];
+    player.history = {};
   });
 
-  // Order characters by name for easy UI
-  charactersIds = charactersIds.sort((a, b) => {
-    const nameA = charactersDict[a].name[store.language].toLowerCase();
-    const nameB = charactersDict[b].name[store.language].toLowerCase();
-    return nameA.localeCompare(nameB);
+  const achievements = utils.achievements.setup(players, {
+    true: 0,
+    false: 0,
+    customQuestions: 0,
+    testimonyQuestions: 0,
+    eliminations: [],
   });
-
-  utils.players.addPropertiesToPlayers(players, { answers: [], history: {} });
 
   // Save
   return {
     update: {
       store: {
-        usedCharacters: [],
+        questions: additionalData.questions,
+        achievements,
       },
       state: {
         phase: TA_NA_CARA_PHASES.SETUP,
         players,
         round: {
           current: 0,
-          total: playerCount * QUESTIONS_PER_PLAYER + charactersCount - playerCount,
+          total: MAX_ROUNDS,
         },
         turnOrder,
-        charactersDict,
-        questionsDict,
-        charactersIds,
+        characters: additionalData.characters,
+        questionsHistory: [],
       },
     },
   };
@@ -98,30 +75,49 @@ export const preparePromptPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
+  const questions: TestimonyQuestionCard[] = store.questions;
+  const questionsHistory: TestimonyQuestionCard[] = state.questionsHistory || [];
+
+  const previousPlayerId = state.activePlayerId as UID | null;
+  if (previousPlayerId && state.currentQuestion) {
+    questionsHistory.push(state.currentQuestion);
+
+    utils.players.getListOfPlayers(players).forEach((player) => {
+      player.answers.push(player.currentAnswer || 0);
+    });
+
+    players[previousPlayerId].suggestedQuestions =
+      players[previousPlayerId].suggestedQuestions.filter(
+        (question: TestimonyQuestionCard) => question.id !== state.currentQuestion?.id,
+      ) || [];
+  }
+
+  // Every round a player will be the asker
   const activePlayerId = utils.turnOrder.getNextPlayerId(state.turnOrder, state.activePlayerId);
+  // Add questions until the active player has 2 suggested questions
+  while (players[activePlayerId].suggestedQuestions.length < 2) {
+    const question = questions.pop();
+    if (!question) break;
+    players[activePlayerId].suggestedQuestions.push(question);
+  }
 
   utils.players.readyPlayers(players, activePlayerId);
-
-  // Gather answers if any
-  utils.players.getListOfPlayers(players).forEach((player) => {
-    if (player.currentAnswer !== undefined) {
-      player.answers.unshift({ [store.currentQuestionId]: player.currentAnswer });
-      delete player.currentAnswer;
-    }
-  });
-
-  utils.players.removePropertiesFromPlayers(players, ['guess', 'currentAnswer']);
+  utils.players.removePropertiesFromPlayers(players, ['currentAnswer']);
 
   // Save
   return {
     update: {
+      store: {
+        questions,
+      },
       state: {
         phase: TA_NA_CARA_PHASES.PROMPT,
         players,
         activePlayerId,
         round: activePlayerId === state.turnOrder[0] ? utils.game.increaseRound(state.round) : state.round,
+        questionsHistory,
       },
-      stateCleanup: ['targetId', 'correct', 'ranking', 'result'],
+      stateCleanup: ['currentQuestion'],
     },
   };
 };
@@ -131,14 +127,37 @@ export const preparePromptPhase = async (
  * @param state - The Firebase state data
  * @param players - The players object
  */ export const prepareAnsweringPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  // Mark question as used for the current player
-  players[state.activePlayerId].questions = players[state.activePlayerId].questions.filter(
-    (cardId: UID) => cardId !== store.currentQuestionId,
-  );
+  const round: Round = state.round;
+  const activePlayerId: UID = state.activePlayerId;
+  const activePlayer = players[activePlayerId];
+
+  let currentQuestion: TestimonyQuestionCard | null = null;
+
+  // Get question
+  if (activePlayer.currentQuestion) {
+    currentQuestion = {
+      id: `${activePlayer.id}-${round.current}`,
+      question: activePlayer.currentQuestion,
+      answer: activePlayer.currentQuestion,
+      level: 0,
+    };
+  } else {
+    const question = activePlayer.suggestedQuestions.find(
+      (q: TestimonyQuestionCard) => q.id === activePlayer.currentQuestionId,
+    );
+    activePlayer.suggestedQuestions = activePlayer.suggestedQuestions.filter(
+      (q: TestimonyQuestionCard) => q.id !== activePlayer.currentQuestionId,
+    );
+    if (question) {
+      currentQuestion = question;
+    }
+  }
+
+  utils.players.removePropertiesFromPlayers(players, ['currentQuestion', 'currentAnswer']);
 
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -149,7 +168,7 @@ export const preparePromptPhase = async (
       state: {
         phase: TA_NA_CARA_PHASES.ANSWERING,
         players,
-        currentQuestionId: store.currentQuestionId,
+        currentQuestion,
       },
     },
   };
@@ -160,15 +179,12 @@ export const preparePromptPhase = async (
  * @param state - The Firebase state data
  * @param players - The players object
  */ export const prepareGuessingPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players, store.currentTargetId);
-
-  // Possible points: 15 - number of questions answered) with the minimum of 1 point
-  const possiblePoints = BASE_POINTS - (players?.[store.currentTargetId]?.answers.length ?? 0);
+  utils.players.unReadyPlayers(players);
 
   // Save
   return {
@@ -176,63 +192,8 @@ export const preparePromptPhase = async (
       state: {
         phase: TA_NA_CARA_PHASES.GUESSING,
         players,
-        targetId: store.currentTargetId,
-        points: Math.max(possiblePoints, MINIMUM_POINTS),
       },
-      storeCleanup: ['currentTargetId', 'currentQuestionId'],
-    },
-  };
-};
-
-/**
- * [Reveal Phase] - Reveal secret word and calculate scores
- * @param store - The Firebase store data
- * @param state - The Firebase state data
- * @param players - The players object
- */
-export const prepareRevealPhase = async (
-  store: FirebaseStoreData,
-  state: FirebaseStateData,
-  players: Players,
-): Promise<SaveGamePayload> => {
-  const charactersDict = state.charactersDict;
-  // Calculate scores and correct guesses and assign, build ranking
-  const { correct, ranking, result } = buildRankingAndOutcome(
-    players,
-    state.targetId,
-    state.points,
-    state.charactersDict,
-  );
-
-  // If a player can't have a character, trigger game over
-  const forceLastRound =
-    state.forceLastRound ||
-    utils.players.getListOfPlayers(players).some((player) => player.characterId === null);
-
-  if (result) {
-    const res = result as Partial<Player>;
-    store.usedCharacters.push({
-      id: res.playerId,
-      avatarId: res.avatarId,
-      name: res.name,
-      characterId: res.characterId,
-      answers: res.answers,
-    });
-  }
-
-  // Save
-  return {
-    update: {
-      store,
-      state: {
-        phase: TA_NA_CARA_PHASES.REVEAL,
-        players,
-        correct,
-        ranking,
-        charactersDict,
-        result,
-        round: { ...state.round, forceLastRound },
-      },
+      stateCleanup: ['currentQuestion'],
     },
   };
 };
@@ -250,33 +211,20 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  // Award points if the player have guessed the other correctly
+  const playersList = utils.players.getListOfPlayers(players);
 
-  // Get current characters to the usedCharacters list to make the final gallery
-  utils.players.getListOfPlayers(players).forEach((player) => {
-    if (
-      player.characterId &&
-      store.usedCharacters.some((c: Partial<Player>) => c.characterId !== player.characterId)
-    ) {
-      store.usedCharacters.push({
-        id: player.id,
-        avatarId: player.avatarId,
-        name: player.name,
-        characterId: player.characterId,
-        answers: player.answers,
-      });
+  playersList.forEach((player) => {
+    const opponent = playersList.find((p) => p.id !== player.id);
+
+    if (player.guess === opponent?.secretCharacterId) {
+      player.score += 1;
     }
   });
 
-  utils.players.removePropertiesFromPlayers(players, [
-    'answers',
-    'history',
-    'characterId',
-    'guess',
-    'questions',
-  ]);
+  const winners = utils.players.determineWinners(players);
 
-  const gallery = store.usedCharacters.reverse();
+  utils.players.removePropertiesFromPlayers(players, ['suggestedQuestions', 'currentQuestionId']);
 
   await utils.firestore.markGameAsComplete(gameId);
 
@@ -291,11 +239,6 @@ export const prepareGameOverPhase = async (
   });
 
   return {
-    update: {
-      store: {
-        usedCharacters: gallery,
-      },
-    },
     set: {
       state: {
         phase: TA_NA_CARA_PHASES.GAME_OVER,
@@ -303,8 +246,8 @@ export const prepareGameOverPhase = async (
         round: state.round,
         gameEndedAt: Date.now(),
         winners,
-        gallery,
-        questionsDict: state.questionsDict,
+        characters: state.characters,
+        questionsHistory: state.questionsHistory,
       },
     },
   };

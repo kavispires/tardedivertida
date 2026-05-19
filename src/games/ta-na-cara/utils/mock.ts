@@ -1,9 +1,8 @@
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
+import type { SuspectCard } from 'types/tdr';
 // Utils
 import { getRandomItem } from 'utils/helpers';
-// Internal
-import type { CharactersDictionary } from './types';
 
 export function mockPromptDecision(
   user: GamePlayer,
@@ -30,15 +29,10 @@ export function mockAnswer() {
   return getRandomItem([true, false]);
 }
 
-export function mockGuess(charactersDict: CharactersDictionary, user: GamePlayer, targetId: UID) {
+export function mockGuess(characters: SuspectCard[], user: GamePlayer) {
   return getRandomItem(
-    Object.values(charactersDict)
-      .filter(
-        (character) =>
-          character.id !== user.characterId &&
-          !character.revealed &&
-          !(user.history?.[targetId] ?? []).includes(character.id),
-      )
+    characters
+      .filter((character) => character.id !== user.secretCharacterId)
       .map((character) => character.id),
   );
 }

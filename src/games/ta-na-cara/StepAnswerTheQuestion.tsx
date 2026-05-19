@@ -1,58 +1,48 @@
 // Ant Design Resources
-import { Space } from 'antd';
+import { Flex, Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-// Hooks
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
-// Icons
-import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
-import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
+import type { SuspectCard, TestimonyQuestionCard } from 'types/tdr';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { TransparentButton } from 'components/buttons/TransparentButton';
+import {
+  AnswerKindaNoButton,
+  AnswerMaybeYesButton,
+  AnswerNoButton,
+  AnswerYesButton,
+} from 'components/buttons/AnswerButtons';
 import { Translate } from 'components/language/Translate';
-import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { Step, type StepProps } from 'components/steps/Step';
 import { StepTitle } from 'components/text/StepTitle';
 import { Title } from 'components/text/Title';
-import { ViewIf } from 'components/views/ViewIf';
 // Internal
-import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
-import { mockAnswer } from './utils/mock';
+import type { SubmitAnswerPayload } from './utils/types';
 import { CharactersBoard } from './components/CharactersBoard';
-import { PlayerBoard } from './components/PlayersBoards';
+import { QuestionHistory } from './components/QuestionHistory';
 
 type StepAnswerTheQuestionProps = {
   players: GamePlayers;
   user: GamePlayer;
   turnOrder: TurnOrder;
-  charactersIds: UID[];
-  charactersDict: CharactersDictionary;
-  questionId: UID;
-  questionsDict: QuestionsDictionary;
-  onSubmitAnswer: GenericFunction;
-  activePlayerId: UID;
+  characters: SuspectCard[];
+  questionsHistory: TestimonyQuestionCard[];
+  activePlayer: GamePlayer;
+  onSubmitAnswer: (payload: SubmitAnswerPayload) => void;
+  currentQuestion: TestimonyQuestionCard;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepAnswerTheQuestion({
   players,
   user,
   announcement,
-  turnOrder,
-  charactersDict,
-  charactersIds,
-  questionId,
-  questionsDict,
+  characters,
+  questionsHistory,
   onSubmitAnswer,
-  activePlayerId,
+  currentQuestion,
 }: StepAnswerTheQuestionProps) {
-  const { isLoading } = useLoading();
-
   // Dev Mock
-  useMock(() => {
-    onSubmitAnswer({ answer: mockAnswer() });
-  });
+  // useMock(() => {
+  //   onSubmitAnswer({ answer: mockAnswer() });
+  // });
 
   return (
     <Step
@@ -61,75 +51,52 @@ export function StepAnswerTheQuestion({
     >
       <StepTitle>
         <Translate
-          pt="Responda:"
-          en="Please answer:"
+          pt="Todos, respondam:"
+          en="Everyone, answer:"
         />
       </StepTitle>
 
       <div className="answer-board">
-        <PlayerBoard
-          player={user}
-          cardWidth={100}
-          userCharacterId={user.characterId}
-          questionsDict={questionsDict}
-        />
-        <div className="answer-board__text">
-          <Title
-            size="x-small"
-            level={3}
-            className="answer-board__question"
-          >
-            {questionsDict[questionId].question}
-          </Title>
+        <Title
+          colorScheme="light"
+          size="x-small"
+          level={3}
+          className="answer-board__question"
+        >
+          {currentQuestion.question}
+        </Title>
 
-          <Space>
-            <ViewIf condition={user.currentAnswer === undefined || user.currentAnswer === true}>
-              <TransparentButton
-                className="answer-board__button answer-board__button--yes"
-                disabled={user.ready || isLoading}
-                onClick={() => onSubmitAnswer({ answer: true })}
-              >
-                <IconAvatar
-                  icon={<SpeechBubbleAcceptedIcon />}
-                  size="large"
-                />
-                <Translate
-                  pt="Sim"
-                  en="Yes"
-                />
-              </TransparentButton>
-            </ViewIf>
-            <ViewIf condition={user.currentAnswer === undefined || user.currentAnswer === false}>
-              <TransparentButton
-                className="answer-board__button answer-board__button--no"
-                disabled={user.ready || isLoading}
-                onClick={() => onSubmitAnswer({ answer: false })}
-              >
-                <IconAvatar
-                  icon={<SpeechBubbleDeclinedIcon />}
-                  size="large"
-                />{' '}
-                <Translate
-                  pt="Não"
-                  en="No"
-                />
-              </TransparentButton>
-            </ViewIf>
-          </Space>
-        </div>
+        <Flex gap={6}>
+          <AnswerNoButton
+            onClick={() => user.currentAnswer === undefined && onSubmitAnswer({ answer: -2 })}
+            disabled={user.currentAnswer && user.currentAnswer !== -2}
+          />
+          <AnswerKindaNoButton
+            onClick={() => user.currentAnswer === undefined && onSubmitAnswer({ answer: -1 })}
+            disabled={user.currentAnswer && user.currentAnswer !== -1}
+          />
+          <AnswerMaybeYesButton
+            onClick={() => user.currentAnswer === undefined && onSubmitAnswer({ answer: 1 })}
+            disabled={user.currentAnswer && user.currentAnswer !== 1}
+          />
+          <AnswerYesButton
+            onClick={() => user.currentAnswer === undefined && onSubmitAnswer({ answer: 2 })}
+            disabled={user.currentAnswer && user.currentAnswer !== 2}
+          />
+        </Flex>
       </div>
 
-      <CharactersBoard
-        charactersDict={charactersDict}
-        charactersIds={charactersIds}
-        userCharacterId={user.cardId}
-      />
-
-      <PlayersTurnOrder
-        players={players}
-        order={turnOrder}
-        activePlayerId={activePlayerId}
-      />
+      <Space align="start">
+        <CharactersBoard
+          characters={characters}
+          players={players}
+          user={user}
+        />
+        <QuestionHistory
+          players={players}
+          questionsHistory={questionsHistory}
+        />
+      </Space>
     </Step>
   );
 }

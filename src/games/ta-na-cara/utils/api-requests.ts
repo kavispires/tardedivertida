@@ -4,12 +4,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import type { UseStep } from 'hooks/useStep';
 // Internal
 import { TA_NA_CARA_ACTIONS } from './constants';
-import type {
-  SubmitAnswerPayload,
-  SubmitGuessPayload,
-  SubmitPromptPayload,
-  SubmitTargetPayload,
-} from './types';
+import type { SubmitAnswerPayload, SubmitGuessPayload, SubmitPromptPayload } from './types';
 
 export function useOnSubmitPromptAPIRequest(setStep: UseStep['setStep']) {
   const { translate } = useLanguage();
@@ -35,27 +30,6 @@ export function useOnSubmitPromptAPIRequest(setStep: UseStep['setStep']) {
   };
 }
 
-export function useOnSubmitTargetAPIRequest(setStep: UseStep['setStep']) {
-  const { translate } = useLanguage();
-
-  const request = useGameActionRequest({
-    actionName: 'submit-target',
-    onSuccess: () => setStep(2),
-    successMessage: translate({ pt: 'Alvo submetida com sucesso', en: 'Target submitted successfully' }),
-    errorMessage: translate({
-      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seu alvo',
-      en: 'Oops, the application found an error while trying to submit your target',
-    }),
-  });
-
-  return (payload: SubmitTargetPayload) => {
-    request({
-      action: TA_NA_CARA_ACTIONS.SUBMIT_TARGET,
-      ...payload,
-    });
-  };
-}
-
 export function useOnSubmitAnswerAPIRequest() {
   const { translate } = useLanguage();
 
@@ -72,6 +46,29 @@ export function useOnSubmitAnswerAPIRequest() {
     request({
       action: TA_NA_CARA_ACTIONS.SUBMIT_ANSWER,
       ...payload,
+    });
+  };
+}
+
+export function useOnTriggerGuessingAPIRequest(setStep: UseStep['setStep']) {
+  const { translate } = useLanguage();
+
+  const request = useGameActionRequest({
+    actionName: 'trigger-guessing',
+    onSuccess: () => setStep(2),
+    successMessage: translate({
+      pt: 'Fase de adivinhação submetida com sucesso',
+      en: 'Guessing phase submitted successfully',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar a fase de adivinhação',
+      en: 'Oops, the application found an error while trying to submit the guessing phase',
+    }),
+  });
+
+  return () => {
+    request({
+      action: TA_NA_CARA_ACTIONS.TRIGGER_GUESSING,
     });
   };
 }

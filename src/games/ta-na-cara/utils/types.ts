@@ -1,34 +1,55 @@
 // Types
-import type { SuspectCard } from 'types/tdr';
+import type { Achievement } from 'types/game';
+import type { SuspectCard, TestimonyQuestionCard } from 'types/tdr';
 
 export type SubmitPromptPayload = {
-  questionId: UID;
-};
-
-export type SubmitTargetPayload = {
-  targetId: UID;
+  questionId?: UID;
+  question?: string;
 };
 
 export type SubmitAnswerPayload = {
-  targetId: UID;
+  answer: -2 | -1 | 1 | 2;
 };
 
 export type SubmitGuessPayload = {
-  targetId: UID;
+  characterId: UID;
 };
 
-export type CharacterFace = {
-  revealed: boolean;
-  playerId?: UID;
-} & SuspectCard;
-
-export type Question = {
-  id: UID;
-  question: string;
-  used: boolean;
-  yes: UID[];
+export type PhasePromptState = {
+  turnOrder: TurnOrder;
+  characters: SuspectCard[];
+  questionsHistory: TestimonyQuestionCard[];
+  activePlayerId: UID;
 };
 
-export type CharactersDictionary = Dictionary<CharacterFace>;
-export type QuestionsDictionary = Dictionary<Question>;
-export type GuessHistory = Record<UID, UID[]>;
+export type PhaseAnsweringState = {
+  turnOrder: TurnOrder;
+  characters: SuspectCard[];
+  questionsHistory: TestimonyQuestionCard[];
+  activePlayerId: UID;
+  currentQuestion: TestimonyQuestionCard;
+};
+
+export type PhaseGuessingState = {
+  turnOrder: TurnOrder;
+  characters: SuspectCard[];
+  questionsHistory: TestimonyQuestionCard[];
+  activePlayerId: UID;
+};
+
+export type PhaseGameOverState = {
+  /**
+   * Timestamp when the game ended
+   */
+  gameEndedAt: number;
+  /**
+   * Array of winner player IDs
+   */
+  winners: UID[];
+  /**
+   * List of achievements earned during the game
+   */
+  achievements: Achievement[];
+  characters: SuspectCard[];
+  questionsHistory: TestimonyQuestionCard[];
+};

@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "ta-na-cara",
-  "version": "1.1.110",
-  "release": "deprecated",
+  "version": "2.0.0",
+  "release": "dev",
   "releaseDate": "2023-03-25",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Tá Na Cara",
     "en": "Guess Who What?"
@@ -19,8 +19,9 @@
     "clouds": "face-id-cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "",
-    "colorScheme": "light",
-    "videoBackground": true
+    "colorScheme": "dark",
+    "videoBackground": true,
+    "imageBackground": true
   },
   "summary": {
     "pt": "Você consegue descobrir quem é quem somente com perguntas subjetivas?",
@@ -31,16 +32,16 @@
     "en": ["TBD"]
   },
   "playerCount": {
-    "recommended": [4, 5, 6],
-    "best": 5,
+    "recommended": [2],
+    "best": 2,
     "min": 2,
-    "max": 10
+    "max": 2
   },
   "duration": {
-    "base": 0,
-    "perPlayer": 0
+    "base": 10,
+    "perPlayer": 2
   },
-  "mechanics": ["competitive", "turn-based", "guessing"],
+  "mechanics": ["competitive", "turn-based", "guessing", "writing"],
   "features": [],
   "options": [
     {
@@ -55,6 +56,22 @@
         },
         {
           "label": "Yes",
+          "value": true
+        }
+      ]
+    },
+    {
+      "key": "everyoneDeck",
+      "kind": "switch",
+      "label": "People's deck",
+      "description": "Everyone may include kids, teenagers and even pets",
+      "values": [
+        {
+          "label": "Adults Only",
+          "value": false
+        },
+        {
+          "label": "Everyone",
           "value": true
         }
       ]

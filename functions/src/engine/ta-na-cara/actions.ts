@@ -2,39 +2,73 @@
 import utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
+import type { AnswerValue } from './types';
 
 /**
  * Submits the selected question prompt for the round
  * @param gameName - The name of the game
  * @param gameId - The game session ID
  * @param playerId - The player ID submitting the prompt
+ * @param question - The custom question text entered by the player
  * @param questionId - The selected question ID
  */
-export const handleSubmitPrompt = async (gameName: string, gameId: UID, playerId: UID, questionId: UID) => {
-  return await utils.firestore.updateStore({
+export const handleSubmitPrompt = async (
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  questionId?: UID,
+  question?: string,
+) => {
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
     actionText: 'submit your question',
-    change: { currentQuestionId: questionId },
+    shouldReady: true,
+    change: { currentQuestionId: questionId ?? null, currentQuestion: question ?? null },
     nextPhaseFunction: getNextPhase,
   });
 };
 
 /**
- * Submits the selected target character for questioning
+ * Submits the player's answer to a question about their character
  * @param gameName - The name of the game
  * @param gameId - The game session ID
- * @param playerId - The player ID submitting the target
- * @param targetId - The selected target character ID
+ * @param playerId - The player ID submitting the answer
+ * @param answer - The answer (true/false)
  */
-export const handleSubmitTarget = async (gameName: string, gameId: UID, playerId: UID, targetId: UID) => {
-  return await utils.firestore.updateStore({
+export const handleSubmitAnswer = async (
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  answer: AnswerValue,
+) => {
+  return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
-    actionText: 'submit your target',
-    change: { currentTargetId: targetId },
+    actionText: 'submit your answer',
+    shouldReady: true,
+    change: { currentAnswer: answer },
+    nextPhaseFunction: getNextPhase,
+  });
+};
+
+/**
+ * Submits the player's trigger to move to the guessing phase
+ * @param gameName - The name of the game
+ * @param gameId - The game session ID
+ * @param playerId - The player ID submitting the guess
+ */
+export const handleTriggerGuessing = async (gameName: string, gameId: UID, playerId: UID) => {
+  return await utils.firestore.updateState({
+    gameName,
+    gameId,
+    playerId,
+    actionText: 'trigger guessing phase',
+    change: {
+      triggerGuessing: true,
+    },
     nextPhaseFunction: getNextPhase,
   });
 };
@@ -56,25 +90,6 @@ export const handleSubmitGuess = async (gameName: string, gameId: UID, playerId:
     change: {
       guess: characterId,
     },
-    nextPhaseFunction: getNextPhase,
-  });
-};
-
-/**
- * Submits the player's answer to a question about their character
- * @param gameName - The name of the game
- * @param gameId - The game session ID
- * @param playerId - The player ID submitting the answer
- * @param answer - The answer (true/false)
- */
-export const handleSubmitAnswer = async (gameName: string, gameId: UID, playerId: UID, answer: boolean) => {
-  return await utils.firestore.updatePlayer({
-    gameName,
-    gameId,
-    playerId,
-    actionText: 'submit your answer',
-    shouldReady: true,
-    change: { currentAnswer: answer },
     nextPhaseFunction: getNextPhase,
   });
 };

@@ -14,13 +14,11 @@ import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
 import { Instruction } from 'components/text/Instruction';
-// Internal
-import type { QuestionsDictionary } from '../utils/types';
 
 type PlayerChoicesProps = {
   players: GamePlayers;
   user: GamePlayer;
-  questionsDict: QuestionsDictionary;
+  // questionsDict: QuestionsDictionary;
   onSubmitPrompt: GenericFunction;
   onSubmitTarget: GenericFunction;
 };
@@ -28,7 +26,7 @@ type PlayerChoicesProps = {
 export function PlayerChoices({
   players,
   user,
-  questionsDict,
+  // questionsDict,
   onSubmitPrompt,
   onSubmitTarget,
 }: PlayerChoicesProps) {
@@ -70,7 +68,7 @@ export function PlayerChoices({
                 color={getColorFromLetter(LETTERS[index])}
                 className="questions-container-grid__card"
               >
-                {questionsDict[questionId].question}
+                {/* {questionsDict[questionId].question} */}?
               </Card>
             </TransparentButton>
           );

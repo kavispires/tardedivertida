@@ -1,39 +1,34 @@
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
+import type { SuspectCard, TestimonyQuestionCard } from 'types/tdr';
 // Components
 import { Translate } from 'components/language/Translate';
+import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
 import { Step, type StepProps } from 'components/steps/Step';
-import { Instruction } from 'components/text/Instruction';
 import { StepTitle } from 'components/text/StepTitle';
 // Internal
-import type { CharactersDictionary, QuestionsDictionary } from './utils/types';
 import { CharactersBoard } from './components/CharactersBoard';
-import { PlayersBoards } from './components/PlayersBoards';
-import { UserQuestions } from './components/UserQuestions';
+import { QuestionHistory } from './components/QuestionHistory';
 
 type StepWaitingForPromptProps = {
   players: GamePlayers;
   user: GamePlayer;
   turnOrder: TurnOrder;
-  charactersIds: UID[];
-  charactersDict: CharactersDictionary;
-  questionsDict: QuestionsDictionary;
+  characters: SuspectCard[];
+  questionsHistory: TestimonyQuestionCard[];
   activePlayer: GamePlayer;
-  activePlayerId: UID;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepWaitingForPrompt({
   players,
   user,
   announcement,
-  charactersDict,
-  charactersIds,
-  activePlayer,
   turnOrder,
-  questionsDict,
-  activePlayerId,
+  characters,
+  questionsHistory,
+  activePlayer,
 }: StepWaitingForPromptProps) {
   return (
     <Step
@@ -55,34 +50,22 @@ export function StepWaitingForPrompt({
         />
       </StepTitle>
 
-      <Instruction contained>
-        <Translate
-          pt="Cada jogador é uma das figuras abaixo. Você consegue adivinhar quem é quem?"
-          en="Each player is one of the figures below. Can you guess who is who?"
+      <SpaceContainer>
+        <CharactersBoard
+          characters={characters}
+          players={players}
+          user={user}
         />
-      </Instruction>
-
-      <CharactersBoard
-        charactersDict={charactersDict}
-        charactersIds={charactersIds}
-        userCharacterId={user.cardId}
-      />
-
-      <PlayersBoards
-        players={players}
-        user={user}
-        questionsDict={questionsDict}
-      />
+        <QuestionHistory
+          players={players}
+          questionsHistory={questionsHistory}
+        />
+      </SpaceContainer>
 
       <PlayersTurnOrder
         players={players}
         order={turnOrder}
-        activePlayerId={activePlayerId}
-      />
-
-      <UserQuestions
-        questionsDict={questionsDict}
-        user={user}
+        activePlayerId={activePlayer.id}
       />
     </Step>
   );

@@ -6,17 +6,18 @@ export type TaNaCaraOptions = {
    * Allow nsfw traits
    */
   nsfw?: boolean;
+  /**
+   * Use everyone instead of just adults
+   */
+  everyoneDeck?: boolean;
 } & SuspectCardsOptions;
 
-export interface CharacterFace extends SuspectCard {
-  revealed: boolean;
-  playerId?: UID;
+export interface ResourceData {
+  questions: TestimonyQuestionCard[];
+  characters: SuspectCard[];
 }
 
-export interface ResourceData {
-  allCards: TestimonyQuestionCard[];
-  allSuspects: SuspectCard[];
-}
+export type AnswerValue = -2 | -1 | 1 | 2;
 
 export interface TaNaCaraStore extends DefaultStore<TaNaCaraOptions> {
   [key: string]: any;

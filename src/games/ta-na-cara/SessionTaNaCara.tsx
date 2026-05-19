@@ -11,10 +11,10 @@ import { TA_NA_CARA_PHASES } from './utils/constants';
 import { PhasePrompt } from './PhasePrompt';
 import { PhaseAnswer } from './PhaseAnswering';
 import { PhaseGuessing } from './PhaseGuessing';
-import { PhaseReveal } from './PhaseReveal';
 import { PhaseGameOver } from './PhaseGameOver';
 // Sass
 import './utils/styles.scss';
+import 'assets/fonts/architects-daughter.scss';
 
 function getActiveComponent(state: GameState) {
   switch (state.phase) {
@@ -24,8 +24,6 @@ function getActiveComponent(state: GameState) {
       return PhaseAnswer;
     case TA_NA_CARA_PHASES.GUESSING:
       return PhaseGuessing;
-    case TA_NA_CARA_PHASES.REVEAL:
-      return PhaseReveal;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;
     default:

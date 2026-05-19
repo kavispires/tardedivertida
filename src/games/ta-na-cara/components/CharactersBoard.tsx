@@ -1,35 +1,35 @@
 import clsx from 'clsx';
+import { useMemo } from 'react';
 // Ant Design Resources
-import { Image } from 'antd';
+import { Button, Flex, Image } from 'antd';
+// Types
+import type { GamePlayer, GamePlayers } from 'types/game';
+import type { SuspectCard } from 'types/tdr';
 // Hooks
+import { useCacheV2 } from 'hooks/useCacheV2';
 import { useCardWidth } from 'hooks/useCardWidth';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
+// Utils
+import { getAvatarColorById } from 'utils/helpers';
 // Components
 import { TransparentButton } from 'components/buttons/TransparentButton';
 import { Popconfirm } from 'components/general/Popconfirm';
 import { ImageCard } from 'components/image-cards/ImageCard';
 import { DualTranslate } from 'components/language/DualTranslate';
-// Internal
-import type { CharactersDictionary } from '../utils/types';
+import { Translate } from 'components/language/Translate';
+import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 
 type CharactersBoardProps = {
-  charactersIds: UID[];
-  charactersDict: CharactersDictionary;
-  userCharacterId: UID;
-  onCardClick?: GenericFunction;
-  historyEntry?: UID[];
+  characters: SuspectCard[];
+  players: GamePlayers;
+  user: GamePlayer;
+  revealCharacters?: boolean;
 };
 
-export function CharactersBoard({
-  charactersDict,
-  charactersIds,
-  userCharacterId,
-  onCardClick,
-  historyEntry = [],
-}: CharactersBoardProps) {
-  const { language, translate } = useLanguage();
-  const { isLoading } = useLoading();
+export function CharactersBoard({ characters, players, user, revealCharacters }: CharactersBoardProps) {
+  const { cache, setCache, resetCache } = useCacheV2<{ eliminated: Dictionary<boolean> }>({
+    eliminated: {},
+  });
+
   const cardWidth = useCardWidth(10, {
     gap: 16,
     minWidth: 80,
@@ -37,86 +37,120 @@ export function CharactersBoard({
     margin: 16,
   });
 
-  if (onCardClick) {
-    return (
-      <div
-        className="characters-table"
-        style={{ width: `${cardWidth * 6}px` }}
-      >
-        {charactersIds.map((characterId) => {
-          const character = charactersDict[characterId];
-          const name = character.name[language];
+  const onToggleCharacterElimination = (characterId: UID) => {
+    const isAlreadyEliminated = cache.eliminated[characterId];
+    const newEliminated = { ...cache.eliminated };
+    if (isAlreadyEliminated) {
+      delete newEliminated[characterId];
+    } else {
+      newEliminated[characterId] = true;
+    }
+    setCache((prev) => ({ ...prev, eliminated: newEliminated }));
+  };
 
-          const unavailable = historyEntry.includes(character.id);
-          const revealed = character?.revealed;
-          const ownCharacter = userCharacterId === character.id;
+  const opponentsCharactersIds = useMemo(() => {
+    if (!revealCharacters) return {};
 
-          return (
-            <Popconfirm
-              key={character.id}
-              title={translate({
-                pt: `Tem certeza que quer escolher ${name}?`,
-                en: `Are you sure you want to choose ${name}?`,
-              })}
-              onConfirm={() => onCardClick({ characterId: character.id })}
-              type="yes-no"
-              disabled={unavailable || revealed || ownCharacter || isLoading}
-            >
-              <TransparentButton
-                className="characters-table__character characters-table__character-button"
-                disabled={unavailable || revealed || ownCharacter || isLoading}
-              >
-                <ImageCard
-                  cardId={revealed ? 'us-00' : character.id}
-                  className={clsx(
-                    'characters-table__character-image',
-                    userCharacterId === character.id && 'characters-table__character-image--active',
-                    (unavailable || revealed || ownCharacter) &&
-                      'characters-table__character-image--disabled',
-                  )}
-                  cardWidth={cardWidth - 16}
-                  preview={false}
-                />
-                {!unavailable && <div className="characters-table__character-name">{name}</div>}
-              </TransparentButton>
-            </Popconfirm>
-          );
-        })}
-      </div>
-    );
-  }
+    return Object.values(players)
+      .filter((player) => player.id !== user.id)
+      .reduce(
+        (acc, player) => {
+          acc[player.secretCharacterId] = player.id;
+          return acc;
+        },
+        {} as Dictionary<UID>,
+      );
+  }, [players, user.id, revealCharacters]);
 
   return (
-    <div
-      className="characters-table"
-      style={{ width: `${(cardWidth + 16) * 6}px` }}
+    <Flex
+      vertical
+      gap={12}
     >
-      <Image.PreviewGroup>
-        {charactersIds.map((characterId) => {
-          const character = charactersDict[characterId];
-          return (
-            <div
-              className="characters-table__character"
-              key={character.id}
-            >
-              <ImageCard
-                cardId={character?.revealed ? 'us-00' : character.id}
-                previewImageId={character.id}
-                className={clsx(
-                  'characters-table__character-image',
-                  userCharacterId === character.id && 'characters-table__character-image--active',
-                )}
-                cardWidth={cardWidth}
-              />
-              {!character?.revealed && (
-                <div className="characters-table__character-name">
-                  <DualTranslate>{character.name}</DualTranslate>
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </Image.PreviewGroup>
-    </div>
+      <div className="t-characters-table">
+        <Image.PreviewGroup>
+          {characters.map((suspect) => {
+            // const wasEliminated = eliminatedSuspects.includes(suspect.id);
+            const isUserCharacter = user.secretCharacterId === suspect.id;
+            const wasEliminated = !!cache.eliminated[suspect.id];
+            const isOpponentCharacter = opponentsCharactersIds[suspect.id];
+            return (
+              <div
+                className="t-characters-table__suspect"
+                key={suspect.id}
+              >
+                <TransparentButton
+                  onClick={() => onToggleCharacterElimination(suspect.id)}
+                  hoverType="tint"
+                >
+                  <ImageCard
+                    cardId={wasEliminated ? 'us-00' : suspect.id}
+                    preview={false}
+                    className={clsx(
+                      't-characters-table__suspect-image',
+                      isUserCharacter && 't-characters-table__suspect-image--active',
+                    )}
+                    cardWidth={cardWidth}
+                  />
+                  {isUserCharacter && (
+                    <span
+                      className="t-characters-table__culprit-badge"
+                      style={{
+                        backgroundColor: getAvatarColorById(players[user.id].avatarId),
+                        color: `contrast-color(${getAvatarColorById(players[user.id].avatarId)})`,
+                      }}
+                    >
+                      <Translate
+                        pt="Você"
+                        en="You"
+                      />
+                    </span>
+                  )}
+                  {isOpponentCharacter && (
+                    <span
+                      className="t-characters-table__culprit-badge"
+                      style={{
+                        backgroundColor: getAvatarColorById(
+                          players[opponentsCharactersIds[suspect.id]].avatarId,
+                        ),
+                        color: `contrast-color(${getAvatarColorById(players[user.id].avatarId)})`,
+                      }}
+                    >
+                      <PlayerAvatarName
+                        player={players[opponentsCharactersIds[suspect.id]]}
+                        size="small"
+                      />
+                    </span>
+                  )}
+                  {!wasEliminated && (
+                    <div className="t-characters-table__suspect-name">
+                      <DualTranslate>{suspect.name}</DualTranslate>
+                    </div>
+                  )}
+                </TransparentButton>
+              </div>
+            );
+          })}
+        </Image.PreviewGroup>
+      </div>
+      <Flex justify="center">
+        <Popconfirm
+          title={
+            <Translate
+              pt="Tem certeza que deseja limpar todas as eliminações?"
+              en="Are you sure you want to clear all eliminations?"
+            />
+          }
+          onConfirm={resetCache}
+        >
+          <Button>
+            <Translate
+              pt="Limpar eliminações"
+              en="Clear eliminations"
+            />
+          </Button>
+        </Popconfirm>
+      </Flex>
+    </Flex>
   );
 }
