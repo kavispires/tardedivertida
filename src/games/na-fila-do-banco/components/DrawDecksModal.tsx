@@ -11,7 +11,7 @@ import { SpaceContainer } from 'components/layout/SpaceContainer';
 import { TextHighlight } from 'components/text/TextHighlight';
 // Internal
 import type { ClientCard, SubmitPlayCardPayload } from '../utils/types';
-import { ClientHighlight, DeckColorHighlight } from './Highlights';
+import { ClientHighlight, DecksColorsHighlight } from './Highlights';
 
 type DrawDecksModalProps = {
   open: boolean;
@@ -80,14 +80,14 @@ export function DrawDecksModal({
           pt={
             <>
               Você selecionou <ClientHighlight clientId={cardType ?? ''} /> do baralho{' '}
-              <DeckColorHighlight color={cardColor ?? ''} /> para o{' '}
+              <DecksColorsHighlight deckColors={[cardColor ?? '']} /> para o{' '}
               <TextHighlight>Caixa {selectedTellerId}</TextHighlight>.
             </>
           }
           en={
             <>
               You selected <ClientHighlight clientId={cardType ?? ''} /> from the{' '}
-              <DeckColorHighlight color={cardColor ?? ''} /> deck for{' '}
+              <DecksColorsHighlight deckColors={[cardColor ?? '']} /> deck for{' '}
               <TextHighlight>Teller {selectedTellerId}</TextHighlight>.
             </>
           }

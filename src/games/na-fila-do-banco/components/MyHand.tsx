@@ -16,7 +16,7 @@ import { ViewIf } from 'components/views/ViewIf';
 import type { ClientCard } from '../utils/types';
 import { CHARACTER_TYPES } from '../utils/constants';
 import { BankClient } from './BankClient';
-import { DeckColorHighlight, DeckCountHighlight } from './Highlights';
+import { DeckCountHighlight, DecksColorsHighlight } from './Highlights';
 
 type MyHandProps = {
   user: GamePlayer;
@@ -70,13 +70,7 @@ export function MyHand({
           content={
             <Flex vertical>
               <div>
-                {user?.deckColors.map((color: string) => (
-                  <DeckColorHighlight
-                    key={color}
-                    color={color}
-                  />
-                ))}{' '}
-                ={' '}
+                <DecksColorsHighlight deckColors={user?.deckColors} /> ={' '}
                 <Translate
                   en="This is your deck color. You only score if these colors of cards make it to the teller"
                   pt="Esta é a cor do seu baralho. Você só pontua se estas cores de cartas chegarem ao caixa"
@@ -84,13 +78,7 @@ export function MyHand({
               </div>
               {playersColors.map((player) => (
                 <div key={player.id}>
-                  {player.deckColors.map((color: string) => (
-                    <DeckColorHighlight
-                      key={color}
-                      color={color}
-                    />
-                  ))}{' '}
-                  ={' '}
+                  <DecksColorsHighlight deckColors={player.deckColors} /> ={' '}
                   <PlayerAvatarName
                     player={player}
                     size="small"
@@ -98,7 +86,7 @@ export function MyHand({
                 </div>
               ))}
               <div>
-                <DeckColorHighlight color="neutral" /> ={' '}
+                <DecksColorsHighlight deckColors={['neutral']} /> ={' '}
                 <Translate
                   en="This color is neutral, it can be used by anyone but it doesn't score for anyone"
                   pt="Esta cor é neutra, pode ser usada por qualquer um mas não pontua para ninguém"
@@ -107,14 +95,9 @@ export function MyHand({
             </Flex>
           }
         >
-          <Flex gap={3}>
-            {user?.deckColors.map((color: string) => (
-              <DeckColorHighlight
-                key={color}
-                color={color}
-              />
-            ))}
-          </Flex>
+          <div>
+            <DecksColorsHighlight deckColors={user?.deckColors} />
+          </div>
         </Popover>
         <Flex
           className="full-width"

@@ -1,3 +1,5 @@
+// Ant Design Resources
+import { Flex } from 'antd';
 // Icons
 import { DeckIcon } from 'icons/DeckIcon';
 // Components
@@ -31,7 +33,11 @@ export function ClientHighlight({
   );
 }
 
-export function DeckColorHighlight({ color }: Omit<HighlightProps, 'icon' | 'children'> & { color: string }) {
+type DecksColorsHighlightProps = {
+  deckColors: string[];
+};
+
+export function DecksColorsHighlight({ deckColors = [] }: DecksColorsHighlightProps) {
   const colorMap: Record<string, string> = {
     red: '#ff4d4f',
     green: '#52c41a',
@@ -45,14 +51,19 @@ export function DeckColorHighlight({ color }: Omit<HighlightProps, 'icon' | 'chi
   return (
     <MetricHighlight
       icon={
-        <div
-          style={{
-            width: 16,
-            height: 24,
-            borderRadius: '3px',
-            background: colorMap[color] || colorMap.neutral,
-          }}
-        />
+        <Flex>
+          {deckColors.map((color, index) => (
+            <div
+              key={`deck-color-highlight-${color}-${index}`}
+              style={{
+                width: 16,
+                height: 24,
+                borderRadius: '3px',
+                background: colorMap[color] || colorMap.neutral,
+              }}
+            />
+          ))}
+        </Flex>
       }
       iconPlacement="before"
     >
