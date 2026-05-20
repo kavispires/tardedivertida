@@ -1,8 +1,11 @@
+import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex, Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-import type { SuspectCard, TestimonyQuestionCard } from 'types/tdr';
+import type { SuspectCard as SuspectCardType, TestimonyQuestionCard } from 'types/tdr';
+// Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import {
   AnswerKindaNoButton,
@@ -10,6 +13,7 @@ import {
   AnswerNoButton,
   AnswerYesButton,
 } from 'components/buttons/AnswerButtons';
+import { SuspectCard } from 'components/cards/SuspectCard';
 import { Translate } from 'components/language/Translate';
 import { Step, type StepProps } from 'components/steps/Step';
 import { StepTitle } from 'components/text/StepTitle';
@@ -23,7 +27,7 @@ type StepAnswerTheQuestionProps = {
   players: GamePlayers;
   user: GamePlayer;
   turnOrder: TurnOrder;
-  characters: SuspectCard[];
+  characters: SuspectCardType[];
   questionsHistory: TestimonyQuestionCard[];
   activePlayer: GamePlayer;
   onSubmitAnswer: (payload: SubmitAnswerPayload) => void;
@@ -39,10 +43,21 @@ export function StepAnswerTheQuestion({
   onSubmitAnswer,
   currentQuestion,
 }: StepAnswerTheQuestionProps) {
+  const cardWidth = useCardWidth(10, {
+    gap: 16,
+    minWidth: 80,
+    maxWidth: 100,
+    margin: 16,
+  });
+
   // Dev Mock
   // useMock(() => {
   //   onSubmitAnswer({ answer: mockAnswer() });
   // });
+
+  const playerSuspect = useMemo(() => {
+    return characters.find((character) => character.id === user.secretCharacterId);
+  }, [characters, user]);
 
   return (
     <Step
@@ -56,7 +71,13 @@ export function StepAnswerTheQuestion({
         />
       </StepTitle>
 
-      <div className="answer-board">
+      <div className="answer-board mb-4">
+        {playerSuspect && (
+          <SuspectCard
+            width={cardWidth}
+            suspect={playerSuspect}
+          />
+        )}
         <Title
           colorScheme="light"
           size="x-small"

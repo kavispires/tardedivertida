@@ -37,7 +37,7 @@
     transform: translateX(-50%);
     white-space: nowrap;
     font-size: 1rem;
-    background: get-color("white");
+    background: get-color("white", 5, 0.85);
     padding: get-unit(1 2);
     border-radius: var(--border-radius);
   }
@@ -114,10 +114,10 @@
 
 .answer-board {
   display: grid;
-  grid-template-columns: 2fr auto;
+  grid-template-columns: auto 2fr auto;
   gap: get-unit(4);
   place-items: center;
   background: get-color("white");
   border-radius: var(--border-radius);
-  padding: get-unit(4 8);
+  padding: get-unit(4 8 4 4);
 }

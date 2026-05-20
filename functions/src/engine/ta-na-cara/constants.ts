@@ -18,6 +18,8 @@ export const PLAYER_COUNTS = {
   MAX: 2,
 } as const;
 
-export const MAX_ROUNDS = 14;
+export const MAX_ROUNDS = 10;
 
 export const CHARACTER_COUNT = 24;
+
+export const PLAYER_SUGGESTED_QUESTIONS_COUNT = 3;

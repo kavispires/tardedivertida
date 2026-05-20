@@ -3,7 +3,7 @@ import type { TestimonyQuestionCard } from '../../types/tdr';
 import type { ResourceData, TaNaCaraOptions } from './types';
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
-import { CHARACTER_COUNT, MAX_ROUNDS, PLAYER_COUNTS } from './constants';
+import { CHARACTER_COUNT, MAX_ROUNDS, PLAYER_COUNTS, PLAYER_SUGGESTED_QUESTIONS_COUNT } from './constants';
 // Helpers
 import utils from '../../utils';
 import * as globalUtils from '../global';
@@ -38,7 +38,7 @@ export const getResourceData = async (language: string, options: TaNaCaraOptions
     options.nsfw ? card : !card.nsfw,
   );
 
-  const questionsQuantity = PLAYER_COUNTS.MAX * MAX_ROUNDS;
+  const questionsQuantity = PLAYER_COUNTS.MAX * PLAYER_SUGGESTED_QUESTIONS_COUNT * MAX_ROUNDS;
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableCards).length < questionsQuantity) {

@@ -1,5 +1,5 @@
 // Constants
-import { MAX_ROUNDS, TA_NA_CARA_PHASES } from './constants';
+import { MAX_ROUNDS, PLAYER_SUGGESTED_QUESTIONS_COUNT, TA_NA_CARA_PHASES } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 import { shuffle } from 'lodash';
 // Types
@@ -92,8 +92,8 @@ export const preparePromptPhase = async (
   // Every round a player will be the asker
   const activePlayerId = utils.turnOrder.getNextPlayerId(state.turnOrder, state.activePlayerId);
 
-  // Add questions until the active player has 2 suggested questions
-  while (players[activePlayerId].suggestedQuestions.length < 2) {
+  // Add questions until the active player has the required number of suggested questions
+  while (players[activePlayerId].suggestedQuestions.length < PLAYER_SUGGESTED_QUESTIONS_COUNT) {
     const question = questions.pop();
     if (!question) break;
     players[activePlayerId].suggestedQuestions.push(question);
