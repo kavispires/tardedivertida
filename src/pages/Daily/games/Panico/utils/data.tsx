@@ -557,18 +557,18 @@ const SENTENCES_FOR_COUNTING: Dictionary<PoolGroupEntry<{ text: DualLanguageValu
   SENTENCE_2: {
     id: 'SENTENCE_2',
     text: {
-      en: 'How many words are in here? Press the button that many times.',
-      pt: 'Quantas palavras tem aqui? Aperte o botão essa quantidade de vezes, ok?',
+      en: 'This sentence has exactly 10 words, but press 7 times.',
+      pt: 'Esta frase tem exatamente 10 palavras, mas aperte 7 vezes.',
     },
-    targetCount: 12,
+    targetCount: 7,
   },
   SENTENCE_3: {
     id: 'SENTENCE_3',
     text: {
-      en: 'This sentence has exactly seven words. Press the button seven times.',
-      pt: 'Esta frase tem exatamente sete palavras. Aperte o botão sete vezes.',
+      en: 'This sentence has exactly six words. Press the button six times.',
+      pt: 'Esta frase tem exatamente seis palavras. Aperte o botão seis vezes.',
     },
-    targetCount: 7,
+    targetCount: 6,
   },
   SENTENCE_4: {
     id: 'SENTENCE_4',
@@ -770,7 +770,7 @@ const WORDS_FOR_VOWEL_COUNTING: Dictionary<PoolGroupEntry<{ value: string }>> = 
   },
   VOWEL_WORD_3: {
     id: 'VOWEL_WORD_3',
-    targetCount: 3,
+    targetCount: 2,
     value: 'PODCAST',
   },
   VOWEL_WORD_4: {
@@ -859,7 +859,7 @@ const ALL_ODD_NUMBERS: Dictionary<PoolGroupEntry<{ value: string }>> = {
   },
   ALL_ODD_4: {
     id: 'ALL_ODD_4',
-    targetCount: 0,
+    targetCount: 1,
     value: '33, 55, 77, 99, 101',
   },
 };
@@ -951,6 +951,21 @@ const THINGS_TO_COUNT: Dictionary<PoolGroupEntry<{ itemId: string }>> = {
     targetCount: 5,
     itemId: 'item-1858', // apple
   },
+  THING_TO_COUNT_4: {
+    id: 'THING_TO_COUNT_4',
+    targetCount: 3,
+    itemId: 'item-14', // strawberry
+  },
+  THING_TO_COUNT_5: {
+    id: 'THING_TO_COUNT_5',
+    targetCount: 2,
+    itemId: 'item-621', // orange
+  },
+  THING_TO_COUNT_6: {
+    id: 'THING_TO_COUNT_6',
+    targetCount: 3,
+    itemId: 'item-1858', // apple
+  },
 };
 
 export const SEQUENCES_TO_REMEMBER: Dictionary<
@@ -983,6 +998,13 @@ export const SEQUENCES_TO_REMEMBER: Dictionary<
     value: 'SUN_MOON_SUN_MOON_SUN',
     keyword: 'SUN_MOON_SUN_MOON_SUN',
     itemsIds: ['item-1054', 'item-1059', 'item-1054', 'item-1059', 'item-1054'],
+  },
+  THING_SEQUENCE_5: {
+    id: 'THING_SEQUENCE_5',
+    targetCount: -1,
+    value: 'MOON_MOON_MOON_SUN_SUN',
+    keyword: 'MOON_MOON_MOON_SUN_SUN',
+    itemsIds: ['item-1059', 'item-1059', 'item-1059', 'item-1054', 'item-1054'],
   },
 };
 
