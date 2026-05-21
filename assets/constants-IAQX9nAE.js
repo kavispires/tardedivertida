@@ -1,0 +1,1 @@
+var e={IN_PROGRESS:`IN_PROGRESS`,WIN:`WIN`,LOSE:`LOSE`};export{e as t};

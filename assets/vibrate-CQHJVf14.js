@@ -1,0 +1,1 @@
+var e={lose:[200,100,200,100,200],wrong:[100]},t=t=>{if(navigator.vibrate){let n=e[t]||[];if(n.length===0)return;navigator.vibrate&&navigator.vibrate(n)}};export{t};

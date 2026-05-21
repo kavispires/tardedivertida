@@ -1,0 +1,1 @@
+import{o as e}from"./jsx-runtime-DBS2Xqfh.js";import{ci as t}from"./PageLayout-DBSPIFx0.js";import{t as n}from"./useTDBaseUrl-DyLNw_Ll.js";var r=e(t(),1);function i(e,t=`images`){return`${n(t)}/${(0,r.useMemo)(()=>e.replace(/-/g,`/`),[e])}.jpg`}export{i as t};

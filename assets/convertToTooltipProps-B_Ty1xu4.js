@@ -1,0 +1,1 @@
+import{o as e}from"./jsx-runtime-DBS2Xqfh.js";import{_n as t,ci as n,hn as r}from"./PageLayout-DBSPIFx0.js";var i=e(n()),a=(e,n)=>r(e)?t(e)&&!(0,i.isValidElement)(e)?{...n,...e}:{...n,title:e}:null;export{a as t};

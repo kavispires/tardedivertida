@@ -1,0 +1,1 @@
+import"./helpers-D2x_V_b5.js";import{r as e}from"./useGlobalState-DICMEsNs.js";function t(){let[t,n]=e(`isDebugEnabled`);return{isDevEnv:!1,isDebugEnabled:t,toggleDevFeatures:()=>{n(!t)}}}export{t};

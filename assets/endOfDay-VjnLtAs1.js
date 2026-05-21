@@ -1,0 +1,1 @@
+import{q as e}from"./helpers-D2x_V_b5.js";function t(t,n){return e(t)-+e(n)}function n(t,n){let r=e(t,n?.in);return r.setHours(23,59,59,999),r}export{t as n,n as t};
