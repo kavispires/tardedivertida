@@ -3,10 +3,14 @@ import type { CSSProperties } from 'react';
 // Hooks
 import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 
-export function DailyImageBackground() {
+type DailyImageBackgroundProps = {
+  backgroundVariant?: 'dark';
+};
+
+export function DailyImageBackground({ backgroundVariant }: DailyImageBackgroundProps) {
   const baseUrl = useTDBaseUrl('assets');
 
-  const imageUrl = `${baseUrl}/backgrounds/daily.jpg`;
+  const imageUrl = `${baseUrl}/backgrounds/daily${backgroundVariant ? `-${backgroundVariant}` : ''}.jpg`;
 
   const { scrollY } = useScroll();
 

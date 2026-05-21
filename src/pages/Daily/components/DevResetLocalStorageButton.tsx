@@ -129,10 +129,7 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
       justify="center"
       gap={12}
     >
-      <Space
-        wrap
-        size="small"
-      >
+      <Space.Compact>
         <Popconfirm
           title={
             <Translate
@@ -143,7 +140,7 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
           onConfirm={onReset}
         >
           <Button
-            size="large"
+            size="small"
             type="dashed"
             icon={<BugOutlined />}
           >
@@ -156,7 +153,7 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
         {isDevEnv && (
           <>
             <Button
-              size="large"
+              size="small"
               type="dashed"
               onClick={onDayBefore}
               icon={<BugOutlined />}
@@ -164,7 +161,7 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
               Yesterday LS
             </Button>
             <Button
-              size="large"
+              size="small"
               type="dashed"
               onClick={onResetStreakOnly}
               icon={<BugOutlined />}
@@ -174,13 +171,13 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
           </>
         )}
         <Button
-          size="large"
+          size="small"
           type="dashed"
           onClick={onLog}
         >
           Log
         </Button>
-      </Space>
+      </Space.Compact>
     </Flex>
   );
 }

@@ -21,9 +21,13 @@ export function Rules({ date }: RulesProps) {
             <>
               <li>Complete a sequência de botões.</li>
               <li>Siga as instruções do botão, lembre-se de instruções anteriores.</li>
-              <li>Palavras-chaves como "Sempre" e "Nunca" se aplicam a todos os botões seguintes.</li>
               <li>
-                Quando você faz algo errado, você perde um <HeartFilled />.
+                Palavras-chaves como "Sempre" e "Nunca" se aplicam a todos os botões seguintes, sendo "Sempre"
+                mais importante que "Nunca".
+              </li>
+              <li>
+                Quando você faz algo errado, você perde um <HeartFilled /> e tem que começar do início, mas os
+                botões serão os mesmos, na mesma ordem.
               </li>
               <li>
                 Você tem {SETTINGS.HEARTS} <HeartFilled />. Boa sorte!
@@ -34,9 +38,13 @@ export function Rules({ date }: RulesProps) {
             <>
               <li>Complete the button sequence.</li>
               <li>Follow the button instructions, remember previous instructions.</li>
-              <li>Keywords like "Always" and "Never" apply to all following buttons.</li>
               <li>
-                When you do something wrong, you lose a <HeartFilled />.
+                Keywords like "Always" and "Never" apply to all following buttons, with "Always" being more
+                important than "Never".
+              </li>
+              <li>
+                When you do something wrong, you lose a <HeartFilled /> and have to start over, but the
+                buttons will be the same, in the same order.
               </li>
               <li>
                 You have {SETTINGS.HEARTS} <HeartFilled />. Good luck!

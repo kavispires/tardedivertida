@@ -1,20 +1,32 @@
 @use "styles/sass" as *;
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap");
+
+.panic-background {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+}
+
+.panic-invert {
+  filter: invert(1);
+}
 
 .panico-panel {
   margin: get-unit(4 auto);
   width: 90vw;
-  min-width: 128px;
   max-width: 384px;
   aspect-ratio: 1 / 1;
-  border: get-unit(3) inset get-color("gray", 5, 0.2);
-  background: get-color("white", 6, 0.5);
-  border-radius: var(--border-radius);
+  border: get-unit(3) inset get-color("gray", 5, 0.3);
+  background: get-color("white", 6, 0.1);
+  border-radius: 50%;
   display: grid;
   place-items: center;
 
   &__processing-icon {
     width: 120px;
     height: 120px;
+    filter: grayscale(0.85) invert(1);
+    opacity: 0.3;
 
     @include xs {
       width: 80px;
@@ -23,111 +35,118 @@
   }
 }
 
-// Button Puzzle Container
-.button-puzzle {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 240px;
-  height: 240px;
+.btn-container {
+  appearance: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  outline: none;
+  // ----------------------------------------
 
-  @include xs {
-    width: 180px;
-    height: 180px;
+  // Mobile size constraints
+  width: 90vw;
+  height: 90vw;
+  max-width: 350px;
+  max-height: 350px;
+
+  // The dark base (the "thickness" of the button)
+  background-color: get-color("green", 9);
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.4),
+    0 10px 10px -5px rgba(0, 0, 0, 0.2);
+
+  -webkit-tap-highlight-color: transparent;
+
+  // Optional: Add a visible focus state for keyboard navigation
+  &:focus-visible {
+    box-shadow:
+      0 0 0 4px white,
+      0 0 0 8px get-color("red", 9);
   }
 }
 
-// Circular Timer
-.circular-timer {
+.btn-face {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
+  border-radius: 50%;
+  background-color: get-color("green", 8);
+
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  flex-direction: column;
 
-  &__svg {
-    display: block;
+  background-image: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
 
-    @include xs {
-      width: 180px;
-      height: 180px;
+  box-shadow:
+    inset 0 -5px 15px rgba(0, 0, 0, 0.2),
+    inset 0 5px 15px rgba(255, 255, 255, 0.4);
+
+  user-select: none;
+}
+
+.button-container-variant {
+  &--RED {
+    background-color: get-color("red", 8);
+
+    .btn-face {
+      background-color: get-color("red", 6);
     }
   }
 
-  &__time {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: get-color("gray", 8);
-    pointer-events: none;
-    z-index: 5;
+  &--BLUE {
+    background-color: get-color("blue", 8);
 
-    @include xs {
-      font-size: 1.2rem;
+    .btn-face {
+      background-color: get-color("blue", 6);
+    }
+  }
+
+  &--YELLOW {
+    background-color: get-color("yellow", 8);
+
+    .btn-face {
+      background-color: get-color("yellow", 6);
     }
   }
 }
 
-// Press Button
-.press-button {
+// CircularTimer.scss
+
+.timer-wrapper {
   position: relative;
-  z-index: 2;
-  width: 180px !important;
-  height: 180px !important;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: get-unit(2);
-  transition: transform 0.1s ease;
 
-  @include xs {
-    width: 140px !important;
-    height: 140px !important;
-  }
+  // Increased from 32px to 48px to accommodate the 3x thicker stroke
 
-  &:active {
-    transform: scale(0.95);
-  }
+  max-width: 398px;
+  max-height: 398px;
+}
 
-  &__content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
+.timer-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 
-  &__count {
-    position: absolute;
-    top: get-unit(1);
-    right: get-unit(1);
-    background: get-color("red", 6);
-    color: get-color("white");
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.875rem;
-    font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  // Rotates the starting point to 12 o'clock (Top)
+  transform: rotate(-90deg);
 
-    @include xs {
-      width: 24px;
-      height: 24px;
-      font-size: 0.75rem;
-    }
-  }
+  // filter: drop-shadow(0 2px 6px rgba(191, 255, 05));
 }
 
 // Button Content
@@ -139,17 +158,56 @@
   padding: get-unit(2);
   width: 100%;
   height: 100%;
+  font-family: "Rubik Mono One", monospace;
+  color: get-color("white");
+
+  &__sentence {
+    font-size: 1rem;
+    word-wrap: break-word;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    // @include xs {
+    //   font-size: 0.625rem;
+    // }
+  }
 
   &__text {
+    font-family: "Rubik Mono One", monospace;
     font-size: 1rem;
     line-height: 1.4;
     text-align: center;
     word-wrap: break-word;
+    text-transform: uppercase;
+    font-weight: bold;
 
-    @include xs {
-      font-size: 0.875rem;
-    }
+    // @include xs {
+    //   font-size: 0.875rem;
+    // }
   }
+
+  &__label {
+    font-size: 1.5rem;
+    word-wrap: break-word;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    // @include xs {
+    //   font-size: 0.625rem;
+    // }
+  }
+}
+
+.button-item-sprite {
+  filter: saturate(1) brightness(1.2) grayscale(0.2);
+}
+
+.button-item-sprite-aside {
+  position: absolute;
+  top: 64px;
+  left: 64px;
+  rotate: 60deg;
+  opacity: 0.8;
 }
 
 // Ripple animation

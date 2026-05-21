@@ -1,7 +1,6 @@
 import dailySfxFile from 'assets/sounds/daily-sfx.mp3';
 import { Howl } from 'howler';
 import { sample } from 'lodash';
-// Sound
 
 export const dailySoundEffects = new Howl({
   src: [dailySfxFile],

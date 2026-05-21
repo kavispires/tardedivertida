@@ -1,11 +1,16 @@
 import { useState } from 'react';
+import { useMeasure } from 'react-use';
 // Ant Design Resources
 import { Button } from 'antd';
 // Icons
 import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
+import { CrownIcon, SkullIcon } from 'icons/collection';
 // Components
 import { Translate } from 'components/language/Translate';
+// Pages
+import { playSFX } from 'pages/Daily/utils/soundEffects';
 // Internal
+import type { ButtonEntry } from '../utils/types';
 import { ButtonPuzzle } from './ButtonPuzzle';
 
 type PanelProps = {
@@ -18,9 +23,17 @@ type PanelProps = {
    */
   sessionStatus: 'idle' | 'ongoing';
   /**
+   * If the game can't be played anymore (either win or lose)
+   */
+  isComplete: boolean;
+  /**
+   * If the player won the game
+   */
+  isWin: boolean;
+  /**
    * Array of button keys to display
    */
-  buttons: string[];
+  buttons: ButtonEntry[];
   /**
    * Callback when a button is completed (validated)
    */
@@ -31,9 +44,34 @@ type PanelProps = {
   onStart: () => void;
 };
 
-export function Panel({ activeButtonIndex, sessionStatus, buttons, onNextButton, onStart }: PanelProps) {
+export function Panel({
+  activeButtonIndex,
+  sessionStatus,
+  buttons,
+  onNextButton,
+  onStart,
+  isComplete,
+  isWin,
+}: PanelProps) {
   const [previousPressCount, setPreviousPressCount] = useState<number | undefined>(undefined);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [ref, { width }] = useMeasure<HTMLDivElement>();
+
+  const handleStart = () => {
+    playSFX('select');
+    // Show processing state
+    setIsProcessing(true);
+
+    // Wait 2 seconds before proceeding to next button
+    setTimeout(() => {
+      setPreviousPressCount(undefined);
+
+      if (!isComplete) {
+        onStart();
+      }
+      setIsProcessing(false);
+    }, 2000);
+  };
 
   // Handle button completion
   const handleComplete = (isCorrect: boolean) => {
@@ -44,32 +82,12 @@ export function Panel({ activeButtonIndex, sessionStatus, buttons, onNextButton,
     setTimeout(() => {
       if (isCorrect) {
         // Store the press count for next button if needed
-        // TODO: Track actual press count for SAME_AS_PREVIOUS buttons
         setPreviousPressCount(undefined);
       }
       setIsProcessing(false);
       onNextButton(isCorrect);
-    }, 2000);
+    }, 1000);
   };
-
-  // Idle state - show start button
-  if (sessionStatus === 'idle') {
-    return (
-      <div className="panico-panel panico-panel--idle">
-        <Button
-          type="primary"
-          size="large"
-          shape="round"
-          onClick={onStart}
-        >
-          <Translate
-            en="Start"
-            pt="Iniciar"
-          />
-        </Button>
-      </div>
-    );
-  }
 
   // Processing state - show animated icon between buttons
   if (isProcessing) {
@@ -80,26 +98,71 @@ export function Panel({ activeButtonIndex, sessionStatus, buttons, onNextButton,
     );
   }
 
+  if (isComplete) {
+    return (
+      <div className="panico-panel panico-panel--finished">
+        <span>
+          {isWin ? (
+            <CrownIcon
+              className="button-item-sprite"
+              width={64}
+            />
+          ) : (
+            <SkullIcon
+              className="button-item-sprite"
+              width={64}
+            />
+          )}
+        </span>
+      </div>
+    );
+  }
+
+  // Idle state - show start button
+  if (sessionStatus === 'idle') {
+    return (
+      <div className="panico-panel panico-panel--idle">
+        <Button
+          type="primary"
+          size="large"
+          shape="round"
+          onClick={handleStart}
+        >
+          <Translate
+            en="Start"
+            pt="Iniciar"
+          />
+        </Button>
+      </div>
+    );
+  }
+
   // Ongoing state - show active button puzzle
   const activeButtonKey = buttons[activeButtonIndex];
 
   if (!activeButtonKey) {
     return (
       <div className="panico-panel">
-        <div>No button available</div>
+        <div>
+          <Translate
+            en="No more buttons!"
+            pt="Não há mais botões!"
+          />
+        </div>
       </div>
     );
   }
 
-  // Extract the button type from the ID (format: "id::BUTTON_TYPE")
-  const buttonType = activeButtonKey.includes('::') ? activeButtonKey.split('::')[1] : activeButtonKey;
-
   return (
-    <div className="panico-panel panico-panel--active">
+    <div
+      className="panico-panel"
+      ref={ref}
+    >
       <ButtonPuzzle
-        buttonKey={buttonType} // Changed from activeButtonKey to buttonType
+        button={buttons[activeButtonIndex]}
         onComplete={handleComplete}
         previousPressCount={previousPressCount}
+        size={width}
       />
     </div>
   );

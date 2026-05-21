@@ -1,21 +1,33 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
+// Ant Design Resources
+import { App } from 'antd';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+// Services
+import { logAnalyticsEvent } from 'services/firebase';
 // Pages
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
+import { getAnalyticsEventName } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
-import { vibrate } from 'pages/Daily/utils/vibrate';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyPanicoEntry, GameState, SessionState } from './types';
+import { buildButtons } from './engine';
 
 export function usePanicoEngine(data: DailyPanicoEntry, initialState: GameState) {
   const { state, setState } = useDailyGameState<GameState>(initialState);
+  const { message } = App.useApp();
+  const { translate } = useLanguage();
+
+  const builtButtons = useMemo(() => buildButtons(data.buttons), [data.buttons]);
 
   const { session, updateSession } = useDailySessionState<SessionState>({
     activeButtonIndex: -1,
     status: 'idle',
+    buttons: builtButtons,
   });
 
   const { updateLocalStorage } = useDailyLocalToday<GameState>({
@@ -30,9 +42,10 @@ export function usePanicoEngine(data: DailyPanicoEntry, initialState: GameState)
   }, [state]);
 
   const onNextButton = (isCorrect: boolean) => {
+    const nextActiveButtonIndex = session.activeButtonIndex + 1;
     // If the player did what they were supposed to do
     if (isCorrect) {
-      const isWin = session.activeButtonIndex + 1 === state.totalButtons;
+      const isWin = nextActiveButtonIndex === state.totalButtons;
 
       if (isWin) {
         playSFX('win');
@@ -40,14 +53,12 @@ export function usePanicoEngine(data: DailyPanicoEntry, initialState: GameState)
         setState((prevState) => ({
           ...prevState,
           status: STATUSES.WIN,
-          farthestButtonIndex: prevState.totalButtons - 1,
+          farthestButtonIndex: nextActiveButtonIndex,
         }));
         return;
       }
 
-      playSFX('wee');
-
-      const nextActiveButtonIndex = session.activeButtonIndex + 1;
+      playSFX('select');
 
       setState((prevState) => ({
         ...prevState,
@@ -61,11 +72,15 @@ export function usePanicoEngine(data: DailyPanicoEntry, initialState: GameState)
 
       if (isLose) {
         playSFX('lose');
-        vibrate('lose');
-        // logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'lose'));
+        logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'lose'));
       } else {
-        playSFX('wrong');
-        vibrate('wrong');
+        playSFX('drama');
+        message.warning(
+          translate({
+            pt: 'Oops, você fez algo errado! Tente novamente.',
+            en: 'Oops, you did something wrong! Try again.',
+          }),
+        );
       }
 
       setState((prevState) => ({
@@ -106,6 +121,7 @@ export function usePanicoEngine(data: DailyPanicoEntry, initialState: GameState)
     onStart,
     activeButtonIndex: session.activeButtonIndex,
     sessionStatus: session.status,
-    buttons: data.buttons,
+    buttons: session.buttons,
+    farthestButtonIndex: state.farthestButtonIndex,
   };
 }

@@ -1,6 +1,6 @@
+import clsx from 'clsx';
+import { motion } from 'motion/react';
 import type { ReactNode } from 'react';
-// Ant Design Resources
-import { Button } from 'antd';
 
 type PressButtonProps = {
   /**
@@ -19,22 +19,44 @@ type PressButtonProps = {
    * Whether the button is disabled
    */
   disabled?: boolean;
-};
+  /**
+   *
+   */
+  size?: number;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 /**
  * Round interactive button that tracks press count and provides visual feedback
  */
-export function PressButton({ onPress, children, pressCount, disabled = false }: PressButtonProps) {
+export function PressButton({
+  onPress,
+  children,
+  pressCount,
+  disabled = false,
+  size = 300,
+  className,
+  ...props
+}: PressButtonProps) {
   return (
-    <Button
-      shape="circle"
-      size="large"
+    <button
+      style={{ width: size * 0.9, height: size * 0.9 }} // Button is 80% of the puzzle size
+      className={clsx('btn-container', className)}
       onClick={onPress}
-      disabled={disabled}
-      className="press-button"
+      {...props}
     >
-      <div className="press-button__content">{children}</div>
-      {pressCount > 0 && <div className="press-button__count">{pressCount}</div>}
-    </Button>
+      <motion.span // Changed to span: divs are invalid inside buttons
+        className="btn-face"
+        initial={{ y: -15 }}
+        whileTap={{ y: 0 }}
+        whileHover={{ y: -18 }}
+        transition={{
+          type: 'spring',
+          stiffness: 1000,
+          damping: 20,
+        }}
+      >
+        {children}
+      </motion.span>
+    </button>
   );
 }

@@ -1,6 +1,8 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 // Ant Design Resources
-import { Layout, Modal } from 'antd';
+import { ReloadOutlined } from '@ant-design/icons';
+import { Alert, Button, Layout, Modal } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
@@ -11,8 +13,9 @@ import { Translate } from 'components/language/Translate';
 import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { GameHeader } from 'pages/Daily/components/Header';
 import { Menu } from 'pages/Daily/components/Menu';
-import { RegionText } from 'pages/Daily/components/Region';
+import { Region, RegionText } from 'pages/Daily/components/Region';
 import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
+import { SoundFXToggle } from 'pages/Daily/components/SoundFXToggle';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
@@ -42,8 +45,10 @@ export function DailyPanico({ data }: DailyPanicoProps) {
     activeButtonIndex,
     sessionStatus,
     buttons,
+    farthestButtonIndex,
   } = usePanicoEngine(data, initialState);
   const [, ref] = useCardWidthByContainerRef(5, { margin: 48, gap: 12, maxWidth: 96, minWidth: 55 });
+  const queryClient = useQueryClient();
 
   return (
     <Layout>
@@ -57,8 +62,12 @@ export function DailyPanico({ data }: DailyPanicoProps) {
         openRules={!isComplete || hearts === SETTINGS.HEARTS}
         rules={<Rules date={data.id} />}
       />
-      <DailyContent ref={ref}>
-        <RegionText>
+      <DailyContent
+        ref={ref}
+        className="panic-background"
+        backgroundVariant="dark"
+      >
+        <RegionText className="mt-8 panic-invert">
           <Translate
             en={
               <>
@@ -80,6 +89,8 @@ export function DailyPanico({ data }: DailyPanicoProps) {
         <Panel
           activeButtonIndex={activeButtonIndex}
           sessionStatus={sessionStatus}
+          isComplete={isComplete}
+          isWin={isWin}
           buttons={buttons}
           onNextButton={onNextButton}
           onStart={onStart}
@@ -90,6 +101,37 @@ export function DailyPanico({ data }: DailyPanicoProps) {
           setShowResultModal={setShowResultModal}
         />
 
+        <Region>
+          <Alert
+            type="warning"
+            showIcon
+            title={
+              <Translate
+                en="This game works better with sound on."
+                pt="Este jogo é melhor com o som ligado."
+              />
+            }
+            className="transparent"
+            style={{ color: 'gold' }}
+            action={<SoundFXToggle className="ml-4" />}
+          />
+        </Region>
+
+        <Region className="mt-10">
+          <Button
+            onClick={() => {
+              queryClient.refetchQueries({ queryKey: ['panico-demo'] });
+            }}
+            icon={<ReloadOutlined />}
+            disabled={!isComplete}
+          >
+            <Translate
+              pt="Criar nova sequência"
+              en="Generate new sequence"
+            />
+          </Button>
+        </Region>
+
         <Modal
           open={showResultModal}
           onCancel={() => setShowResultModal(false)}
@@ -99,8 +141,8 @@ export function DailyPanico({ data }: DailyPanicoProps) {
             challengeNumber={data.number}
             win={isWin}
             hearts={hearts}
-            totalButtons={0} // TODO
-            farthestButtonIndex={0} // TODO
+            totalButtons={data.buttons.length}
+            farthestButtonIndex={farthestButtonIndex}
           />
         </Modal>
       </DailyContent>

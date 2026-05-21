@@ -8,7 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'panico',
   TYPE: 'game',
   RELEASE_DATE: '2026-05-10',
-  COLOR: 'rgba(245, 210, 134, 0.85)',
+  COLOR: 'rgba(126, 133, 147, 0.85)',
   EMOJI: '🔘',
   HUB_ICON: DailyButtonGameIcon,
   NAME: { pt: 'Pânico!', en: 'Panic!' },

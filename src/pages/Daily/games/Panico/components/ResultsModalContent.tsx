@@ -35,7 +35,7 @@ export function ResultsModalContent({
   const { language } = useLanguage();
 
   const completionPercentage = useMemo(() => {
-    return Math.round((farthestButtonIndex / (totalButtons - 1)) * 100);
+    return Math.round((farthestButtonIndex / totalButtons) * 100);
   }, [farthestButtonIndex, totalButtons]);
 
   const result = useMemo(

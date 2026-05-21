@@ -2,16 +2,13 @@ import clsx from 'clsx';
 import { addYears, format } from 'date-fns';
 import { orderBy } from 'lodash';
 import { motion } from 'motion/react';
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTimer } from 'react-timer-hook';
 // Ant Design Resources
-import { MutedOutlined, SoundFilled } from '@ant-design/icons';
-import { Alert, Divider, Flex, Space, Switch, Typography } from 'antd';
+import { Alert, Divider, Flex, Space, Typography } from 'antd';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
 // Services
 import { getFirestoreConsoleUrl, logAnalyticsEvent } from 'services/firebase';
 // Utils
@@ -25,7 +22,7 @@ import { IconAvatar } from 'components/avatars/IconAvatar';
 import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 // Internal
-import { dailySoundEffects, playSFX } from './utils/soundEffects';
+import { playSFX } from './utils/soundEffects';
 import type { GameSettings } from './utils/types';
 import { ALL_SETTINGS } from './utils/settings';
 import { DailyChrome } from './components/DailyChrome';
@@ -34,6 +31,7 @@ import { BundleResults } from './components/BundleResults';
 import { StreakDisplay } from './components/StreakDisplay';
 import { StreakMilestoneModal } from './components/StreakMilestoneModal';
 import { HubDevTools } from './components/HubDevTools';
+import { SoundFXToggle } from './components/SoundFXToggle';
 import { checkWasPlayedToday, daysSinceRelease, hasBeenReleased } from './utils';
 import { useStreakMilestone } from './hooks/useStreakData';
 
@@ -100,7 +98,7 @@ const DEMOS: Entry[] = [
   //   VERSION: 'disabled',
   // },
   ALL_SETTINGS.PIRRALHOS,
-  // ALL_SETTINGS.PANICO,
+  ALL_SETTINGS.PANICO,
 ];
 
 const ENDLESS: Entry[] = [ALL_SETTINGS.ENDLESS_VITRAIS];
@@ -343,27 +341,6 @@ function GameButton({
         </motion.button>
       </motion.div>
     </motion.div>
-  );
-}
-
-function SoundFXToggle() {
-  const [volume, setVolume] = useGlobalLocalStorage('volume');
-
-  useEffect(() => {
-    dailySoundEffects.volume(volume);
-  }, [volume]);
-
-  const onSwitchClick = (checked: boolean) => {
-    setVolume(checked ? 0.5 : 0);
-  };
-
-  return (
-    <Switch
-      checkedChildren={<SoundFilled />}
-      unCheckedChildren={<MutedOutlined />}
-      checked={!!volume}
-      onClick={onSwitchClick}
-    />
   );
 }
 

@@ -1,39 +1,124 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTitle } from 'react-use';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useLanguage } from 'hooks/useLanguage';
+// Components
+import { LoadingPage } from 'components/loaders/LoadingPage';
 // Pages
 import { LoginModal } from 'pages/Me/components/LoginModal';
 // Internal
 import { DailyChrome } from './components/DailyChrome';
-import { DailyAquiOGame } from './games/AquiO/DailyAquiOGame';
-import { DailyArteRuimGame } from './games/ArteRuim/DailyArteRuimGame';
-import { DailyAlienadoGame } from './games/Alienado/DailyAlienadoGame';
-import { DailyEstoquistaGame } from './games/Estoquista/DailyEstoquistaGame';
-import { DebugPage } from './Debug';
-import { DailyFilmacoGame } from './games/Filmaco/DailyFilmacoGame';
 import { Hub } from './Hub';
-import { DailyPalavreadoGame } from './games/Palavreado/DailyPalavreadoGame';
-import { DailyPicacoGame } from './games/Picaco/DailyPicacoGame';
-import { DailyConjuntosGame } from './games/Conjuntos/DailyConjuntosGame';
 import { getDailyName } from './utils';
 import { DailyContextProvider } from './hooks/useDailyChallenge';
-import { DailyPortaisGame } from './games/Portais/DailyPortaisGame';
-import { DailyQuartetosGame } from './games/Quartetos/DailyQuartetosGame';
-import { DailyTaNaCaraGame } from './games/TaNaCara/DailyTaNaCaraGame';
-import { DailyConexoesGame } from './games/Conexoes/DailyConexoesGame';
-import { DailyInvestigacaoGame } from './games/Investigacao/DailyInvestigacaoGame';
-import { DailyOrganikuGame } from './games/Organiku/DailyOrganikuGame';
-import { DailyVitralGame } from './games/Vitral/DailyVitralGame';
-import { DailyDemoPage } from './games/Demo/DailyDemoPage';
-import { VitraisInfinitosGame } from './games/VitraisInfinitos/VitraisInfinitosGame';
-import { DailyMapeamentoGame } from './games/Mapeamento/DailyMapeamentoGame';
-import { DailyPanicoGame } from './games/Panico/DailyPanicoGame';
-import { DailyPirralhosGame } from './games/Pirralhos/DailyPirralhosGame';
 // Sass
 import './utils/daily.scss';
+
+const DailyAlienadoGame = lazy(() =>
+  import(/* webpackChunkName: "daily-alienado" */ './games/Alienado/DailyAlienadoGame').then((m) => ({
+    default: m.DailyAlienadoGame,
+  })),
+);
+const DailyAquiOGame = lazy(() =>
+  import(/* webpackChunkName: "daily-aqui-o" */ './games/AquiO/DailyAquiOGame').then((m) => ({
+    default: m.DailyAquiOGame,
+  })),
+);
+const DailyArteRuimGame = lazy(() =>
+  import(/* webpackChunkName: "daily-arte-ruim" */ './games/ArteRuim/DailyArteRuimGame').then((m) => ({
+    default: m.DailyArteRuimGame,
+  })),
+);
+const DailyConjuntosGame = lazy(() =>
+  import(/* webpackChunkName: "daily-conjuntos" */ './games/Conjuntos/DailyConjuntosGame').then((m) => ({
+    default: m.DailyConjuntosGame,
+  })),
+);
+const DailyConexoesGame = lazy(() =>
+  import(/* webpackChunkName: "daily-conexoes" */ './games/Conexoes/DailyConexoesGame').then((m) => ({
+    default: m.DailyConexoesGame,
+  })),
+);
+const DailyEstoquistaGame = lazy(() =>
+  import(/* webpackChunkName: "daily-estoquista" */ './games/Estoquista/DailyEstoquistaGame').then((m) => ({
+    default: m.DailyEstoquistaGame,
+  })),
+);
+const DailyFilmacoGame = lazy(() =>
+  import(/* webpackChunkName: "daily-filmaco" */ './games/Filmaco/DailyFilmacoGame').then((m) => ({
+    default: m.DailyFilmacoGame,
+  })),
+);
+const DailyInvestigacaoGame = lazy(() =>
+  import(/* webpackChunkName: "daily-investigacao" */ './games/Investigacao/DailyInvestigacaoGame').then(
+    (m) => ({ default: m.DailyInvestigacaoGame }),
+  ),
+);
+const DailyMapeamentoGame = lazy(() =>
+  import(/* webpackChunkName: "daily-mapeamento" */ './games/Mapeamento/DailyMapeamentoGame').then((m) => ({
+    default: m.DailyMapeamentoGame,
+  })),
+);
+const DailyOrganikuGame = lazy(() =>
+  import(/* webpackChunkName: "daily-organiku" */ './games/Organiku/DailyOrganikuGame').then((m) => ({
+    default: m.DailyOrganikuGame,
+  })),
+);
+const DailyPalavreadoGame = lazy(() =>
+  import(/* webpackChunkName: "daily-palavreado" */ './games/Palavreado/DailyPalavreadoGame').then((m) => ({
+    default: m.DailyPalavreadoGame,
+  })),
+);
+const DailyPanicoGame = lazy(() =>
+  import(/* webpackChunkName: "daily-panico" */ './games/Panico/DailyPanicoGame').then((m) => ({
+    default: m.DailyPanicoGame,
+  })),
+);
+const DailyPicacoGame = lazy(() =>
+  import(/* webpackChunkName: "daily-picaco" */ './games/Picaco/DailyPicacoGame').then((m) => ({
+    default: m.DailyPicacoGame,
+  })),
+);
+const DailyPirralhosGame = lazy(() =>
+  import(/* webpackChunkName: "daily-pirralhos" */ './games/Pirralhos/DailyPirralhosGame').then((m) => ({
+    default: m.DailyPirralhosGame,
+  })),
+);
+const DailyPortaisGame = lazy(() =>
+  import(/* webpackChunkName: "daily-portais" */ './games/Portais/DailyPortaisGame').then((m) => ({
+    default: m.DailyPortaisGame,
+  })),
+);
+const DailyQuartetosGame = lazy(() =>
+  import(/* webpackChunkName: "daily-quartetos" */ './games/Quartetos/DailyQuartetosGame').then((m) => ({
+    default: m.DailyQuartetosGame,
+  })),
+);
+const DailyTaNaCaraGame = lazy(() =>
+  import(/* webpackChunkName: "daily-ta-na-cara" */ './games/TaNaCara/DailyTaNaCaraGame').then((m) => ({
+    default: m.DailyTaNaCaraGame,
+  })),
+);
+const DailyVitralGame = lazy(() =>
+  import(/* webpackChunkName: "daily-vitral" */ './games/Vitral/DailyVitralGame').then((m) => ({
+    default: m.DailyVitralGame,
+  })),
+);
+const VitraisInfinitosGame = lazy(() =>
+  import(
+    /* webpackChunkName: "daily-vitrais-infinitos" */ './games/VitraisInfinitos/VitraisInfinitosGame'
+  ).then((m) => ({ default: m.VitraisInfinitosGame })),
+);
+const DailyDemoPage = lazy(() =>
+  import(/* webpackChunkName: "daily-demo" */ './games/Demo/DailyDemoPage').then((m) => ({
+    default: m.DailyDemoPage,
+  })),
+);
+const DebugPage = lazy(() =>
+  import(/* webpackChunkName: "daily-debug" */ './Debug').then((m) => ({ default: m.DebugPage })),
+);
 
 function DailyPage() {
   const { isAuthenticated } = useCurrentUserContext();
@@ -90,14 +175,15 @@ function DailyPage() {
       demo: DailyDemoPage,
       // Endless games
       'vitrais-infinitos': VitraisInfinitosGame,
-      // TODO
       // Dev
       debug: DebugPage,
     }?.[subPath] ?? Hub;
 
   return (
     <DailyContextProvider>
-      <Outlet />
+      <Suspense fallback={<LoadingPage />}>
+        <Outlet />
+      </Suspense>
     </DailyContextProvider>
   );
 }

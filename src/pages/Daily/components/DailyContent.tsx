@@ -91,9 +91,10 @@ function getActiveEffect(): DateRangeEffect | null {
 type DailyContentProps = {
   children: React.ReactNode;
   isLoading?: boolean;
+  backgroundVariant?: 'dark';
 } & ComponentProps<typeof Content>;
 
-export function DailyContent({ children, isLoading, ...props }: DailyContentProps) {
+export function DailyContent({ children, isLoading, backgroundVariant, ...props }: DailyContentProps) {
   const { pathname } = useLocation();
 
   const activeEffect = useMemo(() => getActiveEffect(), []);
@@ -144,7 +145,7 @@ export function DailyContent({ children, isLoading, ...props }: DailyContentProp
       {...props}
       style={{ ...backgroundOverride, ...props.style, paddingBottom: 64, position: 'relative' }}
     >
-      <DailyImageBackground />
+      <DailyImageBackground backgroundVariant={backgroundVariant} />
       <div style={{ position: 'relative', zIndex: 1 }}>
         {componentEffect}
         {children}
