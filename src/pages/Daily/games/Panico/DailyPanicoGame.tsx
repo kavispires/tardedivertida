@@ -68,7 +68,7 @@ function usePanicoDemo() {
 
       try {
         sampleTest = [
-          // 'BASIC_PRESS',
+          'BASIC_PRESS',
           // 'RED_BUTTON',
           // 'YELLOW_BUTTON',
           // 'BLUE_BUTTON',
@@ -77,7 +77,15 @@ function usePanicoDemo() {
           // 'SEE_SOMETHING_PRESS_AVOID',
           // 'SEE_AND_COUNT',
           // 'ICON_COMPARISON',
-          // 'FINAL_PRESS',
+          'TRICK_POLITE_DO_NOT_PRESS',
+          'LOGIC_HUMAN_TRUE',
+          'QUICK_DO_NOT_PRESS',
+          'COUNT_CONSONANTS',
+          'EQUATION_RESULT',
+          'ALL_EVEN_NUMBERS',
+          'REMEMBER_NUMBER',
+          'REMEMBERED_NUMBER',
+          'FINAL_PRESS',
         ]
           .map((key) => BUTTONS_DICT[key])
           .map((button, index) => {

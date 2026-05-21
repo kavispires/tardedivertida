@@ -157,6 +157,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     targetCount: 0,
     maxOccurrence: 1,
     durationScale: 'quick',
+    eitherOr: ['LOGIC_HUMAN_TRUE'],
   },
   LOGIC_ROBOT_TRUE: {
     key: 'LOGIC_ROBOT_TRUE',
@@ -361,7 +362,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     category: 'math',
     doc: 'An equation is displayed, and the player must solve it and press the button the number of times corresponding to the result.',
     expectedAction: 'MULTI_PRESS',
-    verification: 'IMMEDIATE',
+    verification: 'DEFAULT',
     targetCount: -2,
     maxOccurrence: 1,
     durationScale: 'normal',
