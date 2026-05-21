@@ -521,6 +521,84 @@ export function ButtonContent({ button, pressCount }: ButtonContentProps) {
       );
     }
 
+    case 'MISSING_NUMBER': {
+      return (
+        <ContentTextSentence>
+          <Translate
+            en="Press as many times as the missing number in the sequence"
+            pt="Aperte tantas vezes quanto o número que falta na sequência"
+          />
+          <br />
+          <ContentValue>{button.pool?.value ?? 'N/A'}</ContentValue>
+        </ContentTextSentence>
+      );
+    }
+    case 'COUNT_SPECIFIC_LETTER': {
+      return (
+        <ContentTextSentence>
+          <Translate
+            en={<>Press as many times as the letter "{button.pool?.letter}" appears</>}
+            pt={<>Aperte tantas vezes quanto a letra "{button.pool?.letter}" aparecer</>}
+          />
+          <br />
+          <ContentValue>{button.pool?.value ?? 'N/A'}</ContentValue>
+        </ContentTextSentence>
+      );
+    }
+    case 'ALPHABET_POSITION': {
+      return (
+        <ContentTextSentence>
+          <Translate
+            en={<>Press as many times as the position of the letter "{button.pool?.value}" in the alphabet</>}
+            pt={<>Aperte tantas vezes quanto a posição da letra "{button.pool?.value}" no alfabeto</>}
+          />
+        </ContentTextSentence>
+      );
+    }
+    case 'ROMAN_NUMERALS': {
+      return (
+        <ContentTextSentence>
+          <Translate
+            en="Press as many times as the value of this Roman numeral"
+            pt="Aperte tantas vezes quanto o valor deste numeral romano"
+          />
+          <br />
+          <ContentValue>{button.pool?.value ?? 'N/A'}</ContentValue>
+        </ContentTextSentence>
+      );
+    }
+    case 'COUNT_ANIMAL_LEGS': {
+      return (
+        <ContentTextSentence>
+          <Translate
+            en="Press as many times as the total number of legs these animals have"
+            pt="Aperte tantas vezes quanto o número total de pernas que esses animais têm"
+          />
+          <br />
+          <ContentSequence>
+            {button?.pool?.itemsIds.map((itemId: string, index: number) => (
+              <ItemSprite
+                key={index}
+                itemId={itemId ?? '0'}
+                width={48}
+              />
+            ))}
+          </ContentSequence>
+        </ContentTextSentence>
+      );
+    }
+    case 'NUMBER_RIDDLE': {
+      return (
+        <ContentTextSentence>
+          <Translate
+            en="Press as many times as "
+            pt="Aperte tantas vezes quanto "
+          />
+          <DualTranslate>{button.pool?.text}</DualTranslate>
+        </ContentTextSentence>
+      );
+    }
+
     // Placeholder for other button types
     default:
       return (

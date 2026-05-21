@@ -537,6 +537,72 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     durationScale: 'long',
     pool: 'ICON_COMPARISONS',
   },
+  MISSING_NUMBER: {
+    key: 'MISSING_NUMBER',
+    category: 'math',
+    doc: 'A number sequence with a missing number is displayed. Press for the missing value.',
+    expectedAction: 'TBD',
+    verification: 'DEFAULT',
+    targetCount: -2,
+    maxOccurrence: 1,
+    durationScale: 'long',
+    pool: 'MISSING_NUMBERS_SEQUENCES',
+  },
+  COUNT_SPECIFIC_LETTER: {
+    key: 'COUNT_SPECIFIC_LETTER',
+    category: 'count',
+    doc: 'Player must count occurrences of a specific letter in a string.',
+    expectedAction: 'TBD',
+    verification: 'DEFAULT',
+    targetCount: -2,
+    maxOccurrence: 1,
+    durationScale: 'long',
+    pool: 'LETTER_SEARCH_STRINGS',
+  },
+  ALPHABET_POSITION: {
+    key: 'ALPHABET_POSITION',
+    category: 'logic',
+    doc: 'A single letter is displayed. The player must press for its position in the alphabet (e.g., A=1, B=2).',
+    expectedAction: 'TBD',
+    verification: 'DEFAULT',
+    targetCount: -2,
+    maxOccurrence: 1,
+    durationScale: 'long',
+    pool: 'ALPHABET_POSITIONS',
+  },
+  ROMAN_NUMERALS: {
+    key: 'ROMAN_NUMERALS',
+    category: 'math',
+    doc: 'A Roman numeral is displayed. The player must press the equivalent number of times.',
+    expectedAction: 'TBD',
+    verification: 'DEFAULT',
+    targetCount: -2,
+    maxOccurrence: 1,
+    durationScale: 'long',
+    pool: 'ROMAN_NUMERALS_POOL',
+  },
+  COUNT_ANIMAL_LEGS: {
+    key: 'COUNT_ANIMAL_LEGS',
+    category: 'count',
+    doc: 'Animal emojis are displayed. The player must press for the total number of legs those animals have.',
+    expectedAction: 'MULTI_PRESS',
+    verification: 'DEFAULT',
+    targetCount: -2,
+    maxOccurrence: 1,
+    durationScale: 'long',
+    pool: 'ANIMAL_LEGS',
+  },
+  NUMBER_RIDDLE: {
+    key: 'NUMBER_RIDDLE',
+    category: 'question',
+    doc: 'A short riddle or trivia question is displayed where the answer is a number. Press that many times.',
+    expectedAction: 'MULTI_PRESS',
+    verification: 'DEFAULT',
+    targetCount: -2,
+    maxOccurrence: 1,
+    durationScale: 'long',
+    pool: 'NUMBER_RIDDLES',
+  },
 };
 
 // biome-ignore lint/suspicious/noExplicitAny: This is a utility type for button entries, and the generic allows for flexibility in the additional properties that can be included based on the button's pool or specific needs.
@@ -712,15 +778,15 @@ const PRESS_TARGET_COUNTDOWN: Dictionary<PoolGroupEntry> = {
     id: 'NUMBER_3',
     targetCount: 3,
   },
-  NUMVER_4: {
-    id: 'NUMVER_4',
+  NUMBER_4: {
+    id: 'NUMBER_4',
     targetCount: 4,
   },
   NUMBER_5: {
     id: 'NUMBER_5',
     targetCount: 5,
   },
-  NUMBER__7: {
+  NUMBER_7: {
     id: 'NUMBER_7',
     targetCount: 7,
   },
@@ -1008,7 +1074,7 @@ export const SEQUENCES_TO_REMEMBER: Dictionary<
   },
 };
 
-export const RANDOM_QUESTIONS: Dictionary<PoolGroupEntry<{ text: DualLanguageValue }>> = {
+const RANDOM_QUESTIONS: Dictionary<PoolGroupEntry<{ text: DualLanguageValue }>> = {
   RANDOM_QUESTION_1: {
     id: 'RANDOM_QUESTION_1',
     targetCount: -1,
@@ -1091,6 +1157,160 @@ const ICON_COMPARISONS: Dictionary<PoolGroupEntry<{ value: DualLanguageValue; it
   },
 };
 
+const MISSING_NUMBERS_SEQUENCES: Dictionary<PoolGroupEntry<{ value: string }>> = {
+  SEQ_1: {
+    id: 'SEQ_1',
+    targetCount: 6,
+    value: '2, 4, ?, 8, 10',
+  },
+  SEQ_2: {
+    id: 'SEQ_2',
+    targetCount: 5,
+    value: '15, 10, ?, 0',
+  },
+  SEQ_3: {
+    id: 'SEQ_3',
+    targetCount: 4,
+    value: '1, 2, 3, ?, 5',
+  },
+  SEQ_4: {
+    id: 'SEQ_4',
+    targetCount: 3,
+    value: '12, 9, 6, ?',
+  },
+};
+
+const LETTER_SEARCH_STRINGS: Dictionary<PoolGroupEntry<{ letter: string; value: string }>> = {
+  SEARCH_1: {
+    id: 'SEARCH_1',
+    targetCount: 4,
+    letter: 'B',
+    value: 'A B B C D B E B',
+  },
+  SEARCH_2: {
+    id: 'SEARCH_2',
+    targetCount: 2,
+    letter: 'A',
+    value: 'A B C D a B E B',
+  },
+  SEARCH_3: {
+    id: 'SEARCH_3',
+    targetCount: 3,
+    letter: 'B',
+    value: 'A B C D A b E B',
+  },
+  SEARCH_4: {
+    id: 'SEARCH_4',
+    targetCount: 0,
+    letter: 'A',
+    value: 'B C D F G E B C',
+  },
+};
+
+const ALPHABET_POSITIONS: Dictionary<PoolGroupEntry<{ value: string }>> = {
+  ALPHA_C: {
+    id: 'ALPHA_C',
+    targetCount: 3,
+    value: 'C',
+  },
+  ALPHA_E: {
+    id: 'ALPHA_E',
+    targetCount: 5,
+    value: 'E',
+  },
+  ALPHA_B: {
+    id: 'ALPHA_B',
+    targetCount: 2,
+    value: 'B',
+  },
+  ALPHA_D: {
+    id: 'ALPHA_D',
+    targetCount: 4,
+    value: 'D',
+  },
+};
+
+const ROMAN_NUMERALS_POOL: Dictionary<PoolGroupEntry<{ value: string }>> = {
+  ROMAN_3: {
+    id: 'ROMAN_3',
+    targetCount: 3,
+    value: 'III',
+  },
+  ROMAN_4: {
+    id: 'ROMAN_4',
+    targetCount: 4,
+    value: 'IV',
+  },
+  ROMAN_5: {
+    id: 'ROMAN_5',
+    targetCount: 5,
+    value: 'V',
+  },
+  ROMAN_6: {
+    id: 'ROMAN_6',
+    targetCount: 6,
+    value: 'VI',
+  },
+};
+
+const ANIMAL_LEGS: Dictionary<PoolGroupEntry<{ itemsIds: string[] }>> = {
+  LEGS_1: {
+    id: 'LEGS_1',
+    targetCount: 6,
+    itemsIds: ['item-148', 'item-1205'], // Dog (4) + Duck (2)
+  },
+  LEGS_2: {
+    id: 'LEGS_2',
+    targetCount: 8,
+    itemsIds: ['item-153', 'item-1079'], // Spider (8) + Worm (0)
+  },
+  LEGS_3: {
+    id: 'LEGS_3',
+    targetCount: 5,
+    itemsIds: ['item-162', 'item-2157'], // cat (4) + pirate leg (1)
+  },
+  LEGS_4: {
+    id: 'LEGS_4',
+    targetCount: 0,
+    itemsIds: ['item-1079', 'item-16'], // Worm (0) + Fish (0)
+  },
+};
+
+const NUMBER_RIDDLES: Dictionary<PoolGroupEntry<{ text: DualLanguageValue }>> = {
+  RIDDLE_1: {
+    id: 'RIDDLE_1',
+    targetCount: 8,
+    text: {
+      en: 'the sides on a stop sign',
+      pt: 'os lados de uma placa de pare',
+    },
+  },
+  RIDDLE_2: {
+    id: 'RIDDLE_2',
+    targetCount: 7,
+    text: {
+      en: 'the colors in a rainbow',
+      pt: 'as cores em um arco-íris',
+    },
+  },
+  RIDDLE_3: {
+    id: 'RIDDLE_3',
+    targetCount: 3,
+    text: {
+      en: 'the wheels on a tricycle',
+      pt: 'as rodas de um triciclo',
+    },
+  },
+  RIDDLE_4: {
+    id: 'RIDDLE_4',
+    targetCount: 5,
+    text: {
+      en: 'the fingers on one hand',
+      pt: 'os dedos em uma mão',
+    },
+  },
+};
+
 export const POOLS: Dictionary<Dictionary<PoolGroupEntry>> = {
   SENTENCES_FOR_COUNTING,
   PRESS_LESS_COMPARISON,
@@ -1111,4 +1331,10 @@ export const POOLS: Dictionary<Dictionary<PoolGroupEntry>> = {
   SEQUENCES_TO_REMEMBER,
   RANDOM_QUESTIONS,
   ICON_COMPARISONS,
+  MISSING_NUMBERS_SEQUENCES,
+  LETTER_SEARCH_STRINGS,
+  ALPHABET_POSITIONS,
+  ROMAN_NUMERALS_POOL,
+  ANIMAL_LEGS,
+  NUMBER_RIDDLES,
 };
