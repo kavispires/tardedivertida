@@ -13,24 +13,12 @@ import { Translate } from 'components/language/Translate';
 // Internal
 import type { GameSettings } from '../utils/types';
 import { ALL_SETTINGS } from '../utils/settings';
-import { checkWasPlayedToday, getAnalyticsEventName } from '../utils';
+import { checkWasPlayedToday, daysSinceRelease, getAnalyticsEventName } from '../utils';
 
 const PRIORITY_LIST = orderBy(
-  [
-    ALL_SETTINGS.MAPEAMENTO,
-    ALL_SETTINGS.AQUI_O,
-    ALL_SETTINGS.ARTE_RUIM,
-    ALL_SETTINGS.ALIENADO,
-    ALL_SETTINGS.CONJUNTOS,
-    ALL_SETTINGS.FILMACO,
-    ALL_SETTINGS.PALAVREADO,
-    ALL_SETTINGS.INVESTIGACAO,
-    ALL_SETTINGS.ESTOQUISTA,
-    ALL_SETTINGS.ORGANIKU,
-    ALL_SETTINGS.PORTAIS,
-    ALL_SETTINGS.QUARTETOS,
-    ALL_SETTINGS.VITRAL,
-  ],
+  Object.values(ALL_SETTINGS).filter(
+    (settings) => settings.TYPE === 'game' && daysSinceRelease(settings.RELEASE_DATE) > 0,
+  ),
   [
     (o) => {
       const releaseDate = parse(o.RELEASE_DATE, 'yyyy-MM-dd', new Date());

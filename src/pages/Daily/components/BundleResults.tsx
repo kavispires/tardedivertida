@@ -31,6 +31,8 @@ import type { DailyQuartetosEntry } from '../games/Quartetos/utils/types';
 import type { DailyConjuntosEntry } from '../games/Conjuntos/utils/types';
 import type { DailyVitralEntry } from '../games/Vitral/utils/types';
 import type { DailyMapeamentoEntry } from '../games/Mapeamento/utils/types';
+import type { DailyPirralhosEntry } from '../games/Pirralhos/utils/types';
+import type { DailyPanicoEntry } from '../games/Panico/utils/types';
 
 type BundleResultsProps = {
   list: (GameSettings & { disabled?: boolean })[];
@@ -162,6 +164,12 @@ function getResultForGame(data: DailyResponse[keyof DailyResponse], language: La
   }
 
   switch (data.type) {
+    case ALL_SETTINGS.ALIENADO.ROUTE: {
+      return ALL_HELPERS.ALIENADO.getWrittenResult({
+        data: data as DailyAlienadoEntry,
+        language,
+      });
+    }
     case ALL_SETTINGS.AQUI_O.ROUTE: {
       return ALL_HELPERS.AQUI_O.getWrittenResult({
         data: data as DailyAquiOEntry,
@@ -174,9 +182,9 @@ function getResultForGame(data: DailyResponse[keyof DailyResponse], language: La
         language,
       });
     }
-    case ALL_SETTINGS.ALIENADO.ROUTE: {
-      return ALL_HELPERS.ALIENADO.getWrittenResult({
-        data: data as DailyAlienadoEntry,
+    case ALL_SETTINGS.CONJUNTOS.ROUTE: {
+      return ALL_HELPERS.CONJUNTOS.getWrittenResult({
+        data: data as DailyConjuntosEntry,
         language,
       });
     }
@@ -216,6 +224,18 @@ function getResultForGame(data: DailyResponse[keyof DailyResponse], language: La
         language,
       });
     }
+    case ALL_SETTINGS.PANICO.ROUTE: {
+      return ALL_HELPERS.PANICO.getWrittenResult({
+        data: data as DailyPanicoEntry,
+        language,
+      });
+    }
+    case ALL_SETTINGS.PIRRALHOS.ROUTE: {
+      return ALL_HELPERS.PIRRALHOS.getWrittenResult({
+        data: data as DailyPirralhosEntry,
+        language,
+      });
+    }
     case ALL_SETTINGS.PORTAIS.ROUTE: {
       return ALL_HELPERS.PORTAIS.getWrittenResult({
         data: data as DailyPortaisEntry,
@@ -225,12 +245,6 @@ function getResultForGame(data: DailyResponse[keyof DailyResponse], language: La
     case ALL_SETTINGS.QUARTETOS.ROUTE: {
       return ALL_HELPERS.QUARTETOS.getWrittenResult({
         data: data as DailyQuartetosEntry,
-        language,
-      });
-    }
-    case ALL_SETTINGS.CONJUNTOS.ROUTE: {
-      return ALL_HELPERS.CONJUNTOS.getWrittenResult({
-        data: data as DailyConjuntosEntry,
         language,
       });
     }

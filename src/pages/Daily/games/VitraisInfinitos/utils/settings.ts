@@ -6,7 +6,7 @@ import type { GameSettings } from 'pages/Daily/utils/types';
 export const SETTINGS: GameSettings = {
   KEY: 'vitrais-infinitos',
   ROUTE: 'vitrais-infinitos',
-  TYPE: 'game',
+  TYPE: 'special',
   RELEASE_DATE: '2025-02-08',
   COLOR: 'rgb(255 202 141 / 85%)',
   EMOJI: '🧩',

@@ -8,6 +8,7 @@ import * as FILMACO from '../games/Filmaco/utils/helpers';
 import * as ORGANIKU from '../games/Organiku/utils/helpers';
 import * as MAPEAMENTO from '../games/Mapeamento/utils/helpers';
 import * as PALAVREADO from '../games/Palavreado/utils/helpers';
+import * as PANICO from '../games/Panico/utils/helpers';
 import * as PICACO from '../games/Picaco/utils/helpers';
 import * as PIRRALHOS from '../games/Pirralhos/utils/helpers';
 import * as PORTAIS from '../games/Portais/utils/helpers';
@@ -27,6 +28,7 @@ export const ALL_HELPERS = {
   ORGANIKU,
   MAPEAMENTO,
   PALAVREADO,
+  PANICO,
   PICACO,
   PIRRALHOS,
   PORTAIS,

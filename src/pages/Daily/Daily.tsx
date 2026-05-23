@@ -10,7 +10,7 @@ import { LoadingPage } from 'components/loaders/LoadingPage';
 import { LoginModal } from 'pages/Me/components/LoginModal';
 // Internal
 import { DailyChrome } from './components/DailyChrome';
-import { Hub } from './Hub';
+import { Hub } from './DailyHub';
 import { getDailyName } from './utils';
 import { DailyContextProvider } from './hooks/useDailyChallenge';
 // Sass

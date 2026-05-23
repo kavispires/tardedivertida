@@ -52,56 +52,61 @@ const _COMING_SOON_ENTRY: Entry = {
   disabled: true,
 };
 
-const GAMES: Entry[] = orderBy(
-  [
-    ALL_SETTINGS.ARTE_RUIM,
-    ALL_SETTINGS.ALIENADO,
-    ALL_SETTINGS.AQUI_O,
-    ALL_SETTINGS.CONJUNTOS,
-    ALL_SETTINGS.ESTOQUISTA,
-    ALL_SETTINGS.INVESTIGACAO,
-    ALL_SETTINGS.FILMACO,
-    ALL_SETTINGS.MAPEAMENTO,
-    ALL_SETTINGS.ORGANIKU,
-    ALL_SETTINGS.PALAVREADO,
-    ALL_SETTINGS.PORTAIS,
-    ALL_SETTINGS.QUARTETOS,
-    ALL_SETTINGS.VITRAL,
-  ],
-  ['NAME.pt'],
-  ['asc'],
+type Libraries = {
+  NEW_RELEASES: Entry[];
+  GAMES: Entry[];
+  CONTRIBUTIONS: Entry[];
+  DEMOS: Entry[];
+  SPECIALS: Entry[];
+};
+
+// Get NEW_RELEASES, GAMES, CONTRIBUTIONS, DEMOS and SPECIALS from ALL_SETTINGS
+const { NEW_RELEASES, GAMES, CONTRIBUTIONS, DEMOS, SPECIALS } = Object.values(ALL_SETTINGS).reduce(
+  (acc: Libraries, settings) => {
+    if (
+      settings.RELEASE_DATE &&
+      settings.VERSION !== 'demo' &&
+      daysSinceRelease(settings.RELEASE_DATE) < 15
+    ) {
+      acc.NEW_RELEASES.push(settings);
+      acc.NEW_RELEASES = orderBy(acc.NEW_RELEASES, [(e) => daysSinceRelease(e.RELEASE_DATE)], ['desc']);
+      return acc;
+    }
+
+    if (settings.TYPE === 'contribution') {
+      acc.CONTRIBUTIONS.push(settings);
+      acc.CONTRIBUTIONS = orderBy(acc.CONTRIBUTIONS, ['NAME.pt'], ['asc']);
+      return acc;
+    }
+
+    if (settings.VERSION === 'demo') {
+      acc.DEMOS.push(settings);
+      acc.DEMOS = orderBy(acc.DEMOS, ['NAME.pt'], ['asc']);
+      return acc;
+    }
+
+    if (settings.TYPE === 'game') {
+      acc.GAMES.push(settings);
+      acc.GAMES = orderBy(acc.GAMES, ['NAME.pt'], ['asc']);
+      return acc;
+    }
+
+    if (settings.TYPE === 'special') {
+      acc.SPECIALS.push(settings);
+      acc.SPECIALS = orderBy(acc.SPECIALS, ['NAME.pt'], ['asc']);
+      return acc;
+    }
+
+    return acc;
+  },
+  {
+    NEW_RELEASES: [],
+    GAMES: [],
+    CONTRIBUTIONS: [],
+    DEMOS: [],
+    SPECIALS: [],
+  },
 );
-
-const CONTRIBUTIONS: Entry[] = orderBy(
-  [
-    ALL_SETTINGS.CONEXOES,
-    ALL_SETTINGS.PICACO,
-    ALL_SETTINGS.TA_NA_CARA,
-    // {
-    //   ...COMING_SOON_ENTRY,
-    //   HUB_ICON: DailyContributionGame,
-    //   NAME: { pt: 'Responda', en: 'Answer' },
-    //   COLOR: 'rgba(240, 240, 228, 0.85)',
-    //   disabled: true,
-    // },
-  ],
-  ['NAME.pt'],
-  ['asc'],
-);
-
-const DEMOS: Entry[] = [
-  // {
-  //   ...COMING_SOON_ENTRY,
-  //   HUB_ICON: DailyCrimeGameIcon,
-  //   NAME: { pt: 'Criminologia', en: 'Criminology' },
-  //   COLOR: 'rgba(243, 232, 145, 0.85)',
-  //   VERSION: 'disabled',
-  // },
-  ALL_SETTINGS.PIRRALHOS,
-  ALL_SETTINGS.PANICO,
-];
-
-const ENDLESS: Entry[] = [ALL_SETTINGS.ENDLESS_VITRAIS];
 
 export function Hub() {
   const { isAdmin } = useCurrentUserContext();
@@ -122,6 +127,24 @@ export function Hub() {
         </Flex>
         <StreakDisplay />
       </div>
+
+      {NEW_RELEASES.length > 0 && (
+        <div className="hub">
+          <Typography.Title level={5}>
+            <Translate
+              pt="Lançamentos"
+              en="New Releases"
+            />
+          </Typography.Title>
+
+          <HubList
+            list={NEW_RELEASES}
+            width={width}
+            startingIndex={GAMES.length}
+          />
+        </div>
+      )}
+
       <div
         className="hub"
         ref={ref}
@@ -174,17 +197,17 @@ export function Hub() {
         </div>
       )}
 
-      {ENDLESS.length > 0 && (
+      {SPECIALS.length > 0 && (
         <div className="hub">
           <Typography.Title level={5}>
             <Translate
-              pt="Infinitos"
-              en="Endless"
+              pt="Especiais"
+              en="Specials"
             />
           </Typography.Title>
 
           <HubList
-            list={ENDLESS}
+            list={SPECIALS}
             width={width}
             startingIndex={GAMES.length}
           />

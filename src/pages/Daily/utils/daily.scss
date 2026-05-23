@@ -94,13 +94,13 @@
 .daily-loading {
   display: grid;
   place-items: center;
-  min-height: calc(99svh - 64px);
+  min-height: calc(99dvh - 64px);
 }
 
 .daily-page-error {
   display: grid;
   place-items: center;
-  min-height: calc(99svh - 64px);
+  min-height: calc(99dvh - 64px);
   text-align: center;
   padding: get-unit(4);
 }
@@ -356,7 +356,7 @@
 }
 
 .daily-news-list {
-  max-height: 50vh;
+  max-height: 50dvh;
   overflow-y: auto;
 }
 

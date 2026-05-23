@@ -16,6 +16,8 @@ import type { DailyInvestigacaoEntry } from '../games/Investigacao/utils/types';
 import type { DailyVitralEntry } from '../games/Vitral/utils/types';
 import type { DailyConexoesEntry } from '../games/Conexoes/utils/types';
 import type { DailyMapeamentoEntry } from '../games/Mapeamento/utils/types';
+import type { DailyPanicoEntry } from '../games/Panico/utils/types';
+import type { DailyPirralhosEntry } from '../games/Pirralhos/utils/types';
 
 export type DateKey = string; // Format YYYY-MM-DD
 
@@ -28,9 +30,11 @@ export type DailyResponse = {
   estoquista: DailyEstoquistaEntry;
   investigacao: DailyInvestigacaoEntry;
   filmaco: DailyFilmacoEntry;
-  mapeamento?: DailyMapeamentoEntry;
+  mapeamento: DailyMapeamentoEntry;
   organiku: DailyOrganikuEntry;
   palavreado: DailyPalavreadoEntry;
+  panico?: DailyPanicoEntry;
+  pirralhos?: DailyPirralhosEntry;
   portais: DailyPortaisEntry;
   quartetos: DailyQuartetosEntry;
   conjuntos: DailyConjuntosEntry;
@@ -113,7 +117,7 @@ export interface GameSettings {
   /**
    * Game type
    */
-  TYPE: 'game' | 'contribution';
+  TYPE: 'game' | 'contribution' | 'special';
   /**
    * Game box hub color
    */
