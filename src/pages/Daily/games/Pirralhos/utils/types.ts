@@ -1,6 +1,7 @@
 // Pages
 import type { DateKey } from 'pages/Daily/utils/types';
 
+export type Gender = 'boy' | 'girl';
 export interface Kid {
   id: number;
   cardId: string;
@@ -10,10 +11,11 @@ export interface Kid {
   color: string;
 }
 
-export type Gender = 'boy' | 'girl';
 export interface GeneratedKid extends Kid {
   statement: DualLanguageValue;
 }
+
+export type KidAssessment = 'culprit' | 'liar' | 'innocent' | 'unknown';
 
 export type GameState = {
   id: DateKey;
@@ -21,7 +23,7 @@ export type GameState = {
   status: string;
   hearts: number;
   guesses: string[];
-  assessments: Record<string, 'culprit' | 'liar' | 'innocent'>; // Map of kid ID to assessment
+  assessments: Record<string, KidAssessment>; // Map of kid ID to assessment
 };
 
 export type DailyPirralhosEntry = {

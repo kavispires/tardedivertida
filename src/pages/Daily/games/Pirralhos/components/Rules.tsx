@@ -22,7 +22,7 @@ export function Rules({ date }: RulesProps) {
             <>
               <li>Descubra qual criança pegou o brinquedo.</li>
               <li>Crianças estão do lado uma da outra quando há uma seta entre elas.</li>
-              <li>Existe um ou mais mentirosos entre elas, e pode ser o culpado.</li>
+              <li>Existem dois ou mais mentirosos entre elas, e o culpado sempre mente.</li>
               <li>
                 Você tem {SETTINGS.HEARTS} <HeartFilled /> chances. Boa sorte!
               </li>
@@ -32,7 +32,7 @@ export function Rules({ date }: RulesProps) {
             <>
               <li>Find out which kid took the toy.</li>
               <li>Kids are next to each other when there's an arrow between them.</li>
-              <li>There is one or more liars among them, and it could be the culprit.</li>
+              <li>There are two or more liars among them, and the culprit always lies.</li>
               <li>
                 You have {SETTINGS.HEARTS} <HeartFilled /> chances. Good luck!
               </li>

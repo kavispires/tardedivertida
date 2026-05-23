@@ -111,6 +111,9 @@ export const ALL_KIDS: Kid[] = [
 
 const HEIGHT_THRESHOLDS = ALL_KIDS.map((k) => k.height).sort();
 
+/**
+ * Gets the left and right neighbors of a kid in the lineup.
+ */
 const getNeighbors = (kid: Kid, allKids: Kid[]) => {
   const index = allKids.findIndex((k) => k.id === kid.id);
   const left = allKids[(index - 1 + allKids.length) % allKids.length];
@@ -118,6 +121,9 @@ const getNeighbors = (kid: Kid, allKids: Kid[]) => {
   return { left, right };
 };
 
+/**
+ * Randomly selects an element from an array.
+ */
 const pickRandom = <T>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
 
 const STATEMENT_POOL: StatementDef[] = [
@@ -243,6 +249,9 @@ const STATEMENT_POOL: StatementDef[] = [
   },
 ];
 
+/**
+ * Generates all possible combinations of a given size from an array.
+ */
 function getCombinations<T>(array: T[], size: number): T[][] {
   const result: T[][] = [];
   function combine(start: number, combo: T[]) {
@@ -258,26 +267,33 @@ function getCombinations<T>(array: T[], size: number): T[][] {
   return result;
 }
 
-// --- ID Encoding / Decoding ---
+/**
+ * Encodes puzzle parameters into a base64 hash ID.
+ */
 function encodePuzzleId(
   numKids: number,
-  numCulprits: number,
   exactLiars: number,
+  possibleLiars: number, // Tracked to ensure consistent bluff value across reloads
   stmts: StatementInstance[],
 ): string {
   const stmtString = stmts
     .map((s) => (s.param !== undefined ? `${s.type},${s.param}` : `${s.type}`))
     .join('-');
-  const rawId = `${numKids}|${numCulprits}|${exactLiars}|${stmtString}`;
+  // Hardcoded `1` culprit to keep the ID structure consistent with previous formatting versions
+  const rawId = `${numKids}|1|${exactLiars}|${possibleLiars}|${stmtString}`;
   return globalThis.btoa(rawId);
 }
 
+/**
+ * Decodes a base64 hash ID back into puzzle parameters.
+ */
 function decodePuzzleId(hash: string) {
   const rawId = globalThis.atob(hash);
-  const [kidsStr, culpritsStr, liarsStr, stmtsStr] = rawId.split('|');
+  const [kidsStr, culpritsStr, liarsStr, possibleLiarsStr, stmtsStr] = rawId.split('|');
   const numKids = Number.parseInt(kidsStr, 10);
   const numCulprits = Number.parseInt(culpritsStr, 10);
   const exactLiars = Number.parseInt(liarsStr, 10);
+  const possibleLiars = Number.parseInt(possibleLiarsStr, 10);
 
   const parsedStmts = stmtsStr.split('-').map((s) => {
     const [typeStr, paramStr] = s.split(',');
@@ -287,38 +303,34 @@ function decodePuzzleId(hash: string) {
     };
   });
 
-  return { numKids, numCulprits, exactLiars, parsedStmts };
+  return { numKids, numCulprits, exactLiars, possibleLiars, parsedStmts };
 }
 
-// --- Difficulty Calculator ---
+/**
+ * Calculates the difficulty score for a puzzle.
+ */
 function calculateDifficulty(
   numKids: number,
   numCulprits: number,
   exactLiars: number,
   stmts: StatementInstance[],
 ): number {
-  // Max ~20 points based on number of kids (3 kids = 0, 7 kids = 20)
   const kidsScore = (numKids - 3) * 5;
-
-  // Max ~30 points based on culprits (1 culprit = 0, 3 culprits = 30)
   const culpritsScore = (numCulprits - 1) * 15;
-
-  // Max ~20 points based on liars (0 liars = 0, 4 liars = 20)
   const liarsScore = exactLiars * 5;
-
-  // Max ~30 points based on statement complexity
   const totalWeight = stmts.reduce((sum, stmt) => sum + STATEMENT_POOL[stmt.type].difficultyWeight, 0);
-  const avgWeight = totalWeight / stmts.length; // Range: 1.0 to 3.0
-  const statementsScore = (avgWeight - 1) * 15; // Range: 0 to 30
-
+  const avgWeight = totalWeight / stmts.length;
+  const statementsScore = (avgWeight - 1) * 15;
   const totalScore = Math.round(kidsScore + culpritsScore + liarsScore + statementsScore);
 
-  // Clamp between 1 and 100 just in case
   return Math.max(1, Math.min(100, totalScore));
 }
 
 // --- Puzzle Solvers ---
 
+/**
+ * Solves a puzzle by testing all possible combinations of culprits and liars to find a unique solution.
+ */
 function solvePuzzle(
   activeKids: Kid[],
   numCulprits: number,
@@ -334,6 +346,12 @@ function solvePuzzle(
 
   for (const testCulprits of possibleCulpritCombos) {
     for (const testLiars of possibleLiarCombos) {
+      // RULE: The culprit must ALWAYS be a liar.
+      // If the selected culprit state does not exist inside the liar state, bypass.
+      if (!testLiars.some((l) => testCulprits.some((c) => c.id === l.id))) {
+        continue;
+      }
+
       let isValidState = true;
       for (const ks of statements) {
         const isLiarInThisState = testLiars.some((l) => l.id === ks.kid.id);
@@ -362,22 +380,38 @@ function solvePuzzle(
 
 // --- Main Exits ---
 
-export function generatePuzzle(
-  numKids: number,
-  numCulprits: number,
-  exactLiars: number,
-  avoidIds: string[] = [],
-): DailyPirralhosEntry {
+/**
+ * Generates a unique daily Pirralhos puzzle based strictly on numKids.
+ */
+export function generatePuzzle(numKids: number, avoidIds: string[] = []): DailyPirralhosEntry {
   const activeKids = sampleSize(ALL_KIDS, numKids);
+
+  // Hard rules enforcement
+  const numCulprits = 1;
+  let exactLiars = 2;
+
+  // For 6/7 kids, randomize liars between 2 and 4.
+  if (numKids >= 6) {
+    exactLiars = pickRandom([2, 3, 4]);
+  }
+
+  // Display the true exact liars, or optionally bluff with a +1
+  const possibleLiars = exactLiars + (Math.random() > 0.5 ? 1 : 0);
   const possibleCulpritCombos = getCombinations(activeKids, numCulprits);
-  const possibleLiarCombos = getCombinations(activeKids, exactLiars);
 
   let attempts = 0;
 
   while (attempts < 5000) {
     attempts++;
+
+    // Select the one definitive culprit
     const trueCulprits = pickRandom(possibleCulpritCombos);
-    const trueLiars = pickRandom(possibleLiarCombos);
+    const theCulprit = trueCulprits[0];
+
+    // Build the liars array. The true culprit MUST be included as one of the liars.
+    const otherKids = activeKids.filter((k) => k.id !== theCulprit.id);
+    const otherLiarsCombos = getCombinations(otherKids, exactLiars - 1);
+    const trueLiars = [theCulprit, ...pickRandom(otherLiarsCombos)];
 
     const kidStatements = activeKids.map((kid) => {
       let stmtInstance: StatementInstance | null = null;
@@ -415,7 +449,7 @@ export function generatePuzzle(
 
     if (solution.validSolutionsCount === 1) {
       const stmtInstances = kidStatements.map((ks) => ks.stmt);
-      const puzzleId = encodePuzzleId(numKids, numCulprits, exactLiars, stmtInstances);
+      const puzzleId = encodePuzzleId(numKids, exactLiars, possibleLiars, stmtInstances);
 
       if (avoidIds.includes(puzzleId)) {
         continue;
@@ -430,7 +464,7 @@ export function generatePuzzle(
         kids: kidStatements.map((ks) => ({ ...ks.kid, statement: ks.stmt.text })),
         culpritsIds: trueCulprits.map((c) => c.cardId),
         liarsIds: trueLiars.map((l) => l.cardId),
-        possibleLiars: exactLiars,
+        possibleLiars,
         difficulty,
       };
     }
@@ -439,8 +473,11 @@ export function generatePuzzle(
   throw new Error('Could not generate a unique puzzle after 5000 attempts. Try adjusting the parameters.');
 }
 
+/**
+ * Retrieves and reconstructs a puzzle from its hash ID.
+ */
 export function getPuzzleById(hashId: string): DailyPirralhosEntry {
-  const { numKids, numCulprits, exactLiars, parsedStmts } = decodePuzzleId(hashId);
+  const { numKids, numCulprits, exactLiars, possibleLiars, parsedStmts } = decodePuzzleId(hashId);
   const activeKids = ALL_KIDS.slice(0, numKids);
 
   const kidStatements = activeKids.map((kid, index) => {
@@ -468,7 +505,7 @@ export function getPuzzleById(hashId: string): DailyPirralhosEntry {
     kids: kidStatements.map((ks) => ({ ...ks.kid, statement: ks.stmt.text })),
     culpritsIds: solution.finalCulprits.map((c) => c.cardId),
     liarsIds: solution.finalLiars.map((l) => l.cardId),
-    possibleLiars: exactLiars,
+    possibleLiars,
     difficulty,
   };
 }

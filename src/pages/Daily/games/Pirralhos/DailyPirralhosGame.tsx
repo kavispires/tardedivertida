@@ -32,8 +32,7 @@ function useDemoHook() {
       await new Promise((resolve) => setTimeout(resolve, 500));
       try {
         const kids = sample([4, 4, 5, 5, 5, 5, 6, 6, 7]);
-        const liars = kids > 5 ? sample([1, 2, 3]) : sample([1, 1, 1, 1, 2]);
-        const newGame = generatePuzzle(kids, 1, liars);
+        const newGame = generatePuzzle(kids);
 
         return newGame;
       } catch (error) {

@@ -9,7 +9,7 @@ import { ImageCard } from 'components/image-cards/ImageCard';
 import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 // Internal
-import type { GeneratedKid } from '../utils/types';
+import type { GeneratedKid, KidAssessment } from '../utils/types';
 
 const { Text } = Typography;
 
@@ -17,7 +17,7 @@ type SolveModalProps = {
   kids: GeneratedKid[];
   onResolve: (kidId: string) => void;
   guesses: string[];
-  assessments: Record<string, 'culprit' | 'liar' | 'innocent' | null>;
+  assessments: Record<string, KidAssessment | null>;
 };
 
 export function SolveModal({ kids, onResolve, guesses }: SolveModalProps) {

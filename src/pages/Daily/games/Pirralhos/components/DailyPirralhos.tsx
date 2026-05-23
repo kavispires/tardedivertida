@@ -19,7 +19,7 @@ import { TextHighlight } from 'components/text/TextHighlight';
 import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { GameHeader } from 'pages/Daily/components/Header';
 import { Menu } from 'pages/Daily/components/Menu';
-import { Region, RegionText } from 'pages/Daily/components/Region';
+import { Region, RegionHint, RegionText } from 'pages/Daily/components/Region';
 import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
 // Internal
 import { calculateArrowRotation, calculateEllipsePositions, getInitialState } from '../utils/helpers';
@@ -28,7 +28,7 @@ import type { DailyPirralhosEntry } from '../utils/types';
 import { usePirralhosEngine } from '../utils/usePirralhosEngine';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
-import { KidCard } from './KidCard';
+import { assessmentIconMap, KidCard } from './KidCard';
 import { SolveModal } from './SolveModal';
 
 type DailyPirralhosProps = {
@@ -38,7 +38,7 @@ type DailyPirralhosProps = {
 
 export function DailyPirralhos({ data }: DailyPirralhosProps) {
   const [initialState] = useState(getInitialState(data));
-  const width = useCardWidth(3, { margin: 8, maxWidth: 192, minWidth: 64 });
+  const width = useCardWidth(3, { margin: 8, maxWidth: 160, minWidth: 64 });
   const [solveModalOpen, setSolveModalOpen] = useState(false);
 
   const {
@@ -201,6 +201,65 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
             );
           })}
         </div>
+
+        <RegionHint>
+          <Translate
+            pt={
+              <>
+                Você pode clicar no botão{' '}
+                {
+                  <IconAvatar
+                    icon={assessmentIconMap.unknown}
+                    size="small"
+                  />
+                }{' '}
+                em cada criança pra marcá-las como culpada{' '}
+                <IconAvatar
+                  icon={assessmentIconMap.culprit}
+                  size="small"
+                />
+                , mentirosa{' '}
+                <IconAvatar
+                  icon={assessmentIconMap.liar}
+                  size="small"
+                />{' '}
+                ou inocente{' '}
+                <IconAvatar
+                  icon={assessmentIconMap.innocent}
+                  size="small"
+                />
+                .
+              </>
+            }
+            en={
+              <>
+                You can click the{' '}
+                {
+                  <IconAvatar
+                    icon={assessmentIconMap.unknown}
+                    size="small"
+                  />
+                }{' '}
+                button on each kid to mark them as culprit{' '}
+                <IconAvatar
+                  icon={assessmentIconMap.culprit}
+                  size="small"
+                />
+                , liar{' '}
+                <IconAvatar
+                  icon={assessmentIconMap.liar}
+                  size="small"
+                />{' '}
+                or innocent{' '}
+                <IconAvatar
+                  icon={assessmentIconMap.innocent}
+                  size="small"
+                />
+                .
+              </>
+            }
+          />
+        </RegionHint>
       </DailyContent>
     </Layout>
   );

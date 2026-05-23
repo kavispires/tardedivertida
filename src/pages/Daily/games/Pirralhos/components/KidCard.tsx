@@ -9,7 +9,7 @@ import { IconAvatar } from 'components/avatars/IconAvatar';
 import { ImageCard } from 'components/image-cards/ImageCard';
 import { DualTranslate } from 'components/language/DualTranslate';
 // Internal
-import type { GeneratedKid } from '../utils/types';
+import type { GeneratedKid, KidAssessment } from '../utils/types';
 
 const { Text } = Typography;
 
@@ -18,7 +18,7 @@ type KidCardProps = {
   index: number;
   width: number;
   assessKid: (kidId: string) => void;
-  assessment: 'culprit' | 'liar' | 'innocent' | null;
+  assessment: KidAssessment | null;
 };
 
 export function KidCard({ kid, index, width, assessKid, assessment }: KidCardProps) {
@@ -75,18 +75,19 @@ function KidGender({ kid }: KidGenderProps) {
 
 type AssessmentSwitchProps = {
   kidId: number;
-  assessment: 'culprit' | 'liar' | 'innocent' | null;
+  assessment: KidAssessment | null;
   assessKid: (kidId: string) => void;
 };
 
-function AssessmentSwitch({ kidId, assessment, assessKid }: AssessmentSwitchProps) {
-  const iconMap: Record<string, JSX.Element> = {
-    culprit: <TraitorIcon />,
-    liar: <LiarIcon />,
-    innocent: <InnocentIcon />,
-  };
+export const assessmentIconMap: Record<string, JSX.Element> = {
+  culprit: <TraitorIcon />,
+  liar: <LiarIcon />,
+  innocent: <InnocentIcon />,
+  unknown: <GuessIcon />,
+};
 
-  const icon = iconMap[assessment ?? ''] ?? <GuessIcon />;
+function AssessmentSwitch({ kidId, assessment, assessKid }: AssessmentSwitchProps) {
+  const icon = assessmentIconMap[assessment ?? ''] ?? <GuessIcon />;
 
   return (
     <Button
