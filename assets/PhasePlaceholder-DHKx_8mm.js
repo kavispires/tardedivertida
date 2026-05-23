@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-DBS2Xqfh.js";import{i as t}from"./Session-CCqJpZd9.js";var n=e();function r({state:e}){return(0,n.jsx)(t,{phase:`ANY`,allowedPhase:`ANY`,className:`phase-placeholder`,children:e?.phase??`Unknown Phase`})}export{r as t};
