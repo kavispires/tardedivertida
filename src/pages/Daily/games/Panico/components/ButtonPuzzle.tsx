@@ -13,7 +13,7 @@ import { PressButton } from './PressButton';
 
 type ButtonPuzzleProps = {
   /**
-   * The unique key identifier of the button from BUTTONS_DICT
+   * The unique key identifier of the button from BUTTONS_LIBRARY
    */
   button: ButtonEntry;
   /**
@@ -28,6 +28,10 @@ type ButtonPuzzleProps = {
    * Width of the puzzle area to size the timer and button accordingly
    */
   size?: number;
+  /**
+   * Index of the button in the sequence, used for styling variations (optional)
+   */
+  buttonIndex: number;
 };
 
 // Duration mapping for each scale
@@ -40,7 +44,13 @@ const DURATION_MAP = {
 /**
  * Container component that manages a single button puzzle with timer and validation
  */
-export function ButtonPuzzle({ button, onComplete, previousPressCount, size = 300 }: ButtonPuzzleProps) {
+export function ButtonPuzzle({
+  button,
+  onComplete,
+  previousPressCount,
+  size = 300,
+  buttonIndex,
+}: ButtonPuzzleProps) {
   // Get button configuration
   const config = button ?? null;
 
@@ -122,6 +132,7 @@ export function ButtonPuzzle({ button, onComplete, previousPressCount, size = 30
           <ButtonContent
             button={config}
             pressCount={pressCount}
+            buttonIndex={buttonIndex}
           />
         </PressButton>
       </CircularTimer>

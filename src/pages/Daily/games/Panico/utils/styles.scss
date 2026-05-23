@@ -196,10 +196,42 @@
     text-transform: uppercase;
     font-weight: bold;
   }
+
+  &__spinning-icons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: get-unit(3);
+    place-items: center;
+  }
+
+  &__color-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: get-unit(3);
+    place-items: center;
+    margin: get-unit(0 4);
+  }
+
+  &__animal-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: get-unit(3);
+    place-items: center;
+    margin: get-unit(0 4);
+  }
 }
 
 .button-item-sprite {
   filter: saturate(1) brightness(1.2) grayscale(0.2);
+}
+
+.button-unbreakable-value {
+  word-wrap: "normal";
+  white-space: nowrap;
+}
+
+.animal-sprite-inverted {
+  transform: scaleY(-1);
 }
 
 .button-item-sprite-aside {

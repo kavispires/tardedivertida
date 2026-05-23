@@ -21,6 +21,7 @@ export function Rules({ date }: RulesProps) {
             <>
               <li>Complete a sequência de botões.</li>
               <li>Siga as instruções do botão, lembre-se de instruções anteriores.</li>
+              <li>Aperte a quantidade de vezes exata que está indicada.</li>
               <li>
                 Palavras-chaves como "Sempre" e "Nunca" se aplicam a todos os botões seguintes, sendo "Sempre"
                 mais importante que "Nunca".
@@ -38,6 +39,7 @@ export function Rules({ date }: RulesProps) {
             <>
               <li>Complete the button sequence.</li>
               <li>Follow the button instructions, remember previous instructions.</li>
+              <li>Press the exact amount of times that is indicated.</li>
               <li>
                 Keywords like "Always" and "Never" apply to all following buttons, with "Always" being more
                 important than "Never".

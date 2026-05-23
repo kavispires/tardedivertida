@@ -12,6 +12,10 @@ export type ButtonDictionaryEntry = {
    */
   doc: string;
   /**
+   * Difficulty level of the button (1-5)
+   */
+  level: number;
+  /**
    * Number of required presses
    * -1 means that it doesn't matter how many times the button is pressed, it's always correct
    * -2 means the player must press the button the same number of times as the previous button
@@ -64,11 +68,12 @@ export type ButtonDictionaryEntry = {
     | (string & NonNullable<unknown>);
 };
 
-export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
+export const BUTTONS_LIBRARY: Record<string, ButtonDictionaryEntry> = {
   BASIC_PRESS: {
     key: 'BASIC_PRESS',
     category: 'standard',
     doc: 'Simple button that the player must press.',
+    level: 1,
     targetCount: 1,
     expectedAction: 'PRESS',
     verification: 'IMMEDIATE',
@@ -79,6 +84,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'BASIC_DO_NOT_PRESS',
     category: 'standard',
     doc: 'Button that the player must NOT press.',
+    level: 1,
     targetCount: 0,
     expectedAction: 'DO_NOT_PRESS',
     verification: 'DEFAULT',
@@ -88,9 +94,10 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
   FINAL_PRESS: {
     key: 'FINAL_PRESS',
     category: 'standard',
-    doc: 'The final button that the player must press.',
-    targetCount: 1,
-    expectedAction: 'PRESS',
+    doc: 'The final button that the player must press at least once.',
+    level: 1,
+    targetCount: 0,
+    expectedAction: 'PRESS_MORE',
     verification: 'DEFAULT',
     maxOccurrence: 0, // Only appears at the end of the sequence
     durationScale: 'normal',
@@ -99,6 +106,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'SAME_AS_PREVIOUS',
     category: 'memory',
     doc: 'The player must press a button the same number of times as the previous button.',
+    level: 3,
     targetCount: -2,
     expectedAction: 'TBD',
     verification: 'DEFAULT',
@@ -121,26 +129,42 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'TRICK_POLITE_DO_NOT_PRESS',
     category: 'trick',
     doc: 'Asks politely not to be pressed.',
+    level: 2,
     expectedAction: 'DO_NOT_PRESS',
     verification: 'DEFAULT',
     targetCount: 0,
     maxOccurrence: 1,
     durationScale: 'normal',
   },
+  TRICK_URGENT_PRESS: {
+    key: 'TRICK_URGENT_PRESS',
+    category: 'trick',
+    doc: 'Asks to be pressed urgently.',
+    level: 2,
+    expectedAction: 'PRESS',
+    verification: 'IMMEDIATE',
+    targetCount: 1,
+    maxOccurrence: 1,
+    durationScale: 'quick',
+    eitherOr: ['QUICK_DO_NOT_PRESS'],
+  },
   QUICK_DO_NOT_PRESS: {
     key: 'QUICK_DO_NOT_PRESS',
     category: 'trick',
     doc: 'Asks to quickly not press.',
+    level: 2,
     expectedAction: 'DO_NOT_PRESS',
     verification: 'DEFAULT',
     targetCount: 0,
     maxOccurrence: 1,
     durationScale: 'quick',
+    eitherOr: ['TRICK_URGENT_PRESS'],
   },
   LOGIC_HUMAN_TRUE: {
     key: 'LOGIC_HUMAN_TRUE',
     category: 'question',
     doc: 'Asks if player is human.',
+    level: 1,
     expectedAction: 'PRESS',
     verification: 'IMMEDIATE',
     targetCount: 1,
@@ -152,6 +176,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'LOGIC_HUMAN_FALSE',
     category: 'question',
     doc: 'Asks if player is not human.',
+    level: 1,
     expectedAction: 'DO_NOT_PRESS',
     verification: 'DEFAULT',
     targetCount: 0,
@@ -163,6 +188,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'LOGIC_ROBOT_TRUE',
     category: 'question',
     doc: 'Asks if player is a robot.',
+    level: 1,
     expectedAction: 'DO_NOT_PRESS',
     verification: 'DEFAULT',
     targetCount: 0,
@@ -174,6 +200,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'LOGIC_ROBOT_FALSE',
     category: 'question',
     doc: 'Asks if player is not a robot.',
+    level: 1,
     expectedAction: 'PRESS',
     verification: 'IMMEDIATE',
     targetCount: 1,
@@ -185,6 +212,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'COUNT_SENTENCE',
     category: 'logic',
     doc: 'Player must press the button for the number of words in the sentence',
+    level: 3,
     expectedAction: 'MULTI_PRESS',
     verification: 'DEFAULT',
     targetCount: -2,
@@ -196,6 +224,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'PRESS_LESS',
     category: 'conditional',
     doc: 'Player must press this button less than the number of times displayed',
+    level: 3,
     expectedAction: 'PRESS_LESS',
     verification: 'DEFAULT',
     targetCount: -2,
@@ -208,6 +237,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'PRESS_MORE',
     category: 'conditional',
     doc: 'Player must press this button more than the number of times displayed',
+    level: 3,
     expectedAction: 'PRESS_MORE',
     verification: 'DEFAULT',
     targetCount: -2,
@@ -220,8 +250,9 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'PRESS_SHAPE_SIDE',
     category: 'count',
     doc: 'An shape is displayed, and press for the number of sides on the same',
+    level: 3,
     expectedAction: 'MULTI_PRESS',
-    verification: 'IMMEDIATE',
+    verification: 'DEFAULT',
     targetCount: -2,
     maxOccurrence: 1,
     durationScale: 'long',
@@ -232,8 +263,9 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'PRESS_SHAPE_CORNER',
     category: 'count',
     doc: 'An shape is displayed, and press for the number of corners on the same',
+    level: 3,
     expectedAction: 'MULTI_PRESS',
-    verification: 'IMMEDIATE',
+    verification: 'DEFAULT',
     targetCount: -2,
     maxOccurrence: 1,
     durationScale: 'long',
@@ -244,8 +276,9 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'PRESS_TARGET_NUMBER',
     category: 'math',
     doc: 'A number is displayed, and the player must press the button that many times.',
+    level: 3,
     expectedAction: 'MULTI_PRESS',
-    verification: 'IMMEDIATE',
+    verification: 'DEFAULT',
     targetCount: -2,
     maxOccurrence: 1,
     durationScale: 'long',
@@ -255,17 +288,19 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'PRESS_TARGET_COUNTDOWN',
     category: 'math',
     doc: 'A number is displayed, and the player must press the button that many times.',
+    level: 3,
     expectedAction: 'MULTI_PRESS',
     verification: 'IMMEDIATE',
     targetCount: -2,
     maxOccurrence: 1,
     durationScale: 'long',
-    pool: 'PRESS_TARGET_COUNTDOWN',
+    pool: 'PRESS_TARGET_COUNTDOWN_LIST',
   },
   DO_NOT_PRESS_RED_RULE: {
     key: 'DO_NOT_PRESS_RED_RULE',
     category: 'trick',
     doc: 'The button is red, but the player must not press it.',
+    level: 3,
     expectedAction: 'ANY',
     verification: 'DEFAULT',
     targetCount: 0,
@@ -277,6 +312,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'RED_BUTTON',
     category: 'trick',
     doc: 'The button is red, but the player must not press it.',
+    level: 3,
     expectedAction: 'TBD',
     verification: 'IMMEDIATE',
     targetCount: 1,
@@ -289,6 +325,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'YELLOW_BUTTON',
     category: 'trick',
     doc: 'The button is yellow, but the player must press it.',
+    level: 1,
     expectedAction: 'PRESS',
     verification: 'IMMEDIATE',
     targetCount: 1,
@@ -301,6 +338,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'BLUE_BUTTON',
     category: 'trick',
     doc: 'The button is blue, but the player must not press it.',
+    level: 1,
     expectedAction: 'DO_NOT_PRESS',
     verification: 'DEFAULT',
     targetCount: 0,
@@ -313,6 +351,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'REMEMBER_NUMBER',
     category: 'memory',
     doc: 'A number is displayed, and the player must remember it to use as the target count for a later button.',
+    level: 3,
     expectedAction: 'ANY',
     verification: 'DEFAULT',
     targetCount: 0,
@@ -324,6 +363,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'REMEMBERED_NUMBER',
     category: 'memory',
     doc: 'If the number displayed was the one told to remember, press.',
+    level: 4,
     expectedAction: 'TBD',
     verification: 'IMMEDIATE',
     targetCount: -2,
@@ -337,6 +377,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'COUNT_VOWELS',
     category: 'logic',
     doc: 'Player must press the button for the number of vowels in the word displayed.',
+    level: 3,
     expectedAction: 'MULTI_PRESS',
     verification: 'DEFAULT',
     targetCount: -2,
@@ -349,6 +390,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'COUNT_CONSONANTS',
     category: 'logic',
     doc: 'Player must press the button for the number of consonants in the word displayed.',
+    level: 3,
     expectedAction: 'MULTI_PRESS',
     verification: 'DEFAULT',
     targetCount: -2,
@@ -361,6 +403,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'EQUATION_RESULT',
     category: 'math',
     doc: 'An equation is displayed, and the player must solve it and press the button the number of times corresponding to the result.',
+    level: 3,
     expectedAction: 'MULTI_PRESS',
     verification: 'DEFAULT',
     targetCount: -2,
@@ -372,6 +415,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'ALL_ODD_NUMBERS',
     category: 'trick',
     doc: 'All numbers displayed are odd, but the player must press only for the even ones.',
+    level: 4,
     expectedAction: 'TBD',
     verification: 'IMMEDIATE',
     targetCount: -2,
@@ -384,6 +428,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'ALL_EVEN_NUMBERS',
     category: 'trick',
     doc: 'All numbers displayed are even, but the player must press only for the odd ones.',
+    level: 4,
     expectedAction: 'TBD',
     verification: 'IMMEDIATE',
     targetCount: -2,
@@ -396,6 +441,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'WHEN_YOU_SEE_RULE',
     category: 'trick',
     doc: 'In the future, when an icon appears, the player must press.',
+    level: 4,
     expectedAction: 'ANY',
     verification: 'DEFAULT',
     targetCount: -1,
@@ -407,6 +453,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'SEE_SOMETHING_PRESS',
     category: 'trick',
     doc: 'An icon is displayed, and if the player has seen it before, they must press.',
+    level: 4,
     expectedAction: 'TBD',
     verification: 'IMMEDIATE',
     targetCount: -2,
@@ -421,6 +468,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'SEE_SOMETHING_PRESS_TRICK',
     category: 'trick',
     doc: 'An icon is displayed, but it says do not press, and if the player has seen it before, they must press.',
+    level: 4,
     expectedAction: 'TBD',
     verification: 'IMMEDIATE',
     targetCount: -2,
@@ -435,6 +483,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'SEE_SOMETHING_PRESS_ASIDE',
     category: 'trick',
     doc: 'An icon is displayed aside from the button, and if the player has seen it before, they must press.',
+    level: 4,
     expectedAction: 'TBD',
     verification: 'IMMEDIATE',
     targetCount: -2,
@@ -449,6 +498,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'WHEN_YOU_SEE_RULE_AVOID',
     category: 'trick',
     doc: 'In the future, when an icon appears, the player must not press.',
+    level: 4,
     expectedAction: 'ANY',
     verification: 'DEFAULT',
     targetCount: -1,
@@ -461,6 +511,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'SEE_SOMETHING_PRESS_AVOID',
     category: 'trick',
     doc: 'An icon is displayed, and if the player has seen it before, they must press.',
+    level: 4,
     expectedAction: 'TBD',
     verification: 'IMMEDIATE',
     targetCount: -2,
@@ -474,6 +525,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'SEE_AND_COUNT',
     category: 'trick',
     doc: 'An icon is displayed, and the player must press for the number of times they have seen it before.',
+    level: 4,
     expectedAction: 'TBD',
     verification: 'IMMEDIATE',
     targetCount: -2,
@@ -485,6 +537,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'REMEMBER_SEQUENCE',
     category: 'memory',
     doc: 'Player is shown a sequence of items and must remember the order.',
+    level: 3,
     expectedAction: 'ANY',
     verification: 'DEFAULT',
     targetCount: -1,
@@ -496,6 +549,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'REMEMBERED_SEQUENCE',
     category: 'memory',
     doc: 'Player must recall the sequence of items they were shown.',
+    level: 5,
     expectedAction: 'ANY',
     verification: 'DEFAULT',
     targetCount: -2,
@@ -509,6 +563,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'RANDOM_QUESTION',
     category: 'question',
     doc: 'A random question is displayed, and the player must answer it correctly by pressing or not pressing the button.',
+    level: 2,
     expectedAction: 'ANY',
     verification: 'IMMEDIATE',
     targetCount: -1,
@@ -520,6 +575,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'PRESS_IF_WANTED',
     category: 'conditional',
     doc: 'Player can choose to press or not press the button, but if they choose to press, they must press it the number of times displayed.',
+    level: 2,
     expectedAction: 'ANY',
     verification: 'DEFAULT',
     targetCount: -1,
@@ -530,6 +586,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'ICON_COMPARISON',
     category: 'logic',
     doc: 'There is a sequence of icons and the player must press or not depending the value is more than the other.',
+    level: 4,
     expectedAction: 'TBD',
     verification: 'IMMEDIATE',
     targetCount: -2,
@@ -541,6 +598,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'MISSING_NUMBER',
     category: 'math',
     doc: 'A number sequence with a missing number is displayed. Press for the missing value.',
+    level: 3,
     expectedAction: 'TBD',
     verification: 'DEFAULT',
     targetCount: -2,
@@ -552,6 +610,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'COUNT_SPECIFIC_LETTER',
     category: 'count',
     doc: 'Player must count occurrences of a specific letter in a string.',
+    level: 4,
     expectedAction: 'TBD',
     verification: 'DEFAULT',
     targetCount: -2,
@@ -563,6 +622,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'ALPHABET_POSITION',
     category: 'logic',
     doc: 'A single letter is displayed. The player must press for its position in the alphabet (e.g., A=1, B=2).',
+    level: 4,
     expectedAction: 'TBD',
     verification: 'DEFAULT',
     targetCount: -2,
@@ -574,6 +634,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'ROMAN_NUMERALS',
     category: 'math',
     doc: 'A Roman numeral is displayed. The player must press the equivalent number of times.',
+    level: 3,
     expectedAction: 'TBD',
     verification: 'DEFAULT',
     targetCount: -2,
@@ -585,6 +646,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'COUNT_ANIMAL_LEGS',
     category: 'count',
     doc: 'Animal emojis are displayed. The player must press for the total number of legs those animals have.',
+    level: 4,
     expectedAction: 'MULTI_PRESS',
     verification: 'DEFAULT',
     targetCount: -2,
@@ -596,6 +658,7 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     key: 'NUMBER_RIDDLE',
     category: 'question',
     doc: 'A short riddle or trivia question is displayed where the answer is a number. Press that many times.',
+    level: 3,
     expectedAction: 'MULTI_PRESS',
     verification: 'DEFAULT',
     targetCount: -2,
@@ -603,6 +666,105 @@ export const BUTTONS_DICT: Record<string, ButtonDictionaryEntry> = {
     durationScale: 'long',
     pool: 'NUMBER_RIDDLES',
   },
+  LONG_INSTRUCTION: {
+    key: 'LONG_INSTRUCTION',
+    category: 'trick',
+    doc: 'A long instruction is displayed, and the player must read it carefully but in the end it just says if it should press it or not.',
+    level: 3,
+    expectedAction: 'TBD',
+    verification: 'IMMEDIATE',
+    targetCount: -2,
+    maxOccurrence: 1,
+    durationScale: 'long',
+    pool: 'LONG_INSTRUCTIONS',
+  },
+  SPINNING_ICONS: {
+    key: 'SPINNING_ICONS',
+    category: 'trick',
+    doc: 'An animated icon is displayed, only press if one matches the dependency rule.',
+    level: 2,
+    expectedAction: 'TBD',
+    verification: 'DEFAULT',
+    targetCount: -2,
+    maxOccurrence: 1,
+    durationScale: 'quick',
+    pool: 'THINGS_TO_SEE',
+    dependsOn: 'WHEN_YOU_SEE_RULE',
+    resolver: 'POOL_KEYWORD_MATCH',
+  },
+  COLOR_GRID: {
+    key: 'COLOR_GRID',
+    category: 'count',
+    doc: 'Check if all icons are the same color.',
+    level: 2,
+    expectedAction: 'TBD',
+    verification: 'IMMEDIATE',
+    targetCount: -1,
+    maxOccurrence: 1,
+    durationScale: 'normal',
+    pool: 'THINGS_COLOR_GRID',
+  },
+  ALL_SAME_RULE: {
+    key: 'ALL_SAME_RULE',
+    category: 'trick',
+    doc: 'In the future, if all items displayed are the same, press the button.',
+    level: 5,
+    expectedAction: 'ANY',
+    verification: 'DEFAULT',
+    targetCount: -1,
+    maxOccurrence: 1,
+    durationScale: 'normal',
+  },
+  SEE_SAME_THINGS_PRESS: {
+    key: 'SEE_SAME_THINGS_PRESS',
+    category: 'trick',
+    doc: 'A set of items is displayed, and if the player has seen the exact same set before, they must press.',
+    level: 5,
+    expectedAction: 'TBD',
+    verification: 'IMMEDIATE',
+    targetCount: -2,
+    maxOccurrence: 1,
+    durationScale: 'quick',
+    pool: 'SAME_THINGS_LIST',
+    dependsOn: 'ALL_SAME_RULE',
+  },
+  COLOR_WORD_RULE: {
+    key: 'COLOR_WORD_RULE',
+    category: 'trick',
+    doc: 'In the future, if the button text label matches the color, press the button.',
+    level: 4,
+    expectedAction: 'ANY',
+    verification: 'DEFAULT',
+    targetCount: -1,
+    maxOccurrence: 1,
+    durationScale: 'normal',
+  },
+  COLOR_WORD: {
+    key: 'COLOR_WORD',
+    category: 'trick',
+    doc: 'A colored button label with a color name and',
+    level: 4,
+    expectedAction: 'TBD',
+    verification: 'IMMEDIATE',
+    targetCount: -2,
+    maxOccurrence: 1,
+    durationScale: 'normal',
+    pool: 'COLOR_WORDS',
+    dependsOn: 'COLOR_WORD_RULE',
+  },
+};
+
+const shuffleAndInsert = (array: string[], decoys: string[] = []): string[] => {
+  const shuffle = (arr: string[]) => arr.sort(() => Math.random() - 0.5);
+  const shuffled = shuffle([...array]);
+  const randomIndex = Math.floor(Math.random() * (shuffled.length + 1));
+
+  if (decoys.length === 0) {
+    return shuffled;
+  }
+
+  const shuffledDecoys = shuffle([...decoys]);
+  return shuffle([...shuffled.slice(0, randomIndex), shuffledDecoys[0], ...shuffled.slice(randomIndex + 1)]);
 };
 
 // biome-ignore lint/suspicious/noExplicitAny: This is a utility type for button entries, and the generic allows for flexibility in the additional properties that can be included based on the button's pool or specific needs.
@@ -773,22 +935,22 @@ const TARGET_NUMBERS_FOR_PRESSING: Dictionary<PoolGroupEntry<{ text: DualLanguag
   },
 };
 
-const PRESS_TARGET_COUNTDOWN: Dictionary<PoolGroupEntry> = {
-  NUMBER_3: {
-    id: 'NUMBER_3',
-    targetCount: 3,
-  },
-  NUMBER_4: {
-    id: 'NUMBER_4',
-    targetCount: 4,
-  },
+const PRESS_TARGET_COUNTDOWN_LIST: Dictionary<PoolGroupEntry> = {
   NUMBER_5: {
     id: 'NUMBER_5',
     targetCount: 5,
   },
+  NUMBER_6: {
+    id: 'NUMBER_6',
+    targetCount: 6,
+  },
   NUMBER_7: {
     id: 'NUMBER_7',
     targetCount: 7,
+  },
+  NUMBER_8: {
+    id: 'NUMBER_8',
+    targetCount: 8,
   },
   NUMBER_10: {
     id: 'NUMBER_10',
@@ -953,13 +1115,28 @@ const ALL_EVEN_NUMBERS: Dictionary<PoolGroupEntry<{ value: string }>> = {
   },
 };
 
-const THINGS_TO_SEE: Dictionary<PoolGroupEntry<{ itemId: string; keyword: string; value: string }>> = {
+const DECOY_ITEMS = [
+  'item-0',
+  'item-8',
+  'item-57',
+  'item-301',
+  'item-155',
+  'item-469',
+  'item-2273',
+  'item-723',
+  'item-1220',
+];
+
+const THINGS_TO_SEE: Dictionary<
+  PoolGroupEntry<{ itemId: string; keyword: string; value: string; decoyItemsIds: string[] }>
+> = {
   THING_TO_SEE_1: {
     id: 'THING_TO_SEE_1',
     targetCount: -1,
     itemId: 'item-470',
     keyword: 'SEE_PINWHEEL',
     value: 'SEE_PINWHEEL',
+    decoyItemsIds: shuffleAndInsert(DECOY_ITEMS, ['item-470']),
   },
   THING_TO_SEE_2: {
     id: 'THING_TO_SEE_2',
@@ -967,6 +1144,7 @@ const THINGS_TO_SEE: Dictionary<PoolGroupEntry<{ itemId: string; keyword: string
     itemId: 'item-390',
     keyword: 'SEE_KITE',
     value: 'SEE_KITE',
+    decoyItemsIds: shuffleAndInsert(DECOY_ITEMS, ['item-390']),
   },
   THING_TO_SEE_4: {
     id: 'THING_TO_SEE_4',
@@ -974,6 +1152,79 @@ const THINGS_TO_SEE: Dictionary<PoolGroupEntry<{ itemId: string; keyword: string
     itemId: 'item-1575',
     keyword: 'SEE_RAINBOW',
     value: 'SEE_RAINBOW',
+    decoyItemsIds: shuffleAndInsert(DECOY_ITEMS, ['item-1575']),
+  },
+};
+
+const BLUE_THINGS = [
+  'item-207',
+  'item-1948',
+  'item-2372',
+  'item-2417',
+  'item-2140',
+  'item-840',
+  'item-299',
+  'item-197',
+  'item-1372',
+];
+const RED_THINGS = [
+  'item-13',
+  'item-548',
+  'item-548',
+  'item-1988',
+  'item-2287',
+  'item-1757',
+  'item-1898',
+  'item-1432',
+  'item-812',
+];
+
+const THINGS_COLOR_GRID: Dictionary<PoolGroupEntry<{ itemsIds: string[] }>> = {
+  THINGS_COLOR_GRID_BLUE_TRUE: {
+    id: 'THINGS_COLOR_GRID_BLUE_TRUE',
+    targetCount: 1,
+    itemsIds: shuffleAndInsert(BLUE_THINGS),
+  },
+  THINGS_COLOR_GRID_BLUE_FALSE: {
+    id: 'THINGS_COLOR_GRID_BLUE_FALSE',
+    targetCount: 0,
+    itemsIds: shuffleAndInsert(BLUE_THINGS, RED_THINGS),
+  },
+  HINGS_COLOR_GRID_BLUE_TRUE: {
+    id: 'THINGS_COLOR_GRID_BLUE_TRUE',
+    targetCount: 1,
+    itemsIds: shuffleAndInsert(RED_THINGS),
+  },
+  HINGS_COLOR_GRID_BLUE_FALSE: {
+    id: 'THINGS_COLOR_GRID_BLUE_FALSE',
+    targetCount: 0,
+    itemsIds: shuffleAndInsert(RED_THINGS, BLUE_THINGS),
+  },
+};
+
+const CROCODILE_SPRITE = Array(30).fill('good-32'); // Crocodile sprite ID
+const FROG_SPRITE = Array(30).fill('good-50'); // Frog sprite ID
+
+const SAME_THINGS_LIST: Dictionary<PoolGroupEntry<{ goodsIds: string[] }>> = {
+  SAME_THINGS_LIST_1: {
+    id: 'SAME_THINGS_LIST_1',
+    targetCount: -1,
+    goodsIds: shuffleAndInsert(CROCODILE_SPRITE, ['good-50']),
+  },
+  SAME_THINGS_LIST_2: {
+    id: 'SAME_THINGS_LIST_2',
+    targetCount: 1,
+    goodsIds: CROCODILE_SPRITE,
+  },
+  SAME_THINGS_LIST_3: {
+    id: 'SAME_THINGS_LIST_3',
+    targetCount: 0,
+    goodsIds: shuffleAndInsert(FROG_SPRITE, ['good-32']),
+  },
+  SAME_THINGS_LIST_4: {
+    id: 'SAME_THINGS_LIST_4',
+    targetCount: 1,
+    goodsIds: FROG_SPRITE,
   },
 };
 
@@ -1311,6 +1562,90 @@ const NUMBER_RIDDLES: Dictionary<PoolGroupEntry<{ text: DualLanguageValue }>> = 
   },
 };
 
+export const LONG_INSTRUCTIONS: Dictionary<PoolGroupEntry<{ text: DualLanguageValue }>> = {
+  LONG_INSTRUCTION_1: {
+    id: 'LONG_INSTRUCTION_1',
+    targetCount: 1,
+    text: {
+      en: 'This is a long instruction that might be trying to trick you. It has a lot of words and details, but in the end, you should just press the button once.',
+      pt: 'Esta é uma instrução longa que pode estar tentando te enganar. Ela tem muitas palavras e detalhes, mas no final, você deve apenas pressionar o botão uma vez.',
+    },
+  },
+  LONG_INSTRUCTION_2: {
+    id: 'LONG_INSTRUCTION_2',
+    targetCount: 1,
+    text: {
+      en: "Don't be fooled by this long instruction. It's designed to make you overthink. Just press the button and ignore the rest.",
+      pt: 'Não se deixe enganar por esta instrução longa. Ela é projetada para te fazer pensar demais. Apenas pressione o botão e ignore o resto.',
+    },
+  },
+  LONG_INSTRUCTION_3: {
+    id: 'LONG_INSTRUCTION_3',
+    targetCount: 0,
+    text: {
+      en: "This instruction is very long and full of details, but it's actually a trick. You should not press the button at all.",
+      pt: 'Esta instrução é muito longa e cheia de detalhes, mas na verdade é um truque. Você não deve pressionar o botão.',
+    },
+  },
+};
+
+const COLOR_WORDS: Dictionary<PoolGroupEntry<{ text: DualLanguageValue; color: string }>> = {
+  COLOR_WORD_1: {
+    id: 'COLOR_WORD_1',
+    targetCount: -1,
+    color: 'hotPink',
+    text: {
+      en: 'Blue',
+      pt: 'Azul',
+    },
+  },
+  COLOR_WORD_2: {
+    id: 'COLOR_WORD_2',
+    targetCount: 1,
+    color: 'hotPink',
+    text: {
+      en: 'Pink',
+      pt: 'Rosa',
+    },
+  },
+  COLOR_WORD_3: {
+    id: 'COLOR_WORD_3',
+    targetCount: -1,
+    color: 'cyan',
+    text: {
+      en: 'Pink',
+      pt: 'Rosa',
+    },
+  },
+  COLOR_WORD_4: {
+    id: 'COLOR_WORD_4',
+    targetCount: 1,
+    color: 'cyan',
+    text: {
+      en: 'Blue',
+      pt: 'Azul',
+    },
+  },
+  COLOR_WORD_5: {
+    id: 'COLOR_WORD_5',
+    targetCount: 1,
+    color: 'yellow',
+    text: {
+      en: 'Yellow',
+      pt: 'Amarelo',
+    },
+  },
+  COLOR_WORD_6: {
+    id: 'COLOR_WORD_6',
+    targetCount: -1,
+    color: 'yellow',
+    text: {
+      en: 'Blue',
+      pt: 'Azul',
+    },
+  },
+};
+
 export const POOLS: Dictionary<Dictionary<PoolGroupEntry>> = {
   SENTENCES_FOR_COUNTING,
   PRESS_LESS_COMPARISON,
@@ -1318,7 +1653,7 @@ export const POOLS: Dictionary<Dictionary<PoolGroupEntry>> = {
   SHAPES_FOR_SIDES_COUNTING,
   SHAPES_FOR_CORNERS_COUNTING,
   TARGET_NUMBERS_FOR_PRESSING,
-  PRESS_TARGET_COUNTDOWN,
+  PRESS_TARGET_COUNTDOWN_LIST,
   NUMBERS_MUST_REMEMBER,
   WORDS_FOR_VOWEL_COUNTING,
   WORDS_FOR_CONSONANT_COUNTING,
@@ -1337,4 +1672,8 @@ export const POOLS: Dictionary<Dictionary<PoolGroupEntry>> = {
   ROMAN_NUMERALS_POOL,
   ANIMAL_LEGS,
   NUMBER_RIDDLES,
+  LONG_INSTRUCTIONS,
+  THINGS_COLOR_GRID,
+  SAME_THINGS_LIST,
+  COLOR_WORDS,
 };

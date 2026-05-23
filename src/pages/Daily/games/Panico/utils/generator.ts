@@ -1,96 +1,207 @@
-import { random, sample } from 'lodash';
+import { random, shuffle } from 'lodash';
 // Internal
-import { BUTTONS_DICT, POOLS } from './data';
+import { BUTTONS_LIBRARY, POOLS } from './data';
+
+type PlacedButton = {
+  key: string;
+  poolIndex?: number;
+  targetCount: number;
+  expectedAction: string;
+  level: number;
+};
 
 /**
- * Generates a random sequence of buttons for the game.
+ * Generates a game sequence based on extensive game rules and dependencies.
  *
  * @param length The total number of buttons in the sequence (default 25).
- * @returns Array of formatted strings: "index;;BUTTON_KEY;;poolIndex"
+ * @returns Array of formatted strings: "<number>;;<button-key>;;<pool-index>"
  */
 export function generateGameSequence(length = 25): string[] {
-  if (length < 2) {
-    throw new Error('Sequence length must be at least 2 to accommodate start and end buttons.');
+  // Adjusted minimum length to safely accommodate the new 5-space dependency gap
+  if (length < 8) {
+    throw new Error('Sequence length must be at least 8 to accommodate the 5-space dependency gap.');
   }
 
-  const sequence: Array<{ key: string; poolIndex?: number }> = [];
-  const occurrences: Record<string, number> = {};
-  const excludedKeys = new Set<string>();
+  const sequence: PlacedButton[] = [];
 
-  const appendButtonToSequence = (key: string) => {
-    const btn = BUTTONS_DICT[key];
+  // 1. Game must always start with BASIC_PRESS
+  sequence.push({
+    key: 'BASIC_PRESS',
+    targetCount: BUTTONS_LIBRARY['BASIC_PRESS'].targetCount,
+    expectedAction: BUTTONS_LIBRARY['BASIC_PRESS'].expectedAction,
+    level: BUTTONS_LIBRARY['BASIC_PRESS'].level,
+  });
 
-    occurrences[key] = (occurrences[key] || 0) + 1;
+  const isRestrictedTarget = (tc: number) => tc === 0 || tc === -2;
 
-    if (btn.eitherOr) {
-      btn.eitherOr.forEach((excludedKey) => {
-        excludedKeys.add(excludedKey);
+  // Recursive Backtracking Function
+  const solve = (currentIndex: number): boolean => {
+    // Base Case: If we reached the final slot, place FINAL_PRESS
+    if (currentIndex === length - 1) {
+      sequence.push({
+        key: 'FINAL_PRESS',
+        targetCount: BUTTONS_LIBRARY['FINAL_PRESS'].targetCount,
+        expectedAction: BUTTONS_LIBRARY['FINAL_PRESS'].expectedAction,
+        level: BUTTONS_LIBRARY['FINAL_PRESS'].level,
       });
+      return true;
     }
 
-    let poolIndex: number | undefined;
-    if (btn.pool && POOLS[btn.pool]) {
-      const poolSize = Object.values(POOLS[btn.pool]).length;
-      poolIndex = random(0, poolSize - 1);
-    }
+    const occurrences: Record<string, number> = {};
+    const bannedByEitherOr = new Set<string>();
 
-    sequence.push({ key, poolIndex });
-  };
+    // Tracker to ensure a healthy mix of difficulty levels
+    const levelCounts: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
 
-  // 1. Game must start with BASIC_PRESS
-  appendButtonToSequence('BASIC_PRESS');
+    for (const btn of sequence) {
+      occurrences[btn.key] = (occurrences[btn.key] || 0) + 1;
+      const entry = BUTTONS_LIBRARY[btn.key];
 
-  // 2. Generate the middle sequence
-  for (let i = 1; i < length - 1; i++) {
-    const validCandidates = Object.values(BUTTONS_DICT).filter((btn) => {
-      // --- RULE: Max Occurrences ---
-      let maxAllowed = btn.maxOccurrence;
-      // Reserve exactly 1 for the final required BASIC_PRESS
-      if (btn.key === 'BASIC_PRESS') maxAllowed -= 1;
-
-      if ((occurrences[btn.key] || 0) >= maxAllowed) return false;
-
-      // --- RULE: Mutual Exclusions ---
-      if (excludedKeys.has(btn.key)) return false;
-
-      // --- RULE: Dependencies ---
-      if (btn.dependsOn) {
-        const depIndex = sequence.findIndex((s) => s.key === btn.dependsOn);
-        if (depIndex === -1 || i - depIndex < 4) return false;
+      if (entry.eitherOr) {
+        entry.eitherOr.forEach((k) => {
+          bannedByEitherOr.add(k);
+        });
       }
 
-      // --- RULE: SAME_AS_PREVIOUS Constraint ---
-      // Can only come after a button whose expectedAction is NOT 'ANY' and NOT 'TBD'
-      if (btn.key === 'SAME_AS_PREVIOUS') {
-        const prevKey = sequence[i - 1].key;
-        const prevAction = BUTTONS_DICT[prevKey].expectedAction;
-        if (prevAction === 'ANY' || prevAction === 'TBD') {
-          return false;
+      // Tally level distributions, ignoring dependent buttons per your rules
+      if (!entry.dependsOn) {
+        levelCounts[entry.level] = (levelCounts[entry.level] || 0) + 1;
+      }
+    }
+
+    // FIX 1: Shuffle the entire library upfront to completely eliminate top-to-bottom list bias
+    const randomizedLibrary = shuffle(Object.values(BUTTONS_LIBRARY));
+
+    let validCandidates = randomizedLibrary.filter((candidate) => {
+      // RULE: FINAL_PRESS is strictly reserved for the end
+      if (candidate.key === 'FINAL_PRESS') return false;
+
+      // RULE: Max Occurrences
+      const currentCount = occurrences[candidate.key] || 0;
+      if (currentCount >= candidate.maxOccurrence) return false;
+
+      // RULE: Mutual Exclusions
+      if (bannedByEitherOr.has(candidate.key)) return false;
+      if (candidate.eitherOr?.some((k) => occurrences[k])) return false;
+
+      // RULE: Spacing (Cannot appear 2 in a row or within 2 positions)
+      const last1 = sequence[currentIndex - 1]?.key;
+      const last2 = sequence[currentIndex - 2]?.key;
+      if (last1 === candidate.key || last2 === candidate.key) return false;
+
+      // RULE: Dependencies (Must be present at least 5 buttons prior)
+      if (candidate.dependsOn) {
+        const depIdx = sequence.findIndex((b) => b.key === candidate.dependsOn);
+        // FIX 2: Bumped dependency gap from 3 to 5
+        if (depIdx === -1 || currentIndex - depIdx < 5) return false;
+      }
+
+      // RULE: SAME_AS_PREVIOUS Constraint
+      if (candidate.key === 'SAME_AS_PREVIOUS') {
+        const prev = sequence[currentIndex - 1];
+        if (prev.expectedAction === 'ANY' || prev.expectedAction === 'TBD') return false;
+      }
+
+      // RULE: Target Count Streak
+      if (isRestrictedTarget(candidate.targetCount)) {
+        let streak = 0;
+        for (let k = currentIndex - 1; k >= 0; k--) {
+          if (isRestrictedTarget(sequence[k].targetCount)) streak++;
+          else break;
         }
+        if (streak >= 5) return false;
       }
 
       return true;
     });
 
-    if (validCandidates.length > 0) {
-      // Normal flow: Pick a valid button
-      const selectedBtn = sample(validCandidates)!;
-      appendButtonToSequence(selectedBtn.key);
-    } else {
-      // --- RULE: Fallback Completion ---
-      // If we run out of valid types, ignore maxOccurrence and fill with basic buttons
-      const fallbackKey = sample(['BASIC_PRESS', 'BASIC_DO_NOT_PRESS'])!;
-      appendButtonToSequence(fallbackKey);
+    // RULE: Fallback Completion
+    if (validCandidates.length === 0) {
+      const fallbacks = [BUTTONS_LIBRARY['BASIC_PRESS'], BUTTONS_LIBRARY['BASIC_DO_NOT_PRESS']];
+      validCandidates = shuffle(fallbacks).filter((candidate) => {
+        const last1 = sequence[currentIndex - 1]?.key;
+        const last2 = sequence[currentIndex - 2]?.key;
+        if (last1 === candidate.key || last2 === candidate.key) return false;
+
+        if (isRestrictedTarget(candidate.targetCount)) {
+          let streak = 0;
+          for (let k = currentIndex - 1; k >= 0; k--) {
+            if (isRestrictedTarget(sequence[k].targetCount)) streak++;
+            else break;
+          }
+          if (streak >= 5) return false;
+        }
+        return true;
+      });
     }
+
+    if (validCandidates.length === 0) return false;
+
+    // FIX 3: Sort valid candidates to enforce the mix of levels and dependencies
+    validCandidates.sort((a, b) => {
+      // Priority 1: Ready Dependencies bubble to the top
+      const aReady = a.dependsOn && occurrences[a.dependsOn] ? 1 : 0;
+      const bReady = b.dependsOn && occurrences[b.dependsOn] ? 1 : 0;
+      if (aReady !== bReady) return bReady - aReady;
+
+      // Priority 2: Level Mix Balancer
+      // Prioritize buttons whose difficulty level has appeared the LEAST so far.
+      // Ties maintain the randomized shuffle order.
+      const aLevelCount = a.dependsOn ? 0 : levelCounts[a.level] || 0;
+      const bLevelCount = b.dependsOn ? 0 : levelCounts[b.level] || 0;
+
+      return aLevelCount - bLevelCount;
+    });
+
+    // Attempt to place candidates
+    for (const candidate of validCandidates) {
+      let poolIndex: number | undefined;
+
+      // RULE: Pool logic and 60% dependency matching
+      if (candidate.pool && POOLS[candidate.pool]) {
+        const poolSize = Object.values(POOLS[candidate.pool]).length;
+
+        if (candidate.dependsOn) {
+          const depBtn = sequence.find((b) => b.key === candidate.dependsOn);
+          if (depBtn && depBtn.poolIndex !== undefined && random(1, 100) <= 60) {
+            poolIndex = depBtn.poolIndex;
+          } else {
+            poolIndex = random(0, poolSize - 1);
+          }
+        } else {
+          poolIndex = random(0, poolSize - 1);
+        }
+      }
+
+      sequence.push({
+        key: candidate.key,
+        poolIndex,
+        targetCount: candidate.targetCount,
+        expectedAction: candidate.expectedAction,
+        level: candidate.level,
+      });
+
+      // Recurse to the next index
+      if (solve(currentIndex + 1)) {
+        return true;
+      }
+
+      // If that path failed, pop the button off and try the next candidate
+      sequence.pop();
+    }
+
+    return false;
+  };
+
+  const success = solve(1);
+
+  if (!success) {
+    console.warn('Could not generate a sequence matching all strict constraints for this length.');
   }
 
-  // 3. Game must end with FINAL_PRESS
-  appendButtonToSequence('FINAL_PRESS');
-
-  // 4. Format the final output strings
-  return sequence.map((item, index) => {
-    // Ensuring we don't print "undefined" if there's no pool
-    const poolString = item.poolIndex !== undefined ? item.poolIndex.toString() : '';
-    return `${index + 1};;${item.key};;${poolString}`;
+  // Format the final output: "<number>;;<button-key>;;<pool-index>"
+  return sequence.map((btn, index) => {
+    const poolStr = btn.poolIndex !== undefined ? btn.poolIndex.toString() : '';
+    return `${index + 1};;${btn.key};;${poolStr}`;
   });
 }

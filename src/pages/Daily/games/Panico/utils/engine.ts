@@ -3,7 +3,7 @@ import { orderBy } from 'lodash';
 import { SEPARATOR } from 'utils/constants';
 // Internal
 import type { ButtonEntry } from './types';
-import { BUTTONS_DICT, POOLS } from './data';
+import { BUTTONS_LIBRARY, POOLS } from './data';
 
 export function buildButtons(buttons: string[]): ButtonEntry[] {
   const keywords: string[] = [];
@@ -14,10 +14,10 @@ export function buildButtons(buttons: string[]): ButtonEntry[] {
   buttons.forEach((buttonKey, index) => {
     const [id, buttonType, more] = buttonKey.split(SEPARATOR);
 
-    const buttonData = BUTTONS_DICT[buttonType];
+    const buttonData = BUTTONS_LIBRARY[buttonType];
 
     if (!buttonData) {
-      console.warn(`Button type "${buttonType}" not found in BUTTONS_DICT.`);
+      console.warn(`Button type "${buttonType}" not found in BUTTONS_LIBRARY.`);
     }
 
     const buttonEntry: ButtonEntry = {

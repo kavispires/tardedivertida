@@ -163,6 +163,7 @@ export function Panel({
         onComplete={handleComplete}
         previousPressCount={previousPressCount}
         size={width}
+        buttonIndex={activeButtonIndex}
       />
     </div>
   );

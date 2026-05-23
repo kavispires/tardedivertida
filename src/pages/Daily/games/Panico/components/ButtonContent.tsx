@@ -1,7 +1,10 @@
+import clsx from 'clsx';
+import { motion } from 'motion/react';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Components
 import { ItemSprite } from 'components/cards/ItemCard';
+import { WarehouseGoodSprite } from 'components/cards/WarehouseGoodCard';
 import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 // Internal
@@ -9,19 +12,23 @@ import type { ButtonEntry } from '../utils/types';
 
 type ButtonContentProps = {
   /**
-   * The button configuration from BUTTONS_DICT
+   * The button configuration from BUTTONS_LIBRARY
    */
   button: ButtonEntry;
   /**
    *
    */
   pressCount: number;
+  /**
+   *
+   */
+  buttonIndex: number;
 };
 
 /**
  * Renders the content inside a button based on its type
  */
-export function ButtonContent({ button, pressCount }: ButtonContentProps) {
+export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContentProps) {
   // Switch based on button key to render different content types
   switch (button.key) {
     case 'BASIC_PRESS':
@@ -51,8 +58,8 @@ export function ButtonContent({ button, pressCount }: ButtonContentProps) {
       return (
         <ContentTextLabel>
           <Translate
-            en="Press To Win!"
-            pt="Aperte para Vencer!"
+            en="Press Many Times To Win!"
+            pt="Aperte várias vezes para ganhar!"
           />
         </ContentTextLabel>
       );
@@ -83,6 +90,16 @@ export function ButtonContent({ button, pressCount }: ButtonContentProps) {
           <Translate
             en="Please do not press"
             pt="Por favor, não aperte"
+          />
+        </ContentTextLabel>
+      );
+
+    case 'TRICK_URGENT_PRESS':
+      return (
+        <ContentTextLabel>
+          <Translate
+            en="Press immediately!"
+            pt="Rápido! Aperte  imediatamente!"
           />
         </ContentTextLabel>
       );
@@ -292,12 +309,20 @@ export function ButtonContent({ button, pressCount }: ButtonContentProps) {
     case 'EQUATION_RESULT': {
       return (
         <ContentTextSentence>
-          <Translate
-            en="Press the number the equation equals:"
-            pt="Aperte o número que a equação resulta:"
-          />
-          <br />
-          <ContentValue>{button.pool?.value ?? 'N/A'}</ContentValue>
+          <ContentValue>
+            <Translate
+              en={
+                <>
+                  Press <span className="button-unbreakable-value">{button.pool?.value ?? 'N/A'}</span> times
+                </>
+              }
+              pt={
+                <>
+                  Aperte <span className="button-unbreakable-value">{button.pool?.value ?? 'N/A'}</span> vezes
+                </>
+              }
+            />
+          </ContentValue>
         </ContentTextSentence>
       );
     }
@@ -330,8 +355,8 @@ export function ButtonContent({ button, pressCount }: ButtonContentProps) {
       return (
         <ContentTextSentence>
           <Translate
-            en="Sempre press when you see this icon"
-            pt="Sempre aperte quando você vir este ícone"
+            en="Sempre press when you see:"
+            pt="Sempre aperte quando você vir:"
           />
           <br />
           <ContentSequence>
@@ -396,8 +421,8 @@ export function ButtonContent({ button, pressCount }: ButtonContentProps) {
       return (
         <ContentTextSentence>
           <Translate
-            en="Never press when you see this icon"
-            pt="Nunca aperte quando você vir este ícone"
+            en="Never press when you see"
+            pt="Nunca aperte quando você vir"
           />
           <br />
           <ContentSequence>
@@ -432,8 +457,8 @@ export function ButtonContent({ button, pressCount }: ButtonContentProps) {
       return (
         <ContentTextSentence>
           <Translate
-            en="Press as many times as the icon appears"
-            pt="Aperte tantas vezes quantas vezes o ícone aparecer"
+            en="Press as many times as this appears"
+            pt="Aperte tantas vezes quantas vezes isto aparece"
           />
           <br />
           <ContentSequence>
@@ -497,13 +522,12 @@ export function ButtonContent({ button, pressCount }: ButtonContentProps) {
           <Translate
             en={
               <>
-                Press if <DualTranslate>{button.pool?.value}</DualTranslate> appears more than any other icon
+                Press if <DualTranslate>{button.pool?.value}</DualTranslate> appears more vezes
               </>
             }
             pt={
               <>
-                Aperte se <DualTranslate>{button.pool?.value}</DualTranslate> aparecer mais do que qualquer
-                outro ícone
+                Aperte se <DualTranslate>{button.pool?.value}</DualTranslate> aparece mais vezes
               </>
             }
           />
@@ -538,7 +562,7 @@ export function ButtonContent({ button, pressCount }: ButtonContentProps) {
         <ContentTextSentence>
           <Translate
             en={<>Press as many times as the letter "{button.pool?.letter}" appears</>}
-            pt={<>Aperte tantas vezes quanto a letra "{button.pool?.letter}" aparecer</>}
+            pt={<>Aperte tantas vezes quanto a letra "{button.pool?.letter}" aparece</>}
           />
           <br />
           <ContentValue>{button.pool?.value ?? 'N/A'}</ContentValue>
@@ -557,14 +581,20 @@ export function ButtonContent({ button, pressCount }: ButtonContentProps) {
     }
     case 'ROMAN_NUMERALS': {
       return (
-        <ContentTextSentence>
+        <ContentTextLabel>
           <Translate
-            en="Press as many times as the value of this Roman numeral"
-            pt="Aperte tantas vezes quanto o valor deste numeral romano"
+            en={
+              <>
+                Press <i>{button.pool?.value ?? 'N/A'}</i> times
+              </>
+            }
+            pt={
+              <>
+                Aperte <i>{button.pool?.value ?? 'N/A'}</i> vezes
+              </>
+            }
           />
-          <br />
-          <ContentValue>{button.pool?.value ?? 'N/A'}</ContentValue>
-        </ContentTextSentence>
+        </ContentTextLabel>
       );
     }
     case 'COUNT_ANIMAL_LEGS': {
@@ -587,6 +617,7 @@ export function ButtonContent({ button, pressCount }: ButtonContentProps) {
         </ContentTextSentence>
       );
     }
+
     case 'NUMBER_RIDDLE': {
       return (
         <ContentTextSentence>
@@ -596,6 +627,112 @@ export function ButtonContent({ button, pressCount }: ButtonContentProps) {
           />
           <DualTranslate>{button.pool?.text}</DualTranslate>
         </ContentTextSentence>
+      );
+    }
+
+    case 'COLOR_WORD_RULE': {
+      return (
+        <ContentTextSentence>
+          <Translate
+            en="Always press if the name is the same color as the word"
+            pt="Sempre aperte se o nome estiver na mesma cor que a palavra"
+          />
+        </ContentTextSentence>
+      );
+    }
+
+    case 'COLOR_WORD': {
+      return (
+        <ContentTextLabel>
+          <span style={{ color: button.pool?.color ?? 'black' }}>
+            <DualTranslate>{button.pool?.text}</DualTranslate>
+          </span>
+        </ContentTextLabel>
+      );
+    }
+
+    case 'LONG_INSTRUCTION': {
+      return (
+        <ContentTextSentence>
+          <DualTranslate>{button.pool?.text}</DualTranslate>
+        </ContentTextSentence>
+      );
+    }
+
+    case 'SPINNING_ICONS': {
+      return (
+        <motion.span
+          className="button-content__spinning-icons"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: 'linear' }}
+        >
+          {button?.pool?.decoyItemsIds.map((itemId: string, index: number) => {
+            return (
+              <motion.span
+                key={index}
+                animate={{ rotate: index % 3 === 0 ? 360 : -360 }}
+                transition={{
+                  duration: 2 + Math.random() * 3, // 2-5 seconds
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: 'linear',
+                }}
+              >
+                <ItemSprite
+                  itemId={itemId ?? '0'}
+                  width={64}
+                  className="spinning-icon"
+                />
+              </motion.span>
+            );
+          })}
+        </motion.span>
+      );
+    }
+
+    case 'COLOR_GRID': {
+      return (
+        <ContentTextSentence>
+          <Translate
+            en="Press if same color"
+            pt="Aperte se a cor for a mesma"
+          />
+          <br />
+          <div className="button-content__color-grid">
+            {button?.pool?.itemsIds.map((itemId: string, index: number) => (
+              <ItemSprite
+                key={index}
+                itemId={itemId ?? '0'}
+                width={48}
+              />
+            ))}
+          </div>
+        </ContentTextSentence>
+      );
+    }
+
+    case 'ALL_SAME_RULE': {
+      return (
+        <ContentTextSentence>
+          <Translate
+            en="Press when green animals are all the same kind"
+            pt="Aperte quando todos os animais verdes forem o mesmo"
+          />
+        </ContentTextSentence>
+      );
+    }
+
+    case 'SEE_SAME_THINGS_PRESS': {
+      return (
+        <div className="button-content__animal-grid">
+          {button?.pool?.goodsIds.map((itemId: string, index: number) => (
+            <WarehouseGoodSprite
+              key={index}
+              goodId={itemId ?? '0'}
+              width={28}
+              className={clsx({ 'animal-sprite-inverted': (buttonIndex + index) % 7 === 0 })}
+            />
+          ))}
+        </div>
       );
     }
 
