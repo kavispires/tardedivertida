@@ -47,14 +47,14 @@ export function usePirralhosEngine(data: DailyPirralhosEntry, initialState: Game
       return false;
     }
 
-    const isCulprit = data.culpritsIds.includes(kidId);
+    const isCulprit = data.culpritId === kidId;
     const newGuesses = [...state.guesses, kidId];
 
     if (!isCulprit) {
       message.warning({
         content: translate({
-          pt: 'Esse pirralho não é um dos culpados!',
-          en: 'This kid is not one of the culprits!',
+          pt: 'Esse pirralho não é o culpado!',
+          en: 'This kid is not the culprit!',
         }),
         duration: 5,
       });
@@ -85,7 +85,7 @@ export function usePirralhosEngine(data: DailyPirralhosEntry, initialState: Game
     }
 
     if (isCulprit) {
-      const allCulpritsGuessed = data.culpritsIds.every((culpritId) => newGuesses.includes(culpritId));
+      const allCulpritsGuessed = newGuesses.includes(data.culpritId);
 
       playSFX('win');
 
@@ -132,7 +132,6 @@ export function usePirralhosEngine(data: DailyPirralhosEntry, initialState: Game
   return {
     hearts: state.hearts,
     guesses: state.guesses,
-    kids: data.kids,
     showResultModal,
     setShowResultModal,
     isWin,

@@ -18,6 +18,7 @@ import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 import { SETTINGS } from '../utils/settings';
 import { writeResult } from '../utils/helpers';
 import type { GeneratedKid } from '../utils/types';
+import { KIDS_LIBRARY } from '../utils/constants';
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 const { Text } = Typography;
@@ -26,27 +27,24 @@ type ResultsModalContentProps = {
   challengeNumber: number;
   win: boolean;
   hearts: number;
-  culpritsIds: string[];
+  culpritId: string;
   liarsIds: string[];
-  kids: GeneratedKid[];
+  kidsEntries: GeneratedKid[];
 };
 
 export function ResultsModalContent({
   challengeNumber,
   win,
   hearts,
-  culpritsIds,
+  culpritId,
   liarsIds,
-  kids,
+  kidsEntries,
 }: ResultsModalContentProps) {
   const { language } = useLanguage();
 
-  const [culprits, liars] = useMemo(() => {
-    return [
-      kids.filter((kid) => culpritsIds.includes(kid.cardId)),
-      kids.filter((kid) => liarsIds.includes(kid.cardId)),
-    ];
-  }, [kids, culpritsIds, liarsIds]);
+  const [liars] = useMemo(() => {
+    return [kidsEntries.filter((kid) => liarsIds.includes(kid.kidId))];
+  }, [kidsEntries, liarsIds]);
 
   const result = useMemo(
     () =>
@@ -59,6 +57,8 @@ export function ResultsModalContent({
       }),
     [challengeNumber, hearts, language],
   );
+
+  const culprit = KIDS_LIBRARY[culpritId];
 
   return (
     <SpaceContainer vertical>
@@ -111,22 +111,20 @@ export function ResultsModalContent({
         </Text>
 
         <Flex>
-          {culprits.map((kid) => (
-            <Flex
-              key={kid.id}
-              vertical
-              align="center"
-            >
-              <ImageCard
-                cardId={kid.cardId}
-                cardWidth={48}
-                preview={false}
-              />
-              <Text strong>
-                <DualTranslate>{kid.name}</DualTranslate>
-              </Text>
-            </Flex>
-          ))}
+          <Flex
+            key={culprit.id}
+            vertical
+            align="center"
+          >
+            <ImageCard
+              cardId={culprit.cardId}
+              cardWidth={48}
+              preview={false}
+            />
+            <Text strong>
+              <DualTranslate>{culprit.name}</DualTranslate>
+            </Text>
+          </Flex>
         </Flex>
       </Flex>
 
@@ -138,14 +136,17 @@ export function ResultsModalContent({
           />
         </Text>
 
-        {liars.map((kid) => (
-          <Text
-            strong
-            key={kid.id}
-          >
-            <DualTranslate>{kid.name}</DualTranslate>
-          </Text>
-        ))}
+        {liars.map((liarEntry) => {
+          const kid = KIDS_LIBRARY[liarEntry.kidId];
+          return (
+            <Text
+              strong
+              key={kid.id}
+            >
+              <DualTranslate>{kid.name}</DualTranslate>
+            </Text>
+          );
+        })}
       </Flex>
 
       <CopyToClipboardResult

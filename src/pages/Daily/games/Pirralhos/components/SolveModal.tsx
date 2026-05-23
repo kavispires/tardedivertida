@@ -10,26 +10,27 @@ import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 // Internal
 import type { GeneratedKid, KidAssessment } from '../utils/types';
+import { KIDS_LIBRARY } from '../utils/constants';
 
 const { Text } = Typography;
 
 type SolveModalProps = {
-  kids: GeneratedKid[];
+  kidsEntries: GeneratedKid[];
   onResolve: (kidId: string) => void;
   guesses: string[];
   assessments: Record<string, KidAssessment | null>;
 };
 
-export function SolveModal({ kids, onResolve, guesses }: SolveModalProps) {
+export function SolveModal({ kidsEntries, onResolve, guesses }: SolveModalProps) {
   const width = useCardWidth(4, { margin: 8, maxWidth: 192, minWidth: 64 });
 
   const sortedKids = useMemo(() => {
     return orderBy(
-      kids.filter((kid) => !guesses.includes(kid.cardId)),
+      kidsEntries.filter((kid) => !guesses.includes(KIDS_LIBRARY[kid.kidId].cardId)),
       ['name.pt', 'name.en'],
       ['asc', 'asc'],
     );
-  }, [kids, guesses]);
+  }, [kidsEntries, guesses]);
 
   return (
     <Flex
@@ -37,33 +38,36 @@ export function SolveModal({ kids, onResolve, guesses }: SolveModalProps) {
       wrap
       justify="center"
     >
-      {sortedKids.map((kid) => (
-        <Flex
-          key={kid.id}
-          vertical
-          align="center"
-          style={{ width: width + 12 }}
-        >
-          <ImageCard
-            cardId={kid.cardId}
-            cardWidth={width}
-            preview={false}
-          />
-          <Text strong>
-            <DualTranslate>{kid.name}</DualTranslate>
-          </Text>
-          <Button
-            size="small"
-            onClick={() => onResolve(kid.cardId)}
-            shape="round"
+      {sortedKids.map((kidEntry) => {
+        const kid = KIDS_LIBRARY[kidEntry.kidId];
+        return (
+          <Flex
+            key={kidEntry.kidId}
+            vertical
+            align="center"
+            style={{ width: width + 12 }}
           >
-            <Translate
-              pt="Selecionar"
-              en="Select"
+            <ImageCard
+              cardId={kid.cardId}
+              cardWidth={width}
+              preview={false}
             />
-          </Button>
-        </Flex>
-      ))}
+            <Text strong>
+              <DualTranslate>{kid.name}</DualTranslate>
+            </Text>
+            <Button
+              size="small"
+              onClick={() => onResolve(kid.cardId)}
+              shape="round"
+            >
+              <Translate
+                pt="Selecionar"
+                en="Select"
+              />
+            </Button>
+          </Flex>
+        );
+      })}
     </Flex>
   );
 }

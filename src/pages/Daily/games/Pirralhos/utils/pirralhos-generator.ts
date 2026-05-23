@@ -1,6 +1,7 @@
 import { sampleSize } from 'lodash';
 // Internal
 import type { DailyPirralhosEntry, Kid } from './types';
+import { KIDS_LIBRARY } from './constants';
 
 export interface StatementContext {
   speaker: Kid;
@@ -11,104 +12,24 @@ export interface StatementContext {
 
 export interface StatementDef {
   difficultyWeight: number; // 1 (Easy) to 3 (Hard)
-  generateParam: (speaker: Kid, allKids: Kid[]) => number | undefined;
+  // Param can now be a string (UID) or a number (height)
+  generateParam: (speaker: Kid, allKids: Kid[]) => string | number | undefined;
   build: (
     speaker: Kid,
     allKids: Kid[],
-    param?: number,
+    param?: string | number,
   ) => { text: DualLanguageValue; evaluate: (ctx: StatementContext) => boolean };
 }
 
 export interface StatementInstance {
   type: number;
-  param?: number;
+  param?: string | number;
   text: DualLanguageValue;
   evaluate: (ctx: StatementContext) => boolean;
 }
 
-export const ALL_KIDS: Kid[] = [
-  {
-    id: 1,
-    cardId: 'us-gb-231',
-    name: { en: 'Miles', pt: 'Marcus Vinícius' },
-    gender: 'boy',
-    height: 124,
-    color: '#2b72ff',
-  },
-  {
-    id: 2,
-    cardId: 'us-gb-232',
-    name: { en: 'Penny', pt: 'Penélope' },
-    gender: 'girl',
-    height: 120,
-    color: '#ff69c0',
-  },
-  {
-    id: 3,
-    cardId: 'us-gb-233',
-    name: { en: 'Dylan', pt: 'Daniel' },
-    gender: 'boy',
-    height: 109,
-    color: '#41a00b',
-  },
-  {
-    id: 4,
-    cardId: 'us-gb-234',
-    name: { en: 'Sandy', pt: 'Sabrina' },
-    gender: 'girl',
-    height: 100,
-    color: '#962196',
-  },
-  {
-    id: 5,
-    cardId: 'us-gb-235',
-    name: { en: 'Brent', pt: 'Breno' },
-    gender: 'boy',
-    height: 122,
-    color: '#e54122',
-  },
-  {
-    id: 6,
-    cardId: 'us-gb-236',
-    name: { en: 'Alice', pt: 'Alice' },
-    gender: 'girl',
-    height: 117,
-    color: '#ffd800',
-  },
-  {
-    id: 7,
-    cardId: 'us-gb-237',
-    name: { en: 'Isaac', pt: 'Igor' },
-    gender: 'boy',
-    height: 127,
-    color: 'white',
-  },
-  {
-    id: 8,
-    cardId: 'us-gb-238',
-    name: { en: 'Anna', pt: 'Aninha' },
-    gender: 'girl',
-    height: 104,
-    color: 'orange',
-  },
-  {
-    id: 9,
-    cardId: 'us-gb-239',
-    name: { en: 'Linus', pt: 'Lino' },
-    gender: 'boy',
-    height: 112,
-    color: 'teal',
-  },
-  {
-    id: 10,
-    cardId: 'us-gb-240',
-    name: { en: 'Matilda', pt: 'Matilda' },
-    gender: 'girl',
-    height: 115,
-    color: 'brown',
-  },
-];
-
+// Derive the array for logic processing
+const ALL_KIDS = Object.values(KIDS_LIBRARY);
 const HEIGHT_THRESHOLDS = ALL_KIDS.map((k) => k.height).sort();
 
 /**
@@ -220,7 +141,7 @@ const STATEMENT_POOL: StatementDef[] = [
         en: `Someone shorter than ${param} cm did it`,
         pt: `Foi alguém menor que ${param} cm`,
       },
-      evaluate: (ctx) => ctx.culprits.some((c) => c.height < param!),
+      evaluate: (ctx) => ctx.culprits.some((c) => c.height < (param as number)),
     }),
   },
   {
@@ -273,13 +194,12 @@ function getCombinations<T>(array: T[], size: number): T[][] {
 function encodePuzzleId(
   numKids: number,
   exactLiars: number,
-  possibleLiars: number, // Tracked to ensure consistent bluff value across reloads
+  possibleLiars: number,
   stmts: StatementInstance[],
 ): string {
   const stmtString = stmts
     .map((s) => (s.param !== undefined ? `${s.type},${s.param}` : `${s.type}`))
     .join('-');
-  // Hardcoded `1` culprit to keep the ID structure consistent with previous formatting versions
   const rawId = `${numKids}|1|${exactLiars}|${possibleLiars}|${stmtString}`;
   return globalThis.btoa(rawId);
 }
@@ -297,10 +217,15 @@ function decodePuzzleId(hash: string) {
 
   const parsedStmts = stmtsStr.split('-').map((s) => {
     const [typeStr, paramStr] = s.split(',');
-    return {
-      type: Number.parseInt(typeStr, 10),
-      param: paramStr ? Number.parseInt(paramStr, 10) : undefined,
-    };
+    const type = Number.parseInt(typeStr, 10);
+
+    // Type 7 expects a Number param (height), all others expect a String param (UID) or undefined
+    let param: string | number | undefined;
+    if (paramStr !== undefined && paramStr !== '') {
+      param = type === 7 ? Number.parseInt(paramStr, 10) : paramStr;
+    }
+
+    return { type, param };
   });
 
   return { numKids, numCulprits, exactLiars, possibleLiars, parsedStmts };
@@ -326,8 +251,6 @@ function calculateDifficulty(
   return Math.max(1, Math.min(100, totalScore));
 }
 
-// --- Puzzle Solvers ---
-
 /**
  * Solves a puzzle by testing all possible combinations of culprits and liars to find a unique solution.
  */
@@ -347,7 +270,6 @@ function solvePuzzle(
   for (const testCulprits of possibleCulpritCombos) {
     for (const testLiars of possibleLiarCombos) {
       // RULE: The culprit must ALWAYS be a liar.
-      // If the selected culprit state does not exist inside the liar state, bypass.
       if (!testLiars.some((l) => testCulprits.some((c) => c.id === l.id))) {
         continue;
       }
@@ -378,24 +300,19 @@ function solvePuzzle(
   return { validSolutionsCount, finalCulprits, finalLiars };
 }
 
-// --- Main Exits ---
-
 /**
  * Generates a unique daily Pirralhos puzzle based strictly on numKids.
  */
 export function generatePuzzle(numKids: number, avoidIds: string[] = []): DailyPirralhosEntry {
   const activeKids = sampleSize(ALL_KIDS, numKids);
 
-  // Hard rules enforcement
   const numCulprits = 1;
   let exactLiars = 2;
 
-  // For 6/7 kids, randomize liars between 2 and 4.
   if (numKids >= 6) {
     exactLiars = pickRandom([2, 3, 4]);
   }
 
-  // Display the true exact liars, or optionally bluff with a +1
   const possibleLiars = exactLiars + (Math.random() > 0.5 ? 1 : 0);
   const possibleCulpritCombos = getCombinations(activeKids, numCulprits);
 
@@ -404,11 +321,9 @@ export function generatePuzzle(numKids: number, avoidIds: string[] = []): DailyP
   while (attempts < 5000) {
     attempts++;
 
-    // Select the one definitive culprit
     const trueCulprits = pickRandom(possibleCulpritCombos);
     const theCulprit = trueCulprits[0];
 
-    // Build the liars array. The true culprit MUST be included as one of the liars.
     const otherKids = activeKids.filter((k) => k.id !== theCulprit.id);
     const otherLiarsCombos = getCombinations(otherKids, exactLiars - 1);
     const trueLiars = [theCulprit, ...pickRandom(otherLiarsCombos)];
@@ -458,12 +373,15 @@ export function generatePuzzle(numKids: number, avoidIds: string[] = []): DailyP
       const difficulty = calculateDifficulty(numKids, numCulprits, exactLiars, stmtInstances);
 
       return {
-        id: puzzleId,
+        id: '',
         type: 'pirralhos',
         number: 0,
-        kids: kidStatements.map((ks) => ({ ...ks.kid, statement: ks.stmt.text })),
-        culpritsIds: trueCulprits.map((c) => c.cardId),
-        liarsIds: trueLiars.map((l) => l.cardId),
+        hashId: puzzleId,
+        // Using the updated GeneratedKid structure
+        kids: kidStatements.map((ks) => ({ kidId: ks.kid.id, statement: ks.stmt.text })),
+        // Changed mapping to map by ID instead of cardId
+        culpritId: trueCulprits.map((c) => c.id)[0],
+        liarsIds: trueLiars.map((l) => l.id),
         possibleLiars,
         difficulty,
       };
@@ -499,12 +417,15 @@ export function getPuzzleById(hashId: string): DailyPirralhosEntry {
   const difficulty = calculateDifficulty(numKids, numCulprits, exactLiars, stmtInstances);
 
   return {
-    id: hashId,
+    id: '',
     type: 'pirralhos',
     number: 0,
-    kids: kidStatements.map((ks) => ({ ...ks.kid, statement: ks.stmt.text })),
-    culpritsIds: solution.finalCulprits.map((c) => c.cardId),
-    liarsIds: solution.finalLiars.map((l) => l.cardId),
+    hashId,
+    // Using the updated GeneratedKid structure
+    kids: kidStatements.map((ks) => ({ kidId: ks.kid.id, statement: ks.stmt.text })),
+    // Changed mapping to map by ID instead of cardId
+    culpritId: solution.finalCulprits.map((c) => c.id)[0],
+    liarsIds: solution.finalLiars.map((l) => l.id),
     possibleLiars,
     difficulty,
   };

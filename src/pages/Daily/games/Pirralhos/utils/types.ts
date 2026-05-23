@@ -3,7 +3,7 @@ import type { DateKey } from 'pages/Daily/utils/types';
 
 export type Gender = 'boy' | 'girl';
 export interface Kid {
-  id: number;
+  id: UID;
   cardId: string;
   name: DualLanguageValue;
   gender: Gender;
@@ -11,7 +11,8 @@ export interface Kid {
   color: string;
 }
 
-export interface GeneratedKid extends Kid {
+export interface GeneratedKid {
+  kidId: UID;
   statement: DualLanguageValue;
 }
 
@@ -30,8 +31,9 @@ export type DailyPirralhosEntry = {
   id: DateKey;
   number: number;
   type: 'pirralhos';
+  hashId: string;
   kids: GeneratedKid[];
-  culpritsIds: UID[];
+  culpritId: UID;
   liarsIds: UID[];
   possibleLiars: number;
   difficulty: number; // The calculated 1-100 difficulty score

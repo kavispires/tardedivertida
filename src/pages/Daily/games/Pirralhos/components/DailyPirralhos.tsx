@@ -6,8 +6,6 @@ import { Button, Layout, Modal } from 'antd';
 import type { Me } from 'types/user';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-// Utils
-import { pluralize } from 'utils/helpers';
 // Icons
 import { LiarIcon, OpposingArrowIcon } from 'icons/collection';
 import { TraitorIcon } from 'icons/TraitorIcon';
@@ -44,7 +42,6 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
   const {
     hearts,
     guesses,
-    kids,
     showResultModal,
     setShowResultModal,
     isWin,
@@ -55,7 +52,7 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
   } = usePirralhosEngine(data, initialState);
 
   // Calculate positions for kids in elliptical layout
-  const positions = calculateEllipsePositions(kids.length);
+  const positions = calculateEllipsePositions(data.kids.length);
 
   return (
     <Layout>
@@ -83,14 +80,20 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
               icon={<TraitorIcon />}
               size="small"
             />{' '}
-            {data.culpritsIds.length} {pluralize(data.culpritsIds.length, 'culpado')}
+            <Translate
+              pt="Culpado"
+              en="Culprit"
+            />
           </TextHighlight>
           <TextHighlight>
             <IconAvatar
               icon={<LiarIcon />}
               size="small"
             />{' '}
-            {data.liarsIds.length} {pluralize(data.liarsIds.length, 'mentiroso')}
+            <Translate
+              pt="Mentirosos"
+              en="Liars"
+            />
           </TextHighlight>
         </RegionText>
 
@@ -108,9 +111,9 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
             challengeNumber={data.number}
             win={isWin}
             hearts={hearts}
-            culpritsIds={data.culpritsIds}
+            culpritId={data.culpritId}
             liarsIds={data.liarsIds}
-            kids={data.kids}
+            kidsEntries={data.kids}
           />
         </Modal>
 
@@ -126,7 +129,7 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
           }
         >
           <SolveModal
-            kids={kids}
+            kidsEntries={data.kids}
             guesses={guesses}
             assessments={assessments}
             onResolve={(kidId) => {
@@ -152,11 +155,14 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
 
         <div
           className="kids-container"
-          style={{ marginTop: width / 1.85, minHeight: ([2.5, 3, 4, 4][kids.length - 4] * width) / 0.67 }}
+          style={{
+            marginTop: width / 1.85,
+            minHeight: ([2.5, 3, 4, 4][data.kids.length - 4] * width) / 0.67,
+          }}
         >
-          {kids.map((kid, index) => {
+          {data.kids.map((entry, index) => {
             const position = positions[index];
-            const nextPosition = positions[(index + 1) % kids.length]; // Wrap around for closed loop
+            const nextPosition = positions[(index + 1) % data.kids.length]; // Wrap around for closed loop
 
             // Calculate midpoint for arrow position
             const arrowX = (position.x + nextPosition.x) / 2;
@@ -164,7 +170,7 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
             const arrowRotation = calculateArrowRotation(position.angle, nextPosition.angle);
 
             return (
-              <Fragment key={kid.id}>
+              <Fragment key={entry.kidId}>
                 {/* Kid positioned on ellipse */}
                 <div
                   className="kids-container__item-wrapper"
@@ -174,11 +180,11 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
                   }}
                 >
                   <KidCard
-                    kid={kid}
+                    kidEntry={entry}
                     index={index}
                     width={width}
                     assessKid={assessKid}
-                    assessment={assessments[kid.id] ?? null}
+                    assessment={assessments[entry.kidId] ?? null}
                   />
                 </div>
 

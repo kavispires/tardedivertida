@@ -9,19 +9,21 @@ import { IconAvatar } from 'components/avatars/IconAvatar';
 import { ImageCard } from 'components/image-cards/ImageCard';
 import { DualTranslate } from 'components/language/DualTranslate';
 // Internal
-import type { GeneratedKid, KidAssessment } from '../utils/types';
+import type { GeneratedKid, Kid, KidAssessment } from '../utils/types';
+import { KIDS_LIBRARY } from '../utils/constants';
 
 const { Text } = Typography;
 
 type KidCardProps = {
-  kid: GeneratedKid;
+  kidEntry: GeneratedKid;
   index: number;
   width: number;
   assessKid: (kidId: string) => void;
   assessment: KidAssessment | null;
 };
 
-export function KidCard({ kid, index, width, assessKid, assessment }: KidCardProps) {
+export function KidCard({ kidEntry, index, width, assessKid, assessment }: KidCardProps) {
+  const kid = KIDS_LIBRARY[kidEntry.kidId];
   return (
     <div className={clsx('kid-container', `"kid-container--${index + 1}-kid"`)}>
       <div className="kid-container__kid-data">
@@ -36,7 +38,7 @@ export function KidCard({ kid, index, width, assessKid, assessment }: KidCardPro
       </div>
       <div className="kid-container__assessment">
         <AssessmentSwitch
-          kidId={kid.id}
+          kidId={kidEntry.kidId}
           assessment={assessment}
           assessKid={assessKid}
         />
@@ -54,7 +56,7 @@ export function KidCard({ kid, index, width, assessKid, assessment }: KidCardPro
           className="kid-container__statement"
           style={{ maxWidth: width + 12 }}
         >
-          <DualTranslate>{kid.statement}</DualTranslate>
+          <DualTranslate>{kidEntry.statement}</DualTranslate>
         </div>
       </div>
     </div>
@@ -62,7 +64,7 @@ export function KidCard({ kid, index, width, assessKid, assessment }: KidCardPro
 }
 
 type KidGenderProps = {
-  kid: GeneratedKid;
+  kid: Kid;
 };
 
 function KidGender({ kid }: KidGenderProps) {
@@ -74,9 +76,9 @@ function KidGender({ kid }: KidGenderProps) {
 }
 
 type AssessmentSwitchProps = {
-  kidId: number;
+  kidId: UID;
   assessment: KidAssessment | null;
-  assessKid: (kidId: string) => void;
+  assessKid: (kidId: UID) => void;
 };
 
 export const assessmentIconMap: Record<string, JSX.Element> = {
