@@ -17,6 +17,7 @@ export function buildButtons(buttons: string[]): ButtonEntry[] {
     const buttonData = BUTTONS_LIBRARY[buttonType];
 
     if (!buttonData) {
+      // biome-ignore lint/suspicious/noConsole: debugging purposes
       console.warn(`Button type "${buttonType}" not found in BUTTONS_LIBRARY.`);
     }
 
@@ -104,6 +105,7 @@ export function buildButtons(buttons: string[]): ButtonEntry[] {
     }
 
     if (buttonEntry.targetCount === -2) {
+      // biome-ignore lint/suspicious/noConsole: debugging purposes
       console.warn(
         `Pool entry for button "${id}" has an invalid targetCount of -2. Please ensure that the pool entry has a valid targetCount to determine the expected action.`,
         { buttonEntry },
@@ -112,6 +114,7 @@ export function buildButtons(buttons: string[]): ButtonEntry[] {
 
     if (buttonEntry.expectedAction === 'TBD') {
       const errorMessage = `Button with id "${id}" has an expectedAction of "TBD". This requires additional context to determine the correct expected action. Please ensure that the button configuration is updated to specify the expected action or provide necessary context for TBD actions.`;
+      // biome-ignore lint/suspicious/noConsole: debugging purposes
       console.log(errorMessage, { buttonEntry });
       throw new Error(errorMessage);
     }

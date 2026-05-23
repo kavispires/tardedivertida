@@ -1,4 +1,6 @@
-import { random, shuffle } from 'lodash';
+import { random, shuffle, sampleSize } from 'lodash';
+// Utils
+import { LETTERS } from 'utils/constants';
 // Internal
 import { BUTTONS_LIBRARY, POOLS } from './data';
 
@@ -10,13 +12,21 @@ type PlacedButton = {
   level: number;
 };
 
+const BASIC_PRESS_KEY = 'BASIC_PRESS';
+const FINAL_PRESS_KEY = 'FINAL_PRESS';
+const BASIC_DO_NOT_PRESS_KEY = 'BASIC_DO_NOT_PRESS';
+const SAME_AS_PREVIOUS_KEY = 'SAME_AS_PREVIOUS';
+
 /**
  * Generates a game sequence based on extensive game rules and dependencies.
  *
  * @param length The total number of buttons in the sequence (default 25).
  * @returns Array of formatted strings: "<number>;;<button-key>;;<pool-index>"
  */
-export function generateGameSequence(length = 25): string[] {
+export function generateGameSequence(length = 25): {
+  hash: string;
+  sequence: string[];
+} {
   // Adjusted minimum length to safely accommodate the new 5-space dependency gap
   if (length < 8) {
     throw new Error('Sequence length must be at least 8 to accommodate the 5-space dependency gap.');
@@ -26,23 +36,28 @@ export function generateGameSequence(length = 25): string[] {
 
   // 1. Game must always start with BASIC_PRESS
   sequence.push({
-    key: 'BASIC_PRESS',
-    targetCount: BUTTONS_LIBRARY['BASIC_PRESS'].targetCount,
-    expectedAction: BUTTONS_LIBRARY['BASIC_PRESS'].expectedAction,
-    level: BUTTONS_LIBRARY['BASIC_PRESS'].level,
+    key: BASIC_PRESS_KEY,
+    targetCount: BUTTONS_LIBRARY[BASIC_PRESS_KEY].targetCount,
+    expectedAction: BUTTONS_LIBRARY[BASIC_PRESS_KEY].expectedAction,
+    level: BUTTONS_LIBRARY[BASIC_PRESS_KEY].level,
   });
 
+  /**
+   * Checks if a target count is considered restricted based on game rules.
+   */
   const isRestrictedTarget = (tc: number) => tc === 0 || tc === -2;
 
-  // Recursive Backtracking Function
+  /**
+   * Recursive backtracking function that attempts to build a valid button sequence.
+   */
   const solve = (currentIndex: number): boolean => {
     // Base Case: If we reached the final slot, place FINAL_PRESS
     if (currentIndex === length - 1) {
       sequence.push({
-        key: 'FINAL_PRESS',
-        targetCount: BUTTONS_LIBRARY['FINAL_PRESS'].targetCount,
-        expectedAction: BUTTONS_LIBRARY['FINAL_PRESS'].expectedAction,
-        level: BUTTONS_LIBRARY['FINAL_PRESS'].level,
+        key: FINAL_PRESS_KEY,
+        targetCount: BUTTONS_LIBRARY[FINAL_PRESS_KEY].targetCount,
+        expectedAction: BUTTONS_LIBRARY[FINAL_PRESS_KEY].expectedAction,
+        level: BUTTONS_LIBRARY[FINAL_PRESS_KEY].level,
       });
       return true;
     }
@@ -74,7 +89,7 @@ export function generateGameSequence(length = 25): string[] {
 
     let validCandidates = randomizedLibrary.filter((candidate) => {
       // RULE: FINAL_PRESS is strictly reserved for the end
-      if (candidate.key === 'FINAL_PRESS') return false;
+      if (candidate.key === FINAL_PRESS_KEY) return false;
 
       // RULE: Max Occurrences
       const currentCount = occurrences[candidate.key] || 0;
@@ -97,7 +112,7 @@ export function generateGameSequence(length = 25): string[] {
       }
 
       // RULE: SAME_AS_PREVIOUS Constraint
-      if (candidate.key === 'SAME_AS_PREVIOUS') {
+      if (candidate.key === SAME_AS_PREVIOUS_KEY) {
         const prev = sequence[currentIndex - 1];
         if (prev.expectedAction === 'ANY' || prev.expectedAction === 'TBD') return false;
       }
@@ -117,7 +132,7 @@ export function generateGameSequence(length = 25): string[] {
 
     // RULE: Fallback Completion
     if (validCandidates.length === 0) {
-      const fallbacks = [BUTTONS_LIBRARY['BASIC_PRESS'], BUTTONS_LIBRARY['BASIC_DO_NOT_PRESS']];
+      const fallbacks = [BUTTONS_LIBRARY[BASIC_PRESS_KEY], BUTTONS_LIBRARY[BASIC_DO_NOT_PRESS_KEY]];
       validCandidates = shuffle(fallbacks).filter((candidate) => {
         const last1 = sequence[currentIndex - 1]?.key;
         const last2 = sequence[currentIndex - 2]?.key;
@@ -196,12 +211,123 @@ export function generateGameSequence(length = 25): string[] {
   const success = solve(1);
 
   if (!success) {
+    // biome-ignore lint/suspicious/noConsole: Logging important warning about generation failure
     console.warn('Could not generate a sequence matching all strict constraints for this length.');
   }
 
+  const hash: string[] = [];
   // Format the final output: "<number>;;<button-key>;;<pool-index>"
-  return sequence.map((btn, index) => {
+  const buttonSequence = sequence.map((btn, index) => {
     const poolStr = btn.poolIndex !== undefined ? btn.poolIndex.toString() : '';
+
+    if (BUTTONS_LIBRARY[btn.key]?.hash) {
+      const h = BUTTONS_LIBRARY[btn.key].hash ?? '???';
+
+      if (btn.poolIndex !== undefined) {
+        hash.push(`${h}${poolStr}`);
+      } else {
+        hash.push(h);
+      }
+    }
+
     return `${index + 1};;${btn.key};;${poolStr}`;
   });
+
+  return {
+    sequence: buttonSequence,
+    hash: hash.join(''),
+  };
 }
+
+// UTILS
+
+/**
+ * Generates a specified number of unique 3-character hash codes that don't conflict with existing button hashes.
+ */
+export function generateUniqueHashes(count: number): string[] {
+  const usedHashes = new Set<string>();
+  Object.values(BUTTONS_LIBRARY).forEach((btn) => {
+    if (btn.hash) {
+      usedHashes.add(btn.hash);
+    }
+  });
+
+  const newHashes = new Set<string>();
+  while (newHashes.size < count) {
+    const hash = `${sampleSize(LETTERS, 1)}${sampleSize(LETTERS, 1)}${sampleSize(LETTERS, 1)}`.toLowerCase();
+    if (!usedHashes.has(hash) && !newHashes.has(hash)) {
+      newHashes.add(hash);
+    }
+  }
+  return Array.from(newHashes).sort();
+}
+
+/**
+ * Generates a sequence containing all buttons in the library for testing purposes.
+ */
+export function generateAllButtonsSequence(): string[] {
+  return Object.values(BUTTONS_LIBRARY).map((button, index) => {
+    let id = `${index + 1};;${button.key}`;
+    if (button.pool) {
+      id += `;;${random(0, Object.values(POOLS[button.pool]).length - 1)}`;
+    }
+    return id;
+  });
+}
+
+/**
+ * Generates a sample test sequence with a predefined set of button keys.
+ */
+export function generateSampleTestSequence(): string[] {
+  const sampleKeys = [
+    'BASIC_PRESS',
+    // Add buttons here
+    'FINAL_PRESS',
+  ];
+
+  return sampleKeys
+    .map((key) => BUTTONS_LIBRARY[key])
+    .map((button, index) => {
+      let id = `${index + 1};;${button.key}`;
+      if (button.pool) {
+        id += `;;${random(0, Object.values(POOLS[button.pool]).length - 1)}`;
+      }
+      return id;
+    });
+}
+
+/**
+ * Generates a sample test sequence that includes all pool variations for buttons with pools.
+ */
+export function generateSampleTestAllPoolsSequence(): string[] {
+  const sampleKeys = [
+    'BASIC_PRESS',
+    // Add buttons here
+    'FINAL_PRESS',
+  ];
+
+  return sampleKeys
+    .map((key) => BUTTONS_LIBRARY[key])
+    .flatMap((button, index) => {
+      if (button.pool) {
+        if (button.dependsOn) {
+          return Object.keys(POOLS[button.pool]).map((_, poolIndex) => {
+            const poolId = `${index + 1};;${button.key};;${poolIndex}`;
+            return poolId;
+          });
+        }
+        return `${index + 1};;${button.key};;${random(0, Object.values(POOLS[button.pool]).length - 1)}`;
+      }
+      const id = `${index + 1};;${button.key}`;
+
+      return id;
+    });
+}
+
+export const generators = {
+  generateGameSequence,
+  generateUniqueHashes,
+  generateAllButtonsSequence,
+  generateSampleTestSequence,
+  generateSampleTestAllPoolsSequence,
+};

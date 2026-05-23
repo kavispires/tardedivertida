@@ -135,6 +135,7 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
           />
         </ContentTextLabel>
       );
+
     case 'LOGIC_HUMAN_FALSE':
       return (
         <ContentTextLabel>
@@ -557,6 +558,7 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
         </ContentTextSentence>
       );
     }
+
     case 'COUNT_SPECIFIC_LETTER': {
       return (
         <ContentTextSentence>
@@ -569,6 +571,7 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
         </ContentTextSentence>
       );
     }
+
     case 'ALPHABET_POSITION': {
       return (
         <ContentTextSentence>
@@ -579,6 +582,7 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
         </ContentTextSentence>
       );
     }
+
     case 'ROMAN_NUMERALS': {
       return (
         <ContentTextLabel>
@@ -597,6 +601,7 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
         </ContentTextLabel>
       );
     }
+
     case 'COUNT_ANIMAL_LEGS': {
       return (
         <ContentTextSentence>
