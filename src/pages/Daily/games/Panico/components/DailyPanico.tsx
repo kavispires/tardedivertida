@@ -2,7 +2,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 // Ant Design Resources
 import { ReloadOutlined } from '@ant-design/icons';
-import { Alert, Button, Layout, Modal } from 'antd';
+import { Button, Layout, Modal } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
@@ -15,7 +15,6 @@ import { GameHeader } from 'pages/Daily/components/Header';
 import { Menu } from 'pages/Daily/components/Menu';
 import { Region, RegionText } from 'pages/Daily/components/Region';
 import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
-import { SoundFXToggle } from 'pages/Daily/components/SoundFXToggle';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
@@ -24,6 +23,7 @@ import { usePanicoEngine } from '../utils/usePanicoEngine';
 import { ResultsModalContent } from './ResultsModalContent';
 import { Rules } from './Rules';
 import { Panel } from './Panel';
+import { SoundSfxAlert } from './SoundSfxAlert';
 // Sass
 import '../utils/styles.scss';
 
@@ -101,21 +101,7 @@ export function DailyPanico({ data }: DailyPanicoProps) {
           setShowResultModal={setShowResultModal}
         />
 
-        <Region>
-          <Alert
-            type="warning"
-            showIcon
-            title={
-              <Translate
-                en="This game works better with sound on."
-                pt="Este jogo é melhor com o som ligado."
-              />
-            }
-            className="transparent"
-            style={{ color: 'gold' }}
-            action={<SoundFXToggle className="ml-4" />}
-          />
-        </Region>
+        <SoundSfxAlert />
 
         <Region className="mt-10">
           <Button
