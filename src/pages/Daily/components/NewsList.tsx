@@ -17,6 +17,23 @@ type NewsItem = {
 
 export const NEWS_LIST: NewsItem[] = [
   {
+    date: '2026-05-24',
+    content: (
+      <>
+        <em>Novo jogo adicionado:</em>
+        <br />
+        <IconAvatar
+          icon={<ALL_SETTINGS.PIRRALHOS.HUB_ICON />}
+          size="small"
+        />{' '}
+        <strong>
+          <DualTranslate>{ALL_SETTINGS.PIRRALHOS.NAME}</DualTranslate>
+        </strong>{' '}
+        - qual criança pegou o brinquedo?
+      </>
+    ),
+  },
+  {
     date: '2026-05-17',
     content: (
       <>
@@ -41,15 +58,24 @@ export const NEWS_LIST: NewsItem[] = [
           icon={<NewFeatureIcon />}
           size="small"
         />{' '}
-        Vários jogos agora estão com nomes atualizados para refletir melhor a experiência do jogo:
-        <br />
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.INVESTIGACAO.NAME}</DualTranslate>,{' '}
-          <DualTranslate>{ALL_SETTINGS.ALIENADO.NAME}</DualTranslate>,{' '}
-          <DualTranslate>{ALL_SETTINGS.VITRAL.NAME}</DualTranslate>, e{' '}
-          <DualTranslate>{ALL_SETTINGS.ESTOQUISTA.NAME}</DualTranslate>
-        </strong>
-        !
+        Vários jogos agora estão com nomes atualizados para refletir melhor a experiência do jogo:{' '}
+        <span>
+          <strong>
+            <DualTranslate>{ALL_SETTINGS.INVESTIGACAO.NAME}</DualTranslate>,
+          </strong>{' '}
+          <strong>
+            <DualTranslate>{ALL_SETTINGS.ALIENADO.NAME}</DualTranslate>
+          </strong>
+          ,{' '}
+          <strong>
+            <DualTranslate>{ALL_SETTINGS.VITRAL.NAME}</DualTranslate>
+          </strong>
+          , e{' '}
+          <strong>
+            <DualTranslate>{ALL_SETTINGS.ESTOQUISTA.NAME}</DualTranslate>
+          </strong>
+          !
+        </span>
       </>
     ),
   },
@@ -105,7 +131,7 @@ export const NEWS_LIST: NewsItem[] = [
     date: '2026-02-09',
     content: (
       <>
-        <em>Nova sessão de jogos infinitos:</em>
+        <em>Nova sessão de jogos especiais:</em>
         <br />
         Jogue quantas vezes quiser o jogo{' '}
         <IconAvatar

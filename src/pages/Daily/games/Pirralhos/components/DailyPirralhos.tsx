@@ -80,6 +80,7 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
               icon={<TraitorIcon />}
               size="small"
             />{' '}
+            1{' '}
             <Translate
               pt="Culpado"
               en="Culprit"
@@ -90,6 +91,7 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
               icon={<LiarIcon />}
               size="small"
             />{' '}
+            {data.liarsIds.length}{' '}
             <Translate
               pt="Mentirosos"
               en="Liars"
@@ -208,7 +210,7 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
           })}
         </div>
 
-        <RegionHint>
+        <RegionHint className="pirralhos-hint">
           <Translate
             pt={
               <>

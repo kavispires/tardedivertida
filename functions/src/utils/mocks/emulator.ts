@@ -179,6 +179,9 @@ export const feedEmulatorDaily = async () => {
     mapeamento: JSON.parse(
       '{"id":"2023-10-31","number":0,"type":"mapeamento","setId":"demo-set","language":"pt","location":"Reino do Cogumelo","clues":["Mundo colorido de canos","Habitado por pequenos Toads","Constantemente invadido por Bowser","Governado pela Princesa Peach","Onde Mario vive aventuras"]}',
     ),
+    pirralhos: JSON.parse(
+      '{"id":"2023-10-31","type":"pirralhos","number":1,"hashId":"NHwxfDJ8Mnw5LTYtMSw0LTAsMTA=","kids":[{"kidId":"1","statement":{"en":"The culprit has a different gender than me","pt":"Quem pegou é de um gênero diferente do meu"}},{"kidId":"9","statement":{"en":"Someone taller than me did it","pt":"Foi alguém mais alto que eu"}},{"kidId":"10","statement":{"en":"Sandy didn\'t do it","pt":"Não foi a Sabrina"}},{"kidId":"4","statement":{"en":"Matilda did it","pt":"Foi a Matilda!"}}],"culpritId":"1","liarsIds":["1","4"],"possibleLiars":2,"difficulty":30}',
+    ),
     dictionary: {
       0: 'td',
       1: 'tapete de ioga',
