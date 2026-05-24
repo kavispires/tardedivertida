@@ -26,7 +26,7 @@ export function SolveModal({ kidsEntries, onResolve, guesses }: SolveModalProps)
 
   const sortedKids = useMemo(() => {
     return orderBy(
-      kidsEntries.filter((kid) => !guesses.includes(KIDS_LIBRARY[kid.kidId].cardId)),
+      kidsEntries.filter((kid) => !guesses.includes(KIDS_LIBRARY[kid.kidId].id)),
       ['name.pt', 'name.en'],
       ['asc', 'asc'],
     );
@@ -48,7 +48,7 @@ export function SolveModal({ kidsEntries, onResolve, guesses }: SolveModalProps)
             style={{ width: width + 12 }}
           >
             <ImageCard
-              cardId={kid.cardId}
+              cardId={kid.id}
               cardWidth={width}
               preview={false}
             />
@@ -57,7 +57,7 @@ export function SolveModal({ kidsEntries, onResolve, guesses }: SolveModalProps)
             </Text>
             <Button
               size="small"
-              onClick={() => onResolve(kid.cardId)}
+              onClick={() => onResolve(kid.id)}
               shape="round"
             >
               <Translate

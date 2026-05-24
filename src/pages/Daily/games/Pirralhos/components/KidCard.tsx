@@ -44,7 +44,7 @@ export function KidCard({ kidEntry, index, width, assessKid, assessment }: KidCa
         />
       </div>
       <ImageCard
-        cardId={kid.cardId}
+        cardId={kid.id}
         cardWidth={width}
         preview={false}
       />

@@ -4,7 +4,6 @@ import type { DateKey } from 'pages/Daily/utils/types';
 export type Gender = 'boy' | 'girl';
 export interface Kid {
   id: UID;
-  cardId: string;
   name: DualLanguageValue;
   gender: Gender;
   height: number;

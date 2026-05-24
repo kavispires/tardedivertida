@@ -8,11 +8,23 @@ import { getToday } from 'utils/helpers';
 // Internal
 import { ALL_SETTINGS } from './utils/settings';
 import { DailyChrome } from './components/DailyChrome';
+import { useDailyChallenge } from './hooks/useDailyChallenge';
 
 const PRIORITY_LIST = Object.values(ALL_SETTINGS);
 
 export function DebugPage() {
   const { isAdmin } = useCurrentUserContext();
+  // Load challenge
+  const challengeQuery = useDailyChallenge();
+  const challengeData = challengeQuery.data as Record<string, unknown> | undefined;
+
+  if (challengeQuery.isLoading) {
+    return (
+      <DailyChrome>
+        <Typography.Text>Loading...</Typography.Text>
+      </DailyChrome>
+    );
+  }
 
   if (!isAdmin) {
     return <Typography.Text>Unauthorized</Typography.Text>;
@@ -29,6 +41,7 @@ export function DebugPage() {
           <Content
             key={game.KEY}
             localKey={game.KEY}
+            data={challengeData?.[game.ROUTE]}
           />
         ))}
       </Space>
@@ -36,7 +49,7 @@ export function DebugPage() {
   );
 }
 
-function Content({ localKey }: { localKey: string }) {
+function Content({ localKey, data = {} }: { localKey: string; data: any }) {
   const value = useMemo(
     () =>
       JSON.stringify(JSON.parse(localStorage.getItem(`TD_DAILY_${localKey}_LOCAL_TODAY`) || '{}'), null, 2),
@@ -51,12 +64,20 @@ function Content({ localKey }: { localKey: string }) {
         {localKey}
       </Typography.Paragraph>
 
-      <Input.TextArea
-        cols={10}
-        rows={8}
-        value={value}
-        style={{ width: 'clamp(300px, 80vw, 960px)' }}
-      />
+      <div className="grid grid-2">
+        <Input.TextArea
+          cols={10}
+          rows={8}
+          value={value}
+          style={{ width: 'clamp(300px, 90vw, 960px)' }}
+        />
+        <Input.TextArea
+          cols={10}
+          rows={8}
+          value={JSON.stringify(data, null, 2)}
+          style={{ width: 'clamp(300px, 90vw, 960px)' }}
+        />
+      </div>
     </Space>
   );
 }

@@ -105,8 +105,8 @@ export function ResultsModalContent({
       >
         <Text strong>
           <Translate
-            en="Troublemaker(s):"
-            pt="Mal-criado(s):"
+            en="Troublemaker:"
+            pt="Mal-criado:"
           />
         </Text>
 
@@ -117,7 +117,7 @@ export function ResultsModalContent({
             align="center"
           >
             <ImageCard
-              cardId={culprit.cardId}
+              cardId={culprit.id}
               cardWidth={48}
               preview={false}
             />
@@ -136,7 +136,7 @@ export function ResultsModalContent({
           />
         </Text>
 
-        {liars.map((liarEntry) => {
+        {liars.map((liarEntry, index, arr) => {
           const kid = KIDS_LIBRARY[liarEntry.kidId];
           return (
             <Text
@@ -144,6 +144,7 @@ export function ResultsModalContent({
               key={kid.id}
             >
               <DualTranslate>{kid.name}</DualTranslate>
+              {index < arr.length - 1 ? ', ' : ''}
             </Text>
           );
         })}
