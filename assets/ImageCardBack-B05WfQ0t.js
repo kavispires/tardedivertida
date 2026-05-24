@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-DBS2Xqfh.js";import{t}from"./ImageCard-6ztswmY_.js";var n=e(),r=({cardId:e=`back-default`,...r})=>(0,n.jsx)(t,{cardId:e,...r});export{r as t};
