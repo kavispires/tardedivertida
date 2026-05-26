@@ -41,6 +41,7 @@ export function DailyMapeamento({ data }: DailyMapeamentoProps) {
     setShowResultModal,
     isWin,
     isComplete,
+    keyboardMapping,
   } = useMapeamentoEngine(data, initialState);
 
   const [typedLocation, setTypedLocation] = useState('');
@@ -158,6 +159,7 @@ export function DailyMapeamento({ data }: DailyMapeamentoProps) {
           disabled={isComplete}
           withNumbers
           withSpaceBar
+          lettersState={keyboardMapping}
         />
 
         {locationFragments.includes('_') && (

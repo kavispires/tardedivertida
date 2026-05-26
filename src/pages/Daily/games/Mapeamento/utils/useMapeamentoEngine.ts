@@ -14,6 +14,7 @@ import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { getAnalyticsEventName } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';
+import type { LettersDictionary } from 'pages/Daily/utils/types';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyMapeamentoEntry, GameState } from './types';
@@ -98,6 +99,26 @@ export function useMapeamentoEngine(data: DailyMapeamentoEntry, initialState: Ga
 
   const availableClues = data.clues.slice(0, SETTINGS.HEARTS - state.hearts + 1);
 
+  const keyboardMapping: LettersDictionary = useMemo(() => {
+    const mapping: LettersDictionary = {};
+    const fragment = locationFragments.join('').toLowerCase();
+
+    for (const guess of state.guesses) {
+      for (const char of guess.toLowerCase()) {
+        if (mapping[char]) continue; // If we already have a state for this letter, skip it
+
+        if (/[a-z0-9]/.test(char)) {
+          mapping[char] = {
+            letter: char,
+            state: fragment.includes(char) ? 'correct' : 'used',
+          };
+        }
+      }
+    }
+
+    return mapping;
+  }, [state.guesses, locationFragments]);
+
   // CONDITIONS
   const isWin = state.status === STATUSES.WIN;
   const isLose = state.status === STATUSES.LOSE;
@@ -123,6 +144,7 @@ export function useMapeamentoEngine(data: DailyMapeamentoEntry, initialState: Ga
     isLose,
     isComplete,
     submitLocation,
+    keyboardMapping,
   };
 }
 
