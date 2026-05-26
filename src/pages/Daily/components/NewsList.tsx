@@ -17,6 +17,21 @@ type NewsItem = {
 
 export const NEWS_LIST: NewsItem[] = [
   {
+    date: '2026-05-26',
+    content: (
+      <>
+        <IconAvatar
+          icon={<NewFeatureIcon />}
+          size="small"
+        />{' '}
+        <strong>
+          <DualTranslate>{ALL_SETTINGS.INVESTIGACAO.NAME}</DualTranslate>
+        </strong>{' '}
+        agora tem 3 vidas e elas podem ser usadas para dar dicas que eliminam colunas e linhas de suspeitos.
+      </>
+    ),
+  },
+  {
     date: '2026-05-24',
     content: (
       <>
