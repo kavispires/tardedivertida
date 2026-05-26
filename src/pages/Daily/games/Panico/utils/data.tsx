@@ -1412,50 +1412,72 @@ const RANDOM_QUESTIONS: Dictionary<PoolGroupEntry<{ text: DualLanguageValue }>> 
   },
 };
 
-const ICON_COMPARISONS: Dictionary<PoolGroupEntry<{ value: DualLanguageValue; itemsIds: string[] }>> = {
+const ICON_COMPARISONS: Dictionary<
+  PoolGroupEntry<{ more: DualLanguageValue; less: DualLanguageValue; itemsIds: string[] }>
+> = {
   COMPARISON_1: {
     id: 'COMPARISON_1',
     targetCount: 0,
-    value: {
-      en: 'truffle',
-      pt: 'brigadeiro',
+    more: {
+      en: 'truffles',
+      pt: 'brigadeiros',
+    },
+    less: {
+      en: 'jellybeans',
+      pt: 'jujubas',
     },
     itemsIds: ['item-837', 'item-837', 'item-1723'],
   },
   COMPARISON_2: {
     id: 'COMPARISON_2',
     targetCount: 0,
-    value: {
-      en: 'truffle',
-      pt: 'brigadeiro',
-    }, // 3 brigadeiros vs 1 3-candies
-    itemsIds: ['item-837', 'item-837', 'item-837', 'item-1723', 'item-837'],
+    more: {
+      en: 'truffles',
+      pt: 'brigadeiros',
+    },
+    less: {
+      en: 'jellybeans',
+      pt: 'jujubas',
+    },
+    itemsIds: ['item-837', 'item-837', 'item-837', 'item-1723'],
   },
   COMPARISON_3: {
     id: 'COMPARISON_3',
     targetCount: 1,
-    value: {
-      en: 'truffle',
-      pt: 'brigadeiro',
-    }, // 4 brigadeiros vs 1 3-candies
+    more: {
+      en: 'truffles',
+      pt: 'brigadeiros',
+    },
+    less: {
+      en: 'jellybeans',
+      pt: 'jujubas',
+    },
     itemsIds: ['item-837', 'item-1723', 'item-837', 'item-837', 'item-837'],
   },
   COMPARISON_4: {
     id: 'COMPARISON_4',
     targetCount: 0,
-    value: {
-      en: 'jujuba',
-      pt: 'jujuba',
-    }, // 1 3-candies vs 4 brigadeiros
+    more: {
+      en: 'jellybeans',
+      pt: 'jujubas',
+    },
+    less: {
+      en: 'truffles',
+      pt: 'brigadeiros',
+    },
     itemsIds: ['item-837', 'item-1723', 'item-837', 'item-837', 'item-837'],
   },
   COMPARISON_5: {
     id: 'COMPARISON_5',
     targetCount: 1,
-    value: {
-      en: 'jujuba',
-      pt: 'jujuba',
-    }, // 1 3-candies vs 2 brigadeiros
+    more: {
+      en: 'jellybeans',
+      pt: 'jujubas',
+    },
+    less: {
+      en: 'truffles',
+      pt: 'brigadeiros',
+    },
     itemsIds: ['item-837', 'item-1723', 'item-837'],
   },
 };

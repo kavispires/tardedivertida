@@ -523,12 +523,14 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
           <Translate
             en={
               <>
-                Press if <DualTranslate>{button.pool?.value}</DualTranslate> appears more vezes
+                Press if <DualTranslate>{button.pool?.more}</DualTranslate> appear more than{' '}
+                <DualTranslate>{button.pool?.less}</DualTranslate>
               </>
             }
             pt={
               <>
-                Aperte se <DualTranslate>{button.pool?.value}</DualTranslate> aparece mais vezes
+                Aperte se <DualTranslate>{button.pool?.more}</DualTranslate> aparecem mais vezes que{' '}
+                <DualTranslate>{button.pool?.less}</DualTranslate>
               </>
             }
           />
