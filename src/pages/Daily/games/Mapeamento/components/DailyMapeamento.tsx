@@ -113,7 +113,17 @@ export function DailyMapeamento({ data }: DailyMapeamentoProps) {
           })}
         </ul>
 
-        <LocationFragments fragments={locationFragments} />
+        {!isWin && <LocationFragments fragments={locationFragments} />}
+
+        {isComplete && (
+          <RegionText>
+            <Translate
+              pt="O lugar é:"
+              en="The place is:"
+            />{' '}
+            <strong>{data.location}</strong>
+          </RegionText>
+        )}
 
         {!isComplete && (
           <GuessedLocation
@@ -153,8 +163,20 @@ export function DailyMapeamento({ data }: DailyMapeamentoProps) {
         {locationFragments.includes('_') && (
           <RegionHint>
             <Translate
-              pt="O fragmento abaixo das dicas mostra partes da palavra que você acertou, os espaços em cinza representam letras que você ainda não acertou ou espaços."
-              en="The fragment below the clues shows parts of the word you got right, the gray spaces represent letters you haven't guessed yet or spaces."
+              pt={
+                <>
+                  O fragmento abaixo das dicas mostra partes da palavra que você acertou, os espaços em cinza
+                  <span className="location-fragments__unknown">_</span> representam letras que você ainda não
+                  acertou ou espaços.
+                </>
+              }
+              en={
+                <>
+                  The fragment below the clues shows parts of the word you got right, the gray spaces
+                  <span className="location-fragments__unknown">_</span>
+                  represent letters you haven't guessed yet or spaces.
+                </>
+              }
             />
           </RegionHint>
         )}
