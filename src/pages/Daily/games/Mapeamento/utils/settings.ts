@@ -9,10 +9,10 @@ export const SETTINGS: GameSettings = {
   TYPE: 'game',
   RELEASE_DATE: '2026-05-17',
   COLOR: 'rgba(166, 201, 233, 0.85)',
+  VERSION: 'stable',
   EMOJI: '🗺️',
   HUB_ICON: DailyMapsGameIcon,
   NAME: { pt: 'Mapeamento', en: 'Mapping' },
-  VERSION: 'stable',
   TAGLINE: {
     pt: 'Onde estou? Quem sou eu? Pra onde vou?',
     en: 'Where am I? Who am I? Where am I going?',

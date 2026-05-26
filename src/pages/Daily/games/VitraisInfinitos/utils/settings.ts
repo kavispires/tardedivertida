@@ -8,6 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'vitrais-infinitos',
   TYPE: 'special',
   RELEASE_DATE: '2025-02-08',
+  VERSION: 'stable',
   COLOR: 'rgb(255 202 141 / 85%)',
   EMOJI: '🧩',
   HUB_ICON: DailyPuzzleGameIcon,
@@ -16,5 +17,4 @@ export const SETTINGS: GameSettings = {
     en: 'Are you puzzled enough to do this?',
     pt: 'Já quebrou a cabeça hoje?',
   },
-  VERSION: 'stable',
 };

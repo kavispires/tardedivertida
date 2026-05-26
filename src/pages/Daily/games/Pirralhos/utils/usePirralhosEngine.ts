@@ -88,6 +88,7 @@ export function usePirralhosEngine(data: DailyPirralhosEntry, initialState: Game
       const allCulpritsGuessed = newGuesses.includes(data.culpritId);
 
       playSFX('win');
+      logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'win'));
 
       setState((prevState) => ({
         ...prevState,

@@ -44,6 +44,7 @@ const _COMING_SOON_ENTRY: Entry = {
   ROUTE: '',
   TYPE: 'game',
   RELEASE_DATE: format(addYears(new Date(), 1), 'yyyy-MM-dd'),
+  VERSION: 'soon',
   EMOJI: '',
   COLOR: '',
   HUB_ICON: DailyContributionGameIcon,
@@ -58,11 +59,21 @@ type Libraries = {
   CONTRIBUTIONS: Entry[];
   DEMOS: Entry[];
   SPECIALS: Entry[];
+  SHAREABLE: Entry[];
 };
 
 // Get NEW_RELEASES, GAMES, CONTRIBUTIONS, DEMOS and SPECIALS from ALL_SETTINGS
-const { NEW_RELEASES, GAMES, CONTRIBUTIONS, DEMOS, SPECIALS } = Object.values(ALL_SETTINGS).reduce(
+const { NEW_RELEASES, GAMES, CONTRIBUTIONS, DEMOS, SPECIALS, SHAREABLE } = Object.values(ALL_SETTINGS).reduce(
   (acc: Libraries, settings) => {
+    if (
+      settings.TYPE === 'game' &&
+      ['stable', 'beta'].includes(settings.VERSION ?? '') &&
+      !hasBeenReleased(settings.RELEASE_DATE)
+    ) {
+      acc.SHAREABLE.push(settings);
+      acc.SHAREABLE = orderBy(acc.SHAREABLE, ['NAME.pt'], ['asc']);
+    }
+
     if (
       settings.RELEASE_DATE &&
       settings.VERSION !== 'demo' &&
@@ -105,6 +116,7 @@ const { NEW_RELEASES, GAMES, CONTRIBUTIONS, DEMOS, SPECIALS } = Object.values(AL
     CONTRIBUTIONS: [],
     DEMOS: [],
     SPECIALS: [],
+    SHAREABLE: [],
   },
 );
 
@@ -163,7 +175,7 @@ export function Hub() {
         />
       </div>
 
-      <BundleResults list={GAMES} />
+      <BundleResults list={SHAREABLE} />
 
       <div className="hub">
         <Typography.Title level={5}>

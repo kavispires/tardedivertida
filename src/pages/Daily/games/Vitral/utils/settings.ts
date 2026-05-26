@@ -8,6 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'vitral',
   TYPE: 'game',
   RELEASE_DATE: '2025-12-24',
+  VERSION: 'stable',
   COLOR: 'rgba(253, 176, 76, 0.85)',
   EMOJI: '🧩',
   HUB_ICON: DailyPuzzleGameIcon,
@@ -16,7 +17,6 @@ export const SETTINGS: GameSettings = {
     en: 'Are you puzzled enough to do this?',
     pt: 'Já quebrou a cabeça hoje?',
   },
-  VERSION: 'stable',
   // Custom settings
   HEARTS: 5,
   HEART_LOSS_INTERVAL_SECONDS: 20,

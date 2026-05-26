@@ -180,7 +180,7 @@ export const feedEmulatorDaily = async () => {
       '{"id":"2023-10-31","number":0,"type":"mapeamento","setId":"demo-set","language":"pt","location":"Reino do Cogumelo","clues":["Mundo colorido de canos","Habitado por pequenos Toads","Constantemente invadido por Bowser","Governado pela Princesa Peach","Onde Mario vive aventuras"]}',
     ),
     pirralhos: JSON.parse(
-      '{"id":"2023-10-31","type":"pirralhos","number":1,"hashId":"NHwxfDJ8Mnw5LTYtMSw0LTAsMTA=","kids":[{"kidId":"1","statement":{"en":"The culprit has a different gender than me","pt":"Quem pegou é de um gênero diferente do meu"}},{"kidId":"9","statement":{"en":"Someone taller than me did it","pt":"Foi alguém mais alto que eu"}},{"kidId":"10","statement":{"en":"Sandy didn\'t do it","pt":"Não foi a Sabrina"}},{"kidId":"4","statement":{"en":"Matilda did it","pt":"Foi a Matilda!"}}],"culpritId":"1","liarsIds":["1","4"],"possibleLiars":2,"difficulty":30}',
+      '{"id":"2026-05-27","number":4,"type":"pirralhos","hashId":"NHwxfDJ8M3w3LDExNy04LTQtMix1cy1nYi0yMzM=","kids":[{"kidId":"us-gb-233","statement":{"en":"Someone shorter than 117 cm did it","pt":"Foi alguém menor que 117 cm"}},{"kidId":"us-gb-236","statement":{"en":"Someone next to me did it","pt":"Foi alguém do meu lado"}},{"kidId":"us-gb-240","statement":{"en":"A boy did it","pt":"Foi um menino"}},{"kidId":"us-gb-231","statement":{"en":"Dylan is lying","pt":"Daniel tá mentindo"}}],"culpritId":"us-gb-240","liarsIds":["us-gb-240","us-gb-231"],"possibleLiars":3,"difficulty":38}',
     ),
     dictionary: {
       0: 'td',

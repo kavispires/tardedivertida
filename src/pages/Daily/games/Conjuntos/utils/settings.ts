@@ -8,6 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'conjuntos',
   TYPE: 'game',
   RELEASE_DATE: '2024-08-31',
+  VERSION: 'stable',
   COLOR: 'rgba(195, 135, 202, 0.85)',
   EMOJI: '⭕️',
   HUB_ICON: DailyDiagramGameIcon,

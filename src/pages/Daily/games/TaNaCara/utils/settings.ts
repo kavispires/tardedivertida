@@ -8,6 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'ta-na-cara',
   TYPE: 'contribution',
   RELEASE_DATE: '2025-02-21',
+  VERSION: 'stable',
   COLOR: 'rgba(242, 233, 236, 0.85)',
   EMOJI: '👤',
   HUB_ICON: DailyJudgingGameIcon,

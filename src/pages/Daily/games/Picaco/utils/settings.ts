@@ -8,6 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'picaco',
   TYPE: 'contribution',
   RELEASE_DATE: '2024-04-30',
+  VERSION: 'stable',
   COLOR: 'rgba(234, 236, 241, 0.85)',
   EMOJI: '🎨',
   HUB_ICON: DailyDrawingGameIcon,

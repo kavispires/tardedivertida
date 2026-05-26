@@ -8,6 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'estoquista',
   TYPE: 'game',
   RELEASE_DATE: '2024-08-04',
+  VERSION: 'stable',
   COLOR: 'rgba(249, 205, 84, 0.85)',
   EMOJI: '📦',
   HUB_ICON: DailyWarehouseGameIcon,

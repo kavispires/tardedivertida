@@ -8,6 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'alienado',
   TYPE: 'game',
   RELEASE_DATE: '2024-11-08',
+  VERSION: 'stable',
   COLOR: 'rgba(145, 203, 196, 0.85)',
   EMOJI: '🛸',
   HUB_ICON: DailyAlienGameIcon,

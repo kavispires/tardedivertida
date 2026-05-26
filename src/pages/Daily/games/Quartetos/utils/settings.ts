@@ -8,6 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'quartetos',
   TYPE: 'game',
   RELEASE_DATE: '2025-03-01',
+  VERSION: 'stable',
   COLOR: 'rgba(231, 157, 179, 0.85)',
   EMOJI: '🗂',
   HUB_ICON: DailyGroupingGameIcon,

@@ -8,6 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'organiku',
   TYPE: 'game',
   RELEASE_DATE: '2025-06-07',
+  VERSION: 'stable',
   COLOR: 'rgba(211, 232, 124, 0.85)',
   EMOJI: '🧸',
   HUB_ICON: DailyMemoryGridGameIcon,
@@ -16,7 +17,6 @@ export const SETTINGS: GameSettings = {
     en: 'Can you organize the table?',
     pt: 'Consegue organizar a mesa?',
   },
-  VERSION: 'stable',
   // Custom settings
   HEARTS: 5,
 };

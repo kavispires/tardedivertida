@@ -8,6 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'palavreado',
   TYPE: 'game',
   RELEASE_DATE: '2024-05-10',
+  VERSION: 'stable',
   COLOR: 'rgba(237, 101, 80, 0.85)',
   EMOJI: '🔤',
   HUB_ICON: DailyWordGameIcon,

@@ -8,6 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'portais',
   TYPE: 'game',
   RELEASE_DATE: '2025-04-12',
+  VERSION: 'stable',
   COLOR: 'rgba(222, 141, 93, 0.85)',
   EMOJI: '🚪',
   HUB_ICON: DailyImagesGameIcon,

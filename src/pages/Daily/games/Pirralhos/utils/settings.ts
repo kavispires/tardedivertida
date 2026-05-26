@@ -8,11 +8,11 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'pirralhos',
   TYPE: 'game',
   RELEASE_DATE: '2026-05-24',
+  VERSION: 'stable',
   COLOR: 'rgba(251, 232, 124, 0.85)',
   EMOJI: '🧒',
   HUB_ICON: DailyChildrenGameIcon,
   NAME: { pt: 'Pirralhos', en: 'Rascals' },
-  VERSION: 'stable',
   TAGLINE: {
     pt: 'Desvende quem pegou o brinquedo!',
     en: 'Uncover who took the toy!',
