@@ -33,7 +33,7 @@ export function Statements({
         ...(isComplete ? statements : statements.slice(0, Math.floor(released.length / 2) + 1)),
       ].reverse(),
       slicedAdditionalStatements: [
-        ...(isComplete ? additionalStatements : additionalStatements.slice(0, 2 - hearts)),
+        ...(isComplete ? additionalStatements : additionalStatements.slice(0, 3 - hearts)),
       ].reverse(),
     };
   }, [statements, additionalStatements, hearts, released, isComplete]);
