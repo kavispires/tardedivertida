@@ -152,7 +152,7 @@ function getCommonalityFragments(location: string, guesses: string[]): string[] 
   // Combine all guesses into a single set.
   // If they guess a multi-word location, the space (' ') gets added to this Set naturally!
   const guessedLetters = new Set(guesses.join('').toUpperCase().split(''));
-  const targetLocation = location.toUpperCase();
+  const targetLocation = stringRemoveAccents(location).toUpperCase();
 
   const fragments: string[] = [];
   let inGap = false;

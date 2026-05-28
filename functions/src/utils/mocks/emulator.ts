@@ -177,7 +177,7 @@ export const feedEmulatorDaily = async () => {
       '{"id":"example","number":1,"type":"vitral","title":"Example Puzzle","cardId":"td-d5-208","pieces":[9,13,17,16,6,5,8,15,0,1,7,11,14,10,3,12,2,4]}',
     ),
     mapeamento: JSON.parse(
-      '{"id":"2023-10-31","number":0,"type":"mapeamento","setId":"demo-set","language":"pt","location":"Reino do Cogumelo","clues":["Mundo colorido de canos","Habitado por pequenos Toads","Constantemente invadido por Bowser","Governado pela Princesa Peach","Onde Mario vive aventuras"]}',
+      '{"id":"2023-10-31","number":0,"type":"mapeamento","setId":"demo-set","language":"pt","location":"Reinô do Coçugmelo","clues":["Mundo colorido de canos","Habitado por pequenos Toads","Constantemente invadido por Bowser","Governado pela Princesa Peach","Onde Mario vive aventuras"]}',
     ),
     pirralhos: JSON.parse(
       '{"id":"2026-05-27","number":4,"type":"pirralhos","hashId":"NHwxfDJ8M3w3LDExNy04LTQtMix1cy1nYi0yMzM=","kids":[{"kidId":"us-gb-233","statement":{"en":"Someone shorter than 117 cm did it","pt":"Foi alguém menor que 117 cm"}},{"kidId":"us-gb-236","statement":{"en":"Someone next to me did it","pt":"Foi alguém do meu lado"}},{"kidId":"us-gb-240","statement":{"en":"A boy did it","pt":"Foi um menino"}},{"kidId":"us-gb-231","statement":{"en":"Dylan is lying","pt":"Daniel tá mentindo"}}],"culpritId":"us-gb-240","liarsIds":["us-gb-240","us-gb-231"],"possibleLiars":3,"difficulty":38}',
