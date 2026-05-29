@@ -82,7 +82,16 @@ export const prepareAskingForSomething = async (
   if (!state.turnOrder) {
     utils.players.unReadyPlayers(players);
   } else {
-    stateUpdate.requesterId = utils.turnOrder.getNextPlayerId(state.turnOrder, state.requesterId);
+    // Only change to next player if there is still items to be delivered for that player
+    const nextRequesterId = utils.turnOrder.getNextPlayerId(state.turnOrder, state.requesterId);
+    const nextRequesterSide = players[nextRequesterId].side;
+    const properDeliverablesLeft = state.deck.filter(
+      (entry: DeckEntry) => entry.affiliation.includes(nextRequesterSide) && entry.status === STATUS.IDLE,
+    ).length;
+
+    if (properDeliverablesLeft > 0) {
+      stateUpdate.requesterId = utils.turnOrder.getNextPlayerId(state.turnOrder, state.requesterId);
+    }
     utils.players.unReadyPlayers(players, stateUpdate.requesterId);
   }
 
