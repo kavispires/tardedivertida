@@ -57,6 +57,7 @@ export function QuestionHistory({ players, questionsHistory }: QuestionHistoryPr
               case -2: {
                 return (
                   <Flex
+                    key={`question-history-${index}-${player.id}`}
                     vertical
                     justify="center"
                     align="center"
@@ -99,6 +100,7 @@ export function QuestionHistory({ players, questionsHistory }: QuestionHistoryPr
               case 1: {
                 return (
                   <Flex
+                    key={`question-history-${index}-${player.id}`}
                     vertical
                     justify="center"
                     align="center"
@@ -120,6 +122,7 @@ export function QuestionHistory({ players, questionsHistory }: QuestionHistoryPr
               case 2: {
                 return (
                   <Flex
+                    key={`question-history-${index}-${player.id}`}
                     vertical
                     justify="center"
                     align="center"

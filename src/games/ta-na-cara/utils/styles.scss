@@ -64,6 +64,24 @@
     top: get-unit(1);
     left: get-unit(1);
   }
+
+  &__deck-type {
+    position: absolute;
+    z-index: 15;
+    padding: get-unit(1 2);
+    // background: get-color("white", 5, 0.85);
+    border-radius: var(--border-radius);
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    top: get-unit(1);
+    right: get-unit(1);
+  }
+
+  &__deck-type-icon {
+    background: get-color("white", 5, 0.5);
+  }
 }
 
 .t-question-history-table {

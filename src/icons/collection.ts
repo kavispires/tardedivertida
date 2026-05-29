@@ -1,5 +1,8 @@
 export * from './ActionAlertIcon';
+export * from './AgeAdultIcon';
+export * from './AgeChildIcon';
 export * from './AgeIcon';
+export * from './AgeTeenIcon';
 export * from './AlarmClockIcon';
 export * from './AlertIcon';
 export * from './AlienAngry2Icon';
@@ -210,6 +213,7 @@ export * from './PassportIcon';
 export * from './PathIcon';
 export * from './PencilIcon';
 export * from './PeopleAssessmentIcon';
+export * from './PetIcon';
 export * from './PhotoAlbumIcon';
 export * from './PictureIcon';
 export * from './PigeonIcon';
