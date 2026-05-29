@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "comunicacao-duo",
-  "version": "1.0.47",
+  "version": "1.0.48",
   "release": "stable",
   "releaseDate": "2024-12-28",
   "available": true,
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "key": "styleVariant",
+      "key": "deckType",
       "label": "Items Type",
       "description": "Determines the type of conversation.",
       "kind": "radio",
