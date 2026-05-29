@@ -35,12 +35,14 @@ export function Warehouse({
   selectedWarehouseSlot,
 }: WarehouseProps) {
   const { goodSize, goodWidth, warehouseWidth } = useGoodSize();
+  const baseDuration = bossIdeaId === BOSS_IDEAS_IDS.BLIND_BOX ? 10 : 4;
 
   // Track goods that are currently being animated by events
   const [concealingGoods, setConcealingGoods] = useState<Set<string>>(new Set());
 
   const goodClassName = `warehouse-good--${bossIdeaId}`;
-  const confidential = bossIdeaId === BOSS_IDEAS_IDS.CONFIDENTIAL;
+  const isConfidential = bossIdeaId === BOSS_IDEAS_IDS.CONFIDENTIAL;
+  const isBlindBox = bossIdeaId === BOSS_IDEAS_IDS.BLIND_BOX;
 
   // Update concealing goods when event changes
   useEffect(() => {
@@ -103,7 +105,7 @@ export function Warehouse({
                 {selectedWarehouseSlot === index && currentGoodId && (
                   <div className="warehouse__selected-good">
                     <motion.div {...getAnimation('pulse', { infinite: true })}>
-                      {confidential ? (
+                      {isConfidential || isBlindBox ? (
                         <MysteryBoxIcon width={goodWidth} />
                       ) : (
                         <WarehouseGoodCard
@@ -133,7 +135,7 @@ export function Warehouse({
             // Animate concealment if event is active for this good (regardless of exposed state)
             if (isConcealing) {
               const delayIndex = event?.goodsIds.indexOf(good.id) ?? 0;
-              const baseDelay = 6 + delayIndex * 0.15;
+              const baseDelay = baseDuration + delayIndex * 0.15;
 
               return (
                 <div
@@ -159,7 +161,7 @@ export function Warehouse({
                       left: 0,
                     }}
                   >
-                    {confidential ? (
+                    {isConfidential ? (
                       <MysteryBoxIcon width={goodWidth} />
                     ) : (
                       <WarehouseGoodCard
@@ -202,7 +204,7 @@ export function Warehouse({
                   className={clsx('warehouse__shelf', 'warehouse__shelf-active')}
                   style={goodSize}
                 >
-                  {confidential ? (
+                  {isConfidential ? (
                     <MysteryBoxIcon
                       width={goodWidth}
                       key={index}

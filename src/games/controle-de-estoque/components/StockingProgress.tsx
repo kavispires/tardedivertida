@@ -13,40 +13,46 @@ type StockingProgressProps = {
 
 export function StockingProgress({ status }: StockingProgressProps) {
   const { progress, goal, stocked, total } = status;
+
   return (
-    <Translate
-      en={
-        <div className="c-stocking-progress">
-          <span>
-            Round goods:{' '}
-            <MetricHighlight icon={<ClockIcon />}>
-              {progress}/{goal}
-            </MetricHighlight>
-          </span>
-          <span>
-            Stocked Goods:{' '}
-            <MetricHighlight icon={<ShippingBoxIcon />}>
-              {stocked}/{total}
-            </MetricHighlight>
-          </span>
-        </div>
-      }
-      pt={
-        <div className="c-stocking-progress">
-          <span>
-            Mercadorias da rodada:{' '}
-            <MetricHighlight icon={<ClockIcon />}>
-              {progress}/{goal}
-            </MetricHighlight>
-          </span>
-          <span>
-            Mercadorias estocadas:{' '}
-            <MetricHighlight icon={<ShippingBoxIcon />}>
-              {stocked}/{total}
-            </MetricHighlight>
-          </span>
-        </div>
-      }
-    />
+    <div className="c-stocking-progress">
+      <span>
+        <Translate
+          en="Round goods: "
+          pt="Mercadorias da rodada: "
+        />
+        :{' '}
+        <MetricHighlight icon={<ClockIcon />}>
+          {progress}/{goal}
+        </MetricHighlight>
+      </span>
+      <span>
+        <Translate
+          en="Stocked Goods: "
+          pt="Mercadorias estocadas: "
+        />
+        :{' '}
+        <MetricHighlight icon={<ShippingBoxIcon />}>
+          {stocked}/{total}
+        </MetricHighlight>
+      </span>
+    </div>
+  );
+}
+
+export function RoundStockingProgress({ status }: StockingProgressProps) {
+  const { progress, goal } = status;
+
+  return (
+    <span>
+      <Translate
+        en="Round goods: "
+        pt="Mercadorias da rodada: "
+      />
+      :{' '}
+      <MetricHighlight icon={<ClockIcon />}>
+        {progress}/{goal}
+      </MetricHighlight>
+    </span>
   );
 }

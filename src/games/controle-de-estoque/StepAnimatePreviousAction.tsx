@@ -15,7 +15,7 @@ import { RuleInstruction } from 'components/text/RuleInstruction';
 import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { Event, Good, Status, WarehouseSlot } from './utils/types';
-import { OUTCOME } from './utils/constants';
+import { BOSS_IDEAS_IDS, OUTCOME } from './utils/constants';
 import { Warehouse } from './components/Warehouse';
 
 type StepAnimatePreviousActionProps = {
@@ -43,6 +43,7 @@ export function StepAnimatePreviousAction({
   turnOrder,
   goToNextStep,
 }: StepAnimatePreviousActionProps) {
+  const duration = bossIdea.id === BOSS_IDEAS_IDS.BLIND_BOX ? 15 : 9;
   return (
     <Step
       fullWidth
@@ -54,7 +55,7 @@ export function StepAnimatePreviousAction({
 
       <RuleInstruction type="event">
         <Translate
-          pt="Guardar os produtos embalados os deixam protegidos!"
+          pt="Embalar os produtos os deixam protegidos!"
           en="Storing the packed goods keeps them protected!"
         />
       </RuleInstruction>
@@ -70,7 +71,7 @@ export function StepAnimatePreviousAction({
         {status.outcome !== OUTCOME.END_PHASE ? (
           <TimedButton
             type="primary"
-            duration={10}
+            duration={duration}
             disabled
             onExpire={() => goToNextStep()}
           >
@@ -82,7 +83,7 @@ export function StepAnimatePreviousAction({
         ) : (
           <HostNextPhaseButton
             withWaitingTimeBar
-            autoTriggerTime={12}
+            autoTriggerTime={duration}
           >
             <Translate
               en="Go to Fulfillment Phase"

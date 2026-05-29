@@ -124,13 +124,18 @@ export function StepPlaceGood({
         </RuleInstruction>
 
         <Instruction contained>
-          <WarehouseGoodCard
-            goodId={currentGood.id}
-            className={clsx(
-              `warehouse-good--${bossIdea.id}`,
-              `warehouse__good--${currentGood.orientation ?? 0}`,
-            )}
-          />
+          {bossIdea.id === BOSS_IDEAS_IDS.BLIND_BOX ? (
+            <MysteryBoxIcon width={goodWidth} />
+          ) : (
+            <WarehouseGoodCard
+              goodId={currentGood.id}
+              width={goodWidth}
+              className={clsx(
+                `warehouse-good--${bossIdea.id}`,
+                `warehouse__good--${currentGood.orientation ?? 0}`,
+              )}
+            />
+          )}
         </Instruction>
 
         <Warehouse
@@ -139,6 +144,7 @@ export function StepPlaceGood({
           onPlaceGood={isLoading ? undefined : handlePlaceGood}
           selectedWarehouseSlot={selectedWarehouseSlot}
           currentGoodId={currentGoodId}
+          bossIdeaId={bossIdea.id}
         />
 
         <SpaceFloat
@@ -178,12 +184,12 @@ export function StepPlaceGood({
                   player={supervisor}
                   size="small"
                 />{' '}
-                é o(a) supervisor(a) do dia e colocará a mercadoria no galpão.
+                é o(a) supervisor(a) da vez e colocará a mercadoria no galpão.
               </>
             }
             en={
               <>
-                <PlayerAvatarName player={supervisor} /> is the supervisor of the day and will place the good
+                <PlayerAvatarName player={supervisor} /> is the supervisor of the turn and will place the good
                 in the warehouse.
               </>
             }
@@ -196,7 +202,7 @@ export function StepPlaceGood({
       </RuleInstruction>
 
       <Instruction contained>
-        {bossIdea.id === BOSS_IDEAS_IDS.CONFIDENTIAL ? (
+        {bossIdea.id === BOSS_IDEAS_IDS.BLIND_BOX || bossIdea.id === BOSS_IDEAS_IDS.CONFIDENTIAL ? (
           <MysteryBoxIcon width={goodWidth} />
         ) : (
           <WarehouseGoodCard

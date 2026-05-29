@@ -49,6 +49,7 @@ export const BOSS_IDEAS_IDS = {
   TINTED_GLASS: 'TINTED_GLASS',
   // Affects the goods for the workers
   CONFIDENTIAL: 'CONFIDENTIAL',
+  BLIND_BOX: 'BLIND_BOX',
   // Affects the goods for the supervisor
   EYE_EXAM: 'EYE_EXAM',
 };

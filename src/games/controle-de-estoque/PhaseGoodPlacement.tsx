@@ -22,6 +22,7 @@ import { Instruction } from 'components/text/Instruction';
 import { CONTROLE_DE_ESTOQUE_PHASES, DAYS_OF_THE_WEEK, OUTCOME } from './utils/constants';
 import { useOnConfirmGoodPlacementAPIRequest, useOnPlaceGoodAPIRequest } from './utils/api-requests';
 import type { PhaseGoodPlacementState } from './utils/types';
+import { RoundStockingProgress } from './components/StockingProgress';
 import { StepPlaceGood } from './StepPlaceGood';
 import { StepAnimatePreviousAction } from './StepAnimatePreviousAction';
 
@@ -85,14 +86,16 @@ export function PhaseGoodPlacement({ players, state, user }: PhaseProps<PhaseGoo
       <Instruction>
         "
         <Translate
-          en="The floor supervisor for the turn will be"
-          pt="O supervisor do turno será"
+          en="With each product, the supervisor will be someone different, now it's"
+          pt="A cada produto o supervisor será alguém diferente, agora é a vez de"
         />{' '}
         <PlayerAvatarName
           player={supervisor}
           addressUser
         />
         ."
+        <br />
+        <RoundStockingProgress status={state.status} />
       </Instruction>
     </PhaseAnnouncement>
   );
