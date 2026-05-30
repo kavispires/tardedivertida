@@ -31,6 +31,7 @@ type ButtonContentProps = {
 export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContentProps) {
   // Switch based on button key to render different content types
   switch (button.key) {
+    // Group 1: Direct or tricky press instructions
     case 'BASIC_PRESS':
     case 'RED_BUTTON':
     case 'YELLOW_BUTTON':
@@ -42,28 +43,6 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
           />
         </ContentTextLabel>
       );
-
-    case 'BASIC_DO_NOT_PRESS':
-    case 'BLUE_BUTTON':
-      return (
-        <ContentTextLabel>
-          <Translate
-            en="Do Not Press"
-            pt="Não Aperte"
-          />
-        </ContentTextLabel>
-      );
-
-    case 'FINAL_PRESS':
-      return (
-        <ContentTextLabel>
-          <Translate
-            en="Press Many Times To Win!"
-            pt="Aperte várias vezes para ganhar!"
-          />
-        </ContentTextLabel>
-      );
-
     case 'PRESS_IF_WANTED':
       return (
         <ContentTextLabel>
@@ -73,27 +52,15 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
           />
         </ContentTextLabel>
       );
-
-    case 'SAME_AS_PREVIOUS':
+    case 'FINAL_PRESS':
       return (
         <ContentTextLabel>
           <Translate
-            en="Same as Previous"
-            pt="A mesma coisa que o anterior"
+            en="Press Many Times To Win!"
+            pt="Aperte várias vezes para ganhar!"
           />
         </ContentTextLabel>
       );
-
-    case 'TRICK_POLITE_DO_NOT_PRESS':
-      return (
-        <ContentTextLabel>
-          <Translate
-            en="Please do not press"
-            pt="Por favor, não aperte"
-          />
-        </ContentTextLabel>
-      );
-
     case 'TRICK_URGENT_PRESS':
       return (
         <ContentTextLabel>
@@ -104,6 +71,26 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
         </ContentTextLabel>
       );
 
+    // Group 2: Direct do not press instructions
+    case 'BASIC_DO_NOT_PRESS':
+    case 'BLUE_BUTTON':
+      return (
+        <ContentTextLabel>
+          <Translate
+            en="Do Not Press"
+            pt="Não Aperte"
+          />
+        </ContentTextLabel>
+      );
+    case 'TRICK_POLITE_DO_NOT_PRESS':
+      return (
+        <ContentTextLabel>
+          <Translate
+            en="Please do not press"
+            pt="Por favor, não aperte"
+          />
+        </ContentTextLabel>
+      );
     case 'QUICK_DO_NOT_PRESS':
       return (
         <ContentTextLabel>
@@ -126,6 +113,7 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
         </ContentTextLabel>
       );
 
+    // Group 3: Logic conditional buttons
     case 'LOGIC_HUMAN_TRUE':
       return (
         <ContentTextLabel>
@@ -166,6 +154,7 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
         </ContentTextLabel>
       );
 
+    // Group 4: Variable count buttons
     case 'COUNT_SENTENCE':
     case 'RANDOM_QUESTION':
       return (
@@ -194,6 +183,24 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
         </ContentTextSentence>
       );
 
+    case 'PRESS_TARGET_NUMBER':
+      return (
+        <ContentTextLabel>
+          <DualTranslate>{button.pool?.text || 'No sentence provided.'}</DualTranslate>
+        </ContentTextLabel>
+      );
+
+    case 'PRESS_TARGET_COUNTDOWN':
+      return (
+        <ContentTextLabel>
+          <Translate
+            en={`${button.targetCount - pressCount} presses remaining`}
+            pt={`Faltam ${button.targetCount - pressCount} apertadas`}
+          />
+        </ContentTextLabel>
+      );
+
+    // Group 5: Icon buttons with specific instructions
     case 'PRESS_SHAPE_SIDE':
       return (
         <ContentTextSentence>
@@ -227,59 +234,6 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
           </ContentSequence>
         </ContentTextSentence>
       );
-
-    case 'PRESS_TARGET_NUMBER':
-      return (
-        <ContentTextLabel>
-          <DualTranslate>{button.pool?.text || 'No sentence provided.'}</DualTranslate>
-        </ContentTextLabel>
-      );
-
-    case 'PRESS_TARGET_COUNTDOWN':
-      return (
-        <ContentTextLabel>
-          <Translate
-            en={`${button.targetCount - pressCount} presses remaining`}
-            pt={`Faltam ${button.targetCount - pressCount} apertadas`}
-          />
-        </ContentTextLabel>
-      );
-
-    case 'DO_NOT_PRESS_RED_RULE':
-      return (
-        <ContentTextLabel>
-          <Translate
-            en="Never press when the button is red"
-            pt="Nunca aperte quando o botão estiver vermelho"
-          />
-        </ContentTextLabel>
-      );
-
-    case 'REMEMBER_NUMBER': {
-      return (
-        <ContentTextLabel>
-          <Translate
-            en="Remember this number:"
-            pt="Lembre-se deste número:"
-          />
-          <br />
-          <ContentValue>{button.pool?.value ?? 'N/A'}</ContentValue>
-        </ContentTextLabel>
-      );
-    }
-
-    case 'REMEMBERED_NUMBER': {
-      return (
-        <ContentTextSentence>
-          <Translate
-            en="Press if the number you were supposed to remember is:"
-            pt="Aperte se o número que você deveria lembrar é:"
-          />
-          <br />
-          <ContentValue>{button.pool?.value ?? 'N/A'}</ContentValue>
-        </ContentTextSentence>
-      );
-    }
 
     case 'COUNT_VOWELS': {
       return (
@@ -352,6 +306,110 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
         </ContentTextSentence>
       );
     }
+
+    case 'MISSING_NUMBER': {
+      return (
+        <ContentTextSentence>
+          <Translate
+            en="Press as many times as the missing number in the sequence"
+            pt="Aperte tantas vezes quanto o número que falta na sequência"
+          />
+          <br />
+          <ContentValue>{button.pool?.value ?? 'N/A'}</ContentValue>
+        </ContentTextSentence>
+      );
+    }
+
+    case 'COUNT_SPECIFIC_LETTER': {
+      return (
+        <ContentTextSentence>
+          <Translate
+            en={<>Press as many times as the letter "{button.pool?.letter}" appears</>}
+            pt={<>Aperte tantas vezes quanto a letra "{button.pool?.letter}" aparece</>}
+          />
+          <br />
+          <ContentValue>{button.pool?.value ?? 'N/A'}</ContentValue>
+        </ContentTextSentence>
+      );
+    }
+
+    case 'ALPHABET_POSITION': {
+      return (
+        <ContentTextSentence>
+          <Translate
+            en={<>Press as many times as the position of the letter "{button.pool?.value}" in the alphabet</>}
+            pt={<>Aperte tantas vezes quanto a posição da letra "{button.pool?.value}" no alfabeto</>}
+          />
+        </ContentTextSentence>
+      );
+    }
+
+    case 'ROMAN_NUMERALS': {
+      return (
+        <ContentTextLabel>
+          <Translate
+            en={
+              <>
+                Press <i>{button.pool?.value ?? 'N/A'}</i> times
+              </>
+            }
+            pt={
+              <>
+                Aperte <i>{button.pool?.value ?? 'N/A'}</i> vezes
+              </>
+            }
+          />
+        </ContentTextLabel>
+      );
+    }
+
+    // Group X: Special button
+    case 'SAME_AS_PREVIOUS':
+      return (
+        <ContentTextLabel>
+          <Translate
+            en="Same as Previous"
+            pt="A mesma coisa que o anterior"
+          />
+        </ContentTextLabel>
+      );
+
+    case 'DO_NOT_PRESS_RED_RULE':
+      return (
+        <ContentTextLabel>
+          <Translate
+            en="Never press when the button is red"
+            pt="Nunca aperte quando o botão estiver vermelho"
+          />
+        </ContentTextLabel>
+      );
+
+    case 'REMEMBER_NUMBER': {
+      return (
+        <ContentTextLabel>
+          <Translate
+            en="Remember this number:"
+            pt="Lembre-se deste número:"
+          />
+          <br />
+          <ContentValue>{button.pool?.value ?? 'N/A'}</ContentValue>
+        </ContentTextLabel>
+      );
+    }
+
+    case 'REMEMBERED_NUMBER': {
+      return (
+        <ContentTextSentence>
+          <Translate
+            en="Press if the number you were supposed to remember is:"
+            pt="Aperte se o número que você deveria lembrar é:"
+          />
+          <br />
+          <ContentValue>{button.pool?.value ?? 'N/A'}</ContentValue>
+        </ContentTextSentence>
+      );
+    }
+
     case 'WHEN_YOU_SEE_RULE': {
       return (
         <ContentTextSentence>
@@ -548,62 +606,6 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
       );
     }
 
-    case 'MISSING_NUMBER': {
-      return (
-        <ContentTextSentence>
-          <Translate
-            en="Press as many times as the missing number in the sequence"
-            pt="Aperte tantas vezes quanto o número que falta na sequência"
-          />
-          <br />
-          <ContentValue>{button.pool?.value ?? 'N/A'}</ContentValue>
-        </ContentTextSentence>
-      );
-    }
-
-    case 'COUNT_SPECIFIC_LETTER': {
-      return (
-        <ContentTextSentence>
-          <Translate
-            en={<>Press as many times as the letter "{button.pool?.letter}" appears</>}
-            pt={<>Aperte tantas vezes quanto a letra "{button.pool?.letter}" aparece</>}
-          />
-          <br />
-          <ContentValue>{button.pool?.value ?? 'N/A'}</ContentValue>
-        </ContentTextSentence>
-      );
-    }
-
-    case 'ALPHABET_POSITION': {
-      return (
-        <ContentTextSentence>
-          <Translate
-            en={<>Press as many times as the position of the letter "{button.pool?.value}" in the alphabet</>}
-            pt={<>Aperte tantas vezes quanto a posição da letra "{button.pool?.value}" no alfabeto</>}
-          />
-        </ContentTextSentence>
-      );
-    }
-
-    case 'ROMAN_NUMERALS': {
-      return (
-        <ContentTextLabel>
-          <Translate
-            en={
-              <>
-                Press <i>{button.pool?.value ?? 'N/A'}</i> times
-              </>
-            }
-            pt={
-              <>
-                Aperte <i>{button.pool?.value ?? 'N/A'}</i> vezes
-              </>
-            }
-          />
-        </ContentTextLabel>
-      );
-    }
-
     case 'COUNT_ANIMAL_LEGS': {
       return (
         <ContentTextSentence>
@@ -721,8 +723,8 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
       return (
         <ContentTextSentence>
           <Translate
-            en="Press when green animals are all the same kind"
-            pt="Aperte quando todos os animais verdes forem o mesmo"
+            en="Always press when green animals are all the same kind"
+            pt="Sempre aperte quando todos os animais verdes forem do mesmo tipo"
           />
         </ContentTextSentence>
       );

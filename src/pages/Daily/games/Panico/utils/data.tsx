@@ -793,7 +793,7 @@ export const BUTTONS_LIBRARY: Record<string, ButtonDictionaryEntry> = {
   COLOR_WORD: {
     key: 'COLOR_WORD',
     category: 'trick',
-    doc: 'A colored button label with a color name and',
+    doc: 'A colored button label with a color name',
     hash: 'khh',
     level: 4,
     expectedAction: 'TBD',
