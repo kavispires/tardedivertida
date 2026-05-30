@@ -78,7 +78,7 @@ export function News() {
       />
       <Modal
         open={open}
-        onCancel={() => setOpen(false)}
+        onCancel={onDismiss}
         title={
           <Flex
             align="center"
