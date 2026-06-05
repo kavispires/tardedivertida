@@ -3,15 +3,30 @@ import { Store } from '@tanstack/store';
 import { useEffectOnce } from 'react-use';
 
 type DailyPreferences = {
+  /**
+   * The challenge level of Aqui Ó
+   */
   aquiOMode: 'challenge' | 'normal';
+  /**
+   * The voice setting for Aqui Ó
+   */
   aquiOVoice: 'on' | 'off';
+  /**
+   * The mode for Ta Na Cara
+   */
   taNaCaraMode: 'nsfw' | 'normal';
+  /**
+   * The date of the last news check
+   */
+  lastNewsCheck: string;
 };
 
 const initialState: DailyPreferences = {
   aquiOMode: 'normal',
   aquiOVoice: 'off',
   taNaCaraMode: 'normal',
+  // TODO: Legacy, remove after transition period
+  lastNewsCheck: localStorage.getItem('daily-news') || '',
 };
 
 const dailyPreferencesStore = new Store<DailyPreferences>(initialState);
@@ -26,27 +41,9 @@ let isInitialized = false;
 const initializePreferences = () => {
   if (isInitialized) return;
 
-  const legacyPreferences: Partial<DailyPreferences> = {};
-  // Legacy Settings Migration: copy old values, set to the new structure, and remove old keys
-  try {
-    const legacyAquiOMode = window.localStorage.getItem('TD_AQUI_DAILY_O_MODE');
-    if (legacyAquiOMode) {
-      legacyPreferences.aquiOMode = legacyAquiOMode === 'challenge' ? 'challenge' : 'normal';
-      window.localStorage.removeItem('TD_AQUI_DAILY_O_MODE');
-    }
-    const legacyAquiOVoice = window.localStorage.getItem('TD_AQUI_DAILY_O_VOICE');
-    if (legacyAquiOVoice) {
-      legacyPreferences.aquiOVoice = legacyAquiOVoice === 'on' ? 'on' : 'off';
-      window.localStorage.removeItem('TD_AQUI_DAILY_O_VOICE');
-    }
-    const legacyTaNaCaraMode = window.localStorage.getItem('TD_DAILY_TA_NA_CARA_MODE');
-    if (legacyTaNaCaraMode) {
-      legacyPreferences.taNaCaraMode = legacyTaNaCaraMode === 'nsfw' ? 'nsfw' : 'normal';
-      window.localStorage.removeItem('TD_DAILY_TA_NA_CARA_MODE');
-    }
-  } catch (error) {
-    // biome-ignore lint/suspicious/noConsole: error logging
-    console.error('Failed to migrate legacy preferences:', error);
+  // TODO: Legacy, remove after transition period
+  if (localStorage.getItem('daily-news')) {
+    localStorage.removeItem('daily-news');
   }
 
   const storedPreferencesString = window.localStorage.getItem(STORAGE_KEY);
@@ -55,7 +52,7 @@ const initializePreferences = () => {
       const storedPreferences = JSON.parse(storedPreferencesString) ?? {};
 
       // Merge stored preferences with initial state
-      const mergedState = { ...initialState, ...storedPreferences, ...legacyPreferences };
+      const mergedState = { ...initialState, ...storedPreferences };
 
       dailyPreferencesStore.setState(mergedState);
       isInitialized = true;

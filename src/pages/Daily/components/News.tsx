@@ -11,10 +11,8 @@ import { IconAvatar } from 'components/avatars/IconAvatar';
 import { Translate } from 'components/language/Translate';
 // Internal
 import { NEWS_LIST } from './NewsList';
+import { usePreference } from '../hooks/useDailyPreferences';
 
-const NEWS_KEY = 'daily-news';
-
-// Only use news that are today or earlier
 const UP_TO_TODAY_NEWS_LIST = NEWS_LIST.filter((item) => {
   const itemDate = parse(item.date, 'yyyy-MM-dd', new Date());
   const today = startOfDay(new Date());
@@ -43,7 +41,7 @@ const AVAILABLE_NEWS_LIST = (() => {
  * @returns True if the modal should auto-open, false otherwise.
  */
 const shouldAutoOpenNews = () => {
-  const lastSeenNewsDate = localStorage.getItem(NEWS_KEY);
+  const [lastSeenNewsDate] = usePreference('lastNewsCheck');
 
   // If no last seen date (first visit), should open
   if (!lastSeenNewsDate) return true;
@@ -62,10 +60,11 @@ const shouldAutoOpenNews = () => {
 
 export function News() {
   const [open, setOpen] = useState(shouldAutoOpenNews());
+  const [, setLastSeenNewsDate] = usePreference('lastNewsCheck');
 
   const onDismiss = () => {
     setOpen(false);
-    localStorage.setItem(NEWS_KEY, AVAILABLE_NEWS_LIST[0].date);
+    setLastSeenNewsDate(AVAILABLE_NEWS_LIST[0].date);
   };
 
   return (
