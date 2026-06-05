@@ -1,3 +1,4 @@
+import type { DragEndEvent } from '@dnd-kit/core';
 import { useEffect } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
@@ -40,9 +41,7 @@ export function useAlienadoEngine(data: DailyAlienadoEntry, initialState: GameSt
 
   // ACTIONS
   const onSlotClick = (slotIndex: number) => {
-    updateSession({
-      slotIndex,
-    });
+    updateSession({ slotIndex });
   };
 
   const onItemClick = (itemId: string) => {
@@ -57,18 +56,67 @@ export function useAlienadoEngine(data: DailyAlienadoEntry, initialState: GameSt
         setSession((prev) => {
           const newSelection = [...session.selection];
           newSelection[firstNullIndex] = itemId;
-          return {
-            ...prev,
-            selection: newSelection,
-            slotIndex: null,
-          };
+          return { ...prev, selection: newSelection, slotIndex: null };
         });
         playSFX('bubbleIn');
       }
     }
   };
 
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    const itemId = active.data.current?.itemId as string;
+    const source = active.data.current?.source as 'pool' | 'slot';
+    const sourceIndex = active.data.current?.index as number | undefined;
+
+    // 1. Dragged out of bounds (Remove Item)
+    if (!over) {
+      if (source === 'slot' && sourceIndex !== undefined) {
+        playSFX('bubbleOut');
+        setSession((prev) => {
+          const newSelection = [...prev.selection];
+          newSelection[sourceIndex] = null;
+          return { ...prev, selection: newSelection };
+        });
+      }
+      return;
+    }
+
+    const overId = String(over.id);
+    if (overId.startsWith('slot-')) {
+      const targetIndex = Number.parseInt(overId.replace('slot-', ''), 10);
+
+      // 2. Dragged from Pool -> Slot
+      if (source === 'pool') {
+        playSFX('bubbleIn');
+        setSession((prev) => {
+          const newSelection = [...prev.selection];
+          // Prevent duplicates if it was somehow already placed
+          const existingIndex = newSelection.indexOf(itemId);
+          if (existingIndex !== -1) newSelection[existingIndex] = null;
+
+          newSelection[targetIndex] = itemId;
+          return { ...prev, selection: newSelection, slotIndex: null };
+        });
+      }
+      // 3. Dragged from Slot -> Slot (Move or Swap)
+      else if (source === 'slot' && sourceIndex !== undefined) {
+        if (sourceIndex === targetIndex) return; // Dropped on same spot
+
+        playSFX('bubbleIn');
+        setSession((prev) => {
+          const newSelection = [...prev.selection];
+          const temp = newSelection[targetIndex]; // Might be null (move) or an item (swap)
+          newSelection[targetIndex] = itemId;
+          newSelection[sourceIndex] = temp;
+          return { ...prev, selection: newSelection, slotIndex: null };
+        });
+      }
+    }
+  };
+
   const submitGuess = () => {
+    // ... Existing submit logic stays identical ...
     const newGuessString = session.selection.join('-');
 
     if (state.guesses.includes(newGuessString)) {
@@ -127,17 +175,12 @@ export function useAlienadoEngine(data: DailyAlienadoEntry, initialState: GameSt
     });
   };
 
-  // CONDITIONS
   const isWin = state.status === STATUSES.WIN;
   const isLose = state.status === STATUSES.LOSE;
   const isComplete = isWin || isLose;
 
-  useMarkAsPlayed({
-    key: SETTINGS.KEY,
-    isComplete,
-  });
+  useMarkAsPlayed({ key: SETTINGS.KEY, isComplete });
 
-  // RESULTS MODAL
   const { showResultModal, setShowResultModal } = useShowResultModal(isWin || isLose || isComplete);
 
   const isReady = session.selection.filter(Boolean).length === data.requests.length;
@@ -155,6 +198,7 @@ export function useAlienadoEngine(data: DailyAlienadoEntry, initialState: GameSt
     isComplete,
     onSlotClick,
     onItemClick,
+    handleDragEnd,
     submitGuess,
     isReady,
   };

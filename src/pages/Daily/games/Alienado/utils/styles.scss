@@ -42,6 +42,6 @@
 }
 
 .alien-request__slot--active {
-  border: 2px solid get-color("lime", 4);
+  box-shadow: inset 0 0 0 2px get-color("lime", 4);
   border-radius: var(--border-radius);
 }

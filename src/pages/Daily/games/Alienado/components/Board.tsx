@@ -1,4 +1,6 @@
+import { useDraggable, useDroppable } from '@dnd-kit/core';
 import clsx from 'clsx';
+import { motion } from 'motion/react';
 // Ant Design Resources
 import { Avatar, Button, Flex, Space, Typography } from 'antd';
 // Utils
@@ -13,6 +15,135 @@ import { DailyItem } from 'pages/Daily/components/DailyItem';
 import { Region } from 'pages/Daily/components/Region';
 // Internal
 import type { DailyAlienadoEntry } from '../utils/types';
+
+type DraggableItemProps = {
+  itemId: string;
+  source: 'pool' | 'slot';
+  index?: number;
+  disabled: boolean;
+  isComplete: boolean;
+  isLose: boolean;
+  width: number;
+  onClick: (itemId: string) => void;
+};
+
+function DraggableItem({
+  itemId,
+  source,
+  index,
+  disabled,
+  isComplete,
+  isLose,
+  width,
+  onClick,
+}: DraggableItemProps) {
+  const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
+    id: source === 'pool' ? `pool-${itemId}` : `slot-${index}-${itemId}`,
+    data: { itemId, source, index },
+    disabled: disabled || isComplete,
+  });
+
+  return (
+    <motion.div
+      ref={setNodeRef}
+      layout={!isDragging}
+      {...listeners}
+      {...attributes}
+      whileTap={!(disabled || isComplete) ? { scale: 1.1, rotate: 15 } : undefined}
+      animate={{
+        x: transform ? transform.x : 0,
+        y: transform ? transform.y : 0,
+        opacity: isDragging ? 0.85 : 1,
+      }}
+      transition={
+        isDragging ? { type: 'tween', duration: 0 } : { type: 'spring', stiffness: 400, damping: 25 }
+      }
+      style={{
+        zIndex: isDragging ? 50 : 1,
+        cursor: disabled || isComplete ? 'not-allowed' : isDragging ? 'grabbing' : 'pointer',
+        touchAction: 'none',
+      }}
+    >
+      <TransparentButton
+        onClick={() => onClick(itemId)}
+        disabled={disabled || isComplete}
+        className={source === 'pool' ? 'alien-items__item-button' : 'mt-1'}
+      >
+        <DailyItem
+          itemId={itemId}
+          width={source === 'slot' && isLose ? width / 2 : width}
+          padding={source === 'pool' ? 1 : 0}
+        />
+      </TransparentButton>
+    </motion.div>
+  );
+}
+
+type DroppableSlotProps = {
+  index: number;
+  selectedItemId: string | null;
+  slotIndex: number | null;
+  isComplete: boolean;
+  isLose: boolean;
+  width: number;
+  onSlotClick: (index: number) => void;
+  onItemClick: (itemId: string) => void;
+};
+
+function DroppableSlot({
+  index,
+  selectedItemId,
+  slotIndex,
+  isComplete,
+  isLose,
+  width,
+  onSlotClick,
+  onItemClick,
+}: DroppableSlotProps) {
+  const { setNodeRef, isOver } = useDroppable({
+    id: `slot-${index}`,
+    data: { index },
+    disabled: isComplete,
+  });
+
+  const isReceiving = isOver && !isComplete;
+
+  return (
+    <div
+      ref={setNodeRef}
+      className={clsx(isReceiving && selectedItemId && 'alien-request__slot--active')}
+      style={{ borderRadius: 8 }}
+    >
+      {selectedItemId ? (
+        <DraggableItem
+          itemId={selectedItemId}
+          source="slot"
+          index={index}
+          disabled={false}
+          isComplete={isComplete}
+          isLose={isLose}
+          width={width}
+          onClick={onItemClick}
+        />
+      ) : (
+        <TransparentButton
+          onClick={() => onSlotClick(index)}
+          className="mt-3"
+          disabled={isComplete}
+          active={slotIndex === index || isReceiving}
+          activeClass="alien-request__slot--active"
+        >
+          <Avatar
+            shape="square"
+            size="large"
+          >
+            ?
+          </Avatar>
+        </TransparentButton>
+      )}
+    </div>
+  );
+}
 
 type BoardProps = {
   latestAttempt: number | null;
@@ -95,34 +226,16 @@ export function Board({
                   />
                 </Flex>
 
-                {selected ? (
-                  <TransparentButton
-                    onClick={() => onItemClick(selected)}
-                    className="mt-1"
-                    disabled={isComplete}
-                  >
-                    <DailyItem
-                      itemId={selected}
-                      width={isLose ? width / 2 : width}
-                      padding={0}
-                    />
-                  </TransparentButton>
-                ) : (
-                  <TransparentButton
-                    onClick={() => onSlotClick(index)}
-                    className="mt-3"
-                    disabled={isComplete}
-                    active={slotIndex === index}
-                    activeClass="alien-request__slot--active"
-                  >
-                    <Avatar
-                      shape="square"
-                      size="large"
-                    >
-                      ?
-                    </Avatar>
-                  </TransparentButton>
-                )}
+                <DroppableSlot
+                  index={index}
+                  selectedItemId={selected}
+                  slotIndex={slotIndex}
+                  isComplete={isComplete}
+                  isLose={isLose}
+                  width={width}
+                  onSlotClick={onSlotClick}
+                  onItemClick={onItemClick}
+                />
 
                 {isComplete && (
                   <DailyItem
@@ -136,6 +249,7 @@ export function Board({
             );
           })}
         </Flex>
+
         {isComplete && (
           <SpaceContainer orientation="vertical">
             {previousGuesses.map((guess) => (
@@ -178,20 +292,21 @@ export function Board({
         </Typography.Text>
 
         <SpaceContainer wrap>
-          {data.itemsIds.map((itemId) => (
-            <TransparentButton
-              key={itemId}
-              onClick={() => onItemClick(itemId)}
-              disabled={isComplete || isReady || selection.includes(itemId)}
-              className="alien-items__item-button"
-            >
-              <DailyItem
+          {data.itemsIds.map((itemId) => {
+            const isDisabled = isComplete || isReady || selection.includes(itemId);
+            return (
+              <DraggableItem
+                key={itemId}
                 itemId={itemId}
+                source="pool"
+                disabled={isDisabled}
+                isComplete={isComplete}
+                isLose={isLose}
                 width={width}
-                padding={3}
+                onClick={onItemClick}
               />
-            </TransparentButton>
-          ))}
+            );
+          })}
         </SpaceContainer>
       </Region>
     </>

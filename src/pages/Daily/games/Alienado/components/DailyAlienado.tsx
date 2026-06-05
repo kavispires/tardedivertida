@@ -1,3 +1,4 @@
+import { DndContext, PointerSensor, useSensor, useSensors, pointerWithin } from '@dnd-kit/core';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { Layout, Modal, Space, Typography } from 'antd';
@@ -47,12 +48,21 @@ export function DailyAlienado({ data }: DailyAlienadoProps) {
     submitGuess,
     latestAttempt,
     guesses,
+    handleDragEnd,
   } = useAlienadoEngine(data, initialState);
   const width = useCardWidth(7, { margin: 64, maxWidth: 75, minWidth: 55 });
 
   const shouldShakeScreen = Boolean(latestAttempt && !isComplete);
-
   const previousGuesses = useMemo(() => guesses.map((guess) => guess.split('-')), [guesses]);
+
+  // Set up sensors: Only drag after moving 5 pixels, allowing clicks to pass cleanly
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 5,
+      },
+    }),
+  );
 
   return (
     <Layout>
@@ -67,31 +77,38 @@ export function DailyAlienado({ data }: DailyAlienadoProps) {
         rules={<Rules date={data.id} />}
       />
       <DailyContent>
-        <AlienDictionary
-          attributes={data.attributes}
-          width={width}
-        />
+        {/* Wrap the playable area in DndContext */}
+        <DndContext
+          sensors={sensors}
+          collisionDetection={pointerWithin}
+          onDragEnd={handleDragEnd}
+        >
+          <AlienDictionary
+            attributes={data.attributes}
+            width={width}
+          />
 
-        <ShowResultsButton
-          isComplete={isComplete}
-          setShowResultModal={setShowResultModal}
-        />
+          <ShowResultsButton
+            isComplete={isComplete}
+            setShowResultModal={setShowResultModal}
+          />
 
-        <Board
-          latestAttempt={latestAttempt}
-          shouldShakeScreen={shouldShakeScreen}
-          selection={selection}
-          onItemClick={onItemClick}
-          onSlotClick={onSlotClick}
-          slotIndex={slotIndex}
-          isComplete={isComplete}
-          isLose={isLose}
-          width={width}
-          data={data}
-          previousGuesses={previousGuesses}
-          isReady={isReady}
-          submitGuess={submitGuess}
-        />
+          <Board
+            latestAttempt={latestAttempt}
+            shouldShakeScreen={shouldShakeScreen}
+            selection={selection}
+            onItemClick={onItemClick}
+            onSlotClick={onSlotClick}
+            slotIndex={slotIndex}
+            isComplete={isComplete}
+            isLose={isLose}
+            width={width}
+            data={data}
+            previousGuesses={previousGuesses}
+            isReady={isReady}
+            submitGuess={submitGuess}
+          />
+        </DndContext>
 
         {!isComplete && previousGuesses.length > 0 && (
           <Region>
