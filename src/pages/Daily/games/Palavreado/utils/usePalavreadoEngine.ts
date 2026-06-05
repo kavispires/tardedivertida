@@ -78,6 +78,30 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
     });
   };
 
+  const swapLetters = (indexA: number, indexB: number) => {
+    // 1. Run side effects OUTSIDE the state setter function
+    playSFX('swap');
+
+    updateSession({
+      selection: null,
+      swap: [indexA, indexB],
+    });
+
+    // 2. Keep the state setter strictly pure (only calculating the new state)
+    setState((prev) => {
+      const copyLetters = cloneDeep(prev.letters);
+      const temp = copyLetters[indexA];
+      copyLetters[indexA] = copyLetters[indexB];
+      copyLetters[indexB] = temp;
+
+      return {
+        ...prev,
+        letters: copyLetters,
+        swaps: prev.swaps + 1,
+      };
+    });
+  };
+
   const smartShuffle = () => {
     if (state.hearts <= 1 || state.usedSmartShuffle) {
       return;
@@ -198,5 +222,6 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
     keyword: data.keyword,
     size,
     words: data.words,
+    swapLetters,
   };
 }

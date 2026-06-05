@@ -1,3 +1,11 @@
+import {
+  DndContext,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  type DragEndEvent,
+  pointerWithin,
+} from '@dnd-kit/core';
 import clsx from 'clsx';
 import { useState } from 'react';
 // Ant Design Resources
@@ -47,7 +55,30 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
     words,
     smartShuffle,
     usedSmartShuffle,
+    swapLetters,
   } = usePalavreadoEngine(data, initialState);
+
+  /// Tolerance of 5px allows regular clicks to fire instantly.
+  // Delay of 150ms means if they press and hold, it lifts up ready to drag.
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 5,
+      },
+    }),
+  );
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (over && active.id !== over.id) {
+      const fromIndex = active.data.current?.index;
+      const toIndex = over.data.current?.index;
+
+      if (fromIndex !== undefined && toIndex !== undefined && fromIndex !== toIndex) {
+        swapLetters(fromIndex, toIndex);
+      }
+    }
+  };
 
   return (
     <Layout>
@@ -69,14 +100,20 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
           >
             {keyword} {swaps > 0 && ` ↔️ ${swaps}`}
           </Typography.Text>
-          <Board
-            letters={letters}
-            onLetterSelection={selectLetter}
-            selection={selection}
-            swap={swap}
-            guesses={guesses}
-            size={size}
-          />
+          <DndContext
+            sensors={sensors}
+            collisionDetection={pointerWithin}
+            onDragEnd={handleDragEnd}
+          >
+            <Board
+              letters={letters}
+              onLetterSelection={selectLetter}
+              selection={selection}
+              swap={swap}
+              guesses={guesses}
+              size={size}
+            />
+          </DndContext>
         </Region>
 
         <ShowResultsButton

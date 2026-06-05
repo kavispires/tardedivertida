@@ -2,6 +2,7 @@
 import type { DateKey } from 'pages/Daily/utils/types';
 
 export type PalavreadoLetter = {
+  id: string;
   letter: string;
   state: 'idle' | 'correct' | '0' | '1' | '2' | '3' | '4';
   locked: boolean;

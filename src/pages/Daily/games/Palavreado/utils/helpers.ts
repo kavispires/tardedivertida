@@ -62,8 +62,8 @@ export const parseLetters = (letters: string[], size: number): PalavreadoLetter[
   const indexes = KEYWORD_INDEXES[size];
   const states = KEYWORD_STATES[size];
   return letters.map((letter, index) => ({
+    id: `tile-${index}-${letter}`,
     letter,
-    index,
     state: (indexes.includes(index) ? states[indexes.indexOf(index)] : 'idle') as PalavreadoLetter['state'],
     locked: indexes.includes(index),
   }));
