@@ -93,8 +93,8 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
             />{' '}
             {data.liarsIds.length}{' '}
             <Translate
-              pt="Mentirosos"
-              en="Liars"
+              pt="Mentirosos?"
+              en="Liars?"
             />
           </TextHighlight>
         </RegionText>

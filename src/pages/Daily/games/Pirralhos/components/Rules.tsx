@@ -15,14 +15,19 @@ export function Rules({ date }: RulesProps) {
   return (
     <RulesWrapper
       date={date}
-      betaVersion
+      updatedRules
       basicRules={
         <Translate
           pt={
             <>
               <li>Descubra qual criança pegou o brinquedo.</li>
               <li>Crianças estão do lado uma da outra quando há uma seta entre elas.</li>
-              <li>Existem dois ou mais mentirosos entre elas, e o culpado sempre mente.</li>
+              <li>
+                Podem haver mentirosas entre elas que podem ser igual ou um a menos que o número dado pelo
+                jogo.
+              </li>
+              <li>Nem sempre a criança culpada mente, será que ela se arrependeu?</li>
+
               <li>
                 Você tem {SETTINGS.HEARTS} <HeartFilled /> chances. Boa sorte!
               </li>
@@ -32,7 +37,11 @@ export function Rules({ date }: RulesProps) {
             <>
               <li>Find out which kid took the toy.</li>
               <li>Kids are next to each other when there's an arrow between them.</li>
-              <li>There are two or more liars among them, and the culprit always lies.</li>
+              <li>
+                There may be liars among them, which can be equal to or one less than the number given by the
+                game.
+              </li>
+              <li>The guilty kid doesn't always lie, did they regret it?</li>
               <li>
                 You have {SETTINGS.HEARTS} <HeartFilled /> chances. Good luck!
               </li>
