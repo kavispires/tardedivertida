@@ -15,32 +15,36 @@ type InitialState = {
    * Whether the rules modal is open
    */
   rulesOpen: boolean;
-  /**
-   * The currently active game identifier
-   */
-  activeGame: string | null;
 };
 
 const initialState: InitialState = {
   today: getToday(),
   rulesOpen: false,
-  activeGame: null,
 };
 
 const dailyGlobalStore = new Store<InitialState>(initialState);
 
-export const setDailyGlobalState = <K extends keyof InitialState>(property: K, value: InitialState[K]) => {
+/**
+ * Sets a specific property in the daily global state.
+ */
+export const setDailyGlobalStore = <K extends keyof InitialState>(property: K, value: InitialState[K]) => {
   dailyGlobalStore.setState((prev) => ({ ...prev, [property]: value }));
 };
 
+/**
+ * Hook to access and update a specific property in the daily global state.
+ * Returns a tuple with the current value and a setter function.
+ */
 export const useDailyGlobalStore = <K extends keyof InitialState>(property: K) => {
   const { [property]: value } = useSelector(dailyGlobalStore, (state) => state);
 
-  return [value, (newValue: InitialState[K]) => setDailyGlobalState(property, newValue)] as const;
+  return [value, (newValue: InitialState[K]) => setDailyGlobalStore(property, newValue)] as const;
 };
 
-export const resetDailyGlobalState = () => {
-  setDailyGlobalState('today', initialState.today);
-  setDailyGlobalState('rulesOpen', initialState.rulesOpen);
-  setDailyGlobalState('activeGame', initialState.activeGame);
+/**
+ * Resets all properties in the daily global state to their initial values.
+ */
+export const resetDailyGlobalStore = () => {
+  setDailyGlobalStore('today', initialState.today);
+  setDailyGlobalStore('rulesOpen', initialState.rulesOpen);
 };

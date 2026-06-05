@@ -1,5 +1,4 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useTitle } from 'react-use';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
@@ -13,6 +12,7 @@ import { DailyChrome } from './components/DailyChrome';
 import { Hub } from './DailyHub';
 import { getDailyName } from './utils';
 import { DailyContextProvider } from './hooks/useDailyChallenge';
+import { useDailyActiveGame } from './hooks/useDailyActiveGame';
 // Sass
 import './utils/daily.scss';
 
@@ -122,7 +122,6 @@ const DebugPage = lazy(() =>
 
 function DailyPage() {
   const { isAuthenticated } = useCurrentUserContext();
-  const { pathname } = useLocation();
   const { setLanguage, language } = useLanguage();
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: function is not a dependency
@@ -132,8 +131,6 @@ function DailyPage() {
       setLanguage('pt');
     }
   }, [language]);
-
-  const subPath = pathname.split('/')?.[2];
 
   useTitle(`${getDailyName(language)} - Tarde Divertida`);
 
@@ -147,44 +144,53 @@ function DailyPage() {
     );
   }
 
-  const Outlet =
-    {
-      // Hub
-      '': Hub,
-      hub: Hub,
-      // Games
-      alienado: DailyAlienadoGame,
-      'aqui-o': DailyAquiOGame,
-      'arte-ruim': DailyArteRuimGame,
-      conjuntos: DailyConjuntosGame,
-      estoquista: DailyEstoquistaGame,
-      investigacao: DailyInvestigacaoGame,
-      filmaco: DailyFilmacoGame,
-      mapeamento: DailyMapeamentoGame,
-      organiku: DailyOrganikuGame,
-      palavreado: DailyPalavreadoGame,
-      pirralhos: DailyPirralhosGame,
-      panico: DailyPanicoGame,
-      portais: DailyPortaisGame,
-      quartetos: DailyQuartetosGame,
-      vitral: DailyVitralGame,
-      // Contribute
-      conexoes: DailyConexoesGame,
-      picaco: DailyPicacoGame,
-      'ta-na-cara': DailyTaNaCaraGame,
-      demo: DailyDemoPage,
-      // Endless games
-      'vitrais-infinitos': VitraisInfinitosGame,
-      // Dev
-      debug: DebugPage,
-    }?.[subPath] ?? Hub;
-
   return (
     <DailyContextProvider>
-      <Suspense fallback={<LoadingPage />}>
-        <Outlet />
-      </Suspense>
+      <AuthenticatedDailyContent />
     </DailyContextProvider>
+  );
+}
+
+function AuthenticatedDailyContent() {
+  const { activeGame } = useDailyActiveGame();
+
+  const gameRoutes: Record<string, React.ComponentType> = {
+    // Hub
+    '': Hub,
+    hub: Hub,
+    // Games
+    alienado: DailyAlienadoGame,
+    'aqui-o': DailyAquiOGame,
+    'arte-ruim': DailyArteRuimGame,
+    conjuntos: DailyConjuntosGame,
+    estoquista: DailyEstoquistaGame,
+    investigacao: DailyInvestigacaoGame,
+    filmaco: DailyFilmacoGame,
+    mapeamento: DailyMapeamentoGame,
+    organiku: DailyOrganikuGame,
+    palavreado: DailyPalavreadoGame,
+    pirralhos: DailyPirralhosGame,
+    panico: DailyPanicoGame,
+    portais: DailyPortaisGame,
+    quartetos: DailyQuartetosGame,
+    vitral: DailyVitralGame,
+    // Contribute
+    conexoes: DailyConexoesGame,
+    picaco: DailyPicacoGame,
+    'ta-na-cara': DailyTaNaCaraGame,
+    demo: DailyDemoPage,
+    // Endless games
+    'vitrais-infinitos': VitraisInfinitosGame,
+    // Dev
+    debug: DebugPage,
+  };
+
+  const Outlet = gameRoutes[activeGame ?? ''] ?? Hub;
+
+  return (
+    <Suspense fallback={<LoadingPage />}>
+      <Outlet />
+    </Suspense>
   );
 }
 

@@ -1,7 +1,6 @@
 import { parse, isValid, differenceInDays } from 'date-fns';
 import { orderBy } from 'lodash';
 import { useMemo } from 'react';
-import { Link } from 'react-router-dom';
 // Ant Design Resources
 import { Carousel, Typography } from 'antd';
 // Services
@@ -14,6 +13,7 @@ import { Translate } from 'components/language/Translate';
 import type { GameSettings } from '../utils/types';
 import { ALL_SETTINGS } from '../utils/settings';
 import { checkWasPlayedToday, daysSinceRelease, getAnalyticsEventName } from '../utils';
+import { useDailyActiveGame } from '../hooks/useDailyActiveGame';
 
 const PRIORITY_LIST = orderBy(
   Object.values(ALL_SETTINGS).filter(
@@ -38,7 +38,18 @@ const getUnplayedGames = () => {
   );
 };
 
-function NextSuggestionEntry({ settings }: { settings: GameSettings }) {
+type NextSuggestionEntryProps = {
+  settings: GameSettings;
+};
+
+function NextSuggestionEntry({ settings }: NextSuggestionEntryProps) {
+  const { setActiveGame } = useDailyActiveGame();
+
+  const handleClick = () => {
+    logAnalyticsEvent(getAnalyticsEventName(settings.KEY, 'game_suggestion'));
+    setActiveGame(settings.ROUTE);
+  };
+
   return (
     <Typography.Paragraph
       className="center"
@@ -47,12 +58,20 @@ function NextSuggestionEntry({ settings }: { settings: GameSettings }) {
     >
       <DualTranslate>{settings.TAGLINE}</DualTranslate>
       <br />
-      <Link
-        to={`/diario/${settings.ROUTE}`}
-        onClick={() => logAnalyticsEvent(getAnalyticsEventName(settings.KEY, 'game_suggestion'))}
+      <button
+        type="button"
+        onClick={handleClick}
+        style={{
+          background: 'none',
+          border: 'none',
+          color: 'inherit',
+          cursor: 'pointer',
+          textDecoration: 'underline',
+          font: 'inherit',
+        }}
       >
         <IconAvatar icon={<settings.HUB_ICON />} /> <DualTranslate>{settings.NAME}</DualTranslate>!
-      </Link>
+      </button>
     </Typography.Paragraph>
   );
 }

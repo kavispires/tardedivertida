@@ -10,7 +10,7 @@ import type { DrawingToSave } from '../games/Picaco/utils/types';
 import type { AnswerToSave } from '../games/TaNaCara/utils/types';
 import type { SavePayload as ConexoesSavePayload } from '../games/Conexoes/utils/types';
 
-export function useDailySaveDrawings(onSuccess: GenericFunction) {
+export function useDailySaveDrawings(onSuccess: () => void) {
   const { translate } = useLanguage();
   const { notification } = App.useApp();
 

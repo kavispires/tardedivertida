@@ -1,5 +1,4 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import { Link } from 'react-router-dom';
 // Ant Design Resources
 import { AppstoreFilled, HeartFilled, HeartOutlined, QuestionCircleFilled } from '@ant-design/icons';
 import { Button, Drawer, Space } from 'antd';
@@ -7,6 +6,7 @@ import { Button, Drawer, Space } from 'antd';
 import { Translate } from 'components/language/Translate';
 // Internal
 import { useDailyGlobalStore } from '../hooks/useDailyGlobalStore';
+import { useDailyActiveGame } from '../hooks/useDailyActiveGame';
 
 type MenuProps = {
   hearts: number;
@@ -94,13 +94,14 @@ function RulesModal({ rules, defaultOpen }: RulesModalProps) {
 }
 
 function DailyHubLink() {
+  const { setActiveGame } = useDailyActiveGame();
+
   return (
-    <Link to="/diario/hub">
-      <Button
-        type="text"
-        style={{ color: 'white' }}
-        icon={<AppstoreFilled />}
-      />
-    </Link>
+    <Button
+      type="text"
+      style={{ color: 'white' }}
+      icon={<AppstoreFilled />}
+      onClick={() => setActiveGame('')}
+    />
   );
 }

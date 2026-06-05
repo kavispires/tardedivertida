@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import { addYears, format } from 'date-fns';
 import { orderBy } from 'lodash';
 import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
 import { useTimer } from 'react-timer-hook';
 // Ant Design Resources
 import { Alert, Divider, Flex, Space, Typography } from 'antd';
@@ -34,6 +33,7 @@ import { HubDevTools } from './components/HubDevTools';
 import { SoundFXToggle } from './components/SoundFXToggle';
 import { checkWasPlayedToday, daysSinceRelease, hasBeenReleased } from './utils';
 import { useStreakMilestone } from './hooks/useStreakData';
+import { useDailyActiveGame } from './hooks/useDailyActiveGame';
 
 type Entry = GameSettings & {
   disabled?: boolean;
@@ -122,6 +122,7 @@ const { NEW_RELEASES, GAMES, CONTRIBUTIONS, DEMOS, SPECIALS, SHAREABLE } = Objec
 
 export function Hub() {
   const { isAdmin } = useCurrentUserContext();
+  const { setActiveGame } = useDailyActiveGame();
   const [width, ref] = useCardWidthByContainerRef(3, { maxWidth: 128, minWidth: 48, gap: 16 });
   const today = getToday();
   const { milestone, onClose } = useStreakMilestone();
@@ -241,8 +242,32 @@ export function Hub() {
               separator={<Divider orientation="vertical" />}
               wrap
             >
-              <Link to="/daily/debug">Debug</Link>
-              <Link to="/daily/demo">Demo</Link>
+              <button
+                type="button"
+                onClick={() => setActiveGame('debug')}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: 'inherit',
+                  cursor: 'pointer',
+                  textDecoration: 'underline',
+                }}
+              >
+                Debug
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveGame('demo')}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: 'inherit',
+                  cursor: 'pointer',
+                  textDecoration: 'underline',
+                }}
+              >
+                Demo
+              </button>
               <a
                 href={getFirestoreConsoleUrl(`diario/${today}`)}
                 target="_blank"
@@ -328,6 +353,7 @@ function GameButton({
   index,
   version = 'stable',
 }: GameButtonProps) {
+  const { setActiveGame } = useDailyActiveGame();
   const wasPlayed = checkWasPlayedToday(lsKey);
 
   const isNewRelease =
@@ -335,6 +361,14 @@ function GameButton({
     daysSinceRelease(releaseDate) > 0 &&
     !wasPlayed &&
     ['stable', 'beta'].includes(version);
+
+  const handleClick = () => {
+    if (!disabled) {
+      playSFX('swap');
+      logAnalyticsEvent(`daily_${lsKey}_hub_click`);
+      setActiveGame(href);
+    }
+  };
 
   return (
     <motion.div className="played-wrapper">
@@ -361,18 +395,12 @@ function GameButton({
           style={{ width, height: width, backgroundColor: color }}
           {...getAnimation('bounceIn', { delay: index * 0.05 })}
           disabled={disabled}
-          onClick={() => {
-            playSFX('swap');
-            logAnalyticsEvent(`daily_${lsKey}_hub_click`);
-          }}
+          onClick={handleClick}
         >
-          <Link
-            to={`/diario/${href}`}
-            className="hub-link"
-          >
+          <div className="hub-link">
             <Icon style={{ width: width / 2 }} />
             <DualTranslate>{name}</DualTranslate>
-          </Link>
+          </div>
         </motion.button>
       </motion.div>
     </motion.div>
