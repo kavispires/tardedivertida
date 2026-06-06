@@ -7,7 +7,7 @@ export const SETTINGS: GameSettings = {
   KEY: 'vitrais-infinitos',
   ROUTE: 'vitrais-infinitos',
   TYPE: 'special',
-  RELEASE_DATE: '2025-02-08',
+  RELEASE_DATE: '2026-02-08',
   VERSION: 'stable',
   COLOR: 'rgb(255 202 141 / 85%)',
   EMOJI: '🧩',

@@ -1,13 +1,13 @@
 import type { ReactNode } from 'react';
 // Icons
-import { CalendarIcon } from 'icons/CalendarIcon';
-import { NewFeatureIcon } from 'icons/NewFeatureIcon';
+import { AudioIcon, IncreaseDifficultyIcon, PrototypeIcon, RulesIcon } from 'icons/collection';
 import { WeekendIcon } from 'icons/WeekendIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { DualTranslate } from 'components/language/DualTranslate';
 // Internal
 import { ALL_SETTINGS } from '../utils/settings';
+import type { GameSettings } from '../utils/types';
 
 type NewsItem = {
   date: string; // YYYY-MM-DD format
@@ -17,129 +17,125 @@ type NewsItem = {
 
 export const NEWS_LIST: NewsItem[] = [
   {
+    date: '2026-06-07',
+    content: (
+      <GameFeatureEntry
+        type="rules"
+        game={ALL_SETTINGS.PIRRALHOS}
+        description="as regras foram atualizadas! O pirralho culpado nem sempre mente e nem sempre o número de mentirosos é correto (pode ser exato ou um a menos)."
+      />
+    ),
+  },
+  {
+    date: '2026-06-06',
+    content: (
+      <EngineImprovementEntry
+        description={
+          <>
+            Agora você pode arrastar os quadradinhos com letras em{' '}
+            <strong>
+              <DualTranslate>{ALL_SETTINGS.PALAVREADO.NAME}</DualTranslate>
+            </strong>{' '}
+            e também os objetos que você entrega ao alienígena em{' '}
+            <strong>
+              <DualTranslate>{ALL_SETTINGS.AQUI_O.NAME}</DualTranslate>
+            </strong>{' '}
+            para organizá-los como preferir!
+          </>
+        }
+      />
+    ),
+  },
+  {
     date: '2026-05-26',
     content: (
-      <>
-        <IconAvatar
-          icon={<NewFeatureIcon />}
-          size="small"
-        />{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.INVESTIGACAO.NAME}</DualTranslate>
-        </strong>{' '}
-        agora tem 3 vidas e elas podem ser usadas para dar dicas que eliminam colunas e linhas de suspeitos.
-      </>
+      <GameFeatureEntry
+        type="rules"
+        game={ALL_SETTINGS.INVESTIGACAO}
+        description="agora tem 3 vidas e elas podem ser usadas para dar dicas que eliminam colunas e linhas de suspeitos."
+      />
     ),
   },
   {
     date: '2026-05-24',
     content: (
-      <>
-        <em>Novo jogo adicionado:</em>
-        <br />
-        <IconAvatar
-          icon={<ALL_SETTINGS.PIRRALHOS.HUB_ICON />}
-          size="small"
-        />{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.PIRRALHOS.NAME}</DualTranslate>
-        </strong>{' '}
-        - qual criança pegou o brinquedo?
-      </>
+      <NewGameEntry
+        game={ALL_SETTINGS.PIRRALHOS}
+        tagline="qual criança pegou o brinquedo?"
+      />
     ),
   },
   {
     date: '2026-05-17',
     content: (
-      <>
-        <em>Novo jogo adicionado:</em>
-        <br />
-        <IconAvatar
-          icon={<ALL_SETTINGS.MAPEAMENTO.HUB_ICON />}
-          size="small"
-        />{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.MAPEAMENTO.NAME}</DualTranslate>
-        </strong>{' '}
-        - que lugar é esse?
-      </>
+      <NewGameEntry
+        game={ALL_SETTINGS.MAPEAMENTO}
+        tagline="adivinhe o lugar com base nas pistas datas pela IA!"
+      />
     ),
   },
   {
     date: '2026-05-03',
     content: (
-      <>
-        <IconAvatar
-          icon={<NewFeatureIcon />}
-          size="small"
-        />{' '}
-        Vários jogos agora estão com nomes atualizados para refletir melhor a experiência do jogo:{' '}
-        <span>
-          <strong>
-            <DualTranslate>{ALL_SETTINGS.INVESTIGACAO.NAME}</DualTranslate>,
-          </strong>{' '}
-          <strong>
-            <DualTranslate>{ALL_SETTINGS.ALIENADO.NAME}</DualTranslate>
-          </strong>
-          ,{' '}
-          <strong>
-            <DualTranslate>{ALL_SETTINGS.VITRAL.NAME}</DualTranslate>
-          </strong>
-          , e{' '}
-          <strong>
-            <DualTranslate>{ALL_SETTINGS.ESTOQUISTA.NAME}</DualTranslate>
-          </strong>
-          !
-        </span>
-      </>
+      <EngineImprovementEntry
+        description={
+          <>
+            Vários jogos agora estão com nomes atualizados para refletir melhor a experiência do jogo:{' '}
+            <span>
+              <strong>
+                <DualTranslate>{ALL_SETTINGS.INVESTIGACAO.NAME}</DualTranslate>,
+              </strong>{' '}
+              <strong>
+                <DualTranslate>{ALL_SETTINGS.ALIENADO.NAME}</DualTranslate>
+              </strong>
+              ,{' '}
+              <strong>
+                <DualTranslate>{ALL_SETTINGS.VITRAL.NAME}</DualTranslate>
+              </strong>
+              , e{' '}
+              <strong>
+                <DualTranslate>{ALL_SETTINGS.ESTOQUISTA.NAME}</DualTranslate>
+              </strong>
+              !
+            </span>
+          </>
+        }
+      />
     ),
   },
   {
     date: '2026-04-05',
     content: (
-      <>
-        <IconAvatar
-          icon={<NewFeatureIcon />}
-          size="small"
-        />{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.PALAVREADO.NAME}</DualTranslate>
-        </strong>{' '}
-        agora tem um botão de Embaralhar Inteligente (💡) que reorganiza as letras incorretas respeitando
-        vogais e consoantes!
-      </>
+      <GameFeatureEntry
+        type="improvement"
+        game={ALL_SETTINGS.PALAVREADO}
+        description={
+          <>
+            agora tem um botão de Embaralhar Inteligente (💡) que reorganiza as letras incorretas respeitando
+            vogais e consoantes!
+          </>
+        }
+      />
     ),
   },
   {
     date: '2026-04-04',
     content: (
-      <>
-        <em>Nova forma de contribuir:</em>
-        <br />
-        <IconAvatar
-          icon={<ALL_SETTINGS.CONEXOES.HUB_ICON />}
-          size="small"
-        />{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.CONEXOES.NAME}</DualTranslate>
-        </strong>{' '}
-        - avalie se pares de imagens estão relacionados!
-      </>
+      <NewGameEntry
+        type="contribution"
+        game={ALL_SETTINGS.CONEXOES}
+        tagline="avalie se pares de imagens estão relacionados!"
+      />
     ),
   },
   {
     date: '2026-02-14',
     content: (
-      <>
-        <IconAvatar
-          icon={<WeekendIcon />}
-          size="small"
-        />{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.INVESTIGACAO.NAME}</DualTranslate>
-        </strong>{' '}
-        é mais desafiante nos fins de semana com 16 suspeitos para investigar!
-      </>
+      <GameFeatureEntry
+        type="weekend"
+        game={ALL_SETTINGS.INVESTIGACAO}
+        description="é mais desafiante nos fins de semana com 16 suspeitos para investigar!"
+      />
     ),
   },
   {
@@ -163,300 +159,356 @@ export const NEWS_LIST: NewsItem[] = [
   {
     date: '2026-01-09',
     content: (
-      <>
-        <IconAvatar
-          icon={<NewFeatureIcon />}
-          size="small"
-        />{' '}
-        Para ficar mais interessante ative o modo <strong>Com Voz</strong> no jogo{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.AQUI_O.NAME}</DualTranslate>
-        </strong>
-        , e toda vez que você acertar um item, ele será anunciado em voz alta!
-      </>
+      <GameFeatureEntry
+        type="improvement"
+        game={ALL_SETTINGS.AQUI_O}
+        description={
+          <>
+            está mais interessante se você ativar o modo <strong>Com Voz</strong> no jogo e toda vez que você
+            acertar um item, ele será anunciado em voz alta!
+          </>
+        }
+      />
     ),
-  },
-  {
-    date: '2025-12-25',
-    content: (
-      <>
-        <IconAvatar
-          icon={<CalendarIcon />}
-          size="small"
-        />{' '}
-        <strong>Feliz Natal!</strong> Alguns jogos estão com desafios especiais para você aproveitar a data!
-        Boas festas!
-      </>
-    ),
-    exact: true,
   },
   {
     date: '2025-12-24',
     content: (
-      <>
-        <em>Novo jogo adicionado:</em>
-        <br />
-        <IconAvatar
-          icon={<ALL_SETTINGS.VITRAL.HUB_ICON />}
-          size="small"
-        />{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.VITRAL.NAME}</DualTranslate>
-        </strong>{' '}
-        - desvende a imagem neste quebra-cabeça!
-      </>
+      <NewGameEntry
+        game={ALL_SETTINGS.VITRAL}
+        tagline="desvende a imagem neste quebra-cabeça!"
+      />
     ),
   },
   {
     date: '2025-11-01',
     content: (
-      <>
-        <IconAvatar
-          icon={<NewFeatureIcon />}
-          size="small"
-        />{' '}
-        Para ficar mais fácil de identificar os itens do{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.ORGANIKU.NAME}</DualTranslate>
-        </strong>
-        , agora o jogo conta quantos items estão faltando e os colore de amarelo quando você completar todos
-        os de um tipo!
-      </>
+      <GameFeatureEntry
+        type="improvement"
+        game={ALL_SETTINGS.ORGANIKU}
+        description={
+          <>
+            agora facilita identificar os items que estão faltando para completar o disco, mostrando a
+            contagem de quantos estão faltando e colorindo de amarelo quando você completar todos os itens de
+            um tipo!
+          </>
+        }
+      />
     ),
   },
   {
     date: '2025-09-29',
     content: (
-      <>
-        <IconAvatar
-          icon={<NewFeatureIcon />}
-          size="small"
-        />{' '}
-        Se você clicar e segurar um ícone do{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.CONJUNTOS.NAME}</DualTranslate>
-        </strong>
-        , o jogo te mostrará quantas letras, vogais e consoantes tem o nome do item! Que prático!
-      </>
+      <GameFeatureEntry
+        type="improvement"
+        game={ALL_SETTINGS.CONJUNTOS}
+        description={
+          <>
+            agora deixa você clicar e segurar um ícone e te mostrará quantas letras, vogais e consoantes tem o
+            nome do item! Que prático!
+          </>
+        }
+      />
     ),
   },
   {
     date: '2025-09-20',
     content: (
-      <>
-        <IconAvatar
-          icon={<WeekendIcon />}
-          size="small"
-        />{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.ORGANIKU.NAME}</DualTranslate>
-        </strong>{' '}
-        é mais desafiante nos fins de semana com 6 tipos de itens!
-      </>
+      <GameFeatureEntry
+        type="weekend"
+        game={ALL_SETTINGS.ORGANIKU}
+        description="é mais desafiante nos fins de semana com 6 tipos de itens!"
+      />
     ),
   },
   {
     date: '2025-08-09',
     content: (
-      <>
-        <IconAvatar
-          icon={<NewFeatureIcon />}
-          size="small"
-        />{' '}
-        <strong>Em jogos com ícones</strong>, ao clicar e segurar um ícone, aparecerá um nome como sugestão
-        para ajudar a identificá-lo. Esse nome pode não ser o mesmo usado pelo jogo em si. Por exemplo, o nome
-        “fatia de bolo” pode estar sendo usado como “torta” ou apenas “bolo” em alguns jogos, mas a sugestão
-        vai aparecer como "fatia de bolo".
-      </>
+      <EngineImprovementEntry
+        description={
+          <>
+            <strong>Em jogos com ícones</strong>, ao clicar e segurar um ícone, aparecerá um nome como
+            sugestão para ajudar a identificá-lo. Esse nome pode não ser o mesmo usado pelo jogo em si. Por
+            exemplo, o nome “fatia de bolo” pode estar sendo usado como “torta” ou apenas “bolo” em alguns
+            jogos, mas a sugestão vai aparecer como "fatia de bolo".
+          </>
+        }
+      />
     ),
   },
   {
     date: '2025-07-05',
     content: (
-      <>
-        <em>Novo jogo adicionado:</em>
-        <br />
-        <IconAvatar
-          icon={<ALL_SETTINGS.INVESTIGACAO.HUB_ICON />}
-          size="small"
-        />{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.INVESTIGACAO.NAME}</DualTranslate>
-        </strong>{' '}
-        - descubra quem é o culpado!
-      </>
+      <NewGameEntry
+        game={ALL_SETTINGS.INVESTIGACAO}
+        tagline="descubra quem é o culpado entre os suspeitos!"
+      />
     ),
   },
   {
     date: '2025-06-28',
     content: (
-      <>
-        <IconAvatar
-          icon={<NewFeatureIcon />}
-          size="small"
-        />{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.TA_NA_CARA.NAME}</DualTranslate>
-        </strong>{' '}
-        - agora você pode mudar o estilo dos suspeitos!
-      </>
+      <GameFeatureEntry
+        type="improvement"
+        game={ALL_SETTINGS.TA_NA_CARA}
+        description="agora você pode mudar o estilo dos suspeitos!"
+      />
     ),
   },
   {
     date: '2025-06-14',
     content: (
-      <>
-        <IconAvatar
-          icon={<WeekendIcon />}
-          size="small"
-        />{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.FILMACO.NAME}</DualTranslate>
-        </strong>{' '}
-        é mais desafiante nos fins de semana com dois filmes ao mesmo tempo! Sessão dupla!
-      </>
+      <GameFeatureEntry
+        type="weekend"
+        game={ALL_SETTINGS.FILMACO}
+        description="é mais desafiante nos fins de semana com dois filmes ao mesmo tempo! Sessão dupla!"
+      />
     ),
   },
   {
     date: '2025-06-07',
     content: (
-      <>
-        <em>Novo jogo adicionado:</em>
-        <br />
-        <IconAvatar
-          icon={<ALL_SETTINGS.ORGANIKU.HUB_ICON />}
-          size="small"
-        />{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.ORGANIKU.NAME}</DualTranslate>
-        </strong>{' '}
-        - descubra onde cada item pertence! Uai, é tipo Sudoku?
-      </>
+      <NewGameEntry
+        game={ALL_SETTINGS.QUARTETOS}
+        tagline="ache pares de objetos em cada linha e coluna. Uai, é tipo Sudoku?"
+      />
     ),
   },
   {
     date: '2025-05-16',
     content: (
-      <>
-        <IconAvatar
-          icon={<WeekendIcon />}
-          size="small"
-        />{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.CONJUNTOS.NAME}</DualTranslate>
-        </strong>{' '}
-        é mais desafiante nos fins de semana com 5 items a serem posicionados!
-      </>
+      <GameFeatureEntry
+        type="weekend"
+        game={ALL_SETTINGS.CONJUNTOS}
+        description="é mais desafiante nos fins de semana com 5 items iniciais a serem posicionados!"
+      />
     ),
   },
   {
     date: '2025-04-17',
     content: (
-      <>
-        <IconAvatar
-          icon={<NewFeatureIcon />}
-          size="small"
-        />{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.ALIENADO.NAME}</DualTranslate>
-        </strong>{' '}
-        agora tem dicas do que os símbolos representam!
-      </>
+      <GameFeatureEntry
+        type="improvement"
+        game={ALL_SETTINGS.ALIENADO}
+        description="agora tem dicas do que os símbolos representam!"
+      />
     ),
   },
   {
     date: '2025-04-12',
     content: (
-      <>
-        <em>Novo jogo adicionado:</em>
-        <br />
-        <IconAvatar
-          icon={<ALL_SETTINGS.PORTAIS.HUB_ICON />}
-          size="small"
-        />{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.PORTAIS.NAME}</DualTranslate>
-        </strong>{' '}
-        - abra as portas resolvendo as palavras chaves!
-      </>
+      <NewGameEntry
+        game={ALL_SETTINGS.PORTAIS}
+        tagline="abra as portas resolvendo as palavras chaves!"
+      />
     ),
   },
   {
     date: '2025-03-01',
     content: (
-      <>
-        <em>Novo jogo adicionado:</em>
-        <br />
-        <IconAvatar
-          icon={<ALL_SETTINGS.QUARTETOS.HUB_ICON />}
-          size="small"
-        />{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.QUARTETOS.NAME}</DualTranslate>
-        </strong>{' '}
-        - faça quatro grupos de quatro!
-      </>
+      <NewGameEntry
+        game={ALL_SETTINGS.QUARTETOS}
+        tagline="analise os objetos e faça grupos de quatro!"
+      />
     ),
   },
   {
     date: '2025-02-22',
     content: (
-      <>
-        <em>Nova forma de contribuir:</em>
-        <br />
-        <IconAvatar
-          icon={<ALL_SETTINGS.TA_NA_CARA.HUB_ICON />}
-          size="small"
-        />{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.TA_NA_CARA.NAME}</DualTranslate>
-        </strong>{' '}
-        - julgue as pessoas pela cara!
-      </>
+      <NewGameEntry
+        game={ALL_SETTINGS.TA_NA_CARA}
+        tagline="julgue as pessoas pela cara!"
+        type="contribution"
+      />
     ),
   },
   {
     date: '2025-02-09',
     content: (
-      <>
-        <IconAvatar
-          icon={<NewFeatureIcon />}
-          size="small"
-        />{' '}
-        Agora todos os jogos tem efeitos sonoros para uma melhor experiência!
-      </>
+      <EngineImprovementEntry
+        icon={<AudioIcon />}
+        description="Agora todos os jogos tem efeitos sonoros para uma melhor experiência!"
+      />
     ),
   },
   {
     date: '2025-01-10',
     content: (
-      <>
-        <IconAvatar
-          icon={<WeekendIcon />}
-          size="small"
-        />{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.AQUI_O.NAME}</DualTranslate>
-        </strong>{' '}
-        é mais desafiante nos fins de semana com 9 itens aleatórios por disco!
-      </>
+      <GameFeatureEntry
+        type="weekend"
+        game={ALL_SETTINGS.AQUI_O}
+        description="é mais desafiante nos fins de semana com 9 itens aleatórios por disco!"
+      />
     ),
   },
   {
     date: '2024-11-09',
     content: (
-      <>
-        <em>Novo jogo adicionado:</em>
-        <br />
-        <IconAvatar
-          icon={<ALL_SETTINGS.ALIENADO.HUB_ICON />}
-          size="small"
-        />{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.ALIENADO.NAME}</DualTranslate>
-        </strong>{' '}
-        - desvende a linguagem alienígena e salve o planeta!
-      </>
+      <NewGameEntry
+        game={ALL_SETTINGS.ALIENADO}
+        tagline="desvende a linguagem alienígena e salve o planeta!"
+      />
+    ),
+  },
+  {
+    date: '2024-08-31',
+    content: (
+      <NewGameEntry
+        game={ALL_SETTINGS.CONJUNTOS}
+        tagline="teste sua gramática e lógica com teoria de conjuntos!"
+      />
+    ),
+  },
+  {
+    date: '2024-08-17',
+    content: (
+      <GameFeatureEntry
+        type="weekend"
+        game={ALL_SETTINGS.PALAVREADO}
+        description="é mais desafiante nos fins de semana com palavras de 5 letras!"
+      />
+    ),
+  },
+  {
+    date: '2024-08-04',
+    content: (
+      <NewGameEntry
+        game={ALL_SETTINGS.ESTOQUISTA}
+        tagline="organize os itens no estoque do mercadinho!"
+      />
+    ),
+  },
+  {
+    date: '2024-05-30',
+    content: (
+      <NewGameEntry
+        game={ALL_SETTINGS.FILMACO}
+        tagline="adivinhe o filme pelas cenas embaralhadas!"
+      />
+    ),
+  },
+  {
+    date: '2024-05-10',
+    content: (
+      <NewGameEntry
+        game={ALL_SETTINGS.PALAVREADO}
+        tagline="monte as palavras com as letras embaralhadas!"
+      />
+    ),
+  },
+  {
+    date: '2024-04-30',
+    content: (
+      <NewGameEntry
+        game={ALL_SETTINGS.PICACO}
+        tagline="desenhe e contribua com seu dom artístico!"
+        type="contribution"
+      />
+    ),
+  },
+  {
+    date: '2024-04-30',
+    content: (
+      <NewGameEntry
+        game={ALL_SETTINGS.AQUI_O}
+        tagline="encontre os itens em comum entre os discos!"
+      />
+    ),
+  },
+  {
+    date: '2023-11-04',
+    content: (
+      <NewGameEntry
+        game={ALL_SETTINGS.ARTE_RUIM}
+        tagline="adivinhe o título das obras de arte!"
+      />
     ),
   },
 ];
+
+type GameNameProps = {
+  game: GameSettings;
+};
+
+function GameName({ game }: GameNameProps) {
+  return (
+    <strong>
+      <DualTranslate>{game.NAME}</DualTranslate>
+    </strong>
+  );
+}
+
+type NewGameEntryProps = {
+  game: GameSettings;
+  tagline: string;
+  type?: 'game' | 'contribution';
+};
+
+function NewGameEntry({ game, tagline, type = 'game' }: NewGameEntryProps) {
+  return (
+    <>
+      <em>
+        {type === 'game' && 'Novo jogo adicionado:'}
+        {type === 'contribution' && 'Nova forma de contribuir:'}
+      </em>
+      <div style={{ display: 'grid', gap: 6, gridTemplateColumns: 'min-content 1fr' }}>
+        <IconAvatar
+          icon={<game.HUB_ICON />}
+          size="small"
+        />
+        <span>
+          <GameName game={game} /> - {tagline}
+        </span>
+      </div>
+    </>
+  );
+}
+
+type GameFeatureEntryProps = {
+  type: 'weekend' | 'improvement' | 'rules';
+  game?: GameSettings; // Only needed for weekend features
+  description: ReactNode;
+};
+
+function GameFeatureEntry({ type, description, game }: GameFeatureEntryProps) {
+  return (
+    <div style={{ display: 'grid', gap: 6, gridTemplateColumns: 'min-content 1fr' }}>
+      <IconAvatar
+        icon={
+          <>
+            {type === 'weekend' && <WeekendIcon />}
+            {type === 'improvement' && <IncreaseDifficultyIcon />}
+            {type === 'rules' && <RulesIcon />}
+          </>
+        }
+        size="small"
+      />
+      <span>
+        {!!game && (
+          <>
+            {' '}
+            <GameName game={game} /> -{' '}
+          </>
+        )}
+        {description}
+      </span>
+    </div>
+  );
+}
+
+type EngineImprovementEntryProps = {
+  icon?: ReactNode;
+  description: ReactNode;
+};
+
+function EngineImprovementEntry({ icon, description }: EngineImprovementEntryProps) {
+  return (
+    <div style={{ display: 'grid', gap: 6, gridTemplateColumns: 'min-content 1fr' }}>
+      <IconAvatar
+        icon={icon ?? <PrototypeIcon />}
+        size="small"
+      />
+      <span>{description}</span>
+    </div>
+  );
+}
