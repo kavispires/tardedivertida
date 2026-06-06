@@ -17,7 +17,10 @@ import { useDailyChallengeContext } from '../hooks/useDailyChallengeContext';
 
 const PRIORITY_LIST = orderBy(
   Object.values(ALL_SETTINGS).filter(
-    (settings) => settings.TYPE === 'game' && daysSinceRelease(settings.RELEASE_DATE) > 0,
+    (settings) =>
+      settings.TYPE === 'game' &&
+      daysSinceRelease(settings.RELEASE_DATE) > 0 &&
+      ['maintenance', 'disabled', 'soon', 'unreleased'].includes(settings.VERSION),
   ),
   [
     (o) => {
