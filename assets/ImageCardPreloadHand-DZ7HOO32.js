@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-DBS2Xqfh.js";import{t}from"./ImageCard-CD5-9_Gc.js";var n={imageCardPreloadHand:`_imageCardPreloadHand_io7q2_1`},r=e();function i({hand:e}){return e?(0,r.jsx)(`div`,{className:n.imageCardPreloadHand,children:e.map(e=>(0,r.jsx)(t,{cardId:e,cardWidth:1,preview:!1},`pre-load-${e}`))}):(0,r.jsx)(`span`,{})}export{i as t};
