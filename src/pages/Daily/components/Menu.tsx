@@ -6,7 +6,7 @@ import { Button, Drawer, Space } from 'antd';
 import { Translate } from 'components/language/Translate';
 // Internal
 import { useDailyGlobalStore } from '../hooks/useDailyGlobalStore';
-import { useDailyActiveGame } from '../hooks/useDailyActiveGame';
+import { useDailyChallenge } from '../hooks/useDailyChallenge';
 
 type MenuProps = {
   hearts: number;
@@ -94,14 +94,14 @@ function RulesModal({ rules, defaultOpen }: RulesModalProps) {
 }
 
 function DailyHubLink() {
-  const { setActiveGame } = useDailyActiveGame();
+  const { setActiveGame } = useDailyChallenge();
 
   return (
     <Button
       type="text"
       style={{ color: 'white' }}
       icon={<AppstoreFilled />}
-      onClick={() => setActiveGame('')}
+      onClick={() => setActiveGame(null)}
     />
   );
 }

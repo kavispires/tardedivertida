@@ -33,7 +33,7 @@ import { HubDevTools } from './components/HubDevTools';
 import { SoundFXToggle } from './components/SoundFXToggle';
 import { checkWasPlayedToday, daysSinceRelease, hasBeenReleased } from './utils';
 import { useStreakMilestone } from './hooks/useStreakData';
-import { useDailyActiveGame } from './hooks/useDailyActiveGame';
+import { useDailyChallenge } from './hooks/useDailyChallenge';
 
 type Entry = GameSettings & {
   disabled?: boolean;
@@ -122,7 +122,7 @@ const { NEW_RELEASES, GAMES, CONTRIBUTIONS, DEMOS, SPECIALS, SHAREABLE } = Objec
 
 export function Hub() {
   const { isAdmin } = useCurrentUserContext();
-  const { setActiveGame } = useDailyActiveGame();
+  const { setActiveGame } = useDailyChallenge();
   const [width, ref] = useCardWidthByContainerRef(3, { maxWidth: 128, minWidth: 48, gap: 16 });
   const today = getToday();
   const { milestone, onClose } = useStreakMilestone();
@@ -353,7 +353,7 @@ function GameButton({
   index,
   version = 'stable',
 }: GameButtonProps) {
-  const { setActiveGame } = useDailyActiveGame();
+  const { setActiveGame } = useDailyChallenge();
   const wasPlayed = checkWasPlayedToday(lsKey);
 
   const isNewRelease =

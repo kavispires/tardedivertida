@@ -11,8 +11,7 @@ import { LoginModal } from 'pages/Me/components/LoginModal';
 import { DailyChrome } from './components/DailyChrome';
 import { Hub } from './DailyHub';
 import { getDailyName } from './utils';
-import { DailyContextProvider } from './hooks/useDailyChallenge';
-import { useDailyActiveGame } from './hooks/useDailyActiveGame';
+import { DailyContextProvider, useDailyChallenge } from './hooks/useDailyChallenge';
 // Sass
 import './utils/daily.scss';
 
@@ -152,7 +151,7 @@ function DailyPage() {
 }
 
 function AuthenticatedDailyContent() {
-  const { activeGame } = useDailyActiveGame();
+  const { activeGame } = useDailyChallenge();
 
   const gameRoutes: Record<string, React.ComponentType> = {
     // Hub

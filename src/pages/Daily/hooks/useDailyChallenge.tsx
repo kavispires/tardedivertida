@@ -1,6 +1,6 @@
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import { endOfDay, differenceInMilliseconds } from 'date-fns';
-import { createContext, type ReactNode, useContext } from 'react';
+import { createContext, type ReactNode, useContext, useState } from 'react';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Services
@@ -17,6 +17,8 @@ export type DailyContextType = Pick<
   'isLoading' | 'data' | 'error' | 'isError' | 'isRefetching'
 > & {
   itemsDictionary: Dictionary<string>;
+  activeGame: string | null;
+  setActiveGame: (route: string | null) => void;
 };
 
 const DailyContext = createContext<DailyContextType>({
@@ -26,6 +28,8 @@ const DailyContext = createContext<DailyContextType>({
   isError: false,
   isRefetching: false,
   itemsDictionary: {},
+  activeGame: null,
+  setActiveGame: () => {},
 });
 
 type DailyContextProviderProps = {
@@ -42,6 +46,7 @@ const timeToMidnight = (() => {
 export const DailyContextProvider = ({ children }: DailyContextProviderProps) => {
   const { language } = useLanguage();
   const collectionName = getSourceName(language);
+  const [activeGame, setActiveGame] = useState<string | null>(null);
 
   // Load challenge
   const query = useQuery<DailyResponse>({
@@ -74,6 +79,8 @@ export const DailyContextProvider = ({ children }: DailyContextProviderProps) =>
         isError: query.isError,
         isRefetching: query.isRefetching,
         itemsDictionary: query.data?.dictionary ?? {},
+        activeGame,
+        setActiveGame,
       }}
     >
       {children}

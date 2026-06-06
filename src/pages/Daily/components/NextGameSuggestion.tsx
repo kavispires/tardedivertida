@@ -13,7 +13,7 @@ import { Translate } from 'components/language/Translate';
 import type { GameSettings } from '../utils/types';
 import { ALL_SETTINGS } from '../utils/settings';
 import { checkWasPlayedToday, daysSinceRelease, getAnalyticsEventName } from '../utils';
-import { useDailyActiveGame } from '../hooks/useDailyActiveGame';
+import { useDailyChallenge } from '../hooks/useDailyChallenge';
 
 const PRIORITY_LIST = orderBy(
   Object.values(ALL_SETTINGS).filter(
@@ -43,7 +43,7 @@ type NextSuggestionEntryProps = {
 };
 
 function NextSuggestionEntry({ settings }: NextSuggestionEntryProps) {
-  const { setActiveGame } = useDailyActiveGame();
+  const { setActiveGame } = useDailyChallenge();
 
   const handleClick = () => {
     logAnalyticsEvent(getAnalyticsEventName(settings.KEY, 'game_suggestion'));
@@ -66,8 +66,8 @@ function NextSuggestionEntry({ settings }: NextSuggestionEntryProps) {
           border: 'none',
           color: 'inherit',
           cursor: 'pointer',
-          textDecoration: 'underline',
           font: 'inherit',
+          // TODO: Restyle
         }}
       >
         <IconAvatar icon={<settings.HUB_ICON />} /> <DualTranslate>{settings.NAME}</DualTranslate>!
