@@ -8,7 +8,6 @@ import { App } from 'antd';
 import type { Me } from 'types/user';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
-import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { getToday, print } from 'utils/helpers';
@@ -85,7 +84,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [authenticatedUser, setAuthenticatedUser] = useState<User | null>(null);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
-  const { translate } = useLanguage();
   const [, setUserId] = useGlobalState('userId');
   const { message, notification } = App.useApp();
 
@@ -94,7 +92,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       if (user) {
         setAuthenticatedUser(user);
         setUserId(user.uid);
-        message.info(translate({ pt: 'Você está logado.', en: 'You are logged in' }));
+        // Make sure it gets the correct language right away
+        const language = JSON.parse(localStorage.getItem('TD_language') || '"en"');
+        if (language === 'pt') {
+          message.info('Você está logado');
+        } else {
+          message.info("You're logged in");
+        }
       } else {
         setAuthenticatedUser(null);
       }
