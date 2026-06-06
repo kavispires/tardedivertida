@@ -316,8 +316,8 @@ import { DailyItem } from 'pages/Daily/components/DailyItem';
 
 **Data Access**:
 ```typescript
-// Items dictionary is available from useDailyChallenge context
-const { items } = useDailyChallenge();
+// Items dictionary is available from useDailyChallengeContext context
+const { items } = useDailyChallengeContext();
 const item = items[itemId]; // { id, name: { en, pt } }
 ```
 
@@ -413,7 +413,7 @@ type DailyAlienadoEntry = {
 **Resource Dependencies**:
 - TDR Sprites (alien symbols via `SignCard`)
 - TDR Items (via `DailyItem` component)
-- Items dictionary from `useDailyChallenge`
+- Items dictionary from `useDailyChallengeContext`
 
 **Settings**:
 - Hearts: 4
@@ -451,7 +451,7 @@ type AquiODisc = {
 
 **Resource Dependencies**:
 - TDR Items (via `DailyItem` component)
-- Item dictionary from `useDailyChallenge`
+- Item dictionary from `useDailyChallengeContext`
 - Optional: Web Speech API for voice callouts
 
 **Settings**:
@@ -790,7 +790,7 @@ type DailyQuartetosEntry = {
 ```
 
 **Resource Dependencies**:
-- TDR Items/Sprites (via item dictionary from `useDailyChallenge`)
+- TDR Items/Sprites (via item dictionary from `useDailyChallengeContext`)
 - `DailyItem` component for rendering
 
 **Settings**:
@@ -930,7 +930,7 @@ This makes your game's settings accessible throughout the Daily framework via `g
 
 Choose based on game needs:
 
-- [ ] **For Items**: Use `DailyItem` component, access `items` from `useDailyChallenge`
+- [ ] **For Items**: Use `DailyItem` component, access `items` from `useDailyChallengeContext`
 - [ ] **For Sprites**: Use `SignCard` component
 - [ ] **For Images**: Use `ImageCard` component, `getSuspectImageId()` if needed
 - [ ] **For Drawings**: Display image URLs directly

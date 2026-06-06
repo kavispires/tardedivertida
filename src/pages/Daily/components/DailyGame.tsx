@@ -8,7 +8,7 @@ import { DailyError } from 'pages/Daily/components/DailyError';
 import { DailyLoading } from 'pages/Daily/components/DailyLoading';
 // Internal
 import type { DailyResponse } from '../utils/types';
-import { useDailyChallenge } from '../hooks/useDailyChallenge';
+import { useDailyChallengeContext } from '../hooks/useDailyChallengeContext';
 
 type DailyGameProps = {
   gameName: keyof DailyResponse;
@@ -19,7 +19,7 @@ export function DailyGame({ gameName, GameComponent }: DailyGameProps) {
   const { currentUser } = useCurrentUserContext();
 
   // Load challenge
-  const challengeQuery = useDailyChallenge();
+  const challengeQuery = useDailyChallengeContext();
 
   if (challengeQuery.isLoading) {
     return <DailyLoading />;
@@ -102,7 +102,7 @@ export function DailyGameBetaRelease({
   const { currentUser } = useCurrentUserContext();
 
   // Load challenge
-  const challengeQuery = useDailyChallenge();
+  const challengeQuery = useDailyChallengeContext();
 
   if (challengeQuery.isLoading) {
     return <DailyLoading />;

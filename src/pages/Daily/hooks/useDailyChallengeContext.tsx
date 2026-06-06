@@ -88,10 +88,10 @@ export const DailyContextProvider = ({ children }: DailyContextProviderProps) =>
   );
 };
 
-export const useDailyChallenge = () => {
+export const useDailyChallengeContext = () => {
   const context = useContext(DailyContext);
   if (context === undefined) {
-    throw new Error('useDailyChallenge must be used within a DailyContextProvider');
+    throw new Error('useDailyChallengeContext must be used within a DailyContextProvider');
   }
   return context;
 };

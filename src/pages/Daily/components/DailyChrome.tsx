@@ -5,7 +5,7 @@ import { CalendarIcon } from 'icons/CalendarIcon';
 import { Translate } from 'components/language/Translate';
 import { PageLayout } from 'components/layout/PageLayout';
 // Internal
-import { useDailyChallenge } from '../hooks/useDailyChallenge';
+import { useDailyChallengeContext } from '../hooks/useDailyChallengeContext';
 import { Header } from './Header';
 import { DailyContent } from './DailyContent';
 
@@ -14,7 +14,7 @@ type DailyChromeProps = {
 };
 
 export function DailyChrome({ children }: DailyChromeProps) {
-  const challengeQuery = useDailyChallenge();
+  const challengeQuery = useDailyChallengeContext();
 
   return (
     <PageLayout className="app">
@@ -27,7 +27,7 @@ export function DailyChrome({ children }: DailyChromeProps) {
           en="TD Daily"
         />
       </Header>
-      {challengeQuery.isLoading && <div className="loading-bar"></div>}
+      {challengeQuery.isLoading && <div className="daily-loading-bar"></div>}
       <DailyContent>{children}</DailyContent>
     </PageLayout>
   );

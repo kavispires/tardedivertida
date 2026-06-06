@@ -8,7 +8,7 @@ import { DEFAULT_PADDING } from 'utils/constants';
 import { getSource, type ItemCardProps } from 'components/cards/ItemCard';
 import { DEFAULT_SPRITE_SIZE, Sprite } from 'components/sprites/Sprite';
 // Internal
-import { useDailyChallenge } from '../hooks/useDailyChallenge';
+import { useDailyChallengeContext } from '../hooks/useDailyChallengeContext';
 
 /**
  * An item entry component.
@@ -22,7 +22,7 @@ export function DailyItem({
   title,
   padding = DEFAULT_PADDING,
 }: Omit<ItemCardProps, 'text'>) {
-  const { itemsDictionary } = useDailyChallenge();
+  const { itemsDictionary } = useDailyChallengeContext();
   const [source, id] = getSource(itemId);
   const [open, setOpen] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);

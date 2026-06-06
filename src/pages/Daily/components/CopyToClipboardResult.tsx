@@ -31,10 +31,16 @@ export function CopyToClipboardResult({ result, rows = 4 }: CopyToClipboardResul
   }, [state, message, translate]);
 
   return (
-    <SpaceContainer
-      vertical
-      fullWidth
-    >
+    <SpaceContainer vertical>
+      <Typography.Paragraph
+        className="center"
+        style={{ marginBottom: 0 }}
+      >
+        <Translate
+          pt="Compartilhe com os amigos:"
+          en="Share it with friends:"
+        />
+      </Typography.Paragraph>
       <TransparentButton onClick={() => copyToClipboard(result)}>
         <Input.TextArea
           value={result}
@@ -43,13 +49,6 @@ export function CopyToClipboardResult({ result, rows = 4 }: CopyToClipboardResul
           rows={rows}
         />
       </TransparentButton>
-
-      <Typography.Paragraph className="center">
-        <Translate
-          pt="Clique no campo acima para copiar e compartilhe com os amigos"
-          en="Click the field above to copy and share it with friends"
-        />
-      </Typography.Paragraph>
     </SpaceContainer>
   );
 }

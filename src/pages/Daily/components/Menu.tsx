@@ -6,7 +6,7 @@ import { Button, Drawer, Space } from 'antd';
 import { Translate } from 'components/language/Translate';
 // Internal
 import { useDailyGlobalStore } from '../hooks/useDailyGlobalStore';
-import { useDailyChallenge } from '../hooks/useDailyChallenge';
+import { useDailyChallengeContext } from '../hooks/useDailyChallengeContext';
 
 type MenuProps = {
   hearts: number;
@@ -94,7 +94,7 @@ function RulesModal({ rules, defaultOpen }: RulesModalProps) {
 }
 
 function DailyHubLink() {
-  const { setActiveGame } = useDailyChallenge();
+  const { setActiveGame } = useDailyChallengeContext();
 
   return (
     <Button

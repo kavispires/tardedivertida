@@ -8,7 +8,7 @@ import { logAnalyticsEvent } from 'services/firebase';
 import { inNSeconds } from 'utils/helpers';
 import { speak } from 'utils/speech';
 // Pages
-import { useDailyChallenge } from 'pages/Daily/hooks/useDailyChallenge';
+import { useDailyChallengeContext } from 'pages/Daily/hooks/useDailyChallengeContext';
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
 import { usePreference } from 'pages/Daily/hooks/useDailyPreferences';
@@ -23,7 +23,7 @@ import { SETTINGS } from './settings';
 import type { DailyAquiOEntry, GameState, SessionState } from './types';
 
 export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
-  const { itemsDictionary } = useDailyChallenge();
+  const { itemsDictionary } = useDailyChallengeContext();
   const [timesUp, setTimesUp] = useState(false);
 
   const [mode, setMode] = usePreference('aquiOMode');

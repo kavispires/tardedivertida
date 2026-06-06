@@ -8,14 +8,14 @@ import { getToday } from 'utils/helpers';
 // Internal
 import { ALL_SETTINGS } from './utils/settings';
 import { DailyChrome } from './components/DailyChrome';
-import { useDailyChallenge } from './hooks/useDailyChallenge';
+import { useDailyChallengeContext } from './hooks/useDailyChallengeContext';
 
 const PRIORITY_LIST = Object.values(ALL_SETTINGS);
 
 export function DebugPage() {
   const { isAdmin } = useCurrentUserContext();
   // Load challenge
-  const challengeQuery = useDailyChallenge();
+  const challengeQuery = useDailyChallengeContext();
   const challengeData = challengeQuery.data as Record<string, unknown> | undefined;
 
   if (challengeQuery.isLoading) {

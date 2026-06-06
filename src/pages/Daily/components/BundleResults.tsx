@@ -17,7 +17,7 @@ import type { DailyResponse, GameSettings } from '../utils/types';
 import { ALL_HELPERS } from '../utils/helpers';
 import { ALL_SETTINGS } from '../utils/settings';
 import { checkWasPlayedToday, getSourceName, wait } from '../utils';
-import { useDailyChallenge } from '../hooks/useDailyChallenge';
+import { useDailyChallengeContext } from '../hooks/useDailyChallengeContext';
 import type { DailyAquiOEntry } from '../games/AquiO/utils/types';
 import type { DailyArteRuimEntry } from '../games/ArteRuim/utils/types';
 import type { DailyAlienadoEntry } from '../games/Alienado/utils/types';
@@ -39,7 +39,7 @@ type BundleResultsProps = {
 };
 
 export function BundleResults({ list }: BundleResultsProps) {
-  const challengeQuery = useDailyChallenge();
+  const challengeQuery = useDailyChallengeContext();
   const [open, setOpen] = useState(false);
   const { message } = App.useApp();
   const { translate } = useLanguage();
