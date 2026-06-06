@@ -65,6 +65,10 @@ type Libraries = {
 // Get NEW_RELEASES, GAMES, CONTRIBUTIONS, DEMOS and SPECIALS from ALL_SETTINGS
 const { NEW_RELEASES, GAMES, CONTRIBUTIONS, DEMOS, SPECIALS, SHAREABLE } = Object.values(ALL_SETTINGS).reduce(
   (acc: Libraries, settings) => {
+    if (settings.VERSION === 'unreleased') {
+      return acc;
+    }
+
     if (
       settings.TYPE === 'game' &&
       ['stable', 'beta'].includes(settings.VERSION ?? '') &&
@@ -77,7 +81,7 @@ const { NEW_RELEASES, GAMES, CONTRIBUTIONS, DEMOS, SPECIALS, SHAREABLE } = Objec
     if (
       settings.RELEASE_DATE &&
       settings.VERSION !== 'demo' &&
-      daysSinceRelease(settings.RELEASE_DATE) < 15
+      daysSinceRelease(settings.RELEASE_DATE) < 21
     ) {
       acc.NEW_RELEASES.push(settings);
       acc.NEW_RELEASES = orderBy(acc.NEW_RELEASES, [(e) => daysSinceRelease(e.RELEASE_DATE)], ['desc']);

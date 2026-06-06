@@ -16,7 +16,7 @@ export const SETTINGS: GameSettings = {
     en: 'Would you press the button?',
     pt: 'Você apertaria o botão?',
   },
-  VERSION: 'demo',
+  VERSION: 'unreleased',
   // Custom settings
   HEARTS: 5,
 };

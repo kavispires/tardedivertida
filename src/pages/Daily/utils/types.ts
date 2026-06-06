@@ -145,7 +145,7 @@ export interface GameSettings {
   /**
    * Whether the game is in demo mode
    */
-  VERSION: 'stable' | 'beta' | 'demo' | 'maintenance' | 'disabled' | 'soon';
+  VERSION: 'stable' | 'beta' | 'demo' | 'maintenance' | 'disabled' | 'soon' | 'unreleased';
   /**
    * Other values like hearts, goal, etc
    */
