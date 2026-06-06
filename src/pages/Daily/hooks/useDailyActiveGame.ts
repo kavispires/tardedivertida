@@ -30,6 +30,7 @@ const getInitialStoreState = (): DailyActiveGame => {
     }
 
     const storedPreferences = JSON.parse(storedPreferencesString) ?? {};
+
     const mergedState = { ...initialState, ...storedPreferences };
 
     // Reset if the date has changed
@@ -38,7 +39,8 @@ const getInitialStoreState = (): DailyActiveGame => {
       mergedState.activeDate = getToday();
     }
 
-    return mergedState;
+    // return mergedState;
+    return initialState;
   } catch (error) {
     // biome-ignore lint/suspicious/noConsole: error logging
     console.error('Failed to parse daily preferences from localStorage:', error);
