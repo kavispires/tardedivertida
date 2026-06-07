@@ -12,7 +12,8 @@ import { useStopwatch } from 'react-timer-hook';
 // Pages
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
 import { useDailyGlobalStore } from 'pages/Daily/hooks/useDailyGlobalStore';
-import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useMarkAsPlayed } from 'pages/Daily/hooks/useDailyPlayTracker';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { STATUSES } from 'pages/Daily/utils/constants';
 import { playSFX } from 'pages/Daily/utils/soundEffects';

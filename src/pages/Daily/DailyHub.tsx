@@ -31,9 +31,10 @@ import { StreakDisplay } from './components/StreakDisplay';
 import { StreakMilestoneModal } from './components/StreakMilestoneModal';
 import { HubDevTools } from './components/HubDevTools';
 import { SoundFXToggle } from './components/SoundFXToggle';
-import { checkWasPlayedToday, daysSinceRelease, hasBeenReleased } from './utils';
+import { daysSinceRelease, hasBeenReleased } from './utils';
 import { useStreakMilestone } from './hooks/useStreakData';
 import { useDailyChallengeContext } from './hooks/useDailyChallengeContext';
+import { useDailyPlayTracker } from './hooks/useDailyPlayTracker';
 
 type Entry = GameSettings & {
   disabled?: boolean;
@@ -358,6 +359,7 @@ function GameButton({
   version = 'stable',
 }: GameButtonProps) {
   const { setActiveGame } = useDailyChallengeContext();
+  const { checkWasPlayedToday } = useDailyPlayTracker();
   const wasPlayed = checkWasPlayedToday(lsKey);
 
   const isNewRelease =

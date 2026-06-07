@@ -9,7 +9,8 @@ import { logAnalyticsEvent } from 'services/firebase';
 import { stringRemoveAccents } from 'utils/helpers';
 // Pages
 import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useMarkAsPlayed } from 'pages/Daily/hooks/useDailyPlayTracker';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { getAnalyticsEventName } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';

@@ -10,7 +10,8 @@ import { speak } from 'utils/speech';
 // Pages
 import { useDailyChallengeContext } from 'pages/Daily/hooks/useDailyChallengeContext';
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useMarkAsPlayed } from 'pages/Daily/hooks/useDailyPlayTracker';
 import { usePreference } from 'pages/Daily/hooks/useDailyPreferences';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { checkWeekend, getAnalyticsEventName } from 'pages/Daily/utils';

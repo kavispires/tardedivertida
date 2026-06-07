@@ -4,7 +4,8 @@ import { useEffect } from 'react';
 import { logAnalyticsEvent } from 'services/firebase';
 // Pages
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useMarkAsPlayed } from 'pages/Daily/hooks/useDailyPlayTracker';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { getAnalyticsEventName } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';

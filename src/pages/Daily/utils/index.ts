@@ -93,12 +93,12 @@ export const wait = async (duration = 1000) => {
  */
 export const composeLocalTodayKey = (key: string) => `TD_DAILY_${key}_LOCAL_TODAY`;
 
-/**
- * Composes a local played key for the daily feature.
- * @param key - The key to compose the local played key for.
- * @returns The composed local played key.
- */
-export const composeLocalPlayedKey = (key: string) => `TD_DAILY_${key}_LOCAL_PLAYED`;
+// /**
+//  * Composes a local played key for the daily feature.
+//  * @param key - The key to compose the local played key for.
+//  * @returns The composed local played key.
+//  */
+// export const composeLocalPlayedKey = (key: string) => `TD_DAILY_${key}_LOCAL_PLAYED`;
 
 /**
  * Composes the analytics event name for a specific key and action.
@@ -108,27 +108,6 @@ export const composeLocalPlayedKey = (key: string) => `TD_DAILY_${key}_LOCAL_PLA
  */
 export const getAnalyticsEventName = (key: string, action: 'win' | 'lose' | 'played' | 'game_suggestion') =>
   `daily_${key}_${action}`;
-
-/**
- * Checks if a specific key was played today.
- * @param key - The key to check.
- * @returns A boolean indicating whether the key was played today.
- */
-export const checkWasPlayedToday = (key: string): boolean => {
-  const localKey = composeLocalTodayKey(key);
-  const session = JSON.parse(localStorage.getItem(localKey) || '{}');
-  const playedKey = composeLocalPlayedKey(key);
-  const playedOn = JSON.parse(localStorage.getItem(playedKey) || 'false');
-  const today = getToday();
-  const isToday = session?.id === today;
-
-  if (!isToday) {
-    localStorage.setItem(playedKey, JSON.stringify('unplayed'));
-    return false;
-  }
-
-  return playedOn === today;
-};
 
 /**
  * Loads the locally stored data for today's game based on the provided key and game ID.

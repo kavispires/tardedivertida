@@ -12,8 +12,9 @@ import { Translate } from 'components/language/Translate';
 // Internal
 import type { GameSettings } from '../utils/types';
 import { ALL_SETTINGS } from '../utils/settings';
-import { checkWasPlayedToday, daysSinceRelease, getAnalyticsEventName } from '../utils';
+import { daysSinceRelease, getAnalyticsEventName } from '../utils';
 import { useDailyChallengeContext } from '../hooks/useDailyChallengeContext';
+import { useDailyPlayTracker } from '../hooks/useDailyPlayTracker';
 
 const PRIORITY_LIST = orderBy(
   Object.values(ALL_SETTINGS).filter(
@@ -34,12 +35,6 @@ const PRIORITY_LIST = orderBy(
   ],
   ['desc', 'desc', 'asc'],
 );
-
-const getUnplayedGames = () => {
-  return PRIORITY_LIST.filter((game) => !checkWasPlayedToday(game.KEY)).map((settings) =>
-    NextSuggestionEntry({ settings }),
-  );
-};
 
 type NextSuggestionEntryProps = {
   settings: GameSettings;
@@ -73,8 +68,11 @@ function NextSuggestionEntry({ settings }: NextSuggestionEntryProps) {
 }
 
 export const NextGameSuggestion = () => {
+  const { checkWasPlayedToday } = useDailyPlayTracker();
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: no functions
   const unplayedGames = useMemo(() => {
-    return getUnplayedGames();
+    return PRIORITY_LIST.filter((game) => !checkWasPlayedToday(game.KEY));
   }, []);
 
   if (unplayedGames.length === 0) {
@@ -104,7 +102,10 @@ export const NextGameSuggestion = () => {
         dots={false}
       >
         {unplayedGames.map((entry) => (
-          <div key={entry.key}>{entry}</div>
+          <NextSuggestionEntry
+            key={entry.KEY}
+            settings={entry}
+          />
         ))}
       </Carousel>
     </div>

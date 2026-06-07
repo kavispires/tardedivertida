@@ -8,7 +8,8 @@ import { useLanguage } from 'hooks/useLanguage';
 import { logAnalyticsEvent } from 'services/firebase';
 // Pages
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useMarkAsPlayed } from 'pages/Daily/hooks/useDailyPlayTracker';
 import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
 import { getAnalyticsEventName } from 'pages/Daily/utils';
 import { STATUSES } from 'pages/Daily/utils/constants';
@@ -22,6 +23,7 @@ export function useAlienadoEngine(data: DailyAlienadoEntry, initialState: GameSt
   const { message } = App.useApp();
   const { translate } = useLanguage();
   const { state, updateState } = useDailyGameState<GameState>(initialState);
+
   const { session, setSession, updateSession } = useDailySessionState<SessionState>({
     selection: [null, null, null, null],
     slotIndex: null,

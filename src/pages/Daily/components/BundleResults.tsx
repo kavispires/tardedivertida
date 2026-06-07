@@ -16,7 +16,7 @@ import { Translate } from 'components/language/Translate';
 import type { DailyResponse, GameSettings } from '../utils/types';
 import { ALL_HELPERS } from '../utils/helpers';
 import { ALL_SETTINGS } from '../utils/settings';
-import { checkWasPlayedToday, getSourceName, wait } from '../utils';
+import { getSourceName, wait } from '../utils';
 import { useDailyChallengeContext } from '../hooks/useDailyChallengeContext';
 import type { DailyAquiOEntry } from '../games/AquiO/utils/types';
 import type { DailyArteRuimEntry } from '../games/ArteRuim/utils/types';
@@ -33,6 +33,7 @@ import type { DailyVitralEntry } from '../games/Vitral/utils/types';
 import type { DailyMapeamentoEntry } from '../games/Mapeamento/utils/types';
 import type { DailyPirralhosEntry } from '../games/Pirralhos/utils/types';
 import type { DailyPanicoEntry } from '../games/Panico/utils/types';
+import { useDailyPlayTracker } from '../hooks/useDailyPlayTracker';
 
 type BundleResultsProps = {
   list: (GameSettings & { disabled?: boolean })[];
@@ -45,7 +46,9 @@ export function BundleResults({ list }: BundleResultsProps) {
   const { translate } = useLanguage();
   const { language } = useLanguage();
   const [, copyToClipboard] = useCopyToClipboard();
+  const { checkWasPlayedToday } = useDailyPlayTracker();
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: no functions
   const playedGames = useMemo(
     () =>
       orderBy(

@@ -9,7 +9,8 @@ import { SEPARATOR } from 'utils/constants';
 import { removeDuplicates } from 'utils/helpers';
 // Pages
 import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalToday, useMarkAsPlayed } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
+import { useMarkAsPlayed } from 'pages/Daily/hooks/useDailyPlayTracker';
 import { useDailySaveDrawings } from 'pages/Daily/hooks/useDailySave';
 import { getAnalyticsEventName, wait } from 'pages/Daily/utils';
 import { playSFX } from 'pages/Daily/utils/soundEffects';

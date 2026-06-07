@@ -10,7 +10,8 @@ import { Translate } from 'components/language/Translate';
 // Internal
 import { ALL_SETTINGS } from '../utils/settings';
 import { resetStreak } from '../utils/streakManager';
-import { composeLocalPlayedKey, composeLocalTodayKey } from '../utils';
+import { composeLocalTodayKey } from '../utils';
+import { useDailyPlayTracker } from '../hooks/useDailyPlayTracker';
 
 const keys = Object.values(ALL_SETTINGS);
 const STREAK_KEY = 'TD_DAILY_STREAK';
@@ -22,12 +23,13 @@ type DevResetLocalStorageButtonProps = {
 export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalStorageButtonProps) {
   const { message } = App.useApp();
   const navigate = useNavigate();
+  const { resetPlayStatus, playedStatus } = useDailyPlayTracker();
 
   const onReset = () => {
     if (localStorageKey) {
       // Reset specific game
       localStorage.removeItem(composeLocalTodayKey(localStorageKey));
-      localStorage.removeItem(composeLocalPlayedKey(localStorageKey));
+      resetPlayStatus(localStorageKey);
 
       // Also remove from streak history for today
       try {
@@ -45,7 +47,7 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
       // Reset all games
       keys.forEach((key) => {
         localStorage.removeItem(composeLocalTodayKey(key.KEY));
-        localStorage.removeItem(composeLocalPlayedKey(key.KEY));
+        resetPlayStatus(key.KEY);
       });
 
       // Reset streak
@@ -81,7 +83,7 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
     }
     keys.forEach((key) => {
       localStorage.setItem(composeLocalTodayKey(key.KEY), yesterday);
-      localStorage.setItem(composeLocalPlayedKey(key.KEY), yesterday);
+      resetPlayStatus(key.KEY, yesterday);
     });
 
     navigate('/diario');
@@ -104,7 +106,7 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
       const allGameData: PlainObject = {};
       keys.forEach((key) => {
         const todayData = localStorage.getItem(composeLocalTodayKey(key.KEY));
-        const playedData = localStorage.getItem(composeLocalPlayedKey(key.KEY));
+        const playedData = playedStatus[key.KEY];
         if (todayData || playedData) {
           allGameData[key.KEY] = {
             today: todayData ? JSON.parse(todayData) : null,
