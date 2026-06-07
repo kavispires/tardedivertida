@@ -21,7 +21,7 @@ const PRIORITY_LIST = orderBy(
     (settings) =>
       settings.TYPE === 'game' &&
       daysSinceRelease(settings.RELEASE_DATE) > 0 &&
-      ['maintenance', 'disabled', 'soon', 'unreleased'].includes(settings.VERSION),
+      !['maintenance', 'disabled', 'soon', 'unreleased'].includes(settings.VERSION),
   ),
   [
     (o) => {
