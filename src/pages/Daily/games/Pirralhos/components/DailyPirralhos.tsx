@@ -180,6 +180,7 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
             return (
               <Fragment key={`kid-${entry.kidId}-${index}`}>
                 {/* Kid positioned on ellipse */}
+
                 <div
                   className="kids-container__item-wrapper"
                   style={{
@@ -193,6 +194,7 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
                     width={width}
                     assessKid={assessKid}
                     assessment={assessments[entry.kidId] ?? null}
+                    triggerResolveModal={() => setSolveModalOpen(true)}
                   />
                 </div>
 

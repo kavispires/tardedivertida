@@ -39,7 +39,14 @@
     z-index: 15;
     bottom: get-unit(-1);
     left: get-unit(-1);
+
     right: 0;
+
+    border: none;
+    padding: 0;
+    padding-top: get-unit(10);
+    background: get-color("black", 5, 0.01);
+    cursor: pointer;
   }
 
   &__assessment {
@@ -105,10 +112,6 @@
   max-width: 500px;
   margin: 0 auto;
 
-  // 2:3 aspect ratio (width:height) for vertical oblong shape
-  // aspect-ratio: 2 / 3;
-  // min-height: 600px;
-
   &__item-wrapper {
     position: absolute;
     // Transform origin at center for proper rotation
@@ -123,8 +126,4 @@
     transform-origin: center center;
     translate: -50% -50%;
   }
-}
-
-.pirralhos-hint {
-  // margin-top: get-unit(20);
 }

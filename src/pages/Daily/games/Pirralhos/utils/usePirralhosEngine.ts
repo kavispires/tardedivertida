@@ -101,7 +101,7 @@ export function usePirralhosEngine(data: DailyPirralhosEntry, initialState: Game
   };
 
   const assessKid = (kidId: string) => {
-    const assessmentOrder = ['innocent', 'liar', 'culprit', 'unknown'] as const;
+    const assessmentOrder = ['liar', 'innocent', 'culprit', 'unknown'] as const;
     setState((prevState) => {
       const currentAssessment = prevState.assessments[kidId];
       const currentIndex = assessmentOrder.indexOf(currentAssessment);

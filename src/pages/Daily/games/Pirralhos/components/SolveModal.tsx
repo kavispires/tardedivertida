@@ -52,7 +52,10 @@ export function SolveModal({ kidsEntries, onResolve, guesses }: SolveModalProps)
               cardWidth={width}
               preview={false}
             />
-            <Text strong>
+            <Text
+              strong
+              className="center"
+            >
               <DualTranslate>{kid.name}</DualTranslate>
             </Text>
             <Button

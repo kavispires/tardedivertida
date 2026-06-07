@@ -20,9 +20,17 @@ type KidCardProps = {
   width: number;
   assessKid: (kidId: string) => void;
   assessment: KidAssessment | null;
+  triggerResolveModal?: () => void;
 };
 
-export function KidCard({ kidEntry, index, width, assessKid, assessment }: KidCardProps) {
+export function KidCard({
+  kidEntry,
+  index,
+  width,
+  assessKid,
+  assessment,
+  triggerResolveModal,
+}: KidCardProps) {
   const kid = KIDS_LIBRARY[kidEntry.kidId];
   return (
     <div className={clsx('kid-container', `"kid-container--${index + 1}-kid"`)}>
@@ -48,7 +56,11 @@ export function KidCard({ kidEntry, index, width, assessKid, assessment }: KidCa
         cardWidth={width}
         preview={false}
       />
-      <div className="kid-container__footer">
+      <button
+        className="kid-container__footer"
+        type="button"
+        onClick={triggerResolveModal}
+      >
         <div className="kid-container__kid-name">
           <DualTranslate>{kid.name}</DualTranslate>
         </div>
@@ -58,7 +70,7 @@ export function KidCard({ kidEntry, index, width, assessKid, assessment }: KidCa
         >
           <DualTranslate>{kidEntry.statement}</DualTranslate>
         </div>
-      </div>
+      </button>
     </div>
   );
 }
@@ -95,7 +107,10 @@ function AssessmentSwitch({ kidId, assessment, assessKid }: AssessmentSwitchProp
     <Button
       shape="circle"
       size="small"
-      onClick={() => assessKid(String(kidId))}
+      onClick={(e) => {
+        e.stopPropagation();
+        assessKid(String(kidId));
+      }}
       icon={
         <IconAvatar
           icon={icon}
