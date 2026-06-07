@@ -6,6 +6,8 @@ import { Button, Layout, Modal } from 'antd';
 import type { Me } from 'types/user';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
+// Utils
+import { pluralize } from 'utils/helpers';
 // Icons
 import { LiarIcon, OpposingArrowIcon } from 'icons/collection';
 import { TraitorIcon } from 'icons/TraitorIcon';
@@ -91,10 +93,12 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
               icon={<LiarIcon />}
               size="small"
             />{' '}
-            {data.liarsIds.length}{' '}
+            {data.liarsIds.length === data.possibleLiars
+              ? data.liarsIds.length
+              : `${data.liarsIds.length}-${data.possibleLiars}`}{' '}
             <Translate
-              pt="Mentirosos?"
-              en="Liars?"
+              pt={pluralize(data.possibleLiars, 'Mentiroso')}
+              en={pluralize(data.possibleLiars, 'Liar')}
             />
           </TextHighlight>
         </RegionText>
