@@ -79,39 +79,72 @@ type EllipsePosition = {
  */
 const HARDCODED_POSITIONS: Record<number, EllipsePosition[]> = {
   3: [
-    { x: 50, y: 8, angle: -90 }, // Top center
-    { x: 85, y: 75, angle: 90 }, // Bottom right
-    { x: 15, y: 75, angle: 210 }, // Bottom left
+    { x: 50, y: 10, angle: 45 }, // Top center
+    { x: 85, y: 60, angle: 0 }, // Bottom right
+    { x: 15, y: 60, angle: -45 }, // Bottom left
   ],
   4: [
-    { x: 50, y: 8, angle: -90 }, // Top center
-    { x: 85, y: 35, angle: 0 }, // Right
-    { x: 50, y: 92, angle: 90 }, // Bottom center
-    { x: 15, y: 35, angle: 180 }, // Left
+    { x: 50, y: 10, angle: 45 }, // Top center
+    { x: 85, y: 40, angle: -45 }, // Right
+    { x: 50, y: 75, angle: 45 }, // Bottom center
+    { x: 15, y: 40, angle: -45 }, // Left
   ],
   5: [
-    { x: 50, y: 5, angle: -90 }, // Top center
-    { x: 88, y: 30, angle: -18 }, // Top right
-    { x: 75, y: 75, angle: 54 }, // Bottom right
-    { x: 25, y: 75, angle: 126 }, // Bottom left
-    { x: 12, y: 30, angle: 198 }, // Top left
+    { x: 50, y: 5, angle: 45 }, // Top center
+    { x: 85, y: 35, angle: -45 }, // Top right
+    { x: 75, y: 75, angle: 0 }, // Bottom right
+    { x: 25, y: 75, angle: 45 }, // Bottom left
+    { x: 15, y: 35, angle: -45 }, // Top left
   ],
   6: [
-    { x: 50, y: 5, angle: -90 }, // Top center
-    { x: 85, y: 25, angle: -30 }, // Top right
-    { x: 85, y: 65, angle: 30 }, // Bottom right
-    { x: 50, y: 92, angle: 90 }, // Bottom center
-    { x: 15, y: 65, angle: 150 }, // Bottom left
-    { x: 15, y: 25, angle: 210 }, // Top left
+    { x: 50, y: 5, angle: 45 }, // Top center
+    { x: 85, y: 25, angle: 90 }, // Top right
+    { x: 85, y: 60, angle: -45 }, // Bottom right
+    { x: 50, y: 85, angle: 45 }, // Bottom center
+    { x: 15, y: 60, angle: 90 }, // Bottom left
+    { x: 15, y: 25, angle: -45 }, // Top left
   ],
   7: [
-    { x: 50, y: 3, angle: -90 }, // Top center
-    { x: 85, y: 20, angle: -38 }, // Upper right
-    { x: 90, y: 50, angle: 0 }, // Middle right
-    { x: 70, y: 80, angle: 51 }, // Lower right
-    { x: 30, y: 80, angle: 129 }, // Lower left
-    { x: 10, y: 50, angle: 180 }, // Middle left
-    { x: 15, y: 20, angle: 218 }, // Upper left
+    { x: 50, y: 5, angle: 45 }, // Top center
+    { x: 85, y: 25, angle: 90 }, // Upper right
+    { x: 85, y: 55, angle: 115 }, // Middle right
+    { x: 75, y: 85, angle: 0 }, // Lower right
+    { x: 25, y: 85, angle: 65 }, // Lower left
+    { x: 15, y: 55, angle: 90 }, // Middle left
+    { x: 15, y: 25, angle: -45 }, // Upper left
+  ],
+  8: [
+    { x: 50, y: 5, angle: 45 }, // Top center
+    { x: 85, y: 20, angle: 90 }, // Upper right
+    { x: 85, y: 45, angle: 90 }, // Middle right
+    { x: 85, y: 70, angle: -45 }, // Lower right
+    { x: 50, y: 85, angle: 45 }, // Bottom center
+    { x: 15, y: 70, angle: 90 }, // Lower left
+    { x: 15, y: 45, angle: 90 }, // Middle left
+    { x: 15, y: 20, angle: -45 }, // Upper left
+  ],
+  9: [
+    { x: 50, y: 5, angle: 45 }, // Top center
+    { x: 85, y: 15, angle: 90 }, // 1 right
+    { x: 85, y: 40, angle: 90 }, // 2 right
+    { x: 85, y: 65, angle: -75 }, // 3 right
+    { x: 75, y: 88, angle: 45 }, // 4 center
+    { x: 25, y: 88, angle: 75 }, // 4 left
+    { x: 15, y: 65, angle: 90 }, // 3 left
+    { x: 15, y: 40, angle: 90 }, // 2 left
+    { x: 15, y: 15, angle: -45 }, // 1 left
+  ],
+  10: [
+    { x: 50, y: 5, angle: 45 }, // Top center
+    { x: 85, y: 15, angle: 90 }, // 1 right
+    { x: 85, y: 37, angle: 90 }, // 2 right
+    { x: 85, y: 60, angle: 90 }, // 3 right
+    { x: 85, y: 83, angle: -45 }, // 4 center
+    { x: 50, y: 90, angle: 45 }, // Bottom center
+    { x: 15, y: 83, angle: 90 }, // 4 left
+    { x: 15, y: 60, angle: 90 }, // 3 left
+    { x: 15, y: 37, angle: 90 }, // 2 left
+    { x: 15, y: 15, angle: -45 }, // 1 left
   ],
 };
 
@@ -129,24 +162,4 @@ export function calculateEllipsePositions(kidCount: number): EllipsePosition[] {
   }
 
   return positions;
-}
-
-/**
- * Calculate the rotation angle for an arrow pointing from one kid to the next
- * @param fromAngle - Angle of the current kid in degrees
- * @param toAngle - Angle of the next kid in degrees
- * @returns Rotation angle in degrees for the arrow
- */
-export function calculateArrowRotation(fromAngle: number, toAngle: number): number {
-  // Calculate the midpoint angle
-  let midAngle = (fromAngle + toAngle) / 2;
-
-  // Handle the wrap-around case (e.g., from 315° to 45°)
-  if (Math.abs(toAngle - fromAngle) > 180) {
-    midAngle = ((fromAngle + toAngle + 360) / 2) % 360;
-  }
-
-  // Add 90 degrees because the arrow should point along the ellipse tangent
-  // (perpendicular to the radius at that point)
-  return midAngle + 90;
 }

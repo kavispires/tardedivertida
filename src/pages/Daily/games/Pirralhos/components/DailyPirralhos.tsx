@@ -22,7 +22,7 @@ import { Menu } from 'pages/Daily/components/Menu';
 import { Region, RegionHint, RegionText } from 'pages/Daily/components/Region';
 import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
 // Internal
-import { calculateArrowRotation, calculateEllipsePositions, getInitialState } from '../utils/helpers';
+import { calculateEllipsePositions, getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
 import type { DailyPirralhosEntry } from '../utils/types';
 import { usePirralhosEngine } from '../utils/usePirralhosEngine';
@@ -54,6 +54,7 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
   } = usePirralhosEngine(data, initialState);
 
   // Calculate positions for kids in elliptical layout
+
   const positions = calculateEllipsePositions(data.kids.length);
 
   return (
@@ -163,7 +164,9 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
           className="kids-container"
           style={{
             marginTop: width / 1.85,
-            minHeight: ([2.5, 3, 4, 4][data.kids.length - 4] * width) / 0.67,
+            height:
+              (width / 0.67) *
+              (data.kids.length / 2 + [0, 0, 0, 0, 0.5, 0.5, 0.5, 0.4, 0.7, 0.7, 0.5][data.kids.length]),
           }}
         >
           {data.kids.map((entry, index) => {
@@ -173,10 +176,9 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
             // Calculate midpoint for arrow position
             const arrowX = (position.x + nextPosition.x) / 2;
             const arrowY = (position.y + nextPosition.y) / 2;
-            const arrowRotation = calculateArrowRotation(position.angle, nextPosition.angle);
 
             return (
-              <Fragment key={entry.kidId}>
+              <Fragment key={`kid-${entry.kidId}-${index}`}>
                 {/* Kid positioned on ellipse */}
                 <div
                   className="kids-container__item-wrapper"
@@ -200,7 +202,7 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
                   style={{
                     left: `${arrowX}%`,
                     top: `${arrowY}%`,
-                    transform: `rotate(${arrowRotation}deg)`,
+                    transform: `rotate(${position.angle}deg)`,
                     zIndex: 16,
                   }}
                 >
