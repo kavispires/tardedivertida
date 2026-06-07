@@ -195,7 +195,7 @@ function IconsCategoryListing({ list, collection, copyToClipboard, searchText }:
                 }
                 return (
                   <li
-                    key={iconName}
+                    key={`${game}-${iconName}`}
                     className="icons-grid__item"
                   >
                     <TransparentButton onClick={() => copyToClipboard(iconName)}>
