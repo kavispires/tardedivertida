@@ -21,13 +21,12 @@
     word-break: keep-all;
     white-space: nowrap;
     display: block;
-    padding-left: get-unit(3);
   }
 
   &__kid-info {
     font-size: 0.85em;
     color: get-color("black");
-    display: block;
+
     padding: get-unit(0 1);
     background: get-color("white");
     border-radius: get-unit(1);
@@ -89,20 +88,17 @@
   width: 1.5em;
   height: 1.5em;
   background: get-color("black");
-  text-align: center;
-  line-height: 1.5em;
+  margin-right: get-unit(1);
 
   border-radius: 50%;
   aspect-ratio: 1 / 1;
 
   &--boy {
-    color: get-color("teal", 2);
-    background: get-color("teal", 7);
+    background: get-color("blue", 4);
   }
 
   &--girl {
-    color: get-color("pink", 2);
-    background: get-color("pink", 7);
+    background: get-color("pink", 4);
   }
 }
 
