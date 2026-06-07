@@ -1,6 +1,7 @@
 import clsx from 'clsx';
-import { type JSX, useMemo } from 'react';
+import { type JSX, useMemo, useState } from 'react';
 // Ant Design Resources
+import { ClearOutlined, EyeOutlined } from '@ant-design/icons';
 import { Button, Flex, Image, Tooltip } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
@@ -36,6 +37,7 @@ export function CharactersBoard({ characters, players, user, revealCharacters }:
   const { cache, setCache, resetCache } = useCacheV2<{ eliminated: Dictionary<boolean> }>({
     eliminated: {},
   });
+  const [isPeaking, setIsPeaking] = useState(false);
 
   const cardWidth = useCardWidth(10, {
     gap: 16,
@@ -79,7 +81,7 @@ export function CharactersBoard({ characters, players, user, revealCharacters }:
           {characters.map((suspect) => {
             // const wasEliminated = eliminatedSuspects.includes(suspect.id);
             const isUserCharacter = user.secretCharacterId === suspect.id;
-            const wasEliminated = !!cache.eliminated[suspect.id];
+            const wasEliminated = !isPeaking && !!cache.eliminated[suspect.id];
             const isOpponentCharacter = opponentsCharactersIds[suspect.id];
             return (
               <div
@@ -141,7 +143,10 @@ export function CharactersBoard({ characters, players, user, revealCharacters }:
           })}
         </Image.PreviewGroup>
       </div>
-      <Flex justify="center">
+      <Flex
+        justify="center"
+        gap={6}
+      >
         <Popconfirm
           title={
             <Translate
@@ -151,13 +156,24 @@ export function CharactersBoard({ characters, players, user, revealCharacters }:
           }
           onConfirm={resetCache}
         >
-          <Button>
+          <Button icon={<ClearOutlined />}>
             <Translate
               pt="Limpar eliminações"
               en="Clear eliminations"
             />
           </Button>
         </Popconfirm>
+
+        <Button
+          icon={<EyeOutlined />}
+          onMouseEnter={() => setIsPeaking(true)}
+          onMouseLeave={() => setIsPeaking(false)}
+        >
+          <Translate
+            en="Peek all characters"
+            pt="Espiar todos os personagens"
+          />
+        </Button>
       </Flex>
     </Flex>
   );
