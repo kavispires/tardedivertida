@@ -15,6 +15,7 @@ type UseCacheProps = {
 
 /**
  * Saves and loads cache whenever the player uses it
+ * @deprecated use useCacheV2 instead, which has a more robust implementation and automatic cleanup of old cache entries
  * @param options
  */
 export function useCache(options?: UseCacheProps) {
@@ -44,6 +45,7 @@ export function useCache(options?: UseCacheProps) {
 /**
  * Saves and loads cache whenever the player uses it
  * Used when a game needs two caches
+ * @deprecated use useCacheV2 instead, which has a more robust implementation and automatic cleanup of old cache entries
  * @param options
  */
 export function useCacheAlternative(options?: UseCacheProps) {
