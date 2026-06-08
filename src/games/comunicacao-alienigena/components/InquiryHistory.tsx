@@ -5,17 +5,16 @@ import { Space, Table } from 'antd';
 import type { GamePlayers } from 'types/game';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
+import { SignCard } from 'components/cards/SignCard';
 import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 // Internal
 import type { InquiryHistoryEntry, PhaseBasicState } from '../utils/types';
-import { AlienViewBoard } from './AlienViewBoard';
 
 type InquiryHistoryProps = {
   inquiryHistory: InquiryHistoryEntry[];
   players: GamePlayers;
-  isAlienBot?: boolean;
   attributes: PhaseBasicState['attributes'];
   showIntention?: boolean;
   debugMode: boolean;
@@ -24,7 +23,6 @@ type InquiryHistoryProps = {
 export function InquiryHistory({
   inquiryHistory,
   players,
-  isAlienBot,
   attributes,
   showIntention,
   debugMode,
@@ -69,11 +67,10 @@ export function InquiryHistory({
       ),
       dataIndex: 'answer',
       render: (answer) => (
-        <AlienViewBoard
-          request={answer}
-          isAlienBot={isAlienBot}
-          size="small"
-          attributes={attributes}
+        <SignCard
+          signId={answer}
+          className="transparent"
+          width={48}
         />
       ),
     },
@@ -122,6 +119,7 @@ export function InquiryHistory({
         columns={columns}
         bordered
         dataSource={inquiryHistory}
+        pagination={inquiryHistory.length < 10 ? false : { pageSize: 10 }}
       />
     </Space>
   );

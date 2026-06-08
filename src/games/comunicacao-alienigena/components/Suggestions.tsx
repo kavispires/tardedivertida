@@ -2,25 +2,33 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Button, Flex, Popover } from 'antd';
 // Hooks
-import { useCache } from 'hooks/useCache';
+import { useCacheV2 } from 'hooks/useCacheV2';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
 import { SignCard } from 'components/cards/SignCard';
 import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 import { TextHighlight } from 'components/text/TextHighlight';
-import { alienAttributesUtils } from 'components/toolKits/AlienAttributes';
+import { type AlienAttribute, alienAttributesUtils } from 'components/toolKits/AlienAttributes';
 // Internal
-import type { PhaseAlienAnswerState, PhaseBasicState } from '../utils/types';
+import type { PhaseBasicState } from '../utils/types';
 
 type InquirySuggestionsProps = {
   items: PhaseBasicState['items'];
   attributes: PhaseBasicState['attributes'];
   startingAttributesIds: string[];
+  setAttribute: (attributeId: string) => void;
+  setSelected: (selected: Dictionary<boolean>) => void;
 };
 
-export function InquirySuggestions({ items, attributes, startingAttributesIds }: InquirySuggestionsProps) {
-  const { cache } = useCache();
+export function InquirySuggestions({
+  items,
+  attributes,
+  startingAttributesIds,
+  setAttribute,
+  setSelected,
+}: InquirySuggestionsProps) {
+  const { cache } = useCacheV2<Dictionary<string>>({});
 
   const suggestions = useMemo(() => {
     return alienAttributesUtils.getInquirySuggestions(items, attributes, [
@@ -30,31 +38,58 @@ export function InquirySuggestions({ items, attributes, startingAttributesIds }:
   }, [items, attributes, startingAttributesIds, cache]);
 
   const content = (
-    <ul>
-      {suggestions.map((suggestion) => (
-        <li
-          key={suggestion.attribute.id}
-          className="my-1"
-        >
-          <Flex
-            align="center"
-            gap={8}
+    <>
+      <p style={{ maxWidth: 256 }}>
+        <Translate
+          en="This feature uses the attributes you've been taking note of during the game."
+          pt="Essa funcionalidade utiliza os atributos que você tem anotado durante o jogo."
+        />
+      </p>
+
+      <ul className="inquiry-suggestions-list">
+        {suggestions.map((suggestion) => (
+          <li
+            key={suggestion.attribute.id}
+            className="inquiry-suggestions-list__item"
           >
             <TextHighlight>
               <DualTranslate>{suggestion.attribute.name}</DualTranslate>
             </TextHighlight>
-            {suggestion.items.map((item) => (
-              <ItemCard
-                key={item.id}
-                itemId={item.id}
-                width={36}
-                padding={2}
+            <Flex gap={3}>
+              {suggestion.items.map((item) => (
+                <ItemCard
+                  key={item.id}
+                  itemId={item.id}
+                  width={36}
+                  padding={2}
+                />
+              ))}
+            </Flex>
+            <Button
+              size="small"
+              onClick={() => {
+                setAttribute(suggestion.attribute.id);
+                setSelected(
+                  suggestion.items.reduce(
+                    (acc, item) => {
+                      acc[item.id] = true;
+                      return acc;
+                    },
+                    {} as Dictionary<boolean>,
+                  ),
+                );
+              }}
+              shape="round"
+            >
+              <Translate
+                pt="Usar"
+                en="Use"
               />
-            ))}
-          </Flex>
-        </li>
-      ))}
-    </ul>
+            </Button>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 
   return (
@@ -67,7 +102,10 @@ export function InquirySuggestions({ items, attributes, startingAttributesIds }:
         />
       }
     >
-      <Button type="link">
+      <Button
+        size="large"
+        ghost
+      >
         <Translate
           pt="Sugestões?"
           en="Suggestions?"
@@ -78,32 +116,50 @@ export function InquirySuggestions({ items, attributes, startingAttributesIds }:
 }
 
 type AnswerSuggestionsProps = {
-  suggestions: PhaseAlienAnswerState['suggestions'];
+  attributesDict: Dictionary<AlienAttribute>;
+  suggestions: string[];
+  onSelect: (spriteId: string) => void;
 };
 
-export function AnswerSuggestions({ suggestions }: AnswerSuggestionsProps) {
+export function AnswerSuggestions({ attributesDict, suggestions, onSelect }: AnswerSuggestionsProps) {
   const content = (
     <ul>
-      {suggestions.map((suggestion) => (
-        <li
-          key={suggestion.id}
-          className="my-1"
-        >
-          <Flex
-            align="center"
-            gap={8}
+      {suggestions.map((suggestionId) => {
+        const suggestion = attributesDict[suggestionId];
+
+        if (!suggestion) return null;
+
+        return (
+          <li
+            key={suggestionId}
+            className="my-1"
           >
-            <TextHighlight>
-              <DualTranslate>{suggestion.name}</DualTranslate>
-            </TextHighlight>
-            <SignCard
-              signId={`${suggestion.spriteId}`}
-              className="transparent"
-              width={36}
-            />
-          </Flex>
-        </li>
-      ))}
+            <Flex
+              align="center"
+              gap={8}
+            >
+              <TextHighlight>
+                <DualTranslate>{suggestion.name}</DualTranslate>
+              </TextHighlight>
+              <SignCard
+                signId={`${suggestion.spriteId}`}
+                className="transparent"
+                width={36}
+              />
+              <Button
+                size="small"
+                onClick={() => onSelect(suggestion.spriteId)}
+                shape="round"
+              >
+                <Translate
+                  pt="Usar"
+                  en="Use"
+                />
+              </Button>
+            </Flex>
+          </li>
+        );
+      })}
     </ul>
   );
 
@@ -117,10 +173,14 @@ export function AnswerSuggestions({ suggestions }: AnswerSuggestionsProps) {
         />
       }
     >
-      <Button type="link">
+      <Button
+        ghost
+        shape="round"
+        size="small"
+      >
         <Translate
-          pt="Ajuda?"
-          en="Help?"
+          pt="Sugestões?"
+          en="Suggestions?"
         />
       </Button>
     </Popover>

@@ -9,7 +9,7 @@ import { Session } from 'components/session/Session';
 // Internal
 import { COMUNICACAO_ALIENIGENA_PHASES } from './utils/constants';
 import { PhaseAlienSelection } from './PhaseAlienSelection';
-import { PhaseHumanAsk } from './PhaseHumanAsk';
+import { PhaseHumansAsks } from './PhaseHumansAsks';
 import { PhaseAlienAnswer } from './PhaseAlienAnswer';
 import { PhaseAlienRequest } from './PhaseAlienRequest';
 import { PhaseOfferings } from './PhaseOfferings';
@@ -25,8 +25,8 @@ function getActiveComponent(state: GameState) {
       return PhaseAlienSelection;
     case COMUNICACAO_ALIENIGENA_PHASES.ALIEN_SEEDING:
       return PhaseAlienSeeding;
-    case COMUNICACAO_ALIENIGENA_PHASES.HUMAN_ASK:
-      return PhaseHumanAsk;
+    case COMUNICACAO_ALIENIGENA_PHASES.HUMANS_ASKS:
+      return PhaseHumansAsks;
     case COMUNICACAO_ALIENIGENA_PHASES.ALIEN_ANSWER:
       return PhaseAlienAnswer;
     case COMUNICACAO_ALIENIGENA_PHASES.ALIEN_REQUEST:

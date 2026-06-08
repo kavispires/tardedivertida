@@ -14,6 +14,7 @@ import { CurseItemHighlight, ItemsHighlight } from './Highlights';
 type StatusProps = {
   status: OfferingsStatus;
 };
+
 export function Status({ status }: StatusProps) {
   return (
     <Instruction>

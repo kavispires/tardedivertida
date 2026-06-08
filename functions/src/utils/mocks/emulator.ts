@@ -2,7 +2,7 @@
 import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, USED_GAME_IDS } from '../constants';
 // Utils
 import utils from '..';
-import aliemItemsMock from './alien-items.json';
+import alienItemsMock from './alien-items.json';
 import type { FirebaseUserDB } from '../user';
 const sample = {};
 
@@ -32,7 +32,7 @@ export const feedEmulatorDB = async () => {
     .getDataRef()
     .doc(DATA_DOCUMENTS.SUFFIX_COUNTS)
     .set({ drawings: 0, monsterDrawings: 0 });
-  await utils.firestore.getDataRef().doc(DATA_DOCUMENTS.ALIEN_ITEMS).set(aliemItemsMock);
+  await utils.firestore.getDataRef().doc(DATA_DOCUMENTS.ALIEN_ITEMS).set(alienItemsMock);
 
   // GLOBAL
   await utils.firestore.getGlobalRef().doc(USED_GAME_IDS).set(sample);

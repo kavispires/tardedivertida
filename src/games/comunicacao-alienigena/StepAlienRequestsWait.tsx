@@ -1,11 +1,9 @@
-import { useState } from 'react';
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
-import { useLoading } from 'hooks/useLoading';
 // Components
 import { DebugOnly } from 'components/debug/DebugOnly';
 import { Translate } from 'components/language/Translate';
@@ -22,13 +20,13 @@ import type {
   RequestHistoryEntry,
   SubmitAlienRequestPayload,
 } from './utils/types';
+import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
-import { AlienWritingBoard } from './components/AlienWritingBoard';
+import { HumanSignBoard } from './components/HumanSignBoard';
 import { History } from './components/History';
 import { Status } from './components/Status';
-import { SelectableObjectsGrid } from './components/SelectableObjectsGrid';
 
-type StepAlienRequestsProps = {
+type StepAlienRequestsWaitProps = {
   players: GamePlayers;
   onSubmitAlienRequest: (payload: SubmitAlienRequestPayload) => void;
   user: GamePlayer;
@@ -41,25 +39,22 @@ type StepAlienRequestsProps = {
   requestHistory: RequestHistoryEntry[];
   inquiryHistory: InquiryHistoryEntry[];
   debugMode: boolean;
+  knownSpriteIds: string[];
 } & Pick<StepProps, 'announcement'>;
 
-export function StepAlienRequests({
+export function StepAlienRequestsWait({
   players,
   announcement,
-  user,
-  onSubmitAlienRequest,
   items,
   attributes,
   alien,
-  isUserAlien,
   requestHistory,
   inquiryHistory,
   status,
   startingAttributesIds,
   debugMode,
-}: StepAlienRequestsProps) {
-  const { isLoading } = useLoading();
-  const [intention, setIntention] = useState<string>('');
+  knownSpriteIds,
+}: StepAlienRequestsWaitProps) {
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
 
   return (
@@ -84,59 +79,33 @@ export function StepAlienRequests({
 
       <PopoverRule content={<Status status={status} />} />
 
-      <RuleInstruction type="action">
+      <RuleInstruction type="wait">
         <Translate
           pt={
             <>
-              <strong>Selecione</strong> um dos objetos desejados (verde).
-              <br />
-              Então, <strong>descreva</strong> o objeto usando quantos símbolos você quiser.
-              <br />
-              Se você precisar inferir negação, coloque um traço horizontal em cima do{' '}
-              <span style={{ textDecoration: 'overline' }}>símbolo</span>.
-              <br />
-              Se você precisa inferir ênfase, coloque um traço horizontal embaixo do{' '}
-              <span style={{ textDecoration: 'underline' }}>símbolo</span>.
+              Aguarde enquanto <PlayerAvatarName player={alien} /> escreve o objeto que ele(a) quer.
             </>
           }
           en={
             <>
-              <strong>Select</strong> one of the desired objects (green).
-              <br />
-              Then, <strong>describe</strong> the object using as many symbols you wish.
-              <br />
-              If you need to infer negation or the contrary, draw an horizontal line on top of the{' '}
-              <span style={{ textDecoration: 'overline' }}>symbol</span>.
-              <br />
-              If you need to infer emphasis, draw an horizontal line below the{' '}
-              <span style={{ textDecoration: 'underline' }}>symbol</span>.
+              Wait while <PlayerAvatarName player={alien} /> describes a desired object.
             </>
           }
         />
       </RuleInstruction>
 
-      <AlienWritingBoard
-        onSubmit={(alienRequest) => onSubmitAlienRequest({ alienRequest, intention })}
-        disabled={user.ready || isLoading || !intention}
-      />
-
       <Space
         className="boards-container"
         wrap
       >
-        <SelectableObjectsGrid
+        <ObjectsGrid
           items={items}
-          showTypes={isUserAlien}
-          user={user}
-          selectedObjects={{ [intention]: true }}
-          selectObject={(itemId) => setIntention(itemId)}
-          isAlienRequest
           status={status}
         />
-        <SignsKeyCard
+        <HumanSignBoard
           attributes={attributes}
           startingAttributesIds={startingAttributesIds}
-          inquiryHistory={inquiryHistory}
+          knownSpriteIds={knownSpriteIds}
         />
       </Space>
 

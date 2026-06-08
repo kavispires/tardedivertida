@@ -1,26 +1,34 @@
 import { orderBy } from 'lodash';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
-import { Badge, Select, Space } from 'antd';
+import { Badge, Flex, Select, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
-import { useCache } from 'hooks/useCache';
+import { useCacheV2 } from 'hooks/useCacheV2';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
+// Icons
+import { ArrowIcon } from 'icons/collection';
 // Components
+import { IconAvatar } from 'components/avatars/IconAvatar';
 import { SendButton } from 'components/buttons/SendButton';
+import { ItemCard } from 'components/cards/ItemCard';
 import { DebugOnly } from 'components/debug/DebugOnly';
 import { DevButton } from 'components/debug/DevButton';
 import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatarStrip } from 'components/player/PlayerAvatarStrip';
+import { PlayerFlex } from 'components/player/PlayerFlex';
 import { alienAttributesUtils } from 'components/toolKits/AlienAttributes';
 // Internal
 import type { OfferingsStatus, PhaseBasicState, SubmitHumanInquiryPayload } from '../utils/types';
+import { MAX_INQUIRY_OBJECTS, SPRITE_SIZE } from '../utils/constants';
 import { HumanSignBoard } from './HumanSignBoard';
 import { SelectableObjectsGrid } from './SelectableObjectsGrid';
+import { InquirySuggestions } from './Suggestions';
 
 type HumanInquiryProps = {
   items: PhaseBasicState['items'];
@@ -29,6 +37,7 @@ type HumanInquiryProps = {
   submitInquiry: (payload: SubmitHumanInquiryPayload) => void;
   user: GamePlayer;
   status: OfferingsStatus;
+  knownSpriteIds: string[];
 };
 
 export function HumanInquiry({
@@ -38,6 +47,7 @@ export function HumanInquiry({
   user,
   startingAttributesIds,
   status,
+  knownSpriteIds,
 }: HumanInquiryProps) {
   const { isLoading } = useLoading();
   const { language } = useLanguage();
@@ -46,6 +56,7 @@ export function HumanInquiry({
     dict: selected,
     updateDict: updateSelected,
     keys: objectsIds,
+    setDict: setSelected,
   } = useBooleanDictionary({}, (d) => Object.keys(d).length < 5);
 
   const orderedAttributes = useMemo(
@@ -55,10 +66,18 @@ export function HumanInquiry({
 
   return (
     <SpaceContainer vertical>
-      <Space>
+      <Flex gap={6}>
+        <InquirySuggestions
+          items={items}
+          attributes={attributes}
+          startingAttributesIds={startingAttributesIds}
+          setAttribute={setAttribute}
+          setSelected={setSelected}
+        />
         <Select
           className="intention-select"
           defaultValue=""
+          value={attribute}
           size="large"
           onChange={(value) => setAttribute(value)}
           options={[
@@ -107,7 +126,7 @@ export function HumanInquiry({
             submitInquiry={submitInquiry}
           />
         </DebugOnly>
-      </Space>
+      </Flex>
       <Space
         className="boards-container"
         wrap
@@ -122,6 +141,7 @@ export function HumanInquiry({
         <HumanSignBoard
           attributes={attributes}
           startingAttributesIds={startingAttributesIds}
+          knownSpriteIds={knownSpriteIds}
         />
       </Space>
     </SpaceContainer>
@@ -134,7 +154,7 @@ export function MockInquiryButton({
   startingAttributesIds,
   submitInquiry,
 }: Pick<HumanInquiryProps, 'items' | 'attributes' | 'startingAttributesIds' | 'submitInquiry'>) {
-  const { cache } = useCache();
+  const { cache } = useCacheV2<Dictionary<string>>({});
 
   const onSubmitMockInquiry = () => {
     const inquiry = alienAttributesUtils.getInquirySuggestions(items, attributes, [
@@ -155,5 +175,67 @@ export function MockInquiryButton({
     >
       Submit Mock
     </DevButton>
+  );
+}
+
+type HumanSelectedInquiryProps = {
+  user: GamePlayer;
+  attributes: PhaseBasicState['attributes'];
+  items: PhaseBasicState['items'];
+};
+
+export function HumanSelectedInquiry({ attributes, items, user }: HumanSelectedInquiryProps) {
+  const [attribute, objects] = useMemo(() => {
+    const attribute = attributes.find((attr) => attr.id === user?.intention);
+    const objects = items.filter((item) => user?.objectsIds?.includes(item.id));
+
+    return [attribute, objects];
+  }, [attributes, items, user]);
+
+  return (
+    <PlayerFlex
+      avatarId={user.avatarId}
+      gap={8}
+      align="center"
+      withBorder
+      className="border-radius"
+    >
+      {/* Avatar */}
+      <PlayerAvatarStrip player={user} />
+
+      {/* Inquiry Objects */}
+      {objects.map((obj) => (
+        <ItemCard
+          key={`inquiry-${obj.id}`}
+          itemId={obj.id}
+          width={SPRITE_SIZE}
+        />
+      ))}
+      {Array(MAX_INQUIRY_OBJECTS - objects.length || 0)
+        .fill(0)
+        .map((_, i) => (
+          <div
+            key={`inquiry-placeholder-${i}`}
+            style={{ width: SPRITE_SIZE, height: SPRITE_SIZE }}
+          />
+        ))}
+
+      <IconAvatar
+        icon={<ArrowIcon />}
+        size="small"
+      />
+
+      <Flex
+        justify="center"
+        align="center"
+        className="border-radius px-2"
+        style={{
+          height: SPRITE_SIZE,
+          backgroundColor: '#f0f0f0',
+        }}
+      >
+        <DualTranslate>{attribute ? attribute.name : { pt: 'Desconhecido', en: 'Unknown' }}</DualTranslate>?
+      </Flex>
+    </PlayerFlex>
   );
 }

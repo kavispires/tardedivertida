@@ -5,76 +5,92 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
-import { AlienCommunicationIcon } from 'icons/AlienCommunicationIcon';
+import { QuestionIcon } from 'icons/QuestionIcon';
 // Components
 import { Translate } from 'components/language/Translate';
 import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
 import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
 import { StepSwitcher } from 'components/steps/StepSwitcher';
 import { ViewIf } from 'components/views/ViewIf';
 // Internal
-import { useOnSubmitAlienRequestAPIRequest } from './utils/api-requests';
+import { useOnSubmitHumanInquiryAPIRequest } from './utils/api-requests';
+import type { PhaseHumansAsksState } from './utils/types';
 import { COMUNICACAO_ALIENIGENA_PHASES } from './utils/constants';
-import type { PhaseAlienRequestState } from './utils/types';
-import { StepAlienRequests } from './StepAlienRequests';
-import { StepAlienRequestsWait } from './StepAlienRequestsWait';
+import { HumanSelectedInquiry } from './components/HumanInquiry';
+import { StepHumansAsk } from './StepHumansAsk';
+import { StepHumansAskWait } from './StepHumansAskWait';
 
-export function PhaseAlienRequest({ players, state, user }: PhaseProps<PhaseAlienRequestState>) {
+export function PhaseHumansAsks({ players, state, user }: PhaseProps<PhaseHumansAsksState>) {
   const [alien, isUserAlien] = useWhichPlayerIsThe('alienId', state, players);
 
-  const { step, setStep } = useStep();
+  const { step, setStep, goToNextStep } = useStep(0);
 
-  const onSubmitAlienRequest = useOnSubmitAlienRequestAPIRequest(setStep);
+  const onSubmitHumanInquiry = useOnSubmitHumanInquiryAPIRequest(setStep);
 
   const announcement = (
     <PhaseAnnouncement
-      icon={<AlienCommunicationIcon />}
+      icon={<QuestionIcon />}
       title={
         <Translate
-          pt="O Alienígena faz um pedido"
-          en="The Alien makes a request"
+          pt="Pergunte ao alienígena"
+          en="Ask the Alien"
         />
       }
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}
-    ></PhaseAnnouncement>
+    />
   );
 
   return (
     <PhaseContainer
       phase={state?.phase}
-      allowedPhase={COMUNICACAO_ALIENIGENA_PHASES.ALIEN_REQUEST}
+      allowedPhase={COMUNICACAO_ALIENIGENA_PHASES.HUMANS_ASKS}
     >
       <StepSwitcher
         step={step}
         players={players}
+        waitingRoom={{
+          content: (
+            <HumanSelectedInquiry
+              user={user}
+              attributes={state.attributes}
+              items={state.items}
+            />
+          ),
+        }}
       >
         {/* Step 0 */}
+        <RoundAnnouncement
+          round={state.round}
+          onPressButton={goToNextStep}
+          time={5}
+        />
+
+        {/* Step 1 */}
         <Fragment>
-          <ViewIf condition={isUserAlien}>
-            <StepAlienRequests
+          <ViewIf condition={!isUserAlien}>
+            <StepHumansAsk
               players={players}
-              onSubmitAlienRequest={onSubmitAlienRequest}
+              onSubmitHumanInquiry={onSubmitHumanInquiry}
               user={user}
-              alien={alien}
-              isUserAlien={isUserAlien}
               items={state.items}
               attributes={state.attributes}
               announcement={announcement}
               status={state.status}
               requestHistory={state.requestHistory}
               inquiryHistory={state.inquiryHistory}
+              isAlienBot={Boolean(state.alienBot)}
               startingAttributesIds={state.startingAttributesIds}
+              knownSpriteIds={state.knownSpriteIds}
               debugMode={Boolean(state.debugMode)}
             />
           </ViewIf>
 
-          <ViewIf condition={!isUserAlien}>
-            <StepAlienRequestsWait
+          <ViewIf condition={isUserAlien}>
+            <StepHumansAskWait
               players={players}
-              onSubmitAlienRequest={onSubmitAlienRequest}
-              user={user}
               alien={alien}
               isUserAlien={isUserAlien}
               items={state.items}
@@ -83,8 +99,8 @@ export function PhaseAlienRequest({ players, state, user }: PhaseProps<PhaseAlie
               status={state.status}
               requestHistory={state.requestHistory}
               inquiryHistory={state.inquiryHistory}
+              isAlienBot={Boolean(state.alienBot)}
               startingAttributesIds={state.startingAttributesIds}
-              knownSpriteIds={state.knownSpriteIds}
               debugMode={Boolean(state.debugMode)}
             />
           </ViewIf>

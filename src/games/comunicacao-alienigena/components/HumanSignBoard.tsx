@@ -1,43 +1,60 @@
-import { orderBy } from 'lodash';
+import clsx from 'clsx';
+import { keyBy } from 'lodash';
+import { useMemo } from 'react';
 // Ant Design Resources
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { Button, Popover, Space, Tooltip } from 'antd';
+import { Button, Flex, Popover, Space, Tooltip } from 'antd';
+// Types
+import type { GamePlayer } from 'types/game';
 // Hooks
-import { useCache } from 'hooks/useCache';
-import { useLanguage } from 'hooks/useLanguage';
+import { useCacheV2 } from 'hooks/useCacheV2';
 // Components
 import { TransparentButton } from 'components/buttons/TransparentButton';
-import { DrawingCanvas } from 'components/canvas/DrawingCanvas';
 import { SignCard } from 'components/cards/SignCard';
-import { Popconfirm } from 'components/general/Popconfirm';
 import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 import { Title } from 'components/text/Title';
 // Internal
 import type { PhaseBasicState } from '../utils/types';
+import { SPRITE_SIZE } from '../utils/constants';
 
 type HumanSignBoardProps = {
   attributes: PhaseBasicState['attributes'];
   startingAttributesIds: string[];
+  knownSpriteIds: string[];
 };
 
-export function HumanSignBoard({ attributes, startingAttributesIds = [] }: HumanSignBoardProps) {
-  const { cache, setCache } = useCache();
-  const { language, translate } = useLanguage();
+export function HumanSignBoard({
+  attributes,
+  startingAttributesIds = [],
+  knownSpriteIds,
+}: HumanSignBoardProps) {
+  const { cache, updateCache } = useCacheV2<Dictionary<string>>({});
 
-  const updateCache = (signId: number | string, content: CanvasLine[]) => {
-    setCache((prev) => {
-      const copy = { ...prev };
-      copy[signId] = content ?? [];
-      return copy;
-    });
-  };
+  const startingAttributes = useMemo(() => {
+    return keyBy(
+      attributes.filter((attribute) => startingAttributesIds.includes(attribute.id)),
+      'id',
+    );
+  }, [attributes, startingAttributesIds]);
+
+  const spriteUseCount = useMemo(() => {
+    return Object.values(cache).reduce(
+      (acc, spriteId) => {
+        if (!spriteId) return acc;
+        acc[spriteId] = (acc[spriteId] || 0) + 1;
+        return acc;
+      },
+      {} as Dictionary<number>,
+    );
+  }, [cache]);
 
   return (
     <Space orientation="vertical">
       <Title
         level={3}
         size="xx-small"
+        marginBottom={0}
       >
         <Translate
           pt="Atributos e Símbolos"
@@ -63,7 +80,7 @@ export function HumanSignBoard({ attributes, startingAttributesIds = [] }: Human
             style={{ color: 'white' }}
             icon={<InfoCircleOutlined />}
             shape="circle"
-          />{' '}
+          />
         </Popover>
       </Title>
       <Space
@@ -71,15 +88,24 @@ export function HumanSignBoard({ attributes, startingAttributesIds = [] }: Human
         className="board-container"
       >
         <div className="attributes-grid">
-          {orderBy(attributes, `attribute.${language}`).map((attribute) => {
-            if (startingAttributesIds.find((attributeId) => attributeId === attribute.id)) {
+          {attributes.map((attribute) => {
+            if (startingAttributes[attribute.id]) {
               return (
                 <div
                   className="attributes-grid__item"
                   key={attribute.id}
                 >
                   <Tooltip
-                    title={`${translate(attribute.description ? attribute.description : attribute.name)} (${translate({ pt: 'Item inicial', en: 'Starting item' })})`}
+                    title={
+                      <>
+                        <DualTranslate>{attribute.description}</DualTranslate> (
+                        <Translate
+                          pt="Item inicial"
+                          en="Starting item"
+                        />
+                        )
+                      </>
+                    }
                     placement="bottom"
                   >
                     <DualTranslate>{attribute.name}</DualTranslate>*
@@ -87,7 +113,7 @@ export function HumanSignBoard({ attributes, startingAttributesIds = [] }: Human
                   <SignCard
                     signId={`${attribute.spriteId}`}
                     className="transparent"
-                    width={48}
+                    width={SPRITE_SIZE}
                   />
                 </div>
               );
@@ -98,122 +124,203 @@ export function HumanSignBoard({ attributes, startingAttributesIds = [] }: Human
                 className="attributes-grid__item"
                 key={attribute.id}
               >
-                <Popconfirm
+                <Tooltip
+                  title={<DualTranslate>{attribute.description}</DualTranslate>}
+                  placement="bottom"
+                >
+                  <TransparentButton>
+                    <DualTranslate>{attribute.name}</DualTranslate>
+                  </TransparentButton>
+                </Tooltip>
+                <Popover
                   title={
                     <Translate
-                      pt="Apagar símbolo"
-                      en="Erase symbol"
+                      pt="Selecionar símbolo"
+                      en="Select symbol"
                     />
                   }
-                  onConfirm={() => updateCache(attribute.id, [])}
-                  okText={
-                    <Translate
-                      pt="Sim"
-                      en="Yes"
-                    />
-                  }
-                  cancelText={
-                    <Translate
-                      pt="Não"
-                      en="No"
-                    />
+                  trigger="click"
+                  content={
+                    <Flex
+                      vertical
+                      gap={6}
+                      style={{ maxWidth: SPRITE_SIZE * 4 }}
+                    >
+                      <Flex
+                        wrap
+                        justify="center"
+                      >
+                        {knownSpriteIds.map((spriteId) => (
+                          <TransparentButton
+                            key={spriteId}
+                            onClick={() => updateCache(attribute.id, spriteId)}
+                          >
+                            <SignCard
+                              signId={`${spriteId}`}
+                              width={SPRITE_SIZE / 1.5}
+                              className={clsx({
+                                'attributes-grid__assigned-sprite': Object.values(cache).includes(spriteId),
+                              })}
+                            />
+                          </TransparentButton>
+                        ))}
+                      </Flex>
+                      <Button
+                        size="small"
+                        shape="round"
+                        onClick={() => updateCache(attribute.id, undefined)}
+                      >
+                        <Translate
+                          pt="Nenhum desses"
+                          en="None of these"
+                        />
+                      </Button>
+                    </Flex>
                   }
                 >
-                  <Tooltip
-                    title={translate(attribute.description ? attribute.description : attribute.name)}
-                    placement="bottom"
-                  >
+                  {cache?.[attribute.id] ? (
                     <TransparentButton>
-                      <DualTranslate>{attribute.name}</DualTranslate>
+                      <SignCard
+                        signId={cache[attribute.id] ?? ''}
+                        width={SPRITE_SIZE}
+                        className={clsx({
+                          'attributes-grid__duplicated-sprite': spriteUseCount[cache[attribute.id]] > 1,
+                        })}
+                      />
                     </TransparentButton>
-                  </Tooltip>
-                </Popconfirm>
-                <DrawingCanvas
-                  lines={cache?.[attribute.id] ?? []}
-                  setLines={(content: any) => updateCache(attribute.id, content)}
-                  width={60}
-                  height={60}
-                  showControls={false}
-                  strokeWidth="small"
-                  className="attributes-grid__canvas"
-                  willReadFrequently
-                />
+                  ) : (
+                    <Flex
+                      justify="center"
+                      align="center"
+                      className="italic"
+                      style={{
+                        opacity: 0.3,
+                        width: SPRITE_SIZE,
+                        height: SPRITE_SIZE,
+                      }}
+                    >
+                      <Button>?</Button>
+                    </Flex>
+                  )}
+                </Popover>
               </div>
             );
           })}
         </div>
-        <div className="attributes-grid__item">
-          <Popconfirm
-            title={
-              <Translate
-                pt="Apagar símbolo"
-                en="Erase symbol"
-              />
-            }
-            onConfirm={() => updateCache('unknown', [])}
-            okText={
-              <Translate
-                pt="Sim"
-                en="Yes"
-              />
-            }
-            cancelText={
-              <Translate
-                pt="Não"
-                en="No"
-              />
-            }
-          >
-            <TransparentButton>
-              <Translate
-                pt="Símbolos Desconhecidos"
-                en="Unknown Symbols"
-              />
-            </TransparentButton>
-          </Popconfirm>
-          <DrawingCanvas
-            lines={cache?.unknown ?? []}
-            setLines={(content: any) => updateCache('unknown', content)}
-            width={390}
-            height={60}
-            showControls={false}
-            strokeWidth="small"
-            className="attributes-grid__canvas"
-            willReadFrequently
-          />
-        </div>
+      </Space>
+    </Space>
+  );
+}
 
-        <Popconfirm
-          title={
-            <Translate
-              pt="Apagar todos"
-              en="Erase Clear all"
-            />
-          }
-          onConfirm={() => setCache({})}
-          okText={
-            <Translate
-              pt="Sim"
-              en="Yes"
-            />
-          }
-          cancelText={
-            <Translate
-              pt="Não"
-              en="No"
-            />
-          }
-        >
-          <Button
-            size="small"
-            type="dashed"
-          >
-            <Translate
-              pt="Apagar todos"
-              en="Clear all"
-            />
-          </Button>
-        </Popconfirm>
+type HumanPlayerFinalSignBoardProps = {
+  player: GamePlayer;
+  attributes: PhaseBasicState['attributes'];
+  startingAttributesIds: string[];
+};
+
+export function HumanPlayerFinalSignBoard({
+  player,
+  attributes,
+  startingAttributesIds = [],
+}: HumanPlayerFinalSignBoardProps) {
+  const notes: Dictionary<string> = player.notes || {};
+
+  const startingAttributes = useMemo(() => {
+    return keyBy(
+      attributes.filter((attribute) => startingAttributesIds.includes(attribute.id)),
+      'id',
+    );
+  }, [attributes, startingAttributesIds]);
+
+  const spriteUseCount = useMemo(() => {
+    return Object.values(notes).reduce(
+      (acc, spriteId) => {
+        if (!spriteId) return acc;
+        acc[spriteId] = (acc[spriteId] || 0) + 1;
+        return acc;
+      },
+      {} as Dictionary<number>,
+    );
+  }, [notes]);
+
+  return (
+    <Space orientation="vertical">
+      <Space
+        orientation="vertical"
+        className="board-container"
+      >
+        <div className="attributes-grid">
+          {attributes.map((attribute) => {
+            if (startingAttributes[attribute.id]) {
+              return (
+                <div
+                  className="attributes-grid__item"
+                  key={attribute.id}
+                >
+                  <Tooltip
+                    title={
+                      <>
+                        <DualTranslate>{attribute.description}</DualTranslate> (
+                        <Translate
+                          pt="Item inicial"
+                          en="Starting item"
+                        />
+                        )
+                      </>
+                    }
+                    placement="bottom"
+                  >
+                    <DualTranslate>{attribute.name}</DualTranslate>*
+                  </Tooltip>
+                  <SignCard
+                    signId={`${attribute.spriteId}`}
+                    className="transparent"
+                    width={SPRITE_SIZE}
+                  />
+                </div>
+              );
+            }
+
+            return (
+              <div
+                className="attributes-grid__item"
+                key={attribute.id}
+              >
+                <Tooltip
+                  title={<DualTranslate>{attribute.description}</DualTranslate>}
+                  placement="bottom"
+                >
+                  <TransparentButton>
+                    <DualTranslate>{attribute.name}</DualTranslate>
+                  </TransparentButton>
+                </Tooltip>
+
+                {notes?.[attribute.id] ? (
+                  <SignCard
+                    signId={notes[attribute.id] ?? ''}
+                    width={SPRITE_SIZE}
+                    className={clsx({
+                      'attributes-grid__duplicated-sprite': spriteUseCount[notes[attribute.id]] > 1,
+                    })}
+                  />
+                ) : (
+                  <Flex
+                    justify="center"
+                    align="center"
+                    className="italic"
+                    style={{
+                      opacity: 0.3,
+                      width: SPRITE_SIZE,
+                      height: SPRITE_SIZE,
+                    }}
+                  >
+                    <Button disabled>?</Button>
+                  </Flex>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </Space>
     </Space>
   );

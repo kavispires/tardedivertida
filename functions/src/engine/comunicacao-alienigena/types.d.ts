@@ -31,11 +31,29 @@ export interface Offer {
   playerId: UID;
 }
 
+/**
+ * Represents a seed assignment for unclear attribute values
+ */
+export type Seed = {
+  /**
+   * The attribute being seeded
+   */
+  attribute: AlienAttribute;
+  /**
+   * Items that have unclear values for this attribute
+   */
+  items: AlienItem[];
+};
+
 export interface InquiryHistoryEntry {
   /**
-   * Alien drawing or spritId
+   * Unique identifier for the inquiry
    */
-  answer: string;
+  id: UID;
+  /**
+   * SpriteId for the answer
+   */
+  answer: SpriteId;
   /**
    * The objects the player asked about
    */
@@ -52,6 +70,10 @@ export interface InquiryHistoryEntry {
    * The attribute Id the alien bot assumed
    */
   assumption?: SignId;
+  /**
+   * The suggestions the alien bot gave (only in bot games)
+   */
+  suggestions?: SignId[];
 }
 export interface RequestHistoryEntry {
   request: string;
@@ -78,6 +100,7 @@ export interface ComunicacaoAlienigenaState extends DefaultState {
   status?: OfferingsStatus;
   inquiryHistory?: InquiryHistoryEntry[];
   requestHistory?: RequestHistoryEntry[];
+  turnOrder?: null; // TODO: remove
 }
 
 export interface ComunicacaoAlienigenaInitialState extends InitialState {

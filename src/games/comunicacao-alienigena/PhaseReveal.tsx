@@ -90,6 +90,7 @@ export function PhaseReveal({ players, state, user }: PhaseProps<PhaseRevealStat
           items={state.items}
           attributes={state.attributes}
           startingAttributesIds={state.startingAttributesIds}
+          knownSpriteIds={state.knownSpriteIds}
           status={state.status}
           wasCurseSelected={state.wasCurseSelected}
           curses={state.curses}

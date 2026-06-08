@@ -8,8 +8,9 @@ import type {
   ComunicacaoAlienigenaStore,
   FirebaseStoreData,
 } from './types';
-import type { AlienItem } from '../../utils/tool-kits/alien-attributes';
+import type { AlienAttribute, AlienItem } from '../../utils/tool-kits/alien-attributes';
 import { SEPARATOR } from '../../utils/constants';
+import { uniq } from 'lodash';
 
 /**
  * Determines the next phase based on the current state and game configuration
@@ -24,7 +25,7 @@ export const determineNextPhase = (
     SETUP,
     ALIEN_SELECTION,
     ALIEN_SEEDING,
-    HUMAN_ASK,
+    HUMANS_ASKS,
     ALIEN_ANSWER,
     ALIEN_REQUEST,
     OFFERINGS,
@@ -36,7 +37,7 @@ export const determineNextPhase = (
   const order = [
     SETUP,
     ALIEN_SELECTION,
-    HUMAN_ASK,
+    HUMANS_ASKS,
     ALIEN_ANSWER,
     ALIEN_REQUEST,
     OFFERINGS,
@@ -44,7 +45,7 @@ export const determineNextPhase = (
     GAME_OVER,
   ];
 
-  const { phase: currentPhase, round, humanId, turnOrder, status, items } = state;
+  const { phase: currentPhase, round, status, items } = state;
 
   if (currentPhase === REVEAL) {
     if (status && (status.timeLeft < 1 || items.every((item: AlienItem) => item.offerings.length))) {
@@ -55,7 +56,7 @@ export const determineNextPhase = (
       return GAME_OVER;
     }
 
-    return round.forceLastRound ? GAME_OVER : HUMAN_ASK;
+    return round.forceLastRound ? GAME_OVER : HUMANS_ASKS;
   }
 
   // If bot, we need to verify unclear items
@@ -64,16 +65,11 @@ export const determineNextPhase = (
   }
 
   if (currentPhase === ALIEN_SEEDING) {
-    return HUMAN_ASK;
+    return HUMANS_ASKS;
   }
 
-  // If the last player answer, go to alien request otherwise the next human
-  // But if it's a bot alien game, skip alien request and go directly to offerings
-  if (currentPhase === ALIEN_ANSWER && turnOrder) {
-    const isLastHuman = turnOrder.indexOf(humanId) === turnOrder.length - 1;
-
-    if (!isLastHuman) return HUMAN_ASK;
-
+  // In a bot alien game, skip alien request and go directly to offerings
+  if (currentPhase === ALIEN_ANSWER) {
     return hasBot ? OFFERINGS : ALIEN_REQUEST;
   }
 
@@ -103,6 +99,18 @@ export function applySeedsToAlienItemKnowledge(items: AlienItem[], players: Play
       });
     }
   });
+}
+
+export function cleanupKnownSpriteIds(
+  knownSpriteIds: string[],
+  attributes: AlienAttribute[],
+  startingAttributesIds: string[],
+) {
+  const startingAttributesSpriteIds = attributes
+    .filter((attribute) => startingAttributesIds.includes(attribute.id))
+    .map((attribute) => attribute.spriteId);
+
+  return uniq(knownSpriteIds.filter((spriteId) => !startingAttributesSpriteIds.includes(spriteId)));
 }
 
 /**

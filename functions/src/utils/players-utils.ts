@@ -247,9 +247,10 @@ export const dealItemsToPlayers = (
   list: unknown[],
   quantityPerPlayer: number,
   propertyName: string,
+  doItsBestToEvenlyDistribute = false,
 ) => {
   const playersList = getListOfPlayers(players);
-  if (list.length < playersList.length * quantityPerPlayer) {
+  if (list.length < playersList.length * quantityPerPlayer && !doItsBestToEvenlyDistribute) {
     throwException('List has less items the needed', 'deal items to players');
   }
 
@@ -266,7 +267,9 @@ export const dealItemsToPlayers = (
       player[propertyName] = [];
     }
 
-    player[propertyName].push(list[i]);
+    if (list[i] !== undefined) {
+      player[propertyName].push(list[i]);
+    }
   }
 };
 

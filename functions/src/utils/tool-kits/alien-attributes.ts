@@ -3,7 +3,7 @@ import { keyBy, keys, orderBy, sampleSize, shuffle, sortBy } from 'lodash';
 
 /**
  * TD ALIEN ATTRIBUTES TOOLKIT FUNCTIONS
- * Version 1.0.0
+ * Version 1.1.0
  */
 
 /**
@@ -12,7 +12,7 @@ import { keyBy, keys, orderBy, sampleSize, shuffle, sortBy } from 'lodash';
 type AlienItem = Pick<Item, 'id' | 'name' | 'nsfw'> &
   Pick<ItemAttributesValues, 'attributes'> & {
     /**
-     * The type of aliem item
+     * The type of alien item
      */
     type: 'ITEM' | 'CURSE' | 'BLANK';
     /**
@@ -220,32 +220,33 @@ function buildAlienGameGrids(
   const uniqueItemsPerAttribute = itemAttributes
     .map((attr) => {
       let selection: ItemAttributesValues | null = null;
-      let tries = 0;
-      while (tries < 500 && !selection) {
-        if (tries === 499) throw new Error('Could not find a deterministic item for attribute');
-        if (attr.limited) {
-          const candidate = completeItems.find(
-            (itemAttrVal) =>
-              itemAttrVal.attributes[attr.id] === ATTRIBUTE_VALUE_DICT.RELATED.value &&
-              !usedItems[itemAttrVal.id],
-          );
-          if (candidate) {
-            selection = candidate;
-            usedItems[candidate.id] = true;
-          }
-        } else {
-          const candidate = completeItems.find(
-            (itemAttrVal) =>
-              itemAttrVal.attributes[attr.id] === ATTRIBUTE_VALUE_DICT.DETERMINISTIC.value &&
-              !usedItems[itemAttrVal.id],
-          );
-          if (candidate) {
-            selection = candidate;
-            usedItems[candidate.id] = true;
-          }
+
+      if (attr.limited) {
+        const candidate = completeItems.find(
+          (itemAttrVal) =>
+            itemAttrVal.attributes[attr.id] === ATTRIBUTE_VALUE_DICT.RELATED.value &&
+            !usedItems[itemAttrVal.id],
+        );
+        if (candidate) {
+          selection = candidate;
+          usedItems[candidate.id] = true;
         }
-        tries += 1;
+      } else {
+        const candidate = completeItems.find(
+          (itemAttrVal) =>
+            itemAttrVal.attributes[attr.id] === ATTRIBUTE_VALUE_DICT.DETERMINISTIC.value &&
+            !usedItems[itemAttrVal.id],
+        );
+        if (candidate) {
+          selection = candidate;
+          usedItems[candidate.id] = true;
+        }
       }
+
+      if (!selection) {
+        throw new Error('Could not find a deterministic item for attribute');
+      }
+
       return selection;
     })
     .filter(Boolean) as ItemAttributesValues[];
@@ -311,12 +312,14 @@ function buildAlienGameGrids(
  * @param alienItems - Array of AlienItem objects.
  * @param alienAttributes - Array of AlienAttribute objects.
  * @param inquiredItemIds - Array of inquired item IDs (1 to 5 IDs).
+ * @param startingAttributesIds - Array of attribute IDs that have already been revealed to the players.
  * @returns The top fitting AlienAttributes or an empty array if no common attributes are found.
  */
 function getBestAttributes(
   alienItems: AlienItem[],
   alienAttributes: AlienAttribute[],
   inquiredItemIds: ItemId[],
+  startingAttributesIds: string[],
 ): AlienAttribute[] {
   // Filter the alien items to include only those with IDs in inquiredItemIds
   const inquiredItems = alienItems.filter((item) => inquiredItemIds.includes(item.id));
@@ -338,9 +341,25 @@ function getBestAttributes(
   });
 
   // Sort attributes by their cumulative scores in descending order
+  // If two attributes have the same score (+-1), prioritize the one that is not in startingAttributesIds
   const sortedAttributeIds = Object.entries(attributeScores)
     .filter(([, score]) => score > 0) // Filter out non-positive scores
-    .sort(([, scoreA], [, scoreB]) => scoreB - scoreA)
+    .sort(([idA, scoreA], [idB, scoreB]) => {
+      // Primary sort: by score (descending)
+      const scoreDiff = scoreB - scoreA;
+
+      // If scores are within ±1, use secondary criterion
+      if (Math.abs(scoreDiff) <= 1) {
+        const isAStarting = startingAttributesIds.includes(idA);
+        const isBStarting = startingAttributesIds.includes(idB);
+
+        // Prioritize non-starting attributes
+        if (isAStarting && !isBStarting) return 1;
+        if (!isAStarting && isBStarting) return -1;
+      }
+
+      return scoreDiff;
+    })
     .map(([attributeId]) => attributeId);
 
   // Match the top attribute IDs with the AlienAttribute list
@@ -520,9 +539,22 @@ function getNonClashingItem(
     return acc;
   }, {});
 
-  const getCountForMatches = (signature: string, signatures: Record<string, string>) => {
-    return Object.values(signatures).filter((sig) => sig === signature).length;
-  };
+  // Pre-calculate frequencies once
+  const curseSignaturesCounts = Object.values(curseSignatures).reduce(
+    (acc, sig) => {
+      acc[sig] = (acc[sig] || 0) + 1;
+      return acc;
+    },
+    {} as Record<string, number>,
+  );
+
+  const blankSignaturesCounts = Object.values(blankSignatures).reduce(
+    (acc, sig) => {
+      acc[sig] = (acc[sig] || 0) + 1;
+      return acc;
+    },
+    {} as Record<string, number>,
+  );
 
   const itemsRanking = orderBy(
     items.map((item) => {
@@ -530,8 +562,8 @@ function getNonClashingItem(
       const result = {
         item,
         signature,
-        equivalentCurses: getCountForMatches(signature, curseSignatures),
-        equivalentBlanks: getCountForMatches(signature, blankSignatures),
+        equivalentCurses: curseSignaturesCounts[signature] || 0,
+        equivalentBlanks: blankSignaturesCounts[signature] || 0,
         isRecentlyInquiredItem: recentlyInquiredItemsIds?.includes(item.id) ?? false,
         isPreviouslyInquiredItem: previouslyInquiredItemsIds?.includes(item.id) ?? false,
       };
@@ -559,8 +591,8 @@ const getInitialKnownAttributes = (alienItems: AlienItem[], alienAttributes: Ali
   alienItems.forEach((item) => {
     Object.entries(item.attributes).forEach(([attrId, value]) => {
       if (value > 0) {
-        if (scores[attrId]) {
-          scores[attrId] = value;
+        if (scores[attrId] !== undefined) {
+          scores[attrId] += value;
         }
       }
     });

@@ -1,7 +1,8 @@
+import { useEffect } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useCache, useCacheAlternative } from 'hooks/useCache';
+import { useCacheV2 } from 'hooks/useCacheV2';
 import { useStep } from 'hooks/useStep';
 // Icons
 import { BooksIcon } from 'icons/BooksIcon';
@@ -18,12 +19,14 @@ import { StepSeedAlien } from './StepSeedAlien';
 
 export function PhaseAlienSeeding({ players, state, user }: PhaseProps<PhaseAlienSeedingState>) {
   const { step, setStep } = useStep();
+  const { resetCache } = useCacheV2<Dictionary<string>>({});
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: run once and don't include functions
+  useEffect(() => {
+    resetCache();
+  }, [state.phase]);
 
   const onSubmitSeeds = useOnSubmitSeedingAPIRequest(setStep);
-
-  // Clear cache from previous games
-  useCache({ clearCache: true });
-  useCacheAlternative({ clearCache: true });
 
   const announcement = (
     <PhaseAnnouncement

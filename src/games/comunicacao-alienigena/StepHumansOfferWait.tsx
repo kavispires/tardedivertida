@@ -7,7 +7,6 @@ import { useGlobalState } from 'hooks/useGlobalState';
 // Components
 import { DebugOnly } from 'components/debug/DebugOnly';
 import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 import { PopoverRule } from 'components/rules/PopoverRule';
 import { Step, type StepProps } from 'components/steps/Step';
 import { RuleInstruction } from 'components/text/RuleInstruction';
@@ -18,25 +17,21 @@ import type {
   OfferingsStatus,
   PhaseBasicState,
   RequestHistoryEntry,
-  SubmitOfferingsPayload,
 } from './utils/types';
+import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
-import { HumanOffering } from './components/HumanOffering';
 import { History } from './components/History';
 import { Status } from './components/Status';
 import { AlienViewBoard } from './components/AlienViewBoard';
 import { BotPopupRule } from './components/BotPopupRules';
-import { ItemsHighlight } from './components/Highlights';
 
-type StepHumansOfferProps = {
+type StepHumansOfferWaitProps = {
   players: GamePlayers;
-  onSubmitOfferings: (payload: SubmitOfferingsPayload) => void;
   user: GamePlayer;
   alien: GamePlayer;
   items: PhaseBasicState['items'];
   attributes: PhaseBasicState['attributes'];
   startingAttributesIds: string[];
-  knownSpriteIds: string[];
   status: OfferingsStatus;
   requestHistory: RequestHistoryEntry[];
   inquiryHistory: InquiryHistoryEntry[];
@@ -44,32 +39,28 @@ type StepHumansOfferProps = {
   debugMode: boolean;
 } & Pick<StepProps, 'announcement'>;
 
-export function StepHumansOffer({
+export function StepHumansOfferWait({
   players,
   announcement,
-  user,
-  onSubmitOfferings,
   status,
   items,
   attributes,
   startingAttributesIds,
-  knownSpriteIds,
-  alien,
   requestHistory,
   inquiryHistory,
   isAlienBot,
   debugMode,
-}: StepHumansOfferProps) {
+}: StepHumansOfferWaitProps) {
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
   return (
     <Step
       fullWidth
       announcement={announcement}
     >
-      <StepTitle>
+      <StepTitle wait>
         <Translate
-          pt="Ofereça um objeto"
-          en="Offer an object"
+          pt="Agora aguarde enquanto os humanos escolhem objetos para oferecer."
+          en="Now wait while the humans choose objects to offer."
         />
       </StepTitle>
 
@@ -77,31 +68,10 @@ export function StepHumansOffer({
 
       {isAlienBot && <BotPopupRule />}
 
-      <RuleInstruction type="action">
+      <RuleInstruction type="wait">
         <Translate
-          pt={
-            <>
-              O(A) alienígena <PlayerAvatarName player={alien} /> fez esse pedido. Você consegue decifrar qual
-              objeto ele(a) quer?
-              <br />
-              Um símbolo sublinhado significa "muito" e um símbolo sobrelinhado significa "não".
-              <br />
-              <strong>Selecione</strong> um (ou mais) objeto(s) e aperte enviar. Lembre-se que que você tem
-              que entregar <ItemsHighlight type="negative">{status.needed}</ItemsHighlight>
-              objetos.
-            </>
-          }
-          en={
-            <>
-              The alien <PlayerAvatarName player={alien} /> made this request. Can you decipher what object
-              they want?
-              <br />
-              An underlined symbol means "very" and an overscore symbol means "not".
-              <br />
-              <strong>Select</strong> one (or more) object(s) then press Submit. Remember that you must
-              deliver <ItemsHighlight type="negative">{status.needed}</ItemsHighlight> objects.
-            </>
-          }
+          pt={<>Aguarde enquanto os humanos escolhem um objeto para te oferecer.</>}
+          en={<>Wait while the humans choose an object to offer.</>}
         />
       </RuleInstruction>
 
@@ -116,14 +86,15 @@ export function StepHumansOffer({
         className="boards-container"
         wrap
       >
-        <HumanOffering
+        <ObjectsGrid
+          items={items}
+          showTypes
+          status={status}
+        />
+        <SignsKeyCard
           attributes={attributes}
           startingAttributesIds={startingAttributesIds}
-          items={items}
-          submitOffer={onSubmitOfferings}
-          user={user}
-          status={status}
-          knownSpriteIds={knownSpriteIds}
+          inquiryHistory={inquiryHistory}
         />
       </Space>
 

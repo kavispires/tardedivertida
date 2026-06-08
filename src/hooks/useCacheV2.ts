@@ -1,25 +1,80 @@
 import { useSelector } from '@tanstack/react-store';
 import { Store } from '@tanstack/store';
-import { format } from 'date-fns';
+import { differenceInDays, format } from 'date-fns';
 import cloneDeep from 'lodash/cloneDeep';
 import set from 'lodash/set';
+import unset from 'lodash/unset';
 import { useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 
 const LOCAL_STORAGE_KEY = 'TD_cache';
+const MAX_CACHE_AGE_DAYS = 2;
 
 // biome-ignore lint/suspicious/noExplicitAny: it is needed to have a generic type of the store
 type GENERIC_ANY = any;
 
-// Define the shape of our localStorage payload
-interface LocalCachePayload<T> {
+/**
+ * Represents a single cached game entry
+ */
+interface CacheEntry<T = GENERIC_ANY> {
+  /**
+   * The game session ID
+   */
   gameId: string;
-  date: string; // YYYY-MM-DD format for cleanup purposes
+  /**
+   * The date this cache was last updated (YYYY-MM-DD format)
+   */
+  date: string;
+  /**
+   * The cached data for this game
+   */
   data: T;
+}
+
+/**
+ * Storage structure for multiple game caches
+ */
+interface CacheStorage {
+  [gameId: string]: CacheEntry;
 }
 
 // Global registry to ensure components requesting the same gameId share the exact same store instance
 const storeRegistry = new Map<string, Store<GENERIC_ANY>>();
+
+/**
+ * Cleanup old cache entries on module load.
+ * Removes any cache entries older than MAX_CACHE_AGE_DAYS.
+ */
+(function cleanupOldCaches() {
+  if (typeof window === 'undefined') return;
+
+  try {
+    const cached = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (!cached) return;
+
+    const storage: CacheStorage = JSON.parse(cached);
+    const today = new Date();
+    let hasChanges = false;
+
+    Object.keys(storage).forEach((gameId) => {
+      const entry = storage[gameId];
+      const cacheDate = new Date(entry.date);
+      const daysDiff = differenceInDays(today, cacheDate);
+
+      if (daysDiff > MAX_CACHE_AGE_DAYS) {
+        delete storage[gameId];
+        hasChanges = true;
+      }
+    });
+
+    if (hasChanges) {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(storage));
+    }
+  } catch (error) {
+    // biome-ignore lint/suspicious/noConsole: for debugging purposes
+    console.error('Failed to cleanup old caches', error);
+  }
+})();
 
 function getOrCreateStore<T extends object>(gameId: string, defaultValue: T): Store<T> {
   // 1. Return the existing store if it's already running in memory
@@ -33,10 +88,10 @@ function getOrCreateStore<T extends object>(gameId: string, defaultValue: T): St
     try {
       const cached = localStorage.getItem(LOCAL_STORAGE_KEY);
       if (cached) {
-        const parsed = JSON.parse(cached) as LocalCachePayload<T>;
-        // Only use the cache if the gameId matches what we are trying to load
-        if (parsed.gameId === gameId) {
-          initialState = parsed.data;
+        const storage: CacheStorage = JSON.parse(cached);
+        // Only use the cache if this specific gameId exists
+        if (storage[gameId]) {
+          initialState = storage[gameId].data as T;
         }
       }
     } catch (error) {
@@ -51,10 +106,24 @@ function getOrCreateStore<T extends object>(gameId: string, defaultValue: T): St
   // 4. Subscribe to any state changes to automatically sync with localStorage
   store.subscribe(() => {
     if (typeof window !== 'undefined') {
-      localStorage.setItem(
-        LOCAL_STORAGE_KEY,
-        JSON.stringify({ gameId, date: format(new Date(), 'yyyy-MM-dd'), data: store.state }),
-      );
+      try {
+        // Load existing storage
+        const cached = localStorage.getItem(LOCAL_STORAGE_KEY);
+        const storage: CacheStorage = cached ? JSON.parse(cached) : {};
+
+        // Update this game's entry
+        storage[gameId] = {
+          gameId,
+          date: format(new Date(), 'yyyy-MM-dd'),
+          data: store.state,
+        };
+
+        // Save back to localStorage
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(storage));
+      } catch (error) {
+        // biome-ignore lint/suspicious/noConsole: for debugging purposes
+        console.error('Failed to save cache to localStorage', error);
+      }
     }
   });
 
@@ -71,6 +140,8 @@ function getOrCreateStore<T extends object>(gameId: string, defaultValue: T): St
  * - Automatically persisted to localStorage on every state change
  * - Shared across all components that use the same gameId (singleton pattern)
  * - Restored from localStorage when the component mounts (if gameId matches)
+ * - Supports multiple games simultaneously (each with its own cache entry)
+ * - Auto-cleanup: Caches older than 2 days are automatically removed on module load
  *
  * The hook provides three update methods:
  * - `setCache`: Replaces the entire cache state (like React's setState)
@@ -111,7 +182,11 @@ export function useCacheV2<T extends object>(defaultValue: T) {
     (path: string | keyof T, value: GENERIC_ANY) => {
       store.setState((prev) => {
         const nextState = cloneDeep(prev);
-        set(nextState, path as string, value);
+        if (value === undefined) {
+          unset(nextState, path as string);
+        } else {
+          set(nextState, path as string, value);
+        }
         return nextState;
       });
     },

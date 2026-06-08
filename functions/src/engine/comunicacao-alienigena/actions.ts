@@ -81,29 +81,49 @@ export const handleSubmitHumanInquiry = async (
  * @param gameName - The name of the game.
  * @param gameId - The ID of the game.
  * @param playerId - The ID of the player who is submitting the action.
- * @param objectsIds - The IDs of the objects selected by the player.
+ * @param alienResponses - The responses from the alien.
  * @returns - it updates the current state.
  */
-export const handleSubmitAlienResponse = async (
+export const handleSubmitAlienResponses = async (
   gameName: string,
   gameId: UID,
   playerId: UID,
-  alienResponse: string,
+  alienResponses: Record<string, string>,
 ) => {
   return await utils.firestore.updateState({
     gameName,
     gameId,
     playerId,
-    actionText: 'submit alien response',
+    actionText: 'submit alien responses',
     change: {
-      alienResponse,
+      alienResponses,
+      knownSpriteIds: utils.firestore.pushValue(...Object.values(alienResponses)),
     },
+  });
+};
+
+export const handleConfirmNotes = async (
+  gameName: string,
+  gameId: UID,
+  playerId: UID,
+  notes: Dictionary<string>,
+) => {
+  return await utils.firestore.updatePlayer({
+    gameName,
+    gameId,
+    playerId,
+    actionText: 'confirm notes',
+    change: {
+      notes,
+    },
+    shouldReady: true,
+    nextPhaseFunction: getNextPhase,
   });
 };
 
 /**
  * Submits the alien request.
- ** @param gameName - The name of the game.
+ * @param gameName - The name of the game.
  * @param gameId - The ID of the game.
  * @param playerId - The ID of the player who is submitting the action.
  * @param alienRequest - The alien request.

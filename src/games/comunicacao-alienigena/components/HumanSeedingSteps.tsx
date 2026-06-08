@@ -1,11 +1,13 @@
 import clsx from 'clsx';
-import { useState } from 'react';
+import { orderBy } from 'lodash';
+import { useMemo, useState } from 'react';
 // Ant Design Resources
-import { Button, Flex, Steps, Switch } from 'antd';
+import { Badge, Button, Flex, Steps, Switch, Typography, type StepsProps } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
+import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { SEPARATOR } from 'utils/constants';
@@ -13,6 +15,7 @@ import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Card } from 'components/cards/Card';
 import { ItemCard } from 'components/cards/ItemCard';
+import { DevButton } from 'components/debug/DevButton';
 import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
@@ -22,6 +25,7 @@ import { Title } from 'components/text/Title';
 import { alienAttributesUtils } from 'components/toolKits/AlienAttributes';
 // Internal
 import type { Seed, SubmitSeedingPayload } from '../utils/types';
+import { mockSeeds } from '../utils/mockSeeds';
 
 type HumanSeedingStepsProps = {
   onSubmitSeeds: (payload: SubmitSeedingPayload) => void;
@@ -30,15 +34,28 @@ type HumanSeedingStepsProps = {
 
 export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProps) {
   const { isLoading } = useLoading();
+  const { language } = useLanguage();
   const [currentStep, setCurrentStep] = useState(0);
   const [seeds, setSeeds] = useState<Dictionary<number>>({});
   const { dict: selected, updateDict: updateSelected, setDict, reset } = useBooleanDictionary({});
 
-  const seeders = Object.values<Seed>(user?.seeds ?? {});
-  const steps = seeders.map((seed) => ({
-    title: <DualTranslate>{seed.attribute.name}</DualTranslate>,
-    description: seed.items.length ?? 0,
-  }));
+  const { seeders, steps } = useMemo(() => {
+    const seeders = orderBy(Object.values<Seed>(user?.seeds ?? {}), [`attribute.name.${language}`], ['asc']);
+    const steps: StepsProps['items'] = seeders.map((seed) => ({
+      title: (
+        <Typography.Text>
+          <DualTranslate>{seed.attribute.name}</DualTranslate>
+        </Typography.Text>
+      ),
+      content: (
+        <Badge
+          count={seed.items.length ?? 0}
+          color="lime"
+        />
+      ),
+    }));
+    return { seeders, steps };
+  }, [user?.seeds, language]);
 
   const seed = seeders[currentStep];
 
@@ -97,19 +114,23 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
       orientation="vertical"
       wrap
     >
-      <div className="seeding-container__stepper">
+      <Flex className="seeding-container__stepper">
         <Steps
+          style={{ width: '100%' }}
           type="dot"
+          size="small"
           current={currentStep}
           items={steps}
+          responsive={false}
         />
-      </div>
+      </Flex>
 
       <SpaceContainer vertical>
         <Title
           level={3}
           size="xx-small"
           colorScheme="light"
+          marginBottom={0}
         >
           <Translate
             pt="Análise"
@@ -189,7 +210,14 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
         </Instruction>
 
         <SpaceContainer>
-          {currentStep < seeders.length - 1 && (
+          <DevButton
+            size="large"
+            ghost
+            onClick={() => onSubmitSeeds(mockSeeds(user?.seeds ?? {}))}
+          >
+            Mock Answers
+          </DevButton>
+          {currentStep !== 0 && (
             <Button
               size="large"
               onClick={onGoToPreviousAttribute}
@@ -201,6 +229,7 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
               />
             </Button>
           )}
+
           {currentStep < seeders.length - 1 ? (
             <Button
               size="large"

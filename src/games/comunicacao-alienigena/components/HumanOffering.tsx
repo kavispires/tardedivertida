@@ -25,6 +25,7 @@ type HumanOfferingProps = {
   submitOffer: (payload: SubmitOfferingsPayload) => void;
   user: GamePlayer;
   status: OfferingsStatus;
+  knownSpriteIds: string[];
 };
 
 export function HumanOffering({
@@ -34,6 +35,7 @@ export function HumanOffering({
   user,
   status,
   startingAttributesIds,
+  knownSpriteIds,
 }: HumanOfferingProps) {
   const {
     dict: offerings,
@@ -71,6 +73,7 @@ export function HumanOffering({
         <HumanSignBoard
           attributes={attributes}
           startingAttributesIds={startingAttributesIds}
+          knownSpriteIds={knownSpriteIds}
         />
       </Space>
 

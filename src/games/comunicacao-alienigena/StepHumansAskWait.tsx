@@ -1,11 +1,9 @@
-import { useState } from 'react';
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
-import { useLoading } from 'hooks/useLoading';
 // Components
 import { DebugOnly } from 'components/debug/DebugOnly';
 import { Translate } from 'components/language/Translate';
@@ -20,18 +18,15 @@ import type {
   OfferingsStatus,
   PhaseBasicState,
   RequestHistoryEntry,
-  SubmitAlienRequestPayload,
 } from './utils/types';
+import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
-import { AlienWritingBoard } from './components/AlienWritingBoard';
 import { History } from './components/History';
 import { Status } from './components/Status';
-import { SelectableObjectsGrid } from './components/SelectableObjectsGrid';
+import { ItemsHighlight } from './components/Highlights';
 
-type StepAlienRequestsProps = {
+type StepHumansAskWaitProps = {
   players: GamePlayers;
-  onSubmitAlienRequest: (payload: SubmitAlienRequestPayload) => void;
-  user: GamePlayer;
   alien: GamePlayer;
   isUserAlien: boolean;
   items: PhaseBasicState['items'];
@@ -40,26 +35,23 @@ type StepAlienRequestsProps = {
   status: OfferingsStatus;
   requestHistory: RequestHistoryEntry[];
   inquiryHistory: InquiryHistoryEntry[];
+  isAlienBot: boolean;
   debugMode: boolean;
 } & Pick<StepProps, 'announcement'>;
 
-export function StepAlienRequests({
-  players,
+export function StepHumansAskWait({
   announcement,
-  user,
-  onSubmitAlienRequest,
+  players,
   items,
   attributes,
   alien,
-  isUserAlien,
   requestHistory,
   inquiryHistory,
   status,
+  isAlienBot,
   startingAttributesIds,
   debugMode,
-}: StepAlienRequestsProps) {
-  const { isLoading } = useLoading();
-  const [intention, setIntention] = useState<string>('');
+}: StepHumansAskWaitProps) {
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
 
   return (
@@ -67,70 +59,39 @@ export function StepAlienRequests({
       fullWidth
       announcement={announcement}
     >
-      <StepTitle>
+      <StepTitle wait>
         <Translate
-          pt={
-            <>
-              Alienígena <PlayerAvatarName player={alien} /> deve pedir um item
-            </>
-          }
-          en={
-            <>
-              Alien <PlayerAvatarName player={alien} /> must request an item
-            </>
-          }
+          pt="Os humanos estão se preparando para contato"
+          en="Humans are preparing for contact"
         />
       </StepTitle>
 
       <PopoverRule content={<Status status={status} />} />
 
-      <RuleInstruction type="action">
+      <RuleInstruction type="wait">
         <Translate
           pt={
             <>
-              <strong>Selecione</strong> um dos objetos desejados (verde).
-              <br />
-              Então, <strong>descreva</strong> o objeto usando quantos símbolos você quiser.
-              <br />
-              Se você precisar inferir negação, coloque um traço horizontal em cima do{' '}
-              <span style={{ textDecoration: 'overline' }}>símbolo</span>.
-              <br />
-              Se você precisa inferir ênfase, coloque um traço horizontal embaixo do{' '}
-              <span style={{ textDecoration: 'underline' }}>símbolo</span>.
+              Aguarde enquanto os jogadores selecionam <ItemsHighlight>1-5 itens</ItemsHighlight> para
+              perguntar ao alienígena <PlayerAvatarName player={alien} /> qual o símbolo relacionado a eles.
             </>
           }
           en={
             <>
-              <strong>Select</strong> one of the desired objects (green).
-              <br />
-              Then, <strong>describe</strong> the object using as many symbols you wish.
-              <br />
-              If you need to infer negation or the contrary, draw an horizontal line on top of the{' '}
-              <span style={{ textDecoration: 'overline' }}>symbol</span>.
-              <br />
-              If you need to infer emphasis, draw an horizontal line below the{' '}
-              <span style={{ textDecoration: 'underline' }}>symbol</span>.
+              Please wait while the players select <ItemsHighlight>1-5 items</ItemsHighlight> to ask the alien{' '}
+              <PlayerAvatarName player={alien} /> what symbol is related to them.
             </>
           }
         />
       </RuleInstruction>
 
-      <AlienWritingBoard
-        onSubmit={(alienRequest) => onSubmitAlienRequest({ alienRequest, intention })}
-        disabled={user.ready || isLoading || !intention}
-      />
-
       <Space
         className="boards-container"
         wrap
       >
-        <SelectableObjectsGrid
+        <ObjectsGrid
           items={items}
-          showTypes={isUserAlien}
-          user={user}
-          selectedObjects={{ [intention]: true }}
-          selectObject={(itemId) => setIntention(itemId)}
-          isAlienRequest
+          showTypes
           status={status}
         />
         <SignsKeyCard
@@ -145,7 +106,7 @@ export function StepAlienRequests({
         requestHistory={requestHistory}
         players={players}
         items={items}
-        isAlienBot={false}
+        isAlienBot={isAlienBot}
         attributes={attributes}
         showIntention={isDebugEnabled}
         debugMode={debugMode}

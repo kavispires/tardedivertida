@@ -40,11 +40,21 @@ export type SubmitHumanInquiryPayload = {
 /**
  * Payload for submitting the alien's response
  */
-export type SubmitAlienResponsePayload = {
+export type SubmitAlienResponsesPayload = {
   /**
-   * The alien's response (attribute spriteId or drawing)
+   * The alien's responses <inquiryId, spriteId>
    */
-  alienResponse: string;
+  alienResponses: Dictionary<string>;
+};
+
+/**
+ * Payload for confirming player's notes
+ */
+export type SubmitNotesConfirmationPayload = {
+  /**
+   * Send the dictionary of attribute <> spritId the player has noted down as a confirmation of their notes
+   */
+  notes: Dictionary<string>;
 };
 
 /**
@@ -92,7 +102,11 @@ export type Seed = {
 
 export interface InquiryHistoryEntry {
   /**
-   * Alien drawing or spritId
+   * Unique identifier for the inquiry
+   */
+  id: UID;
+  /**
+   * SpriteId for the answer
    */
   answer: string;
   /**
@@ -111,6 +125,10 @@ export interface InquiryHistoryEntry {
    * The attribute Id the alien bot assumed
    */
   assumption?: SignId;
+  /**
+   * The suggestions the alien bot gave (only in bot games)
+   */
+  suggestions?: SignId[];
 }
 
 /**
@@ -204,6 +222,10 @@ export type PhaseBasicState = {
    */
   startingAttributesIds: string[];
   /**
+   * The IDs of sprites that have been revealed to players (for tracking known information)
+   */
+  knownSpriteIds: string[];
+  /**
    * Whether seeding should be performed by players
    */
   shouldPerformSeeding?: boolean;
@@ -256,16 +278,7 @@ export type PhaseAlienSeedingState = PhaseBasicState & {
  * State for the Human Ask phase
  * Human players select objects to inquire about
  */
-export type PhaseHumanAskState = PhaseBasicState & {
-  /**
-   * Order in which players take turns
-   */
-  turnOrder: TurnOrder;
-  /**
-   * The ID of the current human player asking
-   */
-  humanId: UID;
-};
+export type PhaseHumansAsksState = PhaseBasicState & {};
 
 /**
  * State for the Alien Answer phase
@@ -273,62 +286,32 @@ export type PhaseHumanAskState = PhaseBasicState & {
  */
 export type PhaseAlienAnswerState = PhaseBasicState & {
   /**
-   * Order in which players take turns
+   * Current inquiries
    */
-  turnOrder: TurnOrder;
-  /**
-   * The ID of the current human player asking
-   */
-  humanId: UID;
-  /**
-   * The object IDs the human is inquiring about
-   */
-  currentInquiry: UID[];
-  /**
-   * The attribute the human intends to ask about
-   */
-  currentIntention: string;
-  /**
-   * Suggested attributes for the alien's response
-   */
-  suggestions: AlienAttribute[];
+  inquiries: InquiryHistoryEntry[];
   /**
    * The alien's response (attribute spriteId)
    */
-  alienResponse?: string;
+  alienResponses?: Dictionary<string>;
 };
 
 /**
  * State for the Alien Request phase
  * Alien makes a request for a specific item
  */
-export type PhaseAlienRequestState = PhaseBasicState & {
-  /**
-   * Order in which players take turns
-   */
-  turnOrder: TurnOrder;
-};
+export type PhaseAlienRequestState = PhaseBasicState & {};
 
 /**
  * State for the Offerings phase
  * Players offer items in response to the alien's request
  */
-export type PhaseOfferingsState = PhaseBasicState & {
-  /**
-   * Order in which players take turns
-   */
-  turnOrder: TurnOrder;
-};
+export type PhaseOfferingsState = PhaseBasicState & {};
 
 /**
  * State for the Reveal phase
  * Reveals which offerings were correct, curses, or blank
  */
 export type PhaseRevealState = PhaseBasicState & {
-  /**
-   * Order in which players take turns
-   */
-  turnOrder: TurnOrder;
   /**
    * Whether any curse was selected in this round
    */

@@ -1,11 +1,11 @@
 import { useMemo, useState } from 'react';
 // Ant Design Resources
-import { Flex, Select, Space } from 'antd';
+import { Flex, Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
+import { useCacheV2 } from 'hooks/useCacheV2';
 import { useGlobalState } from 'hooks/useGlobalState';
-import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Icons
 import { ArrowIcon } from 'icons/collection';
@@ -16,6 +16,7 @@ import { ItemCard } from 'components/cards/ItemCard';
 import { SignCard } from 'components/cards/SignCard';
 import { DebugOnly } from 'components/debug/DebugOnly';
 import { Translate } from 'components/language/Translate';
+import { SpaceFloat } from 'components/layout/SpaceFloat';
 import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
 import { PlayerAvatarStrip } from 'components/player/PlayerAvatarStrip';
 import { PlayerFlex } from 'components/player/PlayerFlex';
@@ -23,27 +24,27 @@ import { PopoverRule } from 'components/rules/PopoverRule';
 import { Step, type StepProps } from 'components/steps/Step';
 import { RuleInstruction } from 'components/text/RuleInstruction';
 import { StepTitle } from 'components/text/StepTitle';
-import type { AlienAttribute } from 'components/toolKits/AlienAttributes/alien-attributes';
 import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import type {
   InquiryHistoryEntry,
   PhaseBasicState,
   RequestHistoryEntry,
-  SubmitAlienResponsesPayload,
   OfferingsStatus,
+  SubmitNotesConfirmationPayload,
 } from './utils/types';
 import { MAX_INQUIRY_OBJECTS, SPRITE_SIZE } from './utils/constants';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
+import { HumanSignBoard } from './components/HumanSignBoard';
 import { History } from './components/History';
 import { Status } from './components/Status';
 import { BotPopupRule } from './components/BotPopupRules';
-import { AnswerSuggestions } from './components/Suggestions';
 
-type StepAlienAnswersProps = {
+type StepAlienAnswersWaitProps = {
   players: GamePlayers;
-  onSubmitAlienResponse: (payload: SubmitAlienResponsesPayload) => void;
+  onConfirmNote: (payload: SubmitNotesConfirmationPayload) => void;
+  user: GamePlayer;
   alien: GamePlayer;
   items: PhaseBasicState['items'];
   attributes: PhaseBasicState['attributes'];
@@ -55,12 +56,14 @@ type StepAlienAnswersProps = {
   inquiryHistory: InquiryHistoryEntry[];
   isAlienBot: boolean;
   debugMode: boolean;
+  knownSpriteIds: string[];
 } & Pick<StepProps, 'announcement'>;
 
-export function StepAlienAnswers({
+export function StepAlienAnswersWait({
   players,
   announcement,
-  onSubmitAlienResponse,
+  user,
+  onConfirmNote,
   items,
   attributes,
   alien,
@@ -71,38 +74,16 @@ export function StepAlienAnswers({
   status,
   isAlienBot,
   startingAttributesIds,
+  knownSpriteIds,
   debugMode,
-}: StepAlienAnswersProps) {
+}: StepAlienAnswersWaitProps) {
   const { isLoading } = useLoading();
-  const { translate } = useLanguage();
+  const { cache } = useCacheV2<Dictionary<string>>({});
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
 
-  const hasAlienResponse = Boolean(alienResponses && Object.keys(alienResponses).length > 0);
+  const hasAlienResponse = Boolean(alienResponses && Object.keys(alienResponses).length > 0) || isAlienBot;
 
-  // inquiryId : spriteId
-  const [selections, setSelections] = useState(
-    inquiries.reduce(
-      (acc, inquiry) => {
-        acc[inquiry.id] = '';
-        return acc;
-      },
-      {} as Record<UID, string>,
-    ),
-  );
   const [activePlayerId, setActivePlayerId] = useState<UID | null>(null);
-
-  const { attributesDict, attributeSpriteOptions } = useMemo(() => {
-    return {
-      attributesDict: attributes.reduce((acc: Dictionary<AlienAttribute>, attribute) => {
-        acc[attribute.id] = attribute;
-        return acc;
-      }, {}),
-      attributeSpriteOptions: attributes.map((attribute) => ({
-        label: translate(attribute.name),
-        value: attribute.spriteId,
-      })),
-    };
-  }, [attributes, translate]);
 
   const activeObjects = useMemo(() => {
     if (!activePlayerId) return [];
@@ -115,7 +96,7 @@ export function StepAlienAnswers({
       fullWidth
       announcement={announcement}
     >
-      <StepTitle wait={hasAlienResponse}>
+      <StepTitle wait={!hasAlienResponse}>
         {hasAlienResponse ? (
           <Translate
             pt={
@@ -133,12 +114,12 @@ export function StepAlienAnswers({
           <Translate
             pt={
               <>
-                Alienígena <PlayerAvatarName player={alien} /> responde
+                Alienígena <PlayerAvatarName player={alien} /> deve responder
               </>
             }
             en={
               <>
-                Alien <PlayerAvatarName player={alien} /> answers
+                Alien <PlayerAvatarName player={alien} /> must answer
               </>
             }
           />
@@ -150,7 +131,7 @@ export function StepAlienAnswers({
       {isAlienBot && <BotPopupRule />}
 
       {!hasAlienResponse ? (
-        <RuleInstruction type="rule">
+        <RuleInstruction type="wait">
           <Translate
             pt="Para cada jogador humano, o alienígena deve dizer qual símbolo o grupo de objetos dado
                 representa"
@@ -159,10 +140,10 @@ export function StepAlienAnswers({
           />
         </RuleInstruction>
       ) : (
-        <RuleInstruction type="wait">
+        <RuleInstruction type="action">
           <Translate
-            pt="Aguarde enquanto os outros jogadores anotam os símbolos."
-            en="Wait while the other players take note of the symbols."
+            pt="Anote os símbolos nos atributes que você acha que o alienígena quis dizer."
+            en="Take note of the symbols on the attributes you think the alien meant."
           />
         </RuleInstruction>
       )}
@@ -210,7 +191,7 @@ export function StepAlienAnswers({
                 size="small"
               />
 
-              {inquiry.answer || selections[inquiry.id] || alienResponses?.[inquiry.id] ? (
+              {inquiry.answer || alienResponses?.[inquiry.id] ? (
                 <Flex
                   justify="center"
                   align="center"
@@ -222,9 +203,7 @@ export function StepAlienAnswers({
                   }}
                 >
                   <SignCard
-                    signId={
-                      (inquiry.answer || selections?.[inquiry.id] || alienResponses?.[inquiry.id]) ?? ''
-                    }
+                    signId={(inquiry.answer || alienResponses?.[inquiry.id]) ?? ''}
                     className="transparent"
                     width={SPRITE_SIZE}
                   />
@@ -243,50 +222,24 @@ export function StepAlienAnswers({
                   ?
                 </Flex>
               )}
-
-              {!hasAlienResponse && (
-                <>
-                  <Select
-                    options={attributeSpriteOptions}
-                    style={{ width: 120 }}
-                    placeholder={translate({ pt: 'Selecione um símbolo', en: 'Select a symbol' })}
-                    value={selections[inquiry.id]}
-                    onChange={(value) =>
-                      setSelections((prev) => ({
-                        ...prev,
-                        [inquiry.id]: value,
-                      }))
-                    }
-                  />
-                  <AnswerSuggestions
-                    suggestions={inquiry.suggestions || []}
-                    attributesDict={attributesDict}
-                    onSelect={(spriteId) =>
-                      setSelections((prev) => ({
-                        ...prev,
-                        [inquiry.id]: spriteId,
-                      }))
-                    }
-                  />
-                </>
-              )}
             </PlayerFlex>
           );
         })}
       </Flex>
 
-      <ViewIf condition={!hasAlienResponse}>
-        <SendButton
-          size="large"
-          onClick={() => onSubmitAlienResponse({ alienResponses: selections })}
-          disabled={isLoading || Object.values(selections).some((selection) => selection === '')}
-          className="mt-4"
-        >
-          <Translate
-            pt="Enviar respostas"
-            en="Submit answers"
-          />
-        </SendButton>
+      <ViewIf condition={hasAlienResponse}>
+        <SpaceFloat className="mt-4">
+          <SendButton
+            size="large"
+            onClick={() => onConfirmNote({ notes: cache })}
+            disabled={isLoading || user.ready}
+          >
+            <Translate
+              pt="Anotei os símbolos e estou pronto"
+              en="I took note of the symbols and I'm ready"
+            />
+          </SendButton>
+        </SpaceFloat>
       </ViewIf>
 
       <Space
@@ -295,14 +248,13 @@ export function StepAlienAnswers({
       >
         <ObjectsGrid
           items={items}
-          showTypes
           activeObjects={activeObjects}
           status={status}
         />
-        <SignsKeyCard
+        <HumanSignBoard
           attributes={attributes}
           startingAttributesIds={startingAttributesIds}
-          inquiryHistory={inquiryHistory}
+          knownSpriteIds={knownSpriteIds}
         />
       </Space>
 

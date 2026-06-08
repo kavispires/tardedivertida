@@ -1,24 +1,41 @@
+import { orderBy } from 'lodash';
+import { useMemo } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
-// Hooks
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
 import { Achievements } from 'components/general/Achievements';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayersTabs } from 'components/players/PlayersTabs';
 import { ViewIf } from 'components/views/ViewIf';
 // Internal
 import achievementsReference from './utils/achievements';
 import type { PhaseGameOverState } from './utils/types';
 import { History } from './components/History';
-import { HumanSignBoard } from './components/HumanSignBoard';
+import { HumanPlayerFinalSignBoard } from './components/HumanSignBoard';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
 
-export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
-  const [, isUserAlien] = useWhichPlayerIsThe('alienId', state, players);
+export function PhaseGameOver({ state, players, user }: PhaseProps<PhaseGameOverState>) {
+  const tabsContent = useMemo(() => {
+    return orderBy(
+      Object.values(players).filter((player) => player.role === 'human'),
+      ['name'],
+      ['asc'],
+    ).map((player) => ({
+      player,
+      content: (
+        <HumanPlayerFinalSignBoard
+          attributes={state.attributes}
+          startingAttributesIds={state.startingAttributesIds}
+          player={player}
+        />
+      ),
+    }));
+  }, [state, players]);
+
   return (
     <GameOverWrapper
       state={state}
@@ -46,13 +63,12 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
             <SignsKeyCard
               attributes={state.attributes}
               startingAttributesIds={state.startingAttributesIds}
+              inquiryHistory={state.inquiryHistory}
             />
-            <ViewIf condition={!isUserAlien}>
-              <HumanSignBoard
-                attributes={state.attributes}
-                startingAttributesIds={state.startingAttributesIds}
-              />
-            </ViewIf>
+            <PlayersTabs
+              list={tabsContent}
+              user={user}
+            />
           </SpaceContainer>
         </SpaceContainer>
 

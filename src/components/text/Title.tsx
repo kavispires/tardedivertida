@@ -38,6 +38,10 @@ export type TitleProps = Omit<AntdTitleProps, 'level'> & {
    * The alignment of the text (@default: center)
    */
   align?: 'left' | 'right' | 'center';
+  /**
+   *  The margin bottom of the title (default: depends on the size, but can be overridden with this prop)
+   */
+  marginBottom?: number | string;
 };
 
 /**
@@ -51,6 +55,7 @@ export const Title = ({
   level = 2,
   size = 'medium',
   align = 'center',
+  marginBottom,
   ...props
 }: TitleProps) => {
   const appearance = useGameAppearance();
@@ -80,6 +85,7 @@ export const Title = ({
     <Typography.Title
       level={level}
       className={clsx(styles.title, sizeClass, alignClass, colorClass, className)}
+      style={{ marginBottom, ...props.style }}
       {...props}
     >
       {Boolean(icon) && (

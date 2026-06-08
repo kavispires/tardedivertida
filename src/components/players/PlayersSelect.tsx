@@ -1,4 +1,5 @@
 import { orderBy } from 'lodash';
+import { useMemo } from 'react';
 // Ant Design Resources
 import { Select, type SelectProps } from 'antd';
 // Types
@@ -15,20 +16,23 @@ type PlayersSelectProps = {
  * Select dropdown component with player options sorted alphabetically by name
  */
 export function PlayersSelect({ players, style, ...props }: PlayersSelectProps) {
-  const options = orderBy(Object.values(players), [(o) => o.name.toLowerCase()], ['asc']).map((player) => ({
-    key: player.id,
-    value: player.id,
-    label: (
-      <>
-        <PlayerAvatar
-          avatarId={player.avatarId}
-          size="small"
-        />{' '}
-        {player.name}
-      </>
-    ),
-    // label: player.name,
-  }));
+  const options = useMemo(
+    () =>
+      orderBy(Object.values(players), [(o) => o.name.toLowerCase()], ['asc']).map((player) => ({
+        key: player.id,
+        value: player.id,
+        label: (
+          <>
+            <PlayerAvatar
+              avatarId={player.avatarId}
+              size="small"
+            />{' '}
+            {player.name}
+          </>
+        ),
+      })),
+    [players],
+  );
 
   return (
     <Select

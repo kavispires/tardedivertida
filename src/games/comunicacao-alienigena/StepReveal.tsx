@@ -54,6 +54,7 @@ type StepRevealProps = {
   round: GameRound;
   isAlienBot: boolean;
   debugMode: boolean;
+  knownSpriteIds: string[];
 } & Pick<StepProps, 'announcement'>;
 
 export function StepReveal({
@@ -69,10 +70,13 @@ export function StepReveal({
   inquiryHistory,
   isAlienBot,
   startingAttributesIds,
+  knownSpriteIds,
   debugMode,
 }: StepRevealProps) {
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
   const latestRequest = requestHistory?.[0] ?? {};
+
+  const objectsRemaining = Math.max(0, status.needed - status.found);
 
   return (
     <Step
@@ -103,17 +107,16 @@ export function StepReveal({
         <Translate
           pt={
             <>
-              Faltam{' '}
-              <MetricHighlight icon={<PlayerIconsIcon />}>{status.needed - status.found}</MetricHighlight>{' '}
-              objetos a serem oferecidos.
+              Faltam <MetricHighlight icon={<PlayerIconsIcon />}>{objectsRemaining}</MetricHighlight> objetos
+              a serem oferecidos.
               <br />
               Temos <MetricHighlight icon={<ClockIcon />}>{status.timeLeft} </MetricHighlight> chances.
             </>
           }
           en={
             <>
-              <MetricHighlight icon={<PlayerIconsIcon />}>{status.needed - status.found}</MetricHighlight>{' '}
-              objects left to be offered.
+              <MetricHighlight icon={<PlayerIconsIcon />}>{objectsRemaining}</MetricHighlight> objects left to
+              be offered.
               <br />
               We have <MetricHighlight icon={<ClockIcon />}>{status.timeLeft} </MetricHighlight> attempts
               left.
@@ -165,6 +168,7 @@ export function StepReveal({
           <SignsKeyCard
             attributes={attributes}
             startingAttributesIds={startingAttributesIds}
+            inquiryHistory={inquiryHistory}
           />
         </Space>
       </AlienContent>
@@ -181,6 +185,7 @@ export function StepReveal({
           <HumanSignBoard
             attributes={attributes}
             startingAttributesIds={startingAttributesIds}
+            knownSpriteIds={knownSpriteIds}
           />
         </Space>
       </HumanContent>
@@ -200,6 +205,7 @@ export function StepReveal({
         <SignsKeyCard
           attributes={attributes}
           startingAttributesIds={startingAttributesIds}
+          inquiryHistory={inquiryHistory}
         />
       </DebugOnly>
     </Step>

@@ -21,9 +21,10 @@ import utils from '../../utils';
 // Internal Functions
 import { determineNextPhase } from './helpers';
 import {
+  handleConfirmNotes,
   handleSubmitAlien,
   handleSubmitAlienRequest,
-  handleSubmitAlienResponse,
+  handleSubmitAlienResponses,
   handleSubmitHumanInquiry,
   handleSubmitOfferings,
   handleSubmitSeeds,
@@ -134,7 +135,7 @@ export const getNextPhase = async (
   }
 
   // * -> HUMANS_SASK
-  if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.HUMAN_ASK) {
+  if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.HUMANS_ASKS) {
     const newPhase = await prepareHumanAskPhase(store, state, players);
     return utils.firestore.saveGame(sessionRef, newPhase);
   }
@@ -191,9 +192,13 @@ export const submitAction = async (data: ComunicacaoAlienigenaSubmitAction) => {
     case COMUNICACAO_ALIENIGENA_ACTIONS.SUBMIT_HUMAN_INQUIRY:
       utils.firebase.validateSubmitActionProperties(data, ['objectsIds', 'intention'], 'submit objectsIds');
       return handleSubmitHumanInquiry(gameName, gameId, playerId, data.objectsIds, data.intention);
-    case COMUNICACAO_ALIENIGENA_ACTIONS.SUBMIT_ALIEN_RESPONSE:
-      utils.firebase.validateSubmitActionProperties(data, ['alienResponse'], 'submit alienResponse');
-      return handleSubmitAlienResponse(gameName, gameId, playerId, data.alienResponse);
+    case COMUNICACAO_ALIENIGENA_ACTIONS.SUBMIT_ALIEN_RESPONSES:
+      utils.firebase.validateSubmitActionProperties(data, ['alienResponses'], 'submit alienResponses');
+      return handleSubmitAlienResponses(gameName, gameId, playerId, data.alienResponses);
+    case COMUNICACAO_ALIENIGENA_ACTIONS.CONFIRM_NOTES:
+      utils.firebase.validateSubmitActionProperties(data, ['notes'], 'submit notes');
+      return handleConfirmNotes(gameName, gameId, playerId, data.notes);
+
     case COMUNICACAO_ALIENIGENA_ACTIONS.SUBMIT_ALIEN_REQUEST:
       utils.firebase.validateSubmitActionProperties(
         data,

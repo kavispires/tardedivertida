@@ -1,80 +1,63 @@
 import clsx from 'clsx';
-import { isEmpty, orderBy } from 'lodash';
-import { useEffect } from 'react';
+import { keyBy } from 'lodash';
+import { useMemo } from 'react';
 // Ant Design Resources
 import { CheckCircleFilled, CheckSquareOutlined, InfoCircleOutlined } from '@ant-design/icons';
-import { Button, Popover, Space } from 'antd';
+import { Button, Popover, Space, Tooltip } from 'antd';
 // Hooks
-import { useCacheAlternative } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { TransparentButton } from 'components/buttons/TransparentButton';
 import { SignCard } from 'components/cards/SignCard';
-import { Popconfirm } from 'components/general/Popconfirm';
 import { DualTranslate } from 'components/language/DualTranslate';
 import { Translate } from 'components/language/Translate';
 import { Title } from 'components/text/Title';
 // Internal
 import type { PhaseBasicState } from '../utils/types';
-import { COMUNICACAO_ALIENIGENA_PHASES } from '../utils/constants';
+import { SPRITE_SIZE } from '../utils/constants';
 
 type SignsKeyCardProps = {
   attributes: PhaseBasicState['attributes'];
   startingAttributesIds: string[];
-  phase?: string;
+  inquiryHistory: PhaseBasicState['inquiryHistory'];
 };
 
-export function SignsKeyCard({ attributes, startingAttributesIds = [], phase }: SignsKeyCardProps) {
-  const { cache, setCache } = useCacheAlternative({ defaultValue: {} });
+export function SignsKeyCard({ attributes, startingAttributesIds = [], inquiryHistory }: SignsKeyCardProps) {
   const { language } = useLanguage();
 
-  const updateCache = (signId: number | string, value: boolean) => {
-    setCache((prev) => {
-      const copy = { ...prev };
-      copy[signId] = value;
-      return copy;
-    });
-  };
+  const useAttributesDict = useMemo(() => {
+    const dict: Record<string, 'used' | 'starting'> = {};
+    const spriteDict = keyBy(attributes, 'spriteId');
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: a function doesn't need to be in the dependencies array
-  useEffect(() => {
-    if (phase === COMUNICACAO_ALIENIGENA_PHASES.HUMAN_ASK && startingAttributesIds.length && isEmpty(cache)) {
-      setCache((prev) => {
-        const copy = { ...prev };
-        attributes.forEach((attribute) => {
-          if (startingAttributesIds.find((attributeId) => attributeId === attribute.id)) {
-            copy[attribute.id] = true;
-          }
-        });
-        return copy;
-      });
-    }
-  }, [startingAttributesIds, phase]);
+    inquiryHistory.forEach((entry) => {
+      if (entry.answer && spriteDict[entry.answer]) {
+        dict[spriteDict[entry.answer].id] = 'used';
+      }
+    });
+    startingAttributesIds.forEach((id) => {
+      dict[id] = 'starting';
+    });
+    return dict;
+  }, [inquiryHistory, startingAttributesIds, attributes]);
 
   return (
     <Space orientation="vertical">
       <Title
         level={3}
         size="xx-small"
+        marginBottom={0}
       >
         <Translate
           pt="Atributos e Símbolos"
           en="Attributes and Symbols"
         />
-        <Popover
-          content={
-            <Translate
-              pt="Você pode clicar no título do atributo para marcá-lo como usado"
-              en="You may click on the title of an attribute to mark it as used"
-            />
-          }
+        <Tooltip
           title={
             <Translate
-              pt="Dica"
-              en="Hint"
+              pt="Passando o mouse sobre os nomes dos atributos dá dicas de significados adicionais que eles tem"
+              en="Hovering over the attribute names gives additional meaning hints"
             />
           }
-          arrow
         >
           <Button
             type="text"
@@ -82,73 +65,49 @@ export function SignsKeyCard({ attributes, startingAttributesIds = [], phase }: 
             icon={<InfoCircleOutlined />}
             shape="circle"
           />
-        </Popover>
+        </Tooltip>
       </Title>
       <div className="attributes-grid">
-        {orderBy(attributes, `attribute.${language}`).map((attribute) => {
-          const isStarting = Boolean(
-            startingAttributesIds.find((attributeId) => attributeId === attribute.id),
-          );
+        {attributes.map((attribute) => {
+          const isStarting = useAttributesDict[attribute.id] === 'starting';
+          const isUsed = useAttributesDict[attribute.id] === 'used';
           return (
             <div
-              className={clsx(
-                'attributes-grid__item',
-                Boolean(cache[attribute.id]) && 'attributes-grid__item--used',
-              )}
+              className={clsx('attributes-grid__item', {
+                'attributes-grid__item--used': isUsed || isStarting,
+              })}
               key={attribute.name[language]}
             >
-              <Popconfirm
+              <Popover
                 title={
-                  isStarting ? (
-                    <Translate
-                      pt="Atributo inicial"
-                      en="Starting attribute"
-                    />
-                  ) : (
-                    <Translate
-                      pt="Usado?"
-                      en="Used?"
-                    />
-                  )
+                  <>
+                    <DualTranslate>{attribute.name}</DualTranslate>{' '}
+                    {isStarting && (
+                      <Translate
+                        pt=" (Atributo inicial)"
+                        en=" (Starting attribute)"
+                      />
+                    )}
+                  </>
                 }
-                description={
+                content={
                   attribute.description ? (
                     <span className="attributes-grid__mini-description">
                       <DualTranslate>{attribute.description}</DualTranslate>
                     </span>
                   ) : undefined
                 }
-                onConfirm={() => updateCache(attribute.id, true)}
-                onCancel={() => updateCache(attribute.id, false)}
-                okText={
-                  <Translate
-                    pt="Sim"
-                    en="Yes"
-                  />
-                }
-                cancelText={
-                  <Translate
-                    pt="Não"
-                    en="No"
-                  />
-                }
-                okButtonProps={{
-                  disabled: isStarting,
-                }}
-                cancelButtonProps={{
-                  disabled: isStarting,
-                }}
+                trigger="hover"
               >
                 <TransparentButton>
-                  <DualTranslate>{attribute.name}</DualTranslate>
-                  {isStarting && <CheckSquareOutlined />}
-                  {Boolean(cache[attribute.id]) && !isStarting && <CheckCircleFilled />}
+                  <DualTranslate>{attribute.name}</DualTranslate> {isStarting && <CheckSquareOutlined />}
+                  {isUsed && <CheckCircleFilled />}
                 </TransparentButton>
-              </Popconfirm>
+              </Popover>
               <SignCard
                 signId={`${attribute.spriteId}`}
                 className="transparent"
-                width={48}
+                width={SPRITE_SIZE}
               />
             </div>
           );

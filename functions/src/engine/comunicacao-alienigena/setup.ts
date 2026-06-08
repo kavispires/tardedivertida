@@ -1,7 +1,7 @@
 // Constants
 import { GAME_NAMES } from '../../utils/constants';
 import { COMUNICACAO_ALIENIGENA_PHASES, ITEMS_COUNT, ITEM_TYPES } from './constants';
-import { shuffle, uniq } from 'lodash';
+import { isEmpty, shuffle, uniq } from 'lodash';
 // Types
 import type {
   FirebaseStateData,
@@ -10,10 +10,16 @@ import type {
   OfferingsStatus,
   RequestHistoryEntry,
   ResourceData,
+  Seed,
 } from './types';
 // Utils
 import utils from '../../utils';
-import { applySeedsToAlienItemKnowledge, checkIsBot, getAchievements } from './helpers';
+import {
+  applySeedsToAlienItemKnowledge,
+  checkIsBot,
+  cleanupKnownSpriteIds,
+  getAchievements,
+} from './helpers';
 import { saveUsedItems } from './data';
 import {
   type AlienAttribute,
@@ -48,6 +54,7 @@ export const prepareSetupPhase = async (
     extraInfo.shouldPerformSeeding = true;
     extraInfo.alienId = '_a-bot';
     extraInfo.alienBot = true;
+    players[extraInfo.alienId].role = 'alien';
   }
   if (store.options.debugMode) {
     extraInfo.debugMode = true;
@@ -88,6 +95,7 @@ export const prepareSetupPhase = async (
           totalCurses: itemsInfo.curses,
         },
         startingAttributesIds: additionalData.startingAttributesIds,
+        knownSpriteIds: [],
         ...extraInfo,
       },
     },
@@ -142,12 +150,18 @@ export const prepareAlienSeedingPhase = async (
   const playersCount = utils.players.getPlayerCount(players, false);
 
   const quantityPerPlayer = Math.ceil(attributesWithUnclearValues.length / playersCount);
-  utils.players.dealItemsToPlayers(players, shuffle(attributesWithUnclearValues), quantityPerPlayer, 'seeds');
+  utils.players.dealItemsToPlayers(
+    players,
+    shuffle(attributesWithUnclearValues),
+    quantityPerPlayer,
+    'seeds',
+    true,
+  );
 
   // For each seed, give only items that have unclear values
   utils.players.getListOfPlayers(players).forEach((player) => {
     const { seeds = [] } = player;
-    const seedItems = {};
+    const seedItems: Dictionary<Seed> = {};
 
     seeds.forEach((seed: AlienAttribute) => {
       items.forEach((item) => {
@@ -184,13 +198,15 @@ export const prepareAlienSeedingPhase = async (
  * @param players - The players object
  */
 export const prepareHumanAskPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   const items: AlienItem[] = state.items;
   const attributes: AlienAttribute[] = state.attributes;
   const inquiryHistory: InquiryHistoryEntry[] = state.inquiryHistory;
+  const currentInquiries: InquiryHistoryEntry[] = state.inquiries ?? [];
+  const alienResponses: Dictionary<string> = state.alienResponses ?? {};
 
   if (state.shouldPerformSeeding) {
     applySeedsToAlienItemKnowledge(items, players);
@@ -198,52 +214,31 @@ export const prepareHumanAskPhase = async (
   }
 
   // Save any inquiry to history
-  if (
-    state.currentInquiry &&
-    state.humanId &&
-    utils.helpers.getLastItem(state.turnOrder ?? []) !== state.humanId
-  ) {
-    inquiryHistory.unshift({
-      answer: state.alienResponse,
-      objectIds: state.currentInquiry,
-      playerId: state.humanId,
-      intention: state.currentIntention ?? '',
-      assumption: store.assumption ?? '?',
+  if (currentInquiries.length > 0 && !isEmpty(alienResponses)) {
+    currentInquiries.forEach((inquiry) => {
+      const response = alienResponses[inquiry.id];
+      if (response) {
+        inquiry.answer = response;
+      }
     });
+
+    inquiryHistory.unshift(...currentInquiries);
   }
 
-  // Make player order if it doesn't exist
-  const turnOrder =
-    state.turnOrder ??
-    utils.turnOrder.create(players).gameOrder.filter((playerId) => playerId !== state.alienId);
-
-  // Unready current human player
-  const humanId = utils.turnOrder.getNextPlayerId(
-    turnOrder,
-    state.humanId ?? utils.helpers.getLastItem(turnOrder),
-  );
-
-  utils.players.readyPlayers(players, humanId);
+  // Unready players
+  utils.players.unReadyPlayers(players, state.alienId);
 
   // Save
   return {
     update: {
       state: {
-        phase: COMUNICACAO_ALIENIGENA_PHASES.HUMAN_ASK,
-        turnOrder,
-        humanId,
+        phase: COMUNICACAO_ALIENIGENA_PHASES.HUMANS_ASKS,
         inquiryHistory,
         players,
         items,
         attributes,
       },
-      stateCleanup: [
-        'alienResponse',
-        'alienRequest',
-        'currentInquiry',
-        'currentIntention',
-        'shouldPerformSeeding',
-      ],
+      stateCleanup: ['alienResponses', 'alienRequest', 'inquiries', 'shouldPerformSeeding'],
     },
   };
 };
@@ -262,42 +257,79 @@ export const prepareAlienAnswerPhase = async (
   const hasBot = !!state.alienBot;
   const items: AlienItem[] = state.items;
   const attributes: AlienAttribute[] = state.attributes;
+  const round: Round = state.round;
+  const knownSpriteIds: string[] = state.knownSpriteIds ?? [];
+  const startingAttributesIds: string[] = state.startingAttributesIds;
 
   // Unready alien player
   utils.players.unReadyPlayers(players, state.alienId);
 
-  // Add player question to the state
-  const currentInquiry = [...(players[state.humanId].objectsIds ?? [])];
-  const currentIntention = players[state.humanId].intention ?? 'solid';
+  const humans = utils.players.getListOfPlayers(players).filter((p) => p.role === 'human');
 
-  // Achievement: Single Inquiry
-  if (currentInquiry.length === 1) {
-    utils.achievements.increase(store, state.humanId, 'singleInquiry', 1);
-  }
-  // Achievement: Total objects
-  utils.achievements.increase(store, state.humanId, 'objectInquiries', currentInquiry.length);
+  const inquiries: InquiryHistoryEntry[] = [];
 
-  // In a Alien Bot game the suggestion is the alien response
-  const suggestions = alienAttributesUtils.getBestAttributes(items, attributes, currentInquiry).slice(0, 3);
-  const alienResponse = hasBot ? suggestions[0].spriteId : null;
-  if (hasBot) {
-    attributes.forEach((attr) => {
-      if (attr.spriteId === alienResponse) {
-        attr.known = true;
+  const itemInquiryCounts: Dictionary<number> = {};
+
+  humans.forEach((player) => {
+    const objectIds: string[] = player.objectsIds ?? [];
+    const suggestions = alienAttributesUtils
+      .getBestAttributes(items, attributes, objectIds, startingAttributesIds)
+      .slice(0, 3);
+
+    const inquiry: InquiryHistoryEntry = {
+      id: `${round.current}-${player.id}`,
+      objectIds: objectIds,
+      intention: player.intention ?? 'solid',
+      playerId: player.id,
+      // Help for the alien
+      suggestions: suggestions.map((s) => s.id), // TODO: verify
+      // These fields will be filled by the alien later
+      answer: hasBot ? suggestions[0].spriteId : '',
+      // Bot only
+      assumption: hasBot ? suggestions[0].id : '',
+    };
+    inquiries.push(inquiry);
+
+    if (hasBot) {
+      knownSpriteIds.push(inquiry.answer);
+    }
+
+    if (inquiry.objectIds.length === 1) {
+      // Achievement: Single Inquiry
+      utils.achievements.increase(store, player.id, 'singleInquiry', 1);
+    }
+
+    // Achievement: Total objects
+    utils.achievements.increase(store, player.id, 'objectInquiries', objectIds.length);
+
+    // If bot, update alien knowledge based on the top suggestion
+    if (hasBot && inquiry.answer) {
+      const topSuggestion = suggestions[0];
+      if (topSuggestion) {
+        const attribute = attributes.find((attr) => attr.id === topSuggestion.id);
+        if (attribute) {
+          attribute.known = true;
+        }
       }
+    }
+
+    // Update counts for each inquired item
+    objectIds.forEach((objectId) => {
+      if (!itemInquiryCounts[objectId]) {
+        itemInquiryCounts[objectId] = 0;
+      }
+      itemInquiryCounts[objectId] += 1;
     });
-  }
+  });
+
+  // Update counts for each item
+  items.forEach((item) => {
+    const count = itemInquiryCounts[item.id] || 0;
+    item.inquiries = (item.inquiries || 0) + count;
+  });
 
   // Cleanup players
   utils.players.removePropertiesFromPlayers(players, ['objectsIds', 'intention']);
-
-  // Added inquired count to each selected item
-  currentInquiry.forEach((objectId) => {
-    const item = items.find((i) => i.id === objectId);
-    if (item) {
-      item.inquiries = (item.inquiries ?? 0) + 1;
-    }
-  });
 
   // Save
   return {
@@ -307,13 +339,11 @@ export const prepareAlienAnswerPhase = async (
       },
       state: {
         phase: COMUNICACAO_ALIENIGENA_PHASES.ALIEN_ANSWER,
-        currentInquiry,
-        currentIntention,
-        alienResponse,
-        suggestions,
+        inquiries,
         players,
         items,
         attributes,
+        knownSpriteIds: cleanupKnownSpriteIds(knownSpriteIds, attributes, startingAttributesIds),
       },
     },
   };
@@ -334,16 +364,21 @@ export const prepareAlienRequestPhase = async (
   utils.players.unReadyPlayer(players, state.alienId);
 
   const inquiryHistory: InquiryHistoryEntry[] = state.inquiryHistory;
+  const currentInquiries: InquiryHistoryEntry[] = state.inquiries ?? [];
+  const alienResponses: Dictionary<string> = state.alienResponses ?? {};
+  const knownSpriteIds: string[] = state.knownSpriteIds ?? {};
 
   // Save any inquiry to history
-  if (state.currentInquiry && state.humanId) {
-    inquiryHistory.unshift({
-      answer: state.alienResponse,
-      objectIds: state.currentInquiry,
-      playerId: state.humanId,
-      intention: state.currentIntention ?? '',
-      assumption: '',
+  if (currentInquiries.length > 0 && !isEmpty(alienResponses)) {
+    currentInquiries.forEach((inquiry) => {
+      const response = alienResponses[inquiry.id];
+      if (response) {
+        inquiry.answer = response;
+        knownSpriteIds.push(response);
+      }
     });
+
+    inquiryHistory.unshift(...currentInquiries);
   }
 
   // Save
@@ -353,8 +388,9 @@ export const prepareAlienRequestPhase = async (
         phase: COMUNICACAO_ALIENIGENA_PHASES.ALIEN_REQUEST,
         inquiryHistory,
         players,
+        knownSpriteIds: cleanupKnownSpriteIds(knownSpriteIds, state.attributes, state.startingAttributesIds),
       },
-      stateCleanup: ['alienResponse', 'currentInquiry', 'currentIntention', 'humanId', 'suggestions'],
+      stateCleanup: ['alienResponses'],
     },
   };
 };
@@ -378,21 +414,14 @@ export const prepareOfferingsPhase = async (
   const attributes: AlienAttribute[] = state.attributes;
   const inquiryHistory: InquiryHistoryEntry[] = state.inquiryHistory;
   const requestHistory: RequestHistoryEntry[] = state.requestHistory;
-  const suggestions: AlienAttribute[] = state.suggestions;
   const startingAttributesIds: string[] = state.startingAttributesIds;
+  const currentInquiries: InquiryHistoryEntry[] = state.inquiries ?? [];
 
   // Since in a Bot Alien game the Alien Request phase is skipped, the inquiry must be saved here
-
-  if (state.alienBot) {
-    // Save any inquiry to history
-    if (state.currentInquiry && state.humanId) {
-      inquiryHistory.unshift({
-        answer: state.alienResponse,
-        objectIds: state.currentInquiry,
-        playerId: state.humanId,
-        intention: state.currentIntention ?? '',
-        assumption: hasBot ? suggestions[0].id : '',
-      });
+  if (hasBot) {
+    // No need to add answer since it is already prefilled for bot games
+    if (currentInquiries.length > 0) {
+      inquiryHistory.unshift(...currentInquiries);
     }
   }
 
@@ -412,7 +441,7 @@ export const prepareOfferingsPhase = async (
       })
       .map((item) => item.id);
 
-    const recentlyInquiredItemsIds = state.currentInquiry ?? [];
+    const recentlyInquiredItemsIds = uniq(currentInquiries.flatMap((inquiry) => inquiry.objectIds));
     const previouslyInquiredItemsIds = uniq([
       ...deterministicStartingItems,
       ...inquiryHistory.flatMap((entry) => entry.objectIds),
@@ -444,7 +473,7 @@ export const prepareOfferingsPhase = async (
         inquiryHistory,
         players,
       },
-      stateCleanup: ['alienResponse', 'suggestions', 'currentInquiry', 'currentIntention', 'humanId'],
+      stateCleanup: ['alienResponses', 'inquiries'],
     },
   };
 };
@@ -537,7 +566,6 @@ export const prepareRevealPhase = async (
         items,
         status,
         requestHistory,
-        turnOrder: state.turnOrder.reverse(),
       },
     },
   };
@@ -584,7 +612,7 @@ export const prepareGameOverPhase = async (
   // Save data (alien items)
   await saveUsedItems(state.items);
 
-  utils.players.cleanup(players, ['role']);
+  utils.players.cleanup(players, ['role', 'notes']);
 
   return {
     update: {

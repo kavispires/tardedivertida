@@ -30,13 +30,13 @@ export function StepSeedAlien({ user, announcement, onSubmitSeeds }: StepSeedAli
 
       <BotPopupRule />
 
-      <RuleInstruction type="action">
+      <RuleInstruction type="lore">
         <Translate
           pt={
             <>
               Você passou sua vida analisando as propriedades de diversos objetos.
               <br />
-              Agora, para cada uma dos atributos dados, determine se os itens tem ou não a propriedade.
+              Agora, para cada um dos atributos dados, determine se os itens têm ou não a propriedade.
             </>
           }
           en={

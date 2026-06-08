@@ -45,7 +45,6 @@ export function History({
           <InquiryHistory
             inquiryHistory={inquiryHistory}
             players={players}
-            isAlienBot={isAlienBot}
             attributes={attributes}
             showIntention={showIntention}
             debugMode={debugMode}
