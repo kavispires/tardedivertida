@@ -33,6 +33,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
   const { state, setState, updateState } = useDailyGameState<GameState>(initialState);
   const { session, setSession, updateSession } = useDailySessionState<SessionState>({
     discIndex: 0,
+    stopType: 'idle',
   });
 
   const { updateLocalStorage } = useDailyLocalToday<GameState>({
@@ -65,6 +66,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
       updateState({
         maxProgress: Math.max(session.discIndex, state.maxProgress),
       });
+      updateSession({ stopType: 'timeout' });
     },
   });
 
@@ -118,6 +120,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
         pause();
         setTimesUp(true);
         playSFX('win');
+        updateSession({ stopType: 'win', discIndex: nextDiscIndex });
 
         callOutItemName(itemId);
 
@@ -142,6 +145,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
         status: STATUSES.LOSE,
         hearts: 0,
       });
+      updateSession({ stopType: 'lose' });
       pause();
       setTimesUp(true);
       playSFX('lose');
@@ -180,6 +184,7 @@ export function useAquiOEngine(data: DailyAquiOEntry, initialState: GameState) {
   return {
     hearts: state.hearts,
     discIndex: session.discIndex,
+    stopType: session.stopType,
     attempts: state.attempts,
     maxProgress: state.maxProgress,
     showResultModal,

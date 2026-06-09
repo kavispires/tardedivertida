@@ -22,6 +22,7 @@ import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
 // Internal
 import { SETTINGS } from '../utils/settings';
 import { writeResult } from '../utils/helpers';
+import type { SessionState } from '../utils/types';
 import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult';
 
 const titles = [
@@ -83,6 +84,7 @@ type ResultsModalContentProps = {
   attempts: number;
   isWin: boolean;
   isLose: boolean;
+  stopType: SessionState['stopType'];
 };
 
 export function ResultsModalContent({
@@ -97,6 +99,7 @@ export function ResultsModalContent({
   attempts,
   isWin,
   isLose,
+  stopType,
 }: ResultsModalContentProps) {
   const { language, translate } = useLanguage();
 
@@ -116,8 +119,9 @@ export function ResultsModalContent({
       }),
     [challengeTitle, hearts, progress, maxProgress, hardMode, challengeNumber, attempts, translate, language],
   );
+  const usedProgress = stopType === 'idle' ? maxProgress : progress;
 
-  const title = getTitle(progress, hearts);
+  const title = getTitle(usedProgress, hearts);
   const worse = maxProgress > progress;
   const isComplete = isWin || isLose;
 

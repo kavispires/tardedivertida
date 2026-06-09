@@ -47,4 +47,5 @@ export type GameState = {
 
 export type SessionState = {
   discIndex: number;
+  stopType: 'win' | 'lose' | 'timeout' | 'idle';
 };

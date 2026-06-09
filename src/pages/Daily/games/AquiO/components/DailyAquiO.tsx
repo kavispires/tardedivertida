@@ -54,6 +54,7 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
     isPlaying,
     attempts,
     maxProgress,
+    stopType,
   } = useAquiOEngine(data, initialState);
 
   // UI state
@@ -224,6 +225,7 @@ export function DailyAquiO({ data }: DailyAquiOProps) {
               maxProgress={maxProgress}
               isWin={isWin}
               isLose={isLose}
+              stopType={stopType}
             />
           </Modal>
         </Space>
