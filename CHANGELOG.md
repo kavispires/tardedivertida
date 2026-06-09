@@ -8,6 +8,78 @@ Games are listed by their Portuguese names. Game folder keys used in commits are
 
 ## 2026
 
+### June 2026
+
+#### New Games
+
+- **Pirralhos** — Released daily game evaluating kid portraits
+
+#### Game Updates
+
+- **Arte Ruim** (`arte-ruim`) — Enabled eraser during drawing phase; swapped levels 4-5 so pairs are level 4 (ties are easier)
+- **Bomba Relógio** (`bomba-relogio`) — Updated rules and tweaked UI
+- **Comunicação Duo** (`comunicacao-duo`) — Fixed deckType key; when player delivers all items, active player remains the same
+- **Controle de Estoque** (`controle-de-estoque`) — Updated boss rules UI
+- **Detetives Imaginativos** (`detetives-imaginativos`) — UX improvements with separate Ranking; fixed card sizes and floating hand
+- **Galeria de Sonhos** (`galeria-de-sonhos`) — Fixed styles import and updated rules
+- **Labirinto Secreto** (`labirinto-secreto`) — Updated rules and tweaked UI
+- **Mente Coletiva** (`mente-coletiva`) — Pasture Redesign and UX improvements
+- **Na Fila do Banco** (`na-fila-do-banco`) — Released stable version; fixed teller order; updated hand color popover and minor tweaks; fixed game for 2 players having double colors
+- **Na Rua do Medo** (`na-rua-do-medo`) — Fixed mobile style and updated rules
+- **Onda Telepática** (`onda-telepatica`) — PhaseProps migration and UX improvements
+- **Planejamento Urbano** (`planejamento-urbano`) — Fixed drag and drop for mobile screens
+- **Qual Quesito?** (`qual-quesito`) — Updated rules
+- **Senso Literário** (`senso-literario`) — Updated rules
+- **Tá Na Cara** (`ta-na-cara`) — Added deck type (kid, teen, adult, pet, other) icon indicator to People's cards; refactored game; fixed answer table No icons; bumped suggested questions from 2 to 3
+- **Testemunha Ocular** (`testemunha-ocular`) — Updated rules
+- **Vice Campeão** (`vice-campeao`) — Updated rules
+
+#### Daily Challenges
+
+- **Mapeamento** — Released; created demo; improved UI; fixed fragments to account for accents; added to bundle results
+- **Pânico** — New button puzzle game under development; completed demo; added 6 new puzzles; improved generator algorithm with 8 new buttons; organized button labels; improved ICON_COMPARISON puzzle; improved UI and rules; fixed on/off sound effects; cleaned up demo
+- **Pirralhos** — Released; prepared for release; updated type and game; fixed Kids data; removed guess ids from game area
+- **Investigação** (`investigacao`) — Fixed additional statements; updated news with hearts count and new type of hints
+- **Filmaço** (`filmaco`) — Added visual cue showing which keyboard letters are correct
+- **Daily Hub** — Updated how games are displayed; improved layout and styling
+- **Bundle Results** — Fixed list of games to be shared; general fixes
+- **News** — Updated modal so clicking X also remembers the news was read
+
+#### Platform & Infrastructure
+
+- **i18n Refactor** — Changed translate function to use object parameters instead of ordered arguments
+- **Hooks** — New version of useCache with improved functionality
+- **Functions** — Added JSDoc comments to all functions in `functions/src/utils` and `functions/src/engine`; cleanup 'any' types from collections file; removed deprecated merge function in favor of lodash merge
+- **Info Utils** — Updated so only the requested game info needs to be loaded, improving performance
+- **Daily System** — Consolidated game preferences into a single store; added cross-game streak tracking system; renamed many daily games for more appropriate names (backwards compatible); removed backwards compatibility after migration completion; moved duplicated utils to utils/index; created custom component for DailyGame headers; fixed backwards compatibility issues
+- **Suspects Deck** — Migrated games using the suspects deck to new type interface
+- **Dependencies** — Bumped dependencies multiple times throughout the month
+- **Documentation** — Added Onboard game guide; updated GAME_CHECKLIST.md
+- **Planning** — Added Drop player plan for future use
+
+#### UI/UX Improvements
+
+- **Components** — Added docstring to all components; added eraser to DrawingCanvas; display background on game over screen; updated DecksColorsHighlight component
+- **Lobby** — Updated URL for rules images
+- **User Page** — Updated with tabs for statistics, rules, and achievements of specific games
+
+#### Performance & Optimization
+
+- Daily info utils now only load requested game info instead of all games
+
+#### Bug Fixes
+
+- Fixed DailyImageBackground scrolling gaps
+- Fixed milestone popup and streak milestone modal
+- Fixed bundle results
+- Fixed some Pânico button puzzles
+
+#### Icons & Organization
+
+- Reorganized icons collectionByGame and improved icons page
+
+---
+
 ### April 2026
 
 #### New Games
