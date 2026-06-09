@@ -73,7 +73,9 @@ export function GameInfoDrawer({ players, state, userId }: GameInfoDrawerProps) 
           </Tooltip>
           <DebugOnly devOnly>
             {' '}
-            <Tag>{players?.[userId]?.name}</Tag>
+            <Tag>
+              {players?.[userId]?.name} ({userId.slice(0, 3)})
+            </Tag>
           </DebugOnly>
         </span>
         <Avatar

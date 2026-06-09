@@ -58,7 +58,7 @@ export function useLanguage(): UseLanguageResult {
 
     if (!pt || !en) {
       // biome-ignore lint/suspicious/noConsole: on purpose
-      console.error('PT or EN translation was not provided');
+      console.error(`PT or EN translation was not provided: ${JSON.stringify(params)}`);
 
       return '?';
     }

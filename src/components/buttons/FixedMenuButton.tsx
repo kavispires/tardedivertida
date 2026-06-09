@@ -1,7 +1,7 @@
 import clsx from 'clsx';
-import { type ReactNode, useState, useEffect } from 'react';
+import type { ReactNode } from 'react';
 // Ant Design Resources
-import { Button, type ButtonProps, Popover } from 'antd';
+import { Button, type ButtonProps, Popover, Tooltip } from 'antd';
 // Sass
 import styles from './FixedMenuButton.module.scss';
 
@@ -88,7 +88,7 @@ export function FixedMenuButton({ type, position, content, className, open, ...r
     <div className={clsx(styles.fixedMenuButton, positionClass, className)}>
       {type === 'popover' ? (
         <Popover
-          placement="bottomLeft"
+          placement="left"
           content={content}
           trigger="click"
           open={open}
@@ -112,27 +112,24 @@ function FixedMenuButtonContent({
   onClick,
   buttonProps,
 }: Partial<FixedMenuButtonProps>) {
-  const [isActive, setActive] = useState(showLabel);
   const hasLabel = Boolean(label);
 
-  // Replace useEffectOnce with useEffect and dependency array
-  useEffect(() => {
-    setActive(showLabel);
-  }, [showLabel]);
-
   return (
-    <Button
-      shape={hasLabel && isActive ? 'round' : 'circle'}
-      size="middle"
-      onMouseOver={() => setActive(true)}
-      onMouseLeave={() => setActive(showLabel ?? false)}
-      onClick={onClick ? onClick : undefined}
-      icon={icon}
-      ghost
-      type="primary"
-      {...buttonProps}
+    <Tooltip
+      title={hasLabel && !showLabel ? label : ''}
+      placement="right"
     >
-      {isActive && hasLabel && <span className={styles.label}>{label}</span>}
-    </Button>
+      <span>
+        <Button
+          shape="round"
+          size="middle"
+          onClick={onClick ? onClick : undefined}
+          icon={icon}
+          ghost
+          type="primary"
+          {...buttonProps}
+        />
+      </span>
+    </Tooltip>
   );
 }
