@@ -260,7 +260,7 @@ export const saveGame = async (
     throwException(error, 'set game state');
   }
   try {
-    if (hasStoreUpdate || saveContent?.update?.storeCleanup) {
+    if (hasStoreUpdate || saveContent?.update?.storeCleanup?.length) {
       const cleanup = (saveContent?.update?.storeCleanup ?? []).reduce((acc, key) => {
         if (key) {
           acc[key] = deleteValue();
@@ -274,7 +274,7 @@ export const saveGame = async (
   }
 
   try {
-    if (hasStateUpdate || saveContent?.update?.stateCleanup) {
+    if (hasStateUpdate || saveContent?.update?.stateCleanup?.length) {
       const cleanup = (saveContent?.update?.stateCleanup ?? []).reduce((acc, key) => {
         if (key) {
           acc[key] = deleteValue();
