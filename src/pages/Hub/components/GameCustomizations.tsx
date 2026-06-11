@@ -97,7 +97,7 @@ export function GameCustomizations({
 type OptionProps = {
   option: GameInfoOption;
   disabled?: boolean;
-  onChangeOptions: GenericFunction;
+  onChangeOptions: (optionKey: string, value: any) => void;
   selectedOptions: PlainObject;
 };
 
@@ -148,13 +148,40 @@ function RadioOptions({ option, disabled, onChangeOptions }: OptionProps) {
   );
 }
 
-function CheckboxOptions({ option, disabled, onChangeOptions }: OptionProps) {
+function CheckboxOptions({ option, disabled, onChangeOptions, selectedOptions }: OptionProps) {
+  const currentValues = (selectedOptions[option.key] ?? []) as Array<string | number | boolean>;
+  const allValues = option.values.map((v) => v.value);
+  const isAllSelected = allValues.every((value) => currentValues.includes(value));
+
+  const handleSelectAll = () => {
+    if (isAllSelected) {
+      onChangeOptions(option.key, []);
+    } else {
+      onChangeOptions(option.key, allValues);
+    }
+  };
+
   return (
-    <Checkbox.Group
-      disabled={disabled || option.disabled}
-      onChange={(v) => onChangeOptions(option.key, v)}
-      className="create-game-modal-options__selections"
-      options={option.values}
-    />
+    <div className="create-game-modal-options__checkbox-container">
+      <Checkbox
+        disabled={disabled || option.disabled}
+        checked={isAllSelected}
+        indeterminate={currentValues.length > 0 && !isAllSelected}
+        onChange={handleSelectAll}
+        className="create-game-modal-options__select-all"
+      >
+        <Translate
+          pt="Selecionar Todos"
+          en="Select All"
+        />
+      </Checkbox>
+      <Checkbox.Group
+        disabled={disabled || option.disabled}
+        onChange={(v) => onChangeOptions(option.key, v)}
+        value={currentValues}
+        className="create-game-modal-options__selections"
+        options={option.values}
+      />
+    </div>
   );
 }
