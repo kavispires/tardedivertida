@@ -1,4 +1,4 @@
-import { orderBy } from 'lodash';
+import { orderBy, uniqBy } from 'lodash';
 // Internal
 import type { Bet, Bracket, BracketTier, ContenderByTier, FightingContender } from './type';
 
@@ -6,15 +6,18 @@ import type { Bet, Bracket, BracketTier, ContenderByTier, FightingContender } fr
  * Finds the contender for each of the players bets and selected contender
  * @param brackets
  * @param bets
- * @param selectedContenderId
+ * @param selectedContenderIds
  * @returns
  */
-export const findBetContenders = (brackets: Bracket[], bets: Bet, selectedContenderId: UID) => {
+export const findBetContenders = (brackets: Bracket[], bets: Bet, selectedContenderIds: UID[]) => {
   return {
     quarterCard: brackets.find((bracket) => bracket.id === bets?.quarter),
     semiCard: brackets.find((bracket) => bracket.id === bets?.semi),
     finalCard: brackets.find((bracket) => bracket.id === bets?.final),
-    selectedCard: brackets.find((bracket) => bracket.id === selectedContenderId),
+    selectedCards: uniqBy(
+      brackets.filter((bracket) => selectedContenderIds.includes(bracket.id)),
+      'id',
+    ),
   };
 };
 
@@ -92,4 +95,9 @@ export const getSmartBetContenderOptions = (
   }
 
   return allContenders;
+};
+
+export const contenderWidthOptions = {
+  maxWidth: 128,
+  minWidth: 96,
 };

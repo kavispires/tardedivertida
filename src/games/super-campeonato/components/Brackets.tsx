@@ -42,19 +42,28 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
       winner: [],
     },
   );
+
+  // Split brackets for left and right sides
+  const quarterLeft = quarter.slice(0, 4);
+  const quarterRight = quarter.slice(4, 8);
+  const semiLeft = semi.slice(0, 2);
+  const semiRight = semi.slice(2, 4);
+  const finalLeft = final.slice(0, 1);
+  const finalRight = final.slice(1, 2);
+
   return (
     <div className="w-brackets-container">
       <div className="tournament-headers">
         <h3>
           <Translate
             pt="Quartas"
-            en="Quarter-finals"
+            en="Quarters"
           />
         </h3>
         <h3>
           <Translate
             pt="Semifinais"
-            en="Semifinals"
+            en="Semis"
           />
         </h3>
         <h3>
@@ -69,10 +78,29 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
             en="Winner"
           />
         </h3>
+        <h3>
+          <Translate
+            pt="Final"
+            en="Final"
+          />
+        </h3>
+        <h3>
+          <Translate
+            pt="Semifinais"
+            en="Semis"
+          />
+        </h3>
+        <h3>
+          <Translate
+            pt="Quartas"
+            en="Quarters"
+          />
+        </h3>
       </div>
       <div className="w-tournament-brackets">
-        <ul className="w-bracket w-bracket--1">
-          {quarter.map((entry, index) => (
+        {/* Left Side */}
+        <ul className="w-bracket w-bracket--left-1">
+          {quarterLeft.map((entry, index) => (
             <li
               key={`${entry.id}-${entry.position}`}
               className={clsx('w-team-item', entry.win && 'w-team-item--win')}
@@ -94,8 +122,8 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
             </li>
           ))}
         </ul>
-        <ul className="w-bracket w-bracket--2">
-          {semi.map((entry) => (
+        <ul className="w-bracket w-bracket--left-2">
+          {semiLeft.map((entry) => (
             <li
               key={`${entry.id}-${entry.position}`}
               className={clsx('w-team-item', entry.win && 'w-team-item--win')}
@@ -106,6 +134,7 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
                 character={{
                   id: entry.id,
                   name: entry.name,
+                  description: entry.description,
                 }}
                 className="w-bracket-contender"
               />
@@ -116,8 +145,8 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
             </li>
           ))}
         </ul>
-        <ul className="w-bracket w-bracket--3">
-          {final.map((entry) => (
+        <ul className="w-bracket w-bracket--left-3">
+          {finalLeft.map((entry) => (
             <li
               key={`${entry.id}-${entry.position}`}
               className={clsx('w-team-item', entry.win && 'w-team-item--win')}
@@ -128,6 +157,7 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
                 character={{
                   id: entry.id,
                   name: entry.name,
+                  description: entry.description,
                 }}
                 className="w-bracket-contender"
               />
@@ -138,7 +168,9 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
             </li>
           ))}
         </ul>
-        <ul className="w-bracket w-bracket--4">
+
+        {/* Center - Winner */}
+        <ul className="w-bracket w-bracket--center">
           {winner.map((entry) => (
             <li
               key={`${entry.id}-${entry.position}`}
@@ -150,6 +182,78 @@ export function Brackets({ brackets, activeTier, players }: BracketsProps) {
                 character={{
                   id: entry.id,
                   name: entry.name,
+                  description: entry.description,
+                }}
+                className="w-bracket-contender"
+              />
+              <BracketContenderVotes
+                bracket={entry}
+                players={players}
+              />
+            </li>
+          ))}
+        </ul>
+
+        {/* Right Side */}
+        <ul className="w-bracket w-bracket--right-3">
+          {finalRight.map((entry) => (
+            <li
+              key={`${entry.id}-${entry.position}`}
+              className={clsx('w-team-item', entry.win && 'w-team-item--win')}
+            >
+              <CharacterCard
+                size={100}
+                overlayColor="gray"
+                character={{
+                  id: entry.id,
+                  name: entry.name,
+                  description: entry.description,
+                }}
+                className="w-bracket-contender"
+              />
+              <BracketContenderVotes
+                bracket={entry}
+                players={players}
+              />
+            </li>
+          ))}
+        </ul>
+        <ul className="w-bracket w-bracket--right-2">
+          {semiRight.map((entry) => (
+            <li
+              key={`${entry.id}-${entry.position}`}
+              className={clsx('w-team-item', entry.win && 'w-team-item--win')}
+            >
+              <CharacterCard
+                size={100}
+                overlayColor="gray"
+                character={{
+                  id: entry.id,
+                  name: entry.name,
+                  description: entry.description,
+                }}
+                className="w-bracket-contender"
+              />
+              <BracketContenderVotes
+                bracket={entry}
+                players={players}
+              />
+            </li>
+          ))}
+        </ul>
+        <ul className="w-bracket w-bracket--right-1">
+          {quarterRight.map((entry, index) => (
+            <li
+              key={`${entry.id}-${entry.position}`}
+              className={clsx('w-team-item', entry.win && 'w-team-item--win')}
+            >
+              <CharacterCard
+                size={100}
+                overlayColor={activeTier === entry.tier ? getContenderColor(index + 4, activeTier) : 'gray'}
+                character={{
+                  id: entry.id,
+                  name: entry.name,
+                  description: entry.description,
                 }}
                 className="w-bracket-contender"
               />

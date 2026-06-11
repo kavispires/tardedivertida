@@ -8,14 +8,15 @@ import { FloatingHand } from 'components/general/FloatingHand';
 import { Translate } from 'components/language/Translate';
 // Internal
 import type { FightingContender } from '../utils/type';
+import { contenderWidthOptions } from '../utils/helpers';
 
 type ContendersHandProps = {
   contenders: FightingContender[];
-  onSelect?: GenericFunction;
+  onSelect?: (competitorId: string) => void;
 };
 
 export function ContendersHand({ contenders, onSelect }: ContendersHandProps) {
-  const cardWidth = useCardWidth(Math.max(contenders.length ?? 8, 5), { minWidth: 100 });
+  const cardWidth = useCardWidth(Math.max(contenders.length ?? 8, 5), contenderWidthOptions);
 
   return (
     <FloatingHand

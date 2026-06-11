@@ -1,15 +1,19 @@
+// Ant Design Resources
+import { Divider } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
 import { useMock } from 'hooks/useMock';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
 import { TransparentButton } from 'components/buttons/TransparentButton';
 import { Card } from 'components/cards/Card';
+import { CharacterCard } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { TitledContainer } from 'components/layout/TitledContainer';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Step, type StepProps } from 'components/steps/Step';
 import { RuleInstruction } from 'components/text/RuleInstruction';
@@ -17,7 +21,8 @@ import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { FightingContender, SubmitChallengePayload } from './utils/type';
 import { mockSelectChallenge } from './utils/mock';
-import { ContendersHand } from './components/ContendersHand';
+import { contenderWidthOptions } from './utils/helpers';
+import { HandOfCardsHighlight } from './components/Highlights';
 
 type StepSelectChallengeProps = {
   onSubmitChallenge: (payload: SubmitChallengePayload) => void;
@@ -33,6 +38,8 @@ export function StepSelectChallenge({
   round,
   announcement,
 }: StepSelectChallengeProps) {
+  const cardWidth = useCardWidth(Math.max(userContenders.length ?? 9, 5), contenderWidthOptions);
+
   useMock(() => {
     onSubmitChallenge({ challengeId: mockSelectChallenge(challenges) });
   });
@@ -56,8 +63,21 @@ export function StepSelectChallenge({
         />
         {userContenders.length > 1 && (
           <Translate
-            pt={<> Você tem competidores em mãos (na barra abaixo) e um deles irá participar desta rodada.</>}
-            en={<> You have a hand of contenders and one of them will participate in this round.</>}
+            pt={
+              <>
+                {' '}
+                Você tem <HandOfCardsHighlight>{userContenders.length} competidores</HandOfCardsHighlight> em
+                mãos (na barra abaixo) e um deles irá participar desta rodada.
+              </>
+            }
+            en={
+              <>
+                {' '}
+                You have a hand of{' '}
+                <HandOfCardsHighlight>{userContenders.length} contenders</HandOfCardsHighlight> and one of
+                them will participate in this round.
+              </>
+            }
           />
         )}
         {userContenders.length === 0 && (
@@ -72,16 +92,14 @@ export function StepSelectChallenge({
               <>
                 <br />
                 Selecione o desafio que você acha que um dos seus competidores tem mais change de vencer.
-                <br />
-                Você ganha <PointsHighlight>2</PointsHighlight> pontos se ele(a) vencer.
+                porque você ganha <PointsHighlight>2 pontos</PointsHighlight> se ele(a) vencer.
               </>
             }
             en={
               <>
                 <br />
-                Select a challenge you think one of your contenders have the best chance of winning.
-                <br />
-                You get <PointsHighlight>2</PointsHighlight> points if they win.
+                Select a challenge you think one of your contenders have the best chance of winning because
+                you get <PointsHighlight>2 points</PointsHighlight> if they win.
               </>
             }
           />
@@ -108,25 +126,54 @@ export function StepSelectChallenge({
         )}
       </RuleInstruction>
 
-      <SpaceContainer>
+      <div className="w-challenge-options">
         {challenges.map((challenge, index) => {
           return (
             <TransparentButton
               key={challenge.id}
               onClick={() => onSubmitChallenge({ challengeId: challenge.id })}
+              style={{ height: '100%' }}
             >
               <Card
                 header={LETTERS[index]}
                 randomColor
+                style={{ height: '100%' }}
               >
                 {challenge.text}
               </Card>
             </TransparentButton>
           );
         })}
-      </SpaceContainer>
+      </div>
 
-      {round.current < 5 && userContenders.length > 1 && <ContendersHand contenders={userContenders} />}
+      {round.current < 5 && userContenders.length > 1 && (
+        <>
+          <Divider />
+          <TitledContainer
+            title={
+              <Translate
+                pt="Seus competidores"
+                en="Your contenders"
+              />
+            }
+          >
+            <ul className="w-contenders-hand">
+              {userContenders.map((contender) => (
+                <li
+                  key={contender.id}
+                  className="w-contenders-hand__entry"
+                >
+                  <CharacterCard
+                    character={contender}
+                    overlayColor="gray"
+                    size={cardWidth}
+                  />
+                </li>
+              ))}
+            </ul>
+          </TitledContainer>
+        </>
+      )}
     </Step>
   );
 }

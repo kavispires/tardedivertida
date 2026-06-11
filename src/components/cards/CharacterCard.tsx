@@ -44,13 +44,17 @@ type CharacterCardProps = {
 export function CharacterCard({ size, overlayColor, character, className, hideName }: CharacterCardProps) {
   const { translate } = useLanguage();
   const { shouldBeBlurred } = useBlurCards();
-  const baseUrl = useTDBaseUrl('images');
+  const imagesBaseUrl = useTDBaseUrl('images');
+  const assetsBaseUrl = useTDBaseUrl('assets');
 
   const isBlurred = shouldBeBlurred(character.id);
 
   const imageURL = character.id.replace(/-/g, '/');
 
-  const description = character?.description || character.name;
+  const description = {
+    pt: character.description?.pt || character.name.pt,
+    en: character.description?.en || character.name.en,
+  };
 
   return (
     <ImageBlurButtonContainer cardId={character.id}>
@@ -63,23 +67,26 @@ export function CharacterCard({ size, overlayColor, character, className, hideNa
           style={{ width: `${size}px` }}
         >
           {!hideName && (
-            <span className={styles.characterCardName}>
+            <span
+              className={styles.characterCardName}
+              style={{ fontSize: `clamp(1em, ${size * 0.15}px, 1.5em)` }}
+            >
               <DualTranslate>{character.name}</DualTranslate>
             </span>
           )}
           {overlayColor && (
             <img
-              src={`${baseUrl}/game/w-overlay-${overlayColor}.png`}
+              src={`${assetsBaseUrl}/game/w-overlay-${overlayColor}.png`}
               className={styles.characterCardOverlay}
               alt="character"
               style={{ width: `${size}px` }}
             />
           )}
           <Image
-            src={`${baseUrl}/${imageURL}.jpg`}
+            src={`${imagesBaseUrl}/${imageURL}.jpg`}
             width={size}
             className={clsx(styles.characterCardImage, isBlurred && styles.characterCardImageBlur)}
-            fallback={`${baseUrl}/game/w-no-image.jpg`}
+            fallback={`${assetsBaseUrl}/game/w-no-image.jpg`}
             alt={translate(character.name)}
             preview={false}
             title={translate(character.name)}

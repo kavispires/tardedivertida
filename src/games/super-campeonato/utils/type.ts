@@ -95,9 +95,9 @@ export type SubmitChallengePayload = {
  */
 export type SubmitContendersPayload = {
   /**
-   * ID of the selected contender
+   * IDs of the selected contenders
    */
-  contendersId: UID;
+  contendersIds: UID[];
 };
 
 /**
@@ -127,6 +127,10 @@ export type PhaseChallengeSelectionState = {
    * Optional brackets (set for final round or auto-contender games)
    */
   brackets?: Bracket[];
+  /**
+   * Number of contenders each player needs to select
+   */
+  contendersPerPlayerNeeded: number;
 };
 
 /**
@@ -141,6 +145,10 @@ export type PhaseContendersSelectionState = {
    * Optional brackets (carried from previous phase if set)
    */
   brackets?: Bracket[];
+  /**
+   * Number of contenders each player needs to select
+   */
+  contendersPerPlayerNeeded: number;
 };
 
 /**

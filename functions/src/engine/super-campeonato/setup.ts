@@ -9,7 +9,7 @@ import {
 import { GAME_NAMES } from '../../utils/constants';
 import { sampleSize } from 'lodash';
 // Types
-import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import type { Bracket, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
 import {
@@ -121,10 +121,21 @@ export const prepareChallengeSelectionPhase = async (
   let brackets: unknown = utils.firestore.deleteValue();
 
   if (isFinalRound(round)) {
-    brackets = makeFinalBrackets(store.finalBrackets);
+    brackets = makeFinalBrackets(store.finalBrackets) as Bracket[];
+    // Also make all previous selected contenders for each user as their current round contenders if they are in the brackets
+
+    utils.players.getListOfPlayers(players).forEach((player) => {
+      player.contendersIds = (brackets as Bracket[])
+        .filter((bracket) => bracket.playerId === player.id)
+        .map((b) => b.id);
+    });
   } else if (store.options?.autoContenders) {
     brackets = makeBrackets(players, store.tableContenders, state.round.current);
   }
+
+  const playerCount = utils.players.getPlayerCount(players);
+
+  const contendersPerPlayerNeeded = playerCount > 4 ? 1 : 2;
 
   // Save
   return {
@@ -138,8 +149,9 @@ export const prepareChallengeSelectionPhase = async (
         round,
         challenges,
         brackets,
+        contendersPerPlayerNeeded,
       },
-      stateCleanup: ['challenge'],
+      stateCleanup: ['challenge', 'ranking'],
     },
   };
 };
@@ -270,6 +282,7 @@ export const prepareResultsPhase = async (
     {
       id: brackets[finalistIndex1].id,
       name: brackets[finalistIndex1].name,
+      description: brackets[finalistIndex1].description,
       playerId: brackets[finalistIndex1].playerId,
       position: store.finalBrackets.length,
       tier: 'quarter',
@@ -277,6 +290,7 @@ export const prepareResultsPhase = async (
     {
       id: brackets[finalistIndex2].id,
       name: brackets[finalistIndex2].name,
+      description: brackets[finalistIndex2].description,
       playerId: brackets[finalistIndex2].playerId,
       position: store.finalBrackets.length + 1,
       tier: 'quarter',

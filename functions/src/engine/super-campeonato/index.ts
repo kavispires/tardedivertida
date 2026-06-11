@@ -157,8 +157,8 @@ export const submitAction = async (data: SuperCampeonatoSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['challengeId'], 'submit challenge');
       return handleSubmitChallenge(gameName, gameId, playerId, data.challengeId);
     case SUPER_CAMPEONATO_ACTIONS.SUBMIT_CONTENDERS:
-      utils.firebase.validateSubmitActionProperties(data, ['contendersId'], 'submit contenders');
-      return handleSubmitContenders(gameName, gameId, playerId, data.contendersId);
+      utils.firebase.validateSubmitActionProperties(data, ['contendersIds'], 'submit contenders');
+      return handleSubmitContenders(gameName, gameId, playerId, data.contendersIds);
     case SUPER_CAMPEONATO_ACTIONS.SUBMIT_BETS:
       utils.firebase.validateSubmitActionProperties(data, ['quarter', 'semi', 'final'], 'submit bets');
       return handleSubmitBets(gameName, gameId, playerId, data.quarter, data.semi, data.final);

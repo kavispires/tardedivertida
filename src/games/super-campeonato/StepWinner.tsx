@@ -21,7 +21,7 @@ type StepWinnerProps = {
   brackets: Bracket[];
   bets: Bet;
   goToNextStep: UseStep['goToNextStep'];
-  selectedContenderId: UID;
+  selectedContenderIds: UID[];
 } & Pick<StepProps, 'announcement'>;
 
 export function StepWinner({
@@ -29,7 +29,7 @@ export function StepWinner({
   brackets,
   bets,
   goToNextStep,
-  selectedContenderId,
+  selectedContenderIds,
   announcement,
 }: StepWinnerProps) {
   return (
@@ -72,7 +72,7 @@ export function StepWinner({
       <BetsFloatingHand
         bets={bets}
         brackets={brackets}
-        selectedContenderId={selectedContenderId}
+        selectedContenderIds={selectedContenderIds}
       />
     </Step>
   );

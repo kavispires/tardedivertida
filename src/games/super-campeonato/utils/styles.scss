@@ -1,5 +1,11 @@
 @use "styles/sass" as *;
 
+.w-challenge-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: stretch;
+}
+
 .w-bracket-contender {
   .w-contender-name {
     font-size: 1rem;
@@ -24,6 +30,20 @@
 
   &__button {
     margin-bottom: get-unit(2);
+
+    &--selected {
+      background: get-color("violet", 6);
+      color: get-color("white");
+    }
+  }
+
+  &__card {
+    border: 3px solid transparent;
+
+    &--selected {
+      transform: scale(1.05);
+      border: 3px solid get-color("violet", 6);
+    }
   }
 }
 
@@ -35,12 +55,13 @@
   border-bottom: 1px solid #ccc;
 
   h3 {
-    width: 25%;
+    width: 14.28%; // 100% / 7 columns
     text-align: center;
     font-weight: 400;
     border-right: 1px dashed #ccc;
     margin: 0;
     padding: get-unit(2);
+    font-size: 0.9rem;
 
     &:last-child {
       border-right: none;
@@ -52,7 +73,7 @@
   display: flex;
   flex-direction: row;
   list-style-type: none;
-  background: #fdfdfd;
+  background: get-color("white", 5);
 }
 
 .w-bracket {
@@ -64,12 +85,12 @@
   flex-direction: column;
   justify-content: space-around;
   list-style-type: none;
-  border-right: 1px dashed #ccc;
+  border-right: 1px dashed get-color("gray", 2);
   flex: 1;
 }
 
 .w-team-item {
-  background-color: #f4f4f4;
+  background-color: get-color("white", 6);
   padding: 0.5rem;
   display: block;
   margin: 0.5rem 10px;
@@ -120,7 +141,14 @@
   top: 50%;
 }
 
-.w-bracket--2 {
+// Left side brackets (quarters to final)
+.w-bracket--left-1 {
+  .w-team-item:before {
+    display: none;
+  }
+}
+
+.w-bracket--left-2 {
   .w-team-item:nth-of-type(odd):after {
     height: 200%;
     top: 50%;
@@ -131,7 +159,7 @@
   }
 }
 
-.w-bracket--3 {
+.w-bracket--left-3 {
   .w-team-item:nth-of-type(odd):after {
     height: 350%;
     top: 50%;
@@ -140,35 +168,153 @@
     height: 350%;
     top: -300%;
   }
-}
 
-.w-bracket--4 {
-  .w-team-item:nth-of-type(odd):after {
-    height: 700%;
+  // Override for single item in final - just horizontal line to center
+  .w-team-item:only-child:after {
+    content: "";
+    border-top: 2px solid get-color("violet", 6);
+    border-right: none;
+    position: absolute;
+    height: 2px;
+    width: 10px;
+    right: -11px;
     top: 50%;
   }
-  .w-team-item:nth-of-type(even):after {
-    height: 700%;
-    top: -650%;
-  }
 }
 
-.w-bracket:first-of-type {
+// Center bracket (winner)
+.w-bracket--center {
+  // Incoming line from left final
   .w-team-item:before {
-    display: none;
+    content: "";
+    position: absolute;
+    border-top: 2px solid get-color("violet", 6);
+    height: 2px;
+    width: 10px;
+    left: -10px;
+    top: 50%;
+  }
+
+  // Incoming line from right final
+  .w-team-item:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-top: 2px solid get-color("violet", 6);
+    height: 2px;
+    width: 10px;
+    right: -10px;
+    top: 50%;
   }
 }
 
-.w-bracket-4 {
-  .w-team-item:after {
+// Right side brackets (final to quarters) - mirrored
+// Right-3 is the final (1 item receiving from semis, sending to center)
+.w-bracket--right-3 {
+  // Reset default after (no pairing lines needed in final)
+  .w-team-item:nth-of-type(odd):after,
+  .w-team-item:nth-of-type(even):after {
     display: none;
+  }
+
+  // Incoming horizontal line from right semis
+  .w-team-item:after {
+    content: "";
+    border: none;
+    border-top: 2px solid get-color("violet", 6);
+    position: absolute;
+    height: 2px;
+    width: 10px;
+    right: -10px;
+    top: 50%;
+  }
+
+  // Override default before and create outgoing line to center (left)
+  .w-team-item:before {
+    content: "";
+    border: none;
+    border-top: 2px solid get-color("violet", 6);
+    position: absolute;
+    height: 2px;
+    width: 10px;
+    left: -10px;
+    top: 50%;
   }
 }
 
-.w-bracket:last-of-type {
-  .w-team-item:before,
-  .w-team-item:after {
+// Right-2 is the semis (2 items receiving from quarters, pairing to final)
+.w-bracket--right-2 {
+  // Reset default after pairing lines
+  .w-team-item:nth-of-type(odd):after,
+  .w-team-item:nth-of-type(even):after {
+    border: none;
+    border-top: 2px solid get-color("violet", 6);
+    position: absolute;
+    height: 2px;
+    width: 10px;
+    right: -10px;
+    top: 50%;
+  }
+
+  // Reset default before and create pairing lines going LEFT to the final
+  .w-team-item:before {
+    content: "";
+    border: none;
+    border-color: get-color("violet", 6);
+    border-width: 2px;
+    position: absolute;
+    display: block;
+    width: 10px;
+    left: -11px;
+  }
+
+  .w-team-item:nth-of-type(odd):before {
+    border-left-style: solid;
+    border-top-style: solid;
+    height: 200%;
+    top: 50%;
+  }
+
+  .w-team-item:nth-of-type(even):before {
+    border-left-style: solid;
+    border-bottom-style: solid;
+    height: 200%;
+    top: -150%;
+  }
+}
+
+// Right-1 is the quarters (4 items, pairing to semis)
+.w-bracket--right-1 {
+  // Disable default after completely
+  .w-team-item:nth-of-type(odd):after,
+  .w-team-item:nth-of-type(even):after {
     display: none;
+  }
+
+  // Reset default before and create pairing lines going LEFT to semis
+  .w-team-item:before {
+    content: "";
+    border: none;
+    border-color: get-color("violet", 6);
+    border-width: 2px;
+    position: absolute;
+    display: block;
+    width: 10px;
+    left: -11px;
+  }
+
+  .w-team-item:nth-of-type(odd):before {
+    border-left-style: solid;
+    border-top-style: solid;
+    height: 100%;
+    top: 50%;
+  }
+
+  .w-team-item:nth-of-type(even):before {
+    border-left-style: solid;
+    border-bottom-style: solid;
+    height: 100%;
+    top: -50%;
   }
 }
 
@@ -245,6 +391,15 @@
     text-align: center;
     font-family: "Bangers", monospace;
   }
+
+  &__no-selection {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: get-color("white", 6);
+    border-radius: var(--border-radius);
+  }
 }
 
 .w-bet-form__container {
@@ -287,16 +442,19 @@
 
 .w-players-bets {
   display: grid;
+  grid-template-rows: auto auto auto auto auto 1fr;
   background-color: get-color("gray", 3);
   font-family: "Bangers", monospace;
   text-align: center;
   margin-bottom: get-unit(5);
+  gap: 0;
 
   &__player {
     display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: repeat(5, auto);
+    grid-template-rows: subgrid;
+    grid-row: 1 / -1;
     align-items: center;
+    gap: 0;
 
     &--header {
       text-align: right;
@@ -306,10 +464,19 @@
   &__square {
     border: get-unit(1) solid transparent;
     margin: get-unit(1);
-    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--contenders {
+      flex-direction: column;
+      gap: get-unit(1);
+      align-items: center;
+    }
 
     &--win {
       border-color: get-color("white");
+      border-radius: var(--border-radius);
     }
 
     &--none {
@@ -317,6 +484,21 @@
       justify-content: center;
       align-items: center;
       height: 100%;
+    }
+  }
+
+  &__contender-item {
+    border: get-unit(1) solid transparent;
+
+    &--win {
+      border-color: get-color("white");
+      border-radius: var(--border-radius);
+    }
+
+    &--none {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }

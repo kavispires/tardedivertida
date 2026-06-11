@@ -57,7 +57,7 @@ export function PhaseBets({ state, players, user }: PhaseProps<PhaseBetsState>) 
             <BetsFloatingHand
               bets={user.bets}
               brackets={state.brackets}
-              selectedContenderId={user.selectedContenderId}
+              selectedContenderIds={user.selectedContenderIds}
             />
           ),
         }}
@@ -69,6 +69,7 @@ export function PhaseBets({ state, players, user }: PhaseProps<PhaseBetsState>) 
           brackets={state.brackets}
           players={players}
           announcement={announcement}
+          user={user}
         />
       </StepSwitcher>
     </PhaseContainer>

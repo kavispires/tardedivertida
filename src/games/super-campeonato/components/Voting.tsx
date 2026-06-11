@@ -123,10 +123,12 @@ export function Voting({ brackets, tier, onSubmitVotes, players, bets }: VotingP
   );
 }
 
+const CONTENDER_BATTLE_SIZE = 160;
+
 type VotingOptionsProps = {
   left: Bracket;
   right: Bracket;
-  onClick: GenericFunction;
+  onClick: (left: Bracket) => void;
   colorLeft: OverlayColor;
   colorRight: OverlayColor;
   checkActiveVote: (pos: number) => boolean;
@@ -142,7 +144,7 @@ function VotingOptions({ left, right, colorLeft, colorRight, onClick, checkActiv
         activeClass="w-vote--active"
       >
         <CharacterCard
-          size={200}
+          size={CONTENDER_BATTLE_SIZE}
           character={left}
           overlayColor={colorLeft}
         />
@@ -155,7 +157,7 @@ function VotingOptions({ left, right, colorLeft, colorRight, onClick, checkActiv
         activeClass="w-vote--active"
       >
         <CharacterCard
-          size={200}
+          size={CONTENDER_BATTLE_SIZE}
           character={right}
           overlayColor={colorRight}
         />

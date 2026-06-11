@@ -6,8 +6,7 @@ import { Translate } from 'components/language/Translate';
 import { StepRankingWrapper } from 'components/ranking/StepRankingWrapper';
 import { RoundsLeftInstruction } from 'components/text/RoundsLeftInstruction';
 // Internal
-import type { Bet, Bracket } from './utils/type';
-import { BetsFloatingHand } from './components/BetsFloatingHand';
+import type { Bracket } from './utils/type';
 import { Brackets } from './components/Brackets';
 import { PlayersBets } from './components/PlayersBets';
 
@@ -17,19 +16,9 @@ type StepRankingProps = {
   isGameOver: boolean;
   round: GameRound;
   brackets: Bracket[];
-  selectedContenderId: UID;
-  bets: Bet;
 };
 
-export function StepRanking({
-  players,
-  ranking,
-  isGameOver,
-  round,
-  brackets,
-  bets,
-  selectedContenderId,
-}: StepRankingProps) {
+export function StepRanking({ players, ranking, isGameOver, round, brackets }: StepRankingProps) {
   return (
     <StepRankingWrapper
       players={players}
@@ -70,12 +59,6 @@ export function StepRanking({
         brackets={brackets}
         activeTier="winner"
         players={players}
-      />
-
-      <BetsFloatingHand
-        bets={bets}
-        brackets={brackets}
-        selectedContenderId={selectedContenderId}
       />
     </StepRankingWrapper>
   );

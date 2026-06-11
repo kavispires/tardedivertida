@@ -68,7 +68,7 @@ export function PhaseBattle({ state, players, user }: PhaseProps<PhaseBattleStat
           brackets={state.brackets}
           tier={state.tier}
           bets={user.bets}
-          selectedContenderId={user.selectedContenderId}
+          selectedContenderIds={user.selectedContenderIds}
           players={players}
           announcement={announcement}
         />

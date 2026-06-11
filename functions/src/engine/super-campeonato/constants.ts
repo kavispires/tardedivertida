@@ -45,7 +45,7 @@ export const TOTAL_ROUNDS = 5;
 
 export const CONTENDERS_PER_ROUND = 8;
 
-export const CONTENDERS_PER_PLAYER = 8;
+export const CONTENDERS_PER_PLAYER = 9;
 
 export const CHALLENGES_PER_ROUND = 2;
 

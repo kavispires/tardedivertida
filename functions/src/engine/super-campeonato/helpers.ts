@@ -94,7 +94,7 @@ export const getTableContenders = (contendersDeck: ContendersDeck, players: Play
   return selectedContenders.map((contender) => ({
     id: contender.id,
     name: contender.name,
-    description: contender.description,
+    description: contender.description ?? { pt: '', en: '' },
     playerId: 'CPU',
   }));
 };
@@ -125,7 +125,7 @@ export const getMostVotedChallenge = (players: Players, challenges: TextCard[]) 
   }
 
   // Return only the most voted one
-  const index = votesCount.findIndex((vc) => vc === max);
+  const index = votesCount.indexOf(max);
   const winnerId = challengesIds[index];
   const winner = challenges.find((card) => card.id === winnerId);
 
@@ -150,20 +150,24 @@ export const makeBrackets = (players: Players, deck: FightingContender[], curren
   // Gather contenders selected by players, remove those from the players cards
   utils.players.getListOfPlayers(players).forEach((player) => {
     // Get contender
-    const contender = player.contenders.find((c: FightingContender) => c.id === player.selectedContenderId);
+    const playerContenders: FightingContender[] = player.contenders.filter((c: FightingContender) =>
+      player.selectedContenderIds.includes(c.id),
+    );
 
-    if (contender) {
+    if (playerContenders.length > 0) {
       // Remove contender from player's hand
       player.contenders = player.contenders.filter(
-        (c: FightingContender) => c.id !== player.selectedContenderId,
+        (c: FightingContender) => !player.selectedContenderIds.includes(c.id),
       );
       // Add contenders to player's used contenders
-      player.usedContenders.push(contender.id);
+      player.usedContenders.push(...player.selectedContenderIds);
       // Add to selected ones
-      contenders.push({
-        ...contender,
-        playerId: player.id,
-      });
+      contenders.push(
+        ...playerContenders.map((contender) => ({
+          ...contender,
+          playerId: player.id,
+        })),
+      );
     }
   });
 
@@ -181,7 +185,7 @@ export const makeBrackets = (players: Players, deck: FightingContender[], curren
     .map((v, index) => ({
       id: 'TBD',
       name: { pt: '?', en: 'TBD' },
-      description: { pt: '?', en: '?' },
+      description: { pt: '', en: '' },
       playerId: '',
       position: v + index,
       tier: getBracketTier(v + index),
@@ -191,7 +195,7 @@ export const makeBrackets = (players: Players, deck: FightingContender[], curren
   shuffledContenders.forEach((contender, index) => {
     emptyBracketArray[index].id = contender.id;
     emptyBracketArray[index].name = contender.name;
-    emptyBracketArray[index].description = contender?.description ?? { pt: '?', en: '?' };
+    emptyBracketArray[index].description = contender.description ?? { pt: '', en: '' };
     emptyBracketArray[index].playerId = contender.playerId;
   });
 
@@ -252,8 +256,7 @@ export const updateBracketsWithVotes = (players: Players, brackets: Bracket[]) =
     const max = Math.max(...arrValues);
     const gotThis = arrValues.filter((v) => v === max);
 
-    const winnerPos =
-      gotThis.length === 1 ? Number(arrKeys[arrValues.findIndex((v) => v === max)]) : sample(arrKeys);
+    const winnerPos = gotThis.length === 1 ? Number(arrKeys[arrValues.indexOf(max)]) : sample(arrKeys);
     const winner = brackets[Number(winnerPos)];
     winner.win = true;
 
@@ -261,7 +264,7 @@ export const updateBracketsWithVotes = (players: Players, brackets: Bracket[]) =
       ...brackets[targetPos],
       id: winner.id,
       name: winner.name,
-      description: winner?.description ?? { pt: '?', en: '?' },
+      description: winner.description ?? { pt: '', en: '' },
       playerId: winner.playerId,
       votes: [],
     };
@@ -320,8 +323,8 @@ export const makeFinalBrackets = (brackets: Bracket[]) => {
     .fill(0)
     .map((v, index) => ({
       id: 'TBD',
-      name: { pt: 'TBD', en: 'TBD' },
-      description: { pt: '?', en: '?' },
+      name: { pt: '?', en: 'TBD' },
+      description: { pt: '?', en: 'TBD' },
       playerId: '',
       position: v + index,
       tier: getBracketTier(v + index),
@@ -331,7 +334,7 @@ export const makeFinalBrackets = (brackets: Bracket[]) => {
   shuffledContenders.forEach((contender, index) => {
     emptyBracketArray[index].id = contender.id;
     emptyBracketArray[index].name = contender.name;
-    emptyBracketArray[index].description = contender?.description ?? { pt: '?', en: '?' };
+    emptyBracketArray[index].description = contender.description ?? { pt: '', en: '' };
     emptyBracketArray[index].playerId = contender.playerId;
   });
 

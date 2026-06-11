@@ -32,21 +32,21 @@ export const handleSubmitChallenge = async (
  * @param gameName - The name of the game
  * @param gameId - The game session ID
  * @param playerId - The player ID choosing a contender
- * @param contendersId - The selected contender ID
+ * @param contendersIds - The selected contender IDs
  */
 export const handleSubmitContenders = async (
   gameName: string,
   gameId: UID,
   playerId: UID,
-  contendersId: UID,
+  contendersIds: UID[],
 ) => {
   return await utils.firestore.updatePlayer({
     gameName,
     gameId,
     playerId,
-    actionText: 'submit your contender',
+    actionText: 'submit your contender(s)',
     shouldReady: true,
-    change: { selectedContenderId: contendersId },
+    change: { selectedContenderIds: contendersIds },
     nextPhaseFunction: getNextPhase,
   });
 };

@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 import { useMemo } from 'react';
+// Ant Design Resources
+import { Divider } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 // Utils
@@ -52,10 +54,11 @@ export function PlayersBets({ players, brackets }: PlayersBetsProps) {
             en="Quarter"
           />
         </div>
-        <div className="w-players-bets__square">
+        <Divider />
+        <div className="w-players-bets__square w-players-bets__square--contenders">
           <Translate
-            pt="Competidor"
-            en="Contender"
+            pt="Competidores"
+            en="Contenders"
           />
         </div>
       </li>
@@ -78,9 +81,9 @@ type PlayersBetEntryProps = {
 };
 
 function PlayersBetEntry({ player, brackets, contendersByTiers }: PlayersBetEntryProps) {
-  const { quarterCard, semiCard, finalCard, selectedCard } = useMemo(
-    () => findBetContenders(brackets, player.bets, player.selectedContenderId),
-    [brackets, player.bets, player.selectedContenderId],
+  const { quarterCard, semiCard, finalCard, selectedCards } = useMemo(
+    () => findBetContenders(brackets, player.bets, player.selectedContenderIds),
+    [brackets, player.bets, player.selectedContenderIds],
   );
 
   if (!quarterCard || !semiCard || !finalCard) {
@@ -141,23 +144,31 @@ function PlayersBetEntry({ player, brackets, contendersByTiers }: PlayersBetEntr
           hideName
         />
       </div>
-      {selectedCard ? (
-        <div
-          className={clsx(
-            'w-players-bets__square',
-            contendersByTiers.winner[selectedCard.id] && 'w-players-bets__square--win',
-          )}
-        >
-          <CharacterCard
-            size={50}
-            overlayColor={contendersByTiers.winner[selectedCard.id] ? 'yellow' : 'gray'}
-            character={selectedCard}
-            hideName
-          />
-        </div>
-      ) : (
-        <div className={clsx('w-players-bets__square', 'w-players-bets__square--none')}>-</div>
-      )}
+
+      <Divider />
+
+      <div className="w-players-bets__square w-players-bets__square--contenders">
+        {selectedCards.length > 0 ? (
+          selectedCards.map((selectedCard) => (
+            <div
+              key={selectedCard.id}
+              className={clsx(
+                'w-players-bets__contender-item',
+                contendersByTiers.winner[selectedCard.id] && 'w-players-bets__contender-item--win',
+              )}
+            >
+              <CharacterCard
+                size={50}
+                overlayColor={contendersByTiers.winner[selectedCard.id] ? 'yellow' : 'gray'}
+                character={selectedCard}
+                hideName
+              />
+            </div>
+          ))
+        ) : (
+          <div className="w-players-bets__contender-item w-players-bets__contender-item--none">-</div>
+        )}
+      </div>
     </li>
   );
 }

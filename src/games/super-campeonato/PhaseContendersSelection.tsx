@@ -58,8 +58,9 @@ export function PhaseContenderSelection({ state, players, user }: PhaseProps<Pha
         <StepSelectContenders
           onSubmitContender={onSubmitContender}
           challenge={state.challenge}
-          userContenders={user.contenders}
+          userContenders={user.contenders ?? []}
           announcement={announcement}
+          contendersPerPlayerNeeded={state.contendersPerPlayerNeeded}
         />
       </StepSwitcher>
     </PhaseContainer>

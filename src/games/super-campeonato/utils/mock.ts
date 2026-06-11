@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash';
+import { cloneDeep, sampleSize } from 'lodash';
 // Types
 import type { TextCard } from 'types/tdr';
 // Utils
@@ -12,8 +12,11 @@ export function mockSelectChallenge(challenges: TextCard[]): UID {
   return getRandomItem(challenges).id;
 }
 
-export function mockSelectContender(contenders: FightingContender[]): UID {
-  return getRandomItem(contenders).id;
+export function mockSelectContenders(
+  contenders: FightingContender[],
+  contendersPerPlayerNeeded: number,
+): UID[] {
+  return sampleSize(contenders, contendersPerPlayerNeeded).map((c) => c.id);
 }
 
 export function mockBets(brackets: Bracket[]) {

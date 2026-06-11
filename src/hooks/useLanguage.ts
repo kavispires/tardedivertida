@@ -58,19 +58,19 @@ export function useLanguage(): UseLanguageResult {
 
     if (!pt && !en) {
       // biome-ignore lint/suspicious/noConsole: debug purposes
-      console.error(`Both PT and EN translations are missing for: ${JSON.stringify(params)}`);
+      console.warn(`Both PT and EN translations are missing for: ${JSON.stringify(params)}`);
       return '?';
     }
 
     if (language === 'pt' && !pt) {
       // biome-ignore lint/suspicious/noConsole: debug purposes
-      console.error(`PT translation is missing for: ${JSON.stringify(params)}`);
+      console.warn(`PT translation is missing for: ${JSON.stringify(params)}`);
       return en || '?';
     }
 
     if (language === 'en' && !en) {
       // biome-ignore lint/suspicious/noConsole: debug purposes
-      console.error(`EN translation is missing for: ${JSON.stringify(params)}`);
+      console.warn(`EN translation is missing for: ${JSON.stringify(params)}`);
       return pt || '?';
     }
 

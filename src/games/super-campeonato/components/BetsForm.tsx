@@ -27,9 +27,10 @@ import { ResetBetsButton } from './ResetBetsButton';
 type BetsFormProps = {
   brackets: Bracket[];
   onSubmitBets: (payload: SubmitBetsPayload) => void;
+  userContenders: UID[];
 };
 
-export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
+export function BetsForm({ brackets, onSubmitBets, userContenders }: BetsFormProps) {
   const { language } = useLanguage();
   const [step, setStep] = useState(0);
   const [contenders, setContenders] = useState<FightingContender[]>([]);
@@ -88,8 +89,8 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
           <ContendersSelect
             contenders={availableContenders}
             updateBet={updateBet}
-            language={language}
             betTier={TIER_BY_STEP[step]}
+            userContenders={userContenders}
           />
 
           <SpaceContainer>
@@ -142,8 +143,8 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
           <ContendersSelect
             contenders={availableContenders}
             updateBet={updateBet}
-            language={language}
             betTier={TIER_BY_STEP[step]}
+            userContenders={userContenders}
           />
 
           <SpaceContainer>
@@ -196,8 +197,8 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
           <ContendersSelect
             contenders={availableContenders}
             updateBet={updateBet}
-            language={language}
             betTier={TIER_BY_STEP[step]}
+            userContenders={userContenders}
           />
 
           <SpaceContainer>

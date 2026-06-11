@@ -1,9 +1,9 @@
 // Ant Design Resources
-import { Divider, Space } from 'antd';
+import { Badge, Divider, Space } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
-// Hooks
-import { useLanguage } from 'hooks/useLanguage';
+// Utils
+import { getAvatarColorById } from 'utils/helpers';
 // Icons
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
@@ -13,6 +13,7 @@ import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
 import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language/Translate';
 import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { PlayerAvatar } from 'components/player/PlayerAvatar';
 import { Title } from 'components/text/Title';
 // Internal
 import type { PastBattles } from './utils/type';
@@ -20,7 +21,6 @@ import { achievementsReference } from './utils/achievements';
 
 export function PhaseGameOver({ state, players }: PhaseProps) {
   const pastBattles: PastBattles = state.pastBattles;
-  const { translate } = useLanguage();
 
   return (
     <GameOverWrapper
@@ -67,7 +67,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
       </Title>
 
       <SpaceContainer className="margin">
-        {pastBattles.map((battle) => {
+        {pastBattles.map((battle, index) => {
           return (
             <Space
               orientation="vertical"
@@ -76,21 +76,51 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
               className="final-gallery"
             >
               <Card
-                header={translate({ pt: 'Desafio', en: 'Challenge' })}
+                header={
+                  <>
+                    <Translate
+                      en="Battle"
+                      pt="Batalha"
+                    />{' '}
+                    {index + 1}
+                  </>
+                }
                 color="purple"
                 className="final-gallery__card"
               >
                 {battle.challenge.text}
               </Card>
-              {battle.contenders.map((contender, index) => (
-                <CharacterCard
-                  key={`${battle.challenge.id}-${contender.id}`}
-                  size={80}
-                  overlayColor={index === 0 ? 'yellow' : 'gray'}
-                  character={contender}
-                  className="final-gallery__contender"
-                />
-              ))}
+              {battle.contenders.map((contender, index) =>
+                contender.playerId === 'CPU' ? (
+                  <CharacterCard
+                    key={`${battle.challenge.id}-${contender.id}`}
+                    size={80}
+                    overlayColor={index === 0 ? 'yellow' : 'gray'}
+                    character={contender}
+                    className="final-gallery__contender"
+                  />
+                ) : (
+                  <Badge.Ribbon
+                    key={`${battle.challenge.id}-${contender.id}`}
+                    color={getAvatarColorById(players[contender.playerId]?.avatarId)}
+                    styles={{ indicator: { zIndex: 30, padding: 0 } }}
+                    text={
+                      <PlayerAvatar
+                        avatarId={players[contender.playerId]?.avatarId}
+                        size="small"
+                        alt={players[contender.playerId]?.name}
+                      />
+                    }
+                  >
+                    <CharacterCard
+                      size={80}
+                      overlayColor={index === 0 ? 'yellow' : 'gray'}
+                      character={contender}
+                      className="final-gallery__contender"
+                    />
+                  </Badge.Ribbon>
+                ),
+              )}
             </Space>
           );
         })}

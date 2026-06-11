@@ -19,7 +19,7 @@ type StepBattleProps = {
   brackets: Bracket[];
   tier: BracketTier;
   bets: Bet;
-  selectedContenderId: UID;
+  selectedContenderIds: UID[];
   players: GamePlayers;
 } & Pick<StepProps, 'announcement'>;
 
@@ -29,7 +29,7 @@ export function StepBattle({
   brackets,
   tier,
   bets,
-  selectedContenderId,
+  selectedContenderIds,
   players,
   announcement,
 }: StepBattleProps) {
@@ -63,7 +63,7 @@ export function StepBattle({
       <BetsFloatingHand
         bets={bets}
         brackets={brackets}
-        selectedContenderId={selectedContenderId}
+        selectedContenderIds={selectedContenderIds}
       />
     </Step>
   );

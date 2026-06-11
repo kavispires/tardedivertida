@@ -64,7 +64,7 @@ export function PhaseResults({ state, players, user }: PhaseProps) {
           challenge={state.challenge}
           bets={user.bets}
           goToNextStep={goToNextStep}
-          selectedContenderId={user.selectedContenderId}
+          selectedContenderIds={user.selectedContenderIds}
           announcement={announcement}
         />
 
@@ -75,8 +75,6 @@ export function PhaseResults({ state, players, user }: PhaseProps) {
           isGameOver={false}
           round={state.round}
           brackets={state.brackets}
-          bets={user.bets}
-          selectedContenderId={user.selectedContenderId}
         />
       </StepSwitcher>
     </PhaseContainer>
