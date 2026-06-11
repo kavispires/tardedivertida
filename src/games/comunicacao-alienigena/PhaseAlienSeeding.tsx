@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useCacheV2 } from 'hooks/useCacheV2';
+import { useCache } from 'hooks/useCache';
 import { useStep } from 'hooks/useStep';
 // Icons
 import { BooksIcon } from 'icons/BooksIcon';
@@ -19,7 +19,7 @@ import { StepSeedAlien } from './StepSeedAlien';
 
 export function PhaseAlienSeeding({ players, state, user }: PhaseProps<PhaseAlienSeedingState>) {
   const { step, setStep } = useStep();
-  const { resetCache } = useCacheV2<Dictionary<string>>({});
+  const { resetCache } = useCache<Dictionary<string>>({});
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: run once and don't include functions
   useEffect(() => {

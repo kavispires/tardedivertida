@@ -5,7 +5,7 @@ import { Select } from 'antd';
 import type { GamePlayers, GamePlayer } from 'types/game';
 import type { SuspectCard, TestimonyQuestionCard } from 'types/tdr';
 // Hooks
-import { useCacheV2 } from 'hooks/useCacheV2';
+import { useCache } from 'hooks/useCache';
 // Components
 import { SendButton } from 'components/buttons/SendButton';
 import { DualTranslate } from 'components/language/DualTranslate';
@@ -37,7 +37,7 @@ export function StepGuessPlayer({
   onSubmitGuess,
 }: StepGuessPlayerProps) {
   const [guess, setGuess] = useState<UID | null>(null);
-  const { cache } = useCacheV2<{ eliminated: Dictionary<boolean> }>({
+  const { cache } = useCache<{ eliminated: Dictionary<boolean> }>({
     eliminated: {},
   });
 

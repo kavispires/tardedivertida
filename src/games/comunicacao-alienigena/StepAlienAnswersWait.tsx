@@ -4,7 +4,7 @@ import { Flex, Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useCacheV2 } from 'hooks/useCacheV2';
+import { useCache } from 'hooks/useCache';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLoading } from 'hooks/useLoading';
 // Icons
@@ -78,7 +78,7 @@ export function StepAlienAnswersWait({
   debugMode,
 }: StepAlienAnswersWaitProps) {
   const { isLoading } = useLoading();
-  const { cache } = useCacheV2<Dictionary<string>>({});
+  const { cache } = useCache<Dictionary<string>>({});
   const [isDebugEnabled] = useGlobalState('isDebugEnabled');
 
   const hasAlienResponse = Boolean(alienResponses && Object.keys(alienResponses).length > 0) || isAlienBot;

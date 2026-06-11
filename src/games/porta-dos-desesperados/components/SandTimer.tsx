@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useCacheV2 } from 'hooks/useCacheV2';
+import { useCache } from 'hooks/useCache';
 import { useCountdown } from 'hooks/useCountdown';
 // Utils
 import { formatTime, getRandomItem } from 'utils/helpers';
@@ -31,7 +31,7 @@ export function SandTimer({
   onSubmitDoor,
   onMakeReady,
 }: SandTimerProps) {
-  const { setCache } = useCacheV2<DoorsCache>({ doors: [] });
+  const { setCache } = useCache<DoorsCache>({ doors: [] });
 
   const handleExpire = () => {
     if (!user.doorId) {

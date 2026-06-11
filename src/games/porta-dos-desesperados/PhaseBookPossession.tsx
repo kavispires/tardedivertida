@@ -3,7 +3,7 @@ import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useCacheV2 } from 'hooks/useCacheV2';
+import { useCache } from 'hooks/useCache';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
@@ -33,7 +33,7 @@ import { StepWaitPageSelection } from './StepWaitPageSelection';
 export function PhaseBookPossession({ state, players }: PhaseProps<PhaseBookPossessionState>) {
   const { step, goToNextStep, setStep } = useStep();
   const [possessed, isPossessed] = useWhichPlayerIsThe('possessedId', state, players);
-  const { setCache } = useCacheV2<DoorsCache>({ doors: [] });
+  const { setCache } = useCache<DoorsCache>({ doors: [] });
 
   const onSubmitPages = useOnSubmitPagesAPIRequest(setStep);
 

@@ -7,7 +7,7 @@ import { Button, Flex, Image, Tooltip } from 'antd';
 import type { GamePlayer, GamePlayers } from 'types/game';
 import type { SuspectCard } from 'types/tdr';
 // Hooks
-import { useCacheV2 } from 'hooks/useCacheV2';
+import { useCache } from 'hooks/useCache';
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
@@ -34,7 +34,7 @@ type CharactersBoardProps = {
 };
 
 export function CharactersBoard({ characters, players, user, revealCharacters }: CharactersBoardProps) {
-  const { cache, setCache, resetCache } = useCacheV2<{ eliminated: Dictionary<boolean> }>({
+  const { cache, setCache, resetCache } = useCache<{ eliminated: Dictionary<boolean> }>({
     eliminated: {},
   });
   const [isPeaking, setIsPeaking] = useState(false);

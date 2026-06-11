@@ -7,7 +7,7 @@ import { Avatar, Image } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useCacheV2 } from 'hooks/useCacheV2';
+import { useCache } from 'hooks/useCache';
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
@@ -53,7 +53,7 @@ export function Corridor({
     margin: 8,
   });
 
-  const { cache } = useCacheV2<DoorsCache>({ doors: [] });
+  const { cache } = useCache<DoorsCache>({ doors: [] });
 
   const voteMap = useMemo(
     () =>

@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Button, Flex, Popover } from 'antd';
 // Hooks
-import { useCacheV2 } from 'hooks/useCacheV2';
+import { useCache } from 'hooks/useCache';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
 import { SignCard } from 'components/cards/SignCard';
@@ -28,7 +28,7 @@ export function InquirySuggestions({
   setAttribute,
   setSelected,
 }: InquirySuggestionsProps) {
-  const { cache } = useCacheV2<Dictionary<string>>({});
+  const { cache } = useCache<Dictionary<string>>({});
 
   const suggestions = useMemo(() => {
     return alienAttributesUtils.getInquirySuggestions(items, attributes, [

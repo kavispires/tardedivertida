@@ -7,7 +7,7 @@ import { Button, Flex, Popover, Space, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useCacheV2 } from 'hooks/useCacheV2';
+import { useCache } from 'hooks/useCache';
 // Components
 import { TransparentButton } from 'components/buttons/TransparentButton';
 import { SignCard } from 'components/cards/SignCard';
@@ -29,7 +29,7 @@ export function HumanSignBoard({
   startingAttributesIds = [],
   knownSpriteIds,
 }: HumanSignBoardProps) {
-  const { cache, updateCache } = useCacheV2<Dictionary<string>>({});
+  const { cache, updateCache } = useCache<Dictionary<string>>({});
 
   const startingAttributes = useMemo(() => {
     return keyBy(

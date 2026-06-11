@@ -6,7 +6,7 @@ import { Badge, Flex, Select, Space } from 'antd';
 import type { GamePlayer } from 'types/game';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
-import { useCacheV2 } from 'hooks/useCacheV2';
+import { useCache } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Icons
@@ -154,7 +154,7 @@ export function MockInquiryButton({
   startingAttributesIds,
   submitInquiry,
 }: Pick<HumanInquiryProps, 'items' | 'attributes' | 'startingAttributesIds' | 'submitInquiry'>) {
-  const { cache } = useCacheV2<Dictionary<string>>({});
+  const { cache } = useCache<Dictionary<string>>({});
 
   const onSubmitMockInquiry = () => {
     const inquiry = alienAttributesUtils.getInquirySuggestions(items, attributes, [

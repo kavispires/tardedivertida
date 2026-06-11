@@ -6,7 +6,7 @@ import { Collapse, Flex, Radio, Typography, type CollapseProps } from 'antd';
 import type { GamePlayer, GamePlayers } from 'types/game';
 import type { Item } from 'types/tdr';
 // Hooks
-import { useCacheV2 } from 'hooks/useCacheV2';
+import { useCache } from 'hooks/useCache';
 // Components
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language/Translate';
@@ -141,7 +141,7 @@ function ConceptsContent({
   onSelectConcept,
 }: Pick<ConceptsCollapseProps, 'user' | 'players' | 'items' | 'concepts' | 'onSelectConcept'>) {
   const [sortBy, setSortBy] = useState('default');
-  const { cache } = useCacheV2<Dictionary<string>>({});
+  const { cache } = useCache<Dictionary<string>>({});
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   const list = useMemo(() => {

@@ -5,7 +5,7 @@ import { Button, Tooltip } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
-import { useCacheV2 } from 'hooks/useCacheV2';
+import { useCache } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { sortPlayers } from 'utils/helpers';
@@ -18,7 +18,7 @@ type SuspectsListProps = {
 
 export function SuspectsList({ players }: SuspectsListProps) {
   const { translate } = useLanguage();
-  const { cache, setCache } = useCacheV2<Dictionary<boolean>>({});
+  const { cache, setCache } = useCache<Dictionary<boolean>>({});
   const sortedPlayers = sortPlayers(players);
 
   const onCross = (playerId: string) => {

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { ClearOutlined, EnvironmentOutlined } from '@ant-design/icons';
 import { Button, Tooltip } from 'antd';
 // Hooks
-import { useCacheV2 } from 'hooks/useCacheV2';
+import { useCache } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language/Translate';
@@ -16,7 +16,7 @@ type LocationsListProps = {
 
 export function LocationsList({ locations }: LocationsListProps) {
   const { translate } = useLanguage();
-  const { cache, setCache } = useCacheV2<Dictionary<boolean>>({});
+  const { cache, setCache } = useCache<Dictionary<boolean>>({});
 
   const onCross = (locationId: string) => {
     setCache((s) => {
