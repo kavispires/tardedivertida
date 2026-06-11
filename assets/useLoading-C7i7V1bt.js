@@ -1,0 +1,1 @@
+import{B as e}from"./react-vendor-CHJcut0Z.js";import{H as t}from"./vendor-CS0tw3gA.js";var n=new t({loaders:{}}),r=(e,t)=>{n.setState(n=>({...n,[e]:t}))};function i(){let{loaders:t}=e(n,e=>e);return{isLoading:Object.values(t).some(e=>e),setLoader:r,isKeyLoading:e=>!!t[e]}}export{i as t};

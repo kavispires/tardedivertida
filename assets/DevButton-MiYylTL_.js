@@ -1,0 +1,1 @@
+import{Tn as e,_r as t}from"./antd-vendor-BPpmPSGA.js";import{so as n}from"./icons-DXqRthNe.js";import{n as r}from"./timers.module-SGmwe5rU.js";var i=n();function a({children:n,ghost:a,type:o,...s}){return(0,i.jsx)(r,{devOnly:!0,children:(0,i.jsx)(t,{icon:(0,i.jsx)(e,{}),ghost:a??!0,type:o??`primary`,...s,children:n})})}export{a as t};

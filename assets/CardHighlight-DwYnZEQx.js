@@ -1,0 +1,1 @@
+import{gr as e,so as t}from"./icons-DXqRthNe.js";import{t as n}from"./MetricHighlight-C9NTLKJe.js";var r=t();function i({children:t,type:i,iconSize:a,className:o}){return(0,r.jsx)(n,{icon:(0,r.jsx)(e,{}),type:i,iconSize:a,className:o,children:t})}export{i as t};

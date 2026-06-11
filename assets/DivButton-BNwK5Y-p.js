@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-DBS2Xqfh.js";import{Dr as t}from"./PageLayout-DBSPIFx0.js";var n=e();function r({className:e,...r}){return(0,n.jsx)(`button`,{className:t(`button-reset`,e),...r})}export{r as t};
