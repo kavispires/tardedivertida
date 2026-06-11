@@ -118,6 +118,15 @@ export function usePirralhosEngine(data: DailyPirralhosEntry, initialState: Game
     });
   };
 
+  const resetAssessments = () => {
+    setState((prevState) => ({
+      ...prevState,
+      assessments: Object.fromEntries(
+        Object.keys(prevState.assessments).map((kidId) => [kidId, 'unknown' as const]),
+      ),
+    }));
+  };
+
   // CONDITIONS
   const isWin = state.status === STATUSES.WIN;
   const isLose = state.status === STATUSES.LOSE;
@@ -141,6 +150,7 @@ export function usePirralhosEngine(data: DailyPirralhosEntry, initialState: Game
     isComplete,
     submitKid,
     assessKid,
+    resetAssessments,
     assessments: state.assessments,
   };
 }

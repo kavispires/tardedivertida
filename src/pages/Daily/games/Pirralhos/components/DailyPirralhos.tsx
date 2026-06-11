@@ -50,6 +50,7 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
     isComplete,
     assessments,
     assessKid,
+    resetAssessments,
     submitKid,
   } = usePirralhosEngine(data, initialState);
 
@@ -275,6 +276,19 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
               </>
             }
           />
+          <Button
+            className="ml-2"
+            size="small"
+            shape="round"
+            variant="outlined"
+            color="volcano"
+            onClick={resetAssessments}
+          >
+            <Translate
+              en="Reset all"
+              pt="Limpar tudo"
+            />
+          </Button>
         </RegionHint>
       </DailyContent>
     </Layout>
