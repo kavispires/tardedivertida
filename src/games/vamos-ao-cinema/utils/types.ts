@@ -10,6 +10,11 @@ export type SubmitMovieEliminationPayload = {
   movieId: string;
 };
 
+export type SubmitMoviePosterPayload = {
+  movieId: string;
+  posterId: string;
+};
+
 export type FinalMovie = {
   /**
    * Unique identifier for the final movie

@@ -151,7 +151,7 @@ export function StepGuessVerification({
 }
 
 type ConfirmationButtonProps = {
-  onSubmitOutcome: GenericFunction;
+  onSubmitOutcome: (payload: SubmitOutcomePayload) => void;
   isLoading: boolean;
 };
 

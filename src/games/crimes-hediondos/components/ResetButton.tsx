@@ -4,7 +4,7 @@ import { Button } from 'antd';
 import { Translate } from 'components/language/Translate';
 
 type ResetButtonProps = {
-  goToStep: GenericFunction;
+  goToStep: (index: number) => void;
 };
 
 export function ResetButton({ goToStep }: ResetButtonProps) {

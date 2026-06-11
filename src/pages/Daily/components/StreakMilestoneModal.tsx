@@ -99,7 +99,7 @@ export function StreakMilestoneModal({ milestone, onClose }: StreakMilestoneModa
       width={400}
     >
       <Space
-        direction="vertical"
+        orientation="vertical"
         align="center"
         style={{ width: '100%', padding: '24px 0' }}
         size="large"

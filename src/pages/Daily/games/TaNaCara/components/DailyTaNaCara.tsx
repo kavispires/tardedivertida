@@ -203,7 +203,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                 shape="round"
                 onClick={onNext}
                 icon={<DoubleRightOutlined />}
-                iconPosition="end"
+                iconPlacement="end"
                 disabled={questionIndex === totalQuestions - 1}
               >
                 <Translate

@@ -98,7 +98,7 @@ export function useOnAddAnswerAPIRequest() {
   };
 }
 
-export function useOnNextAnswersAPIRequest(clearAllowList: GenericFunction) {
+export function useOnNextAnswersAPIRequest(clearAllowList: () => void) {
   const { translate } = useLanguage();
 
   const request = useGameActionRequest({

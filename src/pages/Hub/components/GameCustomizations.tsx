@@ -9,7 +9,7 @@ import { Translate } from 'components/language/Translate';
 type GameCustomizationsProps = {
   options?: GameInfo['options'];
   disabled: boolean;
-  onChangeOptions: GenericFunction;
+  onChangeOptions: (optionKey: string, value: any) => void;
   selectedOptions: PlainObject;
 };
 

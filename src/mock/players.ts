@@ -58,7 +58,7 @@ export function mockPlayerName(used?: string[]): string {
 export function mockPlayers(
   players: GamePlayers,
   quantity = 10,
-  properties: PlainObject | GenericFunction = {},
+  properties: PlainObject | ((index: number) => PlainObject) = {},
 ): GamePlayers {
   if (Object.keys(cacheMockedPlayers).length === quantity) {
     return {

@@ -3,7 +3,11 @@ import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 import type { UseStep } from 'hooks/useStep';
 // Internal
-import type { SubmitMovieSelectionPayload, SubmitMovieEliminationPayload } from './types';
+import type {
+  SubmitMovieSelectionPayload,
+  SubmitMovieEliminationPayload,
+  SubmitMoviePosterPayload,
+} from './types';
 import { VAMOS_AO_CINEMA_ACTIONS } from './constants';
 
 export function useOnSubmitMovieSelectionAPIRequest(setStep: UseStep['setStep']) {
@@ -70,7 +74,7 @@ export function useOnSubmitMoviePosterAPIRequest(setStep: UseStep['setStep']) {
     }),
   });
 
-  return (payload: SubmitMovieEliminationPayload) => {
+  return (payload: SubmitMoviePosterPayload) => {
     request({
       action: VAMOS_AO_CINEMA_ACTIONS.VOTE_FOR_POSTER,
       ...payload,

@@ -1,7 +1,6 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useCache, useCacheAlternative } from 'hooks/useCache';
 import { useStep } from 'hooks/useStep';
 // Icons
 import { UfoIcon } from 'icons/UfoIcon';
@@ -20,10 +19,6 @@ import { CurseItemHighlight, HieroglyphHighlight, ItemsHighlight } from './compo
 
 export function PhaseAlienSelection({ state, players }: PhaseProps<PhaseAlienSelectionState>) {
   const { step, setStep } = useStep();
-
-  // Clear cache from previous games
-  useCache({ clearCache: true });
-  useCacheAlternative({ clearCache: true });
 
   const onSubmitAlien = useOnSubmitAlienAPIRequest(setStep);
 

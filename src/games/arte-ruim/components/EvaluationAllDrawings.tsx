@@ -13,7 +13,7 @@ import type { ArteRuimDrawing } from '../utils/types';
 type EvaluationAllDrawingsProps = {
   drawings: ArteRuimDrawing[];
   activeItem: string;
-  onActivateItem: GenericFunction;
+  onActivateItem: (entryId: string) => void;
   votes: PlainObject;
   canvasSize: number;
   players: GamePlayers;

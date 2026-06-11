@@ -23,6 +23,7 @@ import { StepTitle } from 'components/text/StepTitle';
 import { Title } from 'components/text/Title';
 import { ViewIf } from 'components/views/ViewIf';
 // Internal
+import type { SubmitMovieEliminationPayload, SubmitMoviePosterPayload } from './utils/types';
 import { Reviews } from './components/Reviews';
 import { Movies } from './components/Movies';
 import { MistakeCountHighlight } from './components/MistakeCountHighlight';
@@ -34,7 +35,7 @@ type StepRevealProps = {
   goodReview: MovieReviewCard;
   badReview: MovieReviewCard;
   movies: MovieCard[];
-  onEliminateMovie: GenericFunction;
+  onEliminateMovie: (payload: SubmitMovieEliminationPayload) => void;
   activePlayer: GamePlayer;
   eliminatedMovies: string[];
   votedForSelectedMovie: UID[];
@@ -45,7 +46,7 @@ type StepRevealProps = {
   currentMovieId: string;
   finalMovieId?: string;
   score: number;
-  onSubmitPoster: GenericFunction;
+  onSubmitPoster: (payload: SubmitMoviePosterPayload) => void;
   posters: string[];
 } & Pick<StepProps, 'announcement'>;
 

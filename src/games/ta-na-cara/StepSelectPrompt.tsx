@@ -7,7 +7,6 @@ import type { GamePlayers, GamePlayer } from 'types/game';
 import type { SuspectCard, TestimonyQuestionCard } from 'types/tdr';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-import { useMock } from 'hooks/useMock';
 // Components
 import { SendButton } from 'components/buttons/SendButton';
 import { Popconfirm } from 'components/general/Popconfirm';
@@ -46,11 +45,6 @@ export function StepSelectPrompt({
 }: StepSelectPromptProps) {
   const [typedQuestion, setTypedQuestion] = useState('');
   const { translate } = useLanguage();
-
-  // DEV: Auto decision
-  useMock(() => {
-    // mockPromptDecision(user, players, onSubmitPrompt, onSubmitTarget);
-  });
 
   const suggestedQuestions = user.suggestedQuestions || [];
 

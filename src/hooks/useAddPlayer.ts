@@ -11,7 +11,7 @@ import { useGlobalState } from './useGlobalState';
 import { useLanguage } from './useLanguage';
 import { getKey, useGlobalLocalStorage } from './useGlobalLocalStorage';
 
-export function useAddPlayer(name: string, avatarId: string, isGuest: boolean, onSuccess: GenericFunction) {
+export function useAddPlayer(name: string, avatarId: string, isGuest: boolean, onSuccess: () => void) {
   const {
     meta: { gameId, gameName },
   } = useGameMeta();

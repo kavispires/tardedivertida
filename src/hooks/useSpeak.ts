@@ -5,7 +5,7 @@ import { speak } from 'utils/speech';
 import { useGlobalLocalStorage } from './useGlobalLocalStorage';
 import { useLanguage } from './useLanguage';
 
-export function useSpeak(text: DualLanguageValue, onEnd?: GenericFunction) {
+export function useSpeak(text: DualLanguageValue, onEnd?: () => void) {
   const { language } = useLanguage();
   const [volume] = useGlobalLocalStorage('volume');
 

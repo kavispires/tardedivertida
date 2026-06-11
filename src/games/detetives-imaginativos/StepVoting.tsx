@@ -20,7 +20,7 @@ type StepVotingProps = {
   leaderId: UID;
   user: GamePlayer;
   players: GamePlayers;
-  onVote: GenericFunction;
+  onVote: (payload: { vote: UID }) => void;
   table: CardEntry[];
 } & Pick<StepProps, 'announcement'>;
 

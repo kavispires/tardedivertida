@@ -14,7 +14,7 @@ import { RuleInstruction } from 'components/text/RuleInstruction';
 type UserAnswersProps = {
   answerGroup: any;
   user: GamePlayer;
-  onAddAnswer: GenericFunction;
+  onAddAnswer: (answer: any) => void;
 };
 
 export function UserAnswers({ answerGroup, user, onAddAnswer }: UserAnswersProps) {

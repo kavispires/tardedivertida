@@ -14,7 +14,7 @@ import type { Message } from '../utils/types';
 
 type MessageBoardProps = {
   messages: Record<UID, Message>;
-  onSubmitMessage: GenericFunction;
+  onSubmitMessage: (message: string, targetId: UID, recipientId: UID) => void;
   disabled: boolean;
   players: GamePlayers;
   user: GamePlayer;
@@ -60,7 +60,7 @@ export function MessageBoard({ messages, onSubmitMessage, disabled, players }: M
 }
 
 type PopOverMessageFormProps = {
-  onSubmitMessage: GenericFunction;
+  onSubmitMessage: (message: string, targetId: UID, recipientId: UID) => void;
   players: GamePlayers;
 };
 
@@ -76,7 +76,7 @@ function PopOverMessageForm({ onSubmitMessage, players }: PopOverMessageFormProp
       }}
       className="q-message-form"
       size="small"
-      onFinish={(e) => console.log(e)}
+      onFinish={(values) => onSubmitMessage(values.message, values.targetId, values.recipientId)}
     >
       <Form.Item
         label={
