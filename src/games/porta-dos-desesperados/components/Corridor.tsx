@@ -7,7 +7,7 @@ import { Avatar, Image } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useCache } from 'hooks/useCache';
+import { useCacheV2 } from 'hooks/useCacheV2';
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
@@ -21,7 +21,7 @@ import { Translate } from 'components/language/Translate';
 import { PlayerAvatar } from 'components/player/PlayerAvatar';
 // Internal
 import { TRAPS } from '../utils/constants';
-import type { SubmitDoorPayload } from '../utils/types';
+import type { DoorsCache, SubmitDoorPayload } from '../utils/types';
 
 type CorridorProps = {
   doors: UID[];
@@ -53,7 +53,7 @@ export function Corridor({
     margin: 8,
   });
 
-  const { cache } = useCache();
+  const { cache } = useCacheV2<DoorsCache>({ doors: [] });
 
   const voteMap = useMemo(
     () =>

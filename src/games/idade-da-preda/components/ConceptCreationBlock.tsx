@@ -7,7 +7,7 @@ import { Button, Card, Flex, Input, Tooltip } from 'antd';
 import type { GamePlayer, GamePlayers } from 'types/game';
 import type { Item } from 'types/tdr';
 // Hooks
-import { useCache } from 'hooks/useCache';
+import { useCacheV2 } from 'hooks/useCacheV2';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { SpeakButton } from 'components/audio/SpeakButton';
@@ -205,7 +205,7 @@ type NoteProps = {
 
 function Note({ concept, userId }: NoteProps) {
   const { translate } = useLanguage();
-  const { cache, setCache } = useCache();
+  const { cache, setCache } = useCacheV2<Dictionary<string>>({});
 
   const note = cache[concept.id] ?? '';
 

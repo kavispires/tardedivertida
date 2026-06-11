@@ -3,7 +3,7 @@ import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useCache } from 'hooks/useCache';
+import { useCacheV2 } from 'hooks/useCacheV2';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
@@ -23,7 +23,7 @@ import { ViewIf } from 'components/views/ViewIf';
 import { useOnSubmitPagesAPIRequest } from './utils/api-requests';
 import { PORTA_DOS_DESESPERADOS_PHASES, TRAPS } from './utils/constants';
 import { shouldAnnounceTrap } from './utils/helpers';
-import type { PhaseBookPossessionState } from './utils/types';
+import type { DoorsCache, PhaseBookPossessionState } from './utils/types';
 import { TrapAnnouncement } from './components/TrapAnnouncement';
 import { RoundOneRule, RoundRule } from './components/RulesBlobs';
 import { BookHighlight } from './components/Highlights';
@@ -33,7 +33,7 @@ import { StepWaitPageSelection } from './StepWaitPageSelection';
 export function PhaseBookPossession({ state, players }: PhaseProps<PhaseBookPossessionState>) {
   const { step, goToNextStep, setStep } = useStep();
   const [possessed, isPossessed] = useWhichPlayerIsThe('possessedId', state, players);
-  const { setCache } = useCache({ defaultValue: { doors: [] } });
+  const { setCache } = useCacheV2<DoorsCache>({ doors: [] });
 
   const onSubmitPages = useOnSubmitPagesAPIRequest(setStep);
 

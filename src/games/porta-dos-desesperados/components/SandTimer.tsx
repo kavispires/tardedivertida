@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useCache } from 'hooks/useCache';
+import { useCacheV2 } from 'hooks/useCacheV2';
 import { useCountdown } from 'hooks/useCountdown';
 // Utils
 import { formatTime, getRandomItem } from 'utils/helpers';
@@ -12,7 +12,7 @@ import { MagicHourGlassIcon } from 'icons/MagicHourGlassIcon';
 import { IconAvatar } from 'components/avatars/IconAvatar';
 // Internal
 import { ROUND_DURATION, TIMER_LEAD, TRAPS } from '../utils/constants';
-import type { SubmitDoorPayload } from '../utils/types';
+import type { DoorsCache, SubmitDoorPayload } from '../utils/types';
 
 type SandTimerProps = {
   trap: string;
@@ -31,7 +31,7 @@ export function SandTimer({
   onSubmitDoor,
   onMakeReady,
 }: SandTimerProps) {
-  const { setCache } = useCache({ defaultValue: { doors: [] } });
+  const { setCache } = useCacheV2<DoorsCache>({ doors: [] });
 
   const handleExpire = () => {
     if (!user.doorId) {

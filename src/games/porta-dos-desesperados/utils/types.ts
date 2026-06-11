@@ -3,6 +3,10 @@ import type { Achievement, GamePlayer } from 'types/game';
 // Internal
 import type { TRAPS } from './constants';
 
+export type DoorsCache = {
+  doors: number[];
+};
+
 /**
  * Payload for submitting selected book pages
  */
