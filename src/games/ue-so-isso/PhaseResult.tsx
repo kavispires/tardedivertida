@@ -113,6 +113,7 @@ export function PhaseResult({ state, players }: PhaseProps<PhaseResultState>) {
           secretWord={state.secretWord}
           announcement={announcement}
           group={state.group}
+          round={state.round}
         />
       </StepSwitcher>
     </PhaseContainer>

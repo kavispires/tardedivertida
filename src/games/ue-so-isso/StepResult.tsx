@@ -1,5 +1,5 @@
 // Types
-import type { GamePlayer } from 'types/game';
+import type { GamePlayer, GameRound } from 'types/game';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
@@ -26,6 +26,7 @@ type StepResultProps = {
   validSuggestions: Suggestion[];
   suggestions: Suggestion[];
   group: GroupProgress;
+  round: GameRound;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepResult({
@@ -36,6 +37,7 @@ export function StepResult({
   suggestions,
   group,
   announcement,
+  round,
 }: StepResultProps) {
   const isPass = group.attempts.at(-1) === 'PASS';
   return (
@@ -145,7 +147,10 @@ export function StepResult({
         })}
       </TitledContainer>
 
-      <HostNextPhaseButton withWaitingTimeBar />
+      <HostNextPhaseButton
+        withWaitingTimeBar
+        round={round}
+      />
 
       {validSuggestions.length !== suggestions.length && (
         <TitledContainer

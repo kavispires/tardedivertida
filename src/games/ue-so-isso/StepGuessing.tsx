@@ -1,7 +1,7 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { MinusOutlined, QuestionCircleOutlined } from '@ant-design/icons';
-import { Input } from 'antd';
+import { Input, Tag } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
@@ -133,7 +133,7 @@ export function StepGuessing({
             pt="Enviar"
             en="Submit"
           />
-          {timeLeft}
+          <Tag color="blue">{timeLeft}</Tag>
         </SendButton>
         <span>
           <Translate
