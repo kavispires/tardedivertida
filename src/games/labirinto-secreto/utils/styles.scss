@@ -7,7 +7,7 @@
 
   &--small {
     max-width: 50vw;
-    border-radius: 30vw * 9 / 5;
+    border-radius: calc(30vw * 9 / 5);
   }
 }
 

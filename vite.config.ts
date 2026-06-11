@@ -15,12 +15,15 @@ export default defineConfig({
         'src/**/*.svg',
       ],
     }),
-    checker({
-      typescript: {
-        tsconfigPath: 'tsconfig.json',
-        buildMode: false,
-      },
-    }),
+    // Only run checker in dev mode, not during production builds
+    ...(process.env.NODE_ENV !== 'production' ? [
+      checker({
+        typescript: {
+          tsconfigPath: 'tsconfig.json',
+          buildMode: false,
+        },
+      }),
+    ] : []),
   ],
   server: {
     open: true, // automatically open the app in the browser
@@ -35,5 +38,30 @@ export default defineConfig({
   },
   build: {
     outDir: 'build',
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          // Vendor splitting for better caching
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'react-vendor';
+            }
+            if (id.includes('antd') || id.includes('@ant-design')) {
+              return 'antd-vendor';
+            }
+            if (id.includes('firebase')) {
+              return 'firebase-vendor';
+            }
+            return 'vendor';
+          }
+          // Icons chunking
+          if (id.includes('src/icons/') && id.endsWith('Icon.tsx')) {
+            return 'icons';
+          }
+        },
+      },
+    },
+    chunkSizeWarningLimit: 800,
   },
 });
