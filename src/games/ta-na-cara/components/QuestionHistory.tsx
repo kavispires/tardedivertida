@@ -7,7 +7,10 @@ import type { TestimonyQuestionCard } from 'types/tdr';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Icons
-import { BoxCheckMarkIcon, BoxMinusIcon, BoxPlusIcon, BoxXIcon } from 'icons/collection';
+import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
+import { BoxMinusIcon } from 'icons/BoxMinusIcon';
+import { BoxPlusIcon } from 'icons/BoxPlusIcon';
+import { BoxXIcon } from 'icons/BoxXIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { Translate } from 'components/language/Translate';

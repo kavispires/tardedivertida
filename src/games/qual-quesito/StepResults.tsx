@@ -5,7 +5,8 @@ import { Flex } from 'antd';
 import type { GamePlayers, GamePlayer } from 'types/game';
 import type { Item } from 'types/tdr';
 // Icons
-import { SpeechBubbleAcceptedIcon, SpeechBubbleDeclinedIcon } from 'icons/collection';
+import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
+import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { TimedButton } from 'components/buttons/TimedButton';

@@ -55,10 +55,6 @@ export default defineConfig({
             }
             return 'vendor';
           }
-          // Icons chunking
-          if (id.includes('src/icons/') && id.endsWith('Icon.tsx')) {
-            return 'icons';
-          }
         },
       },
     },

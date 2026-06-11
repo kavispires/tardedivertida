@@ -7,18 +7,21 @@ import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { TAG_DICT } from 'utils/constants';
 // Icons
+import { AudienceIcon } from 'icons/AudienceIcon';
+import { BadgeIcon } from 'icons/BadgeIcon';
 import { BrainIcon } from 'icons/BrainIcon';
 import { CloverIcon } from 'icons/CloverIcon';
-import { AudienceIcon, BadgeIcon, PlayerDropIcon, SoundEffectsIcon } from 'icons/collection';
 import { CompetitiveGameIcon } from 'icons/CompetitiveGameIcon';
 import { CooperativeGameIcon } from 'icons/CooperativeGameIcon';
 import { DrawingIcon } from 'icons/DrawingIcon';
 import { EvaluateIcon } from 'icons/EvaluateIcon';
 import { GamblingChipIcon } from 'icons/GamblingChipIcon';
 import { ImageCardsIcon } from 'icons/ImageCardsIcon';
+import { PlayerDropIcon } from 'icons/PlayerDropIcon';
 import { PuzzleIcon } from 'icons/PuzzleIcon';
 import { RobotIcon } from 'icons/RobotIcon';
 import { SmartphoneIcon } from 'icons/SmartphoneIcon';
+import { SoundEffectsIcon } from 'icons/SoundEffectsIcon';
 import { TalkIcon } from 'icons/TalkIcon';
 import { ThinkingIcon } from 'icons/ThinkingIcon';
 import { TimerIcon } from 'icons/TimerIcon';

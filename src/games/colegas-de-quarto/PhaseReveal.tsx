@@ -4,7 +4,7 @@ import type { PhaseProps } from 'types/game';
 import { useSlideShow } from 'hooks/useSlideShow';
 import { useStep } from 'hooks/useStep';
 // Icons
-import { CashRegisterIcon } from 'icons/collection';
+import { CashRegisterIcon } from 'icons/CashRegisterIcon';
 // Components
 import { Translate } from 'components/language/Translate';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';

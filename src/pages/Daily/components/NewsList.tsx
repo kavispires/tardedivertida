@@ -1,6 +1,9 @@
 import type { ReactNode } from 'react';
 // Icons
-import { AudioIcon, IncreaseDifficultyIcon, PrototypeIcon, RulesIcon } from 'icons/collection';
+import { AudioIcon } from 'icons/AudioIcon';
+import { IncreaseDifficultyIcon } from 'icons/IncreaseDifficultyIcon';
+import { PrototypeIcon } from 'icons/PrototypeIcon';
+import { RulesIcon } from 'icons/RulesIcon';
 import { WeekendIcon } from 'icons/WeekendIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';

@@ -3,7 +3,10 @@ import type { JSX } from 'react';
 // Ant Design Resources
 import { Button, Typography } from 'antd';
 // Icons
-import { GuessIcon, InnocentIcon, LiarIcon, TraitorIcon } from 'icons/collection';
+import { GuessIcon } from 'icons/GuessIcon';
+import { InnocentIcon } from 'icons/InnocentIcon';
+import { LiarIcon } from 'icons/LiarIcon';
+import { TraitorIcon } from 'icons/TraitorIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { ImageCard } from 'components/image-cards/ImageCard';

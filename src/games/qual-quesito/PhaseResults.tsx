@@ -4,7 +4,7 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
-import { RankIcon } from 'icons/collection';
+import { RankIcon } from 'icons/RankIcon';
 // Components
 import { Translate } from 'components/language/Translate';
 import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';

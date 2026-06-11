@@ -5,7 +5,7 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
-import { WriteIdeaIcon } from 'icons/collection';
+import { WriteIdeaIcon } from 'icons/WriteIdeaIcon';
 // Components
 import { Translate } from 'components/language/Translate';
 import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';

@@ -3,7 +3,7 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 // Icons
-import { BookshelfIcon } from 'icons/collection';
+import { BookshelfIcon } from 'icons/BookshelfIcon';
 // Components
 import { Translate } from 'components/language/Translate';
 import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';

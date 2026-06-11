@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Rate } from 'antd';
 // Icons
-import { MagicSkullIcon } from 'icons/collection';
+import { MagicSkullIcon } from 'icons/MagicSkullIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
 

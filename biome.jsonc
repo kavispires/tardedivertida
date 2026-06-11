@@ -68,12 +68,24 @@
       "suspicious": {
         "noArrayIndexKey": "off",
         "noConsole": "warn",
-        "noDeprecatedImports": "warn",
+        "noDeprecatedImports": "error",
         "noDuplicateDependencies": "warn",
         "noExplicitAny": "warn"
       }
     }
   },
+  "overrides": [
+    {
+      "includes": ["src/pages/Dev/**", "src/icons/collectionByGame.tsx"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noDeprecatedImports": "off"
+          }
+        }
+      }
+    }
+  ],
   "vcs": {
     "clientKind": "git",
     "enabled": true,

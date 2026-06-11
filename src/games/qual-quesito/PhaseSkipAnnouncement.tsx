@@ -4,7 +4,7 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
-import { SkipIcon } from 'icons/collection';
+import { SkipIcon } from 'icons/SkipIcon';
 // Components
 import { Translate } from 'components/language/Translate';
 import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';

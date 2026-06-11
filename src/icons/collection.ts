@@ -1,3 +1,16 @@
+/**
+ * @deprecated DO NOT IMPORT FROM THIS FILE (except in Dev routes)
+ *
+ * This barrel export creates large bundle sizes. Import icons directly instead:
+ *
+ * ❌ BAD:  import { MyIcon } from 'icons/collection';
+ * ✅ GOOD: import { MyIcon } from 'icons/MyIcon';
+ *
+ * Only use this file in:
+ * - src/pages/Dev/
+ * - src/icons/collectionByGame.tsx
+ */
+
 export * from './ActionAlertIcon';
 export * from './AgeAdultIcon';
 export * from './AgeChildIcon';

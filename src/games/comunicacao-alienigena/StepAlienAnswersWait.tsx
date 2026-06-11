@@ -8,7 +8,7 @@ import { useCacheV2 } from 'hooks/useCacheV2';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLoading } from 'hooks/useLoading';
 // Icons
-import { ArrowIcon } from 'icons/collection';
+import { ArrowIcon } from 'icons/ArrowIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { SendButton } from 'components/buttons/SendButton';

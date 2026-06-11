@@ -4,7 +4,8 @@ import { useMeasure } from 'react-use';
 import { Button } from 'antd';
 // Icons
 import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
-import { CrownIcon, SkullIcon } from 'icons/collection';
+import { CrownIcon } from 'icons/CrownIcon';
+import { SkullIcon } from 'icons/SkullIcon';
 // Components
 import { Translate } from 'components/language/Translate';
 // Pages

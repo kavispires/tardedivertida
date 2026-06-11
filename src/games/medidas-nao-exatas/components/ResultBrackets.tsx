@@ -7,7 +7,7 @@ import type { TextCard } from 'types/tdr';
 // Utils
 import { getAnimation } from 'utils/animations';
 // Icons
-import { BoxXIcon } from 'icons/collection';
+import { BoxXIcon } from 'icons/BoxXIcon';
 import { XIcon } from 'icons/XIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';

@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 // Hooks
 import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
 // Icons
-import { AnimatedProcessingIcon } from 'icons/collection';
+import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
 // Components
 import { DualTranslate } from 'components/language/DualTranslate';
 // Pages

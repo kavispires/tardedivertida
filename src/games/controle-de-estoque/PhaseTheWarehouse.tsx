@@ -1,7 +1,7 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Icons
-import { WarehouseIcon } from 'icons/collection';
+import { WarehouseIcon } from 'icons/WarehouseIcon';
 // Components
 import { Translate } from 'components/language/Translate';
 import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';

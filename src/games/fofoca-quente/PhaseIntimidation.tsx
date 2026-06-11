@@ -3,7 +3,7 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 // Icons
-import { BlackmailIcon } from 'icons/collection';
+import { BlackmailIcon } from 'icons/BlackmailIcon';
 // Components
 import { Translate } from 'components/language/Translate';
 import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';

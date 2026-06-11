@@ -4,7 +4,8 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
-import { BullyingIcon, PigeonIcon } from 'icons/collection';
+import { BullyingIcon } from 'icons/BullyingIcon';
+import { PigeonIcon } from 'icons/PigeonIcon';
 // Components
 import { Translate } from 'components/language/Translate';
 import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';

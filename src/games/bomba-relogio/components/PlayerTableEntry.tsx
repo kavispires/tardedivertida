@@ -8,7 +8,8 @@ import type { GamePlayer } from 'types/game';
 import { getAnimation } from 'utils/animations';
 import { pluralize } from 'utils/helpers';
 // Icons
-import { SecurityIcon, TraitorIcon } from 'icons/collection';
+import { SecurityIcon } from 'icons/SecurityIcon';
+import { TraitorIcon } from 'icons/TraitorIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { ImageCard } from 'components/image-cards/ImageCard';

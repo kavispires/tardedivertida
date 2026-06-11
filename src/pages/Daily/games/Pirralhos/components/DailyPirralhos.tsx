@@ -9,7 +9,8 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { pluralize } from 'utils/helpers';
 // Icons
-import { LiarIcon, OpposingArrowIcon } from 'icons/collection';
+import { LiarIcon } from 'icons/LiarIcon';
+import { OpposingArrowIcon } from 'icons/OpposingArrowIcon';
 import { TraitorIcon } from 'icons/TraitorIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';

@@ -4,8 +4,9 @@ import type { GameRound, PhaseProps, GamePlayer } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 // Icons
+import { BombIcon } from 'icons/BombIcon';
+import { BoxBlankIcon } from 'icons/BoxBlankIcon';
 import { BuildingIcon } from 'icons/BuildingIcon';
-import { BombIcon, BoxBlankIcon } from 'icons/collection';
 import { WalkieTalkieIcon } from 'icons/WalkieTalkieIcon';
 import { WireIcon } from 'icons/WireIcon';
 // Components

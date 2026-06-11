@@ -5,7 +5,7 @@ import type { PhaseProps } from 'types/game';
 // Hooks
 import { useStep } from 'hooks/useStep';
 // Icons
-import { BooksIcon } from 'icons/collection';
+import { BooksIcon } from 'icons/BooksIcon';
 // Components
 import { BookPatternCard } from 'components/cards/BookPatternCard';
 import { Translate } from 'components/language/Translate';
