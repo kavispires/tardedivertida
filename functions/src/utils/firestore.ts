@@ -293,8 +293,9 @@ export const saveGame = async (
   if (hasStateSet || hasStateUpdate) {
     const phase = (saveContent?.set?.state?.phase ?? saveContent?.update?.state?.phase) as string | undefined;
 
-    if (phase && phase === 'SETUP' && Date.now() - now < 5000) {
-      await utils.helpers.forceWait(5000 - (Date.now() - now));
+    // So players can see the animation and there's a sense of things are getting setup we wait at least 7 seconds
+    if (phase && phase === 'SETUP' && Date.now() - now < 7000) {
+      await utils.helpers.forceWait(7000 - (Date.now() - now));
     }
   }
 

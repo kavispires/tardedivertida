@@ -10,6 +10,8 @@ import { Instruction } from 'components/text/Instruction';
 import { Title } from 'components/text/Title';
 // Internal
 import { PhaseContainer } from './PhaseContainer';
+// Sass
+import styles from './PhaseAnnouncement.module.scss';
 
 /**
  * Phase component that displays a waiting screen while the game transitions between phases
@@ -21,7 +23,7 @@ export function PhaseWait({ state }: PhaseProps) {
       allowedPhase={PHASES.DEFAULT.WAIT}
       className="setup"
     >
-      <div className="phase-announcement">
+      <div className={styles.phaseAnnouncement}>
         <Title>
           <Translate
             pt="Processando..."
@@ -29,7 +31,7 @@ export function PhaseWait({ state }: PhaseProps) {
           />
         </Title>
 
-        <AnimatedProcessingIcon className="phase-announcement__icon" />
+        <AnimatedProcessingIcon className={styles.phaseAnnouncementIcon} />
 
         <Instruction>
           <Translate

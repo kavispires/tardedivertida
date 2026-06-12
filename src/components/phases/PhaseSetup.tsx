@@ -1,10 +1,11 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useGameId } from 'hooks/useGameId';
 import { useGameMeta } from 'hooks/useGameMeta';
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { PHASES } from 'utils/phases';
 // Icons
@@ -17,6 +18,27 @@ import { StepTitle } from 'components/text/StepTitle';
 import { PhaseContainer } from './PhaseContainer';
 import { VideoBackground } from './lobby/VideoBackground';
 import { ImageBackground } from './lobby/ImageBackground';
+// Sass
+import styles from './PhaseAnnouncement.module.scss';
+
+const SETUP_PHRASES = [
+  {
+    pt: 'Carregando os dados...',
+    en: 'Gathering resources...',
+  },
+  {
+    pt: 'Preparando a diversão...',
+    en: 'Preparing the fun...',
+  },
+  {
+    pt: 'Escolhendo quem o servidor vai roubar pra ganhar...',
+    en: 'Choosing who the server will rig the game for...',
+  },
+  {
+    pt: 'Quase lá...',
+    en: 'Almost there...',
+  },
+];
 
 /**
  * Phase component that displays a setup screen while the game initializes
@@ -25,6 +47,8 @@ export function PhaseSetup({ state }: PhaseProps) {
   const gameId = useGameId();
   const queryClient = useQueryClient();
   const { dataUpdatedAt } = useGameMeta();
+  const { translate } = useLanguage();
+  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: only the id matters
   useEffect(() => {
@@ -33,6 +57,15 @@ export function PhaseSetup({ state }: PhaseProps) {
     }
   }, [gameId]);
 
+  // Rotate phrases every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentPhraseIndex((prev) => (prev + 1) % SETUP_PHRASES.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <PhaseContainer
       phase={state?.phase}
@@ -40,7 +73,7 @@ export function PhaseSetup({ state }: PhaseProps) {
       className="setup"
     >
       <div
-        className="phase-announcement"
+        className={styles.phaseAnnouncement}
         style={{ zIndex: 3, background: 'transparent' }}
       >
         <StepTitle colorScheme="dark">
@@ -50,14 +83,9 @@ export function PhaseSetup({ state }: PhaseProps) {
           />
         </StepTitle>
 
-        <AnimatedGearIcon className="phase-announcement__icon" />
+        <AnimatedGearIcon className={styles.phaseAnnouncementIcon} />
 
-        <Instruction style={{ color: 'white' }}>
-          <Translate
-            pt="Aguarde um momento"
-            en="Gathering resources..."
-          />
-        </Instruction>
+        <Instruction style={{ color: 'white' }}>{translate(SETUP_PHRASES[currentPhraseIndex])}</Instruction>
       </div>
       <VideoBackground />
 
