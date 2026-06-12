@@ -159,14 +159,17 @@ export const getDistantColors = (players: Players, minDistance = 2): string[] =>
  */
 export const buildTellers = (playerCount: number, currentRound: number): Dictionary<Teller> => {
   const tellers: Dictionary<Teller> = {};
-  const cuttingCapacity = [0, 0, 3, 3, 4, 5][playerCount]; // The number of capacities to remove from the end of the array based on player count, to adjust the game difficulty. For example, with 3 players, it removes the last 3 capacities, which are the higher ones, to make the game easier with less players
-  TELLERS.forEach((teller) => {
+  const cuttingCapacity = [0, 0, 3, 3, 4, 4][playerCount]; // The number of capacities to remove from the end of the array based on player count, to adjust the game difficulty. For example, with 3 players, it removes the last 3 capacities, which are the higher ones, to make the game easier with less players
+  TELLERS.forEach((teller, index) => {
     tellers[teller.id] = {
       id: teller.id,
       imageId: `nfdb-teller-${teller.id}`,
       type: teller.type,
       doublers: teller.doublers,
-      capacity: teller.capacitiesPerRound[currentRound].slice(0, Math.max(3, cuttingCapacity)), // It removes the end of the array, which has the higher capacities, to adjust to the player count
+      capacity: teller.capacitiesPerRound[currentRound].slice(
+        0,
+        Math.max(3, cuttingCapacity) + (index === currentRound ? 1 : 0),
+      ), // It removes the end of the array, which has the higher capacities, to adjust to the player count, Each round one teller has an extra capacity.
       queue: [],
       lastEvent: null, // Initialize lastEvent as null, it will be updated with the snapshot of the queue before the event when a card is played in this teller
     };
