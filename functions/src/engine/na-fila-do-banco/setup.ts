@@ -4,6 +4,7 @@ import {
   CUT_IN_HIERARCHY,
   NA_FILA_DO_BANCO_PHASES,
   ONLINE_TRIGGER_POINTS,
+  ONLINE_TRIGGER_POINTS_KID,
   OUTCOME,
   TELLER_EFFECT_TYPE,
   TOTAL_ROUNDS,
@@ -127,7 +128,7 @@ export const prepareCardPlayPhase = async (
       });
 
       // Reset online trigger count for the new round
-      players[playerId].onlineTriggerCount = 0;
+      players[playerId].onlineTriggers = [];
     }
 
     // Each teller gets a card in front of them to start the line, it cannot be a KID
@@ -279,8 +280,10 @@ export const prepareCardPlayPhase = async (
   const onlineTriggeredTypes = Object.keys(typeCounts).filter((type) => typeCounts[type] >= 3);
   if (onlineTriggeredTypes.length > 0) {
     // Remove all cards of the triggered types from the queue
+    let onlineTriggerType = '';
     queue = queue.filter((cardId) => {
       const cardType = deckDict[cardId]?.type;
+      onlineTriggerType = cardType;
       return !onlineTriggeredTypes.includes(cardType || '');
     });
     tellers[selectedTellerId].lastEvent.effectType =
@@ -288,7 +291,7 @@ export const prepareCardPlayPhase = async (
         ? TELLER_EFFECT_TYPE.BRING_NEXT_TO_ME_AND_REMOVE_THREE
         : TELLER_EFFECT_TYPE.REMOVE_THREE;
 
-    players[previousPlayerId].onlineTriggerCount += 1;
+    players[previousPlayerId].onlineTriggers.push(onlineTriggerType);
     utils.achievements.increase(store, previousPlayerId, 'online', 1);
   }
 
@@ -410,8 +413,12 @@ export const prepareRoundResolutionPhase = async (
 
   // Award points for online triggers
   utils.players.getListOfPlayers(players).forEach((player) => {
-    if (player.onlineTriggerCount > 0) {
-      scores.add(player.id, player.onlineTriggerCount * ONLINE_TRIGGER_POINTS, 3); // Each online trigger is worth 3 points
+    if (player.onlineTriggers.length > 0) {
+      player.onlineTriggers.forEach((triggerType) => {
+        const points =
+          triggerType === CHARACTER_TYPES.KID ? ONLINE_TRIGGER_POINTS_KID : ONLINE_TRIGGER_POINTS;
+        scores.add(player.id, points, 3); // Each online trigger is worth points based on type
+      });
     }
   });
 

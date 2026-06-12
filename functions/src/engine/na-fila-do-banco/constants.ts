@@ -67,7 +67,8 @@ export const PLAYER_COUNTS = {
 
 export const TOTAL_ROUNDS = 3;
 
-export const ONLINE_TRIGGER_POINTS = 3;
+export const ONLINE_TRIGGER_POINTS = 1;
+export const ONLINE_TRIGGER_POINTS_KID = 2;
 
 /**
  * Original game conversion

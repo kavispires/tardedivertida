@@ -65,7 +65,8 @@ export function StepResolution({ tellers, deckDict, goToNextStep, cardWidth, rou
               Cada caixa tem dois tipos de clientes que gosta mais e dobra os pontos deles
               <br />
               Se você ativou um "Dá pra fazer isso online", você ganha{' '}
-              <PointsHighlight>3 pontos</PointsHighlight>
+              <PointsHighlight>1 ponto</PointsHighlight> (ou <PointsHighlight>2 pontos</PointsHighlight> para
+              crianças).
               <br />
               Crianças nunca podem ser atendidas.
             </>
@@ -79,7 +80,8 @@ export function StepResolution({ tellers, deckDict, goToNextStep, cardWidth, rou
               customers.
               <br />
               If you activated a "You can do this online", you score{' '}
-              <PointsHighlight>3 points</PointsHighlight>.
+              <PointsHighlight>1 point</PointsHighlight> (or <PointsHighlight>2 points</PointsHighlight> for
+              kids).
               <br />
               Children can never be served.
             </>

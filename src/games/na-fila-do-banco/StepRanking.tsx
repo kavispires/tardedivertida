@@ -25,13 +25,23 @@ export function StepRanking({ players, ranking, goToPreviousStep, round }: StepR
       gainedPointsDescriptions={[
         <Translate
           key="1"
-          pt="Deu match com outros jogadores"
-          en="Match other player's pairs"
+          pt="Pontos no primeiro caixa"
+          en="Points at the first teller"
         />,
         <Translate
           key="2"
-          pt="O item de fora foi o mesmo que outros jogadores"
-          en="The left out item was the same as other players"
+          pt="Pontos no segundo caixa"
+          en="Points at the second teller"
+        />,
+        <Translate
+          key="3"
+          pt="Pontos no terceiro caixa"
+          en="Points at the third teller"
+        />,
+        <Translate
+          key="4"
+          pt="Pontos por desencadear o online"
+          en="Points for triggering the online"
         />,
       ]}
     >

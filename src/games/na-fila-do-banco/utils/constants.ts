@@ -200,9 +200,3 @@ export const ORDER = [
   CHARACTER_TYPES.MOTOBOY,
   CHARACTER_TYPES.KID,
 ];
-
-export const TELLER_TYPES = {
-  ATM: 'ATM', // High capacity, low points
-  HUMAN: 'HUMAN', // Normal capacity, normal points
-  MANAGER: 'MANAGER', // Low capacity, double points
-};
