@@ -3,8 +3,6 @@ import { useEffect } from 'react';
 import { useCopyToClipboard, useTitle } from 'react-use';
 // Ant Design Resources
 import { Layout, App } from 'antd';
-// Icons
-import * as icons from 'icons/collection';
 // Components
 import { TransparentButton } from 'components/buttons/TransparentButton';
 import { PageLayout } from 'components/layout/PageLayout';
@@ -58,12 +56,11 @@ function ColorsPage() {
     }
   }, [state, message]);
 
-  const iconEntries = Object.entries(icons);
   return (
     <PageLayout className="dev-layout">
       <DevHeader
         title="Colors"
-        subTitle={`(${iconEntries.length})`}
+        subTitle={`(${COLOR_NAMES.length})`}
       />
       <Layout.Content className="dev-content">
         <ul style={styles}>

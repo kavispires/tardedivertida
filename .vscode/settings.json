@@ -42,5 +42,13 @@
     "telepatica",
     "unskippable",
     "vixi"
+  ],
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "**/pages/Dev/utils/collection*",
+    "**/icons/collection*"
+  ],
+  "javascript.preferences.autoImportFileExcludePatterns": [
+    "**/pages/Dev/utils/collection*",
+    "**/icons/collection*"
   ]
 }

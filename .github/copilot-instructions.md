@@ -485,7 +485,7 @@ const handleClick = useCallback(
 ## 🎯 Quick Reference
 
 **Imports:**
-- Icons: Direct from `icons/IconName` ❌ NOT `icons/collection`
+- Icons: Direct from `icons/IconName` ❌ NOT `pages/Dev/utils/collection`
 - Components: Direct paths ❌ NOT barrel exports
 - Lodash: Named imports ❌ NOT default import
 - Import order: Automated via `yarn sort-imports`

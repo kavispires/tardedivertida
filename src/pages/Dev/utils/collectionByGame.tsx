@@ -1,5 +1,5 @@
-// Icons
-import * as icons from 'icons/collection';
+// Internal
+import * as icons from './collection';
 
 export const collectionByCategory: Record<string, string[]> = {
   interface: [
@@ -210,6 +210,9 @@ export const collectionByGame: Record<string, string[]> = {
     'ShippingBoxIcon',
     'WarehouseIcon',
     'OnlineOrderIcon',
+    'BarcodeIcon',
+    'CraneHookedGoodIcon',
+    'LockedBoxIcon',
   ],
   'crimes-hediondos': [
     'AnonymousIcon',

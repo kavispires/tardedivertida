@@ -3,13 +3,12 @@ import { type ReactElement, useEffect, useState } from 'react';
 import { useCopyToClipboard, useTitle } from 'react-use';
 // Ant Design Resources
 import { Layout, App, Switch, Divider, Input, Space } from 'antd';
-// Icons
-import * as icons from 'icons/collection';
-import { collectionByCategory, collectionByGame, collectionUnassigned } from 'icons/collectionByGame';
 // Components
 import { TransparentButton } from 'components/buttons/TransparentButton';
 import { PageLayout } from 'components/layout/PageLayout';
 // Internal
+import * as icons from './utils/collection';
+import { collectionByCategory, collectionByGame, collectionUnassigned } from './utils/collectionByGame';
 import { DevHeader } from './DevHeader';
 
 type IconEntry = [string, (props: React.SVGProps<SVGSVGElement>) => ReactElement];
