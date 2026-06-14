@@ -1,1 +1,0 @@
-import{so as e}from"./icons-DXqRthNe.js";import{i as t}from"./Session-DcD5ywXW.js";var n=e();function r({state:e}){return(0,n.jsx)(t,{phase:`ANY`,allowedPhase:`ANY`,className:`phase-placeholder`,children:e?.phase??`Unknown Phase`})}export{r as t};

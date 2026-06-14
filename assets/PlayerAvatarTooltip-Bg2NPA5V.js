@@ -1,1 +1,0 @@
-import{xr as e}from"./antd-vendor-BPpmPSGA.js";import{so as t}from"./icons-DXqRthNe.js";import{t as n}from"./PlayerAvatar-D5sLIs-i.js";var r=t();function i({player:t,tooltipProps:i,...a}){return(0,r.jsx)(e,{title:t.name,...i,children:(0,r.jsx)(n,{avatarId:t.avatarId,...a})})}export{i as t};

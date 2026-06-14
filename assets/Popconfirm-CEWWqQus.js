@@ -1,1 +1,0 @@
-import{Xn as e}from"./antd-vendor-BPpmPSGA.js";import{so as t}from"./icons-DXqRthNe.js";import{n}from"./DualTranslate-CEgt62yG.js";var r=t();function i({type:t,...i}){return t===`yes-no`?(0,r.jsx)(e,{...i,okText:(0,r.jsx)(n,{pt:`Sim`,en:`Yes`}),cancelText:(0,r.jsx)(n,{pt:`Não`,en:`No`})}):(0,r.jsx)(e,{...i,cancelText:(0,r.jsx)(n,{pt:`Cancelar`,en:`Cancel`})})}export{i as t};

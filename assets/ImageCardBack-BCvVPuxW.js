@@ -1,1 +1,0 @@
-import{so as e}from"./icons-DXqRthNe.js";import{t}from"./ImageCard-BjCuqFGu.js";var n=e(),r=({cardId:e=`back-default`,...r})=>(0,n.jsx)(t,{cardId:e,...r});export{r as t};
