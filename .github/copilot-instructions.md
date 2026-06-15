@@ -418,6 +418,33 @@ function validate(name: string): boolean { ... }
 function validate(name: string): boolean { ... }
 ```
 
+***Don't add examples or inner comments in JSDoc**
+```typescript
+// ❌ BAD - Too much detail in JSDoc
+/**
+ * Handles user login
+ * @param username - The user's username (e.g., "john_doe")
+ * @param password - The user's password (must be at least 8 characters)
+ * @returns User object if successful, null if failed
+ * @example
+ * const user = login("john_doe", "password123");
+ * if (user) {
+ *   // Login successful
+ * } else {
+ *   // Login failed
+ * }
+ */
+function login(username: string, password: string): User | null { ... }
+// ✅ GOOD - Keep JSDoc focused on purpose and parameters
+/**
+ * Authenticates a user with given credentials
+ * @param username - The user's username
+ * @param password - The user's password
+ * @returns User object if successful, null if failed
+ */
+function login(username: string, password: string): User | null { ... }
+```
+
 **Document all props/type properties:**
 ```typescript
 type Props = {

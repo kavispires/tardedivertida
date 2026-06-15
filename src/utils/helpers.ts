@@ -522,6 +522,7 @@ export const truncateRecommended = (recommended: number[]): string => {
  * @param orders - The sort orders
  * @param userId - If provided, the player with this ID will be placed first in the result
  * @returns Sorted array of players
+ * @deprecated - use the hook useSortedPlayers instead, which also handles sorting by ready status and other criteria
  */
 export const sortPlayers = (
   players: GamePlayers,
