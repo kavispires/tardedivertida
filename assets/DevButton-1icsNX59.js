@@ -1,1 +1,0 @@
-import{Tn as e,_r as t}from"./antd-vendor-BPpmPSGA.js";import{V as n}from"./react-vendor-FAQLRdq4.js";import{n as r}from"./timers.module-0DqKeOII.js";var i=n();function a({children:n,ghost:a,type:o,...s}){return(0,i.jsx)(r,{devOnly:!0,children:(0,i.jsx)(t,{icon:(0,i.jsx)(e,{}),ghost:a??!0,type:o??`primary`,...s,children:n})})}export{a as t};

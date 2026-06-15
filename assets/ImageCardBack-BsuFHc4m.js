@@ -1,1 +1,0 @@
-import{V as e}from"./react-vendor-FAQLRdq4.js";import{t}from"./ImageCard-FTv3gJVY.js";var n=e(),r=({cardId:e=`back-default`,...r})=>(0,n.jsx)(t,{cardId:e,...r});export{r as t};
