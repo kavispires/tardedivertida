@@ -3,8 +3,8 @@ import { useMemo } from 'react';
 import { Tooltip } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
-// Utils
-import { sortPlayers } from 'utils/helpers';
+// Hooks
+import { useSortedPlayers } from 'hooks/useSortedPlayers';
 // Icons
 import { VIPLineIcon } from 'icons/VIPLineIcon';
 // Internal
@@ -16,14 +16,13 @@ type MinigameTitleProps = {
 };
 
 export function ClubLine({ players, currentRound }: MinigameTitleProps) {
+  const playersList = useSortedPlayers(players);
   const { winners, losers } = useMemo(() => {
-    const playersList = sortPlayers(players);
-
     return {
       winners: playersList.filter((player) => player.team[currentRound - 1] === 'W'),
       losers: playersList.filter((player) => player.team[currentRound - 1] === 'L'),
     };
-  }, [players, currentRound]);
+  }, [playersList, currentRound]);
 
   return (
     <div className="club-line">

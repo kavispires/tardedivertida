@@ -4,8 +4,10 @@ import { useMemo } from 'react';
 import { Flex } from 'antd';
 // Types
 import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
+// Hooks
+import { useSortedPlayers } from 'hooks/useSortedPlayers';
 // Utils
-import { getAvatarColorById, sortPlayers } from 'utils/helpers';
+import { getAvatarColorById } from 'utils/helpers';
 // Components
 import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
 import { ImageCard } from 'components/image-cards/ImageCard';
@@ -55,14 +57,14 @@ export function StepExamine({
 
   const roundCuts = sortBy(Object.keys(status.cut)).map((key) => status.cut[key]);
 
-  const playersList = useMemo(() => sortPlayers(players), [players]);
+  const sortedPlayers = useSortedPlayers(players);
   const targetPlayer = currentTargetPlayerId ? players[currentTargetPlayerId] : null;
 
   const totalWiresDeclared = useMemo(() => {
-    return playersList.reduce((acc, player) => {
+    return sortedPlayers.reduce((acc, player) => {
       return acc + (player.declarations.wires ?? 0);
     }, 0);
-  }, [playersList]);
+  }, [sortedPlayers]);
   const someoneIsLying = neededWires !== totalWiresDeclared;
 
   return (
@@ -138,7 +140,7 @@ export function StepExamine({
         gap={6}
         className="mb-4"
       >
-        {playersList.map((player) => (
+        {sortedPlayers.map((player) => (
           <PlayerTableEntry
             key={player.id}
             player={player}

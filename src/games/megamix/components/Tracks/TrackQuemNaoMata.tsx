@@ -4,8 +4,7 @@ import { Button, Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-// Utils
-import { sortPlayers } from 'utils/helpers';
+import { useSortedPlayers } from 'hooks/useSortedPlayers';
 // Icons
 import { ShooterIcon } from 'icons/ShooterIcon';
 // Components
@@ -21,6 +20,7 @@ import { MinigameTitle } from '../MinigameTitle';
 
 export const TrackQuemNaoMata = ({ onSubmitAnswer, user, players }: TrackProps) => {
   const { isLoading } = useLoading();
+  const sortedPlayers = useSortedPlayers(players);
 
   const onSelect = (value: string) => {
     onSubmitAnswer({
@@ -54,7 +54,7 @@ export const TrackQuemNaoMata = ({ onSubmitAnswer, user, players }: TrackProps) 
         </RuleInstruction>
 
         <SpaceContainer wrap>
-          {sortPlayers(players).map((player, index, arr) => {
+          {sortedPlayers.map((player, index, arr) => {
             return (
               <div
                 key={player.id}

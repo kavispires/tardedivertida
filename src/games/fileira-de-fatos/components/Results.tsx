@@ -6,8 +6,9 @@ import type { GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
+import { useSortedPlayers } from 'hooks/useSortedPlayers';
 // Utils
-import { getAvatarColorById, sortPlayers } from 'utils/helpers';
+import { getAvatarColorById } from 'utils/helpers';
 // Icons
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { StarIcon } from 'icons/StarIcon';
@@ -27,7 +28,7 @@ type ResultsProps = {
   roundType: string;
 };
 
-export function Results({ players, activePlayerId, correctOrder, roundType }: ResultsProps) {
+export function Results({ players, correctOrder, roundType }: ResultsProps) {
   const width = useCardWidth(8, {
     gap: 16,
     minWidth: 100,
@@ -35,11 +36,11 @@ export function Results({ players, activePlayerId, correctOrder, roundType }: Re
     margin: 32,
   });
 
-  const listOfPLayers = sortPlayers(players).filter((player) => player.id !== activePlayerId);
+  const sortedPlayers = useSortedPlayers(players);
 
   return (
     <SpaceContainer vertical>
-      {listOfPLayers.map((player) => (
+      {sortedPlayers.map((player) => (
         <Space
           className="scenarios-results"
           key={player.id}

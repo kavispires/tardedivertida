@@ -2,8 +2,10 @@
 import { Space } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
+// Hooks
+import { useSortedPlayers } from 'hooks/useSortedPlayers';
 // Utils
-import { getAvatarColorById, sortPlayers } from 'utils/helpers';
+import { getAvatarColorById } from 'utils/helpers';
 // Icons
 import { FlagIcon } from 'icons/FlagIcon';
 // Components
@@ -18,7 +20,7 @@ import { achievementsReference } from './utils/achievements';
 import { PlayerMap } from './components/PlayerMap';
 
 export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
-  const sortedPlayers = sortPlayers(players);
+  const sortedPlayers = useSortedPlayers(players);
   const forest: Tree[] = state.forest ?? [];
 
   return (

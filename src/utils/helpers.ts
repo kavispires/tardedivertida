@@ -516,34 +516,6 @@ export const truncateRecommended = (recommended: number[]): string => {
 };
 
 /**
- * Sort players by name, optionally putting a specific player first
- * @param players - The players to sort
- * @param by - The sort criteria functions (default: name lowercase)
- * @param orders - The sort orders
- * @param userId - If provided, the player with this ID will be placed first in the result
- * @returns Sorted array of players
- * @deprecated - use the hook useSortedPlayers instead, which also handles sorting by ready status and other criteria
- */
-export const sortPlayers = (
-  players: GamePlayers,
-  by = [(o: GamePlayer) => o.name.toLowerCase()],
-  orders: ('asc' | 'desc')[] = ['asc'],
-  userId?: UID | null,
-) => {
-  const sortedPlayers = orderBy(Object.values(players), by, orders);
-
-  if (userId) {
-    const userIndex = sortedPlayers.findIndex((player) => player.id === userId);
-    if (userIndex > -1) {
-      const userPlayer = sortedPlayers.splice(userIndex, 1)[0];
-      sortedPlayers.unshift(userPlayer);
-    }
-  }
-
-  return sortedPlayers;
-};
-
-/**
  * Verify if all players are ready
  * @param players
  * @returns

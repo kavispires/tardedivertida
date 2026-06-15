@@ -7,8 +7,7 @@ import type { GamePlayers } from 'types/game';
 // Hooks
 import { useCache } from 'hooks/useCache';
 import { useLanguage } from 'hooks/useLanguage';
-// Utils
-import { sortPlayers } from 'utils/helpers';
+import { useSortedPlayers } from 'hooks/useSortedPlayers';
 // Components
 import { Translate } from 'components/language/Translate';
 
@@ -19,7 +18,7 @@ type SuspectsListProps = {
 export function SuspectsList({ players }: SuspectsListProps) {
   const { translate } = useLanguage();
   const { cache, setCache } = useCache<Dictionary<boolean>>({});
-  const sortedPlayers = sortPlayers(players);
+  const sortedPlayers = useSortedPlayers(players);
 
   const onCross = (playerId: string) => {
     setCache((s) => {

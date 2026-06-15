@@ -1,10 +1,9 @@
-import { useMemo } from 'react';
 // Ant Design Resources
 import { Switch } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
-// Utils
-import { sortPlayers } from 'utils/helpers';
+// Hooks
+import { useSortedPlayers } from 'hooks/useSortedPlayers';
 // Icons
 import { BombIcon } from 'icons/BombIcon';
 import { CrownIcon } from 'icons/CrownIcon';
@@ -28,7 +27,7 @@ import { useNotesStore } from './utils/useNotesStore';
 import { AgentHighlight, RedWireHighlight, TerroristHighlight } from './components/Highlights';
 
 export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
-  const playersList = useMemo(() => sortPlayers(players), [players]);
+  const sortedPlayers = useSortedPlayers(players);
   const { notes, setPlayerNote } = useNotesStore();
 
   return (
@@ -52,7 +51,7 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
         }
         contentProps={{ className: 'final-gallery' }}
       >
-        {playersList.map((player) => (
+        {sortedPlayers.map((player) => (
           <PlayerAvatarCard
             key={player.id}
             player={player}

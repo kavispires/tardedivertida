@@ -1,11 +1,12 @@
 import clsx from 'clsx';
-import { useMemo } from 'react';
 // Ant Design Resources
 import { Tooltip } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
+// Hooks
+import { useSortedPlayers } from 'hooks/useSortedPlayers';
 // Utils
-import { getAnimationClass, getAvatarColorById, sortPlayers } from 'utils/helpers';
+import { getAnimationClass, getAvatarColorById } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language/Translate';
 import { PlayerAvatar } from 'components/player/PlayerAvatar';
@@ -18,7 +19,7 @@ type PlayersDreamsCountProps = {
 };
 
 export function PlayersDreamsCount({ players, playerInNightmareId }: PlayersDreamsCountProps) {
-  const sortedPlayers = useMemo(() => sortPlayers(players), [players]);
+  const sortedPlayers = useSortedPlayers(players);
 
   return (
     <div className="g-players-dreams-count">

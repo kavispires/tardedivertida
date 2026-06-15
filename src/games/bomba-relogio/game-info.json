@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "bomba-relogio",
-  "version": "0.9.33",
+  "version": "0.9.34",
   "release": "beta",
   "releaseDate": "2026-01-11",
   "available": true,

@@ -2,8 +2,8 @@
 import { RadarChartOutlined, RobotOutlined } from '@ant-design/icons';
 // Types
 import type { GamePlayers } from 'types/game';
-// Utils
-import { sortPlayers } from 'utils/helpers';
+// Hooks
+import { useSortedPlayers } from 'hooks/useSortedPlayers';
 // Components
 import { FixedMenuButton } from 'components/buttons/FixedMenuButton';
 import { DualTranslate } from 'components/language/DualTranslate';
@@ -168,7 +168,7 @@ export function TrapPopupRule({ trapEntry }: Pick<TrapRuleProps, 'trapEntry'>) {
 }
 
 export function LoseGameText({ players }: { players: GamePlayers }) {
-  const sortedPlayers = sortPlayers(players);
+  const sortedPlayers = useSortedPlayers(players);
 
   return (
     <Translate

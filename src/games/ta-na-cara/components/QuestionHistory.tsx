@@ -4,8 +4,8 @@ import { Flex } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 import type { TestimonyQuestionCard } from 'types/tdr';
-// Utils
-import { sortPlayers } from 'utils/helpers';
+// Hooks
+import { useSortedPlayers } from 'hooks/useSortedPlayers';
 // Icons
 import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
 import { BoxMinusIcon } from 'icons/BoxMinusIcon';
@@ -22,7 +22,7 @@ type QuestionHistoryProps = {
 };
 
 export function QuestionHistory({ players, questionsHistory }: QuestionHistoryProps) {
-  const playersList = sortPlayers(players);
+  const playersList = useSortedPlayers(players);
 
   if (questionsHistory.length === 0) {
     return null;

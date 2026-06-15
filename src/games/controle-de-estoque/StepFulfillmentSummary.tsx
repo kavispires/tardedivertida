@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayers } from 'types/game';
-// Utils
-import { sortPlayers } from 'utils/helpers';
+// Hooks
+import { useSortedPlayers } from 'hooks/useSortedPlayers';
 // Components
 import { TimedButton } from 'components/buttons/TimedButton';
 import { Translate } from 'components/language/Translate';
@@ -27,7 +27,7 @@ export function StepFulfillmentSummary({
   goToNextStep,
   gallery,
 }: StepFulfillmentSummaryProps) {
-  const sortedPlayer = sortPlayers(players);
+  const sortedPlayers = useSortedPlayers(players);
 
   return (
     <Step fullWidth>
@@ -62,7 +62,7 @@ export function StepFulfillmentSummary({
       </RuleInstruction>
 
       <ResultsSummaryTableCard
-        playersList={sortedPlayer}
+        playersList={sortedPlayers}
         correctEntries={gallery.fulfilledOrders}
         wrongEntries={gallery.wrongFulfillments}
         goodsDict={goodsDict}

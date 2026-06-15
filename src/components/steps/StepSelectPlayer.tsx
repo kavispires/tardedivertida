@@ -1,5 +1,5 @@
 import { sample, shuffle } from 'lodash';
-import { useMemo, type ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Types
@@ -7,8 +7,7 @@ import type { GamePlayers } from 'types/game';
 // Hooks
 import { useHost } from 'hooks/useHost';
 import { useLoading } from 'hooks/useLoading';
-// Utils
-import { sortPlayers } from 'utils/helpers';
+import { useSortedPlayers } from 'hooks/useSortedPlayers';
 // Components
 import { SendButton } from 'components/buttons/SendButton';
 import { TransparentButton } from 'components/buttons/TransparentButton';
@@ -51,7 +50,7 @@ export function StepSelectPlayer({
 }: StepSelectPlayerProps) {
   const { isLoading } = useLoading();
   const isHost = useHost();
-  const sortedPlayers = useMemo(() => sortPlayers(players), [players]);
+  const sortedPlayers = useSortedPlayers(players);
 
   return (
     <Step

@@ -22,7 +22,7 @@ type UseSortedPlayersOptions = {
   /**
    * Predicate function to filter players after sorting
    */
-  filterBy?: (player: GamePlayer) => boolean;
+  filter?: (player: GamePlayer) => boolean;
 };
 
 /**
@@ -37,7 +37,7 @@ export function useSortedPlayers(players: GamePlayers, options: UseSortedPlayers
       sortBy = [(o: GamePlayer) => o.name.toLowerCase()],
       orders = ['asc'],
       prioritizePlayerId,
-      filterBy,
+      filter,
     } = options;
 
     const sortedPlayers = orderBy(Object.values(players), sortBy, orders);
@@ -50,8 +50,8 @@ export function useSortedPlayers(players: GamePlayers, options: UseSortedPlayers
       }
     }
 
-    if (filterBy) {
-      return sortedPlayers.filter(filterBy);
+    if (filter) {
+      return sortedPlayers.filter(filter);
     }
 
     return sortedPlayers;

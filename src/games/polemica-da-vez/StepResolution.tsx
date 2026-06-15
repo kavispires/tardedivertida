@@ -4,9 +4,8 @@ import { CommentOutlined, LikeFilled, ShareAltOutlined, TrophyOutlined } from '@
 import type { GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
+import { useSortedPlayers } from 'hooks/useSortedPlayers';
 import type { UseStep } from 'hooks/useStep';
-// Utils
-import { sortPlayers } from 'utils/helpers';
 // Components
 import { TimedButton } from 'components/buttons/TimedButton';
 import { Translate } from 'components/language/Translate';
@@ -33,6 +32,8 @@ export function StepResolution({
   goToNextStep,
   announcement,
 }: StepResolutionProps) {
+  const sortedPlayers = useSortedPlayers(players);
+
   return (
     <Step
       fullWidth
@@ -78,7 +79,7 @@ export function StepResolution({
         </div>
 
         <ul className="p-tweet-comments">
-          {sortPlayers(players).map((player) => {
+          {sortedPlayers.map((player) => {
             const key = `player-result-${player.id}`;
 
             return (

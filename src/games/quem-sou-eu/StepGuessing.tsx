@@ -10,9 +10,10 @@ import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
+import { useSortedPlayers } from 'hooks/useSortedPlayers';
 import { useVotingMatch } from 'hooks/useVotingMatch';
 // Utils
-import { getEntryId, sortPlayers } from 'utils/helpers';
+import { getEntryId } from 'utils/helpers';
 // Components
 import { SendButton } from 'components/buttons/SendButton';
 import { TransparentButton } from 'components/buttons/TransparentButton';
@@ -49,6 +50,7 @@ export function StepGuessing({
   round,
   imageCardMode,
 }: StepGuessingProps) {
+  const sortedPlayers = useSortedPlayers(players);
   const { isLoading } = useLoading();
   const glyphWidth = useCardWidth(20, {
     gap: 16,
@@ -178,7 +180,7 @@ export function StepGuessing({
         </div>
 
         <div className="q-players-glyphs">
-          {sortPlayers(players).map((player) => {
+          {sortedPlayers.map((player) => {
             const entryId = getEntryId(['player', player.id]);
 
             return (

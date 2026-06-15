@@ -1,11 +1,9 @@
-import { useMemo } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useSlideShow } from 'hooks/useSlideShow';
+import { useSortedPlayers } from 'hooks/useSortedPlayers';
 import { useStep } from 'hooks/useStep';
-// Utils
-import { sortPlayers } from 'utils/helpers';
 // Icons
 import { PathIcon } from 'icons/PathIcon';
 // Components
@@ -22,10 +20,9 @@ import { StepGallery } from './StepGallery';
 
 export function PhaseResults({ state, players, user }: PhaseProps<PhaseResultsState>) {
   const { step, goToPreviousStep, goToNextStep } = useStep();
-  const gallery = useMemo(
-    () => sortPlayers(players).filter((player) => player.map.some((segment: MapSegment) => segment.active)),
-    [players],
-  );
+  const gallery = useSortedPlayers(players, {
+    filter: (player) => player.map.some((segment: MapSegment) => segment.active),
+  });
 
   const slideShowConfig = useSlideShow({
     length: gallery.length,

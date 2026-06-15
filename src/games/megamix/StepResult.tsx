@@ -1,5 +1,5 @@
 import { memoize } from 'lodash';
-import { type Ref, useMemo } from 'react';
+import type { Ref } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
 import { TrophyOutlined } from '@ant-design/icons';
@@ -8,8 +8,7 @@ import { Button } from 'antd';
 import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
-// Utils
-import { sortPlayers } from 'utils/helpers';
+import { useSortedPlayers } from 'hooks/useSortedPlayers';
 // Icons
 import { DJIcon } from 'icons/DJIcon';
 import { GarbageIcon } from 'icons/GarbageIcon';
@@ -59,7 +58,7 @@ export function StepResult({
 
   const time = useCountdown({ duration: 20 });
 
-  const playersList = useMemo(() => sortPlayers(players), [players]);
+  const playersList = useSortedPlayers(players);
 
   const currentIndex = time.timeLeft > 14 ? round.current - 1 : round.current;
 

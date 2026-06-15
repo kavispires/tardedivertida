@@ -4,8 +4,10 @@ import { useMemo } from 'react';
 import { Divider } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
+// Hooks
+import { useSortedPlayers } from 'hooks/useSortedPlayers';
 // Utils
-import { getAvatarColorById, sortPlayers } from 'utils/helpers';
+import { getAvatarColorById } from 'utils/helpers';
 // Components
 import { CharacterCard } from 'components/cards/CharacterCard';
 import { Translate } from 'components/language/Translate';
@@ -20,12 +22,13 @@ type PlayersBetsProps = {
 };
 
 export function PlayersBets({ players, brackets }: PlayersBetsProps) {
-  const playersList = sortPlayers(players);
+  const sortedPlayers = useSortedPlayers(players);
+
   const contendersByTiers = getContenderIdsByTier(brackets);
   return (
     <ul
       className="w-players-bets"
-      style={{ gridTemplateColumns: `repeat(${playersList.length + 1}, auto)` }}
+      style={{ gridTemplateColumns: `repeat(${sortedPlayers.length + 1}, auto)` }}
     >
       <li className="w-players-bets__player w-players-bets__player--header">
         <div className="w-players-bets__square">
@@ -63,7 +66,7 @@ export function PlayersBets({ players, brackets }: PlayersBetsProps) {
         </div>
       </li>
 
-      {playersList.map((player) => (
+      {sortedPlayers.map((player) => (
         <PlayersBetEntry
           key={`players-bets-${player.id}`}
           brackets={brackets}

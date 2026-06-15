@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
-// Utils
-import { sortPlayers } from 'utils/helpers';
+// Hooks
+import { useSortedPlayers } from 'hooks/useSortedPlayers';
 // Icons
 import { KnifeIcon } from 'icons/KnifeIcon';
 import { LockIcon } from 'icons/LockIcon';
@@ -31,10 +31,12 @@ export function PlayersCards({
   history,
   children,
 }: PlayersCardsProps) {
+  const sortedPlayers = useSortedPlayers(players);
+
   return (
     <div className="h-players-cards-container">
       <ul className="h-players-cards">
-        {sortPlayers(players).map((player) => {
+        {sortedPlayers.map((player) => {
           const isComplete =
             user.id === player.id || Boolean(guesses[player.id]?.weaponId && guesses[player.id]?.evidenceId);
           const isLocked = isHistoryLocked(history, player.id);
