@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useMemo, useState } from 'react';
 // Ant Design Resources
 import { AimOutlined } from '@ant-design/icons';
 import { Button, Layout, Modal } from 'antd';
@@ -59,6 +59,19 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
 
   const positions = calculateEllipsePositions(data.kids.length);
 
+  const liarsCount = useMemo(() => {
+    if (data.possibleLiars === data.liarsIds.length) {
+      return data.liarsIds.length;
+    }
+    if (data.possibleLiars > data.liarsIds.length) {
+      return `${data.liarsIds.length}-${data.possibleLiars}`;
+    }
+    if (data.possibleLiars < data.liarsIds.length) {
+      return `${data.possibleLiars}-${data.liarsIds.length}`;
+    }
+    return data.liarsIds.length;
+  }, [data.liarsIds, data.possibleLiars]);
+
   return (
     <Layout>
       <GameHeader
@@ -96,12 +109,10 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
               icon={<LiarIcon />}
               size="small"
             />{' '}
-            {data.liarsIds.length === data.possibleLiars
-              ? data.liarsIds.length
-              : `${data.liarsIds.length}-${data.possibleLiars}`}{' '}
+            {liarsCount}{' '}
             <Translate
-              pt={pluralize(data.possibleLiars, 'Mentiroso')}
-              en={pluralize(data.possibleLiars, 'Liar')}
+              pt={pluralize(data.liarsIds.length || data.possibleLiars, 'Mentiroso')}
+              en={pluralize(data.liarsIds.length || data.possibleLiars, 'Liar')}
             />
           </TextHighlight>
         </RegionText>
