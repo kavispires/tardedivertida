@@ -6,15 +6,11 @@ import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricH
 /**
  * Metric highlight component displaying a star icon for points-related metrics
  */
-export function PointsHighlight({ children, type, iconSize, className }: HighlightProps) {
+export function PointsHighlight(props: HighlightProps) {
   return (
     <MetricHighlight
       icon={<StarIcon />}
-      type={type}
-      iconSize={iconSize}
-      className={className}
-    >
-      {children}
-    </MetricHighlight>
+      {...props}
+    />
   );
 }

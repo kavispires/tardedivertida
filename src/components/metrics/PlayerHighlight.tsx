@@ -6,15 +6,11 @@ import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricH
 /**
  * Metric highlight component displaying a player icon for single player metrics
  */
-export function PlayerHighlight({ children, type, iconSize, className }: HighlightProps) {
+export function PlayerHighlight(props: HighlightProps) {
   return (
     <MetricHighlight
       icon={<PlayerIcon />}
-      type={type}
-      iconSize={iconSize}
-      className={className}
-    >
-      {children}
-    </MetricHighlight>
+      {...props}
+    />
   );
 }

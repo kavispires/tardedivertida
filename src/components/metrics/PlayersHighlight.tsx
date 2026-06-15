@@ -6,15 +6,11 @@ import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricH
 /**
  * Metric highlight component displaying a players group icon for multi-player metrics
  */
-export function PlayersHighlight({ children, type, iconSize, className }: HighlightProps) {
+export function PlayersHighlight(props: HighlightProps) {
   return (
     <MetricHighlight
       icon={<PlayersIcon />}
-      type={type}
-      iconSize={iconSize}
-      className={className}
-    >
-      {children}
-    </MetricHighlight>
+      {...props}
+    />
   );
 }

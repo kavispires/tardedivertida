@@ -6,15 +6,11 @@ import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricH
 /**
  * Metric highlight component displaying a clock icon for time-related metrics
  */
-export function TimeHighlight({ children, type, iconSize, className }: HighlightProps) {
+export function TimeHighlight(props: HighlightProps) {
   return (
     <MetricHighlight
       icon={<ClockIcon />}
-      type={type}
-      iconSize={iconSize}
-      className={className}
-    >
-      {children}
-    </MetricHighlight>
+      {...props}
+    />
   );
 }

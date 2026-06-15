@@ -6,15 +6,11 @@ import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricH
 /**
  * Metric highlight component displaying a target icon for goal-related metrics
  */
-export function TargetHighlight({ children, type, iconSize, className }: HighlightProps) {
+export function TargetHighlight(props: HighlightProps) {
   return (
     <MetricHighlight
       icon={<TargetIcon />}
-      type={type}
-      iconSize={iconSize}
-      className={className}
-    >
-      {children}
-    </MetricHighlight>
+      {...props}
+    />
   );
 }

@@ -6,15 +6,11 @@ import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricH
 /**
  * Metric highlight component displaying a robot icon for bot-related metrics
  */
-export function BotHighlight({ children, type, iconSize, className }: HighlightProps) {
+export function BotHighlight(props: HighlightProps) {
   return (
     <MetricHighlight
       icon={<RobotIcon />}
-      type={type}
-      iconSize={iconSize}
-      className={className}
-    >
-      {children}
-    </MetricHighlight>
+      {...props}
+    />
   );
 }

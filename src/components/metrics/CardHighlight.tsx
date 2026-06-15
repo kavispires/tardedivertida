@@ -6,15 +6,11 @@ import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricH
 /**
  * Metric highlight component displaying a card icon for card-related metrics
  */
-export function CardHighlight({ children, type, iconSize, className }: HighlightProps) {
+export function CardHighlight(props: HighlightProps) {
   return (
     <MetricHighlight
       icon={<ImageCardsIcon />}
-      type={type}
-      iconSize={iconSize}
-      className={className}
-    >
-      {children}
-    </MetricHighlight>
+      {...props}
+    />
   );
 }
