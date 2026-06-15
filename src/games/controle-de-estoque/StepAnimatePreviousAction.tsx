@@ -16,6 +16,7 @@ import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { Event, Good, Status, WarehouseSlot } from './utils/types';
 import { BOSS_IDEAS_IDS, OUTCOME } from './utils/constants';
+import { useGoodComponentAndClass, useGoodSize } from './utils/hooks';
 import { Warehouse } from './components/Warehouse';
 
 type StepAnimatePreviousActionProps = {
@@ -26,13 +27,13 @@ type StepAnimatePreviousActionProps = {
   warehouse: WarehouseSlot[];
   previousSupervisor?: GamePlayer;
   status: Status;
-  currentGoodId: UID;
   event: Event;
-  turnOrder: TurnOrder;
+  turnOrder?: TurnOrder;
   goToNextStep: () => void;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepAnimatePreviousAction({
+  user,
   players,
   announcement,
   bossIdea,
@@ -44,6 +45,17 @@ export function StepAnimatePreviousAction({
   goToNextStep,
 }: StepAnimatePreviousActionProps) {
   const duration = bossIdea.id === BOSS_IDEAS_IDS.BLIND_BOX ? 15 : 9;
+
+  const { goodWidth } = useGoodSize();
+
+  const { goodClassName, goodComponent } = useGoodComponentAndClass({
+    bossIdea,
+    isUserTheSupervisor: user.id === event.actorId,
+    currentGood: goodsDict[event.goodsIds[0]],
+    goodWidth,
+    step: 'packing',
+  });
+
   return (
     <Step
       fullWidth
@@ -65,6 +77,8 @@ export function StepAnimatePreviousAction({
         warehouse={warehouse}
         event={event}
         bossIdeaId={bossIdea.id}
+        goodClassName={goodClassName}
+        goodComponent={goodComponent}
       />
 
       <SpaceContainer>
@@ -93,10 +107,13 @@ export function StepAnimatePreviousAction({
         )}
       </SpaceContainer>
 
-      <PlayersTurnOrder
-        players={players}
-        order={turnOrder}
-      />
+      {turnOrder && (
+        <PlayersTurnOrder
+          players={players}
+          order={turnOrder}
+          activePlayerId={event.actorId ?? undefined}
+        />
+      )}
     </Step>
   );
 }

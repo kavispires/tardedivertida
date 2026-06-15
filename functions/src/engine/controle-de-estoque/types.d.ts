@@ -17,7 +17,7 @@ export type Good = {
    */
   id: string;
   /**
-   * Index position in the warehouse
+   * Index position in the warehouse (null means out of stock)
    */
   slot: number | null;
   /**
@@ -28,6 +28,10 @@ export type Good = {
    * If the good is revealed or boxed
    */
   exposed: boolean;
+  /**
+   * The id of the player who resolved this good correctly (fulfilled the order or correctly reported as out of stock)
+   */
+  fulfilledId?: UID | null;
 };
 
 export type WarehouseSlot = {
@@ -87,12 +91,31 @@ export type Status = {
    * Total number of goods to be handled in the game
    */
   total: number;
+  /**
+   * Additional info to be used in specific outcomes
+   */
+  additionalInfo?: string;
 };
 
 export type Event = {
   actorId: UID | null;
   goodsIds: string[]; //
   type: ValueOf<typeof EVENT_TYPE>;
+};
+
+export type GalleryEntry = {
+  playerId: string;
+  orderId: string;
+  result: 'correct' | 'out-of-stock' | 'wrong-slot' | 'wrong-out-of-stock' | 'skipped';
+  guessedSlot: number | null; // Where good actually is
+};
+
+export type Gallery = {
+  fulfilledOrders: Record<UID, GalleryEntry[]>; // playerId -> list of fulfilled orders
+  outOfStockOrders: Record<UID, GalleryEntry[]>; // playerId -> list of out-of-stock skipped orders
+  wrongFulfillments: Record<UID, GalleryEntry[]>; // playerId -> list of wrong fulfillments
+  wrongOutOfStockOrders: Record<UID, GalleryEntry[]>; // playerId -> list of wrong out-of-stock claims
+  skippedOrders: Record<UID, GalleryEntry[]>; // playerId -> list of skipped orders
 };
 
 export type ControleDeEstoqueAchievement = keyof typeof CONTROLE_DE_ESTOQUE_ACHIEVEMENTS;

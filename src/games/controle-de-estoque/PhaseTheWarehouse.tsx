@@ -24,7 +24,7 @@ export function PhaseTheWarehouse({ players, state, user }: PhaseProps<PhaseTheW
       icon={<WarehouseIcon />}
       title={
         <Translate
-          pt="O Armazém"
+          pt="O galpão"
           en="The Warehouse"
         />
       }
@@ -35,7 +35,7 @@ export function PhaseTheWarehouse({ players, state, user }: PhaseProps<PhaseTheW
     >
       <Instruction>
         <Translate
-          pt="Esses itens já estão no armazém. Memorize suas posições antes de começarmos!"
+          pt="Esses itens já estão no galpão. Memorize suas posições antes de começarmos!"
           en="These items are already in the warehouse. Memorize their positions before we start!"
         />
       </Instruction>

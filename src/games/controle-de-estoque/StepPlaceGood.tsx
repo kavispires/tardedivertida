@@ -11,7 +11,6 @@ import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Icons
 import { BossIdeaIcon } from 'icons/BossIdeaIcon';
-import { MysteryBoxIcon } from 'icons/MysteryBoxIcon';
 // Components
 import { SendButton } from 'components/buttons/SendButton';
 import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
@@ -26,8 +25,7 @@ import { RuleInstruction } from 'components/text/RuleInstruction';
 import { StepTitle } from 'components/text/StepTitle';
 // Internal
 import type { Good, PlaceGoodPayload, Status, WarehouseSlot } from './utils/types';
-import { BOSS_IDEAS_IDS } from './utils/constants';
-import { useGoodSize } from './utils/hooks';
+import { useGoodComponentAndClass, useGoodSize } from './utils/hooks';
 import { mockPlacement } from './utils/mock';
 import { Warehouse } from './components/Warehouse';
 import { StockingProgress } from './components/StockingProgress';
@@ -81,7 +79,7 @@ export function StepPlaceGood({
       message.warning(
         <Translate
           en="Please select a slot in the warehouse to place the good."
-          pt="Por favor, selecione um local no armazém para colocar a mercadoria."
+          pt="Por favor, selecione um local no galpão para colocar a mercadoria."
         />,
       );
       return; // No slot selected, do nothing
@@ -92,13 +90,26 @@ export function StepPlaceGood({
     });
   };
 
-  // useMock(() => {
-  //   if (isUserTheSupervisor) {
-  //     onConfirmPlacement({
-  //       selectedWarehouseSlot: mockPlacement(warehouse),
-  //     });
-  //   }
-  // });
+  useMock(() => {
+    if (
+      isUserTheSupervisor &&
+      // For debugging purposes we only mock the players in between first and last progress
+      status.progress > 0 &&
+      status.progress < status.goal - 1
+    ) {
+      onConfirmPlacement({
+        selectedWarehouseSlot: mockPlacement(warehouse),
+      });
+    }
+  });
+
+  const { goodClassName, goodComponent } = useGoodComponentAndClass({
+    bossIdea,
+    isUserTheSupervisor,
+    currentGood,
+    goodWidth,
+    step: 'placing',
+  });
 
   if (isUserTheSupervisor) {
     return (
@@ -118,22 +129,21 @@ export function StepPlaceGood({
             />
           </strong>
           <Divider className="my-2" />
-          <DualTranslate>{bossIdea.description}</DualTranslate>
+          <span className="c-boss-idea-description">
+            <DualTranslate>{bossIdea.description}</DualTranslate>
+          </span>
           <Divider className="my-2" />
           <StockingProgress status={status} />
         </RuleInstruction>
 
         <Instruction contained>
-          {bossIdea.id === BOSS_IDEAS_IDS.BLIND_BOX ? (
-            <MysteryBoxIcon width={goodWidth} />
-          ) : (
+          {goodComponent ?? (
             <WarehouseGoodCard
               goodId={currentGood.id}
               width={goodWidth}
-              className={clsx(
-                `warehouse-good--${bossIdea.id}`,
-                `warehouse__good--${currentGood.orientation ?? 0}`,
-              )}
+              className={clsx(`warehouse__good--${currentGood.orientation ?? 0}`, {
+                [goodClassName]: !!goodClassName,
+              })}
             />
           )}
         </Instruction>
@@ -145,6 +155,8 @@ export function StepPlaceGood({
           selectedWarehouseSlot={selectedWarehouseSlot}
           currentGoodId={currentGoodId}
           bossIdeaId={bossIdea.id}
+          goodClassName={goodClassName}
+          goodComponent={goodComponent}
         />
 
         <SpaceFloat
@@ -162,6 +174,12 @@ export function StepPlaceGood({
             />
           </SendButton>
         </SpaceFloat>
+
+        <PlayersTurnOrder
+          players={players}
+          order={turnOrder}
+          activePlayerId={supervisor.id}
+        />
       </Step>
     );
   }
@@ -196,22 +214,21 @@ export function StepPlaceGood({
           />
         </strong>
         <Divider className="my-1" />
-        <DualTranslate>{bossIdea.description}</DualTranslate>
+        <span className="c-boss-idea-description">
+          <DualTranslate>{bossIdea.description}</DualTranslate>
+        </span>
         <Divider className="my-1" />
         <StockingProgress status={status} />
       </RuleInstruction>
 
       <Instruction contained>
-        {bossIdea.id === BOSS_IDEAS_IDS.BLIND_BOX || bossIdea.id === BOSS_IDEAS_IDS.CONFIDENTIAL ? (
-          <MysteryBoxIcon width={goodWidth} />
-        ) : (
+        {goodComponent ?? (
           <WarehouseGoodCard
             goodId={currentGood.id}
             width={goodWidth}
-            className={clsx(
-              `warehouse-good--${bossIdea.id}`,
-              `warehouse__good--${currentGood.orientation ?? 0}`,
-            )}
+            className={clsx(`warehouse__good--${currentGood.orientation ?? 0}`, {
+              [goodClassName]: !!goodClassName,
+            })}
           />
         )}
       </Instruction>
@@ -222,11 +239,14 @@ export function StepPlaceGood({
         bossIdeaId={bossIdea.id}
         selectedWarehouseSlot={selectedWarehouseSlot}
         currentGoodId={currentGoodId}
+        goodClassName={goodClassName}
+        goodComponent={goodComponent}
       />
 
       <PlayersTurnOrder
         players={players}
         order={turnOrder}
+        activePlayerId={supervisor.id}
       />
     </Step>
   );

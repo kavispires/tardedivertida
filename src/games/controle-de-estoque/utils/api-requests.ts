@@ -2,8 +2,9 @@
 import { useGameActionRequest } from 'hooks/useGameActionRequest';
 import { useLanguage } from 'hooks/useLanguage';
 import { useOnMakeMeReady } from 'hooks/useMakeMeReady';
+import type { UseStep } from 'hooks/useStep';
 // Internal
-import type { PlaceGoodPayload } from './types';
+import type { PlaceGoodPayload, SubmitFulfillmentPayload } from './types';
 import { CONTROLE_DE_ESTOQUE_ACTIONS } from './constants';
 
 export function useOnMakeReady() {
@@ -59,6 +60,30 @@ export function useOnConfirmGoodPlacementAPIRequest() {
   return (payload: PlaceGoodPayload) => {
     request({
       action: CONTROLE_DE_ESTOQUE_ACTIONS.CONFIRM_PLACEMENT,
+      ...payload,
+    });
+  };
+}
+
+export function useOnSubmitFulfillmentAPIRequest(goToNextStep: UseStep['goToNextStep']) {
+  const { translate } = useLanguage();
+
+  const request = useGameActionRequest({
+    actionName: 'submit-fulfill-orders',
+    onSuccess: () => goToNextStep(),
+    successMessage: translate({
+      pt: 'Ordem de pedido enviada com sucesso',
+      en: 'Order fulfillment submitted successfully',
+    }),
+    errorMessage: translate({
+      pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ordem de pedido',
+      en: 'Oops, the application found an error while trying to submit your order fulfillment',
+    }),
+  });
+
+  return (payload: SubmitFulfillmentPayload) => {
+    request({
+      action: CONTROLE_DE_ESTOQUE_ACTIONS.SUBMIT_FULFILL_ORDERS,
       ...payload,
     });
   };

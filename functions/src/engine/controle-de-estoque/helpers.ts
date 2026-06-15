@@ -1,11 +1,20 @@
 // Types
-import type { ControleDeEstoqueState, ControleDeEstoqueStore, Event, Good, WarehouseSlot } from './types';
+import type {
+  ControleDeEstoqueState,
+  ControleDeEstoqueStore,
+  Event,
+  Gallery,
+  Good,
+  Status,
+  WarehouseSlot,
+} from './types';
 // Constants
 import { CONTROLE_DE_ESTOQUE_PHASES, WAREHOUSE_SIZE } from './constants';
 import { LETTERS } from '../../utils/constants';
 // Utils
 import utils from '../../utils';
 import { BOSS_IDEAS } from './data';
+import { orderBy, shuffle } from 'lodash';
 
 /**
  * Determines the next phase based on the current phase and game state
@@ -51,7 +60,11 @@ export const determineNextPhase = (
   }
 
   if (currentPhase === RESULTS) {
-    return round.forceLastRound || (round.current > 0 && round.current === round.total)
+    const playerCount = utils.players.getPlayerCount(state.players);
+
+    return round.forceLastRound ||
+      (round.current > 0 && round.current === round.total) ||
+      state?.ordersLeft < playerCount
       ? GAME_OVER
       : FULFILLMENT;
   }
@@ -74,12 +87,12 @@ export const determineNextPhase = (
 export const updateAvailableSlotsInWarehouse = (
   warehouseGrid: Dictionary<WarehouseSlot>,
   bossIdeaId: string,
-  goal?: number,
+  status: Status,
 ) => {
   switch (bossIdeaId) {
     // AISLE: Single row or column
     case BOSS_IDEAS.AISLE.id: {
-      updateWarehouseByAisleAvailability(warehouseGrid);
+      updateWarehouseByAisleAvailability(warehouseGrid, status);
       break;
     }
     // WALLS: Edge only
@@ -149,7 +162,10 @@ const updateWarehouseByAdjacency = (warehouseGrid: Dictionary<WarehouseSlot>) =>
   }
 };
 
-const updateWarehouseByAisleAvailability = (warehouseGrid: Dictionary<WarehouseSlot>) => {
+export const updateWarehouseByAisleAvailability = (
+  warehouseGrid: Dictionary<WarehouseSlot>,
+  status: Status,
+) => {
   const totalSlots = WAREHOUSE_SIZE * WAREHOUSE_SIZE; // 49 slots in total
 
   // Count empty slots for each row and column
@@ -168,22 +184,41 @@ const updateWarehouseByAisleAvailability = (warehouseGrid: Dictionary<WarehouseS
     }
   }
 
-  // Find the row or column with the most empty slots
-  const maxRowEmpty = Math.max(...rowEmptyCounts);
-  const maxColEmpty = Math.max(...colEmptyCounts);
-
   let targetRow = -1;
   let targetCol = -1;
 
-  if (maxRowEmpty >= maxColEmpty) {
-    // Use the row with most empty slots
-    targetRow = rowEmptyCounts.indexOf(maxRowEmpty);
-  } else {
-    // Use the column with most empty slots
-    targetCol = colEmptyCounts.indexOf(maxColEmpty);
+  // Try to retrieve previously selected aisle from status.additionalInfo
+  // Format: 'row:3' or 'col:5'
+  if (status.additionalInfo) {
+    const [aisleType, aisleIndex] = status.additionalInfo.split(':');
+    const index = Number.parseInt(aisleIndex, 10);
+
+    if (aisleType === 'row' && rowEmptyCounts[index] > 0) {
+      // Previous row still has empty slots, keep using it
+      targetRow = index;
+    } else if (aisleType === 'col' && colEmptyCounts[index] > 0) {
+      // Previous column still has empty slots, keep using it
+      targetCol = index;
+    }
   }
 
-  // Second pass: mark slots in the target row or column as available
+  // If no previous aisle or it's exhausted, calculate new best aisle
+  if (targetRow === -1 && targetCol === -1) {
+    const maxRowEmpty = Math.max(...rowEmptyCounts);
+    const maxColEmpty = Math.max(...colEmptyCounts);
+
+    if (maxRowEmpty >= maxColEmpty) {
+      // Use the row with most empty slots
+      targetRow = rowEmptyCounts.indexOf(maxRowEmpty);
+      status.additionalInfo = `row:${targetRow}`;
+    } else {
+      // Use the column with most empty slots
+      targetCol = colEmptyCounts.indexOf(maxColEmpty);
+      status.additionalInfo = `col:${targetCol}`;
+    }
+  }
+
+  // Mark slots in the target row or column as available
   let availableCount = 0;
   for (let i = 0; i < totalSlots; i++) {
     const slot = warehouseGrid[i];
@@ -204,7 +239,7 @@ const updateWarehouseByAisleAvailability = (warehouseGrid: Dictionary<WarehouseS
   }
 };
 
-const updateWarehouseByRotation = (warehouseGrid: Dictionary<WarehouseSlot>) => {
+export const updateWarehouseByRotation = (warehouseGrid: Dictionary<WarehouseSlot>) => {
   const totalSlots = WAREHOUSE_SIZE * WAREHOUSE_SIZE; // 49 slots in total
   const newGrid: Dictionary<WarehouseSlot> = {};
 
@@ -235,7 +270,7 @@ const updateWarehouseByRotation = (warehouseGrid: Dictionary<WarehouseSlot>) => 
  * A function that makes only edge slots available based on the absence of an amenity and good.
  * @param warehouseGrid - A 1D array of WarehouseSlot objects representing a 7x7 grid.
  */
-const updateWarehouseByEdgeAvailability = (warehouseGrid: Dictionary<WarehouseSlot>) => {
+export const updateWarehouseByEdgeAvailability = (warehouseGrid: Dictionary<WarehouseSlot>) => {
   const totalSlots = WAREHOUSE_SIZE * WAREHOUSE_SIZE; // 49 slots in total
 
   let availableCount = 0;
@@ -336,65 +371,191 @@ export const buildRanking = (
   players: Players,
   goodsDict: Dictionary<Good>,
   warehouseGrid: Dictionary<WarehouseSlot>,
+  previousOrdersLeft: number,
   store: ControleDeEstoqueStore,
 ) => {
-  // Gained Points: [correct order, wrong order, out of stock]
-  const scores = new utils.players.Scores(players, [0, 0, 0]);
+  // Gained Points: [correct order, wrong order, out of stock, incorrect out of stock]
+  const scores = new utils.players.Scores(players, [0, 0, 0, 0]);
+  let newOrdersLeft = previousOrdersLeft;
 
-  // Dictionary of players and the corrected filled orders: UID: OrderId[]
-  const gallery: Dictionary<string[]> = {};
+  // Initialize gallery with proper structure
+  const gallery: Gallery = {
+    fulfilledOrders: {},
+    outOfStockOrders: {},
+    wrongFulfillments: {},
+    wrongOutOfStockOrders: {},
+    skippedOrders: {},
+  };
 
   // For each player, check their orders and fulfillments
   utils.players.getListOfPlayers(players).forEach((player) => {
     let correctAtOnce = 0;
-    player.orders.forEach((orderId: string) => {
-      const isFulfilled = player.fulfillment[orderId] !== undefined;
 
-      if (isFulfilled) {
+    // Initialize arrays for this player
+    gallery.fulfilledOrders[player.id] = [];
+    gallery.outOfStockOrders[player.id] = [];
+    gallery.wrongFulfillments[player.id] = [];
+    gallery.wrongOutOfStockOrders[player.id] = [];
+    gallery.skippedOrders[player.id] = [];
+
+    player.orders.forEach((orderId: string) => {
+      const guessedSlot = player.fulfillments[orderId] ?? null;
+      const isFulfilledAttempt = guessedSlot !== null && guessedSlot !== -1;
+      const actualSlot = goodsDict[orderId]?.slot ?? null;
+
+      // Player attempted to fulfill the order
+      if (isFulfilledAttempt) {
         // Achievement: tried to fulfill
         utils.achievements.increase(store, player.id, 'attempts', 1);
 
         // Fulfilled an order correctly, grant 3 points
-        if (goodsDict[orderId].slot === player.fulfillment[orderId]) {
+        if (actualSlot === guessedSlot) {
           scores.add(player.id, 3, 0);
           correctAtOnce++;
-          // Update gallery
-          gallery[player.id] = [...(gallery[player.id] || []), orderId];
+
+          // Add to fulfilledOrders gallery
+          gallery.fulfilledOrders[player.id].push({
+            playerId: player.id,
+            orderId,
+            result: 'correct',
+            guessedSlot,
+          });
+
           // Update warehouse grid
-          if (typeof goodsDict[orderId].slot === 'number') {
-            const slot = goodsDict[orderId].slot as number;
-            warehouseGrid[slot].orderId = orderId;
-            warehouseGrid[slot].status = 'correct';
-            warehouseGrid[slot].fulfillerId = player.id;
+          if (typeof actualSlot === 'number' && warehouseGrid[actualSlot]) {
+            warehouseGrid[actualSlot].orderId = orderId;
+            warehouseGrid[actualSlot].status = 'correct';
+            warehouseGrid[actualSlot].fulfillerId = player.id;
+            goodsDict[orderId].fulfilledId = player.id;
+            newOrdersLeft--;
           }
         } else {
           // Incorrectly fulfilled orders grant -1 point
           scores.add(player.id, -1, 1);
-          if (goodsDict[orderId].slot === null) {
+
+          // Add to wrongFulfillments gallery
+          gallery.wrongFulfillments[player.id].push({
+            playerId: player.id,
+            orderId,
+            result: 'wrong-slot',
+            guessedSlot,
+          });
+
+          if (actualSlot === null) {
             // Achievement: tried to fulfill an out of stock order
-            utils.achievements.increase(store, player.id, 'outOfStockFulfillment', 1);
+            utils.achievements.increase(store, player.id, 'outOfStock', 1);
           }
-        }
-      } else {
-        // Achievement: skipped an order
-        utils.achievements.increase(store, player.id, 'skips', 1);
 
-        // If not fulfilled and out of stock, grant 3 points
-        if (goodsDict[orderId].slot === null) {
-          scores.add(player.id, 3, 2);
-
-          // Achievement: skipped an out of stock order
-          utils.achievements.increase(store, player.id, 'outOfStock', 1);
+          player.previousOrders.push(orderId);
         }
+        return;
       }
 
-      // Achievement: fulfilled  at once
-      utils.achievements.increase(store, player.id, 'correctAtOnce', correctAtOnce);
+      // Player attempted to mark order as out of stock (guessedSlot === -1)
+      if (guessedSlot === -1) {
+        // Achievement: set an order as out of stock (correct or not)
+        utils.achievements.increase(store, player.id, 'outOfStockFulfillment', 1);
+
+        // If not fulfilled and out of stock, grant 3 points
+        if (actualSlot === null) {
+          scores.add(player.id, 3, 2);
+
+          // Add to outOfStockOrders gallery
+          gallery.outOfStockOrders[player.id].push({
+            playerId: player.id,
+            orderId,
+            result: 'out-of-stock',
+            guessedSlot: -1,
+          });
+          goodsDict[orderId].fulfilledId = player.id;
+        } else {
+          scores.add(player.id, -1, 3);
+
+          gallery.wrongOutOfStockOrders[player.id].push({
+            playerId: player.id,
+            orderId,
+            result: 'wrong-out-of-stock',
+            guessedSlot: -1,
+          });
+
+          player.previousOrders.push(orderId);
+        }
+
+        return;
+      }
+
+      // Player just skipped the order
+      gallery.skippedOrders[player.id].push({
+        playerId: player.id,
+        orderId,
+        result: 'skipped',
+        guessedSlot: null,
+      });
+      player.previousOrders.push(orderId);
+
+      // Achievement: skipped an order
+      utils.achievements.increase(store, player.id, 'skips', 1);
     });
+
+    // Achievement: fulfilled at once
+    utils.achievements.increase(store, player.id, 'correctAtOnce', correctAtOnce);
   });
 
   return {
     ranking: scores.rank(players),
     gallery,
+    ordersLeft: newOrdersLeft,
   };
 };
+
+export function distributeOrders(players: Players, goodsDict: Dictionary<Good>) {
+  const playerList = utils.players.getListOfPlayers(players);
+  const playerCount = playerList.length;
+
+  // Get all available orders (not yet fulfilled)
+  const availableOrders = orderBy(
+    // First shuffle them all
+    shuffle(Object.values(goodsDict).filter((good) => !good.fulfilledId)),
+    // Then prioritize the orders that are in the warehouse
+    [(o) => o.slot !== null],
+    ['desc'],
+  ).map((good) => good.id);
+
+  const ordersPerPlayer = Math.floor(availableOrders.length / playerCount);
+
+  // Initialize player orders and previousOrders sets for fast lookup
+  const playerOrders: Record<UID, string[]> = {};
+  const previousOrdersSets: Record<UID, Set<string>> = {};
+
+  playerList.forEach((player) => {
+    playerOrders[player.id] = [];
+    previousOrdersSets[player.id] = new Set(player.previousOrders ?? []);
+  });
+
+  // Greedy assignment: for each order, assign to eligible player with fewest orders
+  for (const orderId of availableOrders) {
+    // Find eligible players (haven't seen this order and still need more orders)
+    const eligiblePlayers = playerList.filter(
+      (player) =>
+        playerOrders[player.id].length < ordersPerPlayer && !previousOrdersSets[player.id].has(orderId),
+    );
+
+    if (eligiblePlayers.length > 0) {
+      // Sort by number of orders (ascending) to maintain fairness
+      eligiblePlayers.sort((a, b) => playerOrders[a.id].length - playerOrders[b.id].length);
+
+      // Assign to player with fewest orders
+      const selectedPlayer = eligiblePlayers[0];
+      playerOrders[selectedPlayer.id].push(orderId);
+    }
+  }
+
+  // Assign orders to players
+  playerList.forEach((player) => {
+    player.orders = playerOrders[player.id].sort();
+  });
+
+  return {
+    ordersLeft: availableOrders.length,
+  };
+}

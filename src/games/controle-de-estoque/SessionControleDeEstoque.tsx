@@ -5,12 +5,14 @@ import { GAME_COLLECTION } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { PhaseError } from 'components/phases/PhaseError';
-import { PhasePlaceholder } from 'components/phases/PhasePlaceholder';
 import { Session } from 'components/session/Session';
 // Internal
 import { CONTROLE_DE_ESTOQUE_PHASES } from './utils/constants';
 import { PhaseTheWarehouse } from './PhaseTheWarehouse';
 import { PhaseGoodPlacement } from './PhaseGoodPlacement';
+import { PhaseFulfillment } from './PhaseFulfillment';
+import { PhaseResults } from './PhaseResults';
+import { PhaseGameOver } from './PhaseGameOver';
 // Sass
 import './utils/styles.scss';
 
@@ -21,11 +23,11 @@ function getActiveComponent(state: GameState) {
     case CONTROLE_DE_ESTOQUE_PHASES.GOOD_PLACEMENT:
       return PhaseGoodPlacement;
     case CONTROLE_DE_ESTOQUE_PHASES.FULFILLMENT:
-      return PhasePlaceholder;
+      return PhaseFulfillment;
     case CONTROLE_DE_ESTOQUE_PHASES.RESULTS:
-      return PhasePlaceholder;
+      return PhaseResults;
     case PHASES.DEFAULT.GAME_OVER:
-      return PhasePlaceholder;
+      return PhaseGameOver;
     default:
       return PhaseError;
   }

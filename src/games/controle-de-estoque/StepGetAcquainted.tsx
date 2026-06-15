@@ -1,5 +1,7 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
+// Hooks
+import { useMock } from 'hooks/useMock';
 // Components
 import { SendButton } from 'components/buttons/SendButton';
 import { AutoNextPhase } from 'components/general/AutoNextPhase';
@@ -32,6 +34,11 @@ export function StepGetAcquainted({
   user,
   onReady,
 }: StepGetAcquaintedProps) {
+  // Dev Mock
+  useMock(() => {
+    onReady();
+  });
+
   return (
     <Step
       fullWidth
@@ -40,20 +47,22 @@ export function StepGetAcquainted({
       <StepTitle>
         <Translate
           en="This is the warehouse!"
-          pt="Este é o armazém logístico!"
+          pt="Este é o galpão logístico!"
         />
       </StepTitle>
 
       <RuleInstruction type="lore">
         <Translate
           en="You were just hired as floor supervisors for a big logistics company! Your first task is to get acquainted with the warehouse and the goods that are already stocked there. Press Ready to Work when you're ready"
-          pt="Vocês acabaram de ser contratados como supervisores de chão de fábrica para uma grande empresa de logística! A primeira tarefa de vocês é se familiarizar com o armazém e os produtos que já estão estocados lá. Aperte Pronto para Trabalhar quando estiver pronto"
+          pt="Vocês acabaram de ser contratados como estoquistas de fábrica para uma grande empresa de logística! A primeira tarefa de vocês é se familiarizar com o galpão e os produtos que já estão estocados lá. Aperte Pronto para Trabalhar quando estiver pronto"
         />
       </RuleInstruction>
 
       <Warehouse
         warehouse={warehouseGrid}
         goodsDict={goodsDict}
+        goodClassName=""
+        goodComponent={null}
       />
 
       <SpaceFloat className="mt-4">

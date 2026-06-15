@@ -22,13 +22,12 @@ import {
   prepareTheWarehousePhase,
   prepareGoodPlacementPhase,
   prepareGameOverPhase,
-  preparePlacementConfirmationPhase,
   prepareFulfillmentPhase,
   prepareResultsPhase,
 } from './setup';
 import { getData } from './data';
-import { handleConfirmGood, handlePlaceGood } from './actions';
-// import { handleNextEvaluationGroup, handleSubmitAnswers, handleSubmitRejectAnswers } from './actions';
+import { handleConfirmGood, handleFulfillOrders, handlePlaceGood } from './actions';
+import { FULFILLMENT_MOCK } from './mock';
 
 /**
  * Gets the initial state for a new game session
@@ -84,6 +83,31 @@ export const getNextPhase = async (
     // Enter setup phase before doing anything
     await utils.firestore.triggerSetupPhase(sessionRef);
 
+    // TODO: Remove temporary
+    if (utils.firebase.isEmulatingEnvironment()) {
+      const MOCK_PLAYERS = FULFILLMENT_MOCK.players as unknown as Players;
+
+      const achievements = utils.achievements.setup(MOCK_PLAYERS, {
+        attempts: 0,
+        correctAtOnce: 0,
+        skips: 0,
+        outOfStock: 0,
+        outOfStockFulfillment: 0,
+      });
+
+      await utils.firestore.saveGame(sessionRef, {
+        update: {
+          store: {
+            achievements,
+          },
+        },
+        set: {
+          state: FULFILLMENT_MOCK,
+        },
+      });
+      return true;
+    }
+
     // Request data
     const additionalData = await getData();
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
@@ -100,12 +124,6 @@ export const getNextPhase = async (
   // THE_WAREHOUSE -> GOOD_PLACEMENT
   if (nextPhase === CONTROLE_DE_ESTOQUE_PHASES.GOOD_PLACEMENT) {
     const newPhase = await prepareGoodPlacementPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
-  }
-
-  // GOOD_PLACEMENT -> PLACEMENT_CONFIRMATION
-  if (nextPhase === CONTROLE_DE_ESTOQUE_PHASES.PLACEMENT_CONFIRMATION) {
-    const newPhase = await preparePlacementConfirmationPhase(store, state, players);
     return utils.firestore.saveGame(sessionRef, newPhase);
   }
 
@@ -146,11 +164,9 @@ export const submitAction = async (data: ControleDeEstoqueSubmitAction) => {
     case CONTROLE_DE_ESTOQUE_ACTIONS.CONFIRM_PLACEMENT:
       utils.firebase.validateSubmitActionProperties(data, ['selectedWarehouseSlot'], 'confirm placement');
       return handleConfirmGood(gameName, gameId, playerId, data.selectedWarehouseSlot);
-    // case CONTROLE_DE_ESTOQUE_ACTIONS.NEXT_EVALUATION_GROUP:
-    //   return handleNextEvaluationGroup(gameName, gameId, playerId);
-    // case CONTROLE_DE_ESTOQUE_ACTIONS.SUBMIT_REJECTED_ANSWERS:
-    //   utils.firebase.validateSubmitActionProperties(data, ['evaluations'], 'submit evaluations');
-    //   return handleSubmitRejectAnswers(gameName, gameId, playerId, data.evaluations);
+    case CONTROLE_DE_ESTOQUE_ACTIONS.SUBMIT_FULFILL_ORDERS:
+      utils.firebase.validateSubmitActionProperties(data, ['fulfillments'], 'submit fulfill order');
+      return handleFulfillOrders(gameName, gameId, playerId, data.fulfillments);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`, action);
   }

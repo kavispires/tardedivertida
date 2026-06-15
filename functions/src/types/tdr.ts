@@ -98,6 +98,10 @@ export type BossIdeaCard = {
    */
   description: DualLanguageValue;
   /**
+   * The instructions after the placement is confirmed
+   */
+  afterPlacement: DualLanguageValue;
+  /**
    * The level of difficulty
    */
   difficulty: number;
@@ -105,6 +109,10 @@ export type BossIdeaCard = {
    * The original rule
    */
   ogRule?: string;
+  /**
+   * If the idea is implemented in the game
+   */
+  disabled?: boolean;
 };
 
 /**

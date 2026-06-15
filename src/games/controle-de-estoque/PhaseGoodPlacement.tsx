@@ -1,4 +1,3 @@
-import { orderBy } from 'lodash';
 import { useEffect, useMemo, useState } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
@@ -6,8 +5,8 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Icons
+import { BarcodeIcon } from 'icons/BarcodeIcon';
 import { BossIdeaIcon } from 'icons/BossIdeaIcon';
-import { MysteryBoxIcon } from 'icons/MysteryBoxIcon';
 import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
 // Components
 import { DualTranslate } from 'components/language/DualTranslate';
@@ -22,85 +21,128 @@ import { Instruction } from 'components/text/Instruction';
 import { CONTROLE_DE_ESTOQUE_PHASES, DAYS_OF_THE_WEEK, OUTCOME } from './utils/constants';
 import { useOnConfirmGoodPlacementAPIRequest, useOnPlaceGoodAPIRequest } from './utils/api-requests';
 import type { PhaseGoodPlacementState } from './utils/types';
+import { useWarehouse } from './utils/hooks';
 import { RoundStockingProgress } from './components/StockingProgress';
 import { StepPlaceGood } from './StepPlaceGood';
 import { StepAnimatePreviousAction } from './StepAnimatePreviousAction';
 
 export function PhaseGoodPlacement({ players, state, user }: PhaseProps<PhaseGoodPlacementState>) {
   const isNewRound = state.status.outcome === OUTCOME.NEW_IDEA;
-  const startingStep = isNewRound ? 0 : 1;
-  const { step, goToNextStep, goToSteps, setStep } = useStep(startingStep);
+  const { step, goToNextStep, goToStep, setStep } = useStep(0);
   const [supervisor, isUserTheSupervisor] = useWhichPlayerIsThe('supervisorId', state, players);
-  const previousPlayerId = state.event?.actorId ?? 'NULL';
+  const previousSupervisorId = state.event?.actorId ?? 'NULL';
   const [currentPlayerId, setCurrentPlayerId] = useState(state.supervisorId);
 
   const onPlaceGood = useOnPlaceGoodAPIRequest();
   const onConfirmPlacement = useOnConfirmGoodPlacementAPIRequest();
 
-  const bossIdea = state?.bossIdea;
+  const bossIdea = state.bossIdea;
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: no functions
   useEffect(() => {
-    if (step !== startingStep) {
+    if (step !== 0) {
       if (state.supervisorId !== currentPlayerId) {
         setCurrentPlayerId(state.supervisorId);
         setStep(0);
       }
     }
-  }, [startingStep, state.supervisorId]);
+  }, [state.supervisorId]);
 
-  const packingAnnouncement = (
-    <PhaseAnnouncement
-      icon={<ShippingBoxIcon />}
-      title="Vamos embalar esses produtos!"
-      currentRound={state?.round?.current}
-      type="overlay"
-      duration={2}
-    >
-      <Instruction>
-        <Translate
-          en="Remember where they are!"
-          pt="Lembre-se de onde eles estão!"
-        />
-      </Instruction>
-    </PhaseAnnouncement>
+  const packingAnnouncement = useMemo(
+    () => (
+      <PhaseAnnouncement
+        icon={<ShippingBoxIcon />}
+        title="Vamos embalar esses produtos!"
+        currentRound={state?.round?.current}
+        type="overlay"
+        duration={2}
+      >
+        <Instruction>
+          <Translate
+            en="Remember where they are!"
+            pt="Lembre-se de onde eles estão!"
+          />
+        </Instruction>
+      </PhaseAnnouncement>
+    ),
+    [state?.round?.current],
   );
 
-  const announcement = (
-    <PhaseAnnouncement
-      icon={isNewRound ? <BossIdeaIcon /> : <MysteryBoxIcon />}
-      title={
-        isNewRound ? (
-          <DualTranslate>{bossIdea.subtitle}</DualTranslate>
-        ) : (
+  const newRoundAnnouncement = useMemo(
+    () => (
+      <PhaseAnnouncement
+        icon={<BossIdeaIcon />}
+        title={<DualTranslate>{bossIdea.subtitle}</DualTranslate>}
+        currentRound={state?.round?.current}
+        type="overlay"
+        duration={15}
+      >
+        <Instruction>
+          {state.round.current === 1 ? (
+            <>
+              "
+              <Translate
+                en="With each product, the supervisor will be someone different, let's start with"
+                pt="A cada produto o supervisor será alguém diferente, vamos começar com"
+              />{' '}
+              <PlayerAvatarName
+                player={supervisor}
+                addressUser
+              />
+              ."
+            </>
+          ) : (
+            <DualTranslate>{bossIdea.description}</DualTranslate>
+          )}
+          <br />
+          <RoundStockingProgress status={state.status} />
+        </Instruction>
+      </PhaseAnnouncement>
+    ),
+    [bossIdea.subtitle, bossIdea.description, state?.round?.current, supervisor, state.status],
+  );
+
+  const announcement = useMemo(
+    () => (
+      <PhaseAnnouncement
+        icon={<BarcodeIcon />}
+        title={
           <Translate
             pt="Próximo produto!"
             en="Next product!"
           />
-        )
-      }
-      currentRound={state?.round?.current}
-      type="overlay"
-      duration={isNewRound ? 6 : 2}
-    >
-      <Instruction>
-        "
-        <Translate
-          en="With each product, the supervisor will be someone different, now it's"
-          pt="A cada produto o supervisor será alguém diferente, agora é a vez de"
-        />{' '}
-        <PlayerAvatarName
-          player={supervisor}
-          addressUser
-        />
-        ."
-        <br />
-        <RoundStockingProgress status={state.status} />
-      </Instruction>
-    </PhaseAnnouncement>
+        }
+        currentRound={state?.round?.current}
+        type="overlay"
+        duration={2}
+      >
+        <Instruction>
+          <Translate
+            en="Now it's"
+            pt="Agora é a vez de"
+          />{' '}
+          <PlayerAvatarName
+            player={supervisor}
+            addressUser
+          />
+          !{' '}
+          <RoundStockingProgress
+            status={state.status}
+            hideTitles
+          />
+        </Instruction>
+      </PhaseAnnouncement>
+    ),
+    [state?.round?.current, supervisor, state.status],
   );
 
-  const warehouse = useMemo(() => orderBy(state.warehouseGrid, ['id']), [state.warehouseGrid]);
+  // Determine which announcement to show based on the current step
+  const stepTwoAnnouncement = useMemo(() => {
+    // Only show newRoundAnnouncement when we've come through step 1 (the round announcement)
+    return isNewRound ? newRoundAnnouncement : announcement;
+  }, [isNewRound, newRoundAnnouncement, announcement]);
+
+  const warehouse = useWarehouse(state.warehouseGrid);
 
   return (
     <PhaseContainer
@@ -113,22 +155,21 @@ export function PhaseGoodPlacement({ players, state, user }: PhaseProps<PhaseGoo
       >
         {/* Step 0 */}
         <StepAnimatePreviousAction
-          key={previousPlayerId} // Force remount when previous player changes to reset internal states
+          key={`${previousSupervisorId}-${state.previousBossIdea?.id ?? ''}`} // Force remount when previous player changes to reset internal states
           user={user}
           players={players}
           announcement={packingAnnouncement}
-          bossIdea={bossIdea}
+          bossIdea={state.previousBossIdea ?? bossIdea} // Use the previous boss idea so the animations reflects the correct one
           goodsDict={state.goodsDict}
           warehouse={warehouse}
-          previousSupervisor={players?.[previousPlayerId]}
+          previousSupervisor={players?.[previousSupervisorId] ?? null}
           status={state.status}
-          currentGoodId={state.currentGoodId}
           event={state.event}
           turnOrder={state.turnOrder}
-          goToNextStep={() => goToSteps(isNewRound ? 1 : 2)}
+          goToNextStep={() => goToStep(isNewRound ? 1 : 2)}
         />
 
-        {/* Step 2 */}
+        {/* Step 1 */}
         <RoundAnnouncement
           round={state?.round}
           onPressButton={goToNextStep}
@@ -139,12 +180,12 @@ export function PhaseGoodPlacement({ players, state, user }: PhaseProps<PhaseGoo
           </Instruction>
         </RoundAnnouncement>
 
-        {/* Step 3 */}
+        {/* Step 2 */}
         <StepPlaceGood
           key={state.supervisorId}
           user={user}
           players={players}
-          announcement={announcement}
+          announcement={stepTwoAnnouncement}
           bossIdea={bossIdea}
           goodsDict={state.goodsDict}
           warehouse={warehouse}

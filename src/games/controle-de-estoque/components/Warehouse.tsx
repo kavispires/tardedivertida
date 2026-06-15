@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import { getAnimation } from 'utils/animations';
 import { getAnimationClass } from 'utils/helpers';
 // Icons
-import { MysteryBoxIcon } from 'icons/MysteryBoxIcon';
 import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
 // Components
 import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
@@ -23,6 +22,8 @@ type WarehouseProps = {
   event?: Event;
   currentGoodId?: UID;
   selectedWarehouseSlot?: number | null;
+  goodClassName?: string;
+  goodComponent?: React.ReactNode;
 };
 
 export function Warehouse({
@@ -33,29 +34,34 @@ export function Warehouse({
   event,
   currentGoodId,
   selectedWarehouseSlot,
+  goodClassName,
+  goodComponent,
 }: WarehouseProps) {
   const { goodSize, goodWidth, warehouseWidth } = useGoodSize();
   const baseDuration = bossIdeaId === BOSS_IDEAS_IDS.BLIND_BOX ? 10 : 4;
 
   // Track goods that are currently being animated by events
   const [concealingGoods, setConcealingGoods] = useState<Set<string>>(new Set());
-
-  const goodClassName = `warehouse-good--${bossIdeaId}`;
-  const isConfidential = bossIdeaId === BOSS_IDEAS_IDS.CONFIDENTIAL;
-  const isBlindBox = bossIdeaId === BOSS_IDEAS_IDS.BLIND_BOX;
+  const [revealingGoods, setRevealingGoods] = useState<Set<string>>(new Set());
 
   // Update concealing goods when event changes
   useEffect(() => {
     if (event?.type === EVENT_TYPE.CONCEAL && event.goodsIds.length > 0) {
       setConcealingGoods(new Set(event.goodsIds));
+    } else if (event?.type === EVENT_TYPE.REVEAL && event.goodsIds.length > 0) {
+      setRevealingGoods(new Set(event.goodsIds));
     }
   }, [event]);
 
   /**
    * Check if a good should be animated based on the current event
    */
-  const shouldAnimateGood = (goodId: string): boolean => {
+  const shouldConcealGood = (goodId: string): boolean => {
     return concealingGoods.has(goodId);
+  };
+
+  const shouldRevealGood = (goodId: string): boolean => {
+    return revealingGoods.has(goodId);
   };
 
   /**
@@ -63,6 +69,17 @@ export function Warehouse({
    */
   const handleConcealComplete = (goodId: string) => {
     setConcealingGoods((prev) => {
+      const next = new Set(prev);
+      next.delete(goodId);
+      return next;
+    });
+  };
+
+  /**
+   * Handle animation completion for a revealed good
+   */
+  const handleRevealComplete = (goodId: string) => {
+    setRevealingGoods((prev) => {
       const next = new Set(prev);
       next.delete(goodId);
       return next;
@@ -105,9 +122,7 @@ export function Warehouse({
                 {selectedWarehouseSlot === index && currentGoodId && (
                   <div className="warehouse__selected-good">
                     <motion.div {...getAnimation('pulse', { infinite: true })}>
-                      {isConfidential || isBlindBox ? (
-                        <MysteryBoxIcon width={goodWidth} />
-                      ) : (
+                      {goodComponent ?? (
                         <WarehouseGoodCard
                           goodId={currentGoodId}
                           width={goodWidth}
@@ -130,7 +145,8 @@ export function Warehouse({
 
           if (slot.goodId) {
             const good = goodsDict[slot.goodId];
-            const isConcealing = shouldAnimateGood(good.id);
+            const isConcealing = shouldConcealGood(good.id);
+            const isRevealing = shouldRevealGood(good.id);
 
             // Animate concealment if event is active for this good (regardless of exposed state)
             if (isConcealing) {
@@ -161,9 +177,7 @@ export function Warehouse({
                       left: 0,
                     }}
                   >
-                    {isConfidential ? (
-                      <MysteryBoxIcon width={goodWidth} />
-                    ) : (
+                    {goodComponent ?? (
                       <WarehouseGoodCard
                         goodId={good.id}
                         width={goodWidth}
@@ -197,25 +211,92 @@ export function Warehouse({
               );
             }
 
-            if (good.exposed) {
+            // Animate reveal: shipping box → good
+            if (isRevealing) {
+              const delayIndex = event?.goodsIds.indexOf(good.id) ?? 0;
+              const baseDelay = 1 + delayIndex * 0.15;
+
               return (
                 <div
                   key={index}
                   className={clsx('warehouse__shelf', 'warehouse__shelf-active')}
+                  style={{ ...goodSize, position: 'relative' }}
+                >
+                  {/* Shipping box flipping out */}
+                  <motion.div
+                    initial={{ opacity: 1, rotateY: 0 }}
+                    animate={{
+                      opacity: 0,
+                      rotateY: 90,
+                      transition: {
+                        duration: 0.4,
+                        delay: baseDelay,
+                      },
+                    }}
+                    style={{
+                      transformStyle: 'preserve-3d',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                    }}
+                  >
+                    <ShippingBoxIcon width={goodWidth} />
+                  </motion.div>
+
+                  {/* Good flipping in */}
+                  <motion.div
+                    initial={{ opacity: 0, rotateY: -90 }}
+                    animate={{
+                      opacity: 1,
+                      rotateY: 0,
+                      transition: {
+                        duration: 0.4,
+                        delay: baseDelay + 0.4,
+                      },
+                    }}
+                    onAnimationComplete={() => handleRevealComplete(good.id)}
+                    style={{
+                      transformStyle: 'preserve-3d',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                    }}
+                  >
+                    {goodComponent ?? (
+                      <WarehouseGoodCard
+                        goodId={good.id}
+                        width={goodWidth}
+                        className={clsx(`warehouse__good--${good.orientation ?? 0}`, goodClassName)}
+                      />
+                    )}
+                  </motion.div>
+                </div>
+              );
+            }
+
+            if (good.exposed || (!revealingGoods.has(good.id) && slot.orderId)) {
+              return (
+                <div
+                  key={index}
+                  className={clsx('warehouse__shelf', 'warehouse__shelf-active', {
+                    'warehouse__shelf-fulfilled': good.fulfilledId,
+                  })}
                   style={goodSize}
                 >
-                  {isConfidential ? (
-                    <MysteryBoxIcon
-                      width={goodWidth}
+                  {goodComponent ? (
+                    <div
                       key={index}
                       className={clsx(getAnimationClass('bounce'))}
-                    />
+                    >
+                      {goodComponent}
+                    </div>
                   ) : (
                     <WarehouseGoodCard
                       goodId={good.id}
                       width={goodWidth}
                       className={clsx(
-                        getAnimationClass('bounce'),
+                        { [getAnimationClass('bounce')]: !good.fulfilledId },
+                        { 'warehouse__good--fulfilled': good.fulfilledId },
                         `warehouse__good--${good.orientation ?? 0}`,
                         goodClassName,
                       )}

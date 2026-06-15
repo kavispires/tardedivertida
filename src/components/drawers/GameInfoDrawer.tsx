@@ -110,7 +110,7 @@ export function GameInfoDrawer({ players, state, userId }: GameInfoDrawerProps) 
         {isAuthenticated && !isGuest && (
           <p>
             <Badge
-              size="default"
+              size="medium"
               dot
               color="green"
             >

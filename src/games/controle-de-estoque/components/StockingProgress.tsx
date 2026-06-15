@@ -9,6 +9,7 @@ import type { Status } from '../utils/types';
 
 type StockingProgressProps = {
   status: Status;
+  hideTitles?: boolean;
 };
 
 export function StockingProgress({ status }: StockingProgressProps) {
@@ -18,8 +19,8 @@ export function StockingProgress({ status }: StockingProgressProps) {
     <div className="c-stocking-progress">
       <span>
         <Translate
-          en="Round goods: "
-          pt="Mercadorias da rodada: "
+          en="Round goods"
+          pt="Mercadorias da rodada"
         />
         :{' '}
         <MetricHighlight icon={<ClockIcon />}>
@@ -28,8 +29,8 @@ export function StockingProgress({ status }: StockingProgressProps) {
       </span>
       <span>
         <Translate
-          en="Stocked Goods: "
-          pt="Mercadorias estocadas: "
+          en="Stocked Goods"
+          pt="Mercadorias estocadas"
         />
         :{' '}
         <MetricHighlight icon={<ShippingBoxIcon />}>
@@ -40,16 +41,18 @@ export function StockingProgress({ status }: StockingProgressProps) {
   );
 }
 
-export function RoundStockingProgress({ status }: StockingProgressProps) {
+export function RoundStockingProgress({ status, hideTitles }: StockingProgressProps) {
   const { progress, goal } = status;
 
   return (
     <span>
-      <Translate
-        en="Round goods: "
-        pt="Mercadorias da rodada: "
-      />
-      :{' '}
+      {!hideTitles && (
+        <Translate
+          en="Round goods: "
+          pt="Mercadorias da rodada: "
+        />
+      )}
+
       <MetricHighlight icon={<ClockIcon />}>
         {progress}/{goal}
       </MetricHighlight>

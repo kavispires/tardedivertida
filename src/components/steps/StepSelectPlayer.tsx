@@ -1,5 +1,5 @@
 import { sample, shuffle } from 'lodash';
-import type { ComponentProps } from 'react';
+import { useMemo, type ComponentProps } from 'react';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Types
@@ -51,6 +51,7 @@ export function StepSelectPlayer({
 }: StepSelectPlayerProps) {
   const { isLoading } = useLoading();
   const isHost = useHost();
+  const sortedPlayers = useMemo(() => sortPlayers(players), [players]);
 
   return (
     <Step
@@ -70,7 +71,7 @@ export function StepSelectPlayer({
           wrap="wrap"
           gap={8}
         >
-          {sortPlayers(players).map((player) => {
+          {sortedPlayers.map((player) => {
             if (isHost) {
               return (
                 <TransparentButton

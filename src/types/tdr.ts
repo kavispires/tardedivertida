@@ -94,6 +94,10 @@ export type BossIdeaCard = {
    */
   description: DualLanguageValue;
   /**
+   * The instructions after the placement is confirmed
+   */
+  afterPlacement: DualLanguageValue;
+  /**
    * The level of difficulty
    */
   difficulty: number;

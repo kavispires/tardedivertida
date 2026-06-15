@@ -9,7 +9,7 @@ import {
   EVENT_TYPE,
 } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
-import { keyBy, sample, sampleSize, shuffle } from 'lodash';
+import { keyBy, sample, sampleSize } from 'lodash';
 // Types
 import type {
   FirebaseStateData,
@@ -27,9 +27,9 @@ import {
   buildRanking,
   concealAllGoods,
   concealGoodsForEvent,
+  distributeOrders,
   updateAvailableSlotsInWarehouse,
 } from './helpers';
-import { BOSS_IDEAS } from './data';
 
 /**
  * Setup phase - initializes game state and resources
@@ -112,12 +112,27 @@ export const prepareSetupPhase = async (
 
   // Determine boss ideas making the First day always the first idea
   const bossIdeas: BossIdeaCard[] = [resourceData.allBossIdeas.FIRST_DAY];
-  bossIdeas.push(
-    ...sampleSize(
-      Object.values(resourceData.allBossIdeas).filter((idea) => idea.id !== BOSS_IDEAS.FIRST_DAY.id),
-      totalRounds - 1,
-    ),
-  );
+  // Except for the type default, separate the boss ideas by type (excluding any disabled ones), then randomly choose of of each type. After this pre-selection, use sampleSize to randomly get the remaining boss ideas from the pool until reaching the total rounds needed.
+  const bossIdeasByType: Dictionary<BossIdeaCard[]> = {};
+  Object.values(resourceData.allBossIdeas).forEach((idea) => {
+    if (idea.type !== 'default' && !idea.disabled) {
+      if (!bossIdeasByType[idea.type]) {
+        bossIdeasByType[idea.type] = [];
+      }
+      bossIdeasByType[idea.type].push(idea);
+    }
+  });
+
+  const preSelection: BossIdeaCard[] = [];
+
+  Object.values(bossIdeasByType).forEach((ideas) => {
+    const randomIdea = sample(ideas);
+    if (randomIdea) {
+      preSelection.push(randomIdea);
+    }
+  });
+
+  bossIdeas.push(...sampleSize(preSelection, totalRounds - 1));
 
   // Save
   return {
@@ -225,7 +240,7 @@ export const prepareGoodPlacementPhase = async (
 
     // Animate initial goods being concealed before starting the first round
     const event = concealAllGoods(goodsDict, null, EVENT_TYPE.CONCEAL);
-    updateAvailableSlotsInWarehouse(warehouseGrid, bossIdea.id);
+    updateAvailableSlotsInWarehouse(warehouseGrid, bossIdea.id, status);
 
     const newGoodId = state.availableGoods.pop() ?? null;
 
@@ -237,6 +252,7 @@ export const prepareGoodPlacementPhase = async (
           players,
           round,
           bossIdea,
+          previousBossIdea: null,
           warehouseGrid,
           goodsDict,
           supervisorId,
@@ -265,46 +281,24 @@ export const prepareGoodPlacementPhase = async (
   status.progress += 1;
   status.stocked += 1;
 
-  // END OF PHASE
-  if (status.progress >= status.goal && currentGoodId === null) {
-    // Override status for end of phase
-    status.outcome = OUTCOME.END_PHASE;
-
-    // Save
-    return {
-      update: {
-        state: {
-          phase: CONTROLE_DE_ESTOQUE_PHASES.GOOD_PLACEMENT,
-          players,
-          warehouseGrid,
-          goodsDict,
-          supervisorId,
-          currentGoodId: null,
-          availableGoods,
-          event,
-          status,
-          selectedWarehouseSlot: null,
-        },
-      },
-    };
-  }
-
   const newGoodId = state.availableGoods.pop() ?? null;
 
   // SETUP NEW ROUND
   if (status.progress >= status.goal) {
+    const previousBossIdea = state.bossIdea;
     round = utils.game.increaseRound(round);
 
     // Override status for new round
     status.progress = 0;
     status.goal = counts.goodsPerRound;
     status.outcome = OUTCOME.NEW_IDEA;
+    delete status.additionalInfo;
 
     // Get boss idea for current round
     const bossIdea = store.bossIdeas[round.current - 1];
 
     // Update warehouse with available slots
-    updateAvailableSlotsInWarehouse(warehouseGrid, bossIdea.id);
+    updateAvailableSlotsInWarehouse(warehouseGrid, bossIdea.id, status);
 
     return {
       update: {
@@ -313,6 +307,7 @@ export const prepareGoodPlacementPhase = async (
           players,
           round,
           bossIdea,
+          previousBossIdea,
           warehouseGrid,
           goodsDict,
           supervisorId,
@@ -329,7 +324,7 @@ export const prepareGoodPlacementPhase = async (
   const bossIdea: BossIdeaCard = state.bossIdea;
 
   // Update warehouse with available slots
-  updateAvailableSlotsInWarehouse(warehouseGrid, bossIdea.id);
+  updateAvailableSlotsInWarehouse(warehouseGrid, bossIdea.id, status);
 
   // CONTINUE
   // Save
@@ -339,6 +334,7 @@ export const prepareGoodPlacementPhase = async (
         phase: CONTROLE_DE_ESTOQUE_PHASES.GOOD_PLACEMENT,
         players,
         warehouseGrid,
+        previousBossIdea: null,
         goodsDict,
         supervisorId,
         currentGoodId: newGoodId,
@@ -346,35 +342,6 @@ export const prepareGoodPlacementPhase = async (
         event,
         status,
         selectedWarehouseSlot: null,
-      },
-    },
-  };
-};
-
-/**
- * Placement Confirmation phase - supervisor confirms or rejects placements
- * @param store - The Firebase store data
- * @param state - The Firebase state data
- * @param players - The players object
- */
-export const preparePlacementConfirmationPhase = async (
-  _store: FirebaseStoreData,
-  state: FirebaseStateData,
-  players: Players,
-): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players, state.supervisorId);
-
-  // Remove the placed good from availableGoods
-  const availableGoods = state.availableGoods.slice(1);
-
-  // Save
-  return {
-    update: {
-      state: {
-        phase: CONTROLE_DE_ESTOQUE_PHASES.PLACEMENT_CONFIRMATION,
-        players,
-        stocked: state.stocked + 1,
-        availableGoods,
       },
     },
   };
@@ -392,35 +359,69 @@ export const prepareFulfillmentPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
-
-  // When entering fulfillment phase, reset rounds to 3 and disable the entire warehouse
   const warehouseGrid: Dictionary<WarehouseSlot> = state.warehouseGrid;
-  const round: Round = {
-    current: 0,
-    total: 3,
-  };
+  const goodsDict: Dictionary<Good> = state.goodsDict;
 
-  Object.values(warehouseGrid).forEach((slot) => {
-    slot.available = false;
-  });
+  // FIRST ROUND OF FULFILLMENT
+  if (state.phase === CONTROLE_DE_ESTOQUE_PHASES.GOOD_PLACEMENT) {
+    // Update statuses
+    const status: Status = state.status;
+    status.outcome = OUTCOME.END_PHASE;
+    status.progress += 1;
+    status.stocked += 1;
 
-  utils.game.increaseRound(round);
+    // Animate initial goods being concealed before starting the first round
+    const event = concealGoodsForEvent(
+      goodsDict,
+      warehouseGrid,
+      state.currentGoodId,
+      state.selectedWarehouseSlot,
+      state.supervisorId,
+      EVENT_TYPE.CONCEAL,
+    );
 
-  const availableOrders = Object.values<Dictionary<Good>>(state.goodsDict)
-    .filter((good) => {
-      if (typeof good.slot === 'number') {
-        return warehouseGrid[good.slot].status !== 'correct';
-      }
-      return false;
-    })
-    .map((good) => good.id);
+    // When entering fulfillment phase, reset rounds to 3 and disable the entire warehouse
+    const round: Round = {
+      current: 1,
+      total: 3,
+    };
 
-  utils.players.dealItemsToPlayers(
-    players,
-    shuffle(availableOrders),
-    Math.floor(availableOrders.length / utils.players.getPlayerCount(players)),
-    'orders',
-  );
+    Object.values(warehouseGrid).forEach((slot) => {
+      slot.available = false;
+    });
+
+    utils.players.addPropertiesToPlayers(players, { fulfillments: {}, previousOrders: [] });
+
+    const { ordersLeft } = distributeOrders(players, state.goodsDict);
+
+    // Save
+    return {
+      update: {
+        state: {
+          phase: CONTROLE_DE_ESTOQUE_PHASES.FULFILLMENT,
+          players,
+          round,
+          goodsDict,
+          warehouseGrid,
+          ordersLeft,
+          event,
+          lastBossIdea: state.bossIdea,
+        },
+        stateCleanup: [
+          'bossIdea',
+          'selectedWarehouseSlot',
+          'supervisorId',
+          'availableGoods',
+          'gallery',
+          'ranking',
+        ],
+      },
+    };
+  }
+
+  // SECOND AND THIRD ROUND OF FULFILLMENT
+
+  const { ordersLeft } = distributeOrders(players, state.goodsDict);
 
   utils.players.removePropertiesFromPlayers(players, ['fulfillments']);
 
@@ -430,17 +431,18 @@ export const prepareFulfillmentPhase = async (
       state: {
         phase: CONTROLE_DE_ESTOQUE_PHASES.FULFILLMENT,
         players,
-        round,
+        round: utils.game.increaseRound(state.round),
         warehouseGrid,
+        ordersLeft,
       },
       stateCleanup: [
-        'turnNumber',
-        'supervisorId',
-        'currentGoodId',
-        'availableGoods',
-        'bossIdea',
         'gallery',
         'ranking',
+        'status',
+        'event',
+        'lastBossIdea',
+        'currentGoodId',
+        'previousBossIdea',
       ],
     },
   };
@@ -459,7 +461,13 @@ export const prepareResultsPhase = async (
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
 
-  const { gallery, ranking } = buildRanking(players, state.goodsDict, state.warehouseGrid, store);
+  const { gallery, ranking, ordersLeft } = buildRanking(
+    players,
+    state.goodsDict,
+    state.warehouseGrid,
+    state.ordersLeft,
+    store,
+  );
 
   // Save
   return {
@@ -471,7 +479,8 @@ export const prepareResultsPhase = async (
         gallery,
         ranking,
         goodsDict: state.goodsDict,
-        warehouseGrid: state.warehouse,
+        warehouseGrid: state.warehouseGrid,
+        ordersLeft,
       },
     },
   };
@@ -524,6 +533,8 @@ export const prepareGameOverPhase = async (
         winners,
         players,
         achievements,
+        goodsDict: state.goodsDict,
+        warehouseGrid: state.warehouseGrid,
       },
     },
   };
