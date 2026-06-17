@@ -1,224 +1,239 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-const ACHIEVEMENTS = {
-  MOST_CARDS: 'MOST_CARDS',
-  FEWEST_CARDS: 'FEWEST_CARDS',
-  MOST_NEGATIVE_CARDS: 'MOST_NEGATIVE_CARDS',
-  FEWEST_NEGATIVE_CARDS: 'FEWEST_NEGATIVE_CARDS',
-  MOST_TREES: 'MOST_TREES',
-  FEWEST_TREES: 'FEWEST_TREES',
-  BEST_MAP: 'BEST_MAP',
-  WORST_MAP: 'WORST_MAP',
-  BEST_SCOUT: 'BEST_SCOUT',
-  WORST_SCOUT: 'WORST_SCOUT',
-  MOST_UP: 'MOST_UP',
-  MOST_RIGHT: 'MOST_RIGHT',
-  MOST_DOWN: 'MOST_DOWN',
-  MOST_LEFT: 'MOST_LEFT',
-  MOST_UP_LEFT: 'MOST_UP_LEFT',
-  MOST_UP_RIGHT: 'MOST_UP_RIGHT',
-  MOST_DOWN_LEFT: 'MOST_DOWN_LEFT',
-  MOST_DOWN_RIGHT: 'MOST_DOWN_RIGHT',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.MOST_CARDS]: {
-    icon: 'list',
-    title: {
-      pt: 'Mais Cartas',
-      en: 'Most Cards',
-    },
-    description: {
-      pt: 'Usou o maior número de cartas',
-      en: 'Used the most cards',
-    },
-  },
-  [ACHIEVEMENTS.FEWEST_CARDS]: {
+  FEWEST_CARDS: {
+    id: 'FEWEST_CARDS',
+    doc: 'Total number of clue cards used',
     icon: 'ellipsis',
     title: {
-      pt: 'Menos Cartas',
       en: 'Fewest Cards',
+      pt: 'Menos Cartas',
     },
     description: {
-      pt: 'Usou o menor número de cartas',
       en: 'Used the fewest cards',
+      pt: 'Usou o menor número de cartas',
     },
   },
-  [ACHIEVEMENTS.MOST_NEGATIVE_CARDS]: {
-    icon: 'minus',
+  MOST_CARDS: {
+    id: 'MOST_CARDS',
+    doc: 'Total number of clue cards used',
+    icon: 'list',
     title: {
-      pt: 'Mais Adjetivos Negativos',
-      en: 'Most Negative Adjectives',
+      en: 'Most Cards',
+      pt: 'Mais Cartas',
     },
     description: {
-      pt: 'Usou o maior número de cartas negativas',
-      en: 'Used the most negative cards',
+      en: 'Used the most cards',
+      pt: 'Usou o maior número de cartas',
     },
   },
-  [ACHIEVEMENTS.FEWEST_NEGATIVE_CARDS]: {
-    icon: 'plus',
-    title: {
-      pt: 'Menos Cartas Negativas',
-      en: 'Fewest Negative Cards',
-    },
-    description: {
-      pt: 'Usou o menor número de cartas negativas',
-      en: 'Used the fewest negative cards',
-    },
-  },
-  [ACHIEVEMENTS.MOST_TREES]: {
-    icon: 'tree',
-    title: {
-      pt: 'Mais Árvores',
-      en: 'Most Trees',
-    },
-    description: {
-      pt: 'Passou pelo maior número de árvores',
-      en: 'Passed by the most trees',
-    },
-  },
-  [ACHIEVEMENTS.FEWEST_TREES]: {
+  FEWEST_TREES: {
+    id: 'FEWEST_TREES',
+    doc: 'Total number of trees walked through',
     icon: 'x',
     title: {
-      pt: 'Menos Árvores',
       en: 'Fewest Trees',
+      pt: 'Menos Árvores',
     },
     description: {
-      pt: 'Passou pelo menor número de árvores',
       en: 'Passed by the fewest trees',
+      pt: 'Passou pelo menor número de árvores',
     },
   },
-  [ACHIEVEMENTS.BEST_MAP]: {
-    icon: 'sun',
+  MOST_TREES: {
+    id: 'MOST_TREES',
+    doc: 'Total number of trees walked through',
+    icon: 'tree',
     title: {
-      pt: 'Melhor Guia',
-      en: 'Best Guide',
+      en: 'Most Trees',
+      pt: 'Mais Árvores',
     },
     description: {
-      pt: 'Construiu um mapa que os outros jogadores melhor encontraram as direções corretas',
-      en: 'Built a map that other players found the correct directions the best',
+      en: 'Passed by the most trees',
+      pt: 'Passou pelo maior número de árvores',
     },
   },
-  [ACHIEVEMENTS.WORST_MAP]: {
-    icon: 'arrows',
-    title: {
-      pt: 'Mapeador Divergente',
-      en: 'Diverging Mapper',
-    },
-    description: {
-      pt: 'Construiu um mapa que os outros jogadores tiveram mais dificuldade em encontrar as direções corretas',
-      en: 'Built a map that other players had the most difficulty finding the correct directions',
-    },
-  },
-  [ACHIEVEMENTS.BEST_SCOUT]: {
-    icon: 'foot-prints',
-    title: {
-      pt: 'Melhor Explorador',
-      en: 'Best Scout',
-    },
-    description: {
-      pt: 'Acertou as árvores corretas mais vezes',
-      en: 'Hit the correct trees the most times',
-    },
-  },
-  [ACHIEVEMENTS.WORST_SCOUT]: {
-    icon: 'face-tired',
-    title: {
-      pt: 'Explorador Confuso',
-      en: 'Confused Scout',
-    },
-    description: {
-      pt: 'Acertou as árvores corretas menos vezes',
-      en: 'Hit the correct trees the fewest times',
-    },
-  },
-  [ACHIEVEMENTS.MOST_UP]: {
-    icon: 'arrow-up',
-    title: {
-      pt: 'Norte',
-      en: 'North',
-    },
-    description: {
-      pt: 'Andou mais para cima',
-      en: 'Walked more up',
-    },
-  },
-  [ACHIEVEMENTS.MOST_RIGHT]: {
-    icon: 'arrow-right',
-    title: {
-      pt: 'Leste',
-      en: 'East',
-    },
-    description: {
-      pt: 'Andou mais para direita',
-      en: 'Walked more right',
-    },
-  },
-  [ACHIEVEMENTS.MOST_DOWN]: {
+  MOST_DOWN: {
+    id: 'MOST_DOWN',
+    doc: 'Number of DOWN movements',
     icon: 'arrow-down',
     title: {
-      pt: 'Sul',
       en: 'South',
+      pt: 'Sul',
     },
     description: {
-      pt: 'Andou mais para baixo',
       en: 'Walked more down',
+      pt: 'Andou mais para baixo',
     },
   },
-  [ACHIEVEMENTS.MOST_LEFT]: {
+  MOST_DOWN_LEFT: {
+    id: 'MOST_DOWN_LEFT',
+    doc: 'Number of DOWN_LEFT movements',
+    icon: 'double-arrow-down',
+    title: {
+      en: 'Southwest',
+      pt: 'Sudoeste',
+    },
+    description: {
+      en: 'Walked more down and left',
+      pt: 'Andou mais para baixo e esquerda',
+    },
+  },
+  MOST_DOWN_RIGHT: {
+    id: 'MOST_DOWN_RIGHT',
+    doc: 'Number of DOWN_RIGHT movements',
+    icon: 'double-arrow-down',
+    title: {
+      en: 'Southeast',
+      pt: 'Sudeste',
+    },
+    description: {
+      en: 'Walked more down and right',
+      pt: 'Andou mais para baixo e direita',
+    },
+  },
+  BEST_SCOUT: {
+    id: 'BEST_SCOUT',
+    doc: 'Times player successfully guided others',
+    icon: 'foot-prints',
+    title: {
+      en: 'Best Scout',
+      pt: 'Melhor Explorador',
+    },
+    description: {
+      en: 'Hit the correct trees the most times',
+      pt: 'Acertou as árvores corretas mais vezes',
+    },
+  },
+  WORST_SCOUT: {
+    id: 'WORST_SCOUT',
+    doc: 'Times player successfully guided others',
+    icon: 'face-tired',
+    title: {
+      en: 'Confused Scout',
+      pt: 'Explorador Confuso',
+    },
+    description: {
+      en: 'Hit the correct trees the fewest times',
+      pt: 'Acertou as árvores corretas menos vezes',
+    },
+  },
+  BEST_MAP: {
+    id: 'BEST_MAP',
+    doc: 'Times player was successfully guided by others',
+    icon: 'sun',
+    title: {
+      en: 'Best Guide',
+      pt: 'Melhor Guia',
+    },
+    description: {
+      en: 'Built a map that other players found the correct directions the best',
+      pt: 'Construiu um mapa que os outros jogadores melhor encontraram as direções corretas',
+    },
+  },
+  WORST_MAP: {
+    id: 'WORST_MAP',
+    doc: 'Times player was successfully guided by others',
+    icon: 'arrows',
+    title: {
+      en: 'Diverging Mapper',
+      pt: 'Mapeador Divergente',
+    },
+    description: {
+      en: 'Built a map that other players had the most difficulty finding the correct directions',
+      pt: 'Construiu um mapa que os outros jogadores tiveram mais dificuldade em encontrar as direções corretas',
+    },
+  },
+  MOST_LEFT: {
+    id: 'MOST_LEFT',
+    doc: 'Number of LEFT movements',
     icon: 'arrow-left',
     title: {
-      pt: 'Oeste',
       en: 'West',
+      pt: 'Oeste',
     },
     description: {
-      pt: 'Andou mais para esquerda',
       en: 'Walked more left',
+      pt: 'Andou mais para esquerda',
     },
   },
-  [ACHIEVEMENTS.MOST_UP_LEFT]: {
+  FEWEST_NEGATIVE_CARDS: {
+    id: 'FEWEST_NEGATIVE_CARDS',
+    doc: 'Total number of negated clue cards used',
+    icon: 'plus',
+    title: {
+      en: 'Fewest Negative Cards',
+      pt: 'Menos Cartas Negativas',
+    },
+    description: {
+      en: 'Used the fewest negative cards',
+      pt: 'Usou o menor número de cartas negativas',
+    },
+  },
+  MOST_NEGATIVE_CARDS: {
+    id: 'MOST_NEGATIVE_CARDS',
+    doc: 'Total number of negated clue cards used',
+    icon: 'minus',
+    title: {
+      en: 'Most Negative Adjectives',
+      pt: 'Mais Adjetivos Negativos',
+    },
+    description: {
+      en: 'Used the most negative cards',
+      pt: 'Usou o maior número de cartas negativas',
+    },
+  },
+  MOST_RIGHT: {
+    id: 'MOST_RIGHT',
+    doc: 'Number of RIGHT movements',
+    icon: 'arrow-right',
+    title: {
+      en: 'East',
+      pt: 'Leste',
+    },
+    description: {
+      en: 'Walked more right',
+      pt: 'Andou mais para direita',
+    },
+  },
+  MOST_UP: {
+    id: 'MOST_UP',
+    doc: 'Number of UP movements',
+    icon: 'arrow-up',
+    title: {
+      en: 'North',
+      pt: 'Norte',
+    },
+    description: {
+      en: 'Walked more up',
+      pt: 'Andou mais para cima',
+    },
+  },
+  MOST_UP_LEFT: {
+    id: 'MOST_UP_LEFT',
+    doc: 'Number of UP_LEFT movements',
     icon: 'double-arrow-up',
     title: {
-      pt: 'Noroeste',
       en: 'Northwest',
+      pt: 'Noroeste',
     },
     description: {
-      pt: 'Andou mais para cima e esquerda',
       en: 'Walked more up and left',
+      pt: 'Andou mais para cima e esquerda',
     },
   },
-  [ACHIEVEMENTS.MOST_UP_RIGHT]: {
+  MOST_UP_RIGHT: {
+    id: 'MOST_UP_RIGHT',
+    doc: 'Number of UP_RIGHT movements',
     icon: 'double-arrow-up',
     title: {
-      pt: 'Nordeste',
       en: 'Northeast',
+      pt: 'Nordeste',
     },
     description: {
-      pt: 'Andou mais para cima e direita',
       en: 'Walked more up and right',
-    },
-  },
-  [ACHIEVEMENTS.MOST_DOWN_LEFT]: {
-    icon: 'double-arrow-down',
-    title: {
-      pt: 'Sudoeste',
-      en: 'Southwest',
-    },
-    description: {
-      pt: 'Andou mais para baixo e esquerda',
-      en: 'Walked more down and left',
-    },
-  },
-  [ACHIEVEMENTS.MOST_DOWN_RIGHT]: {
-    icon: 'double-arrow-down',
-    title: {
-      pt: 'Sudeste',
-      en: 'Southeast',
-    },
-    description: {
-      pt: 'Andou mais para baixo e direita',
-      en: 'Walked more down and right',
+      pt: 'Andou mais para cima e direita',
     },
   },
 };

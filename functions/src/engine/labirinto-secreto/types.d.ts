@@ -1,5 +1,5 @@
 import type { TextCard } from '../../types/tdr';
-import type { DIRECTIONS, LABIRINTO_SECRETO_ACHIEVEMENTS, LABIRINTO_SECRETO_ACTIONS } from './constants';
+import type { DIRECTIONS, LABIRINTO_SECRETO_ACTIONS } from './constants';
 
 export type LabirintoSecretoGameOptions = {
   /**
@@ -15,7 +15,7 @@ export type LabirintoSecretoGameOptions = {
    */
   nsfw?: boolean;
   /**
-   * Include private easter eggs trees (like Flávia or Maris)
+   * Include private Easter eggs trees (like Flávia or Maris)
    */
   includePrivateTrees?: boolean;
 };
@@ -101,11 +101,11 @@ export interface MapSegment {
 }
 
 export interface LabirintoSecretoStore extends DefaultStore {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface LabirintoSecretoState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface LabirintoSecretoPlayer extends Player {
@@ -113,8 +113,6 @@ export interface LabirintoSecretoPlayer extends Player {
 }
 
 export type LabirintoSecretoPlayers = Record<UID, LabirintoSecretoPlayer>;
-
-export type LabirintoSecretoAchievement = keyof typeof LABIRINTO_SECRETO_ACHIEVEMENTS;
 
 export interface LabirintoSecretoInitialState extends InitialState {
   store: LabirintoSecretoStore;

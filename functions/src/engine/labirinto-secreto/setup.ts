@@ -17,13 +17,13 @@ import {
   buildForest,
   buildPaths,
   distributeCards,
-  getAchievements,
   getAllCompletePlayerIds,
   getIsPlayerMapComplete,
   getPlayersWhoHaveNotCompletedTheirMaps,
   getRankingAndProcessScoring,
   updateMaps,
 } from './helpers';
+import { getAchievements, increaseAchievement, setupAchievements } from './achievements';
 
 /**
  * Setup phase - initializes game state and resources
@@ -49,24 +49,8 @@ export const prepareSetupPhase = async (
 
   const { gameOrder } = utils.turnOrder.create(players);
 
-  const achievements = utils.achievements.setup(players, {
-    adjectives: 0, // card quantity
-    negatives: 0, // card quantity but negated
-
-    up: 0,
-    down: 0,
-    left: 0,
-    right: 0,
-    up_left: 0,
-    up_right: 0,
-    down_left: 0,
-    down_right: 0,
-
-    distance: 0, // trees walked to total
-    guide: 0, // players got yours
-    guided: 0, // you got guided by players
-  });
-  store.achievements = achievements;
+  const playerIds = utils.players.getListOfPlayers(players).map((player) => player.id);
+  store.achievements = setupAchievements(playerIds);
 
   utils.players.addPropertiesToPlayers(players, { mulliganAvailable: true });
 
@@ -267,14 +251,14 @@ export const prepareGameOverPhase = async (
   utils.players.getListOfPlayers(players).forEach((player) => {
     player.map.forEach((segment: MapSegment) => {
       const clueCount = segment.clues.length;
-      utils.achievements.increase(store, player.id, 'adjectives', clueCount);
+      increaseAchievement(store.achievements, player.id, 'adjectives', clueCount);
       // Negatives
       const negatives = segment.clues.filter((clue) => clue.negate).length;
-      utils.achievements.increase(store, player.id, 'negatives', negatives);
+      increaseAchievement(store.achievements, player.id, 'negatives', negatives);
     });
   });
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements, undefined, players);
 
   await utils.firestore.markGameAsComplete(gameId);
 
