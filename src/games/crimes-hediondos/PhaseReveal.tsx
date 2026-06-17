@@ -13,7 +13,7 @@ import { StepSwitcher } from 'components/steps/StepSwitcher';
 import { Instruction } from 'components/text/Instruction';
 // Internal
 import type { PhaseRevealState } from './utils/types';
-import { useGameTypes } from './utils/useGameTypes';
+import { useGameTypes } from './utils/hooks';
 import { CRIMES_HEDIONDOS_PHASES } from './utils/constants';
 import { ScoringMessage } from './components/RulesBlobs';
 import { StepReveal } from './StepReveal';

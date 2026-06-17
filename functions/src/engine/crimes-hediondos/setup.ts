@@ -12,7 +12,6 @@ import {
   buildScenes,
   cleanupItemsLikelihood,
   dealItemGroups,
-  getAchievements,
   groupItems,
   mockCrimeForBots,
   mockGuessingForBots,
@@ -21,6 +20,7 @@ import {
   updateCrime,
   updateOrCreateGuessHistory,
 } from './helpers';
+import { setupAchievements, getAchievements } from './achievements';
 
 /**
  * Setup phase - initializes game state and resources
@@ -40,19 +40,7 @@ export const prepareSetupPhase = async (
     resourceData.allScenes,
   );
 
-  const achievements = utils.achievements.setup(players, {
-    wrongGroups: 0,
-    wrong: 0,
-    one: 0,
-    two: 0,
-    three: 0,
-    four: 0,
-    correct: [],
-    weapons: [],
-    evidence: [],
-    victims: [],
-    locations: [],
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Cleanup unused scene tiles from items likelihood object
   const sceneTilesIds = [
@@ -324,7 +312,7 @@ export const prepareGameOverPhase = async (
     Object.keys(winningPlayers).length > 0 ? winningPlayers : players,
   );
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

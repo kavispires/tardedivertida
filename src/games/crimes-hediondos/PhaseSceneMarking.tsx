@@ -18,7 +18,7 @@ import { TextHighlight } from 'components/text/TextHighlight';
 import { useOnSubmitMarkAPIRequest } from './utils/api-requests';
 import { mockSceneMark } from './utils/mock';
 import type { PhaseSceneMarkingState } from './utils/types';
-import { useGameTypes } from './utils/useGameTypes';
+import { useGameTypes } from './utils/hooks';
 import { CRIMES_HEDIONDOS_PHASES } from './utils/constants';
 import { StepNewScene } from './StepNewScene';
 

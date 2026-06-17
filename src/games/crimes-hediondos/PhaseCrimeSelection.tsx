@@ -23,7 +23,7 @@ import { Instruction } from 'components/text/Instruction';
 import type { PhaseCrimeSelectionState, SubmitCrimePayload } from './utils/types';
 import { useOnSubmitCrimeAPIRequest } from './utils/api-requests';
 import { mockCrime } from './utils/mock';
-import { useGameTypes } from './utils/useGameTypes';
+import { useGameTypes } from './utils/hooks';
 import { CRIMES_HEDIONDOS_PHASES } from './utils/constants';
 import { WelcomeMessage } from './components/RulesBlobs';
 import { SelectedItems } from './components/SelectedItems';

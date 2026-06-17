@@ -1,5 +1,5 @@
 import type { CrimeSceneTile, CrimesHediondosCard } from '../../types/tdr';
-import type { CRIMES_HEDIONDOS_ACHIEVEMENTS, CRIMES_HEDIONDOS_ACTIONS } from './constants';
+import type { CRIMES_HEDIONDOS_ACTIONS } from './constants';
 
 export type CrimesHediondosOptions = {
   /**
@@ -19,8 +19,6 @@ export type CrimesHediondosOptions = {
    */
   withVictims?: boolean;
 };
-
-export type CrimesHediondosAchievement = keyof typeof CRIMES_HEDIONDOS_ACHIEVEMENTS;
 
 export interface Crime {
   playerId: UID;

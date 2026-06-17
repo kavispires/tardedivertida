@@ -10,7 +10,7 @@ import { Achievements } from 'components/general/Achievements';
 // Internal
 import type { Crime, PhaseGameOverState } from './utils/types';
 import achievementsReference from './utils/achievements';
-import { useGameTypes } from './utils/useGameTypes';
+import { useGameTypes } from './utils/hooks';
 import { CrimeSummary } from './components/CrimeSummary';
 
 export function PhaseGameOver({ state, players, user }: PhaseProps<PhaseGameOverState>) {

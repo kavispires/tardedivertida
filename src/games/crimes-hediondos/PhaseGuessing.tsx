@@ -12,7 +12,7 @@ import { StepSwitcher } from 'components/steps/StepSwitcher';
 // Internal
 import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
 import type { PhaseGuessingState } from './utils/types';
-import { useGameTypes } from './utils/useGameTypes';
+import { useGameTypes } from './utils/hooks';
 import { CRIMES_HEDIONDOS_PHASES } from './utils/constants';
 import { GuessMessage } from './components/RulesBlobs';
 import { StepGuessing } from './StepGuessing';

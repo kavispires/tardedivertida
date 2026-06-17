@@ -1,116 +1,200 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-export const ACHIEVEMENTS = {
-  MOST_WRONG_GROUPS: 'MOST_WRONG_GROUPS',
-  MOST_WRONG_GUESSES: 'MOST_WRONG_GUESSES',
-  MOST_HALF_GUESSES: 'MOST_HALF_GUESSES',
-  EARLIEST_CORRECT_GUESS: 'EARLIEST_CORRECT_GUESS',
-  LATEST_CORRECT_GUESS: 'LATEST_CORRECT_GUESS',
-  MOST_SELECTED_WEAPONS: 'MOST_SELECTED_WEAPONS',
-  FEWEST_SELECTED_WEAPONS: 'FEWEST_SELECTED_WEAPONS',
-  MOST_SELECTED_EVIDENCE: 'MOST_SELECTED_EVIDENCE',
-  FEWEST_SELECTED_EVIDENCE: 'FEWEST_SELECTED_EVIDENCE',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.MOST_WRONG_GROUPS]: {
-    icon: 'block',
-    title: {
-      pt: 'Mais Insistente',
-      en: 'Most Persistent',
-    },
-    description: {
-      pt: 'Escolheu o grupo/quadrante errado mais vezes',
-      en: 'Chose the wrong group the most',
-    },
-  },
-  [ACHIEVEMENTS.MOST_WRONG_GUESSES]: {
-    icon: 'loupe',
-    title: {
-      pt: 'Melhor Examinador',
-      en: 'Best Examiner',
-    },
-    description: {
-      pt: 'Tentou o maior número de cards',
-      en: 'Tried the largest number of cards',
-    },
-  },
-  [ACHIEVEMENTS.MOST_HALF_GUESSES]: {
-    icon: 'one',
-    title: {
-      pt: 'Acertador de Meio Termo',
-      en: 'Half Guesser',
-    },
-    description: {
-      pt: 'Acertou apenas um do par mais vezes',
-      en: 'Got only one card of the pairs the most',
-    },
-  },
-  [ACHIEVEMENTS.EARLIEST_CORRECT_GUESS]: {
+  EARLIEST_CORRECT_GUESS: {
+    id: 'EARLIEST_CORRECT_GUESS',
+    doc: 'Completely correct guesses per round',
     icon: 'hare',
     title: {
-      pt: 'Mais Rápido',
       en: 'Fastest',
+      pt: 'Mais Rápido',
     },
     description: {
-      pt: 'Acertou um crime primeiro',
       en: 'Guessed a crime correctly first',
+      pt: 'Acertou um crime primeiro',
     },
   },
-  [ACHIEVEMENTS.LATEST_CORRECT_GUESS]: {
+  LATEST_CORRECT_GUESS: {
+    id: 'LATEST_CORRECT_GUESS',
+    doc: 'Completely correct guesses per round',
     icon: 'snail',
     title: {
-      pt: 'Mais Analítico',
       en: 'Most Analytical',
+      pt: 'Mais Analítico',
     },
     description: {
-      pt: 'Foi o que mais demorou para acertar um crime',
       en: 'Took the longest to guess a crime',
+      pt: 'Foi o que mais demorou para acertar um crime',
     },
   },
-  [ACHIEVEMENTS.MOST_SELECTED_WEAPONS]: {
-    icon: 'bullet',
-    title: {
-      pt: 'Especialista em Armas',
-      en: 'Weapon Specialist',
-    },
-    description: {
-      pt: 'Usou mais armas que os outros jogadores',
-      en: 'Used more weapons than any other player',
-    },
-  },
-  [ACHIEVEMENTS.FEWEST_SELECTED_WEAPONS]: {
-    icon: 'heart',
-    title: {
-      pt: 'Pacifista',
-      en: 'Pacifist',
-    },
-    description: {
-      pt: 'Usou menos armas que os outros jogadores',
-      en: 'Used fewer weapons than any other player',
-    },
-  },
-  [ACHIEVEMENTS.MOST_SELECTED_EVIDENCE]: {
-    icon: 'puzzle',
-    title: {
-      pt: 'Colecionador',
-      en: 'Hoarder',
-    },
-    description: {
-      pt: 'Usou mais objetos/evidências que os outros jogadores',
-      en: 'Used more objects/evidence than any other player',
-    },
-  },
-  [ACHIEVEMENTS.FEWEST_SELECTED_EVIDENCE]: {
+  FEWEST_SELECTED_EVIDENCE: {
+    id: 'FEWEST_SELECTED_EVIDENCE',
+    doc: 'Evidence selected across rounds',
     icon: 'box',
     title: {
-      pt: 'Minimalista',
       en: 'Minimalist',
+      pt: 'Minimalista',
     },
     description: {
-      pt: 'Usou menos objetos/evidências que os outros jogadores',
-      en: 'Used fewer objects/evidence than any other player',
+      en: 'Investigated fewer objects/evidence than any other player',
+      pt: 'Investigou menos objetos/evidências que os outros jogadores',
+    },
+  },
+  MOST_SELECTED_EVIDENCE: {
+    id: 'MOST_SELECTED_EVIDENCE',
+    doc: 'Evidence selected across rounds',
+    icon: 'puzzle',
+    title: {
+      en: 'Hoarder',
+      pt: 'Colecionador',
+    },
+    description: {
+      en: 'Investigated more objects/evidence than any other player',
+      pt: 'Investigou mais objetos/evidências que os outros jogadores',
+    },
+  },
+  FEWEST_SELECTED_LOCATIONS: {
+    id: 'FEWEST_SELECTED_LOCATIONS',
+    doc: 'Locations selected across rounds',
+    icon: 'house',
+    title: {
+      en: 'Homebody',
+      pt: 'Caseiro',
+    },
+    description: {
+      en: 'Investigated fewer locations than any other player',
+      pt: 'Investigou menos locais que os outros jogadores',
+    },
+  },
+  MOST_SELECTED_LOCATIONS: {
+    id: 'MOST_SELECTED_LOCATIONS',
+    doc: 'Locations selected across rounds',
+    icon: 'earth',
+    title: {
+      en: 'Globetrotter',
+      pt: 'Turista',
+    },
+    description: {
+      en: 'Investigated more locations than any other player',
+      pt: 'Investigou mais locais que os outros jogadores',
+    },
+  },
+  MOST_ONE_GUESSES: {
+    id: 'MOST_ONE_GUESSES',
+    doc: 'One correct item guesses',
+    icon: 'one',
+    title: {
+      en: 'Baby Steps',
+      pt: 'No Caminho',
+    },
+    description: {
+      en: 'Had the most guesses with exactly one correct item',
+      pt: 'Teve mais palpites com exatamente um item correto',
+    },
+  },
+  MOST_THREE_GUESSES: {
+    id: 'MOST_THREE_GUESSES',
+    doc: 'Three correct items guesses',
+    icon: 'three',
+    title: {
+      en: 'Almost Perfect',
+      pt: 'Na Trave',
+    },
+    description: {
+      en: 'Had the most guesses with exactly three correct items',
+      pt: 'Teve mais palpites com exatamente três itens corretos',
+    },
+  },
+  MOST_TWO_GUESSES: {
+    id: 'MOST_TWO_GUESSES',
+    doc: 'Two correct items guesses',
+    icon: 'two',
+    title: {
+      en: 'Perfectly Balanced',
+      pt: 'Meio Caminho',
+    },
+    description: {
+      en: 'Had the most guesses with exactly two correct items',
+      pt: 'Teve mais palpites com exatamente dois itens corretos',
+    },
+  },
+  FEWEST_SELECTED_VICTIMS: {
+    id: 'FEWEST_SELECTED_VICTIMS',
+    doc: 'Victims selected across rounds',
+    icon: 'person',
+    title: {
+      en: 'Merciful Detective',
+      pt: 'Investigador Seletivo',
+    },
+    description: {
+      en: 'Investigated fewer victims than any other player',
+      pt: 'Investigou menos vítimas que os outros jogadores',
+    },
+  },
+  MOST_SELECTED_VICTIMS: {
+    id: 'MOST_SELECTED_VICTIMS',
+    doc: 'Victims selected across rounds',
+    icon: 'skull',
+    title: {
+      en: 'Crowd Pleaser',
+      pt: 'Popular',
+    },
+    description: {
+      en: 'Investigated more victims than any other player',
+      pt: 'Investigou mais vítimas que os outros jogadores',
+    },
+  },
+  FEWEST_SELECTED_WEAPONS: {
+    id: 'FEWEST_SELECTED_WEAPONS',
+    doc: 'Weapons selected across rounds',
+    icon: 'heart',
+    title: {
+      en: 'Pacifist',
+      pt: 'Pacifista',
+    },
+    description: {
+      en: 'Investigated fewer weapons than any other player',
+      pt: 'Investigou menos armas que os outros jogadores',
+    },
+  },
+  MOST_SELECTED_WEAPONS: {
+    id: 'MOST_SELECTED_WEAPONS',
+    doc: 'Weapons selected across rounds',
+    icon: 'bullet',
+    title: {
+      en: 'Weapon Specialist',
+      pt: 'Especialista em Armas',
+    },
+    description: {
+      en: 'Investigated more weapons than any other player',
+      pt: 'Investigou mais armas que os outros jogadores',
+    },
+  },
+  MOST_WRONG_GUESSES: {
+    id: 'MOST_WRONG_GUESSES',
+    doc: 'Completely wrong guesses',
+    icon: 'loupe',
+    title: {
+      en: 'Best Examiner',
+      pt: 'Melhor Examinador',
+    },
+    description: {
+      en: 'Investigated the largest number of cards',
+      pt: 'Investigou o maior número de cartas',
+    },
+  },
+  MOST_WRONG_GROUPS: {
+    id: 'MOST_WRONG_GROUPS',
+    doc: 'Wrong group guesses',
+    icon: 'block',
+    title: {
+      en: 'Most Persistent',
+      pt: 'Mais Insistente',
+    },
+    description: {
+      en: 'Chose the wrong group the most',
+      pt: 'Escolheu o grupo/quadrante errado mais vezes',
     },
   },
 };

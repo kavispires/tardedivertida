@@ -1,6 +1,5 @@
 // Constants
 import {
-  CRIMES_HEDIONDOS_ACHIEVEMENTS,
   CRIMES_HEDIONDOS_PHASES,
   GUESS_STATUS,
   ITEMS_GROUP_COUNT,
@@ -11,7 +10,6 @@ import {
 // Types
 import type {
   Crime,
-  CrimesHediondosAchievement,
   FirebaseStoreData,
   GroupedItems,
   Guess,
@@ -25,6 +23,7 @@ import type { CrimeSceneTile, CrimesHediondosCard } from '../../types/tdr';
 import { orderBy, sampleSize, shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
+import { increaseAchievement, insertAchievement, pushAchievement } from './achievements';
 
 /**
  * Determines the next phase based on the current phase and round
@@ -326,7 +325,7 @@ export const updateOrCreateGuessHistory = (
         if (status === GUESS_STATUS.CORRECT) {
           player.correctCrimes += 1;
           // Achievements: Correct
-          utils.achievements.insert(store, player.id, 'correct', true, currentRound);
+          insertAchievement(store.achievements, player.id, 'correct', true, currentRound);
         }
 
         if (wrongGroups[crime.playerId] === undefined) {
@@ -336,7 +335,7 @@ export const updateOrCreateGuessHistory = (
         if (status === GUESS_STATUS.WRONG_GROUP) {
           wrongGroups[crime.playerId].push(currentGroupIndex);
           // Achievements: wrongGroups
-          utils.achievements.increase(store, player.id, 'wrongGroups', 1);
+          increaseAchievement(store.achievements, player.id, 'wrongGroups', 1);
         }
 
         // If player knows the group, eliminate all other groups
@@ -381,13 +380,13 @@ export const updateOrCreateGuessHistory = (
 
         if (status !== GUESS_STATUS.LOCKED) {
           // Achievements: Wrong
-          utils.achievements.push(store, player.id, 'weapons', guess.weaponId);
-          utils.achievements.push(store, player.id, 'evidence', guess.evidenceId);
+          pushAchievement(store.achievements, player.id, 'weapons', guess.weaponId);
+          pushAchievement(store.achievements, player.id, 'evidence', guess.evidenceId);
           if (guess.victimId) {
-            utils.achievements.push(store, player.id, 'victims', guess.victimId);
+            pushAchievement(store.achievements, player.id, 'victims', guess.victimId);
           }
           if (guess.locationId) {
-            utils.achievements.push(store, player.id, 'locations', guess.locationId);
+            pushAchievement(store.achievements, player.id, 'locations', guess.locationId);
           }
         }
 
@@ -779,128 +778,4 @@ const botSmartSceneMarking = (
   );
 
   return getTheMostLikelySceneValue(scene.id, prioritizedCards);
-};
-
-/**
- * Calculates and returns player achievements based on game statistics
- * @param store - The Firebase store data containing achievement counters
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<CrimesHediondosAchievement>[] = [];
-
-  // Most Wrong groups
-  const { most: wrongGroups } = utils.achievements.getMostAndLeastOf(store, 'wrongGroups');
-  if (wrongGroups) {
-    achievements.push({
-      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.MOST_WRONG_GROUPS,
-      playerId: wrongGroups.playerId,
-      value: wrongGroups.value,
-    });
-  }
-
-  // Most Wrong Guesses
-  const { most: wrong } = utils.achievements.getMostAndLeastOf(store, 'wrong');
-  if (wrong) {
-    achievements.push({
-      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.MOST_WRONG_GUESSES,
-      playerId: wrong.playerId,
-      value: wrong.value,
-    });
-  }
-
-  // Most one guesses
-  const { most: one } = utils.achievements.getMostAndLeastOf(store, 'one');
-  if (one) {
-    achievements.push({
-      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.MOST_ONE_GUESSES,
-      playerId: one.playerId,
-      value: one.value,
-    });
-  }
-
-  // Most two guesses
-  const { most: two } = utils.achievements.getMostAndLeastOf(store, 'two');
-  if (two) {
-    achievements.push({
-      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.MOST_TWO_GUESSES,
-      playerId: two.playerId,
-      value: two.value,
-    });
-  }
-
-  // Most three guesses
-  const { most: three } = utils.achievements.getMostAndLeastOf(store, 'three');
-  if (three) {
-    achievements.push({
-      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.MOST_THREE_GUESSES,
-      playerId: three.playerId,
-      value: three.value,
-    });
-  }
-
-  // Earliest Correct Guess
-  const { most: latestOccurrence, least: earliestOccurrence } =
-    utils.achievements.getEarliestAndLatestOccurrence(store, 'correct');
-  if (earliestOccurrence) {
-    achievements.push({
-      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.EARLIEST_CORRECT_GUESS,
-      playerId: earliestOccurrence.playerId,
-      value: earliestOccurrence.value,
-    });
-  }
-
-  // Latest Correct Guess
-  if (latestOccurrence) {
-    achievements.push({
-      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.LATEST_CORRECT_GUESS,
-      playerId: latestOccurrence.playerId,
-      value: latestOccurrence.value,
-    });
-  }
-
-  // Most Selected Weapons
-  const { most: mostWeapons, least: leastWeapons } = utils.achievements.getMostAndLeastUniqueItemsOf(
-    store,
-    'weapons',
-  );
-  if (mostWeapons) {
-    achievements.push({
-      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.MOST_SELECTED_WEAPONS,
-      playerId: mostWeapons.playerId,
-      value: mostWeapons.value,
-    });
-  }
-
-  // Fewest Selected Weapons
-  if (leastWeapons) {
-    achievements.push({
-      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.FEWEST_SELECTED_WEAPONS,
-      playerId: leastWeapons.playerId,
-      value: leastWeapons.value,
-    });
-  }
-
-  // Most Selected Evidence
-  const { most: mostEvidence, least: leastEvidence } = utils.achievements.getMostAndLeastUniqueItemsOf(
-    store,
-    'evidence',
-  );
-  if (mostEvidence) {
-    achievements.push({
-      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.MOST_SELECTED_EVIDENCE,
-      playerId: mostEvidence.playerId,
-      value: mostEvidence.value,
-    });
-  }
-
-  // Fewest Selected Evidence
-  if (leastEvidence) {
-    achievements.push({
-      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.FEWEST_SELECTED_EVIDENCE,
-      playerId: leastEvidence.playerId,
-      value: leastEvidence.value,
-    });
-  }
-
-  return achievements;
 };
