@@ -13,7 +13,8 @@ import type { BoardEntry, FirebaseStateData, FirebaseStoreData, PastClues, Resou
 // Utils
 import utils from '../../utils';
 // Internal
-import { buildRanking, getAchievements } from './helpers';
+import { buildRanking } from './helpers';
+import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
 import { saveData } from './data';
 import type { TextCard } from '../../types/tdr';
 
@@ -30,13 +31,7 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = utils.achievements.setup(players, {
-    guessed: 0,
-    soloGuessed: 0,
-    soloGuess: 0,
-    finalItems: 0,
-    wordLength: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   const playerCount = utils.players.getPlayerCount(players);
 
@@ -209,7 +204,7 @@ export const prepareGuessingPhase = async (
     player.assignedPairs.forEach((pair, index) => {
       pair.clue = player.clues?.[index] || 'ERROR';
       // Achievement: Word length
-      utils.achievements.increase(store, player.id, 'wordLength', pair.clue.length);
+      increaseAchievement(store.achievements, player.id, 'wordLength', pair.clue.length);
       pair.ids.forEach((id: string) => {
         const cardId = board.find((entry) => entry.id === id)?.cardId || 'ERROR';
         playerClues[cardId] = playerClues[cardId] || [];
@@ -299,7 +294,7 @@ export const prepareGameOverPhase = async (
   const win = happiness.total >= happiness.goal;
   const winners = win ? utils.players.getListOfPlayers(players) : utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

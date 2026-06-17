@@ -1,5 +1,5 @@
 import type { TextCard } from '../../types/tdr';
-import type { COLEGAS_DE_QUARTO_ACHIEVEMENTS, COLEGAS_DE_QUARTO_ACTIONS } from './constants';
+import type { COLEGAS_DE_QUARTO_ACTIONS } from './constants';
 
 export type ColegasDeQuartoOptions = {
   /**
@@ -49,8 +49,6 @@ export type HouseHappiness = {
 };
 
 export type PastClues = Dictionary<string[]>;
-
-export type ColegasDeQuartoAchievement = keyof typeof COLEGAS_DE_QUARTO_ACHIEVEMENTS;
 
 export interface ColegasDeQuartoStore extends DefaultStore<ColegasDeQuartoOptions> {
   deck: TextCard[];

@@ -1,104 +1,109 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-const ACHIEVEMENTS = {
-  BEST_CLUES: 'BEST_CLUES', // most guessed by others
-  WORST_CLUES: 'WORST_CLUES',
-  SOLO_GUESSER: 'SOLO_GUESSER',
-  SOLO_GUESSED: 'SOLO_GUESSED',
-  MOST_FINAL_ITEMS: 'MOST_FINAL_ITEMS',
-  FEWEST_FINAL_ITEMS: 'FEWEST_FINAL_ITEMS',
-  SHORTEST_WORDS: 'SHORTEST_WORDS',
-  LONGEST_WORDS: 'LONGEST_WORDS',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.BEST_CLUES]: {
-    icon: 'trophy',
-    title: {
-      pt: 'Mais Direto ao Ponto',
-      en: 'Right on Target',
-    },
-    description: {
-      pt: 'Deu as melhores pistas que todos adivinharam',
-      en: 'Gave the best clues that everyone guessed',
-    },
-  },
-  [ACHIEVEMENTS.WORST_CLUES]: {
-    icon: 'thought',
-    title: {
-      pt: 'Pensador Abstrato',
-      en: 'Abstract Thinker',
-    },
-    description: {
-      pt: 'Suas pistas eram tão únicas que ninguém conseguiu adivinhar',
-      en: 'Your clues were so unique that no one could guess them',
-    },
-  },
-  [ACHIEVEMENTS.SOLO_GUESSER]: {
-    icon: 'loupe',
-    title: {
-      pt: 'Investigador Solitário',
-      en: 'Lone Investigator',
-    },
-    description: {
-      pt: 'Foi o único a adivinhar a pista com o par mais vezes',
-      en: 'Was the only one to guess the clue with the pair the most times',
-    },
-  },
-  [ACHIEVEMENTS.SOLO_GUESSED]: {
-    icon: 'target',
-    title: {
-      pt: 'Alvo Exclusivo',
-      en: 'Exclusive Target',
-    },
-    description: {
-      pt: 'Suas pistas foram adivinhadas por apenas uma pessoa mais vezes',
-      en: 'Your clues were guessed by only one person the most times',
-    },
-  },
-  [ACHIEVEMENTS.MOST_FINAL_ITEMS]: {
-    icon: 'box',
-    title: {
-      pt: 'Colecionador Compulsivo',
-      en: 'Compulsive Collector',
-    },
-    description: {
-      pt: 'Acertou o item final a ser comprado mais vezes',
-      en: 'Got the final item to be purchased right the most times',
-    },
-  },
-  [ACHIEVEMENTS.FEWEST_FINAL_ITEMS]: {
+  FEWEST_FINAL_ITEMS: {
+    id: 'FEWEST_FINAL_ITEMS',
+    doc: 'Number of items remaining at the end of the game',
     icon: 'empty-box',
     title: {
-      pt: 'Minimalista',
       en: 'Minimalist',
+      pt: 'Minimalista',
     },
     description: {
-      pt: 'Acertou o item a ser comprado menos vezes',
       en: 'Guessed the item to be purchased the fewest times',
+      pt: 'Acertou o item a ser comprado menos vezes',
     },
   },
-  [ACHIEVEMENTS.SHORTEST_WORDS]: {
-    icon: 'speedometer',
+  MOST_FINAL_ITEMS: {
+    id: 'MOST_FINAL_ITEMS',
+    doc: 'Number of items remaining at the end of the game',
+    icon: 'box',
     title: {
-      pt: 'Mestre da Brevidade',
-      en: 'Master of Brevity',
+      en: 'Compulsive Collector',
+      pt: 'Colecionador Compulsivo',
     },
     description: {
-      pt: 'Usou as palavras mais curtas como pistas',
-      en: 'Used the shortest words as clues',
+      en: 'Got the final item to be purchased right the most times',
+      pt: 'Acertou o item final a ser comprado mais vezes',
     },
   },
-  [ACHIEVEMENTS.LONGEST_WORDS]: {
+  BEST_CLUES: {
+    id: 'BEST_CLUES',
+    doc: 'Number of clues guessed by other players',
+    icon: 'trophy',
+    title: {
+      en: 'Right on Target',
+      pt: 'Mais Direto ao Ponto',
+    },
+    description: {
+      en: 'Gave the best clues that everyone guessed',
+      pt: 'Deu as melhores pistas que todos adivinharam',
+    },
+  },
+  WORST_CLUES: {
+    id: 'WORST_CLUES',
+    doc: 'Number of clues guessed by other players',
+    icon: 'thought',
+    title: {
+      en: 'Abstract Thinker',
+      pt: 'Pensador Abstrato',
+    },
+    description: {
+      en: 'Your clues were so unique that no one could guess them',
+      pt: 'Suas pistas eram tão únicas que ninguém conseguiu adivinhar',
+    },
+  },
+  SOLO_GUESSER: {
+    id: 'SOLO_GUESSER',
+    doc: 'Times being the only one to guess a clue correctly',
+    icon: 'loupe',
+    title: {
+      en: 'Lone Investigator',
+      pt: 'Investigador Solitário',
+    },
+    description: {
+      en: 'Was the only one to guess the clue with the pair the most times',
+      pt: 'Foi o único a adivinhar a pista com o par mais vezes',
+    },
+  },
+  SOLO_GUESSED: {
+    id: 'SOLO_GUESSED',
+    doc: 'Times having a clue guessed by only one player',
+    icon: 'target',
+    title: {
+      en: 'Exclusive Target',
+      pt: 'Alvo Exclusivo',
+    },
+    description: {
+      en: 'Your clues were guessed by only one person the most times',
+      pt: 'Suas pistas foram adivinhadas por apenas uma pessoa mais vezes',
+    },
+  },
+  LONGEST_WORDS: {
+    id: 'LONGEST_WORDS',
+    doc: 'Total length of all clue words',
     icon: 'pencil',
     title: {
-      pt: 'Escritor Verboso',
       en: 'Verbose Writer',
+      pt: 'Escritor Verboso',
     },
     description: {
-      pt: 'Usou as palavras mais longas como pistas',
       en: 'Used the longest words as clues',
+      pt: 'Usou as palavras mais longas como pistas',
+    },
+  },
+  SHORTEST_WORDS: {
+    id: 'SHORTEST_WORDS',
+    doc: 'Total length of all clue words',
+    icon: 'speedometer',
+    title: {
+      en: 'Master of Brevity',
+      pt: 'Mestre da Brevidade',
+    },
+    description: {
+      en: 'Used the shortest words as clues',
+      pt: 'Usou as palavras mais curtas como pistas',
     },
   },
 };
