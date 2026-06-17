@@ -6,12 +6,12 @@ import { sampleSize } from 'lodash';
 import type { Deck, FirebaseStateData, FirebaseStoreData, GridCell, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
+import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
 // Internal
 import {
   buildGrid,
   buildRanking,
   distributeCoordinates,
-  getAchievements,
   getPlayerClues,
   updateGridWithPlayersClues,
   updatePastClues,
@@ -31,14 +31,7 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = utils.achievements.setup(players, {
-    clues: 0,
-    badClues: 0,
-    guesses: 0,
-    chooseForMe: 0,
-    wordLength: 0,
-    savior: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   utils.players.addPropertiesToPlayers(players, { coordinates: [] });
 
@@ -203,7 +196,7 @@ export const prepareGuessingPhase = async (
   const clues = getPlayerClues(players);
   // Achievement: wordLength
   clues.forEach((clue) => {
-    utils.achievements.increase(store, clue.playerId, 'wordLength', clue.clue.length);
+    increaseAchievement(store.achievements, clue.playerId, 'wordLength', clue.clue.length);
   });
 
   const playersClues = clues.map((entry) => entry.clue);
@@ -274,7 +267,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

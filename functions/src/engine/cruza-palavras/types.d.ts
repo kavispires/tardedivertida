@@ -1,5 +1,5 @@
 import type { TextCard } from '../../types/tdr';
-import type { CRUZA_PALAVRAS_ACHIEVEMENTS, CRUZA_PALAVRAS_ACTIONS } from './constants';
+import type { CRUZA_PALAVRAS_ACTIONS } from './constants';
 
 export type CruzaPalavrasOptions = {
   /**
@@ -46,15 +46,13 @@ export type GridCell = {
   playerId?: string | null;
 };
 
-export type CruzaPalavrasAchievement = keyof typeof CRUZA_PALAVRAS_ACHIEVEMENTS;
-
 export interface CruzaPalavrasStore extends DefaultStore<CruzaPalavrasOptions> {
   deck: Deck;
   pastClues: PastClues;
 }
 
 export interface CruzaPalavrasState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface CruzaPalavrasInitialState extends InitialState {

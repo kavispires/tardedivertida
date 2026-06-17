@@ -1,105 +1,109 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-const ACHIEVEMENTS = {
-  BEST_CLUES: 'BEST_CLUES',
-  WORST_CLUES: 'WORST_CLUES',
-  BEST_GUESSER: 'BEST_GUESSER',
-  WORST_GUESSER: 'WORST_GUESSER',
-  CHOOSE_FOR_ME: 'CHOOSE_FOR_ME',
-  SHORTEST_WORDS: 'SHORTEST_WORDS',
-  LONGEST_WORDS: 'LONGEST_WORDS',
-  SAVIOR: 'SAVIOR',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.BEST_CLUES]: {
-    icon: 'intersection',
-    title: {
-      pt: 'Melhor Cruzador',
-      en: 'Best Mixer',
-    },
-    description: {
-      pt: 'Jogadores acertaram suas dicas mais vezes',
-      en: 'Players got their clues correctly the most',
-    },
-  },
-  [ACHIEVEMENTS.WORST_CLUES]: {
+  WORST_CLUES: {
+    id: 'WORST_CLUES',
+    doc: 'Clues that resulted in negative points',
     icon: 'moon',
     title: {
-      pt: 'Mais obscuro',
       en: 'Most obscure',
+      pt: 'Mais obscuro',
     },
     description: {
-      pt: 'Jogadores erraram suas dicas mais vezes',
       en: 'Players got their clues wrong the most',
+      pt: 'Jogadores erraram suas dicas mais vezes',
     },
   },
-  [ACHIEVEMENTS.BEST_GUESSER]: {
-    icon: 'check-mark',
-    title: {
-      pt: 'Melhor Adivinhador',
-      en: 'Best Guesser',
-    },
-    description: {
-      pt: 'Acertou as dicas mais vezes',
-      en: 'Got clues right the most',
-    },
-  },
-  [ACHIEVEMENTS.WORST_GUESSER]: {
-    icon: 'x',
-    title: {
-      pt: 'Adivinhador Mais Confuso',
-      en: 'Most Confused Guesser',
-    },
-    description: {
-      pt: 'Errou as dicas mais vezes',
-      en: 'Got clues wrong the most',
-    },
-  },
-  [ACHIEVEMENTS.LONGEST_WORDS]: {
-    icon: 'dialog',
-    title: {
-      pt: 'Mais Falador',
-      en: 'Best Speaker',
-    },
-    description: {
-      pt: 'Usou as dicas mais longas',
-      en: 'Used the longest words',
-    },
-  },
-  [ACHIEVEMENTS.SHORTEST_WORDS]: {
-    icon: 'minus',
-    title: {
-      pt: 'Mais Quieto',
-      en: 'Quieter',
-    },
-    description: {
-      pt: 'Usou as dicas mais curtas',
-      en: 'Used the shortest words',
-    },
-  },
-  [ACHIEVEMENTS.SAVIOR]: {
-    icon: 'heart',
-    title: {
-      pt: 'O Salvador',
-      en: 'The Savior',
-    },
-    description: {
-      pt: 'Foi o único a acertar a dica de alguém mais vezes, impedindo eles de perderem pontos',
-      en: 'Guessed a clue by themselves the most preventing a player to lose points',
-    },
-  },
-
-  [ACHIEVEMENTS.CHOOSE_FOR_ME]: {
+  CHOOSE_FOR_ME: {
+    id: 'CHOOSE_FOR_ME',
+    doc: 'Times using auto-fill feature',
     icon: 'dice',
     title: {
-      pt: 'Menos Brasileiro',
       en: 'The Shirker',
+      pt: 'Menos Brasileiro',
     },
     description: {
+      en: 'Pressed ',
       pt: 'Apertou o botão Chutar Restantes mais vezes',
-      en: "Pressed 'Guess for me' the most",
+    },
+  },
+  BEST_CLUES: {
+    id: 'BEST_CLUES',
+    doc: 'Clues that players guessed correctly',
+    icon: 'intersection',
+    title: {
+      en: 'Best Mixer',
+      pt: 'Melhor Cruzador',
+    },
+    description: {
+      en: 'Players got their clues correctly the most',
+      pt: 'Jogadores acertaram suas dicas mais vezes',
+    },
+  },
+  BEST_GUESSER: {
+    id: 'BEST_GUESSER',
+    doc: 'Correct guesses made',
+    icon: 'check-mark',
+    title: {
+      en: 'Best Guesser',
+      pt: 'Melhor Adivinhador',
+    },
+    description: {
+      en: 'Got clues right the most',
+      pt: 'Acertou as dicas mais vezes',
+    },
+  },
+  WORST_GUESSER: {
+    id: 'WORST_GUESSER',
+    doc: 'Correct guesses made',
+    icon: 'x',
+    title: {
+      en: 'Most Confused Guesser',
+      pt: 'Adivinhador Mais Confuso',
+    },
+    description: {
+      en: 'Got clues wrong the most',
+      pt: 'Errou as dicas mais vezes',
+    },
+  },
+  SAVIOR: {
+    id: 'SAVIOR',
+    doc: 'Only player guessing someone elses clue correctly preventing them to lose points',
+    icon: 'heart',
+    title: {
+      en: 'The Savior',
+      pt: 'O Salvador',
+    },
+    description: {
+      en: 'Guessed a clue by themselves the most preventing a player to lose points',
+      pt: 'Foi o único a acertar a dica de alguém mais vezes, impedindo eles de perderem pontos',
+    },
+  },
+  LONGEST_WORDS: {
+    id: 'LONGEST_WORDS',
+    doc: 'Total length of clue words',
+    icon: 'dialog',
+    title: {
+      en: 'Best Speaker',
+      pt: 'Mais Falador',
+    },
+    description: {
+      en: 'Used the longest words',
+      pt: 'Usou as dicas mais longas',
+    },
+  },
+  SHORTEST_WORDS: {
+    id: 'SHORTEST_WORDS',
+    doc: 'Total length of clue words',
+    icon: 'minus',
+    title: {
+      en: 'Quieter',
+      pt: 'Mais Quieto',
+    },
+    description: {
+      en: 'Used the shortest words',
+      pt: 'Usou as dicas mais curtas',
     },
   },
 };
