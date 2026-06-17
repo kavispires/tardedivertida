@@ -1,116 +1,122 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-const ACHIEVEMENTS = {
-  DELIVERED_TABOO: 'DELIVERED_TABOO',
-  MOST_REQUESTED_AT_ONCE: 'MOST_REQUESTED_AT_ONCE',
-  FEWEST_REQUESTED_AT_ONCE: 'FEWEST_REQUESTED_AT_ONCE',
-  MOST_DELIVERED_ITEMS: 'MOST_DELIVERED_ITEMS',
-  FEWEST_DELIVERED_ITEMS: 'FEWEST_DELIVERED_ITEMS',
-  MOST_DELIVERED_AT_ONCE: 'MOST_DELIVERED_AT_ONCE',
-  FEWEST_DELIVERED_AT_ONCE: 'FEWEST_DELIVERED_AT_ONCE',
-  MOST_NEUTRAL_DELIVERIES: 'MOST_NEUTRAL_DELIVERIES',
-  FEWEST_NEUTRAL_DELIVERIES: 'FEWEST_NEUTRAL_DELIVERIES',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.DELIVERED_TABOO]: {
-    icon: 'skull',
-    title: {
-      pt: 'Entregador de Tabu',
-      en: 'Taboo Deliverer',
-    },
-    description: {
-      pt: 'Entregou o maior número de itens tabu',
-      en: 'Delivered the most taboo items',
-    },
-  },
-  [ACHIEVEMENTS.MOST_REQUESTED_AT_ONCE]: {
-    icon: 'dialog',
-    title: {
-      pt: 'Melhores Dicas',
-      en: 'Best Clues',
-    },
-    description: {
-      pt: 'Fez o maior número de pedidos de uma vez',
-      en: 'Made the most requests at once',
-    },
-  },
-  [ACHIEVEMENTS.FEWEST_REQUESTED_AT_ONCE]: {
-    icon: 'thought',
-    title: {
-      en: 'Most Specific Clues',
-      pt: 'Dicas Mais Específicas',
-    },
-    description: {
-      pt: 'Fez o menor número de pedidos de uma vez',
-      en: 'Made the fewest requests at once',
-    },
-  },
-  [ACHIEVEMENTS.MOST_DELIVERED_ITEMS]: {
-    icon: 'double-arrow-up',
-    title: {
-      pt: 'Melhor Entregador',
-      en: 'Best Deliverer',
-    },
-    description: {
-      pt: 'Entregou o maior número de itens',
-      en: 'Delivered the most items',
-    },
-  },
-  [ACHIEVEMENTS.FEWEST_DELIVERED_ITEMS]: {
+  FEWEST_DELIVERED_ITEMS: {
+    id: 'FEWEST_DELIVERED_ITEMS',
+    doc: 'Number of delivered items',
     icon: 'double-arrow-down',
     title: {
-      pt: 'Entregador Econômico',
       en: 'Economical Deliverer',
+      pt: 'Entregador Econômico',
     },
     description: {
-      pt: 'Entregou o menor número de itens',
       en: 'Delivered the fewest items',
+      pt: 'Entregou o menor número de itens',
     },
   },
-  [ACHIEVEMENTS.MOST_DELIVERED_AT_ONCE]: {
-    icon: 'plus',
+  MOST_DELIVERED_ITEMS: {
+    id: 'MOST_DELIVERED_ITEMS',
+    doc: 'Number of delivered items',
+    icon: 'double-arrow-up',
     title: {
-      pt: 'Mais Eficiente',
-      en: 'Most Efficient',
+      en: 'Best Deliverer',
+      pt: 'Melhor Entregador',
     },
     description: {
-      pt: 'Entregou o maior número de itens de uma vez',
-      en: 'Delivered the most items at once',
+      en: 'Delivered the most items',
+      pt: 'Entregou o maior número de itens',
     },
   },
-  [ACHIEVEMENTS.FEWEST_DELIVERED_AT_ONCE]: {
-    icon: 'minus',
+  FEWEST_DELIVERED_AT_ONCE: {
+    id: 'FEWEST_DELIVERED_AT_ONCE',
+    doc: 'Items delivered at a single round',
+    icon: 'arrow-down',
     title: {
-      pt: 'Mais Comedido',
-      en: 'Most Reserved',
+      en: 'Drip Feed',
+      pt: 'Conta-Gotas',
     },
     description: {
-      pt: 'Entregou o menor número de itens de uma vez',
-      en: 'Delivered the fewest items at once',
+      en: 'Delivered the fewest items in a single round',
+      pt: 'Entregou o menor número de itens em uma única rodada',
     },
   },
-  [ACHIEVEMENTS.MOST_NEUTRAL_DELIVERIES]: {
-    icon: 'arrow-wide',
+  MOST_DELIVERED_AT_ONCE: {
+    id: 'MOST_DELIVERED_AT_ONCE',
+    doc: 'Items delivered at a single round',
+    icon: 'arrow-up',
     title: {
-      pt: 'Mais Neutro',
-      en: 'Most Neutral',
+      en: 'Heavy Load',
+      pt: 'Carga Pesada',
     },
     description: {
-      pt: 'Entregou o maior número de itens neutros',
-      en: 'Delivered the most neutral items',
+      en: 'Delivered the most items in a single round',
+      pt: 'Entregou o maior número de itens em uma única rodada',
     },
   },
-  [ACHIEVEMENTS.FEWEST_NEUTRAL_DELIVERIES]: {
+  FEWEST_NEUTRAL_DELIVERIES: {
+    id: 'FEWEST_NEUTRAL_DELIVERIES',
+    doc: 'Number of neutral deliveries',
     icon: 'arrow-narrow',
     title: {
-      pt: 'Menos Neutro',
       en: 'Least Neutral',
+      pt: 'Menos Neutro',
     },
     description: {
-      pt: 'Entregou o menor número de itens neutros',
       en: 'Delivered the fewest neutral items',
+      pt: 'Entregou o menor número de itens neutros',
+    },
+  },
+  MOST_NEUTRAL_DELIVERIES: {
+    id: 'MOST_NEUTRAL_DELIVERIES',
+    doc: 'Number of neutral deliveries',
+    icon: 'arrow-wide',
+    title: {
+      en: 'Most Neutral',
+      pt: 'Mais Neutro',
+    },
+    description: {
+      en: 'Delivered the most neutral items',
+      pt: 'Entregou o maior número de itens neutros',
+    },
+  },
+  FEWEST_REQUESTED_AT_ONCE: {
+    id: 'FEWEST_REQUESTED_AT_ONCE',
+    doc: 'Items requests at a single round',
+    icon: 'arrow-left',
+    title: {
+      en: 'Low Maintenance',
+      pt: 'Pouca Exigência',
+    },
+    description: {
+      en: 'Requested the fewest items in a single round',
+      pt: 'Pediu o menor número de itens em uma única rodada',
+    },
+  },
+  MOST_REQUESTED_AT_ONCE: {
+    id: 'MOST_REQUESTED_AT_ONCE',
+    doc: 'Items requests at a single round',
+    icon: 'arrow-right',
+    title: {
+      en: 'Shopping Spree',
+      pt: 'Lista de Compras',
+    },
+    description: {
+      en: 'Requested the most items in a single round',
+      pt: 'Pediu o maior número de itens em uma única rodada',
+    },
+  },
+  DELIVERED_TABOO: {
+    id: 'DELIVERED_TABOO',
+    doc: 'Delivered a taboo delivery ending the game',
+    icon: 'skull',
+    title: {
+      en: 'Taboo Deliverer',
+      pt: 'Entregador de Tabu',
+    },
+    description: {
+      en: 'Delivered the most taboo items',
+      pt: 'Entregou o maior número de itens tabu',
     },
   },
 };

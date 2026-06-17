@@ -5,9 +5,17 @@ import type { DeckEntry, FirebaseStateData, FirebaseStoreData, HistoryEntry, Res
 // Utils
 import utils from '../../utils';
 // Internal
-import { countDeliverablesLeft, getAchievements } from './helpers';
+import { countDeliverablesLeft } from './helpers';
 import { GAME_NAMES } from '../../utils/constants';
 import { print } from '../../utils/helpers';
+import {
+  addToLastAchievement,
+  getAchievements,
+  increaseAchievement,
+  pushAchievement,
+  setTruthyAchievement,
+  setupAchievements,
+} from './achievements';
 
 /**
  * Setup phase - initializes game state and resources
@@ -22,13 +30,7 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = utils.achievements.setup(players, {
-    clueQuantity: [],
-    deliveries: [],
-    correctDeliveries: 0,
-    neutralDeliveries: 0,
-    tabooDeliveries: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   const deckType = store.options?.deckType ?? 'items';
   const clueInputType = store.options?.clueInputType ?? 'drawing';
@@ -151,11 +153,16 @@ export const prepareDeliveringSomethingPhase = async (
       deliverables: [],
     });
     // Achievement: most requested items at once
-    utils.achievements.push(store, stateUpdate.requesterId, 'clueQuantity', stateUpdate.clueQuantity);
+    pushAchievement(
+      store.achievements,
+      stateUpdate.requesterId,
+      'requestsPerRound',
+      stateUpdate.clueQuantity,
+    );
 
     // Achievement: The other player resets their deliveries
     const answererId = utils.turnOrder.getNextPlayerId(Object.keys(players), state.requesterId);
-    utils.achievements.push(store, answererId, 'deliveries', 0);
+    pushAchievement(store.achievements, answererId, 'deliveriesPerRound', 0);
   }
   utils.players.unReadyPlayers(players, stateUpdate.requesterId);
 
@@ -258,8 +265,8 @@ export const prepareVerificationPhase = async (
 
   // If correct,
   if (isCorrect) {
-    utils.achievements.addToLast(store, answererId, 'deliveries', 1);
-    utils.achievements.increase(store, answererId, 'correctDeliveries', 1);
+    addToLastAchievement(store.achievements, answererId, 'deliveriesPerRound', 1);
+    increaseAchievement(store.achievements, answererId, 'correctDeliveries', 1);
     // If all items delivered, end game: win
     if (summary.deliverablesLeft === 0) {
       return {
@@ -312,7 +319,7 @@ export const prepareVerificationPhase = async (
   // If incorrect,
   // If it is an taboo, end game: lose
   if (isTaboo) {
-    utils.achievements.increase(store, answererId, 'tabooDeliveries', 1);
+    setTruthyAchievement(store.achievements, answererId, 'tabooDelivery');
     return {
       update: {
         store: {
@@ -330,7 +337,7 @@ export const prepareVerificationPhase = async (
   }
 
   // Else To go AskingForSomething again
-  utils.achievements.increase(store, answererId, 'neutralDeliveries', 1);
+  increaseAchievement(store.achievements, answererId, 'neutralDeliveries', 1);
   return {
     update: {
       store: {
@@ -362,7 +369,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = state.status !== STATUS.WIN ? [] : utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

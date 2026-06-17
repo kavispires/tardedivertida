@@ -1,4 +1,4 @@
-import type { COMUNICACAO_DUO_ACHIEVEMENTS, COMUNICACAO_DUO_ACTIONS } from './constants';
+import type { COMUNICACAO_DUO_ACTIONS } from './constants';
 
 export type ComunicacaoDuoOptions = {
   /**
@@ -40,14 +40,12 @@ export type Summary = {
   deliverablesLeftForB: number;
 };
 
-export type ComunicacaoDuoAchievement = keyof typeof COMUNICACAO_DUO_ACHIEVEMENTS;
-
 export interface ComunicacaoDuoStore extends DefaultStore {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface ComunicacaoDuoState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface ComunicacaoDuoInitialState extends InitialState {
