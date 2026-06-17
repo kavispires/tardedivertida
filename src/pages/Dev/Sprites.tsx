@@ -1,10 +1,10 @@
 import { SheepAvatar } from 'games/mente-coletiva/components/SheepAvatar';
-import { orderBy } from 'lodash';
+import { orderBy, truncate } from 'lodash';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useTitle } from 'react-use';
+import { useCopyToClipboard, useTitle } from 'react-use';
 // Ant Design Resources
-import { Col, Divider, Layout, Row, Select } from 'antd';
+import { App, Button, Col, Divider, Flex, Layout, Row, Select, Tag, type TagProps } from 'antd';
 // Hooks
 import { useQueryParams } from 'hooks/useQueryParams';
 // Utils
@@ -91,6 +91,38 @@ const options: Record<string, SpriteOption> = {
     startAt: 1,
   },
 };
+
+function useCopyToClipboardFunction() {
+  const [state, copyToClipboard] = useCopyToClipboard();
+  const { message } = App.useApp();
+
+  useEffect(() => {
+    if (state.value) {
+      if (state.value.length > 20) {
+        message.info(`Copied to clipboard: ${truncate(state.value, { length: 30, omission: '...' })}`);
+      } else {
+        message.success('Copied');
+      }
+    }
+  }, [state, message]);
+
+  return copyToClipboard;
+}
+
+function CopyValue(props: TagProps & { withQuotes?: boolean }) {
+  const copyToClipboard = useCopyToClipboardFunction();
+  const value = props.withQuotes
+    ? `"${props.children?.toString() ?? ''}"`
+    : (props.children?.toString() ?? '');
+
+  return (
+    <Tag
+      onClick={() => copyToClipboard(value)}
+      styles={{ root: { background: 'transparent', cursor: 'pointer' } }}
+      {...props}
+    />
+  );
+}
 
 const optionsList = orderBy(Object.values(options), ['label'], ['asc']);
 
@@ -255,7 +287,7 @@ function EmojisContent() {
             className="sprites__flex-item"
           >
             <EmojiCard emojiId={String(id)} />
-            {id}
+            <CopyValue>{id}</CopyValue>
           </li>
         );
       })}
@@ -264,28 +296,40 @@ function EmojisContent() {
 }
 
 function MedalsContent() {
+  const copyToClipboard = useCopyToClipboardFunction();
+
   return (
-    <Row gutter={8}>
-      {MEDALS_IDS.map((id) => {
-        return (
-          <Col
-            xs={6}
-            sm={6}
-            md={4}
-            lg={4}
-            xl={2}
-            key={`medal-${id}`}
-            className="sprites__col"
-          >
-            <Medal
-              id={String(id)}
-              width={100}
-            />
-            {id}
-          </Col>
-        );
-      })}
-    </Row>
+    <>
+      <Flex>
+        <Button
+          size="small"
+          onClick={() => copyToClipboard(MEDALS_IDS.join(', '))}
+        >
+          Copy all ids
+        </Button>
+      </Flex>
+      <Row gutter={8}>
+        {MEDALS_IDS.map((id) => {
+          return (
+            <Col
+              xs={6}
+              sm={6}
+              md={4}
+              lg={4}
+              xl={2}
+              key={`medal-${id}`}
+              className="sprites__col"
+            >
+              <Medal
+                id={String(id)}
+                width={100}
+              />
+              <CopyValue>{id}</CopyValue>
+            </Col>
+          );
+        })}
+      </Row>
+    </>
   );
 }
 
@@ -303,7 +347,7 @@ function TreeContent() {
             className="sprites__flex-item"
           >
             <TreeCard treeId={id} />
-            {id}
+            <CopyValue>{id}</CopyValue>
           </li>
         );
       })}
