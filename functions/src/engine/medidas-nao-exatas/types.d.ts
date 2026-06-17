@@ -1,5 +1,5 @@
 import type { TextCard } from '../../types/tdr';
-import type { MEDIDAS_NAO_EXATAS_ACHIEVEMENTS, MEDIDAS_NAO_EXATAS_ACTIONS } from './constants';
+import type { MEDIDAS_NAO_EXATAS_ACTIONS } from './constants';
 
 export type ResourceData = {
   allWords: TextCard[];
@@ -33,14 +33,12 @@ export type GalleryEntry = {
   brackets: GalleryBracket[];
 };
 
-export type MedidasNaoExatasAchievement = keyof typeof MEDIDAS_NAO_EXATAS_ACHIEVEMENTS;
-
 export interface MedidasNaoExatasStore extends DefaultStore {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface MedidasNaoExatasState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface MedidasNaoExatasInitialState extends InitialState {

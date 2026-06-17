@@ -1,10 +1,11 @@
 // Constants
-import { MEDIDAS_NAO_EXATAS_ACHIEVEMENTS, MEDIDAS_NAO_EXATAS_PHASES } from './constants';
+import { MEDIDAS_NAO_EXATAS_PHASES } from './constants';
 import { orderBy, uniq } from 'lodash';
 // Utils
 import utils from '../../utils';
 import type { TextCard } from '../../types/tdr';
-import type { FirebaseStoreData, GalleryEntry, Guess, MedidasNaoExatasAchievement } from './types';
+import type { FirebaseStoreData, GalleryEntry, Guess } from './types';
+import { increaseAchievement } from './achievements';
 
 /**
  * Determines the next phase based on the current phase and round
@@ -130,24 +131,24 @@ export const determineResults = (
 
       // Achievements
       if (guesses.length > 1) {
-        utils.achievements.increase(store, playerId, 'doubleGuesses', 1);
+        increaseAchievement(store.achievements, playerId, 'doubleGuesses', 1);
       }
 
       switch (level) {
         case 1:
-          utils.achievements.increase(store, playerId, 'level1', 1);
+          increaseAchievement(store.achievements, playerId, 'level1', 1);
           break;
         case 2:
-          utils.achievements.increase(store, playerId, 'level2', 1);
+          increaseAchievement(store.achievements, playerId, 'level2', 1);
           break;
         case 3:
-          utils.achievements.increase(store, playerId, 'level3', 1);
+          increaseAchievement(store.achievements, playerId, 'level3', 1);
           break;
         case 4:
-          utils.achievements.increase(store, playerId, 'level4', 1);
+          increaseAchievement(store.achievements, playerId, 'level4', 1);
           break;
         case 5:
-          utils.achievements.increase(store, playerId, 'level5', 1);
+          increaseAchievement(store.achievements, playerId, 'level5', 1);
           break;
         default:
         // do nothing
@@ -156,79 +157,14 @@ export const determineResults = (
   });
 
   if (correctCount === 0) {
-    utils.achievements.increase(store, presenterId, 'badMetrics', 1);
+    increaseAchievement(store.achievements, presenterId, 'badMetrics', 1);
   }
   if (correctCount === utils.players.getPlayerCount(players) - 1) {
-    utils.achievements.increase(store, presenterId, 'bestMetrics', 1);
+    increaseAchievement(store.achievements, presenterId, 'bestMetrics', 1);
   }
 
   return {
     ranking: scores.rank(players),
     result,
   };
-};
-
-/**
- * Calculates and returns player achievements based on game statistics
- * @param store - The Firebase store data containing achievement counters
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<MedidasNaoExatasAchievement>[] = [];
-
-  // Most/Fewest double guesses
-  const { most: mostDoubleGuesses, least: leastDoubleGuesses } = utils.achievements.getMostAndLeastOf(
-    store,
-    'doubleGuesses',
-  );
-
-  if (mostDoubleGuesses) {
-    achievements.push({
-      playerId: mostDoubleGuesses.playerId,
-      type: MEDIDAS_NAO_EXATAS_ACHIEVEMENTS.MOST_DOUBLE_GUESSES,
-      value: mostDoubleGuesses.value,
-    });
-  }
-
-  if (leastDoubleGuesses) {
-    achievements.push({
-      playerId: leastDoubleGuesses.playerId,
-      type: MEDIDAS_NAO_EXATAS_ACHIEVEMENTS.FEWEST_DOUBLE_GUESSES,
-      value: leastDoubleGuesses.value,
-    });
-  }
-
-  // Worst Metrics
-  const { most: worstMetrics } = utils.achievements.getMostAndLeastOf(store, 'badMetrics');
-
-  if (worstMetrics) {
-    achievements.push({
-      playerId: worstMetrics.playerId,
-      type: MEDIDAS_NAO_EXATAS_ACHIEVEMENTS.WORST_METRICS,
-      value: worstMetrics.value,
-    });
-  }
-  // Best Metrics
-  const { most: bestMetrics } = utils.achievements.getMostAndLeastOf(store, 'bestMetrics');
-  if (bestMetrics) {
-    achievements.push({
-      playerId: bestMetrics.playerId,
-      type: MEDIDAS_NAO_EXATAS_ACHIEVEMENTS.BEST_METRICS,
-      value: bestMetrics.value,
-    });
-  }
-
-  // Most guesses by level
-  const levels = ['level1', 'level2', 'level3', 'level4', 'level5'] as const;
-  levels.forEach((level) => {
-    const { most } = utils.achievements.getMostAndLeastOf(store, level);
-    if (most) {
-      achievements.push({
-        playerId: most.playerId,
-        type: MEDIDAS_NAO_EXATAS_ACHIEVEMENTS[`MOST_LEVEL_${level[level.length - 1]}_GUESSES`],
-        value: most.value,
-      });
-    }
-  });
-
-  return achievements;
 };

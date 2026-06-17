@@ -7,8 +7,9 @@ import type { FirebaseStateData, FirebaseStoreData, GalleryEntry, ResourceData }
 import utils from '../../utils';
 import type { TextCard } from '../../types/tdr';
 import { GAME_NAMES } from '../../utils/constants';
-import { determineResults, getAchievements } from './helpers';
+import { determineResults } from './helpers';
 import { makeArray } from '../../utils/helpers';
+import { getAchievements, setupAchievements } from './achievements';
 
 /**
  * Setup
@@ -21,16 +22,7 @@ export const prepareSetupPhase = async (
   players: Players,
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = utils.achievements.setup(players, {
-    doubleGuesses: 0,
-    level1: 0,
-    level2: 0,
-    level3: 0,
-    level4: 0,
-    level5: 0,
-    badMetrics: 0,
-    bestMetrics: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   const { playerIds: turnOrder, gameOrder } = utils.turnOrder.create(players, 4);
 
@@ -229,7 +221,7 @@ export const prepareGameOverPhase = async (
 
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

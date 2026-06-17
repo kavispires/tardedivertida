@@ -1,116 +1,122 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-const ACHIEVEMENTS = {
-  MOST_DOUBLE_GUESSES: 'MOST_DOUBLE_GUESSES',
-  FEWEST_DOUBLE_GUESSES: 'FEWEST_DOUBLE_GUESSES',
-  WORST_METRICS: 'WORST_METRICS',
-  BEST_METRICS: 'BEST_METRICS',
-  MOST_LEVEL_1_GUESSES: 'MOST_LEVEL_1_GUESSES',
-  MOST_LEVEL_2_GUESSES: 'MOST_LEVEL_2_GUESSES',
-  MOST_LEVEL_3_GUESSES: 'MOST_LEVEL_3_GUESSES',
-  MOST_LEVEL_4_GUESSES: 'MOST_LEVEL_4_GUESSES',
-  MOST_LEVEL_5_GUESSES: 'MOST_LEVEL_5_GUESSES',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.MOST_DOUBLE_GUESSES]: {
-    icon: 'question-mark',
-    title: {
-      pt: 'Mais Indeciso',
-      en: 'Most Indecisive',
-    },
-    description: {
-      pt: 'Trocou de palpite mais vezes',
-      en: 'Changed guesses the most times',
-    },
-  },
-  [ACHIEVEMENTS.FEWEST_DOUBLE_GUESSES]: {
-    icon: 'check-mark',
-    title: {
-      pt: 'Mais Decidido',
-      en: 'Most Decisive',
-    },
-    description: {
-      pt: 'Trocou de palpite menos vezes',
-      en: 'Changed guesses the least times',
-    },
-  },
-  [ACHIEVEMENTS.WORST_METRICS]: {
+  WORST_METRICS: {
+    id: 'WORST_METRICS',
+    doc: 'Number of rounds as presenter where no one guessed correctly',
     icon: 'tie',
     title: {
-      pt: 'Consultor de Nicho',
       en: 'Niche Consultant',
+      pt: 'Consultor de Nicho',
     },
     description: {
-      pt: 'Teve métricas que ninguém acertou mais vezes',
       en: 'Had metrics that no one guessed correctly the most times',
+      pt: 'Teve métricas que ninguém acertou mais vezes',
     },
   },
-  [ACHIEVEMENTS.BEST_METRICS]: {
+  BEST_METRICS: {
+    id: 'BEST_METRICS',
+    doc: 'Number of rounds as presenter where everyone guessed correctly',
     icon: 'graph-increase',
     title: {
-      pt: 'Consultor de Massa',
       en: 'Mass Consultant',
+      pt: 'Consultor de Massa',
     },
     description: {
-      pt: 'Teve métricas que todos acertaram mais vezes',
       en: 'Had metrics that everyone guessed correctly the most times',
+      pt: 'Teve métricas que todos acertaram mais vezes',
     },
   },
-  [ACHIEVEMENTS.MOST_LEVEL_1_GUESSES]: {
+  FEWEST_DOUBLE_GUESSES: {
+    id: 'FEWEST_DOUBLE_GUESSES',
+    doc: 'Number of times a player made multiple guesses',
+    icon: 'check-mark',
+    title: {
+      en: 'Most Decisive',
+      pt: 'Mais Decidido',
+    },
+    description: {
+      en: 'Changed guesses the least times',
+      pt: 'Trocou de palpite menos vezes',
+    },
+  },
+  MOST_DOUBLE_GUESSES: {
+    id: 'MOST_DOUBLE_GUESSES',
+    doc: 'Number of times a player made multiple guesses',
+    icon: 'question-mark',
+    title: {
+      en: 'Most Indecisive',
+      pt: 'Mais Indeciso',
+    },
+    description: {
+      en: 'Changed guesses the most times',
+      pt: 'Trocou de palpite mais vezes',
+    },
+  },
+  MOST_LEVEL_1_GUESSES: {
+    id: 'MOST_LEVEL_1_GUESSES',
+    doc: 'Number of guesses made at level 1',
     icon: 'brain',
     title: {
-      pt: 'Mais Esperto',
       en: 'Smartest',
+      pt: 'Mais Esperto',
     },
     description: {
-      pt: 'Fez mais palpites quanto somente uma métrica estava visível',
       en: 'Made the most guesses when only one metric was visible',
+      pt: 'Fez mais palpites quanto somente uma métrica estava visível',
     },
   },
-  [ACHIEVEMENTS.MOST_LEVEL_2_GUESSES]: {
+  MOST_LEVEL_2_GUESSES: {
+    id: 'MOST_LEVEL_2_GUESSES',
+    doc: 'Number of guesses made at level 2',
     icon: 'puzzle',
     title: {
-      pt: 'Mais Perspicaz',
       en: 'Most Insightful',
+      pt: 'Mais Perspicaz',
     },
     description: {
-      pt: 'Fez mais palpites quando duas métricas estavam visíveis',
       en: 'Made the most guesses when two metrics were visible',
+      pt: 'Fez mais palpites quando duas métricas estavam visíveis',
     },
   },
-  [ACHIEVEMENTS.MOST_LEVEL_3_GUESSES]: {
+  MOST_LEVEL_3_GUESSES: {
+    id: 'MOST_LEVEL_3_GUESSES',
+    doc: 'Number of guesses made at level 3',
     icon: 'glasses',
     title: {
-      pt: 'Mais Observador',
       en: 'Most Observant',
+      pt: 'Mais Observador',
     },
     description: {
-      pt: 'Fez mais palpites quando três métricas estavam visíveis',
       en: 'Made the most guesses when three metrics were visible',
+      pt: 'Fez mais palpites quando três métricas estavam visíveis',
     },
   },
-  [ACHIEVEMENTS.MOST_LEVEL_4_GUESSES]: {
+  MOST_LEVEL_4_GUESSES: {
+    id: 'MOST_LEVEL_4_GUESSES',
+    doc: 'Number of guesses made at level 4',
     icon: 'perception',
     title: {
-      pt: 'Mais Perceptivo',
       en: 'Most Perceptive',
+      pt: 'Mais Perceptivo',
     },
     description: {
-      pt: 'Fez mais palpites quando quatro métricas estavam visíveis',
       en: 'Made the most guesses when four metrics were visible',
+      pt: 'Fez mais palpites quando quatro métricas estavam visíveis',
     },
   },
-  [ACHIEVEMENTS.MOST_LEVEL_5_GUESSES]: {
+  MOST_LEVEL_5_GUESSES: {
+    id: 'MOST_LEVEL_5_GUESSES',
+    doc: 'Number of guesses made at level 5',
     icon: 'eye',
     title: {
-      pt: 'Mais Visionário',
       en: 'Most Visionary',
+      pt: 'Mais Visionário',
     },
     description: {
-      pt: 'Fez mais palpites quando todas as métricas estavam visíveis',
       en: 'Made the most guesses when all metrics were visible',
+      pt: 'Fez mais palpites quando todas as métricas estavam visíveis',
     },
   },
 };
