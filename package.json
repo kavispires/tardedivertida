@@ -1,7 +1,7 @@
 {
 	"name": "tardedivertida",
 	"homepage": "http://www.kavispires.com/tardedivertida/",
-	"version": "50.13.267",
+	"version": "50.13.268",
 	"private": true,
 	"type": "module",
 	"dependencies": {
@@ -53,6 +53,7 @@
 		"prepare": "husky",
 		"onboard": "node scripts/onboard-game.cjs",
 		"revert-versions": "node scripts/revert-game-versions.cjs",
+		"stage-game": "node scripts/stage-game.cjs",
 		"update-commit": "td amend-commit-date",
 		"sort-imports": "node scripts/sort-imports-in-folder.cjs",
 		"clean": "rm -rf node_modules & yarn cache clean"
