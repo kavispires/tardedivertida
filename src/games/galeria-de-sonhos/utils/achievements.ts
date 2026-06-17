@@ -2,125 +2,147 @@
 import type { AchievementReference } from 'types/game';
 
 export const achievementsReference: AchievementReference = {
-  MOST_MATCHES: {
-    icon: 'double-arrow-up',
+  LEAST_ADVENTUROUS: {
+    id: 'LEAST_ADVENTUROUS',
+    doc: 'Total number of dream cards selected',
+    icon: 'arrow-narrow',
     title: {
-      pt: 'Mais Matches',
-      en: 'Most Matches',
+      en: 'Least Adventurous',
+      pt: 'Mais Comedido',
     },
     description: {
-      pt: 'Deu match com o mais jogadores em cartas sonhos',
-      en: 'Match dream cards with other players the most',
-    },
-  },
-  FEWEST_MATCHES: {
-    icon: 'double-arrow-down',
-    title: {
-      pt: 'Menos Matches',
-      en: 'Fewest Matches',
-    },
-    description: {
-      pt: 'Deu match com o menos jogadores em cartas sonhos',
-      en: 'Match dream cards with other players the fewest',
-    },
-  },
-  MOST_FULL_MATCHES: {
-    icon: 'star',
-    title: {
-      pt: 'Mais Match Completo',
-      en: 'Most Full Matches',
-    },
-    description: {
-      pt: 'Deu match com todos os sonhos em uma rodada mais vezes',
-      en: 'Match all dream cards in a round most times',
+      en: 'Visited the fewest dream cards during the game',
+      pt: 'Visitou o menor número de cartas-sonhos durante o jogo',
     },
   },
   MOST_VISITS: {
+    id: 'MOST_VISITS',
+    doc: 'Total number of dream cards selected',
     icon: 'sand-timer',
     title: {
-      pt: 'Melhor Visitante',
       en: 'Best Visitor',
+      pt: 'Melhor Visitante',
     },
     description: {
-      pt: 'Visitou o maior número de cartas-sonhos durante o jogo',
       en: 'Visited the most dream cards during the game',
-    },
-  },
-  LEAST_ADVENTUROUS: {
-    icon: 'arrow-narrow',
-    title: {
-      pt: 'Mais Comedido',
-      en: 'Least Adventurous',
-    },
-    description: {
-      pt: 'Visitou o menor número de cartas-sonhos durante o jogo',
-      en: 'Visited the fewest dream cards during the game',
-    },
-  },
-  MOST_ADVENTUROUS: {
-    icon: 'face-scared',
-    title: {
-      pt: 'Mais Aventureiro',
-      en: 'Most Adventurous',
-    },
-    description: {
-      pt: 'Esteve em pesadelos mais vezes',
-      en: 'Was in a nightmare more times',
-    },
-  },
-  MOST_PAIRS: {
-    icon: 'puzzle',
-    title: {
-      pt: 'Mais Brilhante',
-      en: 'Brightest',
-    },
-    description: {
-      pt: 'Encontrou somente um outro jogador mais vezes',
-      en: 'Found only one other player most times',
-    },
-  },
-  MOST_OUT_OF_THE_BOX: {
-    icon: 'box',
-    title: {
-      pt: 'Mais Diferentão',
-      en: 'Out of the Box Thinker',
-    },
-    description: {
-      pt: 'Teve mais cartas sem dar match no total',
-      en: 'Had the most cards without a match throughout the game',
-    },
-  },
-  MOST_LONELY: {
-    icon: 'face-tired',
-    title: {
-      pt: 'Mais Solitário',
-      en: 'Loneliest',
-    },
-    description: {
-      pt: 'Não deu match nenhum mais vezes',
-      en: 'Got zero matches in a round more times',
+      pt: 'Visitou o maior número de cartas-sonhos durante o jogo',
     },
   },
   POOREST_CHOICES: {
+    id: 'POOREST_CHOICES',
+    doc: 'Number of times player fell (nightmare penalty)',
     icon: 'face-oops',
     title: {
-      pt: 'Mais Confuso',
       en: 'Poorest Choices',
+      pt: 'Mais Confuso',
     },
     description: {
-      pt: 'Foi eliminado mais vezes',
       en: 'Was eliminated the most',
+      pt: 'Foi eliminado mais vezes',
     },
   },
   SMARTEST_CHOICES: {
+    id: 'SMARTEST_CHOICES',
+    doc: 'Number of times player fell (nightmare penalty)',
     icon: 'brain',
     title: {
-      pt: 'Mais Esperto',
       en: 'Smartest Choices',
+      pt: 'Mais Esperto',
     },
     description: {
-      pt: 'Foi eliminado menos vezes',
       en: 'Was eliminated the least',
+      pt: 'Foi eliminado menos vezes',
+    },
+  },
+  MOST_FULL_MATCHES: {
+    id: 'MOST_FULL_MATCHES',
+    doc: 'Number of rounds where all cards matched',
+    icon: 'star',
+    title: {
+      en: 'Most Full Matches',
+      pt: 'Mais Match Completo',
+    },
+    description: {
+      en: 'Match all dream cards in a round most times',
+      pt: 'Deu match com todos os sonhos em uma rodada mais vezes',
+    },
+  },
+  FEWEST_MATCHES: {
+    id: 'FEWEST_MATCHES',
+    doc: 'Number of times player matched with other players',
+    icon: 'double-arrow-down',
+    title: {
+      en: 'Fewest Matches',
+      pt: 'Menos Matches',
+    },
+    description: {
+      en: 'Match dream cards with other players the fewest',
+      pt: 'Deu match com o menos jogadores em cartas sonhos',
+    },
+  },
+  MOST_MATCHES: {
+    id: 'MOST_MATCHES',
+    doc: 'Number of times player matched with other players',
+    icon: 'double-arrow-up',
+    title: {
+      en: 'Most Matches',
+      pt: 'Mais Matches',
+    },
+    description: {
+      en: 'Match dream cards with other players the most',
+      pt: 'Deu match com o mais jogadores em cartas sonhos',
+    },
+  },
+  MOST_ADVENTUROUS: {
+    id: 'MOST_ADVENTUROUS',
+    doc: 'Number of times player was in a nightmare (had most cards)',
+    icon: 'face-scared',
+    title: {
+      en: 'Most Adventurous',
+      pt: 'Mais Aventureiro',
+    },
+    description: {
+      en: 'Was in a nightmare more times',
+      pt: 'Esteve em pesadelos mais vezes',
+    },
+  },
+  MOST_OUT_OF_THE_BOX: {
+    id: 'MOST_OUT_OF_THE_BOX',
+    doc: 'Number of cards that did not match with anyone',
+    icon: 'box',
+    title: {
+      en: 'Out of the Box Thinker',
+      pt: 'Mais Diferentão',
+    },
+    description: {
+      en: 'Had the most cards without a match throughout the game',
+      pt: 'Teve mais cartas sem dar match no total',
+    },
+  },
+  MOST_PAIRS: {
+    id: 'MOST_PAIRS',
+    doc: 'Number of times player matched with exactly one other player',
+    icon: 'puzzle',
+    title: {
+      en: 'Brightest',
+      pt: 'Mais Brilhante',
+    },
+    description: {
+      en: 'Found only one other player most times',
+      pt: 'Encontrou somente um outro jogador mais vezes',
+    },
+  },
+  MOST_LONELY: {
+    id: 'MOST_LONELY',
+    doc: 'Number of rounds where player had zero matches',
+    icon: 'face-tired',
+    title: {
+      en: 'Loneliest',
+      pt: 'Mais Solitário',
+    },
+    description: {
+      en: 'Got zero matches in a round more times',
+      pt: 'Não deu match nenhum mais vezes',
     },
   },
 };

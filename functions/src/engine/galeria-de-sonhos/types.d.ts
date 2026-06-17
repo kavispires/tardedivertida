@@ -1,5 +1,5 @@
 import type { TextCard } from '../../types/tdr';
-import type { GALERIA_DE_SONHOS_ACHIEVEMENTS, GALERIA_DE_SONHOS_ACTIONS } from './constants';
+import type { GALERIA_DE_SONHOS_ACTIONS } from './constants';
 
 export type GaleriaDeSonhosOptions = {
   /**
@@ -50,7 +50,7 @@ export interface GaleriaDeSonhosStore extends DefaultStore {
 }
 
 export interface GaleriaDeSonhosState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface GaleriaDeSonhosInitialState extends InitialState {
@@ -61,8 +61,6 @@ export interface GaleriaDeSonhosInitialState extends InitialState {
 export interface GaleriaDeSonhosSubmitAction extends Payload {
   action: keyof typeof GALERIA_DE_SONHOS_ACTIONS;
 }
-
-export type GaleriaDeSonhosAchievement = keyof typeof GALERIA_DE_SONHOS_ACHIEVEMENTS;
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | GaleriaDeSonhosState;
 export type FirebaseStoreData = FirebaseFirestore.DocumentData | GaleriaDeSonhosStore;

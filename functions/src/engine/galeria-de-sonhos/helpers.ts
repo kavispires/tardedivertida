@@ -1,11 +1,13 @@
 // Types
 import type { TextCard } from '../../types/tdr';
-import type { AllWords, FirebaseStoreData, GaleriaDeSonhosAchievement, ImageCard, PlayerCard } from './types';
+import type { AllWords, FirebaseStoreData, ImageCard, PlayerCard } from './types';
 import { sampleSize } from 'lodash';
 // Constants
-import { GALERIA_DE_SONHOS_ACHIEVEMENTS, GALERIA_DE_SONHOS_PHASES, WORD_DECK_TOTAL } from './constants';
+import { GALERIA_DE_SONHOS_PHASES, WORD_DECK_TOTAL } from './constants';
 // Utils
 import utils from '../../utils';
+// Internal
+import { increaseAchievement } from './achievements';
 
 /**
  * Determines the next phase based on the current phase and round
@@ -99,41 +101,41 @@ export const buildRanking = (players: Players, store: FirebaseStoreData, playerI
 
     const cards: PlayerCard[] = Object.values(player.cards);
     // Achievement: dreamCount
-    utils.achievements.increase(store, player.id, 'dreamCount', cards.length);
+    increaseAchievement(store.achievements, player.id, 'dreamCount', cards.length);
     cards.forEach((card: PlayerCard) => {
       if (card.score === 3) {
         scores.add(player.id, 3, 0);
         scoringCardsCount += 1;
         // Achievement: matches, pairs
-        utils.achievements.increase(store, player.id, 'matches', 1);
-        utils.achievements.increase(store, player.id, 'pairs', 1);
+        increaseAchievement(store.achievements, player.id, 'matches', 1);
+        increaseAchievement(store.achievements, player.id, 'pairs', 1);
       } else if (card.score === 2) {
         scores.add(player.id, 2, 1);
         scoringCardsCount += 1;
         // Achievement: matches
-        utils.achievements.increase(store, player.id, 'matches', card.matchedPlayers.length - 1);
+        increaseAchievement(store.achievements, player.id, 'matches', card.matchedPlayers.length - 1);
       } else {
         noMatch += 1;
       }
     });
 
     // Achievement: noMatches
-    utils.achievements.increase(store, player.id, 'noMatches', noMatch);
+    increaseAchievement(store.achievements, player.id, 'noMatches', noMatch);
     // Achievement: zeroMatches
     if (noMatch === cards.length) {
-      utils.achievements.increase(store, player.id, 'zeroMatches', 1);
+      increaseAchievement(store.achievements, player.id, 'zeroMatches', 1);
     }
     // Achievement: fullMatches
     if (noMatch === 0) {
-      utils.achievements.increase(store, player.id, 'fullMatches', 1);
+      increaseAchievement(store.achievements, player.id, 'fullMatches', 1);
     }
     // Achievement: nightmare
     if (player.id === playerInNightmareId) {
-      utils.achievements.increase(store, player.id, 'nightmare', 1);
+      increaseAchievement(store.achievements, player.id, 'nightmare', 1);
     }
     // Achievement: falls
     if (player.fallen) {
-      utils.achievements.increase(store, player.id, 'falls', 1);
+      increaseAchievement(store.achievements, player.id, 'falls', 1);
     }
 
     // Fallen player penalty
@@ -281,124 +283,4 @@ export const simulateBotCards = (players: Players, table: ImageCard[]) => {
       return acc;
     }, {});
   }
-};
-
-/**
- * Calculates and returns player achievements based on game statistics
- * @param store - The Firebase store data containing achievement counters
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<GaleriaDeSonhosAchievement>[] = [];
-
-  // Most Matches: Matched with the most number of players
-  const { most, least } = utils.achievements.getMostAndLeastOf(store, 'matches');
-  if (most) {
-    achievements.push({
-      type: GALERIA_DE_SONHOS_ACHIEVEMENTS.MOST_MATCHES,
-      playerId: most.playerId,
-      value: most.value,
-    });
-  }
-
-  // Fewest Matches: Matched with the fewest number of players
-  if (least) {
-    achievements.push({
-      type: GALERIA_DE_SONHOS_ACHIEVEMENTS.FEWEST_MATCHES,
-      playerId: least.playerId,
-      value: least.value,
-    });
-  }
-
-  // Full Matches: Matched all their cards most times
-  const { most: fullMatches } = utils.achievements.getMostAndLeastOf(store, 'fullMatches');
-  if (fullMatches) {
-    achievements.push({
-      type: GALERIA_DE_SONHOS_ACHIEVEMENTS.MOST_FULL_MATCHES,
-      playerId: fullMatches.playerId,
-      value: fullMatches.value,
-    });
-  }
-
-  // Most visits: visited the most number of cards
-  const { most: mostDreamCount, least: fewestDreamCount } = utils.achievements.getMostAndLeastOf(
-    store,
-    'dreamCount',
-  );
-  if (mostDreamCount) {
-    achievements.push({
-      type: GALERIA_DE_SONHOS_ACHIEVEMENTS.MOST_VISITS,
-      playerId: mostDreamCount.playerId,
-      value: mostDreamCount.value,
-    });
-  }
-
-  // Least Adventurous: visited the fewest number of cards
-  if (fewestDreamCount) {
-    achievements.push({
-      type: GALERIA_DE_SONHOS_ACHIEVEMENTS.LEAST_ADVENTUROUS,
-      playerId: fewestDreamCount.playerId,
-      value: fewestDreamCount.value,
-    });
-  }
-
-  // Most Adventurous: was in a nightmare the most times
-  const { most: nightmare } = utils.achievements.getMostAndLeastOf(store, 'nightmare');
-  if (nightmare) {
-    achievements.push({
-      type: GALERIA_DE_SONHOS_ACHIEVEMENTS.MOST_ADVENTUROUS,
-      playerId: nightmare.playerId,
-      value: nightmare.value,
-    });
-  }
-
-  // Most Pairs: found only another player most times
-  const { most: pairs } = utils.achievements.getMostAndLeastOf(store, 'pairs');
-  if (pairs) {
-    achievements.push({
-      type: GALERIA_DE_SONHOS_ACHIEVEMENTS.MOST_PAIRS,
-      playerId: pairs.playerId,
-      value: pairs.value,
-    });
-  }
-
-  // Most Out of the Box: Got the most no matches
-  const { most: outOfTheBox } = utils.achievements.getMostAndLeastOf(store, 'noMatches');
-  if (outOfTheBox) {
-    achievements.push({
-      type: GALERIA_DE_SONHOS_ACHIEVEMENTS.MOST_OUT_OF_THE_BOX,
-      playerId: outOfTheBox.playerId,
-      value: outOfTheBox.value,
-    });
-  }
-
-  // Most Zero matches
-  const { most: lonely } = utils.achievements.getMostAndLeastOf(store, 'zeroMatches');
-  if (lonely) {
-    achievements.push({
-      type: GALERIA_DE_SONHOS_ACHIEVEMENTS.MOST_LONELY,
-      playerId: lonely.playerId,
-      value: lonely.value,
-    });
-  }
-
-  // Poorest choices: has fallen the most
-  const { most: falls, least: smart } = utils.achievements.getMostAndLeastOf(store, 'falls');
-  if (falls) {
-    achievements.push({
-      type: GALERIA_DE_SONHOS_ACHIEVEMENTS.POOREST_CHOICES,
-      playerId: falls.playerId,
-      value: falls.value,
-    });
-  }
-
-  // Smartest choices: has fallen the least times
-  if (smart) {
-    achievements.push({
-      type: GALERIA_DE_SONHOS_ACHIEVEMENTS.SMARTEST_CHOICES,
-      playerId: smart.playerId,
-      value: smart.value,
-    });
-  }
-
-  return achievements;
 };

@@ -12,12 +12,12 @@ import {
   buildDeck,
   buildRanking,
   buildTable,
-  getAchievements,
   getMostVotedCards,
   getPlayersWithMaxDreams,
   getRoundWords,
   simulateBotCards,
 } from './helpers';
+import { getAchievements, setupAchievements } from './achievements';
 import { saveData } from './data';
 
 /**
@@ -43,16 +43,7 @@ export const prepareSetupPhase = async (
   // Get word deck
   const wordsDeck = buildDeck(resourceData.allWords);
 
-  const achievements = utils.achievements.setup(players, {
-    matches: 0,
-    fullMatches: 0,
-    dreamCount: 0,
-    nightmare: 0,
-    pairs: 0,
-    noMatches: 0,
-    zeroMatches: 0,
-    falls: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   const round: Round = {
     current: 0,
@@ -266,7 +257,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 
