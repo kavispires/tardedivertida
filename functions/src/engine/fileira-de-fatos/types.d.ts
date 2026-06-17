@@ -1,5 +1,5 @@
 import type { TextCard } from '../../types/tdr';
-import type { FILEIRA_DE_FATOS_ACHIEVEMENTS, FILEIRA_DE_FATOS_ACTIONS } from './constants';
+import type { FILEIRA_DE_FATOS_ACTIONS } from './constants';
 
 export type FileiraDeFatosOptions = {
   /**
@@ -12,14 +12,12 @@ export type ResourceData = {
   scenarios: TextCard[];
 };
 
-export type FileiraDeFatosAchievement = keyof typeof FILEIRA_DE_FATOS_ACHIEVEMENTS;
-
 export interface FileiraDeFatosStore extends DefaultStore {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface FileiraDeFatosState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface FileiraDeFatosInitialState extends InitialState {

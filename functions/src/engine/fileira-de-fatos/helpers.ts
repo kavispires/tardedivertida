@@ -1,7 +1,9 @@
 // Utils
 import utils from '../../utils';
-import { FILEIRA_DE_FATOS_ACHIEVEMENTS, FILEIRA_DE_FATOS_PHASES } from './constants';
-import type { FileiraDeFatosAchievement, FirebaseStoreData } from './types';
+// Internal
+import { increaseAchievement } from './achievements';
+import { FILEIRA_DE_FATOS_PHASES } from './constants';
+import type { FirebaseStoreData } from './types';
 
 /**
  * Determines the next phase based on the current phase and round
@@ -49,7 +51,7 @@ export const buildRanking = (
     if (player.currentOrder[0] === orderKey[0]) {
       playerCorrectCount += 1;
       scores.add(player.id, 1, 0);
-      utils.achievements.increase(store, player.id, 'first', 1);
+      increaseAchievement(store.achievements, player.id, 'first', 1);
     } else {
       if (roundType === 'CURSED_FIRST_POSITION') {
         scores.add(player.id, -1, 1);
@@ -60,28 +62,28 @@ export const buildRanking = (
     if (player.currentOrder[1] === orderKey[1]) {
       playerCorrectCount += 1;
       scores.add(player.id, roundType === 'SECOND_POSITION' ? 3 : 1, 0);
-      utils.achievements.increase(store, player.id, 'second', 1);
+      increaseAchievement(store.achievements, player.id, 'second', 1);
     }
 
     // Third Position
     if (player.currentOrder[2] === orderKey[2]) {
       playerCorrectCount += 1;
       scores.add(player.id, roundType === 'CENTER_POSITION' ? 3 : 1, 0);
-      utils.achievements.increase(store, player.id, 'third', 1);
+      increaseAchievement(store.achievements, player.id, 'third', 1);
     }
 
     // Forth Position
     if (player.currentOrder[3] === orderKey[3]) {
       playerCorrectCount += 1;
       scores.add(player.id, roundType === 'FOURTH_POSITION' ? 3 : 1, 0);
-      utils.achievements.increase(store, player.id, 'fourth', 1);
+      increaseAchievement(store.achievements, player.id, 'fourth', 1);
     }
 
     // Fifth/Final Position
     if (player.currentOrder[4] === orderKey[4]) {
       playerCorrectCount += 1;
       scores.add(player.id, 1, 0);
-      utils.achievements.increase(store, player.id, 'fifth', 1);
+      increaseAchievement(store.achievements, player.id, 'fifth', 1);
     } else {
       if (roundType === 'CURSED_LAST_POSITION') {
         scores.add(player.id, -1, 1);
@@ -94,7 +96,7 @@ export const buildRanking = (
     // Perfect kill bonus
     if (playerCorrectCount === 5) {
       scores.add(player.id, 2, 2);
-      utils.achievements.increase(store, player.id, 'perfect', 1);
+      increaseAchievement(store.achievements, player.id, 'perfect', 1);
     }
 
     // If this player score is higher than the max, update it
@@ -105,141 +107,7 @@ export const buildRanking = (
 
   // Handle active player points
   scores.add(activePlayerId, maxPoints, 0);
-  utils.achievements.increase(store, activePlayerId, 'sense', correctCount);
+  increaseAchievement(store.achievements, activePlayerId, 'sense', correctCount);
 
   return scores.rank(players);
-};
-
-/**
- * Calculates and returns player achievements based on game statistics
- * @param store - The Firebase store data containing achievement counters
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<FileiraDeFatosAchievement>[] = [];
-
-  const { most, least } = utils.achievements.getMostAndLeastOf(store, 'sense');
-  // Got the most correct guesses on their own scenarios
-  if (most) {
-    achievements.push({
-      type: FILEIRA_DE_FATOS_ACHIEVEMENTS.BEST_COMMON_SENSE,
-      playerId: most.playerId,
-      value: most.value,
-    });
-  }
-
-  // Got the fewest correct guesses on their own scenarios
-  if (least) {
-    achievements.push({
-      type: FILEIRA_DE_FATOS_ACHIEVEMENTS.WORST_COMMON_SENSE,
-      playerId: least.playerId,
-      value: least.value,
-    });
-  }
-
-  const { most: most1, least: fewest1 } = utils.achievements.getMostAndLeastOf(store, 'first');
-  // Most correct guesses on the first position
-  if (most1) {
-    achievements.push({
-      type: FILEIRA_DE_FATOS_ACHIEVEMENTS.MOST_FIRST_POSITIONS,
-      playerId: most1.playerId,
-      value: most1.value,
-    });
-  }
-
-  // Fewest correct guesses on the first position
-  if (fewest1) {
-    achievements.push({
-      type: FILEIRA_DE_FATOS_ACHIEVEMENTS.FEWEST_FIRST_POSITIONS,
-      playerId: fewest1.playerId,
-      value: fewest1.value,
-    });
-  }
-
-  const { most: most2, least: fewest2 } = utils.achievements.getMostAndLeastOf(store, 'second');
-  // Most correct guesses on the second position
-  if (most2) {
-    achievements.push({
-      type: FILEIRA_DE_FATOS_ACHIEVEMENTS.MOST_SECOND_POSITIONS,
-      playerId: most2.playerId,
-      value: most2.value,
-    });
-  }
-
-  // Fewest correct guesses on the second position
-  if (fewest2) {
-    achievements.push({
-      type: FILEIRA_DE_FATOS_ACHIEVEMENTS.FEWEST_SECOND_POSITIONS,
-      playerId: fewest2.playerId,
-      value: fewest2.value,
-    });
-  }
-
-  const { most: most3, least: fewest3 } = utils.achievements.getMostAndLeastOf(store, 'third');
-  // Most correct guesses on the third position
-  if (most3) {
-    achievements.push({
-      type: FILEIRA_DE_FATOS_ACHIEVEMENTS.MOST_THIRD_POSITIONS,
-      playerId: most3.playerId,
-      value: most3.value,
-    });
-  }
-
-  // Fewest correct guesses on the third position
-  if (fewest3) {
-    achievements.push({
-      type: FILEIRA_DE_FATOS_ACHIEVEMENTS.FEWEST_THIRD_POSITIONS,
-      playerId: fewest3.playerId,
-      value: fewest3.value,
-    });
-  }
-
-  const { most: most4, least: fewest4 } = utils.achievements.getMostAndLeastOf(store, 'fourth');
-  // Most correct guesses on the fourth position
-  if (most4) {
-    achievements.push({
-      type: FILEIRA_DE_FATOS_ACHIEVEMENTS.MOST_FOURTH_POSITIONS,
-      playerId: most4.playerId,
-      value: most4.value,
-    });
-  }
-
-  // Fewest correct guesses on the fourth position
-  if (fewest4) {
-    achievements.push({
-      type: FILEIRA_DE_FATOS_ACHIEVEMENTS.FEWEST_FOURTH_POSITIONS,
-      playerId: fewest4.playerId,
-      value: fewest4.value,
-    });
-  }
-
-  const { most: most5, least: fewest5 } = utils.achievements.getMostAndLeastOf(store, 'fifth');
-  // Most correct guesses on the fifth position
-  if (most5) {
-    achievements.push({
-      type: FILEIRA_DE_FATOS_ACHIEVEMENTS.MOST_FIFTH_POSITIONS,
-      playerId: most5.playerId,
-      value: most5.value,
-    });
-  }
-
-  // Fewest correct guesses on the fifth position
-  if (fewest5) {
-    achievements.push({
-      type: FILEIRA_DE_FATOS_ACHIEVEMENTS.FEWEST_FIFTH_POSITIONS,
-      playerId: fewest5.playerId,
-      value: fewest5.value,
-    });
-  }
-
-  // Most correct guesses on the fifth position
-  const { most: perfect } = utils.achievements.getMostAndLeastOf(store, 'perfect');
-  if (perfect) {
-    achievements.push({
-      type: FILEIRA_DE_FATOS_ACHIEVEMENTS.PERFECT_GUESS,
-      playerId: perfect.playerId,
-      value: perfect.value,
-    });
-  }
-
-  return achievements;
 };

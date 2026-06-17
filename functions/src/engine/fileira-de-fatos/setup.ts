@@ -8,7 +8,8 @@ import type { TextCard } from '../../types/tdr';
 // Utils
 import utils from '../../utils';
 // Internal
-import { buildRanking, getAchievements } from './helpers';
+import { buildRanking } from './helpers';
+import { setupAchievements, getAchievements } from './achievements';
 
 /**
  * Setup phase - initializes game state and resources
@@ -28,15 +29,7 @@ export const prepareSetupPhase = async (
   // Build deck
   const deck = sampleSize(resourceData.scenarios, gameOrder.length * SCENARIOS_PER_ROUND);
 
-  const achievements = utils.achievements.setup(players, {
-    first: 0,
-    second: 0,
-    third: 0,
-    fourth: 0,
-    fifth: 0,
-    sense: 0,
-    perfect: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Save
   return {
@@ -154,7 +147,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements, undefined, players);
 
   await utils.firestore.markGameAsComplete(gameId);
 

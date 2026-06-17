@@ -1,164 +1,174 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-const ACHIEVEMENTS = {
-  MOST_FIRST_POSITIONS: 'MOST_FIRST_POSITIONS',
-  FEWEST_FIRST_POSITIONS: 'FEWEST_FIRST_POSITIONS',
-  MOST_SECOND_POSITIONS: 'MOST_SECOND_POSITIONS',
-  FEWEST_SECOND_POSITIONS: 'FEWEST_SECOND_POSITIONS',
-  MOST_THIRD_POSITIONS: 'MOST_THIRD_POSITIONS',
-  FEWEST_THIRD_POSITIONS: 'FEWEST_THIRD_POSITIONS',
-  MOST_FOURTH_POSITIONS: 'MOST_FOURTH_POSITIONS',
-  FEWEST_FOURTH_POSITIONS: 'FEWEST_FOURTH_POSITIONS',
-  MOST_FIFTH_POSITIONS: 'MOST_FIFTH_POSITIONS',
-  FEWEST_FIFTH_POSITIONS: 'FEWEST_FIFTH_POSITIONS',
-  BEST_COMMON_SENSE: 'BEST_COMMON_SENSE',
-  WORST_COMMON_SENSE: 'WORST_COMMON_SENSE',
-  PERFECT_GUESS: 'PERFECT_GUESS',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.MOST_FIRST_POSITIONS]: {
-    icon: 'one',
-    title: {
-      pt: 'Melhores 1s',
-      en: 'Best #1s',
-    },
-    description: {
-      pt: 'Acertou cenários na posição 1 mais vezes',
-      en: 'Guessed scenarios in the #1 position correctly the most times',
-    },
-  },
-  [ACHIEVEMENTS.FEWEST_FIRST_POSITIONS]: {
-    icon: 'one',
-    title: {
-      pt: 'Piores 1s',
-      en: 'Worst #1s',
-    },
-    description: {
-      pt: 'Errou cenários na posição 1 mais vezes',
-      en: 'Guessed scenarios in the #1 position wrong the most times',
-    },
-  },
-  [ACHIEVEMENTS.MOST_SECOND_POSITIONS]: {
-    icon: 'two',
-    title: {
-      pt: 'Melhores 2s',
-      en: 'Best #2s',
-    },
-    description: {
-      pt: 'Acertou cenários na posição 2 mais vezes',
-      en: 'Guessed scenarios in the #2 position correctly the most times',
-    },
-  },
-  [ACHIEVEMENTS.FEWEST_SECOND_POSITIONS]: {
-    icon: 'two',
-    title: {
-      pt: 'Piores 2s',
-      en: 'Worst #2s',
-    },
-    description: {
-      pt: 'Errou cenários na posição 2 mais vezes',
-      en: 'Guessed scenarios in the #2 position wrong the most times',
-    },
-  },
-  [ACHIEVEMENTS.MOST_THIRD_POSITIONS]: {
-    icon: 'three',
-    title: {
-      pt: 'Melhores 3s',
-      en: 'Best #3s',
-    },
-    description: {
-      pt: 'Acertou cenários na posição 3 mais vezes',
-      en: 'Guessed scenarios in the #3 position correctly the most times',
-    },
-  },
-  [ACHIEVEMENTS.FEWEST_THIRD_POSITIONS]: {
-    icon: 'three',
-    title: {
-      pt: 'Piores 3s',
-      en: 'Worst #3s',
-    },
-    description: {
-      pt: 'Errou cenários na posição 3 mais vezes',
-      en: 'Guessed scenarios in the #3 position wrong the most times',
-    },
-  },
-  [ACHIEVEMENTS.MOST_FOURTH_POSITIONS]: {
-    icon: 'four',
-    title: {
-      pt: 'Melhores 4s',
-      en: 'Best #4s',
-    },
-    description: {
-      pt: 'Acertou cenários na posição 4 mais vezes',
-      en: 'Guessed scenarios in the #4 position correctly the most times',
-    },
-  },
-  [ACHIEVEMENTS.FEWEST_FOURTH_POSITIONS]: {
-    icon: 'four',
-    title: {
-      pt: 'Piores 4s',
-      en: 'Worst #4s',
-    },
-    description: {
-      pt: 'Errou cenários na posição 4 mais vezes',
-      en: 'Guessed scenarios in the #4 position wrong the most times',
-    },
-  },
-  [ACHIEVEMENTS.MOST_FIFTH_POSITIONS]: {
+  FEWEST_FIFTH_POSITIONS: {
+    id: 'FEWEST_FIFTH_POSITIONS',
+    doc: 'Correct guesses on the fifth position',
     icon: 'five',
     title: {
-      pt: 'Melhores 5s',
-      en: 'Best #5s',
-    },
-    description: {
-      pt: 'Acertou cenários na posição 5 mais vezes',
-      en: 'Guessed scenarios in the #5 position correctly the most times',
-    },
-  },
-  [ACHIEVEMENTS.FEWEST_FIFTH_POSITIONS]: {
-    icon: 'five',
-    title: {
-      pt: 'Piores 5s',
       en: 'Worst #5s',
+      pt: 'Piores 5s',
     },
     description: {
-      pt: 'Errou cenários na posição 5 mais vezes',
       en: 'Guessed scenarios in the #5 position wrong the most times',
+      pt: 'Errou cenários na posição 5 mais vezes',
     },
   },
-  [ACHIEVEMENTS.BEST_COMMON_SENSE]: {
-    icon: 'scale',
+  MOST_FIFTH_POSITIONS: {
+    id: 'MOST_FIFTH_POSITIONS',
+    doc: 'Correct guesses on the fifth position',
+    icon: 'five',
     title: {
-      pt: 'Melhor Senso Comum',
-      en: 'Best Common Sense',
+      en: 'Best #5s',
+      pt: 'Melhores 5s',
     },
     description: {
-      pt: 'Teve jogadores acertando seus cenários mais vezes',
-      en: 'Had players guessing your scenarios the most times',
+      en: 'Guessed scenarios in the #5 position correctly the most times',
+      pt: 'Acertou cenários na posição 5 mais vezes',
     },
   },
-  [ACHIEVEMENTS.WORST_COMMON_SENSE]: {
-    icon: 'person',
+  FEWEST_FIRST_POSITIONS: {
+    id: 'FEWEST_FIRST_POSITIONS',
+    doc: 'Correct guesses on the first position',
+    icon: 'one',
     title: {
-      pt: 'Mais individualista',
-      en: 'Most Individualistic',
+      en: 'Worst #1s',
+      pt: 'Piores 1s',
     },
     description: {
-      pt: 'Teve jogadores acertando seus cenários menos vezes',
-      en: 'Had players guessing your scenarios the fewest times',
+      en: 'Guessed scenarios in the #1 position wrong the most times',
+      pt: 'Errou cenários na posição 1 mais vezes',
     },
   },
-  [ACHIEVEMENTS.PERFECT_GUESS]: {
+  MOST_FIRST_POSITIONS: {
+    id: 'MOST_FIRST_POSITIONS',
+    doc: 'Correct guesses on the first position',
+    icon: 'one',
+    title: {
+      en: 'Best #1s',
+      pt: 'Melhores 1s',
+    },
+    description: {
+      en: 'Guessed scenarios in the #1 position correctly the most times',
+      pt: 'Acertou cenários na posição 1 mais vezes',
+    },
+  },
+  FEWEST_FOURTH_POSITIONS: {
+    id: 'FEWEST_FOURTH_POSITIONS',
+    doc: 'Correct guesses on the fourth position',
+    icon: 'four',
+    title: {
+      en: 'Worst #4s',
+      pt: 'Piores 4s',
+    },
+    description: {
+      en: 'Guessed scenarios in the #4 position wrong the most times',
+      pt: 'Errou cenários na posição 4 mais vezes',
+    },
+  },
+  MOST_FOURTH_POSITIONS: {
+    id: 'MOST_FOURTH_POSITIONS',
+    doc: 'Correct guesses on the fourth position',
+    icon: 'four',
+    title: {
+      en: 'Best #4s',
+      pt: 'Melhores 4s',
+    },
+    description: {
+      en: 'Guessed scenarios in the #4 position correctly the most times',
+      pt: 'Acertou cenários na posição 4 mais vezes',
+    },
+  },
+  PERFECT_GUESS: {
+    id: 'PERFECT_GUESS',
+    doc: 'Perfect guesses (all positions correct)',
     icon: 'graph-increase',
     title: {
-      pt: 'Mais Completamente Correto',
       en: 'Most Perfect Kills',
+      pt: 'Mais Completamente Correto',
     },
     description: {
-      pt: 'Acertou todos cenários nem mais rodadas',
       en: 'Guessed all scenarios correctly in more rounds',
+      pt: 'Acertou todos cenários nem mais rodadas',
+    },
+  },
+  FEWEST_SECOND_POSITIONS: {
+    id: 'FEWEST_SECOND_POSITIONS',
+    doc: 'Correct guesses on the second position',
+    icon: 'two',
+    title: {
+      en: 'Worst #2s',
+      pt: 'Piores 2s',
+    },
+    description: {
+      en: 'Guessed scenarios in the #2 position wrong the most times',
+      pt: 'Errou cenários na posição 2 mais vezes',
+    },
+  },
+  MOST_SECOND_POSITIONS: {
+    id: 'MOST_SECOND_POSITIONS',
+    doc: 'Correct guesses on the second position',
+    icon: 'two',
+    title: {
+      en: 'Best #2s',
+      pt: 'Melhores 2s',
+    },
+    description: {
+      en: 'Guessed scenarios in the #2 position correctly the most times',
+      pt: 'Acertou cenários na posição 2 mais vezes',
+    },
+  },
+  BEST_COMMON_SENSE: {
+    id: 'BEST_COMMON_SENSE',
+    doc: 'Correct guesses on their own scenarios',
+    icon: 'scale',
+    title: {
+      en: 'Best Common Sense',
+      pt: 'Melhor Senso Comum',
+    },
+    description: {
+      en: 'Had players guessing your scenarios the most times',
+      pt: 'Teve jogadores acertando seus cenários mais vezes',
+    },
+  },
+  WORST_COMMON_SENSE: {
+    id: 'WORST_COMMON_SENSE',
+    doc: 'Correct guesses on their own scenarios',
+    icon: 'person',
+    title: {
+      en: 'Most Individualistic',
+      pt: 'Mais individualista',
+    },
+    description: {
+      en: 'Had players guessing your scenarios the fewest times',
+      pt: 'Teve jogadores acertando seus cenários menos vezes',
+    },
+  },
+  FEWEST_THIRD_POSITIONS: {
+    id: 'FEWEST_THIRD_POSITIONS',
+    doc: 'Correct guesses on the third position',
+    icon: 'three',
+    title: {
+      en: 'Worst #3s',
+      pt: 'Piores 3s',
+    },
+    description: {
+      en: 'Guessed scenarios in the #3 position wrong the most times',
+      pt: 'Errou cenários na posição 3 mais vezes',
+    },
+  },
+  MOST_THIRD_POSITIONS: {
+    id: 'MOST_THIRD_POSITIONS',
+    doc: 'Correct guesses on the third position',
+    icon: 'three',
+    title: {
+      en: 'Best #3s',
+      pt: 'Melhores 3s',
+    },
+    description: {
+      en: 'Guessed scenarios in the #3 position correctly the most times',
+      pt: 'Acertou cenários na posição 3 mais vezes',
     },
   },
 };
