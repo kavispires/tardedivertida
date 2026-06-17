@@ -194,27 +194,44 @@ function parseFrontendAchievements(content) {
 }
 
 /**
+ * Escape single quotes in a string for JavaScript output
+ */
+function escapeSingleQuotes(str) {
+  return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+}
+
+/**
+ * Unescape single quotes when reading from existing file
+ */
+function unescapeSingleQuotes(str) {
+  return str.replace(/\\'/g, "'").replace(/\\\\/g, '\\');
+}
+
+/**
  * Parse the body of an achievement entry
  */
 function parseAchievementBody(body) {
-  const iconMatch = body.match(/icon:\s*['"']([^'"]*)['"']/);
-  const titleEnMatch = body.match(/title:\s*\{[\s\S]*?en:\s*['"']([^'"]*)['"']/);
-  const titlePtMatch = body.match(/title:\s*\{[\s\S]*?pt:\s*['"']([^'"]*)['"']/);
-  const descEnMatch = body.match(/description:\s*\{[\s\S]*?en:\s*['"']([^'"]*)['"']/);
-  const descPtMatch = body.match(/description:\s*\{[\s\S]*?pt:\s*['"']([^'"]*)['"']/);
-  const docMatch = body.match(/doc:\s*['"']([^'"]*)['"']/);
+  // Match either 'value' or "value" for each field
+  // Using separate patterns for single and double quotes to handle apostrophes
+  // Pattern ((?:[^'\\]|\\.)*)  matches: anything that's not a quote or backslash, OR backslash followed by any char
+  const iconMatch = body.match(/icon:\s*'((?:[^'\\]|\\.)*)'/s) || body.match(/icon:\s*"([^"]*)"/s);
+  const titleEnMatch = body.match(/title:\s*\{[\s\S]*?en:\s*'((?:[^'\\]|\\.)*)'/s) || body.match(/title:\s*\{[\s\S]*?en:\s*"([^"]*)"/s);
+  const titlePtMatch = body.match(/title:\s*\{[\s\S]*?pt:\s*'((?:[^'\\]|\\.)*)'/s) || body.match(/title:\s*\{[\s\S]*?pt:\s*"([^"]*)"/s);
+  const descEnMatch = body.match(/description:\s*\{[\s\S]*?en:\s*'((?:[^'\\]|\\.)*)'/s) || body.match(/description:\s*\{[\s\S]*?en:\s*"([^"]*)"/s);
+  const descPtMatch = body.match(/description:\s*\{[\s\S]*?pt:\s*'((?:[^'\\]|\\.)*)'/s) || body.match(/description:\s*\{[\s\S]*?pt:\s*"([^"]*)"/s);
+  const docMatch = body.match(/doc:\s*'((?:[^'\\]|\\.)*)'/s) || body.match(/doc:\s*"([^"]*)"/s);
 
   return {
-    icon: iconMatch ? iconMatch[1] : '',
+    icon: iconMatch ? unescapeSingleQuotes(iconMatch[1]) : '',
     title: {
-      en: titleEnMatch ? titleEnMatch[1] : '',
-      pt: titlePtMatch ? titlePtMatch[1] : '',
+      en: titleEnMatch ? unescapeSingleQuotes(titleEnMatch[1]) : '',
+      pt: titlePtMatch ? unescapeSingleQuotes(titlePtMatch[1]) : '',
     },
     description: {
-      en: descEnMatch ? descEnMatch[1] : '',
-      pt: descPtMatch ? descPtMatch[1] : '',
+      en: descEnMatch ? unescapeSingleQuotes(descEnMatch[1]) : '',
+      pt: descPtMatch ? unescapeSingleQuotes(descPtMatch[1]) : '',
     },
-    doc: docMatch ? docMatch[1] : '',
+    doc: docMatch ? unescapeSingleQuotes(docMatch[1]) : '',
   };
 }
 
@@ -280,16 +297,16 @@ export const achievementsReference: AchievementReference = {\n`;
   for (const id of sortedIds) {
     const data = merged[id];
     content += `  ${id}: {\n`;
-    content += `    id: '${id}',\n`;
-    content += `    doc: '${data.doc}',\n`;
-    content += `    icon: '${data.icon}',\n`;
+    content += `    id: '${escapeSingleQuotes(id)}',\n`;
+    content += `    doc: '${escapeSingleQuotes(data.doc)}',\n`;
+    content += `    icon: '${escapeSingleQuotes(data.icon)}',\n`;
     content += `    title: {\n`;
-    content += `      en: '${data.title.en}',\n`;
-    content += `      pt: '${data.title.pt}',\n`;
+    content += `      en: '${escapeSingleQuotes(data.title.en)}',\n`;
+    content += `      pt: '${escapeSingleQuotes(data.title.pt)}',\n`;
     content += `    },\n`;
     content += `    description: {\n`;
-    content += `      en: '${data.description.en}',\n`;
-    content += `      pt: '${data.description.pt}',\n`;
+    content += `      en: '${escapeSingleQuotes(data.description.en)}',\n`;
+    content += `      pt: '${escapeSingleQuotes(data.description.pt)}',\n`;
     content += `    },\n`;
     content += `  },\n`;
   }
