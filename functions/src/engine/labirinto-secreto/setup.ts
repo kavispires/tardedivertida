@@ -258,7 +258,7 @@ export const prepareGameOverPhase = async (
     });
   });
 
-  const achievements = getAchievements(store.achievements, undefined, players);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

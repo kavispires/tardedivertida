@@ -16,8 +16,9 @@ import {
   SKIERS_BETTING_CHIPS,
 } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
-import { aggregateBets, applyBetsToLodges, calculateScores, getAchievements } from './helpers';
+import { aggregateBets, applyBetsToLodges, calculateScores } from './helpers';
 import { makeArray } from '../../utils/helpers';
+import { getAchievements, setupAchievements } from './achievements';
 
 /**
  * Setup phase - initializes game state and resources
@@ -37,17 +38,7 @@ export const prepareSetupPhase = async (
   // Build deck
   const deck = sampleSize(resourceData.dilemmas, gameOrder.length * DILEMMAS_PER_ROUND);
 
-  const achievements = utils.achievements.setup(players, {
-    lodges: 0,
-    bets: 0,
-    initial: 0,
-    boost: 0,
-    final: 0,
-    onlyLodge: 0,
-    players: 0,
-    betOn: 0,
-    highestBet: [],
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Save
   return {
@@ -442,7 +433,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

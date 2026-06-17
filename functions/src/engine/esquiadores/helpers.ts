@@ -1,8 +1,10 @@
 // Utils
 import utils from '../../utils';
-import { BET_TYPES, ESQUIADORES_ACHIEVEMENTS, ESQUIADORES_PHASES, SKIER_BET_TYPES } from './constants';
-import type { EsquiadoresAchievement, FirebaseStoreData, Lodge } from './types';
+import { BET_TYPES, ESQUIADORES_PHASES, SKIER_BET_TYPES } from './constants';
+import type { FirebaseStoreData, Lodge } from './types';
 import { cloneDeep, uniq } from 'lodash';
+// Internal
+import { increaseAchievement, pushAchievement } from './achievements';
 
 /**
  * Determines the next phase based on the current phase and round
@@ -114,7 +116,7 @@ export const calculateScores = (
     const lodgesWithoutBet = 6 - Object.values(bets).filter((bet) => bet && bet !== 0).length;
     scores.add(player.id, lodgesWithoutBet, 1);
     // Achievement: Most/Fewest lodges
-    utils.achievements.increase(store, player.id, 'lodges', lodges.length - lodgesWithoutBet);
+    increaseAchievement(store.achievements, player.id, 'lodges', lodges.length - lodgesWithoutBet);
   });
 
   // Skier scoring: bet on which lodge will have the most total chips
@@ -150,7 +152,7 @@ export const calculateScores = (
   ]);
 
   // Achievement: Most/Fewest Lodges (for skier, this is how many lodges they bet on)
-  utils.achievements.increase(store, skierId, 'players', skierBetLodges.size);
+  increaseAchievement(store.achievements, skierId, 'players', skierBetLodges.size);
 
   // Empty lodge bonus: 1 point for each lodge skier didn't bet on
   const emptyLodgeBonus = 6 - skierBetLodges.size;
@@ -215,209 +217,32 @@ export const calculateBetAchievements = (
 
     // Achievement: Highest Bet
     const highestBet = Math.max(...Object.values<number>(player.bets ?? {}));
-    utils.achievements.push(store, player.id, 'highestBet', highestBet);
+    pushAchievement(store.achievements, player.id, 'highestBet', highestBet);
   });
 
   // Calculate achievements
   Object.values(initialBets).forEach((playersInBet) => {
     playersInBet.forEach((playerId) => {
-      utils.achievements.increase(store, playerId, 'initial', 1);
+      increaseAchievement(store.achievements, playerId, 'initial', 1);
     });
   });
   Object.values(boostBets).forEach((playersInBet) => {
     playersInBet.forEach((playerId) => {
-      utils.achievements.increase(store, playerId, 'boost', 1);
+      increaseAchievement(store.achievements, playerId, 'boost', 1);
     });
   });
   Object.values(finalBets).forEach((playersInBet) => {
     playersInBet.forEach((playerId) => {
-      utils.achievements.increase(store, playerId, 'final', 1);
+      increaseAchievement(store.achievements, playerId, 'final', 1);
     });
   });
   Object.values(bets).forEach((playersInBet) => {
     if (playersInBet.length === 1) {
-      utils.achievements.increase(store, playersInBet[0], 'onlyLodge', 1);
+      increaseAchievement(store.achievements, playersInBet[0], 'onlyLodge', 1);
     } else {
       playersInBet.forEach((playerId) => {
-        utils.achievements.increase(store, playerId, 'bets', 1);
+        increaseAchievement(store.achievements, playerId, 'bets', 1);
       });
     }
   });
-};
-
-/**
- * Calculates and returns player achievements based on game statistics
- * @param store - The Firebase store data containing achievement counters
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<EsquiadoresAchievement>[] = [];
-
-  // Most/Fewest lodges
-  const { most: mostLodges, least: fewestLodges } = utils.achievements.getMostAndLeastOf(store, 'lodges');
-
-  if (mostLodges) {
-    achievements.push({
-      playerId: mostLodges.playerId,
-      type: ESQUIADORES_ACHIEVEMENTS.MOST_LODGES,
-      value: mostLodges.value,
-    });
-  }
-
-  if (fewestLodges) {
-    achievements.push({
-      playerId: fewestLodges.playerId,
-      type: ESQUIADORES_ACHIEVEMENTS.FEWEST_LODGES,
-      value: fewestLodges.value,
-    });
-  }
-
-  // Most/Fewest Group Bets
-  const { most: mostGroupBets, least: fewestGroupBets } = utils.achievements.getMostAndLeastOf(store, 'bets');
-
-  if (mostGroupBets) {
-    achievements.push({
-      playerId: mostGroupBets.playerId,
-      type: ESQUIADORES_ACHIEVEMENTS.MOST_GROUP_BETS,
-      value: mostGroupBets.value,
-    });
-  }
-
-  if (fewestGroupBets) {
-    achievements.push({
-      playerId: fewestGroupBets.playerId,
-      type: ESQUIADORES_ACHIEVEMENTS.FEWEST_GROUP_BETS,
-      value: fewestGroupBets.value,
-    });
-  }
-
-  // Most/Fewest Group Initial Bets
-  const { most: mostGroupInitialBets, least: fewestGroupInitialBets } = utils.achievements.getMostAndLeastOf(
-    store,
-    'initial',
-  );
-
-  if (mostGroupInitialBets) {
-    achievements.push({
-      playerId: mostGroupInitialBets.playerId,
-      type: ESQUIADORES_ACHIEVEMENTS.MOST_GROUP_INITIAL_BETS,
-      value: mostGroupInitialBets.value,
-    });
-  }
-
-  if (fewestGroupInitialBets) {
-    achievements.push({
-      playerId: fewestGroupInitialBets.playerId,
-      type: ESQUIADORES_ACHIEVEMENTS.FEWEST_GROUP_INITIAL_BETS,
-      value: fewestGroupInitialBets.value,
-    });
-  }
-
-  // Most/Fewest Group Boost Bets
-  const { most: mostGroupBoostBets, least: fewestGroupBoostBets } = utils.achievements.getMostAndLeastOf(
-    store,
-    'boost',
-  );
-
-  if (mostGroupBoostBets) {
-    achievements.push({
-      playerId: mostGroupBoostBets.playerId,
-      type: ESQUIADORES_ACHIEVEMENTS.MOST_GROUP_BOOST_BETS,
-      value: mostGroupBoostBets.value,
-    });
-  }
-
-  if (fewestGroupBoostBets) {
-    achievements.push({
-      playerId: fewestGroupBoostBets.playerId,
-      type: ESQUIADORES_ACHIEVEMENTS.FEWEST_GROUP_BOOST_BETS,
-      value: fewestGroupBoostBets.value,
-    });
-  }
-
-  // Most/Fewest Group Final Bets
-  const { most: mostGroupFinalBets, least: fewestGroupFinalBets } = utils.achievements.getMostAndLeastOf(
-    store,
-    'final',
-  );
-
-  if (mostGroupFinalBets) {
-    achievements.push({
-      playerId: mostGroupFinalBets.playerId,
-      type: ESQUIADORES_ACHIEVEMENTS.MOST_GROUP_FINAL_BETS,
-      value: mostGroupFinalBets.value,
-    });
-  }
-
-  if (fewestGroupFinalBets) {
-    achievements.push({
-      playerId: fewestGroupFinalBets.playerId,
-      type: ESQUIADORES_ACHIEVEMENTS.FEWEST_GROUP_FINAL_BETS,
-      value: fewestGroupFinalBets.value,
-    });
-  }
-
-  // Only Lodge
-  const { most: mostOnlyLodge } = utils.achievements.getMostAndLeastOf(store, 'onlyLodge');
-
-  if (mostOnlyLodge) {
-    achievements.push({
-      playerId: mostOnlyLodge.playerId,
-      type: ESQUIADORES_ACHIEVEMENTS.ONLY_LODGE,
-      value: mostOnlyLodge.value,
-    });
-  }
-
-  // Most/Fewest Player Bets
-  const { most: mostPlayerBets, least: fewestPlayerBets } = utils.achievements.getMostAndLeastOf(
-    store,
-    'players',
-  );
-
-  if (mostPlayerBets) {
-    achievements.push({
-      playerId: mostPlayerBets.playerId,
-      type: ESQUIADORES_ACHIEVEMENTS.MOST_PLAYER_BETS,
-      value: mostPlayerBets.value,
-    });
-  }
-
-  if (fewestPlayerBets) {
-    achievements.push({
-      playerId: fewestPlayerBets.playerId,
-      type: ESQUIADORES_ACHIEVEMENTS.FEWEST_PLAYER_BETS,
-      value: fewestPlayerBets.value,
-    });
-  }
-
-  // Highest Bet
-  const { most: highestBet } = utils.achievements.getHighestAndLowestOccurrences(store, 'highestBet');
-
-  if (highestBet) {
-    achievements.push({
-      playerId: highestBet.playerId,
-      type: ESQUIADORES_ACHIEVEMENTS.HIGHEST_BET,
-      value: highestBet.value,
-    });
-  }
-
-  // Most/Least Bet On
-  const { most: mostBetOn, least: leastBetOn } = utils.achievements.getMostAndLeastOf(store, 'betOn');
-
-  if (mostBetOn) {
-    achievements.push({
-      playerId: mostBetOn.playerId,
-      type: ESQUIADORES_ACHIEVEMENTS.MOST_BET_ON_PLAYER,
-      value: mostBetOn.value,
-    });
-  }
-
-  if (leastBetOn) {
-    achievements.push({
-      playerId: leastBetOn.playerId,
-      type: ESQUIADORES_ACHIEVEMENTS.LEAST_BET_ON_PLAYER,
-      value: leastBetOn.value,
-    });
-  }
-
-  return achievements;
 };

@@ -1,5 +1,5 @@
 import type { DilemmaCard } from '../../types/tdr';
-import type { ESQUIADORES_ACHIEVEMENTS, ESQUIADORES_ACTIONS } from './constants';
+import type { ESQUIADORES_ACTIONS } from './constants';
 
 export type EsquiadoresOptions = {
   /**
@@ -27,14 +27,12 @@ export type Lodge = {
   playersIds: UID[];
 };
 
-export type EsquiadoresAchievement = keyof typeof ESQUIADORES_ACHIEVEMENTS;
-
 export interface EsquiadoresStore extends DefaultStore {
   deck: DilemmaCard[];
 }
 
 export interface EsquiadoresState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface EsquiadoresInitialState extends InitialState {
