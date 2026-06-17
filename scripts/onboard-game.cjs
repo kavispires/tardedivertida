@@ -120,7 +120,7 @@ async function createGameFolder(gameName) {
   }
 
   // Create placeholder files
-  const files = ['actions.ts', 'constants.ts', 'data.ts', 'helpers.ts', 'index.ts', 'setup.ts', 'types.d.ts'];
+  const files = ['actions.ts', 'constants.ts', 'data.ts', 'helpers.ts', 'index.ts', 'setup.ts', 'types.d.ts', 'achievements.ts'];
 
   for (const file of files) {
     const filePath = path.join(enginePath, file);

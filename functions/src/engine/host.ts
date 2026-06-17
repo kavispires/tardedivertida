@@ -104,8 +104,7 @@ export type BasicGamePayload = {
   gameId: UID;
   gameName: string;
   action: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 };
 
 /**
@@ -330,10 +329,10 @@ const retireGames = async (data: RetireGamesPayload) => {
   }
 
   try {
-    // eslint-disable-next-line no-console
+    // biome-ignore lint/suspicious/noConsole: debug purposes
     console.log(`Starting game retirement for: ${gameNames.join(', ')}`);
     const result = await retireGamesFromUsers(gameNames);
-    // eslint-disable-next-line no-console
+    // biome-ignore lint/suspicious/noConsole: debug purposes
     console.log('Game retirement completed:', result);
     return result;
   } catch (error) {

@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+
 /**
  * React type for component children
  */
@@ -31,6 +32,11 @@ export type Achievement = {
  */
 export type AchievementInfo = {
   /**
+   * The unique identifier for the achievement
+   * TODO: make it required after migration
+   */
+  id?: AchievementKey;
+  /**
    * Icon identifier for the achievement
    */
   icon: string;
@@ -41,7 +47,12 @@ export type AchievementInfo = {
   /**
    * Optional achievement description in multiple languages
    */
-  description?: DualLanguageValue;
+  description: DualLanguageValue;
+  /**
+   * Documentation or notes about the achievement
+   * TODO: make it required after migration
+   */
+  doc?: string;
 };
 
 /**

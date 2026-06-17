@@ -1,10 +1,21 @@
+/**
+ * @deprecated This file is deprecated. Use the new achievements tool-kit instead.
+ * See: functions/src/utils/tool-kits/achievements.ts
+ *
+ * For new games, use:
+ * ```
+ * import { achievementBuilder } from '../../utils/tool-kits';
+ * const achievements = achievementBuilder('GAME_NAME').counter(...).build();
+ * ```
+ */
+
 import { calculateAverage } from './helpers';
 import { getListOfPlayers } from './players-utils';
 import { cloneDeep, uniq } from 'lodash';
 
 interface StoreAchievement {
   playerId: UID;
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 interface ResultAchievement {
@@ -22,6 +33,7 @@ type AchievementResult = {
  * @param players
  * @param properties
  * @return the achievements
+ * @deprecated Use achievementBuilder().build().setup() instead
  */
 export const setup = (players: Players, properties: PlainObject) => {
   const achievements = {};
@@ -40,6 +52,7 @@ export const setup = (players: Players, properties: PlainObject) => {
  * @param property the property to increase
  * @param value the value to increase
  * @returns the achievements
+ * @deprecated Use achievementBuilder().build().increase() instead
  */
 export const increase = (store: PlainObject, playerId: UID, property: string, value: number) => {
   if (store.achievements[playerId] !== undefined) {
@@ -56,6 +69,7 @@ export const increase = (store: PlainObject, playerId: UID, property: string, va
  * @param property
  * @param value
  * @returns the achievements
+ * @deprecated Use achievementBuilder().build().push() instead
  */
 export const push = (store: PlainObject, playerId: UID, property: string, value: unknown) => {
   if (store.achievements[playerId] !== undefined) {
@@ -73,6 +87,7 @@ export const push = (store: PlainObject, playerId: UID, property: string, value:
  * @param value
  * @param index
  * @returns the achievements
+ * @deprecated Use achievementBuilder().build().insert() instead
  */
 export const insert = (
   store: PlainObject,
@@ -96,6 +111,7 @@ export const insert = (
  * @param property - The property name of the achievement to be updated.
  * @param value - The value to be added to the last element of the specified property array.
  * @returns The updated achievements object from the store.
+ * @deprecated Use achievementBuilder().build().addToLast() instead
  */
 export const addToLast = (store: PlainObject, playerId: UID, property: string, value: number) => {
   if (store.achievements[playerId] !== undefined) {
@@ -125,6 +141,7 @@ const _getValue = (achievement: StoreAchievement, property: string): ResultAchie
  * @param ineligiblePlayers player Ids that should not count for the achievement
  * @param condition function to verify value (for example, if it's positive)
  * @returns the most and least values
+ * @deprecated Use achievementBuilder().build().calculate() with counter type instead
  */
 export const getMostAndLeastOf = (
   store: PlainObject,
@@ -168,6 +185,7 @@ export const getMostAndLeastOf = (
  * @param property
  * @param ineligiblePlayers player Ids that should not count for the achievement
  * @returns the most and least values
+ * @deprecated Use achievementBuilder().build().calculate() with array average type instead
  */
 export const getMostAndLeastOfAverage = (
   store: PlainObject,
@@ -215,6 +233,7 @@ export const getMostAndLeastOfAverage = (
  * @param property
  * @param ineligiblePlayers player Ids that should not count for the achievement
  * @returns the most and least values
+ * @deprecated Use achievementBuilder().build().calculate() with array uniqueItems type instead
  */
 export const getMostAndLeastUniqueItemsOf = (
   store: PlainObject,
@@ -235,6 +254,7 @@ export const getMostAndLeastUniqueItemsOf = (
  * @param property
  * @param ineligiblePlayers player Ids that should not count for the achievement
  * @returns the most and least values
+ * @deprecated Use achievementBuilder().build().calculate() with array occurrence type instead
  */
 export const getEarliestAndLatestOccurrence = (
   store: PlainObject,
@@ -257,6 +277,7 @@ export const getEarliestAndLatestOccurrence = (
  * @param value - The value to match for the specified property.
  * @param ineligiblePlayers - An optional array of player IDs to exclude from the search.
  * @returns The achievement that exactly matches the specified property and value, or null if there is not exactly one match.
+ * @deprecated Use achievementBuilder().build().calculate() with exactMatch type instead
  */
 export const getOnlyExactMatch = (
   store: PlainObject,
@@ -283,6 +304,7 @@ export const getOnlyExactMatch = (
  * @param property - The property to check for truthy values
  * @param ineligiblePlayers - An optional array of player IDs to exclude from the results
  * @returns An array of player IDs that have a truthy value for the specified property
+ * @deprecated Use achievementBuilder().build().calculate() with truthy type instead
  */
 export const getPlayersWithTruthyAchievement = (
   store: PlainObject,
@@ -305,6 +327,7 @@ export const getPlayersWithTruthyAchievement = (
  * @param ineligiblePlayers - An optional array of player IDs to exclude from the evaluation.
  * @returns An object containing the highest and lowest occurrences of the specified property.
  *          If there are multiple achievements with the same highest or lowest value, the result will be null.
+ * @deprecated Use achievementBuilder().build().calculate() instead
  */
 export const getHighestAndLowestOccurrences = (
   store: PlainObject,

@@ -44,20 +44,26 @@ type DualLanguageValue = {
   pt: string;
 };
 
+/**
+ * Represents a value that can be of any type or unknown, used for flexibility in type definitions
+ */
+// biome-ignore lint/suspicious/noExplicitAny: on purpose
+type AnyOrUnknownPlaceholder = any | unknown;
+
 // COMMON INTERFACES
 
 /**
  * Generic object with string keys and any values
  */
 interface PlainObject {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 /**
  * Firebase function context object
  */
 type FirebaseContext = {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 };
 
 /**
@@ -100,7 +106,7 @@ interface ActionPayload {
   /**
    * Additional action-specific properties
    */
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 /**
@@ -268,7 +274,7 @@ interface DefaultState {
   /**
    * Additional game-specific state properties
    */
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 /**
@@ -290,7 +296,7 @@ interface DefaultStore<TOptions = GameOptions> {
   /**
    * Additional game-specific store properties
    */
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 /**
@@ -304,7 +310,7 @@ interface InitialState {
   /**
    * Persistent game store data
    */
-  store: any;
+  store: AnyOrUnknownPlaceholder;
   /**
    * Current game state
    */
@@ -445,7 +451,7 @@ interface ExtendedPayload {
   /**
    * Additional action-specific properties
    */
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 /**
@@ -708,7 +714,7 @@ interface RankingEntry {
 /**
  * Achievement earned by a player
  */
-interface Achievement<T> {
+interface Achievement<T = string> {
   /**
    * The type or category of achievement
    */

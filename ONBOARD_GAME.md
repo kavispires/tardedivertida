@@ -58,10 +58,50 @@ All file paths here are relative to `/src`.
 
 ## Achievements
 
-- Add achievements titles in `functions/src/engine/.../constants.ts`
-- Add the type `export type ArteRuimAchievement = keyof typeof ARTE_RUIM_ACHIEVEMENTS;`
-- In the prepareSetupPhase add `utils.achievements.setup` with key trackers for each category
-- Add adders everywhere is necessary with the use of ''
-- Create a function getAchievements to read the store and generate the achievements properly with the help of the `utils.achievements` functions
-- Use the component `<Achievements />` in the GameOverPhase padding a reference for all the icons in the game. See type `AchievementReference`
-- Update `ACHIEVEMENTS_DICT` in `src/utils/achievements.ts` so it is available in the User page
+### Backend Setup (Cloud Functions)
+
+1. **Create `achievements.ts` file** in your game's engine folder (`functions/src/engine/<game-name>/`)
+   ```typescript
+   import { achievementBuilder } from '../../utils/tool-kits';
+
+   const achievements = achievementBuilder('GAME_NAME')
+     .counter('propertyName', {
+       doc: 'Description of what this tracks',
+       most: 'ACHIEVEMENT_ID',
+       least: 'OTHER_ACHIEVEMENT_ID', // optional
+     })
+     .build();
+
+   export const {
+     constants,
+     setup: setupAchievements,
+     increase: increaseAchievement,
+     calculate: getAchievements,
+   } = achievements;
+   ```
+
+   **Note:** Use simple `achievements` variable name since it's only used internally and not exported.
+
+   const achievements = setupAchievements(Object.keys(players));
+   ```
+
+3. **Track achievements** during gameplay in `helpers.ts`, `actions.ts`
+   ```typescript
+   import { increaseAchievement } from './achievements';
+
+   increaseAchievement(store.achievements, playerId, 'propertyName', value);
+   ```
+
+4. **Calculate at game over** in `setup.ts` - `prepareGameOverPhase`
+   ```typescript
+   import { getAchievements } from './achievements';
+
+   const achievements = getAchievements(store.achievements, players);
+   ```
+
+**Note:** Use direct string literals for achievement IDs. Don't import from `constants.ts`. The toolkit auto-generates constants if needed.
+
+### Frontend Setup (UI)
+
+- Use the component `<Achievements />` in the GameOverPhase, passing a reference for all the icons in the game (see type `AchievementReference`)
+- Update `ACHIEVEMENTS_DICT` in `src/utils/achievements.ts` so achievements are available in the User page
