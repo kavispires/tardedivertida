@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "contadores-historias",
-  "version": "4.1.51",
+  "version": "4.1.52",
   "release": "stable",
   "releaseDate": "2021-08-28",
   "available": true,
