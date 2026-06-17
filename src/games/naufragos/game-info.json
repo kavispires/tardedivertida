@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "J",
   "gameName": "naufragos",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "release": "planned",
   "releaseDate": "0000-00-00",
   "available": false,

@@ -7,13 +7,17 @@
 
 ### External Dependencies
 
-- Image Rules: 🔘
+- Rules Images: 🔘
 - Image Background: 🔘
-- Video Background: 🔘
+- Video Background: ✅
 
 ### Migrations
 
-- TBD
+- Phase Delegator Migration: 🔘
+- PhaseProps Migration: 🔘
+- Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
+- Achievements Tool Kit Migration: 🔘
 
 ### Report
 

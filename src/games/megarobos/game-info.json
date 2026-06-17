@@ -1,20 +1,20 @@
 {
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "R",
-  "gameName": "namoro-ou-amizade",
-  "version": "0.0.6",
+  "gameName": "megarobos",
+  "version": "0.0.7",
   "release": "planned",
   "releaseDate": "0000-00-00",
   "available": false,
   "title": {
-    "pt": "Namoro ou Amizade",
+    "pt": "Megarobos",
     "en": "Megabots"
   },
   "popularName": {
     "pt": "",
     "en": ""
   },
-  "inspiredBy": "retaD retsaM",
+  "inspiredBy": "kaertS toH",
   "summary": {
     "pt": "TBD",
     "en": "TBD"
@@ -24,7 +24,7 @@
     "cloudsAnimationType": "flow",
     "primaryColor": "",
     "colorScheme": "light",
-    "videoBackground": true
+    "videoBackground": false
   },
   "rules": {
     "pt": ["TBD"],

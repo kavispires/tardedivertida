@@ -1,19 +1,23 @@
-## Metadata for Namoro ou Amizade
+## Metadata for Megarobos
 
 ### Basic Info
 
-- Collection: `namoro-ou-amizade`
+- Collection: `megarobos`
 - Code: `R`
 
 ### External Dependencies
 
-- Image Rules: 🔘
+- Rules Images: 🔘
 - Image Background: 🔘
-- Video Background: 🔘
+- Video Background: ✅
 
 ### Migrations
 
-- TBD
+- Phase Delegator Migration: ✅
+- PhaseProps Migration: 🔘
+- Float Submit Migration: 🔘
+- Host Timer Bar Migration: 🔘
+- Achievements Tool Kit Migration: 🔘
 
 ### Report
 
