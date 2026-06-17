@@ -1,5 +1,5 @@
 import type { TopicCard } from '../../types/tdr';
-import type { ADEDANHX_ACHIEVEMENTS, ADEDANHX_ACTIONS } from './constants';
+import type { ADEDANHX_ACTIONS } from './constants';
 
 export type AdedanhxOptions = {
   /**
@@ -74,14 +74,12 @@ export type GalleryEntry = {
   topAnswer?: AnswerGridEntry['main'];
 };
 
-export type AdedanhxAchievement = keyof typeof ADEDANHX_ACHIEVEMENTS;
-
 export interface AdedanhxStore extends DefaultStore<AdedanhxOptions> {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface AdedanhxState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface AdedanhxInitialState extends InitialState {

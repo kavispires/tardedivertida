@@ -13,14 +13,8 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types
 // Utils
 import utils from '../../utils';
 // Internal
-import {
-  buildGrid,
-  evaluateAnswers,
-  getAchievements,
-  getCurrentGrid,
-  groupAnswers,
-  storeGalleryData,
-} from './helpers';
+import { buildGrid, evaluateAnswers, getCurrentGrid, groupAnswers, storeGalleryData } from './helpers';
+import { getAchievements, increaseAchievement, setupAchievements } from './achievements';
 
 /**
  * Setup phase - builds the card deck and resets previous changes to the store
@@ -48,13 +42,7 @@ export const prepareSetupPhase = async (
     !!options.nsfw,
   );
 
-  const achievements = utils.achievements.setup(players, {
-    stop: 0,
-    first: 0,
-    cells: 0,
-    badClues: 0,
-    autoReject: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Save
   return {
@@ -141,7 +129,7 @@ export const prepareEvaluationPhase = async (
 
   if (state.stop) {
     // Achievement: stop
-    utils.achievements.increase(store, state.stop, 'stop', 1);
+    increaseAchievement(store.achievements, state.stop, 'stop', 1);
   }
 
   // Save
@@ -209,7 +197,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

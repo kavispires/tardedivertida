@@ -2,7 +2,6 @@
 import type { TopicCard } from '../../types/tdr';
 import { orderBy, shuffle } from 'lodash';
 import type {
-  AdedanhxAchievement,
   AnswerEvaluationEntry,
   AnswerGridEntry,
   FirebaseStoreData,
@@ -10,10 +9,12 @@ import type {
   LetterEntry,
 } from './types';
 // Constants
-import { ADEDANHX_ACHIEVEMENTS, ADEDANHX_PHASES } from './constants';
+import { ADEDANHX_PHASES } from './constants';
 import { SEPARATOR } from '../../utils/constants';
 // Utils
 import utils from '../../utils';
+// Internal
+import { increaseAchievement } from './achievements';
 
 /**
  * Determine the next phase based on the current one
@@ -239,13 +240,10 @@ export const groupAnswers = (
         if (answer) {
           const isAutoRejected = !autoEvaluateAnswer(answer, letter);
           if (isAutoRejected) {
-            // Achievement: autoReject
-            utils.achievements.increase(store, playerId, 'autoReject', 1);
-            // Achievement: badClues
-            utils.achievements.increase(store, playerId, 'badClues', 1);
+            increaseAchievement(store.achievements, playerId, 'autoReject', 1);
+            increaseAchievement(store.achievements, playerId, 'badClues', 1);
           }
-          // Achievement: cells
-          utils.achievements.increase(store, playerId, 'cells', 1);
+          increaseAchievement(store.achievements, playerId, 'cells', 1);
 
           answers.push({
             id: `${id}${SEPARATOR}${playerId}`,
@@ -361,8 +359,7 @@ export const evaluateAnswers = (
           const answer = answersGroup.answers.find((answer) => answer.id === answerId);
           if (answer) {
             answer.rejected = true;
-            // Achievement: badClues
-            utils.achievements.increase(store, player.id, 'badClues', 1);
+            increaseAchievement(store.achievements, player.id, 'badClues', 1);
           }
         }
       }
@@ -409,8 +406,8 @@ export const evaluateAnswers = (
       answerGridEntry.main.answer = top.answer;
       scores.add(top.playerId, group.topic.level, 1);
       scores.add(top.playerId, group.letter.level, 0);
-      // Achievement: top answer/first
-      utils.achievements.increase(store, top.playerId, 'first', 1);
+
+      increaseAchievement(store.achievements, top.playerId, 'first', 1);
     }
 
     otherAnswers.forEach((answer) => {
@@ -466,87 +463,4 @@ export const storeGalleryData = (
       }
     });
   });
-};
-
-/**
- * Get achievements
- * @param store
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<AdedanhxAchievement>[] = [];
-
-  // Most Stops: stopped the game the most
-  const { most: mostStops } = utils.achievements.getMostAndLeastOf(store, 'stop');
-  if (mostStops) {
-    achievements.push({
-      type: ADEDANHX_ACHIEVEMENTS.MOST_STOPS,
-      playerId: mostStops.playerId,
-      value: mostStops.value,
-    });
-  }
-
-  // Never stopped
-  const neverStopped = utils.achievements.getOnlyExactMatch(store, 'stop', 0);
-
-  if (neverStopped) {
-    achievements.push({
-      type: ADEDANHX_ACHIEVEMENTS.NEVER_STOPPED,
-      playerId: neverStopped.playerId,
-      value: neverStopped.value,
-    });
-  }
-
-  // Most first answers
-  const { most: mostFirstAnswers, least: fewestFirstAnswers } = utils.achievements.getMostAndLeastOf(
-    store,
-    'first',
-  );
-
-  if (mostFirstAnswers) {
-    achievements.push({
-      type: ADEDANHX_ACHIEVEMENTS.MOST_FIRST_ANSWERS,
-      playerId: mostFirstAnswers.playerId,
-      value: mostFirstAnswers.value,
-    });
-  }
-
-  // Fewest first answers
-  if (fewestFirstAnswers) {
-    achievements.push({
-      type: ADEDANHX_ACHIEVEMENTS.LEAST_FIRST_ANSWERS,
-      playerId: fewestFirstAnswers.playerId,
-      value: fewestFirstAnswers.value,
-    });
-  }
-
-  // Most cells: answered the most
-  const { most: mostCells, least: fewestCells } = utils.achievements.getMostAndLeastOf(store, 'cells');
-  if (mostCells) {
-    achievements.push({
-      type: ADEDANHX_ACHIEVEMENTS.MOST_CELLS,
-      playerId: mostCells.playerId,
-      value: mostCells.value,
-    });
-  }
-
-  // Fewest cells: answered the least
-  if (fewestCells) {
-    achievements.push({
-      type: ADEDANHX_ACHIEVEMENTS.FEWEST_CELLS,
-      playerId: fewestCells.playerId,
-      value: fewestCells.value,
-    });
-  }
-
-  // Most auto rejects: auto rejected the most
-  const { most: mostAutoRejects } = utils.achievements.getMostAndLeastOf(store, 'autoReject');
-  if (mostAutoRejects) {
-    achievements.push({
-      type: ADEDANHX_ACHIEVEMENTS.MOST_AUTO_REJECTS,
-      playerId: mostAutoRejects.playerId,
-      value: mostAutoRejects.value,
-    });
-  }
-
-  return achievements;
 };

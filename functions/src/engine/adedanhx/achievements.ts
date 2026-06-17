@@ -1,0 +1,49 @@
+/**
+ * ADEDANHX ACHIEVEMENTS
+ * Type-safe achievement definitions using the achievements toolkit
+ */
+
+import { achievementBuilder } from '../../utils/tool-kits';
+
+/**
+ * Build achievement utilities for Adedanhx game
+ */
+const achievements = achievementBuilder('ADEDANHX')
+  .counter('stop', {
+    doc: 'Number of times player stopped the game',
+    most: 'MOST_STOPS',
+    least: 'FEWEST_STOPS',
+  })
+  .exactMatch('stop', {
+    doc: 'Player never stopped the game',
+    key: 'NEVER_STOPPED',
+    value: 0,
+  })
+  .counter('first', {
+    doc: 'Number of times player answered first/fastest',
+    most: 'MOST_FIRST_ANSWERS',
+    least: 'LEAST_FIRST_ANSWERS',
+  })
+  .counter('cells', {
+    doc: 'Number of cells answered',
+    most: 'MOST_CELLS',
+    least: 'FEWEST_CELLS',
+  })
+  .counter('autoReject', {
+    doc: 'Number of answers auto-rejected',
+    most: 'MOST_AUTO_REJECTS',
+    least: 'FEWEST_AUTO_REJECTS',
+  })
+  .counter('badClues', {
+    doc: 'Number of bad clues given (tracked but not awarded)',
+    most: 'MOST_REJECTED_CLUES',
+    least: 'FEWEST_REJECTED_CLUES',
+  })
+  .build();
+
+export const {
+  constants,
+  setup: setupAchievements,
+  increase: increaseAchievement,
+  calculate: getAchievements,
+} = achievements;
