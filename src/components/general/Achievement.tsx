@@ -1,10 +1,11 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import { Button, Popover } from 'antd';
+import { Button, Popover, Tag } from 'antd';
 // Types
 import type { AchievementInfo } from 'types/game';
 // Components
+import { DebugOnly } from 'components/debug/DebugOnly';
 import { DualTranslate } from 'components/language/DualTranslate';
 // Internal
 import { Medal } from './Medal';
@@ -56,6 +57,12 @@ export function Achievement({ achievement, value }: AchievementProps) {
               size="small"
             />
           </Popover>
+          <DebugOnly
+            div
+            dev
+          >
+            <Tag>{achievement.id ?? '?'}</Tag>
+          </DebugOnly>
         </div>
       )}
     </div>
