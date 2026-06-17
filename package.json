@@ -1,7 +1,7 @@
 {
 	"name": "tardedivertida",
 	"homepage": "http://www.kavispires.com/tardedivertida/",
-	"version": "50.13.269",
+	"version": "50.13.271",
 	"private": true,
 	"type": "module",
 	"dependencies": {
@@ -51,11 +51,12 @@
 		"check:icons": "node scripts/check-icon-imports.cjs",
 		"scripts:list": "node scripts/list-scripts.cjs",
 		"prepare": "husky",
-		"onboard": "node scripts/onboard-game.cjs",
-		"revert-versions": "node scripts/revert-game-versions.cjs",
-		"stage-game": "node scripts/stage-game.cjs",
 		"update-commit": "td amend-commit-date",
+		"game-metadata": "node scripts/metadata-helper.cjs",
+		"onboard": "node scripts/onboard-game.cjs",
+		"stage-game": "node scripts/stage-game.cjs",
 		"sort-imports": "node scripts/sort-imports-in-folder.cjs",
+		"revert-versions": "node scripts/revert-game-versions.cjs",
 		"clean": "rm -rf node_modules & yarn cache clean"
 	},
 	"browserslist": {
