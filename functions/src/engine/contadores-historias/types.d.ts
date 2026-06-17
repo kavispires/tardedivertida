@@ -1,4 +1,4 @@
-import type { CONTADORES_HISTORIAS_ACHIEVEMENTS, CONTADORES_HISTORIAS_ACTIONS } from './constants';
+import type { CONTADORES_HISTORIAS_ACTIONS } from './constants';
 
 export type ContadoresHistoriasOptions = {
   /**
@@ -18,7 +18,7 @@ export interface ContadoresHistoriasStore extends DefaultStore {
   deckIndex: number;
   solutionCardId?: string;
   story?: string;
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface ContadoresHistoriasState extends DefaultState {
@@ -29,7 +29,7 @@ export interface ContadoresHistoriasState extends DefaultState {
   outcome?: any;
   ranking?: any;
   winners?: any;
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface ContadoresHistoriasInitialState extends InitialState {
@@ -49,8 +49,6 @@ export type Table = TableEntry[];
 export interface ContadoresHistoriasSubmitAction extends Payload {
   action: keyof typeof CONTADORES_HISTORIAS_ACTIONS;
 }
-
-export type ContadoresHistoriasAchievement = keyof typeof CONTADORES_HISTORIAS_ACHIEVEMENTS;
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | ContadoresHistoriasState;
 export type FirebaseStoreData = FirebaseFirestore.DocumentData | ContadoresHistoriasStore;

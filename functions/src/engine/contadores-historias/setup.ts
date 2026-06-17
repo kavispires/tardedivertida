@@ -12,7 +12,8 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types
 // Utils
 import utils from '../../utils';
 // Internal
-import { buildTable, buildTableDeck, getAchievements, getTableCards, scoreRound } from './helpers';
+import { buildTable, buildTableDeck, getTableCards, scoreRound } from './helpers';
+import { setupAchievements, getAchievements } from './achievements';
 import { saveData } from './data';
 
 /**
@@ -41,12 +42,7 @@ export const prepareSetupPhase = async (
   // Split cards equally between players
   utils.playerHand.dealDeck(players, data.cards, CARDS_PER_PLAYER, 'deck');
 
-  const achievements = utils.achievements.setup(players, {
-    playerVotes: 0,
-    badClues: 0,
-    easyClues: 0,
-    tableVotes: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Save
   return {
@@ -240,7 +236,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

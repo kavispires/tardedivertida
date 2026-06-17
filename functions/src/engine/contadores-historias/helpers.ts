@@ -1,21 +1,12 @@
 // Constants
-import {
-  CONTADORES_HISTORIAS_ACHIEVEMENTS,
-  CONTADORES_HISTORIAS_PHASES,
-  GAME_OVER_SCORE_THRESHOLD,
-  OUTCOME,
-} from './constants';
+import { CONTADORES_HISTORIAS_PHASES, GAME_OVER_SCORE_THRESHOLD, OUTCOME } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD, NPC } from '../../utils/constants';
 import { shuffle } from 'lodash';
 // Type
-import type {
-  ContadoresHistoriasAchievement,
-  ContadoresHistoriasOptions,
-  FirebaseStoreData,
-  Table,
-} from './types';
+import type { ContadoresHistoriasOptions, FirebaseStoreData, Table } from './types';
 // Utils
 import utils from '../../utils';
+import { increaseAchievement } from './achievements';
 
 /**
  * Determines the next phase based on the current phase and game state
@@ -163,7 +154,7 @@ export const getRanking = (
       scores.add(player.id, cardVotes, 1);
 
       // Achievement: playerVotes
-      utils.achievements.increase(store, player.id, 'playerVotes', 1);
+      increaseAchievement(store.achievements, player.id, 'playerVotes', cardVotes);
     }
 
     // Everybody that got correctly, including storyteller, gets 3 points
@@ -173,14 +164,14 @@ export const getRanking = (
 
       // Achievement: easyClues
       if (normalPoints === 3) {
-        utils.achievements.increase(store, storytellerId, 'easyClues', 1);
+        increaseAchievement(store.achievements, storytellerId, 'easyClues', 1);
       }
     }
   });
 
   // Achievement: badClues
   if (outcome === OUTCOME.EVERYBODY_GOT || outcome === OUTCOME.NOBODY_GOT) {
-    utils.achievements.increase(store, storytellerId, 'badClues', 1);
+    increaseAchievement(store.achievements, storytellerId, 'badClues', 1);
   }
 
   // Achievement: tableVotes
@@ -188,7 +179,7 @@ export const getRanking = (
     .filter((tableEntry) => tableEntry.playerId === NPC)
     .forEach((tableEntry) => {
       tableEntry.votes.forEach((playerId) => {
-        utils.achievements.increase(store, playerId, 'tableVotes', 1);
+        increaseAchievement(store.achievements, playerId, 'tableVotes', 1);
       });
     });
 
@@ -253,66 +244,3 @@ export const determineGameOver = (
  * Calculates and returns player achievements based on game statistics
  * @param store - The Firebase store data containing achievement counters
  */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<ContadoresHistoriasAchievement>[] = [];
-
-  // Most Deceiving: Got players to vote for their cards when not the storyteller
-  const { most, least } = utils.achievements.getMostAndLeastOf(store, 'playerVotes');
-  if (most) {
-    achievements.push({
-      type: CONTADORES_HISTORIAS_ACHIEVEMENTS.MOST_DECEIVING,
-      playerId: most.playerId,
-      value: most.value,
-    });
-  }
-
-  // Worst Cards: Didn't get players to vote for their cards when not the storyteller
-  if (least) {
-    achievements.push({
-      type: CONTADORES_HISTORIAS_ACHIEVEMENTS.WORST_CARDS,
-      playerId: least.playerId,
-      value: least.value,
-    });
-  }
-
-  // Worst clues: nobody got or all got it
-  const { most: worstClues } = utils.achievements.getMostAndLeastOf(store, 'badClues');
-  if (worstClues) {
-    achievements.push({
-      type: CONTADORES_HISTORIAS_ACHIEVEMENTS.WORST_CLUES,
-      playerId: worstClues.playerId,
-      value: worstClues.value,
-    });
-  }
-
-  // Easiest clues: most people got it or all got it
-  const { most: easyClues, least: hardestClues } = utils.achievements.getMostAndLeastOf(store, 'easyClues');
-  if (easyClues) {
-    achievements.push({
-      type: CONTADORES_HISTORIAS_ACHIEVEMENTS.EASIEST_CLUES,
-      playerId: easyClues.playerId,
-      value: easyClues.value,
-    });
-  }
-
-  // Hardest clues: least people got it
-  if (hardestClues) {
-    achievements.push({
-      type: CONTADORES_HISTORIAS_ACHIEVEMENTS.HARDEST_CLUES,
-      playerId: hardestClues.playerId,
-      value: hardestClues.value,
-    });
-  }
-
-  // Table votes: votes for cards that are not from players the most
-  const { most: tableVotes } = utils.achievements.getMostAndLeastOf(store, 'tableVotes');
-  if (tableVotes) {
-    achievements.push({
-      type: CONTADORES_HISTORIAS_ACHIEVEMENTS.TABLE_VOTES,
-      playerId: tableVotes.playerId,
-      value: tableVotes.value,
-    });
-  }
-
-  return achievements;
-};
