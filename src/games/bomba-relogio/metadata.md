@@ -16,8 +16,8 @@
 - Phase Delegator Migration: ✅
 - PhaseProps Migration: ✅
 - Float Submit Migration: ✅
-- Host Timer Bar Migration: 🔘
-- Achievements Tool Kit Migration: 🔘
+- Host Timer Bar Migration: ✅
+- Achievements Tool Kit Migration: ✅
 
 ### Report
 

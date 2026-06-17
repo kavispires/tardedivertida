@@ -1,116 +1,122 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-const ACHIEVEMENTS = {
-  SOLO_TERRORIST: 'SOLO_TERRORIST',
-  BEST_TERRORIST: 'BEST_TERRORIST',
-  ACCIDENTAL_BOMBER: 'ACCIDENTAL_BOMBER',
-  MOST_TRUSTED: 'MOST_TRUSTED',
-  LEAST_TRUSTED: 'LEAST_TRUSTED',
-  MOST_WIRES: 'MOST_WIRES',
-  FEWEST_WIRES: 'FEWEST_WIRES',
-  MOST_BLANKS: 'MOST_BLANKS',
-  FEWEST_BLANKS: 'FEWEST_BLANKS',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.SOLO_TERRORIST]: {
-    icon: 'one',
-    title: {
-      pt: 'Terrorista Solo',
-      en: 'Solo Terrorist',
-    },
-    description: {
-      pt: 'Foi o único terrorista do jogo',
-      en: 'Was the only terrorist in the game',
-    },
-  },
-  [ACHIEVEMENTS.BEST_TERRORIST]: {
-    icon: 'fire',
-    title: {
-      pt: 'Melhor Terrorista',
-      en: 'Best Terrorist',
-    },
-    description: {
-      pt: 'Era um terrorista e escolheu a bomba',
-      en: 'Was a terrorist and chose the bomb',
-    },
-  },
-  [ACHIEVEMENTS.ACCIDENTAL_BOMBER]: {
+  ACCIDENTAL_BOMBER: {
+    id: 'ACCIDENTAL_BOMBER',
+    doc: 'Times exploding the bomb as an agent',
     icon: 'skull',
     title: {
-      pt: 'Agente Incompetente',
       en: 'Incompetent Agent',
+      pt: 'Agente Incompetente',
     },
     description: {
-      pt: 'Era um agente e escolheu a bomba por acidente',
       en: 'Was an agent and chose the bomb by accident',
+      pt: 'Era um agente e escolheu a bomba por acidente',
     },
   },
-  [ACHIEVEMENTS.MOST_TRUSTED]: {
-    icon: 'target',
-    title: {
-      pt: 'Mais Confiável',
-      en: 'Most Trusted',
-    },
-    description: {
-      pt: 'Foi o jogador mais escolhido para ser examinado',
-      en: 'Was the player most chosen to be examined',
-    },
-  },
-  [ACHIEVEMENTS.LEAST_TRUSTED]: {
-    icon: 'broken-chain',
-    title: {
-      pt: 'Duvidoso',
-      en: 'Questionable',
-    },
-    description: {
-      pt: 'Foi o jogador menos escolhido para ser examinado',
-      en: 'Was the player least chosen to be examined',
-    },
-  },
-  [ACHIEVEMENTS.MOST_WIRES]: {
-    icon: 'double-arrow-up',
-    title: {
-      pt: 'Melhor Agente',
-      en: 'Best Agent',
-    },
-    description: {
-      pt: 'Encontrou o maior número de fios vermelhos',
-      en: 'Found the highest number of red wires',
-    },
-  },
-  [ACHIEVEMENTS.FEWEST_WIRES]: {
-    icon: 'double-arrow-down',
-    title: {
-      pt: 'Agente Iniciante',
-      en: 'Beginner Agent',
-    },
-    description: {
-      pt: 'Encontrou o menor número de fios vermelhos',
-      en: 'Found the lowest number of red wires',
-    },
-  },
-  [ACHIEVEMENTS.MOST_BLANKS]: {
-    icon: 'minus',
-    title: {
-      pt: 'Jogador Desatento',
-      en: 'Inattentive Player',
-    },
-    description: {
-      pt: 'Revelou o maior número de cartas em branco',
-      en: 'Revealed the highest number of blank cards',
-    },
-  },
-  [ACHIEVEMENTS.FEWEST_BLANKS]: {
+  FEWEST_BLANKS: {
+    id: 'FEWEST_BLANKS',
+    doc: 'Blank cards drawn',
     icon: 'eye',
     title: {
-      pt: 'Jogador Atento',
       en: 'Attentive Player',
+      pt: 'Jogador Atento',
     },
     description: {
-      pt: 'Revelou o menor número de cartas em branco',
       en: 'Revealed the lowest number of blank cards',
+      pt: 'Revelou o menor número de cartas em branco',
+    },
+  },
+  MOST_BLANKS: {
+    id: 'MOST_BLANKS',
+    doc: 'Blank cards drawn',
+    icon: 'minus',
+    title: {
+      en: 'Inattentive Player',
+      pt: 'Jogador Desatento',
+    },
+    description: {
+      en: 'Revealed the highest number of blank cards',
+      pt: 'Revelou o maior número de cartas em branco',
+    },
+  },
+  LEAST_TRUSTED: {
+    id: 'LEAST_TRUSTED',
+    doc: 'Times being picked for examination',
+    icon: 'broken-chain',
+    title: {
+      en: 'Questionable',
+      pt: 'Duvidoso',
+    },
+    description: {
+      en: 'Was the player least chosen to be examined',
+      pt: 'Foi o jogador menos escolhido para ser examinado',
+    },
+  },
+  MOST_TRUSTED: {
+    id: 'MOST_TRUSTED',
+    doc: 'Times being picked for examination',
+    icon: 'target',
+    title: {
+      en: 'Most Trusted',
+      pt: 'Mais Confiável',
+    },
+    description: {
+      en: 'Was the player most chosen to be examined',
+      pt: 'Foi o jogador mais escolhido para ser examinado',
+    },
+  },
+  SOLO_TERRORIST: {
+    id: 'SOLO_TERRORIST',
+    doc: 'Times being a terrorist',
+    icon: 'one',
+    title: {
+      en: 'Solo Terrorist',
+      pt: 'Terrorista Solo',
+    },
+    description: {
+      en: 'Was the only terrorist in the game',
+      pt: 'Foi o único terrorista do jogo',
+    },
+  },
+  BEST_TERRORIST: {
+    id: 'BEST_TERRORIST',
+    doc: 'Times exploding the bomb as a terrorist',
+    icon: 'fire',
+    title: {
+      en: 'Best Terrorist',
+      pt: 'Melhor Terrorista',
+    },
+    description: {
+      en: 'Was a terrorist and chose the bomb',
+      pt: 'Era um terrorista e escolheu a bomba',
+    },
+  },
+  FEWEST_WIRES: {
+    id: 'FEWEST_WIRES',
+    doc: 'Red wires drawn',
+    icon: 'double-arrow-down',
+    title: {
+      en: 'Beginner Agent',
+      pt: 'Agente Iniciante',
+    },
+    description: {
+      en: 'Found the lowest number of red wires',
+      pt: 'Encontrou o menor número de fios vermelhos',
+    },
+  },
+  MOST_WIRES: {
+    id: 'MOST_WIRES',
+    doc: 'Red wires drawn',
+    icon: 'double-arrow-up',
+    title: {
+      en: 'Best Agent',
+      pt: 'Melhor Agente',
+    },
+    description: {
+      en: 'Found the highest number of red wires',
+      pt: 'Encontrou o maior número de fios vermelhos',
     },
   },
 };

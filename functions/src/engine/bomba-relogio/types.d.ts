@@ -1,5 +1,5 @@
 import type { Dictionary } from 'lodash';
-import type { BOMBA_RELOGIO_ACHIEVEMENTS, BOMBA_RELOGIO_ACTIONS, CARD_TYPES, OUTCOME } from './constants';
+import type { BOMBA_RELOGIO_ACTIONS, CARD_TYPES, OUTCOME } from './constants';
 
 export type DataCounts = {
   agents: number;
@@ -34,8 +34,6 @@ export type Status = {
   outcome: (typeof OUTCOME)[keyof typeof OUTCOME];
   updatedAt: number;
 };
-
-export type BombaRelogioAchievement = keyof typeof BOMBA_RELOGIO_ACHIEVEMENTS;
 
 export interface BombaRelogioStore extends DefaultStore<unknown> {
   deck: TimeBombCard[];

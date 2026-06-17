@@ -7,13 +7,8 @@ import type { DataCounts, FirebaseStateData, FirebaseStoreData, Status, TimeBomb
 // Utils
 import utils from '../../utils';
 // Internal
-import {
-  buildDeck,
-  determineRoles,
-  getAchievements,
-  getStartingAchievements,
-  getStartingStatus,
-} from './helpers';
+import { buildDeck, determineRoles, getStartingStatus } from './helpers';
+import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
 
 /**
  * Setup phase - initializes game state and resources
@@ -26,7 +21,7 @@ export const prepareSetupPhase = async (
   _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const achievements = utils.achievements.setup(players, getStartingAchievements());
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   const playerCount = utils.players.getPlayerCount(players);
   const dataCounts = DATA_COUNTS[playerCount] || DATA_COUNTS[4];
@@ -79,7 +74,7 @@ export const prepareDeclarationPhase = async (
     achievements: store.achievements,
   };
   if (isNewGame) {
-    storeUpdate.achievements = utils.achievements.setup(players, getStartingAchievements());
+    storeUpdate.achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
     storeUpdate.deck = buildDeck(dataCounts);
   }
 
@@ -171,12 +166,12 @@ export const prepareExaminationPhase = async (
     );
     // Achievements for cutting wires and blanks
     if (latestCut.type === CARD_TYPES.WIRE) {
-      utils.achievements.increase(store, activePlayerId, 'wires', 1);
+      increaseAchievement(store.achievements, activePlayerId, 'wires', 1);
     } else if (latestCut.type === CARD_TYPES.BLANK) {
-      utils.achievements.increase(store, activePlayerId, 'blank', 1);
+      increaseAchievement(store.achievements, activePlayerId, 'blank', 1);
     }
     // Achievement for being picked
-    utils.achievements.increase(store, targetPlayerId, 'picked', 1);
+    increaseAchievement(store.achievements, targetPlayerId, 'picked', 1);
   }
 
   // Update revealed count
@@ -192,9 +187,9 @@ export const prepareExaminationPhase = async (
     // Achievement: Determine if it is stupid bomber or best terrorist
     const activePlayer = players[activePlayerId];
     if (activePlayer.role === ROLES.TERRORIST) {
-      utils.achievements.increase(store, activePlayerId, 'terroristBomb', 1);
+      increaseAchievement(store.achievements, activePlayerId, 'terroristBomb', 1);
     } else {
-      utils.achievements.increase(store, activePlayerId, 'agentBomb', 1);
+      increaseAchievement(store.achievements, activePlayerId, 'agentBomb', 1);
     }
 
     // Call game over phase
@@ -265,7 +260,7 @@ export const prepareGameOverPhase = async (
     winners = Object.values(players).filter((player) => player.role === ROLES.TERRORIST);
   }
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

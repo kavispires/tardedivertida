@@ -1,9 +1,10 @@
 // Constants
-import { BOMBA_RELOGIO_ACHIEVEMENTS, BOMBA_RELOGIO_PHASES, CARD_TYPES, OUTCOME, ROLES } from './constants';
+import { BOMBA_RELOGIO_PHASES, CARD_TYPES, OUTCOME, ROLES } from './constants';
 import { sample, shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
-import type { BombaRelogioAchievement, DataCounts, FirebaseStoreData, Status, TimeBombCard } from './types';
+import type { DataCounts, FirebaseStoreData, Status, TimeBombCard } from './types';
+import { increaseAchievement } from './achievements';
 
 /**
  * Determines the next phase based on the current phase and game state
@@ -61,16 +62,6 @@ export const getStartingStatus = (players: Players): Status => {
  *   - `blank`: Counter for blank achievements
  *   - `picked`: Counter for picked achievements
  */
-export const getStartingAchievements = () => {
-  return {
-    terrorist: 0,
-    terroristBomb: 0,
-    agentBomb: 0,
-    wires: 0,
-    blank: 0,
-    picked: 0,
-  };
-};
 
 /**
  * Builds and shuffles a deck of Time Bomb cards containing bombs, wires, and blank cards.
@@ -131,98 +122,7 @@ export const determineRoles = (
   listOfPlayers.forEach((player, index) => {
     player.role = allRoles[index];
     if (allRoles[index] === ROLES.TERRORIST) {
-      utils.achievements.increase(storeUpdate, player.id, 'terrorist', 1);
+      increaseAchievement(storeUpdate.achievements, player.id, 'terrorist', 1);
     }
   });
-};
-
-/**
- * Calculates and returns player achievements based on game statistics
- * @param store - The Firebase store data containing achievement counters
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<BombaRelogioAchievement>[] = [];
-
-  // Solo Terrorist
-  const { most: soloTerrorist } = utils.achievements.getMostAndLeastOf(store, 'terrorist');
-  if (soloTerrorist) {
-    achievements.push({
-      type: BOMBA_RELOGIO_ACHIEVEMENTS.SOLO_TERRORIST,
-      playerId: soloTerrorist.playerId,
-      value: soloTerrorist.value,
-    });
-  }
-
-  // Terrorist exploded the bomb
-  const { most: terroristBomber } = utils.achievements.getMostAndLeastOf(store, 'terroristBomb');
-  if (terroristBomber) {
-    achievements.push({
-      type: BOMBA_RELOGIO_ACHIEVEMENTS.BEST_TERRORIST,
-      playerId: terroristBomber.playerId,
-      value: terroristBomber.value,
-    });
-  }
-
-  // Agent exploded the bomb
-  const { most: acidentalBomber } = utils.achievements.getMostAndLeastOf(store, 'agentBomb');
-  if (acidentalBomber) {
-    achievements.push({
-      type: BOMBA_RELOGIO_ACHIEVEMENTS.ACCIDENTAL_BOMBER,
-      playerId: acidentalBomber.playerId,
-      value: acidentalBomber.value,
-    });
-  }
-
-  // Most Picked
-  const { most: trusted, least: leastTrusted } = utils.achievements.getMostAndLeastOf(store, 'picked');
-  if (trusted) {
-    achievements.push({
-      type: BOMBA_RELOGIO_ACHIEVEMENTS.MOST_TRUSTED,
-      playerId: trusted.playerId,
-      value: trusted.value,
-    });
-  }
-  if (leastTrusted) {
-    achievements.push({
-      type: BOMBA_RELOGIO_ACHIEVEMENTS.LEAST_TRUSTED,
-      playerId: leastTrusted.playerId,
-      value: leastTrusted.value,
-    });
-  }
-
-  // Most and fewest red wires
-  const { most: mostWires, least: leastWires } = utils.achievements.getMostAndLeastOf(store, 'wires');
-  if (mostWires) {
-    achievements.push({
-      type: BOMBA_RELOGIO_ACHIEVEMENTS.MOST_WIRES,
-      playerId: mostWires.playerId,
-      value: mostWires.value,
-    });
-  }
-  if (leastWires) {
-    achievements.push({
-      type: BOMBA_RELOGIO_ACHIEVEMENTS.FEWEST_WIRES,
-      playerId: leastWires.playerId,
-      value: leastWires.value,
-    });
-  }
-
-  // Most and fewest blank cards
-  const { most: mostBlanks, least: leastBlanks } = utils.achievements.getMostAndLeastOf(store, 'blank');
-  if (mostBlanks) {
-    achievements.push({
-      type: BOMBA_RELOGIO_ACHIEVEMENTS.MOST_BLANKS,
-      playerId: mostBlanks.playerId,
-      value: mostBlanks.value,
-    });
-  }
-  if (leastBlanks) {
-    achievements.push({
-      type: BOMBA_RELOGIO_ACHIEVEMENTS.FEWEST_BLANKS,
-      playerId: leastBlanks.playerId,
-      value: leastBlanks.value,
-    });
-  }
-
-  return achievements;
 };
