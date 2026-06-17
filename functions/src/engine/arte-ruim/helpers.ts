@@ -6,19 +6,13 @@ import type {
   FirebaseStoreData,
   CardsByLevel,
   ResourceData,
-  ArteRuimAchievement,
   ArteRuimGameOptions,
 } from './types';
 // Constants
-import {
-  ARTE_RUIM_ACHIEVEMENTS,
-  ARTE_RUIM_PHASES,
-  GAME_OVER_SCORE_THRESHOLD,
-  DEFAULT_LEVELS,
-  BASIC_LEVELS,
-} from './constants';
+import { ARTE_RUIM_PHASES, GAME_OVER_SCORE_THRESHOLD, DEFAULT_LEVELS, BASIC_LEVELS } from './constants';
 // Helpers
 import utils from '../../utils';
+import { increaseAchievement } from './achievements';
 
 /**
  * Determine the next phase based on the current one
@@ -396,9 +390,8 @@ export const buildGallery = (
 
     Object.entries(<PlainObject>players).forEach(([playerId, pObject]) => {
       if (artistId === playerId) {
-        // Achievement: choseRandomly
         if (pObject.choseRandomly) {
-          utils.achievements.increase(store, playerId, 'chooseForMe', 1);
+          increaseAchievement(store.achievements, playerId, 'chooseForMe', 1);
         }
         return;
       }
@@ -433,7 +426,7 @@ export const buildGallery = (
 
         // Achievement: tableVotes
         if (drawingEntry.level < 4 && tableCardsIds.includes(currentVote)) {
-          utils.achievements.increase(store, playerId, 'tableVotes', 1);
+          increaseAchievement(store.achievements, playerId, 'tableVotes', 1);
         }
       }
     });
@@ -443,22 +436,22 @@ export const buildGallery = (
 
     // Achievement: artistPoints
     if (gotCorrect.length === playerCount - 1 && artistId) {
-      utils.achievements.increase(store, artistId, 'artistPoints', drawingEntry.level);
+      increaseAchievement(store.achievements, artistId, 'artistPoints', drawingEntry.level);
     }
 
     // Achievement: worstArtist
     if (gotCorrect.length === 0 && artistId) {
-      utils.achievements.increase(store, artistId, 'worstArtist', 6 - drawingEntry.level);
+      increaseAchievement(store.achievements, artistId, 'worstArtist', 6 - drawingEntry.level);
     }
 
     // Achievement: solitaryWin
     if (gotCorrect.length === 1) {
-      utils.achievements.increase(store, gotCorrect[0], 'solitaryWin', 1);
+      increaseAchievement(store.achievements, gotCorrect[0], 'solitaryWin', 1);
     }
 
     // Achievement: solitaryFail
     if (gotWrong.length === 1) {
-      utils.achievements.increase(store, gotWrong[0], 'solitaryFail', 1);
+      increaseAchievement(store.achievements, gotWrong[0], 'solitaryFail', 1);
     }
 
     return newGalleryEntry;
@@ -539,76 +532,6 @@ export const buildPastDrawingsDict = (drawings, publicDrawings) => {
   });
 
   return newDrawings;
-};
-
-/**
- * Get achievements
- * @param store
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<ArteRuimAchievement>[] = [];
-
-  // Best artist: got all players to guess correctly more times and by level
-  const { most: bestArtist } = utils.achievements.getMostAndLeastOf(store, 'artistPoints');
-  if (bestArtist) {
-    achievements.push({
-      type: ARTE_RUIM_ACHIEVEMENTS.BEST_ARTIST,
-      playerId: bestArtist.playerId,
-      value: bestArtist.value,
-    });
-  }
-
-  // Worst artist: got no player to guess correctly at all more times and by level
-  const { most: worstArtist } = utils.achievements.getMostAndLeastOf(store, 'worstArtist');
-  if (worstArtist) {
-    achievements.push({
-      type: ARTE_RUIM_ACHIEVEMENTS.WORST_ARTIST,
-      playerId: worstArtist.playerId,
-      value: worstArtist.value,
-    });
-  }
-
-  // Solitary Win: Was the only one to guess the drawing more times
-  const { most: solitaryWinner } = utils.achievements.getMostAndLeastOf(store, 'solitaryWin');
-  if (solitaryWinner) {
-    achievements.push({
-      type: ARTE_RUIM_ACHIEVEMENTS.SOLITARY_WINNER,
-      playerId: solitaryWinner.playerId,
-      value: solitaryWinner.value,
-    });
-  }
-
-  // Worst artist: got all players to guess correctly more time and by level
-  const { most: solitaryLoser } = utils.achievements.getMostAndLeastOf(store, 'solitaryFail');
-  if (solitaryLoser) {
-    achievements.push({
-      type: ARTE_RUIM_ACHIEVEMENTS.SOLITARY_LOSER,
-      playerId: solitaryLoser.playerId,
-      value: solitaryLoser.value,
-    });
-  }
-
-  // Table votes: votes for cards that are not from players the most
-  const { most: tableVotes } = utils.achievements.getMostAndLeastOf(store, 'tableVotes');
-  if (tableVotes) {
-    achievements.push({
-      type: ARTE_RUIM_ACHIEVEMENTS.TABLE_VOTES,
-      playerId: tableVotes.playerId,
-      value: tableVotes.value,
-    });
-  }
-
-  // Choose for me: gave up on trying to match the clues the most
-  const { most: chooseForMe } = utils.achievements.getMostAndLeastOf(store, 'chooseForMe');
-  if (chooseForMe) {
-    achievements.push({
-      type: ARTE_RUIM_ACHIEVEMENTS.CHOOSE_FOR_ME,
-      playerId: chooseForMe.playerId,
-      value: chooseForMe.value,
-    });
-  }
-
-  return achievements;
 };
 
 /**

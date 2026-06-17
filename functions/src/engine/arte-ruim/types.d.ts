@@ -1,5 +1,5 @@
 import type { ArteRuimCard, ArteRuimGroup, ArteRuimPair } from '../../types/tdr';
-import type { ARTE_RUIM_ACHIEVEMENTS, ARTE_RUIM_ACTIONS } from './constants';
+import type { ARTE_RUIM_ACTIONS } from './constants';
 
 export type ArteRuimGameOptions = {
   /**
@@ -52,7 +52,7 @@ export interface ArteRuimStore extends DefaultStore {
 }
 
 export interface ArteRuimState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface ArteRuimPlayer extends Player {
@@ -60,8 +60,6 @@ export interface ArteRuimPlayer extends Player {
 }
 
 export type ArteRuimPlayers = Record<UID, ArteRuimPlayer>;
-
-export type ArteRuimAchievement = keyof typeof ARTE_RUIM_ACHIEVEMENTS;
 
 export interface ArteRuimInitialState extends InitialState {
   store: ArteRuimStore;

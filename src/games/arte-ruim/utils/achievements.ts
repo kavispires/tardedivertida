@@ -1,80 +1,83 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-const ACHIEVEMENTS = {
-  SOLITARY_LOSER: 'SOLITARY_LOSER',
-  SOLITARY_WINNER: 'SOLITARY_WINNER',
-  BEST_ARTIST: 'BEST_ARTIST',
-  WORST_ARTIST: 'WORST_ARTIST',
-  TABLE_VOTES: 'TABLE_VOTES',
-  CHOOSE_FOR_ME: 'CHOOSE_FOR_ME',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.BEST_ARTIST]: {
+  BEST_ARTIST: {
+    id: 'BEST_ARTIST',
+    doc: 'Points from drawings that players guessed correctly',
     icon: 'paint-brush',
     title: {
-      pt: 'Melhor Artista',
       en: 'Best Artist',
+      pt: 'Melhor Artista',
     },
     description: {
-      pt: 'Todos os jogadores acertaram unanimemente seu desenho mais vezes',
       en: 'Got players to guess your drawing unanimously the most',
+      pt: 'Todos os jogadores acertaram unanimemente seu desenho mais vezes',
     },
   },
-  [ACHIEVEMENTS.WORST_ARTIST]: {
-    icon: 'broken-pencil',
-    title: {
-      pt: 'Artista Mais Não Convencional',
-      en: 'Most Unconventional Artist',
-    },
-    description: {
-      pt: 'Todos os jogadores NÃO acertaram unanimemente seu desenho mais vezes',
-      en: 'Got players to miss your drawing unanimously the most',
-    },
-  },
-  [ACHIEVEMENTS.SOLITARY_WINNER]: {
-    icon: 'person',
-    title: {
-      pt: 'Adivinhador Solitário',
-      en: 'Best Solitary Guesser',
-    },
-    description: {
-      pt: 'Foi o único que acertou o desenho mais vezes',
-      en: 'Was the only one to get the drawings correctly the most',
-    },
-  },
-  [ACHIEVEMENTS.SOLITARY_LOSER]: {
-    icon: 'difference',
-    title: {
-      pt: 'Mais Diferentão',
-      en: 'Most Unique Guesser',
-    },
-    description: {
-      pt: 'Foi o único que errou o desenho mais vezes',
-      en: 'Was the only one to NOT get the drawings the most',
-    },
-  },
-  [ACHIEVEMENTS.TABLE_VOTES]: {
-    icon: 'table',
-    title: {
-      pt: 'Melhor Votador Pra Mesa',
-      en: 'Best Table Voter',
-    },
-    description: {
-      pt: 'Votou nas cartas extras que não eram de nenhum jogador mais vezes',
-      en: "Voted for extra cards that didn't belong to any player the most",
-    },
-  },
-  [ACHIEVEMENTS.CHOOSE_FOR_ME]: {
+  CHOOSE_FOR_ME: {
+    id: 'CHOOSE_FOR_ME',
+    doc: 'Times giving up on guessing',
     icon: 'dice',
     title: {
-      pt: 'Menos Brasileiro',
       en: 'The Shirker',
+      pt: 'Menos Brasileiro',
     },
     description: {
+      en: 'Pressed ',
       pt: 'Apertou o botão Chutar Restantes mais vezes',
-      en: "Pressed 'Guess for me' the most",
+    },
+  },
+  SOLITARY_LOSER: {
+    id: 'SOLITARY_LOSER',
+    doc: 'Times being the only one to guess a drawing incorrectly',
+    icon: 'difference',
+    title: {
+      en: 'Most Unique Guesser',
+      pt: 'Mais Diferentão',
+    },
+    description: {
+      en: 'Was the only one to NOT get the drawings the most',
+      pt: 'Foi o único que errou o desenho mais vezes',
+    },
+  },
+  SOLITARY_WINNER: {
+    id: 'SOLITARY_WINNER',
+    doc: 'Times being the only one to guess a drawing correctly',
+    icon: 'person',
+    title: {
+      en: 'Best Solitary Guesser',
+      pt: 'Adivinhador Solitário',
+    },
+    description: {
+      en: 'Was the only one to get the drawings correctly the most',
+      pt: 'Foi o único que acertou o desenho mais vezes',
+    },
+  },
+  TABLE_VOTES: {
+    id: 'TABLE_VOTES',
+    doc: 'Votes for non-player cards',
+    icon: 'table',
+    title: {
+      en: 'Best Table Voter',
+      pt: 'Melhor Votador Pra Mesa',
+    },
+    description: {
+      en: 'Voted for extra cards that did not belong to any player the most',
+      pt: 'Votou nas cartas extras que não eram de nenhum jogador mais vezes',
+    },
+  },
+  WORST_ARTIST: {
+    id: 'WORST_ARTIST',
+    doc: 'Points from drawings that no players guessed correctly',
+    icon: 'broken-pencil',
+    title: {
+      en: 'Most Unconventional Artist',
+      pt: 'Artista Mais Não Convencional',
+    },
+    description: {
+      en: 'Got players to miss your drawing unanimously the most',
+      pt: 'Todos os jogadores NÃO acertaram unanimemente seu desenho mais vezes',
     },
   },
 };

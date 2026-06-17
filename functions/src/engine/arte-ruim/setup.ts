@@ -13,12 +13,12 @@ import {
   buildRanking,
   dealCards,
   determineLevelType,
-  getAchievements,
   getGameSettings,
   getNewPastDrawings,
   getTwoUniquePairCards,
 } from './helpers';
 import { saveUsedCards } from './data';
+import { setupAchievements, getAchievements } from './achievements';
 
 /**
  * Setup phase - builds the card deck and initializes game settings
@@ -43,27 +43,13 @@ export const prepareSetupPhase = async (
   // Build deck
   const deck = buildDeck(resourceData, playerCount, LEVELS);
 
-  const achievements = utils.achievements.setup(players, {
-    solitaryFail: 0,
-    artistPoints: 0,
-    solitaryWin: 0,
-    worstArtist: 0,
-    tableVotes: 0,
-    chooseForMe: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   const threshold = options.forPoints ? (GAME_OVER_SCORE_THRESHOLD?.[playerCount] ?? 100) : 0;
 
   // Save
   return {
     update: {
-      state: {
-        round: {
-          ...state.round,
-          total: MAX_ROUNDS,
-        },
-        threshold,
-      },
       store: {
         deck,
         pastDrawings: [],
@@ -71,6 +57,13 @@ export const prepareSetupPhase = async (
         achievements,
         levels: LEVELS,
         specialLevels: resourceData.specialLevels?.types ?? [],
+      },
+      state: {
+        round: {
+          ...state.round,
+          total: MAX_ROUNDS,
+        },
+        threshold,
       },
     },
   };
@@ -216,7 +209,7 @@ export const prepareGameOverPhase = async (
 
   const finalGallery = orderBy(cloneDeep(store.pastDrawings), 'successRate', 'desc');
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 
