@@ -13,7 +13,8 @@ import { keyBy, orderBy, shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
 import type { ClientCard, FirebaseStateData, FirebaseStoreData, Teller } from './types';
-import { buildDeck, buildTellers, getAchievements } from './helpers';
+import { buildDeck, buildTellers } from './helpers';
+import { getAchievements, increaseAchievement, setupAchievements } from './achievements';
 import { GAME_NAMES } from '../../utils/constants';
 
 /**
@@ -32,21 +33,7 @@ export const prepareSetupPhase = async (
   const { gameOrder } = utils.turnOrder.create(players);
   const playerCount = utils.players.getPlayerCount(players);
 
-  const achievements = utils.achievements.setup(players, {
-    kid: 0,
-    retiree: 0,
-    veteran: 0,
-    motherBaby: 0,
-    businessman: 0,
-    student: 0,
-    motoboy: 0,
-    online: 0,
-    ownColor: 0,
-    neutral: 0,
-    cutIns: 0,
-    gotCut: 0,
-    stays: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   return {
     update: {
@@ -190,34 +177,34 @@ export const prepareCardPlayPhase = async (
   // Handle Achievements
   switch (playedCard?.type) {
     case CHARACTER_TYPES.KID:
-      utils.achievements.increase(store, previousPlayerId, 'kid', 1);
+      increaseAchievement(store.achievements, previousPlayerId, 'kid', 1);
       break;
     case CHARACTER_TYPES.RETIREE:
-      utils.achievements.increase(store, previousPlayerId, 'retiree', 1);
+      increaseAchievement(store.achievements, previousPlayerId, 'retiree', 1);
       break;
     case CHARACTER_TYPES.VETERAN:
-      utils.achievements.increase(store, previousPlayerId, 'veteran', 1);
+      increaseAchievement(store.achievements, previousPlayerId, 'veteran', 1);
       break;
     case CHARACTER_TYPES.MOTHER:
-      utils.achievements.increase(store, previousPlayerId, 'motherBaby', 1);
+      increaseAchievement(store.achievements, previousPlayerId, 'motherBaby', 1);
       break;
     case CHARACTER_TYPES.BUSINESSMAN:
-      utils.achievements.increase(store, previousPlayerId, 'businessman', 1);
+      increaseAchievement(store.achievements, previousPlayerId, 'businessman', 1);
       break;
     case CHARACTER_TYPES.STUDENT:
-      utils.achievements.increase(store, previousPlayerId, 'student', 1);
+      increaseAchievement(store.achievements, previousPlayerId, 'student', 1);
       break;
     case CHARACTER_TYPES.MOTOBOY:
-      utils.achievements.increase(store, previousPlayerId, 'motoboy', 1);
+      increaseAchievement(store.achievements, previousPlayerId, 'motoboy', 1);
       break;
     default:
       break;
   }
   if (playedCard?.playerId === previousPlayerId) {
-    utils.achievements.increase(store, previousPlayerId, 'ownColor', 1);
+    increaseAchievement(store.achievements, previousPlayerId, 'ownColor', 1);
   }
   if (playedCard?.playerId === 'neutral') {
-    utils.achievements.increase(store, previousPlayerId, 'neutral', 1);
+    increaseAchievement(store.achievements, previousPlayerId, 'neutral', 1);
   }
 
   tellers[selectedTellerId].lastEvent = {
@@ -257,14 +244,14 @@ export const prepareCardPlayPhase = async (
       queue.push(...afterCutInCards);
 
       tellers[selectedTellerId].lastEvent.effectType = TELLER_EFFECT_TYPE.CUT_IN_FRONT;
-      utils.achievements.increase(store, previousPlayerId, 'cutIns', 1);
+      increaseAchievement(store.achievements, previousPlayerId, 'cutIns', 1);
 
       if (cardGettingCut && cardGettingCut.playerId !== 'neutral') {
-        utils.achievements.increase(store, cardGettingCut.playerId, 'gotCut', 1);
+        increaseAchievement(store.achievements, cardGettingCut.playerId, 'gotCut', 1);
       }
     } else {
       queue.push(selectedCardId);
-      utils.achievements.increase(store, previousPlayerId, 'stays', 1);
+      increaseAchievement(store.achievements, previousPlayerId, 'stays', 1);
     }
   }
 
@@ -292,7 +279,7 @@ export const prepareCardPlayPhase = async (
         : TELLER_EFFECT_TYPE.REMOVE_THREE;
 
     players[previousPlayerId].onlineTriggers.push(onlineTriggerType);
-    utils.achievements.increase(store, previousPlayerId, 'online', 1);
+    increaseAchievement(store.achievements, previousPlayerId, 'online', 1);
   }
 
   // Update player hand
@@ -457,7 +444,7 @@ export const prepareGameOverPhase = async (
 
   await utils.firestore.markGameAsComplete(gameId);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.NA_FILA_DO_BANCO,

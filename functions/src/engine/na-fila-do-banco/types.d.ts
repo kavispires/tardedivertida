@@ -1,4 +1,4 @@
-import type { NA_FILA_DO_BANCO_ACTIONS, NA_FILA_DO_BANCO_ACHIEVEMENTS } from './constants';
+import type { NA_FILA_DO_BANCO_ACTIONS } from './constants';
 
 export interface ClientCard {
   id: string;
@@ -25,11 +25,11 @@ export interface Teller {
 }
 
 export interface NaFilaDoBancoStore extends DefaultStore {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface NaFilaDoBancoState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface NaFilaDoBancoInitialState extends InitialState {
@@ -43,5 +43,3 @@ export interface NaFilaDoBancoSubmitAction extends Payload {
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData & NaFilaDoBancoState;
 export type FirebaseStoreData = FirebaseFirestore.DocumentData & NaFilaDoBancoStore;
-
-export type NaFilaDoBancoAchievement = keyof typeof NA_FILA_DO_BANCO_ACHIEVEMENTS;
