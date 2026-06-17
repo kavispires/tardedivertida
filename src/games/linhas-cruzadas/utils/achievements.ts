@@ -1,68 +1,70 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-const ACHIEVEMENTS = {
-  SLOWEST_DRAWER: 'SLOWEST_DRAWER',
-  QUICKEST_DRAWER: 'QUICKEST_DRAWER',
-  SLOWEST_GUESSER: 'SLOWEST_GUESSER',
-  QUICKEST_GUESSER: 'QUICKEST_GUESSER',
-  RANDOM_PROMPT_SELECTION: 'RANDOM_PROMPT_SELECTION',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.QUICKEST_DRAWER]: {
+  QUICKEST_DRAWER: {
+    id: 'QUICKEST_DRAWER',
+    doc: 'Time taken to complete drawing',
     icon: 'hare',
     title: {
-      pt: 'Desenhista Mais Rápido',
       en: 'Quickest Drawer',
+      pt: 'Desenhista Mais Rápido',
     },
     description: {
-      pt: 'Levou menos tempo para desenhar',
       en: 'Took the least time to draw',
+      pt: 'Levou menos tempo para desenhar',
     },
   },
-  [ACHIEVEMENTS.SLOWEST_DRAWER]: {
+  SLOWEST_DRAWER: {
+    id: 'SLOWEST_DRAWER',
+    doc: 'Time taken to complete drawing',
     icon: 'snail',
     title: {
-      pt: 'Desenhista Mais Metódico',
       en: 'Most Methodical Drawer',
+      pt: 'Desenhista Mais Metódico',
     },
     description: {
-      pt: 'Levou mais tempo para desenhar',
       en: 'Took the most time to draw',
+      pt: 'Levou mais tempo para desenhar',
     },
   },
-  [ACHIEVEMENTS.QUICKEST_GUESSER]: {
-    icon: 'check-mark',
-    title: {
-      pt: 'Adivinhador Mais Rápido',
-      en: 'Quickest Guesser',
-    },
-    description: {
-      pt: 'Levou menos tempo para adivinhar',
-      en: 'Took the least time to guess',
-    },
-  },
-  [ACHIEVEMENTS.SLOWEST_GUESSER]: {
-    icon: 'brain',
-    title: {
-      pt: 'Mais analítico',
-      en: 'Most Analytical',
-    },
-    description: {
-      pt: 'Levou mais tempo para adivinhar',
-      en: 'Took the most time to guess',
-    },
-  },
-  [ACHIEVEMENTS.RANDOM_PROMPT_SELECTION]: {
+  RANDOM_PROMPT_SELECTION: {
+    id: 'RANDOM_PROMPT_SELECTION',
+    doc: 'Number of random prompt selections',
     icon: 'dice',
     title: {
-      pt: 'Mais Corajoso',
       en: 'Bravest',
+      pt: 'Mais Corajoso',
     },
     description: {
-      pt: 'Único que clicou em "Aleatório" ao escolher a carta inicial',
-      en: 'The only one who clicked "Random" when choosing the initial card',
+      en: 'The only one who clicked ',
+      pt: 'Único que clicou em ',
+    },
+  },
+  QUICKEST_GUESSER: {
+    id: 'QUICKEST_GUESSER',
+    doc: 'Time taken to write guess',
+    icon: 'check-mark',
+    title: {
+      en: 'Quickest Guesser',
+      pt: 'Adivinhador Mais Rápido',
+    },
+    description: {
+      en: 'Took the least time to guess',
+      pt: 'Levou menos tempo para adivinhar',
+    },
+  },
+  SLOWEST_GUESSER: {
+    id: 'SLOWEST_GUESSER',
+    doc: 'Time taken to write guess',
+    icon: 'brain',
+    title: {
+      en: 'Most Analytical',
+      pt: 'Mais analítico',
+    },
+    description: {
+      en: 'Took the most time to guess',
+      pt: 'Levou mais tempo para adivinhar',
     },
   },
 };

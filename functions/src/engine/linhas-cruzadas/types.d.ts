@@ -1,5 +1,5 @@
 import type { ArteRuimCard, TextCard } from '../../types/tdr';
-import type { LINHAS_CRUZADAS_ACHIEVEMENTS, LINHAS_CRUZADAS_ACTIONS } from './constants';
+import type { LINHAS_CRUZADAS_ACTIONS } from './constants';
 
 export type LinhasCruzadasOptions = {
   singleWordOnly: boolean;
@@ -39,11 +39,11 @@ export interface Album {
 }
 
 export interface LinhasCruzadasStore extends DefaultStore {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface LinhasCruzadasState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 export interface LinhasCruzadasInitialState extends InitialState {
   store: LinhasCruzadasStore;
@@ -53,8 +53,6 @@ export interface LinhasCruzadasInitialState extends InitialState {
 export interface LinhasCruzadasSubmitAction extends Payload {
   action: keyof typeof LINHAS_CRUZADAS_ACTIONS;
 }
-
-export type LinhasCruzadasAchievement = keyof typeof LINHAS_CRUZADAS_ACHIEVEMENTS;
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | LinhasCruzadasState;
 export type FirebaseStoreData = FirebaseFirestore.DocumentData | LinhasCruzadasStore;

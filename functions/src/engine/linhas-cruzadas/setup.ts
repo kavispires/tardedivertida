@@ -6,13 +6,8 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types
 // Utils
 import utils from '../../utils';
 // Internal
-import {
-  addSlideToAlbum,
-  assignSlideToPlayers,
-  buildAlbum,
-  dealPromptOptions,
-  getAchievements,
-} from './helpers';
+import { addSlideToAlbum, assignSlideToPlayers, buildAlbum, dealPromptOptions } from './helpers';
+import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
 import { GAME_NAMES } from '../../utils/constants';
 
 /**
@@ -35,11 +30,7 @@ export const prepareSetupPhase = async (
   );
   const wordsDeck = sampleSize(resourceData.allWords, playerCount * (store.options.singleWordOnly ? 4 : 2));
 
-  const achievements = utils.achievements.setup(players, {
-    drawingDuration: 0,
-    writingDuration: 0,
-    randomPromptSelection: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Save
   return {
@@ -118,7 +109,7 @@ export const prepareDrawingPhase = async (
   // Achievements: Random Prompt Selection
   utils.players.getListOfPlayers(players).forEach((player) => {
     if (player.randomSelection) {
-      utils.achievements.increase(store, player.id, 'randomPromptSelection', 1);
+      increaseAchievement(store.achievements, player.id, 'randomPromptSelection', 1);
     }
   });
 
@@ -130,7 +121,12 @@ export const prepareDrawingPhase = async (
   if (state.round.current > 0) {
     utils.players.getListOfPlayers(players).forEach((player) => {
       if (player.updatedAt) {
-        utils.achievements.increase(store, player.id, 'writingDuration', player.updatedAt - state.updatedAt);
+        increaseAchievement(
+          store.achievements,
+          player.id,
+          'writingDuration',
+          Math.abs(player.updatedAt - state.updatedAt),
+        );
       }
     });
   }
@@ -173,7 +169,12 @@ export const prepareNamingPhase = async (
   // Achievements: Drawing
   utils.players.getListOfPlayers(players).forEach((player) => {
     if (player.updatedAt) {
-      utils.achievements.increase(store, player.id, 'drawingDuration', player.updatedAt - state.updatedAt);
+      increaseAchievement(
+        store.achievements,
+        player.id,
+        'drawingDuration',
+        Math.abs(player.updatedAt - state.updatedAt),
+      );
     }
   });
 
@@ -213,7 +214,12 @@ export const preparePresentationPhase = async (
   // Achievements: Writing
   utils.players.getListOfPlayers(players).forEach((player) => {
     if (player.updatedAt) {
-      utils.achievements.increase(store, player.id, 'writingDuration', player.updatedAt - state.updatedAt);
+      increaseAchievement(
+        store.achievements,
+        player.id,
+        'writingDuration',
+        Math.abs(player.updatedAt - state.updatedAt),
+      );
     }
   });
 
@@ -246,7 +252,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 
