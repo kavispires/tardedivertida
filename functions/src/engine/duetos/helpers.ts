@@ -2,10 +2,11 @@
 import type { Item } from '../../types/tdr';
 // Constants
 import { SEPARATOR } from '../../utils/constants';
-import { DUETOS_ACHIEVEMENTS, DUETOS_PHASES } from './constants';
-import type { DuetosAchievement, FirebaseStoreData, Gallery, GalleryItem, ItemEntry } from './types';
+import { DUETOS_PHASES } from './constants';
+import type { FirebaseStoreData, Gallery, GalleryItem, ItemEntry } from './types';
 // Utils
 import utils from '../../utils';
+import { increaseAchievement } from './achievements';
 
 /**
  * Determines the next phase based on the current phase and round
@@ -112,17 +113,17 @@ export const calculateResults = (players: Players, pool: ItemEntry[], store: Fir
 
     // Achievements: Alone
     if (count === 1) {
-      utils.achievements.increase(store, pairPlayers[0], 'alone', 1);
+      increaseAchievement(store.achievements, pairPlayers[0], 'alone', 1);
     }
     // Achievements: Duos
     if (count === 2) {
-      utils.achievements.increase(store, pairPlayers[0], 'duos', 1);
-      utils.achievements.increase(store, pairPlayers[1], 'duos', 1);
+      increaseAchievement(store.achievements, pairPlayers[0], 'duos', 1);
+      increaseAchievement(store.achievements, pairPlayers[1], 'duos', 1);
     }
     // Achievements: Group
     if (count > 2) {
       pairPlayers.forEach((playerId) => {
-        utils.achievements.increase(store, playerId, 'groups', 1);
+        increaseAchievement(store.achievements, playerId, 'groups', 1);
       });
     }
   });
@@ -133,7 +134,7 @@ export const calculateResults = (players: Players, pool: ItemEntry[], store: Fir
 
     // Achievements: Left out
     extraPlayers.forEach((playerId) => {
-      utils.achievements.increase(store, playerId, 'leftOut', 1);
+      increaseAchievement(store.achievements, playerId, 'leftOut', 1);
     });
   });
 
@@ -172,54 +173,4 @@ export const calculateResults = (players: Players, pool: ItemEntry[], store: Fir
     gallery,
     leftOut,
   };
-};
-
-/**
- * Calculates and returns player achievements based on game statistics
- * @param store - The Firebase store data containing achievement counters
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<DuetosAchievement>[] = [];
-
-  // Most alone: didn't have any matches the most
-  const { most: mostAlone } = utils.achievements.getMostAndLeastOf(store, 'alone');
-  if (mostAlone) {
-    achievements.push({
-      type: DUETOS_ACHIEVEMENTS.MOST_ALONE,
-      playerId: mostAlone.playerId,
-      value: mostAlone.value,
-    });
-  }
-
-  // Most duos: had a pair with only one other person
-  const { most: mostDuos } = utils.achievements.getMostAndLeastOf(store, 'duos');
-  if (mostDuos) {
-    achievements.push({
-      type: DUETOS_ACHIEVEMENTS.MOST_DUOS,
-      playerId: mostDuos.playerId,
-      value: mostDuos.value,
-    });
-  }
-
-  // Most groups: had a pair with more than one other person
-  const { most: mostGroups } = utils.achievements.getMostAndLeastOf(store, 'groups');
-  if (mostGroups) {
-    achievements.push({
-      type: DUETOS_ACHIEVEMENTS.MOST_GROUPS,
-      playerId: mostGroups.playerId,
-      value: mostGroups.value,
-    });
-  }
-
-  // Most left out
-  const { most: mostLeftOut } = utils.achievements.getMostAndLeastOf(store, 'leftOut');
-  if (mostLeftOut) {
-    achievements.push({
-      type: DUETOS_ACHIEVEMENTS.MOST_LEFT_OUT,
-      playerId: mostLeftOut.playerId,
-      value: mostLeftOut.value,
-    });
-  }
-
-  return achievements;
 };

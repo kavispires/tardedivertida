@@ -1,5 +1,5 @@
 import type { ContenderCard, Item, SuspectCard, TextCard } from '../../types/tdr';
-import type { DUETOS_ACHIEVEMENTS, DUETOS_ACTIONS } from './constants';
+import type { DUETOS_ACTIONS } from './constants';
 
 export type DuetosOptions = {
   /**
@@ -44,14 +44,12 @@ type GalleryItem = {
 
 export type Gallery = GalleryItem[];
 
-export type DuetosAchievement = keyof typeof DUETOS_ACHIEVEMENTS;
-
 export interface DuetosStore extends DefaultStore<DuetosOptions> {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface DuetosState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface DuetosInitialState extends InitialState {

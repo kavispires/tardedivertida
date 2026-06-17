@@ -1,56 +1,57 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-const ACHIEVEMENTS = {
-  MOST_ALONE: 'MOST_ALONE',
-  MOST_DUOS: 'MOST_DUOS',
-  MOST_GROUPS: 'MOST_GROUPS',
-  MOST_LEFT_OUT: 'MOST_LEFT_OUT',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.MOST_ALONE]: {
+  MOST_ALONE: {
+    id: 'MOST_ALONE',
+    doc: 'Times having no matches with any player',
     icon: 'glasses',
     title: {
-      pt: 'Individualista',
       en: 'Individualist',
+      pt: 'Individualista',
     },
     description: {
-      pt: 'Seus pares não deram match com ninguém mais vezes',
       en: 'Your pairs did not match with anyone else the most',
+      pt: 'Seus pares não deram match com ninguém mais vezes',
     },
   },
-  [ACHIEVEMENTS.MOST_DUOS]: {
+  MOST_DUOS: {
+    id: 'MOST_DUOS',
+    doc: 'Times pairing with exactly one other player',
     icon: 'puzzle',
     title: {
-      pt: 'Mais Duplas',
       en: 'Most Duos',
+      pt: 'Mais Duplas',
     },
     description: {
-      pt: 'Deu match com apenas um outro jogador mais vezes',
       en: 'Matched with only one other player the most',
+      pt: 'Deu match com apenas um outro jogador mais vezes',
     },
   },
-  [ACHIEVEMENTS.MOST_GROUPS]: {
+  MOST_GROUPS: {
+    id: 'MOST_GROUPS',
+    doc: 'Times pairing with more than one other player',
     icon: 'intersection',
     title: {
-      pt: 'Melhor Adivinhador',
       en: 'Best Guesser',
+      pt: 'Melhor Adivinhador',
     },
     description: {
-      pt: 'Deu match com várias pessoas mais vezes',
       en: 'Matched with several people the most',
+      pt: 'Deu match com várias pessoas mais vezes',
     },
   },
-  [ACHIEVEMENTS.MOST_LEFT_OUT]: {
+  MOST_LEFT_OUT: {
+    id: 'MOST_LEFT_OUT',
+    doc: 'Times being left out while others paired',
     icon: 'x',
     title: {
-      pt: 'Separatista',
       en: 'Separatist',
+      pt: 'Separatista',
     },
     description: {
-      pt: 'Acertou o item de sobra mais vezes',
       en: 'Guessed the leftover item the most',
+      pt: 'Acertou o item de sobra mais vezes',
     },
   },
 };

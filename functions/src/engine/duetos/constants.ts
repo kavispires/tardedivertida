@@ -9,13 +9,6 @@ export const DUETOS_ACTIONS = {
   SUBMIT_PAIRS: 'SUBMIT_PAIRS',
 } as const;
 
-export const DUETOS_ACHIEVEMENTS = {
-  MOST_ALONE: 'MOST_ALONE',
-  MOST_DUOS: 'MOST_DUOS',
-  MOST_GROUPS: 'MOST_GROUPS',
-  MOST_LEFT_OUT: 'MOST_LEFT_OUT',
-} as const;
-
 export const PLAYER_COUNTS = {
   MIN: 2,
   MAX: 10,

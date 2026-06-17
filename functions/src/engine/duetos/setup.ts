@@ -6,8 +6,9 @@ import { sampleSize, shuffle } from 'lodash';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
+import { setupAchievements, getAchievements } from './achievements';
 // Internal
-import { addItems, addSpecial, calculateResults, getAchievements } from './helpers';
+import { addItems, addSpecial, calculateResults } from './helpers';
 import { savedData } from './data';
 
 /**
@@ -69,12 +70,7 @@ export const prepareSetupPhase = async (
     ...sampleSize(round4, 3),
   ];
 
-  const achievements = utils.achievements.setup(players, {
-    alone: 0,
-    duos: 0,
-    groups: 0,
-    leftOut: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Save
   return {
@@ -182,7 +178,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 
