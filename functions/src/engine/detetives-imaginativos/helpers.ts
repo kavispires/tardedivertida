@@ -1,7 +1,8 @@
 // Constants
 import utils from '../../utils';
-import { DETETIVES_IMAGINATIVOS_ACHIEVEMENTS, DETETIVES_IMAGINATIVOS_PHASES } from './constants';
-import type { DetetivesImaginativosAchievement, FirebaseStoreData } from './types';
+import { DETETIVES_IMAGINATIVOS_PHASES } from './constants';
+import type { FirebaseStoreData } from './types';
+import { increaseAchievement } from './achievements';
 
 /**
  * Determines the next phase based on the current phase and round
@@ -36,16 +37,16 @@ export const countImpostorVotes = (players: Players, impostorId: UID, store: Fir
       return total;
     }
     // Achievement: Defense time
-    utils.achievements.increase(store, player.id, 'defenseTime', player.defenseTime || 0);
+    increaseAchievement(store.achievements, player.id, 'defenseTime', player.defenseTime || 0);
 
     if (player.vote === impostorId) {
       // Achievement: 'Vote for the Impostor'
-      utils.achievements.increase(store, player.id, 'votedImpostor', 1);
+      increaseAchievement(store.achievements, player.id, 'votedForImpostor', 1);
       return total + 1;
     }
 
-    utils.achievements.increase(store, player.id, 'votedInnocent', 1);
-    utils.achievements.increase(store, player.vote, 'receivedVotes', 1);
+    increaseAchievement(store.achievements, player.id, 'votedForInnocent', 1);
+    increaseAchievement(store.achievements, player.vote, 'receivedVotes', 1);
 
     return total;
   }, 0);
@@ -88,96 +89,4 @@ export const calculateRanking = (
   });
 
   return scores.rank(players);
-};
-
-/**
- * Calculates and returns player achievements based on game statistics
- * @param store - The Firebase store data containing achievement counters
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<DetetivesImaginativosAchievement>[] = [];
-
-  const { most: mostLeader } = utils.achievements.getMostAndLeastOf(store, 'artistPoints');
-  if (mostLeader) {
-    achievements.push({
-      type: DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.MOST_LEADER,
-      playerId: mostLeader.playerId,
-      value: mostLeader.value,
-    });
-  }
-  const { most: mostImpostor } = utils.achievements.getMostAndLeastOf(store, 'impostorPoints');
-  if (mostImpostor) {
-    achievements.push({
-      type: DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.MOST_IMPOSTOR,
-      playerId: mostImpostor.playerId,
-      value: mostImpostor.value,
-    });
-  }
-
-  const { most: longestClues, least: shortestClues } = utils.achievements.getMostAndLeastOf(
-    store,
-    'clueLength',
-  );
-  if (longestClues) {
-    achievements.push({
-      type: DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.LONGEST_CLUES,
-      playerId: longestClues.playerId,
-      value: longestClues.value,
-    });
-  }
-  if (shortestClues) {
-    achievements.push({
-      type: DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.SHORTEST_CLUES,
-      playerId: shortestClues.playerId,
-      value: shortestClues.value,
-    });
-  }
-
-  const { most: longestDefense, least: shortestDefense } = utils.achievements.getMostAndLeastOf(
-    store,
-    'defenseTime',
-  );
-  if (longestDefense) {
-    achievements.push({
-      type: DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.LONGEST_DEFENSE,
-      playerId: longestDefense.playerId,
-      value: longestDefense.value,
-    });
-  }
-  if (shortestDefense) {
-    achievements.push({
-      type: DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.SHORTEST_DEFENSE,
-      playerId: shortestDefense.playerId,
-      value: shortestDefense.value,
-    });
-  }
-
-  const { most: votedForImpostor } = utils.achievements.getMostAndLeastOf(store, 'votedImpostor');
-  if (votedForImpostor) {
-    achievements.push({
-      type: DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.VOTED_FOR_IMPOSTOR,
-      playerId: votedForImpostor.playerId,
-      value: votedForImpostor.value,
-    });
-  }
-
-  const { most: votedForInnocent } = utils.achievements.getMostAndLeastOf(store, 'votedInnocent');
-  if (votedForInnocent) {
-    achievements.push({
-      type: DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.VOTED_FOR_INNOCENT,
-      playerId: votedForInnocent.playerId,
-      value: votedForInnocent.value,
-    });
-  }
-
-  const { most: receivedVotes } = utils.achievements.getMostAndLeastOf(store, 'receivedVotes');
-  if (receivedVotes) {
-    achievements.push({
-      type: DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.RECEIVED_VOTES,
-      playerId: receivedVotes.playerId,
-      value: receivedVotes.value,
-    });
-  }
-
-  return achievements;
 };

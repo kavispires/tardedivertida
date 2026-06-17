@@ -1,116 +1,122 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-export const DETETIVES_IMAGINATIVOS_ACHIEVEMENTS = {
-  MOST_LEADER: 'MOST_LEADER',
-  MOST_IMPOSTOR: 'MOST_IMPOSTOR',
-  LONGEST_DEFENSE: 'LONGEST_DEFENSE',
-  SHORTEST_DEFENSE: 'SHORTEST_DEFENSE',
-  VOTED_FOR_IMPOSTOR: 'VOTED_FOR_IMPOSTOR',
-  VOTED_FOR_INNOCENT: 'VOTED_FOR_INNOCENT',
-  RECEIVED_VOTES: 'RECEIVED_VOTES',
-  LONGEST_CLUES: 'LONGEST_CLUES',
-  SHORTEST_CLUES: 'SHORTEST_CLUES',
-} as const;
-
 export const achievementsReference: AchievementReference = {
-  [DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.MOST_LEADER]: {
+  MOST_LEADER: {
+    id: 'MOST_LEADER',
+    doc: 'Points earned as the leader/artist',
     icon: 'glasses',
     title: {
-      pt: 'Líder Mais Vezes',
       en: 'Most Leader',
+      pt: 'Líder Mais Vezes',
     },
     description: {
-      pt: 'Foi líder mais vezes',
       en: 'Was leader the most times',
+      pt: 'Foi líder mais vezes',
     },
   },
-  [DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.MOST_IMPOSTOR]: {
-    icon: 'mask',
-    title: {
-      pt: 'Impostor Mais Vezes',
-      en: 'Most Impostor',
-    },
-    description: {
-      pt: 'Foi impostor mais vezes',
-      en: 'Was impostor the most times',
-    },
-  },
-  [DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.LONGEST_DEFENSE]: {
-    icon: 'snail',
-    title: {
-      pt: 'Defesa Mais Longa',
-      en: 'Longest Defense',
-    },
-    description: {
-      pt: 'Demorou mais tempo para se defender',
-      en: 'Took the longest to defend',
-    },
-  },
-  [DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.SHORTEST_DEFENSE]: {
-    icon: 'stopwatch',
-    title: {
-      pt: 'Defesa Mais Curta',
-      en: 'Shortest Defense',
-    },
-    description: {
-      pt: 'Demorou menos tempo para se defender',
-      en: 'Took the shortest to defend',
-    },
-  },
-  [DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.VOTED_FOR_IMPOSTOR]: {
-    icon: 'eye',
-    title: {
-      pt: 'Votou no Impostor',
-      en: 'Voted for Impostor',
-    },
-    description: {
-      pt: 'Votou no impostor mais vezes',
-      en: 'Voted for the impostor the most times',
-    },
-  },
-  [DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.VOTED_FOR_INNOCENT]: {
-    icon: 'broken-heart',
-    title: {
-      pt: 'Votou no Inocente',
-      en: 'Voted for Innocent',
-    },
-    description: {
-      pt: 'Votou em inocentes mais vezes',
-      en: 'Voted for innocents the most times',
-    },
-  },
-  [DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.RECEIVED_VOTES]: {
-    icon: 'plus',
-    title: {
-      pt: 'Mais atacado',
-      en: 'Most Attacked',
-    },
-    description: {
-      pt: 'Recebeu mais votos quando não era o impostor',
-      en: 'Received the most votes when not being the impostor',
-    },
-  },
-  [DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.LONGEST_CLUES]: {
+  LONGEST_CLUES: {
+    id: 'LONGEST_CLUES',
+    doc: 'Total length of clues given',
     icon: 'pencil',
     title: {
-      pt: 'Dicas Mais Longas',
       en: 'Longest Clues',
+      pt: 'Dicas Mais Longas',
     },
     description: {
-      pt: 'Usou dicas mais longas',
       en: 'Used the longest clues',
+      pt: 'Usou dicas mais longas',
     },
   },
-  [DETETIVES_IMAGINATIVOS_ACHIEVEMENTS.SHORTEST_CLUES]: {
+  SHORTEST_CLUES: {
+    id: 'SHORTEST_CLUES',
+    doc: 'Total length of clues given',
     icon: 'broken-pencil',
     title: {
-      pt: 'Dicas Mais Curtas',
       en: 'Shortest Clues',
+      pt: 'Dicas Mais Curtas',
     },
     description: {
-      pt: 'Usou dicas mais curtas',
       en: 'Used the shortest clues',
+      pt: 'Usou dicas mais curtas',
+    },
+  },
+  LONGEST_DEFENSE: {
+    id: 'LONGEST_DEFENSE',
+    doc: 'Total time spent defending',
+    icon: 'snail',
+    title: {
+      en: 'Longest Defense',
+      pt: 'Defesa Mais Longa',
+    },
+    description: {
+      en: 'Took the longest to defend',
+      pt: 'Demorou mais tempo para se defender',
+    },
+  },
+  SHORTEST_DEFENSE: {
+    id: 'SHORTEST_DEFENSE',
+    doc: 'Total time spent defending',
+    icon: 'stopwatch',
+    title: {
+      en: 'Shortest Defense',
+      pt: 'Defesa Mais Curta',
+    },
+    description: {
+      en: 'Took the shortest to defend',
+      pt: 'Demorou menos tempo para se defender',
+    },
+  },
+  MOST_IMPOSTOR: {
+    id: 'MOST_IMPOSTOR',
+    doc: 'Points earned as the impostor',
+    icon: 'mask',
+    title: {
+      en: 'Most Impostor',
+      pt: 'Impostor Mais Vezes',
+    },
+    description: {
+      en: 'Was impostor the most times',
+      pt: 'Foi impostor mais vezes',
+    },
+  },
+  RECEIVED_VOTES: {
+    id: 'RECEIVED_VOTES',
+    doc: 'Votes received from other players',
+    icon: 'plus',
+    title: {
+      en: 'Most Attacked',
+      pt: 'Mais atacado',
+    },
+    description: {
+      en: 'Received the most votes when not being the impostor',
+      pt: 'Recebeu mais votos quando não era o impostor',
+    },
+  },
+  VOTED_FOR_IMPOSTOR: {
+    id: 'VOTED_FOR_IMPOSTOR',
+    doc: 'Times voting for the impostor',
+    icon: 'eye',
+    title: {
+      en: 'Voted for Impostor',
+      pt: 'Votou no Impostor',
+    },
+    description: {
+      en: 'Voted for the impostor the most times',
+      pt: 'Votou no impostor mais vezes',
+    },
+  },
+  VOTED_FOR_INNOCENT: {
+    id: 'VOTED_FOR_INNOCENT',
+    doc: 'Times voting for innocent players',
+    icon: 'broken-heart',
+    title: {
+      en: 'Voted for Innocent',
+      pt: 'Votou no Inocente',
+    },
+    description: {
+      en: 'Voted for innocents the most times',
+      pt: 'Votou em inocentes mais vezes',
     },
   },
 };

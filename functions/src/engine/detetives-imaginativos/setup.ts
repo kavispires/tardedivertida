@@ -6,8 +6,9 @@ import { cloneDeep, sample } from 'lodash';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData, TableEntry } from './types';
 // Utils
 import utils from '../../utils';
+import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
 // Internal
-import { calculateRanking, countImpostorVotes, getAchievements } from './helpers';
+import { calculateRanking, countImpostorVotes } from './helpers';
 import { saveData } from './data';
 
 /**
@@ -32,15 +33,7 @@ export const prepareSetupPhase = async (
   // Split cards equally between players
   utils.playerHand.dealDeck(players, data.cards, cardsPerPlayer, 'deck');
 
-  const achievements = utils.achievements.setup(players, {
-    leader: 0,
-    impostor: 0,
-    defenseTime: 0,
-    receivedVotes: 0,
-    votedImpostor: 0,
-    votedInnocent: 0,
-    clueLength: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Save
   return {
@@ -225,9 +218,9 @@ export const prepareRevealPhase = async (
   const ranking = calculateRanking(players, impostorVotes, state.impostorId, state.leaderId);
 
   // Achievements
-  utils.achievements.increase(store, state.leaderId, 'leader', 1);
-  utils.achievements.increase(store, state.impostorId, 'impostor', 1);
-  utils.achievements.increase(store, state.leaderId, 'clueLength', state.clue.length || 0);
+  increaseAchievement(store.achievements, state.leaderId, 'artistPoints', 1);
+  increaseAchievement(store.achievements, state.impostorId, 'impostorPoints', 1);
+  increaseAchievement(store.achievements, state.leaderId, 'clueLength', state.clue.length || 0);
 
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -266,7 +259,7 @@ export const prepareGameOverPhase = async (
 
   await utils.firestore.markGameAsComplete(gameId);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.DETETIVES_IMAGINATIVOS,
