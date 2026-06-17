@@ -14,18 +14,19 @@ import type {
 } from './types';
 // Utils
 import utils from '../../utils';
-import {
-  applySeedsToAlienItemKnowledge,
-  checkIsBot,
-  cleanupKnownSpriteIds,
-  getAchievements,
-} from './helpers';
+import { applySeedsToAlienItemKnowledge, checkIsBot, cleanupKnownSpriteIds } from './helpers';
 import { saveUsedItems } from './data';
 import {
   type AlienAttribute,
   alienAttributesUtils,
   type AlienItem,
 } from '../../utils/tool-kits/alien-attributes';
+import {
+  getAchievements,
+  increaseAchievement,
+  setTruthyAchievement,
+  setupAchievements,
+} from './achievements';
 
 /**
  * Setup phase - initializes game state and resources
@@ -60,14 +61,7 @@ export const prepareSetupPhase = async (
     extraInfo.debugMode = true;
   }
 
-  const achievements = utils.achievements.setup(players, {
-    objectInquiries: 0,
-    singleInquiry: 0,
-    correct: 0,
-    cursed: 0,
-    blank: 0,
-    alien: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Save
   return {
@@ -296,11 +290,11 @@ export const prepareAlienAnswerPhase = async (
 
     if (inquiry.objectIds.length === 1) {
       // Achievement: Single Inquiry
-      utils.achievements.increase(store, player.id, 'singleInquiry', 1);
+      increaseAchievement(store.achievements, player.id, 'singleInquiry', 1);
     }
 
     // Achievement: Total objects
-    utils.achievements.increase(store, player.id, 'objectInquiries', objectIds.length);
+    increaseAchievement(store.achievements, player.id, 'objectInquiries', objectIds.length);
 
     // If bot, update alien knowledge based on the top suggestion
     if (hasBot && inquiry.answer) {
@@ -516,7 +510,7 @@ export const prepareRevealPhase = async (
             found[offering.id] = true;
             player.score += 3;
             // Achievement: correct
-            utils.achievements.increase(store, player.id, 'correct', 1);
+            increaseAchievement(store.achievements, player.id, 'correct', 1);
           }
 
           if (offering.type === ITEM_TYPES.CURSE) {
@@ -527,12 +521,12 @@ export const prepareRevealPhase = async (
             curses[offering.id].push(player.id);
             player.score -= 1;
             // Achievement: curse
-            utils.achievements.increase(store, player.id, 'cursed', 1);
+            increaseAchievement(store.achievements, player.id, 'cursed', 1);
           }
 
           if (offering.type === ITEM_TYPES.BLANK) {
             // Achievement: blank
-            utils.achievements.increase(store, player.id, 'blank', 1);
+            increaseAchievement(store.achievements, player.id, 'blank', 1);
           }
 
           player.pastOfferings.push(offering.id);
@@ -586,16 +580,30 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
   const hasBot = checkIsBot(store);
+
+  // Final achievements
   if (!hasBot) {
-    utils.achievements.increase(store, state.alienId, 'alien', 1);
+    setTruthyAchievement(store.achievements, state.alienId, 'alien');
+  } else {
+    utils.players.getListOfPlayersIds(players).forEach((playerId) => {
+      if (playerId !== state.alienId) {
+        setTruthyAchievement(store.achievements, playerId, 'human');
+      }
+    });
   }
 
-  const achievements = getAchievements(
-    store,
-    hasBot,
-    utils.players.getListOfPlayers(players).length,
-    state.alienId,
-  );
+  const nonAlienPlayersIds = utils.players
+    .getListOfPlayersIds(players)
+    .filter((playerId) => playerId !== state.alienId);
+  const hasMoreThanOneHuman = nonAlienPlayersIds.length > 1;
+
+  const achievements = getAchievements(store.achievements, {
+    objectInquiries: hasMoreThanOneHuman ? [] : nonAlienPlayersIds,
+    singleInquiry: hasMoreThanOneHuman ? [] : nonAlienPlayersIds,
+    correct: hasMoreThanOneHuman ? [] : nonAlienPlayersIds,
+    blank: hasMoreThanOneHuman ? [] : nonAlienPlayersIds,
+    cursed: hasMoreThanOneHuman ? [] : nonAlienPlayersIds,
+  });
 
   await utils.firestore.markGameAsComplete(gameId);
 

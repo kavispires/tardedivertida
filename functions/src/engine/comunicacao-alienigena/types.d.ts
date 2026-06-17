@@ -1,5 +1,5 @@
 import type { AlienAttribute, AlienItem } from '../../utils/tool-kits/alien-attributes';
-import type { COMUNICACAO_ALIENIGENA_ACHIEVEMENTS, COMUNICACAO_ALIENIGENA_ACTIONS } from './constants';
+import type { COMUNICACAO_ALIENIGENA_ACTIONS } from './constants';
 
 export type ComunicacaoAlienigenaOptions = {
   /**
@@ -90,10 +90,8 @@ export interface OfferingsStatus {
   curses: Record<string, UID[]>;
 }
 
-export type ComunicacaoAlienigenaAchievement = keyof typeof COMUNICACAO_ALIENIGENA_ACHIEVEMENTS;
-
 export interface ComunicacaoAlienigenaStore extends DefaultStore<ComunicacaoAlienigenaOptions> {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface ComunicacaoAlienigenaState extends DefaultState {

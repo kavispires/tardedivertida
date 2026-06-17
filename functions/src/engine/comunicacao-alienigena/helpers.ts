@@ -1,13 +1,8 @@
 // Constants
-import { COMUNICACAO_ALIENIGENA_ACHIEVEMENTS, COMUNICACAO_ALIENIGENA_PHASES } from './constants';
+import { COMUNICACAO_ALIENIGENA_PHASES } from './constants';
 // Utils
 import utils from '../../utils';
-import type {
-  ComunicacaoAlienigenaAchievement,
-  ComunicacaoAlienigenaState,
-  ComunicacaoAlienigenaStore,
-  FirebaseStoreData,
-} from './types';
+import type { ComunicacaoAlienigenaState, ComunicacaoAlienigenaStore, FirebaseStoreData } from './types';
 import type { AlienAttribute, AlienItem } from '../../utils/tool-kits/alien-attributes';
 import { SEPARATOR } from '../../utils/constants';
 import { uniq } from 'lodash';
@@ -112,94 +107,3 @@ export function cleanupKnownSpriteIds(
 
   return uniq(knownSpriteIds.filter((spriteId) => !startingAttributesSpriteIds.includes(spriteId)));
 }
-
-/**
- * Calculates and returns player achievements based on game statistics
- * @param store - The Firebase store data containing achievement counters
- * @param hasBot - Whether the game has a bot alien
- * @param playerCount - The number of players in the game
- * @param alienId - The ID of the player who was the alien
- */
-export const getAchievements = (
-  store: FirebaseStoreData,
-  hasBot: boolean,
-  playerCount: number,
-  alienId: UID,
-) => {
-  const achievements: Achievement<ComunicacaoAlienigenaAchievement>[] = [];
-
-  if (!hasBot) {
-    utils.achievements.increase(store, alienId, 'alien', 1);
-  }
-
-  const validAchievement = hasBot ? playerCount > 1 : playerCount > 2;
-
-  const ineligiblePlayers = !hasBot ? [alienId] : [];
-
-  const { most: mostObjects, least: fewestObjects } = utils.achievements.getMostAndLeastOf(
-    store,
-    'objectInquiries',
-    ineligiblePlayers,
-  );
-  // Most Objects: used the most number of objects during inquiries
-  if (mostObjects && validAchievement) {
-    achievements.push({
-      type: COMUNICACAO_ALIENIGENA_ACHIEVEMENTS.MOST_QUESTIONED_OBJECTS,
-      playerId: mostObjects.playerId,
-      value: mostObjects.value,
-    });
-  }
-
-  // Fewest Objects: used the fewest number of objects during inquiries
-  if (fewestObjects && validAchievement) {
-    achievements.push({
-      type: COMUNICACAO_ALIENIGENA_ACHIEVEMENTS.FEWEST_QUESTIONED_OBJECTS,
-      playerId: fewestObjects.playerId,
-      value: fewestObjects.value,
-    });
-  }
-
-  // Most correct: guesses the correct objects more times
-  const { most: correct } = utils.achievements.getMostAndLeastOf(store, 'correct', ineligiblePlayers);
-  if (correct && validAchievement) {
-    achievements.push({
-      type: COMUNICACAO_ALIENIGENA_ACHIEVEMENTS.MOST_CORRECT_OBJECTS,
-      playerId: correct.playerId,
-      value: correct.value,
-    });
-  }
-
-  // Most cursed: guesses the cursed objects more times
-  const { most: cursed } = utils.achievements.getMostAndLeastOf(store, 'cursed', ineligiblePlayers);
-  if (cursed && validAchievement) {
-    achievements.push({
-      type: COMUNICACAO_ALIENIGENA_ACHIEVEMENTS.MOST_CURSED_OBJECTS,
-      playerId: cursed.playerId,
-      value: cursed.value,
-    });
-  }
-
-  // Most blank: guesses the blank objects more times
-  const { most: blank } = utils.achievements.getMostAndLeastOf(store, 'blank', ineligiblePlayers);
-  if (blank && validAchievement) {
-    achievements.push({
-      type: COMUNICACAO_ALIENIGENA_ACHIEVEMENTS.MOST_BLANK_OBJECTS,
-      playerId: blank.playerId,
-      value: blank.value,
-    });
-  }
-
-  if (!hasBot) {
-    // Players as alien
-    const { most: alien } = utils.achievements.getMostAndLeastOf(store, 'alien');
-    if (alien) {
-      achievements.push({
-        type: COMUNICACAO_ALIENIGENA_ACHIEVEMENTS.PLAYED_AS_ALIEN,
-        playerId: alien.playerId,
-        value: alien.value,
-      });
-    }
-  }
-
-  return achievements;
-};
