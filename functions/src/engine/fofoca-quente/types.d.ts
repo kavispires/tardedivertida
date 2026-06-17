@@ -25,7 +25,7 @@ export type FofocaQuenteAchievement = keyof typeof FOFOCA_QUENTE_ACHIEVEMENTS;
 
 export interface FofocaQuenteStore extends DefaultStore<FofocaQuenteOptions> {
   rumors?: TeenageRumor[];
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface FofocaQuenteState extends DefaultState {

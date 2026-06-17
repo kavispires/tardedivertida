@@ -40,11 +40,11 @@ export type Board = Record<CurrentRound, BoardEntry>;
 export interface VendavalDePalpiteStore extends DefaultStore {
   categories: TextCard[];
   words: TextCard[];
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface VendavalDePalpiteState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface VendavalDePalpiteInitialState extends InitialState {

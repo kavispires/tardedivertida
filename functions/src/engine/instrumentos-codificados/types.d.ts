@@ -1,9 +1,9 @@
 export interface InstrumentosCodificadosStore extends DefaultStore {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface InstrumentosCodificadosState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface InstrumentosCodificadosInitialState extends InitialState {

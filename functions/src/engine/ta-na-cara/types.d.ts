@@ -20,11 +20,11 @@ export interface ResourceData {
 export type AnswerValue = -2 | -1 | 1 | 2;
 
 export interface TaNaCaraStore extends DefaultStore<TaNaCaraOptions> {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface TaNaCaraState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface TaNaCaraInitialState extends InitialState {

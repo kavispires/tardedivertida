@@ -1,11 +1,11 @@
 import type { QUEM_NAO_MATA_ACTIONS } from './constants';
 
 export interface QuemNaoMataStore extends DefaultStore {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface QuemNaoMataState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface QuemNaoMataInitialState extends InitialState {

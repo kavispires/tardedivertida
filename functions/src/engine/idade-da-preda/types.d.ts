@@ -45,11 +45,11 @@ export type GalleryEntry = NewNameEntry & {
 export type IdadeDaPredaPhase = keyof typeof IDADE_DA_PREDA_PHASES;
 
 export interface IdadeDaPredaStore extends DefaultStore {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface IdadeDaPredaState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface IdadeDaPredaInitialState extends InitialState {

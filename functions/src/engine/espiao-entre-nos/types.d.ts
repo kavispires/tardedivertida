@@ -19,11 +19,11 @@ export type Resolution = {
 export interface EspiaoEntreNosStore extends DefaultStore {
   gameOrder: UID[];
   turnOrder: UID[];
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface EspiaoEntreNosState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface EspiaoEntreNosInitialState extends InitialState {
