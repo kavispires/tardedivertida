@@ -1,5 +1,5 @@
 import type { GroupQuestionCard } from '../../types/tdr';
-import type { MENTE_COLETIVA_ACHIEVEMENTS, MENTE_COLETIVA_ACTIONS } from './constants';
+import type { MENTE_COLETIVA_ACTIONS } from './constants';
 
 export type MenteColetivaOptions = {
   shortPasture: boolean;
@@ -76,8 +76,6 @@ export interface MenteColetivaSubmitAction extends Payload {
   action: keyof typeof MENTE_COLETIVA_ACTIONS;
 }
 
-export type MenteColetivaAchievement = keyof typeof MENTE_COLETIVA_ACHIEVEMENTS;
-
 export type FirebaseStateData = FirebaseFirestore.DocumentData | MenteColetivaState;
 export type FirebaseStoreData = FirebaseFirestore.DocumentData | MenteColetivaStore;
 
@@ -91,5 +89,5 @@ export interface PastureChangeEntry extends SheepAnimation {
   name: string;
   avatarId: string;
   level: number;
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }

@@ -25,11 +25,11 @@ import {
   gatherAllAnswers,
   recalculateLastPasture,
   shouldSaveSheep,
-  getAchievements,
   calculateSheepTravelDistance,
   getMostFrequentAnswers,
 } from './helpers';
 import { saveData } from './data';
+import { getAchievements, increaseAchievement, setupAchievements } from './achievements';
 
 /**
  * Setup
@@ -58,7 +58,7 @@ export const prepareSetupPhase = async (
   utils.players.distributeNumberIds(players, 0, AVATAR_SPRITE_LIBRARIES.SHEEP - 1, 'sheepId');
 
   // Setup achievements
-  const achievements = utils.achievements.setup(players, { secretScore: 0, distance: 0 });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Save
   return {
@@ -309,8 +309,31 @@ export const prepareGameOverPhase = async (
 
   const losers = listOfPlayers.filter((player) => player.level === farthestPasturePosition);
 
+  // Figure out final achievements
+  const pasturesCount: UID[][] = [];
+  listOfPlayers.forEach((player) => {
+    if (pasturesCount[player.level]) {
+      pasturesCount[player.level].push(player.id);
+    } else {
+      pasturesCount[player.level] = [player.id];
+    }
+  });
+  // Most dead: died alone
+  const lastPasture = pasturesCount[pasturesCount.length - 1];
+  if (lastPasture.length === 1) {
+    increaseAchievement(store.achievements, lastPasture[0], 'dead', 1);
+  }
+
+  // Most lonely: it's the only one alone in a pasture
+  const loners = pasturesCount.filter(
+    (pastureCount, index, arr) => pastureCount.length === 1 && index !== arr.length - 1,
+  );
+  if (loners.length === 1) {
+    increaseAchievement(store.achievements, loners[0][0], 'lonely', 1);
+  }
+
   // Get achievements
-  const achievements = getAchievements(players, store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

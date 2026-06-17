@@ -1,7 +1,6 @@
 // Constants
 import {
   MAX_ROUNDS,
-  MENTE_COLETIVA_ACHIEVEMENTS,
   MENTE_COLETIVA_PHASES,
   PASTURE_GAME_OVER_THRESHOLD,
   QUESTIONS_PER_ROUND,
@@ -15,14 +14,13 @@ import type {
   AnswerEntry,
   AnswerGroupEntry,
   Deck,
-  FirebaseStoreData,
   GalleryEntry,
-  MenteColetivaAchievement,
   PastureChangeEntry,
   SheepAnimation,
 } from './types';
 // Utils
 import utils from '../../utils';
+import { increaseAchievement } from './achievements';
 
 /**
  * Determines the next phase based on the current phase and game state
@@ -174,7 +172,7 @@ export const buildRanking = (players: Players, store: PlainObject): RankingEntry
   utils.players.getListOfPlayers(players).forEach((player) => {
     scores.add(player.id, player.score, 0);
 
-    utils.achievements.increase(store, player.id, 'secretScore', player.score);
+    increaseAchievement(store.achievements, player.id, 'secretScore', player.score);
   });
 
   return scores.rank(players);
@@ -395,92 +393,16 @@ export const shouldSaveSheep = (
 };
 
 /**
- * Get achievements:
- * Most dead - if only one sheep died
- * Most matches - highest final score
- * Least matches - lowest final score
- * Most lonely - is the only one in a pasture
- * @param players
- */
-export const getAchievements = (players: Players, store: FirebaseStoreData) => {
-  const pasturesCount: UID[][] = [];
-
-  utils.players.getListOfPlayers(players).forEach((player) => {
-    if (pasturesCount[player.level]) {
-      pasturesCount[player.level].push(player.id);
-    } else {
-      pasturesCount[player.level] = [player.id];
-    }
-  });
-
-  const achievements: Achievement<MenteColetivaAchievement>[] = [];
-
-  const { most, least } = utils.achievements.getMostAndLeastOf(store, 'secretScore');
-  // Most friendly / most matches - highest final score
-  if (most) {
-    achievements.push({
-      type: MENTE_COLETIVA_ACHIEVEMENTS.MOST_MATCHES,
-      playerId: most.playerId,
-      value: most.value,
-    });
-  }
-
-  // Least friendly / least matches - highest final score
-  if (least) {
-    achievements.push({
-      type: MENTE_COLETIVA_ACHIEVEMENTS.LEAST_MATCHES,
-      playerId: least.playerId,
-      value: least.value,
-    });
-  }
-
-  const { most: mostTravel } = utils.achievements.getMostAndLeastOf(store, 'distance');
-
-  // Best traveler: a player alone move left or right the most
-  if (mostTravel) {
-    achievements.push({
-      type: MENTE_COLETIVA_ACHIEVEMENTS.BEST_TRAVELER,
-      playerId: mostTravel.playerId,
-      value: mostTravel.value,
-    });
-  }
-
-  // Most dead: died alone
-  const lastPasture = pasturesCount[pasturesCount.length - 1];
-  if (lastPasture.length === 1) {
-    achievements.push({
-      type: MENTE_COLETIVA_ACHIEVEMENTS.MOST_DEAD,
-      playerId: lastPasture[0],
-      value: 1,
-    });
-  }
-
-  // Most lonely: it's the only one alone in a pasture
-  const loners = pasturesCount.filter(
-    (pastureCount, index, arr) => pastureCount.length === 1 && index !== arr.length - 1,
-  );
-  if (loners.length === 1) {
-    achievements.push({
-      type: MENTE_COLETIVA_ACHIEVEMENTS.MOST_LONELY,
-      playerId: loners[0][0],
-      value: 1,
-    });
-  }
-
-  return achievements;
-};
-
-/**
  * Adds the distance the sheep moved during the pasture change (for achievement)
  * @param pastureChange
  */
 export const calculateSheepTravelDistance = (store: PlainObject, pastureChange: PastureChangeEntry[][]) => {
   pastureChange[0].forEach((pastureChangeEntry, index) => {
-    utils.achievements.increase(
-      store,
+    increaseAchievement(
+      store.achievements,
       pastureChangeEntry.id,
       'distance',
-      pastureChange[2][index].level - pastureChangeEntry.level,
+      Math.abs(pastureChange[2][index].level - pastureChangeEntry.level),
     );
   });
 };

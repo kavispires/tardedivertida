@@ -2,59 +2,82 @@
 import type { AchievementReference } from 'types/game';
 
 export const achievementsReference: AchievementReference = {
-  MOST_MATCHES: {
-    icon: 'double-arrow-up',
-    title: {
-      pt: 'Mais Matches',
-      en: 'Best Matcher',
-    },
-    description: {
-      pt: 'As respostas combinaram mais vezes com outros jogadores',
-      en: 'Their answers matched the most with other players',
-    },
-  },
-  LEAST_MATCHES: {
-    icon: 'difference',
-    title: {
-      pt: 'Mais Diferentão',
-      en: 'Most Unique',
-    },
-    description: {
-      pt: 'As respostas combinaram menos vezes com outros jogadores',
-      en: 'Their answers matched the least with other players',
-    },
-  },
   MOST_DEAD: {
+    id: 'MOST_DEAD',
+    doc: 'Only dead player',
     icon: 'skull',
     title: {
-      pt: 'Mais Morta',
       en: 'Most Dead',
+      pt: 'Mais Morta',
     },
     description: {
-      pt: 'A única ovelhinha morta no final',
       en: 'The only dead sheep in the end',
-    },
-  },
-  MOST_LONELY: {
-    icon: 'face-tired',
-    title: {
-      pt: 'Mais Solitária',
-      en: 'Most Lonely',
-    },
-    description: {
-      pt: 'A única ovelhinha num pasto sozinha no final',
-      en: 'The only sheep by itself in the end',
+      pt: 'A única ovelhinha morta no final',
     },
   },
   BEST_TRAVELER: {
+    id: 'BEST_TRAVELER',
+    doc: 'Total distance traveled between pastures',
     icon: 'distance',
     title: {
-      pt: 'Mais Viajada',
       en: 'Best Traveler',
+      pt: 'Mais Viajada',
     },
     description: {
-      pt: 'Ovelhinha que mais moveu pra direita e esquerda',
       en: 'Sheep who moved the most left or right',
+      pt: 'Ovelhinha que mais moveu pra direita e esquerda',
+    },
+  },
+  MOST_QUIET: {
+    id: 'MOST_QUIET',
+    doc: 'Total distance traveled between pastures',
+    icon: 'ellipsis',
+    title: {
+      en: 'Most Quiet',
+      pt: 'Come Quieto',
+    },
+    description: {
+      en: 'Sheep who stay in place the most rounds',
+      pt: 'Ovelhinha que mais ficou parada durante as rodadas',
+    },
+  },
+  MOST_LONELY: {
+    id: 'MOST_LONELY',
+    doc: 'Only player without any matches',
+    icon: 'face-tired',
+    title: {
+      en: 'Most Lonely',
+      pt: 'Mais Solitária',
+    },
+    description: {
+      en: 'The only sheep by itself in the end',
+      pt: 'A única ovelhinha num pasto sozinha no final',
+    },
+  },
+  FEWEST_MATCHES: {
+    id: 'FEWEST_MATCHES',
+    doc: 'Final score (total matches)',
+    icon: 'difference',
+    title: {
+      en: 'Most Unique',
+      pt: 'Mais Diferentão',
+    },
+    description: {
+      en: 'Their answers matched the least with other players',
+      pt: 'As respostas combinaram menos vezes com outros jogadores',
+    },
+  },
+  MOST_MATCHES: {
+    id: 'MOST_MATCHES',
+    doc: 'Final score (total matches)',
+    icon: 'double-arrow-up',
+    title: {
+      en: 'Best Matcher',
+      pt: 'Mais Matches',
+    },
+    description: {
+      en: 'Their answers matched the most with other players',
+      pt: 'As respostas combinaram mais vezes com outros jogadores',
     },
   },
 };
