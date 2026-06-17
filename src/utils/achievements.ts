@@ -5,6 +5,7 @@ import COLEGAS_DE_QUARTO from 'games/colegas-de-quarto/utils/achievements';
 import COMUNICACAO_ALIENIGENA from 'games/comunicacao-alienigena/utils/achievements';
 import COMUNICACAO_DUO from 'games/comunicacao-duo/utils/achievements';
 import CONTADORES_HISTORIAS from 'games/contadores-historias/utils/achievements';
+import CONTROLE_DE_ESTOQUE from 'games/controle-de-estoque/utils/achievements';
 import CRIMES_HEDIONDOS from 'games/crimes-hediondos/utils/achievements';
 import CRUZA_PALAVRAS from 'games/cruza-palavras/utils/achievements';
 import DETETIVES_IMAGINATIVOS from 'games/detetives-imaginativos/utils/achievements';
@@ -48,6 +49,7 @@ export const ACHIEVEMENTS_DICT: Record<string, AchievementReference | null> = {
   'comunicacao-alienigena': COMUNICACAO_ALIENIGENA,
   'comunicacao-duo': COMUNICACAO_DUO,
   'contadores-historias': CONTADORES_HISTORIAS,
+  'controle-de-estoque': CONTROLE_DE_ESTOQUE,
   'crimes-hediondos': CRIMES_HEDIONDOS,
   'cruza-palavras': CRUZA_PALAVRAS,
   'detetives-imaginativos': DETETIVES_IMAGINATIVOS,

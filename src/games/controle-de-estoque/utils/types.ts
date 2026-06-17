@@ -1,5 +1,5 @@
 // Types
-import type { GameRanking } from 'types/game';
+import type { Achievement, GameRanking } from 'types/game';
 import type { BossIdeaCard } from 'types/tdr';
 // Internal
 import type { EVENT_TYPE, OUTCOME } from './constants';
@@ -162,4 +162,5 @@ export type PhaseResultsState = {
 export type PhaseGameOverState = {
   goodsDict: Dictionary<Good>;
   warehouseGrid: Dictionary<WarehouseSlot>;
+  achievements: Achievement[];
 };

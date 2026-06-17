@@ -1,10 +1,5 @@
 import type { BossIdeaCard } from '../../types/tdr';
-import type {
-  CONTROLE_DE_ESTOQUE_ACHIEVEMENTS,
-  CONTROLE_DE_ESTOQUE_ACTIONS,
-  EVENT_TYPE,
-  OUTCOME,
-} from './constants';
+import type { CONTROLE_DE_ESTOQUE_ACTIONS, EVENT_TYPE, OUTCOME } from './constants';
 
 export type ResourceData = {
   allBossIdeas: Dictionary<BossIdeaCard>;
@@ -118,14 +113,12 @@ export type Gallery = {
   skippedOrders: Record<UID, GalleryEntry[]>; // playerId -> list of skipped orders
 };
 
-export type ControleDeEstoqueAchievement = keyof typeof CONTROLE_DE_ESTOQUE_ACHIEVEMENTS;
-
 export interface ControleDeEstoqueStore extends DefaultStore {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface ControleDeEstoqueState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface ControleDeEstoqueInitialState extends InitialState {

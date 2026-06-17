@@ -30,6 +30,7 @@ import {
   distributeOrders,
   updateAvailableSlotsInWarehouse,
 } from './helpers';
+import { getAchievements, setupAchievements } from './achievements';
 
 /**
  * Setup phase - initializes game state and resources
@@ -44,13 +45,7 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = utils.achievements.setup(players, {
-    attempts: 0,
-    correctAtOnce: 0,
-    skips: 0,
-    outOfStock: 0,
-    outOfStockFulfillment: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Get player count and determine goods counts from COUNTS_BY_PLAYER_COUNT
   const playerCount = utils.players.getPlayerCount(players);
@@ -466,6 +461,7 @@ export const prepareResultsPhase = async (
     state.goodsDict,
     state.warehouseGrid,
     state.ordersLeft,
+    state.round.current,
     store,
   );
 
@@ -501,8 +497,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  // const achievements = getAchievements(store);
-  const achievements = [];
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

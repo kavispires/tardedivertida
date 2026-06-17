@@ -4,9 +4,11 @@ import type { PhaseProps } from 'types/game';
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
+import { Achievements } from 'components/general/Achievements';
 // Internal
 import type { PhaseGameOverState } from './utils/types';
 import { useWarehouse } from './utils/hooks';
+import { achievementsReference } from './utils/achievements';
 import { Warehouse } from './components/Warehouse';
 
 export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
@@ -17,11 +19,11 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
       players={players}
       announcementIcon={<TrophyIcon />}
     >
-      {/* <Achievements
+      <Achievements
         players={players}
         achievements={state.achievements}
         reference={achievementsReference}
-      /> */}
+      />
 
       <Warehouse
         goodsDict={state.goodsDict}

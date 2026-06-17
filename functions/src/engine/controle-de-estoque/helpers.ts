@@ -15,6 +15,7 @@ import { LETTERS } from '../../utils/constants';
 import utils from '../../utils';
 import { BOSS_IDEAS } from './data';
 import { orderBy, shuffle } from 'lodash';
+import { increaseAchievement, pushAchievement } from './achievements';
 
 /**
  * Determines the next phase based on the current phase and game state
@@ -372,6 +373,7 @@ export const buildRanking = (
   goodsDict: Dictionary<Good>,
   warehouseGrid: Dictionary<WarehouseSlot>,
   previousOrdersLeft: number,
+  currentRound: number,
   store: ControleDeEstoqueStore,
 ) => {
   // Gained Points: [correct order, wrong order, out of stock, incorrect out of stock]
@@ -406,7 +408,12 @@ export const buildRanking = (
       // Player attempted to fulfill the order
       if (isFulfilledAttempt) {
         // Achievement: tried to fulfill
-        utils.achievements.increase(store, player.id, 'attempts', 1);
+        increaseAchievement(store.achievements, player.id, 'attempts', 1);
+        const roundKey = `attemptsRound${currentRound}` as
+          | 'attemptsRound1'
+          | 'attemptsRound2'
+          | 'attemptsRound3';
+        increaseAchievement(store.achievements, player.id, roundKey, 1);
 
         // Fulfilled an order correctly, grant 3 points
         if (actualSlot === guessedSlot) {
@@ -443,7 +450,7 @@ export const buildRanking = (
 
           if (actualSlot === null) {
             // Achievement: tried to fulfill an out of stock order
-            utils.achievements.increase(store, player.id, 'outOfStock', 1);
+            increaseAchievement(store.achievements, player.id, 'outOfStockAttempts', 1);
           }
 
           player.previousOrders.push(orderId);
@@ -454,7 +461,7 @@ export const buildRanking = (
       // Player attempted to mark order as out of stock (guessedSlot === -1)
       if (guessedSlot === -1) {
         // Achievement: set an order as out of stock (correct or not)
-        utils.achievements.increase(store, player.id, 'outOfStockFulfillment', 1);
+        increaseAchievement(store.achievements, player.id, 'correctOutOfStock', 1);
 
         // If not fulfilled and out of stock, grant 3 points
         if (actualSlot === null) {
@@ -494,11 +501,11 @@ export const buildRanking = (
       player.previousOrders.push(orderId);
 
       // Achievement: skipped an order
-      utils.achievements.increase(store, player.id, 'skips', 1);
+      increaseAchievement(store.achievements, player.id, 'skips', 1);
     });
 
     // Achievement: fulfilled at once
-    utils.achievements.increase(store, player.id, 'correctAtOnce', correctAtOnce);
+    pushAchievement(store.achievements, player.id, 'correctAtOnce', correctAtOnce);
   });
 
   return {
