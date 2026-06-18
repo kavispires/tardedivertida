@@ -6,7 +6,7 @@ import { sampleSize } from 'lodash';
 import type { Deck, FirebaseStateData, FirebaseStoreData, GridCell, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
-import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
+import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 // Internal
 import {
   buildGrid,
@@ -267,7 +267,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

@@ -18,7 +18,7 @@ import {
   getTwoUniquePairCards,
 } from './helpers';
 import { saveUsedCards } from './data';
-import { setupAchievements, getAchievements } from './achievements';
+import { setupAchievements, calculateAchievements } from './achievements';
 
 /**
  * Setup phase - builds the card deck and initializes game settings
@@ -209,7 +209,7 @@ export const prepareGameOverPhase = async (
 
   const finalGallery = orderBy(cloneDeep(store.pastDrawings), 'successRate', 'desc');
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

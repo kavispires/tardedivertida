@@ -13,7 +13,7 @@ import type { DrawingEntry, FirebaseStateData, FirebaseStoreData, ResourceData }
 // Utils
 import utils from '../../utils';
 import { dealCardsToPlayers, evaluateAnswers } from './helpers';
-import { setupAchievements, getAchievements } from './achievements';
+import { setupAchievements, calculateAchievements } from './achievements';
 import { saveDrawings } from './data';
 
 /**
@@ -192,7 +192,7 @@ export const prepareGameOverPhase = async (
 
   const finalGallery = orderBy(cloneDeep(store.pastDrawings), 'accuracy', 'desc');
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

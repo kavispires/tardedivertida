@@ -51,10 +51,5 @@ const achievements = achievementBuilder('CONTROLE_DE_ESTOQUE')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  calculate: getAchievements,
-  push: pushAchievement,
-} = achievements;
+export const { constants, setupAchievements, increaseAchievement, calculateAchievements, pushAchievement } =
+  achievements;

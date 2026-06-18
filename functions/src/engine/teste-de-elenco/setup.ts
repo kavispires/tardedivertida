@@ -7,7 +7,7 @@ import type { FirebaseStateData, FirebaseStoreData, Movie, ResourceData } from '
 // Utils
 import utils from '../../utils';
 import { buildMovie, determineCast, getNextRoleId } from './helpers';
-import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
+import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 
 /**
  * Setup
@@ -205,7 +205,7 @@ export const prepareGameOverPhase = async (
     increaseAchievement(store.achievements, player.id, 'actors', unique);
   });
 
-  const achievements = getAchievements(store);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

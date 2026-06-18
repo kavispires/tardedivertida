@@ -28,10 +28,5 @@ const ondaTelepaticaAchievements = achievementBuilder('ONDA_TELEPATICA')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  push: pushAchievement,
-  calculate: getAchievements,
-} = ondaTelepaticaAchievements;
+export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
+  ondaTelepaticaAchievements;

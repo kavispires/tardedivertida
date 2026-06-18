@@ -25,10 +25,5 @@ const retratoFaladoAchievements = achievementBuilder('RETRATO_FALADO')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  push: pushAchievement,
-  calculate: getAchievements,
-} = retratoFaladoAchievements;
+export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
+  retratoFaladoAchievements;

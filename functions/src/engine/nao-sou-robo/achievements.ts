@@ -24,10 +24,5 @@ const naoSouRoboAchievements = achievementBuilder('NAO_SOU_ROBO')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  push: pushAchievement,
-  calculate: getAchievements,
-} = naoSouRoboAchievements;
+export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
+  naoSouRoboAchievements;

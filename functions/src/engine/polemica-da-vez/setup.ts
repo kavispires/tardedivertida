@@ -6,7 +6,7 @@ import type { CustomDeck, FirebaseStateData, FirebaseStoreData } from './types';
 // Utils
 import utils from '../../utils';
 import { buildDeck, countLikes, getRanking } from './helpers';
-import { setupAchievements, getAchievements } from './achievements';
+import { setupAchievements, calculateAchievements } from './achievements';
 
 /**
  * Setup
@@ -201,7 +201,7 @@ export const prepareGameOverPhase = async (
 
   await utils.firestore.markGameAsComplete(gameId);
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.POLEMICA_DA_VEZ,

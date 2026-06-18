@@ -24,10 +24,5 @@ const testemunhaOcularAchievements = achievementBuilder('TESTEMUNHA_OCULAR')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  push: pushAchievement,
-  setTruthy: setTruthyAchievement,
-  calculate: getAchievements,
-} = testemunhaOcularAchievements;
+export const { constants, setupAchievements, pushAchievement, setTruthyAchievement, calculateAchievements } =
+  testemunhaOcularAchievements;

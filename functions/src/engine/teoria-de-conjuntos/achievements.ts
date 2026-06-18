@@ -39,10 +39,5 @@ const teoriaDeConjuntosAchievements = achievementBuilder('TEORIA_DE_CONJUNTOS')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  push: pushAchievement,
-  calculate: getAchievements,
-} = teoriaDeConjuntosAchievements;
+export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
+  teoriaDeConjuntosAchievements;

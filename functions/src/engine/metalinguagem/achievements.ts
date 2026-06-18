@@ -38,10 +38,5 @@ const metalinguagemAchievements = achievementBuilder('METALINGUAGEM')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  push: pushAchievement,
-  calculate: getAchievements,
-} = metalinguagemAchievements;
+export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
+  metalinguagemAchievements;

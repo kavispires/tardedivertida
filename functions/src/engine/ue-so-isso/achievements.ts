@@ -40,10 +40,5 @@ const ueSoIssoAchievements = achievementBuilder('UE_SO_ISSO')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  push: pushAchievement,
-  calculate: getAchievements,
-} = ueSoIssoAchievements;
+export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
+  ueSoIssoAchievements;

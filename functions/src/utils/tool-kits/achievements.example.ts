@@ -50,12 +50,7 @@ const achievements = achievementBuilder('ADEDANHX')
 
 // Destructure and export the utility functions
 // Note: Use simple 'achievements' variable name since it's not exported directly
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  calculate: getAchievements,
-} = achievements;
+export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;
 
 // ========================================
 // USAGE IN GAME
@@ -99,7 +94,7 @@ function exampleTracking(store: { achievements: PlainObject }, playerId: UID) {
  */
 function exampleCalculation(store: { achievements: PlainObject }): Achievement<string>[] {
   // No exclusions needed for this game (pass undefined)
-  const achievementResults = getAchievements(store.achievements);
+  const achievementResults = calculateAchievements(store.achievements);
   // Returns: [
   //   { type: 'MOST_STOPS', playerId: 'player1', value: 5 },
   //   { type: 'MOST_FIRST_ANSWERS', playerId: 'player2', value: 10 },
@@ -148,17 +143,17 @@ const arrayExample = achievementBuilder('EXAMPLE')
 
 function exampleArrayUsage(store: { achievements: PlainObject }, playerId: UID) {
   // General array
-  arrayExample.push(store.achievements, playerId, 'weapons', 'knife');
-  arrayExample.push(store.achievements, playerId, 'weapons', 'gun');
+  arrayExample.pushAchievement(store.achievements, playerId, 'weapons', 'knife');
+  arrayExample.pushAchievement(store.achievements, playerId, 'weapons', 'gun');
 
   // Indexed array
-  arrayExample.insert(store.achievements, playerId, 'correct', true, 0); // Round 0
-  arrayExample.insert(store.achievements, playerId, 'correct', false, 1); // Round 1
+  arrayExample.insertAchievement(store.achievements, playerId, 'correct', true, 0); // Round 0
+  arrayExample.insertAchievement(store.achievements, playerId, 'correct', false, 1); // Round 1
 
   // Accumulated array
-  arrayExample.push(store.achievements, playerId, 'roundScores', 0); // Start round
-  arrayExample.addToLast(store.achievements, playerId, 'roundScores', 10); // Add to current
-  arrayExample.addToLast(store.achievements, playerId, 'roundScores', 5); // Add more
+  arrayExample.pushAchievement(store.achievements, playerId, 'roundScores', 0); // Start round
+  arrayExample.addToLastAchievement(store.achievements, playerId, 'roundScores', 10); // Add to current
+  arrayExample.addToLastAchievement(store.achievements, playerId, 'roundScores', 5); // Add more
   // Result: [15]
 }
 
@@ -223,7 +218,7 @@ function exampleWithExclusions(
   const alienId = findAlienPlayerId(players);
 
   // ✅ Pass exclusions for properties that require them
-  const results = exclusionsExample.calculate(store.achievements, {
+  const results = exclusionsExample.calculateAchievements(store.achievements, {
     correctGuesses: [alienId],
     objectsQuestioned: [alienId],
   });

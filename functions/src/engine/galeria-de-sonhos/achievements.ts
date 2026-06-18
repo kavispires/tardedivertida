@@ -41,9 +41,4 @@ const achievements = achievementBuilder('GALERIA_DE_SONHOS')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  calculate: getAchievements,
-} = achievements;
+export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;

@@ -39,10 +39,5 @@ const sinaisDeAlertaAchievements = achievementBuilder('SINAIS_DE_ALERTA')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  push: pushAchievement,
-  calculate: getAchievements,
-} = sinaisDeAlertaAchievements;
+export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
+  sinaisDeAlertaAchievements;

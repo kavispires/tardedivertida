@@ -44,9 +44,4 @@ const achievements = achievementBuilder('MEDIDAS_NAO_EXATAS')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  calculate: getAchievements,
-} = achievements;
+export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;

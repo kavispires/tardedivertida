@@ -6,7 +6,12 @@ import type { FirebaseStateData, FirebaseStoreData, GalleryEntry, ResourceData, 
 // Utils
 import utils from '../../utils';
 import { GAME_NAMES } from '../../utils/constants';
-import { setupAchievements, increaseAchievement, getAchievements, pushAchievement } from './achievements';
+import {
+  setupAchievements,
+  increaseAchievement,
+  calculateAchievements,
+  pushAchievement,
+} from './achievements';
 import type { Item } from '../../types/tdr';
 
 /**
@@ -272,7 +277,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = state.outcome === WORD_LENGTH_STATUS.FAILED ? [] : utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

@@ -7,7 +7,7 @@ import type { FirebaseStateData, FirebaseStoreData } from './types';
 import utils from '../../utils';
 // Internal
 import { buildDeck, buildRanking, buildSequence } from './helpers';
-import { setupAchievements, getAchievements } from './achievements';
+import { setupAchievements, calculateAchievements } from './achievements';
 
 /**
  * Setup
@@ -131,7 +131,7 @@ export const prepareGameOverPhase = async (
 
   await utils.firestore.markGameAsComplete(gameId);
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.SENSO_LITERARIO,

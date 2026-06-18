@@ -7,7 +7,7 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types
 import utils from '../../utils';
 // Internal
 import { addSlideToAlbum, assignSlideToPlayers, buildAlbum, dealPromptOptions } from './helpers';
-import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
+import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { GAME_NAMES } from '../../utils/constants';
 
 /**
@@ -252,7 +252,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

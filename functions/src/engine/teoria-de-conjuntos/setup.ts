@@ -14,7 +14,7 @@ import utils from '../../utils';
 import { GAME_NAMES } from '../../utils/constants';
 import type { Item } from '../../types/tdr';
 import { createVennDiagram } from './helpers';
-import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
+import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 
 /**
  * Setup
@@ -336,7 +336,7 @@ export const prepareGameOverPhase = async (
 
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

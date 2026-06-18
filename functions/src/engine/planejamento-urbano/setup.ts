@@ -15,7 +15,7 @@ import { difference, orderBy, sampleSize, shuffle } from 'lodash';
 import utils from '../../utils';
 import type { CityLocation } from '../../types/tdr';
 import { GAME_NAMES, LETTERS } from '../../utils/constants';
-import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
+import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 
 /**
  * Prepares the setup phase for the urban planning game.
@@ -427,7 +427,7 @@ export const prepareGameOverPhase = async (
 
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

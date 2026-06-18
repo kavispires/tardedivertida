@@ -38,10 +38,5 @@ const quemSouEuAchievements = achievementBuilder('QUEM_SOU_EU')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  push: pushAchievement,
-  calculate: getAchievements,
-} = quemSouEuAchievements;
+export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
+  quemSouEuAchievements;

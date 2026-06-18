@@ -38,9 +38,4 @@ const achievements = achievementBuilder('BOMBA_RELOGIO')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  calculate: getAchievements,
-} = achievements;
+export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;

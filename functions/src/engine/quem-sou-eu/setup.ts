@@ -17,7 +17,7 @@ import type { Character, FirebaseStateData, FirebaseStoreData, ResourceData } fr
 import utils from '../../utils';
 // Internal
 import { buildGallery, buildRanking } from './helpers';
-import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
+import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { saveData } from './data';
 import type { ContenderCard } from '../../types/tdr';
 
@@ -312,7 +312,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

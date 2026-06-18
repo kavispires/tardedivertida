@@ -25,9 +25,5 @@ const linhasCruzadasAchievements = achievementBuilder('LINHAS_CRUZADAS')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  calculate: getAchievements,
-} = linhasCruzadasAchievements;
+export const { constants, setupAchievements, increaseAchievement, calculateAchievements } =
+  linhasCruzadasAchievements;

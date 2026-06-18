@@ -39,10 +39,5 @@ const planejamentoUrbanoAchievements = achievementBuilder('PLANEJAMENTO_URBANO')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  push: pushAchievement,
-  calculate: getAchievements,
-} = planejamentoUrbanoAchievements;
+export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
+  planejamentoUrbanoAchievements;

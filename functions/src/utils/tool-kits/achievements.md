@@ -42,11 +42,11 @@ const achievements = achievementBuilder('GAME_NAME')
 // Export for use in game
 export const {
   constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  push: pushAchievement,
-  setTruthy: setTruthyAchievement,
-  calculate: getAchievements,
+  setupAchievements,
+  increaseAchievement,
+  pushAchievement,
+  setTruthyAchievement,
+  calculateAchievements,
 } = achievements;
 ```
 
@@ -591,9 +591,9 @@ const adedanhxAchievements = achievementBuilder('ADEDANHX')
 
 export const ADEDANHX_ACHIEVEMENTS = adedanhxAchievements.constants;
 export const {
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  calculate: getAchievements,
+  setupAchievements,
+  increaseAchievement,
+  calculateAchievements,
 } = adedanhxAchievements;
 ```
 
@@ -676,16 +676,16 @@ return {
 
    export const {
      constants,
-     setup: setupAchievements,
-     increase: increaseAchievement,
-     calculate: getAchievements,
+     setupAchievements,
+     increaseAchievement,
+     calculateAchievements,
    } = gameAchievements;
    ```
 
 2. **Update imports in game files**
    ```typescript
    // In setup.ts, helpers.ts, etc.
-   import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
+   import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
    ```
 
 3. **Replace method calls**:

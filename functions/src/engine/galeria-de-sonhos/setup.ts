@@ -17,7 +17,7 @@ import {
   getRoundWords,
   simulateBotCards,
 } from './helpers';
-import { getAchievements, setupAchievements } from './achievements';
+import { calculateAchievements, setupAchievements } from './achievements';
 import { saveData } from './data';
 
 /**
@@ -257,7 +257,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

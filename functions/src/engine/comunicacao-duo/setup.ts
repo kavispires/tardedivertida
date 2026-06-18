@@ -10,7 +10,7 @@ import { GAME_NAMES } from '../../utils/constants';
 import { print } from '../../utils/helpers';
 import {
   addToLastAchievement,
-  getAchievements,
+  calculateAchievements,
   increaseAchievement,
   pushAchievement,
   setTruthyAchievement,
@@ -369,7 +369,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = state.status !== STATUS.WIN ? [] : utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

@@ -20,7 +20,7 @@ import {
   updateCrime,
   updateOrCreateGuessHistory,
 } from './helpers';
-import { setupAchievements, getAchievements } from './achievements';
+import { setupAchievements, calculateAchievements } from './achievements';
 
 /**
  * Setup phase - initializes game state and resources
@@ -312,7 +312,7 @@ export const prepareGameOverPhase = async (
     Object.keys(winningPlayers).length > 0 ? winningPlayers : players,
   );
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

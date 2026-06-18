@@ -12,7 +12,12 @@ import { MAX_ROUNDS, OUTCOME, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Helpers
 import utils from '../../utils';
 import { buildQuestionsDeck, calculateScore, getNewQuestions, getPoolOfSuspects } from './helpers';
-import { setupAchievements, getAchievements, pushAchievement, setTruthyAchievement } from './achievements';
+import {
+  setupAchievements,
+  calculateAchievements,
+  pushAchievement,
+  setTruthyAchievement,
+} from './achievements';
 import { GAME_NAMES } from '../../utils/constants';
 import { saveData } from './data';
 
@@ -357,7 +362,7 @@ export const prepareGameOverPhase = async (
     });
   }
 
-  const achievements = getAchievements(store, {
+  const achievements = calculateAchievements(store.achievements, {
     // The witness does not score for releases
     releases: utils.players.getListOfPlayersIds(players, false, [state.witnessId]),
   });

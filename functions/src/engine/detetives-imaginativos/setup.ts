@@ -6,7 +6,7 @@ import { cloneDeep, sample } from 'lodash';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData, TableEntry } from './types';
 // Utils
 import utils from '../../utils';
-import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
+import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 // Internal
 import { calculateRanking, countImpostorVotes } from './helpers';
 import { saveData } from './data';
@@ -259,7 +259,7 @@ export const prepareGameOverPhase = async (
 
   await utils.firestore.markGameAsComplete(gameId);
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.DETETIVES_IMAGINATIVOS,

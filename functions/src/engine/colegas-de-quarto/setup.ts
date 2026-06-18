@@ -14,7 +14,7 @@ import type { BoardEntry, FirebaseStateData, FirebaseStoreData, PastClues, Resou
 import utils from '../../utils';
 // Internal
 import { buildRanking } from './helpers';
-import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
+import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { saveData } from './data';
 import type { TextCard } from '../../types/tdr';
 
@@ -294,7 +294,7 @@ export const prepareGameOverPhase = async (
   const win = happiness.total >= happiness.goal;
   const winners = win ? utils.players.getListOfPlayers(players) : utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

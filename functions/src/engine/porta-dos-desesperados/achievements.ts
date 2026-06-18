@@ -60,10 +60,5 @@ const portaDosDesesperadosAchievements = achievementBuilder('PORTA_DOS_DESESPERA
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  push: pushAchievement,
-  calculate: getAchievements,
-} = portaDosDesesperadosAchievements;
+export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
+  portaDosDesesperadosAchievements;

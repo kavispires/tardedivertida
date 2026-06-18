@@ -29,7 +29,7 @@ import {
   getMostFrequentAnswers,
 } from './helpers';
 import { saveData } from './data';
-import { getAchievements, increaseAchievement, setupAchievements } from './achievements';
+import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
 
 /**
  * Setup
@@ -333,7 +333,7 @@ export const prepareGameOverPhase = async (
   }
 
   // Get achievements
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

@@ -68,9 +68,4 @@ const achievements = achievementBuilder('LABIRINTO_SECRETO')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  calculate: getAchievements,
-} = achievements;
+export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;

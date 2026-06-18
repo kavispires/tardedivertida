@@ -64,10 +64,5 @@ const sensoLiterarioAchievements = achievementBuilder('SENSO_LITERARIO')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  push: pushAchievement,
-  calculate: getAchievements,
-} = sensoLiterarioAchievements;
+export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
+  sensoLiterarioAchievements;

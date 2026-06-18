@@ -29,10 +29,5 @@ const testeDeElencoAchievements = achievementBuilder('TESTE_DE_ELENCO')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  push: pushAchievement,
-  calculate: getAchievements,
-} = testeDeElencoAchievements;
+export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
+  testeDeElencoAchievements;

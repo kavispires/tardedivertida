@@ -22,10 +22,10 @@ import {
   type AlienItem,
 } from '../../utils/tool-kits/alien-attributes';
 import {
-  getAchievements,
   increaseAchievement,
   setTruthyAchievement,
   setupAchievements,
+  calculateAchievements,
 } from './achievements';
 
 /**
@@ -597,7 +597,7 @@ export const prepareGameOverPhase = async (
     .filter((playerId) => playerId !== state.alienId);
   const hasMoreThanOneHuman = nonAlienPlayersIds.length > 1;
 
-  const achievements = getAchievements(store.achievements, {
+  const achievements = calculateAchievements(store.achievements, {
     objectInquiries: hasMoreThanOneHuman ? [] : nonAlienPlayersIds,
     singleInquiry: hasMoreThanOneHuman ? [] : nonAlienPlayersIds,
     correct: hasMoreThanOneHuman ? [] : nonAlienPlayersIds,

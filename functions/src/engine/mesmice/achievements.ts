@@ -36,9 +36,5 @@ const mesmiceAchievements = achievementBuilder('MESMICE')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  calculate: getAchievements,
-} = mesmiceAchievements;
+export const { constants, setupAchievements, increaseAchievement, calculateAchievements } =
+  mesmiceAchievements;

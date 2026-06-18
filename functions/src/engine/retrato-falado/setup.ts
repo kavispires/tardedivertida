@@ -6,7 +6,7 @@ import { GAME_NAMES } from '../../utils/constants';
 // Helpers1
 import utils from '../../utils';
 import { buildDeck, buildRanking, gatherSketches } from './helpers';
-import { setupAchievements, getAchievements } from './achievements';
+import { setupAchievements, calculateAchievements } from './achievements';
 import { saveData } from './data';
 
 /**
@@ -178,7 +178,7 @@ export const prepareGameOverPhase = async (
 
   await utils.firestore.markGameAsComplete(gameId);
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.RETRATO_FALADO,

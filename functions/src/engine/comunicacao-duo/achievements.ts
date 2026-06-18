@@ -42,10 +42,10 @@ const achievements = achievementBuilder('COMUNICACAO_DUO')
 
 export const {
   constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  push: pushAchievement,
-  calculate: getAchievements,
-  setTruthy: setTruthyAchievement,
-  addToLast: addToLastAchievement,
+  setupAchievements,
+  increaseAchievement,
+  pushAchievement,
+  calculateAchievements,
+  setTruthyAchievement,
+  addToLastAchievement,
 } = achievements;

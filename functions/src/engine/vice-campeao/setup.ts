@@ -7,7 +7,7 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData, RunActivity } 
 import utils from '../../utils';
 import { GAME_NAMES } from '../../utils/constants';
 import { buildRun } from './helpers';
-import { setupAchievements, getAchievements } from './achievements';
+import { setupAchievements, calculateAchievements } from './achievements';
 
 /**
  * Setup
@@ -202,7 +202,7 @@ export const prepareGameOverPhase = async (
   const ranked = utils.players.orderPlayersByScore(players, true);
   const winners = ranked[1] ?? [];
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

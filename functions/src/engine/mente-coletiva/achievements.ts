@@ -29,9 +29,5 @@ const menteColetivaAchievements = achievementBuilder('MENTE_COLETIVA')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  calculate: getAchievements,
-} = menteColetivaAchievements;
+export const { constants, setupAchievements, increaseAchievement, calculateAchievements } =
+  menteColetivaAchievements;

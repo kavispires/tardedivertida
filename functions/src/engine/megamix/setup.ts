@@ -9,7 +9,7 @@ import {
   getRanking,
   handleSeedingData,
 } from './helpers';
-import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
+import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 
 /**
@@ -212,7 +212,7 @@ export const prepareGameOverPhase = async (
 
   await utils.firestore.markGameAsComplete(gameId);
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.MEGAMIX,

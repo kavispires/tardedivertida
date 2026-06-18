@@ -6,7 +6,7 @@ import type { FirebaseStateData, FirebaseStoreData, Outcome } from './types';
 // Utils
 import utils from '../../utils';
 // Internal
-import { getAchievements, increaseAchievement, setupAchievements } from './achievements';
+import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
 import {
   buildDecks,
   buildStreetDeck,
@@ -296,7 +296,7 @@ export const prepareGameOverPhase = async (
   tallyCandyAsScore(players);
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

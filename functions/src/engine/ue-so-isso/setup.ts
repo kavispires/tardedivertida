@@ -27,7 +27,7 @@ import {
   tallyVotes,
   validateSuggestions,
 } from './helpers';
-import { setupAchievements, getAchievements } from './achievements';
+import { setupAchievements, calculateAchievements } from './achievements';
 import { saveData } from './data';
 
 /**
@@ -370,7 +370,7 @@ export const prepareGameOverPhase = async (
   // Handle achievements
   countAchievements(store);
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

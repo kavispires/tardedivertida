@@ -29,9 +29,5 @@ const polemicaDaVezAchievements = achievementBuilder('POLEMICA_DA_VEZ')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  calculate: getAchievements,
-} = polemicaDaVezAchievements;
+export const { constants, setupAchievements, increaseAchievement, calculateAchievements } =
+  polemicaDaVezAchievements;

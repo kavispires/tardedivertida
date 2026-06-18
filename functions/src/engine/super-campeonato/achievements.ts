@@ -59,9 +59,5 @@ const superCampeonatoAchievements = achievementBuilder('SUPER_CAMPEONATO')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  calculate: getAchievements,
-} = superCampeonatoAchievements;
+export const { constants, setupAchievements, increaseAchievement, calculateAchievements } =
+  superCampeonatoAchievements;

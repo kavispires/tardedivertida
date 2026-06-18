@@ -1261,38 +1261,38 @@ function buildAchievementUtils<TDefinitions extends AchievementDefinition[]>(
               ? C['achievements'][number]
               : never
       : never,
-    setup,
-    increase: increase as <P extends CounterProperties<TDefinitions>>(
+    setupAchievements: setup,
+    increaseAchievement: increase as <P extends CounterProperties<TDefinitions>>(
       achievements: PlainObject,
       playerId: string,
       property: P,
       value: number,
     ) => void,
-    push: push as <P extends ArrayProperties<TDefinitions>>(
+    pushAchievement: push as <P extends ArrayProperties<TDefinitions>>(
       achievements: PlainObject,
       playerId: string,
       property: P,
       value: unknown,
     ) => void,
-    insert: insert as <P extends ArrayProperties<TDefinitions>>(
+    insertAchievement: insert as <P extends ArrayProperties<TDefinitions>>(
       achievements: PlainObject,
       playerId: string,
       property: P,
       value: unknown,
       index: number,
     ) => void,
-    addToLast: addToLast as <P extends ArrayProperties<TDefinitions>>(
+    addToLastAchievement: addToLast as <P extends ArrayProperties<TDefinitions>>(
       achievements: PlainObject,
       playerId: string,
       property: P,
       value: number,
     ) => void,
-    setTruthy: setTruthy as <P extends TruthyProperties<TDefinitions>>(
+    setTruthyAchievement: setTruthy as <P extends TruthyProperties<TDefinitions>>(
       achievements: PlainObject,
       playerId: string,
       property: P,
     ) => void,
-    calculate,
+    calculateAchievements: calculate,
   };
 }
 

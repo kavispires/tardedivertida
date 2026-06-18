@@ -69,9 +69,9 @@ const achievements = achievementBuilder('CRIMES_HEDIONDOS')
 
 export const {
   constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  push: pushAchievement,
-  insert: insertAchievement,
-  calculate: getAchievements,
+  setupAchievements,
+  increaseAchievement,
+  pushAchievement,
+  insertAchievement,
+  calculateAchievements,
 } = achievements;

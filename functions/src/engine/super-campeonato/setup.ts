@@ -24,7 +24,7 @@ import {
   updateAchievements,
   updateBracketsWithVotes,
 } from './helpers';
-import { setupAchievements, getAchievements } from './achievements';
+import { setupAchievements, calculateAchievements } from './achievements';
 import { saveData } from './data';
 
 /**
@@ -333,7 +333,7 @@ export const prepareGameOverPhase = async (
 
   const pastBattles = store.pastBattles;
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   // Save used challenges and contenders
   await saveData(pastBattles);

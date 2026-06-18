@@ -23,7 +23,7 @@ import {
   getRankingAndProcessScoring,
   updateMaps,
 } from './helpers';
-import { getAchievements, increaseAchievement, setupAchievements } from './achievements';
+import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
 
 /**
  * Setup phase - initializes game state and resources
@@ -258,7 +258,7 @@ export const prepareGameOverPhase = async (
     });
   });
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

@@ -45,9 +45,5 @@ const viceCampeaoAchievements = achievementBuilder('VICE_CAMPEAO')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  calculate: getAchievements,
-} = viceCampeaoAchievements;
+export const { constants, setupAchievements, increaseAchievement, calculateAchievements } =
+  viceCampeaoAchievements;

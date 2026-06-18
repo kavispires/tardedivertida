@@ -47,8 +47,8 @@ const achievements = achievementBuilder('COMUNICACAO_ALIENIGENA')
 
 export const {
   constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  calculate: getAchievements,
-  setTruthy: setTruthyAchievement,
+  setupAchievements,
+  increaseAchievement,
+  calculateAchievements,
+  setTruthyAchievement,
 } = achievements;

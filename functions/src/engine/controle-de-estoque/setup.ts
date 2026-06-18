@@ -30,7 +30,7 @@ import {
   distributeOrders,
   updateAvailableSlotsInWarehouse,
 } from './helpers';
-import { getAchievements, setupAchievements } from './achievements';
+import { calculateAchievements, setupAchievements } from './achievements';
 
 /**
  * Setup phase - initializes game state and resources
@@ -497,7 +497,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

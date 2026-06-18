@@ -47,10 +47,5 @@ const qualQuesitoAchievements = achievementBuilder('QUAL_QUESITO')
   })
   .build();
 
-export const {
-  constants,
-  setup: setupAchievements,
-  increase: increaseAchievement,
-  push: pushAchievement,
-  calculate: getAchievements,
-} = qualQuesitoAchievements;
+export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
+  qualQuesitoAchievements;

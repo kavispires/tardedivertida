@@ -9,7 +9,7 @@ import type { ExtendedObjectFeatureCard, FirebaseStateData, FirebaseStoreData, R
 import utils from '../../utils';
 // Internal
 import { calculateFinalGroupScore, determineOutcome } from './helpers';
-import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
+import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 
 /**
  * Setup
@@ -294,7 +294,7 @@ export const prepareGameOverPhase = async (
 
   const winners = group.outcome === 'WIN' ? utils.players.getListOfPlayers(players) : [];
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

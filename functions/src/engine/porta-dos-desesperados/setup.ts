@@ -25,7 +25,7 @@ import {
   getDoorSet,
   mergeVisitedDoorsRelationships,
 } from './helpers';
-import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
+import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { saveData } from './data';
 
 /**
@@ -362,7 +362,7 @@ export const prepareGameOverPhase = async (
     state.outcome === OUTCOME.SUCCESS ? state.currentCorridor + 1 : state.currentCorridor;
   const winCondition = state.winCondition === WIN_CONDITION.WIN ? WIN_CONDITION.WIN : WIN_CONDITION.LOSE;
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

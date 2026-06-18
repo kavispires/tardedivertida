@@ -8,7 +8,7 @@ import type { DataCounts, FirebaseStateData, FirebaseStoreData, Status, TimeBomb
 import utils from '../../utils';
 // Internal
 import { buildDeck, determineRoles, getStartingStatus } from './helpers';
-import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
+import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 
 /**
  * Setup phase - initializes game state and resources
@@ -260,7 +260,7 @@ export const prepareGameOverPhase = async (
     winners = Object.values(players).filter((player) => player.role === ROLES.TERRORIST);
   }
 
-  const achievements = getAchievements(store.achievements);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 
