@@ -6,7 +6,7 @@ import type { FirebaseStateData, FirebaseStoreData, GalleryEntry, ResourceData, 
 // Utils
 import utils from '../../utils';
 import { GAME_NAMES } from '../../utils/constants';
-import { getAchievements } from './helpers';
+import { setupAchievements, increaseAchievement, getAchievements, pushAchievement } from './achievements';
 import type { Item } from '../../types/tdr';
 
 /**
@@ -20,13 +20,7 @@ export const prepareSetupPhase = async (
   players: Players,
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = utils.achievements.setup(players, {
-    twoCorrect: 0,
-    oneCorrect: 0,
-    zeroCorrect: 0,
-    wordLengths: 0,
-    bestWords: [],
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   const wordLengths = utils.helpers.makeArray(6, 3).map((value) => ({
     wordLength: value,
@@ -153,7 +147,7 @@ export const prepareResultsPhase = async (
   const creatorId: UID = state.creatorId;
 
   // Achievement: Word Lengths
-  utils.achievements.increase(store, state.creatorId, 'wordLengths', state.newWord.length);
+  increaseAchievement(store.achievements, state.creatorId, 'wordLengths', state.newWord.length);
 
   const wordLengths: WordLength[] = state.wordLengths;
 
@@ -219,20 +213,20 @@ export const prepareResultsPhase = async (
   if (isSecondCorrect) {
     creatorBestWordAchievement += (guessPlayersPerItem[answer[1]] ?? []).length;
   }
-  utils.achievements.push(store, creatorId, 'bestWords', creatorBestWordAchievement);
+  pushAchievement(store.achievements, creatorId, 'bestWords', creatorBestWordAchievement);
 
   // Achievements: Players
   turnOrderWithoutCreator.forEach((playerId) => {
     const player = players[playerId];
     const correctGuesses = player.guesses.filter((guess) => answer.includes(guess)).length;
     if (correctGuesses === 2) {
-      utils.achievements.increase(store, player.id, 'twoCorrect', 1);
+      increaseAchievement(store.achievements, player.id, 'twoCorrect', 1);
     }
     if (correctGuesses === 1) {
-      utils.achievements.increase(store, player.id, 'oneCorrect', 1);
+      increaseAchievement(store.achievements, player.id, 'oneCorrect', 1);
     }
     if (correctGuesses === 0) {
-      utils.achievements.increase(store, player.id, 'zeroCorrect', 1);
+      increaseAchievement(store.achievements, player.id, 'zeroCorrect', 1);
     }
   });
 
@@ -278,7 +272,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = state.outcome === WORD_LENGTH_STATUS.FAILED ? [] : utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

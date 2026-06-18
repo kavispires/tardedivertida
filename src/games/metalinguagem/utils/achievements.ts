@@ -1,128 +1,135 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-const ACHIEVEMENTS = {
-  BEST_WORDS: 'BEST_WORDS',
-  WORST_WORDS: 'WORST_WORDS',
-  MOST_TWO_CORRECT_GUESSES: 'MOST_TWO_CORRECT_GUESSES',
-  FEWEST_TWO_CORRECT_GUESSES: 'FEWEST_TWO_CORRECT_GUESSES',
-  MOST_ONE_CORRECT_GUESSES: 'MOST_ONE_CORRECT_GUESSES',
-  FEWEST_ONE_CORRECT_GUESSES: 'FEWEST_ONE_CORRECT_GUESSES',
-  MOST_ZERO_CORRECT_GUESSES: 'MOST_ZERO_CORRECT_GUESSES',
-  FEWEST_ZERO_CORRECT_GUESSES: 'FEWEST_ZERO_CORRECT_GUESSES',
-  LONGEST_WORDS: 'LONGEST_WORDS',
-  SHORTEST_WORDS: 'SHORTEST_WORDS',
-} as const;
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.BEST_WORDS]: {
+  BEST_WORDS: {
+    id: 'BEST_WORDS',
+    doc: 'Quality scores of submitted words',
     icon: 'open-book',
     title: {
-      pt: 'Melhores Palavras',
       en: 'Best Words',
+      pt: 'Melhores Palavras',
     },
     description: {
-      pt: 'Teve a melhor média de palpites corretos em suas palavras',
       en: 'Had the best average of correct guesses in their words',
+      pt: 'Teve a melhor média de palpites corretos em suas palavras',
     },
   },
-  [ACHIEVEMENTS.WORST_WORDS]: {
+  WORST_WORDS: {
+    id: 'WORST_WORDS',
+    doc: 'Quality scores of submitted words',
     icon: 'face-oops',
     title: {
-      pt: 'Palavras Mais Obscuras',
       en: 'Most obscure words',
+      pt: 'Palavras Mais Obscuras',
     },
     description: {
-      pt: 'Teve a pior média de palpites corretos em suas palavras',
       en: 'Had the worst average of correct guesses in their words',
+      pt: 'Teve a pior média de palpites corretos em suas palavras',
     },
   },
-  [ACHIEVEMENTS.MOST_TWO_CORRECT_GUESSES]: {
-    icon: 'two',
-    title: {
-      pt: 'Mais Preciso',
-      en: 'Most Accurate',
-    },
-    description: {
-      pt: 'Teve o maior número de palavras com dois palpites corretos',
-      en: 'Had the most words with two correct guesses',
-    },
-  },
-  [ACHIEVEMENTS.FEWEST_TWO_CORRECT_GUESSES]: {
-    icon: 'two-silver',
-    title: {
-      pt: 'Menos Preciso',
-      en: 'Least Accurate',
-    },
-    description: {
-      pt: 'Teve o menor número de palavras com dois palpites corretos',
-      en: 'Had the least words with two correct guesses',
-    },
-  },
-  [ACHIEVEMENTS.MOST_ONE_CORRECT_GUESSES]: {
-    icon: 'one',
-    title: {
-      pt: 'Mais Sortudo',
-      en: 'Most Lucky',
-    },
-    description: {
-      pt: 'Teve o maior número de palavras com um palpite correto',
-      en: 'Had the most words with one correct guess',
-    },
-  },
-  [ACHIEVEMENTS.FEWEST_ONE_CORRECT_GUESSES]: {
+  FEWEST_ONE_CORRECT_GUESSES: {
+    id: 'FEWEST_ONE_CORRECT_GUESSES',
+    doc: 'Number of times player guessed one word correctly',
     icon: 'one-silver',
     title: {
-      pt: 'Menos Sortudo',
       en: 'Least Lucky',
+      pt: 'Menos Sortudo',
     },
     description: {
-      pt: 'Teve o menor número de palavras com um palpite correto',
       en: 'Had the least words with one correct guess',
+      pt: 'Teve o menor número de palavras com um palpite correto',
     },
   },
-  [ACHIEVEMENTS.MOST_ZERO_CORRECT_GUESSES]: {
-    icon: 'zero',
+  MOST_ONE_CORRECT_GUESSES: {
+    id: 'MOST_ONE_CORRECT_GUESSES',
+    doc: 'Number of times player guessed one word correctly',
+    icon: 'one',
     title: {
-      pt: 'Mais Desafiador',
-      en: 'Most Challenging',
+      en: 'Most Lucky',
+      pt: 'Mais Sortudo',
     },
     description: {
-      pt: 'Teve o maior número de palavras sem palpites corretos',
-      en: 'Had the most words with zero correct guesses',
+      en: 'Had the most words with one correct guess',
+      pt: 'Teve o maior número de palavras com um palpite correto',
     },
   },
-  [ACHIEVEMENTS.FEWEST_ZERO_CORRECT_GUESSES]: {
-    icon: 'zero',
+  FEWEST_TWO_CORRECT_GUESSES: {
+    id: 'FEWEST_TWO_CORRECT_GUESSES',
+    doc: 'Number of times player guessed both words correctly',
+    icon: 'two-silver',
     title: {
-      pt: 'Menos Desafiador',
-      en: 'Least Challenging',
+      en: 'Least Accurate',
+      pt: 'Menos Preciso',
     },
     description: {
-      pt: 'Teve o menor número de palavras sem palpites corretos',
-      en: 'Had the least words with zero correct guesses',
+      en: 'Had the least words with two correct guesses',
+      pt: 'Teve o menor número de palavras com dois palpites corretos',
     },
   },
-  [ACHIEVEMENTS.LONGEST_WORDS]: {
+  MOST_TWO_CORRECT_GUESSES: {
+    id: 'MOST_TWO_CORRECT_GUESSES',
+    doc: 'Number of times player guessed both words correctly',
+    icon: 'two',
+    title: {
+      en: 'Most Accurate',
+      pt: 'Mais Preciso',
+    },
+    description: {
+      en: 'Had the most words with two correct guesses',
+      pt: 'Teve o maior número de palavras com dois palpites corretos',
+    },
+  },
+  LONGEST_WORDS: {
+    id: 'LONGEST_WORDS',
+    doc: 'Total word lengths across all submitted words',
     icon: 'arrow-wide',
     title: {
-      pt: 'Mais Criativo',
       en: 'Most Creative',
+      pt: 'Mais Criativo',
     },
     description: {
-      pt: 'Criou as palavras mais longas',
       en: 'Created the longest words',
+      pt: 'Criou as palavras mais longas',
     },
   },
-  [ACHIEVEMENTS.SHORTEST_WORDS]: {
+  SHORTEST_WORDS: {
+    id: 'SHORTEST_WORDS',
+    doc: 'Total word lengths across all submitted words',
     icon: 'arrow-narrow',
     title: {
-      pt: 'Mais Direto',
       en: 'Most Direct',
+      pt: 'Mais Direto',
     },
     description: {
-      pt: 'Criou as palavras mais curtas',
       en: 'Created the shortest words',
+      pt: 'Criou as palavras mais curtas',
+    },
+  },
+  FEWEST_ZERO_CORRECT_GUESSES: {
+    id: 'FEWEST_ZERO_CORRECT_GUESSES',
+    doc: 'Number of times player guessed no words correctly',
+    icon: 'zero',
+    title: {
+      en: 'Least Challenging',
+      pt: 'Menos Desafiador',
+    },
+    description: {
+      en: 'Had the least words with zero correct guesses',
+      pt: 'Teve o menor número de palavras sem palpites corretos',
+    },
+  },
+  MOST_ZERO_CORRECT_GUESSES: {
+    id: 'MOST_ZERO_CORRECT_GUESSES',
+    doc: 'Number of times player guessed no words correctly',
+    icon: 'zero',
+    title: {
+      en: 'Most Challenging',
+      pt: 'Mais Desafiador',
+    },
+    description: {
+      en: 'Had the most words with zero correct guesses',
+      pt: 'Teve o maior número de palavras sem palpites corretos',
     },
   },
 };

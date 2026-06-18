@@ -1,5 +1,5 @@
 import type { Item } from '../../types/tdr';
-import type { METALINGUAGEM_ACHIEVEMENTS, METALINGUAGEM_ACTIONS, WORD_LENGTH_STATUS } from './constants';
+import type { METALINGUAGEM_ACTIONS, WORD_LENGTH_STATUS } from './constants';
 
 export type MetalinguagemOptions = {
   /**
@@ -7,8 +7,6 @@ export type MetalinguagemOptions = {
    */
   nsfw?: boolean;
 };
-
-export type MetalinguagemAchievement = keyof typeof METALINGUAGEM_ACHIEVEMENTS;
 
 export type ResourceData = {
   items: Item[];
@@ -27,11 +25,11 @@ export type WordLength = {
 };
 
 export interface MetalinguagemStore extends DefaultStore {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface MetalinguagemState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface MetalinguagemInitialState extends InitialState {
