@@ -191,6 +191,9 @@ async function main() {
   try {
     execSync(`git add ${pathsToStage}`, { stdio: 'inherit' });
     console.log(`\n✅ Staged: ${pathsToStage}`);
+    console.log(`   Metadata: src/games/${gameName}/metadata.md`);
+    console.log(`   Game Info: src/games/${gameName}/game-info.json`);
+    console.log(`   Engine: functions/src/engine/${gameName}/index.ts`);
   } catch (error) {
     console.error('\n❌ Error: Failed to stage files');
     console.error(error.message);

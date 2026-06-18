@@ -129,6 +129,7 @@ async function addMigrationItem() {
   const games = getValidGames();
   const gamesDir = path.resolve(__dirname, '../src/games');
   let updatedCount = 0;
+  let skippedDuplicates = 0;
 
   for (const gameDir of games) {
     const metadataPath = path.join(gamesDir, gameDir, 'metadata.md');
@@ -136,22 +137,51 @@ async function addMigrationItem() {
     if (fs.existsSync(metadataPath)) {
       let content = fs.readFileSync(metadataPath, 'utf8');
 
-      // Create the block of new migration lines
-      const newMigrationLines = migrations.map(m => `- ${m}: 🔘`).join('\n');
+      // Extract existing migration items to check for duplicates
+      const migrationsSection = content.match(/### Migrations\n\n([\s\S]*?)(?=\n###|$)/);
+      const existingMigrations = new Set();
 
-      // Replace "- TBD" if it's the only thing there, otherwise append it
-      if (content.includes('### Migrations\n\n- TBD')) {
-        content = content.replace('### Migrations\n\n- TBD', `### Migrations\n\n${newMigrationLines}`);
-      } else {
-        // Insert after the Migrations header block
-        content = content.replace('### Migrations\n\n', `### Migrations\n\n${newMigrationLines}\n`);
+      if (migrationsSection && migrationsSection[1]) {
+        const lines = migrationsSection[1].split('\n');
+        lines.forEach(line => {
+          // Extract only the text before the colon, ignore emoji/status
+          const match = line.match(/^- (.+?):\s*/);
+          if (match) {
+            existingMigrations.add(match[1].trim());
+          }
+        });
       }
 
-      fs.writeFileSync(metadataPath, content, 'utf8');
-      updatedCount++;
+      // Filter out duplicates
+      const newMigrations = migrations.filter(m => {
+        if (existingMigrations.has(m)) {
+          skippedDuplicates++;
+          return false;
+        }
+        return true;
+      });
+
+      // Only proceed if there are new migrations to add
+      if (newMigrations.length > 0) {
+        const newMigrationLines = newMigrations.map(m => `- ${m}: 🔘`).join('\n');
+
+        // Replace "- TBD" if it's the only thing there, otherwise append it
+        if (content.includes('### Migrations\n\n- TBD')) {
+          content = content.replace('### Migrations\n\n- TBD', `### Migrations\n\n${newMigrationLines}`);
+        } else {
+          // Insert after the Migrations header block
+          content = content.replace('### Migrations\n\n', `### Migrations\n\n${newMigrationLines}\n`);
+        }
+
+        fs.writeFileSync(metadataPath, content, 'utf8');
+        updatedCount++;
+      }
     }
   }
 
+  if (skippedDuplicates > 0) {
+    console.log(`\n⏭️  Skipped ${skippedDuplicates} duplicate migration item(s).`);
+  }
   console.log(`\n✨ Done! Appended migrations to ${updatedCount} metadata file(s).\n`);
 }
 
