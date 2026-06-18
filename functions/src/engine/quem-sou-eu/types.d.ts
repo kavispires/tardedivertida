@@ -1,5 +1,5 @@
 import type { ContenderCard } from '../../types/tdr';
-import type { QUEM_SOU_EU_ACHIEVEMENTS, QUEM_SOU_EU_ACTIONS } from './constants';
+import type { QUEM_SOU_EU_ACTIONS } from './constants';
 
 export type QuemSouEuOptions = {
   /**
@@ -29,19 +29,17 @@ export interface Character {
 }
 
 export interface QuemSouEuStore extends DefaultStore {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface QuemSouEuState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface QuemSouEuInitialState extends InitialState {
   store: QuemSouEuStore;
   state: QuemSouEuState;
 }
-
-export type QuemSouEuAchievement = keyof typeof QUEM_SOU_EU_ACHIEVEMENTS;
 
 export interface QuemSouEuSubmitAction extends Payload {
   action: keyof typeof QUEM_SOU_EU_ACTIONS;

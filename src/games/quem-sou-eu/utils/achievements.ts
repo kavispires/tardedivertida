@@ -1,116 +1,122 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-const ACHIEVEMENTS = {
-  MOST_GLYPHS: 'MOST_GLYPHS',
-  LEAST_GLYPHS: 'LEAST_GLYPHS',
-  MOST_POSITIVE: 'MOST_POSITIVE',
-  LEAST_POSITIVE: 'LEAST_POSITIVE',
-  MOST_NEGATIVE: 'MOST_NEGATIVE',
-  LEAST_NEGATIVE: 'LEAST_NEGATIVE',
-  SINGLE_ICON: 'SINGLE_ICON',
-  TABLE_VOTES: 'TABLE_VOTES',
-  CHOOSE_FOR_ME: 'CHOOSE_FOR_ME',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.MOST_GLYPHS]: {
-    icon: 'arrow-up',
-    title: {
-      pt: 'Melhor Uso dos Ícones',
-      en: 'Best Glyph User',
-    },
-    description: {
-      pt: 'Usou o maior número de ícones durante o jogo',
-      en: 'Used the most glyphs during the game',
-    },
-  },
-  [ACHIEVEMENTS.LEAST_GLYPHS]: {
-    icon: 'arrow-down',
-    title: {
-      pt: 'Mais Sucinto',
-      en: 'Most Succinct',
-    },
-    description: {
-      pt: 'Usou o menor número de ícones durante o jogo',
-      en: 'Used the fewest glyphs during the game',
-    },
-  },
-  [ACHIEVEMENTS.MOST_POSITIVE]: {
-    icon: 'thumbs-up',
-    title: {
-      pt: 'Mais Positivo',
-      en: 'Most Positive',
-    },
-    description: {
-      pt: 'Usou mais ícones no lado positivo',
-      en: 'Used the most glyphs on the positive side',
-    },
-  },
-  [ACHIEVEMENTS.LEAST_POSITIVE]: {
-    icon: 'arrow-left',
-    title: {
-      pt: 'Menos Positivo',
-      en: 'Least Positive',
-    },
-    description: {
-      pt: 'Usou menos ícones no lado positivo',
-      en: 'Used the least glyphs on the positive side',
-    },
-  },
-  [ACHIEVEMENTS.MOST_NEGATIVE]: {
-    icon: 'thumbs-down',
-    title: {
-      pt: 'Mais Negativo',
-      en: 'Most Negative',
-    },
-    description: {
-      pt: 'Usou mais ícones no lado negativo',
-      en: 'Used the most glyphs on the negative side',
-    },
-  },
-  [ACHIEVEMENTS.LEAST_NEGATIVE]: {
-    icon: 'arrow-right',
-    title: {
-      pt: 'Menos Negativo',
-      en: 'Least Negative',
-    },
-    description: {
-      pt: 'Usou menos ícones no lado negativo',
-      en: 'Used the least glyphs on the negative side',
-    },
-  },
-  [ACHIEVEMENTS.SINGLE_ICON]: {
-    icon: 'one',
-    title: {
-      pt: 'Mais Único',
-      en: 'Most Unique',
-    },
-    description: {
-      pt: 'Usou apenas um ícone mais vezes',
-      en: 'Used a single icon most times',
-    },
-  },
-  [ACHIEVEMENTS.TABLE_VOTES]: {
-    icon: 'table',
-    title: {
-      pt: 'Melhor Votador Pra Mesa',
-      en: 'Best Table Voter',
-    },
-    description: {
-      pt: 'Votou nas cartas extras que não eram de nenhum jogador mais vezes',
-      en: "Voted for extra cards that didn't belong to any player the most",
-    },
-  },
-  [ACHIEVEMENTS.CHOOSE_FOR_ME]: {
+  CHOOSE_FOR_ME: {
+    id: 'CHOOSE_FOR_ME',
+    doc: 'how many times the player chose the ',
     icon: 'dice',
     title: {
-      pt: 'Menos Brasileiro',
       en: 'The Shirker',
+      pt: 'Menos Brasileiro',
     },
     description: {
-      pt: 'Apertou o botão Chutar Restantes mais vezes',
       en: "Pressed 'Guess for me' the most",
+      pt: 'Apertou o botão Chutar Restantes mais vezes',
+    },
+  },
+  LEAST_GLYPHS: {
+    id: 'LEAST_GLYPHS',
+    doc: 'how many glyphs the player has used',
+    icon: 'arrow-down',
+    title: {
+      en: 'Most Succinct',
+      pt: 'Mais Sucinto',
+    },
+    description: {
+      en: 'Used the fewest glyphs during the game',
+      pt: 'Usou o menor número de ícones durante o jogo',
+    },
+  },
+  MOST_GLYPHS: {
+    id: 'MOST_GLYPHS',
+    doc: 'how many glyphs the player has used',
+    icon: 'arrow-up',
+    title: {
+      en: 'Best Glyph User',
+      pt: 'Melhor Uso dos Ícones',
+    },
+    description: {
+      en: 'Used the most glyphs during the game',
+      pt: 'Usou o maior número de ícones durante o jogo',
+    },
+  },
+  LEAST_NEGATIVE: {
+    id: 'LEAST_NEGATIVE',
+    doc: 'how many glyphs the player used in the negative side',
+    icon: 'arrow-right',
+    title: {
+      en: 'Least Negative',
+      pt: 'Menos Negativo',
+    },
+    description: {
+      en: 'Used the least glyphs on the negative side',
+      pt: 'Usou menos ícones no lado negativo',
+    },
+  },
+  MOST_NEGATIVE: {
+    id: 'MOST_NEGATIVE',
+    doc: 'how many glyphs the player used in the negative side',
+    icon: 'thumbs-down',
+    title: {
+      en: 'Most Negative',
+      pt: 'Mais Negativo',
+    },
+    description: {
+      en: 'Used the most glyphs on the negative side',
+      pt: 'Usou mais ícones no lado negativo',
+    },
+  },
+  LEAST_POSITIVE: {
+    id: 'LEAST_POSITIVE',
+    doc: 'how many glyphs the player used in the positive side',
+    icon: 'arrow-left',
+    title: {
+      en: 'Least Positive',
+      pt: 'Menos Positivo',
+    },
+    description: {
+      en: 'Used the least glyphs on the positive side',
+      pt: 'Usou menos ícones no lado positivo',
+    },
+  },
+  MOST_POSITIVE: {
+    id: 'MOST_POSITIVE',
+    doc: 'how many glyphs the player used in the positive side',
+    icon: 'thumbs-up',
+    title: {
+      en: 'Most Positive',
+      pt: 'Mais Positivo',
+    },
+    description: {
+      en: 'Used the most glyphs on the positive side',
+      pt: 'Usou mais ícones no lado positivo',
+    },
+  },
+  SINGLE_ICON: {
+    id: 'SINGLE_ICON',
+    doc: 'times the player used a single glyph in a turn',
+    icon: 'one',
+    title: {
+      en: 'Most Unique',
+      pt: 'Mais Único',
+    },
+    description: {
+      en: 'Used a single icon most times',
+      pt: 'Usou apenas um ícone mais vezes',
+    },
+  },
+  TABLE_VOTES: {
+    id: 'TABLE_VOTES',
+    doc: 'how many times the player voted for a character not belonging to any player',
+    icon: 'table',
+    title: {
+      en: 'Best Table Voter',
+      pt: 'Melhor Votador Pra Mesa',
+    },
+    description: {
+      en: "Voted for extra cards that didn't belong to any player the most",
+      pt: 'Votou nas cartas extras que não eram de nenhum jogador mais vezes',
     },
   },
 };

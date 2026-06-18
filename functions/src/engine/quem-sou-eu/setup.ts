@@ -16,7 +16,8 @@ import type { Character, FirebaseStateData, FirebaseStoreData, ResourceData } fr
 // Utils
 import utils from '../../utils';
 // Internal
-import { buildGallery, buildRanking, getAchievements } from './helpers';
+import { buildGallery, buildRanking } from './helpers';
+import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
 import { saveData } from './data';
 import type { ContenderCard } from '../../types/tdr';
 
@@ -55,14 +56,7 @@ export const prepareSetupPhase = async (
     }
   });
 
-  const achievements = utils.achievements.setup(players, {
-    glyphs: 0,
-    positive: 0,
-    negative: 0,
-    single: 0,
-    tableVotes: 0,
-    chooseForMe: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Save
   return {
@@ -220,17 +214,17 @@ export const prepareGuessingPhase = async (
 
     // Achievement: Total, Positive and Negative glyphs
     glyphsValues.forEach((value) => {
-      utils.achievements.increase(store, player.id, 'glyphs', 1);
+      increaseAchievement(store.achievements, player.id, 'glyphs', 1);
       if (value) {
-        utils.achievements.increase(store, player.id, 'positive', 1);
+        increaseAchievement(store.achievements, player.id, 'positive', 1);
       } else {
-        utils.achievements.increase(store, player.id, 'negative', 1);
+        increaseAchievement(store.achievements, player.id, 'negative', 1);
       }
     });
 
     // Achievement: Selected single icon
     if (glyphsValues.length === 1) {
-      utils.achievements.increase(store, player.id, 'single', 1);
+      increaseAchievement(store.achievements, player.id, 'single', 1);
     }
 
     // Save gallery
@@ -279,7 +273,7 @@ export const prepareResultsPhase = async (
   utils.players.getListOfPlayers(players).forEach((player) => {
     Object.values(player.guesses).forEach((guess) => {
       if (botCharacterIds.includes(guess as string)) {
-        utils.achievements.increase(store, player.id, 'tableVotes', 1);
+        increaseAchievement(store.achievements, player.id, 'tableVotes', 1);
       }
     });
   });
@@ -318,7 +312,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 
