@@ -5,7 +5,8 @@ import { RETRATO_FALADO_PHASES } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
 // Helpers1
 import utils from '../../utils';
-import { buildDeck, buildRanking, gatherSketches, getAchievements } from './helpers';
+import { buildDeck, buildRanking, gatherSketches } from './helpers';
+import { setupAchievements, getAchievements } from './achievements';
 import { saveData } from './data';
 
 /**
@@ -26,11 +27,7 @@ export const prepareSetupPhase = async (
   // Build deck
   const deck = buildDeck(additionalData.allMonsters, playerCount);
 
-  const achievements = utils.achievements.setup(players, {
-    votes: 0,
-    groupVote: 0,
-    witnessPick: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Save
   return {
@@ -181,7 +178,7 @@ export const prepareGameOverPhase = async (
 
   await utils.firestore.markGameAsComplete(gameId);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.RETRATO_FALADO,

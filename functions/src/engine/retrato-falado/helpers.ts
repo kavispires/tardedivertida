@@ -1,9 +1,9 @@
 // Constants
-import { RETRATO_FALADO_ACHIEVEMENTS, RETRATO_FALADO_PHASES } from './constants';
+import { RETRATO_FALADO_PHASES } from './constants';
 import { sampleSize, shuffle } from 'lodash';
 // Types
 import type { MonsterImage } from '../../types/tdr';
-import type { AllMonsters, FirebaseStoreData, MonsterSketch, RetratoFaladoAchievement } from './types';
+import type { AllMonsters, FirebaseStoreData, MonsterSketch } from './types';
 // Helpers
 import utils from '../../utils';
 
@@ -142,62 +142,4 @@ export const buildRanking = (players: Players, witnessId: UID, store: FirebaseSt
     witnessVote,
     votes,
   };
-};
-
-/**
- * Calculates and returns player achievements based on game statistics
- * @param store - The Firebase store data containing achievement counters
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<RetratoFaladoAchievement>[] = [];
-
-  // Best and worst sketches (based on total votes)
-  const { most: bestSketches, least: worstSketches } = utils.achievements.getMostAndLeastOf(store, 'votes');
-  if (bestSketches) {
-    achievements.push({
-      type: RETRATO_FALADO_ACHIEVEMENTS.BEST_SKETCHES,
-      playerId: bestSketches.playerId,
-      value: bestSketches.value,
-    });
-  }
-
-  if (worstSketches) {
-    achievements.push({
-      type: RETRATO_FALADO_ACHIEVEMENTS.WORST_SKETCHES,
-      playerId: worstSketches.playerId,
-      value: worstSketches.value,
-    });
-  }
-
-  // Most and fewest group votes
-  const { most: mostGroupVotes, least: fewestGroupVotes } = utils.achievements.getMostAndLeastOf(
-    store,
-    'groupVote',
-  );
-  if (mostGroupVotes) {
-    achievements.push({
-      type: RETRATO_FALADO_ACHIEVEMENTS.MOST_GROUP_VOTES,
-      playerId: mostGroupVotes.playerId,
-      value: mostGroupVotes.value,
-    });
-  }
-
-  if (fewestGroupVotes) {
-    achievements.push({
-      type: RETRATO_FALADO_ACHIEVEMENTS.FEWEST_GROUP_VOTES,
-      playerId: fewestGroupVotes.playerId,
-      value: fewestGroupVotes.value,
-    });
-  }
-
-  const { most: witnessPick } = utils.achievements.getMostAndLeastOf(store, 'witnessPick');
-  if (witnessPick) {
-    achievements.push({
-      type: RETRATO_FALADO_ACHIEVEMENTS.WITNESS_PICK,
-      playerId: witnessPick.playerId,
-      value: witnessPick.value,
-    });
-  }
-
-  return achievements;
 };
