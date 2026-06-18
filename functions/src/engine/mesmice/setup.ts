@@ -8,7 +8,8 @@ import type { ExtendedObjectFeatureCard, FirebaseStateData, FirebaseStoreData, R
 // Utils
 import utils from '../../utils';
 // Internal
-import { calculateFinalGroupScore, determineOutcome, getAchievements } from './helpers';
+import { calculateFinalGroupScore, determineOutcome } from './helpers';
+import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
 
 /**
  * Setup
@@ -22,14 +23,7 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = utils.achievements.setup(players, {
-    safeVotes: 0,
-    groupVotes: 0,
-    lonelyVotes: 0,
-    targetVotes: 0,
-    communityVotes: 0,
-    score: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Build turn order
   const { gameOrder, playerIds: turnOrder } = utils.turnOrder.create(players);
@@ -202,21 +196,26 @@ export const prepareResultPhase = async (
     // Safe Elimination votes
     if (entry.value === winner.value) {
       entry.votes.forEach((playerId) => {
-        utils.achievements.increase(store, playerId, 'safeVotes', 1);
+        increaseAchievement(store.achievements, playerId, 'safeVotes', 1);
       });
     }
     // Target votes
     if (entry.value === state.target) {
       entry.votes.forEach((playerId) => {
-        utils.achievements.increase(store, playerId, 'targetVotes', 1);
+        increaseAchievement(store.achievements, playerId, 'targetVotes', 1);
       });
     }
 
     entry.votes.forEach((playerId) => {
       // Group or lonely votes
-      utils.achievements.increase(store, playerId, entry.votes.length > 0 ? 'groupVotes' : 'lonelyVotes', 1);
+      increaseAchievement(
+        store.achievements,
+        playerId,
+        entry.votes.length > 0 ? 'groupVotes' : 'lonelyVotes',
+        1,
+      );
       // Community Vote
-      utils.achievements.increase(store, playerId, 'communityVotes', entry.votes.length);
+      increaseAchievement(store.achievements, playerId, 'communityVotes', entry.votes.length);
     });
   });
 
@@ -288,14 +287,14 @@ export const prepareGameOverPhase = async (
   // Adjust scores to reduce 1 por every time the target was selected by a player
   utils.players.getListOfPlayers(players).forEach((player) => {
     player.score -= store.achievements[player.id].targetVotes;
-    utils.achievements.increase(store, player.id, 'score', player.score);
+    increaseAchievement(store.achievements, player.id, 'score', player.score);
   });
 
   const group = calculateFinalGroupScore(store.gallery, state.groupScore);
 
   const winners = group.outcome === 'WIN' ? utils.players.getListOfPlayers(players) : [];
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

@@ -1,11 +1,5 @@
-import { MESMICE_ACHIEVEMENTS, MESMICE_PHASES, OUTCOME } from './constants';
-import type {
-  ExtendedObjectFeatureCard,
-  FirebaseStoreData,
-  MesmiceAchievements,
-  MesmiceGalleryEntry,
-  Outcome,
-} from './types';
+import { MESMICE_PHASES, OUTCOME } from './constants';
+import type { ExtendedObjectFeatureCard, MesmiceGalleryEntry, Outcome } from './types';
 import utils from '../../utils';
 
 /**
@@ -72,89 +66,6 @@ export const determineOutcome = (
   }
 
   return OUTCOME.CONTINUE;
-};
-
-/**
- * Calculates and returns player achievements based on game statistics
- * @param store - The Firebase store data containing achievement counters
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<MesmiceAchievements>[] = [];
-
-  // Most Safe Votes
-  const { most: mostSafeVotes } = utils.achievements.getMostAndLeastOf(store, 'safeVotes');
-  if (mostSafeVotes) {
-    achievements.push({
-      type: MESMICE_ACHIEVEMENTS.MOST_SAFE_VOTES,
-      playerId: mostSafeVotes.playerId,
-      value: mostSafeVotes.value,
-    });
-  }
-
-  // Most Target Votes
-  const { most: mostTargetVotes } = utils.achievements.getMostAndLeastOf(store, 'targetVotes');
-  if (mostTargetVotes) {
-    achievements.push({
-      type: MESMICE_ACHIEVEMENTS.MOST_TARGET_VOTES,
-      playerId: mostTargetVotes.playerId,
-      value: mostTargetVotes.value,
-    });
-  }
-
-  // Most Group Votes
-  const { most: mostGroupVotes } = utils.achievements.getMostAndLeastOf(store, 'groupVotes');
-  if (mostGroupVotes) {
-    achievements.push({
-      type: MESMICE_ACHIEVEMENTS.MOST_GROUP_VOTES,
-      playerId: mostGroupVotes.playerId,
-      value: mostGroupVotes.value,
-    });
-  }
-
-  // Most Lonely Votes
-  const { most: mostLonelyVotes } = utils.achievements.getMostAndLeastOf(store, 'lonelyVotes');
-  if (mostLonelyVotes) {
-    achievements.push({
-      type: MESMICE_ACHIEVEMENTS.MOST_LONELY_VOTES,
-      playerId: mostLonelyVotes.playerId,
-      value: mostLonelyVotes.value,
-    });
-  }
-
-  // Most and Least Community Votes
-  const { most: mostCommunityVotes, least: leastCommunityVotes } = utils.achievements.getMostAndLeastOf(
-    store,
-    'communityVotes',
-  );
-
-  if (mostCommunityVotes) {
-    achievements.push({
-      type: MESMICE_ACHIEVEMENTS.MOST_COMMUNITY_VOTES,
-      playerId: mostCommunityVotes.playerId,
-      value: mostCommunityVotes.value,
-    });
-  }
-
-  if (leastCommunityVotes) {
-    achievements.push({
-      type: MESMICE_ACHIEVEMENTS.FEWEST_COMMUNITY_VOTES,
-      playerId: leastCommunityVotes.playerId,
-      value: leastCommunityVotes.value,
-    });
-  }
-
-  // Most Individual Points
-  const { most: mostIndividualPoints } = utils.achievements.getMostAndLeastOf(store, 'score');
-
-  if (mostIndividualPoints) {
-    achievements.push({
-      type: MESMICE_ACHIEVEMENTS.MOST_INDIVIDUAL_POINTS,
-      playerId: mostIndividualPoints.playerId,
-      value: mostIndividualPoints.value,
-    });
-  }
-
-  return achievements;
 };
 
 /**

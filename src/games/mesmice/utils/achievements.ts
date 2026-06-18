@@ -1,92 +1,96 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-const ACHIEVEMENTS = {
-  MOST_SAFE_VOTES: 'MOST_SAFE_VOTES',
-  MOST_GROUP_VOTES: 'MOST_GROUP_VOTES',
-  MOST_LONELY_VOTES: 'MOST_LONELY_VOTES',
-  MOST_TARGET_VOTES: 'MOST_TARGET_VOTES',
-  MOST_COMMUNITY_VOTES: 'MOST_COMMUNITY_VOTES',
-  FEWEST_COMMUNITY_VOTES: 'FEWEST_COMMUNITY_VOTES',
-  MOST_INDIVIDUAL_POINTS: 'MOST_INDIVIDUAL_POINTS',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.MOST_SAFE_VOTES]: {
-    icon: 'check-mark',
-    title: {
-      pt: 'Mais Analítico',
-      en: 'Most Analytical',
-    },
-    description: {
-      pt: 'Teve dicas eliminadas mais vezes',
-      en: 'Got their clues to be eliminated the most',
-    },
-  },
-  [ACHIEVEMENTS.MOST_GROUP_VOTES]: {
-    icon: 'people',
-    title: {
-      pt: 'Mais Votos com o Grupo',
-      en: 'Most Group Votes',
-    },
-    description: {
-      pt: 'Selecionou uma característica com pelo menos um outro jogador mais vezes',
-      en: 'Selected a feature with at least one other players the most',
-    },
-  },
-  [ACHIEVEMENTS.MOST_LONELY_VOTES]: {
-    icon: 'arrow-wide',
-    title: {
-      pt: 'Mais Solitário',
-      en: 'Most Lonely',
-    },
-    description: {
-      pt: 'Selecionou uma característica sozinho mais vezes',
-      en: 'Selected a feature alone the most',
-    },
-  },
-  [ACHIEVEMENTS.MOST_TARGET_VOTES]: {
-    icon: 'target',
-    title: {
-      pt: 'Mais Sucinto',
-      en: 'Most Succinct',
-    },
-    description: {
-      pt: 'Selecionou a característica-alvo que não deveria ter sido selecionada mais vezes',
-      en: 'Selected the target feature the most',
-    },
-  },
-  [ACHIEVEMENTS.MOST_COMMUNITY_VOTES]: {
-    icon: 'brain',
-    title: {
-      pt: 'Mente Mais Coletiva',
-      en: 'Most Collective Mind',
-    },
-    description: {
-      pt: 'Votou com mais jogadores durante o jogo',
-      en: 'Voted with more players during the game',
-    },
-  },
-  [ACHIEVEMENTS.FEWEST_COMMUNITY_VOTES]: {
+  FEWEST_COMMUNITY_VOTES: {
+    id: 'FEWEST_COMMUNITY_VOTES',
+    doc: 'Total community points earned from votes',
     icon: 'face-embarrassed',
     title: {
       en: 'Outside of the box Thinker',
       pt: 'Diferentão',
     },
     description: {
-      pt: 'Votou com menos jogadores durante o jogo',
       en: 'Voted with less players during the game',
+      pt: 'Votou com menos jogadores durante o jogo',
     },
   },
-  [ACHIEVEMENTS.MOST_INDIVIDUAL_POINTS]: {
-    icon: 'star',
+  MOST_COMMUNITY_VOTES: {
+    id: 'MOST_COMMUNITY_VOTES',
+    doc: 'Total community points earned from votes',
+    icon: 'brain',
     title: {
-      pt: 'Mais Pontos Individuais',
-      en: 'Most Individual Points',
+      en: 'Most Collective Mind',
+      pt: 'Mente Mais Coletiva',
     },
     description: {
-      pt: 'Fez mais pontos sozinho (achou que não estávamos contando pontos né?)',
+      en: 'Voted with more players during the game',
+      pt: 'Votou com mais jogadores durante o jogo',
+    },
+  },
+  MOST_GROUP_VOTES: {
+    id: 'MOST_GROUP_VOTES',
+    doc: 'Times voted with the group',
+    icon: 'people',
+    title: {
+      en: 'Most Group Votes',
+      pt: 'Mais Votos com o Grupo',
+    },
+    description: {
+      en: 'Selected a feature with at least one other players the most',
+      pt: 'Selecionou uma característica com pelo menos um outro jogador mais vezes',
+    },
+  },
+  MOST_LONELY_VOTES: {
+    id: 'MOST_LONELY_VOTES',
+    doc: 'Times voted alone',
+    icon: 'arrow-wide',
+    title: {
+      en: 'Most Lonely',
+      pt: 'Mais Solitário',
+    },
+    description: {
+      en: 'Selected a feature alone the most',
+      pt: 'Selecionou uma característica sozinho mais vezes',
+    },
+  },
+  MOST_SAFE_VOTES: {
+    id: 'MOST_SAFE_VOTES',
+    doc: 'Times voted for the safe choice',
+    icon: 'check-mark',
+    title: {
+      en: 'Most Analytical',
+      pt: 'Mais Analítico',
+    },
+    description: {
+      en: 'Got their clues to be eliminated the most',
+      pt: 'Teve dicas eliminadas mais vezes',
+    },
+  },
+  MOST_INDIVIDUAL_POINTS: {
+    id: 'MOST_INDIVIDUAL_POINTS',
+    doc: 'Final score (individual points)',
+    icon: 'star',
+    title: {
+      en: 'Most Individual Points',
+      pt: 'Mais Pontos Individuais',
+    },
+    description: {
       en: "Got the most points alone (thought we weren't counting points, huh?)",
+      pt: 'Fez mais pontos sozinho (achou que não estávamos contando pontos né?)',
+    },
+  },
+  MOST_TARGET_VOTES: {
+    id: 'MOST_TARGET_VOTES',
+    doc: 'Times voted for the target option',
+    icon: 'target',
+    title: {
+      en: 'Most Succinct',
+      pt: 'Mais Sucinto',
+    },
+    description: {
+      en: 'Selected the target feature the most',
+      pt: 'Selecionou a característica-alvo que não deveria ter sido selecionada mais vezes',
     },
   },
 };

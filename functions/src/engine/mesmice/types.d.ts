@@ -1,5 +1,5 @@
 import type { Item, ObjectFeatureCard } from '../../types/tdr';
-import type { MESMICE_ACHIEVEMENTS, MESMICE_ACTIONS, OUTCOME } from './constants';
+import type { MESMICE_ACTIONS, OUTCOME } from './constants';
 
 export type MesmiceOptions = {
   /**
@@ -42,14 +42,12 @@ export type Outcome = keyof typeof OUTCOME;
 
 export type ExtendedObjectFeatureCard = ObjectFeatureCard & { eliminated?: boolean };
 
-export type MesmiceAchievements = keyof typeof MESMICE_ACHIEVEMENTS;
-
 export interface MesmiceStore extends DefaultStore {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface MesmiceState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface MesmiceInitialState extends InitialState {
