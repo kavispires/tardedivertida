@@ -1,62 +1,10 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-const ACHIEVEMENTS = {
-  BEST_QUARTER_BETS: 'BEST_QUARTER_BETS',
-  BEST_SEMI_BETS: 'BEST_SEMI_BETS',
-  BEST_FINAL_BETS: 'BEST_FINAL_BETS',
-  BEST_OVERALL_BETS: 'BEST_OVERALL_BETS',
-  WORST_QUARTER_BETS: 'WORST_QUARTER_BETS',
-  WORST_SEMI_BETS: 'WORST_SEMI_BETS',
-  WORST_FINAL_BETS: 'WORST_FINAL_BETS',
-  WORST_OVERALL_BETS: 'WORST_OVERALL_BETS',
-  BEST_QUARTER_CONTENDERS: 'BEST_QUARTER_CONTENDERS',
-  BEST_SEMI_CONTENDERS: 'BEST_SEMI_CONTENDERS',
-  BEST_FINAL_CONTENDERS: 'BEST_FINAL_CONTENDERS',
-  WORST_QUARTER_CONTENDERS: 'WORST_QUARTER_CONTENDERS',
-  WORST_SEMI_CONTENDERS: 'WORST_SEMI_CONTENDERS',
-  WORST_FINAL_CONTENDERS: 'WORST_FINAL_CONTENDERS',
-  BEST_CONTENDERS: 'BEST_CONTENDERS',
-  WORST_CONTENDER: 'WORST_CONTENDER',
-  MOST_GROUP_VOTES: 'MOST_GROUP_VOTES',
-  SOLITAIRE_VOTE: 'SOLITAIRE_VOTE',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.BEST_QUARTER_BETS]: {
-    icon: 'four',
-    title: {
-      en: 'Best Quarter Bets',
-      pt: 'Melhores Apostas de Quartas',
-    },
-    description: {
-      en: 'Won the most quarter bets',
-      pt: 'Ganhou mais apostas de quartas',
-    },
-  },
-  [ACHIEVEMENTS.BEST_SEMI_BETS]: {
-    icon: 'two',
-    title: {
-      en: 'Best Semi Bets',
-      pt: 'Melhores Apostas de Semis',
-    },
-    description: {
-      en: 'Won the most semi bets',
-      pt: 'Ganhou mais apostas de semis',
-    },
-  },
-  [ACHIEVEMENTS.BEST_FINAL_BETS]: {
-    icon: 'one',
-    title: {
-      en: 'Best Final Bets',
-      pt: 'Melhores Apostas de Final',
-    },
-    description: {
-      en: 'Won the most final bets',
-      pt: 'Ganhou mais apostas de final',
-    },
-  },
-  [ACHIEVEMENTS.BEST_OVERALL_BETS]: {
+  BEST_OVERALL_BETS: {
+    id: 'BEST_OVERALL_BETS',
+    doc: 'total bets won',
     icon: 'money-bag',
     title: {
       en: 'Best Overall Bets',
@@ -67,40 +15,9 @@ export const achievementsReference: AchievementReference = {
       pt: 'Ganhou mais apostas gerais',
     },
   },
-  [ACHIEVEMENTS.WORST_QUARTER_BETS]: {
-    icon: 'four-silver',
-    title: {
-      en: 'Worst Quarter Bets',
-      pt: 'Piores Apostas de Quartas',
-    },
-    description: {
-      en: 'Lost the most quarter bets',
-      pt: 'Perdeu mais apostas de quartas',
-    },
-  },
-  [ACHIEVEMENTS.WORST_SEMI_BETS]: {
-    icon: 'two-silver',
-    title: {
-      en: 'Worst Semi Bets',
-      pt: 'Piores Apostas de Semis',
-    },
-    description: {
-      en: 'Lost the most semi bets',
-      pt: 'Perdeu mais apostas de semis',
-    },
-  },
-  [ACHIEVEMENTS.WORST_FINAL_BETS]: {
-    icon: 'one-silver',
-    title: {
-      en: 'Worst Final Bets',
-      pt: 'Piores Apostas de Final',
-    },
-    description: {
-      en: 'Lost the most final bets',
-      pt: 'Perdeu mais apostas de final',
-    },
-  },
-  [ACHIEVEMENTS.WORST_OVERALL_BETS]: {
+  WORST_OVERALL_BETS: {
+    id: 'WORST_OVERALL_BETS',
+    doc: 'total bets won',
     icon: 'chip',
     title: {
       en: 'Worst Overall Bets',
@@ -111,73 +28,9 @@ export const achievementsReference: AchievementReference = {
       pt: 'Perdeu mais apostas gerais',
     },
   },
-  [ACHIEVEMENTS.BEST_QUARTER_CONTENDERS]: {
-    icon: 'four',
-    title: {
-      en: 'Best Quarter Contenders',
-      pt: 'Melhores Competidores de Quartas',
-    },
-    description: {
-      en: 'Their contenders won the most quarter battles',
-      pt: 'Seus competidores ganharam mais batalhas de quartas',
-    },
-  },
-  [ACHIEVEMENTS.BEST_SEMI_CONTENDERS]: {
-    icon: 'two',
-    title: {
-      en: 'Best Semi Contenders',
-      pt: 'Melhores Competidores de Semis',
-    },
-    description: {
-      en: 'Their contenders won the most semi battles',
-      pt: 'Seus competidores ganharam mais batalhas de semis',
-    },
-  },
-  [ACHIEVEMENTS.BEST_FINAL_CONTENDERS]: {
-    icon: 'one',
-    title: {
-      en: 'Best Final Contenders',
-      pt: 'Melhores Competidores de Finais',
-    },
-    description: {
-      en: 'Their contenders won the most final battles',
-      pt: 'Seus competidores ganharam mais batalhas de final',
-    },
-  },
-  [ACHIEVEMENTS.WORST_QUARTER_CONTENDERS]: {
-    icon: 'four',
-    title: {
-      en: 'Worst Quarter Contenders',
-      pt: 'Piores Competidores de Quartas',
-    },
-    description: {
-      en: 'Their contenders lost the most quarter battles',
-      pt: 'Seus competidores perderam mais batalhas de quartas',
-    },
-  },
-  [ACHIEVEMENTS.WORST_SEMI_CONTENDERS]: {
-    icon: 'two',
-    title: {
-      en: 'Worst Semi Contenders',
-      pt: 'Piores Competidores de Semis',
-    },
-    description: {
-      en: 'Their contenders lost the most semi battles',
-      pt: 'Seus competidores perderam mais batalhas de semis',
-    },
-  },
-  [ACHIEVEMENTS.WORST_FINAL_CONTENDERS]: {
-    icon: 'one',
-    title: {
-      en: 'Worst Final Contenders',
-      pt: 'Piores Competidores de Finais',
-    },
-    description: {
-      en: 'Their contenders lost the most final battles',
-      pt: 'Seus competidores perderam mais batalhas de final',
-    },
-  },
-  [ACHIEVEMENTS.BEST_CONTENDERS]: {
+  BEST_CONTENDERS: {
+    id: 'BEST_CONTENDERS',
+    doc: 'total contenders won',
     icon: 'people',
     title: {
       en: 'Best Contenders',
@@ -188,18 +41,74 @@ export const achievementsReference: AchievementReference = {
       pt: 'Seus competidores ganharam mais batalhas',
     },
   },
-  [ACHIEVEMENTS.WORST_CONTENDER]: {
+  WORST_CONTENDERS: {
+    id: 'WORST_CONTENDERS',
+    doc: 'total contenders won',
     icon: 'paint',
     title: {
       en: 'Worst Contenders',
-      pt: 'Pior Competidores',
+      pt: 'Piores Competidores',
     },
     description: {
-      en: 'Their contender lost the most battles',
-      pt: 'Seu competidor perdeu mais batalhas',
+      en: 'Their contenders lost the most battles',
+      pt: 'Seus competidores perderam mais batalhas',
     },
   },
-  [ACHIEVEMENTS.MOST_GROUP_VOTES]: {
+  BEST_FINAL_BETS: {
+    id: 'BEST_FINAL_BETS',
+    doc: 'times won during final',
+    icon: 'one',
+    title: {
+      en: 'Best Final Bets',
+      pt: 'Melhores Apostas de Final',
+    },
+    description: {
+      en: 'Won the most final bets',
+      pt: 'Ganhou mais apostas de final',
+    },
+  },
+  WORST_FINAL_BETS: {
+    id: 'WORST_FINAL_BETS',
+    doc: 'times won during final',
+    icon: 'one-silver',
+    title: {
+      en: 'Worst Final Bets',
+      pt: 'Piores Apostas de Final',
+    },
+    description: {
+      en: 'Lost the most final bets',
+      pt: 'Perdeu mais apostas de final',
+    },
+  },
+  BEST_FINAL_CONTENDERS: {
+    id: 'BEST_FINAL_CONTENDERS',
+    doc: 'own contender won during final',
+    icon: 'one',
+    title: {
+      en: 'Best Final Contenders',
+      pt: 'Melhores Competidores de Finais',
+    },
+    description: {
+      en: 'Their contenders won the most final battles',
+      pt: 'Seus competidores ganharam mais batalhas de final',
+    },
+  },
+  WORST_FINAL_CONTENDERS: {
+    id: 'WORST_FINAL_CONTENDERS',
+    doc: 'own contender won during final',
+    icon: 'one',
+    title: {
+      en: 'Worst Final Contenders',
+      pt: 'Piores Competidores de Finais',
+    },
+    description: {
+      en: 'Their contenders lost the most final battles',
+      pt: 'Seus competidores perderam mais batalhas de final',
+    },
+  },
+  MOST_GROUP_VOTES: {
+    id: 'MOST_GROUP_VOTES',
+    doc: 'voted on a contender with other players',
     icon: 'equal',
     title: {
       en: 'Best Common Sense',
@@ -210,7 +119,113 @@ export const achievementsReference: AchievementReference = {
       pt: 'Votou com a maioria mais vezes',
     },
   },
-  [ACHIEVEMENTS.SOLITAIRE_VOTE]: {
+  BEST_QUARTER_BETS: {
+    id: 'BEST_QUARTER_BETS',
+    doc: 'times won during quarter finals',
+    icon: 'four',
+    title: {
+      en: 'Best Quarter Bets',
+      pt: 'Melhores Apostas de Quartas',
+    },
+    description: {
+      en: 'Won the most quarter bets',
+      pt: 'Ganhou mais apostas de quartas',
+    },
+  },
+  WORST_QUARTER_BETS: {
+    id: 'WORST_QUARTER_BETS',
+    doc: 'times won during quarter finals',
+    icon: 'four-silver',
+    title: {
+      en: 'Worst Quarter Bets',
+      pt: 'Piores Apostas de Quartas',
+    },
+    description: {
+      en: 'Lost the most quarter bets',
+      pt: 'Perdeu mais apostas de quartas',
+    },
+  },
+  BEST_QUARTER_CONTENDERS: {
+    id: 'BEST_QUARTER_CONTENDERS',
+    doc: 'own contender won during quarter finals',
+    icon: 'four',
+    title: {
+      en: 'Best Quarter Contenders',
+      pt: 'Melhores Competidores de Quartas',
+    },
+    description: {
+      en: 'Their contenders won the most quarter battles',
+      pt: 'Seus competidores ganharam mais batalhas de quartas',
+    },
+  },
+  WORST_QUARTER_CONTENDERS: {
+    id: 'WORST_QUARTER_CONTENDERS',
+    doc: 'own contender won during quarter finals',
+    icon: 'four',
+    title: {
+      en: 'Worst Quarter Contenders',
+      pt: 'Piores Competidores de Quartas',
+    },
+    description: {
+      en: 'Their contenders lost the most quarter battles',
+      pt: 'Seus competidores perderam mais batalhas de quartas',
+    },
+  },
+  BEST_SEMI_BETS: {
+    id: 'BEST_SEMI_BETS',
+    doc: 'times won during semi finals',
+    icon: 'two',
+    title: {
+      en: 'Best Semi Bets',
+      pt: 'Melhores Apostas de Semis',
+    },
+    description: {
+      en: 'Won the most semi bets',
+      pt: 'Ganhou mais apostas de semis',
+    },
+  },
+  WORST_SEMI_BETS: {
+    id: 'WORST_SEMI_BETS',
+    doc: 'times won during semi finals',
+    icon: 'two-silver',
+    title: {
+      en: 'Worst Semi Bets',
+      pt: 'Piores Apostas de Semis',
+    },
+    description: {
+      en: 'Lost the most semi bets',
+      pt: 'Perdeu mais apostas de semis',
+    },
+  },
+  BEST_SEMI_CONTENDERS: {
+    id: 'BEST_SEMI_CONTENDERS',
+    doc: 'own contender won during semi finals',
+    icon: 'two',
+    title: {
+      en: 'Best Semi Contenders',
+      pt: 'Melhores Competidores de Semis',
+    },
+    description: {
+      en: 'Their contenders won the most semi battles',
+      pt: 'Seus competidores ganharam mais batalhas de semis',
+    },
+  },
+  WORST_SEMI_CONTENDERS: {
+    id: 'WORST_SEMI_CONTENDERS',
+    doc: 'own contender won during semi finals',
+    icon: 'two',
+    title: {
+      en: 'Worst Semi Contenders',
+      pt: 'Piores Competidores de Semis',
+    },
+    description: {
+      en: 'Their contenders lost the most semi battles',
+      pt: 'Seus competidores perderam mais batalhas de semis',
+    },
+  },
+  SOLITAIRE_VOTE: {
+    id: 'SOLITAIRE_VOTE',
+    doc: 'voted on a contender alone',
     icon: 'face-tired',
     title: {
       en: 'Solitaire Vote',

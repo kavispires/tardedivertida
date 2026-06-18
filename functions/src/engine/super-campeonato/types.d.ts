@@ -1,5 +1,5 @@
 import type { ContenderCard, TextCard } from '../../types/tdr';
-import type { SUPER_CAMPEONATO_ACHIEVEMENTS, SUPER_CAMPEONATO_ACTIONS } from './constants';
+import type { SUPER_CAMPEONATO_ACTIONS } from './constants';
 
 export type SuperCampeonatoOptions = {
   /**
@@ -40,11 +40,11 @@ export interface Bracket extends FightingContender {
 }
 
 export interface SuperCampeonatoStore extends DefaultStore {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface SuperCampeonatoState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface SuperCampeonatoInitialState extends InitialState {
@@ -55,8 +55,6 @@ export interface SuperCampeonatoInitialState extends InitialState {
 export interface SuperCampeonatoSubmitAction extends Payload {
   action: keyof typeof SUPER_CAMPEONATO_ACTIONS;
 }
-
-export type SuperCampeonatoAchievement = keyof typeof SUPER_CAMPEONATO_ACHIEVEMENTS;
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | SuperCampeonatoState;
 export type FirebaseStoreData = FirebaseFirestore.DocumentData | SuperCampeonatoStore;

@@ -14,7 +14,6 @@ import type { Bracket, FirebaseStateData, FirebaseStoreData, ResourceData } from
 import utils from '../../utils';
 import {
   buildRanking,
-  getAchievements,
   getChampionshipTier,
   getMostVotedChallenge,
   getPastBattle,
@@ -25,6 +24,7 @@ import {
   updateAchievements,
   updateBracketsWithVotes,
 } from './helpers';
+import { setupAchievements, getAchievements } from './achievements';
 import { saveData } from './data';
 
 /**
@@ -62,18 +62,7 @@ export const prepareSetupPhase = async (
   // Get extra contenders to the table in cases there are less than 8 players
   const tableContenders = getTableContenders(contendersDeck, players);
 
-  const achievements = utils.achievements.setup(players, {
-    quarterBets: 0,
-    semiBets: 0,
-    finalBets: 0,
-    bets: 0,
-    quarterContender: 0,
-    semiContender: 0,
-    finalContender: 0,
-    contender: 0,
-    groupVotes: 0,
-    solitaireVote: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Save
   return {
@@ -344,7 +333,7 @@ export const prepareGameOverPhase = async (
 
   const pastBattles = store.pastBattles;
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   // Save used challenges and contenders
   await saveData(pastBattles);
