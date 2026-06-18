@@ -1,12 +1,13 @@
 // Constants
 import { GENRES, MAX_ROUNDS, TESTE_DE_ELENCO_PHASES, TOTAL_ACTORS, TOTAL_TRAITS } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
-import { sampleSize } from 'lodash';
+import { sampleSize, uniq } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, Movie, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
-import { buildMovie, determineCast, getAchievements, getNextRoleId } from './helpers';
+import { buildMovie, determineCast, getNextRoleId } from './helpers';
+import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
 
 /**
  * Setup
@@ -25,12 +26,7 @@ export const prepareSetupPhase = async (
   // Get character traits
   const traits = sampleSize(additionalData.allCards, TOTAL_TRAITS).map((trait) => trait.answer);
 
-  const achievements = utils.achievements.setup(players, {
-    alone: 0,
-    together: 0,
-    cast: 0,
-    actors: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   utils.players.addPropertiesToPlayers(players, { votes: [] });
 
@@ -204,7 +200,12 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store, players);
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    const unique = uniq(player.votes).length;
+    increaseAchievement(store.achievements, player.id, 'actors', unique);
+  });
+
+  const achievements = getAchievements(store);
 
   await utils.firestore.markGameAsComplete(gameId);
 

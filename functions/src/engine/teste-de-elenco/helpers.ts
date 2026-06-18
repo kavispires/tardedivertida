@@ -1,17 +1,11 @@
 // Constants
-import { GENRES, MAX_ROUNDS, TESTE_DE_ELENCO_ACHIEVEMENTS, TESTE_DE_ELENCO_PHASES } from './constants';
+import { GENRES, MAX_ROUNDS, TESTE_DE_ELENCO_PHASES } from './constants';
 import { keyBy, sampleSize, uniq } from 'lodash';
 // Utils
 import utils from '../../utils';
-import type {
-  ActingRole,
-  FirebaseStateData,
-  FirebaseStoreData,
-  Movie,
-  MovieGenre,
-  TesteDeElencoAchievement,
-} from './types';
+import type { ActingRole, FirebaseStateData, FirebaseStoreData, Movie, MovieGenre } from './types';
 import type { Item } from '../../types/tdr';
+import { increaseAchievement } from './achievements';
 
 /**
  * Determines the next phase based on the current phase and game state
@@ -147,7 +141,7 @@ export const determineCast = (players: Players, state: FirebaseStateData, store:
     scores.addMultiple(votes[0].votes, votes[0].votes.length, 0);
     outcome = 'CAST';
     activeRole.directors.forEach((playerId) => {
-      utils.achievements.increase(store, playerId, 'cast', 1);
+      increaseAchievement(store.achievements, playerId, 'cast', 1);
     });
   }
   // Or increase round adding a new trait to the role
@@ -174,11 +168,11 @@ export const determineCast = (players: Players, state: FirebaseStateData, store:
   allVotes.forEach((vote) => {
     if (vote.count === 1) {
       vote.votes.forEach((playerId) => {
-        utils.achievements.increase(store, playerId, 'alone', 1);
+        increaseAchievement(store.achievements, playerId, 'alone', 1);
       });
     } else {
       vote.votes.forEach((playerId) => {
-        utils.achievements.increase(store, playerId, 'together', 1);
+        increaseAchievement(store.achievements, playerId, 'together', 1);
       });
     }
   });
@@ -212,81 +206,4 @@ export const getNextRoleId = (movie: Movie, currentId: string) => {
   }
 
   return 0;
-};
-
-/**
- * Calculates and returns player achievements based on game statistics
- * @param store - The Firebase store data containing achievement counters
- * @param players - The collection of players in the game
- */
-export const getAchievements = (store: FirebaseStoreData, players: Players) => {
-  const achievements: Achievement<TesteDeElencoAchievement>[] = [];
-
-  const { most: mostAlone } = utils.achievements.getMostAndLeastOf(store, 'alone');
-
-  // Most Alone: voted alone the most times
-  if (mostAlone) {
-    achievements.push({
-      type: TESTE_DE_ELENCO_ACHIEVEMENTS.ALONE_VOTES,
-      playerId: mostAlone.playerId,
-      value: mostAlone.value,
-    });
-  }
-
-  const { most: mostTogether } = utils.achievements.getMostAndLeastOf(store, 'together');
-
-  // Most Together: voted with someone else the most times
-  if (mostTogether) {
-    achievements.push({
-      type: TESTE_DE_ELENCO_ACHIEVEMENTS.TOGETHER_VOTES,
-      playerId: mostTogether.playerId,
-      value: mostTogether.value,
-    });
-  }
-
-  const { most: mostCast, least: fewestCast } = utils.achievements.getMostAndLeastOf(store, 'cast');
-
-  // Most Cast: cast the most actors
-  if (mostCast) {
-    achievements.push({
-      type: TESTE_DE_ELENCO_ACHIEVEMENTS.MOST_CAST,
-      playerId: mostCast.playerId,
-      value: mostCast.value,
-    });
-  }
-
-  // Most Cast: cast the fewest actors
-  if (fewestCast) {
-    achievements.push({
-      type: TESTE_DE_ELENCO_ACHIEVEMENTS.FEWEST_CAST,
-      playerId: fewestCast.playerId,
-      value: fewestCast.value,
-    });
-  }
-
-  utils.players.getListOfPlayers(players).forEach((player) => {
-    const unique = uniq(player.votes).length;
-    utils.achievements.increase(store, player.id, 'actors', unique);
-  });
-
-  // Changeling: voted for largest number of different actors
-  const { most: mostActors, least: fewestActors } = utils.achievements.getMostAndLeastOf(store, 'actors');
-  if (mostActors) {
-    achievements.push({
-      type: TESTE_DE_ELENCO_ACHIEVEMENTS.CHANGELING,
-      playerId: mostActors.playerId,
-      value: mostActors.value,
-    });
-  }
-
-  // Consistency: voted for the same actor the most times
-  if (fewestActors) {
-    achievements.push({
-      type: TESTE_DE_ELENCO_ACHIEVEMENTS.CONSISTENCY,
-      playerId: fewestActors.playerId,
-      value: fewestActors.value,
-    });
-  }
-
-  return achievements;
 };

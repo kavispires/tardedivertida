@@ -1,5 +1,5 @@
 import type { Item, MovieCard, SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
-import type { TESTE_DE_ELENCO_ACHIEVEMENTS, TESTE_DE_ELENCO_ACTIONS } from './constants';
+import type { TESTE_DE_ELENCO_ACTIONS } from './constants';
 
 export type TesteDeElencoOptions = {
   /**
@@ -57,15 +57,13 @@ export interface TesteDeElencoStore extends DefaultStore<TesteDeElencoOptions> {
 }
 
 export interface TesteDeElencoState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface TesteDeElencoInitialState extends InitialState {
   store: TesteDeElencoStore;
   state: TesteDeElencoState;
 }
-
-export type TesteDeElencoAchievement = keyof typeof TESTE_DE_ELENCO_ACHIEVEMENTS;
 
 export interface TesteDeElencoSubmitAction extends Payload {
   action: keyof typeof TESTE_DE_ELENCO_ACTIONS;
