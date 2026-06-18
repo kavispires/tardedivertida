@@ -28,6 +28,7 @@ import {
   tallyVotes,
   validateSuggestions,
 } from './helpers';
+import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
 import { saveData } from './data';
 
 /**
@@ -52,13 +53,7 @@ export const prepareSetupPhase = async (
     store.options.fewerCards ? WORDS_PER_CARD - 2 : WORDS_PER_CARD,
   );
 
-  const achievements = utils.achievements.setup(players, {
-    eliminatedClues: 0,
-    clueLength: 0,
-    passes: 0,
-    correctGuesses: [],
-    wrongGuesses: [],
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Save
   return {
@@ -376,7 +371,7 @@ export const prepareGameOverPhase = async (
   // Handle achievements
   countAchievements(store);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

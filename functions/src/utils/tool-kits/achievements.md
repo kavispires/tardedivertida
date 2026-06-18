@@ -1,6 +1,6 @@
 # Achievements Tool-Kit Documentation
 
-**Version:** 1.0.0
+**Version:** 1.2.0
 
 ## Overview
 
@@ -81,6 +81,7 @@ Tracks numeric values. Use `increase()` method. **Only awards if one player has 
   most: 'HIGHEST_SCORE',      // Award player with most (if unique)
   least: 'LOWEST_SCORE',      // Award player with least (if unique, optional)
   condition: (v) => v > 0,    // Only count positive values (optional)
+  qualifier: (v) => v > 0,    // Filter players by counter value (optional)
 })
 
 // Usage:
@@ -99,6 +100,7 @@ Tracks lists of values. Different calculation methods available.
     most: 'MOST_DIFFERENT_WEAPONS',
     least: 'LEAST_DIFFERENT_WEAPONS',
   },
+  qualifier: (v) => v !== 'none',  // Filter array values before calculation (optional)
 })
 
 // Usage:
@@ -270,6 +272,18 @@ extremes: {
 }
 ```
 
+### run
+Finds longest/shortest consecutive streak of a specific value.
+
+```typescript
+// [1, 1, 1, 0, 1, 1] → longest run of 1s is 3
+run: {
+  value: 1,
+  longest: 'LONGEST_STREAK',
+  shortest: 'SHORTEST_STREAK',
+}
+```
+
 ---
 
 ## Type-Safe Method Access
@@ -433,6 +447,79 @@ When `exactMatch` shares a property with another type, **it automatically adapts
 ---
 
 ## Advanced Features
+
+### Qualifier Filters
+
+Filter values before calculations using the optional `qualifier` function.
+
+#### Counter Qualifier
+
+Exclude players from consideration based on their counter value:
+
+```typescript
+.counter('score', {
+  doc: 'Total score',
+  most: 'HIGHEST_SCORE',
+  qualifier: (v) => v > 0,  // Only consider players with positive scores
+})
+
+// Players with score = 0 won't be considered for HIGHEST_SCORE
+// Even if they technically have the lowest score
+```
+
+**Note:** `qualifier` and `condition` serve different purposes:
+- **`condition`**: Validates individual value updates (e.g., must be positive when incrementing)
+- **`qualifier`**: Filters players during achievement calculation (e.g., minimum threshold to qualify)
+- Both can be used together - qualifier filters players, condition validates data
+
+#### Array Qualifier
+
+Filter array values before calculations:
+
+```typescript
+// Example 1: Exclude zeros from average calculation
+.array('scores', {
+  doc: 'Score per round',
+  average: { most: 'BEST_AVERAGE' },
+  qualifier: (v) => v > 0,  // Only count non-zero scores
+})
+// [10, 0, 20, 0, 15] → average of [10, 20, 15] = 15 (zeros excluded)
+
+// Example 2: Exclude specific value from unique count
+.array('answers', {
+  doc: 'Player answers',
+  unique: { most: 'MOST_UNIQUE' },
+  qualifier: (v) => v !== 'B',  // Exclude answer 'B' from count
+})
+// ['A', 'B', 'C', 'B', 'A'] → unique count of ['A', 'C'] = 2
+
+// Example 3: Filter by string length
+.array('words', {
+  doc: 'Words submitted',
+  sum: { most: 'MOST_WORDS' },
+  qualifier: (v) => v.length > 3,  // Only count words longer than 3 chars
+})
+// ['cat', 'elephant', 'ox', 'giraffe'] → count [elephant, giraffe] = 2
+
+// Example 4: Filter before consecutive streak calculation
+.array('results', {
+  doc: 'Match results',
+  run: {
+    value: 'win',
+    longest: 'LONGEST_WIN_STREAK',
+  },
+  qualifier: (v) => v !== 'bye',  // Exclude 'bye' matches from streak
+})
+// ['win', 'win', 'bye', 'win'] → filtered to ['win', 'win', 'win'] = streak of 2 then 1
+```
+
+**Applies to all calculation methods:**
+- `unique`: Filters before counting distinct values
+- `occurrence`: Filters before finding first/last occurrence
+- `average`: Filters before calculating mean
+- `sum`: Filters before summing/counting
+- `extremes`: Filters before finding max/min
+- `run`: Filters before calculating consecutive streaks
 
 ### Player Exclusions
 
@@ -661,7 +748,8 @@ Define a numeric counter achievement.
 - `doc` (string): Development documentation
 - `most` (string | null): Achievement ID for highest value
 - `least` (string | null): Achievement ID for lowest value (optional)
-- `condition` ((value) => boolean): Validation function (optional)
+- `condition` ((value) => boolean): Validation function for individual updates (optional)
+- `qualifier` ((value: number) => boolean): Filter function to determine player eligibility for awards (optional)
 - `requiresExclusions` (boolean): Flag indicating exclusions required during calculate() (optional)
 - `preCalculate` ((achievements, players) => void): Pre-calculation hook (optional)
 
@@ -675,11 +763,13 @@ Define an array achievement.
 - `doc` (string): Development documentation
 - `indexed` (boolean): Enable insert() method (optional)
 - `accumulated` (boolean): Enable addToLast() method (optional)
+- `qualifier` ((value: any) => boolean): Filter function to qualify array values before calculation (optional)
 - `unique` ({ most, least }): Count unique items (optional)
 - `occurrence` ({ earliest, latest }): Find first/last occurrence (optional)
 - `average` ({ most, least }): Calculate average (optional)
 - `sum` ({ most, least }): Calculate sum/count (optional)
 - `extremes` ({ highest, lowest }): Find extreme values in numeric array (optional)
+- `run` ({ value, longest, shortest }): Find longest/shortest consecutive streak of specific value (optional)
 - `requiresExclusions` (boolean): Flag indicating exclusions required during calculate() (optional)
 - `preCalculate` ((achievements, players) => void): Pre-calculation hook (optional)
 

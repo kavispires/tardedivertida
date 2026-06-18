@@ -233,6 +233,8 @@ const _getMostAndLeastOfAverage = (
   achievements: PlainObject,
   property: string,
   ineligiblePlayers: string[] = [],
+  // biome-ignore lint/suspicious/noExplicitAny: Qualifier needs to handle any value type
+  qualifier?: (value: any) => boolean,
 ): AchievementResult => {
   const eligibleAchievements = Object.values<StoreAchievement>(achievements).filter(
     (a) => !ineligiblePlayers.includes(a.playerId),
@@ -241,7 +243,8 @@ const _getMostAndLeastOfAverage = (
   const achievementsAverages = eligibleAchievements.map((achievement) => {
     const clonedAchievement = { ...achievement };
     if (Array.isArray(achievement[property]) && achievement[property].every(Number)) {
-      clonedAchievement[property] = _calculateAverage(achievement[property], true);
+      const values = qualifier ? achievement[property].filter(qualifier) : achievement[property];
+      clonedAchievement[property] = _calculateAverage(values, true);
     }
     return clonedAchievement;
   });
@@ -263,10 +266,13 @@ const _getMostAndLeastUniqueItemsOf = (
   achievements: PlainObject,
   property: string,
   ineligiblePlayers: string[] = [],
+  // biome-ignore lint/suspicious/noExplicitAny: Qualifier needs to handle any value type
+  qualifier?: (value: any) => boolean,
 ): AchievementResult => {
   const modifiedAchievements = Object.values<StoreAchievement>(achievements).reduce((acc, achievement) => {
     const clonedAchievement = { ...achievement };
-    clonedAchievement[property] = uniq(achievement[property]).length;
+    const values = qualifier ? achievement[property].filter(qualifier) : achievement[property];
+    clonedAchievement[property] = uniq(values).length;
     acc[achievement.playerId] = clonedAchievement;
     return acc;
   }, {} as PlainObject);
@@ -281,12 +287,15 @@ const _getHighestAndLowestValues = (
   achievements: PlainObject,
   property: string,
   ineligiblePlayers: string[] = [],
+  // biome-ignore lint/suspicious/noExplicitAny: Qualifier needs to handle any value type
+  qualifier?: (value: any) => boolean,
 ): AchievementResult => {
   const modifiedAchievements = Object.values<StoreAchievement>(achievements).reduce((acc, achievement) => {
     const clonedAchievement = { ...achievement };
     if (Array.isArray(achievement[property]) && achievement[property].length > 0) {
+      const values = qualifier ? achievement[property].filter(qualifier) : achievement[property];
       // Find max value in the array
-      clonedAchievement[property] = Math.max(...achievement[property]);
+      clonedAchievement[property] = values.length > 0 ? Math.max(...values) : 0;
     } else {
       clonedAchievement[property] = 0;
     }
@@ -304,10 +313,13 @@ const _getEarliestAndLatestOccurrence = (
   achievements: PlainObject,
   property: string,
   ineligiblePlayers: string[] = [],
+  // biome-ignore lint/suspicious/noExplicitAny: Qualifier needs to handle any value type
+  qualifier?: (value: any) => boolean,
 ): AchievementResult => {
   const modifiedAchievements = Object.values<StoreAchievement>(achievements).reduce((acc, achievement) => {
     const clonedAchievement = { ...achievement };
-    clonedAchievement[property] = achievement[property].findIndex(Boolean);
+    const values = qualifier ? achievement[property].filter(qualifier) : achievement[property];
+    clonedAchievement[property] = values.findIndex(Boolean);
     acc[achievement.playerId] = clonedAchievement;
     return acc;
   }, {} as PlainObject);
@@ -401,6 +413,12 @@ type CounterConfig = BaseConfig & {
    */
   condition?: (value: number) => boolean;
   /**
+   * Filter function to determine player eligibility for awards.
+   * Only players whose counter value passes this filter will be considered.
+   * Use cases: minimum threshold, exclude zeros, only even/odd values.
+   */
+  qualifier?: (value: number) => boolean;
+  /**
    * Pre-calculate values before determining winners.
    * Use this to modify achievement values before comparison (e.g., apply bonuses, combine properties).
    * Called during calculate() with access to full player data.
@@ -422,6 +440,13 @@ type ArrayConfig = BaseConfig & {
    * Enable addToLast() method for accumulated arrays
    */
   accumulated?: boolean;
+  /**
+   * Filter function to qualify array values before calculation.
+   * Only values that return true will be included in calculations.
+   * Use cases: exclude zeros, filter by length, exclude specific values.
+   */
+  // biome-ignore lint/suspicious/noExplicitAny: Qualifier needs to handle any value type
+  qualifier?: (value: any) => boolean;
   /**
    * Count unique items and award most/least
    */
@@ -951,12 +976,22 @@ function buildAchievementUtils<TDefinitions extends AchievementDefinition[]>(
         // Get excluded players
         const ineligiblePlayers = exclusions?.[def.property] || [];
 
+        // Combine qualifier and condition if both exist
+        let combinedCondition: ((value: number) => boolean) | undefined;
+        if (config.qualifier && config.condition) {
+          combinedCondition = (v: number) => Boolean(config.qualifier?.(v) && config.condition?.(v));
+        } else if (config.qualifier) {
+          combinedCondition = config.qualifier;
+        } else if (config.condition) {
+          combinedCondition = config.condition;
+        }
+
         // Get most and least
         const { most, least } = _getMostAndLeastOf(
           achievements,
           def.property,
           ineligiblePlayers,
-          config.condition,
+          combinedCondition,
         );
 
         if (most && config.most) {
@@ -991,6 +1026,7 @@ function buildAchievementUtils<TDefinitions extends AchievementDefinition[]>(
             achievements,
             def.property,
             ineligiblePlayers,
+            config.qualifier,
           );
 
           if (most && config.unique.most) {
@@ -1016,6 +1052,7 @@ function buildAchievementUtils<TDefinitions extends AchievementDefinition[]>(
             achievements,
             def.property,
             ineligiblePlayers,
+            config.qualifier,
           );
 
           if (earliest && config.occurrence.earliest) {
@@ -1037,7 +1074,12 @@ function buildAchievementUtils<TDefinitions extends AchievementDefinition[]>(
 
         // Handle average
         if (config.average) {
-          const { most, least } = _getMostAndLeastOfAverage(achievements, def.property, ineligiblePlayers);
+          const { most, least } = _getMostAndLeastOfAverage(
+            achievements,
+            def.property,
+            ineligiblePlayers,
+            config.qualifier,
+          );
 
           if (most && config.average.most) {
             results.push({
@@ -1058,7 +1100,17 @@ function buildAchievementUtils<TDefinitions extends AchievementDefinition[]>(
 
         // Handle sum
         if (config.sum) {
-          const { most, least } = _getMostAndLeastOf(achievements, def.property, ineligiblePlayers);
+          // Apply qualifier to filter array before summing/counting length
+          const modifiedAchievements = config.qualifier
+            ? Object.values<StoreAchievement>(achievements).reduce((acc, achievement) => {
+                const clonedAchievement = { ...achievement };
+                clonedAchievement[def.property] = achievement[def.property].filter(config.qualifier);
+                acc[achievement.playerId] = clonedAchievement;
+                return acc;
+              }, {} as PlainObject)
+            : achievements;
+
+          const { most, least } = _getMostAndLeastOf(modifiedAchievements, def.property, ineligiblePlayers);
 
           if (most && config.sum.most) {
             results.push({
@@ -1079,7 +1131,12 @@ function buildAchievementUtils<TDefinitions extends AchievementDefinition[]>(
 
         // Handle extremes (find max/min value in arrays)
         if (config.extremes) {
-          const { most, least } = _getHighestAndLowestValues(achievements, def.property, ineligiblePlayers);
+          const { most, least } = _getHighestAndLowestValues(
+            achievements,
+            def.property,
+            ineligiblePlayers,
+            config.qualifier,
+          );
 
           if (most && config.extremes.highest) {
             results.push({
@@ -1104,10 +1161,10 @@ function buildAchievementUtils<TDefinitions extends AchievementDefinition[]>(
             (acc, achievement) => {
               const clonedAchievement = { ...achievement };
               if (config.run) {
-                clonedAchievement[def.property] = _calculateLongestRun(
-                  achievement[def.property],
-                  config.run.value,
-                );
+                const values = config.qualifier
+                  ? achievement[def.property].filter(config.qualifier)
+                  : achievement[def.property];
+                clonedAchievement[def.property] = _calculateLongestRun(values, config.run.value);
               }
               acc[achievement.playerId] = clonedAchievement;
               return acc;
