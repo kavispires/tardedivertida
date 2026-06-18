@@ -1,7 +1,8 @@
 // Utils
 import utils from '../../utils';
-import { VICE_CAMPEAO_ACHIEVEMENTS, VICE_CAMPEAO_PHASES } from './constants';
-import type { FirebaseStoreData, RunActivity, RunnerCard, ViceCampeaoAchievement } from './types';
+import { increaseAchievement } from './achievements';
+import { VICE_CAMPEAO_PHASES } from './constants';
+import type { FirebaseStoreData, RunActivity, RunnerCard } from './types';
 import { cloneDeep, groupBy, orderBy, sampleSize, uniq } from 'lodash';
 
 /**
@@ -91,7 +92,7 @@ export const buildRun = (
 
     // Achievements: Most self cards
     if (playerId === targetId) {
-      utils.achievements.increase(store, playerId, 'selfCards', 1);
+      increaseAchievement(store.achievements, playerId, 'selfCards', 1);
     }
 
     const baseActivity = {
@@ -248,11 +249,11 @@ export const buildRun = (
     const value = currentPosition - previousPosition;
 
     // Achievements: Most movement
-    utils.achievements.increase(store, player.id, 'movement', Math.abs(value));
+    increaseAchievement(store.achievements, player.id, 'movement', Math.abs(value));
 
     // Achievements: No movement
     if (value === 0) {
-      utils.achievements.increase(store, player.id, 'noMovement', 1);
+      increaseAchievement(store.achievements, player.id, 'noMovement', 1);
     }
   });
 
@@ -266,30 +267,30 @@ export const buildRun = (
   const ranked = sortedScoreValues.map((score) => tiers[score]);
   // Achievements: First place
   ranked[0].forEach((entry) => {
-    utils.achievements.increase(store, entry.playerId, 'first', 1);
+    increaseAchievement(store.achievements, entry.playerId, 'first', 1);
   });
   // Achievements: Second place
   if (ranked[1]) {
     ranked[1].forEach((entry) => {
-      utils.achievements.increase(store, entry.playerId, 'second', 1);
+      increaseAchievement(store.achievements, entry.playerId, 'second', 1);
     });
   }
   // Achievements: Third place
   if (ranked[2]) {
     ranked[2].forEach((entry) => {
-      utils.achievements.increase(store, entry.playerId, 'third', 1);
+      increaseAchievement(store.achievements, entry.playerId, 'third', 1);
     });
   }
 
   // Achievements: Last place
   ranked.at(-1)?.forEach((entry) => {
-    utils.achievements.increase(store, entry.playerId, 'last', 1);
+    increaseAchievement(store.achievements, entry.playerId, 'last', 1);
   });
 
   // Achievements: Second to last place
   if (ranked.at(-2)) {
     ranked.at(-2)?.forEach((entry) => {
-      utils.achievements.increase(store, entry.playerId, 'secondToLast', 1);
+      increaseAchievement(store.achievements, entry.playerId, 'secondToLast', 1);
     });
   }
 
@@ -380,114 +381,4 @@ const triggerEffectEverybodyElseBack = (
     }
   });
   return endingPositions;
-};
-
-/**
- * Get achievements
- * @param store
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<ViceCampeaoAchievement>[] = [];
-
-  // Most first place
-  const { most: mostFirstPlace } = utils.achievements.getMostAndLeastOf(store, 'first');
-  if (mostFirstPlace) {
-    achievements.push({
-      type: VICE_CAMPEAO_ACHIEVEMENTS.MOST_FIRST_PLACE,
-      playerId: mostFirstPlace.playerId,
-      value: mostFirstPlace.value,
-    });
-  }
-
-  // Most second place
-  const { most: mostSecondPlace } = utils.achievements.getMostAndLeastOf(store, 'second');
-  if (mostSecondPlace) {
-    achievements.push({
-      type: VICE_CAMPEAO_ACHIEVEMENTS.MOST_SECOND_PLACE,
-      playerId: mostSecondPlace.playerId,
-      value: mostSecondPlace.value,
-    });
-  }
-
-  // Most third place
-  const { most: mostThirdPlace } = utils.achievements.getMostAndLeastOf(store, 'third');
-  if (mostThirdPlace) {
-    achievements.push({
-      type: VICE_CAMPEAO_ACHIEVEMENTS.MOST_THIRD_PLACE,
-      playerId: mostThirdPlace.playerId,
-      value: mostThirdPlace.value,
-    });
-  }
-
-  // Most last place
-  const { most: mostLastPlace } = utils.achievements.getMostAndLeastOf(store, 'last');
-  if (mostLastPlace) {
-    achievements.push({
-      type: VICE_CAMPEAO_ACHIEVEMENTS.MOST_LAST_PLACE,
-      playerId: mostLastPlace.playerId,
-      value: mostLastPlace.value,
-    });
-  }
-
-  // Most second to last place
-  const { most: mostSecondToLastPlace } = utils.achievements.getMostAndLeastOf(store, 'secondToLast');
-  if (mostSecondToLastPlace) {
-    achievements.push({
-      type: VICE_CAMPEAO_ACHIEVEMENTS.MOST_SECOND_TO_LAST_PLACE,
-      playerId: mostSecondToLastPlace.playerId,
-      value: mostSecondToLastPlace.value,
-    });
-  }
-
-  // Most no movement
-  const { most: mostNoMovement } = utils.achievements.getMostAndLeastOf(store, 'noMovement');
-  if (mostNoMovement) {
-    achievements.push({
-      type: VICE_CAMPEAO_ACHIEVEMENTS.MOST_NO_MOVEMENT,
-      playerId: mostNoMovement.playerId,
-      value: mostNoMovement.value,
-    });
-  }
-
-  // Most self cards and most other cards
-  const { most: mostSelfCards, least: mostOtherCards } = utils.achievements.getMostAndLeastOf(
-    store,
-    'selfCards',
-  );
-  if (mostSelfCards) {
-    achievements.push({
-      type: VICE_CAMPEAO_ACHIEVEMENTS.MOST_SELF_CARDS,
-      playerId: mostSelfCards.playerId,
-      value: mostSelfCards.value,
-    });
-  }
-  if (mostOtherCards) {
-    achievements.push({
-      type: VICE_CAMPEAO_ACHIEVEMENTS.MOST_OTHER_CARDS,
-      playerId: mostOtherCards.playerId,
-      value: mostOtherCards.value,
-    });
-  }
-
-  // Most movement
-  const { most: mostMovement, least: leastMovement } = utils.achievements.getMostAndLeastOf(
-    store,
-    'movement',
-  );
-  if (mostMovement) {
-    achievements.push({
-      type: VICE_CAMPEAO_ACHIEVEMENTS.MOST_MOVEMENT,
-      playerId: mostMovement.playerId,
-      value: mostMovement.value,
-    });
-  }
-  if (leastMovement) {
-    achievements.push({
-      type: VICE_CAMPEAO_ACHIEVEMENTS.LEAST_MOVEMENT,
-      playerId: leastMovement.playerId,
-      value: leastMovement.value,
-    });
-  }
-
-  return achievements;
 };

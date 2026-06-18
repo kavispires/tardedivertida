@@ -1,4 +1,4 @@
-import type { VICE_CAMPEAO_ACHIEVEMENTS, VICE_CAMPEAO_ACTIONS } from './constants';
+import type { VICE_CAMPEAO_ACTIONS } from './constants';
 
 export type ViceCampeaoOptions = {
   withBots?: boolean;
@@ -31,8 +31,6 @@ export type RunActivity = {
   ongoingEffectCardId?: UID;
 };
 
-export type ViceCampeaoAchievement = keyof typeof VICE_CAMPEAO_ACHIEVEMENTS;
-
 export type ResourceData = {
   cards: RunnerCard[];
 };
@@ -45,11 +43,11 @@ export type GalleryEntry = {
 };
 
 export interface ViceCampeaoStore extends DefaultStore {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface ViceCampeaoState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface ViceCampeaoInitialState extends InitialState {

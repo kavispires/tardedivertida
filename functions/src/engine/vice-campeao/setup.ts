@@ -6,7 +6,8 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData, RunActivity } 
 // Utils
 import utils from '../../utils';
 import { GAME_NAMES } from '../../utils/constants';
-import { buildRun, getAchievements } from './helpers';
+import { buildRun } from './helpers';
+import { setupAchievements, getAchievements } from './achievements';
 
 /**
  * Setup
@@ -19,16 +20,7 @@ export const prepareSetupPhase = async (
   players: Players,
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = utils.achievements.setup(players, {
-    first: 0,
-    second: 0,
-    third: 0,
-    last: 0,
-    secondToLast: 0,
-    noMovement: 0,
-    selfCards: 0,
-    distance: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   const { gameOrder: turnOrder } = utils.turnOrder.create(players);
 
@@ -210,7 +202,7 @@ export const prepareGameOverPhase = async (
   const ranked = utils.players.orderPlayersByScore(players, true);
   const winners = ranked[1] ?? [];
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 
