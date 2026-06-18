@@ -5,7 +5,8 @@ import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
 import type { CustomDeck, FirebaseStateData, FirebaseStoreData } from './types';
 // Utils
 import utils from '../../utils';
-import { buildDeck, countLikes, getAchievements, getRanking } from './helpers';
+import { buildDeck, countLikes, getRanking } from './helpers';
+import { setupAchievements, getAchievements } from './achievements';
 
 /**
  * Setup
@@ -30,12 +31,7 @@ export const prepareSetupPhase = async (
   // Build deck
   const { deck, customDeck } = buildDeck(allTweets);
 
-  const achievements = utils.achievements.setup(players, {
-    likes: 0,
-    exactGuesses: 0,
-    almostGuesses: 0,
-    guessDistance: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Save
   return {
@@ -205,7 +201,7 @@ export const prepareGameOverPhase = async (
 
   await utils.firestore.markGameAsComplete(gameId);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.POLEMICA_DA_VEZ,

@@ -2,7 +2,6 @@
 import {
   CUSTOM_TOPICS_PER_ROUND,
   MAX_ROUNDS,
-  POLEMICA_DA_VEZ_ACHIEVEMENTS,
   POLEMICA_DA_VEZ_PHASES,
   SCORE_GOAL,
   TOPICS_PER_ROUND,
@@ -10,15 +9,10 @@ import {
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 import { sampleSize } from 'lodash';
 // Types
-import type {
-  CustomTweet,
-  Decks,
-  FirebaseStoreData,
-  PolemicaDaVezAchievement,
-  PolemicaDaVezOptions,
-} from './types';
+import type { CustomTweet, Decks, FirebaseStoreData, PolemicaDaVezOptions } from './types';
 // Utils
 import utils from '../../utils';
+import { increaseAchievement } from './achievements';
 
 /**
  * Determine the next phase based on the current one
@@ -75,7 +69,7 @@ export const buildDeck = (allTweets: CustomTweet[]): Decks => {
 export const countLikes = (players: Players, store: FirebaseStoreData): number => {
   return utils.players.getListOfPlayers(players).reduce((acc, player) => {
     if (player.reaction) {
-      utils.achievements.increase(store, player.id, 'likes', 1);
+      increaseAchievement(store.achievement, player.id, 'likes', 1);
     }
     return player.reaction ? acc + 1 : acc;
   }, 0);
@@ -95,15 +89,20 @@ export const getRanking = (players: Players, totalLikes: number, store: Firebase
   utils.players.getListOfPlayers(players, true).forEach((player) => {
     if (player.likesGuess === totalLikes) {
       scores.add(player.id, 3, 0);
-      utils.achievements.increase(store, player.id, 'exactGuesses', 1);
+      increaseAchievement(store.achievement, player.id, 'exactGuesses', 1);
     }
 
     if (oneOffValues.includes(player.likesGuess)) {
-      utils.achievements.increase(store, player.id, 'almostGuesses', 1);
+      increaseAchievement(store.achievement, player.id, 'almostGuesses', 1);
       scores.add(player.id, 1, 0);
     }
 
-    utils.achievements.increase(store, player.id, 'guessDistance', Math.abs(player.likesGuess - totalLikes));
+    increaseAchievement(
+      store.achievement,
+      player.id,
+      'guessDistance',
+      Math.abs(player.likesGuess - totalLikes),
+    );
   });
   return scores.rank(players);
 };
@@ -125,64 +124,4 @@ export const determineGameOver = (players: Players, options: PolemicaDaVezOption
   }
 
   return round.current > playerCount;
-};
-
-/**
- * Calculates and returns player achievements based on game statistics
- * @param store - The Firebase store data containing achievement counters
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<PolemicaDaVezAchievement>[] = [];
-
-  const { most: liker, least: hater } = utils.achievements.getMostAndLeastOf(store, 'likes');
-
-  if (liker) {
-    achievements.push({
-      type: POLEMICA_DA_VEZ_ACHIEVEMENTS.MOST_LIKER,
-      ...liker,
-    });
-  }
-
-  if (hater) {
-    achievements.push({
-      type: POLEMICA_DA_VEZ_ACHIEVEMENTS.BIGGEST_HATER,
-      ...hater,
-    });
-  }
-
-  const { most: bestGuess, least: worstGuess } = utils.achievements.getMostAndLeastOf(store, 'guessDistance');
-
-  if (bestGuess) {
-    achievements.push({
-      type: POLEMICA_DA_VEZ_ACHIEVEMENTS.BEST_GUESSES,
-      ...bestGuess,
-    });
-  }
-
-  if (worstGuess) {
-    achievements.push({
-      type: POLEMICA_DA_VEZ_ACHIEVEMENTS.WORST_GUESSES,
-      ...worstGuess,
-    });
-  }
-
-  const { most: mostOneOffs } = utils.achievements.getMostAndLeastOf(store, 'almostGuesses');
-
-  if (mostOneOffs) {
-    achievements.push({
-      type: POLEMICA_DA_VEZ_ACHIEVEMENTS.MOST_ONE_OFFS,
-      ...mostOneOffs,
-    });
-  }
-
-  const { most: mostExacts } = utils.achievements.getMostAndLeastOf(store, 'exactGuesses');
-
-  if (mostExacts) {
-    achievements.push({
-      type: POLEMICA_DA_VEZ_ACHIEVEMENTS.MOST_EXACTS,
-      ...mostExacts,
-    });
-  }
-
-  return achievements;
 };

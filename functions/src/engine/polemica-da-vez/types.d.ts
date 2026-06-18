@@ -1,5 +1,5 @@
 import type { TextCard } from '../../types/tdr';
-import type { POLEMICA_DA_VEZ_ACHIEVEMENTS, POLEMICA_DA_VEZ_ACTIONS } from './constants';
+import type { POLEMICA_DA_VEZ_ACTIONS } from './constants';
 
 export type PolemicaDaVezOptions = {
   fixedRounds: boolean;
@@ -34,7 +34,7 @@ export interface PolemicaDaVezState extends DefaultState {
   totalLikes?: any;
   ranking?: any;
   winners?: any;
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface PolemicaDaVezInitialState extends InitialState {
@@ -45,8 +45,6 @@ export interface PolemicaDaVezInitialState extends InitialState {
 export interface PolemicaDaVezSubmitAction extends Payload {
   action: keyof typeof POLEMICA_DA_VEZ_ACTIONS;
 }
-
-export type PolemicaDaVezAchievement = keyof typeof POLEMICA_DA_VEZ_ACHIEVEMENTS;
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | PolemicaDaVezState;
 export type FirebaseStoreData = FirebaseFirestore.DocumentData | PolemicaDaVezStore;
