@@ -7,7 +7,8 @@ import type { CategoryCard, FirebaseStateData, FirebaseStoreData, ResourceData }
 // Utils
 import utils from '../../utils';
 // Internal
-import { buildDeck, buildRanking, getAchievements } from './helpers';
+import { buildDeck, buildRanking } from './helpers';
+import { setupAchievements, getAchievements } from './achievements';
 import { saveData } from './data';
 
 /**
@@ -32,12 +33,7 @@ export const prepareSetupPhase = async (
   const deck = buildDeck(additionalData);
 
   // Setup achievements
-  const achievements = utils.achievements.setup(players, {
-    exact: 0,
-    accuracy: 0,
-    zero: 0,
-    psychicPoints: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Save
   return {
@@ -193,7 +189,7 @@ export const prepareGameOverPhase = async (
   const winners = utils.players.determineWinners(players);
 
   // Get achievements
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

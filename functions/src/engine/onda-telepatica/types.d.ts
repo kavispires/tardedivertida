@@ -1,5 +1,5 @@
 import type { SpectrumCard } from '../../types/tdr';
-import type { ONDA_TELEPATICA_ACHIEVEMENTS, ONDA_TELEPATICA_ACTIONS } from './constants';
+import type { ONDA_TELEPATICA_ACTIONS } from './constants';
 
 export type OndaTelepaticaOptions = {
   fixedRounds: boolean;
@@ -27,11 +27,11 @@ export interface OndaTelepaticaStore extends DefaultStore {
   deckIndex?: number;
   pastCategories?: PastCategories;
 
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface OndaTelepaticaState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface OndaTelepaticaInitialState extends InitialState {
@@ -42,8 +42,6 @@ export interface OndaTelepaticaInitialState extends InitialState {
 export interface OndaTelepaticaSubmitAction extends Payload {
   action: keyof typeof ONDA_TELEPATICA_ACTIONS;
 }
-
-export type OndaTelepaticaAchievement = keyof typeof ONDA_TELEPATICA_ACHIEVEMENTS;
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | OndaTelepaticaState;
 export type FirebaseStoreData = FirebaseFirestore.DocumentData | OndaTelepaticaStore;

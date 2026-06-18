@@ -2,59 +2,69 @@
 import type { AchievementReference } from 'types/game';
 
 export const achievementsReference: AchievementReference = {
-  MOST_ACCURATE: {
-    icon: 'arrow-up',
-    title: {
-      pt: 'Mais Preciso',
-      en: 'Most Accurate',
-    },
-    description: {
-      pt: 'Os palpites foram mais próximos do ponteiro do que qualquer outro jogador',
-      en: 'Their guesses were closer to the needle than other players',
-    },
-  },
   LEAST_ACCURATE: {
+    id: 'LEAST_ACCURATE',
+    doc: 'accuracy',
     icon: 'arrow-down',
     title: {
-      pt: 'Menos Preciso',
       en: 'Least Accurate',
+      pt: 'Menos Preciso',
     },
     description: {
-      pt: 'Os palpites foram mais longe do ponteiro do que qualquer outro jogador',
       en: 'Their guesses were farther to the needle than other players',
+      pt: 'Os palpites foram mais longe do ponteiro do que qualquer outro jogador',
+    },
+  },
+  MOST_ACCURATE: {
+    id: 'MOST_ACCURATE',
+    doc: 'accuracy',
+    icon: 'arrow-up',
+    title: {
+      en: 'Most Accurate',
+      pt: 'Mais Preciso',
+    },
+    description: {
+      en: 'Their guesses were closer to the needle than other players',
+      pt: 'Os palpites foram mais próximos do ponteiro do que qualquer outro jogador',
     },
   },
   MOST_EXACT: {
+    id: 'MOST_EXACT',
+    doc: 'exact',
     icon: 'arrow-narrow',
     title: {
-      pt: 'Mais Exato',
       en: 'Most Exact',
+      pt: 'Mais Exato',
     },
     description: {
-      pt: 'Mais palpites exatamente no ponteiro do que qualquer outro jogador',
       en: 'Most guesses exactly on the needle than other players',
+      pt: 'Mais palpites exatamente no ponteiro do que qualquer outro jogador',
     },
   },
   BEST_PSYCHIC: {
+    id: 'BEST_PSYCHIC',
+    doc: 'psychicPoints',
     icon: 'brain',
     title: {
-      pt: 'Melhor Medium',
       en: 'Best Medium',
+      pt: 'Melhor Medium',
     },
     description: {
-      pt: 'Ganhou mais pontos por outros jogadores adivinhando sua dica',
       en: 'Got the most points by other players guessing their clue',
+      pt: 'Ganhou mais pontos por outros jogadores adivinhando sua dica',
     },
   },
   MOST_ZEROS: {
+    id: 'MOST_ZEROS',
+    doc: 'zero',
     icon: 'box',
     title: {
-      pt: 'Mais Diferentão',
       en: 'Outside of the Box Thinker',
+      pt: 'Mais Diferentão',
     },
     description: {
-      pt: 'Não ganhou nenhum ponto em mais rodadas',
       en: 'Did not score any points in a round more times',
+      pt: 'Não ganhou nenhum ponto em mais rodadas',
     },
   },
 };

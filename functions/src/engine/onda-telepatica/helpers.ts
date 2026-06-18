@@ -1,24 +1,17 @@
 // Types
-import type {
-  CategoryCard,
-  Deck,
-  FirebaseStoreData,
-  OndaTelepaticaAchievement,
-  OndaTelepaticaOptions,
-  ResourceData,
-} from './types';
+import type { CategoryCard, Deck, OndaTelepaticaOptions, ResourceData } from './types';
 // Constants
 import {
+  ONDA_TELEPATICA_PHASES,
   CATEGORIES_PER_ROUND,
   GAME_OVER_SCORE_THRESHOLD,
   MAX_ROUNDS,
-  ONDA_TELEPATICA_ACHIEVEMENTS,
-  ONDA_TELEPATICA_PHASES,
 } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 import { shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
+import { increaseAchievement } from './achievements';
 
 /**
  * Determines the next phase based on the current phase and game state
@@ -129,17 +122,17 @@ export const buildRanking = (
 
       // Achievements: Accuracy
       const difference = Math.abs(currentCategory?.target ?? 0 - player.guess);
-      utils.achievements.increase(store, player.id, 'accuracy', difference);
+      increaseAchievement(store.achievements, player.id, 'accuracy', difference);
       if (points === 0) {
-        utils.achievements.increase(store, player.id, 'zero', 1);
+        increaseAchievement(store.achievements, player.id, 'zero', 1);
       }
       if (points === 4) {
-        utils.achievements.increase(store, player.id, 'exact', 1);
+        increaseAchievement(store.achievements, player.id, 'exact', 1);
       }
     }
   });
   // Psychic achievement
-  utils.achievements.increase(store, psychicId, 'psychicPoints', psychicPoints);
+  increaseAchievement(store.achievements, psychicId, 'psychicPoints', psychicPoints);
 
   // If psychic predicted the win
   const isMoreThanHalf = psychicPoints >= (utils.players.getPlayerCount(players) - 1) / 2;
@@ -153,66 +146,4 @@ export const buildRanking = (
   scores.add(psychicId, psychicPoints, 1);
 
   return scores.rank(players);
-};
-
-/**
- * Calculates and returns player achievements based on game statistics
- * @param store - The Firebase store data containing achievement counters
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<OndaTelepaticaAchievement>[] = [];
-
-  const { most, least } = utils.achievements.getMostAndLeastOf(store, 'accuracy');
-  // Most accurate: got results closest to the needle
-  if (most) {
-    achievements.push({
-      type: ONDA_TELEPATICA_ACHIEVEMENTS.LEAST_ACCURATE,
-      playerId: most.playerId,
-      value: most.value,
-    });
-  }
-
-  // Least accurate: got results farthest from the needle
-  if (least) {
-    achievements.push({
-      type: ONDA_TELEPATICA_ACHIEVEMENTS.MOST_ACCURATE,
-      playerId: least.playerId,
-      value: least.value,
-    });
-  }
-
-  const { most: exact } = utils.achievements.getMostAndLeastOf(store, 'exact');
-
-  // Most exact: got results exactly at the needle more times
-  if (exact) {
-    achievements.push({
-      type: ONDA_TELEPATICA_ACHIEVEMENTS.MOST_EXACT,
-      playerId: exact.playerId,
-      value: exact.value,
-    });
-  }
-
-  const { most: zeros } = utils.achievements.getMostAndLeastOf(store, 'zero');
-
-  // Most zeroes: did not get points most times
-  if (zeros) {
-    achievements.push({
-      type: ONDA_TELEPATICA_ACHIEVEMENTS.MOST_ZEROS,
-      playerId: zeros.playerId,
-      value: zeros.value,
-    });
-  }
-
-  const { most: psychicPoints } = utils.achievements.getMostAndLeastOf(store, 'psychicPoints');
-
-  // Most zeroes: did not get points most times
-  if (psychicPoints) {
-    achievements.push({
-      type: ONDA_TELEPATICA_ACHIEVEMENTS.BEST_PSYCHIC,
-      playerId: psychicPoints.playerId,
-      value: psychicPoints.value,
-    });
-  }
-
-  return achievements;
 };
