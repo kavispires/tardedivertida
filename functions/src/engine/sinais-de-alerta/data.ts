@@ -38,7 +38,7 @@ export const saveDrawings = async (finalGallery: FinalGalleryEntry[], language: 
   const docName = `${DATA_DOCUMENTS.SIGNS}${language.toUpperCase()}`;
 
   try {
-    globalUtils.updateGlobalFirebaseDoc(docName, finalGallery);
+    await globalUtils.updateGlobalFirebaseDoc(docName, finalGallery);
   } catch (_e) {
     // Ignore
   }

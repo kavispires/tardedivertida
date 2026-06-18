@@ -1,17 +1,11 @@
 // Types
 // Constants
-import { SINAIS_DE_ALERTA_ACHIEVEMENTS, SINAIS_DE_ALERTA_PHASES, TABLE_CARDS } from './constants';
-import type {
-  DrawingEntry,
-  FinalGalleryEntry,
-  FirebaseStoreData,
-  GalleryEntry,
-  PlayersSay,
-  SinaisDeAlertaAchievement,
-} from './types';
+import { SINAIS_DE_ALERTA_PHASES, TABLE_CARDS } from './constants';
+import type { DrawingEntry, FinalGalleryEntry, FirebaseStoreData, GalleryEntry, PlayersSay } from './types';
 // Helpers
 import utils from '../../utils';
 import type { TextCard } from '../../types/tdr';
+import { increaseAchievement } from './achievements';
 
 /**
  * Determines the next phase based on the current phase and game state
@@ -103,9 +97,12 @@ export const evaluateAnswers = (
   // Guess: [playerId]: [descriptorId, subjectId]
   const gallery: Dictionary<GalleryEntry> = {};
   const finalGallery: Dictionary<FinalGalleryEntry> = {};
+  const cardsFromPlayers: Dictionary<boolean> = {};
   drawings.forEach((drawing) => {
     const newId = buildId(drawing.descriptorId, drawing.subjectId, drawing.playerId);
     const title = getTitle(cards, drawing.descriptorId, drawing.subjectId, language);
+    cardsFromPlayers[drawing.subjectId] = true;
+    cardsFromPlayers[drawing.descriptorId] = true;
     gallery[drawing.playerId] = {
       id: newId,
       title: title,
@@ -130,7 +127,7 @@ export const evaluateAnswers = (
   utils.players.getListOfPlayers(players).forEach((player) => {
     // Achievement: choseRandomly
     if (player.choseRandomly) {
-      utils.achievements.increase(store, player.id, 'chooseForMe', 1);
+      increaseAchievement(store.achievements, player.id, 'chooseForMe', 1);
     }
 
     Object.entries(player.guesses).forEach(([targetPlayerId, g]) => {
@@ -144,17 +141,23 @@ export const evaluateAnswers = (
       // Verify descriptor
       if (guess[0] === targetEntry.descriptorId) {
         // Achievement: descriptorGuesses and descriptorDrawings
-        utils.achievements.increase(store, player.id, 'descriptorGuesses', 1);
-        utils.achievements.increase(store, targetPlayerId, 'descriptorDrawings', 1);
+        increaseAchievement(store.achievements, player.id, 'descriptorGuesses', 1);
+        increaseAchievement(store.achievements, targetPlayerId, 'descriptorDrawings', 1);
         correct++;
+      }
+      // Verify if it's a table vote
+      else if (!cardsFromPlayers[guess[0]]) {
+        increaseAchievement(store.achievements, player.id, 'tableVotes', 1);
       }
 
       // Verify subject
       if (guess[1] === targetEntry.subjectId) {
         // Achievement: subjectGuesses and subjectDrawings
-        utils.achievements.increase(store, player.id, 'subjectGuesses', 1);
-        utils.achievements.increase(store, targetPlayerId, 'subjectDrawings', 1);
+        increaseAchievement(store.achievements, player.id, 'subjectGuesses', 1);
+        increaseAchievement(store.achievements, targetPlayerId, 'subjectDrawings', 1);
         correct++;
+      } else if (!cardsFromPlayers[guess[1]]) {
+        increaseAchievement(store.achievements, player.id, 'tableVotes', 1);
       }
 
       if (correct === 2) {
@@ -207,102 +210,4 @@ export const evaluateAnswers = (
     ranking: scores.rank(players),
     pastDrawings,
   };
-};
-
-/**
- * Calculates and returns player achievements based on game statistics
- * @param store - The Firebase store data containing achievement counters
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<SinaisDeAlertaAchievement>[] = [];
-
-  // Most Guesses: Descriptor
-  const { most: mostDescriptorGuesses, least: fewestDescriptorGuesses } =
-    utils.achievements.getMostAndLeastOf(store, 'descriptorGuesses');
-  if (mostDescriptorGuesses) {
-    achievements.push({
-      type: SINAIS_DE_ALERTA_ACHIEVEMENTS.MOST_DESCRIPTORS,
-      playerId: mostDescriptorGuesses.playerId,
-      value: mostDescriptorGuesses.value,
-    });
-  }
-  if (fewestDescriptorGuesses) {
-    achievements.push({
-      type: SINAIS_DE_ALERTA_ACHIEVEMENTS.FEWEST_DESCRIPTORS,
-      playerId: fewestDescriptorGuesses.playerId,
-      value: fewestDescriptorGuesses.value,
-    });
-  }
-
-  // Most Guesses: Subject
-  const { most: mostSubjectGuesses, least: fewestSubjectGuesses } = utils.achievements.getMostAndLeastOf(
-    store,
-    'subjectGuesses',
-  );
-  if (mostSubjectGuesses) {
-    achievements.push({
-      type: SINAIS_DE_ALERTA_ACHIEVEMENTS.MOST_SUBJECTS,
-      playerId: mostSubjectGuesses.playerId,
-      value: mostSubjectGuesses.value,
-    });
-  }
-  if (fewestSubjectGuesses) {
-    achievements.push({
-      type: SINAIS_DE_ALERTA_ACHIEVEMENTS.FEWEST_SUBJECTS,
-      playerId: fewestSubjectGuesses.playerId,
-      value: fewestSubjectGuesses.value,
-    });
-  }
-
-  // Best drawings: Descriptor
-  const { most: bestDescriptor, least: worstDescriptor } = utils.achievements.getMostAndLeastOf(
-    store,
-    'descriptorDrawings',
-  );
-  if (bestDescriptor) {
-    achievements.push({
-      type: SINAIS_DE_ALERTA_ACHIEVEMENTS.BEST_DESCRIPTOR,
-      playerId: bestDescriptor.playerId,
-      value: bestDescriptor.value,
-    });
-  }
-  if (worstDescriptor) {
-    achievements.push({
-      type: SINAIS_DE_ALERTA_ACHIEVEMENTS.WORST_DESCRIPTOR,
-      playerId: worstDescriptor.playerId,
-      value: worstDescriptor.value,
-    });
-  }
-
-  // Best drawings: Subject
-  const { most: bestSubject, least: worstSubject } = utils.achievements.getMostAndLeastOf(
-    store,
-    'subjectDrawings',
-  );
-  if (bestSubject) {
-    achievements.push({
-      type: SINAIS_DE_ALERTA_ACHIEVEMENTS.BEST_SUBJECT,
-      playerId: bestSubject.playerId,
-      value: bestSubject.value,
-    });
-  }
-  if (worstSubject) {
-    achievements.push({
-      type: SINAIS_DE_ALERTA_ACHIEVEMENTS.WORST_SUBJECT,
-      playerId: worstSubject.playerId,
-      value: worstSubject.value,
-    });
-  }
-
-  // Table Votes
-  const { most: tableVotes } = utils.achievements.getMostAndLeastOf(store, 'tableVotes');
-  if (tableVotes) {
-    achievements.push({
-      type: SINAIS_DE_ALERTA_ACHIEVEMENTS.TABLE_VOTES,
-      playerId: tableVotes.playerId,
-      value: tableVotes.value,
-    });
-  }
-
-  return achievements;
 };

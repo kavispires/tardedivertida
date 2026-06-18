@@ -1,5 +1,5 @@
 import type { TextCard } from '../../types/tdr';
-import type { SINAIS_DE_ALERTA_ACHIEVEMENTS, SINAIS_DE_ALERTA_ACTIONS } from './constants';
+import type { SINAIS_DE_ALERTA_ACTIONS } from './constants';
 
 export type SinaisDeAlertaOptions = {
   /**
@@ -54,15 +54,13 @@ export interface SinaisDeAlertaStore extends DefaultStore {
 }
 
 export interface SinaisDeAlertaState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface SinaisDeAlertaInitialState extends InitialState {
   store: SinaisDeAlertaStore;
   state: SinaisDeAlertaState;
 }
-
-export type SinaisDeAlertaAchievement = keyof typeof SINAIS_DE_ALERTA_ACHIEVEMENTS;
 
 export interface SinaisDeAlertaSubmitAction extends Payload {
   action: keyof typeof SINAIS_DE_ALERTA_ACTIONS;

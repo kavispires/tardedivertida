@@ -12,7 +12,8 @@ import { cloneDeep, orderBy, sampleSize, shuffle } from 'lodash';
 import type { DrawingEntry, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
-import { dealCardsToPlayers, evaluateAnswers, getAchievements } from './helpers';
+import { dealCardsToPlayers, evaluateAnswers } from './helpers';
+import { setupAchievements, getAchievements } from './achievements';
 import { saveDrawings } from './data';
 
 /**
@@ -37,15 +38,7 @@ export const prepareSetupPhase = async (
   const subjectsDeck = sampleSize(allSubjects, cardsNeeded);
   const descriptorsDeck = sampleSize(allDescriptors, cardsNeeded);
 
-  const achievements = utils.achievements.setup(players, {
-    subjectGuesses: 0,
-    descriptorGuesses: 0,
-    subjectDrawings: 0,
-    descriptorDrawings: 0,
-    chooseForMe: 0,
-    // TODO: add table votes
-    // tableVotes: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Save
   return {
@@ -199,7 +192,7 @@ export const prepareGameOverPhase = async (
 
   const finalGallery = orderBy(cloneDeep(store.pastDrawings), 'accuracy', 'desc');
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 
