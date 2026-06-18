@@ -1,128 +1,161 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-const ACHIEVEMENTS = {
-  MOST_CREATOR_EXTRA_CARDS: 'MOST_CREATOR_EXTRA_CARDS',
-  MOST_PARTICIPATION: 'MOST_PARTICIPATION',
-  LEAST_PARTICIPATION: 'LEAST_PARTICIPATION',
-  MOST_REJECTIONS: 'MOST_REJECTIONS',
-  FEWEST_REJECTIONS: 'FEWEST_REJECTIONS',
-  BEST_CREATOR: 'BEST_CREATOR', // fewest participation on creator turns
-  WORST_CREATOR: 'WORST_CREATOR', // most participation on creator turns
-  MOST_SKIPS: 'MOST_SKIPS',
-  MOST_ACCEPTING: 'MOST_ACCEPTING',
-  MOST_DECLINING: 'MOST_DECLINING',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.MOST_CREATOR_EXTRA_CARDS]: {
-    icon: 'light-bulb',
+  LEAST_ACCEPTANCE: {
+    id: 'LEAST_ACCEPTANCE',
+    doc: 'How many times their things were accepted',
+    icon: 'broken-pencil',
     title: {
-      pt: 'Super Criativo',
-      en: 'Super Creative',
+      en: 'Misunderstood Genius',
+      pt: 'Gênio Incompreendido',
     },
     description: {
-      pt: 'Foi o criador que mais usou cartas extras além das duas obrigatórias.',
-      en: 'Was the creator who used the most extra cards beyond the two mandatory ones.',
+      en: 'Had their things accepted the least times.',
+      pt: 'Teve suas coisas aceitas menos vezes.',
     },
   },
-  [ACHIEVEMENTS.MOST_PARTICIPATION]: {
-    icon: 'earth',
+  MOST_ACCEPTANCE: {
+    id: 'MOST_ACCEPTANCE',
+    doc: 'How many times their things were accepted',
+    icon: 'thumbs-up',
     title: {
-      pt: 'Mais participante',
-      en: 'Most Participant',
+      en: 'Crowd Pleaser',
+      pt: 'Queridinho da Galera',
     },
     description: {
-      pt: 'Adicionou coisas a categorias criadas por outro jogadores mais vezes.',
-      en: 'Added things to categories created by other players the most times.',
+      en: 'Had their things accepted the most times.',
+      pt: 'Teve suas coisas aceitas mais vezes.',
     },
   },
-  [ACHIEVEMENTS.LEAST_PARTICIPATION]: {
-    icon: 'glasses',
-    title: {
-      pt: 'Mais Solitário',
-      en: 'Most Solitary',
-    },
-    description: {
-      pt: 'Adicionou coisas a categorias criadas por outro jogadores menos vezes.',
-      en: 'Added things to categories created by other players the least times.',
-    },
-  },
-  [ACHIEVEMENTS.MOST_REJECTIONS]: {
-    icon: 'difference',
-    title: {
-      pt: 'Mais Adicionador Divergente',
-      en: 'Most Divergent Adder',
-    },
-    description: {
-      pt: 'Teve suas coisas rejeitadas com mais frequência.',
-      en: 'Had their things rejected most frequently.',
-    },
-  },
-  [ACHIEVEMENTS.FEWEST_REJECTIONS]: {
-    icon: 'recycle',
-    title: {
-      pt: 'Mais Adicionador Sábio',
-      en: 'Most Wise Adder',
-    },
-    description: {
-      pt: 'Teve suas coisas aceitas com mais frequência.',
-      en: 'Had their things accepted most frequently.',
-    },
-  },
-  [ACHIEVEMENTS.BEST_CREATOR]: {
-    icon: 'brain',
-    title: {
-      pt: 'Melhor Criador',
-      en: 'Best Creator',
-    },
-    description: {
-      pt: 'Teve menos participação dos outros nas categorias que criou.',
-      en: 'Had the least participation of others in the categories they created.',
-    },
-  },
-  [ACHIEVEMENTS.WORST_CREATOR]: {
-    icon: 'face-smiley',
-    title: {
-      pt: 'Senhor Óbvio',
-      en: 'Mister Obvious',
-    },
-    description: {
-      pt: 'Criou categorias fáceis que incentivaram a participação de todos.',
-      en: 'Created easy categories that encouraged everyone to participate.',
-    },
-  },
-  [ACHIEVEMENTS.MOST_SKIPS]: {
-    icon: 'double-arrow-right',
-    title: {
-      pt: 'Mestre do Desistência',
-      en: 'Master of Skipping',
-    },
-    description: {
-      pt: 'Pulou sua vez mais vezes.',
-      en: 'Skipped their turn the most times.',
-    },
-  },
-  [ACHIEVEMENTS.MOST_ACCEPTING]: {
+  MOST_ACCEPTING: {
+    id: 'MOST_ACCEPTING',
+    doc: 'How many times the player have accepted other players things',
     icon: 'plus',
     title: {
-      pt: 'Espírito Bondoso',
       en: 'Kind Spirit',
+      pt: 'Espírito Bondoso',
     },
     description: {
-      pt: 'Aceitou mais coisas nas categorias dos outros jogadores.',
       en: "Accepted the most things in other players' categories.",
+      pt: 'Aceitou mais coisas nas categorias dos outros jogadores.',
     },
   },
-  [ACHIEVEMENTS.MOST_DECLINING]: {
-    icon: 'x',
+  MOST_CREATOR_EXTRA_CARDS: {
+    id: 'MOST_CREATOR_EXTRA_CARDS',
+    doc: 'Added extra cards when the creator',
+    icon: 'light-bulb',
     title: {
-      pt: 'Crítico Ácido',
-      en: 'Acidic Critic',
+      en: 'Super Creative',
+      pt: 'Super Criativo',
     },
     description: {
-      pt: 'Rejeitou mais coisas nas categorias dos outros jogadores.',
+      en: 'Was the creator who used the most extra cards beyond the two mandatory ones.',
+      pt: 'Foi o criador que mais usou cartas extras além das duas obrigatórias.',
+    },
+  },
+  MOST_DECLINING: {
+    id: 'MOST_DECLINING',
+    doc: 'How many times the player have declined other players things',
+    icon: 'x',
+    title: {
+      en: 'Acidic Critic',
+      pt: 'Crítico Ácido',
+    },
+    description: {
       en: "Rejected the most things in other players' categories.",
+      pt: 'Rejeitou mais coisas nas categorias dos outros jogadores.',
+    },
+  },
+  BEST_CREATOR: {
+    id: 'BEST_CREATOR',
+    doc: 'How many players joined your category when you were the creator',
+    icon: 'brain',
+    title: {
+      en: 'Best Creator',
+      pt: 'Melhor Criador',
+    },
+    description: {
+      en: 'Had the least participation of others in the categories they created.',
+      pt: 'Teve menos participação dos outros nas categorias que criou.',
+    },
+  },
+  WORST_CREATOR: {
+    id: 'WORST_CREATOR',
+    doc: 'How many players joined your category when you were the creator',
+    icon: 'face-smiley',
+    title: {
+      en: 'Mister Obvious',
+      pt: 'Senhor Óbvio',
+    },
+    description: {
+      en: 'Created easy categories that encouraged everyone to participate.',
+      pt: 'Criou categorias fáceis que incentivaram a participação de todos.',
+    },
+  },
+  LEAST_PARTICIPATION: {
+    id: 'LEAST_PARTICIPATION',
+    doc: 'Participation during rounds where they were not the creator',
+    icon: 'glasses',
+    title: {
+      en: 'Most Solitary',
+      pt: 'Mais Solitário',
+    },
+    description: {
+      en: 'Added things to categories created by other players the least times.',
+      pt: 'Adicionou coisas a categorias criadas por outro jogadores menos vezes.',
+    },
+  },
+  MOST_PARTICIPATION: {
+    id: 'MOST_PARTICIPATION',
+    doc: 'Participation during rounds where they were not the creator',
+    icon: 'earth',
+    title: {
+      en: 'Most Participant',
+      pt: 'Mais participante',
+    },
+    description: {
+      en: 'Added things to categories created by other players the most times.',
+      pt: 'Adicionou coisas a categorias criadas por outro jogadores mais vezes.',
+    },
+  },
+  FEWEST_REJECTIONS: {
+    id: 'FEWEST_REJECTIONS',
+    doc: 'How many times their things were rejected',
+    icon: 'recycle',
+    title: {
+      en: 'Most Wise Adder',
+      pt: 'Mais Adicionador Sábio',
+    },
+    description: {
+      en: 'Had their things accepted most frequently.',
+      pt: 'Teve suas coisas aceitas com mais frequência.',
+    },
+  },
+  MOST_REJECTIONS: {
+    id: 'MOST_REJECTIONS',
+    doc: 'How many times their things were rejected',
+    icon: 'difference',
+    title: {
+      en: 'Most Divergent Adder',
+      pt: 'Mais Adicionador Divergente',
+    },
+    description: {
+      en: 'Had their things rejected most frequently.',
+      pt: 'Teve suas coisas rejeitadas com mais frequência.',
+    },
+  },
+  MOST_SKIPS: {
+    id: 'MOST_SKIPS',
+    doc: 'Count how many times the player skipped their turn as the creator',
+    icon: 'double-arrow-right',
+    title: {
+      en: 'Master of Skipping',
+      pt: 'Mestre do Desistência',
+    },
+    description: {
+      en: 'Skipped their turn the most times.',
+      pt: 'Pulou sua vez mais vezes.',
     },
   },
 };

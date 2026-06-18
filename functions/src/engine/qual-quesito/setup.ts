@@ -15,7 +15,8 @@ import { keyBy, orderBy, shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
 import { GAME_NAMES } from '../../utils/constants';
-import { buildCardsDictFromPlayersHands, getAchievements } from './helpers';
+import { buildCardsDictFromPlayersHands } from './helpers';
+import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
 
 /**
  * Setup
@@ -28,16 +29,7 @@ export const prepareSetupPhase = async (
   players: Players,
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = utils.achievements.setup(players, {
-    creatorExtra: 0,
-    skipTurn: 0,
-    joiners: 0,
-    participation: 0,
-    rejections: 0,
-    acceptance: 0,
-    accepting: 0,
-    declining: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   const deckDict = keyBy(additionalData.allItems, 'id');
 
@@ -163,7 +155,7 @@ export const prepareSkipAnnouncementPhase = async (
     ...cardsDict,
   };
 
-  utils.achievements.increase(store, creatorId, 'skipTurn', 1);
+  increaseAchievement(store.achievements, creatorId, 'skipTurn', 1);
 
   // Save
   return {
@@ -237,7 +229,7 @@ export const prepareResultsPhase = async (
     if (player.evaluations) {
       Object.entries(player.evaluations).forEach(([cardId, isAccepted]) => {
         // Achievement: Most accepting / declining
-        utils.achievements.increase(store, player.id, isAccepted ? 'accepting' : 'declining', 1);
+        increaseAchievement(store.achievements, player.id, isAccepted ? 'accepting' : 'declining', 1);
 
         acc[cardId] = (acc[cardId] || 0) + (isAccepted ? 1 : 0);
       });
@@ -271,7 +263,7 @@ export const prepareResultsPhase = async (
 
         // Achievement: Creator extra cards
         if (isCreator && index > 2) {
-          utils.achievements.increase(store, player.id, 'creatorExtra', 1);
+          increaseAchievement(store.achievements, player.id, 'creatorExtra', 1);
         }
 
         // If it hasn't busted and it is accepted, grant points
@@ -285,8 +277,8 @@ export const prepareResultsPhase = async (
 
           if (!isCreator) {
             // Achievement: Participation when not the creator
-            utils.achievements.increase(store, player.id, 'participation', 1);
-            utils.achievements.increase(store, creatorId, 'joiners', 1);
+            increaseAchievement(store.achievements, player.id, 'participation', 1);
+            increaseAchievement(store.achievements, creatorId, 'joiners', 1);
           }
 
           // Reset consecutive rejection flag
@@ -294,11 +286,11 @@ export const prepareResultsPhase = async (
           // Remove card from hand
           player.hand = player.hand?.filter((cardInHand: string) => cardInHand !== cardId);
           // Achievement: Acceptance
-          utils.achievements.increase(store, player.id, 'acceptance', 1);
+          increaseAchievement(store.achievements, player.id, 'acceptance', 1);
         } else {
           busted = true;
           // Achievement: Rejections
-          utils.achievements.increase(store, player.id, 'rejections', 1);
+          increaseAchievement(store.achievements, player.id, 'rejections', 1);
 
           // If rejected, count for repeated rejections
           if (index === 0 && player.wasRejectedOnPreviousRound) {
@@ -387,7 +379,7 @@ export const prepareGameOverPhase = async (
 
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

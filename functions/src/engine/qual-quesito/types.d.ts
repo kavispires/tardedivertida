@@ -1,5 +1,5 @@
 import type { Item } from '../../types/tdr';
-import type { QUAL_QUESITO_ACHIEVEMENTS, QUAL_QUESITO_ACTIONS, QUAL_QUESITO_PHASES } from './constants';
+import type { QUAL_QUESITO_ACTIONS, QUAL_QUESITO_PHASES } from './constants';
 
 export type QualQuesitoOptions = {
   /**
@@ -25,14 +25,13 @@ export type GalleryEntry = {
 };
 
 export type QualQuesitoPhase = keyof typeof QUAL_QUESITO_PHASES;
-export type QualQuesitoAchievement = keyof typeof QUAL_QUESITO_ACHIEVEMENTS;
 
 export interface QualQuesitoStore extends DefaultStore<QualQuesitoOptions> {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface QualQuesitoState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface QualQuesitoInitialState extends InitialState {

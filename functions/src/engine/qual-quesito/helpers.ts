@@ -1,9 +1,9 @@
 // Constants
-import { QUAL_QUESITO_ACHIEVEMENTS, QUAL_QUESITO_PHASES } from './constants';
+import { QUAL_QUESITO_PHASES } from './constants';
 import { keyBy } from 'lodash';
 // Utils
 import utils from '../../utils';
-import type { FirebaseStoreData, QualQuesitoAchievement, QualQuesitoPhase } from './types';
+import type { QualQuesitoPhase } from './types';
 import type { Item } from '../../types/tdr';
 
 /**
@@ -61,115 +61,4 @@ export const buildCardsDictFromPlayersHands = (
       .map((itemId) => deckDict[itemId]),
     'id',
   );
-};
-
-// export const handleSkipTurn = (store: FirebaseStoreData, players: Players, creatorId: UID) => {
-//   players[creatorId].hand.push(...utils.game.dealItems(store.deckKeys, 1));
-// };
-
-/**
- * Calculates and returns player achievements based on game statistics
- * @param store - The Firebase store data containing achievement counters
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<QualQuesitoAchievement>[] = [];
-
-  // Most creator extra cards
-  const { most: mostCreatorExtraCards } = utils.achievements.getMostAndLeastOf(store, 'creatorExtraCards');
-  if (mostCreatorExtraCards) {
-    achievements.push({
-      type: QUAL_QUESITO_ACHIEVEMENTS.MOST_CREATOR_EXTRA_CARDS,
-      playerId: mostCreatorExtraCards.playerId,
-      value: mostCreatorExtraCards.value,
-    });
-  }
-
-  // Most participation
-  const { most: mostParticipation, least: leastParticipation } = utils.achievements.getMostAndLeastOf(
-    store,
-    'participation',
-  );
-  if (mostParticipation) {
-    achievements.push({
-      type: QUAL_QUESITO_ACHIEVEMENTS.MOST_PARTICIPATION,
-      playerId: mostParticipation.playerId,
-      value: mostParticipation.value,
-    });
-  }
-  if (leastParticipation) {
-    achievements.push({
-      type: QUAL_QUESITO_ACHIEVEMENTS.LEAST_PARTICIPATION,
-      playerId: leastParticipation.playerId,
-      value: leastParticipation.value,
-    });
-  }
-
-  // Most rejections
-  const { most: mostRejections, least: fewestRejections } = utils.achievements.getMostAndLeastOf(
-    store,
-    'rejections',
-  );
-  if (mostRejections) {
-    achievements.push({
-      type: QUAL_QUESITO_ACHIEVEMENTS.MOST_REJECTIONS,
-      playerId: mostRejections.playerId,
-      value: mostRejections.value,
-    });
-  }
-  if (fewestRejections) {
-    achievements.push({
-      type: QUAL_QUESITO_ACHIEVEMENTS.FEWEST_REJECTIONS,
-      playerId: fewestRejections.playerId,
-      value: fewestRejections.value,
-    });
-  }
-
-  // Best creator
-  const { most: bestCreator, least: worstCreator } = utils.achievements.getMostAndLeastOf(store, 'joiners');
-  if (bestCreator) {
-    achievements.push({
-      type: QUAL_QUESITO_ACHIEVEMENTS.BEST_CREATOR,
-      playerId: bestCreator.playerId,
-      value: bestCreator.value,
-    });
-  }
-  if (worstCreator) {
-    achievements.push({
-      type: QUAL_QUESITO_ACHIEVEMENTS.WORST_CREATOR,
-      playerId: worstCreator.playerId,
-      value: worstCreator.value,
-    });
-  }
-
-  // Most skips
-  const { most: mostSkips } = utils.achievements.getMostAndLeastOf(store, 'skipTurn');
-  if (mostSkips) {
-    achievements.push({
-      type: QUAL_QUESITO_ACHIEVEMENTS.MOST_SKIPS,
-      playerId: mostSkips.playerId,
-      value: mostSkips.value,
-    });
-  }
-
-  // Most accepting
-  const { most: mostAccepting } = utils.achievements.getMostAndLeastOf(store, 'accepting');
-  if (mostAccepting) {
-    achievements.push({
-      type: QUAL_QUESITO_ACHIEVEMENTS.MOST_ACCEPTING,
-      playerId: mostAccepting.playerId,
-      value: mostAccepting.value,
-    });
-  }
-
-  // Most declining
-  const { most: mostDeclining } = utils.achievements.getMostAndLeastOf(store, 'declining');
-  if (mostDeclining) {
-    achievements.push({
-      type: QUAL_QUESITO_ACHIEVEMENTS.MOST_DECLINING,
-      playerId: mostDeclining.playerId,
-      value: mostDeclining.value,
-    });
-  }
-
-  return achievements;
 };
