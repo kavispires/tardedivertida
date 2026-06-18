@@ -113,6 +113,22 @@ function parseBackendAchievements(content) {
           achievements.push({ id: leastMatch[1], doc, property, type: 'array-least-unique' });
         }
       }
+
+      // Handle run - extract the nested object content
+      const runBlockMatch = config.match(/run:\s*\{([^}]+)\}/);
+      if (runBlockMatch) {
+        const runBlock = runBlockMatch[1];
+
+        const longestMatch = runBlock.match(/longest:\s*['"']([^'"]+)['"']/);
+        if (longestMatch && longestMatch[1]) {
+          achievements.push({ id: longestMatch[1], doc, property, type: 'array-longest-run' });
+        }
+
+        const shortestMatch = runBlock.match(/shortest:\s*['"']([^'"]+)['"']/);
+        if (shortestMatch && shortestMatch[1]) {
+          achievements.push({ id: shortestMatch[1], doc, property, type: 'array-shortest-run' });
+        }
+      }
     }
   }
 

@@ -85,6 +85,30 @@ const _calculateAverage = (values: number[], round = false): number => {
 };
 
 /**
+ * Calculates the longest consecutive streak of a specific value in an array
+ */
+const _calculateLongestRun = (
+  values: (string | number | boolean)[],
+  target: string | number | boolean,
+): number => {
+  let currentStreak = 0;
+  let longestStreak = 0;
+
+  values.forEach((v) => {
+    if (v === target) {
+      currentStreak++;
+      if (currentStreak > longestStreak) {
+        longestStreak = currentStreak;
+      }
+    } else {
+      currentStreak = 0;
+    }
+  });
+
+  return longestStreak;
+};
+
+/**
  * Sets up achievements by creating an achievements object with every player and given starting properties
  */
 const _setupAchievements = (playerIds: string[], properties: PlainObject): PlainObject => {
@@ -434,6 +458,23 @@ type ArrayConfig = BaseConfig & {
     lowest?: string | null;
   };
   /**
+   * Calculate longest/shortest consecutive run of a specific value
+   */
+  run?: {
+    /**
+     * The target value to count consecutive occurrences of
+     */
+    value: string | number | boolean;
+    /**
+     * Award for longest consecutive streak
+     */
+    longest?: string | null;
+    /**
+     * Award for shortest consecutive streak (minimum 1)
+     */
+    shortest?: string | null;
+  };
+  /**
    * Pre-calculate values before determining winners.
    * Use this to modify achievement values before comparison (e.g., apply bonuses, combine properties).
    * Called during calculate() with access to full player data.
@@ -571,10 +612,14 @@ class AchievementBuilderClass<TDefinitions extends AchievementDefinition[] = []>
 
   /**
    * Track a list of values collected during gameplay.
-   * Supports multiple calculation methods: sum, average, unique count, earliest/latest occurrence, extreme values.
-   * Awards achievements to the single player with most/least of the calculated metric.
+   * Supports multiple calculation methods:
+   * - average (use most/least to award mean values)
+   * - extreme (use highest/lowest to award top and lowest values)
+   * - occurrence (use earliest/latest to award first and last occurrences)
+   * - run (use longest/shortest to award consecutive streaks of a specific value)
+   * - sum (use most/least to award total counts)
+   * - unique (use most/least to award players with the most unique items)
    * If multiple players tie, no achievement is awarded.
-   * Use case: Items collected per round, scores per phase, timestamps of events.
    */
   array<TProperty extends string>(
     property: TProperty,
@@ -786,6 +831,16 @@ function buildAchievementUtils<TDefinitions extends AchievementDefinition[]>(
         if (config.extremes.lowest) {
           constants[config.extremes.lowest] = config.extremes.lowest;
           achievementTypeValues.push(config.extremes.lowest);
+        }
+      }
+      if ('run' in config && config.run) {
+        if (config.run.longest) {
+          constants[config.run.longest] = config.run.longest;
+          achievementTypeValues.push(config.run.longest);
+        }
+        if (config.run.shortest) {
+          constants[config.run.shortest] = config.run.shortest;
+          achievementTypeValues.push(config.run.shortest);
         }
       }
     } else if (def.type === 'exactMatch' || def.type === 'truthy') {
@@ -1037,6 +1092,47 @@ function buildAchievementUtils<TDefinitions extends AchievementDefinition[]>(
           if (least && config.extremes.lowest) {
             results.push({
               type: config.extremes.lowest,
+              playerId: least.playerId,
+              value: least.value,
+            });
+          }
+        }
+
+        // Handle run (longest/shortest consecutive streak)
+        if (config.run) {
+          const modifiedAchievements = Object.values<StoreAchievement>(achievements).reduce(
+            (acc, achievement) => {
+              const clonedAchievement = { ...achievement };
+              if (config.run) {
+                clonedAchievement[def.property] = _calculateLongestRun(
+                  achievement[def.property],
+                  config.run.value,
+                );
+              }
+              acc[achievement.playerId] = clonedAchievement;
+              return acc;
+            },
+            {} as PlainObject,
+          );
+
+          const { most, least } = _getMostAndLeastOf(
+            modifiedAchievements,
+            def.property,
+            ineligiblePlayers,
+            (v) => v > 0,
+          );
+
+          if (most && config.run.longest) {
+            results.push({
+              type: config.run.longest,
+              playerId: most.playerId,
+              value: most.value,
+            });
+          }
+
+          if (least && config.run.shortest) {
+            results.push({
+              type: config.run.shortest,
               playerId: least.playerId,
               value: least.value,
             });
