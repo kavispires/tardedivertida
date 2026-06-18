@@ -1,4 +1,4 @@
-import type { MEGAMIX_ACHIEVEMENTS, MEGAMIX_ACTIONS } from './constants';
+import type { MEGAMIX_ACTIONS } from './constants';
 
 export type MegamixGameOptions = {
   /**
@@ -90,7 +90,7 @@ export interface MegamixState extends DefaultState {
   cards?: any;
   ranking?: any;
   winners?: any;
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface MegamixPlayer extends Player {
@@ -98,8 +98,6 @@ export interface MegamixPlayer extends Player {
 }
 
 export type MegamixPlayers = Record<UID, MegamixPlayer>;
-
-export type MegamixAchievement = keyof typeof MEGAMIX_ACHIEVEMENTS;
 
 export interface MegamixInitialState extends InitialState {
   store: MegamixStore;

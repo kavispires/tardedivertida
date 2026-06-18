@@ -1,104 +1,109 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-const ACHIEVEMENTS = {
-  SOLITARY_VIP: 'SOLITARY_VIP',
-  SOLITARY_LOSER: 'SOLITARY_LOSER',
-  LONGEST_VIP: 'LONGEST_VIP',
-  LONGEST_LOSER: 'LONGEST_LOSER',
-  MOST_SWITCHED: 'MOST_SWITCHED',
-  LEAST_SWITCHED: 'LEAST_SWITCHED',
-  MOST_JOIN: 'MOST_JOIN',
-  MOST_LEFT: 'MOST_LEFT',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.SOLITARY_VIP]: {
-    icon: 'one',
-    title: {
-      pt: 'VIP Solitário',
-      en: 'Solitary VIP',
-    },
-    description: {
-      pt: 'Esteve na área VIP sozinho mais vezes',
-      en: 'Was in the VIP area alone the most',
-    },
-  },
-  [ACHIEVEMENTS.SOLITARY_LOSER]: {
-    icon: 'trash',
-    title: {
-      pt: 'Fracassado Solitário',
-      en: 'Solitary Loser',
-    },
-    description: {
-      pt: 'Esteve na pista sozinho mais vezes',
-      en: 'Was in the General Admission area alone the most',
-    },
-  },
-  [ACHIEVEMENTS.LONGEST_VIP]: {
-    icon: 'arrow-wide',
-    title: {
-      pt: 'VIP de Longa Data',
-      en: 'Longest VIP',
-    },
-    description: {
-      pt: 'Ficou na área VIP por mais rodadas consecutivas',
-      en: 'Was in the VIP area the most consecutive rounds ',
-    },
-  },
-  [ACHIEVEMENTS.LONGEST_LOSER]: {
-    icon: 'face-embarrassed',
-    title: {
-      pt: 'Pobre de Longa Data',
-      en: 'Longest Loser',
-    },
-    description: {
-      pt: 'Ficou na pista por mais rodadas consecutivas',
-      en: 'Was in the General Admission area the most consecutive rounds',
-    },
-  },
-  [ACHIEVEMENTS.MOST_SWITCHED]: {
-    icon: 'arrows-reverse',
-    title: {
-      pt: 'Mais Troca-Troca',
-      en: 'Most Switched',
-    },
-    description: {
-      pt: 'Trocou de área mais vezes',
-      en: 'Switched areas the most',
-    },
-  },
-  [ACHIEVEMENTS.LEAST_SWITCHED]: {
-    icon: 'arrow-narrow',
-    title: {
-      pt: 'Menos Troca-Troca',
-      en: 'Least Switched',
-    },
-    description: {
-      pt: 'Trocou de área menos vezes',
-      en: 'Switched areas the least',
-    },
-  },
-  [ACHIEVEMENTS.MOST_JOIN]: {
+  MOST_JOIN: {
+    id: 'MOST_JOIN',
+    doc: 'Times moved from loser to VIP',
     icon: 'fire',
     title: {
-      pt: 'Mais Chegador',
       en: 'Most Joiner',
+      pt: 'Mais Chegador',
     },
     description: {
-      pt: 'Entrou na área VIP mais vezes',
       en: 'Joined the VIP area the most',
+      pt: 'Entrou na área VIP mais vezes',
     },
   },
-  [ACHIEVEMENTS.MOST_LEFT]: {
+  MOST_LEFT: {
+    id: 'MOST_LEFT',
+    doc: 'Times moved from VIP to loser',
     icon: 'door',
     title: {
-      pt: 'Mais Sairão',
       en: 'Most Leaver',
+      pt: 'Mais Sairão',
     },
     description: {
-      pt: 'Saiu da área VIP mais vezes',
       en: 'Left the VIP area the most',
+      pt: 'Saiu da área VIP mais vezes',
+    },
+  },
+  LONGEST_LOSER: {
+    id: 'LONGEST_LOSER',
+    doc: 'Longest consecutive run in loser area',
+    icon: 'face-embarrassed',
+    title: {
+      en: 'Longest Loser',
+      pt: 'Pobre de Longa Data',
+    },
+    description: {
+      en: 'Was in the General Admission area the most consecutive rounds',
+      pt: 'Ficou na pista por mais rodadas consecutivas',
+    },
+  },
+  LONGEST_VIP: {
+    id: 'LONGEST_VIP',
+    doc: 'Longest consecutive run in VIP area',
+    icon: 'arrow-wide',
+    title: {
+      en: 'Longest VIP',
+      pt: 'VIP de Longa Data',
+    },
+    description: {
+      en: 'Was in the VIP area the most consecutive rounds ',
+      pt: 'Ficou na área VIP por mais rodadas consecutivas',
+    },
+  },
+  SOLITARY_LOSER: {
+    id: 'SOLITARY_LOSER',
+    doc: 'Times player was alone in loser area',
+    icon: 'trash',
+    title: {
+      en: 'Solitary Loser',
+      pt: 'Fracassado Solitário',
+    },
+    description: {
+      en: 'Was in the General Admission area alone the most',
+      pt: 'Esteve na pista sozinho mais vezes',
+    },
+  },
+  SOLITARY_VIP: {
+    id: 'SOLITARY_VIP',
+    doc: 'Times player was alone in VIP area',
+    icon: 'one',
+    title: {
+      en: 'Solitary VIP',
+      pt: 'VIP Solitário',
+    },
+    description: {
+      en: 'Was in the VIP area alone the most',
+      pt: 'Esteve na área VIP sozinho mais vezes',
+    },
+  },
+  LEAST_SWITCHED: {
+    id: 'LEAST_SWITCHED',
+    doc: 'Number of team switches',
+    icon: 'arrow-narrow',
+    title: {
+      en: 'Least Switched',
+      pt: 'Menos Troca-Troca',
+    },
+    description: {
+      en: 'Switched areas the least',
+      pt: 'Trocou de área menos vezes',
+    },
+  },
+  MOST_SWITCHED: {
+    id: 'MOST_SWITCHED',
+    doc: 'Number of team switches',
+    icon: 'arrows-reverse',
+    title: {
+      en: 'Most Switched',
+      pt: 'Mais Troca-Troca',
+    },
+    description: {
+      en: 'Switched areas the most',
+      pt: 'Trocou de área mais vezes',
     },
   },
 };

@@ -5,11 +5,11 @@ import { keyBy, shuffle } from 'lodash';
 import {
   calculateAllAchievements,
   distributeSeeds,
-  getAchievements,
   getMostVotes,
   getRanking,
   handleSeedingData,
 } from './helpers';
+import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 
 /**
@@ -26,15 +26,7 @@ export const prepareSetupPhase = async (
 ): Promise<SaveGamePayload> => {
   utils.players.addPropertiesToPlayers(players, { team: [SIDES.LOSER] });
 
-  const achievements = utils.achievements.setup(players, {
-    solitaryLoser: 0,
-    solitaryWinner: 0,
-    longestVIP: 0,
-    longestLoser: 0,
-    switchedTeam: 0,
-    joinedVIP: 0,
-    leftVIP: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Save
   return {
@@ -172,10 +164,10 @@ export const prepareResultPhase = async (
   const ranking = getRanking(players, scoring, state.round.current);
 
   if (scoring.losingTeam.length === 1) {
-    utils.achievements.increase(store, scoring.losingTeam[0], 'solitaryLoser', 1);
+    increaseAchievement(store.achievements, scoring.losingTeam[0], 'solitaryLoser', 1);
   }
   if (scoring.winningTeam.length === 1) {
-    utils.achievements.increase(store, scoring.winningTeam[0], 'solitaryWinner', 1);
+    increaseAchievement(store.achievements, scoring.winningTeam[0], 'solitaryWinner', 1);
   }
 
   utils.players.unReadyPlayers(players);
@@ -220,7 +212,7 @@ export const prepareGameOverPhase = async (
 
   await utils.firestore.markGameAsComplete(gameId);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.MEGAMIX,

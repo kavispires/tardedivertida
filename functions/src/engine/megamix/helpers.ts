@@ -5,7 +5,6 @@ import { buildDecks } from '../na-rua-do-medo/helpers';
 import type { HouseCard } from '../na-rua-do-medo/types';
 import { cloneDeep, orderBy, random, sample, sampleSize, shuffle, uniq } from 'lodash';
 import {
-  MEGAMIX_ACHIEVEMENTS,
   MEGAMIX_PHASES,
   PARTY_GAMES,
   PARTY_GAMES_NAMES,
@@ -14,15 +13,9 @@ import {
   TOTAL_ROUNDS,
   WINNING_CONDITION,
 } from './constants';
-import type {
-  AvailableTrack,
-  FirebaseStoreData,
-  MegamixAchievement,
-  MostScoring,
-  Track,
-  TrackCandidate,
-} from './types';
+import type { AvailableTrack, FirebaseStoreData, MostScoring, Track, TrackCandidate } from './types';
 import type { CrimeSceneTile, DatingCandidateCard, MovieReviewCard, TextCard } from '../../types/tdr';
+import { increaseAchievement, pushAchievement } from './achievements';
 
 /**
  * Determines the next phase based on the current phase
@@ -1049,123 +1042,24 @@ export const getMovieReviews = (reviews: MovieReviewCard[]) => {
 
 export const calculateAllAchievements = (players: Players, store: FirebaseStoreData) => {
   utils.players.getListOfPlayers(players).forEach((player) => {
-    utils.achievements.increase(
-      store,
-      player.id,
-      'longestVIP',
-      utils.helpers.calculateLongestRun(player.team, SIDES.WINNER),
-    );
-    utils.achievements.increase(
-      store,
-      player.id,
-      'longestLoser',
-      utils.helpers.calculateLongestRun(player.team, SIDES.LOSER),
-    );
+    if (player)
+      player.team.forEach((team: string, index: number) => {
+        // Longest VIP streak
+        pushAchievement(store.achievements, player.id, 'longestVIP', team);
+        // Longest GA streak
+        pushAchievement(store.achievements, player.id, 'longestLoser', team);
 
-    player.team.forEach((team: string, index: number) => {
-      if (index > 0 && team) {
-        if (team !== player.team[index - 1]) {
-          utils.achievements.increase(store, player.id, 'switchedTeam', 1);
+        if (index > 0 && team) {
+          if (player.team[index - 1] && team !== player.team[index - 1]) {
+            increaseAchievement(store.achievements, player.id, 'switchedTeam', 1);
+          }
+          if (player.team[index - 1] && team === SIDES.WINNER && player.team[index - 1] === SIDES.LOSER) {
+            increaseAchievement(store.achievements, player.id, 'joinedVIP', 1);
+          }
+          if (player.team[index - 1] && team === SIDES.LOSER && player.team[index - 1] === SIDES.WINNER) {
+            increaseAchievement(store.achievements, player.id, 'leftVIP', 1);
+          }
         }
-        if (team === SIDES.WINNER && player.team[index - 1] === SIDES.LOSER) {
-          utils.achievements.increase(store, player.id, 'joinedVIP', 1);
-        }
-        if (team === SIDES.LOSER && player.team[index - 1] === SIDES.WINNER) {
-          utils.achievements.increase(store, player.id, 'leftVIP', 1);
-        }
-      }
-    });
+      });
   });
-};
-
-/**
- * Get achievements
- * @param store
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<MegamixAchievement>[] = [];
-
-  // Solitary Winner: Was on the VIP area by themselves the most
-  const { most: solitaryWinner } = utils.achievements.getMostAndLeastOf(store, 'solitaryWinner');
-  if (solitaryWinner) {
-    achievements.push({
-      type: MEGAMIX_ACHIEVEMENTS.SOLITARY_VIP,
-      playerId: solitaryWinner.playerId,
-      value: solitaryWinner.value,
-    });
-  }
-
-  // Solitary Loser: Was on the Loser area by themselves the most
-  const { most: solitaryLoser } = utils.achievements.getMostAndLeastOf(store, 'solitaryLoser');
-  if (solitaryLoser) {
-    achievements.push({
-      type: MEGAMIX_ACHIEVEMENTS.SOLITARY_LOSER,
-      playerId: solitaryLoser.playerId,
-      value: solitaryLoser.value,
-    });
-  }
-
-  // VIP longest
-  const { most: longestVIP } = utils.achievements.getMostAndLeastOf(store, 'longestVIP');
-  if (longestVIP) {
-    achievements.push({
-      type: MEGAMIX_ACHIEVEMENTS.LONGEST_VIP,
-      playerId: longestVIP.playerId,
-      value: longestVIP.value,
-    });
-  }
-
-  // Loser longest
-  const { most: longestLoser } = utils.achievements.getMostAndLeastOf(store, 'longestLoser');
-  if (longestLoser) {
-    achievements.push({
-      type: MEGAMIX_ACHIEVEMENTS.LONGEST_LOSER,
-      playerId: longestLoser.playerId,
-      value: longestLoser.value,
-    });
-  }
-
-  // Longest words
-  const { most: switchedMost, least: switchedLeast } = utils.achievements.getMostAndLeastOf(
-    store,
-    'switchedTeam',
-  );
-  if (switchedMost) {
-    achievements.push({
-      type: MEGAMIX_ACHIEVEMENTS.MOST_SWITCHED,
-      playerId: switchedMost.playerId,
-      value: switchedMost.value,
-    });
-  }
-
-  // Shortest words
-  if (switchedLeast) {
-    achievements.push({
-      type: MEGAMIX_ACHIEVEMENTS.LEAST_SWITCHED,
-      playerId: switchedLeast.playerId,
-      value: switchedLeast.value,
-    });
-  }
-
-  // Savior
-  const { most: joinedVIP } = utils.achievements.getMostAndLeastOf(store, 'joinedVIP');
-  if (joinedVIP) {
-    achievements.push({
-      type: MEGAMIX_ACHIEVEMENTS.MOST_JOIN,
-      playerId: joinedVIP.playerId,
-      value: joinedVIP.value,
-    });
-  }
-
-  // Choose for me: gave up on trying to match the clues the most
-  const { most: leftVIP } = utils.achievements.getMostAndLeastOf(store, 'leftVIP');
-  if (leftVIP) {
-    achievements.push({
-      type: MEGAMIX_ACHIEVEMENTS.MOST_LEFT,
-      playerId: leftVIP.playerId,
-      value: leftVIP.value,
-    });
-  }
-
-  return achievements;
 };
