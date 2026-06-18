@@ -7,12 +7,10 @@ import {
   OUTCOME,
   QUESTION_COUNT,
   SUSPECT_COUNT,
-  TESTEMUNHA_OCULAR_ACHIEVEMENTS,
   TESTEMUNHA_OCULAR_PHASES,
 } from './constants';
 // Utils
 import utils from '../../utils';
-import type { FirebaseStoreData, TestemunhaOcularAchievement } from './types';
 
 /**
  * Determine the next phase based on the current phase and outcome
@@ -160,60 +158,4 @@ export const calculateScore = (
   if (currentRound === 0) return 0;
 
   return currentScore + currentRound * eliminatedSuspectsCount;
-};
-
-/**
- * Calculates and returns player achievements based on game statistics
- * @param store - The Firebase store data containing achievement counters
- * @param witnessId - The ID of the player who was the witness
- */
-export const getAchievements = (store: FirebaseStoreData, witnessId: UID) => {
-  const achievements: Achievement<TestemunhaOcularAchievement>[] = [];
-
-  // Witness:
-  const { most } = utils.achievements.getMostAndLeastOf(store, 'witness');
-  if (most) {
-    achievements.push({
-      type: TESTEMUNHA_OCULAR_ACHIEVEMENTS.PLAYED_AS_WITNESS,
-      playerId: most.playerId,
-      value: most.value,
-    });
-  }
-
-  // Releases:
-  const { most: mostReleases, least: fewerReleases } = utils.achievements.getMostAndLeastOfAverage(
-    store,
-    'releases',
-    [witnessId],
-  );
-  if (mostReleases) {
-    achievements.push({
-      type: TESTEMUNHA_OCULAR_ACHIEVEMENTS.BEST_QUESTIONS,
-      playerId: mostReleases.playerId,
-      value: mostReleases.value,
-    });
-  }
-
-  if (fewerReleases) {
-    achievements.push({
-      type: TESTEMUNHA_OCULAR_ACHIEVEMENTS.MOST_USELESS_QUESTIONS,
-      playerId: fewerReleases.playerId,
-      value: fewerReleases.value,
-    });
-  }
-
-  const playersWithFoundThePerpetrator = utils.achievements.getPlayersWithTruthyAchievement(
-    store,
-    'foundThePerpetrator',
-  );
-
-  playersWithFoundThePerpetrator.forEach((playerId) => {
-    achievements.push({
-      type: TESTEMUNHA_OCULAR_ACHIEVEMENTS.FOUND_THE_PERPETRATOR,
-      playerId,
-      value: 1,
-    });
-  });
-
-  return achievements;
 };

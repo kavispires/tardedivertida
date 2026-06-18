@@ -11,13 +11,8 @@ import type {
 import { MAX_ROUNDS, OUTCOME, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Helpers
 import utils from '../../utils';
-import {
-  buildQuestionsDeck,
-  calculateScore,
-  getAchievements,
-  getNewQuestions,
-  getPoolOfSuspects,
-} from './helpers';
+import { buildQuestionsDeck, calculateScore, getNewQuestions, getPoolOfSuspects } from './helpers';
+import { setupAchievements, getAchievements, pushAchievement, setTruthyAchievement } from './achievements';
 import { GAME_NAMES } from '../../utils/constants';
 import { saveData } from './data';
 
@@ -46,11 +41,7 @@ export const prepareSetupPhase = async (
   // Build deck
   const deck = buildQuestionsDeck(additionalData.allCards);
 
-  const achievements = utils.achievements.setup(players, {
-    witness: 0,
-    releases: [],
-    foundThePerpetrator: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Determine the reason
   const perpetratorGender = suspectsDict[perpetratorId].gender;
@@ -128,8 +119,6 @@ export const prepareQuestionSelectionPhase = async (
 ): Promise<SaveGamePayload> => {
   const witnessId = state.witnessId;
 
-  utils.achievements.increase(store, witnessId, 'witness', 1);
-
   const newTurnOrder = utils.turnOrder.create(players).gameOrder.filter((id) => id !== witnessId);
 
   const turnOrder = store.turnOrder.length > 0 ? store.turnOrder : newTurnOrder;
@@ -137,7 +126,7 @@ export const prepareQuestionSelectionPhase = async (
   const eliminatedSuspects: UID[] = state?.eliminatedSuspects ?? [];
 
   if (state.questionerId) {
-    utils.achievements.push(store, state.questionerId, 'releases', eliminatedSuspects.length);
+    pushAchievement(store, state.questionerId, 'releases', eliminatedSuspects.length);
   }
 
   // Determine questioner player
@@ -292,7 +281,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  await utils.firestore.markGameAsComplete(gameId);
+  setTruthyAchievement(store.achievements, state.witnessId, 'witness');
 
   const perpetratorId: UID = state.perpetratorId ?? '';
   const witnessId: UID = state.witnessId;
@@ -363,12 +352,15 @@ export const prepareGameOverPhase = async (
   if (!isWin) {
     listOfPlayers.forEach((player) => {
       if (player.suspectId === perpetratorId) {
-        utils.achievements.increase(store, player.id, 'foundThePerpetrator', 1);
+        setTruthyAchievement(store.achievements, player.id, 'foundThePerpetrator');
       }
     });
   }
 
-  const achievements = getAchievements(store, witnessId);
+  const achievements = getAchievements(store, {
+    // The witness does not score for releases
+    releases: utils.players.getListOfPlayersIds(players, false, [state.witnessId]),
+  });
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.TESTEMUNHA_OCULAR,

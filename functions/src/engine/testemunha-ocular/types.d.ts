@@ -1,5 +1,5 @@
 import type { CrimeReason, SuspectCard, TestimonyQuestionCard } from '../../types/tdr';
-import type { OUTCOME, TESTEMUNHA_OCULAR_ACHIEVEMENTS, TESTEMUNHA_OCULAR_ACTIONS } from './constants';
+import type { OUTCOME, TESTEMUNHA_OCULAR_ACTIONS } from './constants';
 
 export type TestemunhaOcularOptions = {
   /**
@@ -68,8 +68,6 @@ export interface TestemunhaOcularInitialState extends InitialState {
 export interface TestemunhaOcularSubmitAction extends Payload {
   action: keyof typeof TESTEMUNHA_OCULAR_ACTIONS;
 }
-
-export type TestemunhaOcularAchievement = keyof typeof TESTEMUNHA_OCULAR_ACHIEVEMENTS;
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData & TestemunhaOcularState;
 export type FirebaseStoreData = FirebaseFirestore.DocumentData & TestemunhaOcularStore;
