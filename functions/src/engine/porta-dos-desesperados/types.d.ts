@@ -1,4 +1,4 @@
-import type { PORTA_DOS_DESESPERADOS_ACHIEVEMENTS, PORTA_DOS_DESESPERADOS_ACTIONS, TRAPS } from './constants';
+import type { PORTA_DOS_DESESPERADOS_ACTIONS, TRAPS } from './constants';
 
 export type PortaDosDesesperadosOptions = {
   /**
@@ -36,11 +36,11 @@ export interface PortaDosDesesperadosStore extends DefaultStore {
 }
 
 export interface PortaDosDesesperadosState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface PortaDosDesesperadosPlayer extends Player {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export type PortaDosDesesperadosPlayers = Record<UID, PortaDosDesesperadosPlayer>;
@@ -53,8 +53,6 @@ export interface PortaDosDesesperadosInitialState extends InitialState {
 export interface PortaDosDesesperadosSubmitAction extends Payload {
   action: keyof typeof PORTA_DOS_DESESPERADOS_ACTIONS;
 }
-
-export type PortaDosDesesperadosAchievement = keyof typeof PORTA_DOS_DESESPERADOS_ACHIEVEMENTS;
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData & PortaDosDesesperadosState;
 export type FirebaseStoreData = FirebaseFirestore.DocumentData & PortaDosDesesperadosStore;

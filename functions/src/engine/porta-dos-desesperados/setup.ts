@@ -21,11 +21,11 @@ import {
   botDoorSelection,
   calculateDifficulty,
   createTrapOrder,
-  getAchievements,
   getBookPages,
   getDoorSet,
   mergeVisitedDoorsRelationships,
 } from './helpers';
+import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
 import { saveData } from './data';
 
 /**
@@ -45,19 +45,7 @@ export const prepareSetupPhase = async (
   const playerCount = store.options?.withBots ? pC + 2 : pC;
 
   // Setup achievements
-  const achievements = utils.achievements.setup(players, {
-    possessions: 0,
-    possessionWins: 0,
-    possessionLosses: 0,
-    possessionDuration: 0,
-    pages: 0,
-    correctDoors: 0,
-    wrongDoors: 0,
-    soloCorrectDoors: 0,
-    soloWrongDoors: 0,
-    doorDuration: 0,
-    magic: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Get image cards
   const imageCardsParts = utils.helpers.sliceInParts(data.cards, 3);
@@ -131,7 +119,7 @@ export const prepareBookPossessionPhase = async (
   const pages = getBookPages(store.pagesDeck, store.pagesDeckIndex, trap as Trap);
 
   // Achievement: POSSESSED
-  utils.achievements.increase(store, possessedId, 'possessions', 1);
+  increaseAchievement(store.achievements, possessedId, 'possessions', 1);
 
   // Save
   return {
@@ -175,13 +163,13 @@ export const prepareDoorChoicePhase = async (
   const selectedPagesIds = state.selectedPagesIds;
 
   // Achievement: PAGES
-  utils.achievements.increase(store, state.possessedId, 'pages', state.selectedPagesIds.length);
+  increaseAchievement(store.achievements, state.possessedId, 'pages', state.selectedPagesIds.length);
   // Achievement: READER
-  utils.achievements.increase(
-    store,
+  increaseAchievement(
+    store.achievements,
     state.possessedId,
     'possessionDuration',
-    state.updatedAt - (players[state.possessedId].updatedAt ?? 0),
+    Math.abs(state.updatedAt - (players[state.possessedId].updatedAt ?? 0)),
   );
 
   if (state.trap === TRAPS.RANDOM_INTERJECTION) {
@@ -249,7 +237,12 @@ export const prepareResolutionPhase = async (
 
       // Achievement: DECISION
       if (player.updatedAt) {
-        utils.achievements.increase(store, player.id, 'doorDuration', state.updatedAt - player.updatedAt);
+        increaseAchievement(
+          store.achievements,
+          player.id,
+          'doorDuration',
+          Math.abs(state.updatedAt - player.updatedAt),
+        );
       }
     }
     return acc;
@@ -292,18 +285,18 @@ export const prepareResolutionPhase = async (
       store.finalDoors.push(state.answerDoorId);
     }
     // Achievement: GUIDE
-    utils.achievements.increase(store, state.possessedId, 'possessionWins', 1);
+    increaseAchievement(store.achievements, state.possessedId, 'possessionWins', 1);
     // Achievement: DOORS
     doorPlayerDict[state.answerDoorId].forEach((playerId) => {
-      utils.achievements.increase(store, playerId, 'correctDoors', 1);
+      increaseAchievement(store.achievements, playerId, 'correctDoors', 1);
       // Achievement: SOLO_DOORS
       if (doorPlayerDict[state.answerDoorId].length === 1) {
-        utils.achievements.increase(store, playerId, 'soloCorrectDoors', 1);
+        increaseAchievement(store.achievements, playerId, 'soloCorrectDoors', 1);
       }
     });
   } else {
     // Achievement: GUIDE
-    utils.achievements.increase(store, state.possessedId, 'possessionLosses', 1);
+    increaseAchievement(store.achievements, state.possessedId, 'possessionLosses', 1);
   }
 
   // Achievement: DOORS
@@ -313,14 +306,19 @@ export const prepareResolutionPhase = async (
       const wrongPlayers = doorPlayerDict[doorId];
       const quantityOfPlayers = wrongPlayers.length;
       wrongPlayers.forEach((playerId) => {
-        utils.achievements.increase(store, playerId, 'wrongDoors', 1);
+        increaseAchievement(store.achievements, playerId, 'wrongDoors', 1);
         // Achievement: SOLO_DOORS
         if (quantityOfPlayers === 1) {
-          utils.achievements.increase(store, playerId, 'soloWrongDoors', 1);
+          increaseAchievement(store.achievements, playerId, 'soloWrongDoors', 1);
         }
         // Achievement: MAGIC
         const wastedMagicPerDoor = state.trap === TRAPS.DOUBLE_MAGIC ? 2 : 1;
-        utils.achievements.increase(store, playerId, 'magic', wastedMagicPerDoor / quantityOfPlayers);
+        increaseAchievement(
+          store.achievements,
+          playerId,
+          'magic',
+          Math.round((wastedMagicPerDoor / quantityOfPlayers) * 100) / 100,
+        );
       });
     });
 
@@ -364,7 +362,7 @@ export const prepareGameOverPhase = async (
     state.outcome === OUTCOME.SUCCESS ? state.currentCorridor + 1 : state.currentCorridor;
   const winCondition = state.winCondition === WIN_CONDITION.WIN ? WIN_CONDITION.WIN : WIN_CONDITION.LOSE;
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

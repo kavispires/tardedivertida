@@ -4,7 +4,6 @@ import {
   DOOR_OPTIONS_PER_ROUND,
   OUTCOME,
   PAGES_PER_ROUND,
-  PORTA_DOS_DESESPERADOS_ACHIEVEMENTS,
   PORTA_DOS_DESESPERADOS_PHASES,
   TRAPS,
   TRAPS_ENTRIES,
@@ -12,7 +11,7 @@ import {
 } from './constants';
 // Utils
 import utils from '../../utils';
-import type { FirebaseStoreData, PortaDosDesesperadosAchievement, Trap } from './types';
+import type { Trap } from './types';
 import { sample, sampleSize, shuffle } from 'lodash';
 
 /**
@@ -181,170 +180,6 @@ export const botDoorSelection = (players: Players, doors: UID[], doorAnswerId: U
     bot.doorId = sample(options);
     bot.ready = true;
   });
-};
-
-/**
- * Calculates and returns player achievements based on game statistics
- * @param store - The Firebase store data containing achievement counters
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<PortaDosDesesperadosAchievement>[] = [];
-
-  // Possession
-  const { most: mostPossessed, least: leastPossessed } = utils.achievements.getMostAndLeastOf(
-    store,
-    'possessions',
-  );
-  if (mostPossessed) {
-    achievements.push({
-      type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.MOST_POSSESSED,
-      playerId: mostPossessed.playerId,
-      value: mostPossessed.value,
-    });
-  }
-  if (leastPossessed) {
-    achievements.push({
-      type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.LEAST_POSSESSED,
-      playerId: leastPossessed.playerId,
-      value: leastPossessed.value,
-    });
-  }
-
-  // Possession Wins
-  const { most: possessionWins } = utils.achievements.getMostAndLeastOf(store, 'possessionWins');
-  if (possessionWins) {
-    achievements.push({
-      type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.BEST_GUIDE,
-      playerId: possessionWins.playerId,
-      value: possessionWins.value,
-    });
-  }
-
-  // Possession Wins
-  const { most: possessionLosses } = utils.achievements.getMostAndLeastOf(store, 'possessionLosses');
-  if (possessionLosses) {
-    achievements.push({
-      type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.BEGINNER_GUIDE,
-      playerId: possessionLosses.playerId,
-      value: possessionLosses.value,
-    });
-  }
-
-  // Possession Duration
-  const { most: longestPossession, least: shortestPossession } = utils.achievements.getMostAndLeastOf(
-    store,
-    'possessionDuration',
-  );
-  if (longestPossession) {
-    achievements.push({
-      type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.SLOW_READER,
-      playerId: longestPossession.playerId,
-      value: Math.round(longestPossession.value / 1000),
-    });
-  }
-  if (shortestPossession) {
-    achievements.push({
-      type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.FAST_LEARNER,
-      playerId: shortestPossession.playerId,
-      value: Math.round(shortestPossession.value / 1000),
-    });
-  }
-
-  // Page Use
-  const { most: mostPages, least: fewestPages } = utils.achievements.getMostAndLeastOf(store, 'pages');
-  if (mostPages) {
-    achievements.push({
-      type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.MOST_PAGES,
-      playerId: mostPages.playerId,
-      value: mostPages.value,
-    });
-  }
-  if (fewestPages) {
-    achievements.push({
-      type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.FEWEST_PAGES,
-      playerId: fewestPages.playerId,
-      value: fewestPages.value,
-    });
-  }
-
-  // Correct Doors
-  const { most: correctDoors } = utils.achievements.getMostAndLeastOf(store, 'correctDoors');
-  if (correctDoors) {
-    achievements.push({
-      type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.MOST_CORRECT_DOORS,
-      playerId: correctDoors.playerId,
-      value: correctDoors.value,
-    });
-  }
-
-  // Wrong Doors
-  const { most: wrongDoors } = utils.achievements.getMostAndLeastOf(store, 'wrongDoors');
-  if (wrongDoors) {
-    achievements.push({
-      type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.MOST_WRONG_DOORS,
-      playerId: wrongDoors.playerId,
-      value: wrongDoors.value,
-    });
-  }
-
-  // Solo Correct Doors
-  const { most: soloCorrectDoors } = utils.achievements.getMostAndLeastOf(store, 'soloCorrectDoors');
-  if (soloCorrectDoors) {
-    achievements.push({
-      type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.MOST_SOLO_CORRECT_DOORS,
-      playerId: soloCorrectDoors.playerId,
-      value: soloCorrectDoors.value,
-    });
-  }
-
-  // Solo Wrong Doors
-  const { most: soloWrongDoors } = utils.achievements.getMostAndLeastOf(store, 'soloWrongDoors');
-  if (soloWrongDoors) {
-    achievements.push({
-      type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.MOST_SOLO_WRONG_DOORS,
-      playerId: soloWrongDoors.playerId,
-      value: soloWrongDoors.value,
-    });
-  }
-
-  // Door Duration
-  const { most: longestDecision, least: shortestDecision } = utils.achievements.getMostAndLeastOf(
-    store,
-    'doorDuration',
-  );
-  if (longestDecision) {
-    achievements.push({
-      type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.SLOW_DECISIONS,
-      playerId: longestDecision.playerId,
-      value: Math.round(longestDecision.value / 1000),
-    });
-  }
-  if (shortestDecision) {
-    achievements.push({
-      type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.QUICK_DECISIONS,
-      playerId: shortestDecision.playerId,
-      value: Math.round(shortestDecision.value / 1000),
-    });
-  }
-
-  // Use of magic
-  const { most: mostMagic, least: fewestMagic } = utils.achievements.getMostAndLeastOf(store, 'magic');
-  if (mostMagic) {
-    achievements.push({
-      type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.MAGIC_WASTER,
-      playerId: mostMagic.playerId,
-      value: (Math.round(mostMagic.value * 100) / 100).toFixed(2),
-    });
-  }
-  if (fewestMagic) {
-    achievements.push({
-      type: PORTA_DOS_DESESPERADOS_ACHIEVEMENTS.MAGIC_SAVER,
-      playerId: fewestMagic.playerId,
-      value: (Math.round(fewestMagic.value * 100) / 100).toFixed(2),
-    });
-  }
-
-  return achievements;
 };
 
 /**
