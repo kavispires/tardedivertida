@@ -6,12 +6,12 @@ import type { FirebaseStateData, FirebaseStoreData, Outcome } from './types';
 // Utils
 import utils from '../../utils';
 // Internal
+import { getAchievements, increaseAchievement, setupAchievements } from './achievements';
 import {
   buildDecks,
   buildStreetDeck,
   countMonsters,
   dealNewCard,
-  getAchievements,
   getTotalCandyInSidewalk,
   parseDecisions,
   resetHorrorCount,
@@ -43,13 +43,7 @@ export const prepareSetupPhase = async (
 
   utils.players.distributeNumberIds(players, 0, AVATAR_SPRITE_LIBRARIES.COSTUMES - 1, 'costumeId');
 
-  const achievements = utils.achievements.setup(players, {
-    facingMonsters: 0,
-    lostCandy: 0,
-    houses: 0,
-    jackpots: 0,
-    sidewalk: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Save
   return {
@@ -259,11 +253,11 @@ export const prepareStreetEndPhase = async (
   const monsterCount = countMonsters([...state.street, currentCard]);
   state.continuingPlayerIds.forEach((playerId: UID) => {
     // Achievement: most houses
-    utils.achievements.increase(store, playerId, 'houses', 1);
+    increaseAchievement(store.achievements, playerId, 'houses', 1);
     // Achievement: facing monsters
-    utils.achievements.increase(store, playerId, 'facingMonsters', monsterCount);
+    increaseAchievement(store.achievements, playerId, 'facingMonsters', monsterCount);
     // Achievement lost candy
-    utils.achievements.increase(store, playerId, 'lostCandy', totalCandyInSidewalk + state.candyInHand);
+    increaseAchievement(store.achievements, playerId, 'lostCandy', totalCandyInSidewalk + state.candyInHand);
   });
 
   // Save
@@ -302,7 +296,7 @@ export const prepareGameOverPhase = async (
   tallyCandyAsScore(players);
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

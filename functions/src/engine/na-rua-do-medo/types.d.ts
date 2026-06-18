@@ -1,4 +1,4 @@
-import type { NA_RUA_DO_MEDO_ACHIEVEMENTS, NA_RUA_DO_MEDO_ACTIONS } from './constants';
+import type { NA_RUA_DO_MEDO_ACTIONS } from './constants';
 
 export type NoRuaDoMedoOptions = {
   shortGame: boolean;
@@ -36,7 +36,7 @@ export interface NoRuaDoMedoStore extends DefaultStore {
   candyDeck: HouseCard[];
   usedHorrorIds: string[];
   claimedJackpotIds: string[];
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface NoRuaDoMedoState extends DefaultState {
@@ -46,7 +46,7 @@ export interface NoRuaDoMedoState extends DefaultState {
   totalCandyInSidewalk?: number;
   isEverybodyHome?: boolean;
   isDoubleHorror?: boolean;
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface NoRuaDoMedoInitialState extends InitialState {
@@ -57,8 +57,6 @@ export interface NoRuaDoMedoInitialState extends InitialState {
 export interface NaRuaDoMedoSubmitAction extends Payload {
   action: keyof typeof NA_RUA_DO_MEDO_ACTIONS;
 }
-
-export type NaRuaDoMedoAchievement = keyof typeof NA_RUA_DO_MEDO_ACHIEVEMENTS;
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | NoRuaDoMedoState;
 export type FirebaseStoreData = FirebaseFirestore.DocumentData | NoRuaDoMedoStore;

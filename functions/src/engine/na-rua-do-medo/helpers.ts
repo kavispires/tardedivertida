@@ -6,24 +6,17 @@ import {
   HORROR_SETS,
   JACKPOT_VALUES,
   MAX_ROUNDS,
-  NA_RUA_DO_MEDO_ACHIEVEMENTS,
   NA_RUA_DO_MEDO_PHASES,
   OUTCOME_STATUS,
   SHORT_GAME_ROUNDS,
 } from './constants';
 // Types
-import type {
-  CandyStatus,
-  HouseCard,
-  Decks,
-  FirebaseStateData,
-  FirebaseStoreData,
-  NaRuaDoMedoAchievement,
-  Outcome,
-} from './types';
+import type { CandyStatus, HouseCard, Decks, FirebaseStateData, FirebaseStoreData, Outcome } from './types';
 // Utils
 import utils from '../../utils';
 import { sampleSize, shuffle } from 'lodash';
+// Internal
+import { increaseAchievement } from './achievements';
 
 /**
  * Determines the next phase based on the current phase and outcome
@@ -234,16 +227,16 @@ export const parseDecisions = (
         goingHomePlayers.push(player);
         goingHomePlayerIds.push(player.id);
         // Achievement: most houses
-        utils.achievements.increase(store, player.id, 'houses', 1);
+        increaseAchievement(store.achievements, player.id, 'houses', 1);
         // Achievement: facing monsters
-        utils.achievements.increase(store, player.id, 'facingMonsters', monsterCount);
+        increaseAchievement(store.achievements, player.id, 'facingMonsters', monsterCount);
         break;
       // case DECISIONS.CONTINUE:
       default:
         continuingPlayers.push(player);
         continuingPlayerIds.push(player.id);
         // Achievement: most houses
-        utils.achievements.increase(store, player.id, 'houses', 1);
+        increaseAchievement(store.achievements, player.id, 'houses', 1);
     }
   });
 
@@ -270,7 +263,7 @@ export const parseDecisions = (
     player.hand = 0;
     player.isTrickOrTreating = false;
     // Achievement: most sidewalk candy
-    utils.achievements.increase(store, player.id, 'sidewalk', candyPerPlayer);
+    increaseAchievement(store.achievements, player.id, 'sidewalk', candyPerPlayer);
   });
 
   let newStreet = street;
@@ -291,7 +284,7 @@ export const parseDecisions = (
     newStreet = street.filter((card) => card.type !== 'jackpot');
 
     // Achievement: most jackpots
-    utils.achievements.increase(store, goingHomePlayers[0].id, 'jackpots', availableJackpot.length);
+    increaseAchievement(store.achievements, goingHomePlayers[0].id, 'jackpots', availableJackpot.length);
   }
 
   // Redistribute leftover candy
@@ -442,82 +435,4 @@ export const countMonsters = (street: HouseCard[]) => {
     }
     return acc;
   }, 0);
-};
-
-/**
- * Get achievements
- * @param store
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<NaRuaDoMedoAchievement>[] = [];
-
-  // Bravest: faced the most number of monsters
-  const { most, least } = utils.achievements.getMostAndLeastOf(store, 'facingMonsters');
-  if (most) {
-    achievements.push({
-      type: NA_RUA_DO_MEDO_ACHIEVEMENTS.BRAVEST,
-      playerId: most.playerId,
-      value: most.value,
-    });
-  }
-
-  // Luckiest: faced the least number of monsters
-  if (least) {
-    achievements.push({
-      type: NA_RUA_DO_MEDO_ACHIEVEMENTS.LUCKIEST,
-      playerId: least.playerId,
-      value: least.value,
-    });
-  }
-
-  // Candy Loser: lost the most candy during a scare
-  const { most: candyLoser } = utils.achievements.getMostAndLeastOf(store, 'lostCandy');
-  if (candyLoser) {
-    achievements.push({
-      type: NA_RUA_DO_MEDO_ACHIEVEMENTS.CANDY_LOSER,
-      playerId: candyLoser.playerId,
-      value: candyLoser.value,
-    });
-  }
-
-  // Most houses: visited the most houses
-  const { most: mostHouses, least: fewestHouses } = utils.achievements.getMostAndLeastOf(store, 'houses');
-  if (mostHouses) {
-    achievements.push({
-      type: NA_RUA_DO_MEDO_ACHIEVEMENTS.MOST_HOUSES,
-      playerId: mostHouses.playerId,
-      value: mostHouses.value,
-    });
-  }
-
-  // Most scared: visited the fewest houses
-  if (fewestHouses) {
-    achievements.push({
-      type: NA_RUA_DO_MEDO_ACHIEVEMENTS.MOST_SCARED,
-      playerId: fewestHouses.playerId,
-      value: fewestHouses.value,
-    });
-  }
-
-  //
-  const { most: mostJackpots } = utils.achievements.getMostAndLeastOf(store, 'jackpots');
-  if (mostJackpots) {
-    achievements.push({
-      type: NA_RUA_DO_MEDO_ACHIEVEMENTS.MOST_JACKPOTS,
-      playerId: mostJackpots.playerId,
-      value: mostJackpots.value,
-    });
-  }
-
-  //
-  const { most: mostSidewalk } = utils.achievements.getMostAndLeastOf(store, 'sidewalk');
-  if (mostSidewalk) {
-    achievements.push({
-      type: NA_RUA_DO_MEDO_ACHIEVEMENTS.MOST_SIDEWALK,
-      playerId: mostSidewalk.playerId,
-      value: mostSidewalk.value,
-    });
-  }
-
-  return achievements;
 };

@@ -1,92 +1,96 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-const ACHIEVEMENTS = {
-  BRAVEST: 'BRAVEST',
-  LUCKIEST: 'LUCKIEST',
-  CANDY_LOSER: 'CANDY_LOSER',
-  MOST_SCARED: 'MOST_SCARED',
-  MOST_HOUSES: 'MOST_HOUSES',
-  MOST_JACKPOTS: 'MOST_JACKPOTS',
-  MOST_SIDEWALK: 'MOST_SIDEWALK',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.BRAVEST]: {
+  BRAVEST: {
+    id: 'BRAVEST',
+    doc: 'Number of monsters faced during the game',
     icon: 'sword',
     title: {
-      pt: 'Mais Corajoso',
       en: 'Bravest',
+      pt: 'Mais Corajoso',
     },
     description: {
-      pt: 'Encontrou o maior número de monstros',
       en: 'Encounter the most number of monsters',
+      pt: 'Encontrou o maior número de monstros',
     },
   },
-  [ACHIEVEMENTS.LUCKIEST]: {
+  LUCKIEST: {
+    id: 'LUCKIEST',
+    doc: 'Number of monsters faced during the game',
     icon: 'clover',
     title: {
-      pt: 'Mais Sortudo',
       en: 'Luckiest',
+      pt: 'Mais Sortudo',
     },
     description: {
-      pt: 'Encontrou o menor número de monstros',
       en: 'Encounter the fewest monsters',
+      pt: 'Encontrou o menor número de monstros',
     },
   },
-  [ACHIEVEMENTS.CANDY_LOSER]: {
-    icon: 'foot-prints',
-    title: {
-      pt: 'Mais Desesperado',
-      en: 'Most Desperate',
-    },
-    description: {
-      pt: 'Perdeu mais doces para ataques dos monstros',
-      en: 'Lost the most number of candy for a double monster',
-    },
-  },
-  [ACHIEVEMENTS.MOST_SCARED]: {
-    icon: 'face-scared',
-    title: {
-      pt: 'Mais Assustado',
-      en: 'Most Scared',
-    },
-    description: {
-      pt: 'Visitou o menor número de casas',
-      en: 'Visited the fewest houses',
-    },
-  },
-  [ACHIEVEMENTS.MOST_HOUSES]: {
+  MOST_HOUSES: {
+    id: 'MOST_HOUSES',
+    doc: 'Houses visited during trick-or-treating',
     icon: 'house',
     title: {
-      pt: 'Mais Andador',
       en: 'Most Houses',
+      pt: 'Mais Andador',
     },
     description: {
-      pt: 'Visitou o maior número de casas',
       en: 'Visited the most houses',
+      pt: 'Visitou o maior número de casas',
     },
   },
-  [ACHIEVEMENTS.MOST_JACKPOTS]: {
+  MOST_SCARED: {
+    id: 'MOST_SCARED',
+    doc: 'Houses visited during trick-or-treating',
+    icon: 'face-scared',
+    title: {
+      en: 'Most Scared',
+      pt: 'Mais Assustado',
+    },
+    description: {
+      en: 'Visited the fewest houses',
+      pt: 'Visitou o menor número de casas',
+    },
+  },
+  MOST_JACKPOTS: {
+    id: 'MOST_JACKPOTS',
+    doc: 'Number of jackpots claimed',
     icon: 'dollar',
     title: {
-      pt: 'Mais Boladas',
       en: 'Most Jackpots',
+      pt: 'Mais Boladas',
     },
     description: {
-      pt: 'Ganhou mais boladas',
       en: 'Got the most jackpots',
+      pt: 'Ganhou mais boladas',
     },
   },
-  [ACHIEVEMENTS.MOST_SIDEWALK]: {
-    icon: 'candy',
+  CANDY_LOSER: {
+    id: 'CANDY_LOSER',
+    doc: 'Candy lost during scares',
+    icon: 'foot-prints',
     title: {
-      pt: 'Mais Mendigo',
-      en: 'Most Sidewalk Candy',
+      en: 'Most Desperate',
+      pt: 'Mais Desesperado',
     },
     description: {
-      pt: 'Catou mais doces da calçada',
+      en: 'Lost the most number of candy for a double monster',
+      pt: 'Perdeu mais doces para ataques dos monstros',
+    },
+  },
+  MOST_SIDEWALK: {
+    id: 'MOST_SIDEWALK',
+    doc: 'Candy collected from the sidewalk',
+    icon: 'candy',
+    title: {
+      en: 'Most Sidewalk Candy',
+      pt: 'Mais Mendigo',
+    },
+    description: {
       en: 'Got the most candy from the sidewalk',
+      pt: 'Catou mais doces da calçada',
     },
   },
 };
