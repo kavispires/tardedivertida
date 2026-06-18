@@ -1,176 +1,187 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-const ACHIEVEMENTS = {
-  MOST_CHILDRENS_BOOKS_MATCHES: 'MOST_CHILDRENS_BOOKS_MATCHES',
-  MOST_ROMANCE_BOOKS_MATCHES: 'MOST_ROMANCE_BOOKS_MATCHES',
-  MOST_TECHNICAL_BOOKS_MATCHES: 'MOST_TECHNICAL_BOOKS_MATCHES',
-  MOST_RED_BOOKS_MATCHES: 'MOST_RED_BOOKS_MATCHES',
-  MOST_BLUE_BOOKS_MATCHES: 'MOST_BLUE_BOOKS_MATCHES',
-  MOST_YELLOW_BOOKS_MATCHES: 'MOST_YELLOW_BOOKS_MATCHES',
-  MOST_LETTER_A_BOOKS_MATCHES: 'MOST_LETTER_A_BOOKS_MATCHES',
-  MOST_LETTER_B_BOOKS_MATCHES: 'MOST_LETTER_B_BOOKS_MATCHES',
-  MOST_LETTER_C_BOOKS_MATCHES: 'MOST_LETTER_C_BOOKS_MATCHES',
-  MOST_LETTER_D_BOOKS_MATCHES: 'MOST_LETTER_D_BOOKS_MATCHES',
-  MOST_LETTER_E_BOOKS_MATCHES: 'MOST_LETTER_E_BOOKS_MATCHES',
-  MOST_NO_MATCHES: 'MOST_NO_MATCHES',
-  MOST_FULL_MATCHES: 'MOST_FULL_MATCHES',
-  FEWEST_FULL_MATCHES: 'FEWEST_FULL_MATCHES',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.MOST_CHILDRENS_BOOKS_MATCHES]: {
-    icon: 'candy',
-    title: {
-      pt: 'Bibliófilo Infantil',
-      en: "Children's Book Enthusiast",
-    },
-    description: {
-      pt: 'Acertou mais livros infantis',
-      en: "Matched the most children's books",
-    },
-  },
-  [ACHIEVEMENTS.MOST_ROMANCE_BOOKS_MATCHES]: {
-    icon: 'heart',
-    title: {
-      pt: 'Romântico Incurável',
-      en: 'Hopeless Romantic',
-    },
-    description: {
-      pt: 'Acertou mais livros de romance',
-      en: 'Matched the most romance books',
-    },
-  },
-  [ACHIEVEMENTS.MOST_TECHNICAL_BOOKS_MATCHES]: {
-    icon: 'brain',
-    title: {
-      pt: 'Mente Técnica',
-      en: 'Technical Mind',
-    },
-    description: {
-      pt: 'Acertou mais livros técnicos',
-      en: 'Matched the most technical books',
-    },
-  },
-  [ACHIEVEMENTS.MOST_RED_BOOKS_MATCHES]: {
-    icon: 'fire',
-    title: {
-      pt: 'Visão Vermelha',
-      en: 'Red Vision',
-    },
-    description: {
-      pt: 'Acertou mais livros vermelhos',
-      en: 'Matched the most red books',
-    },
-  },
-  [ACHIEVEMENTS.MOST_BLUE_BOOKS_MATCHES]: {
-    icon: 'moon',
-    title: {
-      pt: 'Visão Azul',
-      en: 'Blue Vision',
-    },
-    description: {
-      pt: 'Acertou mais livros azuis',
-      en: 'Matched the most blue books',
-    },
-  },
-  [ACHIEVEMENTS.MOST_YELLOW_BOOKS_MATCHES]: {
-    icon: 'sun',
-    title: {
-      pt: 'Visão Amarela',
-      en: 'Yellow Vision',
-    },
-    description: {
-      pt: 'Acertou mais livros amarelos',
-      en: 'Matched the most yellow books',
-    },
-  },
-  [ACHIEVEMENTS.MOST_LETTER_A_BOOKS_MATCHES]: {
+  MOST_LETTER_A_BOOKS_MATCHES: {
+    id: 'MOST_LETTER_A_BOOKS_MATCHES',
+    doc: 'How many matches on A-titled books',
     icon: 'one',
     title: {
-      pt: 'Especialista em A',
       en: 'A Specialist',
+      pt: 'Especialista em A',
     },
     description: {
-      pt: 'Acertou mais livros com letra A',
       en: 'Matched the most books with letter A',
+      pt: 'Acertou mais livros com letra A',
     },
   },
-  [ACHIEVEMENTS.MOST_LETTER_B_BOOKS_MATCHES]: {
+  MOST_LETTER_B_BOOKS_MATCHES: {
+    id: 'MOST_LETTER_B_BOOKS_MATCHES',
+    doc: 'How many matches on B-titled books',
     icon: 'two',
     title: {
-      pt: 'Especialista em B',
       en: 'B Specialist',
+      pt: 'Especialista em B',
     },
     description: {
-      pt: 'Acertou mais livros com letra B',
       en: 'Matched the most books with letter B',
+      pt: 'Acertou mais livros com letra B',
     },
   },
-  [ACHIEVEMENTS.MOST_LETTER_C_BOOKS_MATCHES]: {
+  MOST_BLUE_BOOKS_MATCHES: {
+    id: 'MOST_BLUE_BOOKS_MATCHES',
+    doc: 'How many matches on blue books',
+    icon: 'moon',
+    title: {
+      en: 'Blue Vision',
+      pt: 'Visão Azul',
+    },
+    description: {
+      en: 'Matched the most blue books',
+      pt: 'Acertou mais livros azuis',
+    },
+  },
+  MOST_LETTER_C_BOOKS_MATCHES: {
+    id: 'MOST_LETTER_C_BOOKS_MATCHES',
+    doc: 'How many matches on C-titled books',
     icon: 'three',
     title: {
-      pt: 'Especialista em C',
       en: 'C Specialist',
+      pt: 'Especialista em C',
     },
     description: {
-      pt: 'Acertou mais livros com letra C',
       en: 'Matched the most books with letter C',
+      pt: 'Acertou mais livros com letra C',
     },
   },
-  [ACHIEVEMENTS.MOST_LETTER_D_BOOKS_MATCHES]: {
+  MOST_CHILDRENS_BOOKS_MATCHES: {
+    id: 'MOST_CHILDRENS_BOOKS_MATCHES',
+    doc: 'How many matches on childrens books',
+    icon: 'candy',
+    title: {
+      en: "Children's Book Enthusiast",
+      pt: 'Bibliófilo Infantil',
+    },
+    description: {
+      en: "Matched the most children's books",
+      pt: 'Acertou mais livros infantis',
+    },
+  },
+  MOST_LETTER_D_BOOKS_MATCHES: {
+    id: 'MOST_LETTER_D_BOOKS_MATCHES',
+    doc: 'How many matches on D-titled books',
     icon: 'four',
     title: {
-      pt: 'Especialista em D',
       en: 'D Specialist',
+      pt: 'Especialista em D',
     },
     description: {
-      pt: 'Acertou mais livros com letra D',
       en: 'Matched the most books with letter D',
+      pt: 'Acertou mais livros com letra D',
     },
   },
-  [ACHIEVEMENTS.MOST_LETTER_E_BOOKS_MATCHES]: {
+  MOST_LETTER_E_BOOKS_MATCHES: {
+    id: 'MOST_LETTER_E_BOOKS_MATCHES',
+    doc: 'How many matches on E-titled books',
     icon: 'five',
     title: {
-      pt: 'Especialista em E',
       en: 'E Specialist',
+      pt: 'Especialista em E',
     },
     description: {
-      pt: 'Acertou mais livros com letra E',
       en: 'Matched the most books with letter E',
+      pt: 'Acertou mais livros com letra E',
     },
   },
-  [ACHIEVEMENTS.MOST_NO_MATCHES]: {
-    icon: 'difference',
-    title: {
-      pt: 'Explorador Único',
-      en: 'Unique Explorer',
-    },
-    description: {
-      pt: 'Teve mais sugestões únicas sem correspondência',
-      en: 'Had the most unique suggestions without matches',
-    },
-  },
-  [ACHIEVEMENTS.MOST_FULL_MATCHES]: {
-    icon: 'star',
-    title: {
-      pt: 'Mestre da Sintonia',
-      en: 'Master of Harmony',
-    },
-    description: {
-      pt: 'Teve mais correspondências completas',
-      en: 'Had the most full matches',
-    },
-  },
-  [ACHIEVEMENTS.FEWEST_FULL_MATCHES]: {
+  FEWEST_FULL_MATCHES: {
+    id: 'FEWEST_FULL_MATCHES',
+    doc: 'How many rounds with full matches',
     icon: 'thought',
     title: {
-      pt: 'Pensador Independente',
       en: 'Independent Thinker',
+      pt: 'Pensador Independente',
     },
     description: {
-      pt: 'Manteve a originalidade com menos correspondências completas',
       en: 'Maintained originality with fewest full matches',
+      pt: 'Manteve a originalidade com menos correspondências completas',
+    },
+  },
+  MOST_FULL_MATCHES: {
+    id: 'MOST_FULL_MATCHES',
+    doc: 'How many rounds with full matches',
+    icon: 'star',
+    title: {
+      en: 'Master of Harmony',
+      pt: 'Mestre da Sintonia',
+    },
+    description: {
+      en: 'Had the most full matches',
+      pt: 'Teve mais correspondências completas',
+    },
+  },
+  MOST_NO_MATCHES: {
+    id: 'MOST_NO_MATCHES',
+    doc: 'How many rounds with no matches',
+    icon: 'difference',
+    title: {
+      en: 'Unique Explorer',
+      pt: 'Explorador Único',
+    },
+    description: {
+      en: 'Had the most unique suggestions without matches',
+      pt: 'Teve mais sugestões únicas sem correspondência',
+    },
+  },
+  MOST_RED_BOOKS_MATCHES: {
+    id: 'MOST_RED_BOOKS_MATCHES',
+    doc: 'How many matches on red books',
+    icon: 'fire',
+    title: {
+      en: 'Red Vision',
+      pt: 'Visão Vermelha',
+    },
+    description: {
+      en: 'Matched the most red books',
+      pt: 'Acertou mais livros vermelhos',
+    },
+  },
+  MOST_ROMANCE_BOOKS_MATCHES: {
+    id: 'MOST_ROMANCE_BOOKS_MATCHES',
+    doc: 'How many matches on romance books',
+    icon: 'heart',
+    title: {
+      en: 'Hopeless Romantic',
+      pt: 'Romântico Incurável',
+    },
+    description: {
+      en: 'Matched the most romance books',
+      pt: 'Acertou mais livros de romance',
+    },
+  },
+  MOST_TECHNICAL_BOOKS_MATCHES: {
+    id: 'MOST_TECHNICAL_BOOKS_MATCHES',
+    doc: 'How many matches on technical books',
+    icon: 'brain',
+    title: {
+      en: 'Technical Mind',
+      pt: 'Mente Técnica',
+    },
+    description: {
+      en: 'Matched the most technical books',
+      pt: 'Acertou mais livros técnicos',
+    },
+  },
+  MOST_YELLOW_BOOKS_MATCHES: {
+    id: 'MOST_YELLOW_BOOKS_MATCHES',
+    doc: 'How many matches on yellow books',
+    icon: 'sun',
+    title: {
+      en: 'Yellow Vision',
+      pt: 'Visão Amarela',
+    },
+    description: {
+      en: 'Matched the most yellow books',
+      pt: 'Acertou mais livros amarelos',
     },
   },
 };

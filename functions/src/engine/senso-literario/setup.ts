@@ -6,7 +6,8 @@ import type { FirebaseStateData, FirebaseStoreData } from './types';
 // Utils
 import utils from '../../utils';
 // Internal
-import { buildDeck, buildRanking, buildSequence, getAchievements } from './helpers';
+import { buildDeck, buildRanking, buildSequence } from './helpers';
+import { setupAchievements, getAchievements } from './achievements';
 
 /**
  * Setup
@@ -21,21 +22,7 @@ export const prepareSetupPhase = async (
   // Build deck
   const deck = buildDeck();
 
-  const achievements = utils.achievements.setup(players, {
-    childrens: 0,
-    romance: 0,
-    technical: 0,
-    blue: 0,
-    yellow: 0,
-    red: 0,
-    A: 0,
-    B: 0,
-    C: 0,
-    D: 0,
-    E: 0,
-    noMatches: 0,
-    fullMatches: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   const round: Round = {
     current: 0,
@@ -144,7 +131,7 @@ export const prepareGameOverPhase = async (
 
   await utils.firestore.markGameAsComplete(gameId);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.SENSO_LITERARIO,

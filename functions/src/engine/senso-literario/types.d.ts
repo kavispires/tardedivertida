@@ -1,4 +1,4 @@
-import type { SENSO_LITERARIO_ACHIEVEMENTS, SENSO_LITERARIO_ACTIONS } from './constants';
+import type { SENSO_LITERARIO_ACTIONS } from './constants';
 
 export type Pattern = {
   color: string;
@@ -13,8 +13,6 @@ export type GalleryEntry = {
     patternId: UID;
   }[];
 };
-
-export type SensoLiterarioAchievement = keyof typeof SENSO_LITERARIO_ACHIEVEMENTS;
 
 export interface SensoLiterarioStore extends DefaultStore<unknown> {
   deck: UID[]; // The card id for this game is formatted as `${color}-${genre}-${letter}`
