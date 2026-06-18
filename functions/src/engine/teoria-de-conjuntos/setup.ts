@@ -13,7 +13,8 @@ import { cloneDeep, shuffle } from 'lodash';
 import utils from '../../utils';
 import { GAME_NAMES } from '../../utils/constants';
 import type { Item } from '../../types/tdr';
-import { createVennDiagram, getAchievements } from './helpers';
+import { createVennDiagram } from './helpers';
+import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
 
 /**
  * Setup
@@ -105,15 +106,7 @@ export const prepareSetupPhase = async (
   _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const achievements = utils.achievements.setup(players, {
-    attributeCircle: 0,
-    wordCircle: 0,
-    contextCircle: 0,
-    outside: 0,
-    intersection: 0,
-    judge: 0,
-    wrong: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Save
   return {
@@ -273,12 +266,12 @@ export const prepareEvaluationPhase = async (
 
   currentGuess.suggestedArea.split('').forEach((area) => {
     if (achievementKey[area] && isNotTheJudge) {
-      utils.achievements.increase(store, state.activePlayerId, achievementKey[area], 1);
+      increaseAchievement(store.achievements, state.activePlayerId, achievementKey[area], 1);
     }
   });
 
   if (currentGuess.suggestedArea.length > 1 && isNotTheJudge) {
-    utils.achievements.increase(store, state.currentPlayerId, 'intersection', 1);
+    increaseAchievement(store.achievements, state.currentPlayerId, 'intersection', 1);
   }
 
   return {
@@ -339,11 +332,11 @@ export const prepareGameOverPhase = async (
   }
 
   // Achieve the judge
-  utils.achievements.increase(store, state.judgeId, 'judge', 1);
+  increaseAchievement(store.achievements, state.judgeId, 'judge', 1);
 
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

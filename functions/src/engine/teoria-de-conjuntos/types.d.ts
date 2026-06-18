@@ -1,5 +1,5 @@
 import type { DiagramTopic, Item } from '../../types/tdr';
-import type { OUTCOME, TEORIA_DE_CONJUNTOS_ACHIEVEMENTS, TEORIA_DE_CONJUNTOS_ACTIONS } from './constants';
+import type { OUTCOME, TEORIA_DE_CONJUNTOS_ACTIONS } from './constants';
 
 export type TeoriaDeConjuntosOptions = {
   /**
@@ -43,14 +43,12 @@ export type Guess = {
   outcome: Outcome | string;
 };
 
-export type TeoriaDeConjuntosAchievement = keyof typeof TEORIA_DE_CONJUNTOS_ACHIEVEMENTS;
-
 export interface TeoriaDeConjuntosStore extends DefaultStore {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface TeoriaDeConjuntosState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface TeoriaDeConjuntosInitialState extends InitialState {

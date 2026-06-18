@@ -1,92 +1,96 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-export const ACHIEVEMENTS = {
-  MOST_ATTRIBUTE_CIRCLE: 'MOST_ATTRIBUTE_CIRCLE',
-  MOST_WORD_CIRCLE: 'MOST_WORD_CIRCLE',
-  MOST_CONTEXT_CIRCLE: 'MOST_CONTEXT_CIRCLE',
-  MOST_OUTSIDE: 'MOST_OUTSIDE',
-  MOST_INTERSECTIONS: 'MOST_INTERSECTIONS',
-  THE_JUDGE: 'THE_JUDGE',
-  MOST_WRONG: 'MOST_WRONG',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.MOST_ATTRIBUTE_CIRCLE]: {
+  MOST_ATTRIBUTE_CIRCLE: {
+    id: 'MOST_ATTRIBUTE_CIRCLE',
+    doc: 'items placed in the attribute circle',
     icon: 'check-mark',
     title: {
-      pt: 'Mais Atributos',
       en: 'Most Attributes',
+      pt: 'Mais Atributos',
     },
     description: {
-      pt: 'Posicionou coisas no círculo azul (atributo) mais vezes',
       en: 'Placed things in the blue circle (attribute) the most',
+      pt: 'Posicionou coisas no círculo azul (atributo) mais vezes',
     },
   },
-  [ACHIEVEMENTS.MOST_WORD_CIRCLE]: {
-    icon: 'people',
-    title: {
-      pt: 'Mais Palavras',
-      en: 'Most Words',
-    },
-    description: {
-      pt: 'Posicionou coisas no círculo amarelo (palavra) mais vezes',
-      en: 'Placed things in the yellow circle (word) the most',
-    },
-  },
-  [ACHIEVEMENTS.MOST_CONTEXT_CIRCLE]: {
+  MOST_CONTEXT_CIRCLE: {
+    id: 'MOST_CONTEXT_CIRCLE',
+    doc: 'items placed in the context circle',
     icon: 'arrow-wide',
     title: {
-      pt: 'Mais Contextos',
       en: 'Most Contexts',
+      pt: 'Mais Contextos',
     },
     description: {
-      pt: 'Posicionou coisas no círculo verde (contexto) mais vezes',
       en: 'Placed things in the green circle (context) the most',
+      pt: 'Posicionou coisas no círculo verde (contexto) mais vezes',
     },
   },
-  [ACHIEVEMENTS.MOST_OUTSIDE]: {
+  MOST_INTERSECTIONS: {
+    id: 'MOST_INTERSECTIONS',
+    doc: 'items placed in an intersection',
+    icon: 'brain',
+    title: {
+      en: 'Most Intersections',
+      pt: 'Mais Interseções',
+    },
+    description: {
+      en: 'Placed things in intersections the most',
+      pt: 'Posicionou coisas em interseções mais vezes',
+    },
+  },
+  THE_JUDGE: {
+    id: 'THE_JUDGE',
+    doc: 'was the judge',
+    icon: 'brain',
+    title: {
+      en: 'The Judge',
+      pt: 'O Juiz',
+    },
+    description: {
+      en: 'Was the judge',
+      pt: 'Foi o juiz',
+    },
+  },
+  MOST_OUTSIDE: {
+    id: 'MOST_OUTSIDE',
+    doc: 'items placed outside the circles',
     icon: 'target',
     title: {
-      pt: 'Mais Fora',
       en: 'Most Outside',
+      pt: 'Mais Fora',
     },
     description: {
-      pt: 'Posicionou coisas fora dos círculos mais vezes',
       en: 'Placed things outside the circles the most',
+      pt: 'Posicionou coisas fora dos círculos mais vezes',
     },
   },
-  [ACHIEVEMENTS.MOST_INTERSECTIONS]: {
-    icon: 'brain',
+  MOST_WORD_CIRCLE: {
+    id: 'MOST_WORD_CIRCLE',
+    doc: 'items placed in the word circle',
+    icon: 'people',
     title: {
-      pt: 'Mais Interseções',
-      en: 'Most Intersections',
+      en: 'Most Words',
+      pt: 'Mais Palavras',
     },
     description: {
-      pt: 'Posicionou coisas em interseções mais vezes',
-      en: 'Placed things in intersections the most',
+      en: 'Placed things in the yellow circle (word) the most',
+      pt: 'Posicionou coisas no círculo amarelo (palavra) mais vezes',
     },
   },
-  [ACHIEVEMENTS.THE_JUDGE]: {
-    icon: 'brain',
-    title: {
-      pt: 'O Juiz',
-      en: 'The Judge',
-    },
-    description: {
-      pt: 'Foi o juiz',
-      en: 'Was the judge',
-    },
-  },
-  [ACHIEVEMENTS.MOST_WRONG]: {
+  MOST_WRONG: {
+    id: 'MOST_WRONG',
+    doc: 'was wrong',
     icon: 'face-embarrassed',
     title: {
-      pt: 'Mais Errado',
       en: 'Most Wrong',
+      pt: 'Mais Errado',
     },
     description: {
-      pt: 'Posicionou coisas erradas mais vezes',
       en: 'Placed things wrong the most',
+      pt: 'Posicionou coisas erradas mais vezes',
     },
   },
 };
