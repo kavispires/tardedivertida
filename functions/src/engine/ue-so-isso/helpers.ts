@@ -6,14 +6,15 @@ import type {
   FirebaseStoreData,
   Outcome,
   PastSuggestion,
-  PlayerSuggestion
+  PlayerSuggestion,
   UsedWord,
   UsedWords,
 } from './types';
 // Constants
-import { CORRECT_GUESS_SCORE, OUTCOME UE_SO_ISSO_PHASES } from './constants';
+import { CORRECT_GUESS_SCORE, OUTCOME, UE_SO_ISSO_PHASES } from './constants';
 // Utilities
 import utils from '../../utils';
+import { pushAchievement, increaseAchievement } from './achievements';
 
 /**
  * Determines the next phase based on the current phase and outcome
@@ -237,7 +238,7 @@ export function findDuplicateSuggestions(pastSuggestion: PastSuggestion): string
  * Counts achievements from past suggestions for all players
  * @param store - The Firebase store data for tracking achievements
  */
-export functions(store: FirebaseStoreData) {
+export const countAchievements = (store: FirebaseStoreData) => {
   const pastSuggestions: PastSuggestion[] = store.pastSuggestions;
 
   pastSuggestions.forEach((entry) => {
@@ -245,24 +246,24 @@ export functions(store: FirebaseStoreData) {
     const invalidClues = entry.suggestions.filter((s) => s.invalid);
 
     if (entry.outcome === OUTCOME.CORRECT) {
-      utils.achievements.push(store, entry.guesserId, 'correctGuesses', validClues.length);
+      pushAchievement(store.achievements, entry.guesserId, 'correctGuesses', validClues.length);
     }
 
     if (entry.outcome === OUTCOME.WRONG) {
-      utils.achievements.push(store, entry.guesserId, 'wrongGuesses', validClues.length);
+      pushAchievement(store.achievements, entry.guesserId, 'wrongGuesses', validClues.length);
     }
 
     if (entry.outcome === OUTCOME.PASS) {
-      utils.achievements.increase(store, entry.guesserId, 'passes', 1);
+      increaseAchievement(store.achievements, entry.guesserId, 'passes', 1);
     }
 
     invalidClues.forEach((clue) => {
-      utils.achievements.increase(store, clue.playerId, 'eliminatedClues', 1);
-      utils.achievements.increase(store, clue.playerId, 'clueLength', clue.suggestion.length);
+      increaseAchievement(store.achievements, clue.playerId, 'eliminatedClues', 1);
+      increaseAchievement(store.achievements, clue.playerId, 'clueLength', clue.suggestion.length);
     });
 
     validClues.forEach((clue) => {
-      utils.achievements.increase(store, clue.playerId, 'clueLength', clue.suggestion.length);
+      increaseAchievement(store.achievements, clue.playerId, 'clueLength', clue.suggestion.length);
     });
   });
 
@@ -275,95 +276,4 @@ export functions(store: FirebaseStoreData) {
       store.achievements[playerId].wrongGuesses ?? [],
     );
   });
-}
-
-/**
- * Calculates and returns player achievements based on game statistics
- * @param store - The Firebase store data containing achievement counters
- */
-export consts = (store: FirebaseStoreData) => {
-  const achievements: Achievement<>[] = [];
-
-  // Worst Clue Giver: most eliminated clues
-  const { most: mostEliminatedClues, least: fewestEliminatedClues } = utils.achievements.getMostAndLeastOf(
-    store,
-    'eliminatedClues',
-  );
-  if (mostEliminatedClues) {
-    achievements.push({
-      type:.MOST_ELIMINATED_CLUES,
-      playerId: mostEliminatedClues.playerId,
-      value: mostEliminatedClues.value,
-    });
-  }
-
-  // Best Clue Giver: fewest eliminated clues
-  if (fewestEliminatedClues) {
-    achievements.push({
-      type:.FEWEST_ELIMINATED_CLUES,
-      playerId: fewestEliminatedClues.playerId,
-      value: fewestEliminatedClues.value,
-    });
-  }
-
-  // Longest clues:
-  const { most: longest, least: shortest } = utils.achievements.getMostAndLeastOf(store, 'clueLength');
-  if (longest) {
-    achievements.push({
-      type:.LONGEST_CLUES,
-      playerId: longest.playerId,
-      value: longest.value,
-    });
-  }
-
-  // Shortest clues
-  if (shortest) {
-    achievements.push({
-      type:.SHORTEST_CLUES,
-      playerId: shortest.playerId,
-      value: shortest.value,
-    });
-  }
-
-  // Most passes
-  const { most: passes } = utils.achievements.getMostAndLeastOf(store, 'passes');
-  if (passes) {
-    achievements.push({
-      type:.MOST_PASSES,
-      playerId: passes.playerId,
-      value: passes.value,
-    });
-  }
-
-  // Correct guesses with fewest clues
-  const { least: correctGuesses } = utils.achievements.getMostAndLeastOf(
-    store,
-    'correctGuesses',
-    [],
-    (v) => v > 0,
-  );
-  if (correctGuesses) {
-    achievements.push({
-      type:.BEST_GUESSER,
-      playerId: correctGuesses.playerId,
-      value: correctGuesses.value,
-    });
-  }
-
-  // Most passes
-  const { most: wrongGuesses } = utils.achievements.getMostAndLeastOf(
-    store,
-    'wrongGuesses',
-    [],
-    (v) => v > 0,
-  );
-  if (wrongGuesses) {
-    achievements.push({
-      type:.WORST_GUESSER,
-      playerId: wrongGuesses.playerId,
-      value: wrongGuesses.value,
-    });
-  }
-
-  return achievements;
 };

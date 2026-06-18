@@ -1,92 +1,122 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-const ACHIEVEMENTS = {
-  MOST_ELIMINATED_CLUES: 'MOST_ELIMINATED_CLUES',
-  FEWEST_ELIMINATED_CLUES: 'FEWEST_ELIMINATED_CLUES',
-  LONGEST_CLUES: 'LONGEST_CLUES',
-  SHORTEST_CLUES: 'SHORTEST_CLUES',
-  MOST_PASSES: 'MOST_PASSES',
-  BEST_GUESSER: 'BEST_GUESSER',
-  WORST_GUESSER: 'WORST_GUESSER',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.MOST_ELIMINATED_CLUES]: {
-    icon: 'people',
-    title: {
-      pt: 'Melhor Senso Comum',
-      en: 'Best Common Sense',
-    },
-    description: {
-      pt: 'Teve dicas eliminadas mais vezes',
-      en: 'Got their clues to be eliminated the most',
-    },
-  },
-  [ACHIEVEMENTS.FEWEST_ELIMINATED_CLUES]: {
-    icon: 'check-mark',
-    title: {
-      pt: 'Mais Sábio',
-      en: 'Wisest',
-    },
-    description: {
-      pt: 'Teve dicas eliminadas menos vezes',
-      en: 'Got their clues to be eliminated the fewest',
-    },
-  },
-  [ACHIEVEMENTS.LONGEST_CLUES]: {
+  LONGEST_CLUES: {
+    id: 'LONGEST_CLUES',
+    doc: 'the length of clue words',
     icon: 'arrow-wide',
     title: {
-      pt: 'Melhor Digitador',
       en: 'Best typer',
+      pt: 'Melhor Digitador',
     },
     description: {
-      pt: 'Teve as dicas mais longas',
       en: 'Had the lengthiest clues',
+      pt: 'Teve as dicas mais longas',
     },
   },
-  [ACHIEVEMENTS.SHORTEST_CLUES]: {
+  SHORTEST_CLUES: {
+    id: 'SHORTEST_CLUES',
+    doc: 'the length of clue words',
     icon: 'arrow-narrow',
     title: {
-      pt: 'Mais Sucinto',
       en: 'Most Succinct',
+      pt: 'Mais Sucinto',
     },
     description: {
-      pt: 'Teve as dicas mais curtas',
       en: 'Had the shortest clues',
+      pt: 'Teve as dicas mais curtas',
     },
   },
-  [ACHIEVEMENTS.MOST_PASSES]: {
-    icon: 'face-panic',
+  FEWEST_CLUES_GIVEN: {
+    id: 'FEWEST_CLUES_GIVEN',
+    doc: 'how many clues were given',
+    icon: 'arrow-down',
     title: {
-      pt: 'Mais Medroso',
-      en: 'Most Scared',
+      en: 'Mind Reader',
+      pt: 'Leitor de Mentes',
     },
     description: {
-      pt: 'Passou mais vezes',
-      en: 'Pressed pass the most',
+      en: 'Was given the fewest clues by other players to work with.',
+      pt: 'Recebeu o menor número de dicas dos outros jogadores para trabalhar.',
     },
   },
-  [ACHIEVEMENTS.BEST_GUESSER]: {
+  MOST_CLUES_GIVEN: {
+    id: 'MOST_CLUES_GIVEN',
+    doc: 'how many clues were given',
+    icon: 'arrow-up',
+    title: {
+      en: 'VIP Treatment',
+      pt: 'Tratamento VIP',
+    },
+    description: {
+      en: 'Was given the most clues by other players to work with.',
+      pt: 'Recebeu o maior número de dicas dos outros jogadores para trabalhar.',
+    },
+  },
+  BEST_GUESSER: {
+    id: 'BEST_GUESSER',
+    doc: 'Correct guesses with fewest clues',
     icon: 'brain',
     title: {
-      pt: 'Melhor Adivinhador',
       en: 'Best Guesser',
+      pt: 'Melhor Adivinhador',
     },
     description: {
-      pt: 'Adivinhou com o menor número médio de dicas',
       en: 'Guessed correctly with the fewest average number of clues',
+      pt: 'Adivinhou com o menor número médio de dicas',
     },
   },
-  [ACHIEVEMENTS.WORST_GUESSER]: {
-    icon: 'broken-bulb',
+  FEWEST_ELIMINATED_CLUES: {
+    id: 'FEWEST_ELIMINATED_CLUES',
+    doc: 'how many clues were eliminated',
+    icon: 'check-mark',
     title: {
-      pt: 'Mais Audacioso',
-      en: 'Most Wild Guesser',
+      en: 'Wisest',
+      pt: 'Mais Sábio',
     },
     description: {
-      pt: 'Errou com o maior número médio de dicas',
+      en: 'Got their clues to be eliminated the fewest',
+      pt: 'Teve dicas eliminadas menos vezes',
+    },
+  },
+  MOST_ELIMINATED_CLUES: {
+    id: 'MOST_ELIMINATED_CLUES',
+    doc: 'how many clues were eliminated',
+    icon: 'people',
+    title: {
+      en: 'Best Common Sense',
+      pt: 'Melhor Senso Comum',
+    },
+    description: {
+      en: 'Got their clues to be eliminated the most',
+      pt: 'Teve dicas eliminadas mais vezes',
+    },
+  },
+  MOST_PASSES: {
+    id: 'MOST_PASSES',
+    doc: 'how many times pressed pass when it was the guesser',
+    icon: 'face-panic',
+    title: {
+      en: 'Most Scared',
+      pt: 'Mais Medroso',
+    },
+    description: {
+      en: 'Pressed pass the most',
+      pt: 'Passou mais vezes',
+    },
+  },
+  WORST_GUESSER: {
+    id: 'WORST_GUESSER',
+    doc: 'Wrong guesses with most clues',
+    icon: 'broken-bulb',
+    title: {
+      en: 'Most Wild Guesser',
+      pt: 'Mais Audacioso',
+    },
+    description: {
       en: 'Guessed wrong with the most average number of clues',
+      pt: 'Errou com o maior número médio de dicas',
     },
   },
 };

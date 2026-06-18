@@ -23,12 +23,11 @@ import {
   countAchievements,
   determineSecretWord,
   determineSuggestionsNumber,
-  getAchievements,
   groupSuggestions,
   tallyVotes,
   validateSuggestions,
 } from './helpers';
-import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
+import { setupAchievements, getAchievements } from './achievements';
 import { saveData } from './data';
 
 /**

@@ -8,26 +8,35 @@ import { achievementBuilder } from '../../utils/tool-kits';
 /**
  * Build achievement utilities for Ue So Isso game
  */
-const uesoissoAchievements = achievementBuilder('UE_SO_ISSO')
+const ueSoIssoAchievements = achievementBuilder('UE_SO_ISSO')
   .counter('eliminatedClues', {
-    doc: 'eliminatedClues',
-    most: 'TBD',
+    doc: 'how many clues were eliminated',
+    most: 'MOST_ELIMINATED_CLUES',
+    least: 'FEWEST_ELIMINATED_CLUES',
   })
   .counter('clueLength', {
-    doc: 'clueLength',
-    most: 'TBD',
+    doc: 'the length of clue words',
+    most: 'LONGEST_CLUES',
+    least: 'SHORTEST_CLUES',
   })
   .counter('passes', {
-    doc: 'passes',
-    most: 'TBD',
+    doc: 'how many times pressed pass when it was the guesser',
+    most: 'MOST_PASSES',
+  })
+  .counter('cluesGiven', {
+    doc: 'how many clues were given',
+    most: 'MOST_CLUES_GIVEN',
+    least: 'FEWEST_CLUES_GIVEN',
   })
   .array('correctGuesses', {
-    doc: 'correctGuesses',
-    uniqueItems: { most: 'TBD' },
+    doc: 'Correct guesses with fewest clues',
+    unique: { least: 'BEST_GUESSER' },
+    qualifier: (v) => v > 0,
   })
   .array('wrongGuesses', {
-    doc: 'wrongGuesses',
-    uniqueItems: { most: 'TBD' },
+    doc: 'Wrong guesses with most clues',
+    unique: { most: 'WORST_GUESSER' },
+    qualifier: (v) => v > 0,
   })
   .build();
 
@@ -37,4 +46,4 @@ export const {
   increase: increaseAchievement,
   push: pushAchievement,
   calculate: getAchievements,
-} = uesoissoAchievements;
+} = ueSoIssoAchievements;
