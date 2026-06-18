@@ -1,6 +1,6 @@
 import type { CityLocation } from '../../types/tdr';
 import type { GridMapType } from '../../utils/tool-kits/grid-map';
-import type { PLANEJAMENTO_URBANO_ACHIEVEMENTS, PLANEJAMENTO_URBANO_ACTIONS } from './constants';
+import type { PLANEJAMENTO_URBANO_ACTIONS } from './constants';
 
 export type PlanejamentoUrbanoOptions = {
   /**
@@ -25,11 +25,9 @@ export type GalleryEntry = {
   finalCellId: string;
 };
 
-export type PlanejamentoUrbanoAchievement = keyof typeof PLANEJAMENTO_URBANO_ACHIEVEMENTS;
-
 export interface PlanejamentoUrbanoStore extends DefaultStore<PlanejamentoUrbanoOptions> {
   deck: UID[];
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export type Construction = {
@@ -49,7 +47,7 @@ export interface PlanejamentoUrbanoState extends DefaultState {
   // cityLocationsDict?: Dictionary<CityLocation>;
   // city?: Site[];
   // gameOrder?: UID[];
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface PlanejamentoUrbanoInitialState extends InitialState {

@@ -1,92 +1,96 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-const ACHIEVEMENTS = {
-  MOST_CONE_A_LEFT: 'MOST_CONE_A_LEFT',
-  MOST_CONE_B_LEFT: 'MOST_CONE_B_LEFT',
-  MOST_CONE_C_LEFT: 'MOST_CONE_C_LEFT',
-  MOST_CONE_D_LEFT: 'MOST_CONE_D_LEFT',
-  MOST_ARCHITECT_MATCHES: 'MOST_ARCHITECT_MATCHES',
-  MOST_OTHER_PLAYERS_MATCHES: 'MOST_OTHER_PLAYERS_MATCHES',
-  MOST_SOLO_GUESSES: 'MOST_SOLO_GUESSES',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.MOST_CONE_A_LEFT]: {
-    icon: 'cone',
-    title: {
-      pt: 'Cone A',
-      en: 'Cone A',
-    },
-    description: {
-      pt: 'Deixou o Cone A sobrando mais vezes',
-      en: 'Left Cone A unused the most',
-    },
-  },
-  [ACHIEVEMENTS.MOST_CONE_B_LEFT]: {
-    icon: 'cone',
-    title: {
-      pt: 'Cone B',
-      en: 'Cone B',
-    },
-    description: {
-      pt: 'Deixou o Cone B sobrando mais vezes',
-      en: 'Left Cone B unused the most',
-    },
-  },
-  [ACHIEVEMENTS.MOST_CONE_C_LEFT]: {
-    icon: 'cone',
-    title: {
-      pt: 'Cone C',
-      en: 'Cone C',
-    },
-    description: {
-      pt: 'Deixou o Cone C sobrando mais vezes',
-      en: 'Left Cone C unused the most',
-    },
-  },
-  [ACHIEVEMENTS.MOST_CONE_D_LEFT]: {
-    icon: 'cone',
-    title: {
-      pt: 'Cone D',
-      en: 'Cone D',
-    },
-    description: {
-      pt: 'Deixou o Cone D sobrando mais vezes',
-      en: 'Left Cone D unused the most',
-    },
-  },
-  [ACHIEVEMENTS.MOST_ARCHITECT_MATCHES]: {
+  MOST_ARCHITECT_MATCHES: {
+    id: 'MOST_ARCHITECT_MATCHES',
+    doc: 'Got the correct location matching the architect',
     icon: 'glasses',
     title: {
-      pt: 'Melhor Arquiteto',
       en: 'Best Architect',
+      pt: 'Melhor Arquiteto',
     },
     description: {
-      pt: 'Mais jogadores acertaram o planejamento do arquiteto',
       en: "Most players matched the architect's plan",
+      pt: 'Mais jogadores acertaram o planejamento do arquiteto',
     },
   },
-  [ACHIEVEMENTS.MOST_OTHER_PLAYERS_MATCHES]: {
+  MOST_CONE_A_LEFT: {
+    id: 'MOST_CONE_A_LEFT',
+    doc: 'Left the cone A without a location',
+    icon: 'cone',
+    title: {
+      en: 'Cone A',
+      pt: 'Cone A',
+    },
+    description: {
+      en: 'Left Cone A unused the most',
+      pt: 'Deixou o Cone A sobrando mais vezes',
+    },
+  },
+  MOST_CONE_B_LEFT: {
+    id: 'MOST_CONE_B_LEFT',
+    doc: 'Left the cone B without a location',
+    icon: 'cone',
+    title: {
+      en: 'Cone B',
+      pt: 'Cone B',
+    },
+    description: {
+      en: 'Left Cone B unused the most',
+      pt: 'Deixou o Cone B sobrando mais vezes',
+    },
+  },
+  MOST_CONE_C_LEFT: {
+    id: 'MOST_CONE_C_LEFT',
+    doc: 'Left the cone C without a location',
+    icon: 'cone',
+    title: {
+      en: 'Cone C',
+      pt: 'Cone C',
+    },
+    description: {
+      en: 'Left Cone C unused the most',
+      pt: 'Deixou o Cone C sobrando mais vezes',
+    },
+  },
+  MOST_CONE_D_LEFT: {
+    id: 'MOST_CONE_D_LEFT',
+    doc: 'Left the cone D without a location',
+    icon: 'cone',
+    title: {
+      en: 'Cone D',
+      pt: 'Cone D',
+    },
+    description: {
+      en: 'Left Cone D unused the most',
+      pt: 'Deixou o Cone D sobrando mais vezes',
+    },
+  },
+  MOST_OTHER_PLAYERS_MATCHES: {
+    id: 'MOST_OTHER_PLAYERS_MATCHES',
+    doc: 'Got the correct location matching other players',
     icon: 'people',
     title: {
-      pt: 'Conformista',
       en: 'Conformist',
+      pt: 'Conformista',
     },
     description: {
-      pt: 'Mais jogadores acertaram o planejamento junto com você, mesmo que estivesse errado',
       en: 'Most players matched the plan along with you, even if it was wrong',
+      pt: 'Mais jogadores acertaram o planejamento junto com você, mesmo que estivesse errado',
     },
   },
-  [ACHIEVEMENTS.MOST_SOLO_GUESSES]: {
+  MOST_SOLO_GUESSES: {
+    id: 'MOST_SOLO_GUESSES',
+    doc: 'Got the correct location without matching anyone',
     icon: 'face-embarrassed',
     title: {
-      pt: 'Lobo Solitário',
       en: 'Lone Wolf',
+      pt: 'Lobo Solitário',
     },
     description: {
-      pt: 'Mais vezes você acertou o planejamento sozinho',
       en: 'Most times you matched the plan alone',
+      pt: 'Mais vezes você acertou o planejamento sozinho',
     },
   },
 };

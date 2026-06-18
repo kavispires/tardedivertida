@@ -15,7 +15,7 @@ import { difference, orderBy, sampleSize, shuffle } from 'lodash';
 import utils from '../../utils';
 import type { CityLocation } from '../../types/tdr';
 import { GAME_NAMES, LETTERS } from '../../utils/constants';
-import { getAchievements } from './helpers';
+import { setupAchievements, increaseAchievement, getAchievements } from './achievements';
 
 /**
  * Prepares the setup phase for the urban planning game.
@@ -73,15 +73,7 @@ export const prepareSetupPhase = async (
     usedCityLocations[locationId] = allCityLocations[locationId];
   });
 
-  const achievements = utils.achievements.setup(players, {
-    coneA: 0,
-    coneB: 0,
-    coneC: 0,
-    coneD: 0,
-    architectMatches: 0,
-    playersMatches: 0,
-    soloMatches: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Save
   return {
@@ -237,7 +229,8 @@ export const preparePlacingPhase = async (
   // Achievement: Cones for architect
   const leftOverCone = difference(Object.values(planning), CONES)[0];
   if (leftOverCone) {
-    utils.achievements.increase(store, architectId, `cone${leftOverCone}`, 1);
+    const achievementKey = `cone${leftOverCone}` as 'coneA' | 'coneB' | 'coneC' | 'coneD';
+    increaseAchievement(store.achievements, architectId, achievementKey, 1);
   } else {
     utils.helpers.print('No leftover cone for architect');
   }
@@ -305,7 +298,7 @@ export const prepareResolutionPhase = async (
           scores.add(architectId, ARCHITECT_PASSIVE_POINTS, 1); // The architect gets a point for each correct guess
           playersPoints[architectId] += ARCHITECT_PASSIVE_POINTS;
           architectPoints += 1;
-          utils.achievements.increase(store, player.id, 'architectMatches', 1);
+          increaseAchievement(store.achievements, player.id, 'architectMatches', 1);
         } else {
           playersSay[playerGuess] = playersSay[playerGuess] || [];
           playersSay[playerGuess].push(player.id);
@@ -324,11 +317,11 @@ export const prepareResolutionPhase = async (
           playersPoints[playerId] = playersPoints[playerId] || 0;
           scores.add(playerId, points, 2); // Points for matching other players
           playersPoints[architectId] += points;
-          utils.achievements.increase(store, playerId, 'playersMatches', 1);
+          increaseAchievement(store.achievements, playerId, 'playersMatches', 1);
         });
       } else {
         playerIds.forEach((playerId) => {
-          utils.achievements.increase(store, playerId, 'soloMatches', 1);
+          increaseAchievement(store.achievements, playerId, 'soloMatches', 1);
         });
       }
     });
@@ -434,7 +427,7 @@ export const prepareGameOverPhase = async (
 
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 
@@ -444,7 +437,7 @@ export const prepareGameOverPhase = async (
     startedAt: store.createdAt,
     players,
     winners,
-    achievements: [],
+    achievements,
     language: store.language,
   });
 
