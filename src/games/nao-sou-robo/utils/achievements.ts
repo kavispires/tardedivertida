@@ -1,56 +1,57 @@
 // Types
 import type { AchievementReference } from 'types/game';
 
-const ACHIEVEMENTS = {
-  MOST_ROBOT: 'MOST_ROBOT',
-  LEAST_ROBOT: 'LEAST_ROBOT',
-  MOST_ALONE_CORRECT: 'MOST_ALONE_CORRECT',
-  MOST_ALONE_ROBOT: 'MOST_ALONE_ROBOT',
-};
-
 export const achievementsReference: AchievementReference = {
-  [ACHIEVEMENTS.MOST_ROBOT]: {
-    icon: 'robot',
-    title: {
-      pt: 'Mais Desumano',
-      en: 'Most Inhuman',
-    },
-    description: {
-      pt: 'Votou no robô mais vezes',
-      en: 'Voted for the robot the most',
-    },
-  },
-  [ACHIEVEMENTS.LEAST_ROBOT]: {
-    icon: 'person',
-    title: {
-      pt: 'Mais Humano',
-      en: 'Most Human',
-    },
-    description: {
-      pt: 'Selecionou o robô menos vezes',
-      en: 'Selected the robot the least',
-    },
-  },
-  [ACHIEVEMENTS.MOST_ALONE_CORRECT]: {
+  MOST_ALONE_CORRECT: {
+    id: 'MOST_ALONE_CORRECT',
+    doc: 'got the correct cards by themselves',
     icon: 'one',
     title: {
-      pt: 'Melhor Solitário',
       en: 'Best Lone Wolf',
+      pt: 'Melhor Solitário',
     },
     description: {
-      pt: 'Votou corretamente mais vezes sozinho',
       en: 'Voted correctly alone the most',
+      pt: 'Votou corretamente mais vezes sozinho',
     },
   },
-  [ACHIEVEMENTS.MOST_ALONE_ROBOT]: {
+  MOST_ALONE_ROBOT: {
+    id: 'MOST_ALONE_ROBOT',
+    doc: 'got the incorrect cards by themselves',
     icon: 'x',
     title: {
-      pt: 'Anti-fã',
       en: 'Anti-fan',
+      pt: 'Anti-fã',
     },
     description: {
-      pt: 'Votou sozinho no robô mais vezes',
       en: 'Vote alone for the robot the most',
+      pt: 'Votou sozinho no robô mais vezes',
+    },
+  },
+  LEAST_ROBOT: {
+    id: 'LEAST_ROBOT',
+    doc: 'chose robot cards',
+    icon: 'person',
+    title: {
+      en: 'Most Human',
+      pt: 'Mais Humano',
+    },
+    description: {
+      en: 'Selected the robot the least',
+      pt: 'Selecionou o robô menos vezes',
+    },
+  },
+  MOST_ROBOT: {
+    id: 'MOST_ROBOT',
+    doc: 'chose robot cards',
+    icon: 'robot',
+    title: {
+      en: 'Most Inhuman',
+      pt: 'Mais Desumano',
+    },
+    description: {
+      en: 'Voted for the robot the most',
+      pt: 'Votou no robô mais vezes',
     },
   },
 };

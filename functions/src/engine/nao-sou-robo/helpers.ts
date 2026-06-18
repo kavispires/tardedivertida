@@ -3,22 +3,15 @@ import {
   CARD_SELECTION_PER_PLAYER_COUNT,
   STARTING_HAND,
   MAX_ROUNDS,
-  NAO_SOU_ROBO_ACHIEVEMENTS,
-  NAO_SOU_ROBO_PHASES,
   OUTCOME,
   SUSPICION_THRESHOLD,
+  NAO_SOU_ROBO_PHASES,
 } from './constants';
 // Utils
 import utils from '../../utils';
 import { orderBy } from 'lodash';
-import type {
-  Captcha,
-  CaptchaCard,
-  FirebaseStoreData,
-  GalleryEntry,
-  NaoSouRoboAchievement,
-  Robot,
-} from './types';
+import type { Captcha, CaptchaCard, FirebaseStoreData, GalleryEntry, Robot } from './types';
+import { increaseAchievement } from './achievements';
 
 /**
  * Determines the next phase based on the current phase and outcome
@@ -89,7 +82,8 @@ export const calculateResults = (
       const isRobot = options[guess].bot;
       if (isRobot) {
         scores.add(player.id, -1, 1);
-        utils.achievements.increase(store, player.id, 'robot', 1);
+        increaseAchievement(store.achievements, player.id, 'robot', 1);
+
         choseRobot = true;
       } else {
         scores.add(player.id, 1, 0);
@@ -103,8 +97,8 @@ export const calculateResults = (
   Object.values(options).forEach((option) => {
     if (option.players.length === 1) {
       // Achievement
-      utils.achievements.increase(
-        store,
+      increaseAchievement(
+        store.achievements,
         option.players[0],
         option.bot ? 'aloneIncorrect' : 'aloneCorrect',
         1,
@@ -114,7 +108,7 @@ export const calculateResults = (
     if (option.bot) {
       // Achievement
       option.players.forEach((playerId) => {
-        utils.achievements.increase(store, playerId, 'robot', 1);
+        increaseAchievement(store.achievements, playerId, 'robot', 1);
         players[playerId].suspicion[captcha.round - 1] = true;
         // If a player has 3 strikes, they lose
         if (players[playerId].suspicion.filter(Boolean).length >= SUSPICION_THRESHOLD) {
@@ -168,52 +162,4 @@ export const calculateResults = (
     outcome,
     result,
   };
-};
-
-/**
- * Calculates and returns player achievements based on game statistics
- * @param store - The Firebase store data containing achievement counters
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<NaoSouRoboAchievement>[] = [];
-
-  // Most and Least Robot: voted for the robot the most/least
-  const { most: mostRobot, least: leastRobot } = utils.achievements.getMostAndLeastOf(store, 'robot');
-  if (mostRobot) {
-    achievements.push({
-      type: NAO_SOU_ROBO_ACHIEVEMENTS.MOST_ROBOT,
-      playerId: mostRobot.playerId,
-      value: mostRobot.value,
-    });
-  }
-
-  if (leastRobot) {
-    achievements.push({
-      type: NAO_SOU_ROBO_ACHIEVEMENTS.LEAST_ROBOT,
-      playerId: leastRobot.playerId,
-      value: leastRobot.value,
-    });
-  }
-
-  // Most alone incorrect
-  const { most: mostAloneRobot } = utils.achievements.getMostAndLeastOf(store, 'aloneIncorrect');
-  if (mostAloneRobot) {
-    achievements.push({
-      type: NAO_SOU_ROBO_ACHIEVEMENTS.MOST_ALONE_ROBOT,
-      playerId: mostAloneRobot.playerId,
-      value: mostAloneRobot.value,
-    });
-  }
-
-  // Most alone correct
-  const { most: mostAloneCorrect } = utils.achievements.getMostAndLeastOf(store, 'aloneCorrect');
-  if (mostAloneCorrect) {
-    achievements.push({
-      type: NAO_SOU_ROBO_ACHIEVEMENTS.MOST_ALONE_CORRECT,
-      playerId: mostAloneCorrect.playerId,
-      value: mostAloneCorrect.value,
-    });
-  }
-
-  return achievements;
 };

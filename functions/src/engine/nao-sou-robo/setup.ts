@@ -15,7 +15,8 @@ import {
 import { GAME_NAMES } from '../../utils/constants';
 // Utils
 import utils from '../../utils';
-import { calculateResults, distributeCards, getAchievements } from './helpers';
+import { calculateResults, distributeCards } from './helpers';
+import { setupAchievements, getAchievements } from './achievements';
 
 /**
  * Setup
@@ -29,11 +30,7 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = utils.achievements.setup(players, {
-    robot: 0,
-    aloneCorrect: 0,
-    aloneIncorrect: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Distribute images and starting hands
   distributeCards(store, players, resourceData.images);
@@ -266,7 +263,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = state.outcome === OUTCOME.ROBOT_WINS ? [] : utils.players.determineWinners(players);
 
-  const achievements = getAchievements(store);
+  const achievements = getAchievements(store.achievements);
 
   await utils.firestore.markGameAsComplete(gameId);
 

@@ -1,5 +1,5 @@
 import type { TextCard } from '../../types/tdr';
-import type { NAO_SOU_ROBO_ACHIEVEMENTS, NAO_SOU_ROBO_ACTIONS } from './constants';
+import type { NAO_SOU_ROBO_ACTIONS } from './constants';
 
 export interface NaoSouRoboOptions {
   [key: string]: boolean;
@@ -43,14 +43,12 @@ export interface GalleryEntry extends Captcha {
   suspicion: number;
 }
 
-export type NaoSouRoboAchievement = keyof typeof NAO_SOU_ROBO_ACHIEVEMENTS;
-
 export interface NaoSouRoboStore extends DefaultStore {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface NaoSouRoboState extends DefaultState {
-  [key: string]: any;
+  [key: string]: AnyOrUnknownPlaceholder;
 }
 
 export interface NaoSouRoboInitialState extends InitialState {
