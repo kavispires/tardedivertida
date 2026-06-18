@@ -98,8 +98,8 @@ function parseBackendAchievements(content) {
         achievements.push({ id: latestMatch[1], doc, property, type: 'array-latest' });
       }
 
-      // Handle unique or uniqueItems - extract the nested object content
-      const uniqueBlockMatch = config.match(/(?:unique|uniqueItems):\s*\{([^}]+)\}/);
+      // Handle unique or average - extract the nested object content
+      const uniqueBlockMatch = config.match(/(?:unique|average):\s*\{([^}]+)\}/);
       if (uniqueBlockMatch) {
         const uniqueBlock = uniqueBlockMatch[1];
 
