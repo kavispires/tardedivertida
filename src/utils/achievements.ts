@@ -18,6 +18,7 @@ import LINHAS_CRUZADAS from 'games/linhas-cruzadas/utils/achievements';
 import MEDIDAS_NAO_EXATAS from 'games/medidas-nao-exatas/utils/achievements';
 import MEGAMIX from 'games/megamix/utils/achievements';
 import MENTE_COLETIVA from 'games/mente-coletiva/utils/achievements';
+import MESMICE from 'games/mesmice/utils/achievements';
 import METALINGUAGEM from 'games/metalinguagem/utils/achievements';
 import NA_FILA_DO_BANCO from 'games/na-fila-do-banco/utils/achievements';
 import NA_RUA_DO_MEDO from 'games/na-rua-do-medo/utils/achievements';
@@ -32,6 +33,7 @@ import RETRATO_FALADO from 'games/retrato-falado/utils/achievements';
 import SENSO_LITERARIO from 'games/senso-literario/utils/achievements';
 import SINAIS_DE_ALERTA from 'games/sinais-de-alerta/utils/achievements';
 import SUPER_CAMPEONATO from 'games/super-campeonato/utils/achievements';
+import TEORIA_DE_CONJUNTOS from 'games/teoria-de-conjuntos/utils/achievements';
 import TESTE_DE_ELENCO from 'games/teste-de-elenco/utils/achievements';
 import TESTEMUNHA_OCULAR from 'games/testemunha-ocular/utils/achievements';
 import UE_SO_ISSO from 'games/ue-so-isso/utils/achievements';
@@ -64,6 +66,7 @@ export const ACHIEVEMENTS_DICT: Record<string, AchievementReference | null> = {
   'medidas-nao-exatas': MEDIDAS_NAO_EXATAS,
   megamix: MEGAMIX,
   'mente-coletiva': MENTE_COLETIVA,
+  mesmice: MESMICE,
   metalinguagem: METALINGUAGEM,
   'na-fila-do-banco': NA_FILA_DO_BANCO,
   'na-rua-do-medo': NA_RUA_DO_MEDO,
@@ -82,6 +85,7 @@ export const ACHIEVEMENTS_DICT: Record<string, AchievementReference | null> = {
   'sinais-de-alerta': SINAIS_DE_ALERTA,
   'super-campeonato': SUPER_CAMPEONATO,
   'ta-na-cara': null,
+  'teoria-de-conjuntos': TEORIA_DE_CONJUNTOS,
   'testemunha-ocular': TESTEMUNHA_OCULAR,
   'teste-de-elenco': TESTE_DE_ELENCO,
   'ue-so-isso': UE_SO_ISSO,

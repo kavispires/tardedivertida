@@ -21,4 +21,5 @@
 
 ### Report
 
-- TBD
+- Achievements Implementation: ❌ (Frontend: gameInfo.json missing "achievements" in features array)
+- Rules (EN/PT): ❌ (EN and PT rules missing)

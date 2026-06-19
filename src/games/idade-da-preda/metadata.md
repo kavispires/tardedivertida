@@ -21,4 +21,5 @@
 
 ### Report
 
-- TBD
+- Achievements Implementation: ❌ (Backend: achievements.ts is missing)
+- Rules (EN/PT): ✅

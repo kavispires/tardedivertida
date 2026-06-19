@@ -49,8 +49,7 @@ export const prepareSetupPhase = async (
 
   const { gameOrder } = utils.turnOrder.create(players);
 
-  const playerIds = utils.players.getListOfPlayers(players).map((player) => player.id);
-  store.achievements = setupAchievements(playerIds);
+  store.achievements = setupAchievements(utils.players.getListOfPlayers(players).map((player) => player.id));
 
   utils.players.addPropertiesToPlayers(players, { mulliganAvailable: true });
 

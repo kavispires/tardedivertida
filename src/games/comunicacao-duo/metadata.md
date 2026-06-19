@@ -21,4 +21,5 @@
 
 ### Report
 
-- TBD
+- Achievements Implementation: ✅
+- Rules (EN/PT): ❌ (EN and PT rules missing)

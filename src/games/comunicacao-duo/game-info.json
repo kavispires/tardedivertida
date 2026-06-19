@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "comunicacao-duo",
-  "version": "1.0.54",
+  "version": "1.0.55",
   "release": "stable",
   "releaseDate": "2024-12-28",
   "available": true,
@@ -42,7 +42,7 @@
     "base": 5,
     "perPlayer": 15
   },
-  "features": [],
+  "features": ["achievements"],
   "options": [
     {
       "key": "nsfw",
