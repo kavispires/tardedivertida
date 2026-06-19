@@ -189,6 +189,61 @@ async function addMigrationItem() {
 // Action 3: Run Report
 // -----------------------------------------------------------------------------
 
+const checksDir = path.resolve(__dirname, 'checks');
+
+function runAllChecks(gameInfo, gameDir, gameFolderPath) {
+  if (!fs.existsSync(checksDir)) return [];
+
+  const checkFiles = fs.readdirSync(checksDir).filter(f => f.endsWith('.cjs'));
+  const reportLines = [];
+  const results = { passed: [], failed: [] };
+
+  for (const file of checkFiles) {
+    const check = require(path.join(checksDir, file));
+    try {
+      // Failsafe if the JSON doesn't exist at all
+    if (!gameInfo) {
+      const label = check.id || file;
+      reportLines.push(`- ${label}: ❌ game-info.json is missing or invalid`);
+      results.failed.push({
+        label: label,
+        error: 'game-info.json is missing or invalid'
+      });
+      continue;
+    }
+
+      const result = check.run(gameInfo, gameDir, gameFolderPath);
+      const emoji = result.passed ? '✅' : '❌';
+
+      // Append the error reason if the check failed
+      const errorText = (!result.passed && result.error) ? ` (${result.error})` : '';
+
+      reportLines.push(`- ${result.label}: ${emoji}${errorText}`);
+
+      if (result.passed) {
+        results.passed.push(result.label);
+      } else {
+        results.failed.push({
+          label: result.label,
+          error: result.error || 'No error message provided'
+        });
+      }
+    } catch (err) {
+      console.error(`❌ Error running check ${file} on ${gameDir}:`, err.message);
+
+      // Catch fatal errors within the module itself
+      const label = check.id || file;
+      reportLines.push(`- ${label}: ⚠️ Error (${err.message})`);
+      results.failed.push({
+        label: label,
+        error: err.message
+      });
+    }
+  }
+
+  return { reportLines, results };
+}
+
 async function runReport() {
   const target = await prompt('\n🎯 Enter game name (e.g., adedanhx) or "." for all games: ');
   if (!target) {
@@ -206,48 +261,115 @@ async function runReport() {
   console.log(`\n📊 Running report for ${gamesToProcess.length} game(s)...`);
   const gamesDir = path.resolve(__dirname, '../src/games');
   let updatedCount = 0;
+  const allCheckTypes = new Set();
+  const failedGames = [];
+  const skippedGames = [];
 
   for (const gameDir of gamesToProcess) {
     const gameInfo = getGameMetadata(gameDir);
     const metadataPath = path.join(gamesDir, gameDir, 'metadata.md');
 
+    // Skip games that are not beta or stable
+    if (gameInfo && gameInfo.release && !['beta', 'stable'].includes(gameInfo.release)) {
+      skippedGames.push({
+        name: gameDir,
+        reason: `Release status: ${gameInfo.release}`,
+      });
+      if (target !== '.') {
+        console.log(`⏭️  Skipped ${gameDir} (Release: ${gameInfo.release})`);
+      }
+      continue;
+    }
+
     if (gameInfo && fs.existsSync(metadataPath)) {
       let content = fs.readFileSync(metadataPath, 'utf8');
+      const gameFolderPath = path.join(gamesDir, gameDir);
 
-      // 1. Check rules
-      const hasEnRules = gameInfo.rules?.en && Array.isArray(gameInfo.rules.en) && gameInfo.rules.en.length > 1;
-      const hasPtRules = gameInfo.rules?.pt && Array.isArray(gameInfo.rules.pt) && gameInfo.rules.pt.length > 1;
-      const rulesEmoji = (hasEnRules && hasPtRules) ? '✅' : '❌';
+      // 1. Run all modular checks
+      const { reportLines, results } = runAllChecks(gameInfo, gameDir, gameFolderPath);
+      const newReportLines = reportLines.join('\n');
 
-      const rulesReportLine = `- Rules (EN/PT): ${rulesEmoji}`;
+      // Track check types
+      results.passed.forEach(check => allCheckTypes.add(check));
+      results.failed.forEach(check => allCheckTypes.add(check.label));
 
-      // 2. Update the Report section
-      if (content.includes('### Report\n\n- TBD')) {
-        // First time running report: replace TBD
-        content = content.replace('### Report\n\n- TBD', `### Report\n\n${rulesReportLine}`);
+      // Track failed games
+      if (results.failed.length > 0) {
+        failedGames.push({
+          name: gameDir,
+          path: `src/games/${gameDir}/metadata.md`,
+          failedChecks: results.failed,
+        });
+      }
+
+      // 2. Update the Report section dynamically
+      const reportSectionRegex = /### Report\n\n([\s\S]*)$/;
+
+      if (reportSectionRegex.test(content)) {
+        // Replace everything after "### Report\n\n"
+        content = content.replace(reportSectionRegex, `### Report\n\n${newReportLines}\n`);
       } else {
-        // Subsequent runs: replace just the Rules line if it exists, or append it to the report section
-        const rulesRegex = /- Rules \(EN\/PT\): [^\n]+/;
-        if (rulesRegex.test(content)) {
-          content = content.replace(rulesRegex, rulesReportLine);
-        } else {
-          // If we have other report items but no rules item, append it at the end of the file
-          content += `\n${rulesReportLine}`;
-        }
+        // Fallback if the header is missing entirely
+        content += `\n### Report\n\n${newReportLines}\n`;
       }
 
       fs.writeFileSync(metadataPath, content, 'utf8');
 
       if (target !== '.') {
-         console.log(`✅ ${gameDir} -> ${rulesReportLine}`);
+        console.log(`✅ ${gameDir} report updated.`);
       }
       updatedCount++;
-    } else if (target !== '.') {
-      console.log(`⏭️  Skipped ${gameDir} (Missing game-info.json or metadata.md)`);
+    } else {
+      // Track games missing required files
+      const reason = !gameInfo
+        ? 'Missing or invalid game-info.json'
+        : 'Missing metadata.md';
+
+      skippedGames.push({
+        name: gameDir,
+        reason: reason,
+      });
+
+      if (target !== '.') {
+        console.log(`⏭️  Skipped ${gameDir} (${reason})`);
+      }
     }
   }
 
   console.log(`\n✨ Report completed for ${updatedCount} game(s).\n`);
+
+  // Display summary
+  console.log('====================================');
+  console.log('📋 REPORT SUMMARY');
+  console.log('====================================');
+
+  if (skippedGames.length > 0) {
+    console.log(`\n⏭️  Skipped Games (${skippedGames.length}):`);
+    skippedGames.forEach(game => {
+      console.log(`   - ${game.name}: ${game.reason}`);
+    });
+  }
+
+  console.log(`\n🔍 Report Types Run (${allCheckTypes.size}):`);
+  Array.from(allCheckTypes).sort().forEach(check => {
+    console.log(`   - ${check}`);
+  });
+
+  if (failedGames.length > 0) {
+    console.log(`\n❌ Failed Games (${failedGames.length}):`);
+    failedGames.forEach(game => {
+      console.log(`\n   ${game.name}`);
+      console.log(`   Path: ${game.path}`);
+      console.log(`   Failed checks:`);
+      game.failedChecks.forEach(check => {
+        console.log(`      - ${check.label}: ${check.error}`);
+      });
+    });
+  } else {
+    console.log('\n✅ All games passed all checks!');
+  }
+
+  console.log('\n====================================\n');
 }
 
 // -----------------------------------------------------------------------------
