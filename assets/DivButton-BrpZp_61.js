@@ -1,0 +1,1 @@
+import{Ar as e}from"./antd-vendor-CyTuTWjB.js";import{V as t}from"./react-vendor-B4MxxhR7.js";var n=t();function r({className:t,...r}){return(0,n.jsx)(`button`,{className:e(`button-reset`,t),...r})}export{r as t};

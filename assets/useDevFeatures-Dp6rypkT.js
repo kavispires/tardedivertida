@@ -1,1 +1,0 @@
-import"./helpers-DoX12Lda.js";import{r as e}from"./useGlobalState-B0R-wfBc.js";function t(){let[t,n]=e(`isDebugEnabled`);return{isDevEnv:!1,isDebugEnabled:t,toggleDevFeatures:()=>{n(!t)}}}export{t};

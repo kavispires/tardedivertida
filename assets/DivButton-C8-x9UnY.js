@@ -1,1 +1,0 @@
-import{Ar as e}from"./antd-vendor-BPpmPSGA.js";import{V as t}from"./react-vendor-FAQLRdq4.js";var n=t();function r({className:t,...r}){return(0,n.jsx)(`button`,{className:e(`button-reset`,t),...r})}export{r as t};

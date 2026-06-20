@@ -1,0 +1,1 @@
+import{hr as e}from"./antd-vendor-CyTuTWjB.js";import{V as t}from"./react-vendor-B4MxxhR7.js";import{t as n}from"./PlayerAvatar-XduMClC5.js";var r=t();function i({player:t,tooltipProps:i,...a}){return(0,r.jsx)(e,{title:t.name,...i,children:(0,r.jsx)(n,{avatarId:t.avatarId,...a})})}export{i as t};
