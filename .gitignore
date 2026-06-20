@@ -31,3 +31,6 @@ yarn-error.log*
 
 # Local Backup
 /public/back-up/
+
+# Scripts
+scripts/.commit-history.json
