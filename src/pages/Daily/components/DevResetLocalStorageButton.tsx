@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { BugOutlined } from '@ant-design/icons';
 import { App, Button, Flex, Space } from 'antd';
@@ -12,6 +11,7 @@ import { ALL_SETTINGS } from '../utils/settings';
 import { resetStreak } from '../utils/streakManager';
 import { composeLocalTodayKey } from '../utils';
 import { useDailyPlayTracker } from '../hooks/useDailyPlayTracker';
+import { useDailyChallengeContext } from '../hooks/useDailyChallengeContext';
 
 const keys = Object.values(ALL_SETTINGS);
 const STREAK_KEY = 'TD_DAILY_STREAK';
@@ -22,7 +22,8 @@ type DevResetLocalStorageButtonProps = {
 
 export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalStorageButtonProps) {
   const { message } = App.useApp();
-  const navigate = useNavigate();
+  const { setActiveGame } = useDailyChallengeContext();
+
   const { resetPlayStatus, playedStatus } = useDailyPlayTracker();
 
   const onReset = () => {
@@ -59,7 +60,7 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
         en="LS reset successfully"
       />,
     );
-    navigate('/diario');
+    setActiveGame(null);
   };
 
   const onResetStreakOnly = () => {
@@ -86,7 +87,7 @@ export function DevResetLocalStorageButton({ localStorageKey }: DevResetLocalSto
       resetPlayStatus(key.KEY, yesterday);
     });
 
-    navigate('/diario');
+    setActiveGame(null);
   };
 
   const onLog = () => {
