@@ -41,6 +41,15 @@ const getRulesSet = (isWeekend: boolean) => {
             acertas todas, você perde um <HeartFilled />.
           </li>
           <li>
+            <strong>
+              Você ganha pontos igual ao número de corações para cada letra correta!
+              <br />
+              Você ganha {SETTINGS.WORD_SCORE} pontos quando complete a palavra.
+              <br />E se você cria uma palavra das palavras secretas, você ganha {SETTINGS.SECRET_WORD_SCORE}{' '}
+              pontos adicionais, mesmo não sendo a palavra correta.
+            </strong>
+          </li>
+          <li>
             Você tem {SETTINGS.HEARTS + value} <HeartFilled /> chances. Boa sorte!
           </li>
         </>
@@ -57,6 +66,14 @@ const getRulesSet = (isWeekend: boolean) => {
           <li>
             All letters placed in the correct position will be colored in the line color. But if you don't get
             them all, you lose a <HeartFilled />.
+          </li>
+          <li>
+            You earn points equal to the number of hearts for each correct letter!
+            <br />
+            You earn {SETTINGS.WORD_SCORE} points when you complete a word.
+            <br />
+            And if you create a word from the secret words, you earn {SETTINGS.SECRET_WORD_SCORE} additional
+            points, even if it's not the correct word.
           </li>
           <li>
             You have {SETTINGS.HEARTS + value} <HeartFilled /> chances. Good luck!

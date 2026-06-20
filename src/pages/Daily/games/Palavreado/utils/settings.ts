@@ -20,4 +20,6 @@ export const SETTINGS: GameSettings = {
   // Custom settings
   HEARTS: 4,
   WORD_LENGTH: 4,
+  WORD_SCORE: 10,
+  SECRET_WORD_SCORE: 2,
 };

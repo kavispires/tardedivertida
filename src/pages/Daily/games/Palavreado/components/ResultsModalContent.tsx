@@ -6,6 +6,7 @@ import { useLanguage } from 'hooks/useLanguage';
 // Icons
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { TrophyIcon } from 'icons/TrophyIcon';
+import { VictoryCoinIcon } from 'icons/VictoryCoinIcon';
 // Components
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { Translate } from 'components/language/Translate';
@@ -24,6 +25,7 @@ type ResultsModalContentProps = {
   hearts: number;
   swaps: number;
   guesses: string[][];
+  score: number;
   /**
    * Whether the smart shuffle hint was used
    */
@@ -38,6 +40,7 @@ export function ResultsModalContent({
   swaps,
   guesses,
   usedSmartShuffle,
+  score,
 }: ResultsModalContentProps) {
   const { language } = useLanguage();
 
@@ -52,9 +55,10 @@ export function ResultsModalContent({
         swaps,
         guesses,
         totalHearts: SETTINGS.HEARTS,
+        score,
         usedSmartShuffle,
       }),
-    [challengeNumber, hearts, words, language, swaps, guesses, usedSmartShuffle],
+    [challengeNumber, hearts, words, language, swaps, guesses, usedSmartShuffle, score],
   );
 
   return (
@@ -93,6 +97,29 @@ export function ResultsModalContent({
             en="You missed the words!"
           />
         )}
+        <br />
+        <Translate
+          pt={
+            <>
+              Sua pontuação:{' '}
+              <IconAvatar
+                icon={<VictoryCoinIcon />}
+                size="small"
+              />{' '}
+              {score} pontos
+            </>
+          }
+          en={
+            <>
+              Your score:{' '}
+              <IconAvatar
+                icon={<VictoryCoinIcon />}
+                size="small"
+              />{' '}
+              {score} points
+            </>
+          }
+        />
       </Typography.Paragraph>
 
       <Space
@@ -100,7 +127,12 @@ export function ResultsModalContent({
         separator={<Divider orientation="vertical" />}
       >
         {words.map((word) => (
-          <Typography.Text key={word}>{word}</Typography.Text>
+          <Typography.Text
+            key={word}
+            style={{ fontSize: words.length > 4 ? '0.95rem' : '1rem' }}
+          >
+            {word}
+          </Typography.Text>
         ))}
       </Space>
 

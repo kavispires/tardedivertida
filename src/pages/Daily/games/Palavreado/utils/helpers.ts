@@ -19,6 +19,7 @@ const DEFAULT_LOCAL_TODAY: GameState = {
   letters: [],
   guesses: [],
   usedSmartShuffle: false,
+  score: 0,
 };
 
 export const getInitialState = (data: DailyPalavreadoEntry): GameState => {
@@ -43,6 +44,7 @@ export const getInitialState = (data: DailyPalavreadoEntry): GameState => {
     hearts: localToday.hearts,
     swaps: localToday.swaps,
     usedSmartShuffle: localToday.usedSmartShuffle,
+    score: localToday.score ?? 0,
   };
 
   return state;
@@ -219,12 +221,14 @@ export function writeResult({
   words,
   totalHearts,
   usedSmartShuffle = false,
+  score,
   ...rest
 }: BasicResultsOptions & {
   swaps: number;
   guesses: string[][];
   words: string[];
   usedSmartShuffle?: boolean;
+  score: number;
 }): string {
   const size = guesses[0].length;
   const colors = ['🟥', '🟦', '🟪', '🟫', '🟧'];
@@ -244,7 +248,7 @@ export function writeResult({
   const hintIndicator = usedSmartShuffle ? ' 💡' : '';
 
   return generateShareableResult({
-    heartsSuffix: ` (${swaps} trocas${hintIndicator})`,
+    heartsSuffix: ` ${score} pts | ${swaps} trocas${hintIndicator}`,
     totalHearts: correctTotalHearts,
     heartsSpacing: ' ',
     additionalLines: cleanUpAttempts.map((row) => row.join(' ').trim()).filter(Boolean),
@@ -270,5 +274,6 @@ export function getWrittenResult({ data, language }: { data: DailyPalavreadoEntr
     guesses: state.guesses,
     words: data.words,
     usedSmartShuffle: state.usedSmartShuffle,
+    score: state.score,
   });
 }

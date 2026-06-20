@@ -1,5 +1,7 @@
 import { chunk, cloneDeep } from 'lodash';
 import { useEffect } from 'react';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
 // Services
 import { logAnalyticsEvent } from 'services/firebase';
 // Pages
@@ -18,11 +20,15 @@ import type { DailyPalavreadoEntry, GameState, PalavreadoLetter, SessionState } 
 
 export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: GameState) {
   const size = data.keyword.length;
+  const { translate } = useLanguage();
   const { state, setState } = useDailyGameState<GameState>(initialState);
   const { session, updateSession } = useDailySessionState<SessionState>({
     swap: [],
     selection: null,
     latestAttempt: 0,
+    latestCorrectLettersCount: 0,
+    scoringMessage: '',
+    letterScore: 0,
   });
 
   const { updateLocalStorage } = useDailyLocalToday<GameState>({
@@ -129,12 +135,22 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
     const answer = data.words.join('');
 
     setState((prev) => {
+      const scoreBase = prev.hearts;
+      let letterScore = 0;
+      let latestCorrectLettersCount = 0;
+      let correctWordsScore = 0;
+      let secretWordsScore = 0;
+      let winScore = 0;
       // Evaluate letters and mark any correct letter as correct and locked
       const copyLetters = cloneDeep(state.letters);
+      // Save original state to check if words were already correct
+      const originalLetters = cloneDeep(state.letters);
       copyLetters.map((letter, index) => {
         if (letter.state === 'idle' && letter.letter === answer[index]) {
           letter.state = String(Math.floor(index / size)) as PalavreadoLetter['state'];
           letter.locked = true;
+          letterScore += scoreBase;
+          latestCorrectLettersCount += 1;
         }
         return letter;
       });
@@ -142,19 +158,43 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
       // Generate the guessed words from the letter
       const generatedWords = chunk(copyLetters, size).map((lg) => lg.map((l) => l.letter).join(''));
 
+      // Check if any generated word is in the scoring words list and add points accordingly
+      const extraWordsFound: string[] = [];
+      generatedWords.forEach((word) => {
+        if (data.scoringWords.includes(word)) {
+          secretWordsScore += SETTINGS.SECRET_WORD_SCORE; // Add 20 points for each valid word found
+          extraWordsFound.push(word);
+        }
+      });
+
       // Evaluate if any of the words match the words in the data
+      const correctWords: string[] = [];
       generatedWords.forEach((word, wordIndex) => {
         if (data.words[wordIndex] === word) {
+          // Check if this word was already fully correct before this attempt
+          const wordStartIndex = wordIndex * size;
+          const wasAlreadyCorrect = Array.from({ length: size }, (_, i) => wordStartIndex + i).every(
+            (i) => originalLetters[i].locked,
+          );
+
           word.split('').forEach((_, i) => {
             copyLetters[wordIndex * size + i].state = String(wordIndex) as PalavreadoLetter['state'];
             copyLetters[wordIndex * size + i].locked = true;
           });
+
+          // Only award points if the word wasn't already correct
+          if (!wasAlreadyCorrect) {
+            correctWords.push(word);
+            correctWordsScore += SETTINGS.WORD_SCORE; // Add 10 points for each correct word found
+          }
         }
       });
 
       const isAllCorrect = copyLetters.every((letter) => letter.locked);
 
       if (isAllCorrect) {
+        winScore -= prev.swaps; // Subtract the number of swaps from the score
+
         playSFX('win');
       } else {
         playSFX('wrong');
@@ -171,13 +211,34 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
         logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'win'));
       }
       if (updatedHearts === 0) {
+        winScore -= prev.swaps;
         newStatus = STATUSES.LOSE;
         logAnalyticsEvent(getAnalyticsEventName(SETTINGS.KEY, 'lose'));
+      }
+
+      let scoringMessage = '';
+      const totalScore = letterScore + correctWordsScore + secretWordsScore + winScore;
+
+      if (correctWords.length > 0) {
+        scoringMessage += `${translate({
+          en: `Correct Words: ${correctWords.map((w) => w.toLocaleUpperCase()).join(', ')} (+ ${correctWordsScore} points)\n`,
+          pt: `Palavras corretas: ${correctWords.map((w) => w.toLocaleUpperCase()).join(', ')} (+ ${correctWordsScore} pontos)\n`,
+        })}`;
+      }
+
+      if (extraWordsFound.length > 0) {
+        scoringMessage += `${translate({
+          en: `Extra Words: ${extraWordsFound.map((w) => w.toLocaleUpperCase()).join(', ')} (+ ${secretWordsScore} points)\n`,
+          pt: `Palavras extras: ${extraWordsFound.map((w) => w.toLocaleUpperCase()).join(', ')} (+ ${secretWordsScore} pontos)\n`,
+        })}`;
       }
 
       updateSession({
         selection: null,
         swap: [],
+        latestCorrectLettersCount,
+        scoringMessage,
+        letterScore,
       });
 
       return {
@@ -186,6 +247,7 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
         boardState: [...prev.boardState, newBoardState],
         letters: copyLetters,
         hearts: updatedHearts,
+        score: prev.score + totalScore,
         status: newStatus,
       };
     });
@@ -224,5 +286,9 @@ export function usePalavreadoEngine(data: DailyPalavreadoEntry, initialState: Ga
     size,
     words: data.words,
     swapLetters,
+    score: state.score,
+    scoringMessage: session.scoringMessage,
+    letterScore: session.letterScore,
+    latestCorrectLettersCount: session.latestCorrectLettersCount,
   };
 }

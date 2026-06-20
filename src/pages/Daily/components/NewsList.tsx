@@ -20,6 +20,16 @@ type NewsItem = {
 
 export const NEWS_LIST: NewsItem[] = [
   {
+    date: '2026-06-20',
+    content: (
+      <GameFeatureEntry
+        type="rules"
+        game={ALL_SETTINGS.PALAVREADO}
+        description="agora dá pontos por letras corretas e palavras corretas. E ainda mais, se você formar uma das palavras secretas, você também ganha pontos!"
+      />
+    ),
+  },
+  {
     date: '2026-06-07',
     content: (
       <GameFeatureEntry

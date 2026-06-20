@@ -113,7 +113,7 @@ export const feedEmulatorDaily = async () => {
     ),
     // 4 letters
     palavreado: JSON.parse(
-      '{"id":"2023-10-31","number":0,"type":"palavreado","language":"pt","keyword":"cuba","letters":["c","i","b","m","l","u","e","a","h","r","b","l","ê","o","o","a"],"words":["calo","muro","bebê","ilha"]}',
+      '{"id":"2023-10-31","type":"palavreado","number":0,"keyword":"paio","words":["pelé","vaca","ônix","foro"],"letters":["p","a","r","ô","x","a","e","é","f","c","i","n","v","o","l","o"],"scoringWords":["afro","alvo","anil","arco","café","cair","calo","cana","cano","cara","caro","cavo","ceia","colo","coro","cria","faca","face","fala","falo","faro","fava","favo","feia","feio","feno","foco","fria","frio","lava","naca","naco","nave","nexo","novo","pane","pano","peco","pelo","pena","pera","proa","prol","raio","ralé","ralo","rolo","roxo","vala","vale","valo","vara","veia","veio","vero"]}',
     ),
     /// 5 letters
     // palavreado: JSON.parse(

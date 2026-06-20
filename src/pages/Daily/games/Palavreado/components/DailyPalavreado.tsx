@@ -7,13 +7,19 @@ import {
   pointerWithin,
 } from '@dnd-kit/core';
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { BulbOutlined } from '@ant-design/icons';
-import { Button, Divider, Flex, Layout, Modal, Popconfirm, Space, Typography } from 'antd';
+import { App, Button, Divider, Flex, Layout, Modal, Popconfirm, Space, Tooltip, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
+// Utils
+import { pluralize } from 'utils/helpers';
+// Icons
+import { SwapIcon } from 'icons/SwapIcon';
+import { VictoryCoinIcon } from 'icons/VictoryCoinIcon';
 // Components
+import { IconAvatar } from 'components/avatars/IconAvatar';
 import { Translate } from 'components/language/Translate';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
@@ -37,6 +43,7 @@ type DailyPalavreadoProps = {
 
 export function DailyPalavreado({ data }: DailyPalavreadoProps) {
   const [initialState] = useState(getInitialState(data));
+  const { notification } = App.useApp();
   const {
     hearts,
     selection,
@@ -56,6 +63,10 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
     smartShuffle,
     usedSmartShuffle,
     swapLetters,
+    score,
+    latestCorrectLettersCount,
+    scoringMessage,
+    letterScore,
   } = usePalavreadoEngine(data, initialState);
 
   /// Tolerance of 5px allows regular clicks to fire instantly.
@@ -80,6 +91,25 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
     }
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Only score message is important
+  useEffect(() => {
+    if (letterScore || scoringMessage || latestCorrectLettersCount > 0) {
+      notification.warning({
+        icon: <IconAvatar icon={<VictoryCoinIcon />} />,
+        title:
+          latestCorrectLettersCount > 0 ? (
+            <Translate
+              en={`+ ${letterScore} points for ${latestCorrectLettersCount} ${pluralize(latestCorrectLettersCount, 'correct letter', 'correct letters')}!`}
+              pt={`+ ${letterScore} pontos por ${latestCorrectLettersCount} ${pluralize(latestCorrectLettersCount, 'letra correta', 'letras corretas')}!`}
+            />
+          ) : undefined,
+        description: scoringMessage ? scoringMessage : undefined,
+        placement: 'bottomLeft',
+        role: 'status',
+      });
+    }
+  }, [letterScore, scoringMessage, latestCorrectLettersCount]);
+
   return (
     <Layout>
       <GameHeader
@@ -98,8 +128,38 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
             strong
             className="palavreado-word"
           >
-            {keyword} {swaps > 0 && ` ↔️ ${swaps}`}
+            {keyword}
           </Typography.Text>
+          <Space size="small">
+            <Tooltip
+              title={
+                <Translate
+                  en="Swaps"
+                  pt="Trocas"
+                />
+              }
+            >
+              <IconAvatar
+                icon={<SwapIcon />}
+                size="small"
+              />{' '}
+              {swaps}
+            </Tooltip>
+            <Tooltip
+              title={
+                <Translate
+                  en="Score"
+                  pt="Pontuação"
+                />
+              }
+            >
+              <IconAvatar
+                icon={<VictoryCoinIcon />}
+                size="small"
+              />{' '}
+              {score}
+            </Tooltip>
+          </Space>
           <DndContext
             sensors={sensors}
             collisionDetection={pointerWithin}
@@ -273,6 +333,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
             swaps={swaps}
             guesses={guesses}
             usedSmartShuffle={usedSmartShuffle}
+            score={score}
           />
         </Modal>
       </DailyContent>
