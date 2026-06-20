@@ -4,6 +4,9 @@ const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
 
+// Import enhanced backend setup
+const { runBackendSetup: runEnhancedBackendSetup } = require('./onboard-game/index.cjs');
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
@@ -37,160 +40,8 @@ function validateGameCode(code) {
   return regex.test(code);
 }
 
-async function updateGamesConstant(gameName, gameCode) {
-  const constantsPath = path.resolve(__dirname, '../functions/src/utils/constants.ts');
-
-  if (!fs.existsSync(constantsPath)) {
-    console.error(`❌ Error: constants.ts not found at ${constantsPath}`);
-    return false;
-  }
-
-  const fileContent = fs.readFileSync(constantsPath, 'utf-8');
-
-  // Find the GAMES array and add the new entry
-  const gamesArrayMatch = fileContent.match(/const GAMES = \[([\s\S]*?)\];/);
-
-  if (!gamesArrayMatch) {
-    console.error('❌ Error: Could not find GAMES array in constants.ts');
-    return false;
-  }
-
-  // Parse existing games to check for duplicates
-  const gamesArrayContent = gamesArrayMatch[1];
-  const existingGamesMatches = [...gamesArrayContent.matchAll(/name: '([^']+)'/g)];
-  const existingGameNames = existingGamesMatches.map(match => match[1]);
-
-  // Check if game already exists
-  if (existingGameNames.includes(gameName)) {
-    console.error(`❌ Error: Game '${gameName}' already exists in GAMES array`);
-    return false;
-  }
-
-  // Parse all existing game objects
-  const gameObjectRegex = /\{[\s\S]*?name: '([^']+)',[\s\S]*?code: '([^']+)',[\s\S]*?key: '([^']+)',[\s\S]*?\}/g;
-  const existingGames = [];
-  let match;
-  while ((match = gameObjectRegex.exec(gamesArrayContent)) !== null) {
-    existingGames.push({
-      name: match[1],
-      code: match[2],
-      key: match[3],
-      fullText: match[0]
-    });
-  }
-
-  // Create new game entry
-  const gameKey = convertNameToKey(gameName);
-  const newGame = {
-    name: gameName,
-    code: gameCode,
-    key: gameKey,
-    fullText: `  {
-    name: '${gameName}',
-    code: '${gameCode}',
-    key: '${gameKey}',
-  }`
-  };
-
-  // Add new game and sort alphabetically by name
-  existingGames.push(newGame);
-  existingGames.sort((a, b) => a.name.localeCompare(b.name));
-
-  // Reconstruct the GAMES array with sorted games
-  const sortedGamesContent = existingGames.map(game => game.fullText).join(',\n');
-  const updatedGamesArray = `const GAMES = [\n${sortedGamesContent},\n];`;
-
-  const updatedContent = fileContent.replace(/const GAMES = \[[\s\S]*?\];/, updatedGamesArray);
-
-  fs.writeFileSync(constantsPath, updatedContent, 'utf-8');
-  console.log(`✅ Updated GAMES constant with ${gameName} (added in alphabetical order)`);
-
-  return true;
-}
-
-async function createGameFolder(gameName) {
-  const enginePath = path.resolve(__dirname, '../functions/src/engine', gameName);
-
-  // Create the game folder
-  if (!fs.existsSync(enginePath)) {
-    fs.mkdirSync(enginePath, { recursive: true });
-    console.log(`✅ Created folder: functions/src/engine/${gameName}`);
-  } else {
-    console.log(`⚠️  Folder already exists: functions/src/engine/${gameName}`);
-  }
-
-  // Create placeholder files
-  const files = ['actions.ts', 'constants.ts', 'data.ts', 'helpers.ts', 'index.ts', 'setup.ts', 'types.d.ts', 'achievements.ts'];
-
-  for (const file of files) {
-    const filePath = path.join(enginePath, file);
-    if (!fs.existsSync(filePath)) {
-      fs.writeFileSync(filePath, '// TODO: Implement\n', 'utf-8');
-      console.log(`✅ Created file: ${file}`);
-    } else {
-      console.log(`⚠️  File already exists: ${file}`);
-    }
-  }
-
-  return true;
-}
-
-async function runBackendSetup() {
-  // Prompt for game name
-  let gameName = '';
-  while (!gameName) {
-    const input = await prompt('Enter the game name (lowercase, use hyphens for spaces, e.g., "my-game"): ');
-    if (validateGameName(input)) {
-      gameName = input;
-    } else {
-      console.log('❌ Invalid game name. Please use lowercase letters and hyphens only (e.g., "my-game").\n');
-    }
-  }
-
-  // Prompt for game code
-  let gameCode = '';
-  while (!gameCode) {
-    const input = await prompt('Enter the game code (single capital letter, e.g., "G"): ');
-    if (validateGameCode(input)) {
-      gameCode = input;
-    } else {
-      console.log('❌ Invalid game code. Please use a single capital letter (A-Z).\n');
-    }
-  }
-
-  console.log('\n📋 Summary:');
-  console.log(`   Name: ${gameName}`);
-  console.log(`   Code: ${gameCode}`);
-  console.log(`   Key:  ${convertNameToKey(gameName)}\n`);
-
-  const confirm = await prompt('Proceed with these settings? (yes/no): ');
-
-  if (confirm.toLowerCase() !== 'yes' && confirm.toLowerCase() !== 'y') {
-    console.log('\n❌ Operation cancelled.\n');
-    return;
-  }
-
-  console.log('\n🔧 Setting up the game backend...\n');
-
-  // Update GAMES constant
-  const constantsUpdated = await updateGamesConstant(gameName, gameCode);
-
-  if (!constantsUpdated) {
-    console.log('\n❌ Failed to update constants. Aborting.\n');
-    return;
-  }
-
-  // Create game folder and files
-  await createGameFolder(gameName);
-
-  console.log('\n✨ Game backend setup complete!\n');
-  console.log('Next steps:');
-  console.log(`   1. Implement the game logic in functions/src/engine/${gameName}/`);
-  console.log('   2. Add game-specific types to types.d.ts');
-  console.log('   3. Implement setup logic in setup.ts');
-  console.log('   4. Create game actions in actions.ts\n');
-  console.log ('After implementing the game logic, run the "Backend engine hookup" option in this CLI to connect your game engine to the backend delegators.\n');
-}
+// Backend setup is now handled by the enhanced module
+// Old functions removed to avoid duplication
 
 async function runBackendEngineHookup() {
   // Ask for game name
@@ -315,7 +166,6 @@ function updateInfoTs(gameName) {
     return false;
   }
 
-  const gameKey = convertNameToKey(gameName); // e.g., ARTE_RUIM
   let content = fs.readFileSync(infoPath, 'utf-8');
 
   // Check already exists
@@ -326,66 +176,39 @@ function updateInfoTs(gameName) {
 
   const lines = content.split('\n');
 
-  // Collect destructuring variable lines and their indices
-  const varLineRegex = /^    ([A-Z][A-Z0-9_]+),?$/;
-  const importLineRegex = /^    import\('games\/([^']+)\/game-info\.json'\),?$/;
-  const returnLineRegex = /^    '?([a-z][a-z0-9-]*)'?:\s+[A-Z][A-Z0-9_]+\.default,?$/;
+  // Find lines in GAME_INFO_PATHS object (new format)
+  // Pattern: '  gameName: () => import('games/gameName/game-info.json'),'
+  const pathEntryRegex = /^  '?([a-z][a-z0-9-]*)'?:\s*\(\)\s*=>\s*import\('games\/([^']+)\/game-info\.json'\),?$/;
 
-  const varLines = [];
-  const importLines = [];
-  const returnLines = [];
-
+  const pathEntries = [];
   lines.forEach((line, idx) => {
-    if (varLineRegex.test(line)) varLines.push({ idx, key: line.match(varLineRegex)[1] });
-    else if (importLineRegex.test(line)) importLines.push({ idx, name: line.match(importLineRegex)[1] });
-    else if (returnLineRegex.test(line)) returnLines.push({ idx, name: line.match(returnLineRegex)[1] });
+    const match = line.match(pathEntryRegex);
+    if (match) {
+      pathEntries.push({ idx, name: match[1] });
+    }
   });
 
-  if (varLines.length !== importLines.length) {
-    console.error('❌ Mismatch between destructuring variables and imports in info.ts');
+  if (pathEntries.length === 0) {
+    console.error('❌ Could not find GAME_INFO_PATHS entries in info.ts');
     return false;
   }
 
-  // --- Insert destructuring variable and import (same index) ---
-  let insertVarBefore = varLines.findIndex((v) => v.key > gameKey);
-  if (insertVarBefore === -1) insertVarBefore = varLines.length;
+  // Find where to insert (alphabetically)
+  let insertBefore = pathEntries.findIndex((entry) => entry.name > gameName);
+  if (insertBefore === -1) insertBefore = pathEntries.length;
 
-  const newVarLine = `    ${gameKey},`;
-  const newImportLine = `    import('games/${gameName}/game-info.json'),`;
+  // Determine insertion index
+  const insertIdx = insertBefore < pathEntries.length
+    ? pathEntries[insertBefore].idx
+    : pathEntries[pathEntries.length - 1].idx + 1;
 
-  // Work on a mutable array; insert from bottom-up to preserve indices
-  // First collect what we need to insert and where
-  const ops = [];
-
-  const varInsertIdx =
-    insertVarBefore < varLines.length ? varLines[insertVarBefore].idx : varLines[varLines.length - 1].idx + 1;
-  const importInsertIdx =
-    insertVarBefore < importLines.length
-      ? importLines[insertVarBefore].idx
-      : importLines[importLines.length - 1].idx + 1;
-
-  // --- Insert return object entry ---
-  let insertReturnBefore = returnLines.findIndex((r) => r.name > gameName);
-  if (insertReturnBefore === -1) insertReturnBefore = returnLines.length;
-
+  // Create new line (use quotes if game name has hyphens)
   const needsQuotes = gameName.includes('-');
-  const returnKey = needsQuotes ? `'${gameName}'` : gameName;
-  const newReturnLine = `    ${returnKey}: ${gameKey}.default,`;
-  const returnInsertIdx =
-    insertReturnBefore < returnLines.length
-      ? returnLines[insertReturnBefore].idx
-      : returnLines[returnLines.length - 1].idx + 1;
+  const key = needsQuotes ? `'${gameName}'` : gameName;
+  const newLine = `  ${key}: () => import('games/${gameName}/game-info.json'),`;
 
-  ops.push({ idx: returnInsertIdx, line: newReturnLine });
-  ops.push({ idx: importInsertIdx, line: newImportLine });
-  ops.push({ idx: varInsertIdx, line: newVarLine });
-
-  // Sort descending by line index so earlier insertions don't shift later ones
-  ops.sort((a, b) => b.idx - a.idx);
-
-  for (const op of ops) {
-    lines.splice(op.idx, 0, op.line);
-  }
+  // Insert the line
+  lines.splice(insertIdx, 0, newLine);
 
   fs.writeFileSync(infoPath, lines.join('\n'), 'utf-8');
   console.log(`✅ Updated src/utils/info.ts with '${gameName}' entry`);
@@ -835,7 +658,7 @@ async function main() {
 
   try {
     if (choice === '1') {
-      await runBackendSetup();
+      await runEnhancedBackendSetup(prompt);
     } else if (choice === '2') {
       await runBackendEngineHookup();
     } else if (choice === '3') {
