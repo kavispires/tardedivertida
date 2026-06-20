@@ -47,6 +47,8 @@ const getRulesSet = (isWeekend: boolean) => {
               Você ganha {SETTINGS.WORD_SCORE} pontos quando complete a palavra.
               <br />E se você cria uma palavra das palavras secretas, você ganha {SETTINGS.SECRET_WORD_SCORE}{' '}
               pontos adicionais, mesmo não sendo a palavra correta.
+              <br />
+              Mas cuidado, o número de trocas é subtraído da pontuação final!
             </strong>
           </li>
           <li>
@@ -68,12 +70,16 @@ const getRulesSet = (isWeekend: boolean) => {
             them all, you lose a <HeartFilled />.
           </li>
           <li>
-            You earn points equal to the number of hearts for each correct letter!
-            <br />
-            You earn {SETTINGS.WORD_SCORE} points when you complete a word.
-            <br />
-            And if you create a word from the secret words, you earn {SETTINGS.SECRET_WORD_SCORE} additional
-            points, even if it's not the correct word.
+            <strong>
+              You earn points equal to the number of hearts for each correct letter!
+              <br />
+              You earn {SETTINGS.WORD_SCORE} points when you complete a word.
+              <br />
+              And if you create a word from the secret words, you earn {SETTINGS.SECRET_WORD_SCORE} additional
+              points, even if it's not the correct word.
+              <br />
+              But be careful, the number of swaps is subtracted from the final score!
+            </strong>
           </li>
           <li>
             You have {SETTINGS.HEARTS + value} <HeartFilled /> chances. Good luck!
