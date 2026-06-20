@@ -56,7 +56,7 @@ export function writeResult({
   score: number;
 }): string {
   return generateShareableResult({
-    heartsSuffix: ` (${score} pts em ${Math.floor(timeElapsed / 60)}:${(timeElapsed % 60).toString().padStart(2, '0')})`,
+    heartsSuffix: ` (${score} pts em ${Math.floor(timeElapsed / 60)}:${(timeElapsed % 60).toString().padStart(2, '0')}s)`,
     additionalLines: [''],
     ...rest,
   });

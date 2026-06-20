@@ -6,11 +6,16 @@ import { Layout, Modal, Typography } from 'antd';
 import type { Me } from 'types/user';
 // Hooks
 import { useTDImageCardUrl } from 'hooks/useTDImageCardUrl';
+// Icons
+import { ClockIcon } from 'icons/ClockIcon';
+import { PuzzleIcon } from 'icons/PuzzleIcon';
+import { VictoryCoinIcon } from 'icons/VictoryCoinIcon';
 // Pages
 import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { GameHeader } from 'pages/Daily/components/Header';
 import { Menu } from 'pages/Daily/components/Menu';
 import { Region } from 'pages/Daily/components/Region';
+import { RegionStats } from 'pages/Daily/components/RegionStats';
 import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
 // Internal
 import { getInitialState } from '../utils/helpers';
@@ -74,9 +79,37 @@ export function DailyVitral({ data }: DailyVitralProps) {
 
         <Region>
           <Typography.Text className="center">{data.title}</Typography.Text>
-          <Typography.Text className="center">
-            {correctPieces}/{data.pieces.length} - {time} - {score} pts
-          </Typography.Text>
+          <RegionStats
+            stats={[
+              {
+                key: 'completionRate',
+                label: `${correctPieces}/${data.pieces.length}`,
+                icon: <PuzzleIcon />,
+                tooltip: {
+                  pt: 'Peças corretas',
+                  en: 'Correct pieces',
+                },
+              },
+              {
+                key: 'time',
+                label: time,
+                icon: <ClockIcon />,
+                tooltip: {
+                  pt: 'Tempo decorrido',
+                  en: 'Elapsed Time',
+                },
+              },
+              {
+                key: 'score',
+                label: score,
+                icon: <VictoryCoinIcon />,
+                tooltip: {
+                  pt: 'Pontuação',
+                  en: 'Score',
+                },
+              },
+            ]}
+          />
         </Region>
 
         <ShowResultsButton

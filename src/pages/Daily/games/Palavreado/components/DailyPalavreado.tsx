@@ -10,7 +10,7 @@ import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { BulbOutlined } from '@ant-design/icons';
-import { App, Button, Divider, Flex, Layout, Modal, Popconfirm, Space, Tooltip, Typography } from 'antd';
+import { App, Button, Divider, Flex, Layout, Modal, Popconfirm, Space, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Utils
@@ -26,6 +26,7 @@ import { DailyContent } from 'pages/Daily/components/DailyContent';
 import { GameHeader } from 'pages/Daily/components/Header';
 import { Menu } from 'pages/Daily/components/Menu';
 import { Region } from 'pages/Daily/components/Region';
+import { RegionStats } from 'pages/Daily/components/RegionStats';
 import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
 // Internal
 import { getInitialState } from '../utils/helpers';
@@ -130,36 +131,31 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
           >
             {keyword}
           </Typography.Text>
-          <Space size="small">
-            <Tooltip
-              title={
-                <Translate
-                  en="Swaps"
-                  pt="Trocas"
-                />
-              }
-            >
-              <IconAvatar
-                icon={<SwapIcon />}
-                size="small"
-              />{' '}
-              {swaps}
-            </Tooltip>
-            <Tooltip
-              title={
-                <Translate
-                  en="Score"
-                  pt="Pontuação"
-                />
-              }
-            >
-              <IconAvatar
-                icon={<VictoryCoinIcon />}
-                size="small"
-              />{' '}
-              {score}
-            </Tooltip>
-          </Space>
+          <RegionStats
+            stats={[
+              {
+                key: 'swaps',
+                label: swaps,
+                icon: <SwapIcon />,
+                tooltip: {
+                  pt: 'Trocas',
+                  en: 'Swaps',
+                },
+              },
+              {
+                key: 'score',
+                label: score,
+                icon: <VictoryCoinIcon />,
+                tooltip: {
+                  pt: 'Pontuação',
+                  en: 'Score',
+                },
+              },
+            ]}
+          />
+        </Region>
+
+        <Region>
           <DndContext
             sensors={sensors}
             collisionDetection={pointerWithin}

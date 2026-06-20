@@ -207,7 +207,7 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
                     width={width}
                     assessKid={assessKid}
                     assessment={assessments[entry.kidId] ?? null}
-                    triggerResolveModal={() => setSolveModalOpen(true)}
+                    triggerResolveModal={!isComplete ? () => setSolveModalOpen(true) : undefined}
                   />
                 </div>
 
