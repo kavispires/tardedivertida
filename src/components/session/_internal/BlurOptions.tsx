@@ -8,7 +8,7 @@ import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
 // Components
 import { Translate } from 'components/language/Translate';
 // Sass
-import styles from '../drawers.module.scss';
+import styles from './drawers.module.scss';
 
 /**
  * Component that provides blur card management options with image preview

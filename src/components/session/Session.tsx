@@ -17,7 +17,6 @@ import { useUser } from 'hooks/useUser';
 import { PHASES } from 'utils/phases';
 // Components
 import { AdminMenuDrawer } from 'components/admin/AdminMenuDrawer';
-import { GameInfoDrawer } from 'components/drawers/GameInfoDrawer';
 import { AutoNextPhase } from 'components/general/AutoNextPhase';
 import { PageLayout } from 'components/layout/PageLayout';
 import { PhaseError } from 'components/phases/PhaseError';
@@ -25,8 +24,9 @@ import { PhaseLoading } from 'components/phases/PhaseLoading';
 import { PhaseLobby } from 'components/phases/PhaseLobby';
 import { PhaseSetup } from 'components/phases/PhaseSetup';
 // Internal
-import { RedirectSession } from './RedirectSession';
+import { RedirectSession } from './_internal/RedirectSession';
 import { GameInfoProvider, useGameAppearance, useGameInfoContext } from './GameInfoContext';
+import { GameInfoDrawer } from './_internal/GameInfoDrawer';
 
 type UnknownWorkaround = any;
 

@@ -17,9 +17,9 @@ import { PlayersStatusBar } from 'components/players/PlayersStatusBar';
 import { RulesModal } from 'components/rules/RulesModal';
 import { useGameInfoContext } from 'components/session/GameInfoContext';
 // Internal
-import { SectionMeta } from './_internal/SectionMeta';
-import { SectionRankedPlayers } from './_internal/SectionRankedPlayers';
-import { SectionSettings } from './_internal/SectionSettings';
+import { SectionMeta } from './SectionMeta';
+import { SectionRankedPlayers } from './SectionRankedPlayers';
+import { SectionSettings } from './SectionSettings';
 // Sass
 import styles from './drawers.module.scss';
 

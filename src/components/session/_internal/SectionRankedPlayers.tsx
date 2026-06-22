@@ -13,7 +13,7 @@ import { AVATARS } from 'utils/avatars';
 import { Translate } from 'components/language/Translate';
 import { PlayerAvatar } from 'components/player/PlayerAvatar';
 // Sass
-import styles from '../drawers.module.scss';
+import styles from './drawers.module.scss';
 
 type SectionRankedPlayersProps = {
   /**

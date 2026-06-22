@@ -5,7 +5,7 @@ import type { GameRound } from 'types/game';
 // Components
 import { Translate } from 'components/language/Translate';
 // Sass
-import styles from '../drawers.module.scss';
+import styles from './drawers.module.scss';
 
 type SectionMetaProps = {
   round: GameRound;

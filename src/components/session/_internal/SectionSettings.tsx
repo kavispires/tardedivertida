@@ -12,7 +12,7 @@ import { Translate } from 'components/language/Translate';
 // Internal
 import { BlurOptions } from './BlurOptions';
 // Sass
-import styles from '../drawers.module.scss';
+import styles from './drawers.module.scss';
 
 /**
  * Section component for managing game settings including admin mode, debug features, and blur options
