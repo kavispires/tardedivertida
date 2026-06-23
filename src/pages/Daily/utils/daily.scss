@@ -201,7 +201,7 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
-    background-color: get-color("blue", 7);
+    background: linear-gradient(180deg, get-color("blue", 6) 0%, get-color("blue", 7) 100%);
     color: get-color("white");
     flex: 1;
     display: flex;
@@ -210,40 +210,104 @@
     text-transform: uppercase;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
     flex: 1;
+    box-shadow:
+      0 4px 0 0 get-color("blue", 9),
+      0 4px 8px rgba(0, 0, 0, 0.3);
+    border-top: 1px solid get-color("blue", 4);
+    border-left: 1px solid get-color("blue", 5);
+    transition: all 100ms ease-in-out;
+
+    &:active:not(:disabled) {
+      transform: translateY(2px);
+      box-shadow:
+        0 2px 0 0 get-color("blue", 9),
+        0 2px 4px rgba(0, 0, 0, 0.3);
+    }
 
     &--backspace {
       flex: 3;
+      background: linear-gradient(180deg, get-color("blue", 6) 0%, get-color("blue", 7) 100%);
     }
 
     &--enter {
       flex: 3;
       font-size: 0.75em;
+      background: linear-gradient(180deg, get-color("blue", 6) 0%, get-color("blue", 7) 100%);
     }
 
     &--space {
       flex: 7;
+      background: linear-gradient(180deg, get-color("blue", 6) 0%, get-color("blue", 7) 100%);
     }
 
     &:disabled,
     &--disabled {
       opacity: 0.5;
       cursor: not-allowed;
+      transform: translateY(2px);
+      box-shadow:
+        0 1px 0 0 get-color("blue", 9),
+        0 1px 2px rgba(0, 0, 0, 0.2);
     }
 
     &--correct {
-      background-color: get-color("green", 4);
+      background: linear-gradient(180deg, get-color("green", 3) 0%, get-color("green", 4) 100%);
+      box-shadow:
+        0 4px 0 0 get-color("green", 7),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+      border-top: 1px solid get-color("green", 2);
+      border-left: 1px solid get-color("green", 3);
+
+      &:active:not(:disabled) {
+        box-shadow:
+          0 2px 0 0 get-color("green", 7),
+          0 2px 4px rgba(0, 0, 0, 0.3);
+      }
     }
 
     &--used {
-      background-color: get-color("gray", 6);
+      background: linear-gradient(180deg, get-color("gray", 5) 0%, get-color("gray", 6) 100%);
+      box-shadow:
+        0 4px 0 0 get-color("gray", 8),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+      border-top: 1px solid get-color("gray", 4);
+      border-left: 1px solid get-color("gray", 5);
+
+      &:active:not(:disabled) {
+        box-shadow:
+          0 2px 0 0 get-color("gray", 8),
+          0 2px 4px rgba(0, 0, 0, 0.3);
+      }
     }
 
     &--incorrect {
-      background-color: get-color("red", 7);
+      background: linear-gradient(180deg, get-color("red", 6) 0%, get-color("red", 7) 100%);
+      box-shadow:
+        0 4px 0 0 get-color("red", 9),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+      border-top: 1px solid get-color("red", 5);
+      border-left: 1px solid get-color("red", 6);
+
+      &:active:not(:disabled) {
+        box-shadow:
+          0 2px 0 0 get-color("red", 9),
+          0 2px 4px rgba(0, 0, 0, 0.3);
+      }
     }
 
     &--intermediate {
-      background-color: get-color("yellow", 5);
+      background: linear-gradient(180deg, get-color("yellow", 4) 0%, get-color("yellow", 5) 100%);
+      box-shadow:
+        0 4px 0 0 get-color("yellow", 7),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+      border-top: 1px solid get-color("yellow", 3);
+      border-left: 1px solid get-color("yellow", 4);
+
+      &:active:not(:disabled) {
+        box-shadow:
+          0 2px 0 0 get-color("yellow", 7),
+          0 2px 4px rgba(0, 0, 0, 0.3);
+      }
     }
   }
 }
@@ -271,7 +335,7 @@
 }
 
 .region {
-  max-width: 98vw;
+  max-width: 96vw;
   margin-left: get-unit(2);
   margin-right: get-unit(2);
 }
