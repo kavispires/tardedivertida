@@ -15,7 +15,7 @@ import { PhaseBattle } from './PhaseBattle';
 import { PhaseResults } from './PhaseResults';
 import { PhaseGameOver } from './PhaseGameOver';
 // Sass
-import 'assets/fonts/bangers.scss';
+import '@assets/fonts/bangers.scss';
 import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {

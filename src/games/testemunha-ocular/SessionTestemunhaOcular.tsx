@@ -15,7 +15,7 @@ import { PhaseTrial } from './PhaseTrial';
 import { PhaseGameOver } from './PhaseGameOver';
 import { PhaseFinalTrial } from './PhaseFinalTrial';
 // Sass
-import 'assets/fonts/architects-daughter.scss';
+import '@assets/fonts/architects-daughter.scss';
 import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
