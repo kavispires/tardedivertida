@@ -5,7 +5,7 @@ import { LockFilled, UnlockFilled } from '@ant-design/icons';
 import { Divider, Input, Popover, Switch } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
-import type { TopicCard } from 'types/tdr';
+import type { TopicCardData } from 'types/tdr';
 // Utils
 import { NOOP } from '@utils/constants';
 // Icons
@@ -145,7 +145,7 @@ type TResultCell = {
 } & Cell;
 
 type CellProps = {
-  data: TopicCard | LetterEntry | Cell | PlainObject | TResultCell;
+  data: TopicCardData | LetterEntry | Cell | PlainObject | TResultCell;
   answer?: Answer;
   toggleLock?: (id: string, value?: boolean) => void;
   updateAnswer: (id: string, answer: string) => void;
@@ -157,7 +157,7 @@ function CornerCell(_: CellProps) {
 }
 
 export function CategoryCell({ data }: CellProps) {
-  const { label, category, level } = data as TopicCard;
+  const { label, category, level } = data as TopicCardData;
   return (
     <div className={clsx('adedanhx-grid-cell adedanhx-grid-cell__header')}>
       <span className="adedanhx-grid-cell__category-icon">

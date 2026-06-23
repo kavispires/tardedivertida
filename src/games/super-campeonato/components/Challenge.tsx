@@ -1,5 +1,5 @@
 // Types
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 // Components
@@ -7,7 +7,7 @@ import { Card } from '@components/cards/Card';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 
 type ChallengeProps = {
-  challenge: TextCard;
+  challenge: TextCardData;
 };
 
 export function Challenge({ challenge }: ChallengeProps) {

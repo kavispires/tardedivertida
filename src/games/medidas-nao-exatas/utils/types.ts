@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GameRanking, GameRound } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 
 /**
  * Payload for submitting the word pool and secret word
@@ -107,11 +107,11 @@ export type GalleryEntry = {
   /**
    * Dictionary of cards used in this round
    */
-  cards: Record<UID, TextCard>;
+  cards: Record<UID, TextCardData>;
   /**
    * Descriptors for each metric
    */
-  metricsDescriptors: Record<string, TextCard[]>;
+  metricsDescriptors: Record<string, TextCardData[]>;
   /**
    * Metric values for each metric
    */
@@ -136,7 +136,7 @@ export type PhaseMetricsBuildingState = {
   /**
    * Dictionary of all words available in this round
    */
-  wordsDict: Dictionary<TextCard>;
+  wordsDict: Dictionary<TextCardData>;
   /**
    * Initial two word options for the secret word
    */
@@ -156,7 +156,7 @@ export type PhaseMetricsBuildingState = {
   /**
    * Descriptors for each metric (0-4)
    */
-  metricsDescriptors: Record<string, TextCard[]>;
+  metricsDescriptors: Record<string, TextCardData[]>;
   /**
    * Points awarded for each ranking bracket
    */
@@ -181,7 +181,7 @@ export type PhaseGuessingState = {
   /**
    * Dictionary of words in the pool
    */
-  wordsDict: Dictionary<TextCard>;
+  wordsDict: Dictionary<TextCardData>;
   /**
    * Pool of words visible to players
    */
@@ -189,7 +189,7 @@ export type PhaseGuessingState = {
   /**
    * Descriptors for each metric (0-4)
    */
-  metricsDescriptors: Record<string, TextCard[]>;
+  metricsDescriptors: Record<string, TextCardData[]>;
   /**
    * Metric values assigned by the presenter (0-4)
    */

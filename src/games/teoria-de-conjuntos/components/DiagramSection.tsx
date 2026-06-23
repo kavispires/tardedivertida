@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { Alert, Divider, Flex } from 'antd';
 // Types
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Utils
 import { getAnimationClass } from '@utils/helpers';
 // Components
@@ -29,9 +29,9 @@ const MotionInstruction = motion.create(Instruction);
 type DiagramSectionProps = {
   width: number;
   onSelectArea?: (area: string) => void;
-  items: Dictionary<Item>;
+  items: Dictionary<ItemData>;
   diagrams: Dictionary<DiagramArea>;
-  currentItem?: Item;
+  currentItem?: ItemData;
   currentItemPosition?: string;
   reevaluation?: Reevaluation;
 };
@@ -190,7 +190,7 @@ function CurrentItem({
 
 type SelectedAreaItemsSectionProps = {
   diagrams: Dictionary<DiagramArea>;
-  items: Dictionary<Item>;
+  items: Dictionary<ItemData>;
   selectedArea: string;
   maxHeight: number;
   reevaluation?: Reevaluation;
@@ -251,7 +251,7 @@ function SelectedAreaItemsSection({
 type SelectedAreaItemsProps = {
   areaKey: string;
   itemsIds: string[];
-  items: Dictionary<Item>;
+  items: Dictionary<ItemData>;
   displayEmptyMessage: boolean;
   reevaluation?: Reevaluation;
 };

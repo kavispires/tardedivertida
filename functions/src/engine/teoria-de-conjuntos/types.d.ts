@@ -1,4 +1,4 @@
-import type { DiagramTopic, Item } from '../../types/tdr';
+import type { DiagramTopicData, ItemData } from '../../types/tdr';
 import type { OUTCOME, TEORIA_DE_CONJUNTOS_ACTIONS } from './constants';
 
 export type TeoriaDeConjuntosOptions = {
@@ -13,17 +13,17 @@ export type TeoriaDeConjuntosOptions = {
 };
 
 export type TopicsByDiagramType = {
-  attribute: DiagramTopic[];
-  word: DiagramTopic[];
-  context?: DiagramTopic[];
+  attribute: DiagramTopicData[];
+  word: DiagramTopicData[];
+  context?: DiagramTopicData[];
 };
 
 export interface ResourceData {
-  items: Item[];
+  items: ItemData[];
   diagrams: {
-    attribute: DiagramTopic;
-    word: DiagramTopic;
-    context?: DiagramTopic;
+    attribute: DiagramTopicData;
+    word: DiagramTopicData;
+    context?: DiagramTopicData;
   };
   examples: TopicsByDiagramType;
 }

@@ -3,7 +3,7 @@ import { MEDIDAS_NAO_EXATAS_PHASES } from './constants';
 import { orderBy, uniq } from 'lodash';
 // Utils
 import utils from '../../utils';
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import type { FirebaseStoreData, GalleryEntry, Guess } from './types';
 import { increaseAchievement } from './achievements';
 
@@ -40,9 +40,9 @@ export const determineResults = (
   players: Players,
   presenterId: UID,
   secretWordId: UID,
-  wordsDict: Dictionary<TextCard>,
+  wordsDict: Dictionary<TextCardData>,
   store: FirebaseStoreData,
-  metricsDescriptors: Record<string, TextCard[]>,
+  metricsDescriptors: Record<string, TextCardData[]>,
   metrics: Record<UID, number>,
   pointsBrackets: number[],
 ) => {

@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GameRanking } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 
 /**
  * Represents a tweet that has been shown previously in the game
@@ -53,7 +53,7 @@ export type SubmitReactionPayload = {
 };
 
 /**
- * State for the Tweet Selection phase
+ * State for the TweetCardData Selection phase
  * Players select a tweet for others to react to
  */
 export type PhaseTweetSelectionState = {
@@ -68,11 +68,11 @@ export type PhaseTweetSelectionState = {
   /**
    * Available tweet options for selection
    */
-  currentTweets: TextCard[];
+  currentTweets: TextCardData[];
   /**
    * Custom tweet option available for selection
    */
-  currentCustomTweet: TextCard;
+  currentCustomTweet: TextCardData;
 };
 
 /**
@@ -91,7 +91,7 @@ export type PhaseReactState = {
   /**
    * The tweet currently being shown
    */
-  currentTweet: TextCard;
+  currentTweet: TextCardData;
   /**
    * Custom tweet text if the active player created their own, null otherwise
    */
@@ -114,7 +114,7 @@ export type PhaseResolutionState = {
   /**
    * The tweet that was shown
    */
-  currentTweet: TextCard;
+  currentTweet: TextCardData;
   /**
    * Custom tweet text if it was used, null otherwise
    */

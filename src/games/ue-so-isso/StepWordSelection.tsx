@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Components
 import { TimedButton } from '@components/buttons/TimedButton';
 import { Translate } from '@components/language/Translate';
@@ -18,7 +18,7 @@ import type { SubmitVotesPayload } from './utils/types';
 type StepWordSelectionProps = {
   guesser: GamePlayer;
   onSendSelectedWords: (payload: SubmitVotesPayload) => void;
-  words: TextCard[];
+  words: TextCardData[];
   players: GamePlayers;
   turnOrder: TurnOrder;
 } & Pick<StepProps, 'announcement'>;

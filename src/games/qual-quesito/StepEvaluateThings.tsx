@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import { Flex, Segmented } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Hooks
 import { useMock } from '@hooks/useMock';
 // Components
@@ -25,7 +25,7 @@ import { PlayersHandsCounts } from './components/PlayersHandsCounts';
 type StepEvaluateThingsProps = {
   players: GamePlayers;
   user: GamePlayer;
-  cardsDict: Dictionary<Item>;
+  cardsDict: Dictionary<ItemData>;
   category: string;
   onSubmitEvaluations: (payload: SubmitEvaluationsPayload) => void;
   table: TableEntry[];

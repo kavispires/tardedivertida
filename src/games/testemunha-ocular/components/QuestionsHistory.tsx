@@ -1,12 +1,12 @@
 // Ant Design Resources
 import { Flex, Table, type TableProps } from 'antd';
 // Types
-import type { SuspectCard } from 'types/tdr';
+import type { SuspectCardData } from 'types/tdr';
 // Icons
 import { SpeechBubbleAcceptedIcon } from '@icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from '@icons/SpeechBubbleDeclinedIcon';
 // Components
-import { SuspectCard as SuspectCardComponent } from '@components/cards/SuspectCard';
+import { SuspectCard } from '@components/cards/SuspectCard';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { CollapsibleRule } from '@components/rules/CollapsibleRule';
@@ -15,7 +15,7 @@ import type { THistoryEntry } from '../utils/types';
 
 type QuestionsHistoryProps = {
   history: THistoryEntry[];
-  suspectsDict: Dictionary<SuspectCard>;
+  suspectsDict: Dictionary<SuspectCardData>;
 };
 
 export function QuestionsHistory({ history, suspectsDict }: QuestionsHistoryProps) {
@@ -112,7 +112,7 @@ export function QuestionsHistory({ history, suspectsDict }: QuestionsHistoryProp
 
 type EliminatedSuspectsProps = {
   eliminated: UID[];
-  suspectsDict: Dictionary<SuspectCard>;
+  suspectsDict: Dictionary<SuspectCardData>;
 };
 
 function EliminatedSuspects({ eliminated, suspectsDict }: EliminatedSuspectsProps) {
@@ -125,7 +125,7 @@ function EliminatedSuspects({ eliminated, suspectsDict }: EliminatedSuspectsProp
       {eliminated.map((id) => {
         const suspect = suspectsDict[id];
         return (
-          <SuspectCardComponent
+          <SuspectCard
             suspect={suspect}
             key={id}
             width={100}

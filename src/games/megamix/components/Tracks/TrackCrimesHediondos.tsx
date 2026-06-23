@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Button } from 'antd';
 // Types
-import type { CrimesHediondosCard } from 'types/tdr';
+import type { CrimesHediondosCardData } from 'types/tdr';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 import { useLoading } from '@hooks/useLoading';
@@ -103,7 +103,7 @@ export const TrackCrimesHediondos = ({ track, onSubmitAnswer, user }: TrackProps
       </ul>
 
       <ul className="h-cards">
-        {track.data.cards.map((card: CrimesHediondosCard) => {
+        {track.data.cards.map((card: CrimesHediondosCardData) => {
           return (
             <li
               key={card.id}

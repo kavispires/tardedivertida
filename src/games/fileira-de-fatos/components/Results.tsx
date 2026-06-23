@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Space, Avatar, Tooltip } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 import { useSortedPlayers } from '@hooks/useSortedPlayers';
@@ -24,7 +24,7 @@ type ResultsProps = {
   players: GamePlayers;
   activePlayerId: UID;
   correctOrder: UID[];
-  scenarioDictionary: Record<UID, TextCard>;
+  scenarioDictionary: Record<UID, TextCardData>;
   roundType: string;
 };
 

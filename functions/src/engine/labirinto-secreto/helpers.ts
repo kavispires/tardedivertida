@@ -16,7 +16,7 @@ import {
 } from './constants';
 // Utils
 import utils from '../../utils';
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import { random, sample, shuffle } from 'lodash';
 // Internal
 import { increaseAchievement } from './achievements';
@@ -275,7 +275,7 @@ const buildPath = (
  * @param cards
  * @returns
  */
-export const buildForest = (cards: TextCard[], isItemsForest: boolean): Tree[] => {
+export const buildForest = (cards: TextCardData[], isItemsForest: boolean): Tree[] => {
   const trees = Array(5)
     .fill(0)
     .map(() => random(2, 15));
@@ -409,7 +409,7 @@ const determineDirectionAchievement = (
     | null;
 };
 
-export const distributeCards = (store: PlainObject, players: Players, cards: TextCard[]) => {
+export const distributeCards = (store: PlainObject, players: Players, cards: TextCardData[]) => {
   // Builds a 18 card deck per player
   utils.deck.setup(store, players, cards, CARDS_PER_PLAYER);
   // Deals the first 3 cards

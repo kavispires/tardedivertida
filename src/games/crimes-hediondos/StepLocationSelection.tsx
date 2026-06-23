@@ -1,7 +1,7 @@
 import { useState } from 'react';
 // Types
 import type { GamePlayer } from 'types/game';
-import type { CrimeSceneTile } from 'types/tdr';
+import type { CrimeSceneTileData } from 'types/tdr';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 // Components
@@ -23,7 +23,7 @@ type StepLocationSelectionProps = {
   items: ItemsDict;
   selections: SubmitCrimePayload;
   updateSelections: (payload: SubmitCrimePayload) => void;
-  locationTile: CrimeSceneTile;
+  locationTile: CrimeSceneTileData;
   groupedItems: GroupedItems;
   goToStep: (step: number) => void;
   isLocationGame: boolean;

@@ -1,6 +1,6 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Components
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
@@ -16,7 +16,7 @@ import { WordLengths } from './components/WordLengths';
 type StepWaitWordCreationProps = {
   players: GamePlayers;
   creator: GamePlayer;
-  items: Item[];
+  items: ItemData[];
   wordLengths: WordLength[];
   turnOrder: UID[];
 } & Pick<StepProps, 'announcement'>;

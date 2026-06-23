@@ -1,6 +1,6 @@
 import { getGlobalFirebaseDocData, updateGlobalFirebaseDoc } from '../engine/global';
 import { fetchResource } from '../engine/resource';
-import type { ContenderCard, Item, SuspectCard, TextCard } from '../types/tdr';
+import type { ContenderCardData, ItemData, SuspectCardData, TextCardData } from '../types/tdr';
 import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from './constants';
 import * as firestoreUtils from './firestore';
 import * as gameUtils from './game-utils';
@@ -24,16 +24,16 @@ export const getItems = async (
     allowNSFW: boolean;
     decks?: string[];
     deckFiltering?: 'OR' | 'AND';
-    filters?: ((item: Item) => boolean)[];
-    cleanUp?: (item: Item) => Item;
+    filters?: ((item: ItemData) => boolean)[];
+    cleanUp?: (item: ItemData) => ItemData;
   } = {
     allowNSFW: false,
     deckFiltering: 'OR',
     decks: [],
     filters: [],
   },
-): Promise<Item[]> => {
-  const itemsObj: Dictionary<Item> = await fetchResource(TDR_RESOURCES.ITEMS);
+): Promise<ItemData[]> => {
+  const itemsObj: Dictionary<ItemData> = await fetchResource(TDR_RESOURCES.ITEMS);
 
   // Filter out items that don't match the options
   Object.values(itemsObj).forEach((item) => {
@@ -101,39 +101,39 @@ export const getItems = async (
 };
 
 /**
- * Utility functions for filtering and manipulating Item objects
+ * Utility functions for filtering and manipulating ItemData objects
  */
 export const itemUtils = {
   /**
    * Filter alien only if safe for work
    */
-  onlySafeForWork: (item: Item) => !item.nsfw,
+  onlySafeForWork: (item: ItemData) => !item.nsfw,
   /**
    * Get alien items that are within all of the given decks (intersection)
    */
-  onlyItemsWithinDecks: (decks: string[]) => (item: Item) => {
+  onlyItemsWithinDecks: (decks: string[]) => (item: ItemData) => {
     return every(decks, (deck) => (item.decks ?? []).includes(deck));
   },
   /**
    * Get alien items that are within any of the given decks (union)
    */
-  onlyItemsWithinEitherDecks: (decks: string[]) => (item: Item) => {
+  onlyItemsWithinEitherDecks: (decks: string[]) => (item: ItemData) => {
     return some(decks, (deck) => (item.decks ?? []).includes(deck));
   },
   /**
    * Filter alien items by deck
    */
-  notWithinDecks: (decks: string[]) => (item: Item) => {
+  notWithinDecks: (decks: string[]) => (item: ItemData) => {
     return !some(decks, (deck) => (item.decks ?? []).includes(deck));
   },
   /**
    * Filter item only if it has a name in the given language
    */
-  onlyWithName: (language: Language) => (item: Item) => Boolean(item.name[language].trim()),
+  onlyWithName: (language: Language) => (item: ItemData) => Boolean(item.name[language].trim()),
   /**
    * Removes the prop decks from the item
    */
-  cleanupDecks: (item: Item): Item => {
+  cleanupDecks: (item: ItemData): ItemData => {
     delete item.decks;
     return item;
   },
@@ -144,7 +144,7 @@ export const itemUtils = {
  * @param items
  * @returns
  */
-export const saveUsedItems = async (items: Item[]) => {
+export const saveUsedItems = async (items: ItemData[]) => {
   const itemsIdsDict = buildBooleanDictionary(items);
   return updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ITEMS, itemsIdsDict);
 };
@@ -154,7 +154,7 @@ export const saveUsedItems = async (items: Item[]) => {
  * @param items
  * @returns
  */
-export const saveUsedAlienItems = async (items: Item[]) => {
+export const saveUsedAlienItems = async (items: ItemData[]) => {
   const itemsIdsDict = buildBooleanDictionary(items);
   return updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS, itemsIdsDict);
 };
@@ -165,8 +165,8 @@ export const saveUsedAlienItems = async (items: Item[]) => {
  * @param quantity Number of words to return, or all if undefined
  * @returns Array of text cards
  */
-export const getSingleWords = async (language: Language, quantity?: number): Promise<TextCard[]> => {
-  return getUnusedResources<TextCard>(
+export const getSingleWords = async (language: Language, quantity?: number): Promise<TextCardData[]> => {
+  return getUnusedResources<TextCardData>(
     TDR_RESOURCES.SINGLE_WORDS,
     GLOBAL_USED_DOCUMENTS.SINGLE_WORDS,
     language,
@@ -196,16 +196,16 @@ export const getContenders = async (
   allowNSFW: boolean,
   decks: string[],
   quantity?: number,
-): Promise<ContenderCard[]> => {
-  const contendersResponse: Dictionary<ContenderCard> = await fetchResource(TDR_RESOURCES.CONTENDERS);
+): Promise<ContenderCardData[]> => {
+  const contendersResponse: Dictionary<ContenderCardData> = await fetchResource(TDR_RESOURCES.CONTENDERS);
 
-  const priorityDecks: Dictionary<ContenderCard> = {};
+  const priorityDecks: Dictionary<ContenderCardData> = {};
   const includeSpecialDecks = decks.includes('special-td') || decks.includes('special-td-bg');
 
   // Get only contenders that match the language selected
   const languageContenders = Object.values(contendersResponse)
     .filter((c) => (c.exclusivity ? c.exclusivity === language : true && allowNSFW ? true : !c.nsfw))
-    .reduce((acc: Dictionary<ContenderCard>, entry) => {
+    .reduce((acc: Dictionary<ContenderCardData>, entry) => {
       // Special Decks are held in a separate object
       if (
         includeSpecialDecks &&
@@ -275,8 +275,8 @@ export const getContenders = async (
  * @param quantity Number of adjectives to return, or all if undefined
  * @returns Array of adjective cards
  */
-export const getAdjectives = async (language: Language, quantity?: number): Promise<TextCard[]> => {
-  return getUnusedResources<TextCard>(
+export const getAdjectives = async (language: Language, quantity?: number): Promise<TextCardData[]> => {
+  return getUnusedResources<TextCardData>(
     TDR_RESOURCES.ADJECTIVES,
     GLOBAL_USED_DOCUMENTS.ADJECTIVES,
     language,
@@ -378,15 +378,15 @@ export const getSuspects = async ({
    * Sorts the resulting suspects by the specified property. Usually name.pt or name.en, default is by id.
    */
   sortBy?: string;
-}): Promise<SuspectCard[]> => {
-  const allSuspects = await fetchResource<Dictionary<SuspectCard>>(TDR_RESOURCES.SUSPECTS);
+}): Promise<SuspectCardData[]> => {
+  const allSuspects = await fetchResource<Dictionary<SuspectCardData>>(TDR_RESOURCES.SUSPECTS);
   const suspectsArray = Object.values(allSuspects);
 
   function applyStyleVariantOnId(id: string, styleVariant: SuspectCardsOptions['styleVariant']): string {
     return `us-${styleVariant ?? 'gb'}-${id.split('-')[1]}`;
   }
 
-  function cleanUpSuspect(suspect: SuspectCard): SuspectCard {
+  function cleanUpSuspect(suspect: SuspectCardData): SuspectCardData {
     return {
       id: suspect.id,
       name: suspect.name,
@@ -400,7 +400,7 @@ export const getSuspects = async ({
     };
   }
 
-  function filterByDecks(list: SuspectCard[]) {
+  function filterByDecks(list: SuspectCardData[]) {
     return list.filter((suspect) => {
       if (decks?.includes('any')) {
         return true;
@@ -471,10 +471,10 @@ export const getSuspects = async ({
 //  * name, gender, age, race, build, height, and an empty features array.
 //  */
 // export const modifySuspectIdsByOptions = (
-//   suspects: SuspectCard[],
+//   suspects: SuspectCardData[],
 //   options?: SuspectCardsOptions,
 //   cleanup?: boolean,
-// ): SuspectCard[] => {
+// ): SuspectCardData[] => {
 //   const deckType =
 //     {
 //       ghibli: 'gb',

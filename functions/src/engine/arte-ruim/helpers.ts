@@ -1,5 +1,5 @@
 // Types
-import type { ArteRuimCard, ArteRuimGroup, ArteRuimPair } from '../../types/tdr';
+import type { ArteRuimCardData, ArteRuimGroupData, ArteRuimPairData } from '../../types/tdr';
 import { sampleSize, shuffle } from 'lodash';
 import type {
   ArteRuimDrawing,
@@ -70,7 +70,7 @@ export const getGameSettings = (options: ArteRuimGameOptions) => {
  * @param cards
  * @returns
  */
-export const distributeCardsByLevel = (cards: ArteRuimCard[]): CardsByLevel => {
+export const distributeCardsByLevel = (cards: ArteRuimCardData[]): CardsByLevel => {
   const cardsPerLevel: CardsByLevel = {
     0: [],
     1: [],
@@ -80,7 +80,7 @@ export const distributeCardsByLevel = (cards: ArteRuimCard[]): CardsByLevel => {
   };
 
   // Split in levels
-  Object.values(cards).forEach((entry: ArteRuimCard) => {
+  Object.values(cards).forEach((entry: ArteRuimCardData) => {
     cardsPerLevel[entry.level].push(entry);
   });
 
@@ -157,7 +157,7 @@ export const getAvailableCards = (
  * @returns
  */
 export const getEnoughUnusedLevel5Cards = (
-  deck: ArteRuimGroup[],
+  deck: ArteRuimGroupData[],
   usedCards: PlainObject,
   cardsNeeded: number,
 ): string[] => {
@@ -201,7 +201,7 @@ export const buildDeck = (
   resourceData: ResourceData,
   playerCount: number,
   levels: number[],
-): ArteRuimCard[] => {
+): ArteRuimCardData[] => {
   const cardsPerRound = determineNumberOfCards(playerCount);
   const cardsNeeded = levels.length * cardsPerRound;
 
@@ -263,11 +263,11 @@ export const buildDeck = (
  * @param cards - Array of level 4 card pairs
  * @param playerCount - Number of players
  */
-export const getEnoughLevel4Cards = (cards: ArteRuimPair[], playerCount: number) => {
-  let result: ArteRuimCard[] = [];
+export const getEnoughLevel4Cards = (cards: ArteRuimPairData[], playerCount: number) => {
+  let result: ArteRuimCardData[] = [];
 
-  function buildNecessaryArray(card: ArteRuimPair, count: number): ArteRuimCard[] {
-    const newCards: ArteRuimCard[] = card.values.map((value, index) => ({
+  function buildNecessaryArray(card: ArteRuimPairData, count: number): ArteRuimCardData[] {
+    const newCards: ArteRuimCardData[] = card.values.map((value, index) => ({
       id: `${card.id}--${index}`,
       text: value,
       level: 4,
@@ -294,7 +294,7 @@ export const getEnoughLevel4Cards = (cards: ArteRuimPair[], playerCount: number)
  * Returns a unique set of cards for pairs level
  * @param cards - Array of cards to filter for uniqueness
  */
-export const getTwoUniquePairCards = (cards: ArteRuimCard[]): ArteRuimCard[] => {
+export const getTwoUniquePairCards = (cards: ArteRuimCardData[]): ArteRuimCardData[] => {
   const cache: Dictionary<boolean> = {};
 
   const selectedCards = cards.filter((card) => {
@@ -335,7 +335,7 @@ export const dealCards = (players: Players, store: FirebaseStoreData) => {
   store.currentCards = new Array(numberOfCards).fill(0).map((i, index) => {
     const currentPlayerId = playersArray?.[index]?.id ?? null;
     const card: ArteRuimDrawing = {
-      ...(store.deck.pop() as ArteRuimCard),
+      ...(store.deck.pop() as ArteRuimCardData),
       drawing: null,
       successRate: i,
       playerId: currentPlayerId,

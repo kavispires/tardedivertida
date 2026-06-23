@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GameRanking, GamePlayer } from 'types/game';
-import type { CrimesHediondosCard, CrimeSceneTile } from 'types/tdr';
+import type { CrimesHediondosCardData, CrimeSceneTileData } from 'types/tdr';
 
 /**
  * Payload for submitting crime selection
@@ -82,12 +82,12 @@ export type GroupedItems = Dictionary<string[]>;
 /**
  * Dictionary of items keyed by ID
  */
-export type ItemsDict = Dictionary<CrimesHediondosCard>;
+export type ItemsDict = Dictionary<CrimesHediondosCardData>;
 
 /**
  * Dictionary of scenes keyed by ID
  */
-export type ScenesDict = Dictionary<CrimeSceneTile>;
+export type ScenesDict = Dictionary<CrimeSceneTileData>;
 
 /**
  * Crime configuration for a player
@@ -200,23 +200,23 @@ export type PhaseCrimeSelectionState = {
   /**
    * Cause of death scene tile
    */
-  causeOfDeathTile: CrimeSceneTile;
+  causeOfDeathTile: CrimeSceneTileData;
   /**
    * Reason for evidence scene tile
    */
-  reasonForEvidenceTile: CrimeSceneTile;
+  reasonForEvidenceTile: CrimeSceneTileData;
   /**
    * Location scene tile
    */
-  locationTile: CrimeSceneTile;
+  locationTile: CrimeSceneTileData;
   /**
    * Victim scene tile
    */
-  victimTile: CrimeSceneTile;
+  victimTile: CrimeSceneTileData;
   /**
    * Dictionary of all items in the game
    */
-  items: Dictionary<CrimesHediondosCard>;
+  items: Dictionary<CrimesHediondosCardData>;
   /**
    * Items grouped by category
    */
@@ -234,7 +234,7 @@ export type PhaseSceneMarkingState = {
   /**
    * Dictionary of all items in the game
    */
-  items: Dictionary<CrimesHediondosCard>;
+  items: Dictionary<CrimesHediondosCardData>;
   /**
    * Items grouped by category
    */
@@ -242,7 +242,7 @@ export type PhaseSceneMarkingState = {
   /**
    * Dictionary of all scene tiles
    */
-  scenes: Dictionary<CrimeSceneTile>;
+  scenes: Dictionary<CrimeSceneTileData>;
   /**
    * Order of scene tile IDs
    */
@@ -250,7 +250,7 @@ export type PhaseSceneMarkingState = {
   /**
    * Current scene tile being marked
    */
-  currentScene: CrimeSceneTile;
+  currentScene: CrimeSceneTileData;
 };
 
 /**
@@ -268,11 +268,11 @@ export type PhaseGuessingState = {
   /**
    * Dictionary of all items in the game
    */
-  items: Dictionary<CrimesHediondosCard>;
+  items: Dictionary<CrimesHediondosCardData>;
   /**
    * Dictionary of all scene tiles
    */
-  scenes: Dictionary<CrimeSceneTile>;
+  scenes: Dictionary<CrimeSceneTileData>;
   /**
    * Order of scene tile IDs
    */
@@ -294,11 +294,11 @@ export type PhaseRevealState = {
   /**
    * Dictionary of all items in the game
    */
-  items: Dictionary<CrimesHediondosCard>;
+  items: Dictionary<CrimesHediondosCardData>;
   /**
    * Dictionary of all scene tiles
    */
-  scenes: Dictionary<CrimeSceneTile>;
+  scenes: Dictionary<CrimeSceneTileData>;
   /**
    * Order of scene tile IDs
    */
@@ -332,11 +332,11 @@ export type PhaseGameOverState = {
   /**
    * Dictionary of all items in the game
    */
-  items: Dictionary<CrimesHediondosCard>;
+  items: Dictionary<CrimesHediondosCardData>;
   /**
    * Dictionary of all scene tiles
    */
-  scenes: Dictionary<CrimeSceneTile>;
+  scenes: Dictionary<CrimeSceneTileData>;
   /**
    * Order of scene tile IDs
    */

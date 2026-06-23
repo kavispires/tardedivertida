@@ -3,7 +3,7 @@ import { STARTING_ITEMS_PER_PLAYER_COUNT, ROUNDS_PER_PLAYER, JUDGE_HAND_QUANTITY
 import { TDR_RESOURCES } from '../../utils/constants';
 import { sampleSize } from 'lodash';
 // Type
-import type { DiagramTopic, Item } from '../../types/tdr';
+import type { DiagramTopicData, ItemData } from '../../types/tdr';
 import type { TeoriaDeConjuntosOptions, ResourceData, TopicsByDiagramType } from './types';
 // Helpers
 import utils from '../../utils';
@@ -31,7 +31,7 @@ export const getResourceData = async (
     allowNSFW,
     decks: ['thing', 'manufactured', 'alien'],
     filters: [
-      (item: Item) => {
+      (item: ItemData) => {
         if (item.decks?.includes('thing')) {
           return true;
         }
@@ -47,7 +47,7 @@ export const getResourceData = async (
         return false;
       },
     ],
-    cleanUp: (item: Item) => {
+    cleanUp: (item: ItemData) => {
       const i = utils.tdr.itemUtils.cleanupDecks(item);
       // If the name used is not a single word, use the first single word alias
       if (i.name[language].trim().split(' ').length > 1) {
@@ -62,7 +62,7 @@ export const getResourceData = async (
   });
 
   // Get full deck
-  const allCards = await resourceUtils.fetchResource<Dictionary<DiagramTopic>>(
+  const allCards = await resourceUtils.fetchResource<Dictionary<DiagramTopicData>>(
     TDR_RESOURCES.DIAGRAM_TOPICS,
     language,
   );

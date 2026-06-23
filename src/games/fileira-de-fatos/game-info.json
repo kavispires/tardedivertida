@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "F",
   "gameName": "fileira-de-fatos",
-  "version": "1.0.58",
+  "version": "1.0.59",
   "release": "stable",
   "releaseDate": "2023-07-21",
   "available": true,

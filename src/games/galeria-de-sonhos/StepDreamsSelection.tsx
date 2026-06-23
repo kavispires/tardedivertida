@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { RobotOutlined } from '@ant-design/icons';
 // Types
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useBooleanDictionary } from '@hooks/useBooleanDictionary';
 import { useMock } from '@hooks/useMock';
@@ -26,7 +26,7 @@ const validateSelectedCards = (v: Dictionary<boolean>) => {
 
 type StepDreamsSelectionProps = {
   table: ImageCardObj[];
-  word: TextCard;
+  word: TextCardData;
   onSubmitCards: (payload: SubmitCardsPayload) => void;
   botEnabled: boolean;
   minimumSelection: number;

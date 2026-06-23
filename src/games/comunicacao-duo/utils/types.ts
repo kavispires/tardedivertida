@@ -20,11 +20,11 @@ export type DeckEntryImageData = {
  */
 export type DeckEntryItemData = {
   /**
-   * Item ID
+   * ItemData ID
    */
   id: string;
   /**
-   * Item name in multiple languages
+   * ItemData name in multiple languages
    */
   name: DualLanguageValue;
   /**
@@ -138,7 +138,7 @@ export type DeckEntry = {
    */
   status: string;
   /**
-   * Item data (image or card information)
+   * ItemData data (image or card information)
    */
   data: DeckEntryData | null;
   /**

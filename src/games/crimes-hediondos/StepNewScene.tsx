@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Collapse } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
-import type { CrimeSceneTile } from 'types/tdr';
+import type { CrimeSceneTileData } from 'types/tdr';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
 import { SceneTile } from '@components/game/SceneTile';
@@ -32,7 +32,7 @@ type StepNewSceneProps = {
   items: ItemsDict;
   groupedItems: GroupedItems;
   onSubmitMark: (payload: SubmitMarkPayload) => void;
-  sceneTile: CrimeSceneTile;
+  sceneTile: CrimeSceneTileData;
   crimes: Crime[];
   scenes: ScenesDict;
   scenesOrder: string[];

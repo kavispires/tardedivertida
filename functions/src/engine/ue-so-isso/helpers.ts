@@ -1,5 +1,5 @@
 // Types
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import { shuffle } from 'lodash';
 import type {
   CurrentSuggestions,
@@ -62,12 +62,12 @@ export const determineNextPhase = (
  * @param allWords
  * @param numberOfRounds
  */
-export const buildDeck = (allWords: TextCard[], numberOfRounds: number, wordsPerCard) => {
+export const buildDeck = (allWords: TextCardData[], numberOfRounds: number, wordsPerCard) => {
   const shuffledWords = shuffle(allWords);
 
   const deck: string[] = [];
   for (let i = 0; i < numberOfRounds * wordsPerCard; i += wordsPerCard) {
-    const card: TextCard[] = [];
+    const card: TextCardData[] = [];
     for (let j = i; j < i + wordsPerCard; j++) {
       card.push(shuffledWords[j]);
     }
@@ -82,7 +82,7 @@ export const buildDeck = (allWords: TextCard[], numberOfRounds: number, wordsPer
  * @param currentCard
  * @returns
  */
-export const buildCurrentWords = (currentCard: TextCard[]) => {
+export const buildCurrentWords = (currentCard: TextCardData[]) => {
   return currentCard.reduce((wordObjects, word) => {
     wordObjects[word.id] = {
       ...word,

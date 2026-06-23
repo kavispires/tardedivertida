@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Avatar, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 // Components
@@ -14,7 +14,7 @@ import { PlayerAvatarStrip } from '@components/player/PlayerAvatarStrip';
 import type { ScaleEntry } from '../utils/types';
 
 type ScenarioCardProps = {
-  scenarios: (TextCard | null)[];
+  scenarios: (TextCardData | null)[];
   reference: ScaleEntry[];
   player?: GamePlayer;
 };

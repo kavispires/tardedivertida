@@ -1,6 +1,6 @@
 // Types
 import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Hooks
 import { useCardWidthByContainerRef } from '@hooks/useCardWidth';
 // Components
@@ -24,7 +24,7 @@ type StepWaitPlaceItemProps = {
   user: GamePlayer;
   examples: DiagramExamples;
   diagrams: Dictionary<DiagramArea>;
-  items: Dictionary<Item>;
+  items: Dictionary<ItemData>;
   turnOrder: GameOrder;
   activePlayer: GamePlayer;
   isJudge: boolean;

@@ -1,19 +1,19 @@
 import { random, sample, sampleSize, shuffle } from 'lodash';
 // Types
 import type { GamePlayer } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Internal
-import type { Concept, NewNameEntry, SubmitGuessesPayload } from './types';
+import type { ConceptData, NewNameEntry, SubmitGuessesPayload } from './types';
 
 export const mockConcept = (
   user: GamePlayer,
-  concepts: Concept[],
-  items: Dictionary<Item>,
+  concepts: ConceptData[],
+  items: Dictionary<ItemData>,
   maxProposals: number,
   currentRound: number,
 ) => {
   const quantity = Math.max(Math.round(maxProposals / 1.5), 1);
-  const newConcepts: Concept[] = [];
+  const newConcepts: ConceptData[] = [];
   let tries = 0;
 
   const usedConcept: Dictionary<boolean> = {};
@@ -49,7 +49,7 @@ export const mockConcept = (
   return [...(user.proposedConcepts || []), ...newConcepts];
 };
 
-export const mockName = (basicConcepts: Concept[], concepts: Concept[], language: Language) => {
+export const mockName = (basicConcepts: ConceptData[], concepts: ConceptData[], language: Language) => {
   const length = random(2, 3);
 
   const selectedConcepts = sampleSize(concepts, length).map((concept) => concept);
@@ -70,7 +70,7 @@ export const mockName = (basicConcepts: Concept[], concepts: Concept[], language
 
 export const mockGuesses = (
   user: GamePlayer,
-  pool: Item[],
+  pool: ItemData[],
   newNames: NewNameEntry[],
 ): SubmitGuessesPayload => {
   const guesses: Dictionary<string> = {};

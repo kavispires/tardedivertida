@@ -46,7 +46,7 @@ export function PhaseCreatingConcepts({ state, players, user }: PhaseProps<Phase
           title={
             <Translate
               pt="Criação de Conceitos"
-              en="Concept Creation"
+              en="ConceptData Creation"
             />
           }
           currentRound={state?.round?.current}

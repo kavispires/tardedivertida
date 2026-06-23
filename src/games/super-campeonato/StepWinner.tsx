@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { TrophyOutlined } from '@ant-design/icons';
 // Types
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import type { UseStep } from '@hooks/useStep';
 // Components
@@ -17,7 +17,7 @@ import { BetsFloatingHand } from './components/BetsFloatingHand';
 import { Challenge } from './components/Challenge';
 
 type StepWinnerProps = {
-  challenge: TextCard;
+  challenge: TextCardData;
   brackets: Bracket[];
   bets: Bet;
   goToNextStep: UseStep['goToNextStep'];

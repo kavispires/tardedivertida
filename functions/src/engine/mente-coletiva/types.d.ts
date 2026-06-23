@@ -1,4 +1,4 @@
-import type { GroupQuestionCard } from '../../types/tdr';
+import type { GroupQuestionCardData } from '../../types/tdr';
 import type { MENTE_COLETIVA_ACTIONS } from './constants';
 
 export type MenteColetivaOptions = {
@@ -7,12 +7,12 @@ export type MenteColetivaOptions = {
 
 export interface ResourceData {
   allQuestions: {
-    [key: string]: GroupQuestionCard;
+    [key: string]: GroupQuestionCardData;
   };
 }
 
 export interface AllQuestions {
-  [key: string]: GroupQuestionCard;
+  [key: string]: GroupQuestionCardData;
 }
 
 export interface PastQuestions {
@@ -20,10 +20,10 @@ export interface PastQuestions {
   answers: string[];
 }
 
-export type Deck = GroupQuestionCard[];
+export type Deck = GroupQuestionCardData[];
 
 export type GalleryEntry = {
-  question: GroupQuestionCard;
+  question: GroupQuestionCardData;
   answers: {
     playerIds: UID[];
     answer: string;
@@ -34,7 +34,7 @@ export interface MenteColetivaStore extends DefaultStore {
   deck: Deck;
   gameOrder: UID[];
   pastQuestions: PastQuestions[];
-  currentQuestion?: GroupQuestionCard;
+  currentQuestion?: GroupQuestionCardData;
   gallery?: GalleryEntry[];
 }
 

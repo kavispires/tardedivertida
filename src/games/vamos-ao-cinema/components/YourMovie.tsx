@@ -1,5 +1,5 @@
 // Types
-import type { MovieCard } from 'types/tdr';
+import type { MovieCardData } from 'types/tdr';
 // Icons
 import { FilmReelIcon } from '@icons/FilmReelIcon';
 // Components
@@ -11,7 +11,7 @@ import { TextHighlight } from '@components/text/TextHighlight';
 import { getMovieTitle } from '../utils/helpers';
 
 type YourMovieProps = {
-  movies: MovieCard[];
+  movies: MovieCardData[];
   movieId?: string;
 };
 export function YourMovie({ movies, movieId }: YourMovieProps) {

@@ -1,4 +1,4 @@
-import type { Item } from '../../types/tdr';
+import type { ItemData } from '../../types/tdr';
 import type { QUAL_QUESITO_ACTIONS, QUAL_QUESITO_PHASES } from './constants';
 
 export type QualQuesitoOptions = {
@@ -9,7 +9,7 @@ export type QualQuesitoOptions = {
 };
 
 export type ResourceData = {
-  allItems: Item[];
+  allItems: ItemData[];
 };
 
 export type TableEntry = {

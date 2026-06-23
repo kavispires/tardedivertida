@@ -5,7 +5,7 @@ import { LINHAS_CRUZADAS_PHASES } from './constants';
 import { shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
-import type { ArteRuimCard, TextCard } from '../../types/tdr';
+import type { ArteRuimCardData, TextCardData } from '../../types/tdr';
 
 /**
  * Determines the next phase based on the current phase and round
@@ -41,8 +41,8 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
  */
 export const dealPromptOptions = (
   players: Players,
-  expressionDeck: ArteRuimCard[],
-  wordsDeck: TextCard[],
+  expressionDeck: ArteRuimCardData[],
+  wordsDeck: TextCardData[],
   options: LinhasCruzadasOptions,
 ) => {
   const playerCount = utils.players.getPlayerCount(players);

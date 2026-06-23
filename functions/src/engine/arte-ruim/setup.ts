@@ -1,6 +1,6 @@
 // Types
 import type { ResourceData, FirebaseStateData, FirebaseStoreData, ArteRuimGameOptions } from './types';
-import type { ArteRuimCard } from '../../types/tdr';
+import type { ArteRuimCardData } from '../../types/tdr';
 import { cloneDeep, orderBy, shuffle } from 'lodash';
 // Constants
 import { GAME_NAMES } from '../../utils/constants';
@@ -126,7 +126,7 @@ export const prepareEvaluationPhase = async (
   const level = store.currentCards?.[0]?.level ?? 1;
 
   // Shuffle cards
-  const shuffledCards: ArteRuimCard[] =
+  const shuffledCards: ArteRuimCardData[] =
     level === 4 ? getTwoUniquePairCards(store.currentCards) : shuffle(store.currentCards);
 
   // Shuffle drawings

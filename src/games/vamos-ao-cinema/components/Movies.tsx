@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Avatar, Button, Space, Spin } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-import type { MovieCard as MovieCardType } from 'types/tdr';
+import type { MovieCardData as MovieCardType } from 'types/tdr';
 // Hooks
 import { useLoading } from '@hooks/useLoading';
 // Utils

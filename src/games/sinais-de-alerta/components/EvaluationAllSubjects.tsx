@@ -1,5 +1,5 @@
 // Types
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Icons
 import { CheckMarkIcon } from '@icons/CheckMarkIcon';
 // Components
@@ -9,7 +9,7 @@ import { Icon } from '@components/general/Icon';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 
 type EvaluationAllSubjectsProps = {
-  cards: Dictionary<TextCard>;
+  cards: Dictionary<TextCardData>;
   onSelect: (cardId: UID) => void;
   subjectsIds: UID[];
   activeItem: UID;

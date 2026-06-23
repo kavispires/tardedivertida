@@ -19,7 +19,7 @@ import utils from '../../utils';
 import { buildGallery, buildRanking } from './helpers';
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { saveData } from './data';
-import type { ContenderCard } from '../../types/tdr';
+import type { ContenderCardData } from '../../types/tdr';
 
 /**
  * Setup
@@ -52,7 +52,7 @@ export const prepareSetupPhase = async (
   utils.players.getListOfPlayers(players).forEach((player) => {
     player.availableCharacters = utils.game.dealItems(deck, CHARACTERS_PER_PLAYER);
     if (imageCardsMode) {
-      player.selectedCharacters = shuffle(player.availableCharacters.map((c: ContenderCard) => c.id));
+      player.selectedCharacters = shuffle(player.availableCharacters.map((c: ContenderCardData) => c.id));
     }
   });
 

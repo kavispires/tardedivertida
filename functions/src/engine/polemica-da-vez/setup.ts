@@ -58,7 +58,7 @@ export const prepareSetupPhase = async (
 };
 
 /**
- * [Tweet Selection Phase] - Active player selects a tweet to react to
+ * [TweetCardData Selection Phase] - Active player selects a tweet to react to
  * @param store - The Firebase store data
  * @param state - The Firebase state data
  * @param players - The players object

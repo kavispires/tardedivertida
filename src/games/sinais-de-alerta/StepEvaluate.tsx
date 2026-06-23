@@ -4,7 +4,7 @@ import { ClearOutlined, CloudUploadOutlined, ThunderboltOutlined } from '@ant-de
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
@@ -21,7 +21,7 @@ import { Step, type StepProps } from '@components/steps/Step';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
-import type { DrawingEntry, SubmitEvaluationPayload } from './utils/types';
+import type { DrawingEntryData, SubmitEvaluationPayload } from './utils/types';
 import { useGuessing } from './utils/useGuessing';
 import { EvaluationRules } from './components/RulesBlobs';
 import { EvaluationAllDrawings } from './components/EvaluationAllDrawings';
@@ -32,8 +32,8 @@ type StepEvaluateProps = {
   user: GamePlayer;
   players: GamePlayers;
   onSubmitGuesses: (payload: SubmitEvaluationPayload) => void;
-  cards: Dictionary<TextCard>;
-  drawings: DrawingEntry[];
+  cards: Dictionary<TextCardData>;
+  drawings: DrawingEntryData[];
   subjectsIds: UID[];
   descriptorsIds: UID[];
   gameLanguage: Language;
@@ -240,7 +240,7 @@ export function StepEvaluate({
 }
 
 const prepareGuesses = (
-  drawings: DrawingEntry[],
+  drawings: DrawingEntryData[],
   subjectGuesses: Dictionary<string>,
   descriptorGuesses: Dictionary<string>,
 ) => {

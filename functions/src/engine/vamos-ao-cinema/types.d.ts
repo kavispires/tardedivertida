@@ -1,4 +1,4 @@
-import type { MovieCard, MovieReviewCard } from '../../types/tdr';
+import type { MovieCardData, MovieReviewCardData } from '../../types/tdr';
 import type { VAMOS_AO_CINEMA_ACHIEVEMENTS, VAMOS_AO_CINEMA_ACTIONS } from './constants';
 
 export type VamosAoCinemaOptions = {
@@ -6,14 +6,14 @@ export type VamosAoCinemaOptions = {
 };
 
 export interface ResourceData {
-  movies: Dictionary<MovieCard>;
-  reviews: Dictionary<MovieReviewCard>;
+  movies: Dictionary<MovieCardData>;
+  reviews: Dictionary<MovieReviewCardData>;
 }
 
-export type UsedCards = (MovieCard | MovieReviewCard)[];
+export type UsedCards = (MovieCardData | MovieReviewCardData)[];
 
-export type MovieDeck = MovieCard[];
-export type ReviewsDeck = MovieReviewCard[];
+export type MovieDeck = MovieCardData[];
+export type ReviewsDeck = MovieReviewCardData[];
 
 export interface VamosAoCinemaStore extends DefaultStore {
   movieDeck?: MovieDeck;

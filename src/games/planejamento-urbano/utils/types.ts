@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GameRanking, GamePlayer } from 'types/game';
-import type { CityLocation } from 'types/tdr';
+import type { CityLocationData } from 'types/tdr';
 // Components
 import type { GridMapType } from '@components/toolKits/GridMap';
 
@@ -60,7 +60,7 @@ export type City = GridMapType<Construction | Cone | null>;
 /**
  * Dictionary of city locations keyed by ID
  */
-export type CityLocationsDict = Dictionary<CityLocation>;
+export type CityLocationsDict = Dictionary<CityLocationData>;
 
 /**
  * Gallery entry for a completed round showing placement results

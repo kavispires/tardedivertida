@@ -3,7 +3,7 @@ import { TDR_RESOURCES } from '../../utils/constants';
 import { CARDS_PER_PLAYER, FOREST_HEIGHT, FOREST_WIDTH } from './constants';
 import { sampleSize } from 'lodash';
 // Types
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import type { LabirintoSecretoGameOptions, ResourceData } from './types';
 // Utils
 import * as resourceUtils from '../resource';
@@ -43,7 +43,7 @@ export const getData = async (
   }
 
   // Get cards
-  const allWords = await resourceUtils.fetchResource<Dictionary<TextCard>>(
+  const allWords = await resourceUtils.fetchResource<Dictionary<TextCardData>>(
     TDR_RESOURCES.TREE_WORDS,
     language,
   );

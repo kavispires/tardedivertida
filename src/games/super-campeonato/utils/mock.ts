@@ -1,6 +1,6 @@
 import { cloneDeep, sampleSize } from 'lodash';
 // Types
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Utils
 import { getRandomItem } from '@utils/helpers';
 // Internal
@@ -8,7 +8,7 @@ import type { Bet, Bracket, FightingContender } from './type';
 import { DEFAULT_BETS, TIER_BY_STEP, voteTarget } from './constants';
 import { getSmartBetContenderOptions } from './helpers';
 
-export function mockSelectChallenge(challenges: TextCard[]): UID {
+export function mockSelectChallenge(challenges: TextCardData[]): UID {
   return getRandomItem(challenges).id;
 }
 

@@ -1,4 +1,4 @@
-import type { GroupQuestionCard } from '../../types/tdr';
+import type { GroupQuestionCardData } from '../../types/tdr';
 // Utils
 import utils from '../../utils';
 // Internal
@@ -42,7 +42,7 @@ export const handleSubmitCustomQuestion = async (
   gameName: string,
   gameId: UID,
   playerId: UID,
-  customQuestion: GroupQuestionCard,
+  customQuestion: GroupQuestionCardData,
 ) => {
   return await utils.firestore.updateStore({
     gameName,

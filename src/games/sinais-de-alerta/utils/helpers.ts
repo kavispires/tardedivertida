@@ -1,8 +1,8 @@
 // Types
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 
 export const getTitle = (
-  cards: Dictionary<TextCard>,
+  cards: Dictionary<TextCardData>,
   subjectId: string,
   descriptorId: string,
   language: Language,

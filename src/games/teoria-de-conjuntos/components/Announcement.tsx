@@ -2,7 +2,7 @@
 import { Flex } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Icons
 import { ApplauseIcon } from '@icons/ApplauseIcon';
 import { ArrowIcon } from '@icons/ArrowIcon';
@@ -30,7 +30,7 @@ type AnnouncementProps = {
   isTheActivePlayer: boolean;
   previousGuess: Guess | null;
   currentRound: number;
-  items: Dictionary<Item>;
+  items: Dictionary<ItemData>;
   judgeId: UID;
 };
 
@@ -314,7 +314,7 @@ export function Announcement({
 }
 
 type GameOverIconProps = {
-  items: Dictionary<Item>;
+  items: Dictionary<ItemData>;
   lastGuess: Guess;
 };
 

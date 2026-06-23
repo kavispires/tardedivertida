@@ -1,5 +1,5 @@
 // Types
-import type { MovieReviewCard as MovieReviewCardType } from 'types/tdr';
+import type { MovieReviewCardData as MovieReviewCardType } from 'types/tdr';
 // Components
 import { MovieReviewCard } from '@components/cards/MovieReviewCard';
 import { SpaceContainer } from '@components/layout/SpaceContainer';

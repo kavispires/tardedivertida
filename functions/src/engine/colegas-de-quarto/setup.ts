@@ -16,7 +16,7 @@ import utils from '../../utils';
 import { buildRanking } from './helpers';
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { saveData } from './data';
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 
 /**
  * Setup phase - initializes game state and resources
@@ -75,9 +75,9 @@ export const prepareWordsSelectionPhase = async (
   // Unready players
   utils.players.unReadyPlayers(players);
 
-  const pool: TextCard[] = [];
+  const pool: TextCardData[] = [];
   new Array(WORDS_IN_POOL).fill(null).forEach(() => {
-    pool.push(store.deck.pop() as TextCard);
+    pool.push(store.deck.pop() as TextCardData);
   });
 
   const requiredWords = SETTINGS_PER_PLAYER_COUNT[utils.players.getPlayerCount(players)]?.totalWords || 0;
@@ -117,7 +117,7 @@ export const prepareClueWritingPhase = async (
   const playerCount = utils.players.getPlayerCount(players);
 
   // Create board with words from players
-  const pool: TextCard[] = state.pool || [];
+  const pool: TextCardData[] = state.pool || [];
   const selectedWordsIds: string[] = [];
   utils.players.getListOfPlayers(players).forEach((player) => {
     selectedWordsIds.push(...(player.selectedWordsIds ?? []));

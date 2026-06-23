@@ -2,7 +2,7 @@ import { mockDrawing } from '@mock/drawing';
 import { useEffect, useState } from 'react';
 // Types
 import type { GamePlayer } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useCountdown } from '@hooks/useCountdown';
 import { useLanguage } from '@hooks/useLanguage';
@@ -22,7 +22,7 @@ import { WarningSignBackgroundMask } from './components/WarningSignBackgroundMas
 
 type StepDrawProps = {
   user: GamePlayer;
-  cards: Dictionary<TextCard>;
+  cards: Dictionary<TextCardData>;
   onSubmitDrawing: (payload: SubmitDrawingPayload) => void;
   startDrawingTimer: boolean;
   gameLanguage: Language;

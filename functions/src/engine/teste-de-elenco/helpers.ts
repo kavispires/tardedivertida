@@ -4,7 +4,7 @@ import { keyBy, sampleSize, uniq } from 'lodash';
 // Utils
 import utils from '../../utils';
 import type { ActingRole, FirebaseStateData, FirebaseStoreData, Movie, MovieGenre } from './types';
-import type { Item } from '../../types/tdr';
+import type { ItemData } from '../../types/tdr';
 import { increaseAchievement } from './achievements';
 
 /**
@@ -70,7 +70,7 @@ export const determineCastingOrder = (movie: MovieGenre): string[] => {
  * @param store - The Firebase store data
  * @param movieProps - The array of movie prop items
  */
-export const buildMovie = (players: Players, store: FirebaseStoreData, movieProps: Item[]): Movie => {
+export const buildMovie = (players: Players, store: FirebaseStoreData, movieProps: ItemData[]): Movie => {
   const { genre, selectedProps, movieTitle } = determineMovieVotes(players);
 
   const movie: Movie = {
@@ -79,7 +79,7 @@ export const buildMovie = (players: Players, store: FirebaseStoreData, movieProp
     movieTitle,
     movieProps: selectedProps
       .map((propId) => movieProps.find((item) => item.id === propId))
-      .filter(Boolean) as Item[],
+      .filter(Boolean) as ItemData[],
     roles: {},
     rolesOrder: determineCastingOrder(genre),
   };

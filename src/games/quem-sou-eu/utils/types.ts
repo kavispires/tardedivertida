@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GameRanking } from 'types/game';
-import type { ContenderCard } from 'types/tdr';
+import type { ContenderCardData } from 'types/tdr';
 
 /**
  * Payload for submitting selected characters
@@ -39,7 +39,7 @@ export type SubmitGuessesPayload = {
 /**
  * Represents a character in the game with player association
  */
-export type Character = ContenderCard & {
+export type Character = ContenderCardData & {
   /**
    * ID of the player who has this character, or 'bot' for table characters
    */

@@ -4,7 +4,7 @@ import { keyBy } from 'lodash';
 // Utils
 import utils from '../../utils';
 import type { QualQuesitoPhase } from './types';
-import type { Item } from '../../types/tdr';
+import type { ItemData } from '../../types/tdr';
 
 /**
  * Determines the next phase based on the current phase and skip status
@@ -52,8 +52,8 @@ export const determineNextPhase = (
  */
 export const buildCardsDictFromPlayersHands = (
   players: Players,
-  deckDict: Dictionary<Item>,
-): Dictionary<Item> => {
+  deckDict: Dictionary<ItemData>,
+): Dictionary<ItemData> => {
   return keyBy(
     utils.players
       .getListOfPlayers(players)

@@ -5,7 +5,7 @@ import { RedoOutlined } from '@ant-design/icons';
 import { Button, Input } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Hooks
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
@@ -25,7 +25,7 @@ import { PlayersHandsCounts } from './components/PlayersHandsCounts';
 type StepCreateCategoryProps = {
   players: GamePlayers;
   user: GamePlayer;
-  cardsDict: Dictionary<Item>;
+  cardsDict: Dictionary<ItemData>;
   onSubmitCategory: (payload: SubmitCategoryPayload) => void;
   onSkipTurn: () => void;
   turnOrder: GameOrder;

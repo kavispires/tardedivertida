@@ -2,7 +2,7 @@
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { MAX_ROUNDS, QUESTIONS_PER_ROUND } from './constants';
 // Types
-import type { GroupQuestionCard } from '../../types/tdr';
+import type { GroupQuestionCardData } from '../../types/tdr';
 import type { ResourceData } from './types';
 // Helpers
 import * as globalUtils from '../global';
@@ -16,7 +16,7 @@ import utils from '../../utils';
  */
 export const getQuestions = async (language: string): Promise<ResourceData> => {
   // Get full deck
-  const allQuestions = await resourceUtils.fetchResource<Dictionary<GroupQuestionCard>>(
+  const allQuestions = await resourceUtils.fetchResource<Dictionary<GroupQuestionCardData>>(
     TDR_RESOURCES.GROUP_QUESTIONS,
     language,
   );
@@ -24,7 +24,7 @@ export const getQuestions = async (language: string): Promise<ResourceData> => {
   const usedQuestions = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.GROUP_QUESTIONS, {});
 
   // Filter out used cards
-  const availableQuestions: Record<string, GroupQuestionCard> = utils.game.filterOutByIds(
+  const availableQuestions: Record<string, GroupQuestionCardData> = utils.game.filterOutByIds(
     allQuestions,
     usedQuestions,
   );

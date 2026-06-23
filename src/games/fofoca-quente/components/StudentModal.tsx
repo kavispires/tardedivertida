@@ -2,7 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Alert, Card, Divider, Flex, Radio, Tag, Typography } from 'antd';
 // Types
-import type { TeenageRumor } from 'types/tdr';
+import type { TeenageRumorData } from 'types/tdr';
 // Icons
 import { BlackmailIcon } from '@icons/BlackmailIcon';
 import { CyberBullyingIcon } from '@icons/CyberBullyingIcon';
@@ -280,7 +280,7 @@ function RumorFlow({
       />
     );
   }
-  const possibleRumors = actionData?.possibleRumors as TeenageRumor[];
+  const possibleRumors = actionData?.possibleRumors as TeenageRumorData[];
   return (
     <Flex
       vertical

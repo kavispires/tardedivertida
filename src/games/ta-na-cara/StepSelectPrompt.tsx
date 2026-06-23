@@ -4,7 +4,7 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Button, Flex, Input, Popover, Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-import type { SuspectCard, TestimonyQuestionCard } from 'types/tdr';
+import type { SuspectCardData, TestimonyQuestionCardData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 // Components
@@ -25,8 +25,8 @@ type StepSelectPromptProps = {
   players: GamePlayers;
   user: GamePlayer;
   turnOrder: TurnOrder;
-  characters: SuspectCard[];
-  questionsHistory: TestimonyQuestionCard[];
+  characters: SuspectCardData[];
+  questionsHistory: TestimonyQuestionCardData[];
   onSubmitPrompt: (payload: SubmitPromptPayload) => void;
   onTriggerGuessing: () => void;
   activePlayerId: UID;
@@ -122,7 +122,7 @@ export function StepSelectPrompt({
               gap={8}
               style={{ maxWidth: 480 }}
             >
-              {suggestedQuestions.map((suggestedQuestion: TestimonyQuestionCard) => (
+              {suggestedQuestions.map((suggestedQuestion: TestimonyQuestionCardData) => (
                 <Button
                   key={suggestedQuestion.id}
                   style={{

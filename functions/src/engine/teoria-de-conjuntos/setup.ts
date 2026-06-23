@@ -12,7 +12,7 @@ import { cloneDeep, shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
 import { GAME_NAMES } from '../../utils/constants';
-import type { Item } from '../../types/tdr';
+import type { ItemData } from '../../types/tdr';
 import { createVennDiagram } from './helpers';
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 
@@ -29,13 +29,13 @@ export const prepareSetupPhase = async (
 ): Promise<SaveGamePayload> => {
   // Make deck dictionary
   const deckIds: UID[] = [];
-  const deck = shuffle(additionalData.items).reduce((acc: Dictionary<Item>, item) => {
+  const deck = shuffle(additionalData.items).reduce((acc: Dictionary<ItemData>, item) => {
     acc[item.id] = item;
     deckIds.push(item.id);
     return acc;
   }, {});
 
-  const items: Dictionary<Item> = {};
+  const items: Dictionary<ItemData> = {};
 
   const playerCount = utils.players.getPlayerCount(players);
 
@@ -236,7 +236,7 @@ export const prepareItemPlacementPhase = async (
   };
 };
 /**
- * [Item Placement Phase] - Players place items in the Venn diagram
+ * [ItemData Placement Phase] - Players place items in the Venn diagram
  * @param store - The Firebase store data
  * @param state - The Firebase state data
  * @param players - The players object

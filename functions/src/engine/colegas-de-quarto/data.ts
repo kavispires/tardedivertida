@@ -1,6 +1,6 @@
 // Types
 import type { ColegasDeQuartoOptions, PastClues, ResourceData } from './types';
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import { sampleSize } from 'lodash';
 // Utils
 import * as dataUtils from '../collections';
@@ -22,7 +22,7 @@ export const getWords = async (
   const quantityNeeded = WORDS_IN_POOL * TOTAL_ROUNDS;
 
   if (options?.wordsSource === 'properties') {
-    const allCards = await resourceUtils.fetchResource<Dictionary<TextCard>>(
+    const allCards = await resourceUtils.fetchResource<Dictionary<TextCardData>>(
       TDR_RESOURCES.THINGS_QUALITIES,
       language,
     );

@@ -4,7 +4,7 @@ import { PlusCircleOutlined } from '@ant-design/icons';
 import { Button, Flex } from 'antd';
 // Types
 import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 import { useMock } from '@hooks/useMock';
@@ -17,7 +17,7 @@ import { Step } from '@components/steps/Step';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
-import type { Concept, SubmitConceptsPayload } from './utils/types';
+import type { ConceptData, SubmitConceptsPayload } from './utils/types';
 import { mockConcept } from './utils/mock';
 import { ItemsBoard } from './components/ItemsBoard';
 import { ConceptCreationBlock } from './components/ConceptCreationBlock';
@@ -26,11 +26,11 @@ import { ConceptsCollapse } from './components/ConceptsCollapse';
 type StepCreateConceptsProps = {
   players: GamePlayers;
   user: GamePlayer;
-  basicConcepts: Concept[];
-  concepts: Concept[];
+  basicConcepts: ConceptData[];
+  concepts: ConceptData[];
   maxProposals: number;
   round: GameRound;
-  items: Dictionary<Item>;
+  items: Dictionary<ItemData>;
   onSubmitConcepts: (payload: SubmitConceptsPayload) => void;
 };
 
@@ -51,7 +51,7 @@ export function StepCreateConcepts({
   );
 
   const userProposedConcepts = user.proposedConcepts || [];
-  const [proposedConcepts, setProposedConcepts] = useState<Concept[]>(userProposedConcepts);
+  const [proposedConcepts, setProposedConcepts] = useState<ConceptData[]>(userProposedConcepts);
   const [activeConceptId, setActiveConceptId] = useState<string | null>(null);
   const isLatestConceptIncomplete =
     proposedConcepts.length > 0 &&
@@ -93,7 +93,7 @@ export function StepCreateConcepts({
     }
   };
 
-  const onUpdateConcept = (updatedConcept: Concept) => {
+  const onUpdateConcept = (updatedConcept: ConceptData) => {
     setProposedConcepts((prev) =>
       prev.map((concept) => (concept.id === updatedConcept.id ? updatedConcept : concept)),
     );
@@ -128,7 +128,7 @@ export function StepCreateConcepts({
       <StepTitle>
         <Translate
           pt={<>Criação de Conceitos</>}
-          en={<>Concept Creation</>}
+          en={<>ConceptData Creation</>}
         />
       </StepTitle>
 
@@ -189,7 +189,7 @@ export function StepCreateConcepts({
           >
             <Translate
               pt="Criar Conceito"
-              en="Create Concept"
+              en="Create ConceptData"
             />
           </Button>
         </Flex>
@@ -225,7 +225,7 @@ export function StepCreateConcepts({
           className="mt-2"
           gap={12}
         >
-          {user.hand.map((item: Item) => (
+          {user.hand.map((item: ItemData) => (
             <ItemCard
               key={item.id}
               itemId={item.id}
@@ -236,7 +236,7 @@ export function StepCreateConcepts({
         </Flex>
         <Translate
           pt="Sugestões de conceitos: animal, vôo, cor, pequeno, imaginário, natural, peludo, afiado, etc."
-          en="Concept suggestions: animal, flight, color, small, imaginary, natural, furry, sharp, etc."
+          en="ConceptData suggestions: animal, flight, color, small, imaginary, natural, furry, sharp, etc."
         />
       </RuleInstruction>
 

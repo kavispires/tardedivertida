@@ -1,6 +1,6 @@
 // Types
 import type { FirebaseStateData, FirebaseStoreData, Lodge, MountainDilemma, ResourceData } from './types';
-import type { DilemmaCard } from '../../types/tdr';
+import type { DilemmaCardData } from '../../types/tdr';
 import { sampleSize, shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
@@ -95,7 +95,7 @@ export const prepareBetsPhase = async (
   // Give skiers initial chips
   players[activeSkierId].chips = SKIERS_BETTING_CHIPS.INITIAL;
 
-  const deck: DilemmaCard[] = store.deck;
+  const deck: DilemmaCardData[] = store.deck;
   const dilemmas = deck.splice(0, DILEMMAS_PER_ROUND);
   const sprites = shuffle(makeArray(13).map((i) => `mountain-${i}`));
   const mountain: MountainDilemma[] = dilemmas.map((dilemma, index) => ({

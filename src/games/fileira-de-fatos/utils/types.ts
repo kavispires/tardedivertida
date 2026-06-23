@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GameRanking } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 
 /**
  * Payload for submitting the order of scenarios
@@ -33,7 +33,7 @@ export type GalleryEntry = {
   /**
    * The scenarios from a past round
    */
-  scenarios: TextCard[];
+  scenarios: TextCardData[];
   /**
    * The player who was active that round
    */
@@ -48,7 +48,7 @@ export type PhaseOrderingState = {
   /**
    * The scenarios to be ordered this round
    */
-  scenarios: TextCard[];
+  scenarios: TextCardData[];
   /**
    * The active player who determines the correct order
    */
@@ -71,7 +71,7 @@ export type PhaseResultsState = {
   /**
    * The scenarios that were ordered this round
    */
-  scenarios: TextCard[];
+  scenarios: TextCardData[];
   /**
    * The active player who determined the correct order
    */

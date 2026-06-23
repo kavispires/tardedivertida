@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GameRanking, GameRound } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 
 /**
  * Payload for submitting a drawing
@@ -29,7 +29,7 @@ export type SubmitEvaluationPayload = {
 /**
  * Represents a drawing submission by a player
  */
-export type DrawingEntry = {
+export type DrawingEntryData = {
   /**
    * The ID of the player who created the drawing
    */
@@ -158,7 +158,7 @@ export type PhaseDrawingState = {
   /**
    * Dictionary of subject and descriptor cards available this round
    */
-  cards: Dictionary<TextCard>;
+  cards: Dictionary<TextCardData>;
 };
 
 /**
@@ -177,7 +177,7 @@ export type PhaseEvaluationState = {
   /**
    * Dictionary of subject and descriptor cards available this round
    */
-  cards: Dictionary<TextCard>;
+  cards: Dictionary<TextCardData>;
   /**
    * Shuffled array of subject card IDs for evaluation
    */
@@ -189,7 +189,7 @@ export type PhaseEvaluationState = {
   /**
    * All player drawings submitted this round
    */
-  drawings: DrawingEntry[];
+  drawings: DrawingEntryData[];
 };
 
 /**
@@ -208,7 +208,7 @@ export type PhaseGalleryState = {
   /**
    * Dictionary of subject and descriptor cards available this round
    */
-  cards: Dictionary<TextCard>;
+  cards: Dictionary<TextCardData>;
   /**
    * Shuffled array of subject card IDs for evaluation
    */
@@ -220,7 +220,7 @@ export type PhaseGalleryState = {
   /**
    * All player drawings submitted this round
    */
-  drawings: DrawingEntry[];
+  drawings: DrawingEntryData[];
   /**
    * Gallery entries with evaluation results for this round
    */

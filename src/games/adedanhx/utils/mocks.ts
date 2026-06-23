@@ -1,12 +1,12 @@
 import { mockClue } from '@mock/clues';
 import { random } from 'lodash';
 // Types
-import type { TopicCard } from 'types/tdr';
+import type { TopicCardData } from 'types/tdr';
 // Internal
 import { ANSWERING_TIME } from './constants';
 import type { Answer, LetterEntry } from './types';
 
-const mockAnswer = (id: string, _topic: TopicCard, letter: LetterEntry, correct?: boolean): Answer => {
+const mockAnswer = (id: string, _topic: TopicCardData, letter: LetterEntry, correct?: boolean): Answer => {
   // 50% chance of answering
   const answerChance = correct || Math.random() > 0.5;
 
@@ -50,7 +50,7 @@ const mockAnswer = (id: string, _topic: TopicCard, letter: LetterEntry, correct?
 
 export const mockAnswers = (
   answers: Record<string, Answer>,
-  topics: TopicCard[],
+  topics: TopicCardData[],
   letters: LetterEntry[],
   stop?: boolean,
 ) => {

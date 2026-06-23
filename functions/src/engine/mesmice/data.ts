@@ -1,7 +1,7 @@
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
 // Types
-import type { ObjectFeatureCard } from '../../types/tdr';
+import type { ObjectFeatureCardData } from '../../types/tdr';
 import type { MesmiceOptions, ResourceData } from './types';
 // Utils
 import * as resourceUtils from '../resource';
@@ -35,15 +35,15 @@ export const getData = async (
   });
 
   // Get full deck of features
-  const allObjectFeatures = await resourceUtils.fetchResource<Dictionary<ObjectFeatureCard>>(
+  const allObjectFeatures = await resourceUtils.fetchResource<Dictionary<ObjectFeatureCardData>>(
     TDR_RESOURCES.OBJECT_FEATURES,
   );
 
   const featuresByLevel: {
-    1: ObjectFeatureCard[];
-    2: ObjectFeatureCard[];
-    3: ObjectFeatureCard[];
-    4: ObjectFeatureCard[];
+    1: ObjectFeatureCardData[];
+    2: ObjectFeatureCardData[];
+    3: ObjectFeatureCardData[];
+    4: ObjectFeatureCardData[];
   } = Object.values(allObjectFeatures).reduce(
     (acc, feature) => {
       acc[feature.level].push(feature);
@@ -58,10 +58,10 @@ export const getData = async (
   );
 
   function getObjectFeatures() {
-    const features: ObjectFeatureCard[] = [];
+    const features: ObjectFeatureCardData[] = [];
 
     Object.keys(counts).forEach((level) => {
-      const levelFeatures: ObjectFeatureCard[] = sampleSize(featuresByLevel[level], counts[level]);
+      const levelFeatures: ObjectFeatureCardData[] = sampleSize(featuresByLevel[level], counts[level]);
       features.push(...levelFeatures);
     });
     return features;

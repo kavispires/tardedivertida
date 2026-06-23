@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { Flex, Typography } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Utils
 import { getContrastColor } from '@utils/helpers';
 // Icons
@@ -23,7 +23,7 @@ import { getTitle } from '../utils/helpers';
 
 type GalleryWindowGuessesProps = {
   players: GamePlayers;
-  cards: Dictionary<TextCard>;
+  cards: Dictionary<TextCardData>;
   artistColor: string;
   galleryEntry: GalleryEntry;
   gameLanguage: Language;

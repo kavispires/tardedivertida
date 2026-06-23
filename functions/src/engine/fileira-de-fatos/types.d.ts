@@ -1,4 +1,4 @@
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import type { FILEIRA_DE_FATOS_ACTIONS } from './constants';
 
 export type FileiraDeFatosOptions = {
@@ -9,7 +9,7 @@ export type FileiraDeFatosOptions = {
 };
 
 export type ResourceData = {
-  scenarios: TextCard[];
+  scenarios: TextCardData[];
 };
 
 export interface FileiraDeFatosStore extends DefaultStore {

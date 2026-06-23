@@ -1,4 +1,4 @@
-import type { Item } from '../../types/tdr';
+import type { ItemData } from '../../types/tdr';
 import type { IDADE_DA_PREDA_ACHIEVEMENTS, IDADE_DA_PREDA_ACTIONS, IDADE_DA_PREDA_PHASES } from './constants';
 
 export type IdadeDaPredaOptions = {
@@ -9,15 +9,15 @@ export type IdadeDaPredaOptions = {
 };
 
 export type ResourceData = {
-  0: Item[];
-  1: Item[];
-  2: Item[];
-  3: Item[];
-  4: Item[];
-  5: Item[];
+  0: ItemData[];
+  1: ItemData[];
+  2: ItemData[];
+  3: ItemData[];
+  4: ItemData[];
+  5: ItemData[];
 };
 
-export type Concept = {
+export type ConceptData = {
   id: string;
   key: string;
   type: 'basic' | 'custom';

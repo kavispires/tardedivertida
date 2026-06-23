@@ -1,4 +1,4 @@
-import type { ContenderCard, Item, SuspectCard, TextCard } from '../../types/tdr';
+import type { ContenderCardData, ItemData, SuspectCardData, TextCardData } from '../../types/tdr';
 import type { DUETOS_ACTIONS } from './constants';
 
 export type DuetosOptions = {
@@ -23,16 +23,16 @@ export type ItemEntry = {
 };
 
 export interface ResourceData {
-  items: Item[];
+  items: ItemData[];
   images: UID[];
   emojis: number[];
   glyphs: number[];
   clubbers: number[];
   costumes: number[];
   superHeroes: number[];
-  words: TextCard[];
-  suspects: SuspectCard[];
-  contenders: ContenderCard[];
+  words: TextCardData[];
+  suspects: SuspectCardData[];
+  contenders: ContenderCardData[];
   decks: string[];
 }
 

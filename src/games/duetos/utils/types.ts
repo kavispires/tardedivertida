@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GamePlayer, GameRanking } from 'types/game';
-import type { TextCard, SuspectCard, ContenderCard } from 'types/tdr';
+import type { TextCardData, SuspectCardData, ContenderCardData } from 'types/tdr';
 
 /**
  * Payload for submitting pairs
@@ -17,18 +17,18 @@ export type SubmitPairsPayload = {
  */
 export type ItemValue =
   | { id: string; name: { en: string; pt: string } } // alien-item
-  | TextCard // words
-  | SuspectCard // suspects
-  | ContenderCard // contenders
+  | TextCardData // words
+  | SuspectCardData // suspects
+  | ContenderCardData // contenders
   | string // images
   | number // emojis, glyphs, clubbers, costumes, superHeroes
   // biome-ignore lint/suspicious/noExplicitAny: there are too many types and the UI breaks without the any
   | any; // for special rounds with custom types
 
 /**
- * Item that can be paired with another item
+ * ItemData that can be paired with another item
  */
-export type Item = {
+export type ItemData = {
   /**
    * Unique identifier for the item
    */
@@ -58,7 +58,7 @@ export type DuetosGalleryEntry = {
   /**
    * The two items that form the pair
    */
-  pair: Item[];
+  pair: ItemData[];
 };
 
 /**
@@ -72,7 +72,7 @@ export type LeftOutEntry = {
   /**
    * The item that was left out
    */
-  item: Item;
+  item: ItemData;
   /**
    * Array of player IDs who left this item out
    */
@@ -91,7 +91,7 @@ export type PhasePairingState = {
   /**
    * The pool of items available for pairing in this round
    */
-  pool: Item[];
+  pool: ItemData[];
   /**
    * The type of round (alien-item, mixed, or special deck type)
    */
@@ -105,7 +105,7 @@ export type PhaseResultsState = {
   /**
    * The pool of items that were available for pairing
    */
-  pool: Item[];
+  pool: ItemData[];
   /**
    * The type of round (alien-item, mixed, or special deck type)
    */

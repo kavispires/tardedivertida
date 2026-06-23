@@ -1,4 +1,4 @@
-import type { MovieCard } from '../../types/tdr';
+import type { MovieCardData } from '../../types/tdr';
 import { sampleSize } from 'lodash';
 import {
   MAX_MISTAKES,
@@ -98,7 +98,7 @@ export const getFinalMovieId = (eliminatedMovies: UID[]) => {
  * @param movies - The array of movie cards
  * @param letter - The letter representing the movie
  */
-export const getMovieTitle = (movies: MovieCard[], letter: string) => {
+export const getMovieTitle = (movies: MovieCardData[], letter: string) => {
   return {
     A: `${movies[0].prefix} ${movies[1].suffix}`,
     B: `${movies[1].prefix} ${movies[2].suffix}`,

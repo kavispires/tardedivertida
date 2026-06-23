@@ -1,15 +1,15 @@
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import type { POLEMICA_DA_VEZ_ACTIONS } from './constants';
 
 export type PolemicaDaVezOptions = {
   fixedRounds: boolean;
 };
 
-export interface CustomTweet extends TextCard {
+export interface CustomTweet extends TextCardData {
   custom: boolean;
 }
 
-export type Deck = TextCard[];
+export type Deck = TextCardData[];
 export type CustomDeck = CustomTweet[];
 
 export interface Decks {

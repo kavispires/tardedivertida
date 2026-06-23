@@ -1,4 +1,4 @@
-import type { ArteRuimCard, TextCard } from '../../types/tdr';
+import type { ArteRuimCardData, TextCardData } from '../../types/tdr';
 import type { LINHAS_CRUZADAS_ACTIONS } from './constants';
 
 export type LinhasCruzadasOptions = {
@@ -6,11 +6,11 @@ export type LinhasCruzadasOptions = {
   evenDistribution: boolean;
 };
 
-export type Card = ArteRuimCard | TextCard;
+export type Card = ArteRuimCardData | TextCardData;
 
 export type ResourceData = {
-  allWords: TextCard[];
-  allExpressions: ArteRuimCard[];
+  allWords: TextCardData[];
+  allExpressions: ArteRuimCardData[];
 };
 
 export type Prompt = {

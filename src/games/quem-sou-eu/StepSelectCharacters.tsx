@@ -2,7 +2,7 @@
 import { Badge, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
-import type { ContenderCard } from 'types/tdr';
+import type { ContenderCardData } from 'types/tdr';
 // Hooks
 import { useBooleanDictionary } from '@hooks/useBooleanDictionary';
 import { useCardWidth } from '@hooks/useCardWidth';
@@ -90,7 +90,7 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
         className="grid-container grid-template-6 gap-4"
         wrap
       >
-        {availableCharacters.map((character: ContenderCard) => (
+        {availableCharacters.map((character: ContenderCardData) => (
           <TransparentButton
             key={character.id}
             disabled={user.ready || isLoading}

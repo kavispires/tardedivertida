@@ -1,6 +1,6 @@
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-import type { SuspectCard, TestimonyQuestionCard } from 'types/tdr';
+import type { SuspectCardData, TestimonyQuestionCardData } from 'types/tdr';
 // Components
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
@@ -16,8 +16,8 @@ type StepWaitingForPromptProps = {
   players: GamePlayers;
   user: GamePlayer;
   turnOrder: TurnOrder;
-  characters: SuspectCard[];
-  questionsHistory: TestimonyQuestionCard[];
+  characters: SuspectCardData[];
+  questionsHistory: TestimonyQuestionCardData[];
   activePlayer: GamePlayer;
 } & Pick<StepProps, 'announcement'>;
 

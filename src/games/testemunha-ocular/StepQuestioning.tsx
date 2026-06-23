@@ -2,7 +2,7 @@
 import { Flex } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
-import type { SuspectCard, TestimonyQuestionCard } from 'types/tdr';
+import type { SuspectCardData, TestimonyQuestionCardData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 import { useMock } from '@hooks/useMock';
@@ -24,7 +24,7 @@ import { QuestionsHistory } from './components/QuestionsHistory';
 import { Summary } from './components/Summary';
 
 type StepQuestioningProps = {
-  suspectsDict: Dictionary<SuspectCard>;
+  suspectsDict: Dictionary<SuspectCardData>;
   suspectsIds: UID[];
   previouslyEliminatedSuspects: string[];
   perpetratorId: UID;
@@ -32,7 +32,7 @@ type StepQuestioningProps = {
   witness: GamePlayer;
   isLoading: boolean;
   onAnswer: (payload: SubmitTestimonyPayload) => void;
-  question: TestimonyQuestionCard;
+  question: TestimonyQuestionCardData;
   history: THistoryEntry[];
   status: Status;
   outcome: Outcome;

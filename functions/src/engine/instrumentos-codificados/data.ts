@@ -1,5 +1,5 @@
 // Constants
-import type { ThingPromptCard } from '../../types/tdr';
+import type { ThingPromptCardData } from '../../types/tdr';
 import { TDR_RESOURCES } from '../../utils/constants';
 // Helpers
 import * as resourceUtils from '../resource';
@@ -10,7 +10,7 @@ import * as resourceUtils from '../resource';
  * @returns Dictionary of thing prompt cards
  */
 export const getThemes = async (language: string) => {
-  return await resourceUtils.fetchResource<Dictionary<ThingPromptCard>>(
+  return await resourceUtils.fetchResource<Dictionary<ThingPromptCardData>>(
     TDR_RESOURCES.THING_PROMPTS,
     language,
   );

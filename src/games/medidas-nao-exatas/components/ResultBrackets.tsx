@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { Avatar, Divider, Flex } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Utils
 import { getAnimation } from '@utils/animations';
 // Icons
@@ -20,7 +20,7 @@ import { BracketPointsBox } from './BracketPointsBox';
 type ResultBracketsProps = {
   brackets: GalleryBracket[];
   players: GamePlayers;
-  cards: Dictionary<TextCard>;
+  cards: Dictionary<TextCardData>;
 };
 
 export function ResultBrackets({ brackets, players, cards }: ResultBracketsProps) {

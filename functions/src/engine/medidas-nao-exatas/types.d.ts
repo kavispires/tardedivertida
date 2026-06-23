@@ -1,9 +1,9 @@
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import type { MEDIDAS_NAO_EXATAS_ACTIONS } from './constants';
 
 export type ResourceData = {
-  allWords: TextCard[];
-  allDescriptors: TextCard[];
+  allWords: TextCardData[];
+  allDescriptors: TextCardData[];
 };
 
 export type Guess = {
@@ -27,8 +27,8 @@ export type GalleryBracket = {
 
 export type GalleryEntry = {
   secretWordId: UID;
-  cards: Record<UID, TextCard>;
-  metricsDescriptors: Record<string, TextCard[]>;
+  cards: Record<UID, TextCardData>;
+  metricsDescriptors: Record<string, TextCardData[]>;
   metrics: Record<UID, number>;
   brackets: GalleryBracket[];
 };

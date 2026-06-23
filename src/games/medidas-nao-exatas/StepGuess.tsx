@@ -3,7 +3,7 @@ import { sample } from 'lodash';
 import { Flex } from 'antd';
 // Types
 import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useCountdown } from '@hooks/useCountdown';
 import { useLoading } from '@hooks/useLoading';
@@ -32,10 +32,10 @@ type StepGuessProps = {
   round: GameRound;
   isThePresenter: boolean;
   turnOrder: GameOrder;
-  wordsDict: Dictionary<TextCard>;
+  wordsDict: Dictionary<TextCardData>;
   poolIds: UID[];
   secretWordId: UID;
-  metricsDescriptors: Record<string, TextCard[]>;
+  metricsDescriptors: Record<string, TextCardData[]>;
   metrics: Record<string, number>;
   pointsBrackets: number[];
   onSubmitGuess: (payload: SubmitGuessPayload) => void;

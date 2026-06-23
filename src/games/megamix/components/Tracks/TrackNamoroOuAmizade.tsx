@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Button } from 'antd';
 // Types
-import type { DatingCandidateImageCard } from 'types/tdr';
+import type { DatingCandidateImageCardData } from 'types/tdr';
 // Hooks
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
@@ -48,7 +48,7 @@ export const TrackNamoroOuAmizade = ({ track, onSubmitAnswer, user }: TrackProps
       </RuleInstruction>
 
       <div className="noa-candidates">
-        {track.data.heads.map((head: DatingCandidateImageCard, index: number) => {
+        {track.data.heads.map((head: DatingCandidateImageCardData, index: number) => {
           return (
             <SpaceContainer
               vertical

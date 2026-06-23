@@ -1,5 +1,5 @@
 // Types
-import type { SpectrumCard } from 'types/tdr';
+import type { SpectrumCardData } from 'types/tdr';
 // Components
 import { Instruction } from '@components/text/Instruction';
 import { Title } from '@components/text/Title';
@@ -7,7 +7,7 @@ import { Title } from '@components/text/Title';
 import { OpposingIdeasCard } from './OpposingIdeasCard';
 
 type CardSelectionProps = {
-  cards: SpectrumCard[];
+  cards: SpectrumCardData[];
   onSendChosenSide: GenericFunction;
 };
 

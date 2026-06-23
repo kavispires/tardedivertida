@@ -100,7 +100,7 @@ export function HumanSignBoard({
                       <>
                         <DualTranslate>{attribute.description}</DualTranslate> (
                         <Translate
-                          pt="Item inicial"
+                          pt="ItemData inicial"
                           en="Starting item"
                         />
                         )
@@ -262,7 +262,7 @@ export function HumanPlayerFinalSignBoard({
                       <>
                         <DualTranslate>{attribute.description}</DualTranslate> (
                         <Translate
-                          pt="Item inicial"
+                          pt="ItemData inicial"
                           en="Starting item"
                         />
                         )

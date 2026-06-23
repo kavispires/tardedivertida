@@ -3,7 +3,7 @@ import utils from '../../utils';
 import { shuffle } from 'lodash';
 // Constants
 import { COMUNICACAO_DUO_PHASES, AFFILIATIONS, DECK, DECK_ENTRY_STATUS } from './constants';
-import type { ContenderCard, Item, SuspectCard, TextCard } from '../../types/tdr';
+import type { ContenderCardData, ItemData, SuspectCardData, TextCardData } from '../../types/tdr';
 
 /**
  * Determines the next phase based on the current phase and round
@@ -46,7 +46,7 @@ export const applyDataToDeck = (list: unknown[], type: string): DeckEntry[] => {
     }
 
     if (type === 'items') {
-      const dataEntry = list[index] as Item;
+      const dataEntry = list[index] as ItemData;
       return {
         ...entry,
         data: {
@@ -58,7 +58,7 @@ export const applyDataToDeck = (list: unknown[], type: string): DeckEntry[] => {
     }
 
     if (type === 'words') {
-      const dataEntry = list[index] as TextCard;
+      const dataEntry = list[index] as TextCardData;
       return {
         ...entry,
         data: {
@@ -70,7 +70,7 @@ export const applyDataToDeck = (list: unknown[], type: string): DeckEntry[] => {
     }
 
     if (type === 'contenders') {
-      const dataEntry = list[index] as ContenderCard;
+      const dataEntry = list[index] as ContenderCardData;
       return {
         ...entry,
         data: {
@@ -82,7 +82,7 @@ export const applyDataToDeck = (list: unknown[], type: string): DeckEntry[] => {
     }
 
     if (type === 'suspects') {
-      const dataEntry = list[index] as SuspectCard;
+      const dataEntry = list[index] as SuspectCardData;
       return {
         ...entry,
         data: {

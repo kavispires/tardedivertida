@@ -71,7 +71,7 @@ export function useAlienadoEngine(data: DailyAlienadoEntry, initialState: GameSt
     const source = active.data.current?.source as 'pool' | 'slot';
     const sourceIndex = active.data.current?.index as number | undefined;
 
-    // 1. Dragged out of bounds (Remove Item)
+    // 1. Dragged out of bounds (Remove ItemData)
     if (!over) {
       if (source === 'slot' && sourceIndex !== undefined) {
         playSFX('bubbleOut');

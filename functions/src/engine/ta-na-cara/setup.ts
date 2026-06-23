@@ -6,7 +6,7 @@ import { shuffle } from 'lodash';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
-import type { TestimonyQuestionCard } from '../../types/tdr';
+import type { TestimonyQuestionCardData } from '../../types/tdr';
 
 /**
  * Setup
@@ -75,8 +75,8 @@ export const preparePromptPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const questions: TestimonyQuestionCard[] = store.questions;
-  const questionsHistory: TestimonyQuestionCard[] = state.questionsHistory || [];
+  const questions: TestimonyQuestionCardData[] = store.questions;
+  const questionsHistory: TestimonyQuestionCardData[] = state.questionsHistory || [];
 
   const previousPlayerId = state.activePlayerId as UID | null;
   if (previousPlayerId && state.currentQuestion) {
@@ -133,7 +133,7 @@ export const preparePromptPhase = async (
   const activePlayerId: UID = state.activePlayerId;
   const activePlayer = players[activePlayerId];
 
-  let currentQuestion: TestimonyQuestionCard | null = null;
+  let currentQuestion: TestimonyQuestionCardData | null = null;
 
   // Get question
   if (activePlayer.currentQuestion) {
@@ -145,10 +145,10 @@ export const preparePromptPhase = async (
     };
   } else {
     const question = activePlayer.suggestedQuestions.find(
-      (q: TestimonyQuestionCard) => q.id === activePlayer.currentQuestionId,
+      (q: TestimonyQuestionCardData) => q.id === activePlayer.currentQuestionId,
     );
     activePlayer.suggestedQuestions = activePlayer.suggestedQuestions.filter(
-      (q: TestimonyQuestionCard) => q.id !== activePlayer.currentQuestionId,
+      (q: TestimonyQuestionCardData) => q.id !== activePlayer.currentQuestionId,
     );
     if (question) {
       currentQuestion = question;

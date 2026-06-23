@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { Button } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useLoading } from '@hooks/useLoading';
 // Utils
@@ -24,7 +24,7 @@ import type { SubmitReactionPayload } from './utils/types';
 import { Tweet } from './components/Tweet';
 
 type StepLikingProps = {
-  currentTweet: TextCard;
+  currentTweet: TextCardData;
   customTweet: string | null;
   onSubmitReaction: (payload: SubmitReactionPayload) => void;
   players: GamePlayers;

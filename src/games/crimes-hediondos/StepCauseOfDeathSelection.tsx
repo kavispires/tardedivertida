@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Types
-import type { CrimeSceneTile } from 'types/tdr';
+import type { CrimeSceneTileData } from 'types/tdr';
 // Components
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
@@ -19,7 +19,7 @@ type StepCauseOfDeathSelectionProps = {
   items: ItemsDict;
   selections: SubmitCrimePayload;
   updateSelections: (payload: SubmitCrimePayload) => void;
-  causeOfDeathTile: CrimeSceneTile;
+  causeOfDeathTile: CrimeSceneTileData;
   goToStep: (step: number) => void;
 } & Pick<StepProps, 'announcement'>;
 

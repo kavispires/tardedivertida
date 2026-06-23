@@ -1,4 +1,4 @@
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import type { CRUZA_PALAVRAS_ACTIONS } from './constants';
 
 export type CruzaPalavrasOptions = {
@@ -16,7 +16,7 @@ export type CruzaPalavrasOptions = {
   nsfw: boolean;
 } & ContendersDecksOptions;
 
-export type TextCardWithType = TextCard & { type?: string };
+export type TextCardWithType = TextCardData & { type?: string };
 
 export type Deck = TextCardWithType[];
 

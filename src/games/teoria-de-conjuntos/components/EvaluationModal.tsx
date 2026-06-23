@@ -2,7 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Divider, Flex, Modal, Typography } from 'antd';
 // Types
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 // Components
@@ -14,7 +14,7 @@ import type { Solutions } from '../utils/types';
 import { Solution } from './Solution';
 
 type EvaluationModalProps = {
-  item: Item;
+  item: ItemData;
   onSubmitEvaluation: (evaluation: string) => void;
   solutions: Solutions;
   onCancel?: () => void;

@@ -3,14 +3,14 @@ import { useState } from 'react';
 // Ant Design Resources
 import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons';
 // Types
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Components
 import { TransparentButton } from '@components/buttons/TransparentButton';
 // Internal
 import { Pip } from './Pip';
 
 type EditableMetricsBoardProps = {
-  metricsDescriptors: Record<string, TextCard[]>;
+  metricsDescriptors: Record<string, TextCardData[]>;
   evaluations: Record<string, number>;
   onChange?: (metricId: string, evaluation: number) => void;
   disabled?: boolean;
@@ -41,7 +41,7 @@ export function EditableMetricsBoard({
 }
 
 type MetricProps = {
-  descriptors: TextCard[];
+  descriptors: TextCardData[];
   initialEvaluation?: number;
   onChange?: (evaluation: number) => void;
   disabled?: boolean;

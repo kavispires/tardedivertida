@@ -1,4 +1,4 @@
-import type { DilemmaCard } from '../../types/tdr';
+import type { DilemmaCardData } from '../../types/tdr';
 import type { ESQUIADORES_ACTIONS } from './constants';
 
 export type EsquiadoresOptions = {
@@ -9,13 +9,13 @@ export type EsquiadoresOptions = {
 };
 
 export type ResourceData = {
-  dilemmas: DilemmaCard[];
+  dilemmas: DilemmaCardData[];
 };
 
 export type MountainDilemma = {
   id: number;
   spriteId: string;
-  dilemma: DilemmaCard;
+  dilemma: DilemmaCardData;
   selected: boolean;
   direction: 'left' | 'right' | null;
   players?: string[];
@@ -28,7 +28,7 @@ export type Lodge = {
 };
 
 export interface EsquiadoresStore extends DefaultStore {
-  deck: DilemmaCard[];
+  deck: DilemmaCardData[];
 }
 
 export interface EsquiadoresState extends DefaultState {

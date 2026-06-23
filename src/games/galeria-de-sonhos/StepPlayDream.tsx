@@ -4,7 +4,7 @@ import { RobotOutlined } from '@ant-design/icons';
 import { App } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 // Utils
@@ -29,7 +29,7 @@ import { PlayersDreamsCount } from './components/PlayersDreamsCount';
 
 type StepDreamsSelectionProps = {
   table: ImageCardObj[];
-  word: TextCard;
+  word: TextCardData;
   onPlayCard: (payload: PlayCardPayload) => void;
   user: GamePlayer;
   activePlayer: GamePlayer;

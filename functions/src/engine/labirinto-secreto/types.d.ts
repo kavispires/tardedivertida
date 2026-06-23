@@ -1,4 +1,4 @@
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import type { DIRECTIONS, LABIRINTO_SECRETO_ACTIONS } from './constants';
 
 export type LabirintoSecretoGameOptions = {
@@ -21,8 +21,8 @@ export type LabirintoSecretoGameOptions = {
 };
 
 export type ResourceData = {
-  forestCards: TextCard[];
-  allCards: TextCard[];
+  forestCards: TextCardData[];
+  allCards: TextCardData[];
 };
 
 type TreeId = number;
@@ -30,7 +30,7 @@ export type Point = [number, number];
 
 export type ExtendedTextCard = {
   negate?: boolean;
-} & TextCard;
+} & TextCardData;
 
 export interface Tree {
   /**
@@ -44,7 +44,7 @@ export interface Tree {
   /**
    * Text card
    */
-  card: TextCard;
+  card: TextCardData;
   /**
    * Is the tree blocked (cannot be passed)
    */

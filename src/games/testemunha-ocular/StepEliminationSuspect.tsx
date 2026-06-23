@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 // Types
 import type { GamePlayer } from 'types/game';
-import type { SuspectCard, TestimonyQuestionCard } from 'types/tdr';
+import type { SuspectCardData, TestimonyQuestionCardData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 // Icons
@@ -26,7 +26,7 @@ import { QuestionsHistory } from './components/QuestionsHistory';
 import { Summary } from './components/Summary';
 
 type StepEliminationSuspectProps = {
-  suspectsDict: Dictionary<SuspectCard>;
+  suspectsDict: Dictionary<SuspectCardData>;
   suspectsIds: UID[];
   previouslyEliminatedSuspects: string[];
   eliminatedSuspects: string[];
@@ -36,7 +36,7 @@ type StepEliminationSuspectProps = {
   witness: GamePlayer;
   questioner: GamePlayer;
   onEliminate: (payload: EliminatePayload) => void;
-  question: TestimonyQuestionCard;
+  question: TestimonyQuestionCardData;
   testimony: boolean;
   history: THistoryEntry[];
   status: Status;

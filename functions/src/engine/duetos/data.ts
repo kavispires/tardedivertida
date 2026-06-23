@@ -3,7 +3,7 @@ import { EXTRA_ITEMS, PAIRS_PER_ROUND, TOTAL_ROUNDS } from './constants';
 import { AVATAR_SPRITE_LIBRARIES, SPRITE_LIBRARIES } from '../../utils/constants';
 import { isEmpty, sample, sampleSize } from 'lodash';
 // Type
-import type { ContenderCard, SuspectCard, TextCard } from '../../types/tdr';
+import type { ContenderCardData, SuspectCardData, TextCardData } from '../../types/tdr';
 import type { DuetosOptions, Gallery, ResourceData } from './types';
 // Helpers
 import utils from '../../utils';
@@ -80,12 +80,12 @@ export const getResourceData = async (language: Language, options?: DuetosOption
     costumes = sampleSize(utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES), quantityNeeded);
   }
 
-  let words: TextCard[] = [];
+  let words: TextCardData[] = [];
   if (specialDeckTypes.includes('words')) {
     words = await utils.tdr.getSingleWords(language, quantityNeeded);
   }
 
-  let suspects: SuspectCard[] = [];
+  let suspects: SuspectCardData[] = [];
   if (specialDeckTypes.includes('suspects')) {
     suspects = await utils.tdr.getSuspects({
       randomStyleVariant: true,
@@ -95,7 +95,7 @@ export const getResourceData = async (language: Language, options?: DuetosOption
     });
   }
 
-  let contenders: ContenderCard[] = [];
+  let contenders: ContenderCardData[] = [];
   if (specialDeckTypes.includes('contenders')) {
     contenders = await utils.tdr.getContenders(language, allowNSFW, ['any'], quantityNeeded);
   }

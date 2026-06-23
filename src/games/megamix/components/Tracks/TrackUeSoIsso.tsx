@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
@@ -76,7 +76,7 @@ export const TrackUeSoIsso = ({ track, onSubmitAnswer }: TrackProps) => {
         </RuleInstruction>
 
         <SpaceContainer>
-          {track.data.cards.map((card: TextCard, index: number) => (
+          {track.data.cards.map((card: TextCardData, index: number) => (
             <TransparentButton
               key={card.id}
               disabled={isLoading}

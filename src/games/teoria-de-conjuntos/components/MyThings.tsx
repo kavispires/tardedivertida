@@ -2,7 +2,7 @@
 import { AimOutlined } from '@ant-design/icons';
 import { Flex, Tag, Tooltip } from 'antd';
 // Types
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Components
 import { ItemCard } from '@components/cards/ItemCard';
 import { Translate } from '@components/language/Translate';
@@ -11,7 +11,7 @@ import { ViewIf } from '@components/views/ViewIf';
 
 type MyThingsProps = {
   hand: string[];
-  items: Dictionary<Item>;
+  items: Dictionary<ItemData>;
   total: number;
 };
 

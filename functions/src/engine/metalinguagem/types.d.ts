@@ -1,4 +1,4 @@
-import type { Item } from '../../types/tdr';
+import type { ItemData } from '../../types/tdr';
 import type { METALINGUAGEM_ACTIONS, WORD_LENGTH_STATUS } from './constants';
 
 export type MetalinguagemOptions = {
@@ -9,11 +9,11 @@ export type MetalinguagemOptions = {
 };
 
 export type ResourceData = {
-  items: Item[];
+  items: ItemData[];
 };
 
 export type GalleryEntry = {
-  itemsIds: Item[];
+  itemsIds: ItemData[];
   name: string;
   names: string[];
   correct: boolean;

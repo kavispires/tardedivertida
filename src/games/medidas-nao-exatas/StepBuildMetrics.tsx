@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { UndoOutlined } from '@ant-design/icons';
 import { Button, Flex } from 'antd';
 // Types
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 import { useStep } from '@hooks/useStep';
@@ -27,12 +27,12 @@ import { EditableMetricsBoard } from './components/EditableMetricsBoard';
 
 const TOTAL_WORDS = 4;
 type StepBuildMetricsProps = {
-  wordsDict: Dictionary<TextCard>;
+  wordsDict: Dictionary<TextCardData>;
   secretCardsOptionsIds: UID[];
   availablePoolCardsIds: UID[];
   poolIds?: UID[];
   secretWordId?: UID;
-  metricsDescriptors: Record<string, TextCard[]>;
+  metricsDescriptors: Record<string, TextCardData[]>;
   onSubmitPool: (payload: SubmitPoolPayload) => void;
   onSubmitMetrics: (payload: SubmitMetricsPayload) => void;
 } & Pick<StepProps, 'announcement'>;

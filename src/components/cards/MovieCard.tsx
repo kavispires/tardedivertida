@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 // Types
-import type { MovieCard as MovieCardType } from 'types/tdr';
+import type { MovieCardData as MovieCardType } from 'types/tdr';
 // Sass
-import styles from './MovieCard.module.scss';
+import styles from './MovieCardData.module.scss';
 
 type MovieCardProps = {
   /**

@@ -1,5 +1,5 @@
 // Types
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData } from './types';
 import { orderBy, shuffle } from 'lodash';
 // Constants
@@ -40,7 +40,7 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   _state: FirebaseStateData,
   players: Players,
-  allWords: TextCard[],
+  allWords: TextCardData[],
 ): Promise<SaveGamePayload> => {
   // Determine turn order
   const { gameOrder } = utils.turnOrder.create(players);

@@ -1,6 +1,6 @@
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Components
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
@@ -14,7 +14,7 @@ import { PlayersHandsCounts } from './components/PlayersHandsCounts';
 type StepWaitForCreationProps = {
   players: GamePlayers;
   user: GamePlayer;
-  cardsDict: Dictionary<Item>;
+  cardsDict: Dictionary<ItemData>;
   creator: GamePlayer;
   turnOrder: GameOrder;
 } & Pick<StepProps, 'announcement'>;

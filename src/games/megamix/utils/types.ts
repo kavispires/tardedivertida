@@ -1,6 +1,6 @@
 // Types
 import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
-import type { GroupQuestionCard, SpectrumCard, TextCard } from 'types/tdr';
+import type { GroupQuestionCardData, SpectrumCardData, TextCardData } from 'types/tdr';
 
 export type Track = {
   game: string;
@@ -44,7 +44,7 @@ export type Seed = {
 
 export type SeedEntryArteRuim = {
   type: 'arte-ruim';
-  card: TextCard;
+  card: TextCardData;
   cards: never;
   outfits: never;
   tree: never;
@@ -53,17 +53,17 @@ export type SeedEntryArteRuim = {
 
 export type SeedEntryContadoresHistorias = {
   type: 'contadores-historias';
-  cards: TextCard[];
-  tree: TextCard;
+  cards: TextCardData[];
+  tree: TextCardData;
   card: string;
   outfits: never;
-  prompts: TextCard[];
+  prompts: TextCardData[];
 };
 
 export type SeedEntryLabirintoSecreto = {
   type: 'labirinto-secreto';
-  cards: TextCard[];
-  tree: TextCard;
+  cards: TextCardData[];
+  tree: TextCardData;
   card: never;
   outfits: never;
   prompts: never;
@@ -71,7 +71,7 @@ export type SeedEntryLabirintoSecreto = {
 
 export type SeedEntryMenteColetiva = {
   type: 'mente-coletiva';
-  card: GroupQuestionCard;
+  card: GroupQuestionCardData;
   cards: never;
   outfits: never;
   tree: never;
@@ -80,7 +80,7 @@ export type SeedEntryMenteColetiva = {
 
 export type SeedEntryOndaTelepatica = {
   type: 'onda-telepatica';
-  card: SpectrumCard;
+  card: SpectrumCardData;
   cards: never;
   outfits: never;
   tree: never;
@@ -89,7 +89,7 @@ export type SeedEntryOndaTelepatica = {
 
 export type SeedEntryPolemicaDaVez = {
   type: 'polemica-da-vez';
-  card: TextCard;
+  card: TextCardData;
   cards: never;
   outfits: never;
   tree: never;
@@ -110,7 +110,7 @@ export type SeedEntryRetratoFalado = {
 
 export type SeedEntryUeSoIsso = {
   type: 'ue-so-isso';
-  card: TextCard;
+  card: TextCardData;
   cards: never;
   outfits: never;
   tree: never;

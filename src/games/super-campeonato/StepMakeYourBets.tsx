@@ -1,6 +1,6 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useMock } from '@hooks/useMock';
 // Components
@@ -17,7 +17,7 @@ import { BetsFloatingHand } from './components/BetsFloatingHand';
 
 type StepMakeYourBetsProps = {
   onSubmitBets: (payload: SubmitBetsPayload) => void;
-  challenge: TextCard;
+  challenge: TextCardData;
   brackets: Bracket[];
   players: GamePlayers;
   user: GamePlayer;

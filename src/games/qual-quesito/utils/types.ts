@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GameRanking, GamePlayer } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 
 /**
  * Payload for submitting a category
@@ -89,7 +89,7 @@ export type PhaseCategoryCreationState = {
   /**
    * Dictionary of all available cards
    */
-  cardsDict: Dictionary<Item>;
+  cardsDict: Dictionary<ItemData>;
 };
 
 /**
@@ -108,7 +108,7 @@ export type PhaseSkipAnnouncementState = {
   /**
    * Dictionary of all available cards
    */
-  cardsDict: Dictionary<Item>;
+  cardsDict: Dictionary<ItemData>;
 };
 
 /**
@@ -127,7 +127,7 @@ export type PhaseCardPlayState = {
   /**
    * Dictionary of all available cards
    */
-  cardsDict: Dictionary<Item>;
+  cardsDict: Dictionary<ItemData>;
   /**
    * The category for this round
    */
@@ -150,7 +150,7 @@ export type PhaseVerificationState = {
   /**
    * Dictionary of all available cards
    */
-  cardsDict: Dictionary<Item>;
+  cardsDict: Dictionary<ItemData>;
   /**
    * All card submissions for this round
    */
@@ -177,7 +177,7 @@ export type PhaseResultsState = {
   /**
    * Dictionary of all available cards
    */
-  cardsDict: Dictionary<Item>;
+  cardsDict: Dictionary<ItemData>;
   /**
    * All card submissions with acceptance status
    */
@@ -216,5 +216,5 @@ export type PhaseGameOverState = {
   /**
    * Dictionary of all cards used in the game
    */
-  cardsDict: Dictionary<Item>;
+  cardsDict: Dictionary<ItemData>;
 };

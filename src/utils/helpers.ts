@@ -1,6 +1,6 @@
 import { USE_FIRESTORE_EMULATOR, USE_MOCKS } from '@dev-configs';
 import { format } from 'date-fns';
-import { camelCase, orderBy, startCase } from 'lodash';
+import { camelCase, startCase } from 'lodash';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 import type { GameInfo } from 'types/game-info';

@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GamePlayer, GameRanking } from 'types/game';
-import type { TopicCard } from 'types/tdr';
+import type { TopicCardData } from 'types/tdr';
 
 /**
  * Payload for submitting grid answers
@@ -51,7 +51,7 @@ export type AdedanhxGrid = {
   /**
    * Topic cards for column headers
    */
-  xHeaders: TopicCard[];
+  xHeaders: TopicCardData[];
   /**
    * Letter entries for row headers
    */
@@ -121,7 +121,7 @@ export type GroupAnswerEvaluationEntry = {
   /**
    * Topic card for this cell
    */
-  topic: TopicCard;
+  topic: TopicCardData;
   /**
    * Letter constraint for this cell
    */
@@ -182,7 +182,7 @@ export type AdedanhxGalleryEntry = {
   /**
    * Topic card for this cell
    */
-  topic: TopicCard;
+  topic: TopicCardData;
   /**
    * Letter constraint for this cell
    */

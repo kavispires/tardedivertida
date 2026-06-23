@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { Flex, Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-import type { SuspectCard as SuspectCardType, TestimonyQuestionCard } from 'types/tdr';
+import type { SuspectCardData as SuspectCardType, TestimonyQuestionCardData } from 'types/tdr';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 // Components
@@ -28,10 +28,10 @@ type StepAnswerTheQuestionProps = {
   user: GamePlayer;
   turnOrder: TurnOrder;
   characters: SuspectCardType[];
-  questionsHistory: TestimonyQuestionCard[];
+  questionsHistory: TestimonyQuestionCardData[];
   activePlayer: GamePlayer;
   onSubmitAnswer: (payload: SubmitAnswerPayload) => void;
-  currentQuestion: TestimonyQuestionCard;
+  currentQuestion: TestimonyQuestionCardData;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepAnswerTheQuestion({

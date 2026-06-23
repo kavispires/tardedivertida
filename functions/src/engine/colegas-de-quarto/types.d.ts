@@ -1,4 +1,4 @@
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import type { COLEGAS_DE_QUARTO_ACTIONS } from './constants';
 
 export type ColegasDeQuartoOptions = {
@@ -13,7 +13,7 @@ export type ColegasDeQuartoOptions = {
 } & ContendersDecksOptions;
 
 export type ResourceData = {
-  deck: TextCard[];
+  deck: TextCardData[];
 };
 
 export type BoardEntry = {
@@ -51,7 +51,7 @@ export type HouseHappiness = {
 export type PastClues = Dictionary<string[]>;
 
 export interface ColegasDeQuartoStore extends DefaultStore<ColegasDeQuartoOptions> {
-  deck: TextCard[];
+  deck: TextCardData[];
   pastClues: PastClues;
 }
 

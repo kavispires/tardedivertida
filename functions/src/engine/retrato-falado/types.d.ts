@@ -1,13 +1,13 @@
-import type { MonsterImage } from '../../types/tdr';
+import type { MonsterImageData } from '../../types/tdr';
 import type { RETRATO_FALADO_ACTIONS } from './constants';
 
-export interface MonsterSketch extends MonsterImage {
+export interface MonsterSketch extends MonsterImageData {
   playerId: UID | null;
   sketch: string | null;
 }
 
 export interface AllMonsters {
-  [key: string]: MonsterImage;
+  [key: string]: MonsterImageData;
 }
 
 export interface ResourceData {
@@ -15,7 +15,7 @@ export interface ResourceData {
 }
 
 export interface RetratoFaladoStore extends DefaultStore {
-  deck: MonsterImage[];
+  deck: MonsterImageData[];
   pastSketches: MonsterSketch[];
 }
 

@@ -2,7 +2,7 @@
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { TABLE_DECK_TOTAL } from './constants';
 // Types
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import type { ImageCardMatch, ResourceData } from './types';
 // Utils
 import * as resourceUtils from '../resource';
@@ -17,7 +17,7 @@ import utils from '../../utils';
  */
 export const getWords = async (language: Language): Promise<ResourceData> => {
   // Get full deck
-  const allWords = await resourceUtils.fetchResource<Dictionary<TextCard>>(
+  const allWords = await resourceUtils.fetchResource<Dictionary<TextCardData>>(
     TDR_RESOURCES.THEME_WORDS,
     language,
   );

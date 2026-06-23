@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { BackwardOutlined, ForwardOutlined } from '@ant-design/icons';
 // Types
-import type { SpectrumCard } from 'types/tdr';
+import type { SpectrumCardData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 // Icons
@@ -25,7 +25,7 @@ export function WavelengthHighlight({ children, type, iconSize, className }: Hig
 
 type TargetSideHighlightProps = {
   target: number;
-  card?: SpectrumCard;
+  card?: SpectrumCardData;
 };
 
 export function TargetSideHighlight({ target, card }: TargetSideHighlightProps) {

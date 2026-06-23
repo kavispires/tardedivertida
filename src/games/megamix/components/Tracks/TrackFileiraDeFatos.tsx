@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Avatar, Space } from 'antd';
 // Types
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 import { useLoading } from '@hooks/useLoading';
@@ -81,7 +81,7 @@ export const TrackFileiraDeFatos = ({ track, onSubmitAnswer }: TrackProps) => {
         </RuleInstruction>
 
         <SpaceContainer>
-          {track.data.scenarios.map((entry: TextCard, index: number) => (
+          {track.data.scenarios.map((entry: TextCardData, index: number) => (
             <TransparentButton
               key={`position-${entry.text}`}
               style={{ width: `${width}px` }}

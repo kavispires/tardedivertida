@@ -2,7 +2,7 @@
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { PLAYER_COUNTS } from './constants';
 // Types
-import type { SpectrumCard } from '../../types/tdr';
+import type { SpectrumCardData } from '../../types/tdr';
 import type { PastCategories, ResourceData } from './types';
 // Utils
 import * as globalUtils from '../global';
@@ -16,7 +16,7 @@ import utils from '../../utils';
  */
 export const getCategories = async (language: string): Promise<ResourceData> => {
   // Get full deck
-  const allCategories = await resourceUtils.fetchResource<Dictionary<SpectrumCard>>(
+  const allCategories = await resourceUtils.fetchResource<Dictionary<SpectrumCardData>>(
     TDR_RESOURCES.SPECTRUMS,
     language,
   );

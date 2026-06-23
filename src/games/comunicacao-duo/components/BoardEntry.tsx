@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Types
-import type { ContenderCard, SuspectCard as SuspectCardType } from 'types/tdr';
+import type { ContenderCardData, SuspectCardData as SuspectCardType } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 // Components
@@ -71,7 +71,7 @@ export function BoardEntry({ entry, deckType, userSide }: BoardEntryProps) {
         className={clsx('cd-board-entry', `cd-board-entry--${entry.affiliation[sideIndex]}`)}
       >
         <CharacterCard
-          character={entry.data as unknown as ContenderCard}
+          character={entry.data as unknown as ContenderCardData}
           size={96}
           className="board-entry-image-card"
         />

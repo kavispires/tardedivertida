@@ -3,7 +3,7 @@ import { capitalize } from 'lodash';
 // Ant Design Resources
 import { Popover } from 'antd';
 // Types
-import type { CrimesHediondosCard } from 'types/tdr';
+import type { CrimesHediondosCardData } from 'types/tdr';
 // Hooks
 import { useDevFeatures } from '@hooks/useDevFeatures';
 import { useLanguage } from '@hooks/useLanguage';
@@ -20,7 +20,7 @@ type CrimeItemCardProps = {
   /**
    * Crime item
    */
-  item: CrimesHediondosCard;
+  item: CrimesHediondosCardData;
   /**
    * Card width
    */

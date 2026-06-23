@@ -1,6 +1,6 @@
 // Types
 import type { Achievement } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 
 export type Suggestion = {
   /**
@@ -34,7 +34,7 @@ export type GalleryEntry = {
    * The outcome result for this round
    */
   outcome: string;
-} & TextCard;
+} & TextCardData;
 
 export type SubmitVotesPayload = {
   /**
@@ -143,7 +143,7 @@ export type PhaseWordSelectionState = {
   /**
    * Array of words to choose from
    */
-  words: TextCard[];
+  words: TextCardData[];
 };
 
 export type PhaseSuggestState = {

@@ -2,7 +2,7 @@ import { sampleSize } from 'lodash';
 import { useState } from 'react';
 // Types
 import type { GamePlayer } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Hooks
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
@@ -32,7 +32,7 @@ type StepSelectGenreProps = {
   genres: MovieGenreOption[];
   onSubmitGenre: (payload: SubmitMovieGenrePayload) => void;
   moviesTitles: string[];
-  movieProps: Item[];
+  movieProps: ItemData[];
 } & Pick<StepProps, 'announcement'>;
 
 export function StepSelectGenre({

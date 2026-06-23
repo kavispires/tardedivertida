@@ -1,10 +1,16 @@
 // Types
 // Constants
 import { SINAIS_DE_ALERTA_PHASES, TABLE_CARDS } from './constants';
-import type { DrawingEntry, FinalGalleryEntry, FirebaseStoreData, GalleryEntry, PlayersSay } from './types';
+import type {
+  DrawingEntryData,
+  FinalGalleryEntry,
+  FirebaseStoreData,
+  GalleryEntry,
+  PlayersSay,
+} from './types';
 // Helpers
 import utils from '../../utils';
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import { increaseAchievement } from './achievements';
 
 /**
@@ -36,7 +42,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
 export const dealCardsToPlayers = (players: Players, store: FirebaseStoreData) => {
   const playersArray = utils.players.getListOfPlayers(players);
 
-  const cards: Dictionary<TextCard> = {};
+  const cards: Dictionary<TextCardData> = {};
 
   playersArray.forEach((player) => {
     const subject = store.subjectsDeck.pop();
@@ -69,7 +75,7 @@ export const dealCardsToPlayers = (players: Players, store: FirebaseStoreData) =
 const buildId = (descriptorId: UID, subjectId: UID, playerId: UID) => {
   return `${descriptorId}-${subjectId}-${playerId}`;
 };
-const getTitle = (cards: Dictionary<TextCard>, descriptorId: UID, subjectId: UID, language: Language) => {
+const getTitle = (cards: Dictionary<TextCardData>, descriptorId: UID, subjectId: UID, language: Language) => {
   if (language === 'pt') {
     return `${cards[subjectId].text} ${cards[descriptorId].text}`;
   }
@@ -85,9 +91,9 @@ const getTitle = (cards: Dictionary<TextCard>, descriptorId: UID, subjectId: UID
  * @param store - The Firebase store data for tracking achievements
  */
 export const evaluateAnswers = (
-  drawings: DrawingEntry[],
+  drawings: DrawingEntryData[],
   players: Players,
-  cards: Dictionary<TextCard>,
+  cards: Dictionary<TextCardData>,
   store: FirebaseStoreData,
 ) => {
   const { language } = store;

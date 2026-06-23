@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { TrophyOutlined } from '@ant-design/icons';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import type { UseStep } from '@hooks/useStep';
 // Components
@@ -24,7 +24,7 @@ type StepRevealProps = {
   activePlayer: GamePlayer;
   players: GamePlayers;
   goToNextStep: UseStep['goToNextStep'];
-  scenarios: TextCard[];
+  scenarios: TextCardData[];
   roundType: string;
 } & Pick<StepProps, 'announcement'>;
 
@@ -43,7 +43,7 @@ export function StepReveal({
           acc[scenario.id] = scenario;
           return acc;
         },
-        {} as Record<UID, TextCard>,
+        {} as Record<UID, TextCardData>,
       ),
     [scenarios],
   );

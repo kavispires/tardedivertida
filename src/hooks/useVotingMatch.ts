@@ -38,7 +38,7 @@ export function useVotingMatch(
 
   const activateItem = useCallback(
     (entryId: string) => {
-      // When new Item is already the active item, deselect it
+      // When new ItemData is already the active item, deselect it
       if (entryId === activeItem) {
         return setActiveItem('');
       }

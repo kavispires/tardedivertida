@@ -1,6 +1,6 @@
 // Types
 import type { PhaseProps } from 'types/game';
-import type { TopicCard } from 'types/tdr';
+import type { TopicCardData } from 'types/tdr';
 // Hooks
 import { useStep } from '@hooks/useStep';
 // Icons
@@ -95,7 +95,7 @@ export function PhaseAnswering({ players, state, user }: PhaseProps<PhaseAnsweri
               pt={
                 <>
                   As categorias da rodada são{' '}
-                  {state.grid.xHeaders.map((c: TopicCard) => (
+                  {state.grid.xHeaders.map((c: TopicCardData) => (
                     <TextHighlight
                       dark
                       key={c.label}
@@ -111,7 +111,7 @@ export function PhaseAnswering({ players, state, user }: PhaseProps<PhaseAnsweri
               en={
                 <>
                   The round categories are{' '}
-                  {state.grid.xHeaders.map((c: TopicCard) => (
+                  {state.grid.xHeaders.map((c: TopicCardData) => (
                     <TextHighlight
                       dark
                       key={c.label}

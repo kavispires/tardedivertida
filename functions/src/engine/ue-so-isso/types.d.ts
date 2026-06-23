@@ -1,4 +1,4 @@
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import type { OUTCOME, UE_SO_ISSO_ACTIONS } from './constants';
 
 export type UeSoIssoGameOptions = {
@@ -41,18 +41,18 @@ export interface PlayerSuggestion {
   invalid: boolean;
 }
 
-export interface PastSuggestion extends TextCard {
+export interface PastSuggestion extends TextCardData {
   suggestions: PlayerSuggestion[];
   guesserId: UID;
   outcome: Outcome;
 }
 
 export interface UeSoIssoStore extends DefaultStore {
-  deck?: TextCard[];
+  deck?: TextCardData[];
   turnOrder?: UID[];
   gameOrder?: UID[];
   usedWords?: UsedWords;
-  currentWords?: TextCard[];
+  currentWords?: TextCardData[];
   currentSuggestions?: PlainObject[];
 }
 

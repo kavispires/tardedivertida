@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 // Types
 import type { GamePlayer } from 'types/game';
-import type { MonsterImage } from 'types/tdr';
+import type { MonsterImageData } from 'types/tdr';
 // Hooks
 import { useCountdown } from '@hooks/useCountdown';
 import { useGlobalState } from '@hooks/useGlobalState';
@@ -17,7 +17,7 @@ import { ViewWitnessing } from './components/ViewWitnessing';
 
 type StepTestimonialProps = {
   isUserTheWitness: boolean;
-  currentMonster: MonsterImage;
+  currentMonster: MonsterImageData;
   onSubmitSketch: (payload: SubmitSketchPayload) => void;
   onSubmitOrientation: (payload: SubmitOrientationPayload) => void;
   witness: GamePlayer;

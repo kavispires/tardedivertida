@@ -5,7 +5,7 @@ import { keyBy, sampleSize } from 'lodash';
 import type { FirebaseStateData, FirebaseStoreData, GalleryEntry, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import { GAME_NAMES } from '../../utils/constants';
 import { determineResults } from './helpers';
 import { makeArray } from '../../utils/helpers';
@@ -78,7 +78,7 @@ export const prepareMetricsBuildingPhase = async (
   // Unready presenter only
   utils.players.readyPlayers(players, presenterId);
 
-  const wordsDeck: TextCard[] = store.wordsDeck;
+  const wordsDeck: TextCardData[] = store.wordsDeck;
   // Get active words and other in the pool
   const roundCards = utils.game.dealItems(wordsDeck, WORDS_PER_PLAYER);
   const wordsDict = keyBy(roundCards, 'id');
@@ -88,7 +88,7 @@ export const prepareMetricsBuildingPhase = async (
   const availablePoolCardsIds = roundCardsIds.slice(4);
 
   // Build descriptions
-  const descriptorsDeck: TextCard[] = store.descriptorsDeck || [];
+  const descriptorsDeck: TextCardData[] = store.descriptorsDeck || [];
   const metricsDescriptors = {
     0: utils.game.dealItems(descriptorsDeck, 2),
     1: utils.game.dealItems(descriptorsDeck, 2),
@@ -136,7 +136,7 @@ export const prepareGuessingPhase = async (
 
   // Remove any words in the wordsDict that are not in the pool
   const poolIds: UID[] = state.poolIds;
-  const wordsDict: Dictionary<TextCard> = state.wordsDict;
+  const wordsDict: Dictionary<TextCardData> = state.wordsDict;
 
   Object.keys(wordsDict).forEach((wordId) => {
     if (!poolIds.includes(wordId as UID)) {

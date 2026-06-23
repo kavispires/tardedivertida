@@ -2,7 +2,7 @@
 import { Divider } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 import { useMock } from '@hooks/useMock';
@@ -26,7 +26,7 @@ import { HandOfCardsHighlight } from './components/Highlights';
 
 type StepSelectChallengeProps = {
   onSubmitChallenge: (payload: SubmitChallengePayload) => void;
-  challenges: TextCard[];
+  challenges: TextCardData[];
   userContenders: FightingContender[];
   round: GameRound;
 } & Pick<StepProps, 'announcement'>;

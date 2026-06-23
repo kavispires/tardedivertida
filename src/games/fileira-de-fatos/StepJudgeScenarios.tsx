@@ -1,5 +1,5 @@
 // Types
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Components
 import { Translate } from '@components/language/Translate';
 import { Step, type StepProps } from '@components/steps/Step';
@@ -11,7 +11,7 @@ import { SelectableScenarioOrder } from './components/SelectableScenarioOrder';
 import { RoundTypeExplanation } from './components/RoundTypeExplanation';
 
 type StepJudgeScenariosProps = {
-  scenarios: TextCard[];
+  scenarios: TextCardData[];
   roundType: string;
   onSubmitOrder: (payload: SubmitScenarioOrderPayload) => void;
 } & Pick<StepProps, 'announcement'>;

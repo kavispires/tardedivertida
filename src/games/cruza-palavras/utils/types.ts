@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GameRanking, GamePlayer } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 
 /**
  * A clue written by a player for a specific coordinate
@@ -164,7 +164,7 @@ export type SubmitGuessesPayload = {
 /**
  * Text card with an optional type field
  */
-export type TextCardWithType = TextCard & { type?: string };
+export type TextCardWithType = TextCardData & { type?: string };
 
 /**
  * Phase state for the words selection phase

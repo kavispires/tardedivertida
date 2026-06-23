@@ -2,7 +2,7 @@
 import { Flex } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Components
 import { Card } from '@components/cards/Card';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
@@ -14,7 +14,7 @@ import { ThingCard } from './ThingCard';
 type GalleryCategoryEntryProps = {
   players: GamePlayers;
   entry: GalleryEntry;
-  cardsDict: Dictionary<Item>;
+  cardsDict: Dictionary<ItemData>;
 };
 
 export function GalleryCategoryEntry({ entry, cardsDict, players }: GalleryCategoryEntryProps) {

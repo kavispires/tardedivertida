@@ -1,5 +1,5 @@
 // Types
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Utils
 import { LETTERS } from '@utils/constants';
 // Components
@@ -15,7 +15,7 @@ import type { SubmitWordPayload } from './utils/types';
 
 type StepWordSelectionProps = {
   onSubmitWord: (payload: SubmitWordPayload) => void;
-  words: TextCard[];
+  words: TextCardData[];
 };
 
 export function StepWordSelection({ onSubmitWord, words }: StepWordSelectionProps) {

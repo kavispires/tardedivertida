@@ -1,6 +1,6 @@
 // Types
 import type { Achievement } from 'types/game';
-import type { MovieCard, MovieReviewCard } from 'types/tdr';
+import type { MovieCardData, MovieReviewCardData } from 'types/tdr';
 
 export type SubmitMovieSelectionPayload = {
   movieId: string;
@@ -40,15 +40,15 @@ export type PhaseMovieSelectionState = {
   /**
    * The movies available for selection in this round
    */
-  movies: MovieCard[];
+  movies: MovieCardData[];
   /**
    * The positive review card for this round
    */
-  goodReview: MovieReviewCard;
+  goodReview: MovieReviewCardData;
   /**
    * The negative review card for this round
    */
-  badReview: MovieReviewCard;
+  badReview: MovieReviewCardData;
   /**
    * List of movie IDs that were mistakes (players voted for them)
    */

@@ -1,9 +1,9 @@
 // Types
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Utils
 import { getRandomItem } from '@utils/helpers';
 
-export function mockTweetSelection(currentTweets: TextCard[]) {
+export function mockTweetSelection(currentTweets: TextCardData[]) {
   return {
     tweetId: getRandomItem(currentTweets).id,
   };

@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GameRanking } from 'types/game';
-import type { MonsterImage } from 'types/tdr';
+import type { MonsterImageData } from 'types/tdr';
 
 /**
  * Represents a sketch submission with player and monster information
@@ -14,7 +14,7 @@ export type Sketch = {
    * ID of the player who created the sketch
    */
   playerId: UID;
-} & MonsterImage;
+} & MonsterImageData;
 
 /**
  * Payload for submitting monster orientation
@@ -58,7 +58,7 @@ export type PhaseCompositeSketchState = {
   /**
    * The monster being described
    */
-  currentMonster: MonsterImage;
+  currentMonster: MonsterImageData;
   /**
    * ID of the player who is the witness
    */
@@ -77,7 +77,7 @@ export type PhaseEvaluationState = {
   /**
    * The monster that was being described
    */
-  currentMonster: MonsterImage;
+  currentMonster: MonsterImageData;
   /**
    * ID of the player who was the witness
    */
@@ -100,7 +100,7 @@ export type PhaseRevealState = {
   /**
    * The monster that was being described
    */
-  currentMonster: MonsterImage;
+  currentMonster: MonsterImageData;
   /**
    * ID of the player who was the witness
    */

@@ -1,8 +1,8 @@
-import type { BossIdeaCard } from '../../types/tdr';
+import type { BossIdeaCardData } from '../../types/tdr';
 import type { CONTROLE_DE_ESTOQUE_ACTIONS, EVENT_TYPE, OUTCOME } from './constants';
 
 export type ResourceData = {
-  allBossIdeas: Dictionary<BossIdeaCard>;
+  allBossIdeas: Dictionary<BossIdeaCardData>;
   goodsIds: string[];
 };
 

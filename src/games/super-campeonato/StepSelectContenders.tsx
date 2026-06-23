@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Badge } from 'antd';
 // Types
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useBooleanDictionary } from '@hooks/useBooleanDictionary';
 import { useCardWidth } from '@hooks/useCardWidth';
@@ -25,7 +25,7 @@ import { Challenge } from './components/Challenge';
 
 type StepSelectContendersProps = {
   onSubmitContender: (payload: SubmitContendersPayload) => void;
-  challenge: TextCard;
+  challenge: TextCardData;
   userContenders: FightingContender[];
   contendersPerPlayerNeeded: number;
 } & Pick<StepProps, 'announcement'>;

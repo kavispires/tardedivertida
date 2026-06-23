@@ -2,7 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Input } from 'antd';
 // Types
-import type { SpectrumCard } from 'types/tdr';
+import type { SpectrumCardData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 import { useLoading } from '@hooks/useLoading';
@@ -22,7 +22,7 @@ import { RulesEn, RulesPt } from './components/RulesBlobs';
 import { TargetSideHighlight, WavelengthHighlight } from './components/Highlights';
 
 type StepClueWritingProps = {
-  currentCategories: SpectrumCard[];
+  currentCategories: SpectrumCardData[];
   currentCategoryId?: string;
   target: number;
   onSendClue: (payload: SubmitCluePayload) => void;
