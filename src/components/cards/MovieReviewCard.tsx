@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Translate } from '@components/language/Translate';
 import { ParagraphHighlighter } from '@components/text/ParagraphHighlighter';
 // Sass
-import styles from './MovieReviewCardData.module.scss';
+import styles from './MovieReviewCard.module.scss';
 
 type MovieReviewCardProps = {
   /**
