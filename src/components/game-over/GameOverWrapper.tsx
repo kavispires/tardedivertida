@@ -11,7 +11,7 @@ import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
 import { PhaseContainer } from 'components/phases/PhaseContainer';
 import { StepSwitcher } from 'components/steps/StepSwitcher';
 // Internal
-import { GameOver } from './GameOver';
+import { GameOver } from './_internal/GameOver';
 
 type GameOverWrapperProps = {
   /**
